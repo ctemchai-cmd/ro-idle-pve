@@ -19,6 +19,8 @@ export interface ActorRenderView {
   next_slot: number; slots: readonly (string | null)[]; status_ids: readonly string[];
   /** Read-only live status projection, grouped for display; each stack keeps its own expiry/source. */
   statuses?: readonly StatusRenderGroup[];
+  /** True only while this living recipient has an active periodic heal status. */
+  healing_aura?: boolean;
   spirit_spheres?: number; spirit_sphere_capacity?: number; spirit_attack_bonus?: number; spirit_attack_per_sphere?: number;
   /** Owner of a summoned actor (plants etc.); party/enemy rows never carry it. */
   summon_of?: string; summon_kind?: string;

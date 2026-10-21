@@ -425,6 +425,64 @@
         ]
       },
       "weapon_element": null
+    },
+    {
+      "id": "physical_regeneration",
+      "polarity": "buff",
+      "tags": [
+        "hot"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "power_ratio": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "power_ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": false,
+      "dispelable": true,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [],
+      "triggers": [],
+      "periodic": {
+        "interval_ms": 1000,
+        "tick_on_apply": false,
+        "offense": "application_snapshot",
+        "mitigation": "live_target",
+        "effects": [
+          {
+            "id": "heal_tick",
+            "type": "heal",
+            "target": "self",
+            "formula": {
+              "id": "physical_power",
+              "params": {
+                "attack_ratio": {
+                  "status_param": "power_ratio"
+                },
+                "flat_power": 0
+              }
+            }
+          }
+        ]
+      },
+      "weapon_element": null
     }
   ],
   "status": "Class content extensions authored in TASK-003–008; additive policies unchanged."

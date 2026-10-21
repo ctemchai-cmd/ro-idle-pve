@@ -26,9 +26,9 @@ Milestone: M4 · อ้างอิง D-096/D-097 · เริ่มออก�
 
 ## เกณฑ์ตรวจรับ
 
-- [ ] AC-01: Bard/Dancer Healing Song ทุกระดับใช้ P.ATK ผ่าน shared raw/heal pipeline ไม่มีarmor/critแบบdamage; ค่าอื่น/MusicLesson/stackingเดิม และ Priest Sanctuary ยังใช้ MATK
-- [ ] AC-02: live aura มีเฉพาะผู้รับที่ยังมีชีวิตและมีperiodic healที่ยังactive หายเมื่อหมด/ล้าง/ตาย; มากกว่าหนึ่งinstanceยังทำงาน/หมดเวลาแยกตามเดิม ไม่มี extra heal/status/DBwriteจากrenderer; reduced motionใช้ภาพนิ่ง
-- [ ] AC-03: หน้าskill/statusอธิบายฐานP.ATKจริง; focusedmath/lifecycle/rendererและactualChromeภาพ/expiryผ่าน, เพลงสองอาชีพค่าเท่ากัน ไม่รันbalance simulationหรือเปลี่ยนตัวคูณพร้อมกัน
+- [x] AC-01: Bard/Dancer Healing Song ทุกระดับใช้ P.ATK ผ่าน shared raw/heal pipeline ไม่มีarmor/critแบบdamage; ค่าอื่น/MusicLesson/stackingเดิม และ Priest Sanctuary ยังใช้ MATK
+- [x] AC-02: live aura มีเฉพาะผู้รับที่ยังมีชีวิตและมีperiodic healที่ยังactive หายเมื่อหมด/ล้าง/ตาย; มากกว่าหนึ่งinstanceยังทำงาน/หมดเวลาแยกตามเดิม ไม่มี extra heal/status/DBwriteจากrenderer; reduced motionใช้ภาพนิ่ง
+- [x] AC-03: หน้าskill/statusอธิบายฐานP.ATKจริง; focusedmath/lifecycle/rendererและactualChromeภาพ/expiryผ่าน, เพลงสองอาชีพค่าเท่ากัน ไม่รันbalance simulationหรือเปลี่ยนตัวคูณพร้อมกัน
 - [ ] AC-04: M0/content/schema/build/type/boundaries/secrets/hostedผ่าน ไม่มีSQL/env/newmedia/ownerwrite/restart6173; แยกcontenthashใหม่จากTASK-070และใช้existingbackup-before-migrate ไม่อ้างว่าอัปเดตเซฟเจ้าของแล้ว
 
 ## วิธีตรวจและหลักฐาน
@@ -41,4 +41,8 @@ Focused per-skill fixture casts/HoT lifecycle, raw formula and presentation proj
 
 ## ผลตรวจจริง
 
-ออกแบบแล้ว รอ TASK-070 live Chrome จบก่อนแก้ product/codegen ตามข้อกำหนด freeze
+- Focused8testsผ่าน (5เพลง/HoTlifecycle+3history): P.ATKสูง/MATKต่ำและสลับกัน, Songทั้งสองอาชีพทุกระดับ+6goldens, 5ticks, MusicLesson/receivedbonus, independentstacks, expiry/dispel/ผู้รับตาย/ผู้ร่ายตาย, UIคำอธิบายและgeometrydeterministic ดู [targeted](../evidence/task-071-targeted.txt)
+- ActualfreshAuth/PostgREST/Postgres/mobileChrome4กลุ่มผ่าน: Bard/Dancer+Sanctuaryจริงทำให้ผู้รับทั้ง4มี3HoTinstancesแต่4วง, ตรวจกับrenderer761frames/ตรงprojectionทุกframe; หมดบัฟ10049msทุกคนยังมีชีวิตวงหายหมด, motionปิดใช้วงนิ่ง, P.ATKในdetails, 320pxไม่ล้น ไม่มีbattle.advance/finishระหว่างดู [UI](../evidence/task-071-healing-live.json) / [stack](../evidence/task-071-local-stack.json) ภาพhot-active/hot-expiredเปิดดูแล้ว
+- M0/data/schema/manifest/codegen/build/type/boundaries/assets/secretsผ่าน Content9473f672c88c569f98a7f44de7c7c6cc7a3deeaa1c427526614cb5d181cb9fdf/packf57a0773…เดิม [build](../evidence/task-071-build.txt) / [M0](../evidence/task-071-m0.txt)
+- Buildround1–2พบreadonlytypeของpassivemodifiersในtestfixture แก้cloneเป็นmutabletestinput ไม่เปลี่ยนproduct/เกณฑ์ เก็บfailurelogsไว้ Finalbuild/targetedผ่าน
+- ไม่รันbalance/calibration/simulationrunner ไม่แตะ6173/ownerdata ไม่มีSQL/env/newassets รอpush/Vercel/publichostedจึงปิดAC04และdone การเปลี่ยนcontentใช้existingสำรองแล้วอัปเดตเซฟหลังจบไฟต์ ไม่อ้างว่าownerทำแล้ว

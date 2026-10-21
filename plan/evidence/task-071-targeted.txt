@@ -1,0 +1,16 @@
+✔ recorded Timeline preserves exact starts, slots, instant casts, skips and interruption attribution (2.450917ms)
+✔ skill log excludes normal hits/future entries and keeps original equal-time engine order (0.519083ms)
+✔ SavedBattleSession records actual advances once; confirm/reading history never forecasts or mutates the live battle (113.796584ms)
+✔ Bard/Dancer have identical physical Healing Song at all levels and six golden references still match (6.272459ms)
+✔ Healing Song uses P.ATK independent of MATK/armor/crit/damage bonuses; Sanctuary remains MATK (12.059125ms)
+✔ existing outgoing/received-heal bonuses and two independent song sources still apply (36.010459ms)
+✔ aura follows live status expiry/dispel and recipient death; caster death preserves the existing HoT policy (10.256167ms)
+✔ skill descriptions name P.ATK and aura geometry is deterministic/game-time-only (8.0825ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1505.032542

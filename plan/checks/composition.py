@@ -153,7 +153,7 @@ def program(effects, selectors, event=None, phase="cast_resolve", status_context
             fid = effect["formula"]["id"]
             if fid == "event_damage_power":
                 require(event in ["damage_received", "damage_dealt"], "event_context")
-            allowed = {"heal": ["healing_power", "flat_power"], "shield": ["healing_power", "flat_power"],
+            allowed = {"heal": ["healing_power", "physical_power", "flat_power"], "shield": ["healing_power", "flat_power"],
                        "damage": ["physical_power", "magical_power", "flat_power", "sp_burst_power", "event_damage_power"]}
             require(fid in allowed[effect["type"]], "formula_result_type")
         if target in selectors:

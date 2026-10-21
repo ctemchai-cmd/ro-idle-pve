@@ -27,10 +27,10 @@
     "plan/data/schemas/skill.json": "060f7cdfc4a8b3a5bfdbf8e3060b6c96863452fe6b136b32fcd7fdf6288cc708",
     "plan/data/schemas/status.json": "d998199e6e2fb6f7a74f399a7a55bf0d4fe2489bf7615225de8107ab910cbc15",
     "plan/data/schemas/trigger.json": "91d1dd01928ec0881c31e488484dc2649eb6715a07370601a847fd3dea36a0a5",
-    "plan/checks/composition.py": "ccc4012d5778d1e85cc13ec95341423a6b5095d10628050e5447895ba3ddaaa9",
+    "plan/checks/composition.py": "cd09daa53f46a097ec42029fbd434aad055fac6367289e1a0985bdaca8971245",
     "plan/design/15-combat-baseline.md": "9534895ba47a0bc434e40c393310d921f643d8585b67d0f93770b7fb17bf951d",
     "plan/design/16-composition-baseline.md": "be54573a1e47bccb7397c751ba871ae21b399e146774e4f620541c9eb1101823",
-    "plan/data/class-status-effects.json": "b7c72874eb47e2a2fc0bd917fb85c36161c05923cd1c96af2f26266df56bb831"
+    "plan/data/class-status-effects.json": "32342f1c326844ed01f012948827d711e47262067cd5ffd25ce6c1ea6a430c95"
   },
   "checks": [
     {
@@ -491,6 +491,19 @@
     },
     {
       "case_id": "status_frost_field",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {
+          "power_ratio": 0
+        }
+      }
+    },
+    {
+      "case_id": "status_physical_regeneration",
       "acceptance": [
         "AC-01",
         "AC-02"
@@ -1165,7 +1178,7 @@
       }
     }
   ],
-  "total": 104,
+  "total": 105,
   "passed": true,
   "manual_review": [
     {

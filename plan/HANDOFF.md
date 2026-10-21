@@ -4,7 +4,7 @@
 
 
 
-## 22 ต.ค. 2026 · Codex — TASK-070 ประวัติ Timeline พร้อม deploy; TASK-071 เพลง P.ATK/วงHoT ถัดไป
+## 22 ต.ค. 2026 · Codex — TASK-070 ประวัติ Timeline ขึ้นVercelแล้ว; TASK-071 เพลง P.ATK/วงHoT ถัดไป
 
 - ผู้ใช้ขอหลังจบไฟต์เลื่อนดูTimelineเพื่อanalyzeคิว และระหว่างทำถามHealingSongฮีลเบา ยืนยันBard/Dancerให้ใช้P.ATKโดยตรง (ไม่ใช่maxATK/MATK) และขอวงฮีลค้างตอนมีHoT ต้องทำ071ต่อ ไม่แทนงาน070 ไม่มีbalance simulationใหม่อนุญาต
 - 070: SavedBattleSessionเก็บเฉพาะcaststart/resolve/interrupt/SP-sphere skipsจากadvanceเดิม confirm/sameclockไม่duplicate; client/battle-history.ts projectionpureไม่มีadvance/forecast Historical TimelineRowไม่แสดงACDที่eventไม่ได้เก็บ และpendingจบไฟต์ไม่ปลอมเป็นinterrupt บันทึกในRAMไม่เพิ่มsave/schema/DBwrites เก็บจนออก/ไฟต์ใหม่/reload
@@ -12,9 +12,11 @@
 - Targeted3checks+actualfreshAuth/PostgREST/Postgres/mobileChrome4กลุ่มผ่าน: Daily60s4x/150Logrows/2.772–59.9s/scrollmax2124px/nativehorizontal+verticaltouch/zoom/filter/320-390px, Towerwin/Storywin/Storydefeat; reviewไม่เปลี่ยนcommands/revision/quota ภาพhistorytimeline/logดูแล้ว task070history-live.json
 - Failuresเก็บround1: synthetictraceมีundefinedจึงcanonicalreject, weakfixtureเคยteam1ผิดtuple4; แก้fixture Browserround1Sheetไม่มีaccessiblename จึงเพิ่มaria-labelledby/useIdให้Sheetจริง ไม่เปลี่ยนเกณฑ์ ตัวproduct/codegenfrozenขณะliveรอบสุดท้ายsession10070จบexit0
 - Build/type/boundaries/assets/secretsผ่าน content **6fbb9995048d6211bf56250dbc54a1215e0626ef6812a73e851f111cc489c6e2** packf57a0773…เดิม NoSQL/env/migrationสำหรับ070 ไม่แตะ6173/ownerdata
-- ขั้นต่อไป commit/push070→Vercel/publicproof prefixtask070; harnessรองรับRO_EXPECT_CONTENT_HASHเพื่อยืนยัน070content6fbbแม้071codegenเปลี่ยนภายหลัง ผ่านค่อยปิดAC04/move070done/cases/matrix/overview/readiness ตอนนี้55/71done inprogress6รวม070/071, 071เพิ่งspec/ยังไม่แก้product
+- 070source4c91cf2ce4ace5e2564c7ceb13873863c7e865dfขึ้นVercelsuccessแล้ว actualpublichosted3กลุ่มผ่านtask-070-hosted.json ใช้RO_EXPECT_CONTENT_HASH=6fbbเพื่อแยกจาก071codegenใหม่ ปิด070done/AC04/cases/matrix/overviewแล้ว Board56/71done/inprogress5รวม071; 071product/unit/UI/buildผ่านแล้ว รอcommit/push/hostedproof ไม่กลับไปรันbalance simulation
 - 071design: reusephysical_powerในeffectheal (ขยายwhitelistเฉพาะheal; ไม่ต้องnewformula/schema) เพิ่มclassstatus physical_regeneration cloneของregenerationแต่tickformulaเป็นphysical_power เปลี่ยนHealingSongทั้งBard/Dancer statusid; coeff10–20%/5ticks/6s/SP38/CT800/ACD1200/stack/bonusเดิม SanctuaryMATKไม่เปลี่ยน Updategoldens/oracles/M0checks เมื่อแก้data
 - 071aura: เพิ่มActorRenderView.healing_aura optionalboolจากactiveperiodicheal statusจริง/recipientalive ไม่hardcodeชื่อสกิล; clientstatusdescriptionฐานP.ATK/MATKจากperiodicformula, rendererวงเขียวใต้เท้า/gameclock/reducedmotion ไม่สร้างticks/newassets ไม่เปลี่ยนruntimepack ไม่ซ้อนวงตามstack แต่ruleทุกinstanceยังอยู่ Clearauraตอนfarmwalk resetvisual หากจำเป็น Contract/contentvalidationdataจะเปลี่ยนcontenthash ต้องexistingbackup-before-migrateหลังจบไฟต์ ไม่มีnewSQL/env
+- 071focused8checksผ่าน เพลงP.ATKทั้ง2อาชีพ/alllevels/6goldens/5ticks/bonuses/stack/expiry/dispel/deaths + history3; actualfreshAuth/PostgREST/Postgres/mobileChrome4กลุ่มผ่าน task071healing-live: 3HoTinstancesต่อผู้รับ/4วง/761framesตรงprojectionหมด, 10049msทุกคนยังอยู่/วงหายหมด, reducedmotionและ320px ไม่มีbattle.advance/finishระหว่างดู ภาพactive/expiredเปิดดูแล้ว session83382exit0 Frozenproduct/codegenระหว่างlive
+- 071Build/type/boundaries/assets/secretsผ่าน **9473f672c88c569f98a7f44de7c7c6cc7a3deeaa1c427526614cb5d181cb9fdf** packเดิม Buildround1–2testfixture readonlymodifierstypingผิด แก้clonecastเป็นmutablefixture ไม่เปลี่ยนproduct/เกณฑ์ Finaltargeted/buildผ่าน NoSQL/env/newmedia ต้องownerจบไฟต์/reload→สำรองแล้วอัปเดตเซฟ ไม่อ้างownerได้ทำแล้ว ขั้นต่อไปcommit/push→GitHubVercelsuccess→RO_EVIDENCE_PREFIX=task-071 RO_DEPLOY_COMMIT=<source> node scripts/test_save_latency_hosted.cjs→ปิด071done/cases/matrix/overview57of71ถ้าhostedผ่าน
 - 067ownerrefund/064cloudtiming/058transferยังไม่ปิด อย่าเอาpublicsmokeแทนownerproof และอย่าrestart6173หรืออ่านprivate/env
 
 ## 21 ต.ค. 2026 · Codex — TASK-069 พลังท่าใช้บอลและไอคอนเล็ก ขึ้นVercelแล้ว

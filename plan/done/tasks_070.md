@@ -28,7 +28,7 @@ Milestone: M4 · อ้างอิง D-095
 - [x] AC-01: ประวัติมาจาก events ที่เล่นแล้วเท่านั้น; เวลา/slot/resolve/interrupt/skip/ผู้ขัดถูกต้อง รวม instant/equal-time/pendingตอนจบ; ไม่มี future events/การรัน engine จากการเปิดประวัติ/confirm log ซ้ำ
 - [x] AC-02: ผล Story/Tower/Daily มีปุ่ม Timeline ย้อนหลัง; เลื่อนต้น→กลาง→ท้ายและซูมได้ ชื่อแถวยังคงอยู่; เลือกสกิลดูผล/เวลาและ Log เรียงตามเวลา กรองตัวละครได้; ปิดกลับผลเดิมโดยไม่เริ่มไฟต์หรือรับรางวัล
 - [x] AC-03: Chrome มือถือ320/390px ใช้ touch scroll ได้ ไม่มีหน้าเว็บล้น; actual terminal→review ไม่เพิ่ม commands/revision/daily quota รักษา result และ statistics เดิม; ระบุว่าเป็นประวัติไฟต์นี้ในหน่วยความจำ
-- [ ] AC-04: targeted tests/build/type/boundaries/content/hostedผ่าน content/packเดิม ไม่มีSQL/env/migration/ownerwrite/restart6173 และไม่รัน balance simulation ใหม่
+- [x] AC-04: targeted tests/build/type/boundaries/content/hostedผ่าน content/packเดิม ไม่มีSQL/env/migration/ownerwrite/restart6173 และไม่รัน balance simulation ใหม่
 
 ## วิธีตรวจและหลักฐาน
 
@@ -44,4 +44,4 @@ Synthetic skill event trace + short SavedBattleSession tests; isolated actual Au
 - ActualfreshAuth/PostgREST/Postgres/mobileChrome4กลุ่มผ่าน: Daily60s4x→history native touchscrollถึงmax2124px, zoom/start/end, stickylabels, precise3decimaldetail, Log150rowsตามเวลา2.772–59.900s/filtermain/verticaltouch, 320/390pxไม่ล้น; Tower/Storywin/Storydefeatเปิดreview+statsกลับresultเดิม ไม่มีextra commands/revision/quota [UI](../evidence/task-070-history-live.json)
 - Build/type/boundaries/assets/secrets/readinessผ่าน content6fbb9995048d6211bf56250dbc54a1215e0626ef6812a73e851f111cc489c6e2/packf57a0773…เดิม ไม่มีSQL/env/migration/ownerwrite/restart6173 ไม่รันbalance simulation
 - แก้accessibleชื่อSheetด้วยaria-labelledby/useId หลังactualbrowserรอบแรกหาdialogตามชื่อไม่ได้ ไม่ผ่อนเกณฑ์; unitfixtureเคยใส่undefinedaction_idและfixtureweakteamเคยเหลือ1คนขัดparty4 แก้fixturesให้ถูกและเก็บround1ไว้แล้ว
-- ดูภาพtimeline/logด้วยตาแล้ว กำลังpush/deployก่อนAC04 ผู้ใช้จบไฟต์แล้วreloadเพื่อรับUI ไม่มีsave.migrateสำหรับงาน070เอง
+- ดูภาพtimeline/logด้วยตาแล้ว ขึ้นVercel4c91cf2ce4ace5e2564c7ceb13873863c7e865df/publichosted3กลุ่มผ่าน [hosted](../evidence/task-070-hosted.json) ผู้ใช้จบไฟต์แล้วreloadเพื่อรับUI ไม่มีsave.migrateสำหรับงาน070เอง ส่วน071เป็นcontentchangeแยก

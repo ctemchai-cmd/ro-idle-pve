@@ -21,7 +21,10 @@ function summaries(definition:SkillDefinition):string[]{
    else if(f.id==='flat_power')text=`${effect.type==='heal'?'ฟื้น HP':effect.type==='shield'?'โล่':'ดาเมจ'} ${number(f.params.amount)}`;
    else if(f.id==='sp_burst_power')text=`พลังโจมตี ${percent(f.params.attack_ratio)} ATK + ${percent(f.params.sp_ratio)} SP`;
    else text='ผลต่อเนื่องตามพลังของสกิล';
-  }else if(effect.type==='apply_status'){const ratio=effect.params.ratio;text=(statusNames[effect.status_id]??effect.status_id)+(typeof ratio==='number'?' '+percent(ratio):'')+' · '+number(Number(effect.duration_ms)/1000)+'s';}
+  }else if(effect.type==='apply_status'){const ratio=effect.params.ratio;text=(statusNames[effect.status_id]??effect.status_id)+(typeof ratio==='number'?' '+percent(ratio):'');
+   const status=content.statuses[effect.status_id] as unknown as {periodic?:{interval_ms:number;effects:{type:string;formula?:{id:string}}[]}|null},heal=status?.periodic?.effects.find(e=>e.type==='heal');
+   if(heal&&typeof effect.params.power_ratio==='number')text+=` ${percent(effect.params.power_ratio)} ${heal.formula?.id==='physical_power'?'P.ATK':'MATK'} ทุก ${number(status.periodic!.interval_ms/1000)}s`;
+   text+=' · '+number(Number(effect.duration_ms)/1000)+'s';}
   else if(effect.type==='interrupt')text='ขัดการร่ายของเป้าหมาย';
   else if(effect.type==='revive')text='ชุบชีวิตเพื่อน';
   else if(effect.type==='remove_status')text='ล้างสถานะจากเป้าหมาย';

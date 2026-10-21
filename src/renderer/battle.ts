@@ -7,6 +7,7 @@ import { DamageNumbers, NUMBER_FLIGHT_MS, numberFlight } from './damage-numbers.
 import { drawProjectile, isFocusedDamage, projectileLifetime, projectilePoint, type ProjectileCue } from './projectiles.ts';
 import { alignProjectiles, attackContactMs, visualImpactMs } from './impact-timing.ts';
 import { drawSpiritSpheres } from './spirit-spheres.ts';
+import { drawHealingAura } from './healing-aura.ts';
 import { locateSkillVisual } from './asset-locator.ts';
 
 interface Cue { event: BattlePresentationEvent; duration: number; delay: number; targets: readonly string[] }
@@ -25,7 +26,7 @@ export class BattleRenderer {
   private impacts: { target_id: string; at: number; config: ImpactEffect; asset: NativeAsset }[] = [];
   private readonly numbers: DamageNumbers | null;
   private readonly animation: ActorAnimation;
-  frameStats = { damage: [] as { source: string; target: string; amount: number; critical: boolean; sequence: number; at_ms: number }[], incoming: [] as { source: string; target: string; amount: number; sequence: number }[], projectiles: [] as { source: string; target: string; shape: string }[], shouts: [] as { actor: string; skill: string }[], impacts: [] as { target: string; meta: string }[] };
+  frameStats = { healing_auras: [] as string[], damage: [] as { source: string; target: string; amount: number; critical: boolean; sequence: number; at_ms: number }[], incoming: [] as { source: string; target: string; amount: number; sequence: number }[], projectiles: [] as { source: string; target: string; shape: string }[], shouts: [] as { actor: string; skill: string }[], impacts: [] as { target: string; meta: string }[] };
   private frameTime = 0;
   private statusImages = new Map<string, HTMLImageElement | null>();
   /** Hide ambient-farm status icons without changing the shared combat state. */
@@ -143,7 +144,7 @@ export class BattleRenderer {
     const zoom = Math.min(width / worldWidth, height / worldHeight) * this.zoom;
     context.save(); context.translate((width - worldWidth * zoom) / 2, (height - worldHeight * zoom) / 2); context.scale(zoom, zoom);
     this.drawnLayers = 0;
-    this.frameStats = { damage: [], incoming: [], projectiles: [], shouts: [], impacts: [] };
+    this.frameStats = { damage: [], incoming: [], projectiles: [], shouts: [], impacts: [], healing_auras: [] };
     const appearances = this.scene.actors;
     this.lastView = view;
     for (const actor of view.actors.filter(row => row.summon_of)) this.drawSummon(context, actor, presentationMs);
@@ -160,6 +161,7 @@ export class BattleRenderer {
       }
       const motion = this.animation.offset(state, elapsed, actor.actor_id, this.motion);
       const sphereTime = this.motion ? presentationMs : 0;
+      if (actor.hp > 0 && actor.healing_aura) { drawHealingAura(context, sphereTime, x, y, 32 * appearance.scale); this.frameStats.healing_auras.push(actor.actor_id); }
       if (actor.hp > 0) drawSpiritSpheres(context, actor.spirit_spheres ?? 0, sphereTime, false, x, y);
       this.drawnLayers += drawActor(context, parts, state, elapsed, x + motion.x * (facing === 'left' ? -1 : 1), y + motion.y, facing, appearance.scale);
       if (actor.hp > 0) drawSpiritSpheres(context, actor.spirit_spheres ?? 0, sphereTime, true, x, y);

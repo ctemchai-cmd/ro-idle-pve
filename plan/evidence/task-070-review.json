@@ -1,7 +1,7 @@
 {
   "task_id": "TASK-070",
   "date": "2026-10-22",
-  "passed": false,
+  "passed": true,
   "implementation_verified": true,
   "targeted_tests": 3,
   "actual_browser_checks": 4,
@@ -14,14 +14,15 @@
     "plan/evidence/task-070-targeted.txt",
     "plan/evidence/task-070-history-live.json",
     "plan/evidence/task-070-local-stack.json",
-    "plan/evidence/task-070-build.txt"
+    "plan/evidence/task-070-build.txt",
+    "plan/evidence/task-070-hosted.json",
+    "plan/evidence/task-070-github-deployment.json"
   ],
-  "pending": [
-    "Deploy and hosted public proof"
-  ],
+  "pending": [],
   "limitations": [
     "Current battle memory only; returning to farm/new fight/reload discards history",
     "History omits ACD bars/labels because existing events do not record recovery duration; live forecast unaffected",
     "Isolated actual Chrome mobile emulation, no owner account or physical Android"
-  ]
+  ],
+  "source_commit": "4c91cf2ce4ace5e2564c7ceb13873863c7e865df"
 }

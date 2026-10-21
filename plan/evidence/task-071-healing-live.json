@@ -1,0 +1,116 @@
+{
+  "task_id": "TASK-071",
+  "passed": true,
+  "error": null,
+  "errors": [],
+  "checks": [
+    "Real Bard/Dancer HoT status produces exactly one drawn green aura per living recipient, with P.ATK in actual status details",
+    "Actual renderer draws HoT with motion disabled; no separate combat or animation timer",
+    "After actual status expiry all four still-living recipients lose their rings before the next song rotation",
+    "Mobile320px no overflow; aura/status inspection adds no command or mid-fight save"
+  ],
+  "measurements": {
+    "active": {
+      "time": 3799,
+      "motion": true,
+      "expected": [
+        "main",
+        "npc_acolyte",
+        "npc_archer",
+        "npc_swordsman"
+      ],
+      "drawn": [
+        "main",
+        "npc_acolyte",
+        "npc_archer",
+        "npc_swordsman"
+      ],
+      "alive": 4,
+      "statuses": [
+        {
+          "id": "main",
+          "ids": [
+            "physical_regeneration",
+            "physical_regeneration",
+            "regeneration"
+          ]
+        },
+        {
+          "id": "npc_acolyte",
+          "ids": [
+            "physical_regeneration",
+            "physical_regeneration",
+            "regeneration"
+          ]
+        },
+        {
+          "id": "npc_archer",
+          "ids": [
+            "physical_regeneration",
+            "physical_regeneration",
+            "regeneration"
+          ]
+        },
+        {
+          "id": "npc_swordsman",
+          "ids": [
+            "physical_regeneration",
+            "physical_regeneration",
+            "regeneration"
+          ]
+        }
+      ]
+    },
+    "expired": {
+      "time": 10049,
+      "motion": false,
+      "expected": [],
+      "drawn": [],
+      "alive": 4,
+      "statuses": [
+        {
+          "id": "main",
+          "ids": [
+            "aspd_up",
+            "aspd_up"
+          ]
+        },
+        {
+          "id": "npc_acolyte",
+          "ids": [
+            "aspd_up",
+            "aspd_up"
+          ]
+        },
+        {
+          "id": "npc_archer",
+          "ids": [
+            "aspd_up",
+            "aspd_up"
+          ]
+        },
+        {
+          "id": "npc_swordsman",
+          "ids": [
+            "aspd_up",
+            "aspd_up"
+          ]
+        }
+      ]
+    },
+    "frames_checked": 761,
+    "commands_before_retreat": [
+      "account.create",
+      "battle.start_daily"
+    ]
+  },
+  "commands": [
+    "account.create",
+    "battle.start_daily",
+    "battle.retreat"
+  ],
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "balance_simulation": false,
+  "scope": "Actual isolated Auth/PostgREST/Postgres/mobileChrome. Disposable Lv40 Bard/Dancer/Priest/Knight team; first HoT lifetime and real renderer inspected, no balance/calibration runner."
+}

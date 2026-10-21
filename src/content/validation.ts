@@ -143,7 +143,7 @@ export class ContentValidator {
       if (['damage', 'heal', 'shield'].includes(type)) {
         const formula = obj(effect.formula);
         if (formula.id === 'event_damage_power') demand(['damage_received', 'damage_dealt'].includes(event ?? ''), 'event_context', at);
-        const allowed = type === 'damage' ? ['physical_power', 'magical_power', 'flat_power', 'sp_burst_power', 'event_damage_power'] : ['healing_power', 'flat_power'];
+        const allowed = type === 'damage' ? ['physical_power', 'magical_power', 'flat_power', 'sp_burst_power', 'event_damage_power'] : type === 'heal' ? ['healing_power', 'physical_power', 'flat_power'] : ['healing_power', 'flat_power'];
         demand(allowed.includes(text(formula.id)), 'formula_result_type', at);
       }
       if (Object.hasOwn(selectors, target)) {

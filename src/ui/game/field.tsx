@@ -68,7 +68,7 @@ function FarmField({ context, covered }: { context: GameContext; covered: boolea
           const t = Math.min(1, (clock - phaseAt) / tuning.walk_ms), e = t * t * (3 - 2 * t), from = partyPoints(endView), to = partyPoints(ready.session.view());
           scroll += delta * 0.085; current.renderer.scroll = scroll;
           const at = endView.game_time_ms + clock - phaseAt;
-          const party: ActorRenderView[] = endView.actors.filter(a => a.team === 'player' && !a.summon_of).map(a => { const [fx, fy] = from.get(a.actor_id)!, [tx, ty] = to.get(a.actor_id) ?? [fx, fy], x = fx + (tx - fx) * e, y = fy + (ty - fy) * e; return { ...a, hp: a.max_hp, phase: 'skill_interval', cast: null, status_ids: [], spatial: { x, y, previous_x: x, previous_y: y, updated_at: at, moving: true, target_id: null, normal_range: a.spatial?.normal_range ?? 80 } }; });
+          const party: ActorRenderView[] = endView.actors.filter(a => a.team === 'player' && !a.summon_of).map(a => { const [fx, fy] = from.get(a.actor_id)!, [tx, ty] = to.get(a.actor_id) ?? [fx, fy], x = fx + (tx - fx) * e, y = fy + (ty - fy) * e; return { ...a, hp: a.max_hp, phase: 'skill_interval', cast: null, status_ids: [], statuses: [], healing_aura: false, spatial: { x, y, previous_x: x, previous_y: y, updated_at: at, moving: true, target_id: null, normal_range: a.spatial?.normal_range ?? 80 } }; });
           current.renderer.draw({ ...endView, actors: party, terminal: null }, at);
           if (t >= 1) { current = ready; ready = null; current.renderer.scroll = scroll; set('fight'); }
         }

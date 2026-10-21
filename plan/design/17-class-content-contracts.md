@@ -51,6 +51,14 @@ Status schemaเพิ่ม optional damage_redirect โดยข้อมู�
 
 ประเมิน Call+finisher เป็นสองช่องรวมเวลา/normal attacks และ SP ไม่ตัดสินจาก damage หนึ่งhit Asura กิน SP ทั้งหมด จึงไม่สมมติว่าทุกรอบมี SP เต็ม; Passive Spirit Combo อาจลดความจำเป็น Call แต่ไม่รับประกันบอลครบตอนถึงคิว ผู้ใช้ห้ามรัน simulation ใหม่ในรอบนี้ ใช้ static arithmetic และ focused rule/UI checks เท่านั้น ผลบาลานซ์จริง/โหลดเอาต์อยู่ TASK-041 และ feedback ผู้เล่น ยังไม่ปิดจากการเพิ่มตัวคูณ
 
+## Healing Song และวงฮีลต่อเนื่อง (D-096/D-097, 22 ต.ค.2026)
+
+Bard/Dancer Healing Song ใช้ P.ATK โดยตรงผ่าน `physical_power` ใน effect ชนิด `heal`; ไม่ใช้ MATK หรือค่าสูงสุดของสองฐาน และไม่ผ่านเกราะ/คริ/โบนัส damage การแก้นี้คง power10–20% ต่อ tick, interval1s, duration6s, SP38/CT800/ACD1200, โบนัส Music Lesson และโบนัสรับฮีลเดิม ไม่มี tick ตอน apply และ expiry ชนะ tick เวลาเดียวกัน จึงได้5ticks รวม50–100% P.ATK ต่อผู้รับก่อนโบนัส ไม่ใช่ผลสมดุลที่วัดจาก simulation
+
+`physical_regeneration` ใช้ lifecycle/stacking/source snapshot เช่นเดียวกับ `regeneration` แต่เปลี่ยนสูตร raw ของ periodic heal เท่านั้น Priest Sanctuary ยังใช้ MATK แต่ละ application มี expiry แยกตามเดิมและไม่ถูก renderer รวมทิ้ง
+
+วงเขียวใต้ผู้รับเป็น authored procedural indicator จากสถานะ periodic heal ที่ยัง active จริง ไม่ hardcode ชื่อสกิล ผู้รับหลาย HoT แสดงวงเดียวแต่ engine ยังคำนวณทุก instance วงหายเมื่อไม่มี HoT เหลือ/ผู้รับตาย และตามตำแหน่ง actor จริง ใช้ presentation clock เดียวกับภาพอื่น; motion ปิดใช้ภาพนิ่ง ไม่สร้าง heal ticks หรือ DB writes เพิ่ม ไม่อ้างว่าเป็น native STR ของ RO
+
 ## ภาพ เสียง และหลักฐาน
 
 ทุกท่ามี icon ID/sidecarที่อ่านจาก skill-assets indexจริงและตรวจไฟล์/sha256 เสียง/VFXเลือก prepared recipeที่ dependencyพร้อม; ท่าที่ไม่มีสูตรเฉพาะใช้ familyที่เข้าลักษณะและระบุว่า authored adaptation ไม่อ้างว่าเป็น nativeeffectของท่านั้น การตรวจนี้ไม่เปิดอ่านรูปใหม่และไม่เพิ่ม visual-reviewครอบคลุมทุกเฟรม
