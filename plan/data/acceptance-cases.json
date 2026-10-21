@@ -8696,6 +8696,102 @@
         "plan/evidence/task-068-review.json",
         "plan/evidence/task-068-hosted.json"
       ]
+    },
+    {
+      "id": "T069-AC-01",
+      "task_id": "TASK-069",
+      "acceptance_id": "AC-01",
+      "criterion": "ทุกระดับของ3สกิลได้coefficientsตามข้างต้นและgolden intentsตรง; ค่าใช้จ่าย/timing/hits/crit/armorและสกิลอื่นไม่เปลี่ยน, ไม่คูณโบนัสซ้ำในpipeline",
+      "input_setup": "Static coefficient/cost arithmetic plus focused cast/presentation/migration rules and actual isolated Auth/Postgres/mobileChrome; no balance simulation",
+      "input_refs": [
+        "plan/inprogress/tasks_069.md",
+        "plan/data/skills/acolyte.json",
+        "src/ui/game/combat-status.tsx"
+      ],
+      "parameters": {
+        "balance_simulation": false,
+        "owner_cloud_writes": false,
+        "mobile_widths": [
+          320,
+          390
+        ]
+      },
+      "expected": "ทุกระดับของ3สกิลได้coefficientsตามข้างต้นและgolden intentsตรง; ค่าใช้จ่าย/timing/hits/crit/armorและสกิลอื่นไม่เปลี่ยน, ไม่คูณโบนัสซ้ำในpipeline",
+      "verification": "Focused unit/golden/static arithmetic, actual mobile UI/build and signed-out hosted artifacts",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation"
+    },
+    {
+      "id": "T069-AC-02",
+      "task_id": "TASK-069",
+      "acceptance_id": "AC-02",
+      "criterion": "sharedengineใช้ATKหลังหักบอลและSPก่อนหักสำหรับAsuraจริง; บอลไม่พอข้าม/ถูกขัดไม่คืนหรือสร้างdamage; หน้าสกิลแสดงcoefficientsใหม่และจำนวนhit, existingbackup/migrationchecksผ่าน",
+      "input_setup": "Static coefficient/cost arithmetic plus focused cast/presentation/migration rules and actual isolated Auth/Postgres/mobileChrome; no balance simulation",
+      "input_refs": [
+        "plan/inprogress/tasks_069.md",
+        "plan/data/skills/acolyte.json",
+        "src/ui/game/combat-status.tsx"
+      ],
+      "parameters": {
+        "balance_simulation": false,
+        "owner_cloud_writes": false,
+        "mobile_widths": [
+          320,
+          390
+        ]
+      },
+      "expected": "sharedengineใช้ATKหลังหักบอลและSPก่อนหักสำหรับAsuraจริง; บอลไม่พอข้าม/ถูกขัดไม่คืนหรือสร้างdamage; หน้าสกิลแสดงcoefficientsใหม่และจำนวนhit, existingbackup/migrationchecksผ่าน",
+      "verification": "Focused unit/golden/static arithmetic, actual mobile UI/build and signed-out hosted artifacts",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation"
+    },
+    {
+      "id": "T069-AC-03",
+      "task_id": "TASK-069",
+      "acceptance_id": "AC-03",
+      "criterion": "มีmanualcost/powerreviewพร้อมสมมติฐานและข้อจำกัด ไม่รันbalance simulation; build/type/content/boundaries/secretsและhostedproofผ่าน, packเดิม/ไม่มีSQL/envใหม่ ไม่อ้างว่าบาลานซ์พิสูจน์ครบหรือเขียนเซฟเจ้าของแล้ว",
+      "input_setup": "Static coefficient/cost arithmetic plus focused cast/presentation/migration rules and actual isolated Auth/Postgres/mobileChrome; no balance simulation",
+      "input_refs": [
+        "plan/inprogress/tasks_069.md",
+        "plan/data/skills/acolyte.json",
+        "src/ui/game/combat-status.tsx"
+      ],
+      "parameters": {
+        "balance_simulation": false,
+        "owner_cloud_writes": false,
+        "mobile_widths": [
+          320,
+          390
+        ]
+      },
+      "expected": "มีmanualcost/powerreviewพร้อมสมมติฐานและข้อจำกัด ไม่รันbalance simulation; build/type/content/boundaries/secretsและhostedproofผ่าน, packเดิม/ไม่มีSQL/envใหม่ ไม่อ้างว่าบาลานซ์พิสูจน์ครบหรือเขียนเซฟเจ้าของแล้ว",
+      "verification": "Focused unit/golden/static arithmetic, actual mobile UI/build and signed-out hosted artifacts",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation"
+    },
+    {
+      "id": "T069-AC-04",
+      "task_id": "TASK-069",
+      "acceptance_id": "AC-04",
+      "criterion": "บัฟ/ดีบัฟicon18px, ใช้CallSpirits iconแทนวงกลมในcounter/party/details, ไม่มีstatuscontrols/iconsในfarm; bossstatusและcastอยู่นอกmainbarและความสูงmainbarไม่เปลี่ยนระหว่างสถานะ/cast, มือถือ320/390pxไม่มีoverlap/overflow รายละเอียดsource/expiry/stackยังอ่านได้",
+      "input_setup": "Static coefficient/cost arithmetic plus focused cast/presentation/migration rules and actual isolated Auth/Postgres/mobileChrome; no balance simulation",
+      "input_refs": [
+        "plan/inprogress/tasks_069.md",
+        "plan/data/skills/acolyte.json",
+        "src/ui/game/combat-status.tsx"
+      ],
+      "parameters": {
+        "balance_simulation": false,
+        "owner_cloud_writes": false,
+        "mobile_widths": [
+          320,
+          390
+        ]
+      },
+      "expected": "บัฟ/ดีบัฟicon18px, ใช้CallSpirits iconแทนวงกลมในcounter/party/details, ไม่มีstatuscontrols/iconsในfarm; bossstatusและcastอยู่นอกmainbarและความสูงmainbarไม่เปลี่ยนระหว่างสถานะ/cast, มือถือ320/390pxไม่มีoverlap/overflow รายละเอียดsource/expiry/stackยังอ่านได้",
+      "verification": "Focused unit/golden/static arithmetic, actual mobile UI/build and signed-out hosted artifacts",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation"
     }
   ]
 }

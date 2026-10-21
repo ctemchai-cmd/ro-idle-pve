@@ -43,6 +43,14 @@ Status schemaเพิ่ม optional damage_redirect โดยข้อมู�
 - Roguecopy_whitelistเป็นruntimefieldนอกnotes; generated_skill_idsบอกห้าท่าที่เป็นderiveddefinitionsจากsourceSkill Sourceprogramเป็นผู้กำหนดeffects/timing/levelcurves ส่วนRogueกำหนดcost/สิทธิ์/copygroup Compilerสร้างสำเนาและตรวจเทียบmaterializedM0fixtures ไม่แก้ตัวต้นฉบับ และไม่ปล่อยcopyเก่าค้างเมื่อsourceเปลี่ยนโดยไม่ผ่านvalidation
 - Blacksmithเสริมกายภาพ/ทำลายเกราะ Alchemistมีเวทสารเคมีและ plantsจำนวนจำกัด Mammoniteรุ่นนี้ใช้ SP ไม่มีการเผา walletทองจาก coreต่อhit Plantไม่อยู่ใน roster ไม่กันผลแพ้ทีม, ownerตาย/จบไฟต์ลบ, ไม่มี recursive spawn trigger
 
+## Monk: ต้นทุนเตรียมท่าและลูกบอล (D-092/D-093, 21 ต.ค.2026)
+
+โบนัสขณะถือบอลคือ ATK+1% ต่อบอลใน derived bucket เดิม หักบอลก่อน offense snapshot จึงใช้5ลูกแล้วไม่มีโบนัสถือบอลเหลือ ความคุ้มของท่าที่ใช้บอลอยู่ใน coefficients ของท่านั้น ไม่สร้าง global multiplier เพิ่ม
+
+ค่าทดลองที่ assistant เสนอหลังผู้ใช้ขอเพิ่มพลังอย่างสมเหตุผล: Triple Attack raw power ×1.25, Finger Offensive ×2.25, Asura ทั้ง ATK และ SP term ×2.25 เทียบข้อมูลก่อน D-093 ปรับทุกระดับโดยคง SP/บอล/CT/ACD/crit/armor/hits เดิม ระดับ10ได้318.75% ATK รวม3hit, 731.25% ATK รวม5hit และ562.5% ATK+292.5% SP ก่อนจ่ายตามลำดับ ไม่ใช่ค่าที่ผู้ใช้ระบุเองหรือสูตร RO reference
+
+ประเมิน Call+finisher เป็นสองช่องรวมเวลา/normal attacks และ SP ไม่ตัดสินจาก damage หนึ่งhit Asura กิน SP ทั้งหมด จึงไม่สมมติว่าทุกรอบมี SP เต็ม; Passive Spirit Combo อาจลดความจำเป็น Call แต่ไม่รับประกันบอลครบตอนถึงคิว ผู้ใช้ห้ามรัน simulation ใหม่ในรอบนี้ ใช้ static arithmetic และ focused rule/UI checks เท่านั้น ผลบาลานซ์จริง/โหลดเอาต์อยู่ TASK-041 และ feedback ผู้เล่น ยังไม่ปิดจากการเพิ่มตัวคูณ
+
 ## ภาพ เสียง และหลักฐาน
 
 ทุกท่ามี icon ID/sidecarที่อ่านจาก skill-assets indexจริงและตรวจไฟล์/sha256 เสียง/VFXเลือก prepared recipeที่ dependencyพร้อม; ท่าที่ไม่มีสูตรเฉพาะใช้ familyที่เข้าลักษณะและระบุว่า authored adaptation ไม่อ้างว่าเป็น nativeeffectของท่านั้น การตรวจนี้ไม่เปิดอ่านรูปใหม่และไม่เพิ่ม visual-reviewครอบคลุมทุกเฟรม

@@ -1,0 +1,425 @@
+{
+  "task_id": "TASK-069",
+  "baseline_commit": "862ec57d85a9758dabb0ab239eab6ab35ea37f66",
+  "scope": "Static schema/data differences and closed-form power/timing arithmetic; never advances a battle or runs simulation",
+  "skills": [
+    {
+      "id": "monk_triple_attack",
+      "coefficient_factor": 1.25,
+      "before": {
+        "power": [
+          0.5,
+          0.538889,
+          0.577778,
+          0.616667,
+          0.655556,
+          0.694444,
+          0.733333,
+          0.772222,
+          0.811111,
+          0.85
+        ]
+      },
+      "after": {
+        "power": [
+          0.625,
+          0.67361125,
+          0.7222225,
+          0.77083375,
+          0.819445,
+          0.868055,
+          0.91666625,
+          0.9652775,
+          1.01388875,
+          1.0625
+        ]
+      },
+      "cost": {
+        "sp": 24,
+        "spirit_spheres": 1
+      },
+      "timing": {
+        "cast_ms": 150,
+        "after_cast_ms": 750,
+        "interruptible": true
+      },
+      "hits": 3
+    },
+    {
+      "id": "monk_finger_offensive",
+      "coefficient_factor": 2.25,
+      "before": {
+        "power": [
+          0.38,
+          0.41,
+          0.44,
+          0.47,
+          0.5,
+          0.53,
+          0.56,
+          0.59,
+          0.62,
+          0.65
+        ]
+      },
+      "after": {
+        "power": [
+          0.855,
+          0.9225,
+          0.99,
+          1.0575,
+          1.125,
+          1.1925,
+          1.26,
+          1.3275,
+          1.395,
+          1.4625
+        ]
+      },
+      "cost": {
+        "sp": 35,
+        "spirit_spheres": 5
+      },
+      "timing": {
+        "cast_ms": 1000,
+        "after_cast_ms": 1000,
+        "interruptible": true
+      },
+      "hits": 5
+    },
+    {
+      "id": "monk_asura",
+      "coefficient_factor": 2.25,
+      "before": {
+        "attack": [
+          1.5,
+          1.611111,
+          1.722222,
+          1.833333,
+          1.944444,
+          2.055556,
+          2.166667,
+          2.277778,
+          2.388889,
+          2.5
+        ],
+        "mana": [
+          0.7,
+          0.766667,
+          0.833333,
+          0.9,
+          0.966667,
+          1.033333,
+          1.1,
+          1.166667,
+          1.233333,
+          1.3
+        ]
+      },
+      "after": {
+        "attack": [
+          3.375,
+          3.62499975,
+          3.8749995,
+          4.12499925,
+          4.374999,
+          4.625001,
+          4.87500075,
+          5.1250005,
+          5.37500025,
+          5.625
+        ],
+        "mana": [
+          1.575,
+          1.72500075,
+          1.87499925,
+          2.025,
+          2.17500075,
+          2.32499925,
+          2.475,
+          2.62500075,
+          2.77499925,
+          2.925
+        ]
+      },
+      "cost": {
+        "sp": {
+          "mode": "all_current",
+          "minimum_sp": 30
+        },
+        "spirit_spheres": 5
+      },
+      "timing": {
+        "cast_ms": 1300,
+        "after_cast_ms": 1600,
+        "interruptible": true
+      },
+      "hits": 1
+    }
+  ],
+  "unrelated_skills_unchanged": 16,
+  "costs_timing_hit_rules_unchanged": true,
+  "timing_budget": [
+    {
+      "level": 1,
+      "aspd": 100,
+      "cspd": 100,
+      "call_finger": {
+        "duration_ms": 9100,
+        "raw_skill_atk_ratio": 4.275,
+        "fractional_normal_capacity": 5.133333333333334,
+        "approx_raw_atk_per_second": 1.0338827838827842
+      },
+      "bash_pierce_reference": {
+        "duration_ms": 7650,
+        "raw_skill_atk_ratio": 3.35,
+        "fractional_normal_capacity": 4.866666666666666,
+        "approx_raw_atk_per_second": 1.074074074074074
+      },
+      "relative_approx_power": 0.9625805229253509
+    },
+    {
+      "level": 1,
+      "aspd": 200,
+      "cspd": 100,
+      "call_finger": {
+        "duration_ms": 6100,
+        "raw_skill_atk_ratio": 4.275,
+        "fractional_normal_capacity": 6.266666666666667,
+        "approx_raw_atk_per_second": 1.7281420765027324
+      },
+      "bash_pierce_reference": {
+        "duration_ms": 4650,
+        "raw_skill_atk_ratio": 3.35,
+        "fractional_normal_capacity": 5.733333333333333,
+        "approx_raw_atk_per_second": 1.953405017921147
+      },
+      "relative_approx_power": 0.8846819070536923
+    },
+    {
+      "level": 1,
+      "aspd": 100,
+      "cspd": 200,
+      "call_finger": {
+        "duration_ms": 7550,
+        "raw_skill_atk_ratio": 4.275,
+        "fractional_normal_capacity": 4.566666666666666,
+        "approx_raw_atk_per_second": 1.1710816777041941
+      },
+      "bash_pierce_reference": {
+        "duration_ms": 6825,
+        "raw_skill_atk_ratio": 3.35,
+        "fractional_normal_capacity": 4.433333333333334,
+        "approx_raw_atk_per_second": 1.1404151404151404
+      },
+      "relative_approx_power": 1.0268906788433994
+    },
+    {
+      "level": 1,
+      "aspd": 200,
+      "cspd": 200,
+      "call_finger": {
+        "duration_ms": 4550,
+        "raw_skill_atk_ratio": 4.275,
+        "fractional_normal_capacity": 5.133333333333334,
+        "approx_raw_atk_per_second": 2.0677655677655684
+      },
+      "bash_pierce_reference": {
+        "duration_ms": 3825,
+        "raw_skill_atk_ratio": 3.35,
+        "fractional_normal_capacity": 4.866666666666666,
+        "approx_raw_atk_per_second": 2.148148148148148
+      },
+      "relative_approx_power": 0.9625805229253509
+    },
+    {
+      "level": 4,
+      "aspd": 100,
+      "cspd": 100,
+      "call_finger": {
+        "duration_ms": 9100,
+        "raw_skill_atk_ratio": 5.2875,
+        "fractional_normal_capacity": 5.133333333333334,
+        "approx_raw_atk_per_second": 1.1451465201465203
+      },
+      "bash_pierce_reference": {
+        "duration_ms": 7650,
+        "raw_skill_atk_ratio": 4.016666,
+        "fractional_normal_capacity": 4.866666666666666,
+        "approx_raw_atk_per_second": 1.1612199564270151
+      },
+      "relative_approx_power": 0.9861581467046505
+    },
+    {
+      "level": 4,
+      "aspd": 200,
+      "cspd": 100,
+      "call_finger": {
+        "duration_ms": 6100,
+        "raw_skill_atk_ratio": 5.2875,
+        "fractional_normal_capacity": 6.266666666666667,
+        "approx_raw_atk_per_second": 1.8941256830601094
+      },
+      "bash_pierce_reference": {
+        "duration_ms": 4650,
+        "raw_skill_atk_ratio": 4.016666,
+        "fractional_normal_capacity": 5.733333333333333,
+        "approx_raw_atk_per_second": 2.0967740501792114
+      },
+      "relative_approx_power": 0.9033523106117316
+    },
+    {
+      "level": 4,
+      "aspd": 100,
+      "cspd": 200,
+      "call_finger": {
+        "duration_ms": 7550,
+        "raw_skill_atk_ratio": 5.2875,
+        "fractional_normal_capacity": 4.566666666666666,
+        "approx_raw_atk_per_second": 1.305187637969095
+      },
+      "bash_pierce_reference": {
+        "duration_ms": 6825,
+        "raw_skill_atk_ratio": 4.016666,
+        "fractional_normal_capacity": 4.433333333333334,
+        "approx_raw_atk_per_second": 1.2380951404151406
+      },
+      "relative_approx_power": 1.0541900984535468
+    },
+    {
+      "level": 4,
+      "aspd": 200,
+      "cspd": 200,
+      "call_finger": {
+        "duration_ms": 4550,
+        "raw_skill_atk_ratio": 5.2875,
+        "fractional_normal_capacity": 5.133333333333334,
+        "approx_raw_atk_per_second": 2.2902930402930406
+      },
+      "bash_pierce_reference": {
+        "duration_ms": 3825,
+        "raw_skill_atk_ratio": 4.016666,
+        "fractional_normal_capacity": 4.866666666666666,
+        "approx_raw_atk_per_second": 2.3224399128540303
+      },
+      "relative_approx_power": 0.9861581467046505
+    },
+    {
+      "level": 10,
+      "aspd": 100,
+      "cspd": 100,
+      "call_finger": {
+        "duration_ms": 9100,
+        "raw_skill_atk_ratio": 7.3125,
+        "fractional_normal_capacity": 5.133333333333334,
+        "approx_raw_atk_per_second": 1.3676739926739925
+      },
+      "bash_pierce_reference": {
+        "duration_ms": 7650,
+        "raw_skill_atk_ratio": 5.35,
+        "fractional_normal_capacity": 4.866666666666666,
+        "approx_raw_atk_per_second": 1.335511982570806
+      },
+      "relative_approx_power": 1.0240821576465948
+    },
+    {
+      "level": 10,
+      "aspd": 200,
+      "cspd": 100,
+      "call_finger": {
+        "duration_ms": 6100,
+        "raw_skill_atk_ratio": 7.3125,
+        "fractional_normal_capacity": 6.266666666666667,
+        "approx_raw_atk_per_second": 2.226092896174863
+      },
+      "bash_pierce_reference": {
+        "duration_ms": 4650,
+        "raw_skill_atk_ratio": 5.35,
+        "fractional_normal_capacity": 5.733333333333333,
+        "approx_raw_atk_per_second": 2.3835125448028673
+      },
+      "relative_approx_power": 0.933954763959078
+    },
+    {
+      "level": 10,
+      "aspd": 100,
+      "cspd": 200,
+      "call_finger": {
+        "duration_ms": 7550,
+        "raw_skill_atk_ratio": 7.3125,
+        "fractional_normal_capacity": 4.566666666666666,
+        "approx_raw_atk_per_second": 1.5733995584988962
+      },
+      "bash_pierce_reference": {
+        "duration_ms": 6825,
+        "raw_skill_atk_ratio": 5.35,
+        "fractional_normal_capacity": 4.433333333333334,
+        "approx_raw_atk_per_second": 1.433455433455434
+      },
+      "relative_approx_power": 1.0976271196001666
+    },
+    {
+      "level": 10,
+      "aspd": 200,
+      "cspd": 200,
+      "call_finger": {
+        "duration_ms": 4550,
+        "raw_skill_atk_ratio": 7.3125,
+        "fractional_normal_capacity": 5.133333333333334,
+        "approx_raw_atk_per_second": 2.735347985347985
+      },
+      "bash_pierce_reference": {
+        "duration_ms": 3825,
+        "raw_skill_atk_ratio": 5.35,
+        "fractional_normal_capacity": 4.866666666666666,
+        "approx_raw_atk_per_second": 2.671023965141612
+      },
+      "relative_approx_power": 1.0240821576465948
+    }
+  ],
+  "asura_single_cast_snapshots": [
+    {
+      "atk": 1000,
+      "pre_cost_sp": 250,
+      "raw_before": 2825.0,
+      "raw_after": 6356.25,
+      "sp_after_start": 0
+    },
+    {
+      "atk": 1000,
+      "pre_cost_sp": 1000,
+      "raw_before": 3800.0,
+      "raw_after": 8550.0,
+      "sp_after_start": 0
+    },
+    {
+      "atk": 1000,
+      "pre_cost_sp": 2000,
+      "raw_before": 5100.0,
+      "raw_after": 11475.0,
+      "sp_after_start": 0
+    },
+    {
+      "atk": 1000,
+      "pre_cost_sp": 4000,
+      "raw_before": 7700.0,
+      "raw_after": 17325.0,
+      "sp_after_start": 0
+    }
+  ],
+  "assumptions": [
+    "Same normalized ATK and supplied ASPD/CSPD; not matched gear/stat/role budgets or complete four-slot rotations",
+    "All hits land without crit, armor, flat reduction, targets dying, CC, passive procs or SP shortage",
+    "Normal capacity is a continuous long-run approximation, not the exact integer hit count/first-attack timing",
+    "Held-sphere ATK bonus excluded so the spender coefficient is reviewed on its own",
+    "Asura snapshots are single casts; all-current-SP is spent, and repeating full-SP Asura every rotation is NOT assumed"
+  ],
+  "limitations": [
+    "No win rate, sustained resource budget, encounter or whole-game balance verdict",
+    "Passive ball generation can reduce need for Call Spirits; actual loadout tradeoffs remain for player feedback/TASK-041",
+    "No new balance simulation/calibration run was authorized or executed"
+  ],
+  "input_sha256": {
+    "plan/data/skills/acolyte.json": "dad56c30952de842710766815d9603e9f55df4c6331254446afd8f3f8e466003"
+  }
+}

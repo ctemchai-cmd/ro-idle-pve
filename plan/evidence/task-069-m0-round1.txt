@@ -1,0 +1,25 @@
+ok   python3 plan/checks/progression.py --write-report
+ok   python3 plan/checks/combat.py --write-report
+ok   python3 plan/checks/classes.py
+ok   python3 plan/checks/equipment.py
+ok   python3 plan/checks/economy.py
+ok   python3 plan/checks/levels.py
+ok   python3 plan/checks/ui.py --write-report
+ok   python3 plan/checks/architecture.py --write-report
+ok   python3 plan/checks/composition.py --write-report
+ok   manifest
+FAIL python3 plan/checks/readiness.py
+{
+  "checks": 8,
+  "passed": false,
+  "failures": [
+    {
+      "case_id": "all_acceptance_criteria_traceable",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": false,
+      "error": ""
+    }
+  ]
+}

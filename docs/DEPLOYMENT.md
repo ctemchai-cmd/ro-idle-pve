@@ -157,3 +157,6 @@ Sourceใหม่flushเศษเวลา1–49msเมื่อชนdeadlin
 ลูกบอลหมุนรอบMonkพร้อมcounter; Buff/Debuff/shieldมีnative skill icon, stackcount, expiry ของชั้นถัดไป แตะดูผล/ผู้ให้/เวลาของแต่ละinstanceได้ แถบล่างเลือกตัวโฟกัส; หน้าhomeกดรูปโล่ดูทีมระหว่างฟาร์ม ไม่เพิ่มmidfight save
 
 หลังจบไฟต์ ให้reload Chrome/PWAแล้วกด **สำรองแล้วอัปเดตเซฟ** ผ่านexisting save.migrate เพื่อเปลี่ยนจากcontent768e12a4…ไปf34a37a2… ระบบสำรองก่อนเขียน ไม่ต้องรันSQLหรือเพิ่มenv ทดสอบเฉพาะกติกา/UI/migrationของงานนี้ ไม่รันbalance simulationใหม่ตามคำขอผู้ใช้
+
+
+TASK-069 ต่อจากชุดบอล/สถานะ: ปรับ coefficients Triple/Finger/Asura และย่อสถานะ18px, ใช้ Call Spirits icon, ซ่อนใน farm, แยกสถานะ/ร่ายออกจากกรอบข้อมูลบอส ความกว้าง/สูงกรอบหลักไม่เปลี่ยนตามบัฟ ค่าท่าเป็น baseline ทดลอง ไม่ใช่ผล balance simulation ใหม่ Content `6fbb9995048d6211bf56250dbc54a1215e0626ef6812a73e851f111cc489c6e2` เปลี่ยนจากชุด068: จบไฟต์ก่อน reload แล้วกด **สำรองแล้วอัปเดตเซฟ** ไม่ต้องเพิ่ม SQL หรือ env

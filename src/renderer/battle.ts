@@ -28,6 +28,8 @@ export class BattleRenderer {
   frameStats = { damage: [] as { source: string; target: string; amount: number; critical: boolean; sequence: number; at_ms: number }[], incoming: [] as { source: string; target: string; amount: number; sequence: number }[], projectiles: [] as { source: string; target: string; shape: string }[], shouts: [] as { actor: string; skill: string }[], impacts: [] as { target: string; meta: string }[] };
   private frameTime = 0;
   private statusImages = new Map<string, HTMLImageElement | null>();
+  /** Hide ambient-farm status icons without changing the shared combat state. */
+  showStatuses = true;
   selected = 'main';
   motion = true;
   /** Horizontal background travel in source-image pixels; presentation only. */
@@ -242,7 +244,7 @@ export class BattleRenderer {
     }
     const barY = y + (showName ? 41 : 17);
     context.fillStyle = '#213e31'; context.fillRect(x - 38, barY, 76, 5); context.fillStyle = actor.team === 'player' ? '#afd3a1' : '#e5a187'; context.fillRect(x - 38, barY, 76 * Math.max(0, actor.hp / actor.max_hp), 5);
-    const statuses = actor.statuses ?? [], shown = statuses.slice(0, 4), badgeY = barY + 11;
+    const statuses = this.showStatuses ? actor.statuses ?? [] : [], shown = statuses.slice(0, 4), badgeY = barY + 11;
     for (const [index, status] of shown.entries()) {
       const left = x - shown.length * 12 + index * 24;
       context.fillStyle = status.polarity === 'buff' ? '#274e70dd' : '#722e43dd'; context.fillRect(left, badgeY, 22, 22);

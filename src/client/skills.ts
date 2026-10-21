@@ -29,6 +29,7 @@ function summaries(definition:SkillDefinition):string[]{
   else if(effect.type==='summon')text='เรียกผู้ช่วยลงสนาม';
   else if(effect.type==='handler'&&effect.handler_id==='detonate_own_status')text=`ระเบิด${statusNames[String(effect.params.status_id)]??effect.params.status_id}ของตัวเอง ${number(effect.params.power_per_instance)} ต่อชั้น`;
   else text='กลไกเฉพาะอาชีพ';
+  if(effect.type==='damage'&&Number(effect.hits)>1)text+=` × ${number(effect.hits)} ครั้ง`;
   return text+('when'in effect&&effect.when?' เมื่อเข้าเงื่อนไข':'');
  });
 }

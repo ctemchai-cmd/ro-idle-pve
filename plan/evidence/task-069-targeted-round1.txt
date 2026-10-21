@@ -1,0 +1,43 @@
+✔ T040 AC-01: export → reset → restore brings back the same characters, NPCs, items and slot progress (300.228125ms)
+✔ T040 AC-02: an older signed save is previewed then migrated with a backup; unsupported or broken saves are never changed (961.754667ms)
+✔ T040 AC-03 + D-085: new game clears daily dungeons; restore guards AFK/shop/daily counters and restores once (894.674541ms)
+✔ T040 AC-03/04: a quarantined save is recovered only from its signed tip; a healthy save refuses recovery (220.818083ms)
+✔ T040 AC-04: the client only sends maintenance writes the server asked for, and shows nothing until the receipt (0.889292ms)
+✔ D-085: migrating an already-reset locked game clears only carried daily progress, with backup; unlocked games retain it (422.222875ms)
+✔ T040 AC-05: compatibility matrix — current/older/newer/unknown/cost-version fixtures migrate, reject or refund exactly (465.183958ms)
+✔ 21Oct daily clock incident refunds one Essence attempt with signed backup; retries cannot refund twice (229.385875ms)
+✔ daily clock repair without an affected historical retreat does not change quota or create a backup (194.814166ms)
+✔ the nine raw-intent reference cases at levels1/4/10 match the shipped spenders (10.3975ms)
+✔ D-093 highest-level spenders compensate preparation through their own power, without changing costs or hit rules (0.323083ms)
+✔ D-093 actual cast snapshots use only remaining spheres and pre-cost SP; power enters the shared pipeline exactly once (31.74075ms)
+✔ stronger finishers still skip without spheres and never deal their damage or refund costs after interruption (5.583417ms)
+✖ the skill page reads new power and multi-hit counts from the same definitions (1.046708ms)
+✔ held spheres add0–5% in the existing ATK bucket, without changing speed or magic (7.035667ms)
+✔ gain and cast costs recompute ATK before the snapshot; interruption never refunds spent spheres (3.220916ms)
+✔ live status view groups Blessing effects without hiding independent sources, stacks, expiry or shields (30.491667ms)
+✔ sphere projection and orbit geometry show the exact resource count, using only game time (0.897959ms)
+✔ revive clears the old sphere bonus before rebuilding the revived actor stats (2.703ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 18
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6452.012917
+
+✖ failing tests:
+
+test at tests/game/spirit-finisher.test.ts:1:4443
+✖ the skill page reads new power and multi-hit counts from the same definitions (1.046708ms)
+  Error: INVALID_SKILL_LOADOUT
+      at validateCharacterSkills (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/src/domain/progression/skills.ts:39:171)
+      at compileCharacterSkills (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/src/domain/progression/skills.ts:43:2)
+      at characterSkillOptions (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/src/client/skills.ts:39:17)
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/spirit-finisher.test.ts:65:19)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7)

@@ -1,0 +1,9 @@
+
+> ro-idle-classic@0.1.0 typecheck
+> tsc --noEmit
+
+tests/game/spirit-finisher.test.ts(22,37): error TS2339: Property 'attack_ratio' does not exist on type '{ attack_ratio: number | { level_param: string; } | { status_param: string; }; flat_power: number | { level_param: string; } | { status_param: string; }; } | { attack_ratio: number | { level_param: string; } | { ...; }; flat_power: number | ... 1 more ... | { ...; }; } | { ...; } | { ...; } | { ...; } | { ...; }'.
+  Property 'attack_ratio' does not exist on type '{ amount: number | { level_param: string; } | { status_param: string; }; }'.
+tests/game/spirit-finisher.test.ts(27,129): error TS2339: Property 'sp_ratio' does not exist on type '{ attack_ratio: number | { level_param: string; } | { status_param: string; }; flat_power: number | { level_param: string; } | { status_param: string; }; } | { attack_ratio: number | { level_param: string; } | { ...; }; flat_power: number | ... 1 more ... | { ...; }; } | { ...; } | { ...; } | { ...; } | { ...; }'.
+  Property 'sp_ratio' does not exist on type '{ attack_ratio: number | { level_param: string; } | { status_param: string; }; flat_power: number | { level_param: string; } | { status_param: string; }; }'.
+tests/game/spirit-finisher.test.ts(57,17): error TS2554: Expected 5 arguments, but got 3.

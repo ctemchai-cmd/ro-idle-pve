@@ -33,13 +33,11 @@ function useNow(interval: number) { const [now, setNow] = useState(Date.now()); 
 /** Main-screen ambient farm: the saved team walks and clears weak waves. Display only; rewards stay time-based. */
 function FarmField({ context, covered }: { context: GameContext; covered: boolean }) {
   const { pack, state } = context, canvas = useRef<HTMLCanvasElement>(null), coveredRef = useRef(covered), [phase, setPhase] = useState<'load' | 'fight' | 'walk' | 'rest' | 'error'>('load');
-  const waveRef = useRef<Wave | null>(null), [statusesOpen, setStatusesOpen] = useState(false), statusesOpenRef = useRef(false), [statusView, setStatusView] = useState<BattleRenderView | null>(null);
-  statusesOpenRef.current = statusesOpen;
   coveredRef.current = covered;
   const stage = farmSceneStage(state), key = `${stage.id}:${storyPresentationKey(state)}`;
   useEffect(() => {
     const node = canvas.current; if (!pack || !node) return;
-    let disposed = false, raf = 0, last = performance.now(), clock = 0, phaseAt = 0, wave = 0, scroll = 0, current: Wave | null = null, notify = 0;
+    let disposed = false, raf = 0, last = performance.now(), clock = 0, phaseAt = 0, wave = 0, scroll = 0, current: Wave | null = null;
     let mode: 'load' | 'fight' | 'settle' | 'walk' | 'rest' = 'load', ready: Wave | null = null, endView: BattleRenderView | null = null, won = true;
     const tuning = shellVisuals(pack.index).farm, skins = farmSkins(pack.index, stage.chapter);
     const resize = () => { const r = node.getBoundingClientRect(); if (r.width && r.height) { node.width = 720; node.height = Math.round(720 * r.height / r.width); } };
@@ -47,7 +45,7 @@ function FarmField({ context, covered }: { context: GameContext; covered: boolea
     const prepare = async (n: number): Promise<Wave> => {
       const session = new FarmWaveSession(state, stage, n, skins, tuning); await pack.prepare(session.scene, session.skillIds());
       if (pack.soundEnabled) await pack.enableAudio(true, session.scene).catch(() => {});
-      const renderer = new BattleRenderer(node, pack, session.scene); renderer.zoom = 1.3; return { session, renderer };
+      const renderer = new BattleRenderer(node, pack, session.scene); renderer.zoom = 1.3; renderer.showStatuses = false; return { session, renderer };
     };
     const set = (m: typeof mode) => { mode = m; phaseAt = clock; if (!disposed) setPhase(m === 'settle' ? 'fight' : m); };
     void prepare(0).then(value => { if (disposed) return; current = value; clock = 0; set('fight'); }).catch(() => { if (!disposed) setPhase('error'); });
@@ -56,8 +54,6 @@ function FarmField({ context, covered }: { context: GameContext; covered: boolea
       const delta = document.hidden || coveredRef.current ? 0 : Math.max(0, Math.min(120, now - last)); last = now;
       if (!delta || !current) { raf = requestAnimationFrame(frame); return; }
       try {
-        waveRef.current = current;
-        if (statusesOpenRef.current && now - notify >= 100) { setStatusView(current.session.view()); notify = now; }
         clock += delta;
         if (mode === 'fight') {
           const target = current.session.state.game_time_ms + delta;
@@ -79,12 +75,10 @@ function FarmField({ context, covered }: { context: GameContext; covered: boolea
       raf = requestAnimationFrame(frame);
     }
     raf = requestAnimationFrame(frame);
-    return () => { disposed = true; waveRef.current = null; cancelAnimationFrame(raf); observer.disconnect(); };
+    return () => { disposed = true; cancelAnimationFrame(raf); observer.disconnect(); };
   }, [pack, key]);
   return <section className="field-arena" aria-label={`ฟาร์มอัตโนมัติ ด่าน ${stage.id}`} data-farm-phase={phase} data-farm-stage={stage.id}>
     <canvas ref={canvas} width={720} height={1100} aria-hidden="true" />
-    <button className="farm-status-toggle" aria-label="สถานะทีม" onClick={() => { setStatusView(waveRef.current?.session.view() ?? null); setStatusesOpen(true); }}><Icon name="shield" /></button>
-    {statusesOpen && <Sheet title="สถานะทีมระหว่างฟาร์ม" onClose={() => setStatusesOpen(false)} className="farm-status-sheet">{statusView ? statusView.actors.filter(a => a.team === 'player' && !a.summon_of).map(a => <section className="farm-status-actor" key={a.actor_id}><h3>{a.name}</h3><CombatStatusStrip actor={a} actors={statusView.actors} pack={pack} now={statusView.game_time_ms} />{!a.statuses?.length && a.spirit_spheres === undefined && <p className="hint">ยังไม่มี Buff / Debuff</p>}</section>) : <p className="hint">กำลังเตรียมทีม…</p>}</Sheet>}
     {phase === 'rest' && <p className="field-toast">ทีมพักฟื้นแล้วออกเดินต่อ…</p>}
     {phase === 'error' && <p className="field-toast">ยังแสดงฉากฟาร์มไม่ได้ · ตรวจทีมและสกิล</p>}
   </section>;
@@ -129,22 +123,23 @@ function BossField({ context, app, running, checkpoint, outcome, retreat, statsR
   const party = view.actors.filter(a => a.team === 'player' && !a.summon_of), boss = view.actors.find(a => a.team === 'enemy' && !a.summon_of), focused = party.find(a => a.actor_id === selected) ?? party[0], label = (id: string) => app.session.scene.skill_labels[id] ?? id;
   return <section className="field-arena boss" aria-label="ไฟต์บอส" data-battle-id={app.id} data-game-ms={view.game_time_ms} data-terminal={view.terminal?.kind ?? ''}>
     <canvas ref={canvas} width={720} height={1100} aria-label="ทีมต่อสู้กับบอส" />
-    <div className="boss-bar">
+    <div className="boss-hud"><div className="boss-bar">
       <div className="boss-name"><strong>{boss?.name.replace('บอส · ', '')}</strong><span>{modeTag(app.session)}</span><time>{(view.game_time_ms / 1000).toFixed(1)}<small>/{view.time_limit_ms / 1000}s</small></time></div>
       <div className="bar hp"><i style={{ width: `${boss ? boss.hp / boss.max_hp * 100 : 0}%` }} /><span>{full(Math.max(0, boss?.hp ?? 0))} / {full(boss?.max_hp ?? 0)}</span></div>
-      {boss?.cast && (() => { const info = bossCastInfo(boss.cast.skill_id), progress = Math.min(1, Math.max(0, (view.game_time_ms - boss.phase_started_at) / Math.max(1, boss.phase_duration_ms)));
-        return <div className={`boss-cast${info.heavy ? ' heavy' : ''}`} role={info.heavy ? 'alert' : undefined}>
-          <p><b>{info.heavy && <Icon name="warning" />}{label(boss.cast.skill_id)}</b> · {boss.cast.interruptible ? 'ขัดร่ายได้' : 'ขัดร่ายไม่ได้'}{info.heavy && info.telegraph ? <small>{info.telegraph}</small> : null}</p>
-          <span className="cast-track"><i style={{ width: `${progress * 100}%` }} /></span>
-        </div>; })()}
-      {cut && <p className="boss-cut" role="status"><Icon name="lightning" /> ขัดสำเร็จ!{cut.by ? ` · ${cut.by}` : ''}</p>}
-      {boss && <CombatStatusStrip actor={boss} actors={view.actors} pack={pack} now={view.game_time_ms} />}
     <div className="boss-tools">
       <button className="chip-btn" onClick={() => setPanel('statistics')}><Icon name="chart" /><span>สถิติ</span></button>
       <button className="chip-btn" onClick={() => setPanel('timeline')}><Icon name="timeline" /><span>Timeline</span></button>
       <SpeedButton />
       {retreat && !outcome && <button className="chip-btn danger" disabled={retreating} onClick={() => { setRetreating(true); void retreat().finally(() => setRetreating(false)); }}><Icon name="retreat" /><span>{retreating ? 'กำลังถอย…' : 'ถอยทัพ'}</span></button>}
     </div>
+    </div>
+      <div className="boss-status-panel">{boss && <CombatStatusStrip actor={boss} actors={view.actors} pack={pack} now={view.game_time_ms} />}</div>
+      {boss?.cast && (() => { const info = bossCastInfo(boss.cast.skill_id), progress = Math.min(1, Math.max(0, (view.game_time_ms - boss.phase_started_at) / Math.max(1, boss.phase_duration_ms)));
+        return <div className={`boss-cast${info.heavy ? ' heavy' : ''}`} role={info.heavy ? 'alert' : undefined}>
+          <p><b>{info.heavy && <Icon name="warning" />}{label(boss.cast.skill_id)}</b> · {boss.cast.interruptible ? 'ขัดร่ายได้' : 'ขัดร่ายไม่ได้'}{info.heavy && info.telegraph ? <small>{info.telegraph}</small> : null}</p>
+          <span className="cast-track"><i style={{ width: `${progress * 100}%` }} /></span>
+        </div>; })()}
+      {cut && <p className="boss-cut" role="status"><Icon name="lightning" /> ขัดสำเร็จ!{cut.by ? ` · ${cut.by}` : ''}</p>}
     </div>
     {view.terminal && !outcome && running && <p className="field-toast">กำลังยืนยันผลไฟต์…</p>}
     {error && <p className="field-toast danger" role="alert">{error}</p>}

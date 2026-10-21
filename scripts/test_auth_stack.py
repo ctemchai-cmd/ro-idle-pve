@@ -108,7 +108,7 @@ with tempfile.TemporaryDirectory(prefix="ro-auth21-", dir="/private/tmp") as fol
         if FOCUS == "statuses":
             statuses = run([NODE,ROOT/"scripts/test_status_ui_live.cjs"],environment)
             (ROOT/("plan/evidence/"+RUN_TAG+"-statuses.txt")).write_text(statuses)
-            report["checks"].append("Actual mobile live Monk spheres, buff/debuff/shield icons, source/stack/expiry and farm status UI passed")
+            report["checks"].append("Actual mobile live Monk spheres, buff/debuff/shield icons, source/stack/expiry and requested farm presentation passed")
         if FOCUS == "daily_terminal":
             terminal = run([NODE,ROOT/"scripts/test_daily_terminal_live.cjs"],environment)
             (ROOT/("plan/evidence/"+RUN_TAG+"-daily-terminal.txt")).write_text(terminal)

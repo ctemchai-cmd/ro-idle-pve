@@ -1,0 +1,27 @@
+✔ T040 AC-01: export → reset → restore brings back the same characters, NPCs, items and slot progress (356.791167ms)
+✔ T040 AC-02: an older signed save is previewed then migrated with a backup; unsupported or broken saves are never changed (806.90825ms)
+✔ T040 AC-03 + D-085: new game clears daily dungeons; restore guards AFK/shop/daily counters and restores once (964.961375ms)
+✔ T040 AC-03/04: a quarantined save is recovered only from its signed tip; a healthy save refuses recovery (223.753834ms)
+✔ T040 AC-04: the client only sends maintenance writes the server asked for, and shows nothing until the receipt (0.772041ms)
+✔ D-085: migrating an already-reset locked game clears only carried daily progress, with backup; unlocked games retain it (422.623334ms)
+✔ T040 AC-05: compatibility matrix — current/older/newer/unknown/cost-version fixtures migrate, reject or refund exactly (447.360584ms)
+✔ 21Oct daily clock incident refunds one Essence attempt with signed backup; retries cannot refund twice (222.916583ms)
+✔ daily clock repair without an affected historical retreat does not change quota or create a backup (221.886542ms)
+✔ the nine raw-intent reference cases at levels1/4/10 match the shipped spenders (13.588875ms)
+✔ D-093 highest-level spenders compensate preparation through their own power, without changing costs or hit rules (1.29225ms)
+✔ D-093 actual cast snapshots use only remaining spheres and pre-cost SP; power enters the shared pipeline exactly once (11.730792ms)
+✔ stronger finishers still skip without spheres and never deal their damage or refund costs after interruption (6.241584ms)
+✔ the skill page reads new power and multi-hit counts from the same definitions (26.641584ms)
+✔ held spheres add0–5% in the existing ATK bucket, without changing speed or magic (5.168417ms)
+✔ gain and cast costs recompute ATK before the snapshot; interruption never refunds spent spheres (3.743583ms)
+✔ live status view groups Blessing effects without hiding independent sources, stacks, expiry or shields (23.654333ms)
+✔ sphere projection and orbit geometry show the exact resource count, using only game time (0.982083ms)
+✔ revive clears the old sphere bonus before rebuilding the revived actor stats (0.940709ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5393.34125

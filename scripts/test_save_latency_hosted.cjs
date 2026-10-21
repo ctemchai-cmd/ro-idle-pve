@@ -3,7 +3,7 @@ const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),{cre
 const {chromium}=require(process.env.RO_PLAYWRIGHT_MODULE||'/private/tmp/ro-idle-prep/tools/node_modules/playwright-core');
 const root=path.resolve(__dirname,'..'),base='https://ro-idle-pve.vercel.app',checks=[],errors=[],mutations=[],prefix=process.env.RO_EVIDENCE_PREFIX||'task-063';
 if(!/^task-\d{3}$/.test(prefix))throw new Error('INVALID_EVIDENCE_PREFIX');
-const expectedContent=prefix==='task-068'?JSON.parse(fs.readFileSync(path.join(root,'src/generated/runtime-manifest.json'),'utf8')).content_hash:'768e12a49bf339711d44f501c3710374adbcd10d9eb74d6a2e6f9b8aa79330af';
+const expectedContent=['task-068','task-069'].includes(prefix)?JSON.parse(fs.readFileSync(path.join(root,'src/generated/runtime-manifest.json'),'utf8')).content_hash:'768e12a49bf339711d44f501c3710374adbcd10d9eb74d6a2e6f9b8aa79330af';
 const assert=(ok,message)=>{if(!ok)throw new Error(message);};let browser,profile,failure;
 (async()=>{
  const samples=[];
@@ -26,9 +26,10 @@ const assert=(ok,message)=>{if(!ok)throw new Error(message);};let browser,profil
   const shell=manifest.build_files.find(r=>/^dist\/assets\/shell-.*\.js$/.test(r.path));assert(shell,'NO_GAME_SHELL_BUNDLE');
   const source=await(await fetch(base+'/'+shell.path.replace(/^dist\//,''))).text();assert(source.includes('bag-window')&&source.includes('data-window-start'),'VIRTUAL_INVENTORY_NOT_DEPLOYED');
  }
- if(prefix==='task-068'){
+ if(['task-068','task-069'].includes(prefix)){
   const shell=manifest.build_files.find(r=>/^dist\/assets\/shell-.*\.js$/.test(r.path));assert(shell,'NO_GAME_SHELL_BUNDLE');
   const source=await(await fetch(base+'/'+shell.path.replace(/^dist\//,''))).text();assert(source.includes('combat-status-strip')&&source.includes('sphere-counter')&&source.includes('status-instance-list'),'STATUS_AND_SPHERES_NOT_DEPLOYED');
+  if(prefix==='task-069')assert(source.includes('boss-status-panel')&&source.includes('data-skill-icon')&&!source.includes('farm-status-toggle'),'COMPACT_STATUS_POLISH_NOT_DEPLOYED');
  }
  checks.push({case_id:'hosted_shared_save_bundle',passed:true,path:row.path,sha256:createHash('sha256').update(bundle).digest('hex'),combined_reply:true});
  profile=fs.mkdtempSync(path.join(os.tmpdir(),'ro-save-hosted-'));const context=await chromium.launchPersistentContext(profile,{headless:true,executablePath:process.env.RO_CHROME_PATH||'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',viewport:{width:390,height:844}});browser=context.browser();
