@@ -45,13 +45,13 @@ Milestone: M4 · ประเภท: เครื่องมือผู้ด�
 | AC-02 | PostgreSQL แยก: success/replay/collision/marker/owner/existing/rollback | [SQL report](../evidence/task-058-postgres.json) ผ่าน fresh cluster รวม replay หลังเล่นต่อ/collision/rollback ทั้ง3ตาราง | ผ่าน self-check |
 | AC-03 | helper บน disposable local fixture และ permissions/gitignore audit | backup/context/SQL/key file private0600/dir0700, source fingerprintเดิม, ไม่มี key ในSQL, .local ignored; ยังไม่ export เซฟจริง | ผ่าน fixture |
 | AC-04 | migrated context ผ่าน API shared handler และคำสั่งถัดไป | checkpoint200/targetsignatureผ่าน equipment.lock commit revision23→24; wallet/farm/ledger/pending/roster/team/story/daily/gacha/shopเดิม | ผ่าน fixture |
-| AC-05 | hosted owner login/SQL/browser ก่อนและหลัง reload | ได้ Project URL/User ID และผู้ใช้เริ่ม Vercel build; แก้ source-assets check แล้ว รอ hosted build/URL/import/login จริง | ยังไม่ตรวจ |
+| AC-05 | hosted owner login/SQL/browser ก่อนและหลัง reload | Vercelขึ้นแล้ว public health200/anonymous401 และ browser routing7casesผ่านด้วย fixtures; ยังรอ operator import/owner login/เซฟเดิม/reload จริง | ยังไม่ครบ |
 
 ผู้ตรวจ: Codex self-check เฉพาะเครื่องมือ · วันที่: 21 ตุลาคม 2026 · รอบ review: 1 · ยัง inprogress รอ hosted AC05
 
 ## Blocker / คำถาม
 
-ได้รับ Project URL/User UID แล้ว ผู้ใช้รายงานรัน6migrationsครบ เตรียม snapshotจริงrevision2933แบบread-onlyและไฟล์privateแล้ว รอผู้ใช้ใส่ APIkeys/environment บนVercel/รันoperatorSQLและส่งโดเมนเพื่อตรวจhostedจริง ห้ามส่งค่าลับผ่านแชตและยังไม่อ้างว่าย้ายขึ้นcloudแล้ว
+ได้รับ Project URL/User UID แล้ว ผู้ใช้รายงานรัน6migrationsครบ เตรียม snapshotจริงrevision2933แบบread-onlyและไฟล์privateแล้ว Vercelอยู่ที่ `https://ro-idle-pve.vercel.app` public health/API gate/หน้าเข้าเกมผ่านแล้ว รอตรวจ operatorSQL/import และ hosted owner login/เซฟเดิม/reload จริง ห้ามส่งค่าลับผ่านแชตและยังไม่อ้างว่าย้ายขึ้นcloudแล้ว Content hashใหม่2c1ac034…ต้องใช้ backed-up save.migrate สำหรับ SQL14ffเดิมตามบันทึกด้านล่าง
 
 ## บันทึกการทำงานและ review
 
