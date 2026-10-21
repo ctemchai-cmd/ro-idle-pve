@@ -1,0 +1,35 @@
+{
+  "task_id": "TASK-058",
+  "passed": true,
+  "checks": [
+    "Private helper backed up game tables, read a consistent source tip without writes and produced only ignored 0600 files in a 0700 directory; signing key absent from SQL/logs",
+    "Wrong project/environment, missing Auth user, future AFK clock and nonempty destination refuse without overwriting a save",
+    "Injected failure after save insert rolls back the save/history/receipt together",
+    "Valid full state including SQL quote delimiters imports; shared API verifies the target-owner signature and commits another command; replay after progression is a no-op",
+    "Post-import RLS hides the source owner from the destination user role",
+    "Replacement requires the exact idle revision-1 hash/content and matching signing key; a failure after destination delete restores every original row and leaves no partial archive",
+    "Replacement archives all original game rows privately, keeps the Auth user, loads the signed imported save through the shared API and replays safely after further progression",
+    "Read-only export uses the signed source version and its matching frozen runtime even when cloud code is newer; a mismatched snapshot fails closed",
+    "Local helper refuses an unfinished battle before creating an export directory"
+  ],
+  "scope": "Fresh PostgreSQL/Auth UID fixtures, operator helper and shared API handler. No hosted Supabase/GoTrue/JWT/PostgREST or personal preview access.",
+  "personal_preview_accessed": false,
+  "credential_values_logged": false,
+  "step": "validate a legacy source using its frozen runtime",
+  "api": {
+    "passed": true,
+    "signed_checkpoint_loaded": true,
+    "post_transfer_command_committed": true,
+    "progressed_revision": 24,
+    "preserved_farm_ledger_rewards": true,
+    "scope": "Shared API handler + real PostgreSQL RPCs over an isolated socket adapter; not GoTrue/JWT/PostgREST or hosted Vercel."
+  },
+  "replacement_api": {
+    "passed": true,
+    "signed_checkpoint_loaded": true,
+    "post_transfer_command_committed": true,
+    "progressed_revision": 24,
+    "preserved_farm_ledger_rewards": true,
+    "scope": "Shared API handler + real PostgreSQL RPCs over an isolated socket adapter; not GoTrue/JWT/PostgREST or hosted Vercel."
+  }
+}

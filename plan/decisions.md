@@ -105,6 +105,7 @@
 | D-080 | 21 ต.ค.2026 ผู้ใช้: ปรับ UX/UI ปุ่มสถิติ, Timeline, ความเร็วและถอยทัพในไฟต์ให้สวยขึ้น และเอา Emoji ออกทั้งหมดโดยใช้ Icon แทน ผู้ช่วยรวมแถบควบคุมใต้ HP/ร่ายใน boss card เพื่อไม่บังสนาม ใช้ outline SVG จาก `src/ui/icon.tsx` ร่วมกันทุกหน้าของเกม คง native RO item/skill/menu art และกติกาไฟต์/ความเร็วเดิม | TASK-056 รอบแก้; ทดสอบกดสถิติ/Timeline/เปลี่ยนความเร็ว/ถอยด้วย API จริง |
 | D-081 | 21 ต.ค.2026 ผู้ใช้จะเชื่อม hosted Supabase กับ Vercel ใช้ sign-in โดยไม่มี sign-up และใส่ keys ใน Vercel environment เอง; ยืนยันย้ายเซฟปัจจุบันจาก6173ไปด้วย ไม่เริ่มใหม่ สร้าง Supabase project แล้วและจะส่ง URL | TASK-058 เตรียม operator transfer; หน้า sign-in และ RLS/migrations มีแล้ว การนำเข้าจริงรอ target project/account/env และ hosted validation |
 | D-082 | 21 ต.ค.2026 ผู้ใช้ deploy สำเร็จแล้วแต่ต้องการหน้าแรกเป็นเกม/เข้าสู่ระบบ แทนสนาม demo ผู้ช่วยให้ `/` เข้า `/play`, session ว่างไป `/auth?next=...` และกลับเกมหลัง login; demo แยก `/demo`, `/auth` โดยตรงยังจัดการบัญชีและกู้รหัสผ่านได้ | เพิ่ม route/browser regression; แก้ Vercel native Node import จาก log จริงในรอบเดียวกัน ไม่มีสูตรเกมหรือเซฟเปลี่ยน |
+| D-083 | 21 ต.ค.2026 ผู้ใช้ขอลดการบันทึกเซฟระหว่างสู้ ผู้ช่วยเลือกรอบ periodic battle.advance 4วินาทีแทน1วินาที (ตัวเลขเป็น implementation baseline) ภาพยังใช้ shared prediction ทุก frame; คำสั่งใช้ทรัพยากร/รับรางวัลยังทันที และยืนยันเวลาที่ความเร็วเดิมก่อนเปลี่ยน1×/2×/4× | TASK-059; ไม่เปลี่ยน DB credit5000ms/lease15000ms/content hash หรือกติกา offline |
 
 ## คำถามหลักที่ส่งให้ผู้ใช้แล้ว
 

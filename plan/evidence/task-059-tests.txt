@@ -1,0 +1,40 @@
+✔ battle acknowledgement waits four wall seconds, independent of render/speed changes (1.182834ms)
+✔ manual acknowledgement moves the deadline; slow responses permit one catch-up, no burst (0.077834ms)
+✔ new battles and explicit reset receive their own interval (0.0605ms)
+✔ operator transfer preserves the complete state/revision and signs for the destination owner (931.985125ms)
+✔ tampered or incomplete source tips and wrong signing keys fail closed (984.764166ms)
+✔ validly signed incompatible data, malformed state, and unfinished battles are rejected (685.794084ms)
+✔ destination is an exact HTTPS Supabase project and UUIDs are normalized (417.111041ms)
+✔ replacing an accidental initial account requires its exact revision, hash and content version (667.252875ms)
+✔ T036 AC-01: 3 bosses × 3 attempts per Bangkok day; the attempt is spent at start, HP carries over and the party restarts full (1025.782792ms)
+✔ T036 AC-02: clearing several phases in one timed attempt gives one chest per phase, each next phase stronger at once without resetting the clock (1110.305584ms)
+✔ T036 AC-03: an attempt started 23:59:45 Bangkok and finished after midnight writes only its own ticket day; the new day starts fresh (413.090334ms)
+✔ T036 AC-04: no double attempts/chests/HP rollback across replays, a second start or stale advances; client prediction matches the server (1338.872291ms)
+✔ recurring receipt replay precedes revision, fixed claim pays once and rejected receipts stay immutable (988.386125ms)
+✔ verified signed state and schema reject changed wallet, foreign history, raw client snapshots and content mismatch (771.283083ms)
+✔ battle advance credits only DB time, persists checkpoint and replay adds no time; expiry rejects and retreat preserves wallet (767.365375ms)
+✔ response-loss refresh reconciles the same receipt before cloud load without delta replay or another payment (692.883334ms)
+✔ offline and second-tab readers cannot submit; writer conflicts reload cloud without repeating an intent (616.457375ms)
+✔ refresh with an active boss reconciles then retreats instead of simulating offline combat (375.734334ms)
+✔ an older checkpoint response cannot downgrade a committed receipt or replace the newer wallet backup (409.628041ms)
+✔ account creation persists a pending UUID without a checkpoint and refresh recovers its original receipt once (438.138083ms)
+✔ command payload fingerprint excludes receipt UUID and preserves all semantic/version fields (0.624916ms)
+✔ requested90000 cannot grant more battle time than actual DB interval (0.8795ms)
+✔ credited battle time respects the authorized5000ms gap and requested interval (0.094417ms)
+✔ DB regression, exact lease expiry and game-time regression never produce partial credit (0.133417ms)
+✔ D-071 fast-forward: speed 2/4 credits the DB interval ×speed, still bounded by the scaled gap and the request; other speeds are refused (0.132542ms)
+✔ T035 AC-01: floors 1/100/101/1000 come from one generator (HP 708/90600/…/8100600), load valid refs and start a real battle (20.317333ms)
+✔ T035 AC-02: the frontier floor pays its first clear once; replays, losses and locked floors pay nothing (1185.84925ms)
+✔ T035 AC-03: the Tower never resets across the Bangkok day and survives a reload; the team stays as saved (57.486125ms)
+✔ T035 AC-04: generated floors stay finite and safe until the generator itself refuses with TOWER_FLOOR_OVERFLOW (2.068833ms)
+✔ T035 AC-01: the client battle session builds a Tower scene (floor title, template boss look) from the server checkpoint (770.487541ms)
+✔ D-071: battle.advance speed 4 credits four times the wall interval through the real command path; the schema refuses speed 3 (17.3675ms)
+✔ T053 AC-02: a Tower card chest gives a card of the player's tier (chapter 2 cleared → tier 20; chapter 4 → tier 40) (71.147167ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 32
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8565.531791

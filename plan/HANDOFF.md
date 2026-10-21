@@ -2,6 +2,22 @@
 
 ไฟล์นี้บันทึกงานที่ agent ตัวหนึ่งทำแล้ว เพื่อให้ตัวถัดไป (Codex/Claude) ทำต่อได้ทันที อ่านคู่กับ [overview](overview.md) และ [AGENTS.md](../AGENTS.md) ล่าสุดอยู่บนสุด
 
+## 21 ต.ค. 2026 · Codex — D-083/TASK-059 ลดเซฟระหว่างสู้เป็น4วินาที
+
+- ผู้ใช้เห็นเซฟรัวระหว่างสู้และขอลด แก้เฉพาะ client/UI: `BattleAckSchedule` กำหนด deadline4000msจากเริ่มrequest ไม่บวกresponse/checkpointlatencyทุกครั้ง ไม่มีcatch-upหลายคำสั่ง; RAF/shared predictionเดิมยังเดินทุกframe คำสั่งผู้เล่นยังส่งทันที ไม่มีการเปลี่ยนSQL/formulas/DBcap5000ms/lease15000ms/offlinepolicy
+- SpeedButton ยืนยัน `battle.advance` ที่ความเร็วเดิมก่อนสลับ1×/2×/4× และเลื่อนdeadlineตามrequestนั้น ถ้าคำสั่งยังไม่confirmed/มีpendingไม่สลับ ผลที่predictionเห็นว่าจบแล้วรอperiodicackถัดไป(ปกติ≤4วินาที+network)ก่อนจ่ายจริง Hidden/offline/refreshยังreconcile/retreat ไม่อ้างว่าปิดหน้าระหว่างสู้แล้วเก็บผลที่ยังไม่ยืนยัน
+- QA: **32 targetedTS tests** รวมStory/Tower/Daily/SaveProtocol/recurring/transfer/schedulerผ่าน; actualisolatedChrome+upstreamAuth/PostgREST/Postgresผ่าน4กลุ่ม Cadenceวัด3995/4014msแม้delayresponse400ms, peakcommand1, game_msเดินระหว่างrequest, speed1/2/4/settlement/claim/reload/offline/reconnectผ่าน [review](evidence/task-059-review.json) / `RO_EVIDENCE_PREFIX=task-059 RO_LOCAL_TEST_FOCUS=cadence python3 scripts/test_auth_stack.py`
+- Harnessรอบแรกไปplayก่อนloginเสร็จ ใช้รอ700msจึงหาMageไม่เจอ แก้ให้รอsigned-inheading เก็บround1reports ไม่เปลี่ยนproductเพื่อหลบเกณฑ์ Build/env/assets/content/boundaries/typecheck/secretsผ่าน **contenthash2c1ac034…และpackf57a0773…คงเดิม** ไม่ต้องmigrateเพราะcadence ไม่รีสตาร์ต6173/ไม่เขียนcloudเซฟ Board **47/59done**, TASK059done; TASK041/058inprogressและvisualreview5งานเดิม
+
+## 21 ต.ค. 2026 · Codex — TASK-058 guarded replacement เตรียมเซฟเดิมล่าสุดแล้ว รอผู้ใช้รันSQL
+
+- ผู้ใช้เติมproductionmarkerแล้วเข้าเกมได้ และเผลอสร้างcloudcharacterใหม่ ตอบtargetmetadataจริง: UID `c37edad4-ec3c-4541-8cba-194bd21e285c`, revision1, statehash `a3cac0c4689d0b262f244ecfee256d9bc9850c1d8e38ea32923398927604afcc` จึงทำexplicitrevision1recoveryแยกจากnormalimportที่ยังปฏิเสธปลายทางไม่ว่าง
+- Generatorตรวจproject/owner/exactrevision/hash/content/schema/ไม่มีbattle/checkpoint/historyตรงและHMACด้วยsigningkeyเดียวกับVercelก่อนarchive/delete สำรองทุกtargetgame rowในprivate `ro_operator_archive.save_replacements` ไม่มีFKไปgame_saves, RLS+revokeapplicationroles ไม่ลบAuthuser ทั้งarchive/delete/importอยู่transactionเดียว exactretryหลังเล่นต่อเป็นno-op ไม่มีpublicrawsaveendpoint
+- Sourceส่วนตัวยังfrozen14ffbc71… แต่cloud2c1ac034… Helperใช้validatorของfrozenruntimeที่ตรงsourcehash โดยstagegeneratorใหม่ในprivate.source-tools+symlinksrc ไม่ผ่อนversionguard ไม่แก้sourcehash/signature หลังนำเข้าcloudจะต้องกด **สำรองแล้วอัปเดตเซฟ** ผ่านsave.migrateเดิม
+- QA: unit5ข้อ/typecheck + freshPostgres9กลุ่มรวมwronghash/revision/HMAC/activebattle/failureหลังdelete/rollback/archiveprivacy/Authคงเดิม/retryหลังเล่นต่อ/sharedAPI checkpoint+commandผ่าน [report](evidence/task-058-replacement-postgres.json) รอบแรกfixturemarkerยังproductionทำlegacyhelperล้ม แก้fixtureกลับlocalและเก็บround1report
+- Exportจริงแบบread-onlyล่าสุด **revision2993/10ด่านผ่าน/ไม่มีไฟต์** statehash `e48d20063805c3d395ed76eb3727dec990848975ba927c415a94993052b131cf` มีbackup/validatedcontext/SQL/envprivateแล้วที่ `.local/cloud-transfer/transfer-1792567985108257000/` **ใช้ `replace-initial-save.sql`** (ไม่ใช้import.sqlเก่าrevision2933) archive/transfer UUID `b9c0b468-b45d-4675-a861-34cc7dbda92d` [metadataaudit](evidence/task-058-replacement-personal-export.json) keysไม่อยู่ในSQL/ทุกไฟล์0600/dir0700
+- **ยังไม่มีcloudwrite/ยังไม่ย้ายสำเร็จ** ไม่มีserverkeysในenvที่ใช้เรียกcloudได้ ผู้ใช้ต้องพักทั้ง6173และVercelแล้วรันSQLไฟล์ใหม่ในSupabaseSQL Editor ถ้าTARGET_SAVE_CHANGEDต้องตรวจmetadataใหม่ ห้ามทับblind; ถ้าTARGET_SIGNING_KEY_MISMATCHให้แก้Vercelkeyให้ตรงprivatefileก่อน ไม่มีข้อมูลเปลี่ยนจากfailedtransaction จากนั้นreloadกดbacked-upmigrationแล้วตรวจเซฟเดิม/เล่นต่อ/reloadจริงจึงปิดTASK058AC05ได้ ไม่พิมพ์login/private/env/contextและไม่รีสตาร์ต6173
+
 ## 21 ต.ค. 2026 · Codex — Hosted checkpoint SAVE_CONTEXT_UNAVAILABLE: deployment marker ยังว่าง
 
 - ผู้ใช้ login แล้วรายงาน `/api/checkpoint` คืน `SAVE_CONTEXT_UNAVAILABLE` ตรวจ adapter พบ `game_load_context` เรียก environment guard ก่อนอ่านเซฟ และรวม RPC error เป็น code นี้ จึงยังไม่ใช่หลักฐานว่าเซฟเสียหรือ signing key ผิด

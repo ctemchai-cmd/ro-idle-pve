@@ -16,10 +16,11 @@ Milestone: M4 · ประเภท: เครื่องมือผู้ด�
 - รักษา AccountState ทุกฟิลด์: roster/team/skills/gear/cards/wallet/ledger/Story/Tower/daily/shop/RNG/pending rewards และ AFK cursor
 - เก็บ revision เดิมและ signed history tip ใหม่; history/receipts/backup รุ่นเก่าเก็บใน private local backup ไม่คัดทุก historical revision ไป cloud
 - ไม่มี public raw-save upload, ไม่เปลี่ยนเกมหรือ Auth schema, ไม่เพิ่ม sign-up และไม่หยุด 6173
+- กู้กรณีเผลอสร้างเซฟปลายทาง revision1 เท่านั้น ผ่าน explicit hash/content/signature guards และ private transactional archive ก่อนแทน
 
 ## รายละเอียด
 
-ผู้ใช้เลือกย้ายเซฟเดิมและจะใส่ keys บน Vercel เอง ใช้ operator SQL ใน project ที่ระบุพร้อม Auth user ที่สร้างแล้ว ปลายทางต้องว่าง การส่งซ้ำไฟล์เดิมเป็น no-op ด้วย import receipt และไม่ย้อนความคืบหน้าที่เล่นต่อหลังนำเข้า signing key สำหรับ Vercel ส่งผ่านไฟล์ private เท่านั้น แหล่งจริง export หลังมี Project URL/User ID; ต้องจบ/ถอยไฟต์ก่อน export เพื่อรักษาผลและสิทธิ์รายวันตาม reducer เดิม
+ผู้ใช้เลือกย้ายเซฟเดิมและจะใส่ keys บน Vercel เอง ใช้ operator SQL ใน project ที่ระบุพร้อม Auth user ที่สร้างแล้ว ปกติปลายทางต้องว่าง; กรณีผู้ใช้เผลอสร้างเซฟใหม่ revision1 อนุญาตเครื่องมือ recovery แยกที่ตรวจค่าจริงและสำรองก่อนแทน การส่งซ้ำไฟล์เดิมเป็น no-op ด้วย import receipt และไม่ย้อนความคืบหน้าที่เล่นต่อหลังนำเข้า signing key สำหรับ Vercel ส่งผ่านไฟล์ private เท่านั้น แหล่งจริง export หลังมี Project URL/User ID; ต้องจบ/ถอยไฟต์ก่อน export เพื่อรักษาผลและสิทธิ์รายวันตาม reducer เดิม
 
 ## ขั้นตอนทำงาน
 
@@ -36,20 +37,24 @@ Milestone: M4 · ประเภท: เครื่องมือผู้ด�
 - [x] AC-03: helper เก็บ backup/context/SQL/key file ไว้ใน .local ด้วย private permissions ไม่แก้ source DB และไม่พิมพ์ secrets/state หรือส่งขึ้น Git
 - [x] AC-04: fresh PostgreSQL fixture ใช้ migrations จริง นำเข้าแล้ว API checkpoint ตรวจ signature ผ่านและคำสั่งถัดไปบันทึกได้; AFK cursor/ledger/pending rewards รักษาไว้
 - [ ] AC-05: hosted Supabase/Vercel จริงใช้ sign-in ไม่มี sign-up บัญชีปลายทางเห็นเซฟเดิมและเล่นต่อ/reload ได้ โดยตรวจ source/target summary และเก็บ source backup
+- [x] AC-06: explicit replacement ยอมเฉพาะ revision1/hash/content/history/HMAC ตรงและไม่มีไฟต์ → private archive/save/history/import receipt atomic; failure ย้อนทุกแถว, replay หลังเล่นต่อไม่ทับ, Auth userคงเดิม; frozen source ต้องใช้ validator hashตรงกัน
 
 ## วิธีตรวจและหลักฐาน
 
 | เกณฑ์ | วิธีตรวจ | ผลจริง | ผ่านหรือไม่ |
 | --- | --- | --- | --- |
-| AC-01 | node tests สำหรับ valid/tampered/version/owner/battle inputs | 4 unit tests ผ่าน; state/signature/version/SQL quoting/UUID normalization | ผ่าน self-check |
+| AC-01 | node tests สำหรับ valid/tampered/version/owner/battle inputs | 5 unit tests ผ่าน; state/signature/version/SQL quoting/UUID normalization/replacementguard | ผ่าน self-check |
 | AC-02 | PostgreSQL แยก: success/replay/collision/marker/owner/existing/rollback | [SQL report](../evidence/task-058-postgres.json) ผ่าน fresh cluster รวม replay หลังเล่นต่อ/collision/rollback ทั้ง3ตาราง | ผ่าน self-check |
-| AC-03 | helper บน disposable local fixture และ permissions/gitignore audit | backup/context/SQL/key file private0600/dir0700, source fingerprintเดิม, ไม่มี key ในSQL, .local ignored; ยังไม่ export เซฟจริง | ผ่าน fixture |
+| AC-03 | helper บน disposable local fixture และ permissions/gitignore audit | backup/context/SQL/key file private0600/dir0700, source fingerprintเดิม, ไม่มี key ในSQL, .local ignored; sourceจริงrevision2993exportแล้วแบบread-only | ผ่าน fixture + source exportจริง |
 | AC-04 | migrated context ผ่าน API shared handler และคำสั่งถัดไป | checkpoint200/targetsignatureผ่าน equipment.lock commit revision23→24; wallet/farm/ledger/pending/roster/team/story/daily/gacha/shopเดิม | ผ่าน fixture |
 | AC-05 | hosted owner login/SQL/browser ก่อนและหลัง reload | Vercelขึ้นแล้ว public health200/anonymous401 และ browser routing7casesผ่านด้วย fixtures; ยังรอ operator import/owner login/เซฟเดิม/reload จริง | ยังไม่ครบ |
+| AC-06 | unit5ข้อ + real PostgreSQL replacement/rollback/retry/permissions/legacy snapshot/sharedAPI | [replacement SQL](../evidence/task-058-replacement-postgres.json) 9กลุ่มผ่าน; [actual export](../evidence/task-058-replacement-personal-export.json) revision2993 hash/signatureผ่าน มีbackup/SQLprivate ไม่มีcloudwrite | ผ่าน self-check |
 
-ผู้ตรวจ: Codex self-check เฉพาะเครื่องมือ · วันที่: 21 ตุลาคม 2026 · รอบ review: 1 · ยัง inprogress รอ hosted AC05
+ผู้ตรวจ: Codex self-check เฉพาะเครื่องมือ · วันที่: 21 ตุลาคม 2026 · รอบ review: 2 · ยัง inprogress รอ hosted AC05
 
 ## Blocker / คำถาม
+
+สถานะล่าสุด: ผู้ใช้เติม production marker แล้ว เข้าเกมและสร้างตัวใหม่ revision1 โดยไม่ได้ตั้งใจ ได้ metadataจริงของปลายทางแล้ว เตรียมเซฟเดิมล่าสุด revision2993/10ด่านผ่านแบบread-onlyสำเร็จที่ `.local/cloud-transfer/transfer-1792567985108257000/replace-initial-save.sql` ยังไม่ได้รัน cloud SQL หลังนำเข้า14ffต้องกด **สำรองแล้วอัปเดตเซฟ** ไปcontent2c1ac034ผ่านระบบเดิม หัวข้อด้านล่างเป็นลำดับเหตุการณ์เก่า
 
 ได้รับ Project URL/User UID แล้ว ผู้ใช้รายงานรัน6migrationsครบ เตรียม snapshotจริงrevision2933แบบread-onlyและไฟล์privateแล้ว Vercelอยู่ที่ `https://ro-idle-pve.vercel.app` public health/API gate/หน้าเข้าเกมผ่านแล้ว รอตรวจ operatorSQL/import และ hosted owner login/เซฟเดิม/reload จริง ห้ามส่งค่าลับผ่านแชตและยังไม่อ้างว่าย้ายขึ้นcloudแล้ว Content hashใหม่2c1ac034…ต้องใช้ backed-up save.migrate สำหรับ SQL14ffเดิมตามบันทึกด้านล่าง
 
@@ -68,3 +73,5 @@ Milestone: M4 · ประเภท: เครื่องมือผู้ด�
 - ผู้ใช้ส่ง hosted Vercel log: env configured ผ่าน แต่ assets:check ล้มเพราะ ignored source files เหลือโฟลเดอร์ว่าง เพิ่ม explicit artifact-only validation ใน build โดยยังตรวจ runtime checksum/selection/manifest ครบ; Python12tests และ isolated production build ผ่าน [หลักฐาน](../evidence/vercel-runtime-build.json) ยังไม่ย้าย cloud/ไม่รีสตาร์ต6173
 
 - D-082: ผู้ใช้ deploy แล้วต้องการ rootเข้าplay/login แทนdemo แก้ routing/return destination และ API native imports จาก user log; Chrome7cases/targeted28tests/officialVercelbuilder+nativeNodeผ่าน [review](../evidence/entry-routes-review.json) Content hashเปลี่ยน2c1ac034…จาก JSON importattribute; SQL14ffเดิมต้องใช้ flow save.migrate พร้อมbackupหลังนำเข้า ไม่ข้ามversionguard ยังไม่อ้าง hosted owner/save proof
+
+- Recovery review2: unit5ข้อ/typecheckผ่าน; fresh PostgreSQL9กลุ่มรวม HMACผิด/เปลี่ยนrevision/hash/activebattle/failureหลังdelete/replayหลังเล่นต่อ/archiveprivacy/Authคงเดิม/sharedAPIผ่าน Frozen source14ffตรวจด้วยsnapshotตรงรุ่นก่อน export2993 ไม่ผ่อนversionguard รอบแรก fixturemarkerยังเป็นproductionจึงล้มก่อนlegacy export แก้fixtureเป็นlocalและเก็บround1report ไม่แตะ6173/cloud

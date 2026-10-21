@@ -8,6 +8,8 @@ import type { AccountState, Command } from '../../src/contracts/index.ts';
 import type { AuthenticatedIdentity } from '../../src/contracts/auth.ts';
 import type { SaveContext } from '../../src/contracts/save.ts';
 import { AccountCommandRules } from '../../src/domain/account/commands.ts';
+import { initializeAccount } from '../../src/domain/progression/initialize.ts';
+import { content } from '../../tests/game/combat-fixtures.ts';
 import { prepareCloudTransfer } from './prepare-cloud-transfer.ts';
 import { transferContext, transferKey, targetOwner, sourceOwner, transferTarget, transferProject, signTransferContext } from '../../tests/game/cloud-transfer-fixtures.ts';
 
@@ -23,6 +25,21 @@ if (mode === 'fixtures') {
   writeFileSync(`${path}/source.sql`, sql, { mode: 0o600 });
   const future = transferContext(); (future.save!.state as AccountState).farm.reserved_through = '2199-01-01T00:00:00.000Z'; signTransferContext(future);
   writeFileSync(`${path}/future.sql`, prepareCloudTransfer(future, transferKey, transferTarget).sql, { mode: 0o600 });
+  const rules = new AccountCommandRules(), at = context.server_at;
+  const initialState = initializeAccount(content, { root_job_id: 'thief', gender: 'male' }, at, '2026-10-20', 5);
+  const initial = signTransferContext({ server_at: at, battle: null,
+    save: { ...context.save!, account_id: targetOwner, revision: 1, state: initialState },
+    history: { ...context.history!, account_id: targetOwner, revision: 1, state: initialState },
+  });
+  const initialCommand = { type: 'account.create', params: { root_job_id: 'thief', gender: 'male' }, request_id: '66666666-6666-4666-8666-666666666666', expected_revision: 0, schema_version: 1, ...rules.versions } as const;
+  const initialReceipt = rules.prepare(initialCommand, 'a'.repeat(64), at, '2026-10-20', 5).receipt;
+  const i = `${quote(initial)}::jsonb`;
+  writeFileSync(`${path}/initial-target.sql`, `WITH d AS (SELECT ${i} c) INSERT INTO public.game_saves SELECT (c#>>'{save,account_id}')::uuid,1,1,c#>>'{save,content_version}',c#>>'{save,rules_version}',c#>>'{save,content_hash}',c#>'{save,state}',c#>>'{save,state_hash}',(c#>>'{save,updated_at}')::timestamptz FROM d;\nWITH d AS (SELECT ${i} c) INSERT INTO public.game_save_history SELECT (c#>>'{history,account_id}')::uuid,1,c#>'{history,state}',c#>>'{history,state_hash}',c#>>'{history,signature}',1,(c#>>'{history,created_at}')::timestamptz FROM d;\nINSERT INTO public.game_command_receipts(account_id,request_id,request_hash,receipt,command_type) VALUES ('${targetOwner}','${initialCommand.request_id}','${initialReceipt.request_hash}',${quote(initialReceipt)}::jsonb,'account.create');\n`, { mode: 0o600 });
+  const guard = { revision: 1, state_hash: initial.save!.state_hash, content_hash: initial.save!.content_hash };
+  writeFileSync(`${path}/replacement.sql`, prepareCloudTransfer(context, transferKey, { ...transferTarget, replace_initial_save: guard }).sql, { mode: 0o600 });
+  writeFileSync(`${path}/replacement-wrong-hash.sql`, prepareCloudTransfer(context, transferKey, { ...transferTarget, replace_initial_save: { ...guard, state_hash: 'b'.repeat(64) } }).sql, { mode: 0o600 });
+  const legacy = transferContext(); legacy.save!.content_hash = 'e'.repeat(64); signTransferContext(legacy);
+  writeFileSync(`${path}/legacy-source.sql`, `UPDATE public.game_saves SET content_hash='${legacy.save!.content_hash}' WHERE account_id='${sourceOwner}'; UPDATE public.game_save_history SET signature='${legacy.history!.signature}' WHERE account_id='${sourceOwner}' AND revision=${legacy.save!.revision};\n`, { mode: 0o600 });
   console.log(JSON.stringify({ prepared: true, fixture: true, source_owner: sourceOwner, target_owner: targetOwner, project_ref: transferProject }));
 } else if (mode === 'api') {
   if (!port || !/^\d+$/.test(port)) throw new Error('DISPOSABLE_PORT_REQUIRED');

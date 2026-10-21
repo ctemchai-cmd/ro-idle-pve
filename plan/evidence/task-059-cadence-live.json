@@ -1,0 +1,248 @@
+{
+  "passed": true,
+  "checks": [
+    "Three periodic acknowledgements ~4s apart despite 400ms response delay; game_ms advances between requests; one write at a time",
+    "Speed changes flush 1×/2× before switching; 4× settles the real server battle, shows no prediction mismatch and claims once immediately",
+    "Offline >4s sends no new command; reconnect reconciles then retreats without offline combat",
+    "Refreshing an active fight retreats it; earlier claimed rewards remain unchanged without duplicate payout"
+  ],
+  "errors": [],
+  "periodic_request_gaps_ms": [
+    3995,
+    4014
+  ],
+  "peak_command_requests": 1,
+  "prediction_samples": [
+    {
+      "ms": 207,
+      "requests": 0
+    },
+    {
+      "ms": 457,
+      "requests": 0
+    },
+    {
+      "ms": 657,
+      "requests": 0
+    },
+    {
+      "ms": 907,
+      "requests": 0
+    },
+    {
+      "ms": 1007,
+      "requests": 0
+    },
+    {
+      "ms": 1257,
+      "requests": 0
+    },
+    {
+      "ms": 1507,
+      "requests": 0
+    },
+    {
+      "ms": 1607,
+      "requests": 0
+    },
+    {
+      "ms": 1807,
+      "requests": 0
+    },
+    {
+      "ms": 2257,
+      "requests": 0
+    },
+    {
+      "ms": 2507,
+      "requests": 0
+    },
+    {
+      "ms": 2757,
+      "requests": 0
+    },
+    {
+      "ms": 2857,
+      "requests": 0
+    },
+    {
+      "ms": 3107,
+      "requests": 0
+    },
+    {
+      "ms": 3307,
+      "requests": 0
+    },
+    {
+      "ms": 3557,
+      "requests": 0
+    },
+    {
+      "ms": 3807,
+      "requests": 0
+    },
+    {
+      "ms": 3907,
+      "requests": 1
+    },
+    {
+      "ms": 4107,
+      "requests": 1
+    },
+    {
+      "ms": 4357,
+      "requests": 1
+    },
+    {
+      "ms": 4557,
+      "requests": 1
+    },
+    {
+      "ms": 4807,
+      "requests": 1
+    },
+    {
+      "ms": 4957,
+      "requests": 1
+    },
+    {
+      "ms": 5166,
+      "requests": 1
+    },
+    {
+      "ms": 5416,
+      "requests": 1
+    },
+    {
+      "ms": 5516,
+      "requests": 1
+    },
+    {
+      "ms": 5766,
+      "requests": 1
+    },
+    {
+      "ms": 5966,
+      "requests": 1
+    },
+    {
+      "ms": 6216,
+      "requests": 1
+    },
+    {
+      "ms": 6316,
+      "requests": 1
+    },
+    {
+      "ms": 6566,
+      "requests": 1
+    },
+    {
+      "ms": 6816,
+      "requests": 1
+    },
+    {
+      "ms": 7016,
+      "requests": 1
+    },
+    {
+      "ms": 7266,
+      "requests": 1
+    },
+    {
+      "ms": 7466,
+      "requests": 1
+    },
+    {
+      "ms": 7616,
+      "requests": 1
+    },
+    {
+      "ms": 7816,
+      "requests": 1
+    },
+    {
+      "ms": 8066,
+      "requests": 2
+    },
+    {
+      "ms": 8266,
+      "requests": 2
+    },
+    {
+      "ms": 8516,
+      "requests": 2
+    },
+    {
+      "ms": 8616,
+      "requests": 2
+    },
+    {
+      "ms": 8866,
+      "requests": 2
+    },
+    {
+      "ms": 9066,
+      "requests": 2
+    },
+    {
+      "ms": 9316,
+      "requests": 2
+    },
+    {
+      "ms": 9516,
+      "requests": 2
+    },
+    {
+      "ms": 9766,
+      "requests": 2
+    },
+    {
+      "ms": 9866,
+      "requests": 2
+    },
+    {
+      "ms": 10116,
+      "requests": 2
+    },
+    {
+      "ms": 10316,
+      "requests": 2
+    },
+    {
+      "ms": 10566,
+      "requests": 2
+    },
+    {
+      "ms": 10666,
+      "requests": 2
+    },
+    {
+      "ms": 10916,
+      "requests": 2
+    },
+    {
+      "ms": 11166,
+      "requests": 2
+    },
+    {
+      "ms": 11366,
+      "requests": 2
+    },
+    {
+      "ms": 11616,
+      "requests": 2
+    },
+    {
+      "ms": 11816,
+      "requests": 2
+    }
+  ],
+  "source_sha256": {
+    "src/client/battle-ack.ts": "d210933bc17eb140d379b419141eb10360b99ae8db0587acf03e1373db5a6eb1",
+    "src/ui/game/shell.tsx": "f91360006f1ff9b28a9ab71d4fe5156f26fcbda077d38a0a2a3f8149d79c63c9",
+    "src/ui/game/field.tsx": "2d03bbf1855ad90c00ff938e541c00828e3619ba0e87d7bcaa020741e88ae91e",
+    "scripts/test_battle_cadence_live.cjs": "4a43d92cbe45236ede2ca49ddf3ed985a22afabde9c84a6de4f909035747129c"
+  },
+  "scope": "Actual loopback Auth/API/PostgreSQL and Chrome. Synthetic Lv20/VIT20 save; no personal or cloud writes."
+}

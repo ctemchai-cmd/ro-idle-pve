@@ -1,0 +1,37 @@
+{
+  "task_id": "TASK-058",
+  "passed": false,
+  "checks": [
+    "Private helper backed up game tables, read a consistent source tip without writes and produced only ignored 0600 files in a 0700 directory; signing key absent from SQL/logs",
+    "Wrong project/environment, missing Auth user, future AFK clock and nonempty destination refuse without overwriting a save",
+    "Injected failure after save insert rolls back the save/history/receipt together",
+    "Valid full state including SQL quote delimiters imports; shared API verifies the target-owner signature and commits another command; replay after progression is a no-op",
+    "Post-import RLS hides the source owner from the destination user role",
+    "Replacement requires the exact idle revision-1 hash/content and matching signing key; a failure after destination delete restores every original row and leaves no partial archive",
+    "Replacement archives all original game rows privately, keeps the Auth user, loads the signed imported save through the shared API and replays safely after further progression"
+  ],
+  "scope": "Fresh PostgreSQL/Auth UID fixtures, operator helper and shared API handler. No hosted Supabase/GoTrue/JWT/PostgREST or personal preview access.",
+  "personal_preview_accessed": false,
+  "credential_values_logged": false,
+  "step": "validate a legacy source using its frozen runtime",
+  "api": {
+    "passed": true,
+    "signed_checkpoint_loaded": true,
+    "post_transfer_command_committed": true,
+    "progressed_revision": 24,
+    "preserved_farm_ledger_rewards": true,
+    "scope": "Shared API handler + real PostgreSQL RPCs over an isolated socket adapter; not GoTrue/JWT/PostgREST or hosted Vercel."
+  },
+  "replacement_api": {
+    "passed": true,
+    "signed_checkpoint_loaded": true,
+    "post_transfer_command_committed": true,
+    "progressed_revision": 24,
+    "preserved_farm_ledger_rewards": true,
+    "scope": "Shared API handler + real PostgreSQL RPCs over an isolated socket adapter; not GoTrue/JWT/PostgREST or hosted Vercel."
+  },
+  "error_type": "RuntimeError",
+  "failure_location": "prepare_local_cloud_transfer.py:40",
+  "error": "LOCAL_CONTEXT_READ_FAILED",
+  "fixture_postgres_diagnostic": "e3a2d28360d347b3e309fbd22e621087af01e7a2963a4585f3ed2',jsonb_set($cloud_51ae5fedf5fd9813c5930d0f${\"request_id\":\"33333333-3333-4333-8333-333333333333\",\"request_hash\":\"0f61a1435a8e3a2d28360d347b3e309fbd22e621087af01e7a2963a4585f3ed2\",\"outcome\":\"committed\",\"committed_revision\":23,\"server_at\":\"2026-10-20T05:00:00.000Z\",\"content_hash\":\"2c1ac0344f0cfa0221933c54cc6576cc6eecbea28488f9a4aba68aba01b93123\",\"content_version\":\"class2-v1.0.0\",\"rules_version\":\"combat-baseline-v1\",\"schema_version\":1,\"command_type\":\"save.migrate\",\"result\":{\"code\":\"LOCAL_SAVE_IMPORTED\",\"resource_delta\":{\"gold\":0,\"hero_exp\":0,\"skill_manual\":0,\"refine_ore\":0,\"breakthrough_essence\":0,\"enchant_dust\":0,\"card_dust\":0,\"crystal\":0},\"created_instance_ids\":[],\"removed_instance_ids\":[],\"pending_claim_ids\":[\"fixture_cloud_pending\"],\"battle_id\":null,\"reason_key\":\"operator_cloud_transfer\",\"ledger_entry_ids\":[],\"refunded_ledger_entries\":[]}}$cloud_51ae5fedf5fd9813c5930d0f$::jsonb,'{server_at}',to_jsonb(to_char(applied_at AT TIME ZONE 'UTC','YYYY-MM-DD\"T\"HH24:MI:SS.MS\"Z\"'))),'save.migrate',applied_at);\n\tEND;\n\t$operator_0f61a1435a8e3a2d28360d34$;\n2026-10-21 14:33:17.611 +07 [20640] ERROR:  ENVIRONMENT_MISMATCH\n2026-10-21 14:33:17.611 +07 [20640] CONTEXT:  PL/pgSQL function public.game_assert_environment(text,text) line 5 at RAISE\n\tSQL statement \"SELECT public.game_assert_environment(p_environment,p_project_ref)\"\n\tPL/pgSQL function public.game_load_context(uuid,text,text) line 4 at PERFORM\n2026-10-21 14:33:17.611 +07 [20640] STATEMENT:  select public.game_load_context('11111111-1111-4111-8111-111111111111', 'local', 'local')\n"
+}

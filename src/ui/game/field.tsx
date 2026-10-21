@@ -8,7 +8,7 @@ import { BattleRenderer } from '../../renderer/battle.ts';
 import { bossSkin, farmSkins, shellVisuals } from '../../renderer/shell.ts';
 import type { AssetPack } from '../../renderer/pack.ts';
 import { SkillTimeline } from '../skill-timeline.tsx';
-import { battleSpeed, cycleBattleSpeed, subscribeBattleSpeed } from '../../client/battle-speed.ts';
+import { battleSpeed, subscribeBattleSpeed } from '../../client/battle-speed.ts';
 import { BattleStatistics } from '../battle-statistics.tsx';
 import type { ChallengeTarget, GameContext } from './shell.tsx';
 import { ResIcon, Sheet, compact, duration, friendNames, full, iconUrl, mapNames, resourceNames, type Wallet } from './kit.tsx';
@@ -126,7 +126,7 @@ function BossField({ context, app, running, checkpoint, outcome, retreat, statsR
     <div className="boss-tools">
       <button className="chip-btn" onClick={() => setPanel('statistics')}><Icon name="chart" /><span>สถิติ</span></button>
       <button className="chip-btn" onClick={() => setPanel('timeline')}><Icon name="timeline" /><span>Timeline</span></button>
-      <SpeedButton />
+      <SpeedButton change={context.changeBattleSpeed} />
       {retreat && !outcome && <button className="chip-btn danger" disabled={retreating} onClick={() => { setRetreating(true); void retreat().finally(() => setRetreating(false)); }}><Icon name="retreat" /><span>{retreating ? 'กำลังถอย…' : 'ถอยทัพ'}</span></button>}
     </div>
     </div>
@@ -248,7 +248,7 @@ function ResultCard({ context, outcome, close, challenge, stats, session }: { co
 }
 
 export function Field({ context, covered, save, request, consumeRequest }: { context: GameContext; covered: boolean; save: SaveSnapshot; request: (ChallengeTarget & { at: number }) | null; consumeRequest: () => void }) {
-  // The boss clock commits every second; its brief 'loading' refresh must not count as offline.
+  // A clock acknowledgement's brief 'loading' refresh must not count as offline.
   const { state, pack, submit, locked } = context, active = state.active_battle, battle = save.checkpoint?.battle, online = !['offline', 'error', 'read_only', 'incompatible', 'signed_out'].includes(save.status);
   const [boss, setBoss] = useState<{ session: SavedBattleSession; id: string } | null>(null), [outcome, setOutcome] = useState<Outcome | null>(null), [sheet, setSheet] = useState<'stage' | 'farm' | null>(null), [starting, setStarting] = useState(false), [intro, setIntro] = useState<{ label: ReturnType<typeof introLabel>; at: number } | null>(null);
   const handled = useRef<string | null>(null), now = useNow(1000), statsRef = useRef<(() => void) | null>(null);
@@ -306,7 +306,8 @@ export function Field({ context, covered, save, request, consumeRequest }: { con
   </div>;
 }
 /** D-071: fast-forward 1×/2×/4× for boss fights; the server credits wall time × speed, so prediction and save stay in step. */
-function SpeedButton() {
+function SpeedButton({ change }: { change: () => Promise<void> }) {
   const speed = useSyncExternalStore(subscribeBattleSpeed, battleSpeed);
-  return <button className={`chip-btn speed ${speed > 1 ? 'on' : ''}`} aria-label={`ความเร็วต่อสู้ ${speed} เท่า กดเพื่อเปลี่ยน`} onClick={() => cycleBattleSpeed()}><Icon name="fast-forward" /><span>{speed}×</span></button>;
+  const [changing, setChanging] = useState(false);
+  return <button className={`chip-btn speed ${speed > 1 ? 'on' : ''}`} disabled={changing} aria-label={`ความเร็วต่อสู้ ${speed} เท่า กดเพื่อเปลี่ยน`} onClick={() => { setChanging(true); void change().finally(() => setChanging(false)); }}><Icon name="fast-forward" /><span>{speed}×</span></button>;
 }

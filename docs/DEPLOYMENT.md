@@ -84,4 +84,23 @@ Preview แบบเชื่อมฐานทดสอบใช้ `VITE_APP_E
 
 State ทุกฟิลด์รวม ledger ราคาเดิม/RNG/AFK cursor/pending rewards ยกไปทั้งก้อนโดยไม่รวมยอดเงินสองเซฟ ไม่เริ่มบอสย้อนหลัง History/receipts/backup รุ่นเก่าทั้งหมดเก็บใน local backup; cloud เริ่มที่ revision เดิมพร้อม tip ที่ลงลายเซ็นใหม่ การเล่นบน6173หลัง export ไม่ตามไป cloud อัตโนมัติ ให้ใช้ cloud ต่อหลังตรวจย้ายผ่านแล้ว
 
+หาก source เป็น frozen snapshot คนละ content hash กับโค้ดปัจจุบัน helper จะตรวจผ่าน validator ของ snapshot ที่ตรงกับเซฟนั้น ไม่แก้ hash หรือลายเซ็นเอง และปฏิเสธ snapshot ที่ไม่ตรง หลังนำเข้า cloud รุ่นใหม่อาจแสดงหน้ารออัปเดตเซฟ ให้กด **สำรองแล้วอัปเดตเซฟ** เพื่อใช้ `save.migrate` พร้อม backup ก่อนเล่นต่อ
+
+### กู้กรณีเผลอสร้างเซฟใหม่ก่อนย้าย
+
+โหมดปกติยังปฏิเสธปลายทางที่มีเซฟ การแทนเซฟที่เพิ่งสร้างทำได้เฉพาะ **revision1** ด้วยเครื่องมือผู้ดูแล พักทั้งสองเว็บก่อน ตรวจ revision/state_hash/content_hash ของปลายทางด้วย read-only SQL แล้วเพิ่ม flags ให้ helper:
+
+```sh
+python3 scripts/prepare_local_cloud_transfer.py \
+  --project-url https://YOUR_PROJECT_REF.supabase.co \
+  --target-user-id YOUR_AUTH_USER_UUID \
+  --replace-initial-revision 1 \
+  --replace-initial-state-hash TARGET_STATE_HASH \
+  --replace-initial-content-hash TARGET_CONTENT_HASH
+```
+
+ใช้ **replace-initial-save.sql** จากโฟลเดอร์ที่เพิ่งสร้างแทน import.sql ตัว SQL ตรวจ project/owner/revision/hash/content/history/signature ด้วย signing key เดียวกับ Vercel และปฏิเสธ active battle จากนั้น archive ทุกแถวเกมของปลายทางใน `ro_operator_archive.save_replacements` ก่อนแทนที่ อยู่ใน transaction เดียวกัน Auth user ไม่ถูกลบ Archive แยก schema ที่ไม่เปิดผ่าน API, เปิด RLS และถอนสิทธิ์ anon/authenticated/service_role; ต้องเปิดผ่าน SQL Editor ของเจ้าของ project
+
+ถ้าเกิดข้อผิดพลาดกลางทางทุกขั้นจะ rollback การรันไฟล์เดิมซ้ำหลังเล่นต่อเป็น no-op และไม่สร้าง archive ซ้ำ `TARGET_SAVE_CHANGED` หมายถึงปลายทางเปลี่ยนแล้ว ต้องตรวจใหม่ก่อนสร้างไฟล์; `TARGET_SIGNING_KEY_MISMATCH` หมายถึง signing key ไม่ตรง ห้ามข้าม guard ให้แก้ Vercel env ก่อน โหมดนี้ไม่ใช่ทางแทนเซฟที่เล่นไปแล้วหลาย revision
+
 อ้างอิง: [Vite บน Vercel](https://vercel.com/docs/frameworks/frontend/vite), [Node.js Web Standard handlers](https://vercel.com/docs/functions/runtimes/node-js), [Vercel project configuration](https://vercel.com/docs/project-configuration/vercel-json), [Supabase Auth](https://supabase.com/docs/guides/auth/passwords), [ปิด public signup](https://supabase.com/docs/guides/auth/general-configuration)

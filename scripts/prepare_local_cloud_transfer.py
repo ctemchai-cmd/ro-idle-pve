@@ -6,6 +6,7 @@ import json
 import os
 from pathlib import Path
 import re
+import shutil
 import subprocess
 import time
 from urllib.parse import urlparse
@@ -17,7 +18,7 @@ def private_write(path: Path, value: str):
     with open(path, 'x', encoding='utf-8', opener=lambda p, f: os.open(p, f, 0o600)) as stream:
         stream.write(value)
 
-def prepare(source_base: Path, output_base: Path, project_url: str, target_user: str):
+def prepare(source_base: Path, output_base: Path, project_url: str, target_user: str, replacement: dict | None = None):
     parsed = urlparse(project_url)
     if parsed.scheme != 'https' or not re.fullmatch(r'[a-z0-9]{12,40}\.supabase\.co', parsed.netloc) or parsed.path not in ['', '/'] or parsed.query or parsed.fragment:
         raise RuntimeError('INVALID_TARGET_PROJECT_URL')
@@ -53,9 +54,28 @@ def prepare(source_base: Path, output_base: Path, project_url: str, target_user:
     data = context()  # One statement/MVCC context after the backup; includes its signed tip.
     context_path = out / 'context.json'
     private_write(context_path, json.dumps(data, separators=(',', ':')))
-    sql = out / 'import.sql'
+    sql = out / ('replace-initial-save.sql' if replacement else 'import.sql')
     transfer_id = str(uuid.uuid4())
-    result = subprocess.run(['node', '--import', 'tsx', 'scripts/game/prepare-cloud-transfer.ts', str(context_path), str(sql), project_url, target_user, transfer_id], cwd=ROOT, env=env, capture_output=True, text=True)
+    # Validate the source with the content/rules of its running frozen snapshot.
+    # A newer cloud build can then use its existing backed-up save.migrate flow.
+    runtime = source_base / 'snapshot'
+    tool = ROOT / 'scripts/game/prepare-cloud-transfer.ts'
+    if (runtime / 'src/generated/runtime-manifest.json').is_file():
+        manifest = json.loads((runtime / 'src/generated/runtime-manifest.json').read_text())
+        if manifest['content_hash'] != data['save']['content_hash']:
+            raise RuntimeError('SOURCE_RUNTIME_CONTENT_MISMATCH')
+        tools = out / '.source-tools'
+        for directory in [tools, tools / 'scripts', tools / 'scripts/game']:
+            directory.mkdir(mode=0o700)
+        private_write(tools / 'package.json', '{"type":"module"}\n')
+        (tools / 'src').symlink_to((runtime / 'src').resolve(), target_is_directory=True)
+        tool = tools / 'scripts/game/prepare-cloud-transfer.ts'
+        shutil.copyfile(ROOT / 'scripts/game/prepare-cloud-transfer.ts', tool)
+        tool.chmod(0o600)
+    arguments = ['node', '--import', 'tsx', str(tool), str(context_path), str(sql), project_url, target_user, transfer_id]
+    if replacement:
+        arguments.extend([str(replacement['revision']), replacement['state_hash'], replacement['content_hash']])
+    result = subprocess.run(arguments, cwd=ROOT, env=env, capture_output=True, text=True)
     if result.returncode:
         code = result.stderr.strip()
         raise RuntimeError(code if re.fullmatch(r'[A-Z_]+', code) else 'TRANSFER_PREPARATION_FAILED')
@@ -70,9 +90,16 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--project-url', required=True)
     parser.add_argument('--target-user-id', required=True)
+    parser.add_argument('--replace-initial-revision', type=int)
+    parser.add_argument('--replace-initial-state-hash')
+    parser.add_argument('--replace-initial-content-hash')
     options = parser.parse_args()
     try:
-        report = prepare(ROOT / '.local/play', ROOT / '.local/cloud-transfer', options.project_url, options.target_user_id)
+        guard = [options.replace_initial_revision, options.replace_initial_state_hash, options.replace_initial_content_hash]
+        if any(value is not None for value in guard) and not all(value is not None for value in guard):
+            raise RuntimeError('INCOMPLETE_REPLACEMENT_GUARD')
+        replacement = dict(revision=guard[0], state_hash=guard[1], content_hash=guard[2]) if guard[0] is not None else None
+        report = prepare(ROOT / '.local/play', ROOT / '.local/cloud-transfer', options.project_url, options.target_user_id, replacement)
         print(json.dumps(report))
     except Exception as error:
         code = str(error)

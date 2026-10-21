@@ -323,8 +323,17 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 
 21 ต.ค.2026: TASK-056 รอบ D-077/078/080 ผ่าน isolated Chrome/API/SQL รวม 30 layouts + Daily จริง; TASK-057 ผ่าน 36 unique head presets/3,420 native samples/library checks/งบ pack แยก review รอการอัปเดต 6173 และ user visual acceptance
 
+
+## Cloud transfer และรอบบันทึกต่อสู้เพิ่มเติม
+
+| Case / Task | วิธีตรวจ | ผลคาดหวัง | สถานะ |
+| --- | --- | --- | --- |
 | `T058-AC-01` [TASK-058](inprogress/tasks_058.md) | signed fixture/operator SQL/private helper/hosted ตามเกณฑ์ในงาน | source tip ถูกต้อง → state/hash/revision คงเดิมและ signature ผูก target UID; source เสีย/ผิด version/active battle ถูกปฏิเสธ | ยังไม่ครบ hosted |
 | `T058-AC-02` [TASK-058](inprogress/tasks_058.md) | signed fixture/operator SQL/private helper/hosted ตามเกณฑ์ในงาน | SQL รันใน project/account ที่ถูกต้องและว่าง → atomic save/history/receipt; ผิด marker/ไม่มี Auth user/มีเซฟแล้ว/collision ล้มโดยไม่ทับ; ส่งซ้ำหลังเล่นต่อไม่ย้อนเซฟ | ยังไม่ครบ hosted |
 | `T058-AC-03` [TASK-058](inprogress/tasks_058.md) | signed fixture/operator SQL/private helper/hosted ตามเกณฑ์ในงาน | helper เก็บ backup/context/SQL/key file ไว้ใน .local ด้วย private permissions ไม่แก้ source DB และไม่พิมพ์ secrets/state หรือส่งขึ้น Git | ยังไม่ครบ hosted |
 | `T058-AC-04` [TASK-058](inprogress/tasks_058.md) | signed fixture/operator SQL/private helper/hosted ตามเกณฑ์ในงาน | fresh PostgreSQL fixture ใช้ migrations จริง นำเข้าแล้ว API checkpoint ตรวจ signature ผ่านและคำสั่งถัดไปบันทึกได้; AFK cursor/ledger/pending rewards รักษาไว้ | ยังไม่ครบ hosted |
 | `T058-AC-05` [TASK-058](inprogress/tasks_058.md) | signed fixture/operator SQL/private helper/hosted ตามเกณฑ์ในงาน | hosted Supabase/Vercel จริงใช้ sign-in ไม่มี sign-up บัญชีปลายทางเห็นเซฟเดิมและเล่นต่อ/reload ได้ โดยตรวจ source/target summary และเก็บ source backup | ยังไม่ครบ hosted |
+| `T058-AC-06` [TASK-058](inprogress/tasks_058.md) | replacement unit/PostgreSQL9กลุ่ม/actualsourceexport | exact idle revision1/hash/content/HMACก่อนarchive; rollback/replay/Authprivacy/frozenvalidatorตรงรุ่น | ผ่าน local operator evidence; ยังไม่เขียนcloud |
+| `T059-AC-01` [TASK-059](done/tasks_059.md) | scheduler/sharedAPI/isolatedChrome | 4s request cadence/latency/continuous prediction/single writer | ผ่าน tests32ข้อ/Chrome4กลุ่ม/build contenthashเดิม |
+| `T059-AC-02` [TASK-059](done/tasks_059.md) | scheduler/sharedAPI/isolatedChrome | speed1/2/4/settlement/one reward | ผ่าน tests32ข้อ/Chrome4กลุ่ม/build contenthashเดิม |
+| `T059-AC-03` [TASK-059](done/tasks_059.md) | scheduler/sharedAPI/isolatedChrome | offline/reconnect/refresh/immediate player commands/content hash | ผ่าน tests32ข้อ/Chrome4กลุ่ม/build contenthashเดิม |

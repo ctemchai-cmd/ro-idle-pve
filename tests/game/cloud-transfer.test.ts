@@ -41,3 +41,21 @@ test('destination is an exact HTTPS Supabase project and UUIDs are normalized', 
   assert.equal(output.report.target_account_id, targetOwner);
   assert.throws(() => prepareCloudTransfer(transferContext(), transferKey, { ...transferTarget, account_id: "'; drop table x;" }), /INVALID_TARGET_ID/);
 });
+
+test('replacing an accidental initial account requires its exact revision, hash and content version', () => {
+  const context = transferContext();
+  const initial = { revision: 1, state_hash: 'a'.repeat(64), content_hash: 'b'.repeat(64) };
+  const output = prepareCloudTransfer(context, transferKey, { ...transferTarget, replace_initial_save: initial });
+  assert.equal(output.report.replaces_initial_save, true);
+  assert.equal(output.report.destination_archive_id, transferTarget.request_id);
+  assert.ok(output.sql.includes('ro_operator_archive.save_replacements'));
+  assert.ok(output.sql.includes('TARGET_SIGNING_KEY_MISMATCH'));
+  assert.ok(!output.sql.includes(transferKey));
+  const normal = prepareCloudTransfer(context, transferKey, transferTarget);
+  assert.notEqual(output.receipt.request_hash, normal.receipt.request_hash);
+  for (const bad of [{ ...initial, revision: 2 }, { ...initial, state_hash: 'invalid' }, { ...initial, content_hash: 'invalid' }]) {
+    assert.throws(() => prepareCloudTransfer(context, transferKey, { ...transferTarget, replace_initial_save: bad }), /REPLACEMENT_REQUIRES_INITIAL_SAVE/);
+  }
+  const rev1 = transferContext(); rev1.save!.revision = rev1.history!.revision = 1; signTransferContext(rev1);
+  assert.throws(() => prepareCloudTransfer(rev1, transferKey, { ...transferTarget, replace_initial_save: initial }), /REPLACEMENT_REVISION_MUST_ADVANCE/);
+});
