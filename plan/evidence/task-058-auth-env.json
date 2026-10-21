@@ -1,0 +1,11 @@
+{
+  "task_id": "TASK-058",
+  "passed": true,
+  "command": "node --import tsx --test tests/game/auth.test.ts tests/game/cloud-transfer.test.ts",
+  "tests_passed": 20,
+  "modern_server_variable": "SUPABASE_SECRET_KEY",
+  "legacy_name_backward_compatible": true,
+  "different_dual_keys_rejected": true,
+  "modern_secret_browser_exposure_rejected": true,
+  "scope": "Targeted Auth/config and transfer unit tests; no hosted credential test"
+}

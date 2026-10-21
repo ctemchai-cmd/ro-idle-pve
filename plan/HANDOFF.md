@@ -4,6 +4,19 @@
 
 
 
+## 21 ต.ค. 2026 · Codex — TASK-058 ย้ายเซฟไป Supabase: เตรียม snapshot จริงแล้ว ยังไม่ import cloud
+
+- ผู้ใช้ถามต่อ Auth/RLS/cloud saves ยืนยัน **ย้ายเซฟเดิม6173** (D-081) และรายงานสร้าง Supabase project/รัน6migrationsแล้ว ส่ง Project URL กับ target Auth UID มาแล้วในแชต ค่าลับ Supabase จะใส่ Vercel เอง ยังไม่มีโดเมน Vercel/hosted login proof
+- Sign-in/email-password/no-sign-up มีอยู่แล้วใน `src/client/supabase-auth.ts`/`src/ui/auth-page.tsx` และ RLSใน6migrations ไม่สร้างใหม่ซ้ำ แก้ข้อความเก่าไม่มีเซฟให้ชี้ไปสร้างตัวละครแทนข้อความว่าระบบยังไม่เปิด Backend public signup ต้องปิดใน Supabase Dashboard ตาม docs
+- ผู้ใช้สับสนชื่อSecret/legacy จึงเปลี่ยนcanonicalenvเป็น`SUPABASE_SECRET_KEY` (ใส่sb_secretใหม่), frontendใช้`VITE_SUPABASE_PUBLISHABLE_KEY` (sb_publishableใหม่) รองรับชื่อSERVICE_ROLEเดิมเฉพาะbackwardcompat/localและrejectค่าต่างกันถ้าตั้งสองชื่อ แก้.env.example/docs/privateproductionenvแล้ว 20targetedAuth+transfertests/buildผ่าน server auth adapterเปลี่ยนจึงไม่ใช่UI-onlycompatible snapshot update; ไม่ได้รีสตาร์ต6173
+- เพิ่ม operator-only `scripts/game/prepare-cloud-transfer.ts`: ตรวจ source schema/content/hash/history/HMAC, bind target UID, preserve full AccountState + source revision และสร้าง atomic SQL save/history/import receipt ตรวจ project marker/Auth UID/ปลายทางว่าง/clock ไม่มี public upload endpoint Exact retryหลังเล่นต่อเป็นno-op; UUIDเดิมpayloadต่างถูกปฏิเสธ ใช้ signing key เดิมจาก private sourceเพื่อให้userใส่Vercelตรงกัน
+- `scripts/prepare_local_cloud_transfer.py`: source read-only via Unix socket, pg_dumpเฉพาะgame tables, signed context, SQL/env/summaryใน`.local/cloud-transfer/`ไฟล์0600/dir0700 ไม่มีsecretในSQL/logs ไม่คัดAuthschemaหรือcredentialsท้องถิ่นไปcloud history/receiptsรุ่นเก่าอยู่localbackup Cloudย้ายเฉพาะstateปัจจุบัน+signed tip+importreceipt
+- QA: 4unit tests, build/env/assets/content/boundaries/type/secretsผ่าน, readiness8/8; fresh PostgreSQL6กลุ่ม + sharedAPI checkpoint200/คำสั่งถัดไปrevision23→24/replay/collision/rollback3ตาราง/RLS/permissionsผ่าน รายงาน`task-058-{unit,postgres}.json`/build.txt ไม่ใช่ hostedAuth/JWT/PostgREST proof ชุดfixtureลบทิ้งแล้ว ไม่แตะ6173ระหว่างทดสอบ
+- Round1–3 test socket pathยาวเกินmacOS103bytes แก้prefix; Round4พบPythonPath.openไม่รองรับopener แก้builtinopen เก็บfailure evidenceแยก ไม่มีการเปลี่ยนเกณฑ์ให้ผ่าน
+- หลังได้project/UIDจริง รันhelperกับเซฟส่วนตัวสำเร็จ **revision2933** hash/schema/content/signatureผ่านและstateคงเดิม เก็บbackupแล้ว **ยังไม่มีcloud write** private directory `.local/cloud-transfer/transfer-1792562795716865000/` มีcontext/import.sql/local-game-backup.dump/summary/vercel-signing.env เพิ่ม`vercel-production.env` (URL/ref/appenv/signingkeyพร้อม, 2APIkeysว่างให้userเติม) และ`setup-project.sql` (create-or-verifyproductionmarker ไม่relabel) ห้ามพิมพ์เนื้อหาไฟล์ private เหล่านี้ รายงานpublicมีเฉพาะboolean/revision/hash`task-058-personal-export.json`
+- ขั้นถัดไป: userเติม Publishable/Secret key ใน private env→ใส่Vercel Production, รันsetup-project.sqlแล้วimport.sqlในSQLEditorที่ถูกproject→ตรวจ state_hash/revision/sign-in/เล่นต่อ/reloadจริง Source snapshotอาจเก่าถ้ายังเล่น6173ต่อ ให้ exportล่าสุดตอน cutover ก่อนนำเข้า (ไม่เขียนทับ cloudที่เริ่มแล้ว) ขอURLVercelเมื่อพร้อมเพื่อตรวจAuthredirect/network/health ไม่มีrestart6173ในงานนี้
+- Board **46/58done**, inprogress041+058, review048/054/055/056/057, todo042–046; TASK058 AC01–04ผ่านเครื่องมือ/fixtures AC05ยังรอhosted ห้ามปิดdoneหรืออ้างว่าย้ายจริงแล้ว TASK043/045/046ยังไม่ผ่าน
+
 ## 21 ต.ค. 2026 · Codex — ส่งทั้งโปรเจกต์ขึ้น GitHub สำเร็จ แก้ SSH account แล้ว
 
 - หลังผู้ใช้อนุญาตให้ตรวจ SSH metadata พบ alias ที่ตั้งไว้แล้ว `github-new` ใช้บัญชี **ctemchai-cmd** (`ssh -T` ยืนยันสำเร็จ); `github.com` เดิมเป็น Rehpyc-z ที่ไม่มีสิทธิ์ repo นี้ ไม่อ่าน/พิมพ์ private key/token และไม่แก้ SSH config ส่วนกลาง

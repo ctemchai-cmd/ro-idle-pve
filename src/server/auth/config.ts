@@ -2,7 +2,9 @@ import type { AppEnvironment } from '../../contracts/auth.ts';
 export interface ServerAuthConfig { url: string; service_key: string; environment: AppEnvironment; project_ref: string }
 export type ServerConfigResult = { kind: 'unconfigured' } | { kind: 'invalid'; code: string } | { kind: 'configured'; config: ServerAuthConfig };
 export function readServerAuthConfig(env: Record<string, string | undefined>): ServerConfigResult {
-  const url = env.SUPABASE_URL, key = env.SUPABASE_SERVICE_ROLE_KEY, environment = env.APP_ENV;
+  const modern = env.SUPABASE_SECRET_KEY, legacy = env.SUPABASE_SERVICE_ROLE_KEY;
+  if (modern && legacy && modern !== legacy) return { kind: 'invalid', code: 'SERVER_AUTH_KEY_CONFLICT' };
+  const url = env.SUPABASE_URL, key = modern || legacy, environment = env.APP_ENV;
   if (!url && !key) return { kind: 'unconfigured' };
   if (!url || !key || !['local', 'test', 'preview', 'production'].includes(environment ?? '')) return { kind: 'invalid', code: 'SERVER_AUTH_CONFIG_INCOMPLETE' };
   try {

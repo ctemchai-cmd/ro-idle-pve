@@ -103,6 +103,7 @@
 | D-079 | 21 ต.ค.2026 ผู้ใช้ต้องการทรงผมต่างกันตามอาชีพ แทน preset ทรง 1 ร่วมกันทั้งหมด ผู้ช่วยเลือก native human head จากคลังเดิม แยก 19 อาชีพ/36 preset ตามเพศ มีทรง/สี/ผมสั้นยาวต่างกัน; Monk ใช้ทรงโกน ผมประกอบด้วย ACT anchor เดิม เป็น presentation ไม่ใช่แต้ม/สเตตัสหรือระบบสร้างทรงผม | TASK-057; runtime pack ยังอยู่ใน cap27MiB ใช้ทรงตาม job ปัจจุบัน |
 
 | D-080 | 21 ต.ค.2026 ผู้ใช้: ปรับ UX/UI ปุ่มสถิติ, Timeline, ความเร็วและถอยทัพในไฟต์ให้สวยขึ้น และเอา Emoji ออกทั้งหมดโดยใช้ Icon แทน ผู้ช่วยรวมแถบควบคุมใต้ HP/ร่ายใน boss card เพื่อไม่บังสนาม ใช้ outline SVG จาก `src/ui/icon.tsx` ร่วมกันทุกหน้าของเกม คง native RO item/skill/menu art และกติกาไฟต์/ความเร็วเดิม | TASK-056 รอบแก้; ทดสอบกดสถิติ/Timeline/เปลี่ยนความเร็ว/ถอยด้วย API จริง |
+| D-081 | 21 ต.ค.2026 ผู้ใช้จะเชื่อม hosted Supabase กับ Vercel ใช้ sign-in โดยไม่มี sign-up และใส่ keys ใน Vercel environment เอง; ยืนยันย้ายเซฟปัจจุบันจาก6173ไปด้วย ไม่เริ่มใหม่ สร้าง Supabase project แล้วและจะส่ง URL | TASK-058 เตรียม operator transfer; หน้า sign-in และ RLS/migrations มีแล้ว การนำเข้าจริงรอ target project/account/env และ hosted validation |
 
 ## คำถามหลักที่ส่งให้ผู้ใช้แล้ว
 

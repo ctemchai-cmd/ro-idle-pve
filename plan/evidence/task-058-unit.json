@@ -1,0 +1,13 @@
+{
+  "task_id": "TASK-058",
+  "passed": true,
+  "command": "node --import tsx --test tests/game/cloud-transfer.test.ts",
+  "tests_passed": 4,
+  "cases": [
+    "Exact full state/revision preservation and new owner signature",
+    "Hash/tip/signature tamper refusal",
+    "Signed incompatible data, malformed state and battle refusal",
+    "Exact HTTPS project URL, normalized UUID and injection refusal"
+  ],
+  "source": "Observed successful tool execution; no hosted/personal save data used"
+}

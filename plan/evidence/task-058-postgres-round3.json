@@ -1,0 +1,14 @@
+{
+  "task_id": "TASK-058",
+  "passed": false,
+  "checks": [],
+  "scope": "Fresh PostgreSQL/Auth UID fixtures, operator helper and shared API handler. No hosted Supabase/GoTrue/JWT/PostgREST or personal preview access.",
+  "personal_preview_accessed": false,
+  "credential_values_logged": false,
+  "step": "initialize disposable database",
+  "failure_program": "pg_ctl",
+  "fixture_diagnostic": "pg_ctl: could not start server\nExamine the log output.\n",
+  "error_type": "RuntimeError",
+  "error": "DISPOSABLE_COMMAND_FAILED",
+  "fixture_postgres_diagnostic": "2026-10-21 12:58:40.429 +07 [36553] LOG:  starting PostgreSQL 16.14 (Homebrew) on aarch64-apple-darwin24.6.0, compiled by Apple clang version 17.0.0 (clang-1700.6.4.2), 64-bit\n2026-10-21 12:58:40.429 +07 [36553] LOG:  Unix-domain socket path \"/Users/chanon/Documents/Projects/Personal/RO Idle Classic/.local/xfer-test-fihg2wnu/socket/.s.PGSQL.55439\" is too long (maximum 103 bytes)\n2026-10-21 12:58:40.429 +07 [36553] WARNING:  could not create Unix-domain socket in directory \"/Users/chanon/Documents/Projects/Personal/RO Idle Classic/.local/xfer-test-fihg2wnu/socket\"\n2026-10-21 12:58:40.429 +07 [36553] FATAL:  could not create any Unix-domain sockets\n2026-10-21 12:58:40.430 +07 [36553] LOG:  database system is shut down\n"
+}

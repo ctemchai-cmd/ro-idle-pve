@@ -44,7 +44,7 @@ export function AuthExperience({ auth, readAccount, savePanel }: { auth: AuthCon
     if (current !== operation.current) return;
     setBusy(false);
     if (result.ok) setSave(result.value);
-    else if (result.code === 'ACCOUNT_NOT_INITIALIZED') setMessage('บัญชีนี้ยังไม่มีเซฟเกม ระบบสร้างเซฟจะเปิดในงานถัดไป');
+    else if (result.code === 'ACCOUNT_NOT_INITIALIZED') setMessage('บัญชีนี้ยังไม่มีเซฟเกม เลือกผจญภัยต่อเพื่อสร้างตัวละคร');
     else if (result.status !== 401) setError('ยังอ่านเซฟไม่ได้ กรุณาตรวจการเชื่อมต่อแล้วลองอีกครั้ง');
   }
   return <AuthShell><section className="auth-card" aria-label="บัญชีส่วนตัว">

@@ -11,6 +11,17 @@ import { createAccountReader } from '../../src/client/account.ts';
 import { containsPrivilegedValue, privilegedPublicNames } from '../../scripts/game/secret-guard.ts';
 import { validateBuildEnvironment } from '../../scripts/game/validate-env.ts';
 const uid = '11111111-1111-4111-8111-111111111111';
+test('modern Supabase secret environment works and legacy local configuration remains compatible', () => {
+  const secret = 'sb_secret_' + 'fixture_only_for_modern_configuration';
+  const base = { APP_ENV: 'production', SUPABASE_URL: 'https://exampleprojectrefhere.supabase.co', SUPABASE_PRODUCTION_PROJECT_REF: 'exampleprojectrefhere' };
+  const modern = readServerAuthConfig({ ...base, SUPABASE_SECRET_KEY: secret });
+  assert.equal(modern.kind, 'configured');
+  if (modern.kind === 'configured') assert.equal(modern.config.service_key, secret);
+  assert.deepEqual(readServerAuthConfig({ ...base, SUPABASE_SERVICE_ROLE_KEY: secret }), modern);
+  assert.deepEqual(readServerAuthConfig({ ...base, SUPABASE_SECRET_KEY: secret, SUPABASE_SERVICE_ROLE_KEY: secret + '_different' }), { kind: 'invalid', code: 'SERVER_AUTH_KEY_CONFLICT' });
+  assert.equal(validateBuildEnvironment({ ...base, SUPABASE_SECRET_KEY: secret, VITE_SUPABASE_SECRET_KEY: secret }), 'PRIVILEGED_BROWSER_ENV_FORBIDDEN');
+  assert.ok(containsPrivilegedValue(secret, { SUPABASE_SECRET_KEY: secret }));
+});
 const session = (): ProviderSession => ({ user: { id: uid, email: 'owner@example.invalid' }, access_token: 'private-user-token-fixture', expires_at: 200 });
 function fixture() {
   let active: ProviderSession | null = null, listener: ((event: ProviderEvent, session: ProviderSession | null) => void) | null = null;

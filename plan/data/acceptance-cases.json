@@ -7807,6 +7807,128 @@
       "execution_evidence": [
         "plan/evidence/task-056-polish-compact-ui.json"
       ]
+    },
+    {
+      "id": "T058-AC-01",
+      "task_id": "TASK-058",
+      "acceptance_id": "AC-01",
+      "criterion": "source tip ถูกต้อง → state/hash/revision คงเดิมและ signature ผูก target UID; source เสีย/ผิด version/active battle ถูกปฏิเสธ",
+      "input_setup": "Signed synthetic source; disposable PostgreSQL plus private operator helper; hosted step uses the user-approved existing 6173 save only after target project/account setup",
+      "input_refs": [
+        "plan/inprogress/tasks_058.md",
+        "docs/DEPLOYMENT.md",
+        "scripts/test_cloud_transfer.py",
+        "tests/game/cloud-transfer.test.ts"
+      ],
+      "parameters": {
+        "preserve_current_state": true,
+        "cloud_import_requires_empty_destination": true
+      },
+      "expected": "source tip ถูกต้อง → state/hash/revision คงเดิมและ signature ผูก target UID; source เสีย/ผิด version/active battle ถูกปฏิเสธ",
+      "verification": "Unit tests and isolated SQL/API tests for AC01–04; actual hosted owner login/state comparison/command/reload for AC05",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-058-postgres.json",
+        "plan/evidence/task-058-unit.json"
+      ]
+    },
+    {
+      "id": "T058-AC-02",
+      "task_id": "TASK-058",
+      "acceptance_id": "AC-02",
+      "criterion": "SQL รันใน project/account ที่ถูกต้องและว่าง → atomic save/history/receipt; ผิด marker/ไม่มี Auth user/มีเซฟแล้ว/collision ล้มโดยไม่ทับ; ส่งซ้ำหลังเล่นต่อไม่ย้อนเซฟ",
+      "input_setup": "Signed synthetic source; disposable PostgreSQL plus private operator helper; hosted step uses the user-approved existing 6173 save only after target project/account setup",
+      "input_refs": [
+        "plan/inprogress/tasks_058.md",
+        "docs/DEPLOYMENT.md",
+        "scripts/test_cloud_transfer.py",
+        "tests/game/cloud-transfer.test.ts"
+      ],
+      "parameters": {
+        "preserve_current_state": true,
+        "cloud_import_requires_empty_destination": true
+      },
+      "expected": "SQL รันใน project/account ที่ถูกต้องและว่าง → atomic save/history/receipt; ผิด marker/ไม่มี Auth user/มีเซฟแล้ว/collision ล้มโดยไม่ทับ; ส่งซ้ำหลังเล่นต่อไม่ย้อนเซฟ",
+      "verification": "Unit tests and isolated SQL/API tests for AC01–04; actual hosted owner login/state comparison/command/reload for AC05",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-058-postgres.json",
+        "plan/evidence/task-058-unit.json"
+      ]
+    },
+    {
+      "id": "T058-AC-03",
+      "task_id": "TASK-058",
+      "acceptance_id": "AC-03",
+      "criterion": "helper เก็บ backup/context/SQL/key file ไว้ใน .local ด้วย private permissions ไม่แก้ source DB และไม่พิมพ์ secrets/state หรือส่งขึ้น Git",
+      "input_setup": "Signed synthetic source; disposable PostgreSQL plus private operator helper; hosted step uses the user-approved existing 6173 save only after target project/account setup",
+      "input_refs": [
+        "plan/inprogress/tasks_058.md",
+        "docs/DEPLOYMENT.md",
+        "scripts/test_cloud_transfer.py",
+        "tests/game/cloud-transfer.test.ts"
+      ],
+      "parameters": {
+        "preserve_current_state": true,
+        "cloud_import_requires_empty_destination": true
+      },
+      "expected": "helper เก็บ backup/context/SQL/key file ไว้ใน .local ด้วย private permissions ไม่แก้ source DB และไม่พิมพ์ secrets/state หรือส่งขึ้น Git",
+      "verification": "Unit tests and isolated SQL/API tests for AC01–04; actual hosted owner login/state comparison/command/reload for AC05",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-058-postgres.json",
+        "plan/evidence/task-058-unit.json"
+      ]
+    },
+    {
+      "id": "T058-AC-04",
+      "task_id": "TASK-058",
+      "acceptance_id": "AC-04",
+      "criterion": "fresh PostgreSQL fixture ใช้ migrations จริง นำเข้าแล้ว API checkpoint ตรวจ signature ผ่านและคำสั่งถัดไปบันทึกได้; AFK cursor/ledger/pending rewards รักษาไว้",
+      "input_setup": "Signed synthetic source; disposable PostgreSQL plus private operator helper; hosted step uses the user-approved existing 6173 save only after target project/account setup",
+      "input_refs": [
+        "plan/inprogress/tasks_058.md",
+        "docs/DEPLOYMENT.md",
+        "scripts/test_cloud_transfer.py",
+        "tests/game/cloud-transfer.test.ts"
+      ],
+      "parameters": {
+        "preserve_current_state": true,
+        "cloud_import_requires_empty_destination": true
+      },
+      "expected": "fresh PostgreSQL fixture ใช้ migrations จริง นำเข้าแล้ว API checkpoint ตรวจ signature ผ่านและคำสั่งถัดไปบันทึกได้; AFK cursor/ledger/pending rewards รักษาไว้",
+      "verification": "Unit tests and isolated SQL/API tests for AC01–04; actual hosted owner login/state comparison/command/reload for AC05",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-058-postgres.json",
+        "plan/evidence/task-058-unit.json"
+      ]
+    },
+    {
+      "id": "T058-AC-05",
+      "task_id": "TASK-058",
+      "acceptance_id": "AC-05",
+      "criterion": "hosted Supabase/Vercel จริงใช้ sign-in ไม่มี sign-up บัญชีปลายทางเห็นเซฟเดิมและเล่นต่อ/reload ได้ โดยตรวจ source/target summary และเก็บ source backup",
+      "input_setup": "Signed synthetic source; disposable PostgreSQL plus private operator helper; hosted step uses the user-approved existing 6173 save only after target project/account setup",
+      "input_refs": [
+        "plan/inprogress/tasks_058.md",
+        "docs/DEPLOYMENT.md",
+        "scripts/test_cloud_transfer.py",
+        "tests/game/cloud-transfer.test.ts"
+      ],
+      "parameters": {
+        "preserve_current_state": true,
+        "cloud_import_requires_empty_destination": true
+      },
+      "expected": "hosted Supabase/Vercel จริงใช้ sign-in ไม่มี sign-up บัญชีปลายทางเห็นเซฟเดิมและเล่นต่อ/reload ได้ โดยตรวจ source/target summary และเก็บ source backup",
+      "verification": "Unit tests and isolated SQL/API tests for AC01–04; actual hosted owner login/state comparison/command/reload for AC05",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
     }
   ]
 }
