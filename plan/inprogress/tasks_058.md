@@ -64,3 +64,5 @@ Milestone: M4 · ประเภท: เครื่องมือผู้ด�
 - ผู้ใช้สับสน Secret/legacy: เปลี่ยน env หลักเป็น SUPABASE_SECRET_KEY ให้ตรงชนิด key ใหม่ รองรับชื่อเก่าเพื่อ local stack แต่ปฏิเสธสองชื่อที่ค่าต่างกัน; 20 targeted Auth/transfer tests ผ่าน รวมกัน key รั่วเข้า VITE_ และ modern/legacy compatibility; อัปเดต envexample/docs/private env โดยไม่เปิดเผยค่า
 
 - ผู้ใช้ส่ง hosted Vercel log: env configured ผ่าน แต่ assets:check ล้มเพราะ ignored source files เหลือโฟลเดอร์ว่าง เพิ่ม explicit artifact-only validation ใน build โดยยังตรวจ runtime checksum/selection/manifest ครบ; Python12tests และ isolated production build ผ่าน [หลักฐาน](../evidence/vercel-runtime-build.json) ยังไม่ย้าย cloud/ไม่รีสตาร์ต6173
+
+- D-082: ผู้ใช้ deploy แล้วต้องการ rootเข้าplay/login แทนdemo แก้ routing/return destination และ API native imports จาก user log; Chrome7cases/targeted28tests/officialVercelbuilder+nativeNodeผ่าน [review](../evidence/entry-routes-review.json) Content hashเปลี่ยน2c1ac034…จาก JSON importattribute; SQL14ffเดิมต้องใช้ flow save.migrate พร้อมbackupหลังนำเข้า ไม่ข้ามversionguard ยังไม่อ้าง hosted owner/save proof

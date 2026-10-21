@@ -141,13 +141,15 @@ function ConnectedGame({ auth, scope }: { auth: AuthController; scope: string })
 function ConfiguredGame({ config }: { config: Extract<ReturnType<typeof readPublicAuthConfig>, { kind: 'configured' }>['config'] }) {
   const [auth] = useState(() => createBrowserAuth(config)), [session, setSession] = useState(auth.snapshot);
   useEffect(() => { const stop = auth.subscribe(setSession); void auth.start(); return () => { stop(); auth.dispose(); }; }, [auth]);
+  const signInUrl = `/auth?next=${encodeURIComponent('/play' + window.location.search)}`;
+  useEffect(() => { if (session.status === 'signed_out') window.location.replace(signInUrl); }, [session.status, signInUrl]);
   if (session.status === 'signed_in') return <ConnectedGame key={session.user!.id} auth={auth} scope={`${config.environment}:${new URL(config.url).host}`} />;
-  return <div className="game-root"><div className="game-splash"><div className="splash-logo">RO <span>Idle</span></div><p>{session.status === 'loading' ? 'กำลังตรวจบัญชี…' : 'เข้าสู่บัญชีเพื่อเล่นต่อจากเซฟ'}</p>{session.status !== 'loading' && <a className="btn primary" href="/auth">เข้าสู่บัญชี</a>}</div></div>;
+  return <div className="game-root"><div className="game-splash"><div className="splash-logo">RO <span>Idle</span></div><p>{session.status === 'loading' ? 'กำลังตรวจบัญชี…' : 'เข้าสู่บัญชีเพื่อเล่นต่อจากเซฟ'}</p>{session.status !== 'loading' && <a className="btn primary" href={signInUrl}>เข้าสู่บัญชี</a>}</div></div>;
 }
 export default function GamePage() {
   return <><RotateLock /><GameRoute /></>;
 }
 function GameRoute() {
   const config = readPublicAuthConfig(import.meta.env, window.location);
-  return config.kind === 'configured' ? <ConfiguredGame config={config.config} /> : <div className="game-root"><div className="game-splash"><div className="splash-logo">RO <span>Idle</span></div><p>เครื่องนี้ยังไม่ได้เชื่อมต่อบัญชีเกม</p><a className="btn" href="/roster">ทดลองทีมและสกิล</a><a className="btn" href="/">สนามทดลอง</a></div></div>;
+  return config.kind === 'configured' ? <ConfiguredGame config={config.config} /> : <div className="game-root"><div className="game-splash"><div className="splash-logo">RO <span>Idle</span></div><p>เครื่องนี้ยังไม่ได้เชื่อมต่อบัญชีเกม</p><a className="btn" href="/roster">ทดลองทีมและสกิล</a><a className="btn" href="/demo">สนามทดลอง</a></div></div>;
 }

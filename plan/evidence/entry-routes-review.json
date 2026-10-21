@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "unit_tests": {
+    "api_auth": 18,
+    "migration_and_transfer": 10,
+    "total_passed": 28
+  },
+  "browser_checks": 7,
+  "build_log": "plan/evidence/entry-routes-build.txt",
+  "packaged_function": "plan/evidence/entry-function.json",
+  "hosted_url": "https://ro-idle-pve.vercel.app",
+  "hosted_before_fix": {
+    "health_status": 500,
+    "error": "FUNCTION_INVOCATION_FAILED",
+    "user_log_cause": "ERR_MODULE_NOT_FOUND /var/task/src/domain/account/index.ts imported from api/index.js"
+  },
+  "content_hash_before": "14ffbc7104d10ce55ceda325f66de80a5ef671740e7f96bb65236deebce646b6",
+  "content_hash_after": "2c1ac0344f0cfa0221933c54cc6576cc6eecbea28488f9a4aba68aba01b93123",
+  "save_compatibility": "JSON import attribute changes implementation fingerprint. Older saves must use the existing backed-up save.migrate flow; no compatibility bypass or cloud write was performed."
+}

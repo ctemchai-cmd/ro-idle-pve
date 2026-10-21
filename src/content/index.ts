@@ -1,4 +1,4 @@
-import raw from '../generated/content.json';
+import raw from '../generated/content.json' with { type: 'json' };
 import { validateContent } from './loader.ts';
 import type { Result, ValidatedContent } from './model.ts';
 

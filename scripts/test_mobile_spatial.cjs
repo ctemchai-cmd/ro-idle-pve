@@ -12,7 +12,7 @@ async function check(id, fn) { try { const result = await fn(); checks.push({ ca
   page.on('pageerror', error => errors.push(error.message));
   page.on('response', response => { if(response.status() >= 400) errors.push(`HTTP${response.status()}:${response.url()}`); });
   await page.route('**/*', route => { const url=route.request().url(); if(url.startsWith(base+'/') || url.startsWith('data:')) route.continue(); else { external.push(url); route.abort(); } });
-  await page.goto(base); await page.waitForSelector('.companion'); await page.waitForFunction(()=>!document.querySelector('.arena-overlay'));
+  await page.goto(base + '/demo'); await page.waitForSelector('.companion'); await page.waitForFunction(()=>!document.querySelector('.arena-overlay'));
   await check('portrait_first_working_panels_focus_edit_and_layout', async () => {
    await page.waitForTimeout(2200); await page.getByRole('button',{name:'หยุดชั่วคราว',exact:true}).click();
    assert(await page.locator('.skill-timeline').count()===0, 'Timeline clutters initial screen');

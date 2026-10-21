@@ -21,7 +21,11 @@ Repository นี้มี source code และคลัง assets เต็ม
 
 ## 2. Vercel
 
-Import `ctemchai-cmd/ro-idle-pve` เลือกสาขา `main`, Root Directory เป็นราก repository และ Node.js24 ตาม `package.json` มี `vercel.json` กำหนด Vite, install `npm ci`, build `npm run build`, output `dist` และ route `/play`, `/auth`, `/roster`, `/api/*` แล้ว Entry ของ API คือ `api/index.ts` ที่ใช้ Web Standard `fetch` handler
+Import `ctemchai-cmd/ro-idle-pve` เลือกสาขา `main`, Root Directory เป็นราก repository และ Node.js24 ตาม `package.json` มี `vercel.json` กำหนด Vite, install `npm ci`, build `npm run build`, output `dist` และ route `/play`, `/auth`, `/roster`, `/demo`, `/api/*` แล้ว Entry ของ API คือ `api/index.ts` ที่ใช้ Web Standard `fetch` handler
+
+หน้า `/` เข้า `/play`; ถ้ายังไม่มี session จะไป `/auth?next=...` และกลับหน้าเกมที่ขอไว้หลัง login ส่วน `/auth` โดยตรงยังเป็นหน้าจัดการบัญชี/ออกจากระบบ เดโมแยกไว้ที่ `/demo` ไม่ใช่หน้าแรก API ใช้ `rewriteRelativeImportExtensions` ให้ Vercel emit import `.js` ที่ตรงกับไฟล์ใน function และ JSON import ระบุ `with { type: 'json' }` สำหรับ native Node
+
+หากเซฟนำเข้าผูก content hash รุ่นเก่า หน้าเกมจะเสนออัปเดตเซฟด้วย preview/backup ตาม TASK-040 ใช้ flow นี้ก่อนเล่นต่อ ไม่แก้ content hash หรือ signature ด้วยมือ การเปลี่ยน import ฝั่ง content loader ก็เปลี่ยน implementation fingerprint ได้แม้ข้อมูลบาลานซ์เท่าเดิม
 
 ตั้ง Environment Variables ใน **Production** ก่อน deploy:
 

@@ -8,6 +8,8 @@ Source ทั้งโปรเจกต์เผยแพร่ที่ [ctemc
 
 ผู้ใช้เริ่ม Vercel build แล้ว พบ source-assets check ล้มหลัง .vercelignore ตัดไฟล์ แก้ build ให้ตรวจ runtime artifact โดยตรงแล้ว: regression12ข้อและ isolated production build ที่เหลือ source directories ว่างผ่าน ดู [หลักฐาน](evidence/vercel-runtime-build.json) ยังรอผล hosted build/login/เซฟจริง
 
+ผู้ใช้รายงาน deploy สำเร็จที่ `ro-idle-pve.vercel.app` แล้ว เพิ่ม D-082 ให้หน้าแรกเข้าเกม/login และย้าย demo ไป `/demo` พร้อมแก้ API emit `.js`/JSON import จาก hosted error; Chrome7กรณี, targeted28tests และ official Vercel function/native Node smoke ผ่าน [หลักฐาน](evidence/entry-routes-review.json) ยังไม่ยืนยัน hosted owner login/เซฟจริง
+
 รุ่นแรกมี Class 1/2 และสูงสุด Lv.70 รอ Hi-class/Awaken/Artifact ใน milestone ถัดไป ส่วน Class 3 ที่ Lv.120 / Pet / Rune เป็นอนาคต Breakthrough ทุก 20 แยกจากการเปลี่ยนคลาส ไม่มีรอบพิเศษที่ 70
 
 Q-001–Q-022 ตอบแล้ว: บัฟบวกกันไม่มีเพดานและคนเดิมร่ายซ้ำเพิ่มชั้นแยกอายุ, Chain CC ปกติ, Stun ปล่อยคิวเดินถึง Action, Active เดิมหนึ่งช่อง และ resources เลือกกดอัปตัวละคร ใช้ P-01–P-09 เป็นฐานตามคำแก้ของผู้ใช้ เพิ่มข้อกำหนด simulation แบบเร็วเพื่อวัดอาชีพ/สกิลด้วย engine เดียวกับเกม ดู [ข้อสรุป](decisions.md), [ประเด็นก่อนแตกงาน](pre-task-review.md) และ [simulation](design/08-simulation-and-balance.md)

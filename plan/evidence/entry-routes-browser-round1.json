@@ -1,0 +1,26 @@
+{
+  "passed": false,
+  "browser": "155.0.8059.85",
+  "base_url": "http://127.0.0.1:5187",
+  "checks": [
+    "Signed-out root opens login for /play without rendering the demo",
+    "Failed login stays on the form and preserves the requested game page",
+    "Successful login returns to the requested /play page; reload restores the session",
+    "Signed-in root enters /play directly; an absent save does not auto-create a character",
+    "Account management stays accessible; external and malformed return URLs are rejected",
+    "Logout clears the session; a direct /play request returns to login"
+  ],
+  "errors": [
+    "TimeoutError: page.waitForFunction: Timeout 30000ms exceeded."
+  ],
+  "game_mutations": [],
+  "external_requests": [],
+  "source_sha256": {
+    "src/ui/main.tsx": "ea1ac0dea8974df12d901d455cb9c9d862473387568490a20c3a7b550f45124b",
+    "src/ui/auth-page.tsx": "b37153f2bc67d6b0380f4140bb3424fd1a532fd8106bc8b3f3c3692651b552c8",
+    "src/ui/game/shell.tsx": "05f98643d1292cffdaf63331c3127c8f9bdbcf35946aed78a52178962d4db961",
+    "vercel.json": "9ced653a6162217166ff48db74397272c9c5494f132ff63b5ec4444bf3ee3259",
+    "scripts/test_entry_routes.cjs": "23c9f95096b67dc1ef5e3bec2b3597796dfa74dad7883fb944bb69548b538c13"
+  },
+  "scope": "Actual production browser bundle with intercepted Auth/API fixtures. Not hosted Auth, Supabase state or RLS proof."
+}

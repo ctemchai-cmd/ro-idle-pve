@@ -2,6 +2,17 @@
 
 ไฟล์นี้บันทึกงานที่ agent ตัวหนึ่งทำแล้ว เพื่อให้ตัวถัดไป (Codex/Claude) ทำต่อได้ทันที อ่านคู่กับ [overview](overview.md) และ [AGENTS.md](../AGENTS.md) ล่าสุดอยู่บนสุด
 
+## 21 ต.ค. 2026 · Codex — D-082 หน้าแรกเข้าเกม/login และแก้ Vercel API import
+
+- ผู้ใช้ deploy สำเร็จที่ `https://ro-idle-pve.vercel.app/` แต่หน้าแรกยังเป็น demo แก้ `/` และ `/index.html` ให้ replace ไป `/play` (PKCE callback ไป `/auth` โดยเก็บ query/hash), session ว่างไป `/auth?next=...`; login สำเร็จกลับเกมพร้อม v/c เดิม `/auth` โดยตรงยังใช้จัดการบัญชี/ออกจากระบบ/กู้รหัสผ่านได้ demo เป็น `/demo` พร้อม Vercel rewrite และอัปเดต active spatial harness เฉพาะทางเข้า ไม่รันทับหลักฐานเก่า
+- `AuthExperience` รับ optional returnToPlay ที่ ConfiguredAuth ยอมรับเฉพาะ `/play` หรือ `/play?...`; ไม่ mount SavePanel ในทางผ่าน login จึงไม่แย่ง writer ระหว่างเข้าหน้าเกม เปลี่ยน link/copy ที่เคยชี้หน้าแรกเป็น demo ให้กลับเกม/ระบุ `/demo` ชัดเจน
+- ตรวจ public health จริงก่อนแก้ได้500 `FUNCTION_INVOCATION_FAILED`; ผู้ใช้ส่ง log `ERR_MODULE_NOT_FOUND /var/task/src/domain/account/index.ts` ยืนยัน API `.js` ยัง import `.ts` แก้ `tsconfig.json rewriteRelativeImportExtensions:true` และ native JSON import ใน `src/content/index.ts` ให้มี `with { type:'json' }` ไม่พ่วง raw TypeScript/source library เข้า function
+- QA: production-configured isolated build ผ่าน, Chrome7กลุ่มผ่าน (root logged out/in, invalid login, restore query/session/reload, account/logout, external next rejection, explicit demo) ทั้ง Auth/API เป็น fixtures ไม่มี cloud writes; targeted API/Auth18 + backup/migration/transfer10 = **28 tests ผ่าน** รายงาน `entry-routes-{browser,review}.json` / build.txt และ screenshot `entry-login-390.png`
+- ใช้ official `@vercel/node@24.0.3` ตรง CLI64.5.0 compile+file trace แล้ว materialize249files ใน `/private/tmp/ro-function-CHkMcw` รัน native Node24 **ไม่มี tsx/TSloader/source tree** ได้ health200 และ anonymous checkpoint401 หลักฐาน `entry-function.json` เครื่องมือ `scripts/test_vercel_function.cjs` ใช้ isolated source + dependencies จริง ไม่ใช้ symlink ที่ trace ออกนอก root
+- Test harness รอบแรกใช้ selector demo รุ่นเก่า จึง timeout หลัง6กลุ่ม แก้เป็น companion strip ปัจจุบัน เก็บ `entry-routes-browser-round1.json` แยก; materializer2ครั้งแรกพบ FileBlob stream เป็น legacy readable ไม่ใช่ async iterable แก้ Node pipeline เก็บ `entry-function-round1.json` ไม่เปลี่ยนเกณฑ์ product
+- **Content hash เปลี่ยนจาก14ffbc71…เป็น2c1ac034…** เพราะ JSON import attribute อยู่ใน implementation fingerprint แม้สูตร/ข้อมูลเกมไม่เปลี่ยน ไม่ bypass compatibility: cloud save เก่าต้องผ่าน flow `save.migrate` ที่มี preview/backup (ทดสอบผ่าน) SQLส่วนตัวที่เตรียมไว้ก่อนหน้ายังเป็น14ff; ถ้านำเข้าแล้ว APIใหม่จะเสนอ migration ส่วน helper export ใหม่ยังปฏิเสธ source version เก่าตามสัญญา ให้ใช้ SQLเดิมแล้ว migrate cloud หรือ migrate source ผ่าน workflowก่อน exportใหม่ ห้ามแก้ hash/เซ็นทับเอง
+- ยังไม่รีสตาร์ต6173 ไม่อ่าน env/login/private ไม่ย้ายหรือสร้างเซฟจริง Boardคง46/58doneและTASK058AC05รอ hosted login/save migration/reload; ตรวจ public hosted routes/health หลัง push ต่อได้ ไม่มี credentials สำหรับพิสูจน์ hosted owner login
+
 ## 21 ต.ค. 2026 · Codex — แก้ Vercel build ติด source assets หลัง .vercelignore
 
 - ผู้ใช้ส่ง hosted build log ของ commit `7231312`: env ผ่านแล้ว แต่ assets:check ล้มที่ `library/characters/body_atlas/_--011e9b38cbbb.meta.json` หลัง Vercel clone แล้วลบ ignored files การทดสอบเดิมไม่มี assets directory เลยจึงไม่ครอบคลุมโฟลเดอร์ว่างที่เหลืออยู่
