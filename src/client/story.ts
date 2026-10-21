@@ -12,6 +12,7 @@ import { boundItemInstances } from '../domain/build/equipment-definition.ts';
 import { storyParty, storyInput } from '../domain/build/story.ts';
 import { combatStatistics } from '../domain/combat/statistics.ts';
 import { projectBattleTimeline } from './battle-timeline.ts';
+import { recordedBattleTimeline, skillHistoryEvents, type SkillHistoryEvent } from './battle-history.ts';
 import { wardrobeTiers } from './equipment.ts';
 const loaded=loadValidatedContent();if(!loaded.ok)throw new Error('CONTENT_UNAVAILABLE');const content=loaded.value;
 export const STORY_PACK_HASH=content.manifest.runtime_asset_pack_hash;
@@ -70,12 +71,13 @@ export function battleDebrief(state:BattleState):Debrief{
 export class SavedBattleSession {
  readonly content=content;readonly initial:BattleState;state:BattleState;readonly scene:BattleScene;
  private confirmed:BattleState;private projected?:Promise<BattleTimeline>;private names:Record<string,string>;
+ private skillHistory:SkillHistoryEvent[]=[];
  constructor(payload:unknown,state:AccountState,skinFor:(stageId:string)=>{label:string;meta_path:string}|null=()=>null){const result=restoreBattle(payload,content);if(!result.ok)throw new Error('INCOMPATIBLE_CHECKPOINT');this.initial=result.value;this.state=result.value;this.confirmed=result.value;
   const place=battlePlace(result.value.mode),skin=place.kind==='story'?skinFor(place.stage.id):null,enemy=(content.documents['enemies.json']!.actors as unknown as {id:string;presentation:{meta_path:string}}[]).find(a=>a.id===place.boss.definition_id)!;
   this.names=partyNames(state);this.names[place.boss.actor_id]='บอส · '+(skin?.label??place.boss.definition_id.split('_').map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(' '));
   this.scene={title:place.title,subtitle:place.subtitle,background_meta:place.stage.background.meta,music_meta:place.stage.music.meta,...sceneLabels(),actors:[...partyAppearances(state),{actor_id:place.boss.actor_id,body_meta:skin?.meta_path??enemy.presentation.meta_path,facing:'left',scale:2.1}]};
  }
- advanceTo(ms:number){if(ms<=this.state.game_time_ms)return[];const result=advanceUntil(this.state,ms,content,modePolicy(this.state.mode,content));if(!result.ok)throw new Error('BATTLE_PREDICTION_FAILED');this.state=result.value.state;return result.value.events;}
+ advanceTo(ms:number){if(ms<=this.state.game_time_ms)return[];const result=advanceUntil(this.state,ms,content,modePolicy(this.state.mode,content));if(!result.ok)throw new Error('BATTLE_PREDICTION_FAILED');this.state=result.value.state;this.skillHistory.push(...skillHistoryEvents(result.value.events,this.state.game_time_ms));return result.value.events;}
  confirm(payload:unknown){const restored=restoreBattle(payload,content);if(!restored.ok)throw new Error('INCOMPATIBLE_CHECKPOINT');const checkpoint=restored.value;if(checkpoint.game_time_ms<this.confirmed.game_time_ms)throw new Error('STALE_BATTLE_CHECKPOINT');
   const replay=advanceUntil(this.confirmed,checkpoint.game_time_ms,content,modePolicy(this.confirmed.mode,content));if(!replay.ok||canonical(serializeBattle(replay.value.state))!==canonical(serializeBattle(checkpoint)))throw new Error('BATTLE_PREDICTION_MISMATCH');this.confirmed=checkpoint;return this.advanceTo(checkpoint.game_time_ms);
  }
@@ -83,6 +85,8 @@ export class SavedBattleSession {
  checkpoint():BattleCheckpoint{return serializeBattle(this.state);}
  statistics(){return combatStatistics(this.state);}
  timeline(yieldTask:()=>Promise<void>=()=>Promise.resolve()){return this.projected??=projectBattleTimeline(this.initial,content,yieldTask);}
+ recordedTimeline(){return recordedBattleTimeline(this.initial,this.skillHistory,this.state.game_time_ms);}
+ recordedEvents():readonly SkillHistoryEvent[]{return this.skillHistory.slice();}
  view():BattleRenderView{return battleRenderView(this.state,this.names);}
 }
 export type TimelineSession=Pick<SavedBattleSession,'scene'|'timeline'|'initial'>;

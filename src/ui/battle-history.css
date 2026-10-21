@@ -1,0 +1,33 @@
+.battle-history { min-width: 0; color: var(--text, #243d64); }
+.history-tabs { display: flex; gap: 4px; padding: 3px; border-radius: 11px; background: var(--surface-soft, #edf3ff); }
+.history-tabs button { flex: 1; display: flex; align-items: center; justify-content: center; gap: 5px; min-height: 34px; padding: 4px 8px; border: 0; border-radius: 8px; background: transparent; color: var(--text-muted, #667b98); font-size: 12px; }
+.history-tabs button[aria-selected='true'] { background: #fff; color: var(--accent, #3d72b8); box-shadow: 0 1px 5px #234e8b18; }
+.history-tabs .ui-icon { width: 15px; height: 15px; }
+.history-summary, .history-detail { margin: 8px 0; font-size: 10px; color: var(--text-muted, #667b98); line-height: 1.6; overflow-wrap: anywhere; }
+.history-controls { display: flex; gap: 5px; align-items: center; }
+.history-controls button, .history-controls select, .history-filter select { min-height: 32px; border: 1px solid var(--border, #d8e3f5); border-radius: 8px; background: var(--surface-soft, #edf3ff); color: var(--text, #243d64); padding: 3px 7px; font: inherit; font-size: 11px; }
+.history-controls label { display: flex; align-items: center; gap: 5px; margin-left: auto; font-size: 10px; }
+.history-seek { display: flex; align-items: center; gap: 7px; margin: 7px 0; }
+.history-seek input { flex: 1; min-width: 0; accent-color: var(--accent, #3d72b8); }
+.history-seek output { width: 85px; flex: none; text-align: right; font-size: 10px; font-variant-numeric: tabular-nums; }
+.battle-history .history-timeline { margin: 0; padding: 0; border: 0; background: transparent; }
+.history-timeline .timeline-viewport { touch-action: pan-x; }
+.history-timeline .recorded-chart { min-width: 0; }
+.history-timeline .timeline-row { height: 64px; }
+.history-timeline .timeline-row.enemy-start { height: 74px; }
+.history-timeline .timeline-icon { width: 28px; height: 28px; border-radius: 7px; }
+.history-timeline .timeline-icon img { width: 22px; height: 22px; }
+.history-timeline .timeline-skill { top: 14px; }
+.history-timeline .timeline-skill time { font-size: 10px; }
+.history-filter { display: flex; gap: 7px; align-items: center; margin: 8px 0; font-size: 11px; }
+.history-filter select { flex: 1; min-width: 0; }
+.history-event-list { max-height: 56dvh; overflow-y: auto; overscroll-behavior-y: contain; }
+.history-event { display: flex; align-items: center; gap: 7px; padding: 8px 0; border-bottom: 1px solid var(--border, #d8e3f5); content-visibility: auto; contain-intrinsic-size: auto 49px; }
+.history-event time { flex: none; width: 43px; font-size: 10px; font-variant-numeric: tabular-nums; color: var(--text-muted, #667b98); }
+.history-event-icon { display: grid; place-items: center; flex: none; width: 25px; height: 25px; border-radius: 6px; background: var(--surface-soft, #edf3ff); }
+.history-event-icon img, .history-event-icon .ui-icon { width: 20px; height: 20px; object-fit: contain; image-rendering: pixelated; }
+.history-event > div { min-width: 0; }
+.history-event strong { display: block; font-size: 12px; font-weight: 600; }
+.history-event small { display: block; font-size: 10px; color: var(--text-muted, #667b98); }
+.history-event.cast_interrupt strong { color: #b54a5c; }
+.history-event.cast_resolve strong { color: #297b60; }

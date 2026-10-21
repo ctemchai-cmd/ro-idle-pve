@@ -1,0 +1,17 @@
+{
+  "task_id": "TASK-070",
+  "passed": false,
+  "error": "TimeoutError: locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('dialog', { name: 'Timeline ย้อนหลัง', exact: true }) to be visible\u001b[22m\n",
+  "errors": [],
+  "checks": [],
+  "measurements": {},
+  "commands": [
+    "account.create",
+    "battle.start_daily",
+    "battle.finish"
+  ],
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "balance_simulation": false,
+  "scope": "Actual isolated Auth/PostgREST/Postgres/mobileChrome; real daily60s4x, Tower and Story win/defeat results, history touch/zoom/log/filter/close with no extra durable writes. Synthetic test-only level70/VIT50 and weak main fixtures."
+}

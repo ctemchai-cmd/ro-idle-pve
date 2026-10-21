@@ -1,0 +1,73 @@
+
+> ro-idle-classic@0.1.0 build
+> npm run env:check && npm run assets:check:runtime && npm run content:generate && npm run content:check && npm run boundaries && npm run typecheck && vite build && node --import tsx scripts/game/build-output.ts && npm run secrets:check
+
+
+> ro-idle-classic@0.1.0 env:check
+> node --import tsx scripts/game/check-env.ts
+
+{"public_auth_config":"unconfigured","privileged_values_logged":false}
+
+> ro-idle-classic@0.1.0 assets:check:runtime
+> python3 scripts/build_runtime_assets.py --check --artifact-only
+
+{"pack_hash": "f57a0773675ff37a1f16467f2606546404286a4ffb42da90766b7cab93970dae", "assets": 656, "files": 1197, "download_policy": "all files in pack are deployable; fetch initial profile then actors/icons/scenery/audio on demand", "first_battle_budget_bytes": 8388608, "initial_profile_raw_bytes": 1582917, "manifest_bytes": 506825, "media_and_sidecar_bytes": 26693726, "pack_budget_bytes": 28311552}
+
+> ro-idle-classic@0.1.0 content:generate
+> node --import tsx scripts/game/generate-content.ts
+
+{"content_hash":"6fbb9995048d6211bf56250dbc54a1215e0626ef6812a73e851f111cc489c6e2","documents":34,"schemas":16,"asset_payloads":0}
+
+> ro-idle-classic@0.1.0 content:check
+> node --import tsx scripts/game/check-content.ts
+
+{"content_hash":"6fbb9995048d6211bf56250dbc54a1215e0626ef6812a73e851f111cc489c6e2","skills_including_enemy":137,"items":204,"statuses":27,"immutable":true}
+
+> ro-idle-classic@0.1.0 boundaries
+> node --import tsx scripts/game/check-boundaries.ts
+
+{
+  "passed": true,
+  "issues": []
+}
+
+> ro-idle-classic@0.1.0 typecheck
+> tsc --noEmit
+
+vite v8.3.4 building client environment for production...
+transforming...
+✓ 272 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                              1.02 kB │ gzip:   0.53 kB
+dist/assets/pwa-install--23GGgJb.css         1.06 kB │ gzip:   0.50 kB
+dist/assets/skill-timeline-mcNUpHC-.css      7.10 kB │ gzip:   2.12 kB
+dist/assets/roster-page-CAWpFsAe.css        18.71 kB │ gzip:   4.08 kB
+dist/assets/index-SApIl-RE.css              20.41 kB │ gzip:   5.17 kB
+dist/assets/battle-app-r7-yG1fS.css         28.84 kB │ gzip:   6.45 kB
+dist/assets/shell-BzI7K4WZ.css              68.58 kB │ gzip:  15.08 kB
+dist/assets/pwa-install-BqP-vHf8.js          1.61 kB │ gzip:   0.68 kB
+dist/assets/auth-page-OAZohui8.js           11.39 kB │ gzip:   3.67 kB
+dist/assets/gear-upgrades-DXORqtDU.js       13.55 kB │ gzip:   5.51 kB
+dist/assets/battle-app-CaHrebko.js          27.15 kB │ gzip:   8.79 kB
+dist/assets/pack-fvXbuBGI.js                31.78 kB │ gzip:  11.42 kB
+dist/assets/roster-page-CinOd8Tf.js         58.99 kB │ gzip:  14.32 kB
+dist/assets/skill-timeline-Qz1trBb-.js      83.24 kB │ gzip:  26.45 kB
+dist/assets/shell-BGR57VLG.js              180.86 kB │ gzip:  50.94 kB
+dist/assets/index-CVSb5KCs.js              225.86 kB │ gzip:  71.40 kB
+dist/assets/account-session-COGIEMLA.js    250.44 kB │ gzip:  66.29 kB
+dist/assets/item-options-C02B9dr8.js     1,203.97 kB │ gzip: 146.21 kB
+
+✓ built in 287ms
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+{"content_hash":"6fbb9995048d6211bf56250dbc54a1215e0626ef6812a73e851f111cc489c6e2","files":1224,"gzip_bytes":517201,"asset_pack_hash":"f57a0773675ff37a1f16467f2606546404286a4ffb42da90766b7cab93970dae","asset_pack_bytes":27200551,"publish_ready":false}
+{"pwa":{"version":"46d0d6280c0237d0","precache_bytes":82353},"game_cache":false,"api_cache":false}
+
+> ro-idle-classic@0.1.0 secrets:check
+> node --import tsx scripts/game/check-secrets.ts
+
+{"passed":true,"text_files_scanned":187,"values_logged":false,"scope":"Browser build and application/SQL source; known private environment values, private-key blocks, sb_secret keys and legacy service_role JWTs. Not a general secret detector."}

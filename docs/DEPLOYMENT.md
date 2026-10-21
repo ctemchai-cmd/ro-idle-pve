@@ -160,3 +160,6 @@ Sourceใหม่flushเศษเวลา1–49msเมื่อชนdeadlin
 
 
 TASK-069 ต่อจากชุดบอล/สถานะ: ปรับ coefficients Triple/Finger/Asura และย่อสถานะ18px, ใช้ Call Spirits icon, ซ่อนใน farm, แยกสถานะ/ร่ายออกจากกรอบข้อมูลบอส ความกว้าง/สูงกรอบหลักไม่เปลี่ยนตามบัฟ ค่าท่าเป็น baseline ทดลอง ไม่ใช่ผล balance simulation ใหม่ Content `6fbb9995048d6211bf56250dbc54a1215e0626ef6812a73e851f111cc489c6e2` เปลี่ยนจากชุด068: จบไฟต์ก่อน reload แล้วกด **สำรองแล้วอัปเดตเซฟ** ไม่ต้องเพิ่ม SQL หรือ env
+
+
+TASK-070 เพิ่มผลไฟต์ → **Timeline ย้อนหลัง** และ Log สกิลที่เลื่อน/ซูม/กรองได้ เก็บเฉพาะ skill events ในหน่วยความจำจนออกจากไฟต์หรือ reload ไม่มีการเขียนเซฟเพิ่ม และไม่เปลี่ยน content/pack: จบไฟต์ก่อน reload เพื่อรับ UI ไม่ต้อง SQL/env/migration สำหรับงานนี้ ส่วนการแก้ P.ATK/HoT ตาม TASK-071 เป็น content change แยก

@@ -7,9 +7,13 @@ import './timeline.css';
 
 const seconds = (ms: number) => `${(ms / 1000).toFixed(1)}s`;
 const outcomes: Record<SkillTimelineEntry['outcome'], string> = { resolved: 'ใช้สำเร็จ', interrupted: 'ถูกขัดร่าย', sp_skip: 'ข้าม: SP ไม่พอ', sphere_skip: 'ข้าม: ลูกแก้วไม่พอ', pending: 'ร่ายยังไม่จบ' };
-const describe = (entry: SkillTimelineEntry, name: string, labels: Readonly<Record<string, string>> = {}) => `${name} · ช่อง ${entry.slot + 1} · เริ่ม ${seconds(entry.start_ms)} · ร่าย ${seconds(entry.end_ms - entry.start_ms)} · พัก ${seconds(entry.recovery_end_ms - entry.end_ms)}${entry.interrupts?.length ? ` · ขัดร่ายสำเร็จ ${entry.interrupts.map(row => labels[row.skill_id] ?? row.skill_id).join(', ')}` : ''}${entry.outcome === 'interrupted' ? ' · ถูกขัดร่าย' : ''}`;
-const TimelineRow = memo(function TimelineRow({ actor, entries, ticks, windowMs, pack, session, selected, choose, enemyStart }: {
-  actor: Pick<ActorRenderView, 'actor_id' | 'name' | 'team'> & { dead: boolean }; entries: readonly SkillTimelineEntry[]; ticks: readonly number[]; windowMs: number; pack: AssetPack; session: TimelineSession; selected: string | null; choose: (id: string | null) => void; enemyStart: boolean;
+export const describeTimelineEntry = (entry: SkillTimelineEntry, name: string, labels: Readonly<Record<string, string>> = {}, recorded = false) => {
+  const time = recorded ? (ms: number) => `${(ms / 1000).toFixed(3)}s` : seconds;
+  return `${name} · ช่อง ${entry.slot + 1} · เริ่ม ${time(entry.start_ms)} · ร่าย ${time(entry.end_ms - entry.start_ms)}${recorded ? ` · จบ ${time(entry.end_ms)}` : ` · พัก ${time(entry.recovery_end_ms - entry.end_ms)}`}${entry.interrupts?.length ? ` · ขัดร่ายสำเร็จ ${entry.interrupts.map(row => labels[row.skill_id] ?? row.skill_id).join(', ')}` : ''}${entry.outcome === 'interrupted' ? ' · ถูกขัดร่าย' : ''}${recorded ? ` · ${entry.outcome === 'pending' ? 'จบไฟต์ระหว่างร่าย' : outcomes[entry.outcome]}` : ''}`;
+};
+const describe = describeTimelineEntry;
+export const TimelineRow = memo(function TimelineRow({ actor, entries, ticks, windowMs, pack, session, selected, choose, enemyStart, recorded = false }: {
+  actor: Pick<ActorRenderView, 'actor_id' | 'name' | 'team'> & { dead: boolean }; entries: readonly SkillTimelineEntry[]; ticks: readonly number[]; windowMs: number; pack: AssetPack; session: TimelineSession; selected: string | null; choose: (id: string | null) => void; enemyStart: boolean; recorded?: boolean;
 }) {
   const percent = (ms: number) => ms / windowMs * 100;
   const parts = actor.name.split(' · '), job = session.scene.actors.find(row => row.actor_id === actor.actor_id)?.job_id;
@@ -22,16 +26,16 @@ const TimelineRow = memo(function TimelineRow({ actor, entries, ticks, windowMs,
       {entries.filter(entry => entry.actor_id === actor.actor_id).map(entry => {
         const skip = entry.outcome === 'sp_skip' || entry.outcome === 'sphere_skip', name = session.scene.skill_labels[entry.skill_id] ?? entry.skill_id;
         const bar = (from: number, to: number) => ({ left: `${percent(from)}%`, width: `${percent(to - from)}%` });
-        return <div key={entry.id} className={`timeline-entry slot-${entry.slot + 1} future ${skip ? 'skipped' : ''} ${entry.outcome === 'interrupted' ? 'was-interrupted' : ''} ${entry.interrupts?.length ? 'did-interrupt' : ''}`} data-skill={entry.skill_id} data-start-ms={entry.start_ms} data-end-ms={entry.end_ms}>
-          <span className="timeline-cast" style={bar(entry.start_ms, entry.end_ms)} /><span className="timeline-recovery" style={bar(entry.end_ms, entry.recovery_end_ms)} />
-          <button className={`timeline-skill ${selected === entry.id ? 'chosen' : ''}`} style={{ left: `${percent(entry.start_ms)}%` }} title={describe(entry, name, session.scene.skill_labels)} aria-label={describe(entry, name, session.scene.skill_labels)} aria-pressed={selected === entry.id} onClick={() => choose(selected === entry.id ? null : entry.id)}>
+        return <div key={entry.id} className={`timeline-entry slot-${entry.slot + 1} ${recorded ? 'elapsed' : 'future'} ${skip ? 'skipped' : ''} ${entry.outcome === 'interrupted' ? 'was-interrupted' : ''} ${entry.interrupts?.length ? 'did-interrupt' : ''}`} data-skill={entry.skill_id} data-start-ms={entry.start_ms} data-end-ms={entry.end_ms}>
+          <span className="timeline-cast" style={bar(entry.start_ms, entry.end_ms)} />{!recorded && <span className="timeline-recovery" style={bar(entry.end_ms, entry.recovery_end_ms)} />}
+          <button className={`timeline-skill ${selected === entry.id ? 'chosen' : ''}`} style={{ left: `${percent(entry.start_ms)}%` }} title={describe(entry, name, session.scene.skill_labels, recorded)} aria-label={describe(entry, name, session.scene.skill_labels, recorded)} aria-pressed={selected === entry.id} onClick={() => choose(selected === entry.id ? null : entry.id)}>
             <span className="timeline-icon">{pack.icons.get(entry.skill_id) ? <img src={pack.icons.get(entry.skill_id)} alt="" /> : <Icon name="sparkles" />}<b>{entry.slot + 1}</b>{entry.outcome === 'interrupted' && <em className="timeline-interrupted" aria-hidden="true"><Icon name="close" /></em>}{!!entry.interrupts?.length && <em className="timeline-interrupter" aria-hidden="true"><Icon name="lightning" />{entry.interrupts.length > 1 ? entry.interrupts.length : ''}</em>}{skip && <em>−</em>}</span><time>{seconds(entry.start_ms)}</time>
           </button>
         </div>;
       })}
     </div></div>
   </div>;
-}, (a, b) => a.actor.actor_id === b.actor.actor_id && a.actor.dead === b.actor.dead && a.entries === b.entries && a.ticks === b.ticks && a.windowMs === b.windowMs && a.selected === b.selected && a.session === b.session && a.pack === b.pack);
+}, (a, b) => a.actor.actor_id === b.actor.actor_id && a.actor.dead === b.actor.dead && a.entries === b.entries && a.ticks === b.ticks && a.windowMs === b.windowMs && a.selected === b.selected && a.session === b.session && a.pack === b.pack && a.recorded === b.recorded);
 
 const emptyEntries: readonly SkillTimelineEntry[] = [];
 export function SkillTimeline({ session, pack, view, clock }: { session: TimelineSession; pack: AssetPack; view: BattleRenderView; clock: RefObject<number> }) {

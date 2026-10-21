@@ -123,6 +123,10 @@
 | D-093 | 21 ต.ค.2026 ผู้ใช้ย้ำCallSpiritsเสียช่องดาเมจ ต้องคุ้มกับท่าต่อไป เสนอเพิ่มตัวคูณท่าใช้บอลและย้ำไม่OP/under ไม่รันsimulationใหม่ | TASK-069 assistantตั้งค่าทดลองrawcoefficients Triple×1.25/Finger×2.25/Asuraทั้งATK-SP×2.25ในข้อมูลเดิม ไม่เพิ่มglobalbuffmultiplier คงcost/timing/crit/armor/held1%หลังจ่าย ตรวจstaticcost/powerและfocusedrules ไม่อ้างprovenwhole-gamebalance |
 | D-094 | 21 ต.ค.2026 ผู้ใช้ขอไอคอนเล็กลง ไม่แสดงในstagefarm แยกบอสstatusออกจากpanelที่ยืดหด และบอลใช้iconCallSpirit | TASK-069 ปรับicon18px/nativeCallSpirit เอาfarmDOMcontrols+Canvasbadgesออก แยกbossstatus/castออกจากmainbarเพื่อคงความสูง ไม่มีcombat/savechangeจากการซ่อนภาพ |
 
+| D-095 | 21 ต.ค.2026 ผู้ใช้ขอเลื่อนดู Log Timeline หลังจบไฟต์เพื่อวิเคราะห์การเรียงสกิล | TASK-070 เก็บskill eventsของไฟต์จริงในหน่วยความจำ เพิ่มผลStory/Tower/Daily→Timelineย้อนหลัง/Log/filter/zoom/touch ไม่เรียกforecast/engineตอนเปิด ไม่เพิ่มDBwrite รุ่นนี้ไม่เก็บข้ามreload และไม่เดาACDที่eventไม่ได้บันทึก |
+| D-096 | 21 ต.ค.2026 ผู้ใช้ระบุ Healing Song ของ Bard/Dancer ควรอิง P.ATK | TASK-071 ใช้ฐานphysical attackเฉพาะเพลงของสองอาชีพ คงcoefficients/SP/CT/ACD/stacking/โบนัสฮีลเดิม ไม่เปลี่ยนPriestSanctuaryเป็นphysicalและไม่เพิ่มตัวคูณพร้อมกัน |
+| D-097 | 21 ต.ค.2026 ผู้ใช้ขอวงฮีลแสดงต่อเนื่องขณะมีHoT | TASK-071 แสดงวงใต้ผู้ได้รับregeneration/physical-regenerationตามlive statusจนหมด/ล้าง/ตาย ใช้presentationเท่านั้น ไม่สร้างheal ticksหรือเปลี่ยนduration/statusstack |
+
 ## คำถามหลักที่ส่งให้ผู้ใช้แล้ว
 
 | ID | ประเด็น | สถานะ |

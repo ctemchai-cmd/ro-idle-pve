@@ -92,3 +92,6 @@ D-078/D-080: ข้อความ UI เกมไม่ select ด้วยก�
 ติดตั้งผ่านหน้าล็อกอิน/ตั้งค่า เปิด/playเป็นstandalone portrait มีmanifest/192–512icons/maskable/Apple180 และviewport-fit=cover โดยgame safe-areaเดิมกับauthpaddingรับnotch ปุ่มใช้nativepromptจากusergestureครั้งเดียว ถ้าไม่รองรับหรือปฏิเสธแสดงวิธีผ่านbrowsermenu; iOSแนะนำSafari→แชร์→เพิ่มหน้าจอโฮม ซ่อนเมื่อเปิดเป็นแอป
 
 Online-primaryเดิม Service workercacheเฉพาะoffline page+4icons ไม่cacheHTML/JS/เกม/API/Auth/checkpoint ไม่แตะlocalStorageหรือsave และไม่skipWaiting/reloadหน้าที่กำลังเล่น Newworkerรอปิดclientเก่า BuildPWAแยกversionจากcontenthash ลงทะเบียนเฉพาะproduction+securecontext ดู [คู่มือติดตั้ง/ขอบเขตแคช](../../docs/PWA.md)
+
+
+D-095 / TASK-070: หน้าผล Story/Tower/Daily เปิด **Timeline ย้อนหลัง** ได้ มี native horizontal touch scroll, ต้น/ท้ายไฟต์, ซูม และ Log สกิลเรียงตามเวลา/กรองตัวละคร รายละเอียดเวลา3ตำแหน่งทศนิยมแยกจังหวะใกล้กัน ข้อมูลมาจาก skill events ที่ session เล่นแล้ว เก็บในหน่วยความจำจนออกจากไฟต์หรือreload ไม่อ่าน/เขียนเซฟเพิ่ม ไม่เรียกforecast/advance ตอนเปิดประวัติ ตัวละครมี label ติดขอบขณะเลื่อน Historical rows แสดงcast/interruption/skipจริง ไม่แสดงACDซึ่งeventไม่ได้เก็บ เวลาดูผลยังเปิดstatisticsและกลับหน้าผลเดิมได้โดยไม่รับรางวัลหรือท้าใหม่เอง

@@ -1,0 +1,61 @@
+{
+  "task_id": "TASK-070",
+  "passed": true,
+  "error": null,
+  "errors": [],
+  "checks": [
+    {
+      "case_id": "daily_history_touch_zoom_log_filter_no_writes",
+      "passed": true,
+      "result": "ทำลายได้ 6 หลอด!"
+    },
+    {
+      "case_id": "tower_result_history_and_statistics",
+      "passed": true,
+      "result": "ชนะแล้ว!"
+    },
+    {
+      "case_id": "story_victory_history",
+      "passed": true,
+      "result": "ชนะแล้ว!"
+    },
+    {
+      "case_id": "story_defeat_history",
+      "passed": true,
+      "result": "ทีมพ่ายแพ้"
+    }
+  ],
+  "measurements": {
+    "horizontal": {
+      "left": 2124,
+      "max": 2124
+    },
+    "log": {
+      "rows": 150,
+      "first": {
+        "sequence": 320,
+        "time": 2.772
+      },
+      "last": {
+        "sequence": 7697,
+        "time": 59.9
+      }
+    }
+  },
+  "commands": [
+    "account.create",
+    "battle.start_daily",
+    "battle.finish",
+    "battle.start_tower",
+    "battle.finish",
+    "battle.start_story",
+    "battle.finish",
+    "farm.set_stage",
+    "battle.start_story",
+    "battle.finish"
+  ],
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "balance_simulation": false,
+  "scope": "Actual isolated Auth/PostgREST/Postgres/mobileChrome; real daily60s4x, Tower and Story win/defeat results, history touch/zoom/log/filter/close with no extra durable writes. Synthetic test-only level70/VIT50 and weak main fixtures."
+}

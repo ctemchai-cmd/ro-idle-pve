@@ -1,5 +1,5 @@
 import { Icon } from '../icon.tsx';
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import type { AccountState, CombatStats } from '../../contracts/index.ts';
 import type { AssetPack } from '../../renderer/pack.ts';
 import type { ActorParts } from '../../renderer/native.mjs';
@@ -91,10 +91,10 @@ export const lookOf = (a: AccountState['roster'][number], state?: AccountState):
 
 /** Modal bottom sheet with native dialog focus handling; returns focus to its opener. */
 export function Sheet({ title, onClose, children, className = '' }: { title: ReactNode; onClose: () => void; children: ReactNode; className?: string }) {
-  const ref = useRef<HTMLDialogElement>(null);
+  const ref = useRef<HTMLDialogElement>(null), titleId = useId();
   useEffect(() => { const node = ref.current!, opener = document.activeElement; if (!node.open) node.showModal(); return () => { if (node.open) node.close(); if (opener instanceof HTMLElement && opener.isConnected) opener.focus(); }; }, []);
-  return <dialog ref={ref} className={`sheet ${className}`} onCancel={e => { e.preventDefault(); onClose(); }} onClick={e => { if (e.target === e.currentTarget) onClose(); }}>
-    <div className="sheet-body"><header className="sheet-head"><h2>{title}</h2><button className="icon-btn" autoFocus aria-label="ปิด" onClick={onClose}><Icon name="close" /></button></header>{children}</div>
+  return <dialog ref={ref} aria-labelledby={titleId} className={`sheet ${className}`} onCancel={e => { e.preventDefault(); onClose(); }} onClick={e => { if (e.target === e.currentTarget) onClose(); }}>
+    <div className="sheet-body"><header className="sheet-head"><h2 id={titleId}>{title}</h2><button className="icon-btn" autoFocus aria-label="ปิด" onClick={onClose}><Icon name="close" /></button></header>{children}</div>
   </dialog>;
 }
 export function PageHeader({ title, sub, onBack, right }: { title: ReactNode; sub?: ReactNode; onBack: () => void; right?: ReactNode }) {

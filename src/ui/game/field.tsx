@@ -12,6 +12,7 @@ import { battleSpeed, cycleBattleSpeed, subscribeBattleSpeed } from '../../clien
 import { shouldAdvanceBattleFrame } from '../../client/battle-frame.ts';
 import { CombatStatusStrip, StatusSignals } from './combat-status.tsx';
 import { BattleStatistics } from '../battle-statistics.tsx';
+import { BattleHistory } from '../battle-history.tsx';
 import type { ChallengeTarget, GameContext } from './shell.tsx';
 import { ResIcon, Sheet, compact, duration, friendNames, full, iconUrl, mapNames, resourceNames, type Wallet } from './kit.tsx';
 import { ClassIcon } from './class-icon.tsx';
@@ -85,9 +86,9 @@ function FarmField({ context, covered }: { context: GameContext; covered: boolea
 }
 
 const phaseNames: Record<string, string> = { skill_interval: 'รอคิว', casting: 'ร่าย', after_cast: 'พัก', normal_only: 'ตีปกติ', dead: 'หมดสภาพ' };
-function BossField({ context, app, running, checkpoint, outcome, retreat, statsRef }: { context: GameContext; app: { session: SavedBattleSession; id: string }; running: boolean; checkpoint: unknown; outcome: string | null; retreat: (() => Promise<void>) | null; statsRef: { current: (() => void) | null } }) {
+function BossField({ context, app, running, checkpoint, outcome, retreat, statsRef, timelineRef }: { context: GameContext; app: { session: SavedBattleSession; id: string }; running: boolean; checkpoint: unknown; outcome: string | null; retreat: (() => Promise<void>) | null; statsRef: { current: (() => void) | null }; timelineRef: { current: (() => void) | null } }) {
   const { pack } = context, canvas = useRef<HTMLCanvasElement>(null), renderer = useRef<BattleRenderer | null>(null), clock = useRef(0), logical = useRef(app.session.state.game_time_ms), runningRef = useRef(running);
-  const [view, setView] = useState<BattleRenderView>(() => app.session.view()), [selected, setSelected] = useState('main'), [panel, setPanel] = useState<'timeline' | 'statistics' | null>(null), [error, setError] = useState(''), [retreating, setRetreating] = useState(false);
+  const [view, setView] = useState<BattleRenderView>(() => app.session.view()), [selected, setSelected] = useState('main'), [panel, setPanel] = useState<'timeline' | 'statistics' | 'history' | null>(null), [error, setError] = useState(''), [retreating, setRetreating] = useState(false);
   const finishSent = useRef(false);
   useEffect(() => {
     if (!view.terminal || !running || document.hidden || finishSent.current) return;
@@ -99,7 +100,7 @@ function BossField({ context, app, running, checkpoint, outcome, retreat, statsR
   const [cut, setCut] = useState<{ by: string; at: number } | null>(null);
   const feed = (events: readonly { type: string; actor_id?: string; detail?: string | null }[]) => { for (const e of events) if (e.type === 'cast_interrupt' && e.actor_id && e.actor_id.startsWith('enemy')) setCut({ by: friendNames[e.detail ?? ''] ?? '', at: Date.now() }); return events; };
   useEffect(() => { if (!cut) return; const id = setTimeout(() => setCut(null), 1600); return () => clearTimeout(id); }, [cut]);
-  runningRef.current = running; statsRef.current = () => setPanel('statistics');
+  runningRef.current = running; statsRef.current = () => setPanel('statistics'); timelineRef.current = () => setPanel('history');
   useEffect(() => {
     if (!canvas.current || !pack) return; const node = canvas.current; renderer.current = new BattleRenderer(node, pack, app.session.scene); renderer.current.zoom = 1.12; renderer.current.selected = selected;
     const resize = () => { const r = node.getBoundingClientRect(); if (r.height && r.width) { node.width = 720; node.height = Math.round(720 * r.height / r.width); } };
@@ -128,7 +129,7 @@ function BossField({ context, app, running, checkpoint, outcome, retreat, statsR
       <div className="bar hp"><i style={{ width: `${boss ? boss.hp / boss.max_hp * 100 : 0}%` }} /><span>{full(Math.max(0, boss?.hp ?? 0))} / {full(boss?.max_hp ?? 0)}</span></div>
     <div className="boss-tools">
       <button className="chip-btn" onClick={() => setPanel('statistics')}><Icon name="chart" /><span>สถิติ</span></button>
-      <button className="chip-btn" onClick={() => setPanel('timeline')}><Icon name="timeline" /><span>Timeline</span></button>
+      <button className="chip-btn" onClick={() => setPanel(outcome ? 'history' : 'timeline')}><Icon name="timeline" /><span>Timeline</span></button>
       <SpeedButton />
       {retreat && !outcome && <button className="chip-btn danger" disabled={retreating} onClick={() => { setRetreating(true); void retreat().finally(() => setRetreating(false)); }}><Icon name="retreat" /><span>{retreating ? 'กำลังถอย…' : 'ถอยทัพ'}</span></button>}
     </div>
@@ -149,7 +150,7 @@ function BossField({ context, app, running, checkpoint, outcome, retreat, statsR
       <StatusSignals actor={a} pack={pack} />
     </button>)}</div>
     {focused && <div className="focus-status-panel"><CombatStatusStrip key={focused.actor_id} actor={focused} actors={view.actors} pack={pack} now={view.game_time_ms} focus /></div>}
-    {panel && <Sheet title={panel === 'timeline' ? 'Timeline สกิล' : 'สถิติการต่อสู้'} onClose={() => setPanel(null)} className="tall">{panel === 'timeline' ? <SkillTimeline session={app.session} pack={pack!} view={view} clock={clock} /> : <BattleStatistics report={app.session.statistics()} actors={view.actors} labels={app.session.scene.skill_labels} />}</Sheet>}
+    {panel && <Sheet title={panel === 'history' ? 'Timeline ย้อนหลัง' : panel === 'timeline' ? 'Timeline สกิล' : 'สถิติการต่อสู้'} onClose={() => setPanel(null)} className="tall">{panel === 'history' ? <BattleHistory session={app.session} pack={pack!} /> : panel === 'timeline' ? <SkillTimeline session={app.session} pack={pack!} view={view} clock={clock} /> : <BattleStatistics report={app.session.statistics()} actors={view.actors} labels={app.session.scene.skill_labels} />}</Sheet>}
   </section>;
 }
 
@@ -222,7 +223,7 @@ function Debrief({ session }: { session: SavedBattleSession }) {
     {debrief.tips.length > 0 && <ul className="debrief-tips">{debrief.tips.map(tip => <li key={tip}><Icon name="help" /> {tip}</li>)}</ul>}
   </details>;
 }
-function DailyResult({ context, outcome, close, challenge, stats, session }: { context: GameContext; outcome: Outcome; close: () => void; challenge: (target: ChallengeTarget) => void; stats: () => void; session?: SavedBattleSession }) {
+function DailyResult({ context, outcome, close, challenge, stats, timeline, session }: { context: GameContext; outcome: Outcome; close: () => void; challenge: (target: ChallengeTarget) => void; stats: () => void; timeline: () => void; session?: SavedBattleSession }) {
   const { state, pack, locked, go } = context, claims = state.pending_rewards.filter(c => c.kind === 'daily' && c.source_keys.includes(`battle:${outcome.id}`)), card = dailyView(state, Date.now()).bosses.find(b => b.id === outcome.stage);
   async function claimAll() { for (const claim of claims) if (!await context.submitWhenReady('reward.claim', { claim_id: claim.claim_id })) break; }
   const total: Partial<Record<keyof Wallet, number>> = {}; for (const claim of claims) for (const [k, n] of Object.entries(claim.resource_vector) as [keyof Wallet, number][]) total[k] = (total[k] ?? 0) + n;
@@ -234,13 +235,14 @@ function DailyResult({ context, outcome, close, challenge, stats, session }: { c
     <div className="row">
       {claims.length > 0 && <button className="btn primary" disabled={locked} onClick={() => void claimAll()}>รับกล่อง {claims.length}</button>}
       {!claims.length && card && card.attempts_left > 0 && <button className="btn primary" disabled={locked} onClick={() => { close(); challenge({ kind: 'daily', boss: outcome.stage }); }}>ท้าอีกครั้ง ({card.attempts_left})</button>}
+      {session && <button className="btn ghost" onClick={timeline} aria-label="Timeline ย้อนหลัง"><Icon name="timeline" /><span>Timeline</span></button>}
       <button className="btn ghost" onClick={stats}><Icon name="chart" /><span>สถิติ</span></button>
       <button className="btn ghost" onClick={() => { close(); go('daily'); }}>กลับดันเจี้ยน</button>
     </div>
   </div></div>;
 }
-function ResultCard({ context, outcome, close, challenge, stats, session }: { context: GameContext; outcome: Outcome; close: () => void; challenge: (target: ChallengeTarget) => void; stats: () => void; session?: SavedBattleSession }) {
-  if (outcome.kind === 'daily') return <DailyResult context={context} outcome={outcome} close={close} challenge={challenge} stats={stats} session={session} />;
+function ResultCard({ context, outcome, close, challenge, stats, timeline, session }: { context: GameContext; outcome: Outcome; close: () => void; challenge: (target: ChallengeTarget) => void; stats: () => void; timeline: () => void; session?: SavedBattleSession }) {
+  if (outcome.kind === 'daily') return <DailyResult context={context} outcome={outcome} close={close} challenge={challenge} stats={stats} timeline={timeline} session={session} />;
   const { state, pack, submit, locked, go } = context, tower = outcome.kind === 'tower', won = outcome.code.endsWith('_WON'), claim = state.pending_rewards.find(c => c.kind === outcome.kind && c.source_keys.includes(`${outcome.kind}:${outcome.stage}`));
   const story = storyOptions(state).find(s => s.available && !s.cleared), next: ChallengeTarget | null = tower ? { kind: 'tower', floor: state.tower.highest_cleared_floor + 1 } : story ? { kind: 'story', id: story.id } : null;
   const retry: ChallengeTarget = tower ? { kind: 'tower', floor: Number(outcome.stage) } : { kind: 'story', id: outcome.stage };
@@ -254,6 +256,7 @@ function ResultCard({ context, outcome, close, challenge, stats, session }: { co
       {!claim && won && next && <button className="btn primary" disabled={locked} onClick={() => { close(); challenge(next); }}>{next.kind === 'tower' ? `ท้าชั้น ${next.floor}` : `ท้าด่าน ${next.kind === 'story' ? next.id : ''}`}</button>}
       {!won && <button className="btn" onClick={() => { close(); go('team'); }}>ปรับทีม</button>}
       {!won && <button className="btn primary" disabled={locked} onClick={() => { close(); challenge(retry); }}>ลองใหม่</button>}
+      {session && <button className="btn ghost" onClick={timeline} aria-label="Timeline ย้อนหลัง"><Icon name="timeline" /><span>Timeline</span></button>}
       <button className="btn ghost" onClick={stats}><Icon name="chart" /><span>สถิติ</span></button>
       {tower ? <button className="btn ghost" onClick={() => { close(); go('tower'); }}>กลับหอคอย</button> : <button className="btn ghost" onClick={close}>กลับไปฟาร์ม</button>}
     </div>
@@ -264,7 +267,7 @@ export function Field({ context, covered, save, request, consumeRequest }: { con
   // A clock acknowledgement's brief 'loading' refresh must not count as offline.
   const { state, pack, submit, locked } = context, active = state.active_battle, battle = save.checkpoint?.battle, online = !['offline', 'error', 'read_only', 'incompatible', 'signed_out'].includes(save.status);
   const [boss, setBoss] = useState<{ session: SavedBattleSession; id: string } | null>(null), [outcome, setOutcome] = useState<Outcome | null>(null), [sheet, setSheet] = useState<'stage' | 'farm' | null>(null), [starting, setStarting] = useState(false), [intro, setIntro] = useState<{ label: ReturnType<typeof introLabel>; at: number } | null>(null);
-  const handled = useRef<string | null>(null), now = useNow(1000), statsRef = useRef<(() => void) | null>(null);
+  const handled = useRef<string | null>(null), now = useNow(1000), statsRef = useRef<(() => void) | null>(null), timelineRef = useRef<(() => void) | null>(null);
   useEffect(() => {
     if (!active || !battle || !pack || boss?.id === active.battle_id) return; let disposed = false;
     void (async () => { try { const session = new SavedBattleSession(battle.payload, state, id => stageBossSkin(pack, id)); await pack.prepare(session.scene, session.view().actors.flatMap(a => a.slots.filter((id): id is string => id !== null))); if (pack.soundEnabled) await pack.enableAudio(true, session.scene).catch(() => {}); if (!disposed) { setOutcome(null); setBoss({ session, id: active.battle_id }); } } catch { if (!disposed) context.toast('ยังเตรียมไฟต์บอสไม่ได้ ลองเชื่อมต่อใหม่'); } })();
@@ -300,7 +303,7 @@ export function Field({ context, covered, save, request, consumeRequest }: { con
   const snapshot = state.farm.rate_snapshot, elapsed = snapshot ? Math.min(FARM_CAP_MS, Math.max(0, now - Date.parse(state.farm.reserved_through))) : 0;
   const showBoss = boss && (active?.battle_id === boss.id || outcome?.id === boss.id), bossIcon = iconUrl(pack, 'ui_icons', 'boss'), chest = iconUrl(pack, 'feature_icons', 'afk_chest'), mapIcon = iconUrl(pack, 'ui_icons', 'stage');
   return <div className={`field ${covered ? 'covered' : ''}`}>
-    {showBoss ? <BossField key={boss.id} context={context} app={boss} running={online && active?.battle_id === boss.id} checkpoint={active?.battle_id === boss.id ? battle?.payload : null} outcome={outcome?.id === boss.id ? outcome.code : null} retreat={active?.battle_id === boss.id ? async () => { await context.submitWhenReady('battle.retreat', { battle_id: active.battle_id, requested_game_ms: boss.session.state.game_time_ms }); } : null} statsRef={statsRef} /> : <FarmField context={context} covered={covered} />}
+    {showBoss ? <BossField key={boss.id} context={context} app={boss} running={online && active?.battle_id === boss.id} checkpoint={active?.battle_id === boss.id ? battle?.payload : null} outcome={outcome?.id === boss.id ? outcome.code : null} retreat={active?.battle_id === boss.id ? async () => { await context.submitWhenReady('battle.retreat', { battle_id: active.battle_id, requested_game_ms: boss.session.state.game_time_ms }); } : null} statsRef={statsRef} timelineRef={timelineRef} /> : <FarmField context={context} covered={covered} />}
     {!covered && !showBoss && <>
       <button className="stage-chip" onClick={() => setSheet('stage')} aria-label="เปิดแผนที่และเลือกด่าน">
         {mapIcon && <img src={mapIcon} alt="" />}<span><small>{mapName}</small><b>ฟาร์ม {farmStage.id}</b></span>
@@ -313,7 +316,7 @@ export function Field({ context, covered, save, request, consumeRequest }: { con
       </button>
     </>}
     {intro && !covered && <BossIntro label={intro.label} />}
-    {outcome && showBoss && !covered && <ResultCard context={context} outcome={outcome} session={boss.session} close={() => { setOutcome(null); setBoss(null); }} challenge={target => void challenge(target)} stats={() => statsRef.current?.()} />}
+    {outcome && showBoss && !covered && <ResultCard context={context} outcome={outcome} session={boss.session} close={() => { setOutcome(null); setBoss(null); }} challenge={target => void challenge(target)} stats={() => statsRef.current?.()} timeline={() => timelineRef.current?.()} />}
     {sheet === 'stage' && <StageSheet context={context} close={() => setSheet(null)} challenge={id => void challenge({ kind: 'story', id })} />}
     {sheet === 'farm' && <FarmSheet context={context} close={() => setSheet(null)} />}
   </div>;
