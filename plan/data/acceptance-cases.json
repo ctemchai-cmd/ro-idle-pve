@@ -8602,7 +8602,7 @@
       "criterion": "ลูกบอลจริง0–5ให้ATK+0–5%ในbucketเดิม; cast snapshotหลังจ่าย1/5ลูกถูกต้อง, interruptionไม่คืน, reviveไม่มีโบนัสค้าง และUIเพิ่ม/ลดจำนวนตามengine",
       "input_setup": "Focused held-resource math/status projection + throwaway localAuth/SQL mobileChrome; no calibration/balance simulation",
       "input_refs": [
-        "plan/inprogress/tasks_068.md",
+        "plan/done/tasks_068.md",
         "src/domain/combat/resources.ts",
         "src/contracts/presentation.ts"
       ],
@@ -8623,7 +8623,11 @@
       "expected": "ลูกบอลจริง0–5ให้ATK+0–5%ในbucketเดิม; cast snapshotหลังจ่าย1/5ลูกถูกต้อง, interruptionไม่คืน, reviveไม่มีโบนัสค้าง และUIเพิ่ม/ลดจำนวนตามengine",
       "verification": "Targeted unit/browser/migration/build and hosted artifact checks",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation"
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-068-review.json",
+        "plan/evidence/task-068-hosted.json"
+      ]
     },
     {
       "id": "T068-AC-02",
@@ -8632,7 +8636,7 @@
       "criterion": "Buff/Debuff/shieldแสดงicon/stack/expiry/sourceถูกต้อง, independentstacksไม่ถูกรวมเวลา/หายก่อนหมด, หมด/cleanse/dispelแล้วหาย; มือถือ320/390pxไม่ล้นและแตะอ่านได้",
       "input_setup": "Focused held-resource math/status projection + throwaway localAuth/SQL mobileChrome; no calibration/balance simulation",
       "input_refs": [
-        "plan/inprogress/tasks_068.md",
+        "plan/done/tasks_068.md",
         "src/domain/combat/resources.ts",
         "src/contracts/presentation.ts"
       ],
@@ -8653,7 +8657,11 @@
       "expected": "Buff/Debuff/shieldแสดงicon/stack/expiry/sourceถูกต้อง, independentstacksไม่ถูกรวมเวลา/หายก่อนหมด, หมด/cleanse/dispelแล้วหาย; มือถือ320/390pxไม่ล้นและแตะอ่านได้",
       "verification": "Targeted unit/browser/migration/build and hosted artifact checks",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation"
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-068-review.json",
+        "plan/evidence/task-068-hosted.json"
+      ]
     },
     {
       "id": "T068-AC-03",
@@ -8662,7 +8670,7 @@
       "criterion": "targeted unit/UI/build/migrationผ่าน, ไม่รันbalance simulation, ขึ้นGitHub/Vercelพร้อมpublicproofและแจ้งวิธีbacked-up save updateเมื่อcontenthashเปลี่ยน ไม่แตะเซฟ6173หรือownercloudwrite",
       "input_setup": "Focused held-resource math/status projection + throwaway localAuth/SQL mobileChrome; no calibration/balance simulation",
       "input_refs": [
-        "plan/inprogress/tasks_068.md",
+        "plan/done/tasks_068.md",
         "src/domain/combat/resources.ts",
         "src/contracts/presentation.ts"
       ],
@@ -8683,7 +8691,11 @@
       "expected": "targeted unit/UI/build/migrationผ่าน, ไม่รันbalance simulation, ขึ้นGitHub/Vercelพร้อมpublicproofและแจ้งวิธีbacked-up save updateเมื่อcontenthashเปลี่ยน ไม่แตะเซฟ6173หรือownercloudwrite",
       "verification": "Targeted unit/browser/migration/build and hosted artifact checks",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation"
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-068-review.json",
+        "plan/evidence/task-068-hosted.json"
+      ]
     }
   ]
 }

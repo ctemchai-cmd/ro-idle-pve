@@ -23,7 +23,7 @@ Milestone: M4 · อ้างอิง D-092
 
 - [x] AC-01: ลูกบอลจริง0–5ให้ATK+0–5%ในbucketเดิม; cast snapshotหลังจ่าย1/5ลูกถูกต้อง, interruptionไม่คืน, reviveไม่มีโบนัสค้าง และUIเพิ่ม/ลดจำนวนตามengine
 - [x] AC-02: Buff/Debuff/shieldแสดงicon/stack/expiry/sourceถูกต้อง, independentstacksไม่ถูกรวมเวลา/หายก่อนหมด, หมด/cleanse/dispelแล้วหาย; มือถือ320/390pxไม่ล้นและแตะอ่านได้
-- [ ] AC-03: targeted unit/UI/build/migrationผ่าน, ไม่รันbalance simulation, ขึ้นGitHub/Vercelพร้อมpublicproofและแจ้งวิธีbacked-up save updateเมื่อcontenthashเปลี่ยน ไม่แตะเซฟ6173หรือownercloudwrite
+- [x] AC-03: targeted unit/UI/build/migrationผ่าน, ไม่รันbalance simulation, ขึ้นGitHub/Vercelพร้อมpublicproofและแจ้งวิธีbacked-up save updateเมื่อcontenthashเปลี่ยน ไม่แตะเซฟ6173หรือownercloudwrite
 
 ## วิธีตรวจและหลักฐาน
 
@@ -40,4 +40,6 @@ Focused sphere/status unit tests, isolated actual Chrome+Auth/SQL UI, existing b
 - M0data/specchecks/build/type/boundaries/assets/secretsผ่าน ไม่มีassetpackเพิ่ม packf57a0773…เดิม Contentเปลี่ยนเป็นf34a37a2aab92f2a9de8ad92b120ed3cb9e4be3749c70ac924e083130537600dเพราะกติกาATKใหม่; ownerใช้save.migrateแบบbackupก่อน ไม่เพิ่มSQL/env ไม่อ่าน/เขียนownerdataหรือrestart6173
 - เก็บfailedroundไว้: unitfixtureเคยอ้างactorindexผิด/ปัดATKก่อนเวลาซึ่งขัดกับbaselinefloat และอ่านshieldก่อนCTครบ แก้fixtureexpectedตามสูตรเดิม ไม่แก้roundingเกม Browserround1พยายามlearnstarterBlessingซ้ำ แก้fixtureให้ข้ามสกิลที่เรียนแล้ว รอบจริงผ่านด้วยproductเดิม
 - Referenceเทียบเฉพาะemulator: [rAthena battle_get_spiritball_damage](https://github.com/rathena/rathena/blob/master/src/map/battle.cpp) ใช้โบนัสคงที่จากจำนวนบอล (กรณีทั่วไป×3); ATK+1%เป็นการปรับของเกมเราที่ผู้ใช้ยืนยัน ไม่ใช่สูตรที่ยืนยันจากIdleAdventurePlus
-- กำลังdeployและรอhostedproofก่อนAC03 ไม่มีผลบาลานซ์ชุดใหม่และไม่อ้างว่าทุกบิลด์สมดุลแล้ว
+- ขึ้นVercelสำเร็จที่862ec57d85a9758dabb0ab239eab6ab35ea37f66 และpublichosted3กลุ่มผ่าน: health/content/regionSG/401gate, newstatus+resourcebundle, login/PWA ไม่ได้เข้าowneraccount [hosted](../evidence/task-068-hosted.json) ไม่มีผลบาลานซ์ชุดใหม่และไม่อ้างว่าทุกบิลด์สมดุลแล้ว
+- วิธีรับชุดใหม่: จบไฟต์ก่อนreloadChrome/PWA แล้วกดสำรองแล้วอัปเดตเซฟตามmigrationเดิม ไม่มีSQL/envเพิ่ม; ไม่ได้กดmigrateแทนเจ้าของ
+- หลังชุดนี้ผู้ใช้ย้ำว่าCallSpiritsเสียหนึ่งช่อง ต้องคุ้มกับท่าต่อไป และขอเพิ่มdamageของท่าใช้บอลอย่างสมเหตุผล งานเพิ่มตัวคูณแยกTASK-069 ไม่ถือว่าผ่านบาลานซ์ด้วยbonusถือบอล1%เพียงอย่างเดียว

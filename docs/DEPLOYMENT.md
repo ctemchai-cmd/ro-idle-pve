@@ -149,3 +149,11 @@ Serverใช้SDK `getClaims` ตรวจลายเซ็น/expiryด้ว
 Sourceใหม่flushเศษเวลา1–49msเมื่อชนdeadline จึงส่งbattle.finishได้จริง Speed1/2/4ยังใช้engine/seed/สูตรเดียวกัน ไม่เพิ่มmidfightwrites ไม่มีnewSQL/env/contentmigration
 
 กรณีผู้ใช้เสียสิทธิ์แก่นพลัง21Octจากบั๊กนี้ หลังจบไฟต์และreloadเปิดตั้งค่า→คืนสิทธิ์แก่นพลังรอบที่ค้าง ใช้ownerAuth/receiptเดิม ตรวจdailyretreat≥15sก่อนcutoff14:07:06UTCและcounterวันที่21Oct คืน1attemptเท่านั้น สำรองsignedstateก่อนCASและใช้receiptmarkerกันfreshUUIDซ้ำ ไม่ล้างHP/phase/chests/ทรัพยากร/ดันอื่น ไม่ใช่คำสั่งresetdailyทั่วไป และยังไม่อ้างว่ากดให้ownerแล้ว
+
+## Spirit Sphere และสถานะต่อสู้ (TASK-068)
+
+รุ่นนี้เพิ่ม ATK+1% ต่อลูกที่ยังถืออยู่ใน bucket ATK% เดิม ใช้บอลแล้วลดโบนัสก่อน snapshotสกิล โดยยังหัก SP/บอลและไม่คืนเมื่อถูกร่ายขัดตามเดิม นับทรัพยากรจริงสูงสุด5ลูก ไม่ใช่เพิ่มเพดานหรือบีบจำนวนชั้นของBuff
+
+ลูกบอลหมุนรอบMonkพร้อมcounter; Buff/Debuff/shieldมีnative skill icon, stackcount, expiry ของชั้นถัดไป แตะดูผล/ผู้ให้/เวลาของแต่ละinstanceได้ แถบล่างเลือกตัวโฟกัส; หน้าhomeกดรูปโล่ดูทีมระหว่างฟาร์ม ไม่เพิ่มmidfight save
+
+หลังจบไฟต์ ให้reload Chrome/PWAแล้วกด **สำรองแล้วอัปเดตเซฟ** ผ่านexisting save.migrate เพื่อเปลี่ยนจากcontent768e12a4…ไปf34a37a2… ระบบสำรองก่อนเขียน ไม่ต้องรันSQLหรือเพิ่มenv ทดสอบเฉพาะกติกา/UI/migrationของงานนี้ ไม่รันbalance simulationใหม่ตามคำขอผู้ใช้

@@ -12,8 +12,9 @@
 - Focused14checksผ่าน [unit](evidence/task-068-targeted.txt) + realfreshAuth/PostgREST/PostgreSQL/mobileChrome4กลุ่ม [UI](evidence/task-068-status-live.json): Call5/+5%, Finger0/+0%, SteelBodybuff+debuff, bossdebuff, Blessing2sources/4effects/source/expiry, 320pxไม่ล้น/overlap, farm4actors/noadvancewrites ภาพbattle-statuses/status-detailsอยู่task068 ไม่มีbalance/calibration/simulationrunnerรัน
 - Failedunitroundก่อนแก้fixtureใช้actorindexผิด/ปัดATKก่อนbaselinefloat/อ่านKyrieก่อนCT แก้fixtureไม่เปลี่ยนroundingกติกา Browserround1learnstarterBlessingซ้ำ→ข้ามที่เรียนแล้ว เก็บfailureในtask068-browser-round1และunit-round2 Finalunit/browserผ่านด้วยproductเดิม Source/codegenfrozenระหว่างliveรอบสุดท้าย (session58656exit0)
 - M0data checks/build/type/boundaries/secretsผ่าน content **f34a37a2aab92f2a9de8ad92b120ed3cb9e4be3749c70ac924e083130537600d** /packf57a0773…เดิม การเปลี่ยนATKเป็นgameplayต้องใช้existingbacked-upsave.migrate ไม่แก้signature/hashเซฟเดิมเอง ไม่มีnewSQL/env/assets ไม่แตะ6173/5173/private/env/ownercloudwrite
-- ขั้นต่อไป: pushชุดนี้→รอVercel/publicsmoke prefixtask068 (harnessใช้currentmanifesthashและassertcombat-status-strip/sphere-counter/status-instance-list)→ผ่านแล้วปิด068AC03 ย้ายdone/updatematrix/cases/overview/readiness ผู้ใช้ต้องจบไฟต์ก่อนrefreshและกดสำรองแล้วอัปเดตเซฟ ไม่ต้องSQLเพิ่ม ภาพstatusdetailsจับตอนtransitionเริ่มจึงโปร่งมากกว่าตอนSheetนิ่ง ไม่ใช่themeเปลี่ยน
-- 067ยังรอownerยืนยันrefund; 064ยังรอinstrumentedcloudtiming; 058transferยังไม่confirmed อย่าอ้างว่าปิดงานเหล่านั้น Board53/68doneก่อน068ปิด
+- source862ec57d85a9758dabb0ab239eab6ab35ea37f66 pushmainและVercelsuccessแล้ว actualpublichosted3กลุ่มผ่านtask-068-hosted.json ปิด068AC03/doneและmatrix/cases/overview ผู้ใช้ต้องจบไฟต์ก่อนrefreshและกดสำรองแล้วอัปเดตเซฟ ไม่ต้องSQLเพิ่ม ภาพstatusdetailsจับตอนtransitionเริ่มจึงโปร่งมากกว่าตอนSheetนิ่ง ไม่ใช่themeเปลี่ยน
+- ผู้ใช้เพิ่มโจทย์Callเสียหนึ่งช่องต้องคุ้ม finisher ขอเพิ่มdamageท่าใช้บอลและย้ำไม่OP/under งาน069ถัดไป ไม่รันbalance simulationใหม่ ค่าทดลองassistant +25%rawpowerต่อบอลที่ท่านั้นจ่าย ฝังในcoefficientsแทนสร้างglobalmultiplierbuff ทดสอบกติกา/migrationและmanualcostarithmetic ไม่อ้างbalancedจากschema/unit
+- 067ยังรอownerยืนยันrefund; 064ยังรอinstrumentedcloudtiming; 058transferยังไม่confirmed อย่าอ้างว่าปิดงานเหล่านั้น Board54/68doneหลัง068ปิด
 
 ## 21 ต.ค. 2026 · Codex — TASK-066 ขึ้น Vercel และปิดงานแล้ว
 
