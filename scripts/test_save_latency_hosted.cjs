@@ -3,7 +3,7 @@ const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),{cre
 const {chromium}=require(process.env.RO_PLAYWRIGHT_MODULE||'/private/tmp/ro-idle-prep/tools/node_modules/playwright-core');
 const root=path.resolve(__dirname,'..'),base='https://ro-idle-pve.vercel.app',checks=[],errors=[],mutations=[],prefix=process.env.RO_EVIDENCE_PREFIX||'task-063';
 if(!/^task-\d{3}$/.test(prefix))throw new Error('INVALID_EVIDENCE_PREFIX');
-const expectedContent=process.env.RO_EXPECT_CONTENT_HASH||(['task-068','task-069','task-070','task-071'].includes(prefix)?JSON.parse(fs.readFileSync(path.join(root,'src/generated/runtime-manifest.json'),'utf8')).content_hash:'768e12a49bf339711d44f501c3710374adbcd10d9eb74d6a2e6f9b8aa79330af');
+const expectedContent=process.env.RO_EXPECT_CONTENT_HASH||(['task-068','task-069','task-070','task-071','task-072'].includes(prefix)?JSON.parse(fs.readFileSync(path.join(root,'src/generated/runtime-manifest.json'),'utf8')).content_hash:'768e12a49bf339711d44f501c3710374adbcd10d9eb74d6a2e6f9b8aa79330af');
 const assert=(ok,message)=>{if(!ok)throw new Error(message);};let browser,profile,failure;
 (async()=>{
  const samples=[];
@@ -35,10 +35,14 @@ const assert=(ok,message)=>{if(!ok)throw new Error(message);};let browser,profil
   const shell=manifest.build_files.find(r=>/^dist\/assets\/shell-.*\.js$/.test(r.path));assert(shell,'NO_GAME_SHELL_BUNDLE');
   const source=await(await fetch(base+'/'+shell.path.replace(/^dist\//,''))).text();assert(source.includes('battle-history')&&source.includes('history-event-list')&&source.includes('recordedTimeline'),'BATTLE_HISTORY_NOT_DEPLOYED');
  }
- if(prefix==='task-071'){
+ if(['task-071','task-072'].includes(prefix)){
   const shell=manifest.build_files.find(r=>/^dist\/assets\/shell-.*\.js$/.test(r.path)),render=manifest.build_files.find(r=>/^dist\/assets\/skill-timeline-.*\.js$/.test(r.path));assert(shell&&render,'NO_HEALING_BUNDLES');
   const [ui,renderer]=await Promise.all([shell,render].map(async row=>(await fetch(base+'/'+row.path.replace(/^dist\//,''))).text()));
   assert(ui.includes('healing_aura')&&ui.includes('battle-history')&&renderer.includes('healing_auras'),'HOT_AURA_AND_HISTORY_NOT_DEPLOYED');
+ }
+ if(prefix==='task-072'){
+  const definitions=manifest.build_files.find(row=>row.path.endsWith('.js')&&fs.existsSync(path.join(root,row.path))&&fs.readFileSync(path.join(root,row.path),'utf8').includes('opening_heal'));assert(definitions,'NO_OPENING_HEAL_BUNDLE');
+  const actual=await(await fetch(base+'/'+definitions.path.replace(/^dist\//,''))).text(),local=fs.readFileSync(path.join(root,definitions.path),'utf8');assert(actual.includes('opening_heal')&&actual===local,'OPENING_HEAL_NOT_DEPLOYED');
  }
  checks.push({case_id:'hosted_shared_save_bundle',passed:true,path:row.path,sha256:createHash('sha256').update(bundle).digest('hex'),combined_reply:true});
  profile=fs.mkdtempSync(path.join(os.tmpdir(),'ro-save-hosted-'));const context=await chromium.launchPersistentContext(profile,{headless:true,executablePath:process.env.RO_CHROME_PATH||'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',viewport:{width:390,height:844}});browser=context.browser();

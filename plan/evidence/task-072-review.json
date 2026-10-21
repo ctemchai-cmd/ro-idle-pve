@@ -1,0 +1,29 @@
+{
+  "task_id": "TASK-072",
+  "date": "2026-10-22",
+  "passed": false,
+  "implementation_verified": true,
+  "targeted_tests": 6,
+  "content_hash": "3a297403b070dfbe36027224ce3fc9229df14a12496bcd2f99ac3bb601859230",
+  "asset_pack_hash": "f57a0773675ff37a1f16467f2606546404286a4ffb42da90766b7cab93970dae",
+  "balance_simulation": false,
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "evidence": [
+    "plan/evidence/task-072-targeted.txt",
+    "plan/evidence/task-072-power-review.json",
+    "plan/evidence/task-072-m0.txt",
+    "plan/evidence/task-072-build.txt",
+    "plan/evidence/task-072-healing-live.json",
+    "plan/evidence/task-072-local-stack.json"
+  ],
+  "pending": [
+    "Push/Vercel deployment and actual signed-out hosted proof (AC03)"
+  ],
+  "limitations": [
+    "Assistant-authored trial values responding to user feedback; no full equal-budget balance/survival simulation",
+    "Static comparison assumes equal P.ATK/MATK, missing HP on all targets, no bonuses/RNG; it is not owner stats",
+    "Owner must finish current battle, reload and use existing backed-up save migration; no new SQL/env"
+  ],
+  "actual_browser_checks": 4
+}

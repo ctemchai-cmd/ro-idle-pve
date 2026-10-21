@@ -59,6 +59,12 @@ Bard/Dancer Healing Song ใช้ P.ATK โดยตรงผ่าน `physica
 
 วงเขียวใต้ผู้รับเป็น authored procedural indicator จากสถานะ periodic heal ที่ยัง active จริง ไม่ hardcode ชื่อสกิล ผู้รับหลาย HoT แสดงวงเดียวแต่ engine ยังคำนวณทุก instance วงหายเมื่อไม่มี HoT เหลือ/ผู้รับตาย และตามตำแหน่ง actor จริง ใช้ presentation clock เดียวกับภาพอื่น; motion ปิดใช้ภาพนิ่ง ไม่สร้าง heal ticks หรือ DB writes เพิ่ม ไม่อ้างว่าเป็น native STR ของ RO
 
+## Healing Song จากผลเล่นจริง (D-098, 22 ต.ค.2026)
+
+แทนcoefficients D-096ข้างต้น ผู้ใช้รายงานเพลงฟื้น25/sไม่ทันโดนโจมตี แม้MonkสายP.ATKใช้Healได้250 การเปลี่ยนฐานอย่างเดียวไม่แก้พลัง/latency: รุ่นใหม่ใช้ `heal` หมู่ทันทีที่castresolve60–100%P.ATK แล้ว `apply_status` เดิมให้30–50%P.ATKทุก1sจำนวน5ครั้ง รวม210–350%ต่อคนก่อนโบนัส ไม่มีtick_on_applyเพิ่มซ้ำ ไม่มีhealเมื่อcaststartหรือinterrupt และวงอ่านstatusเดิม
+
+เทียบพลังฐานเท่ากัน Heal120–220%เป็นก้อนเดียวใช้SP18 ส่วนเพลงopeningมีเพียง50→45%ของHeal แต่รวมตลอดเวลามี175→159%ต่อคน ใช้SP38/CT800/ACD1200เดิม ทำให้ฟื้นคนเดียวต่อSPยังด้อยกว่าHeal เพลงคุ้มขึ้นเมื่อมีหลายคนเจ็บพร้อมกัน เหล่านี้เป็นclosed-form budget/ข้อเสนอassistant ไม่ใช่ผลactualownerstatsหรือwhole-gamebalance ห้ามรันbalance simulationใหม่ในรอบนี้ เพลงสองอาชีพเท่ากัน/โบนัส/stack/snapshotเดิม PriestSanctuaryยังMATKเดิม
+
 ## ภาพ เสียง และหลักฐาน
 
 ทุกท่ามี icon ID/sidecarที่อ่านจาก skill-assets indexจริงและตรวจไฟล์/sha256 เสียง/VFXเลือก prepared recipeที่ dependencyพร้อม; ท่าที่ไม่มีสูตรเฉพาะใช้ familyที่เข้าลักษณะและระบุว่า authored adaptation ไม่อ้างว่าเป็น nativeeffectของท่านั้น การตรวจนี้ไม่เปิดอ่านรูปใหม่และไม่เพิ่ม visual-reviewครอบคลุมทุกเฟรม

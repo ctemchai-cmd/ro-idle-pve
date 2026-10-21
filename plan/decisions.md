@@ -127,6 +127,8 @@
 | D-096 | 21 ต.ค.2026 ผู้ใช้ระบุ Healing Song ของ Bard/Dancer ควรอิง P.ATK | TASK-071 ใช้ฐานphysical attackเฉพาะเพลงของสองอาชีพ คงcoefficients/SP/CT/ACD/stacking/โบนัสฮีลเดิม ไม่เปลี่ยนPriestSanctuaryเป็นphysicalและไม่เพิ่มตัวคูณพร้อมกัน |
 | D-097 | 21 ต.ค.2026 ผู้ใช้ขอวงฮีลแสดงต่อเนื่องขณะมีHoT | TASK-071 แสดงวงใต้ผู้ได้รับregeneration/physical-regenerationตามlive statusจนหมด/ล้าง/ตาย ใช้presentationเท่านั้น ไม่สร้างheal ticksหรือเปลี่ยนduration/statusstack |
 
+| D-098 | 22 ต.ค.2026 ผู้ใช้รายงานเพลงฮีล25/sฟื้นไม่ทัน เทียบMonkHeal250แม้เล่นP.ATK | TASK-072 เพิ่มopeninghealเมื่อร่ายสำเร็จ60–100%P.ATKและHoT30–50%/s5ticks ทั้งBard/Dancer คงSP/CT/ACD/stack/bonusเดิม ตัวเลขassistantเพื่อแก้feedback ไม่ใช่สูตรreferenceหรือfullbalance ไม่รันbalance simulationใหม่ |
+
 ## คำถามหลักที่ส่งให้ผู้ใช้แล้ว
 
 | ID | ประเด็น | สถานะ |

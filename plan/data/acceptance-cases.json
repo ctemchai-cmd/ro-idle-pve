@@ -9032,6 +9032,66 @@
         "plan/evidence/task-071-healing-live.json",
         "plan/evidence/task-071-hosted.json"
       ]
+    },
+    {
+      "id": "T072-AC-01",
+      "task_id": "TASK-072",
+      "acceptance_id": "AC-01",
+      "criterion": "เพลงทั้งสองอาชีพทุกระดับมีopening60–100%และHoT30–50% P.ATK/5ticksใน6s; openingเกิดเมื่อร่ายสำเร็จเท่านั้น ใช้sharedheal/bonus/overhealและstackเดิม ไม่เพิ่มtickหรือฮีลเมื่อถูกขัด",
+      "input_setup": "Focused shipped song effects/one application/interrupt and real isolated Auth/Postgres/mobileChrome; static costs/timing only, no balance runner",
+      "input_refs": [
+        "plan/inprogress/tasks_072.md",
+        "plan/data/skills/archer.json",
+        "tests/game/healing-song.test.ts"
+      ],
+      "parameters": {
+        "balance_simulation": false,
+        "owner_cloud_writes": false
+      },
+      "expected": "เพลงทั้งสองอาชีพทุกระดับมีopening60–100%และHoT30–50% P.ATK/5ticksใน6s; openingเกิดเมื่อร่ายสำเร็จเท่านั้น ใช้sharedheal/bonus/overhealและstackเดิม ไม่เพิ่มtickหรือฮีลเมื่อถูกขัด",
+      "verification": "Focused runtime/golden checks; closed-form budget; actual mobile events/UI, M0/build and signed-out hosted artifact proof",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation"
+    },
+    {
+      "id": "T072-AC-02",
+      "task_id": "TASK-072",
+      "acceptance_id": "AC-02",
+      "criterion": "UIแสดงopening P.ATKและHoTแยกชัด; actualChromeแสดงhealของเพลงตรงcastresolveก่อนtickแรก วงยังอยู่ตามstatus/หมดแล้วหาย ไม่มีextra saveจากภาพ",
+      "input_setup": "Focused shipped song effects/one application/interrupt and real isolated Auth/Postgres/mobileChrome; static costs/timing only, no balance runner",
+      "input_refs": [
+        "plan/inprogress/tasks_072.md",
+        "plan/data/skills/archer.json",
+        "tests/game/healing-song.test.ts"
+      ],
+      "parameters": {
+        "balance_simulation": false,
+        "owner_cloud_writes": false
+      },
+      "expected": "UIแสดงopening P.ATKและHoTแยกชัด; actualChromeแสดงhealของเพลงตรงcastresolveก่อนtickแรก วงยังอยู่ตามstatus/หมดแล้วหาย ไม่มีextra saveจากภาพ",
+      "verification": "Focused runtime/golden checks; closed-form budget; actual mobile events/UI, M0/build and signed-out hosted artifact proof",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation"
+    },
+    {
+      "id": "T072-AC-03",
+      "task_id": "TASK-072",
+      "acceptance_id": "AC-03",
+      "criterion": "focusedchecks/6goldens/M0/build/type/boundaries/secrets/hostedผ่าน; staticcost/burst/totalcomparisonระบุassumptions ไม่รันbalance simulation/ไม่อ้างwholegamebalance ไม่มีSQL/env/newassets/ownerwritesหรือrestart6173",
+      "input_setup": "Focused shipped song effects/one application/interrupt and real isolated Auth/Postgres/mobileChrome; static costs/timing only, no balance runner",
+      "input_refs": [
+        "plan/inprogress/tasks_072.md",
+        "plan/data/skills/archer.json",
+        "tests/game/healing-song.test.ts"
+      ],
+      "parameters": {
+        "balance_simulation": false,
+        "owner_cloud_writes": false
+      },
+      "expected": "focusedchecks/6goldens/M0/build/type/boundaries/secrets/hostedผ่าน; staticcost/burst/totalcomparisonระบุassumptions ไม่รันbalance simulation/ไม่อ้างwholegamebalance ไม่มีSQL/env/newassets/ownerwritesหรือrestart6173",
+      "verification": "Focused runtime/golden checks; closed-form budget; actual mobile events/UI, M0/build and signed-out hosted artifact proof",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation"
     }
   ]
 }

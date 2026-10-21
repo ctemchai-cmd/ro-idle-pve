@@ -17,7 +17,7 @@ function summaries(definition:SkillDefinition):string[]{
  return definition.effects.map(effect=>{
   let text='';
   if('formula'in effect){const f=effect.formula;
-   if(f.id==='physical_power'||f.id==='magical_power'||f.id==='healing_power')text=`${effect.type==='heal'?'ฟื้น HP':effect.type==='shield'?'สร้างโล่':f.id==='physical_power'?'กายภาพ':'เวท'} ${percent(f.params.attack_ratio)} ${f.id==='physical_power'?'ATK':'MATK'}${Number(f.params.flat_power)?' + '+number(f.params.flat_power):''}`;
+   if(f.id==='physical_power'||f.id==='magical_power'||f.id==='healing_power')text=`${effect.type==='heal'?'ฟื้น HP':effect.type==='shield'?'สร้างโล่':f.id==='physical_power'?'กายภาพ':'เวท'} ${percent(f.params.attack_ratio)} ${f.id==='physical_power'?effect.type==='heal'?'P.ATK':'ATK':'MATK'}${Number(f.params.flat_power)?' + '+number(f.params.flat_power):''}`;
    else if(f.id==='flat_power')text=`${effect.type==='heal'?'ฟื้น HP':effect.type==='shield'?'โล่':'ดาเมจ'} ${number(f.params.amount)}`;
    else if(f.id==='sp_burst_power')text=`พลังโจมตี ${percent(f.params.attack_ratio)} ATK + ${percent(f.params.sp_ratio)} SP`;
    else text='ผลต่อเนื่องตามพลังของสกิล';
