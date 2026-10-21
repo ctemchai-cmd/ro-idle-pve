@@ -2,14 +2,17 @@
 
 ไฟล์นี้บันทึกงานที่ agent ตัวหนึ่งทำแล้ว เพื่อให้ตัวถัดไป (Codex/Claude) ทำต่อได้ทันที อ่านคู่กับ [overview](overview.md) และ [AGENTS.md](../AGENTS.md) ล่าสุดอยู่บนสุด
 
-## 21 ต.ค. 2026 · Codex — TASK-060/061 เซฟเริ่ม/จบและเริ่มใหม่ล้างดัน เตรียมVercel
+## 21 ต.ค. 2026 · Codex — TASK-060/061 เซฟเริ่ม/จบและเริ่มใหม่ล้างดัน ขึ้นVercelแล้ว
+
+- **Deployแล้ว source5215676f8 / GitHubVercelsuccess** actualChromeบนro-idle-pve.vercel.appพบshell-BbjnMEu7.jsที่มีbattle.finish/ไม่มีbattle.advanceหรือnextAtscheduler และnewresetdailycopy; health200/ok/content768e12a4ตรง [hostedproof](evidence/task-060-061-hosted.json) ไม่มีownerlogin/savewrite ทดสอบจริงเฉพาะisolatedownerfixtures ยังคงบอกuserให้จบไฟต์→reload→กดสำรองแล้วอัปเดตเซฟ ไม่บอกว่าซ่อมcloudstateแล้ว
+
 
 - ผู้ใช้ถามทำไมไม่เซฟเฉพาะจบ (D-084) ต่อจาก4s throttle จึงแทนperiodicwriterด้วยstartsnapshot+singlebattle.finish เมื่อterminal ไม่มีPOSTตอนเปลี่ยน1×/2×/4× ไม่มีpredictioncap5s ลบunusedscheduler/TS testเก่า Serverreplayinitialsnapshot/seed/buildด้วยsharedengine+modePolicyและsettlementเดิม ตรวจticket180s/DBelapsedขั้นต่ำterminalgame_ms÷4 ไม่ใช้lease15sกับfinish Legacyadvanceยังมีcap/leaseสำหรับdiagnosticเท่านั้น
 - Manualdailyretreatส่งrequested_game_msเพื่อserverreplaypartialdamage/phase/chests boundedbyDBelapsed×4; hidden/offline/refreshreconcile/retreatไม่มีtimeclaimจึงไม่เดินบอสย้อนหลัง Newcommand/retreatoptionalparamอยู่closed schema+module/UIregistry38commands ไม่มีnewSQLmigration สูตรต่อสู้ไม่เปลี่ยน
 - ระหว่างทำผู้ใช้ขอresetdailyเพราะresetแล้วLv1แต่ดันเก่า ยืนยัน6173ก่อนแล้วแก้ทันทีว่า **จะเล่นVercel ให้แก้Vercel** ก่อนมีDBwriteใด ๆ จึงไม่อ่านprivate6173/login/ไม่write/restart เปลี่ยนaccount.resetให้ล้างdaily_recordsหลังmergeโดยshop/objectiveและguardRestoreเดิม Migrationrepairเฉพาะdailyยังlockedแต่มีrecordsค้าง ล้างrecord/pendingdailyโดยไม่ล้างroster/เงิน/ของ/Story/Tower เกมที่unlockdailyแล้วไม่resetอัตโนมัติ
 - QA: **45 targeted save/mode testsผ่าน**; actualisolatedAuth/PostgREST/Postgres/Chrome: TASK0604กลุ่มยืนยัน>15sยัง0midfightPOST/DBcheckpointgame0/revisionเดิม, speed1/2/4ไม่มีwrite, finish1ครั้ง/reward/reconnect/reloadผ่าน (`task-060-cadence-live.json` ชื่อartifactสืบจากharnessก่อนหน้า แต่assertionsเป็นterminal-only); TASK0613กลุ่มrealpreviewไม่write→signedbackupก่อนrepair→stateอื่นเดิม/typedRESETล้างดัน/รีโหลดคงผล (`task-061-reset-live.json`) ทั้งสองไม่ใช่ownercloudproof
 - Integrationรอบแรกprobeuninitializedaccountไม่ใช่404โดยไม่มีstatusdiagnostic เก็บround1 เพิ่มstatus/codeเฉพาะเมื่อfailแล้วผ่านโดยไม่เปลี่ยนproductguard ไม่สรุปrootcause Fullnpmtestรอบแรกหยุดเฉพาะownprocesstreeหลังuserเพิ่มscope ใช้45targetedแทน ไม่อ้างfullsuiteผ่าน Testmigrationfixtureแรกchapter_snapshot1ผิดschemaขั้นต่ำ2 แก้fixture/เก็บfailure; TS6assertarrayว่างทำgetterถูกnarrowเป็นneverหลังrestore แก้ตรวจslice().length0ไม่ผ่อนexpectedและtypecheckผ่าน
-- M0 numeric/schema/UI/architecturechecks+manifestรันใหม่ผ่าน และreadiness8checksผ่านหลังเติมacceptancecasesที่ขาดของ058AC06/059/060/061 ไม่เปลี่ยนเกณฑ์ให้ซ่อนerror ปัจจุบันcontenthash **768e12a4…** (จาก2c1ac034…) ต้องbackupmigrationเมื่อreload ไม่มีassetsเปลี่ยน Board47/61done; TASK060/061reviewรอhostedsmoke (localtestsผ่าน);041/058inprogress/visualreview5งานเดิม
+- M0 numeric/schema/UI/architecturechecks+manifestรันใหม่ผ่าน และreadiness8checksผ่านหลังเติมacceptancecasesที่ขาดของ058AC06/059/060/061 ไม่เปลี่ยนเกณฑ์ให้ซ่อนerror ปัจจุบันcontenthash **768e12a4…** (จาก2c1ac034…) ต้องbackupmigrationเมื่อreload ไม่มีassetsเปลี่ยน Board49/61done; TASK060/061doneหลัง45tests/build/hostedsmokeผ่าน;041/058inprogress/visualreview5งานเดิม
 - **ยังไม่มีownercloudsavewrite/repair** จะมีผลเมื่อuserบนVercelกด **สำรองแล้วอัปเดตเซฟ** หลังdeployment เซฟเก่า6173/transferprivatefileเป็นงานแยก targetอาจmigrateหรือเล่นต่อ/sourceอาจresetแล้ว ห้ามแนะนำรันSQLเก่าblind ให้ตรวจmetadata/exportsnapshotล่าสุดก่อนcutover TASK058AC05ยังไม่ครบ ไม่ให้keysผ่านchat
 
 ## 21 ต.ค. 2026 · Codex — D-083/TASK-059 ลดเซฟระหว่างสู้เป็น4วินาที

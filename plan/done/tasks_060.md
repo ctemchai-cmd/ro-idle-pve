@@ -28,17 +28,17 @@ Milestone: M4 · ประเภท: พัฒนา/ตรวจรับ · �
 
 - [x] AC-01: ไฟต์ยาว>15sและเปลี่ยนความเร็วระหว่างไฟต์ → revision/checkpointยังอยู่จุดเริ่มและไม่มีPOSTกลางไฟต์; จบส่งfinishครั้งเดียว/ผลตรงsharedreplay
 - [x] AC-02: Story/Tower/daily win/loss/timeoutและmanualretreat → rewards/HP/chests/day/attemptsถูกต้อง; tooearly/expired/foreign/forged fieldsไม่จ่าย; receipt replay/response lossไม่จ่ายซ้ำ
-- [ ] AC-03: offline/refreshไม่จำลองบอสย้อนหลัง; pure engineยังแยกจากnetwork; tests/build/schema/migrationผ่านและdeployตรวจbundleจริงโดยไม่แตะเซฟส่วนตัว
+- [x] AC-03: offline/refreshไม่จำลองบอสย้อนหลัง; pure engineยังแยกจากnetwork; tests/build/schema/migrationผ่านและdeployตรวจbundleจริงโดยไม่แตะเซฟส่วนตัว
 
 ## วิธีตรวจและหลักฐาน
 
 | เกณฑ์ | วิธีตรวจ | ผลจริง | ผ่านหรือไม่ |
 | --- | --- | --- | --- |
-| AC-01 | isolated Chrome/SQL request+revision count and continuous game_ms | [local review](../evidence/task-060-review.json) ผ่าน API/Chrome/SQL; รอ hosted smoke | ผ่านlocal; ยังไม่ครบdeploy |
-| AC-02 | shared API/reducer fixtures + real SQL/browser finish/retry/claim | [local review](../evidence/task-060-review.json) ผ่าน API/Chrome/SQL; รอ hosted smoke | ผ่านlocal; ยังไม่ครบdeploy |
-| AC-03 | save lifecycle/content migration/full tests/build/hosted smoke | [local review](../evidence/task-060-review.json) ผ่าน API/Chrome/SQL; รอ hosted smoke | ผ่านlocal; ยังไม่ครบdeploy |
+| AC-01 | isolated Chrome/SQL request+revision count and continuous game_ms | [local review](../evidence/task-060-review.json) ผ่าน45tests/API/Chrome/SQL/buildและ [hosted smoke](../evidence/task-060-061-hosted.json) | ผ่าน self-review + hosted smoke |
+| AC-02 | shared API/reducer fixtures + real SQL/browser finish/retry/claim | [local review](../evidence/task-060-review.json) ผ่าน45tests/API/Chrome/SQL/buildและ [hosted smoke](../evidence/task-060-061-hosted.json) | ผ่าน self-review + hosted smoke |
+| AC-03 | save lifecycle/content migration/full tests/build/hosted smoke | [local review](../evidence/task-060-review.json) ผ่าน45tests/API/Chrome/SQL/buildและ [hosted smoke](../evidence/task-060-061-hosted.json) | ผ่าน self-review + hosted smoke |
 
-ผู้ตรวจ: Codex local self-review · วันที่: 21 ต.ค.2026 · รอบ review: 1
+ผู้ตรวจ: Codex self-review · วันที่: 21 ต.ค.2026 · รอบ review: 2
 
 ## Blocker / คำถาม
 
@@ -50,3 +50,5 @@ Milestone: M4 · ประเภท: พัฒนา/ตรวจรับ · �
 - Browser4กลุ่ม: >15sยังไม่มีPOST/revisionchange/gamecheckpointยัง0; speed1/2/4ไม่เขียน; finish1ครั้ง; offline/reload/รับรางวัลไม่ซ้ำ Artifactsชื่อตามcadenceเดิมแต่assertionsเป็นterminal-only
 - Integrationรอบแรกuninitializedaccountprobeไม่ใช่404และไม่มีstatusdiagnostic เก็บround1 เพิ่มstatus/codeเฉพาะเมื่อfailแล้วรันผ่านโดยไม่เปลี่ยนAPIguard ไม่สรุปสาเหตุที่ยังไม่มีหลักฐาน
 - Fullnpmtestรอบแรกหยุดเฉพาะownprocesstreeหลังuserเพิ่มscope ใช้targeted45save/modecasesแทน ไม่อ้างว่าfullsuiteผ่าน
+
+- Source5215676f8 push main/Vercelstatussuccess ActualproductionChrome shellมีbattle.finish/ไม่มีbattle.advanceหรือschedulerเก่า และข้อความresetdailyใหม่; health200/ok/content768e12a4ตรงกัน ไม่มีownercloudwrite การซ่อมเซฟจริงรอเจ้าของกดยืนยันmigrationตามflow

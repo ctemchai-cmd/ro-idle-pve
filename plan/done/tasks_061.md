@@ -26,17 +26,17 @@ Milestone: M4 · ประเภท: พัฒนา/ตรวจรับ · �
 
 - [x] AC-01: เริ่มใหม่จากเซฟมีdailyprogress → rosterLv1/Storyใหม่และdaily_recordsว่าง มีbackupก่อนและredo receiptไม่ทำซ้ำ; restoreยังมีcountersจากเกมที่กู้
 - [x] AC-02: locked legacy reset saveมีdailyprogress → previewไม่เขียน; migrateมีbackupก่อนแล้วล้างเฉพาะdailycarryover ตัวละคร/เงิน/ของ/Story/Towerเดิม; unlocked saveคงdailyprogress
-- [ ] AC-03: build/migration testsผ่านและเผยแพร่บนVercel ไม่มีการอ่านloginหรือแก้DB6173 และไม่อ้างว่าซ่อมcloudsaveก่อนเจ้าของกดmigration
+- [x] AC-03: build/migration testsผ่านและเผยแพร่บนVercel ไม่มีการอ่านloginหรือแก้DB6173 และไม่อ้างว่าซ่อมcloudsaveก่อนเจ้าของกดmigration
 
 ## วิธีตรวจและหลักฐาน
 
 | เกณฑ์ | วิธีตรวจ | ผลจริง | ผ่านหรือไม่ |
 | --- | --- | --- | --- |
-| AC-01 | save-backup.test.ts reset/restore/replay/CAS | [local review](../evidence/task-061-review.json) ผ่าน API/Chrome/SQL; รอ hosted smoke | ผ่านlocal; ยังไม่ครบdeploy |
-| AC-02 | signed legacy fixture preview/backup/migrate + browser | [local review](../evidence/task-061-review.json) ผ่าน API/Chrome/SQL; รอ hosted smoke | ผ่านlocal; ยังไม่ครบdeploy |
-| AC-03 | typecheck/build/hosted smoke + git scope audit | [local review](../evidence/task-061-review.json) ผ่าน API/Chrome/SQL; รอ hosted smoke | ผ่านlocal; ยังไม่ครบdeploy |
+| AC-01 | save-backup.test.ts reset/restore/replay/CAS | [local review](../evidence/task-061-review.json) ผ่าน45tests/API/Chrome/SQL/buildและ [hosted smoke](../evidence/task-060-061-hosted.json) | ผ่าน self-review + hosted smoke |
+| AC-02 | signed legacy fixture preview/backup/migrate + browser | [local review](../evidence/task-061-review.json) ผ่าน45tests/API/Chrome/SQL/buildและ [hosted smoke](../evidence/task-060-061-hosted.json) | ผ่าน self-review + hosted smoke |
+| AC-03 | typecheck/build/hosted smoke + git scope audit | [local review](../evidence/task-061-review.json) ผ่าน45tests/API/Chrome/SQL/buildและ [hosted smoke](../evidence/task-060-061-hosted.json) | ผ่าน self-review + hosted smoke |
 
-ผู้ตรวจ: Codex local self-review · วันที่: 21 ต.ค.2026 · รอบ review: 1
+ผู้ตรวจ: Codex self-review · วันที่: 21 ต.ค.2026 · รอบ review: 2
 
 ## Blocker / คำถาม
 
@@ -47,3 +47,5 @@ Milestone: M4 · ประเภท: พัฒนา/ตรวจรับ · �
 - 45 targeted save/mode testsผ่านและisolatedupstreamAuth/PostgREST/PostgreSQL/Chromeจริง ไม่มีownercloudwrite/6173write
 - Browser3กลุ่ม: legacylockedcarryover→previewไม่เขียน→backupก่อนrepair→stateอื่นเดิม; actualtypedRESETล้างดัน/ตัวละครLv1และbackupครบ; reloadคงผล
 - Testfixtureรอบแรกchapter_snapshot=1ผิดschemaขั้นต่ำ2 แก้เป็น2ไม่ผ่อนschema; buildพบassertdeepEqual([])ทำTSnarrowingเป็นnever[]หลังawaitrestore แก้assertlength0 เก็บfailurelogก่อนแก้
+
+- Source5215676f8 push main/Vercelstatussuccess ActualproductionChrome shellมีbattle.finish/ไม่มีbattle.advanceหรือschedulerเก่า และข้อความresetdailyใหม่; health200/ok/content768e12a4ตรงกัน ไม่มีownercloudwrite การซ่อมเซฟจริงรอเจ้าของกดยืนยันmigrationตามflow
