@@ -4,6 +4,17 @@
 
 
 
+## 21 ต.ค. 2026 · Codex — เตรียม GitHub ทั้งโปรเจกต์แล้ว แต่ push ติดสิทธิ์บัญชี
+
+- ผู้ใช้สั่งขึ้น GitHub ทั้งโปรเจกต์ที่ `git@github.com:ctemchai-cmd/ro-idle-pve.git` เพื่อนำไปต่อ Vercel/Supabase สร้าง repo สาขา `main`, origin ตามที่ระบุ และ commit `4b7f6c9` (`first commit`) แล้ว **ยังไม่ขึ้น GitHub**
+- รวม code/plan/tests/SQL migrations/คลัง assets ทั้งชุด และเปลี่ยนให้เก็บ `runtime/ro/` เป็น deployment artifact ใน Git ไฟล์รวมประมาณ120,000รายการ/1.13GB ไม่มีไฟล์≥100MiB `.local/`, credentials, `.env*` ยกเว้น example, node_modules, dist, generated source และ caches ถูกกันออก `.gitattributes` คง byte-exact เพื่อไม่ให้ CRLF ทำ checksum เสีย
+- เพิ่ม `vercel.json` (Vite/Node24, build/output, API+SPA routes, manifest no-store/hashed asset immutable), `.vercelignore` สำหรับCLI และ `docs/DEPLOYMENT.md` พร้อม environment/marker/migrations6ไฟล์/Auth settings READMEปรับสถานะจริง การเตรียมนี้ไม่ปิด TASK043/045/046 และไม่ได้สร้างหรือ deploy บริการจริง
+- Build ใน `/private/tmp/ro-git-build-1m060zwk` ที่ไม่มีคลัง assets/.local/env/generated source ผ่านโดยใช้ runtime artifact + existing dependencies พบครั้งแรกว่า CLI exclusion ของ tests ทำให้ type import ของ compact-ui-fixture หาย จึงนำ tests กลับใน source selection แล้ว build ผ่าน เก็บ failure/pass แยก หลักฐาน `plan/evidence/git-initial-build*.{json,txt}`; configผ่านschemaทางการ
+- สแกน70,886 staged text files/120,289pathsผ่าน ไม่มี prohibited path/ไฟล์ใหญ่/credential pattern ที่ไม่ใช่fixture พบ3tokensที่เป็น synthetic auth fixturesเดิมและตรวจแล้ว รายละเอียด `git-initial-source-audit.json` ไม่อ่าน/แสดง `.local/play/login.md`, private.json หรือ private keys
+- `ls-remote` อ่าน repo ว่างได้ แต่ push ถูก GitHubปฏิเสธ **Permission denied to Rehpyc-z** สองครั้ง (SSH และการลอง override origin URL ไป HTTPS ซึ่งยังได้ SSH denialเดิม) `main` จึงยังไม่ถูกส่ง ห้ามอ้างว่าอัปโหลดเสร็จหรือ force push
+- Auto-review ปฏิเสธคำขอสำรวจ ~/.ssh/config/key filenames/agent public fingerprints หลัง pushถูกปฏิเสธ โดยมองว่าเป็นการหาสิทธิ์ใหม่ ต้องรอผู้ใช้อนุญาตโดยตรง ยังไม่ได้อ่านข้อมูลเหล่านั้น ส่ง async question ให้เลือกว่าอนุญาตตรวจ metadataนี้/เพิ่มสิทธิ์ให้Rehpyc-z/จัดการบัญชีเอง ห้ามพยายามอ้อม rejection ระหว่างรอ
+- งานถัดไปหลังผู้ใช้ตอบ: แก้ช่องทาง auth/สิทธิ์ตามที่อนุญาต แล้ว push `main` ปกติ ตรวจ remote ref ตรง local HEAD และ upstream ไม่มีการรีสตาร์ต6173/เปลี่ยนเซฟในงานนี้ Boardยัง46/57doneเหมือนเดิม
+
 ## 21 ต.ค. 2026 · Codex — อัปเดต UI D-077–080 และทรงผม D-079 บน 6173/LAN แล้ว
 
 - ผู้ใช้ตอบคำขอ restart ว่า **"อัปเดตเลย"** จึงหยุดเฉพาะ PID ของ personal `play_local.py` แล้วเปิด detached ด้วย `--refresh-compatible-snapshot --lan` สำรอง PG และ archive snapshot เดิมครบ ไม่ reset/migrate เซฟ
