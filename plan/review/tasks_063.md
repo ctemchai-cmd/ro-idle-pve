@@ -38,9 +38,14 @@ Unit/sharedAPI+browserports, isolatedrealstackและChrome; productionตร�
 - 37targetedtestsผ่าน: API/auth/recurring/backup รวมforeign/stalecheckpoint/response-loss/maintenanceguards
 - [actualChrome4กลุ่ม](../evidence/task-063-save-latency-live.json): creation/level/skill/loadout/equipment/teamแต่ละครั้งPOSTเดียว; equal120msdelay/3pairedpartycommands median477→169ms เป็นcontrolledbenchmarkไม่ใช่latencyเครื่องผู้ใช้
 - Droppedreplyหลังcommit→receipt/checkpointreconcileโดยไม่POSTซ้ำ; receipt-onlyfallback2requests; corruptinlinehashถูกปฏิเสธแล้วreconcile
-- Buildผ่าน contenthash768e12a4…เดิม; [actualbattleChrome4กลุ่ม](../evidence/task-063-cadence-live.json) ผ่านstart/finish/speed/reward/offline/reloadไม่มีmidfightPOST รอhosteddeployment/readonlyproof
+- Buildผ่าน contenthash768e12a4…เดิม; [actualbattleChrome4กลุ่ม](../evidence/task-063-cadence-live.json) ผ่านstart/finish/speed/reward/offline/reloadไม่มีmidfightPOST
+- Vercelsuccess sourcecb98c2bbe; [hosted3กลุ่ม](../evidence/task-063-hosted.json) health/401gate/Server-Timing/region sin1, newsharedsavebundle, signedoutlogin/PWAcacheผ่าน ไม่มีownerlogin/command การวัดcontrolledbenchmarkไม่รับประกันphoneRTTจริง
 - Failedharnessround1–2: Playwrightrequest.methodใช้propertyแทนmethod()ทำให้faultinjectionไม่เข้า แก้harnessเท่านั้นและเก็บfailureแยก รอบแรกskilltarget1เป็นstarterเดิมจึงแก้fixtureเป็นLv10/skill2ให้upgradeจริง ไม่เปลี่ยนproduct/เกณฑ์ให้หลบfail
+
+สรุป [review](../evidence/task-063-review.json) · Codex · 21ต.ค.2026 · ทดสอบ37TS + Chrome8กลุ่ม + readiness8 + hosted3กลุ่มผ่าน ไม่มีcontent/schema/SQLเปลี่ยน ไม่รีสตาร์ต6173
 
 ## Blocker / คำถาม
 
 ไม่มี ต้องวัดremaininglatencyจริงหลังdeploy ไม่สัญญาว่าทุกครั้งจะตอบภายในตัวเลขคงที่
+
+- ตรวจhostedfirstdeployพบanonymouscheckpoint auth0.3msแต่total1150.1msเพราะสร้างAccountCreationRulesและAccountCommandRulesก่อนAuth จึงเพิ่มlazyhandlersหลังAuthและใช้AccountCommandRules(inheritsCreationRules)ชุดเดียวต่อAPIinstance ไม่แก้domain/contenthash รอทดสอบและdeployเพิ่ม เก็บfirstdeployproofแยก

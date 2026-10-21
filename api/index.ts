@@ -33,8 +33,14 @@ export function createApi(env: Record<string, string | undefined>, injected?: Ap
     if (services) return services;
     if (configuration.kind !== 'configured') return null;
     const client = createServerSupabase(configuration.config), reader = createSaveStore(client, configuration.config.environment, configuration.config.project_ref);
-    const initial = createAccountHandler(reader, env.SAVE_SIGNING_KEY), recurring = createRecurringHandlers(reader, env.SAVE_SIGNING_KEY);
-    services = { authenticate: request => authenticateRequest(request, client), ...reader, createAccount: initial, command: (identity, input) => (input as { type?: unknown })?.type === 'account.create' ? initial(identity, input) : recurring.command(identity, input), checkpoint: recurring.checkpoint, backups: recurring.backups }; return services;
+    // Rule facades only contain immutable content/schema validators. Share one per API instance,
+    // and do not validate the whole game twice (or at all for an unauthenticated request).
+    let handlers: { initial: ReturnType<typeof createAccountHandler>; recurring: ReturnType<typeof createRecurringHandlers> } | undefined;
+    function rulesHandlers() {
+      if (!handlers) { const rules = new AccountCommandRules(); handlers = { initial: createAccountHandler(reader, env.SAVE_SIGNING_KEY, rules), recurring: createRecurringHandlers(reader, env.SAVE_SIGNING_KEY, rules) }; }
+      return handlers;
+    }
+    services = { authenticate: request => authenticateRequest(request, client), ...reader, createAccount: (identity, input) => rulesHandlers().initial(identity, input), command: (identity, input) => (input as { type?: unknown })?.type === 'account.create' ? rulesHandlers().initial(identity, input) : rulesHandlers().recurring.command(identity, input), checkpoint: identity => rulesHandlers().recurring.checkpoint(identity), backups: (identity, id) => rulesHandlers().recurring.backups(identity, id) }; return services;
   }
   return { async fetch(request: Request): Promise<Response> {
     const started = performance.now(), timings: string[] = [];
@@ -97,8 +103,8 @@ export function createApi(env: Record<string, string | undefined>, injected?: Ap
 }
 
 /** Shared server command path; injectable store permits fault/race tests. */
-export function createRecurringHandlers(store: Pick<ReturnType<typeof createSaveStore>, 'loadContext' | 'readCreationReceipt' | 'commitCommand'> & Partial<Pick<ReturnType<typeof createSaveStore>, 'commitMaintenance' | 'listBackups'>>, signingKey: string | undefined) {
-  const rules = new AccountCommandRules(), sha = (value: unknown) => createHash('sha256').update(rules.canonical(value)).digest('hex');
+export function createRecurringHandlers(store: Pick<ReturnType<typeof createSaveStore>, 'loadContext' | 'readCreationReceipt' | 'commitCommand'> & Partial<Pick<ReturnType<typeof createSaveStore>, 'commitMaintenance' | 'listBackups'>>, signingKey: string | undefined, rules = new AccountCommandRules()) {
+  const sha = (value: unknown) => createHash('sha256').update(rules.canonical(value)).digest('hex');
   const fail = (code: string, status: number): CreationReply => ({ body: { code }, status });
   function signature(accountId: string, revision: number, stateHash: string, contentHash: string, schemaVersion: number) {
     if (!signingKey || signingKey.length < 32) throw new Error('SIGNING_KEY_NOT_CONFIGURED');
@@ -231,8 +237,7 @@ export function createRecurringHandlers(store: Pick<ReturnType<typeof createSave
     },
   };
 }
-function createAccountHandler(store: ReturnType<typeof createSaveStore>, signingKey: string | undefined) {
-  const rules = new AccountCreationRules();
+function createAccountHandler(store: ReturnType<typeof createSaveStore>, signingKey: string | undefined, rules: AccountCreationRules = new AccountCreationRules()) {
   const sha = (value: unknown) => createHash('sha256').update(rules.canonical(value)).digest('hex');
   const fail = (code: string, status: number): CreationReply => ({ body: { code }, status });
   return async (identity: AuthenticatedIdentity, input: unknown): Promise<CreationReply> => {
