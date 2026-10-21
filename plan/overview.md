@@ -1,6 +1,6 @@
 # ภาพรวมแผนและความคืบหน้า
 
-อัปเดต: 21 ตุลาคม 2026 · ระยะปัจจุบัน: **49/62 งานผ่าน done; TASK-041 บาลานซ์และ TASK-058 ย้ายเซฟอยู่ inprogress; TASK-062 PWAผ่านlocalรอhostedในreview; TASK-060 เซฟเริ่ม/จบและ TASK-061 resetดันผ่านdoneและdeployVercelแล้ว; TASK-048/054/055/056/057 อยู่ review รอผู้ใช้ตรวจภาพ**
+อัปเดต: 21 ตุลาคม 2026 · ระยะปัจจุบัน: **50/62 งานผ่าน done; TASK-041 บาลานซ์และ TASK-058 ย้ายเซฟอยู่ inprogress; TASK-062 PWAขึ้นVercelและผ่านhostedแล้ว; TASK-060 เซฟเริ่ม/จบและ TASK-061 resetดันขึ้นVercelแล้ว; TASK-048/054/055/056/057 อยู่ review รอผู้ใช้ตรวจภาพ**
 
 เกมเว็บเล่นคนเดียวอ้างอิง Ragnarok Idle Adventure Plus จัดทีม main + NPC 3 คน คิว Active ตัวละสี่ช่อง ทำงานพร้อมกัน ฟาร์มทรัพยากรแล้วกดท้าบอส ใช้ Supabase เซฟหลักด้วยอีเมล/รหัสผ่าน ออนไลน์เป็นหลักพร้อมเซฟสำรองในเครื่อง และ deploy เว็บบน Vercel
 
@@ -15,6 +15,8 @@ Source ทั้งโปรเจกต์เผยแพร่ที่ [ctemc
 [TASK-060/061](done/tasks_060.md) ผ่านและขึ้นVercelที่5215676f8: ไม่มีเซฟระหว่างไฟต์/เปลี่ยนspeed, finishครั้งเดียว; resetล้างดันและmigrationซ่อมcarry-overในเกมที่dailyยังlocked Tests45ข้อ + isolatedChromeสองชุด + build/hostedsmokeผ่าน [หลักฐาน](evidence/task-060-061-hosted.json) Contenthash768e12a4… เจ้าของกดสำรองแล้วอัปเดตเซฟจึงซ่อมstateจริง ไม่แตะ6173
 
 TASK-058 recovery: เตรียมสำรอง sourceล่าสุดrevision2993และ SQLแบบarchive-before-replace สำหรับปลายทางที่เผลอสร้างrevision1แล้ว ตรวจhash/history/signatureและatomicrollbackครบ ยังไม่มีcloudwrite [หลักฐาน](evidence/task-058-replacement-postgres.json)
+
+[TASK-062](done/tasks_062.md) PWAขึ้นVercelที่7999d465cแล้ว: manifest/standaloneportrait/iconsครบ ติดตั้งจากlogin/settings แคชเฉพาะofflinepage+4icons80.4KiB ไม่แคชเกม/API/Auth/เซฟ ไม่มีreloadกลางไฟต์ Chrome6กลุ่ม/build/readiness8/hosted3กลุ่มผ่าน contenthash768e12a4…เดิม ไม่ต้องเพิ่มenv/SQL/ย้ายเซฟ [หลักฐาน](evidence/task-062-review.json) / [วิธีติดตั้ง](../docs/PWA.md)
 
 รุ่นแรกมี Class 1/2 และสูงสุด Lv.70 รอ Hi-class/Awaken/Artifact ใน milestone ถัดไป ส่วน Class 3 ที่ Lv.120 / Pet / Rune เป็นอนาคต Breakthrough ทุก 20 แยกจากการเปลี่ยนคลาส ไม่มีรอบพิเศษที่ 70
 
@@ -36,10 +38,10 @@ Q-001–Q-022 ตอบแล้ว: บัฟบวกกันไม่มี�
 | --- | ---: | --- |
 | todo | 5 | ออกแบบ/พัฒนา/ตรวจรับตามรายการด้านล่าง |
 | inprogress | 2 | TASK-041 บาลานซ์/level design; [TASK-058](inprogress/tasks_058.md) ย้ายเซฟ6173ไปSupabase cloud |
-| review | 6 | [TASK-062](review/tasks_062.md) PWAผ่านlocalรอhosted; [TASK-048](review/tasks_048.md) game shell /play รอผู้ใช้ตรวจหน้าตา (AC-08), [TASK-054](review/tasks_054.md) ภาพการต่อสู้ตรง RO รอผู้ใช้ตรวจ (AC-06), [TASK-055](review/tasks_055.md) คำขอระหว่างลองเล่น รอผู้ใช้ (AC-06), [TASK-056](review/tasks_056.md) UI D-076–078/080 อัปเดตแล้วรอผู้ใช้ตรวจภาพ (AC-06), [TASK-057](review/tasks_057.md) ทรงผม D-079 อัปเดตแล้วรอผู้ใช้ตรวจ (AC-05) |
-| done | 49 | ผ่าน review ตามหลักฐานในแต่ละงาน |
+| review | 5 | [TASK-048](review/tasks_048.md) game shell /play รอผู้ใช้ตรวจหน้าตา (AC-08), [TASK-054](review/tasks_054.md) ภาพการต่อสู้ตรง RO รอผู้ใช้ตรวจ (AC-06), [TASK-055](review/tasks_055.md) คำขอระหว่างลองเล่น รอผู้ใช้ (AC-06), [TASK-056](review/tasks_056.md) UI D-076–078/080 อัปเดตแล้วรอผู้ใช้ตรวจภาพ (AC-06), [TASK-057](review/tasks_057.md) ทรงผม D-079 อัปเดตแล้วรอผู้ใช้ตรวจ (AC-05) |
+| done | 50 | ผ่าน review ตามหลักฐานในแต่ละงาน |
 
-Progress ของกระดาน: **49/62 งานผ่าน done** ไม่รวมงานเตรียม assets ที่ทำก่อนเริ่มใช้กระดาน ตำแหน่งไฟล์เป็นสถานะจริง ID คงเดิม เมื่อย้ายไฟล์ให้อัปเดตจำนวนและลิงก์ในเอกสารนี้
+Progress ของกระดาน: **50/62 งานผ่าน done** ไม่รวมงานเตรียม assets ที่ทำก่อนเริ่มใช้กระดาน ตำแหน่งไฟล์เป็นสถานะจริง ID คงเดิม เมื่อย้ายไฟล์ให้อัปเดตจำนวนและลิงก์ในเอกสารนี้
 
 TASK-001–014 และ TASK-047 อยู่doneครบM0 TASK-015–028ผ่านแล้ว รอบภาพล่าสุด [TASK-020รอบ11](evidence/task-020-focus-impact-review.json) ผ่าน184TStests+4native/build/Chrome: focusนุ่มไร้กรอบและdamage numbersตรงnative ACTcontact/ลูกธนู-ลูกเวทย์กระทบ ภาพไม่เปลี่ยนผลcombat Runtimepack252IDs/505files/35audioรวม22.5MB
 
@@ -93,7 +95,7 @@ TASK-001–014 และ TASK-047 อยู่doneครบM0 TASK-015–028ผ�
 | M1 | แกนต่อสู้และ headless simulation | 4 | 4 |
 | M2 | วงจรเกม ภาพ และ cloud save | 7 | 7 |
 | M3 | อุปกรณ์และสกิลครบทุกสาย + game shell (TASK-048) + กติกา D-057 (TASK-049) + ย้ายเซฟ (TASK-050) + ร้านค้า/กาชาอุปกรณ์ (TASK-051) + Option สุ่ม (TASK-052) + ไอเทม/การ์ดหลากหลาย (TASK-053) + ภาพการต่อสู้ตรง RO (TASK-054) + คำขอระหว่างลองเล่น (TASK-055) | 19 | 14 |
-| M4 | โหมด บาลานซ์ ตรวจรับ และ deploy รวมย้ายเซฟcloud (058), เซฟ/รีเซ็ตดัน (059–061) และ PWA (062) | 17 | 9 |
+| M4 | โหมด บาลานซ์ ตรวจรับ และ deploy รวมย้ายเซฟcloud (058), เซฟ/รีเซ็ตดัน (059–061) และ PWA (062) | 17 | 10 |
 
 TASK-001–013 และ TASK-047 ออกแบบข้อมูล/สูตร/โมดูลสถานะ/สกิลครบหกสาย/อุปกรณ์/เศรษฐกิจ/ด่าน/UX/สถาปัตยกรรม (ลำดับแกนคือ TASK-001 → 002 → 047 → ข้อมูลสกิล/ไอเทม) จากนั้น TASK-014 ตรวจรวมทั้งหมดก่อนเริ่มเขียนเกมตามความต้องการออกแบบก่อน coding งานพัฒนา TASK-015–046 มี gate นี้ใน dependency
 
@@ -171,7 +173,7 @@ Hi-class/Awaken/Artifact เป็น M5 ถัดจากรุ่นแรก
 | [TASK-059](done/tasks_059.md) | M4 | ลดรอบเซฟระหว่างสู้เป็น4วินาที (D-083) | TASK-020, TASK-022, TASK-025 |
 | [TASK-060](done/tasks_060.md) | M4 | เซฟเฉพาะเริ่ม/จบไฟต์ (D-084 แทนD-083) | TASK-020, TASK-022, TASK-025, TASK-035, TASK-036 |
 | [TASK-061](done/tasks_061.md) | M4 | เริ่มใหม่ล้างดันและrepair carry-over (D-085) | TASK-036, TASK-040 |
-| [TASK-062](review/tasks_062.md) | M4 | PWAติดตั้งบนมือถือ/standalone/offlinefallback (D-086) | TASK-020, TASK-021, TASK-022, TASK-025 |
+| [TASK-062](done/tasks_062.md) | M4 | PWAติดตั้งบนมือถือ/standalone/offlinefallback (D-086) | TASK-020, TASK-021, TASK-022, TASK-025 |
 | [TASK-035](done/tasks_035.md) | M4 | ทำ Infinity Tower ที่ขยายชั้นจากข้อมูลได้ | TASK-025, TASK-026 |
 | [TASK-036](done/tasks_036.md) | M4 | ทำดันรายวันบอสหลายหลอดและรีเซ็ตวัน | TASK-025, TASK-022 |
 | [TASK-037](done/tasks_037.md) | M4 | ทำกาชาการ์ดพร้อมอัตรา pity และของซ้ำ | TASK-022, TASK-027 |

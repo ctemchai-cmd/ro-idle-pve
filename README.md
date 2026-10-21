@@ -2,7 +2,7 @@
 
 ต้นแบบเกม Idle RPG เล่นคนเดียวผ่านเว็บ จัดทีม สู้บอส ฟาร์ม อัปตัวละคร/สกิล และพัฒนาอุปกรณ์พร้อมเซฟในเครื่องได้แล้ว
 
-เกมใช้ Supabase เก็บเซฟ ล็อกอินอีเมล/รหัสผ่าน ออนไลน์เป็นหลักพร้อมเซฟสำรองในเครื่อง และ deploy บน Vercel รุ่นแรกถึง Class 2 สูงสุด Lv.70; Hi-class/Awaken/Artifact เป็น milestone ถัดไป ส่วน Class 3 ที่ Lv.120 เป็นอนาคต ดูสถานะจริงตาม [กระดานงาน](plan/overview.md) ปัจจุบันผ่าน46/58งาน บาลานซ์ยังอยู่ระหว่างตรวจ และ UI ล่าสุดรอผู้ใช้รับภาพ
+เกมใช้ Supabase เก็บเซฟ ล็อกอินอีเมล/รหัสผ่าน ออนไลน์เป็นหลักพร้อมเซฟสำรองในเครื่อง และ deploy บน Vercel รุ่นแรกถึง Class 2 สูงสุด Lv.70; Hi-class/Awaken/Artifact เป็น milestone ถัดไป ส่วน Class 3 ที่ Lv.120 เป็นอนาคต ดูสถานะและจำนวนงานปัจจุบันตาม [กระดานงาน](plan/overview.md) บาลานซ์ยังอยู่ระหว่างตรวจ และ UI ล่าสุดรอผู้ใช้รับภาพ
 
 [เปิดเกมส่วนตัวพร้อมเซฟในเครื่อง](docs/LOCAL-PLAY.md): `npm run dev:local` แล้วเข้า http://127.0.0.1:6173/auth ใช้บัญชีจากไฟล์ส่วนตัวที่ระบุในเอกสาร เลือกตัวหลัก จัดทีม สู้บอส รับรางวัล ฟาร์ม อัปตัวละครและสกิลได้แล้ว เซฟอยู่ใน `.local/play/pg` และคงอยู่เมื่อรีสตาร์ตบริการ ผู้ใช้สร้าง hosted Supabase/Vercel แล้ว การย้ายเซฟและตรวจ login/เล่นต่อจริงยังอยู่ TASK-058
 
@@ -25,6 +25,7 @@ Repository เก็บ source code, แผน, SQL migrations, tests และ�
 - [แผนเกมและความคืบหน้าปัจจุบัน](plan/overview.md)
 - [วิธีติดตั้งและรันโครงเกมบนเครื่อง](docs/DEVELOPING.md) — Node24, `npm ci`, `npm run dev`, `npm run dev:api`
 - [ตั้งค่า Vercel และ Supabase จาก GitHub](docs/DEPLOYMENT.md)
+- [ติดตั้งเป็นแอป PWA บนมือถือและขอบเขตออฟไลน์](docs/PWA.md)
 - [ข้อสรุปและเรื่องที่กำลังคุย](plan/decisions.md)
 - [แผนเซฟ Supabase และ deploy บน Vercel](plan/design/07-cloud-save-and-deployment.md)
 - [ช่องทาง simulation เพื่อวัดอาชีพ สกิล และบาลานซ์](plan/design/08-simulation-and-balance.md)

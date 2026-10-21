@@ -2,6 +2,16 @@
 
 ไฟล์นี้บันทึกงานที่ agent ตัวหนึ่งทำแล้ว เพื่อให้ตัวถัดไป (Codex/Claude) ทำต่อได้ทันที อ่านคู่กับ [overview](overview.md) และ [AGENTS.md](../AGENTS.md) ล่าสุดอยู่บนสุด
 
+## 21 ต.ค. 2026 · Codex — TASK-062 PWA ขึ้น Vercel แล้ว
+
+- ผู้ใช้ขอPWA (D-086) เพิ่มmanifest `/play`/scope`/`/standalone/portrait, SVGmark+PNG192/512/512maskable/Apple180, viewport-fit=coverและAuthsafearea ปุ่มติดตั้งอยู่login/settings ใช้beforeinstallpromptจากusergestureครั้งเดียวพร้อมfallbackguide/iOSSafari→แชร์→เพิ่มหน้าจอโฮม ซ่อนเมื่อstandalone ย่อSVGหัวlogin44pxที่เดิมขยายกินviewport
+- Source **7999d465c** pushmainและGitHubVercelsuccessแล้ว ตรวจproduction `ro-idle-pve.vercel.app` จริง [hosted3กลุ่ม](evidence/task-062-hosted.json): 8staticartifacts/headersตรง, health200/ok/content768e12a4…เดิม, root→login/installUI, Chromeinstallabilityerrorsว่าง, workeractivated/cache5publicfiles, offline/reconnectกลับlogin ไม่มีownerloginหรือmutatingrequest
+- Workerเก็บเฉพาะofflineHTML+4appPNGs **82,353B** ไม่cacheHTMLเกม/JS/content/ROpack/API/Auth/checkpoint/callback ไม่แตะstorage/save ไม่มีskipWaitingหรือcontrollerreload Newworkerwaitingจนclientเก่าปิดและcleanupเฉพาะownprefix Registerเฉพาะproduction+securecontext ไม่แตะ6173/dev/LANHTTP PWAhashแยกจากgamecontent ไม่ต้องเพิ่มenv/SQL/migration
+- VitepublicDir=`pwa`; `scripts/game/pwa-artifacts.ts`ตรวจexact8files/PNGdimensions/manifest/≤128KiBและแทนworkerhashจากHTML/PWAbytes BuildoutputรวมallowlistและVercelheadersswno-store+scope/manifestno-cache ไม่มีassetsROเปลี่ยน Runtimepackยังf57a0773…27,200,551B
+- QA: **build/env/runtimeassets/content/boundaries/typecheck/secretsผ่าน**, **Chrome6กลุ่มผ่าน**, readiness8checksผ่าน ดู [review](evidence/task-062-review.json) Browserproofใช้ephemeralHTTP+normalChromeprofileไม่ใช่6173 มีCDPmanifest, network/privatecacheisolation, offline+HTTP503passthrough, nativeeventfixture, waitingupdate/noautoreload/unrelatedcache+localStorageคงเดิม, iOSUA/standalone/320–390pxไม่ล้น ActualOSinstall/iPhonephysicalnotchยังไม่อ้างว่าทดสอบ เครื่องเจ้าของกดติดตั้งเอง [คู่มือ](../docs/PWA.md)
+- เก็บfailureก่อนหน้า: round1incognitoถูกChromeห้ามinstall แก้ใช้normaltestprofile; round2failedguideพับซ่อนแก้openเมื่อfailed; round3ผ่านก่อนย่อauthiconและรันfinalซ้ำ Hostedharnessรอบแรกreq.url()ผิดWebRequest แก้เป็นpropertyแล้วผ่าน ไม่แก้productหลังdeploy ไม่เปลี่ยนเกณฑ์
+- Board **50/62done** TASK062done; 041/058inprogressและvisualreview5งานเดิม ไม่รีสตาร์ต/แก้เซฟ6173 ไม่ownercloudwrite การย้ายเซฟเดิม058ยังต้องตรวจmetadataใหม่ก่อนcutover ห้ามใช้SQLเก่าblind
+
 ## 21 ต.ค. 2026 · Codex — TASK-060/061 เซฟเริ่ม/จบและเริ่มใหม่ล้างดัน ขึ้นVercelแล้ว
 
 - **Deployแล้ว source5215676f8 / GitHubVercelsuccess** actualChromeบนro-idle-pve.vercel.appพบshell-BbjnMEu7.jsที่มีbattle.finish/ไม่มีbattle.advanceหรือnextAtscheduler และnewresetdailycopy; health200/ok/content768e12a4ตรง [hostedproof](evidence/task-060-061-hosted.json) ไม่มีownerlogin/savewrite ทดสอบจริงเฉพาะisolatedownerfixtures ยังคงบอกuserให้จบไฟต์→reload→กดสำรองแล้วอัปเดตเซฟ ไม่บอกว่าซ่อมcloudstateแล้ว

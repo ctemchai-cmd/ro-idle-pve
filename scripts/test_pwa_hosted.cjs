@@ -36,7 +36,7 @@ let browser, profile, failure;
   assert(!manifest.errors.length && !installability.installabilityErrors.length, 'Hosted installability errors');
   await page.evaluate(async () => { await navigator.serviceWorker.ready; });
   await page.waitForFunction(() => !!navigator.serviceWorker.controller);
-  const cache = await page.evaluate(async () => Object.fromEntries(await Promise.all((await caches.keys()).map(async name => [name, (await (await caches.open(name)).keys()).map(req => new URL(req.url()).pathname)]))));
+  const cache = await page.evaluate(async () => Object.fromEntries(await Promise.all((await caches.keys()).map(async name => [name, (await (await caches.open(name)).keys()).map(req => new URL(req.url).pathname)]))));
   const entries = Object.values(cache).flat();
   assert(Object.keys(cache).length === 1 && entries.length === 5 && entries.every(file => file === '/offline.html' || file.startsWith('/pwa/')), 'Game/private data cached');
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth); assert(!overflow, 'Hosted mobile overflow');

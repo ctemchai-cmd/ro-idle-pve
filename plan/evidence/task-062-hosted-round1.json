@@ -1,0 +1,88 @@
+{
+  "task_id": "TASK-062",
+  "date": "2026-10-21",
+  "origin": "https://ro-idle-pve.vercel.app",
+  "source_commit": "7999d465c1c250aa359105a4eecb61c8ea803ce7",
+  "passed": false,
+  "checks": [
+    {
+      "case_id": "hosted_public_artifacts_headers_and_health",
+      "passed": true,
+      "artifacts": [
+        {
+          "path": "/manifest.webmanifest",
+          "status": 200,
+          "bytes": 757,
+          "sha256": "46a606a433c5ed93f723be75c085975834477dad3b0acf6e1f481e3d214a68b6",
+          "cache_control": "no-cache",
+          "content_type": "application/manifest+json; charset=utf-8"
+        },
+        {
+          "path": "/sw.js",
+          "status": 200,
+          "bytes": 1770,
+          "sha256": "f4bb0815338a16c81bed0ea3c689685ccb1e1dd9aa98821e7669cde94235c320",
+          "cache_control": "no-store",
+          "content_type": "application/javascript; charset=utf-8"
+        },
+        {
+          "path": "/offline.html",
+          "status": 200,
+          "bytes": 1447,
+          "sha256": "eb7ab4ef7f1aa19e02faf8bbff08a2c75bc0cac67fd1b1ab91646d39b014a149",
+          "cache_control": "public, max-age=0, must-revalidate",
+          "content_type": "text/html; charset=utf-8"
+        },
+        {
+          "path": "/pwa/icon.svg",
+          "status": 200,
+          "bytes": 1115,
+          "sha256": "33cccc21cdd50e41ade4860b695e7463c82ac865009e29c3fd5d6d23783bdc55",
+          "cache_control": "public, max-age=0, must-revalidate",
+          "content_type": "image/svg+xml"
+        },
+        {
+          "path": "/pwa/icon-192.png",
+          "status": 200,
+          "bytes": 10604,
+          "sha256": "06aa8747ac7fca84beee110164d9faa630d90320f42dc7242dcc74b399a1af38",
+          "cache_control": "public, max-age=0, must-revalidate",
+          "content_type": "image/png"
+        },
+        {
+          "path": "/pwa/icon-512.png",
+          "status": 200,
+          "bytes": 34199,
+          "sha256": "13d440c3da5efc2843c308fd5934d9d8675c80e7367276f759e1a78de6481e8b",
+          "cache_control": "public, max-age=0, must-revalidate",
+          "content_type": "image/png"
+        },
+        {
+          "path": "/pwa/icon-maskable-512.png",
+          "status": 200,
+          "bytes": 27013,
+          "sha256": "ac865ef2a4d6bf6ddd121ffd226e7cb0c505fb84dcd3a1258cec5dbe96910161",
+          "cache_control": "public, max-age=0, must-revalidate",
+          "content_type": "image/png"
+        },
+        {
+          "path": "/pwa/apple-touch-icon.png",
+          "status": 200,
+          "bytes": 9090,
+          "sha256": "b2f8b1acef66501cc5647d8289929e539782fafc1f40e52338dccc223a110b73",
+          "cache_control": "public, max-age=0, must-revalidate",
+          "content_type": "image/png"
+        }
+      ],
+      "health": {
+        "ok": true,
+        "content_hash": "768e12a49bf339711d44f501c3710374adbcd10d9eb74d6a2e6f9b8aa79330af"
+      }
+    }
+  ],
+  "errors": [],
+  "failure": "page.evaluate: TypeError: req.url is not a function\n    at eval (eval at evaluate (:370:30), <anonymous>:1:161)\n    at Array.map (<anonymous>)\n    at eval (eval at evaluate (:370:30), <anonymous>:1:138)\n    at async Promise.all (index 0)\n    at async eval (eval at evaluate (:370:30), <anonymous>:1:32)\n    at async <anonymous>:396:30\n    at /Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/test_pwa_hosted.cjs:39:28",
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "scope": "Signed-out public production artifacts/login/SW/offline. No real account, OS install or owner save access."
+}

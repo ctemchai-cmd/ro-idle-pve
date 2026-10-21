@@ -28,20 +28,22 @@ Milestone: M4 · ประเภท: พัฒนา/ตรวจรับ · �
 - [x] AC-01: manifestถูกต้อง start_url/play, standalone, portrait, icons192/512/maskableและApple180; Chromeอ่านmanifest/workerได้ ไม่มีinstallabilityerrorที่เกิดจากartifact
 - [x] AC-02: offline navigationได้หน้ารอเชื่อมต่อ; onlineAPIยังผ่านnetworkและไม่cacheแม้GET/privateheader; authcallbackไม่ถูกเก็บ; SWupdateไม่auto reloadและไม่แตะlocalStorage/เซฟ
 - [x] AC-03: installbuttonใช้usergestureกับdeferredpromptครั้งเดียว; iOS/manualguideใช้งานได้; standaloneไม่โชว์ปุ่มซ้ำ; safe-areaมือถือไม่ล้น
-- [ ] AC-04: build/type/boundaries/secretguardผ่าน contenthash768e12a4เดิม; Vercelmanifest/worker/icons/headersจริงผ่านโดยไม่มีownercloudwrite/6173restart
+- [x] AC-04: build/type/boundaries/secretguardผ่าน contenthash768e12a4เดิม; Vercelmanifest/worker/icons/headersจริงผ่านโดยไม่มีownercloudwrite/6173restart
 
 ## วิธีตรวจและหลักฐาน
 
 | เกณฑ์ | วิธีตรวจ | ผลจริง | ผ่านหรือไม่ |
 | --- | --- | --- | --- |
-| AC-01 | ChromeCDPmanifest/installability + PNGdimensions/build | ไม่มีinstallabilityerrorบนnormalprofile; icondecode192/512/512/180 | ผ่านlocal |
-| AC-02 | realSW/CacheStorage/network offline/API/update tests | cache5publicfilesเท่านั้น; GET/POST/Authnetwork; callback/contentไม่cache; updatewaiting/no reload/storageคงเดิม | ผ่านlocal |
-| AC-03 | Chrome native-eventfixture/iOS UA/standalone + mobilelayout | dismiss/accept/fail/usergestureครั้งเดียวผ่าน; iOSguide/standalone/320–390pxไม่ล้น; ย่อauthicon44px | ผ่านlocal |
-| AC-04 | production build/versioncompare + hostedreadonlysmoke | build/type/boundaries/secretguardผ่าน contenthashเดิม; รอhosteddeployment | ยังไม่ครบ |
+| AC-01 | ChromeCDPmanifest/installability + PNGdimensions/build | ไม่มีinstallabilityerrorทั้งnormalprofilelocalและVercel; icondecode192/512/512/180 | ผ่าน |
+| AC-02 | realSW/CacheStorage/network offline/API/update tests | cache5publicfilesเท่านั้น; GET/POST/Authnetwork; callback/contentไม่cache; updatewaiting/no reload/storageคงเดิม; hostedoffline/reconnectผ่าน | ผ่าน |
+| AC-03 | Chrome native-eventfixture/iOS UA/standalone + mobilelayout | dismiss/accept/fail/usergestureครั้งเดียวผ่าน; iOSguide/standalone/320–390pxไม่ล้น; ย่อauthicon44px; hostedlogin/installแสดง | ผ่าน |
+| AC-04 | production build/versioncompare + hostedreadonlysmoke | build/type/boundaries/secretguardผ่าน contenthashเดิม; Vercelsuccess7999d465cและ3hostedgroupsผ่าน ไม่มีownerwrite/6173restart | ผ่าน |
 
-หลักฐาน: [Chrome6กลุ่ม](../evidence/task-062-pwa-browser.json), [build](../evidence/task-062-build.txt) · ผู้ตรวจ: Codex · วันที่: 21 ต.ค.2026 · รอบ review: 1
+หลักฐาน: [สรุปreview](../evidence/task-062-review.json), [Chrome6กลุ่ม](../evidence/task-062-pwa-browser.json), [build](../evidence/task-062-build.txt), [Vercel3กลุ่ม](../evidence/task-062-hosted.json), [deploystatus](../evidence/task-062-vercel-status.json) · ผู้ตรวจ: Codex · วันที่: 21 ต.ค.2026 · รอบ review: 2
 
 รอบแรกChromeincognitoไม่อนุญาตติดตั้งจึงเปลี่ยนharnessเป็นnormalprofileเฉพาะทดสอบ รอบสองพบfailedguideถูกพับซ่อน แก้เปิดแสดงทันทีแล้วตรวจผ่าน เก็บround1–3แยก ไม่ลดเกณฑ์ ฝั่งloginแก้ขนาดSVGที่เคยกินviewportด้วยscopedCSS ไม่เปลี่ยนUIเกม
+
+Hostedharnessรอบแรกใช้req.url()ผิดWebRequest API แก้เป็นreq.urlแล้วผ่าน ไม่แก้productหลังdeploy เก็บhosted-round1แยก คู่มือ [PWA](../../docs/PWA.md)
 
 ## Blocker / คำถาม
 

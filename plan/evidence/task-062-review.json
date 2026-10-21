@@ -1,0 +1,70 @@
+{
+  "task_id": "TASK-062",
+  "date": "2026-10-21",
+  "passed": true,
+  "source_commit": "7999d465c1c250aa359105a4eecb61c8ea803ce7",
+  "checks": [
+    {
+      "case_id": "T062-AC-01",
+      "passed": true,
+      "evidence": [
+        "plan/evidence/task-062-pwa-browser.json",
+        "plan/evidence/task-062-hosted.json"
+      ],
+      "result": "Chrome normal-profile manifest/installability no errors; icons decode192/512/maskable512/Apple180; standalone portrait/play"
+    },
+    {
+      "case_id": "T062-AC-02",
+      "passed": true,
+      "evidence": [
+        "plan/evidence/task-062-pwa-browser.json",
+        "plan/evidence/task-062-hosted.json"
+      ],
+      "result": "Only offline+4icons cached; API/Auth/callback/content never cached; offline/reconnect/HTTP503/waiting update/no reload and unrelated storage preserved"
+    },
+    {
+      "case_id": "T062-AC-03",
+      "passed": true,
+      "evidence": [
+        "plan/evidence/task-062-pwa-browser.json",
+        "plan/evidence/task-062-hosted.json"
+      ],
+      "result": "Gesture/deferred prompt dismiss/fail/accept one-use, iOS guide, standalone hidden, compact auth SVG and320/390mobile no overflow"
+    },
+    {
+      "case_id": "T062-AC-04",
+      "passed": true,
+      "evidence": [
+        "plan/evidence/task-062-build.txt",
+        "plan/evidence/task-062-vercel-status.json",
+        "plan/evidence/task-062-hosted.json"
+      ],
+      "result": "Production build gates pass; content and runtime pack unchanged; Vercel actual artifacts/headers/login/offline pass without owner commands"
+    }
+  ],
+  "content_hash": "768e12a49bf339711d44f501c3710374adbcd10d9eb74d6a2e6f9b8aa79330af",
+  "runtime_asset_pack_hash": "f57a0773675ff37a1f16467f2606546404286a4ffb42da90766b7cab93970dae",
+  "precache_bytes": 82353,
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "input_sha256": {
+    "index.html": "5fd27a9db5d3cee1763f92a2093cafe6bfffc3da20bc2092fd57008c860ed79c",
+    "vite.config.ts": "b1bac03047fd4068806c8769673be7f81fa35b94cc2a7ab30468b668e2a18054",
+    "vercel.json": "ee0cca1c2853ec3dfc31e72186fd207adb614a9862bd3a65896dc13027ecb272",
+    "pwa/manifest.webmanifest": "46a606a433c5ed93f723be75c085975834477dad3b0acf6e1f481e3d214a68b6",
+    "pwa/sw.js": "1789f423644ed003d86dec6ef78ea5c49a404548c1dfa6c32a3520bbf5b07b1a",
+    "pwa/offline.html": "eb7ab4ef7f1aa19e02faf8bbff08a2c75bc0cac67fd1b1ab91646d39b014a149",
+    "src/client/pwa.ts": "8e7a7178d45e476ba43d3a129201130dfd1ed859b6a8bd28a16aefd38cb41ae1",
+    "src/ui/pwa-install.tsx": "3abff6940b2454a7018b589c2c3ec53ef8b985fa38ff4711b57aad78a885a09f",
+    "src/ui/pwa.css": "8e9df41a59517b9af0ed7586795b6c4f33c3d8ce81b18c98ea711cfada71190f",
+    "src/ui/auth-page.tsx": "1c4fa628d9877b46b377bb7ee500a5602e79cf72783dbec0f1c24d96056a091e",
+    "src/ui/game/hud.tsx": "ed3dcbd8e985b0be46fd1e576d0e91a311a1198807f45085b2e6e24d7527566a",
+    "src/ui/main.tsx": "6a5e8d03a475c6c7d23cb62e940f2401a16be01e3e0557b4111bb4154fa715ce",
+    "src/ui/icon.tsx": "aa3547b70d70dbb3bd262905e9e19ad5df409acd2963710e3ffad91adff863ed",
+    "scripts/game/pwa-artifacts.ts": "3f43b7bae857385d027f31d89da4084b48680df2204b2a4854906a257187a0a8",
+    "scripts/game/build-output.ts": "a8c46e56abbaa01246960df7d1473a5eaa9776751eb679c079d3544ff0ebb9a2",
+    "scripts/test_pwa_browser.cjs": "01435fd97481627b4b82b33651a2f07f0e6a9d87a3006623d13f3e58375b0ed5",
+    "scripts/test_pwa_hosted.cjs": "ee0b3d2aabd001071c8e7ba1576b7ebeea14f9996db8034e01e88db2d91f83ad"
+  },
+  "scope": "PWA presentation/installability and controlled offline fallback, not offline progression. Chrome and iOS UA/layout emulation; actual OS installation remains a user gesture on their device. No new combat/save formulas or SQL."
+}
