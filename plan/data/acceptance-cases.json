@@ -9107,6 +9107,146 @@
         "plan/evidence/task-072-healing-live.json",
         "plan/evidence/task-072-hosted.json"
       ]
+    },
+    {
+      "id": "T073-AC-01",
+      "task_id": "TASK-073",
+      "acceptance_id": "AC-01",
+      "criterion": "66ใบมีชื่อมอนสเตอร์ RO / ROitemID / monsterID / sourcegradeและlocalcardartถูกตัว ไม่มีชื่อสมมติหรือskillsymbol; sourceกับadaptationแยกชัด และMVP/Miniไม่จัดจากการเดาชื่อ",
+      "input_setup": "Curated RO card data/assets, seeded farm and old-save fixtures; actual isolated mobile Chrome multiweapon/options/card claim/equip/reload; no balance runner",
+      "input_refs": [
+        "plan/review/tasks_073.md",
+        "plan/data/cards.json",
+        "src/ui/game/buddy.tsx"
+      ],
+      "parameters": {
+        "balance_simulation": false,
+        "owner_cloud_writes": false
+      },
+      "expected": "66ใบมีชื่อมอนสเตอร์ RO / ROitemID / monsterID / sourcegradeและlocalcardartถูกตัว ไม่มีชื่อสมมติหรือskillsymbol; sourceกับadaptationแยกชัด และMVP/Miniไม่จัดจากการเดาชื่อ",
+      "verification": "Metadata/source audit, targeted runtime/migration checks, actual local Auth/Postgres/Chrome, build/assets and signed-out hosted proof",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation"
+    },
+    {
+      "id": "T073-AC-02",
+      "task_id": "TASK-073",
+      "acceptance_id": "AC-02",
+      "criterion": "ฟาร์มออนไลน์/AFKได้การ์ดตามseededreservation/5minroll/profileของด่าน; ด่านหลังเปิดpool/qualityดีขึ้น โอกาสถูกแสดงตามdata; splitinterval/12hcap/retry/fullbag/oldpendingไม่จ่ายซ้ำหรือreroll",
+      "input_setup": "Curated RO card data/assets, seeded farm and old-save fixtures; actual isolated mobile Chrome multiweapon/options/card claim/equip/reload; no balance runner",
+      "input_refs": [
+        "plan/review/tasks_073.md",
+        "plan/data/cards.json",
+        "src/ui/game/buddy.tsx"
+      ],
+      "parameters": {
+        "balance_simulation": false,
+        "owner_cloud_writes": false
+      },
+      "expected": "ฟาร์มออนไลน์/AFKได้การ์ดตามseededreservation/5minroll/profileของด่าน; ด่านหลังเปิดpool/qualityดีขึ้น โอกาสถูกแสดงตามdata; splitinterval/12hcap/retry/fullbag/oldpendingไม่จ่ายซ้ำหรือreroll",
+      "verification": "Metadata/source audit, targeted runtime/migration checks, actual local Auth/Postgres/Chrome, build/assets and signed-out hosted proof",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation"
+    },
+    {
+      "id": "T073-AC-03",
+      "task_id": "TASK-073",
+      "acceptance_id": "AC-03",
+      "criterion": "การ์ดเดิมทั้ง60IDsยังอยู่ level/quality/lock/inventoryไม่หาย; migrationถอดเฉพาะใบที่ช่องไม่ตรงกลับกระเป๋า snapshotเก่าไม่retroactiveดรอป และeffect/triggerที่เพิ่มทำงานในsharedpipeline",
+      "input_setup": "Curated RO card data/assets, seeded farm and old-save fixtures; actual isolated mobile Chrome multiweapon/options/card claim/equip/reload; no balance runner",
+      "input_refs": [
+        "plan/review/tasks_073.md",
+        "plan/data/cards.json",
+        "src/ui/game/buddy.tsx"
+      ],
+      "parameters": {
+        "balance_simulation": false,
+        "owner_cloud_writes": false
+      },
+      "expected": "การ์ดเดิมทั้ง60IDsยังอยู่ level/quality/lock/inventoryไม่หาย; migrationถอดเฉพาะใบที่ช่องไม่ตรงกลับกระเป๋า snapshotเก่าไม่retroactiveดรอป และeffect/triggerที่เพิ่มทำงานในsharedpipeline",
+      "verification": "Metadata/source audit, targeted runtime/migration checks, actual local Auth/Postgres/Chrome, build/assets and signed-out hosted proof",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation"
+    },
+    {
+      "id": "T073-AC-04",
+      "task_id": "TASK-073",
+      "acceptance_id": "AC-04",
+      "criterion": "UIเห็นภาพจริง/ชื่อ/Normal-Mini-MVP/slot/ผล ทั้งbag/slot/gacha/reward; actualChrome claimและใส่การ์ดผ่าน M0/assets/build/type/boundaries/secrets/hosted ไม่มีownerwrite/6173restart/balance simulation Rawpack≤32MiBและinitial≤8MiB",
+      "input_setup": "Curated RO card data/assets, seeded farm and old-save fixtures; actual isolated mobile Chrome multiweapon/options/card claim/equip/reload; no balance runner",
+      "input_refs": [
+        "plan/review/tasks_073.md",
+        "plan/data/cards.json",
+        "src/ui/game/buddy.tsx"
+      ],
+      "parameters": {
+        "balance_simulation": false,
+        "owner_cloud_writes": false
+      },
+      "expected": "UIเห็นภาพจริง/ชื่อ/Normal-Mini-MVP/slot/ผล ทั้งbag/slot/gacha/reward; actualChrome claimและใส่การ์ดผ่าน M0/assets/build/type/boundaries/secrets/hosted ไม่มีownerwrite/6173restart/balance simulation Rawpack≤32MiBและinitial≤8MiB",
+      "verification": "Metadata/source audit, targeted runtime/migration checks, actual local Auth/Postgres/Chrome, build/assets and signed-out hosted proof",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation"
+    },
+    {
+      "id": "T074-AC-01",
+      "task_id": "TASK-074",
+      "acceptance_id": "AC-01",
+      "criterion": "Optionทุกบรรทัดแยกlabel/valueและมีสีชัดทั้งรายละเอียดในbag/ช่องอุปกรณ์/เลือกเปลี่ยนของ ค่าตรงsharedmodifierเดิม ไม่เปลี่ยนroll/เซฟ หน้า320/390pxไม่ล้นและไม่มีemojiใหม่",
+      "input_setup": "Curated RO card data/assets, seeded farm and old-save fixtures; actual isolated mobile Chrome multiweapon/options/card claim/equip/reload; no balance runner",
+      "input_refs": [
+        "plan/review/tasks_074.md",
+        "plan/data/cards.json",
+        "src/ui/game/buddy.tsx"
+      ],
+      "parameters": {
+        "balance_simulation": false,
+        "owner_cloud_writes": false
+      },
+      "expected": "Optionทุกบรรทัดแยกlabel/valueและมีสีชัดทั้งรายละเอียดในbag/ช่องอุปกรณ์/เลือกเปลี่ยนของ ค่าตรงsharedmodifierเดิม ไม่เปลี่ยนroll/เซฟ หน้า320/390pxไม่ล้นและไม่มีemojiใหม่",
+      "verification": "Metadata/source audit, targeted runtime/migration checks, actual local Auth/Postgres/Chrome, build/assets and signed-out hosted proof",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation"
+    },
+    {
+      "id": "T074-AC-02",
+      "task_id": "TASK-074",
+      "acceptance_id": "AC-02",
+      "criterion": "หน้าเลือกอาวุธแสดงเฉพาะfamilyที่jobใส่ได้ แม้ของต่างfamilyจะlevelสูง/อยู่กับเพื่อน; ของfamilyถูกแต่levelสูงยังบอกเงื่อนไขได้ สลับตัวละคร/คลาสแล้วfilterตรง ใส่และreloadค่าตรง",
+      "input_setup": "Curated RO card data/assets, seeded farm and old-save fixtures; actual isolated mobile Chrome multiweapon/options/card claim/equip/reload; no balance runner",
+      "input_refs": [
+        "plan/review/tasks_074.md",
+        "plan/data/cards.json",
+        "src/ui/game/buddy.tsx"
+      ],
+      "parameters": {
+        "balance_simulation": false,
+        "owner_cloud_writes": false
+      },
+      "expected": "หน้าเลือกอาวุธแสดงเฉพาะfamilyที่jobใส่ได้ แม้ของต่างfamilyจะlevelสูง/อยู่กับเพื่อน; ของfamilyถูกแต่levelสูงยังบอกเงื่อนไขได้ สลับตัวละคร/คลาสแล้วfilterตรง ใส่และreloadค่าตรง",
+      "verification": "Metadata/source audit, targeted runtime/migration checks, actual local Auth/Postgres/Chrome, build/assets and signed-out hosted proof",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation"
+    },
+    {
+      "id": "T074-AC-03",
+      "task_id": "TASK-074",
+      "acceptance_id": "AC-03",
+      "criterion": "actualisolatedmobileChrome/productionbuild/type/boundaries/secrets/hostedผ่าน ไม่มีSQL/env/ownerwrite/restart6173หรือเพิ่มAPIจากการดู/กรอง",
+      "input_setup": "Curated RO card data/assets, seeded farm and old-save fixtures; actual isolated mobile Chrome multiweapon/options/card claim/equip/reload; no balance runner",
+      "input_refs": [
+        "plan/review/tasks_074.md",
+        "plan/data/cards.json",
+        "src/ui/game/buddy.tsx"
+      ],
+      "parameters": {
+        "balance_simulation": false,
+        "owner_cloud_writes": false
+      },
+      "expected": "actualisolatedmobileChrome/productionbuild/type/boundaries/secrets/hostedผ่าน ไม่มีSQL/env/ownerwrite/restart6173หรือเพิ่มAPIจากการดู/กรอง",
+      "verification": "Metadata/source audit, targeted runtime/migration checks, actual local Auth/Postgres/Chrome, build/assets and signed-out hosted proof",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation"
     }
   ]
 }

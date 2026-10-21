@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/build_runtime_assets.py", line 290, in <module>
+    main()
+  File "/Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/build_runtime_assets.py", line 286, in main
+    index = verify(artifact_only=args.artifact_only) if args.check else build()
+                                                                        ^^^^^^^
+  File "/Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/build_runtime_assets.py", line 153, in build
+    meta, media_ref = resolve_asset(ref, ro_root)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/build_runtime_assets.py", line 103, in resolve_asset
+    raise ValueError(f"Unreviewed export status {meta.get('status')}: {ref}")
+ValueError: Unreviewed export status None: items/card-4001.meta.json

@@ -1,0 +1,84 @@
+✔ independent same-caster and NPC buffs reproduce 156/288/252/216/120 without refresh (5.581917ms)
+✔ buff magnitude and repeated applications have no hidden cap (46.38375ms)
+✔ removing one trait source and one status recomputes others instead of subtracting stats (4.613916ms)
+✔ AoE outcomes isolate A-hit/B-miss; a completely shielded hit still permits Stun (3.7265ms)
+✔ heal chooses lowest HP percent and still casts at full HP with all-overheal metrics (5.668833ms)
+✔ front ordering and latest living Provoke source; all/random selectors ignore it (1.388708ms)
+✔ locked dead target skips or reselects once; no automatic replacement mid-program (12.26675ms)
+✔ Stun before start leaves slot unspent and starts at recovery without restarting SI (2.981959ms)
+✔ interrupting CT consumes SP/slot exactly once and removes the old resolve token (1.162166ms)
+✔ same-time locked cast resolves even if another completion applies Stun (1.939458ms)
+✔ uninterruptible CT resolves under CC while Silence permits Normal Attack (4.606208ms)
+✔ ordinary chain CC has normal independent durations and union vs instance metrics (1.641459ms)
+✔ optional reactive boss trait adds independent Resistance after successful CC only (24.830292ms)
+✔ periodic expiry is exclusive; shield absorbs60 then HP loses20 across two ticks (3.535209ms)
+✔ Freeze survives fully absorbed damage and breaks only on positive HP loss (0.860875ms)
+✔ cleanse/dispel removes permitted individual instances in expiry then ID order (0.95875ms)
+✔ own-status detonation consumes only the acting source and uses the common damage pipeline (1.226208ms)
+✔ learned Passive applies automatically with all four Active slots empty (0.639875ms)
+✔ proc ancestry blocks A→B→A reentry while sibling hits and separate instances still proc (0.719041ms)
+✔ proc per-battle counter survives serialized restore and never resets on a later advance (287.472333ms)
+✔ battle_start entry trigger fires once even when the initial checkpoint is restored (1.698375ms)
+✔ weapon endow selection is latest active enum and reveals the previous value after expiry (0.615125ms)
+✔ a status whose source died persists or removes exactly as its catalog requires (0.702042ms)
+✔ resource gains clamp SP/spheres and expose restored vs wasted without touching wallets (0.541208ms)
+✔ all27 catalog statuses bind params, expire individually, and leave base stats unchanged (19.651375ms)
+✔ positive duration CC is not shortened when a boss gains Resistance after it applies (0.638208ms)
+✔ simultaneous completion CC uses pre-reaction Resistance for the entire batch (1.098208ms)
+✔ item/card/passive sources share the same proc path, with separate-instance and root limits (0.696916ms)
+✔ default card reflect accepts normal/skill and does not react to another reflect (0.452834ms)
+✔ Devotion conserves101 damage with proportional independent links and one routing pass (1.363542ms)
+✔ DoT retains original source attribution after caster dies and removes when carrier dies (1.316125ms)
+✔ every emitted engine event is canonical JSON with source/effect/hit attribution (0.643208ms)
+✔ overflow diagnostics return no partially spent state or truncated buff stacks (1.514042ms)
+✔ conditional passive modifiers follow active statuses without changing the scheduled SI (1.776333ms)
+✔ raising MaxHP does not heal; removal clamps down without granting resources (0.827ms)
+✔ event budget also bounds timer-only battles and preserves input on failure (1.112833ms)
+✔ Silence chance uses control resistance but never emits hard-CC reactions (0.544458ms)
+✔ lethal damage reactions drain before death cleanup and can cause a mutual wipe (0.869583ms)
+✔ Revive advances life epoch, restores ratios, starts next SI and never replays an old cast (1.39125ms)
+✔ 66 native RO cards preserve all 60 legacy IDs, correct slots, exact art IDs and distinct source grades (21.917584ms)
+✔ quality/level improve benefits, reduce penalties, scale proc power once and pure control chance only (0.908416ms)
+✔ Raydric/Deviling reduce neutral damage and retain weaknesses; true damage bypasses new resistance (13.932708ms)
+✔ armor element and GTB magic-only guard/SP cost use shared stats; physical hits stay unchanged (23.701917ms)
+✔ Marc/Marduk/Deviruchi resist only their status; hard CC still interrupts Phen (6.8015ms)
+✔ Maya reflects magical only; normalized proc cannot recursively reflect itself (6.291708ms)
+✔ Moonlight changes motion only, with identical virtual-time integration across frame chunks (3.267709ms)
+✖ Osiris improves the existing revive recovery without adding a revive or replaying its old cast (4.770541ms)
+✔ every authored card proc resolves actual effects with target tags and no formula/status errors (41.028333ms)
+✔ farm profile improves stage chance/quality, gates Mini/MVP, retains earlier cards and favors current tiers (32.220792ms)
+✔ seeded farm split/cap/retry produces same fixed cards/gear and RNG without kill or speed input (19.989541ms)
+✔ legacy snapshot settles before enabling cards; full bag never consumes or rerolls pending rewards (1049.950042ms)
+✔ slot correction migration returns incompatible cards to bag and preserves exact instance/quality/level/lock (221.042666ms)
+ℹ tests 52
+ℹ suites 0
+ℹ pass 51
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3528.617375
+
+✖ failing tests:
+
+test at tests/game/ro-cards.test.ts:1:9990
+✖ Osiris improves the existing revive recovery without adding a revive or replaying its old cast (4.770541ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'normal_only'
+  - 'skill_interval'
+  
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/ro-cards.test.ts:76:136)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'normal_only',
+    expected: 'skill_interval',
+    operator: 'strictEqual'
+  }

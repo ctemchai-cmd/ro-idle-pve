@@ -129,6 +129,9 @@
 
 | D-098 | 22 ต.ค.2026 ผู้ใช้รายงานเพลงฮีล25/sฟื้นไม่ทัน เทียบMonkHeal250แม้เล่นP.ATK | TASK-072 เพิ่มopeninghealเมื่อร่ายสำเร็จ60–100%P.ATKและHoT30–50%/s5ticks ทั้งBard/Dancer คงSP/CT/ACD/stack/bonusเดิม ตัวเลขassistantเพื่อแก้feedback ไม่ใช่สูตรreferenceหรือfullbalance ไม่รันbalance simulationใหม่ |
 
+| D-099 | 22 ต.ค.2026 ผู้ใช้ขอการ์ดอิงROจริงเป็นMonster/Mini/MVPและดรอปฟาร์มด่านหลังดีกว่า | TASK-073 คง60IDsเดิมแก้ชื่อ/ภาพ/ช่อง/จุดเด่นอ้างอิงและเพิ่มMini6; snapshotcarddropใช้seededreserveเดิม/5min ไม่ผูกkill; preserveoldcardinstances/migrateassignment; authoredrates/normalizationแยกจากROreference Rawpack32MiBสำหรับcardartlazyโดยinitial≤8MiB |
+| D-100 | 22 ต.ค.2026 ผู้ใช้ขอOptionเรียงบรรทัดมีสีและหน้าสวมอาวุธเฉพาะอาชีพ | TASK-074 ใช้sharedOptionLines label/valueหนึ่งบรรทัดและfilterweapon_compatibilityในChangeSheet ไม่เปลี่ยนค่าหรือกติกาสวมใส่และไม่กรองกระเป๋ารวม |
+
 ## คำถามหลักที่ส่งให้ผู้ใช้แล้ว
 
 | ID | ประเด็น | สถานะ |

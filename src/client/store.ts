@@ -3,6 +3,7 @@ import type { AccountState } from '../contracts/index.ts';
 import { itemDefinition } from '../domain/build/equipment-definition.ts';
 import { bangkokDay } from '../domain/modes/daily.ts';
 import { gachaGearTier, pullCost } from '../domain/rewards/gacha.ts';
+import { cardOrigins } from '../content/card-catalog.ts';
 const loaded = loadValidatedContent(); if (!loaded.ok) throw new Error('CONTENT_UNAVAILABLE');
 const content = loaded.value;
 type Wallet = AccountState['wallet'];
@@ -36,6 +37,6 @@ export function revealItems(state: AccountState, ids: readonly string[]) {
   return ids.map(id => state.inventory.find(item => item.instance_id === id)).filter((item): item is Item => !!item).map(item => {
     const definition = itemDefinition(item, content);
     const iconId = item.kind === 'card' ? cards.find(p => p.id === definition.presentation_id)?.symbol_asset_id ?? null : equipment.find(p => p.id === definition.presentation_id)?.icon_asset_id ?? null;
-    return { item, name: labels[definition.name_key] ?? definition.id, iconId, slot: definition.slot, lines: item.kind === 'equipment' ? item.options.length : 0 };
+    return { origin: item.kind==='card'?cardOrigins(content)[item.definition_id]:null, item, name: labels[definition.name_key] ?? definition.id, iconId, slot: definition.slot, lines: item.kind === 'equipment' ? item.options.length : 0 };
   });
 }

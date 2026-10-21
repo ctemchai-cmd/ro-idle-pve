@@ -1,4 +1,5 @@
 import type { ValidatedContent } from '../../content/model.ts';
+import { weightedChoice } from './weighted.ts';
 
 interface CardPool { definitions: string[]; definition_weights: Record<string, number> }
 /**
@@ -9,8 +10,5 @@ export function gachaCardDefinition(roll: number, content: ValidatedContent, tie
   if (!(roll >= 0 && roll < 1)) throw new RangeError('INVALID_ROLL');
   const pool = content.documents['gacha.json'] as unknown as CardPool, tierOf = (id: string) => Number((content.items[id] as unknown as { tier_level?: number } | undefined)?.tier_level ?? 1);
   const eligible = pool.definitions.filter(id => tierOf(id) === tier), ids = eligible.length ? eligible : pool.definitions.filter(id => tierOf(id) <= tier);
-  const total = ids.reduce((sum, id) => sum + (pool.definition_weights[id] ?? 0), 0);
-  let target = roll * total;
-  for (const id of ids) { target -= pool.definition_weights[id] ?? 0; if (target < 0) return id; }
-  return ids[ids.length - 1]!;
+  return weightedChoice(ids, pool.definition_weights, roll);
 }

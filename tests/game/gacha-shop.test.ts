@@ -28,9 +28,9 @@ function fixture(mutate: (state: AccountState) => void = () => {}, startIso = '2
 }
 
 // --- TASK-037 card gacha -------------------------------------------------------------------------------
-test('T037 AC-01: the card pool is all 60 data cards (D-068) drawn from the player\'s tier at 75/22/3 for 100/1000 crystal, with no pet/artifact outcomes', () => {
+test('T037 AC-01: the card pool is all 66 RO cards (D-099) drawn from the player\'s tier at 75/22/3 for 100/1000 crystal, with no pet/artifact outcomes', () => {
   const pool = content.documents['gacha.json'] as unknown as { definitions: string[]; quality_weights: Record<string, number>; disabled_pools: string[] };
-  assert.equal(pool.definitions.length, 60); assert.deepEqual(pool.quality_weights, { bronze: 750000, silver: 220000, gold: 30000 });
+  assert.equal(pool.definitions.length, 66); assert.deepEqual(pool.quality_weights, { bronze: 750000, silver: 220000, gold: 30000 });
   assert.deepEqual(pullCost('card_v1', 1, content), { crystal: 100 }); assert.deepEqual(pullCost('card_v1', 10, content), { crystal: 1000 });
   const tierOf = (id: string) => (content.items[id] as unknown as { tier_level: number }).tier_level, draws = () => { let n = 0; return () => (n++ * 0.137) % 1; };
   const early = fixture().state, items = pullCards(early, 10, draws(), 'probe', content);

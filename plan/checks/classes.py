@@ -17,7 +17,7 @@ def skill_cap(skill,l):return min(skill['max_level'],1+(l-1)//5)
 def cumulative(data,sid,lv):return {key:sum(r[key] for r in data['upgrades'][sid]['upgrade_cost_rows'] if r['to_level']<=lv) for key in ['gold','skill_manual']}
 def asset_reference(path):
  p=R/path;assert p.exists(),path;m=load(p)
- base=R/'assets/ro/library' if path.startswith('assets/ro/library/') else R/'assets/ro/prepared'
+ base=R/'assets/ro/library' if path.startswith('assets/ro/library/') else R/'assets/ro/prepared' if path.startswith('assets/ro/prepared/') else R/'assets/ro'
  payload=base/m['file']['path'];assert payload.exists(),(path,m['file']['path']);assert m.get('status','exported') not in ['source_dependencies_missing','missing']
  assert hashlib.sha256(payload.read_bytes()).hexdigest()==m['file']['sha256'],path
  assert not m.get('missing_dependencies'),path

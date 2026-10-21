@@ -1,3 +1,5 @@
+import { statNames } from '../../client/status-labels.ts';
+import { cardStatUnits, statHigherIsBetter } from '../../client/slots.ts';
 import { Icon } from '../icon.tsx';
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import type { AccountState, CombatStats } from '../../contracts/index.ts';
@@ -20,7 +22,8 @@ export const reasonText: Record<string, string> = {
   STAGE_LOCKED: 'ผ่านด่านก่อนหน้าเพื่อท้าบอสนี้', TOWER_FLOOR_LOCKED: 'ผ่านชั้นก่อนหน้า (และด่าน 2-10) เพื่อท้าชั้นนี้', TOWER_FLOOR_OVERFLOW: 'ชั้นนี้สูงเกินกว่าที่ระบบรองรับ', DAILY_LOCKED: 'ผ่านด่าน 1-10 เพื่อเปิดดันเจี้ยนรายวัน', DAILY_NO_ATTEMPTS: 'ใช้สิทธิ์บอสนี้ครบแล้ววันนี้ รีเซ็ต 00:00', DAILY_RECORD_MISSING: 'ไม่พบข้อมูลรอบของวันนั้น', PENDING_REWARDS_FULL: 'รับรางวัลที่ค้างไว้ก่อน', FARM_NOT_SELECTED: 'ผ่านด่านแรกเพื่อเริ่มฟาร์ม', BATTLE_BUILD_UNAVAILABLE: 'ยังเริ่มไฟต์ด้วยทีมนี้ไม่ได้ กรุณาตรวจทีมและสกิล', BATTLE_LEASE_EXPIRED: 'ไฟต์หยุดไปแล้ว เชื่อมต่อเซฟเพื่อเตรียมทีมใหม่', BATTLE_TICKET_EXPIRED: 'ไฟต์หยุดไปแล้ว เชื่อมต่อเซฟเพื่อลองใหม่', NO_FARM_ELAPSED: 'ยังไม่มีช่วงฟาร์มใหม่ให้รับ',
 };
 export const statLabels: Partial<Record<keyof CombatStats, string>> = { max_hp: 'HP', max_sp: 'SP', physical_attack: 'ATK', magical_attack: 'MATK', physical_defense: 'DEF', magical_defense: 'MDEF', attack_speed: 'ASPD', cast_speed: 'CSPD', hit_bonus: 'ความแม่นยำ', evasion_bonus: 'การหลบ', crit_chance_bonus: 'โอกาสคริ', crit_damage_bonus: 'ดาเมจคริ', crit_resistance: 'ต้านคริ', control_accuracy: 'โอกาสติดสถานะ', control_resistance: 'ต้านสถานะ / สตั้น', outgoing_physical_bonus: 'ดาเมจกายภาพ', outgoing_magical_bonus: 'ดาเมจเวท', outgoing_true_bonus: 'ดาเมจจริง', damage_taken_bonus: 'ดาเมจที่ได้รับ', guard_percent: 'ลดดาเมจ', armor_break_percent: 'ทำลายเกราะ', penetration_percent: 'เจาะเกราะ (Ignore DEF)', flat_penetration: 'เจาะเกราะคงที่', flat_damage_reduction: 'ลดดาเมจคงที่', outgoing_healing_bonus: 'พลังฮีล', healing_received_bonus: 'การรับฮีล', hp_regen_percent: 'ฟื้น HP %', sp_regen_percent: 'ฟื้น SP %', flat_hp_regen: 'ฟื้น HP', flat_sp_regen: 'ฟื้น SP', str: 'STR', agi: 'AGI', vit: 'VIT', int: 'INT', dex: 'DEX', luk: 'LUK' };
-export const ratioStats = new Set<string>(['hit_bonus', 'evasion_bonus', 'crit_chance_bonus', 'crit_damage_bonus', 'crit_resistance', 'control_accuracy', 'control_resistance', 'outgoing_physical_bonus', 'outgoing_magical_bonus', 'outgoing_true_bonus', 'damage_taken_bonus', 'guard_percent', 'armor_break_percent', 'penetration_percent', 'outgoing_healing_bonus', 'healing_received_bonus', 'sp_regen_percent', 'hp_regen_percent']);
+Object.assign(statLabels, Object.fromEntries(Object.entries(statNames).filter(([key]) => !(key in statLabels))));
+export const ratioStats = new Set<string>(Object.entries(cardStatUnits).filter(([, unit]) => unit === 'ratio').map(([id]) => id));
 export const rarityOrder = ['common', 'uncommon', 'rare', 'epic', 'legendary', 'immortal', 'supreme'];
 
 export const full = (n: number) => Math.round(n).toLocaleString('th-TH');
@@ -102,6 +105,6 @@ export function PageHeader({ title, sub, onBack, right }: { title: ReactNode; su
 }
 export function Diff({ before, after, keyName }: { before: number; after: number; keyName: string }) {
   if (before === after) return <span className="diff-same">{statValue(keyName, after)}</span>;
-  const better = keyName === 'damage_taken_bonus' ? after < before : after > before;
+  const better = statHigherIsBetter(keyName) ? after > before : after < before;
   return <span className="diff"><s>{statValue(keyName, before)}</s> → <b className={better ? 'up' : 'down'}>{statValue(keyName, after)}</b></span>;
 }

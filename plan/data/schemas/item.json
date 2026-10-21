@@ -71,6 +71,20 @@
     "presentation_id": {
       "type": "string",
       "minLength": 1
+    },
+    "defense_element": {
+      "enum": [
+        "neutral",
+        "water",
+        "earth",
+        "fire",
+        "wind",
+        "poison",
+        "holy",
+        "dark",
+        "ghost",
+        "undead"
+      ]
     }
   },
   "required": [

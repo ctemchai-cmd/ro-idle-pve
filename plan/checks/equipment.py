@@ -59,9 +59,9 @@ def values():
  return {'common_sword60_plus_refine10_gold_card5':294,'epic_sword60_base':285,'refine10_gold':77000,'refine10_ore':275,'enchant10_gold':115500,'formula':'add source modifiers once through central buckets'}
 check('numeric_progression_examples',['AC-01','AC-04'],values)
 def cardrules():
- assert len(cards['definitions'])==60 and cards['level_multipliers']==[1,1.25,1.5,1.75,2];assert not cards['rarity_is_equipment_rarity'];assert [r['id'] for r in cards['rarities']]==['bronze','silver','gold']
+ assert len(cards['definitions'])==66 and cards['level_multipliers']==[1,1.25,1.5,1.75,2];assert not cards['rarity_is_equipment_rarity'];assert [r['id'] for r in cards['rarities']]==['bronze','silver','gold']
  assert sum(r['card_dust'] for r in cards['level_cost_rows'])==300
- return {'definitions_per_slot':3,'card_instance_level_max':5,'max_upgrade_dust':300,'unequipped_duplicate_bronze_yield':20,'same_card_copies':'distinct instances, additive sources'}
+ return {'definitions':66,'source_grades':{'normal':49,'mini':6,'mvp':11},'card_instance_level_max':5,'max_upgrade_dust':300,'unequipped_duplicate_bronze_yield':20,'same_card_copies':'distinct instances, additive sources'}
 check('card_rarity_duplicates_and_levels',['AC-04'],cardrules)
 def training():
  p=e['targeted_weapon_purchase'];assert p['enabled_tiers']==[1] and p['training'] is True;assert p['cost_rows']==[{'tier_level':1,'gold':125}];assert 'training' in e['fusion']['exclude'] and e['tier_upgrade']['reject_training'];assert e['salvage']['training_yield']=={}

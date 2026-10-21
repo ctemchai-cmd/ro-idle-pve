@@ -1,8 +1,8 @@
 # คลังแอสเซ็ต RO ในเครื่อง
 
-นำเข้าครบ 60,460 รายการตามหมวดที่เลือกจากไคลเอนต์ kRO ชุด **10 มิถุนายน 2024** และมีชุดเริ่มต้นอีก 44 ภาพ ดูจำนวนและข้อจำกัดใน [รายงานนำเข้า](IMPORT_REPORT.md) ความครบอ้างถึงไคลเอนต์ชุดนี้ ไม่ครอบคลุมทุกแพตช์ของทุกเซิร์ฟเวอร์
+นำเข้าครบ 60,460 รายการตามหมวดที่เลือกจากไคลเอนต์ kRO ชุด **10 มิถุนายน 2024** และมีชุดเริ่มต้น 44 ภาพ พร้อมภาพการ์ดมอนสเตอร์จริงเพิ่ม 66 ใบ ดูจำนวนและข้อจำกัดใน [รายงานนำเข้า](IMPORT_REPORT.md) ความครบอ้างถึงไคลเอนต์ชุดนี้ ไม่ครอบคลุมทุกแพตช์ของทุกเซิร์ฟเวอร์
 
-เพิ่ม [ชุดเตรียมเกม](prepared/README.md) อีก **6,926 รายการ** รวมเป็น **67,430 asset ID** มีฉากหลัง UI หมวก โล่ ชุดคลุม เพลง และฟอนต์ไทย พร้อม [game-pack.json](prepared/game-pack.json) และตัวอย่าง Canvas ที่ `preview/asset-lab/` ใช้ไฟล์ local ทั้งหมด
+เพิ่ม [ชุดเตรียมเกม](prepared/README.md) อีก **6,926 รายการ** รวมเป็น **67,496 asset ID** มีฉากหลัง UI หมวก โล่ ชุดคลุม เพลง และฟอนต์ไทย พร้อม [game-pack.json](prepared/game-pack.json) และตัวอย่าง Canvas ที่ `preview/asset-lab/` ใช้ไฟล์ local ทั้งหมด
 
 อ่าน metadata ก่อนเปิดภาพ: เริ่มจาก [catalog.json](catalog.json) แล้วเลือกดัชนีหมวดใน `library/indexes/` หรือค้นสกิลจาก [skill-assets.json](library/skill-assets.json) / ชื่อไฟล์จาก [search.tsv](library/search.tsv) จากนั้นอ่าน `.meta.json` ของไฟล์ที่ต้องการ ไม่ต้องวิเคราะห์รูปทั้งคลังซ้ำ
 
@@ -11,10 +11,10 @@
 ```text
 assets/ro/
   catalog.json                  # ดัชนีรวมและลิงก์ไปแต่ละ collection
-  starter-catalog.json          # 44 PNG/APNG ชุดเริ่มต้น
+  starter-catalog.json          # 110 ภาพ: ชุดเริ่มต้น44 + cardbmp66
   manifest.json                 # รายการดาวน์โหลดชุดเริ่มต้น
   characters/, monsters/        # ชุดเริ่มต้น แยก idle/attack/hurt/dead
-  items/, skills/               # ไอคอนชุดเริ่มต้น
+  items/, skills/               # ไอคอนชุดเริ่มต้นและภาพการ์ดจริง
   library/
     catalog.json                # 60,460 รายการจากไคลเอนต์
     inventory.json              # บัญชีไฟล์ต้นทางและ ACT ที่ไม่มี SPR คู่กัน

@@ -2,6 +2,7 @@ import type { AccountState } from '../../contracts/index.ts';
 import type { ValidatedContent } from '../../content/model.ts';
 import { nextRandom } from '../../content/random.ts';
 import { rollItemOptions } from '../build/item-options.ts';
+import { farmCardDrop } from './card-drops.ts';
 
 /** Pure integer accrual from a frozen rate/drop snapshot; never simulates kills. */
 export function reserveFarm(input: AccountState, fromMs: number, nowMs: number, nowIso: string, claimId: string, content: ValidatedContent): AccountState {
@@ -31,6 +32,10 @@ export function reserveFarm(input: AccountState, fromMs: number, nowMs: number, 
     const definitionId = snapshot.definition_pool[Math.floor(nextRandom(farm.loot_rng) * snapshot.definition_pool.length)]!;
     // D-062: option lines are rolled from the same server loot RNG, right after the item's own draws.
     items.push({ instance_id: `${claimId}_gear_${index}`, definition_id: definitionId, kind: 'equipment', rarity_id: rarity, locked: false, training: false, options: rollItemOptions(rarity, () => nextRandom(farm.loot_rng), content) });
+    if (snapshot.card_drops) {
+      const card = farmCardDrop(snapshot.card_drops, () => nextRandom(farm.loot_rng));
+      if (card) items.push({ instance_id: `${claimId}_card_${index}`, definition_id: card.definition_id, kind: 'card', rarity_id: card.rarity_id, level: 1, locked: false });
+    }
   }
   farm.reserved_through = nowIso;
   if (items.length || Object.values(vector).some(n => n > 0)) state.pending_rewards.push({ claim_id: claimId, kind: 'farm', resource_vector: vector, items, content_version: snapshot.content_version, reserved_at: nowIso, source_keys: [`farm:${nowMs - elapsed}:${nowMs}`], status: 'pending' });

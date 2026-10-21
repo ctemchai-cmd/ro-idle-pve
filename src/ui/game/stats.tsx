@@ -4,11 +4,13 @@ import { allocationQuote, characterJobBonus, rosterData as data } from '../../cl
 import { equipmentStats } from '../../client/equipment.ts';
 import type { GameContext } from './shell.tsx';
 import { Diff, PageHeader, friendNames, jobNames, seconds, statLabels } from './kit.tsx';
+import { cardStatUnits } from '../../client/slots.ts';
 import { CharacterNav } from './character-nav.tsx';
 
 const primaries: (keyof PrimaryStats)[] = ['str', 'agi', 'vit', 'int', 'dex', 'luk'];
 const base: (keyof CombatStats)[] = ['max_hp', 'max_sp', 'physical_attack', 'magical_attack', 'physical_defense', 'magical_defense', 'attack_speed', 'cast_speed'];
-const extra: (keyof CombatStats)[] = ['hit_bonus', 'evasion_bonus', 'crit_chance_bonus', 'crit_damage_bonus', 'crit_resistance', 'control_accuracy', 'control_resistance', 'penetration_percent', 'flat_penetration', 'armor_break_percent', 'outgoing_physical_bonus', 'outgoing_magical_bonus', 'outgoing_true_bonus', 'guard_percent', 'flat_damage_reduction', 'damage_taken_bonus', 'outgoing_healing_bonus', 'healing_received_bonus', 'flat_hp_regen', 'hp_regen_percent', 'flat_sp_regen', 'sp_regen_percent'];
+const mainStats = new Set<string>([...primaries, ...base]);
+const extra = (Object.keys(cardStatUnits) as (keyof CombatStats)[]).filter(key => !mainStats.has(key));
 
 /** Hexagon in the classic STR/AGI/VIT/INT/DEX/LUK order; draft values draw as a second layer. */
 function Radar({ value, draft, max }: { value: PrimaryStats; draft: PrimaryStats; max: number }) {

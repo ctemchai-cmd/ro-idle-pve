@@ -1,0 +1,48 @@
+
+> ro-idle-classic@0.1.0 build
+> npm run env:check && npm run assets:check:runtime && npm run content:generate && npm run content:check && npm run boundaries && npm run typecheck && vite build && node --import tsx scripts/game/build-output.ts && npm run secrets:check
+
+
+> ro-idle-classic@0.1.0 env:check
+> node --import tsx scripts/game/check-env.ts
+
+{"public_auth_config":"unconfigured","privileged_values_logged":false}
+
+> ro-idle-classic@0.1.0 assets:check:runtime
+> python3 scripts/build_runtime_assets.py --check --artifact-only
+
+{"pack_hash": "c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2", "assets": 720, "files": 1325, "download_policy": "all files in pack are deployable; fetch initial profile then actors/icons/scenery/audio on demand", "first_battle_budget_bytes": 8388608, "initial_profile_raw_bytes": 1582917, "manifest_bytes": 531246, "media_and_sidecar_bytes": 30108943, "pack_budget_bytes": 33554432}
+
+> ro-idle-classic@0.1.0 content:generate
+> node --import tsx scripts/game/generate-content.ts
+
+{"content_hash":"a46117a8526b00459cafd7d0e20985a1ff27f4a44e5a5dc49d719b6b0679c80f","documents":34,"schemas":16,"asset_payloads":0}
+
+> ro-idle-classic@0.1.0 content:check
+> node --import tsx scripts/game/check-content.ts
+
+{"content_hash":"a46117a8526b00459cafd7d0e20985a1ff27f4a44e5a5dc49d719b6b0679c80f","skills_including_enemy":137,"items":210,"statuses":28,"immutable":true}
+
+> ro-idle-classic@0.1.0 boundaries
+> node --import tsx scripts/game/check-boundaries.ts
+
+{
+  "passed": true,
+  "issues": []
+}
+
+> ro-idle-classic@0.1.0 typecheck
+> tsc --noEmit
+
+scripts/game/card-ui-fixture.ts(13,365): error TS2322: Type '{ id: string; roll: number; }[]' is not assignable to type '[] | [{ id: string; roll: number; }] | [{ id: string; roll: number; }, { id: string; roll: number; }] | [{ id: string; roll: number; }, { id: string; roll: number; }, { id: string; roll: number; }] | [{ id: string; roll: number; }, { ...; }, { ...; }, { ...; }] | [...]'.
+  Type '{ id: string; roll: number; }[]' is not assignable to type '[{ id: string; roll: number; }, { id: string; roll: number; }, { id: string; roll: number; }, { id: string; roll: number; }, { id: string; roll: number; }]'.
+    Target requires 5 element(s) but source may have fewer.
+src/client/store.ts(6,10): error TS2305: Module '"../domain/rewards/card-drops.ts"' has no exported member 'cardOrigins'.
+tests/game/ro-cards.test.ts(27,181): error TS2345: Argument of type '{ defense_element?: string | number | true | readonly (string | number | boolean | readonly (string | number | boolean | readonly (string | number | boolean | readonly (string | number | boolean | readonly (string | number | boolean | readonly (string | ... 4 more ... | null)[] | { ...; } | null)[] | { ...; } | null...' is not assignable to parameter of type '{ source: { instance_id: string; owner_actor_id: string; definition_id: string; origin_actor_id: string; origin_life_epoch: number; }; modifiers: Modifier[]; triggers: Trigger[]; defense_element?: "neutral" | ... 9 more ... | undefined; }'.
+  Types of property 'defense_element' are incompatible.
+    Type 'string | number | true | readonly (string | number | boolean | readonly (string | number | boolean | readonly (string | number | boolean | readonly (string | number | boolean | readonly (string | number | boolean | readonly (string | ... 4 more ... | null)[] | { ...; } | null)[] | { ...; } | null)[] | { ...; } | nul...' is not assignable to type '"neutral" | "water" | "earth" | "fire" | "wind" | "poison" | "holy" | "dark" | "ghost" | "undead" | undefined'.
+      Type 'string' is not assignable to type '"neutral" | "water" | "earth" | "fire" | "wind" | "poison" | "holy" | "dark" | "ghost" | "undead" | undefined'.
+tests/game/ro-cards.test.ts(44,252): error TS2339: Property 'attack_ratio' does not exist on type '{ attack_ratio: number | { level_param: string; } | { status_param: string; }; flat_power: number | { level_param: string; } | { status_param: string; }; } | { attack_ratio: number | { level_param: string; } | { ...; }; flat_power: number | ... 1 more ... | { ...; }; } | { ...; } | { ...; } | { ...; } | { ...; }'.
+  Property 'attack_ratio' does not exist on type '{ amount: number | { level_param: string; } | { status_param: string; }; }'.
+tests/game/ro-cards.test.ts(44,338): error TS2339: Property 'attack_ratio' does not exist on type '{ attack_ratio: number | { level_param: string; } | { status_param: string; }; flat_power: number | { level_param: string; } | { status_param: string; }; } | { attack_ratio: number | { level_param: string; } | { ...; }; flat_power: number | ... 1 more ... | { ...; }; } | { ...; } | { ...; } | { ...; } | { ...; }'.
+  Property 'attack_ratio' does not exist on type '{ amount: number | { level_param: string; } | { status_param: string; }; }'.

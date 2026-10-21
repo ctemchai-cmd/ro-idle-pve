@@ -166,7 +166,13 @@ export class AccountCommandRules extends AccountCreationRules {
       } else if (command.type === 'farm.set_stage') {
         state = reserveCurrent(state, `farm_${command.request_id}`); selectFarm(state, command.params.stage_id); code='FARM_STAGE_SELECTED';
       } else if (command.type === 'farm.claim') {
-        try { state = reserveFarm(state, time.farm_from_ms, time.now_ms, time.server_at, `farm_${command.request_id}`, this.content); state.daily_objectives.farm_claimed = true; code = 'FARM_RESERVED'; }
+        try {
+          // Settle the frozen old profile first; new card rules apply only to subsequent unpaid time.
+          state = reserveFarm(state, time.farm_from_ms, time.now_ms, time.server_at, `farm_${command.request_id}`, this.content);
+          const stage = storyStage(state.farm.rate_snapshot!.stage_id, this.content);
+          if (stage) state.farm.rate_snapshot = storyFarmSnapshot(stage, state, this.content);
+          state.daily_objectives.farm_claimed = true; code = 'FARM_RESERVED';
+        }
         catch (error) { if (error instanceof Error && /^[A-Z_]+$/.test(error.message)) reject(error.message); else throw error; }
       } else if (command.type === 'reward.claim') {
         const claim = state.pending_rewards.find(c => c.claim_id === command.params.claim_id);

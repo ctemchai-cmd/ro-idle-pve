@@ -66,6 +66,7 @@ export interface ProgramContext {
   offense: CombatStats; weapon_element: BattleActor['stat_blueprint']['weapon_element']; pre_cost_sp: number;
   skill_id: string; action_id: string; origin: 'skill' | 'normal' | 'periodic' | 'proc' | 'reflect' | 'system' | 'transfer';
   ancestry: readonly string[]; event_source?: BattleActor; event_target?: BattleActor; event_damage?: number;
+  damage_type?: 'physical' | 'magical' | 'true';
   selected: Record<string, BattleActor[]>; outcomes: HitOutcome[];
 }
 export type DamageEffect = Extract<Effect, { type: 'damage' }>;

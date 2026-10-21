@@ -26,13 +26,14 @@ export function moveActors(state: BattleCheckpoint, content: ValidatedContent, d
   if (!state.arena) return;
   // Summons are fixed markers: they neither move nor take part in separation.
   const actors = state.actors.filter(actor => actor.hp > 0 && actor.spatial && actor.kind !== 'summon').sort((a, b) => compareId(a.actor_id, b.actor_id));
-  const canMove = (actor: BattleActor) => dueIds.has(actor.actor_id) && actor.action_phase !== 'casting' && actor.action_policy.kind === 'rotation' && actor.action_policy.normal_attack_enabled && !actor.statuses.some(status => statusDefinition(content, status.status_id).tags.includes('hard_cc')) && actor.spatial!.move_speed > 0;
+  const movementSpeed = (actor: BattleActor) => actor.spatial!.move_speed * Math.max(0, 1 + actor.stats.move_speed_percent);
+  const canMove = (actor: BattleActor) => dueIds.has(actor.actor_id) && actor.action_phase !== 'casting' && actor.action_policy.kind === 'rotation' && actor.action_policy.normal_attack_enabled && !actor.statuses.some(status => statusDefinition(content, status.status_id).tags.includes('hard_cc')) && movementSpeed(actor) > 0;
   const next = actors.map(actor => {
     const s = actor.spatial!, target = normalTarget(actor, actors), t = target?.spatial;
     let x = s.x, y = s.y;
     if (t && canMove(actor)) {
       const dx = t.x - s.x, dy = t.y - s.y, distance = Math.hypot(dx, dy);
-      const step = Math.min(s.move_speed * MOTION_STEP_MS / 1000, Math.max(0, distance - Math.max(s.normal_range - 4, s.radius + t.radius)));
+      const step = Math.min(movementSpeed(actor) * MOTION_STEP_MS / 1000, Math.max(0, distance - Math.max(s.normal_range - 4, s.radius + t.radius)));
       if (distance > 0) { x += dx / distance * step; y += dy / distance * step; }
     }
     return { actor, x, y, target: target?.actor_id ?? null, movable: canMove(actor) };

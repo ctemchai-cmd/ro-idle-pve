@@ -3,7 +3,7 @@ const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),{cre
 const {chromium}=require(process.env.RO_PLAYWRIGHT_MODULE||'/private/tmp/ro-idle-prep/tools/node_modules/playwright-core');
 const root=path.resolve(__dirname,'..'),base='https://ro-idle-pve.vercel.app',checks=[],errors=[],mutations=[],prefix=process.env.RO_EVIDENCE_PREFIX||'task-063';
 if(!/^task-\d{3}$/.test(prefix))throw new Error('INVALID_EVIDENCE_PREFIX');
-const expectedContent=process.env.RO_EXPECT_CONTENT_HASH||(['task-068','task-069','task-070','task-071','task-072'].includes(prefix)?JSON.parse(fs.readFileSync(path.join(root,'src/generated/runtime-manifest.json'),'utf8')).content_hash:'768e12a49bf339711d44f501c3710374adbcd10d9eb74d6a2e6f9b8aa79330af');
+const expectedContent=process.env.RO_EXPECT_CONTENT_HASH||(['task-068','task-069','task-070','task-071','task-072','task-073','task-074'].includes(prefix)?JSON.parse(fs.readFileSync(path.join(root,'src/generated/runtime-manifest.json'),'utf8')).content_hash:'768e12a49bf339711d44f501c3710374adbcd10d9eb74d6a2e6f9b8aa79330af');
 const assert=(ok,message)=>{if(!ok)throw new Error(message);};let browser,profile,failure;
 (async()=>{
  const samples=[];
@@ -43,6 +43,14 @@ const assert=(ok,message)=>{if(!ok)throw new Error(message);};let browser,profil
  if(prefix==='task-072'){
   const definitions=manifest.build_files.find(row=>/^dist\/assets\/item-options-.*\.js$/.test(row.path));assert(definitions,'NO_OPENING_HEAL_BUNDLE');
   const actual=await(await fetch(base+'/'+definitions.path.replace(/^dist\//,''))).text();assert(actual.includes('opening_heal')&&actual.includes('opening_power')&&actual.includes('physical_regeneration'),'OPENING_HEAL_NOT_DEPLOYED');
+ }
+ if(['task-073','task-074'].includes(prefix)){
+  const shell=manifest.build_files.find(r=>/^dist\/assets\/shell-.*\.js$/.test(r.path)),definitions=manifest.build_files.find(r=>/^dist\/assets\/item-options-.*\.js$/.test(r.path));assert(shell&&definitions,'NO_CARD_BUNDLES');
+  const [ui,data]=await Promise.all([shell,definitions].map(async r=>(await fetch(base+'/'+r.path.replace(/^dist\//,''))).text()));
+  assert(['card-reveal','farm-card-rates','ออปชันเสริม','weapon_compatibility'].every(s=>ui.includes(s)),'CARDS_OPTIONS_WEAPON_UI_NOT_DEPLOYED');assert(['cards-ro-v1','card_drops','accepted_damage_types'].every(s=>data.includes(s)),'RO_CARD_DATA_NOT_DEPLOYED');
+  const pack=await(await fetch(base+'/ro/manifest.json',{cache:'no-store'})).json(),local=JSON.parse(fs.readFileSync(path.join(root,'runtime/ro/manifest.json'),'utf8'));
+  assert(pack.pack_hash===local.pack_hash&&Object.keys(pack.assets).filter(id=>id.startsWith('items.card-')).length===66,'NATIVE_CARD_PACK_NOT_DEPLOYED');
+  const artifact=pack.files.find(f=>f.path==='items/card-4001.webp'),image=await fetch(base+pack.base_url+artifact.path);assert(image.ok&&createHash('sha256').update(Buffer.from(await image.arrayBuffer())).digest('hex')===artifact.sha256,'ACTUAL_PORING_CARD_BYTES_MISMATCH');
  }
  checks.push({case_id:'hosted_shared_save_bundle',passed:true,path:row.path,sha256:createHash('sha256').update(bundle).digest('hex'),combined_reply:true});
  profile=fs.mkdtempSync(path.join(os.tmpdir(),'ro-save-hosted-'));const context=await chromium.launchPersistentContext(profile,{headless:true,executablePath:process.env.RO_CHROME_PATH||'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',viewport:{width:390,height:844}});browser=context.browser();

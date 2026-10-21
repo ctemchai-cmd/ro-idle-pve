@@ -2,6 +2,7 @@ import type { BattleActor, BattleCheckpoint, Effect, MetricRow, Selector, Trigge
 import type { ValidatedContent } from '../../content/model.ts';
 import type { ObjectValue } from '../../content/value.ts';
 import { checked, clampProbability, critChance, damageForHit, hitChance, rawPower } from '../math/index.ts';
+import { elementalResistance, statusResistance } from '../math/combat-modifiers.ts';
 import type { BattleEvent } from './model.ts';
 import { bindStatusParams, evaluatePredicate, resolvedNumber, selectTargets } from './program.ts';
 import type { DamageEffect, ProgramContext } from './program.ts';
@@ -45,6 +46,7 @@ export class EffectPipeline {
     sources.sort((a, b) => compareId(a.source.instance_id, b.source.instance_id));
     for (const source of sources) for (const trigger of source.triggers.slice().sort((a, b) => compareId(a.id, b.id))) {
       if (trigger.event !== event || !trigger.accepted_origins.includes(cause.origin)) continue;
+      if (trigger.accepted_damage_types && (!cause.damage_type || !trigger.accepted_damage_types.includes(cause.damage_type))) continue;
       const key = JSON.stringify([source.source.instance_id, trigger.id]);
       const context: ProgramContext = { ...this.context(carrier, source.source.definition_id, 'proc', cause.action_id), source: source.source, ancestry: cause.ancestry, event_source: event === 'battle_start' ? undefined : sourceOverride === null ? undefined : sourceOverride ?? this.actor(cause.source.origin_actor_id), event_target: target, event_damage: hpDamage };
       this.queue.push({ context, trigger, key });
@@ -101,7 +103,11 @@ export class EffectPipeline {
           this.ports.emit({ type: 'resource_change', actor_id: context.self.actor_id, target_id: target.actor_id, skill_id: context.skill_id, amount: target[effect.resource] - before, detail: effect.resource, ...this.attribution(context, effect) }); break;
         }
         case 'remove_status': this.removeStatus(effect, context, target); break;
-        case 'interrupt': this.ports.interrupt(target, context); break;
+        case 'interrupt': {
+          const resistance = clampProbability(target.stats.interrupt_resistance);
+          if (resistance <= 0 || nextRandom(this.state.rng) >= resistance) this.ports.interrupt(target, context);
+          break;
+        }
         case 'revive': this.ports.revive(target, resolvedNumber(effect.hp_ratio), resolvedNumber(effect.sp_ratio), { ...this.attribution(context, effect), skill_id: context.skill_id, detail: context.source.origin_actor_id }); break;
         case 'summon': if (!this.ports.summon) throw new Error('MISSING_ACTOR_FACTORY:summon'); else this.ports.summon(effect, context); break;
         case 'handler': {
@@ -116,6 +122,7 @@ export class EffectPipeline {
   }
   private power(formula: { id: string; params: unknown }, context: ProgramContext) { return rawPower(formula as { id: string; params: ObjectValue }, context.offense, context.pre_cost_sp, context.event_damage); }
   private damage(effect: DamageEffect, context: ProgramContext, target: BattleActor): void {
+    context = { ...context, damage_type: effect.damage_type };
     const raw = this.power(effect.formula, context);
     for (let hit = 0; hit < effect.hits && target.hp > 0; hit++) {
       const landed = nextRandom(this.state.rng) < (effect.hit_rule === 'always' ? 1 : hitChance(context.offense, target.stats));
@@ -123,11 +130,12 @@ export class EffectPipeline {
       if (!landed) { this.ports.emit({ type: 'miss', actor_id: context.self.actor_id, target_id: target.actor_id, skill_id: context.skill_id }); continue; }
       const critical = effect.can_crit && nextRandom(this.state.rng) < critChance(context.offense, target.stats);
       const element = effect.element === 'weapon' ? context.weapon_element : effect.element;
-      const defense = target.tags.find(tag => tag.startsWith('element:'))?.slice(8) ?? 'neutral';
+      const defense = target.stat_blueprint.permanent_sources.filter(source => source.defense_element).at(-1)?.defense_element ?? target.tags.find(tag => tag.startsWith('element:'))?.slice(8) ?? 'neutral';
       const chart = this.content.documents['combat-rules.json']!.element_chart as unknown as { values?: Record<string, Record<string, number>>; matrix?: Record<string, Record<string, number>> };
       const multiplier = (chart.values ?? chart.matrix ?? chart as Record<string, Record<string, number>>)[element]?.[defense];
       if (typeof multiplier !== 'number') throw new Error(`UNKNOWN_ELEMENT:${element}:${defense}`);
-      const mitigated = damageForHit(effect, raw, context.offense, target.stats, multiplier, critical);
+      const resistance = effect.damage_type === 'true' ? 1 : Math.max(0, 1 - elementalResistance(element, target.stats)) * (effect.damage_type === 'magical' ? Math.max(0, 1 - target.stats.magical_guard_percent) : 1);
+      const mitigated = damageForHit(effect, raw, context.offense, target.stats, multiplier * resistance, critical);
       this.metric(context, 'raw_damage', raw);
       const links = target.statuses.map(instance => ({ instance, ratio: statusDefinition(this.content, instance.status_id).damage_redirect ? resolvedNumber(bindStatusParams(statusDefinition(this.content, instance.status_id).damage_redirect!.ratio, instance.params)) : 0, recipient: this.actor(instance.source.origin_actor_id) }))
         .filter(link => link.ratio > 0 && link.recipient && link.recipient !== target && link.recipient.team === target.team && sourceAlive(link.instance.source, this.state.actors))
@@ -174,7 +182,7 @@ export class EffectPipeline {
     const definition = statusDefinition(this.content, effect.status_id), control = definition.tags.includes('hard_cc');
     const controlRoll = definition.restrictions.length > 0;
     const duration = resolvedNumber(effect.duration_ms); if (!Number.isSafeInteger(duration) || duration < 1) throw new Error('INVALID_STATUS_DURATION');
-    const chance = clampProbability(resolvedNumber(effect.chance) + (controlRoll ? context.offense.control_accuracy - target.stats.control_resistance : 0));
+    const chance = clampProbability(resolvedNumber(effect.chance) + (controlRoll ? context.offense.control_accuracy - target.stats.control_resistance : 0) - statusResistance(effect.status_id, target.stats));
     if (nextRandom(this.state.rng) >= chance) {
       if (control) this.metric(context, 'cc_resisted', 1);
       this.ports.emit({ type: 'status_resisted', actor_id: context.self.actor_id, target_id: target.actor_id, skill_id: context.skill_id, detail: effect.status_id, ...this.attribution(context, effect) }); return;

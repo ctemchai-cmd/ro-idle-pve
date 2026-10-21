@@ -1,0 +1,13 @@
+
+> ro-idle-classic@0.1.0 typecheck
+> tsc --noEmit
+
+src/ui/game/buddy.tsx(6,40): error TS6133: 'statHigherIsBetter' is declared but its value is never read.
+tests/game/ro-cards.test.ts(25,181): error TS2345: Argument of type '{ defense_element?: string | number | true | readonly (string | number | boolean | readonly (string | number | boolean | readonly (string | number | boolean | readonly (string | number | boolean | readonly (string | number | boolean | readonly (string | ... 4 more ... | null)[] | { ...; } | null)[] | { ...; } | null...' is not assignable to parameter of type '{ source: { instance_id: string; owner_actor_id: string; definition_id: string; origin_actor_id: string; origin_life_epoch: number; }; modifiers: Modifier[]; triggers: Trigger[]; defense_element?: "neutral" | ... 9 more ... | undefined; }'.
+  Types of property 'defense_element' are incompatible.
+    Type 'string | number | true | readonly (string | number | boolean | readonly (string | number | boolean | readonly (string | number | boolean | readonly (string | number | boolean | readonly (string | number | boolean | readonly (string | ... 4 more ... | null)[] | { ...; } | null)[] | { ...; } | null)[] | { ...; } | nul...' is not assignable to type '"neutral" | "water" | "earth" | "fire" | "wind" | "poison" | "holy" | "dark" | "ghost" | "undead" | undefined'.
+      Type 'string' is not assignable to type '"neutral" | "water" | "earth" | "fire" | "wind" | "poison" | "holy" | "dark" | "ghost" | "undead" | undefined'.
+tests/game/ro-cards.test.ts(42,252): error TS2339: Property 'attack_ratio' does not exist on type '{ attack_ratio: number | { level_param: string; } | { status_param: string; }; flat_power: number | { level_param: string; } | { status_param: string; }; } | { attack_ratio: number | { level_param: string; } | { ...; }; flat_power: number | ... 1 more ... | { ...; }; } | { ...; } | { ...; } | { ...; } | { ...; }'.
+  Property 'attack_ratio' does not exist on type '{ amount: number | { level_param: string; } | { status_param: string; }; }'.
+tests/game/ro-cards.test.ts(42,338): error TS2339: Property 'attack_ratio' does not exist on type '{ attack_ratio: number | { level_param: string; } | { status_param: string; }; flat_power: number | { level_param: string; } | { status_param: string; }; } | { attack_ratio: number | { level_param: string; } | { ...; }; flat_power: number | ... 1 more ... | { ...; }; } | { ...; } | { ...; } | { ...; } | { ...; }'.
+  Property 'attack_ratio' does not exist on type '{ amount: number | { level_param: string; } | { status_param: string; }; }'.

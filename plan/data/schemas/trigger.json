@@ -105,6 +105,18 @@
       "items": {
         "$ref": "effect.json"
       }
+    },
+    "accepted_damage_types": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "physical",
+          "magical",
+          "true"
+        ]
+      }
     }
   },
   "required": [

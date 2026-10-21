@@ -43,9 +43,16 @@ export function migrateAccountState(input: unknown, content: ValidatedContent): 
     const stage = state.story.selected_farm_stage ? storyStage(state.story.selected_farm_stage, content) : undefined;
     // Accrual already reserved stays paid; future accrual uses the current rate table.
     if (!stage) { state.farm.rate_snapshot = null; changes.push('farm rate cleared until a stage is selected'); }
-    else if (state.farm.rate_snapshot.content_version !== content.manifest.content_version || state.farm.rate_snapshot.rules_version !== content.manifest.rules_version || canonicalPool(state.farm.rate_snapshot.definition_pool) !== canonicalPool(storyFarmSnapshot(stage, state, content).definition_pool)) { state.farm.rate_snapshot = storyFarmSnapshot(stage, state, content); changes.push(`farm rate refreshed for ${stage.id}`); } // D-068: a new drop catalogue refreshes the pool
+    else if (state.farm.rate_snapshot.content_version !== content.manifest.content_version || state.farm.rate_snapshot.rules_version !== content.manifest.rules_version || canonicalPool(state.farm.rate_snapshot.definition_pool) !== canonicalPool(storyFarmSnapshot(stage, state, content).definition_pool)) { const hadCards = !!state.farm.rate_snapshot.card_drops; state.farm.rate_snapshot = storyFarmSnapshot(stage, state, content); if (!hadCards) delete state.farm.rate_snapshot.card_drops; changes.push(`farm rate refreshed for ${stage.id}`); } // D-068: a new drop catalogue refreshes the pool
   }
   for (const actor of state.roster) {
+    // D-099 corrects RO card slots. Cards already live in inventory: release only the incompatible assignment.
+    for (const [slot, progress] of Object.entries(actor.slot_progress)) for (let index = 0; index < progress.cards.length; index++) {
+      const id = progress.cards[index], item = id ? state.inventory.find(row => row.instance_id === id) : null;
+      if (item?.kind === 'card' && content.items[item.definition_id]?.slot !== slot) {
+        progress.cards[index] = null; changes.push(`${actor.character_id}.${slot}: card ${item.definition_id} returned to inventory (RO slot corrected)`);
+      }
+    }
     const investments = state.paid_ledger.filter(e => e.character_id === actor.character_id && e.feature_id === 'status' && e.refund_state === 'active');
     const invested = investments.reduce((n, e) => n + e.quantity, 0), total = data.progression.level_rows.find(r => r.level === actor.level)!.total_status_points;
     if (invested > total) {

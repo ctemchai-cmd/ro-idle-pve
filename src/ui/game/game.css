@@ -588,7 +588,12 @@ dialog.sheet .timeline-now { border-color: color-mix(in srgb, var(--accent) 55%,
 .daily-chest { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; } .daily-chest > span { display: inline-flex; align-items: center; gap: 3px; padding: 2px 7px; border-radius: 9px; background: var(--panel-2); }
 .daily-chest small { font-weight: 600; color: var(--ink-2); font-size: 11px; } .daily-got { margin-left: auto; }
 /* D-062 random option lines */
-.option-lines { display: flex; flex-wrap: wrap; gap: 2px 8px; margin-top: 2px; font-size: 11.5px; font-weight: 700; color: #7b3fd0; }
+.option-lines { display: grid; gap: 3px; width: 100%; min-width: 0; margin: 5px 0; padding: 0; list-style: none; font-size: 11.5px; line-height: 1.45; }
+.option-lines li { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 10px; padding: 2px 0; }
+.option-lines li > span { display: flex; align-items: baseline; gap: 5px; min-width: 0; color: var(--ink-2); overflow-wrap: anywhere; }
+.option-lines .ui-icon { flex: 0 0 11px; color: #9774cf; }
+.option-lines b { color: #7551b7; font-weight: 800; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.option-lines b.negative { color: var(--red); }
 /* TASK-051/037 Store */
 .store-seg { margin: 2px 10px 6px; }
 .shop-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 0 10px; }
@@ -647,3 +652,28 @@ dialog.sheet .timeline-now { border-color: color-mix(in srgb, var(--accent) 55%,
 
 .intro-hint { display: block; margin-top: 6px; padding: 4px 10px; border-radius: 8px; background: rgba(255, 209, 102, .92); color: #3a2400; font-style: normal; font-size: 12px; font-weight: 700; }
 .daily-carry { margin: 2px 0 0; font-size: 12px; font-weight: 700; color: var(--gold-2); }
+/* D-099 native card portraits and separate monster class / enhancement quality. */
+.card-grade { display: inline-flex; align-items: center; width: fit-content; max-width: 100%; border-radius: 5px; padding: 1px 5px; font-size: 9px; line-height: 1.5; letter-spacing: .04em; font-weight: 800; vertical-align: middle; white-space: nowrap; background: #e8f0fa; color: #47648a; }
+.card-grade.mini { background: #eee6fc; color: #734bb0; }
+.card-grade.mvp { background: #fff0cc; color: #9e6111; }
+.card-identity { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; min-width: 0; }
+.card-identity > div { display: grid; gap: 6px; min-width: 0; }
+.card-identity small { color: var(--ink-2); }
+.card-portrait { display: block; flex: 0 0 116px; max-width: 42%; border-radius: 7px; overflow: hidden; box-shadow: 0 4px 14px #23345b24; }
+.card-portrait .item-icon { display: block; width: 100%; height: auto; max-height: none; object-fit: contain; image-rendering: auto; }
+.bag-cell.card .item-icon { width: auto; height: 58px; max-width: 100%; object-fit: contain; image-rendering: auto; }
+.bag-cell.card > .card-grade { position: absolute; right: 2px; top: 2px; font-size: 8px; }
+.card-thumb .item-icon { width: auto; height: 100%; max-width: 100%; image-rendering: auto; }
+.card-effects { display: grid; gap: 6px; margin: 9px 0; padding-left: 17px; font-size: 12px; color: var(--ink-2); }
+.card-effects li::marker { color: #6b91d2; }
+.farm-card-rates { display: grid; gap: 5px; margin: 10px 0; font-size: 12px; }
+.farm-card-rates > span { display: flex; gap: 4px; }
+.farm-card-rates small { font-size: 10px; color: var(--ink-2); }
+.farm-card-finds { margin: 12px 0 0; font-size: 12px; }
+.farm-card-finds > div { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 7px; margin: 8px 0; }
+.farm-card-finds > div > button { position: relative; display: flex; flex-direction: column; align-items: center; min-width: 0; gap: 3px; border: 0; background: none; padding: 0; color: inherit; font: inherit; }
+.farm-card-finds .item-icon { width: 100%; height: auto; max-height: 100px; object-fit: contain; image-rendering: auto; }
+.farm-card-finds small { display: block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 9px; }
+.card-reveal { display: grid; justify-items: center; gap: 3px; width: 100%; min-width: 0; border: 0; background: none; padding: 0; color: inherit; font: inherit; }
+.card-reveal .item-icon { width: auto; height: 66px; max-width: 100%; object-fit: contain; image-rendering: auto; }
+.card-reveal b { font-size: 9px; font-weight: 600; overflow-wrap: anywhere; }

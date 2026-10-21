@@ -99,7 +99,8 @@ def resolve_asset(meta_ref, ro_root=RO):
     meta = read(meta_path)
     if meta.get('missing_dependencies') or meta.get('status') == 'source_dependencies_missing':
         raise ValueError('Unresolved source dependencies: ' + ref)
-    if meta.get('status') not in ['exported', 'prepared', 'downloaded', 'generated']:
+    reviewed_card = meta.get('schema_version') == 1 and meta.get('kind') == 'card_illustration' and meta.get('visual_review', {}).get('status') == 'reviewed' and meta.get('file', {}).get('frame_count') == 1
+    if meta.get('status') not in ['exported', 'prepared', 'downloaded', 'generated'] and not reviewed_card:
         raise ValueError(f"Unreviewed export status {meta.get('status')}: {ref}")
     collection = 'library' if ref.startswith('library/') else 'prepared' if ref.startswith('prepared/') else ''
     media_ref = relative_ref('/'.join(filter(None, [collection, meta['file']['path']])))
@@ -209,7 +210,7 @@ def build(output=OUT, data_root=DATA, ro_root=RO):
     raw_bytes = sum(row['bytes'] for row in files.values())
     initial_bytes = sum(files[path]['bytes'] for path in initial_files)
     index['sizes'] = {'media_and_sidecar_bytes': raw_bytes, 'initial_profile_raw_bytes': initial_bytes,
-                      'pack_budget_bytes': 27 * 1024 * 1024, 'first_battle_budget_bytes': 8 * 1024 * 1024,
+                      'pack_budget_bytes': 32 * 1024 * 1024, 'first_battle_budget_bytes': 8 * 1024 * 1024,
                       'download_policy': 'all files in pack are deployable; fetch initial profile then actors/icons/scenery/audio on demand'}
     index['sizes']['manifest_bytes'] = 0
     for _ in range(10):
@@ -218,7 +219,7 @@ def build(output=OUT, data_root=DATA, ro_root=RO):
             break
         index['sizes']['manifest_bytes'] = size
     if raw_bytes + len(encoded(index)) > index['sizes']['pack_budget_bytes']:
-        raise ValueError('Selected runtime pack exceeds27MiB raw budget (D-070)')
+        raise ValueError('Selected runtime pack exceeds32MiB raw budget (D-099 card illustrations)')
     output.mkdir(parents=True, exist_ok=True)
     payload_root = output / 'payload'
     payload_root.mkdir(exist_ok=True)

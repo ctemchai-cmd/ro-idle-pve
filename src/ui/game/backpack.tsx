@@ -3,16 +3,17 @@ import { useMemo, useState } from 'react';
 import { VirtualGrid } from './virtual-grid.tsx';
 import type { Modifier } from '../../contracts/index.ts';
 import { equipmentData, equipmentSlots, inventoryView, itemModifiers, itemSalvageQuote, rarityLabels, rarityRank, slotLabels, type EquipmentSlot } from '../../client/equipment.ts';
-import { cardInventory, salvageCardsQuote } from '../../client/slots.ts';
+import { cardInventory } from '../../client/slots.ts';
 import { gearGrowthOptions } from '../../client/gear-upgrades.ts';
 import type { GameContext } from './shell.tsx';
 import { CostChips, ItemIcon, PageHeader, Sheet, canPay, friendNames, jobNames, reasonText, resourceNames, statLabels, type Wallet } from './kit.tsx';
 import { OptionLines, StatChanges, modifierText } from './buddy.tsx';
 import { ClassIcon } from './class-icon.tsx';
+import { CardGrade } from './card-grade.tsx';
+import { CardSheet } from './card-sheet.tsx';
 
 type Filter = 'all' | EquipmentSlot | 'card';
 type Gear = ReturnType<typeof inventoryView>[number];
-type Card = ReturnType<typeof cardInventory>[number];
 const growthReasons: Record<string, string> = { ITEM_EQUIPPED: 'ถอดชิ้นนี้ก่อนนำไปผสม', ITEM_LOCKED: 'ปลดล็อกก่อนนำไปผสม', TRAINING_WEAPON_RESTRICTED: 'อาวุธฝึกหัดผสมและอัป Tier ไม่ได้', RARITY_MAX_REACHED: 'Supreme เป็น rarity สูงสุดแล้ว', TIER_MAX_REACHED: 'ถึง Tier สูงสุดของรุ่นนี้แล้ว', NOT_ENOUGH_MATCHING_EQUIPMENT: 'ต้องมีของว่างไม่ล็อก 3 ชิ้น ชนิด/Tier/rarity เดียวกัน', ITEM_LEVEL_REQUIRED: 'ผู้สวมต้องมีเลเวลถึง Tier ถัดไป', BUILD_LOCKED_DURING_BATTLE: 'จบไฟต์ก่อนพัฒนาของ' };
 const quoteText = (q: Partial<Wallet>) => Object.entries(q).filter(([, n]) => n).map(([k, n]) => `${resourceNames[k as keyof Wallet] ?? k} ${n!.toLocaleString()}`).join(' · ') || 'ไม่ได้อะไร';
 function BaseChange({ before, after }: { before: Modifier[]; after: Modifier[] }) {
@@ -43,15 +44,6 @@ function GearSheet({ context, row, close }: { context: GameContext; row: Gear; c
   </Sheet>;
 }
 
-function CardSheet({ context, card, close }: { context: GameContext; card: Card; close: () => void }) {
-  const { state, pack, submit, locked } = context;
-  return <Sheet title={card.name} onClose={close}>
-    <div className="slot-summary"><span className={`icon-frame big rarity-${card.item.rarity_id}`}><ItemIcon id={card.iconId} pack={pack} /></span><div><b>{rarityLabels[card.item.rarity_id]} · การ์ด{slotLabels[card.definition.slot as EquipmentSlot]} · Lv.{card.item.level}</b><small className="mods">{card.modifiers.map(modifierText).join(' · ')}</small><small>{card.owner ? `ใส่โดย ${friendNames[card.owner.character_id]}` : 'ยังไม่ได้ใส่'}</small></div></div>
-    <p className="hint">ใส่การ์ดได้จากหน้าตัวละคร › ช่องอุปกรณ์ › อัปเกรด › การ์ด</p>
-    {card.price ? <div className="row"><CostChips cost={card.price} wallet={state.wallet} pack={pack} /><button className="btn small primary" disabled={locked || !canPay(state.wallet, card.price)} onClick={() => void submit('card.upgrade', { card_instance_id: card.item.instance_id, target_level: card.item.level + 1 })}>อัป Lv.{card.item.level + 1}</button></div> : <p className="hint">ระดับสูงสุดแล้ว</p>}
-    <div className="row"><button className="btn ghost" disabled={locked} onClick={() => void submit('equipment.lock', { item_instance_id: card.item.instance_id, locked: !card.item.locked })}>{card.item.locked ? 'ปลดล็อก' : 'ล็อก'}</button><button className="btn danger-outline" disabled={locked || card.item.locked || !!card.owner} onClick={() => void submit('card.salvage', { instance_ids: [card.item.instance_id] }).then(ok => { if (ok) close(); })}>ย่อย ({quoteText(salvageCardsQuote([card.item]))})</button></div>
-  </Sheet>;
-}
 
 export function BackpackPage({ context }: { context: GameContext }) {
   const { state, pack, submit, locked, go } = context, [filter, setFilter] = useState<Filter>('all'), [open, setOpen] = useState<string | null>(null), [bulk, setBulk] = useState<string[] | null>(null);
@@ -80,8 +72,8 @@ export function BackpackPage({ context }: { context: GameContext }) {
       if (row.kind === 'gear') { const g = row.g, selectable = !g.owner && !g.item.locked, picked = bulk?.includes(g.item.instance_id); return <button key={g.item.instance_id} data-id={g.item.instance_id} className={`bag-cell rarity-${g.item.rarity_id} ${picked ? 'picked' : ''} ${bulk && !selectable ? 'dim' : ''}`} aria-label={`${g.name} ${rarityLabels[g.item.rarity_id]}${g.owner ? ' สวมอยู่' : ''}`} onClick={() => tap(g.item.instance_id, selectable)}>
         <ItemIcon id={g.iconId} pack={pack} />{g.owner && <i className="e-badge" title={`สวมโดย ${friendNames[g.owner.character_id]}`}>E</i>}{g.item.locked && <i className="lock-mark"><Icon name="lock" /></i>}<small>Lv{g.definition.tier_level}</small>{picked && <i className="check"><Icon name="check" /></i>}
       </button>; }
-      const c = row.c; return <button key={c.item.instance_id} className={`bag-cell card rarity-${c.item.rarity_id} ${bulk ? 'dim' : ''}`} aria-label={`${c.name} การ์ด`} onClick={() => { if (!bulk) setOpen(c.item.instance_id); }}>
-        <ItemIcon id={c.iconId} pack={pack} />{c.owner && <i className="e-badge">E</i>}{c.item.locked && <i className="lock-mark"><Icon name="lock" /></i>}<small>C{c.item.level}</small>
+      const c = row.c; return <button key={c.item.instance_id} className={`bag-cell card rarity-${c.item.rarity_id} ${bulk ? 'dim' : ''}`} data-card-grade={c.origin?.grade} aria-label={`${c.name} การ์ด`} onClick={() => { if (!bulk) setOpen(c.item.instance_id); }}>
+        <ItemIcon id={c.iconId} pack={pack} />{c.origin?.grade!=='normal'&&<CardGrade grade={c.origin?.grade} />}{c.owner && <i className="e-badge">E</i>}{c.item.locked && <i className="lock-mark"><Icon name="lock" /></i>}<small>C{c.item.level}</small>
       </button>;
     }} />
     {!shownGear.length && !shownCards.length && <p className="hint center">ยังไม่มีของในหมวดนี้ · ได้จากฟาร์มอัตโนมัติและรางวัลผ่านด่าน</p>}

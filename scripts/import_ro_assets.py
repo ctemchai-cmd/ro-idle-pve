@@ -87,19 +87,20 @@ def entries_from_manifest(manifest):
                         "render_parameters": params, "client_variant": provider["client_variant"],
                     },
                 })
-    provider = manifest["providers"]["divine_pride"]
     for icon in manifest["icons"]:
+        provider_name = icon.get("provider", "divine_pride")
+        provider = manifest["providers"][provider_name]
         entity = "skill" if icon["category"] == "skills" else "item"
         entries.append({
             "id": f'{icon["category"]}.{icon["slug"]}',
             "name": icon["name"], "category": icon["category"],
-            "kind": "icon", "game_id": icon["game_id"],
+            "kind": icon.get("kind", "icon"), "game_id": icon["game_id"],
             "path": f'{icon["category"]}/{icon["slug"]}.png',
             "tags": ["ragnarok_online", "icon", icon["slug"], *icon["tags"]],
             "state": None, "direction": None, "appearance": None, "anchor": None,
             "source": {
-                "provider": "divine_pride",
-                "page_url": f'https://www.divine-pride.net/database/{entity}/{icon["game_id"]}',
+                "provider": provider_name,
+                "page_url": icon.get("page_url", f'https://www.divine-pride.net/database/{entity}/{icon["game_id"]}'),
                 "download_url": provider["base_url"] + icon["image_path"],
             },
         })

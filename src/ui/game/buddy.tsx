@@ -7,6 +7,7 @@ import { cardInventory, cardStatUnits, nextRefineChance, refundEnchant, salvageC
 import type { GameContext } from './shell.tsx';
 import { ClassIcon } from './class-icon.tsx';
 import { orderedCharacters } from './character-nav.tsx';
+import { CardGrade } from './card-grade.tsx';
 import { ActorCanvas, CostChips, Diff, ItemIcon, PageHeader, Sheet, canPay, friendNames, iconUrl, jobNames, lookOf, reasonText, resourceNames, seconds, statLabels, type Wallet } from './kit.tsx';
 
 const leftSlots: EquipmentSlot[] = ['weapon', 'armor', 'accessory'], rightSlots: EquipmentSlot[] = ['head', 'garment', 'shoes'];
@@ -14,8 +15,14 @@ const roots = Object.keys(data.class_tree) as RootJob[];
 const enchantLines = { offense: 'Offense · ATK/MATK', vitality: 'Vitality · HP', precision: 'Precision · DEX' } as const;
 type ItemRow = ReturnType<typeof inventoryView>[number];
 /** D-062 option lines in their own colour so players can tell rolled lines from the base item stats. */
-export function OptionLines({ item }: { item: Parameters<typeof itemOptions>[0] }) { const lines = itemOptions(item); return lines.length ? <small className="option-lines">{lines.map((m, i) => <span key={i}><Icon name="sparkles" /> {modifierText(m)}</span>)}</small> : null; }
-export const modifierText = (m: Modifier) => { const ratio = m.op === 'add_percent' || cardStatUnits[m.stat] === 'ratio'; return `${statLabels[m.stat as keyof CombatStats] ?? m.stat} +${(Number(m.value) * (ratio ? 100 : 1)).toLocaleString('th-TH', { maximumFractionDigits: 2 })}${ratio ? '%' : ''}`; };
+export function OptionLines({ item }: { item: Parameters<typeof itemOptions>[0] }) {
+  const lines = itemOptions(item);
+  return lines.length ? <ul className="option-lines" aria-label="ออปชันเสริม">{lines.map((m, i) => <li key={i} data-option-stat={m.stat}>
+    <span><Icon name="sparkles" />{statLabels[m.stat as keyof CombatStats] ?? m.stat}</span><b className={Number(m.value) < 0 ? 'negative' : ''}>{modifierValue(m)}</b>
+  </li>)}</ul> : null;
+}
+const modifierValue = (m: Modifier) => { const ratio = m.op === 'add_percent' || cardStatUnits[m.stat] === 'ratio', value = Number(m.value); return `${value >= 0 ? '+' : ''}${(value * (ratio ? 100 : 1)).toLocaleString('th-TH', { maximumFractionDigits: 2 })}${ratio ? '%' : ''}`; };
+export const modifierText = (m: Modifier) => `${statLabels[m.stat as keyof CombatStats] ?? m.stat} ${modifierValue(m)}`;
 export function StatChanges({ before, after }: { before: { stats: CombatStats; intervalMs: number }; after: { stats: CombatStats; intervalMs: number } }) {
   const keys = (Object.keys(after.stats) as (keyof CombatStats)[]).filter(k => before.stats[k] !== after.stats[k]);
   return <div className="stat-changes" aria-label="ค่าก่อนและหลัง">{keys.length ? keys.map(k => <p key={k}><span>{statLabels[k] ?? k}</span><Diff before={before.stats[k]} after={after.stats[k]} keyName={k} /></p>) : <p><span>ค่าต่อสู้</span><span className="diff-same">เท่าเดิม</span></p>}
@@ -71,9 +78,10 @@ function UpgradeSheet({ context, actor, slot, close }: { context: GameContext; a
       </button>; })}</div>
       {progress.cards[socket] && <button className="btn small ghost" disabled={locked} onClick={() => void submit('card.unassign', { ...params, card_slot: socket })}>ถอดการ์ดช่อง {socket + 1}</button>}
       {cards.length ? <div className="card-list">{cards.map(c => <button key={c.item.instance_id} className={`list-row ${cardId === c.item.instance_id ? 'on' : ''}`} onClick={() => setCardId(c.item.instance_id)}>
-        <span className={`icon-frame rarity-${c.item.rarity_id}`}><ItemIcon id={c.iconId} pack={pack} /></span><span className="row-main"><b>{c.name}</b><small>{rarityLabels[c.item.rarity_id]} · Lv.{c.item.level}{c.owner ? ` · ใส่โดย ${friendNames[c.owner.character_id]}` : ''}</small></span>
-      </button>)}</div> : <p className="hint">ยังไม่มีการ์ดสำหรับช่องนี้ · การ์ดจะได้จากกาชาในอัปเดตถัดไป</p>}
+        <span className={`icon-frame card-thumb rarity-${c.item.rarity_id}`}><ItemIcon id={c.iconId} pack={pack} /></span><span className="row-main"><b>{c.name} <CardGrade grade={c.origin?.grade} /></b><small>{rarityLabels[c.item.rarity_id]} · Lv.{c.item.level}{c.owner ? ` · ใส่โดย ${friendNames[c.owner.character_id]}` : ''}</small></span>
+      </button>)}</div> : <p className="hint">ยังไม่มีการ์ดสำหรับช่องนี้ · หาได้จากฟาร์ม AFK และกาชาการ์ด</p>}
       {card && <div className="detail-box"><p>{card.modifiers.map((m, i) => <span key={i}>{modifierText(m)}{card.nextModifiers ? ` → ${modifierText(card.nextModifiers[i]!)}` : ''}</span>)}</p>
+        <ul className="card-effects">{card.effects.map((text,i)=><li key={i}>{text}</li>)}</ul>
         {cardPreview && <><StatChanges before={cardPreview.before} after={cardPreview.after} /><button className="btn primary wide" disabled={locked} onClick={() => void submit('card.assign', { ...params, card_slot: socket, card_instance_id: card.item.instance_id })}>ใส่การ์ดช่อง {socket + 1}</button></>}
         {card.price ? <div className="row"><CostChips cost={card.price} wallet={state.wallet} pack={pack} /><button className="btn small" disabled={locked || !canPay(state.wallet, card.price)} onClick={() => void submit('card.upgrade', { card_instance_id: card.item.instance_id, target_level: card.item.level + 1 })}>อัปการ์ด Lv.{card.item.level + 1}</button></div> : <p className="hint">การ์ดระดับสูงสุดแล้ว</p>}
         <div className="row"><button className="btn small ghost" disabled={locked} onClick={() => void submit('equipment.lock', { item_instance_id: card.item.instance_id, locked: !card.item.locked })}>{card.item.locked ? 'ปลดล็อก' : 'ล็อก'}</button>
@@ -85,7 +93,7 @@ function UpgradeSheet({ context, actor, slot, close }: { context: GameContext; a
 
 function ChangeSheet({ context, actor, slot, close }: { context: GameContext; actor: Character; slot: EquipmentSlot; close: () => void }) {
   const { state, pack, submit, locked } = context, [picked, setPicked] = useState<string | null>(null);
-  const rows = useMemo(() => inventoryView(state, actor.character_id).filter(r => r.slot === slot).sort((a, b) => b.definition.required_level - a.definition.required_level || (rarityRank[b.item.rarity_id] ?? 0) - (rarityRank[a.item.rarity_id] ?? 0) || Number(!!a.reason) - Number(!!b.reason)), [state, actor.character_id, slot]);
+  const rows = useMemo(() => inventoryView(state, actor.character_id).filter(r => r.slot === slot && (slot !== 'weapon' || r.definition.weapon_type === equipmentData.weapon_compatibility[actor.job_id])).sort((a, b) => b.definition.required_level - a.definition.required_level || (rarityRank[b.item.rarity_id] ?? 0) - (rarityRank[a.item.rarity_id] ?? 0) || Number(!!a.reason) - Number(!!b.reason)), [state, actor.character_id, actor.job_id, slot]);
   const current = actor.equipment[slot], price = equipmentData.targeted_weapon_purchase.cost_rows.find(r => r.tier_level === 1)!.gold, weapon = equipmentData.weapon_compatibility[actor.job_id]!;
   const fit: Record<string, string> = { ITEM_LEVEL_REQUIRED: 'เลเวลยังไม่ถึง', WEAPON_INCOMPATIBLE: 'อาชีพนี้ใช้ไม่ได้', ITEM_SLOT_MISMATCH: 'ชนิดช่องไม่ตรง' };
   return <Sheet title={`เปลี่ยน${slotLabels[slot]} · ${friendNames[actor.character_id]}`} onClose={close} className="tall">
@@ -98,7 +106,7 @@ function ChangeSheet({ context, actor, slot, close }: { context: GameContext; ac
           <span className="row-main"><b>{r.name}</b><small>{rarityLabels[r.item.rarity_id]} · Lv.{r.definition.required_level}{r.item.training ? ' · ฝึกหัด' : ''}{r.item.locked && <> · <Icon name="lock" /> ล็อก</>}</small><small className="mods">{mods.slice(0, 2).map(modifierText).join(' · ')}</small></span>
           <span className="row-side">{mine ? <em className="tag on">สวมอยู่</em> : r.owner ? <em className="tag">{friendNames[r.owner.character_id]}</em> : r.reason ? <em className="tag warn">{fit[r.reason] ?? r.reason}</em> : null}</span>
         </button>
-        {open && <div className="list-detail">{r.reason ? <p className="hint warn">{fit[r.reason] ?? reasonText[r.reason] ?? r.reason}</p> : mine ? <div className="row"><p className="hint">กำลังสวมอยู่</p><button className="btn small ghost" disabled={locked} onClick={() => void submit('equipment.unequip', { character_id: actor.character_id, slot })}>ถอดออก</button></div>
+        {open && <div className="list-detail"><OptionLines item={r.item} />{r.reason ? <p className="hint warn">{fit[r.reason] ?? reasonText[r.reason] ?? r.reason}</p> : mine ? <div className="row"><p className="hint">กำลังสวมอยู่</p><button className="btn small ghost" disabled={locked} onClick={() => void submit('equipment.unequip', { character_id: actor.character_id, slot })}>ถอดออก</button></div>
           : <>{preview && <StatChanges before={preview.before} after={preview.after} />}{r.owner && <p className="hint">ย้ายจาก {friendNames[r.owner.character_id]} · ช่องของเขาจะว่าง</p>}<button className="btn primary wide" disabled={locked} onClick={() => void submit('equipment.equip', { character_id: actor.character_id, slot, item_instance_id: r.item.instance_id }).then(ok => { if (ok) close(); })}>{r.owner ? 'ย้ายมาสวม' : 'สวมใส่'}</button></>}</div>}
       </div>; })}
       {!rows.length && <p className="hint">ยังไม่มีของสำหรับช่องนี้ · ได้จากรางวัลฟาร์มและผ่านด่าน</p>}</div>

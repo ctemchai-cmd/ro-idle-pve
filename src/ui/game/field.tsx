@@ -16,6 +16,10 @@ import { BattleHistory } from '../battle-history.tsx';
 import type { ChallengeTarget, GameContext } from './shell.tsx';
 import { ResIcon, Sheet, compact, duration, friendNames, full, iconUrl, mapNames, resourceNames, type Wallet } from './kit.tsx';
 import { ClassIcon } from './class-icon.tsx';
+import { cardOrigin, cardView } from '../../client/slots.ts';
+import { CardGrade } from './card-grade.tsx';
+import { CardSheet } from './card-sheet.tsx';
+import { ItemIcon } from './kit.tsx';
 
 const FARM_CAP_MS = 12 * 3600 * 1000;
 /** Boss look per stage (D-056): pooled mini-boss skins, except the chapter-final stage keeps its authored boss. */
@@ -190,13 +194,18 @@ function FarmSheet({ context, close }: { context: GameContext; close: () => void
   // Farm windows are also settled into claims by farm-stage changes and boss wins; "collect all" takes every one.
   const waiting = (Object.keys(state.wallet) as (keyof Wallet)[]).map(k => [k, state.pending_rewards.reduce((sum, c) => sum + c.resource_vector[k], 0)] as const).filter(([, n]) => n > 0);
   const items = state.pending_rewards.reduce((sum, c) => sum + c.items.length, 0);
+  const [collectedCardIds,setCollectedCardIds]=useState<string[]>([]);
+  const [openCardId,setOpenCardId]=useState<string|null>(null);
+  const foundCards=[...state.pending_rewards.flatMap(c=>c.items).filter((i):i is Extract<typeof i,{kind:'card'}>=>i.kind==='card'),...state.inventory.filter((i):i is Extract<typeof i,{kind:'card'}>=>i.kind==='card'&&collectedCardIds.includes(i.instance_id))].map(item=>cardView(item,state));
+  const openCard=foundCards.find(card=>card.item.instance_id===openCardId);
   async function collectAll() {
     if (claiming) return; setClaiming(true);
     try {
       if (snapshot && elapsed >= 1000 && !await submit('farm.claim', {})) return;
+      const cardIds=(context.latest()?.pending_rewards??[]).flatMap(c=>c.items).filter(i=>i.kind==='card').map(i=>i.instance_id);
       let collected = 0;
       for (const claim of context.latest()?.pending_rewards ?? []) { if (!await submit('reward.claim', { claim_id: claim.claim_id })) break; collected++; }
-      if (collected) toast(`รับรางวัลแล้ว ${collected} รายการ`);
+      if (collected) { const taken=cardIds.filter(id=>context.latest()?.inventory.some(item=>item.instance_id===id)); setCollectedCardIds(ids=>[...new Set([...ids,...taken])]); toast(`รับรางวัลแล้ว ${collected} รายการ${taken.length?` · การ์ด ${taken.length} ใบ`:''}`); }
     } finally { setClaiming(false); }
   }
   const rates = snapshot ? (Object.entries(snapshot.per_hour) as [keyof Wallet, number][]).filter(([, n]) => n > 0) : [];
@@ -205,10 +214,16 @@ function FarmSheet({ context, close }: { context: GameContext; close: () => void
     {snapshot ? <div className="afk-progress"><div className="afk-time"><b>{duration(elapsed)}</b><small>/ 12:00:00 · ฟาร์ม {snapshot.stage_id}</small></div><span className="bar gold"><i style={{ width: `${elapsed / FARM_CAP_MS * 100}%` }} /></span>
       <div className="rate-chips">{rates.map(([k, n]) => <span key={k} title={`${resourceNames[k]} ต่อชั่วโมง`}><ResIcon pack={pack} k={k} />{compact(n)}<small>/ชม.</small></span>)}</div></div>
       : <p className="hint">ผ่านด่าน 1-1 เพื่อเริ่มฟาร์มอัตโนมัติ</p>}
+    {snapshot?.card_drops?<div className="farm-card-rates"><b>การ์ด {(snapshot.card_drops.chance_per_million/10000).toLocaleString('th-TH',{maximumFractionDigits:2})}% / รอบ 5 นาที</b>
+      <span>{['normal','mini','mvp'].filter(grade=>snapshot.card_drops!.definition_pool.some(id=>cardOrigin(id)?.grade===grade)).map(grade=><CardGrade key={grade} grade={grade} />)}</span>
+      <small>คุณภาพ Bronze {(snapshot.card_drops.quality_weights.bronze/10000).toLocaleString('th-TH',{maximumFractionDigits:2})}% · Silver {(snapshot.card_drops.quality_weights.silver/10000).toLocaleString('th-TH',{maximumFractionDigits:2})}% · Gold {(snapshot.card_drops.quality_weights.gold/10000).toLocaleString('th-TH',{maximumFractionDigits:2})}%</small>
+    </div>:snapshot?<p className="hint">รับของที่สะสมไว้รอบนี้ก่อน แล้วจะเริ่มสะสมการ์ดจากฟาร์ม</p>:null}
     {(waiting.length > 0 || items > 0) && <div className="waiting-box"><small>รอรับ {state.pending_rewards.length} รายการ{snapshot && elapsed >= 1000 ? ' + ช่วงฟาร์มล่าสุด' : ''}</small>
       <p className="reward-line">{waiting.map(([k, n]) => <span key={k}><ResIcon pack={pack} k={k} />{compact(n)}</span>)}{items ? <span><Icon name="gift" /> {items} ชิ้น</span> : null}</p></div>}
     <button className="btn primary wide big" disabled={locked || claiming || !ready} onClick={() => void collectAll()}>{claiming ? 'กำลังรับ…' : 'รับทั้งหมด'}</button>
+    {foundCards.length>0&&<section className="farm-card-finds" aria-label="การ์ดที่ได้รับ"><b>การ์ดที่พบ · {foundCards.length} ใบ</b><div>{foundCards.slice(0,12).map(c=><button key={c.item.instance_id} title={c.name} aria-label={`ดู${c.name}`} onClick={()=>setOpenCardId(c.item.instance_id)} data-card-definition={c.definition.id}><ItemIcon id={c.iconId} pack={pack} /><CardGrade grade={c.origin?.grade} /><small>{c.name}</small></button>)}</div>{foundCards.length>12&&<small>และอีก {foundCards.length-12} ใบในกระเป๋า</small>}</section>}
     <p className="hint center-text">สะสมตามเวลาจริงสูงสุด 12 ชั่วโมง · ของดรอปสุ่มตอนกดรับ</p>
+    {openCard&&<CardSheet context={context} card={openCard} close={()=>setOpenCardId(null)}/>}
   </Sheet>;
 }
 

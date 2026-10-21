@@ -1,0 +1,81 @@
+ok   python3 plan/checks/progression.py --write-report
+ok   python3 plan/checks/combat.py --write-report
+ok   python3 plan/checks/classes.py
+FAIL python3 plan/checks/equipment.py
+    {
+      "case_id": "card_ghostring",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": false,
+      "error": "('assets/ro/items/card-4047.meta.json', 'items/card-4047.webp')"
+    },
+    {
+      "case_id": "card_deviling",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": false,
+      "error": "('assets/ro/items/card-4174.meta.json', 'items/card-4174.webp')"
+    }
+  ]
+}
+FAIL python3 plan/checks/economy.py
+{
+  "checks": 12,
+  "passed": false,
+  "failures": [
+    {
+      "case_id": "gacha_pool_rates",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": false,
+      "error": ""
+    }
+  ]
+}
+ok   python3 plan/checks/levels.py
+ok   python3 plan/checks/ui.py --write-report
+FAIL python3 plan/checks/architecture.py --write-report
+{
+  "checks": 25,
+  "passed": false,
+  "failures": [
+    {
+      "case_id": "battle_checkpoint_fields_and_regen_timers",
+      "acceptance": [
+        "AC-01",
+        "AC-07",
+        "AC-08"
+      ],
+      "passed": false,
+      "error": "SCHEMA: 'neutral_resistance' is a required property"
+    }
+  ]
+}
+ok   python3 plan/checks/composition.py --write-report
+ok   manifest
+FAIL python3 plan/checks/readiness.py
+  "passed": false,
+  "failures": [
+    {
+      "case_id": "all_M0_prerequisites_and_fresh_evidence",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": false,
+      "error": "9"
+    },
+    {
+      "case_id": "actor_and_presentation_references",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": false,
+      "error": "('assets/ro/items/card-4029.meta.json', 'items/card-4029.webp')"
+    }
+  ]
+}

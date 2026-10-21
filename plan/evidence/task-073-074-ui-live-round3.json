@@ -1,0 +1,83 @@
+{
+  "task_ids": [
+    "TASK-073",
+    "TASK-074"
+  ],
+  "passed": true,
+  "error": null,
+  "errors": [],
+  "checks": [
+    "12h real AFK reservation/claim earns native cards; actual signed receipt retry keeps revision/inventory and loot RNG fixed",
+    "Actual Knight and Wizard pickers show only their own weapon family including high-level locked choices; saved equip/reload retains five vertically aligned colored option values",
+    "Normal/Mini/MVP native portrait and actual proc details render in real card sheet; bag/slot/picker options fit320/390px without inspection saves",
+    "An actual AFK-earned card is assigned through its real slot UI, persists after reload and retains one canonical inventory instance",
+    "Real card gacha shows native art, monster name, grade/quality/slot and opens the same read-only inspection without extra save requests"
+  ],
+  "measurements": {
+    "farm": {
+      "earned": 59,
+      "grades": {
+        "normal": 58,
+        "mini": 1
+      },
+      "inventory": 212,
+      "commands": [
+        "farm.claim",
+        "reward.claim"
+      ]
+    },
+    "options": [
+      {
+        "text": "ATK+2%",
+        "y": 720.84375,
+        "valueColor": "rgb(117, 81, 183)"
+      },
+      {
+        "text": "MATK+2.8%",
+        "y": 744.515625,
+        "valueColor": "rgb(117, 81, 183)"
+      },
+      {
+        "text": "HP+6.4%",
+        "y": 768.1875,
+        "valueColor": "rgb(117, 81, 183)"
+      },
+      {
+        "text": "โอกาสคริ+2.2%",
+        "y": 791.859375,
+        "valueColor": "rgb(117, 81, 183)"
+      },
+      {
+        "text": "DEF+8.8%",
+        "y": 815.53125,
+        "valueColor": "rgb(117, 81, 183)"
+      }
+    ],
+    "earned_assignment": {
+      "definition": "card_kaho",
+      "name": "การ์ดคาโฮ",
+      "slot": "weapon",
+      "level": 1,
+      "quality": "gold"
+    },
+    "option_line_counts_checked": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "commands": [
+    "account.create",
+    "farm.claim",
+    "reward.claim",
+    "equipment.equip",
+    "card.assign",
+    "gacha.pull"
+  ],
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "balance_simulation": false,
+  "scope": "Disposable local Lv40 Knight/Wizard with authored multiweapon/options/grade fixtures and12h stage8-20 farm clock. Cards are actually earned/claimed via API, not injected pending rewards. Not a balance or owner-cloud latency claim."
+}

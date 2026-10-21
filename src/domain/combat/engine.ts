@@ -4,6 +4,7 @@ import { fixedEnemyBlueprint } from '../build/story.ts';
 import type { Result, ValidatedContent } from '../../content/model.ts';
 import { freeze } from '../../content/value.ts';
 import { castDurationMs, checked, hpRegen, resolveStats, skillIntervalMs, spRegen } from '../math/index.ts';
+import { fixedSpCost } from '../math/combat-modifiers.ts';
 import { emptyMetrics } from './model.ts';
 import type { BattleEvent, BattleInput, BattleState, BattleStep, ModeRespawn, PureModePolicy, RunLimits } from './model.ts';
 import { EffectPipeline } from './effects.ts';
@@ -247,7 +248,7 @@ export function advanceUntil(input: BattleState, toGameMs: number, content: Vali
   function revive(actor: BattleActor, hpRatio: number, spRatio: number, cause: Pick<BattleEvent, 'action_id' | 'source_instance_id' | 'effect_id' | 'skill_id' | 'detail'> = {}) {
     if (actor.hp > 0 || !actor.revivable) return;
     actor.life_epoch++; actor.cast = null; actor.statuses = []; actor.shields = []; actor.spirit_spheres = 0; recomputeStats(actor, content);
-    actor.hp = Math.max(1, Math.min(actor.stats.max_hp, Math.floor(actor.stats.max_hp * hpRatio))); actor.sp = Math.min(actor.stats.max_sp, Math.floor(actor.stats.max_sp * spRatio));
+    actor.hp = Math.max(1, Math.min(actor.stats.max_hp, Math.floor(actor.stats.max_hp * Math.max(0, hpRatio + actor.stats.revive_hp_bonus)))); actor.sp = Math.min(actor.stats.max_sp, Math.floor(actor.stats.max_sp * Math.max(0, spRatio + actor.stats.revive_sp_bonus)));
     actor.normal_clock = { due_at: null, remaining_ms: skillIntervalMs(actor.stats.attack_speed, state.timing?.normal_attack_base_ms), paused_for_cast: false };
     actor.action_phase = 'normal_only'; enterPhase(state, actor, 'skill_interval');
     if (actor.action_policy.kind === 'rotation' && actor.action_policy.normal_attack_enabled) { actor.normal_clock.due_at = state.game_time_ms + actor.normal_clock.remaining_ms; schedule(state, actor, 'normal_attack', actor.normal_clock.due_at); }
@@ -268,7 +269,7 @@ export function advanceUntil(input: BattleState, toGameMs: number, content: Vali
 
   function start(actor: BattleActor) {
     const skill = activeDefinition(actor), cost = skill.cost;
-    const requiredSp = typeof cost.sp === 'number' ? cost.sp : 'mode' in cost.sp ? numeric(cost.sp.minimum_sp) : NaN;
+    const requiredSp = typeof cost.sp === 'number' ? fixedSpCost(cost.sp, actor.stats) : 'mode' in cost.sp ? numeric(cost.sp.minimum_sp) : NaN;
     const spheres = numeric(cost.spirit_spheres);
     actor.rotation_cursor = (actor.rotation_cursor + 1) % 4;
     if (actor.sp < requiredSp || actor.spirit_spheres < spheres) {
@@ -277,7 +278,7 @@ export function advanceUntil(input: BattleState, toGameMs: number, content: Vali
     }
     if (!Number.isFinite(requiredSp)) throw new Error('UNRESOLVED_SKILL_COST');
     const index = actor.active_slots.indexOf(skill.id), pre = { sp: actor.sp, spirit_spheres: actor.spirit_spheres };
-    const spent = typeof cost.sp === 'number' ? cost.sp : pre.sp;
+    const spent = typeof cost.sp === 'number' ? requiredSp : pre.sp;
     actor.sp -= spent; actor.spirit_spheres -= spheres;
     // D-092: the offensive snapshot sees only spheres still held after paying the cast cost.
     if (spheres) recomputeStats(actor, content);

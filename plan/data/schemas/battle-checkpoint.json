@@ -366,6 +366,101 @@
                 "type": "number",
                 "minimum": -9007199254740991,
                 "maximum": 9007199254740991
+              },
+              "neutral_resistance": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "water_resistance": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "earth_resistance": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "fire_resistance": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "wind_resistance": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "poison_resistance": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "holy_resistance": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "dark_resistance": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "ghost_resistance": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "undead_resistance": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "freeze_resistance": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "silence_resistance": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "blind_resistance": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "magical_guard_percent": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "sp_cost_percent": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "interrupt_resistance": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "move_speed_percent": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "revive_hp_bonus": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "revive_sp_bonus": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
               }
             },
             "required": [
@@ -404,7 +499,26 @@
               "flat_damage_reduction",
               "flat_penetration",
               "flat_sp_regen",
-              "flat_hp_regen"
+              "flat_hp_regen",
+              "neutral_resistance",
+              "water_resistance",
+              "earth_resistance",
+              "fire_resistance",
+              "wind_resistance",
+              "poison_resistance",
+              "holy_resistance",
+              "dark_resistance",
+              "ghost_resistance",
+              "undead_resistance",
+              "freeze_resistance",
+              "silence_resistance",
+              "blind_resistance",
+              "magical_guard_percent",
+              "sp_cost_percent",
+              "interrupt_resistance",
+              "move_speed_percent",
+              "revive_hp_bonus",
+              "revive_sp_bonus"
             ],
             "additionalProperties": false
           },
@@ -732,6 +846,101 @@
                         "type": "number",
                         "minimum": -9007199254740991,
                         "maximum": 9007199254740991
+                      },
+                      "neutral_resistance": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "water_resistance": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "earth_resistance": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "fire_resistance": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "wind_resistance": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "poison_resistance": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "holy_resistance": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "dark_resistance": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "ghost_resistance": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "undead_resistance": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "freeze_resistance": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "silence_resistance": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "blind_resistance": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "magical_guard_percent": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "sp_cost_percent": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "interrupt_resistance": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "move_speed_percent": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "revive_hp_bonus": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "revive_sp_bonus": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
                       }
                     },
                     "required": [
@@ -770,7 +979,26 @@
                       "flat_damage_reduction",
                       "flat_penetration",
                       "flat_sp_regen",
-                      "flat_hp_regen"
+                      "flat_hp_regen",
+                      "neutral_resistance",
+                      "water_resistance",
+                      "earth_resistance",
+                      "fire_resistance",
+                      "wind_resistance",
+                      "poison_resistance",
+                      "holy_resistance",
+                      "dark_resistance",
+                      "ghost_resistance",
+                      "undead_resistance",
+                      "freeze_resistance",
+                      "silence_resistance",
+                      "blind_resistance",
+                      "magical_guard_percent",
+                      "sp_cost_percent",
+                      "interrupt_resistance",
+                      "move_speed_percent",
+                      "revive_hp_bonus",
+                      "revive_sp_bonus"
                     ],
                     "additionalProperties": false
                   },
@@ -1076,6 +1304,101 @@
                       "type": "number",
                       "minimum": -9007199254740991,
                       "maximum": 9007199254740991
+                    },
+                    "neutral_resistance": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "water_resistance": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "earth_resistance": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "fire_resistance": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "wind_resistance": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "poison_resistance": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "holy_resistance": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "dark_resistance": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "ghost_resistance": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "undead_resistance": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "freeze_resistance": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "silence_resistance": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "blind_resistance": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "magical_guard_percent": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "sp_cost_percent": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "interrupt_resistance": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "move_speed_percent": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "revive_hp_bonus": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "revive_sp_bonus": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
                     }
                   },
                   "required": [
@@ -1114,7 +1437,26 @@
                     "flat_damage_reduction",
                     "flat_penetration",
                     "flat_sp_regen",
-                    "flat_hp_regen"
+                    "flat_hp_regen",
+                    "neutral_resistance",
+                    "water_resistance",
+                    "earth_resistance",
+                    "fire_resistance",
+                    "wind_resistance",
+                    "poison_resistance",
+                    "holy_resistance",
+                    "dark_resistance",
+                    "ghost_resistance",
+                    "undead_resistance",
+                    "freeze_resistance",
+                    "silence_resistance",
+                    "blind_resistance",
+                    "magical_guard_percent",
+                    "sp_cost_percent",
+                    "interrupt_resistance",
+                    "move_speed_percent",
+                    "revive_hp_bonus",
+                    "revive_sp_bonus"
                   ],
                   "additionalProperties": false
                 },
@@ -1419,6 +1761,20 @@
                       "items": {
                         "$ref": "trigger.json"
                       }
+                    },
+                    "defense_element": {
+                      "enum": [
+                        "neutral",
+                        "water",
+                        "earth",
+                        "fire",
+                        "wind",
+                        "poison",
+                        "holy",
+                        "dark",
+                        "ghost",
+                        "undead"
+                      ]
                     }
                   },
                   "required": [

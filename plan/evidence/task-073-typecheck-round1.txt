@@ -1,0 +1,6 @@
+
+> ro-idle-classic@0.1.0 typecheck
+> tsc --noEmit
+
+src/domain/build/equipment.ts(27,128): error TS7053: Element implicitly has an 'any' type because expression of type 'string' can't be used to index type '{ attack_ratio: number | { level_param: string; } | { status_param: string; }; flat_power: number | { level_param: string; } | { status_param: string; }; } | { attack_ratio: number | { level_param: string; } | { ...; }; flat_power: number | ... 1 more ... | { ...; }; } | { ...; } | { ...; } | { ...; } | { ...; }'.
+  No index signature with a parameter of type 'string' was found on type '{ attack_ratio: number | { level_param: string; } | { status_param: string; }; flat_power: number | { level_param: string; } | { status_param: string; }; } | { attack_ratio: number | { level_param: string; } | { ...; }; flat_power: number | ... 1 more ... | { ...; }; } | { ...; } | { ...; } | { ...; } | { ...; }'.

@@ -23,6 +23,17 @@ def png(color):
 
 
 class AssetImporterTests(unittest.TestCase):
+    def test_card_portrait_uses_its_declared_provider_and_retains_legacy_default(self):
+        manifest = {"providers": {"ragassets": {"base_url": "https://cards.example.test"}, "divine_pride": {"base_url": "https://icons.example.test"}}, "canvas": {}, "direction": {}, "characters": [], "monsters": [], "icons": [
+            {"slug": "portrait", "name": "Poring Card", "game_id": 4001, "category": "items", "tags": ["card"], "image_path": "/illust/card/4001.png", "provider": "ragassets", "kind": "card_illustration", "page_url": "https://reference.example.test/4001"},
+            {"slug": "legacy", "name": "Legacy", "game_id": 501, "category": "items", "tags": [], "image_path": "/items/501.png"}]}
+        portrait, legacy = importer.entries_from_manifest(manifest)
+        self.assertEqual(portrait["source"]["download_url"], "https://cards.example.test/illust/card/4001.png")
+        self.assertEqual(portrait["source"]["page_url"], "https://reference.example.test/4001")
+        self.assertEqual(portrait["kind"], "card_illustration")
+        self.assertEqual(legacy["source"]["provider"], "divine_pride")
+        self.assertEqual(legacy["kind"], "icon")
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)

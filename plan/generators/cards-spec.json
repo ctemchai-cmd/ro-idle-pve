@@ -1,0 +1,2467 @@
+{
+  "schema_version": 1,
+  "source": "RO card identities verified against official item library and rAthena pre-re item/mob data; numbers adapted for this idle game",
+  "database_sha256": {
+    "item_db_etc.yml": "c06056bdb586c377397f2f4892fc83536976f5e443424bc02c2ab7eb46916d75",
+    "mob_db.yml": "4f045e32eb176c695cb11e94a68013867a437072aef0cee7438313826dc54e12"
+  },
+  "cards": [
+    {
+      "id": "card_weapon_1",
+      "name": "การ์ดวูล์ฟ",
+      "ro_item_id": 4029,
+      "monster_id": 1013,
+      "monster_name": "Wolf",
+      "grade": "normal",
+      "source_slot": "weapon",
+      "slot": "weapon",
+      "tier": 1,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 8
+        },
+        {
+          "id": "crit_chance_bonus",
+          "stat": "crit_chance_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.005
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4029&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_weapon_2",
+      "name": "การ์ดมารีน่า",
+      "ro_item_id": 4055,
+      "monster_id": 1141,
+      "monster_name": "Marina",
+      "grade": "normal",
+      "source_slot": "weapon",
+      "slot": "weapon",
+      "tier": 1,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 5
+        }
+      ],
+      "triggers": [
+        {
+          "id": "freeze_on_hit",
+          "event": "normal_attack_hit",
+          "chance": 0.05,
+          "accepted_origins": [
+            "normal"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {
+            "foes": {
+              "team": "enemies",
+              "life": "living",
+              "select": "all",
+              "count": null,
+              "phase": "event",
+              "missing": "skip"
+            }
+          },
+          "effects": [
+            {
+              "id": "freeze",
+              "type": "apply_status",
+              "target": "event_target",
+              "status_id": "freeze",
+              "duration_ms": 1000,
+              "params": {},
+              "chance": 1
+            }
+          ]
+        }
+      ],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4055&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_weapon_3",
+      "name": "การ์ดโซลเจอร์สเกเลตัน",
+      "ro_item_id": 4086,
+      "monster_id": 1028,
+      "monster_name": "Soldier Skeleton",
+      "grade": "normal",
+      "source_slot": "weapon",
+      "slot": "weapon",
+      "tier": 1,
+      "modifiers": [
+        {
+          "id": "crit_chance_bonus",
+          "stat": "crit_chance_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.03
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4086&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_head_1",
+      "name": "การ์ดวิลโลว์",
+      "ro_item_id": 4010,
+      "monster_id": 1010,
+      "monster_name": "Willow",
+      "grade": "normal",
+      "source_slot": "head",
+      "slot": "head",
+      "tier": 1,
+      "modifiers": [
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 25
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4010&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_head_2",
+      "name": "การ์ดเอลเดอร์วิลโลว์",
+      "ro_item_id": 4052,
+      "monster_id": 1033,
+      "monster_name": "Elder Willow",
+      "grade": "normal",
+      "source_slot": "head",
+      "slot": "head",
+      "tier": 1,
+      "modifiers": [
+        {
+          "id": "int",
+          "stat": "int",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 2
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4052&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_head_3",
+      "name": "การ์ดอินคิวบัส",
+      "ro_item_id": 4269,
+      "monster_id": 1374,
+      "monster_name": "Incubus",
+      "grade": "normal",
+      "source_slot": "head",
+      "slot": "head",
+      "tier": 1,
+      "modifiers": [
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 50
+        },
+        {
+          "id": "int",
+          "stat": "int",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": -1
+        },
+        {
+          "id": "sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": -0.05
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4269&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_armor_1",
+      "name": "การ์ดโพริง",
+      "ro_item_id": 4001,
+      "monster_id": 1002,
+      "monster_name": "Poring",
+      "grade": "normal",
+      "source_slot": "armor",
+      "slot": "armor",
+      "tier": 1,
+      "modifiers": [
+        {
+          "id": "luk",
+          "stat": "luk",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 2
+        },
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.005
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4001&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_armor_2",
+      "name": "การ์ดพิคกี้",
+      "ro_item_id": 4008,
+      "monster_id": 1049,
+      "monster_name": "Picky",
+      "grade": "normal",
+      "source_slot": "armor",
+      "slot": "armor",
+      "tier": 1,
+      "modifiers": [
+        {
+          "id": "str",
+          "stat": "str",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 1
+        },
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 5
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4008&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_armor_3",
+      "name": "การ์ดเบบี้เดสเสิร์ทวูล์ฟ",
+      "ro_item_id": 4023,
+      "monster_id": 1107,
+      "monster_name": "Baby Desert Wolf",
+      "grade": "normal",
+      "source_slot": "armor",
+      "slot": "armor",
+      "tier": 1,
+      "modifiers": [
+        {
+          "id": "int",
+          "stat": "int",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 1
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4023&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_garment_1",
+      "name": "การ์ดวิสเปอร์",
+      "ro_item_id": 4102,
+      "monster_id": 1179,
+      "monster_name": "Whisper",
+      "grade": "normal",
+      "source_slot": "garment",
+      "slot": "garment",
+      "tier": 1,
+      "modifiers": [
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.04
+        },
+        {
+          "id": "ghost_resistance",
+          "stat": "ghost_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": -0.1
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4102&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_garment_2",
+      "name": "การ์ดคอนดอร์",
+      "ro_item_id": 4015,
+      "monster_id": 1009,
+      "monster_name": "Condor",
+      "grade": "normal",
+      "source_slot": "garment",
+      "slot": "garment",
+      "tier": 1,
+      "modifiers": [
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4015&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_garment_3",
+      "name": "การ์ดดัสติเนส",
+      "ro_item_id": 4056,
+      "monster_id": 1114,
+      "monster_name": "Dustiness",
+      "grade": "normal",
+      "source_slot": "garment",
+      "slot": "garment",
+      "tier": 1,
+      "modifiers": [
+        {
+          "id": "wind_resistance",
+          "stat": "wind_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.08
+        },
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.01
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4056&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_shoes_1",
+      "name": "การ์ดซอมบี้",
+      "ro_item_id": 4038,
+      "monster_id": 1015,
+      "monster_name": "Zombie",
+      "grade": "normal",
+      "source_slot": "shoes",
+      "slot": "shoes",
+      "tier": 1,
+      "modifiers": [
+        {
+          "id": "hp_regen_percent",
+          "stat": "hp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.001
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4038&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_shoes_2",
+      "name": "การ์ดแร็กเกลอร์",
+      "ro_item_id": 4186,
+      "monster_id": 1254,
+      "monster_name": "Raggler",
+      "grade": "normal",
+      "source_slot": "shoes",
+      "slot": "shoes",
+      "tier": 1,
+      "modifiers": [
+        {
+          "id": "str",
+          "stat": "str",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 1
+        },
+        {
+          "id": "vit",
+          "stat": "vit",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 1
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4186&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_shoes_3",
+      "name": "การ์ดมาทิร",
+      "ro_item_id": 4097,
+      "monster_id": 1146,
+      "monster_name": "Matyr",
+      "grade": "normal",
+      "source_slot": "shoes",
+      "slot": "shoes",
+      "tier": 1,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.03
+        },
+        {
+          "id": "agi",
+          "stat": "agi",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 1
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4097&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_accessory_1",
+      "name": "การ์ดทาโร่",
+      "ro_item_id": 4028,
+      "monster_id": 1175,
+      "monster_name": "Tarou",
+      "grade": "normal",
+      "source_slot": "accessory",
+      "slot": "accessory",
+      "tier": 1,
+      "modifiers": [
+        {
+          "id": "str",
+          "stat": "str",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 2
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4028&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_accessory_2",
+      "name": "การ์ดเวิร์มเทล",
+      "ro_item_id": 4034,
+      "monster_id": 1024,
+      "monster_name": "Wormtail",
+      "grade": "normal",
+      "source_slot": "accessory",
+      "slot": "accessory",
+      "tier": 1,
+      "modifiers": [
+        {
+          "id": "dex",
+          "stat": "dex",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 2
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4034&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_accessory_3",
+      "name": "การ์ดโยโย่",
+      "ro_item_id": 4051,
+      "monster_id": 1057,
+      "monster_name": "Yoyo",
+      "grade": "normal",
+      "source_slot": "accessory",
+      "slot": "accessory",
+      "tier": 1,
+      "modifiers": [
+        {
+          "id": "agi",
+          "stat": "agi",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 1
+        },
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.01
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4051&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_fabre",
+      "name": "การ์ดฟาเบร",
+      "ro_item_id": 4002,
+      "monster_id": 1007,
+      "monster_name": "Fabre",
+      "grade": "normal",
+      "source_slot": "weapon",
+      "slot": "weapon",
+      "tier": 1,
+      "modifiers": [
+        {
+          "id": "vit",
+          "stat": "vit",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 1
+        },
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 40
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4002&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_lunatic",
+      "name": "การ์ดลูนาติก",
+      "ro_item_id": 4006,
+      "monster_id": 1063,
+      "monster_name": "Lunatic",
+      "grade": "normal",
+      "source_slot": "weapon",
+      "slot": "weapon",
+      "tier": 1,
+      "modifiers": [
+        {
+          "id": "luk",
+          "stat": "luk",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 1
+        },
+        {
+          "id": "crit_chance_bonus",
+          "stat": "crit_chance_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.01
+        },
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.003
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4006&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_pupa",
+      "name": "การ์ดพูปา",
+      "ro_item_id": 4003,
+      "monster_id": 1008,
+      "monster_name": "Pupa",
+      "grade": "normal",
+      "source_slot": "armor",
+      "slot": "armor",
+      "tier": 1,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 120
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4003&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_spore",
+      "name": "การ์ดสปอร์",
+      "ro_item_id": 4022,
+      "monster_id": 1014,
+      "monster_name": "Spore",
+      "grade": "normal",
+      "source_slot": "accessory",
+      "slot": "accessory",
+      "tier": 1,
+      "modifiers": [
+        {
+          "id": "vit",
+          "stat": "vit",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 2
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4022&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_chonchon",
+      "name": "การ์ดชอนชอน",
+      "ro_item_id": 4009,
+      "monster_id": 1011,
+      "monster_name": "Chonchon",
+      "grade": "normal",
+      "source_slot": "shoes",
+      "slot": "shoes",
+      "tier": 1,
+      "modifiers": [
+        {
+          "id": "agi",
+          "stat": "agi",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 1
+        },
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.01
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4009&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_rocker",
+      "name": "การ์ดร็อกเกอร์",
+      "ro_item_id": 4021,
+      "monster_id": 1052,
+      "monster_name": "Rocker",
+      "grade": "normal",
+      "source_slot": "armor",
+      "slot": "armor",
+      "tier": 1,
+      "modifiers": [
+        {
+          "id": "dex",
+          "stat": "dex",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 1
+        },
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 3
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4021&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_hydra",
+      "name": "การ์ดไฮดรา",
+      "ro_item_id": 4035,
+      "monster_id": 1068,
+      "monster_name": "Hydra",
+      "grade": "normal",
+      "source_slot": "weapon",
+      "slot": "weapon",
+      "tier": 20,
+      "modifiers": [],
+      "triggers": [
+        {
+          "id": "matched_bonus",
+          "event": "damage_dealt",
+          "chance": 1,
+          "accepted_origins": [
+            "normal",
+            "skill"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {
+            "foes": {
+              "team": "enemies",
+              "life": "living",
+              "select": "all",
+              "count": null,
+              "phase": "event",
+              "missing": "skip"
+            }
+          },
+          "effects": [
+            {
+              "id": "bonus_hit",
+              "type": "damage",
+              "target": "event_target",
+              "formula": {
+                "id": "event_damage_power",
+                "params": {
+                  "ratio": 0.08
+                }
+              },
+              "damage_type": "true",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "ignore"
+            }
+          ],
+          "when": {
+            "type": "has_tag",
+            "actor": "event_target",
+            "tag": "race_demihuman"
+          },
+          "accepted_damage_types": [
+            "physical"
+          ]
+        }
+      ],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4035&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_drainliar",
+      "name": "การ์ดเดรนไลเออร์",
+      "ro_item_id": 4069,
+      "monster_id": 1111,
+      "monster_name": "Drainliar",
+      "grade": "normal",
+      "source_slot": "weapon",
+      "slot": "weapon",
+      "tier": 20,
+      "modifiers": [],
+      "triggers": [
+        {
+          "id": "matched_bonus",
+          "event": "damage_dealt",
+          "chance": 1,
+          "accepted_origins": [
+            "normal",
+            "skill"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {
+            "foes": {
+              "team": "enemies",
+              "life": "living",
+              "select": "all",
+              "count": null,
+              "phase": "event",
+              "missing": "skip"
+            }
+          },
+          "effects": [
+            {
+              "id": "bonus_hit",
+              "type": "damage",
+              "target": "event_target",
+              "formula": {
+                "id": "event_damage_power",
+                "params": {
+                  "ratio": 0.08
+                }
+              },
+              "damage_type": "true",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "ignore"
+            }
+          ],
+          "when": {
+            "type": "has_tag",
+            "actor": "event_target",
+            "tag": "element_water"
+          },
+          "accepted_damage_types": [
+            "physical"
+          ]
+        }
+      ],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4069&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_marc",
+      "name": "การ์ดมาร์ค",
+      "ro_item_id": 4105,
+      "monster_id": 1045,
+      "monster_name": "Marc",
+      "grade": "normal",
+      "source_slot": "armor",
+      "slot": "armor",
+      "tier": 20,
+      "modifiers": [
+        {
+          "id": "freeze_resistance",
+          "stat": "freeze_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 1
+        },
+        {
+          "id": "water_resistance",
+          "stat": "water_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.03
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4105&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_kukre",
+      "name": "การ์ดคุเคร",
+      "ro_item_id": 4027,
+      "monster_id": 1070,
+      "monster_name": "Kukre",
+      "grade": "normal",
+      "source_slot": "accessory",
+      "slot": "accessory",
+      "tier": 20,
+      "modifiers": [
+        {
+          "id": "agi",
+          "stat": "agi",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 2
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4027&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_thara_frog",
+      "name": "การ์ดธาราฟร็อก",
+      "ro_item_id": 4058,
+      "monster_id": 1034,
+      "monster_name": "Thara Frog",
+      "grade": "normal",
+      "source_slot": "shield",
+      "slot": "armor",
+      "tier": 20,
+      "modifiers": [
+        {
+          "id": "guard_percent",
+          "stat": "guard_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.04
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4058&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ต้นฉบับลดดาเมจDemiHumanในshield; เกม6ช่องไม่มีshieldจึงใส่armorและแปลงเป็นguardขนาดเล็กสำหรับPvE"
+    },
+    {
+      "id": "card_pecopeco",
+      "name": "การ์ดเปโกเปโก",
+      "ro_item_id": 4031,
+      "monster_id": 1019,
+      "monster_name": "Peco Peco",
+      "grade": "normal",
+      "source_slot": "armor",
+      "slot": "armor",
+      "tier": 20,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.05
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4031&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_mantis",
+      "name": "การ์ดแมนทิส",
+      "ro_item_id": 4079,
+      "monster_id": 1139,
+      "monster_name": "Mantis",
+      "grade": "normal",
+      "source_slot": "accessory",
+      "slot": "accessory",
+      "tier": 20,
+      "modifiers": [
+        {
+          "id": "str",
+          "stat": "str",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 3
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4079&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_dokebi",
+      "name": "การ์ดโดเคบิ",
+      "ro_item_id": 4098,
+      "monster_id": 1110,
+      "monster_name": "Dokebi",
+      "grade": "normal",
+      "source_slot": "armor",
+      "slot": "armor",
+      "tier": 20,
+      "modifiers": [
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 5
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4098&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "defense_element": "wind"
+    },
+    {
+      "id": "card_zerom",
+      "name": "การ์ดเซรอม",
+      "ro_item_id": 4064,
+      "monster_id": 1178,
+      "monster_name": "Zerom",
+      "grade": "normal",
+      "source_slot": "accessory",
+      "slot": "accessory",
+      "tier": 20,
+      "modifiers": [
+        {
+          "id": "dex",
+          "stat": "dex",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 3
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4064&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_andre",
+      "name": "การ์ดอังเดร",
+      "ro_item_id": 4043,
+      "monster_id": 1095,
+      "monster_name": "Andre",
+      "grade": "normal",
+      "source_slot": "weapon",
+      "slot": "weapon",
+      "tier": 20,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 20
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4043&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_savage",
+      "name": "การ์ดซาเวจ",
+      "ro_item_id": 4078,
+      "monster_id": 1166,
+      "monster_name": "Savage",
+      "grade": "normal",
+      "source_slot": "armor",
+      "slot": "armor",
+      "tier": 20,
+      "modifiers": [
+        {
+          "id": "vit",
+          "stat": "vit",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 3
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4078&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_smokie",
+      "name": "การ์ดสโมคกี้",
+      "ro_item_id": 4044,
+      "monster_id": 1056,
+      "monster_name": "Smokie",
+      "grade": "normal",
+      "source_slot": "accessory",
+      "slot": "accessory",
+      "tier": 20,
+      "modifiers": [
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.04
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4044&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ต้นฉบับให้Hiding; เกมไม่มีปุ่มHiding จึงใช้โบนัสหลบเพื่อบทบาทหลีกเลี่ยงการโจมตี ไม่อ้างว่ามีสกิลHiding"
+    },
+    {
+      "id": "card_minorous",
+      "name": "การ์ดมิโนรัส",
+      "ro_item_id": 4126,
+      "monster_id": 1149,
+      "monster_name": "Minorous",
+      "grade": "normal",
+      "source_slot": "weapon",
+      "slot": "weapon",
+      "tier": 40,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 5
+        }
+      ],
+      "triggers": [
+        {
+          "id": "matched_bonus",
+          "event": "damage_dealt",
+          "chance": 1,
+          "accepted_origins": [
+            "normal",
+            "skill"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {
+            "foes": {
+              "team": "enemies",
+              "life": "living",
+              "select": "all",
+              "count": null,
+              "phase": "event",
+              "missing": "skip"
+            }
+          },
+          "effects": [
+            {
+              "id": "bonus_hit",
+              "type": "damage",
+              "target": "event_target",
+              "formula": {
+                "id": "event_damage_power",
+                "params": {
+                  "ratio": 0.1
+                }
+              },
+              "damage_type": "true",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "ignore"
+            }
+          ],
+          "when": {
+            "type": "has_tag",
+            "actor": "event_target",
+            "tag": "size_large"
+          },
+          "accepted_damage_types": [
+            "physical"
+          ]
+        }
+      ],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4126&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_wraith",
+      "name": "การ์ดเรธ",
+      "ro_item_id": 4190,
+      "monster_id": 1192,
+      "monster_name": "Wraith",
+      "grade": "normal",
+      "source_slot": "accessory",
+      "slot": "accessory",
+      "tier": 40,
+      "modifiers": [],
+      "triggers": [
+        {
+          "id": "undead_find",
+          "event": "damage_dealt",
+          "chance": 0.05,
+          "accepted_origins": [
+            "normal",
+            "skill"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "when": {
+            "type": "has_tag",
+            "actor": "event_target",
+            "tag": "race_undead"
+          },
+          "selectors": {},
+          "effects": [
+            {
+              "id": "found_power",
+              "type": "apply_status",
+              "target": "self",
+              "status_id": "attack_up",
+              "duration_ms": 5000,
+              "params": {
+                "ratio": 0.03
+              },
+              "chance": 1
+            }
+          ]
+        }
+      ],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4190&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ต้นฉบับหาไอเทมจากUndead; เกมไม่มีไอเทมกดใช้ จึงแปลงเป็นพลังโจมตีชั่วคราวจากการต่อสู้กับUndead แทนการใส่โบนัสเวทที่ไม่เกี่ยวข้อง"
+    },
+    {
+      "id": "card_deviruchi",
+      "name": "การ์ดเดวิรูชิ",
+      "ro_item_id": 4122,
+      "monster_id": 1109,
+      "monster_name": "Deviruchi",
+      "grade": "normal",
+      "source_slot": "head",
+      "slot": "head",
+      "tier": 40,
+      "modifiers": [
+        {
+          "id": "str",
+          "stat": "str",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 1
+        },
+        {
+          "id": "blind_resistance",
+          "stat": "blind_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 1
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4122&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_marduk",
+      "name": "การ์ดมาร์ดุก",
+      "ro_item_id": 4112,
+      "monster_id": 1140,
+      "monster_name": "Marduk",
+      "grade": "normal",
+      "source_slot": "head",
+      "slot": "head",
+      "tier": 40,
+      "modifiers": [
+        {
+          "id": "silence_resistance",
+          "stat": "silence_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 1
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4112&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_raydric",
+      "name": "การ์ดเรดริก",
+      "ro_item_id": 4133,
+      "monster_id": 1163,
+      "monster_name": "Raydric",
+      "grade": "normal",
+      "source_slot": "garment",
+      "slot": "garment",
+      "tier": 40,
+      "modifiers": [
+        {
+          "id": "neutral_resistance",
+          "stat": "neutral_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.1
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4133&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_evil_druid",
+      "name": "การ์ดอีวิลดรูอิด",
+      "ro_item_id": 4141,
+      "monster_id": 1117,
+      "monster_name": "Evil Druid",
+      "grade": "normal",
+      "source_slot": "armor",
+      "slot": "armor",
+      "tier": 40,
+      "modifiers": [
+        {
+          "id": "int",
+          "stat": "int",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 1
+        },
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 5
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4141&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "defense_element": "undead"
+    },
+    {
+      "id": "card_isis",
+      "name": "การ์ดไอซิส",
+      "ro_item_id": 4116,
+      "monster_id": 1029,
+      "monster_name": "Isis",
+      "grade": "normal",
+      "source_slot": "garment",
+      "slot": "garment",
+      "tier": 40,
+      "modifiers": [
+        {
+          "id": "dark_resistance",
+          "stat": "dark_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.12
+        },
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.01
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4116&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_sohee",
+      "name": "การ์ดโซฮี",
+      "ro_item_id": 4100,
+      "monster_id": 1170,
+      "monster_name": "Sohee",
+      "grade": "normal",
+      "source_slot": "shoes",
+      "slot": "shoes",
+      "tier": 40,
+      "modifiers": [
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.1
+        },
+        {
+          "id": "sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.05
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4100&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_verit",
+      "name": "การ์ดเวอริต",
+      "ro_item_id": 4107,
+      "monster_id": 1032,
+      "monster_name": "Verit",
+      "grade": "normal",
+      "source_slot": "shoes",
+      "slot": "shoes",
+      "tier": 40,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.05
+        },
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.05
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4107&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_kaho",
+      "name": "การ์ดคาโฮ",
+      "ro_item_id": 4065,
+      "monster_id": 1072,
+      "monster_name": "Kaho",
+      "grade": "normal",
+      "source_slot": "weapon",
+      "slot": "weapon",
+      "tier": 40,
+      "modifiers": [],
+      "triggers": [
+        {
+          "id": "matched_bonus",
+          "event": "damage_dealt",
+          "chance": 1,
+          "accepted_origins": [
+            "normal",
+            "skill"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {
+            "foes": {
+              "team": "enemies",
+              "life": "living",
+              "select": "all",
+              "count": null,
+              "phase": "event",
+              "missing": "skip"
+            }
+          },
+          "effects": [
+            {
+              "id": "bonus_hit",
+              "type": "damage",
+              "target": "event_target",
+              "formula": {
+                "id": "event_damage_power",
+                "params": {
+                  "ratio": 0.1
+                }
+              },
+              "damage_type": "true",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "ignore"
+            }
+          ],
+          "when": {
+            "type": "has_tag",
+            "actor": "event_target",
+            "tag": "element_earth"
+          },
+          "accepted_damage_types": [
+            "physical"
+          ]
+        }
+      ],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4065&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_phen",
+      "name": "การ์ดเฟน",
+      "ro_item_id": 4077,
+      "monster_id": 1158,
+      "monster_name": "Phen",
+      "grade": "normal",
+      "source_slot": "accessory",
+      "slot": "accessory",
+      "tier": 40,
+      "modifiers": [
+        {
+          "id": "interrupt_resistance",
+          "stat": "interrupt_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.5
+        },
+        {
+          "id": "cast_speed",
+          "stat": "cast_speed",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": -0.1
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4077&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_hode",
+      "name": "การ์ดโฮด",
+      "ro_item_id": 4081,
+      "monster_id": 1127,
+      "monster_name": "Hode",
+      "grade": "normal",
+      "source_slot": "garment",
+      "slot": "garment",
+      "tier": 40,
+      "modifiers": [
+        {
+          "id": "earth_resistance",
+          "stat": "earth_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.12
+        },
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.01
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4081&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_doppelganger",
+      "name": "การ์ดดอปเปิลแกงเกอร์",
+      "ro_item_id": 4142,
+      "monster_id": 1046,
+      "monster_name": "Doppelganger",
+      "grade": "mvp",
+      "source_slot": "weapon",
+      "slot": "weapon",
+      "tier": 60,
+      "modifiers": [
+        {
+          "id": "attack_speed",
+          "stat": "attack_speed",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.06
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4142&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_dark_lord",
+      "name": "การ์ดดาร์กลอร์ด",
+      "ro_item_id": 4168,
+      "monster_id": 1272,
+      "monster_name": "Dark Lord",
+      "grade": "mvp",
+      "source_slot": "shoes",
+      "slot": "shoes",
+      "tier": 60,
+      "modifiers": [
+        {
+          "id": "outgoing_magical_bonus",
+          "stat": "outgoing_magical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.03
+        }
+      ],
+      "triggers": [
+        {
+          "id": "meteor_when_hit",
+          "event": "damage_received",
+          "chance": 0.06,
+          "accepted_origins": [
+            "normal",
+            "skill"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {
+            "foes": {
+              "team": "enemies",
+              "life": "living",
+              "select": "all",
+              "count": null,
+              "phase": "event",
+              "missing": "skip"
+            }
+          },
+          "effects": [
+            {
+              "id": "meteor",
+              "type": "damage",
+              "target": "foes",
+              "formula": {
+                "id": "magical_power",
+                "params": {
+                  "attack_ratio": 1.2,
+                  "flat_power": 0
+                }
+              },
+              "damage_type": "magical",
+              "element": "fire",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
+            }
+          ]
+        }
+      ],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4168&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_abysmal_knight",
+      "name": "การ์ดอบิสมอลไนท์",
+      "ro_item_id": 4140,
+      "monster_id": 1219,
+      "monster_name": "Abysmal Knight",
+      "grade": "normal",
+      "source_slot": "weapon",
+      "slot": "weapon",
+      "tier": 60,
+      "modifiers": [],
+      "triggers": [
+        {
+          "id": "matched_bonus",
+          "event": "damage_dealt",
+          "chance": 1,
+          "accepted_origins": [
+            "normal",
+            "skill"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {
+            "foes": {
+              "team": "enemies",
+              "life": "living",
+              "select": "all",
+              "count": null,
+              "phase": "event",
+              "missing": "skip"
+            }
+          },
+          "effects": [
+            {
+              "id": "bonus_hit",
+              "type": "damage",
+              "target": "event_target",
+              "formula": {
+                "id": "event_damage_power",
+                "params": {
+                  "ratio": 0.15
+                }
+              },
+              "damage_type": "true",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "ignore"
+            }
+          ],
+          "when": {
+            "type": "has_tag",
+            "actor": "event_target",
+            "tag": "boss"
+          },
+          "accepted_damage_types": [
+            "physical"
+          ]
+        }
+      ],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4140&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_osiris",
+      "name": "การ์ดโอซิริส",
+      "ro_item_id": 4144,
+      "monster_id": 1038,
+      "monster_name": "Osiris",
+      "grade": "mvp",
+      "source_slot": "accessory",
+      "slot": "accessory",
+      "tier": 60,
+      "modifiers": [
+        {
+          "id": "revive_hp_bonus",
+          "stat": "revive_hp_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.4
+        },
+        {
+          "id": "revive_sp_bonus",
+          "stat": "revive_sp_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.4
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4144&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_maya",
+      "name": "การ์ดมายา",
+      "ro_item_id": 4146,
+      "monster_id": 1147,
+      "monster_name": "Maya",
+      "grade": "mvp",
+      "source_slot": "shield",
+      "slot": "armor",
+      "tier": 60,
+      "modifiers": [
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.08
+        }
+      ],
+      "triggers": [
+        {
+          "id": "reflect_magic",
+          "event": "damage_received",
+          "chance": 0.3,
+          "accepted_origins": [
+            "normal",
+            "skill"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {
+            "foes": {
+              "team": "enemies",
+              "life": "living",
+              "select": "all",
+              "count": null,
+              "phase": "event",
+              "missing": "skip"
+            }
+          },
+          "effects": [
+            {
+              "id": "reflect",
+              "type": "damage",
+              "target": "event_source",
+              "formula": {
+                "id": "event_damage_power",
+                "params": {
+                  "ratio": 0.2
+                }
+              },
+              "damage_type": "true",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "ignore"
+            }
+          ],
+          "accepted_damage_types": [
+            "magical"
+          ]
+        }
+      ],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4146&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_golden_thief_bug",
+      "name": "การ์ดโกลเดนทีฟบัก",
+      "ro_item_id": 4128,
+      "monster_id": 1086,
+      "monster_name": "Golden Thief Bug",
+      "grade": "mvp",
+      "source_slot": "shield",
+      "slot": "armor",
+      "tier": 60,
+      "modifiers": [
+        {
+          "id": "magical_guard_percent",
+          "stat": "magical_guard_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.25
+        },
+        {
+          "id": "sp_cost_percent",
+          "stat": "sp_cost_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.25
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4128&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_turtle_general",
+      "name": "การ์ดเทอร์เทิลเจเนรัล",
+      "ro_item_id": 4305,
+      "monster_id": 1312,
+      "monster_name": "Turtle General",
+      "grade": "mvp",
+      "source_slot": "weapon",
+      "slot": "weapon",
+      "tier": 60,
+      "modifiers": [
+        {
+          "id": "outgoing_physical_bonus",
+          "stat": "outgoing_physical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.07
+        }
+      ],
+      "triggers": [
+        {
+          "id": "magnum_on_hit",
+          "event": "normal_attack_hit",
+          "chance": 0.05,
+          "accepted_origins": [
+            "normal"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {
+            "foes": {
+              "team": "enemies",
+              "life": "living",
+              "select": "all",
+              "count": null,
+              "phase": "event",
+              "missing": "skip"
+            }
+          },
+          "effects": [
+            {
+              "id": "magnum",
+              "type": "damage",
+              "target": "foes",
+              "formula": {
+                "id": "physical_power",
+                "params": {
+                  "attack_ratio": 0.35,
+                  "flat_power": 0
+                }
+              },
+              "damage_type": "physical",
+              "element": "fire",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
+            }
+          ]
+        }
+      ],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4305&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_stormy_knight",
+      "name": "การ์ดสตอร์มมี่ไนท์",
+      "ro_item_id": 4318,
+      "monster_id": 1251,
+      "monster_name": "Stormy Knight",
+      "grade": "mvp",
+      "source_slot": "weapon",
+      "slot": "weapon",
+      "tier": 60,
+      "modifiers": [],
+      "triggers": [
+        {
+          "id": "gust_on_hit",
+          "event": "normal_attack_hit",
+          "chance": 0.03,
+          "accepted_origins": [
+            "normal"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {
+            "foes": {
+              "team": "enemies",
+              "life": "living",
+              "select": "all",
+              "count": null,
+              "phase": "event",
+              "missing": "skip"
+            }
+          },
+          "effects": [
+            {
+              "id": "gust",
+              "type": "damage",
+              "target": "foes",
+              "formula": {
+                "id": "magical_power",
+                "params": {
+                  "attack_ratio": 0.6,
+                  "flat_power": 0
+                }
+              },
+              "damage_type": "magical",
+              "element": "water",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
+            }
+          ]
+        },
+        {
+          "id": "freeze_on_hit",
+          "event": "normal_attack_hit",
+          "chance": 0.05,
+          "accepted_origins": [
+            "normal"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {
+            "foes": {
+              "team": "enemies",
+              "life": "living",
+              "select": "all",
+              "count": null,
+              "phase": "event",
+              "missing": "skip"
+            }
+          },
+          "effects": [
+            {
+              "id": "freeze",
+              "type": "apply_status",
+              "target": "event_target",
+              "status_id": "freeze",
+              "duration_ms": 1000,
+              "params": {},
+              "chance": 1
+            }
+          ]
+        }
+      ],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4318&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_garm",
+      "name": "การ์ดฮาติ (Garm)",
+      "ro_item_id": 4324,
+      "monster_id": 1252,
+      "monster_name": "Hatii",
+      "grade": "mvp",
+      "source_slot": "armor",
+      "slot": "armor",
+      "tier": 60,
+      "modifiers": [],
+      "triggers": [
+        {
+          "id": "freeze_when_hit",
+          "event": "damage_received",
+          "chance": 0.1,
+          "accepted_origins": [
+            "normal",
+            "skill"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {
+            "foes": {
+              "team": "enemies",
+              "life": "living",
+              "select": "all",
+              "count": null,
+              "phase": "event",
+              "missing": "skip"
+            }
+          },
+          "effects": [
+            {
+              "id": "freeze",
+              "type": "apply_status",
+              "target": "event_source",
+              "status_id": "freeze",
+              "duration_ms": 1500,
+              "params": {},
+              "chance": 1
+            }
+          ]
+        }
+      ],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4324&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_moonlight_flower",
+      "name": "การ์ดมูนไลท์ฟลาวเวอร์",
+      "ro_item_id": 4131,
+      "monster_id": 1150,
+      "monster_name": "Moonlight Flower",
+      "grade": "mvp",
+      "source_slot": "shoes",
+      "slot": "shoes",
+      "tier": 60,
+      "modifiers": [
+        {
+          "id": "move_speed_percent",
+          "stat": "move_speed_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.15
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4131&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_eddga",
+      "name": "การ์ดเอ็ดกา",
+      "ro_item_id": 4123,
+      "monster_id": 1115,
+      "monster_name": "Eddga",
+      "grade": "mvp",
+      "source_slot": "shoes",
+      "slot": "shoes",
+      "tier": 60,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": -0.1
+        },
+        {
+          "id": "guard_percent",
+          "stat": "guard_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.05
+        },
+        {
+          "id": "move_speed_percent",
+          "stat": "move_speed_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.05
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4123&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ต้นฉบับEndureและHPลด; เกมไม่มีhit walk delay จึงใช้การเดินและลดดาเมจเล็กน้อยแลกHP ไม่อ้างcopyสถานะEndurePC"
+    },
+    {
+      "id": "card_baphomet",
+      "name": "การ์ดบาโฟเมท",
+      "ro_item_id": 4147,
+      "monster_id": 1039,
+      "monster_name": "Baphomet",
+      "grade": "mvp",
+      "source_slot": "weapon",
+      "slot": "weapon",
+      "tier": 60,
+      "modifiers": [
+        {
+          "id": "hit_bonus",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": -0.03
+        }
+      ],
+      "triggers": [
+        {
+          "id": "splash_on_hit",
+          "event": "normal_attack_hit",
+          "chance": 1,
+          "accepted_origins": [
+            "normal"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {
+            "foes": {
+              "team": "enemies",
+              "life": "living",
+              "select": "all",
+              "count": null,
+              "phase": "event",
+              "missing": "skip"
+            }
+          },
+          "effects": [
+            {
+              "id": "splash",
+              "type": "damage",
+              "target": "foes",
+              "formula": {
+                "id": "physical_power",
+                "params": {
+                  "attack_ratio": 0.15,
+                  "flat_power": 0
+                }
+              },
+              "damage_type": "physical",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
+            }
+          ]
+        }
+      ],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4147&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด"
+    },
+    {
+      "id": "card_mastering",
+      "name": "การ์ดมาสเตอริง",
+      "ro_item_id": 4197,
+      "monster_id": 1090,
+      "monster_name": "Mastering",
+      "grade": "mini",
+      "source_slot": "garment",
+      "slot": "garment",
+      "tier": 20,
+      "modifiers": [
+        {
+          "id": "luk",
+          "stat": "luk",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 2
+        },
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.02
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4197&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "จุดเด่นอ้างอิง RO; normalize ตัวเลขกับ quality/level ของเกม idle"
+    },
+    {
+      "id": "card_vagabond_wolf",
+      "name": "การ์ดวากาบอนด์วูล์ฟ",
+      "ro_item_id": 4183,
+      "monster_id": 1092,
+      "monster_name": "Vagabond Wolf",
+      "grade": "mini",
+      "source_slot": "garment",
+      "slot": "garment",
+      "tier": 20,
+      "modifiers": [
+        {
+          "id": "str",
+          "stat": "str",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 2
+        },
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 8
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4183&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "จุดเด่นอ้างอิง RO; normalize ตัวเลขกับ quality/level ของเกม idle"
+    },
+    {
+      "id": "card_dragon_fly",
+      "name": "การ์ดดราก้อนฟลาย",
+      "ro_item_id": 4179,
+      "monster_id": 1091,
+      "monster_name": "Dragon Fly",
+      "grade": "mini",
+      "source_slot": "garment",
+      "slot": "garment",
+      "tier": 20,
+      "modifiers": [
+        {
+          "id": "agi",
+          "stat": "agi",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 2
+        },
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.02
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4179&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "จุดเด่นอ้างอิง RO; normalize ตัวเลขกับ quality/level ของเกม idle"
+    },
+    {
+      "id": "card_angeling",
+      "name": "การ์ดแองเจลิง",
+      "ro_item_id": 4054,
+      "monster_id": 1096,
+      "monster_name": "Angeling",
+      "grade": "mini",
+      "source_slot": "armor",
+      "slot": "armor",
+      "tier": 40,
+      "modifiers": [
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 5
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4054&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "จุดเด่นอ้างอิง RO; normalize ตัวเลขกับ quality/level ของเกม idle",
+      "defense_element": "holy"
+    },
+    {
+      "id": "card_ghostring",
+      "name": "การ์ดโกสต์ริง",
+      "ro_item_id": 4047,
+      "monster_id": 1120,
+      "monster_name": "Ghostring",
+      "grade": "mini",
+      "source_slot": "armor",
+      "slot": "armor",
+      "tier": 40,
+      "modifiers": [
+        {
+          "id": "healing_received_bonus",
+          "stat": "healing_received_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": -0.05
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4047&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "จุดเด่นอ้างอิง RO; normalize ตัวเลขกับ quality/level ของเกม idle",
+      "defense_element": "ghost"
+    },
+    {
+      "id": "card_deviling",
+      "name": "การ์ดเดวิลิง",
+      "ro_item_id": 4174,
+      "monster_id": 1582,
+      "monster_name": "Deviling",
+      "grade": "mini",
+      "source_slot": "garment",
+      "slot": "garment",
+      "tier": 60,
+      "modifiers": [
+        {
+          "id": "neutral_resistance",
+          "stat": "neutral_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.1
+        },
+        {
+          "id": "water_resistance",
+          "stat": "water_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": -0.1
+        },
+        {
+          "id": "earth_resistance",
+          "stat": "earth_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": -0.1
+        },
+        {
+          "id": "fire_resistance",
+          "stat": "fire_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": -0.1
+        },
+        {
+          "id": "wind_resistance",
+          "stat": "wind_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": -0.1
+        },
+        {
+          "id": "poison_resistance",
+          "stat": "poison_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": -0.1
+        },
+        {
+          "id": "holy_resistance",
+          "stat": "holy_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": -0.1
+        },
+        {
+          "id": "dark_resistance",
+          "stat": "dark_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": -0.1
+        },
+        {
+          "id": "ghost_resistance",
+          "stat": "ghost_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": -0.1
+        },
+        {
+          "id": "undead_resistance",
+          "stat": "undead_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": -0.1
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4174&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
+      "adaptation": "จุดเด่นอ้างอิง RO; normalize ตัวเลขกับ quality/level ของเกม idle"
+    }
+  ],
+  "monster_traits": {
+    "poring": {
+      "ro_monster_id": 1002,
+      "race": "plant",
+      "size": "medium"
+    },
+    "fabre": {
+      "ro_monster_id": 1007,
+      "race": "insect",
+      "size": "small"
+    },
+    "lunatic": {
+      "ro_monster_id": 1063,
+      "race": "brute",
+      "size": "small"
+    },
+    "wolf": {
+      "ro_monster_id": 1013,
+      "race": "brute",
+      "size": "medium"
+    },
+    "ork_warrior": {
+      "ro_monster_id": 1023,
+      "race": "demihuman",
+      "size": "medium"
+    },
+    "golem": {
+      "ro_monster_id": 1040,
+      "race": "formless",
+      "size": "large"
+    },
+    "eddga": {
+      "ro_monster_id": 1115,
+      "race": "brute",
+      "size": "large"
+    },
+    "drake": {
+      "ro_monster_id": 1112,
+      "race": "undead",
+      "size": "medium"
+    },
+    "phreeoni": {
+      "ro_monster_id": 1159,
+      "race": "brute",
+      "size": "large"
+    },
+    "osiris": {
+      "ro_monster_id": 1038,
+      "race": "undead",
+      "size": "medium"
+    },
+    "baphomet": {
+      "ro_monster_id": 1039,
+      "race": "demon",
+      "size": "large"
+    }
+  }
+}

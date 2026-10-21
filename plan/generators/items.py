@@ -129,17 +129,11 @@ def build(equipment, cards_doc, strings, icons):
     for slot, variants in armor_variants().items():
       for key, (make, ids, th) in variants.items(): emit(target, tier, f'equipment_{slot}_{tier}_{key}', slot, None, make(t, s), ids[i], th[i])
   for d in future: d.pop('presentation_id', None)
-  # Cards: original 18 kept, 42 generated rows reuse the original faces/symbols of their slot (no new runtime assets).
-  card_base = [c for c in cards_doc['definitions'] if c['id'].count('_') == 2 and c['id'].split('_')[-1].isdigit()]
-  card_pres_base = [p for p in cards_doc['presentations'] if p['id'] in {f"visual_{c['id']}" for c in card_base}]
-  card_defs, card_pres = list(card_base), list(card_pres_base)
-  for n, (cid, th, slot, tier, mods) in enumerate(cards()):
-    card_defs.append({'id': cid, 'name_key': cid, 'kind': 'card', 'slot': slot, 'weapon_type': None, 'tier_level': tier, 'required_level': tier, 'modifiers': mods, 'triggers': [], 'presentation_id': f'visual_{cid}'})
-    template = [p for p in card_pres_base if p['id'].startswith(f'visual_card_{slot}_')][n % 3]
-    card_pres.append({**template, 'id': f'visual_{cid}', 'basis': 'D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed'})
-    names[cid] = th
+  # D-099 owns card identities/art/slots; never regenerate the historical placeholder catalog.
+  from card_catalog import build as build_card_catalog
+  cards_doc, card_names = build_card_catalog(cards_doc)
+  names.update(card_names)
   equipment = {**equipment, 'definitions': defs, 'presentations': pres, 'future_definitions': future}
-  cards_doc = {**cards_doc, 'definitions': card_defs, 'presentations': card_pres}
   strings = {**strings, 'strings': {**strings['strings'], **names}}
   return equipment, cards_doc, strings
 
@@ -149,8 +143,8 @@ def main():
   load = lambda name: json.loads((D / name).read_text())
   equipment, cards_doc, strings = build(load('equipment.json'), load('cards.json'), load('strings.th.json'), icons)
   rules = equipment['random_options']; rules['lines_by_rarity'] = {**rules['lines_by_rarity'], 'immortal': 4, 'supreme': 5}
-  gacha = load('gacha.json'); gacha['definitions'] = [c['id'] for c in cards_doc['definitions']]; gacha['definition_weights'] = {c['id']: 1 for c in cards_doc['definitions']}
-  gacha['definition_choice'] = "D-068: uniform among the cards of the player's gear tier (highest fully cleared chapter, loot tier_by_chapter)"
+  gacha = load('gacha.json'); gacha['definitions'] = [c['id'] for c in cards_doc['definitions']]; gacha['definition_weights'] = {c['id']: {'normal':1000,'mini':100,'mvp':10}[cards_doc['origins'][c['id']]['grade']] for c in cards_doc['definitions']}
+  gacha['definition_choice'] = "D-099: weighted Normal1000/Mini100/MVP10 among the current gear tier; card quality and pity unchanged"
   loot = load('loot.json'); loot['gear']['definition_choice'] = 'uniform among the 36 definitions (20 weapons, 3 head/armor/garment/shoes, 4 accessories) of the stage tier; no class-specific armor'
   out = {'equipment.json': equipment, 'cards.json': cards_doc, 'strings.th.json': strings, 'gacha.json': gacha, 'loot.json': loot}
   text = {k: json.dumps(v, ensure_ascii=False, indent=2) + '\n' for k, v in out.items()}

@@ -1,0 +1,41 @@
+✖ 66 native RO cards preserve all 60 legacy IDs, correct slots, exact art IDs and distinct source grades (3.630667ms)
+✔ quality/level improve benefits, reduce penalties, scale proc power once and pure control chance only (0.444042ms)
+✔ Raydric/Deviling reduce neutral damage and retain weaknesses; true damage bypasses new resistance (5.21425ms)
+✔ armor element and GTB magic-only guard/SP cost use shared stats; physical hits stay unchanged (4.030667ms)
+✔ Marc/Marduk/Deviruchi resist only their status; hard CC still interrupts Phen (2.923417ms)
+✔ Maya reflects magical only; normalized proc cannot recursively reflect itself (1.183417ms)
+✔ every authored card proc resolves actual effects with target tags and no formula/status errors (5.79275ms)
+✔ farm profile improves stage chance/quality, gates Mini/MVP, retains earlier cards and favors current tiers (46.643417ms)
+✔ seeded farm split/cap/retry produces same fixed cards/gear and RNG without kill or speed input (9.523208ms)
+✔ legacy snapshot settles before enabling cards; full bag never consumes or rerolls pending rewards (1055.9675ms)
+✔ slot correction migration returns incompatible cards to bag and preserves exact instance/quality/level/lock (236.266542ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 10
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2218.42425
+
+✖ failing tests:
+
+test at tests/game/ro-cards.test.ts:1:3889
+✖ 66 native RO cards preserve all 60 legacy IDs, correct slots, exact art IDs and distinct source grades (3.630667ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'items.card-4029'
+  
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/ro-cards.test.ts:35:251)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.start (node:internal/test_runner/test:959:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:332:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'items.card-4029',
+    operator: 'strictEqual'
+  }

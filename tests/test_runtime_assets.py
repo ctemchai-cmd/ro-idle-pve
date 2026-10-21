@@ -11,6 +11,17 @@ pack = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(pack)
 
 class RuntimeAssetsTests(unittest.TestCase):
+    def test_reviewed_static_starter_card_is_supported_without_claiming_native_export(self):
+        with tempfile.TemporaryDirectory(prefix='ro-pack-card-', dir='/private/tmp') as work:
+            root = Path(work); directory = root / 'items'; directory.mkdir()
+            payload = b'card checksum fixture'; (directory / 'card.webp').write_bytes(payload)
+            meta = {'schema_version': 1, 'id': 'items.card-test', 'category': 'items', 'kind': 'card_illustration', 'visual_review': {'status': 'reviewed'}, 'file': {'path': 'items/card.webp', 'bytes': len(payload), 'sha256': pack.sha(payload), 'frame_count': 1}}
+            sidecar = directory / 'card.meta.json'; sidecar.write_text(json.dumps(meta))
+            self.assertEqual(pack.resolve_asset('items/card.meta.json', root)[1], 'items/card.webp')
+            meta['visual_review']['status'] = 'not_reviewed'; sidecar.write_text(json.dumps(meta))
+            with self.assertRaisesRegex(ValueError, 'Unreviewed'):
+                pack.resolve_asset('items/card.meta.json', root)
+
     def fixture(self, root, *, missing=False, wrong_hash=False):
         directory = root / 'library/effects'
         directory.mkdir(parents=True)
@@ -76,7 +87,7 @@ class RuntimeAssetsTests(unittest.TestCase):
         self.assertEqual(len(first['skills']), 126)
         self.assertEqual(len(first['actor_jobs']), 19)
         self.assertEqual(sum(len(job['presets']) for job in first['actor_jobs']), 36)
-        self.assertLess(first['sizes']['media_and_sidecar_bytes'] + first['sizes']['manifest_bytes'], 27 * 1024 * 1024)
+        self.assertLess(first['sizes']['media_and_sidecar_bytes'] + first['sizes']['manifest_bytes'], 32 * 1024 * 1024)
         self.assertLess(first['sizes']['initial_profile_raw_bytes'] + first['sizes']['manifest_bytes'], 8 * 1024 * 1024)
         self.assertFalse(any(row['path'].endswith(('.zip', '.grf')) for row in first['files']))
         self.assertEqual(pack.verify()['pack_hash'], first['pack_hash'])

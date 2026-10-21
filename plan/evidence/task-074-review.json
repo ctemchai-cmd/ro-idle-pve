@@ -1,0 +1,46 @@
+{
+  "task_id": "TASK-074",
+  "date": "2026-10-22",
+  "passed": false,
+  "implementation_verified": true,
+  "content_hash": "4e44083962ef36aa61ab5e80cd86e1e3ed088ebb0d136744cb8ca2160655ca57",
+  "asset_pack_hash": "c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2",
+  "checks": {
+    "regressions": 84,
+    "focused_cards": 14,
+    "focused_overlaps_regressions": true,
+    "spatial": 6,
+    "presentation_format": 1,
+    "python": 35,
+    "actual_browser_groups": 5
+  },
+  "acceptance": {
+    "AC-01": "passed",
+    "AC-02": "passed",
+    "AC-03": "pending_hosted"
+  },
+  "evidence": [
+    "plan/evidence/task-073-source-audit.json",
+    "plan/evidence/task-073-art-optimization.json",
+    "plan/evidence/task-073-rules.txt",
+    "plan/evidence/task-073-card-targeted.txt",
+    "plan/evidence/task-073-spatial.txt",
+    "plan/evidence/task-073-presentation.txt",
+    "plan/evidence/task-073-python.txt",
+    "plan/evidence/task-073-m0.txt",
+    "plan/evidence/task-073-build.txt",
+    "plan/evidence/task-073-074-ui-live.json",
+    "plan/evidence/task-073-local-stack.json"
+  ],
+  "pending": [
+    "Push and signed-out hosted deployment proof"
+  ],
+  "balance_simulation": false,
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "limitations": [
+    "Source identity/slot/trait basis is RO; normalized idle coefficients and source conversions are explicit in authoring spec, not exact RO PC/Idle formulas",
+    "No whole-game balance/calibration run; actual mobile browser uses a disposable signed fixture, not owner resources or Android hardware",
+    "Owner backup/migration still manual; legacy AFK settled once before new card accrual"
+  ]
+}

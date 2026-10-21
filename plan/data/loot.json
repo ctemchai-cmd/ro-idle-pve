@@ -34,5 +34,54 @@
     "equivalent_throughput_minutes": 42873.94628504214,
     "interpretation": "common-equivalent throughput bound for one desired definition, not expected time or guaranteed pity; integer fusion and rare drops require distribution simulation later",
     "preserve_tier_upgrade": true
+  },
+  "cards": {
+    "version": "card_farm_v1",
+    "roll_interval": "One independent card chance per existing five-minute gear interval; separate card draw from the saved loot RNG",
+    "chance_start": 200000,
+    "chance_end": 400000,
+    "weight_total": 1000000,
+    "quality_start": {
+      "bronze": 850000,
+      "silver": 140000,
+      "gold": 10000
+    },
+    "quality_end": {
+      "bronze": 150000,
+      "silver": 500000,
+      "gold": 350000
+    },
+    "grade_unlock_chapter": {
+      "normal": 1,
+      "mini": 2,
+      "mvp": 6
+    },
+    "grade_weights": {
+      "normal": 1000,
+      "mini": 200,
+      "mvp": 10
+    },
+    "tier_weights": {
+      "1": {
+        "1": 100
+      },
+      "20": {
+        "1": 30,
+        "20": 100
+      },
+      "40": {
+        "1": 10,
+        "20": 35,
+        "40": 100
+      },
+      "60": {
+        "1": 5,
+        "20": 15,
+        "40": 45,
+        "60": 100
+      }
+    },
+    "quality_and_grade": "Bronze/Silver/Gold is enhancement quality; Normal/Mini/MVP is source monster class, shown separately.",
+    "legacy": "Snapshots without card_drops earn no retroactive cards; first farm claim settles that old interval then installs the new profile for subsequent accrual."
   }
 }

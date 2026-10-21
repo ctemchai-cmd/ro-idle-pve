@@ -12,38 +12,1224 @@
       "documentation_url": "https://www.divine-pride.net/"
     }
   },
-  "canvas": {"width": 256, "height": 256, "origin_x": 128, "origin_y": 208},
-  "canvas_overrides": {
-    "monsters.poring.dead": {"width": 512, "height": 512, "origin_x": 256, "origin_y": 256},
-    "monsters.willow.dead": {"width": 1024, "height": 1024, "origin_x": 512, "origin_y": 512}
+  "canvas": {
+    "width": 256,
+    "height": 256,
+    "origin_x": 128,
+    "origin_y": 208
   },
-  "direction": {"index": 6, "name": "east", "facing": "right", "opposite_facing": "left", "opposite_flip_x": true, "verification": "renderer_documentation"},
-  "appearance": {"gender": "male", "head": 1, "outfit": 0, "headdir": "straight"},
+  "canvas_overrides": {
+    "monsters.poring.dead": {
+      "width": 512,
+      "height": 512,
+      "origin_x": 256,
+      "origin_y": 256
+    },
+    "monsters.willow.dead": {
+      "width": 1024,
+      "height": 1024,
+      "origin_x": 512,
+      "origin_y": 512
+    }
+  },
+  "direction": {
+    "index": 6,
+    "name": "east",
+    "facing": "right",
+    "opposite_facing": "left",
+    "opposite_flip_x": true,
+    "verification": "renderer_documentation"
+  },
+  "appearance": {
+    "gender": "male",
+    "head": 1,
+    "outfit": 0,
+    "headdir": "straight"
+  },
   "animation_actions": {
-    "characters": {"idle": 0, "attack": 40, "hurt": 48, "dead": 64},
-    "monsters": {"idle": 0, "attack": 16, "hurt": 24, "dead": 32}
+    "characters": {
+      "idle": 0,
+      "attack": 40,
+      "hurt": 48,
+      "dead": 64
+    },
+    "monsters": {
+      "idle": 0,
+      "attack": 16,
+      "hurt": 24,
+      "dead": 32
+    }
   },
   "characters": [
-    {"slug": "novice", "name": "Novice", "job_id": 0, "tags": ["starter", "novice"]},
-    {"slug": "swordsman", "name": "Swordsman", "job_id": 1, "tags": ["first_job", "melee"]},
-    {"slug": "mage", "name": "Mage", "job_id": 2, "tags": ["first_job", "caster"]},
-    {"slug": "archer", "name": "Archer", "job_id": 3, "tags": ["first_job", "ranged"]},
-    {"slug": "acolyte", "name": "Acolyte", "job_id": 4, "tags": ["first_job", "support"]}
+    {
+      "slug": "novice",
+      "name": "Novice",
+      "job_id": 0,
+      "tags": [
+        "starter",
+        "novice"
+      ]
+    },
+    {
+      "slug": "swordsman",
+      "name": "Swordsman",
+      "job_id": 1,
+      "tags": [
+        "first_job",
+        "melee"
+      ]
+    },
+    {
+      "slug": "mage",
+      "name": "Mage",
+      "job_id": 2,
+      "tags": [
+        "first_job",
+        "caster"
+      ]
+    },
+    {
+      "slug": "archer",
+      "name": "Archer",
+      "job_id": 3,
+      "tags": [
+        "first_job",
+        "ranged"
+      ]
+    },
+    {
+      "slug": "acolyte",
+      "name": "Acolyte",
+      "job_id": 4,
+      "tags": [
+        "first_job",
+        "support"
+      ]
+    }
   ],
   "monsters": [
-    {"slug": "poring", "name": "Poring", "job_id": 1002, "tags": ["starter", "slime", "pink"]},
-    {"slug": "fabre", "name": "Fabre", "job_id": 1007, "tags": ["starter", "insect", "green"]},
-    {"slug": "willow", "name": "Willow", "job_id": 1010, "tags": ["starter", "tree", "brown"]},
-    {"slug": "lunatic", "name": "Lunatic", "job_id": 1063, "tags": ["starter", "rabbit", "white"]}
+    {
+      "slug": "poring",
+      "name": "Poring",
+      "job_id": 1002,
+      "tags": [
+        "starter",
+        "slime",
+        "pink"
+      ]
+    },
+    {
+      "slug": "fabre",
+      "name": "Fabre",
+      "job_id": 1007,
+      "tags": [
+        "starter",
+        "insect",
+        "green"
+      ]
+    },
+    {
+      "slug": "willow",
+      "name": "Willow",
+      "job_id": 1010,
+      "tags": [
+        "starter",
+        "tree",
+        "brown"
+      ]
+    },
+    {
+      "slug": "lunatic",
+      "name": "Lunatic",
+      "job_id": 1063,
+      "tags": [
+        "starter",
+        "rabbit",
+        "white"
+      ]
+    }
   ],
   "icons": [
-    {"category": "items", "slug": "red-potion", "name": "Red Potion", "game_id": 501, "tags": ["consumable", "potion", "red"], "image_path": "/images/items/item/501.png"},
-    {"category": "items", "slug": "orange-potion", "name": "Orange Potion", "game_id": 502, "tags": ["consumable", "potion", "orange"], "image_path": "/images/items/item/502.png"},
-    {"category": "items", "slug": "apple", "name": "Apple", "game_id": 512, "tags": ["consumable", "food"], "image_path": "/images/items/item/512.png"},
-    {"category": "items", "slug": "knife", "name": "Knife", "game_id": 1201, "tags": ["equipment", "weapon", "dagger"], "image_path": "/images/items/item/1201.png"},
-    {"category": "skills", "slug": "bash", "name": "Bash", "game_id": 5, "tags": ["swordsman", "melee"], "image_path": "/images/skill/5.png"},
-    {"category": "skills", "slug": "fire-bolt", "name": "Fire Bolt", "game_id": 19, "tags": ["mage", "fire"], "image_path": "/images/skill/19.png"},
-    {"category": "skills", "slug": "heal", "name": "Heal", "game_id": 28, "tags": ["acolyte", "healing"], "image_path": "/images/skill/28.png"},
-    {"category": "skills", "slug": "double-strafe", "name": "Double Strafe", "game_id": 46, "tags": ["archer", "ranged"], "image_path": "/images/skill/46.png"}
+    {
+      "category": "items",
+      "slug": "red-potion",
+      "name": "Red Potion",
+      "game_id": 501,
+      "tags": [
+        "consumable",
+        "potion",
+        "red"
+      ],
+      "image_path": "/images/items/item/501.png"
+    },
+    {
+      "category": "items",
+      "slug": "orange-potion",
+      "name": "Orange Potion",
+      "game_id": 502,
+      "tags": [
+        "consumable",
+        "potion",
+        "orange"
+      ],
+      "image_path": "/images/items/item/502.png"
+    },
+    {
+      "category": "items",
+      "slug": "apple",
+      "name": "Apple",
+      "game_id": 512,
+      "tags": [
+        "consumable",
+        "food"
+      ],
+      "image_path": "/images/items/item/512.png"
+    },
+    {
+      "category": "items",
+      "slug": "knife",
+      "name": "Knife",
+      "game_id": 1201,
+      "tags": [
+        "equipment",
+        "weapon",
+        "dagger"
+      ],
+      "image_path": "/images/items/item/1201.png"
+    },
+    {
+      "category": "skills",
+      "slug": "bash",
+      "name": "Bash",
+      "game_id": 5,
+      "tags": [
+        "swordsman",
+        "melee"
+      ],
+      "image_path": "/images/skill/5.png"
+    },
+    {
+      "category": "skills",
+      "slug": "fire-bolt",
+      "name": "Fire Bolt",
+      "game_id": 19,
+      "tags": [
+        "mage",
+        "fire"
+      ],
+      "image_path": "/images/skill/19.png"
+    },
+    {
+      "category": "skills",
+      "slug": "heal",
+      "name": "Heal",
+      "game_id": 28,
+      "tags": [
+        "acolyte",
+        "healing"
+      ],
+      "image_path": "/images/skill/28.png"
+    },
+    {
+      "category": "skills",
+      "slug": "double-strafe",
+      "name": "Double Strafe",
+      "game_id": 46,
+      "tags": [
+        "archer",
+        "ranged"
+      ],
+      "image_path": "/images/skill/46.png"
+    },
+    {
+      "category": "items",
+      "slug": "card-4029",
+      "name": "Wolf Card",
+      "game_id": 4029,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4029.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4029&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4055",
+      "name": "Marina Card",
+      "game_id": 4055,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4055.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4055&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4086",
+      "name": "Soldier Skeleton Card",
+      "game_id": 4086,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4086.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4086&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4010",
+      "name": "Willow Card",
+      "game_id": 4010,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4010.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4010&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4052",
+      "name": "Elder Willow Card",
+      "game_id": 4052,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4052.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4052&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4269",
+      "name": "Incubus Card",
+      "game_id": 4269,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4269.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4269&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4001",
+      "name": "Poring Card",
+      "game_id": 4001,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4001.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4001&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4008",
+      "name": "Picky Card",
+      "game_id": 4008,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4008.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4008&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4023",
+      "name": "Baby Desert Wolf Card",
+      "game_id": 4023,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4023.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4023&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4102",
+      "name": "Whisper Card",
+      "game_id": 4102,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4102.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4102&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4015",
+      "name": "Condor Card",
+      "game_id": 4015,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4015.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4015&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4056",
+      "name": "Dustiness Card",
+      "game_id": 4056,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4056.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4056&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4038",
+      "name": "Zombie Card",
+      "game_id": 4038,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4038.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4038&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4186",
+      "name": "Raggler Card",
+      "game_id": 4186,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4186.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4186&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4097",
+      "name": "Matyr Card",
+      "game_id": 4097,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4097.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4097&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4028",
+      "name": "Tarou Card",
+      "game_id": 4028,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4028.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4028&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4034",
+      "name": "Wormtail Card",
+      "game_id": 4034,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4034.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4034&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4051",
+      "name": "Yoyo Card",
+      "game_id": 4051,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4051.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4051&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4002",
+      "name": "Fabre Card",
+      "game_id": 4002,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4002.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4002&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4006",
+      "name": "Lunatic Card",
+      "game_id": 4006,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4006.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4006&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4003",
+      "name": "Pupa Card",
+      "game_id": 4003,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4003.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4003&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4022",
+      "name": "Spore Card",
+      "game_id": 4022,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4022.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4022&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4009",
+      "name": "Chonchon Card",
+      "game_id": 4009,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4009.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4009&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4021",
+      "name": "Rocker Card",
+      "game_id": 4021,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4021.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4021&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4035",
+      "name": "Hydra Card",
+      "game_id": 4035,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4035.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4035&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4069",
+      "name": "Drainliar Card",
+      "game_id": 4069,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4069.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4069&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4105",
+      "name": "Marc Card",
+      "game_id": 4105,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4105.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4105&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4027",
+      "name": "Kukre Card",
+      "game_id": 4027,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4027.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4027&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4058",
+      "name": "Thara Frog Card",
+      "game_id": 4058,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4058.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4058&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4031",
+      "name": "Peco Peco Card",
+      "game_id": 4031,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4031.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4031&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4079",
+      "name": "Mantis Card",
+      "game_id": 4079,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4079.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4079&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4098",
+      "name": "Dokebi Card",
+      "game_id": 4098,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4098.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4098&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4064",
+      "name": "Zerom Card",
+      "game_id": 4064,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4064.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4064&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4043",
+      "name": "Andre Card",
+      "game_id": 4043,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4043.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4043&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4078",
+      "name": "Savage Card",
+      "game_id": 4078,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4078.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4078&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4044",
+      "name": "Smokie Card",
+      "game_id": 4044,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4044.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4044&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4126",
+      "name": "Minorous Card",
+      "game_id": 4126,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4126.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4126&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4190",
+      "name": "Wraith Card",
+      "game_id": 4190,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4190.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4190&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4122",
+      "name": "Deviruchi Card",
+      "game_id": 4122,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4122.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4122&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4112",
+      "name": "Marduk Card",
+      "game_id": 4112,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4112.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4112&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4133",
+      "name": "Raydric Card",
+      "game_id": 4133,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4133.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4133&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4141",
+      "name": "Evil Druid Card",
+      "game_id": 4141,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4141.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4141&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4116",
+      "name": "Isis Card",
+      "game_id": 4116,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4116.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4116&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4100",
+      "name": "Sohee Card",
+      "game_id": 4100,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4100.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4100&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4107",
+      "name": "Verit Card",
+      "game_id": 4107,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4107.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4107&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4065",
+      "name": "Kaho Card",
+      "game_id": 4065,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4065.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4065&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4077",
+      "name": "Phen Card",
+      "game_id": 4077,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4077.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4077&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4081",
+      "name": "Hode Card",
+      "game_id": 4081,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4081.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4081&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4142",
+      "name": "Doppelganger Card",
+      "game_id": 4142,
+      "tags": [
+        "card",
+        "card_illustration",
+        "mvp"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4142.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4142&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4168",
+      "name": "Dark Lord Card",
+      "game_id": 4168,
+      "tags": [
+        "card",
+        "card_illustration",
+        "mvp"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4168.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4168&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4140",
+      "name": "Abysmal Knight Card",
+      "game_id": 4140,
+      "tags": [
+        "card",
+        "card_illustration",
+        "normal"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4140.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4140&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4144",
+      "name": "Osiris Card",
+      "game_id": 4144,
+      "tags": [
+        "card",
+        "card_illustration",
+        "mvp"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4144.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4144&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4146",
+      "name": "Maya Card",
+      "game_id": 4146,
+      "tags": [
+        "card",
+        "card_illustration",
+        "mvp"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4146.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4146&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4128",
+      "name": "Golden Thief Bug Card",
+      "game_id": 4128,
+      "tags": [
+        "card",
+        "card_illustration",
+        "mvp"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4128.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4128&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4305",
+      "name": "Turtle General Card",
+      "game_id": 4305,
+      "tags": [
+        "card",
+        "card_illustration",
+        "mvp"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4305.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4305&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4318",
+      "name": "Stormy Knight Card",
+      "game_id": 4318,
+      "tags": [
+        "card",
+        "card_illustration",
+        "mvp"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4318.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4318&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4324",
+      "name": "Hatii Card",
+      "game_id": 4324,
+      "tags": [
+        "card",
+        "card_illustration",
+        "mvp"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4324.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4324&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4131",
+      "name": "Moonlight Flower Card",
+      "game_id": 4131,
+      "tags": [
+        "card",
+        "card_illustration",
+        "mvp"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4131.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4131&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4123",
+      "name": "Eddga Card",
+      "game_id": 4123,
+      "tags": [
+        "card",
+        "card_illustration",
+        "mvp"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4123.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4123&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4147",
+      "name": "Baphomet Card",
+      "game_id": 4147,
+      "tags": [
+        "card",
+        "card_illustration",
+        "mvp"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4147.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4147&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4197",
+      "name": "Mastering Card",
+      "game_id": 4197,
+      "tags": [
+        "card",
+        "card_illustration",
+        "mini"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4197.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4197&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4183",
+      "name": "Vagabond Wolf Card",
+      "game_id": 4183,
+      "tags": [
+        "card",
+        "card_illustration",
+        "mini"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4183.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4183&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4179",
+      "name": "Dragon Fly Card",
+      "game_id": 4179,
+      "tags": [
+        "card",
+        "card_illustration",
+        "mini"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4179.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4179&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4054",
+      "name": "Angeling Card",
+      "game_id": 4054,
+      "tags": [
+        "card",
+        "card_illustration",
+        "mini"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4054.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4054&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4047",
+      "name": "Ghostring Card",
+      "game_id": 4047,
+      "tags": [
+        "card",
+        "card_illustration",
+        "mini"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4047.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4047&itemSeq=5"
+    },
+    {
+      "category": "items",
+      "slug": "card-4174",
+      "name": "Deviling Card",
+      "game_id": 4174,
+      "tags": [
+        "card",
+        "card_illustration",
+        "mini"
+      ],
+      "provider": "ragassets",
+      "kind": "card_illustration",
+      "image_path": "/illust/card/4174.png",
+      "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4174&itemSeq=5"
+    }
   ]
 }
