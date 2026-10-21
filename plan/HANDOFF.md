@@ -4,6 +4,15 @@
 
 
 
+## 21 ต.ค. 2026 · Codex — ส่งทั้งโปรเจกต์ขึ้น GitHub สำเร็จ แก้ SSH account แล้ว
+
+- หลังผู้ใช้อนุญาตให้ตรวจ SSH metadata พบ alias ที่ตั้งไว้แล้ว `github-new` ใช้บัญชี **ctemchai-cmd** (`ssh -T` ยืนยันสำเร็จ); `github.com` เดิมเป็น Rehpyc-z ที่ไม่มีสิทธิ์ repo นี้ ไม่อ่าน/พิมพ์ private key/token และไม่แก้ SSH config ส่วนกลาง
+- เปลี่ยน origin เฉพาะ repo เป็น `git@github-new:ctemchai-cmd/ro-idle-pve.git` แล้ว **push main สำเร็จ** ที่ [GitHub](https://github.com/ctemchai-cmd/ro-idle-pve) สาขา main มี upstream `origin/main` ตรวจ source commit `edb95a74553a27e6a62a37cd8d6561d5e103671b` ตรง remote ด้วย ls-remote แล้ว การส่งเอกสารผลรอบนี้เป็น commit เพิ่มจาก source payload
+- Source payload มี120,294 tracked files/1,131,126,052B รวม source assets117,892files/990,574,867B และ runtime artifact1,198files/27,200,551B ไม่มีไฟล์ส่วนตัว/credentials/node_modules/dist/generated source รวมตาม audit ไม่ส่ง `.local/play` หรือเซฟไป GitHub
+- หลักฐาน `plan/evidence/git-initial-push.json` และ `git-initial-tree-audit.json`; build/source audit/config schema ที่ผ่านก่อนหน้าไม่เปลี่ยน ไม่รันเกม tests ซ้ำเพราะรอบนี้มีแต่เอกสาร/การเลือก SSH alias ยังไม่มี hosted Supabase/Vercel deployment และไม่ปิด TASK043/045/046
+- ขั้นตอนนำไป deploy อยู่ `docs/DEPLOYMENT.md` (env/SQL6migrations/marker/Auth redirects) GitHub integrationใช้สาขาmainและruntime artifactที่เก็บในGit ไม่คัดคลัง assets เต็มไปเว็บ ต้นทางบนเครื่องยังมีครบ และไม่ได้รีสตาร์ต6173/เปลี่ยนเซฟ Boardยัง46/57doneเหมือนเดิม
+- ต่อไป push ผ่าน `origin` ของ repo นี้เพื่อใช้บัญชีที่ถูกต้อง ไม่เปลี่ยนกลับไป `github.com` โดยไม่มีการแก้บัญชี SSH การเรียกกลับไปทำงานเกมให้ยึด task folders/overview และกติกาถามก่อนรีสตาร์ต6173ตามเดิม
+
 ## 21 ต.ค. 2026 · Codex — เตรียม GitHub ทั้งโปรเจกต์แล้ว แต่ push ติดสิทธิ์บัญชี
 
 - ผู้ใช้สั่งขึ้น GitHub ทั้งโปรเจกต์ที่ `git@github.com:ctemchai-cmd/ro-idle-pve.git` เพื่อนำไปต่อ Vercel/Supabase สร้าง repo สาขา `main`, origin ตามที่ระบุ และ commit `4b7f6c9` (`first commit`) แล้ว **ยังไม่ขึ้น GitHub**

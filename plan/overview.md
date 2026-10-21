@@ -4,6 +4,8 @@
 
 เกมเว็บเล่นคนเดียวอ้างอิง Ragnarok Idle Adventure Plus จัดทีม main + NPC 3 คน คิว Active ตัวละสี่ช่อง ทำงานพร้อมกัน ฟาร์มทรัพยากรแล้วกดท้าบอส ใช้ Supabase เซฟหลักด้วยอีเมล/รหัสผ่าน ออนไลน์เป็นหลักพร้อมเซฟสำรองในเครื่อง และ deploy เว็บบน Vercel
 
+Source ทั้งโปรเจกต์เผยแพร่ที่ [ctemchai-cmd/ro-idle-pve](https://github.com/ctemchai-cmd/ro-idle-pve) สาขา `main` แล้ว รวมคลัง assets และ selected runtime artifact โดยกันเซฟ/credentials ออก เตรียม `vercel.json` และ [คู่มือ deploy](../docs/DEPLOYMENT.md) แล้ว แต่ยังไม่มี hosted Supabase/Vercel verification; TASK-043/045/046 คงสถานะเดิม
+
 รุ่นแรกมี Class 1/2 และสูงสุด Lv.70 รอ Hi-class/Awaken/Artifact ใน milestone ถัดไป ส่วน Class 3 ที่ Lv.120 / Pet / Rune เป็นอนาคต Breakthrough ทุก 20 แยกจากการเปลี่ยนคลาส ไม่มีรอบพิเศษที่ 70
 
 Q-001–Q-022 ตอบแล้ว: บัฟบวกกันไม่มีเพดานและคนเดิมร่ายซ้ำเพิ่มชั้นแยกอายุ, Chain CC ปกติ, Stun ปล่อยคิวเดินถึง Action, Active เดิมหนึ่งช่อง และ resources เลือกกดอัปตัวละคร ใช้ P-01–P-09 เป็นฐานตามคำแก้ของผู้ใช้ เพิ่มข้อกำหนด simulation แบบเร็วเพื่อวัดอาชีพ/สกิลด้วย engine เดียวกับเกม ดู [ข้อสรุป](decisions.md), [ประเด็นก่อนแตกงาน](pre-task-review.md) และ [simulation](design/08-simulation-and-balance.md)
