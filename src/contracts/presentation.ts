@@ -17,9 +17,20 @@ export interface ActorRenderView {
   phase_started_at: number; phase_ready_at: number | null; phase_duration_ms: number;
   cast: { skill_id: string; interruptible: boolean } | null;
   next_slot: number; slots: readonly (string | null)[]; status_ids: readonly string[];
+  /** Read-only live status projection, grouped for display; each stack keeps its own expiry/source. */
+  statuses?: readonly StatusRenderGroup[];
+  spirit_spheres?: number; spirit_sphere_capacity?: number; spirit_attack_bonus?: number; spirit_attack_per_sphere?: number;
   /** Owner of a summoned actor (plants etc.); party/enemy rows never carry it. */
   summon_of?: string; summon_kind?: string;
   spatial?: { x: number; y: number; previous_x: number; previous_y: number; updated_at: number; moving: boolean; target_id: string | null; normal_range: number };
+}
+export interface StatusRenderInstance {
+  instance_id: string; status_id: string; name: string; source_actor_id: string;
+  applied_at: number | null; expires_at: number; description: string;
+}
+export interface StatusRenderGroup {
+  id: string; name: string; polarity: 'buff' | 'debuff'; icon_skill_id: string | null;
+  stacks: number; next_expiry_at: number; instances: readonly StatusRenderInstance[];
 }
 export interface BattleRenderView {
   game_time_ms: number; time_limit_ms: number; actors: readonly ActorRenderView[];

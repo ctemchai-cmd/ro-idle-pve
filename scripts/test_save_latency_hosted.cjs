@@ -3,13 +3,14 @@ const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),{cre
 const {chromium}=require(process.env.RO_PLAYWRIGHT_MODULE||'/private/tmp/ro-idle-prep/tools/node_modules/playwright-core');
 const root=path.resolve(__dirname,'..'),base='https://ro-idle-pve.vercel.app',checks=[],errors=[],mutations=[],prefix=process.env.RO_EVIDENCE_PREFIX||'task-063';
 if(!/^task-\d{3}$/.test(prefix))throw new Error('INVALID_EVIDENCE_PREFIX');
+const expectedContent=prefix==='task-068'?JSON.parse(fs.readFileSync(path.join(root,'src/generated/runtime-manifest.json'),'utf8')).content_hash:'768e12a49bf339711d44f501c3710374adbcd10d9eb74d6a2e6f9b8aa79330af';
 const assert=(ok,message)=>{if(!ok)throw new Error(message);};let browser,profile,failure;
 (async()=>{
  const samples=[];
  for(const route of ['/api/health','/api/checkpoint','/api/health']){
   const at=performance.now(),r=await fetch(base+route,{cache:'no-store',signal:AbortSignal.timeout(20000)}),body=await r.json();
   assert(r.status===(route==='/api/checkpoint'?401:200),'PUBLIC_API_STATUS');assert(r.headers.get('x-ro-api-region')==='sin1','API_NOT_SINGAPORE');assert(/total;dur=/.test(r.headers.get('server-timing')||''),'TIMING_MISSING');assert(r.headers.get('cache-control').includes('no-store'),'PRIVATE_CACHE_POLICY');
-  if(route==='/api/health')assert(body.ok&&body.content_hash==='768e12a49bf339711d44f501c3710374adbcd10d9eb74d6a2e6f9b8aa79330af','CONTENT_CHANGED');
+  if(route==='/api/health')assert(body.ok&&body.content_hash===expectedContent,'CONTENT_CHANGED');
   samples.push({route,status:r.status,elapsed_ms:Math.round(performance.now()-at),api_region:r.headers.get('x-ro-api-region'),vercel_id:r.headers.get('x-vercel-id'),server_timing:r.headers.get('server-timing')});
  }
  checks.push({case_id:'hosted_region_timing_auth_gate_content',passed:true,samples});
@@ -24,6 +25,10 @@ const assert=(ok,message)=>{if(!ok)throw new Error(message);};let browser,profil
  if(prefix==='task-066'){
   const shell=manifest.build_files.find(r=>/^dist\/assets\/shell-.*\.js$/.test(r.path));assert(shell,'NO_GAME_SHELL_BUNDLE');
   const source=await(await fetch(base+'/'+shell.path.replace(/^dist\//,''))).text();assert(source.includes('bag-window')&&source.includes('data-window-start'),'VIRTUAL_INVENTORY_NOT_DEPLOYED');
+ }
+ if(prefix==='task-068'){
+  const shell=manifest.build_files.find(r=>/^dist\/assets\/shell-.*\.js$/.test(r.path));assert(shell,'NO_GAME_SHELL_BUNDLE');
+  const source=await(await fetch(base+'/'+shell.path.replace(/^dist\//,''))).text();assert(source.includes('combat-status-strip')&&source.includes('sphere-counter')&&source.includes('status-instance-list'),'STATUS_AND_SPHERES_NOT_DEPLOYED');
  }
  checks.push({case_id:'hosted_shared_save_bundle',passed:true,path:row.path,sha256:createHash('sha256').update(bundle).digest('hex'),combined_reply:true});
  profile=fs.mkdtempSync(path.join(os.tmpdir(),'ro-save-hosted-'));const context=await chromium.launchPersistentContext(profile,{headless:true,executablePath:process.env.RO_CHROME_PATH||'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',viewport:{width:390,height:844}});browser=context.browser();

@@ -1,3 +1,4 @@
+import { battleStatusViews } from './combat-status.ts';
 import { loadValidatedContent } from '../content/index.ts';
 import type { ValidatedContent } from '../content/model.ts';
 import type { CombatStats, StatBlueprint } from '../contracts/index.ts';
@@ -93,7 +94,8 @@ export class DemoSession {
     return this.projectedTimeline ??= projectBattleTimeline(this.initial, this.content, yieldTask);
   }
   view(): BattleRenderView {
-    const actors: ActorRenderView[] = this.state.actors.map(actor => ({ actor_id: actor.actor_id, name: this.actorNames[actor.actor_id] ?? actor.actor_id, team: actor.team, position: actor.position, hp: actor.hp, max_hp: actor.stats.max_hp, sp: actor.sp, max_sp: actor.stats.max_sp, level: actor.stat_blueprint.level,
+    const statuses = battleStatusViews(this.state);
+    const actors: ActorRenderView[] = this.state.actors.map(actor => ({ ...statuses[actor.actor_id], actor_id: actor.actor_id, name: this.actorNames[actor.actor_id] ?? actor.actor_id, team: actor.team, position: actor.position, hp: actor.hp, max_hp: actor.stats.max_hp, sp: actor.sp, max_sp: actor.stats.max_sp, level: actor.stat_blueprint.level,
       ...(actor.spatial ? { spatial: actor.spatial } : {}), phase: actor.action_phase, phase_started_at: actor.phase_started_at, phase_ready_at: actor.phase_ready_at, phase_duration_ms: actor.phase_duration_ms, cast: actor.cast ? { skill_id: actor.cast.skill_id, interruptible: actor.cast.interruptible } : null,
       next_slot: actor.cast?.used_slot_index ?? actor.rotation_cursor, slots: actor.active_slots, status_ids: actor.statuses.map(status => status.status_id) }));
     return { ...(this.state.arena ? { arena: this.state.arena } : {}), game_time_ms: this.state.game_time_ms, time_limit_ms: this.state.mode.time_limit_ms, actors, terminal: this.state.terminal_result ? { kind: this.state.terminal_result.kind, at_ms: this.state.terminal_result.at_game_ms } : null };

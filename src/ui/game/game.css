@@ -145,6 +145,11 @@ img { image-rendering: pixelated; }
 .field { position: absolute; inset: 0; z-index: 1; }
 .field-arena { position: absolute; inset: 0; }
 .field-arena canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.farm-status-toggle { position: absolute; z-index: 5; top: calc(var(--hud-h) + var(--safe-top) + 8px); left: 10px; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; border: 1px solid #ffffffc9; background: #ecf5fff0; color: var(--blue); box-shadow: var(--shadow); }
+.farm-status-toggle .ui-icon { width: 21px; height: 21px; }
+.farm-status-actor { padding: 10px 0; border-bottom: 1px solid var(--line); }
+.farm-status-actor h3 { margin: 0 0 8px; font-size: 13px; }
+.farm-status-sheet .combat-status-strip { padding: 5px; background: #244364; border-radius: 10px; }
 .field.covered .field-arena { visibility: hidden; }
 .field-toast { position: absolute; left: 50%; top: 42%; transform: translateX(-50%); margin: 0; padding: 8px 14px; border-radius: 12px; background: rgba(15, 28, 60, .7); color: #fff; font-size: 13px; white-space: nowrap; }
 .field-toast.danger { background: rgba(160, 30, 40, .85); }
@@ -196,6 +201,35 @@ img { image-rendering: pixelated; }
 .party-card { display: grid; gap: 3px; padding: 6px 7px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, .5); background: rgba(15, 25, 55, .68); color: #fff; text-align: left; backdrop-filter: blur(4px); }
 .party-card.on { border-color: #ffd36b; box-shadow: 0 0 0 2px rgba(255, 211, 107, .5); }
 .party-card.down { opacity: .55; }
+.status-signals { display: flex; align-items: center; gap: 3px; height: 17px; }
+.status-signals:empty { display: none; }
+.status-signal { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; background: #233e64; border-radius: 4px; border: 1px solid #87b7ed; }
+.status-signal.debuff { border-color: #f69a9f; background: #683742; }
+.status-signal img, .status-signal .ui-icon { width: 13px; height: 13px; object-fit: contain; }
+.status-signal b { position: absolute; font-size: 8px; bottom: -2px; right: -2px; text-shadow: 0 1px 2px #142338; }
+.sphere-signal { display: inline-flex; gap: 3px; align-items: center; font-size: 10px; color: #c5ecff; }
+.sphere-signal i, .sphere-mark { display: inline-block; flex: none; width: 15px; height: 15px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff 10%, #dcf8ff 25%, #83cfff 58%, #426cba 90%); box-shadow: 0 0 8px #8bcaff88; }
+.sphere-signal i { width: 9px; height: 9px; }
+.focus-status-panel { position: absolute; z-index: 6; left: 8px; right: 8px; bottom: calc(var(--bar-h) + var(--safe-bottom) + 100px); }
+.combat-status-strip { display: flex; align-items: center; gap: 6px; min-width: 0; color: #edf5ff; }
+.combat-status-strip.focused { padding: 5px 7px; border-radius: 12px; background: rgba(15, 25, 55, .76); backdrop-filter: blur(4px); }
+.status-owner { flex: none; max-width: 50px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 10px; color: #d4e5f7; }
+.boss-bar > .combat-status-strip { margin-top: 6px; }
+.status-icons { display: flex; gap: 5px; align-items: center; min-width: 0; overflow-x: auto; scrollbar-width: none; padding: 2px; }
+.combat-status { flex: none; position: relative; display: grid; place-items: center; width: 39px; min-height: 45px; padding: 2px 2px 0; color: #edf5ff; background: rgba(86, 145, 214, .18); border: 1px solid #719bc96b; border-radius: 8px; }
+.combat-status.debuff { background: rgba(202, 69, 86, .2); border-color: #f394a6b0; }
+.combat-status img, .combat-status > .ui-icon { width: 25px; height: 25px; object-fit: contain; image-rendering: pixelated; }
+.combat-status small { font: 9px/1.2 ROThai, sans-serif; font-variant-numeric: tabular-nums; }
+.status-stacks { position: absolute; top: -2px; right: -2px; min-width: 14px; padding: 0 2px; border-radius: 5px; color: #fff; background: #356dab; font-size: 9px; }
+.debuff .status-stacks { background: #ac4357; }
+.sphere-counter { flex: none; display: grid; grid-template-columns: 15px auto; align-items: center; column-gap: 5px; padding: 3px 5px; color: #d8f3ff; background: #2a4e7959; border: 1px solid #86c8ef66; border-radius: 8px; min-height: 45px; }
+.sphere-counter b { font-size: 15px; line-height: 1; } .sphere-counter b small { font-size: 10px; opacity: .65; }
+.sphere-counter > span:last-child { grid-column: 1 / -1; font-size: 9px; }
+.combat-status-details .status-instance-list { max-height: 48dvh; overflow-y: auto; }
+.status-instance { padding: 9px 0; border-bottom: 1px solid var(--line); }
+.status-instance b { display: flex; justify-content: space-between; gap: 10px; font-size: 13px; } .status-instance time { color: var(--blue); font-variant-numeric: tabular-nums; }
+.status-instance p { margin: 4px 0; font-size: 12px; } .status-instance small, .status-detail-summary { color: var(--ink-2); font-size: 11px; }
+.sphere-detail { display: flex; align-items: center; gap: 9px; padding: 12px; border-radius: 12px; background: var(--panel-2); } .sphere-detail strong { margin-left: auto; color: var(--blue); }
 .party-name { font-size: 12.5px; font-weight: 800; } .party-card small { font-size: 10.5px; opacity: .8; }
 .result-layer { position: absolute; z-index: 40; inset: 0; display: grid; place-items: center; background: rgba(10, 20, 45, .45); backdrop-filter: blur(2px); padding: 20px; }
 .result-card { width: min(100%, 340px); max-height: 100%; overflow-y: auto; padding: 16px 14px; border-radius: 20px; text-align: center; background: linear-gradient(#ffffff, #eef5ff); box-shadow: var(--shadow-strong); animation: pop .3s cubic-bezier(.2, 1.4, .4, 1); }

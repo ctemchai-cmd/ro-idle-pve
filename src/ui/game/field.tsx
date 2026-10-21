@@ -10,6 +10,7 @@ import type { AssetPack } from '../../renderer/pack.ts';
 import { SkillTimeline } from '../skill-timeline.tsx';
 import { battleSpeed, cycleBattleSpeed, subscribeBattleSpeed } from '../../client/battle-speed.ts';
 import { shouldAdvanceBattleFrame } from '../../client/battle-frame.ts';
+import { CombatStatusStrip, StatusSignals } from './combat-status.tsx';
 import { BattleStatistics } from '../battle-statistics.tsx';
 import type { ChallengeTarget, GameContext } from './shell.tsx';
 import { ResIcon, Sheet, compact, duration, friendNames, full, iconUrl, mapNames, resourceNames, type Wallet } from './kit.tsx';
@@ -32,11 +33,13 @@ function useNow(interval: number) { const [now, setNow] = useState(Date.now()); 
 /** Main-screen ambient farm: the saved team walks and clears weak waves. Display only; rewards stay time-based. */
 function FarmField({ context, covered }: { context: GameContext; covered: boolean }) {
   const { pack, state } = context, canvas = useRef<HTMLCanvasElement>(null), coveredRef = useRef(covered), [phase, setPhase] = useState<'load' | 'fight' | 'walk' | 'rest' | 'error'>('load');
+  const waveRef = useRef<Wave | null>(null), [statusesOpen, setStatusesOpen] = useState(false), statusesOpenRef = useRef(false), [statusView, setStatusView] = useState<BattleRenderView | null>(null);
+  statusesOpenRef.current = statusesOpen;
   coveredRef.current = covered;
   const stage = farmSceneStage(state), key = `${stage.id}:${storyPresentationKey(state)}`;
   useEffect(() => {
     const node = canvas.current; if (!pack || !node) return;
-    let disposed = false, raf = 0, last = performance.now(), clock = 0, phaseAt = 0, wave = 0, scroll = 0, current: Wave | null = null;
+    let disposed = false, raf = 0, last = performance.now(), clock = 0, phaseAt = 0, wave = 0, scroll = 0, current: Wave | null = null, notify = 0;
     let mode: 'load' | 'fight' | 'settle' | 'walk' | 'rest' = 'load', ready: Wave | null = null, endView: BattleRenderView | null = null, won = true;
     const tuning = shellVisuals(pack.index).farm, skins = farmSkins(pack.index, stage.chapter);
     const resize = () => { const r = node.getBoundingClientRect(); if (r.width && r.height) { node.width = 720; node.height = Math.round(720 * r.height / r.width); } };
@@ -53,6 +56,8 @@ function FarmField({ context, covered }: { context: GameContext; covered: boolea
       const delta = document.hidden || coveredRef.current ? 0 : Math.max(0, Math.min(120, now - last)); last = now;
       if (!delta || !current) { raf = requestAnimationFrame(frame); return; }
       try {
+        waveRef.current = current;
+        if (statusesOpenRef.current && now - notify >= 100) { setStatusView(current.session.view()); notify = now; }
         clock += delta;
         if (mode === 'fight') {
           const target = current.session.state.game_time_ms + delta;
@@ -74,10 +79,12 @@ function FarmField({ context, covered }: { context: GameContext; covered: boolea
       raf = requestAnimationFrame(frame);
     }
     raf = requestAnimationFrame(frame);
-    return () => { disposed = true; cancelAnimationFrame(raf); observer.disconnect(); };
+    return () => { disposed = true; waveRef.current = null; cancelAnimationFrame(raf); observer.disconnect(); };
   }, [pack, key]);
   return <section className="field-arena" aria-label={`ฟาร์มอัตโนมัติ ด่าน ${stage.id}`} data-farm-phase={phase} data-farm-stage={stage.id}>
     <canvas ref={canvas} width={720} height={1100} aria-hidden="true" />
+    <button className="farm-status-toggle" aria-label="สถานะทีม" onClick={() => { setStatusView(waveRef.current?.session.view() ?? null); setStatusesOpen(true); }}><Icon name="shield" /></button>
+    {statusesOpen && <Sheet title="สถานะทีมระหว่างฟาร์ม" onClose={() => setStatusesOpen(false)} className="farm-status-sheet">{statusView ? statusView.actors.filter(a => a.team === 'player' && !a.summon_of).map(a => <section className="farm-status-actor" key={a.actor_id}><h3>{a.name}</h3><CombatStatusStrip actor={a} actors={statusView.actors} pack={pack} now={statusView.game_time_ms} />{!a.statuses?.length && a.spirit_spheres === undefined && <p className="hint">ยังไม่มี Buff / Debuff</p>}</section>) : <p className="hint">กำลังเตรียมทีม…</p>}</Sheet>}
     {phase === 'rest' && <p className="field-toast">ทีมพักฟื้นแล้วออกเดินต่อ…</p>}
     {phase === 'error' && <p className="field-toast">ยังแสดงฉากฟาร์มไม่ได้ · ตรวจทีมและสกิล</p>}
   </section>;
@@ -119,7 +126,7 @@ function BossField({ context, app, running, checkpoint, outcome, retreat, statsR
   useEffect(() => { if (!checkpoint || !renderer.current) return; try { renderer.current.accept(app.session.confirm(checkpoint)); logical.current = Math.max(logical.current, app.session.state.game_time_ms); setView(app.session.view()); } catch { setError('ผลการต่อสู้ยังไม่ตรงกับเซฟ กรุณาเชื่อมต่อใหม่'); } }, [checkpoint, app]);
   useEffect(() => { if (!outcome || !renderer.current) return; try { renderer.current.accept(app.session.advanceTo(app.session.state.mode.time_limit_ms)); setView(app.session.view()); } catch { setError('ยังแสดงผลไฟต์ไม่ได้ กรุณาเชื่อมต่อใหม่'); } }, [outcome, app]);
   useEffect(() => { if (renderer.current) renderer.current.selected = selected; }, [selected]);
-  const party = view.actors.filter(a => a.team === 'player' && !a.summon_of), boss = view.actors.find(a => a.team === 'enemy' && !a.summon_of), label = (id: string) => app.session.scene.skill_labels[id] ?? id;
+  const party = view.actors.filter(a => a.team === 'player' && !a.summon_of), boss = view.actors.find(a => a.team === 'enemy' && !a.summon_of), focused = party.find(a => a.actor_id === selected) ?? party[0], label = (id: string) => app.session.scene.skill_labels[id] ?? id;
   return <section className="field-arena boss" aria-label="ไฟต์บอส" data-battle-id={app.id} data-game-ms={view.game_time_ms} data-terminal={view.terminal?.kind ?? ''}>
     <canvas ref={canvas} width={720} height={1100} aria-label="ทีมต่อสู้กับบอส" />
     <div className="boss-bar">
@@ -131,6 +138,7 @@ function BossField({ context, app, running, checkpoint, outcome, retreat, statsR
           <span className="cast-track"><i style={{ width: `${progress * 100}%` }} /></span>
         </div>; })()}
       {cut && <p className="boss-cut" role="status"><Icon name="lightning" /> ขัดสำเร็จ!{cut.by ? ` · ${cut.by}` : ''}</p>}
+      {boss && <CombatStatusStrip actor={boss} actors={view.actors} pack={pack} now={view.game_time_ms} />}
     <div className="boss-tools">
       <button className="chip-btn" onClick={() => setPanel('statistics')}><Icon name="chart" /><span>สถิติ</span></button>
       <button className="chip-btn" onClick={() => setPanel('timeline')}><Icon name="timeline" /><span>Timeline</span></button>
@@ -143,7 +151,9 @@ function BossField({ context, app, running, checkpoint, outcome, retreat, statsR
     <div className="party-strip" role="group" aria-label="ทีมในไฟต์">{party.map(a => <button key={a.actor_id} className={`party-card ${selected === a.actor_id ? 'on' : ''} ${a.hp <= 0 ? 'down' : ''}`} aria-pressed={selected === a.actor_id} onClick={() => setSelected(a.actor_id)}>
       <span className="party-name"><ClassIcon job={context.state.roster.find(r => r.character_id === a.actor_id)?.job_id ?? 'swordsman'} size={15} />{a.name.split(' · ')[0]}</span><small>{phaseNames[a.phase]}</small>
       <span className="bar hp thin"><i style={{ width: `${a.hp / a.max_hp * 100}%` }} /></span><span className="bar sp thin"><i style={{ width: `${a.sp / a.max_sp * 100}%` }} /></span>
+      <StatusSignals actor={a} pack={pack} />
     </button>)}</div>
+    {focused && <div className="focus-status-panel"><CombatStatusStrip key={focused.actor_id} actor={focused} actors={view.actors} pack={pack} now={view.game_time_ms} focus /></div>}
     {panel && <Sheet title={panel === 'timeline' ? 'Timeline สกิล' : 'สถิติการต่อสู้'} onClose={() => setPanel(null)} className="tall">{panel === 'timeline' ? <SkillTimeline session={app.session} pack={pack!} view={view} clock={clock} /> : <BattleStatistics report={app.session.statistics()} actors={view.actors} labels={app.session.scene.skill_labels} />}</Sheet>}
   </section>;
 }

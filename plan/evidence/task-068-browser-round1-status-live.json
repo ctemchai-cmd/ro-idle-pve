@@ -1,0 +1,14 @@
+{
+  "task_id": "TASK-068",
+  "passed": false,
+  "error": "Error: Command failed: /opt/homebrew/Cellar/node/24.1.0/bin/node --import tsx /Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/game/status-ui-fixture.ts\n/Users/chanon/Documents/Projects/Personal/RO Idle Classic/src/domain/progression/skills.ts:16\n if (!Number.isInteger(target) || target <= current) throw new ProgressionRejection('SKILL_LEVEL_UNCHANGED');\n                                                           ^\n\n\nProgressionRejection [Error]: SKILL_LEVEL_UNCHANGED\n    at skillQuote (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/src/domain/progression/skills.ts:16:60)\n    at applySkillCommand (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/src/domain/progression/skills.ts:56:96)\n    at applySandboxRoster (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/src/client/roster.ts:31:73)\n    at <anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/game/status-ui-fixture.ts:18:43)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n\nNode.js v24.1.0\n",
+  "errors": [],
+  "checks": [],
+  "commands": [
+    "account.create"
+  ],
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "balance_simulation": false,
+  "scope": "Actual isolated Auth/PostgREST/PostgreSQL and mobileChrome; test-only Lv40Monk/support team, targeted UI interactions only, no balance/calibration runner."
+}

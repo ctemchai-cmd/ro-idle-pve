@@ -118,6 +118,8 @@
 | D-090 | 21 ต.ค.2026 ผู้ใช้รายงานเปลี่ยนแต่ละหน้า0.5–1s ขอให้ลื่นขึ้น | TASK-066 ผู้ใช้Android Chrome/PWA; actualtouch/CPU4x/500itemsพบกระเป๋า399–499msจากeagerDOM/forcedscrollTo และ0APIrequests แก้visible-rowVirtualGridและmainkeyตามview/character ยังfilter/bulkจากทั้งlist ผลfixturematchedmedianกระเป๋า449→120ms ไม่อ้างownerphone |
 | D-091 | 21 ต.ค.2026 ดันแก่นพลังจบค้าง รีเฟรชแล้วเสียquota; ผู้ใช้ย้ำx1/x2/x4ต้องคำนวณและขัดร่ายเหมือนเดิม | TASK-067 priorityก่อนnavigation: final1–49msถูก50msgateทิ้ง แก้flushdeadlineในclientadapter ไม่เปลี่ยนengine/สูตร; exactspeedparitytestsและactualdaily60s+signedonce-onlyEssencequota compensationผ่านfixture ผู้ใช้ต้องกดคืนผ่านownerAuth ไม่มีrawstateimport/SQL/envใหม่ |
 
+| D-092 | 21 ต.ค.2026 ผู้ใช้ขอCall Spiritsมีบอลหมุน เห็นจำนวนบอลและBuff/Debufficons พร้อมยืนยันATK+1%ต่อบอลเฉพาะที่ยังเหลือหลังหักค่าใช้สกิล ไม่รันsimulationใหม่ | TASK-068 ใช้sharedderivedATKpercentbucket/dataresource modifier, rawresource/independentstatusinstance projectionพร้อมsource/expiry/shields; พิสูจน์เฉพาะกติกาใหม่/UI/migration ไม่ปรับบาลานซ์อื่น |
+
 ## คำถามหลักที่ส่งให้ผู้ใช้แล้ว
 
 | ID | ประเด็น | สถานะ |

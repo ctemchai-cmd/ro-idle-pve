@@ -1,0 +1,21 @@
+{
+  "task_id": "TASK-068",
+  "passed": true,
+  "error": null,
+  "errors": [],
+  "checks": [
+    "RealMonk CallSpirits shows5/5 +5% with orbit, SteelBody shows independent buff and debuff native icons",
+    "FingerOffensive consumes5 at cast start; live resource display immediately becomes0/5 +0%",
+    "TwoBlessing sources show2stacks/4effects with actual separate source/expiry in tappable detail sheet",
+    "320px mobile layout has no overlap/overflow; farm status sheet shows all4; inspection never writes battle.advance"
+  ],
+  "commands": [
+    "account.create",
+    "battle.start_daily",
+    "battle.retreat"
+  ],
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "balance_simulation": false,
+  "scope": "Actual isolated Auth/PostgREST/PostgreSQL and mobileChrome; test-only Lv40Monk/support team, targeted UI interactions only, no balance/calibration runner."
+}

@@ -1,0 +1,82 @@
+✔ T040 AC-01: export → reset → restore brings back the same characters, NPCs, items and slot progress (341.282958ms)
+✔ T040 AC-02: an older signed save is previewed then migrated with a backup; unsupported or broken saves are never changed (916.219584ms)
+✔ T040 AC-03 + D-085: new game clears daily dungeons; restore guards AFK/shop/daily counters and restores once (1118.807708ms)
+✔ T040 AC-03/04: a quarantined save is recovered only from its signed tip; a healthy save refuses recovery (242.428375ms)
+✔ T040 AC-04: the client only sends maintenance writes the server asked for, and shows nothing until the receipt (0.900917ms)
+✔ D-085: migrating an already-reset locked game clears only carried daily progress, with backup; unlocked games retain it (546.080959ms)
+✔ T040 AC-05: compatibility matrix — current/older/newer/unknown/cost-version fixtures migrate, reject or refund exactly (517.664708ms)
+✔ 21Oct daily clock incident refunds one Essence attempt with signed backup; retries cannot refund twice (250.276916ms)
+✔ daily clock repair without an affected historical retreat does not change quota or create a backup (248.578125ms)
+✖ held spheres add0–5% in the existing ATK bucket, without changing speed or magic (4.140917ms)
+✖ gain and cast costs recompute ATK before the snapshot; interruption never refunds spent spheres (4.888042ms)
+✖ live status view groups Blessing effects without hiding independent sources, stacks, expiry or shields (87.601334ms)
+✔ sphere projection and orbit geometry show the exact resource count, using only game time (2.93525ms)
+✔ revive clears the old sphere bonus before rebuilding the revived actor stats (1.538917ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 11
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5808.028959
+
+✖ failing tests:
+
+test at tests/game/spirit-status.test.ts:1:822
+✖ held spheres add0–5% in the existing ATK bucket, without changing speed or magic (4.140917ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  1043.33 !== 1043
+
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/spirit-status.test.ts:18:107)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.start (node:internal/test_runner/test:959:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:332:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1043.33,
+    expected: 1043,
+    operator: 'strictEqual'
+  }
+
+test at tests/game/spirit-status.test.ts:1:1739
+✖ gain and cast costs recompute ATK before the snapshot; interruption never refunds spent spheres (4.888042ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  1084.65 !== 1084
+
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/spirit-status.test.ts:29:137)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:332:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1084.65,
+    expected: 1084,
+    operator: 'strictEqual'
+  }
+
+test at tests/game/spirit-status.test.ts:1:2827
+✖ live status view groups Blessing effects without hiding independent sources, stacks, expiry or shields (87.601334ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    battleStatusViews(state)
+
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/spirit-status.test.ts:40:99)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '=='
+  }

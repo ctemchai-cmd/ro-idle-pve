@@ -1,3 +1,5 @@
+import { heldResourceModifiers } from '../domain/combat/resources.ts';
+import { statNames, statusNames } from './status-labels.ts';
 import { loadValidatedContent } from '../content/index.ts';
 import type { AccountState, SkillDefinition } from '../contracts/index.ts';
 import { allowedSkill, characterSkillCap, compileCharacterSkills, skillQuote } from '../domain/progression/skills.ts';
@@ -8,10 +10,6 @@ import { castDurationMs, skillIntervalMs } from '../domain/math/index.ts';
 const loaded=loadValidatedContent();if(!loaded.ok)throw new Error('CONTENT_UNAVAILABLE');const content=loaded.value;
 type Character=AccountState['roster'][number];
 const labels=content.documents['strings.th.json']!.strings as unknown as Record<string,string>;
-const statNames:Record<string,string>={physical_attack:'พลังโจมตี',magical_attack:'พลังเวท',max_hp:'HP สูงสุด',max_sp:'SP สูงสุด',physical_defense:'เกราะกายภาพ',magical_defense:'เกราะเวท',attack_speed:'ความเร็วโจมตี',cast_speed:'ความเร็วร่าย',flat_sp_regen:'ฟื้น SP',sp_regen_percent:'อัตราฟื้น SP',crit_chance_bonus:'โอกาสคริ',crit_damage_bonus:'ดาเมจคริ',hit_bonus:'ความแม่นยำ',evasion_bonus:'การหลบ',healing_done_bonus:'พลังฮีล',str:'STR',agi:'AGI',vit:'VIT',int:'INT',dex:'DEX',luk:'LUK'};
-const statusNames:Record<string,string>={attack_up:'เพิ่มพลังโจมตี',magic_up:'เพิ่มพลังเวท',attack_speed_up:'เพิ่มความเร็วโจมตี',cast_speed_up:'เพิ่มความเร็วร่าย',stun:'สตัน',freeze:'แช่แข็ง',silence:'ใบ้',poison:'พิษ',bleed:'เลือดไหล',armor_break:'ลดเกราะ',guard:'ลดดาเมจ',provoke:'ยั่วยุ',regeneration:'ฟื้นฟูต่อเนื่อง'};
-Object.assign(statNames,{crit_resistance:'ต้านคริ',control_accuracy:'โอกาสทำสถานะ',control_resistance:'ต้านสถานะ',outgoing_physical_bonus:'ดาเมจกายภาพ',outgoing_magical_bonus:'ดาเมจเวท',outgoing_true_bonus:'ดาเมจจริง',damage_taken_bonus:'ดาเมจที่ได้รับ',guard_percent:'ลดดาเมจ',armor_break_percent:'ลดเกราะ',penetration_percent:'เจาะเกราะ',outgoing_healing_bonus:'พลังฮีล',healing_received_bonus:'การรับฮีล',hp_regen_percent:'ฟื้น HP ตามสัดส่วน',flat_damage_reduction:'ลดดาเมจคงที่',flat_penetration:'เจาะเกราะคงที่',flat_hp_regen:'ฟื้น HP'});
-Object.assign(statusNames,{aspd_up:'เพิ่มความเร็วโจมตี',defense_up:'เพิ่มเกราะกายภาพ',magic_defense_up:'เพิ่มเกราะเวท',guard_up:'ลดดาเมจ',crit_up:'เพิ่มคริ',mana_regen_up:'เพิ่มการฟื้น SP',cc_resistance_up:'ต้านสถานะ',exposed:'เพิ่มดาเมจที่ได้รับ',slow:'ช้าลง',fire_endow:'เสริมธาตุไฟ',counter_stance:'เตรียมสวนกลับ',devotion:'รับดาเมจแทนเพื่อน',attack_down:'ลดพลังโจมตี',accuracy_down:'ลดความแม่นยำ',venom:'พิษรุนแรง',chemical_burn:'เผาไหม้เคมี',frost_field:'เขตน้ำแข็ง'});
 const statUnits=Object.fromEntries((content.documents['stat-definitions.json']!.stats as unknown as {id:string;unit:string}[]).map(s=>[s.id,s.unit]));
 const number=(n:unknown)=>Number(n).toLocaleString('th-TH',{maximumFractionDigits:2}),percent=(n:unknown)=>number(Number(n)*100)+'%';
 function summaries(definition:SkillDefinition):string[]{
@@ -27,7 +25,7 @@ function summaries(definition:SkillDefinition):string[]{
   else if(effect.type==='interrupt')text='ขัดการร่ายของเป้าหมาย';
   else if(effect.type==='revive')text='ชุบชีวิตเพื่อน';
   else if(effect.type==='remove_status')text='ล้างสถานะจากเป้าหมาย';
-  else if(effect.type==='resource_change')text='เปลี่ยนทรัพยากรระหว่างต่อสู้';
+  else if(effect.type==='resource_change')text=effect.resource==='spirit_spheres'?`เพิ่ม Spirit Sphere ${number(effect.amount)} ลูก (สูงสุด 5) · บอลที่ถือเพิ่ม ATK ${percent(heldResourceModifiers({sp:0,spirit_spheres:1},content).filter(m=>m.stat==='physical_attack').reduce((n,m)=>n+Number(m.value),0))} ต่อลูก`:'เปลี่ยนทรัพยากรระหว่างต่อสู้';
   else if(effect.type==='summon')text='เรียกผู้ช่วยลงสนาม';
   else if(effect.type==='handler'&&effect.handler_id==='detonate_own_status')text=`ระเบิด${statusNames[String(effect.params.status_id)]??effect.params.status_id}ของตัวเอง ${number(effect.params.power_per_instance)} ต่อชั้น`;
   else text='กลไกเฉพาะอาชีพ';

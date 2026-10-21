@@ -6,6 +6,8 @@ import type { ImpactEffect, ProjectileSpec } from '../contracts/assets.ts';
 import { DamageNumbers, NUMBER_FLIGHT_MS, numberFlight } from './damage-numbers.ts';
 import { drawProjectile, isFocusedDamage, projectileLifetime, projectilePoint, type ProjectileCue } from './projectiles.ts';
 import { alignProjectiles, attackContactMs, visualImpactMs } from './impact-timing.ts';
+import { drawSpiritSpheres } from './spirit-spheres.ts';
+import { locateSkillVisual } from './asset-locator.ts';
 
 interface Cue { event: BattlePresentationEvent; duration: number; delay: number; targets: readonly string[] }
 /** Length of one pass through a native STR effect. */
@@ -25,6 +27,7 @@ export class BattleRenderer {
   private readonly animation: ActorAnimation;
   frameStats = { damage: [] as { source: string; target: string; amount: number; critical: boolean; sequence: number; at_ms: number }[], incoming: [] as { source: string; target: string; amount: number; sequence: number }[], projectiles: [] as { source: string; target: string; shape: string }[], shouts: [] as { actor: string; skill: string }[], impacts: [] as { target: string; meta: string }[] };
   private frameTime = 0;
+  private statusImages = new Map<string, HTMLImageElement | null>();
   selected = 'main';
   motion = true;
   /** Horizontal background travel in source-image pixels; presentation only. */
@@ -154,7 +157,10 @@ export class BattleRenderer {
         context.save(); context.translate(x, y); context.rotate((this.motion ? presentationMs : 0) / 700); context.strokeStyle = actor.team === 'enemy' ? actor.cast?.interruptible ? '#ffb17a' : '#d8a7ff' : '#c4ebfa'; context.lineWidth = 2; context.beginPath(); context.ellipse(0, 0, 34, 11, 0, 0, Math.PI * 2); context.stroke(); context.restore();
       }
       const motion = this.animation.offset(state, elapsed, actor.actor_id, this.motion);
+      const sphereTime = this.motion ? presentationMs : 0;
+      if (actor.hp > 0) drawSpiritSpheres(context, actor.spirit_spheres ?? 0, sphereTime, false, x, y);
       this.drawnLayers += drawActor(context, parts, state, elapsed, x + motion.x * (facing === 'left' ? -1 : 1), y + motion.y, facing, appearance.scale);
+      if (actor.hp > 0) drawSpiritSpheres(context, actor.spirit_spheres ?? 0, sphereTime, true, x, y);
     }
     this.projectiles = this.projectiles.filter(cue => presentationMs - cue.at_ms <= projectileLifetime(cue.spec));
     if (this.motion) for (const cue of this.projectiles) {
@@ -236,6 +242,22 @@ export class BattleRenderer {
     }
     const barY = y + (showName ? 41 : 17);
     context.fillStyle = '#213e31'; context.fillRect(x - 38, barY, 76, 5); context.fillStyle = actor.team === 'player' ? '#afd3a1' : '#e5a187'; context.fillRect(x - 38, barY, 76 * Math.max(0, actor.hp / actor.max_hp), 5);
+    const statuses = actor.statuses ?? [], shown = statuses.slice(0, 4), badgeY = barY + 11;
+    for (const [index, status] of shown.entries()) {
+      const left = x - shown.length * 12 + index * 24;
+      context.fillStyle = status.polarity === 'buff' ? '#274e70dd' : '#722e43dd'; context.fillRect(left, badgeY, 22, 22);
+      context.strokeStyle = status.polarity === 'buff' ? '#91c8ff' : '#ff93ad'; context.lineWidth = 1; context.strokeRect(left, badgeY, 22, 22);
+      const id = status.icon_skill_id;
+      if (id && !this.statusImages.has(id)) {
+        this.statusImages.set(id, null);
+        try { void this.pack.iconUrl(locateSkillVisual(this.pack.index, id).icon.id).then(async url => { const image = new Image(); image.src = url; await image.decode(); this.statusImages.set(id, image); }).catch(() => {}); } catch { /* Unknown icons keep a visible polarity marker. */ }
+      }
+      const image = id ? this.statusImages.get(id) : null;
+      if (image) context.drawImage(image, left + 2, badgeY + 2, 18, 18);
+      else { context.fillStyle = '#eef6ff'; context.font = 'bold 18px sans-serif'; context.fillText(status.polarity === 'buff' ? '+' : '−', left + 11, badgeY + 17); }
+      if (status.stacks > 1) { context.fillStyle = '#fff'; context.font = 'bold 12px sans-serif'; context.strokeStyle = '#15243b'; context.lineWidth = 3; context.strokeText(String(status.stacks), left + 19, badgeY + 22); context.fillText(String(status.stacks), left + 19, badgeY + 22); }
+    }
+    if (statuses.length > shown.length) { context.font = '12px sans-serif'; context.fillStyle = '#fff'; context.fillText(`+${statuses.length - shown.length}`, x + shown.length * 12 + 10, badgeY + 17); }
     const castY = y - (actor.team === 'player' ? 132 : 112);
     if (actor.cast) {
       const fraction = Math.min(1, Math.max(0, (now - actor.phase_started_at) / Math.max(1, actor.phase_duration_ms)));

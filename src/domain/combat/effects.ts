@@ -96,6 +96,7 @@ export class EffectPipeline {
         case 'resource_change': {
           const amount = resolvedNumber(effect.amount), before = target[effect.resource];
           target[effect.resource] = Math.floor(Math.max(0, Math.min(effect.resource === 'sp' ? target.stats.max_sp : 5, before + amount)));
+          if (target[effect.resource] !== before) recomputeStats(target, this.content);
           if (amount > 0) { this.metric(context, effect.resource === 'sp' ? 'sp_restored' : 'sphere_gained', target[effect.resource] - before); this.metric(context, effect.resource === 'sp' ? 'sp_wasted' : 'sphere_wasted', amount - (target[effect.resource] - before)); }
           this.ports.emit({ type: 'resource_change', actor_id: context.self.actor_id, target_id: target.actor_id, skill_id: context.skill_id, amount: target[effect.resource] - before, detail: effect.resource, ...this.attribution(context, effect) }); break;
         }

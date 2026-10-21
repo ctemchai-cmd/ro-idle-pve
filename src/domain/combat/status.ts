@@ -3,6 +3,7 @@ import type { ValidatedContent } from '../../content/model.ts';
 import { resolveStats } from '../math/index.ts';
 import { bindStatusParams, evaluatePredicate } from './program.ts';
 import { compareId } from './scheduler.ts';
+import { heldResourceModifiers } from './resources.ts';
 
 export type StatusInstance = BattleActor['statuses'][number];
 export type SourceRef = StatusInstance['source'];
@@ -19,7 +20,7 @@ export function recomputeStats(actor: BattleActor, content: ValidatedContent): v
   const stripCondition = (modifier: Modifier): Modifier => { const { when: _condition, ...unconditional } = modifier; return unconditional; };
   const blueprint = { ...actor.stat_blueprint, permanent_sources: actor.stat_blueprint.permanent_sources.map(source => ({ ...source, modifiers: source.modifiers.filter(applicable).map(stripCondition) })) };
   const modifiers = actor.statuses.flatMap(instance => bindStatusParams(statusDefinition(content, instance.status_id).modifiers, instance.params)).filter(applicable).map(stripCondition);
-  actor.stats = resolveStats(blueprint, content, modifiers);
+  actor.stats = resolveStats(blueprint, content, [...modifiers, ...heldResourceModifiers(actor, content)]);
   actor.hp = Math.min(actor.hp, actor.stats.max_hp); actor.sp = Math.min(actor.sp, actor.stats.max_sp);
 }
 export function weaponElement(actor: BattleActor, content: ValidatedContent): BattleActor['stat_blueprint']['weapon_element'] {
