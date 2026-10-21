@@ -36,8 +36,8 @@ const assert=(ok,message)=>{if(!ok)throw new Error(message);};let browser,profil
   const source=await(await fetch(base+'/'+shell.path.replace(/^dist\//,''))).text();assert(source.includes('battle-history')&&source.includes('history-event-list')&&source.includes('recordedTimeline'),'BATTLE_HISTORY_NOT_DEPLOYED');
  }
  if(prefix==='task-071'){
-  const shell=manifest.build_files.find(r=>/^dist\/assets\/shell-.*\.js$/.test(r.path)),pack=manifest.build_files.find(r=>/^dist\/assets\/pack-.*\.js$/.test(r.path));assert(shell&&pack,'NO_HEALING_BUNDLES');
-  const [ui,renderer]=await Promise.all([shell,pack].map(async row=>(await fetch(base+'/'+row.path.replace(/^dist\//,''))).text()));
+  const shell=manifest.build_files.find(r=>/^dist\/assets\/shell-.*\.js$/.test(r.path)),render=manifest.build_files.find(r=>/^dist\/assets\/skill-timeline-.*\.js$/.test(r.path));assert(shell&&render,'NO_HEALING_BUNDLES');
+  const [ui,renderer]=await Promise.all([shell,render].map(async row=>(await fetch(base+'/'+row.path.replace(/^dist\//,''))).text()));
   assert(ui.includes('healing_aura')&&ui.includes('battle-history')&&renderer.includes('healing_auras'),'HOT_AURA_AND_HISTORY_NOT_DEPLOYED');
  }
  checks.push({case_id:'hosted_shared_save_bundle',passed:true,path:row.path,sha256:createHash('sha256').update(bundle).digest('hex'),combined_reply:true});

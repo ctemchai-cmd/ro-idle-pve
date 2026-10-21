@@ -8940,7 +8940,7 @@
       "criterion": "Bard/Dancer Healing Song ทุกระดับใช้ P.ATK ผ่าน shared raw/heal pipeline ไม่มีarmor/critแบบdamage; ค่าอื่น/MusicLesson/stackingเดิม และ Priest Sanctuary ยังใช้ MATK",
       "input_setup": "Focused physicalHoT formula/lifecycle and live aura projection/rendering checks plus isolated Auth/Postgres/mobileChrome; no balance simulation",
       "input_refs": [
-        "plan/inprogress/tasks_071.md",
+        "plan/done/tasks_071.md",
         "plan/data/skills/archer.json",
         "src/client/combat-status.ts"
       ],
@@ -8951,7 +8951,12 @@
       "expected": "Bard/Dancer Healing Song ทุกระดับใช้ P.ATK ผ่าน shared raw/heal pipeline ไม่มีarmor/critแบบdamage; ค่าอื่น/MusicLesson/stackingเดิม และ Priest Sanctuary ยังใช้ MATK",
       "verification": "Targeted shared formula/status/visual checks, M0/build and actual Chrome/hosted evidence",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation"
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-071-review.json",
+        "plan/evidence/task-071-healing-live.json",
+        "plan/evidence/task-071-hosted.json"
+      ]
     },
     {
       "id": "T071-AC-02",
@@ -8960,7 +8965,7 @@
       "criterion": "live aura มีเฉพาะผู้รับที่ยังมีชีวิตและมีperiodic healที่ยังactive หายเมื่อหมด/ล้าง/ตาย; มากกว่าหนึ่งinstanceยังทำงาน/หมดเวลาแยกตามเดิม ไม่มี extra heal/status/DBwriteจากrenderer; reduced motionใช้ภาพนิ่ง",
       "input_setup": "Focused physicalHoT formula/lifecycle and live aura projection/rendering checks plus isolated Auth/Postgres/mobileChrome; no balance simulation",
       "input_refs": [
-        "plan/inprogress/tasks_071.md",
+        "plan/done/tasks_071.md",
         "plan/data/skills/archer.json",
         "src/client/combat-status.ts"
       ],
@@ -8971,7 +8976,12 @@
       "expected": "live aura มีเฉพาะผู้รับที่ยังมีชีวิตและมีperiodic healที่ยังactive หายเมื่อหมด/ล้าง/ตาย; มากกว่าหนึ่งinstanceยังทำงาน/หมดเวลาแยกตามเดิม ไม่มี extra heal/status/DBwriteจากrenderer; reduced motionใช้ภาพนิ่ง",
       "verification": "Targeted shared formula/status/visual checks, M0/build and actual Chrome/hosted evidence",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation"
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-071-review.json",
+        "plan/evidence/task-071-healing-live.json",
+        "plan/evidence/task-071-hosted.json"
+      ]
     },
     {
       "id": "T071-AC-03",
@@ -8980,7 +8990,7 @@
       "criterion": "หน้าskill/statusอธิบายฐานP.ATKจริง; focusedmath/lifecycle/rendererและactualChromeภาพ/expiryผ่าน, เพลงสองอาชีพค่าเท่ากัน ไม่รันbalance simulationหรือเปลี่ยนตัวคูณพร้อมกัน",
       "input_setup": "Focused physicalHoT formula/lifecycle and live aura projection/rendering checks plus isolated Auth/Postgres/mobileChrome; no balance simulation",
       "input_refs": [
-        "plan/inprogress/tasks_071.md",
+        "plan/done/tasks_071.md",
         "plan/data/skills/archer.json",
         "src/client/combat-status.ts"
       ],
@@ -8991,7 +9001,12 @@
       "expected": "หน้าskill/statusอธิบายฐานP.ATKจริง; focusedmath/lifecycle/rendererและactualChromeภาพ/expiryผ่าน, เพลงสองอาชีพค่าเท่ากัน ไม่รันbalance simulationหรือเปลี่ยนตัวคูณพร้อมกัน",
       "verification": "Targeted shared formula/status/visual checks, M0/build and actual Chrome/hosted evidence",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation"
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-071-review.json",
+        "plan/evidence/task-071-healing-live.json",
+        "plan/evidence/task-071-hosted.json"
+      ]
     },
     {
       "id": "T071-AC-04",
@@ -9000,7 +9015,7 @@
       "criterion": "M0/content/schema/build/type/boundaries/secrets/hostedผ่าน ไม่มีSQL/env/newmedia/ownerwrite/restart6173; แยกcontenthashใหม่จากTASK-070และใช้existingbackup-before-migrate ไม่อ้างว่าอัปเดตเซฟเจ้าของแล้ว",
       "input_setup": "Focused physicalHoT formula/lifecycle and live aura projection/rendering checks plus isolated Auth/Postgres/mobileChrome; no balance simulation",
       "input_refs": [
-        "plan/inprogress/tasks_071.md",
+        "plan/done/tasks_071.md",
         "plan/data/skills/archer.json",
         "src/client/combat-status.ts"
       ],
@@ -9011,7 +9026,12 @@
       "expected": "M0/content/schema/build/type/boundaries/secrets/hostedผ่าน ไม่มีSQL/env/newmedia/ownerwrite/restart6173; แยกcontenthashใหม่จากTASK-070และใช้existingbackup-before-migrate ไม่อ้างว่าอัปเดตเซฟเจ้าของแล้ว",
       "verification": "Targeted shared formula/status/visual checks, M0/build and actual Chrome/hosted evidence",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation"
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-071-review.json",
+        "plan/evidence/task-071-healing-live.json",
+        "plan/evidence/task-071-hosted.json"
+      ]
     }
   ]
 }
