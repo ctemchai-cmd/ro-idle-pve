@@ -1,5 +1,6 @@
 import { Icon } from '../icon.tsx';
 import { useMemo, useState } from 'react';
+import { VirtualGrid } from './virtual-grid.tsx';
 import type { Modifier } from '../../contracts/index.ts';
 import { equipmentData, equipmentSlots, inventoryView, itemModifiers, itemSalvageQuote, rarityLabels, rarityRank, slotLabels, type EquipmentSlot } from '../../client/equipment.ts';
 import { cardInventory, salvageCardsQuote } from '../../client/slots.ts';
@@ -74,15 +75,15 @@ export function BackpackPage({ context }: { context: GameContext }) {
       {presentLevels.map(l => <button key={l} aria-pressed={levels.includes(l)} className={`chip small ${levels.includes(l) ? 'on' : ''}`} onClick={() => setLevels(toggle(levels, l))}>Lv{l}</button>)}
       {narrowed && <button className="chip small ghost" onClick={() => { setRarities([]); setLevels([]); }}>ล้างตัวกรอง</button>}
     </div>}
-    <div className="bag-grid" role="grid" aria-label="ของในกระเป๋า">
-      {shownGear.map(g => { const selectable = !g.owner && !g.item.locked, picked = bulk?.includes(g.item.instance_id); return <button key={g.item.instance_id} data-id={g.item.instance_id} className={`bag-cell rarity-${g.item.rarity_id} ${picked ? 'picked' : ''} ${bulk && !selectable ? 'dim' : ''}`} aria-label={`${g.name} ${rarityLabels[g.item.rarity_id]}${g.owner ? ' สวมอยู่' : ''}`} onClick={() => tap(g.item.instance_id, selectable)}>
+    <VirtualGrid items={[...shownGear.map(g => ({ kind: 'gear' as const, g })), ...shownCards.map(c => ({ kind: 'card' as const, c })), ...Array.from({ length: Math.max(0, 20 - shownGear.length - shownCards.length) }, (_, i) => ({ kind: 'empty' as const, i }))]} renderItem={row => {
+      if (row.kind === 'empty') return <span key={`empty${row.i}`} className="bag-cell empty" aria-hidden="true" />;
+      if (row.kind === 'gear') { const g = row.g, selectable = !g.owner && !g.item.locked, picked = bulk?.includes(g.item.instance_id); return <button key={g.item.instance_id} data-id={g.item.instance_id} className={`bag-cell rarity-${g.item.rarity_id} ${picked ? 'picked' : ''} ${bulk && !selectable ? 'dim' : ''}`} aria-label={`${g.name} ${rarityLabels[g.item.rarity_id]}${g.owner ? ' สวมอยู่' : ''}`} onClick={() => tap(g.item.instance_id, selectable)}>
         <ItemIcon id={g.iconId} pack={pack} />{g.owner && <i className="e-badge" title={`สวมโดย ${friendNames[g.owner.character_id]}`}>E</i>}{g.item.locked && <i className="lock-mark"><Icon name="lock" /></i>}<small>Lv{g.definition.tier_level}</small>{picked && <i className="check"><Icon name="check" /></i>}
-      </button>; })}
-      {shownCards.map(c => <button key={c.item.instance_id} className={`bag-cell card rarity-${c.item.rarity_id} ${bulk ? 'dim' : ''}`} aria-label={`${c.name} การ์ด`} onClick={() => { if (!bulk) setOpen(c.item.instance_id); }}>
+      </button>; }
+      const c = row.c; return <button key={c.item.instance_id} className={`bag-cell card rarity-${c.item.rarity_id} ${bulk ? 'dim' : ''}`} aria-label={`${c.name} การ์ด`} onClick={() => { if (!bulk) setOpen(c.item.instance_id); }}>
         <ItemIcon id={c.iconId} pack={pack} />{c.owner && <i className="e-badge">E</i>}{c.item.locked && <i className="lock-mark"><Icon name="lock" /></i>}<small>C{c.item.level}</small>
-      </button>)}
-      {Array.from({ length: Math.max(0, 20 - shownGear.length - shownCards.length) }, (_, i) => <span key={`empty${i}`} className="bag-cell empty" aria-hidden="true" />)}
-    </div>
+      </button>;
+    }} />
     {!shownGear.length && !shownCards.length && <p className="hint center">ยังไม่มีของในหมวดนี้ · ได้จากฟาร์มอัตโนมัติและรางวัลผ่านด่าน</p>}
     {bulk && <footer className="bulk-bar"><span>เลือก {bulk.length} ชิ้น<small>{bulk.length ? quoteText(itemSalvageQuote(bulkItems)) : 'แตะของที่ไม่สวม/ไม่ล็อก'}</small></span>
       <button className="btn ghost small" onClick={() => setBulk(free.map(g => g.item.instance_id))}>{narrowed ? 'เลือกที่กรอง' : 'เลือกทั้งหมด'} ({free.length})</button>

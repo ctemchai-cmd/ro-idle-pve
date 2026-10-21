@@ -21,6 +21,10 @@ const assert=(ok,message)=>{if(!ok)throw new Error(message);};let browser,profil
   const shell=manifest.build_files.find(r=>/^dist\/assets\/shell-.*\.js$/.test(r.path));assert(shell,'NO_GAME_SHELL_BUNDLE');
   const source=await(await fetch(base+'/'+shell.path.replace(/^dist\//,''))).text();assert(source.includes('daily-clock:essence:2026-10-21')&&source.includes('daily-clock-incident-2026-10-21'),'DAILY_FIX_AND_REFUND_UI_NOT_DEPLOYED');
  }
+ if(prefix==='task-066'){
+  const shell=manifest.build_files.find(r=>/^dist\/assets\/shell-.*\.js$/.test(r.path));assert(shell,'NO_GAME_SHELL_BUNDLE');
+  const source=await(await fetch(base+'/'+shell.path.replace(/^dist\//,''))).text();assert(source.includes('bag-window')&&source.includes('data-window-start'),'VIRTUAL_INVENTORY_NOT_DEPLOYED');
+ }
  checks.push({case_id:'hosted_shared_save_bundle',passed:true,path:row.path,sha256:createHash('sha256').update(bundle).digest('hex'),combined_reply:true});
  profile=fs.mkdtempSync(path.join(os.tmpdir(),'ro-save-hosted-'));const context=await chromium.launchPersistentContext(profile,{headless:true,executablePath:process.env.RO_CHROME_PATH||'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',viewport:{width:390,height:844}});browser=context.browser();
  context.on('request',r=>{if(!['GET','HEAD','OPTIONS'].includes(r.method()))mutations.push({method:r.method(),path:new URL(r.url()).pathname});});

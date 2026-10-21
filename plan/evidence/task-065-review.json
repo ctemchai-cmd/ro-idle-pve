@@ -1,6 +1,6 @@
 {
   "date": "2026-10-21",
-  "passed": false,
+  "passed": true,
   "implementation_verified": true,
   "targeted_tests": 41,
   "content_hash": "768e12a49bf339711d44f501c3710374adbcd10d9eb74d6a2e6f9b8aa79330af",
@@ -10,11 +10,10 @@
     "plan/evidence/task-067-targeted.txt",
     "plan/evidence/task-067-build.txt",
     "plan/evidence/task-067-local-stack.json",
-    "plan/evidence/task-067-daily-terminal-live.json"
+    "plan/evidence/task-067-daily-terminal-live.json",
+    "plan/evidence/task-067-hosted.json"
   ],
-  "pending": [
-    "Deployment and publicsmoke"
-  ],
+  "pending": [],
   "task_id": "TASK-065",
   "verified_jwks": {
     "project_public_alg": "ES256",
@@ -27,5 +26,6 @@
     "No authenticated productionowner latency measurement",
     "ColdJWKS fetch and legacyHS256 still need an Auth network request",
     "LocalHS256 issuer differs from hosted; trust SDKgetUserverifiedfallback for HS, retain issuer check for asymmetricJWT"
-  ]
+  ],
+  "source_commit": "fe7ea02f0b4c05d8002f44da07f9aacd8f42126f"
 }

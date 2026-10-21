@@ -1,0 +1,154 @@
+{
+  "task_id": "TASK-066",
+  "matched": {
+    "cpu_throttle": 4,
+    "inventory": 500,
+    "input": "touch",
+    "scope": "isolated Chrome mobile emulation, development bundle; not measured owner Android/PWA"
+  },
+  "before": {
+    "count": 27,
+    "median_ms": 79,
+    "p95_ms": 449,
+    "min_ms": 36,
+    "max_ms": 499
+  },
+  "after": {
+    "count": 27,
+    "median_ms": 46,
+    "p95_ms": 121,
+    "min_ms": 31,
+    "max_ms": 211
+  },
+  "per_route": {
+    "backpack-page": {
+      "before": {
+        "count": 3,
+        "median_ms": 449,
+        "p95_ms": 499,
+        "min_ms": 399,
+        "max_ms": 499
+      },
+      "after": {
+        "count": 3,
+        "median_ms": 120,
+        "p95_ms": 211,
+        "min_ms": 120,
+        "max_ms": 211
+      }
+    },
+    "team-page": {
+      "before": {
+        "count": 3,
+        "median_ms": 79,
+        "p95_ms": 99,
+        "min_ms": 72,
+        "max_ms": 99
+      },
+      "after": {
+        "count": 3,
+        "median_ms": 43,
+        "p95_ms": 90,
+        "min_ms": 43,
+        "max_ms": 90
+      }
+    },
+    "buddy-page": {
+      "before": {
+        "count": 6,
+        "median_ms": 63.0,
+        "p95_ms": 90,
+        "min_ms": 51,
+        "max_ms": 90
+      },
+      "after": {
+        "count": 6,
+        "median_ms": 42.5,
+        "p95_ms": 64,
+        "min_ms": 39,
+        "max_ms": 64
+      }
+    },
+    "stats-page": {
+      "before": {
+        "count": 3,
+        "median_ms": 90,
+        "p95_ms": 101,
+        "min_ms": 64,
+        "max_ms": 101
+      },
+      "after": {
+        "count": 3,
+        "median_ms": 46,
+        "p95_ms": 82,
+        "min_ms": 46,
+        "max_ms": 82
+      }
+    },
+    "skills-page": {
+      "before": {
+        "count": 6,
+        "median_ms": 158.5,
+        "p95_ms": 194,
+        "min_ms": 114,
+        "max_ms": 194
+      },
+      "after": {
+        "count": 6,
+        "median_ms": 99.5,
+        "p95_ms": 121,
+        "min_ms": 81,
+        "max_ms": 121
+      }
+    },
+    "store-page": {
+      "before": {
+        "count": 3,
+        "median_ms": 53,
+        "p95_ms": 59,
+        "min_ms": 52,
+        "max_ms": 59
+      },
+      "after": {
+        "count": 3,
+        "median_ms": 38,
+        "p95_ms": 43,
+        "min_ms": 37,
+        "max_ms": 43
+      }
+    },
+    "dungeon-page": {
+      "before": {
+        "count": 3,
+        "median_ms": 38,
+        "p95_ms": 50,
+        "min_ms": 36,
+        "max_ms": 50
+      },
+      "after": {
+        "count": 3,
+        "median_ms": 31,
+        "p95_ms": 32,
+        "min_ms": 31,
+        "max_ms": 32
+      }
+    }
+  },
+  "functional": [
+    {
+      "case_id": "virtual_inventory_500_scroll_filter_resize_bulk_and_saved_lock",
+      "passed": true,
+      "mounted_cells": 96,
+      "bulk_selected": 457
+    },
+    {
+      "case_id": "status_skill_equipment_changes_remain_current_across_routes_and_reload",
+      "passed": true,
+      "character_id": "npc_archer",
+      "skill": "Double Strafe"
+    }
+  ],
+  "api_requests_before": [],
+  "api_requests_after": [],
+  "passed": true
+}

@@ -58,8 +58,7 @@ function readRoute(): { view: View; character: string } {
 function ConnectedGame({ auth, scope }: { auth: AuthController; scope: string }) {
   const { controller, save } = useAccountSave(auth, scope);
   const [pack, setPack] = useState<AssetPack | null>(null), [route, setRoute] = useState(readRoute), [toasts, setToasts] = useState<{ id: number; text: string }[]>([]), [sound, setSound] = useState(false);
-  const toastId = useRef(0), pageLayer = useRef<HTMLElement>(null), rotated = useRotated();
-  useEffect(() => { pageLayer.current?.scrollTo({ top: 0 }); }, [route.view, route.character]);
+  const toastId = useRef(0), rotated = useRotated();
   const state = save.preview ?? save.checkpoint?.save.state as AccountState | undefined, ready = save.status === 'ready', busy = save.status === 'saving' || !!save.pending;
   const toast = useCallback((text: string) => { const id = ++toastId.current; setToasts(list => [...list.slice(-2), { id, text }]); setTimeout(() => setToasts(list => list.filter(t => t.id !== id)), 2800); }, []);
   useEffect(() => { let disposed = false; void AssetPack.open(STORY_PACK_HASH).then(p => { if (disposed) { p.dispose(); return; } try { p.setAudioLevels(readAudioLevels(localStorage)); } catch { /* Defaults remain. */ } setPack(p); }).catch(() => toast('ยังเตรียมภาพไม่ได้ กรุณาโหลดหน้าใหม่')); return () => { disposed = true; }; }, [toast]);
@@ -113,7 +112,7 @@ function ConnectedGame({ auth, scope }: { auth: AuthController; scope: string })
     <div className="game-frame">
       <Field context={context} covered={route.view !== 'home' || rotated} save={save} request={request} consumeRequest={() => setRequest(null)} />
       <TopHud context={context} save={save} controller={controller} sound={sound} toggleSound={() => void toggleSound()} reconnect={() => void controller.reconnect()} />
-      {route.view !== 'home' && <main ref={pageLayer} className="page-layer" aria-live="polite">
+      {route.view !== 'home' && <main key={`${route.view}:${characterId}`} className="page-layer" aria-live="polite">
         {active && <p className="page-banner">กำลังสู้บอส · ดูข้อมูลได้ แต่ปรับตัวละครได้หลังจบไฟต์</p>}
         {route.view === 'buddy' && <BuddyPage context={context} />}
         {route.view === 'skills' && <SkillsPage key={characterId} context={context} />}

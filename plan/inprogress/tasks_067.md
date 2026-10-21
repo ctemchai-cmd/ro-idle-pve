@@ -20,7 +20,7 @@ Milestone: M4 · อ้างอิง D-091 · ลำดับก่อน TASK
 ## เกณฑ์ตรวจรับ
 
 - [x] AC-01: ทุกfinalremainder1–49msของ60/90sเดินถึงdeadline; actualdailyUIจบและส่งfinishครั้งเดียว ไม่ค้าง/ไม่retreatเอง
-- [ ] AC-02: finish/reload/recoveryไม่เสียสิทธิ์เพิ่มและไม่รับรางวัลซ้ำ; targetedchecks/build/contenthashเดิมผ่าน และdeploy/publicsmokeจริง
+- [x] AC-02: finish/reload/recoveryไม่เสียสิทธิ์เพิ่มและไม่รับรางวัลซ้ำ; targetedchecks/build/contenthashเดิมผ่าน และdeploy/publicsmokeจริง
 - [ ] AC-03: ผู้ใช้ได้คืนสิทธิ์รอบเสียที่ระบุ โดยมีbackup/receiptและไม่เปลี่ยนความก้าวหน้าหรือดันอื่น; ถ้ายังทำไม่ได้ระบุข้อมูล/การเข้าถึงที่ขาด ไม่อ้างคืนแล้ว
 
 ## วิธีตรวจและหลักฐาน
@@ -35,4 +35,6 @@ Unit boundary + realdailyterminal browser/API/SQL + owner-repairmetadataเฉ�
 
 ## ผลตรวจจริง
 
-41targetedchecksผ่าน (รวมexactspeedparity/CC/dailyspatial/backuprefund/authSDK); build/type/boundaries/secrets/contenthash768e12a4เดิมผ่าน; actualfreshAuth/PostgREST/Postgres/Chrome daily60s Essenceจบที่4x/finish1ครั้ง/reload/คืนquotaพร้อมsignedbackupและกันซ้ำ4กลุ่มผ่าน ไม่มีownercloudwrite/6173restart รอdeploy/publicproof และกรณี067ยังต้องผู้ใช้กดคืนสิทธิ์ในบัญชีจริง
+41targetedchecksผ่าน (รวมexactspeedparity/CC/dailyspatial/backuprefund/authSDK); build/type/boundaries/secrets/contenthash768e12a4เดิมผ่าน; actualfreshAuth/PostgREST/Postgres/Chrome daily60s Essenceจบที่4x/finish1ครั้ง/reload/คืนquotaพร้อมsignedbackupและกันซ้ำ4กลุ่มผ่าน ไม่มีownercloudwrite/6173restart; deploy/publicproofผ่าน กรณี067ยังต้องผู้ใช้กดคืนสิทธิ์ในบัญชีจริง
+
+Vercel fe7ea02f0 สำเร็จและpublicsmoke3กลุ่มผ่าน [หลักฐาน](../evidence/task-067-hosted.json) แจ้งผู้ใช้ให้จบไฟต์/reload/กดตั้งค่า→คืนสิทธิ์แล้ว แต่ยังรอยืนยันownerquota ไม่ปิดAC03จากfixture

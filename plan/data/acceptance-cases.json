@@ -8401,7 +8401,7 @@
       "criterion": "actual SDK ES256 verification ใช้ JWKS HTTP1ครั้งแล้วคำขอถัดไปไม่ติดต่อ Auth; verified identityถูกต้อง และผิด signature/expiry/issuer/audience/roleไม่ยอมรับ",
       "input_setup": "Pinned SupabaseSDK with ephemeral ES256 signer and project-scoped JWKS fetchcounter; fresh upstream local HS256 Auth/PostgREST and disposable accounts",
       "input_refs": [
-        "plan/inprogress/tasks_065.md",
+        "plan/done/tasks_065.md",
         "src/server/auth/index.ts",
         "tests/game/auth-jwks.test.ts",
         "scripts/test_auth_stack.py"
@@ -8413,7 +8413,11 @@
       "expected": "actual SDK ES256 verification ใช้ JWKS HTTP1ครั้งแล้วคำขอถัดไปไม่ติดต่อ Auth; verified identityถูกต้อง และผิด signature/expiry/issuer/audience/roleไม่ยอมรับ",
       "verification": "Targeted auth tests, fresh upstream Auth/API save replay, build and readonly hosted proof",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation"
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-065-review.json",
+        "plan/evidence/task-067-hosted.json"
+      ]
     },
     {
       "id": "T065-AC-02",
@@ -8422,7 +8426,7 @@
       "criterion": "local HS256 upstream Auth/PostgREST API sign-in/owner-save/retryยังผ่านด้วย SDKfallback และไม่มี ownercloudwrite/6173restart",
       "input_setup": "Pinned SupabaseSDK with ephemeral ES256 signer and project-scoped JWKS fetchcounter; fresh upstream local HS256 Auth/PostgREST and disposable accounts",
       "input_refs": [
-        "plan/inprogress/tasks_065.md",
+        "plan/done/tasks_065.md",
         "src/server/auth/index.ts",
         "tests/game/auth-jwks.test.ts",
         "scripts/test_auth_stack.py"
@@ -8434,7 +8438,11 @@
       "expected": "local HS256 upstream Auth/PostgREST API sign-in/owner-save/retryยังผ่านด้วย SDKfallback และไม่มี ownercloudwrite/6173restart",
       "verification": "Targeted auth tests, fresh upstream Auth/API save replay, build and readonly hosted proof",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation"
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-065-review.json",
+        "plan/evidence/task-067-hosted.json"
+      ]
     },
     {
       "id": "T065-AC-03",
@@ -8443,7 +8451,7 @@
       "criterion": "build/type/boundaries/secretsผ่าน contenthashเดิม; โค้ดขึ้น Vercelและpublicsmokeผ่าน ไม่มีenv/SQLใหม่ ไม่อ้างตัวเลขphoneที่ยังไม่วัด",
       "input_setup": "Pinned SupabaseSDK with ephemeral ES256 signer and project-scoped JWKS fetchcounter; fresh upstream local HS256 Auth/PostgREST and disposable accounts",
       "input_refs": [
-        "plan/inprogress/tasks_065.md",
+        "plan/done/tasks_065.md",
         "src/server/auth/index.ts",
         "tests/game/auth-jwks.test.ts",
         "scripts/test_auth_stack.py"
@@ -8455,7 +8463,11 @@
       "expected": "build/type/boundaries/secretsผ่าน contenthashเดิม; โค้ดขึ้น Vercelและpublicsmokeผ่าน ไม่มีenv/SQLใหม่ ไม่อ้างตัวเลขphoneที่ยังไม่วัด",
       "verification": "Targeted auth tests, fresh upstream Auth/API save replay, build and readonly hosted proof",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation"
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-065-review.json",
+        "plan/evidence/task-067-hosted.json"
+      ]
     },
     {
       "id": "T066-AC-01",
