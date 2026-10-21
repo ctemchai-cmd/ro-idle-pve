@@ -4,7 +4,7 @@
 
 
 
-## 21 ต.ค. 2026 · Codex — TASK-069 พลังท่าใช้บอลและไอคอนเล็ก (กำลัง deploy)
+## 21 ต.ค. 2026 · Codex — TASK-069 พลังท่าใช้บอลและไอคอนเล็ก ขึ้นVercelแล้ว
 
 - ผู้ใช้เพิ่มโจทย์Callเสียช่องต้องคุ้ม finisher ขอเพิ่มตัวคูณอย่างไม่OP/under ยังห้ามsimulateใหม่ และหลังเห็น068ขอiconเล็ก/no farm/แยกbossstatusจากpanelยืดหด/บอลใช้CallSpiriticon
 - D-093/094: assistant trial coefficients Triple×1.25, Finger×2.25, Asuraทั้งATK-SP×2.25จาก862เดิม ฝังในlevel_parameters ไม่สร้างglobalbuffmultiplierซ้ำ คงSP/บอล/CT/ACD/hits/crit/armor/held1%หลังจ่าย หน้าสกิลเพิ่มhitcountจากdefinition
@@ -13,7 +13,8 @@
 - actualfreshAuth/PostgREST/Postgres/Chrome4กลุ่มผ่าน:18×18px/nativeCallSpirit, bossbar109pxตลอด211samplesมีcastทั้งfalse/true/status0–3, 320/390pxnooverlap/overflow, farmclean; ภาพbattle/farmดูแล้ว หลักฐานtask069status-live/local-stack/power-review ไม่มีownerlogin/writeหรือrestart6173
 - Failuresเก็บround1: docsPythonsyntax/gateขาด4cases, unittestsignature/type narrowingผิด, unitUIfixtureลบlearnedstarterแต่slotยังใช้→เก็บstarterแล้วผ่าน แก้fixture/registrationไม่ผ่อนเกณฑ์ ไม่เปลี่ยนเกมเพื่อให้ผ่าน
 - M0/build/type/boundaries/assets/secretsผ่าน content **6fbb9995048d6211bf56250dbc54a1215e0626ef6812a73e851f111cc489c6e2** packf57a0773…เดิม ไม่มีnewSQL/env/assets Ownerจบไฟต์ก่อนreload→สำรองแล้วอัปเดตเซฟ ไม่migrateแทน/ไม่patch6173
-- ขั้นต่อไป: commit/pushที่ตรวจแล้ว→รอVercel→RO_EVIDENCE_PREFIX=task-069 RO_DEPLOY_COMMIT=<source> node scripts/test_save_latency_hosted.cjs →ผ่านค่อยปิดAC03/move069done/cases/matrix/overview/readiness ตอนนี้54/69done 069inprogress 068doneและhostedที่862แล้ว 067refund/064cloudtiming/058transferยังไม่ปิด
+- Source **e239e61aa8668be133314a900bbff9ad307f0e41** pushmain/Vercelsuccessแล้ว actualpublichosted3กลุ่มผ่านtask-069-hosted.json: healthcontent6fbb/regionSG/401, compactbossstatus/nativeicon/no-farmbundle, login/PWA ไม่มีownerwrite ปิดAC03/move069done/cases/matrix/overviewแล้ว Board55/69done, inprogress041/058/064/067รวม4, review5/todo5
+- ขั้นต่อไปให้ผู้ใช้จบไฟต์/reloadและกดสำรองแล้วอัปเดตเซฟเอง ไม่มีSQL/envเพิ่ม ไม่อ้างว่าownerได้migrateแล้ว 067refund/064cloudtiming/058transferยังไม่ปิด อย่ารันbalance simulationหรือrestart6173จากการรอfeedback
 
 ## 21 ต.ค. 2026 · Codex — TASK-068 Spirit Spheres และ Buff/Debuff UI
 

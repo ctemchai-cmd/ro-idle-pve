@@ -29,7 +29,7 @@ Milestone: M4 · อ้างอิง D-093/D-094
 
 - [x] AC-01: ทุกระดับของ3สกิลได้coefficientsตามข้างต้นและgolden intentsตรง; ค่าใช้จ่าย/timing/hits/crit/armorและสกิลอื่นไม่เปลี่ยน, ไม่คูณโบนัสซ้ำในpipeline
 - [x] AC-02: sharedengineใช้ATKหลังหักบอลและSPก่อนหักสำหรับAsuraจริง; บอลไม่พอข้าม/ถูกขัดไม่คืนหรือสร้างdamage; หน้าสกิลแสดงcoefficientsใหม่และจำนวนhit, existingbackup/migrationchecksผ่าน
-- [ ] AC-03: มีmanualcost/powerreviewพร้อมสมมติฐานและข้อจำกัด ไม่รันbalance simulation; build/type/content/boundaries/secretsและhostedproofผ่าน, packเดิม/ไม่มีSQL/envใหม่ ไม่อ้างว่าบาลานซ์พิสูจน์ครบหรือเขียนเซฟเจ้าของแล้ว
+- [x] AC-03: มีmanualcost/powerreviewพร้อมสมมติฐานและข้อจำกัด ไม่รันbalance simulation; build/type/content/boundaries/secretsและhostedproofผ่าน, packเดิม/ไม่มีSQL/envใหม่ ไม่อ้างว่าบาลานซ์พิสูจน์ครบหรือเขียนเซฟเจ้าของแล้ว
 - [x] AC-04: บัฟ/ดีบัฟicon18px, ใช้CallSpirits iconแทนวงกลมในcounter/party/details, ไม่มีstatuscontrols/iconsในfarm; bossstatusและcastอยู่นอกmainbarและความสูงmainbarไม่เปลี่ยนระหว่างสถานะ/cast, มือถือ320/390pxไม่มีoverlap/overflow รายละเอียดsource/expiry/stackยังอ่านได้
 
 ## วิธีตรวจและหลักฐาน
@@ -47,4 +47,4 @@ Focused tests/game/spirit-finisher.test.ts + spirit-status/save-backup เฉพ
 - actualfreshAuth/PostgREST/Postgres/Chrome4กลุ่มผ่าน: nativeCallSpirit icon,18×18px, independentBlessing2sources/4effects, 320/390pxไม่มีoverlap/overflow, bossbarheight109pxทั้ง211samples/castfalse-true/status0–3, farmไม่มีDOMcontrols/badges [UI](../evidence/task-069-status-live.json) ตรวจภาพbattle/farmด้วยตาแล้ว ไม่แตะ6173/owneraccount
 - M0checks/build/type/boundaries/assets/secretsผ่าน content6fbb9995048d6211bf56250dbc54a1215e0626ef6812a73e851f111cc489c6e2 packf57a0773…เดิม ไม่มีSQL/envเพิ่ม ไม่รันsimulation/calibration/balance runner
 - Failurehistory: authoringdocsPythonliteralผิดทำgateขาด4cases แก้syntax/ลงทะเบียนให้ตรงเกณฑ์เดิม; initialtypecheckทดสอบใช้initializeAccountsignatureผิดและnarrowformulaไม่ครบ แก้fixture; unitUIfixtureเคยลบstarterlearnedskillsแต่ยังใส่slotเดิมจึงINVALID_SKILL_LOADOUT แก้fixtureให้เก็บstarter ไม่เปลี่ยนproduct/เกณฑ์ เก็บround1logsไว้แล้ว
-- รอGitHub/Vercel/publichostedproofก่อนAC03; เจ้าของต้องจบไฟต์ก่อนreloadแล้วกดสำรองแล้วอัปเดตเซฟ ไม่ได้ทำmigrationแทน
+- ขึ้นVercelสำเร็จที่e239e61aa8668be133314a900bbff9ad307f0e41 และactualpublichosted3กลุ่มผ่าน: health/newcontent/regionSG/401gate, compactbossstatus/nativeicon/no-farm bundle, login/PWA [hosted](../evidence/task-069-hosted.json) เจ้าของต้องจบไฟต์ก่อนreloadแล้วกดสำรองแล้วอัปเดตเซฟ ไม่ได้ทำmigrationแทน
