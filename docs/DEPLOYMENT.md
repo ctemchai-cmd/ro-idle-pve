@@ -54,6 +54,8 @@ Preview แบบเชื่อมฐานทดสอบใช้ `VITE_APP_E
 
 เปิด `/api/health`, `/auth` และ `/play` จาก URL จริง ตรวจ login/จัดทีม/เริ่มบอส/รับรางวัล/reload และลองเปิด deep link ในแท็บใหม่ ตรวจ Network ว่าภาพและเสียงโหลดจาก `/ro/<pack_hash>/...` ไม่มี404และไม่ได้โหลดคลังต้นทาง ทดสอบกับ project แยกก่อนให้บัญชีหลักใช้งาน
 
+ถ้า checkpoint คืน `SAVE_CONTEXT_UNAVAILABLE` ให้ตรวจ `select environment, project_ref from public.game_deployment;` และ `select to_regprocedure('public.game_load_context(uuid,text,text)');` ก่อน Migrations สร้างตารางและ RPC แต่ไม่เติม marker; ตารางว่างต้องตั้ง production marker ตามขั้นตอน1 ด้วย SQL Editor แล้วตรวจ `game_assert_environment` ให้ได้true การอ่าน health200ไม่ยืนยันว่า marker พร้อม APIมีสิทธิ์อ่าน markerเท่านั้น ไม่ใช้การปิด environment guard หรือ RLS แทนการตั้งค่า
+
 เซฟส่วนตัวบน6173ยังอยู่ในฐานเดิมบนเครื่อง การ push repo ไม่ย้ายเซฟนั้นไป Supabase cloud การสำรอง/ย้ายเซฟต้องใช้ขั้นตอน migration/restore ของเกมพร้อม signing key ที่สอดคล้องกัน
 
 ## 4. ย้ายเซฟเดิมจาก 6173 (TASK-058)

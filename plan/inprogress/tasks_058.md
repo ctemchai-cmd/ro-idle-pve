@@ -53,6 +53,8 @@ Milestone: M4 · ประเภท: เครื่องมือผู้ด�
 
 ได้รับ Project URL/User UID แล้ว ผู้ใช้รายงานรัน6migrationsครบ เตรียม snapshotจริงrevision2933แบบread-onlyและไฟล์privateแล้ว Vercelอยู่ที่ `https://ro-idle-pve.vercel.app` public health/API gate/หน้าเข้าเกมผ่านแล้ว รอตรวจ operatorSQL/import และ hosted owner login/เซฟเดิม/reload จริง ห้ามส่งค่าลับผ่านแชตและยังไม่อ้างว่าย้ายขึ้นcloudแล้ว Content hashใหม่2c1ac034…ต้องใช้ backed-up save.migrate สำหรับ SQL14ffเดิมตามบันทึกด้านล่าง
 
+ผู้ใช้รายงาน checkpoint503 `SAVE_CONTEXT_UNAVAILABLE`; SQLจากฐานจริงยืนยัน markerยังว่าง (`environment/project_ref=NULL`) แต่ context RPCมีแล้ว ต้องรัน create-or-verify production marker ใน SQL Editor แล้วตรวจ checkpointต่อ ไม่มีการแก้หรือเขียนเซฟจากการวิเคราะห์รอบนี้
+
 ## บันทึกการทำงานและ review
 
 - 21 ต.ค.2026: ผู้ใช้ยืนยันย้ายเซฟจาก6173 ไม่เริ่มใหม่ ตรวจพบ sign-in/RLS พร้อมแล้ว เริ่มเครื่องมือย้ายแบบ operator

@@ -2,6 +2,13 @@
 
 ไฟล์นี้บันทึกงานที่ agent ตัวหนึ่งทำแล้ว เพื่อให้ตัวถัดไป (Codex/Claude) ทำต่อได้ทันที อ่านคู่กับ [overview](overview.md) และ [AGENTS.md](../AGENTS.md) ล่าสุดอยู่บนสุด
 
+## 21 ต.ค. 2026 · Codex — Hosted checkpoint SAVE_CONTEXT_UNAVAILABLE: deployment marker ยังว่าง
+
+- ผู้ใช้ login แล้วรายงาน `/api/checkpoint` คืน `SAVE_CONTEXT_UNAVAILABLE` ตรวจ adapter พบ `game_load_context` เรียก environment guard ก่อนอ่านเซฟ และรวม RPC error เป็น code นี้ จึงยังไม่ใช่หลักฐานว่าเซฟเสียหรือ signing key ผิด
+- ผู้ใช้รัน read-only SQL บน Supabase จริงแล้วตอบ `environment=NULL, project_ref=NULL, context_rpc_exists=true` ตาราง marker มี NOT NULL columns ดังนั้นเป็นตารางว่าง Migrations ตั้งใจไม่สร้าง marker อัตโนมัติ ห้ามข้าม guard/เปลี่ยน RLS เพื่อแก้
+- ขั้นแก้คือรัน operator create-or-verify production marker ใน SQL Editor: insert singleton/production/project ref ที่ผู้ใช้ระบุ, ON CONFLICT DO NOTHING, เรียก game_assert_environment ตรวจให้ได้trueแล้ว commit มีไฟล์พร้อมแล้วที่ `.local/cloud-transfer/transfer-1792562795716865000/setup-project.sql` ไม่ต้องเปลี่ยนเกม/APIหรือรีสตาร์ต6173 API service_role มีสิทธิ์อ่าน marker เท่านั้น จึงเติมผ่าน SQL Editor ของเจ้าของ project
+- ตรวจ presence ของ env copies ที่ผู้ใช้เปิดไว้แบบไม่พิมพ์ค่า พบไฟล์บนเครื่องยังไม่มี server key จึงไม่ได้เรียก privileged cloud RPC หรืออ่านข้อมูลเซฟ ไม่ได้เปลี่ยน SQL/เซฟจริง; รอผู้ใช้รัน marker แล้ว reload/ตรวจ checkpoint ต่อ ถ้าเป็น14ffเดิมให้ใช้ backed-up save.migrate ไป2c1ac034ตามหัวข้อถัดไป TASK058AC05ยังไม่ครบ
+
 ## 21 ต.ค. 2026 · Codex — D-082 หน้าแรกเข้าเกม/login และแก้ Vercel API import
 
 - **ขึ้น production แล้วที่ commit `1a15532e5`**: GitHub Vercel status success, public `/api/health`200/ok/persistence configured/content2c1ac034… และ anonymous `/api/checkpoint`401จริง Chromeบน `https://ro-idle-pve.vercel.app` ผ่าน7กลุ่มเช่นเดียวกับ localโดย intercept Auth/APIเพื่อไม่เขียนเซฟจริง รายงาน canonical `entry-routes-browser.json` เป็นhosted bundle ส่วน localเดิมเก็บ `entry-routes-local-browser.json` แยก; screenshotทั้งสองแยกชื่อ ไม่อ้างว่า hosted owner login/JWT/DB/save migration ผ่านแล้ว
