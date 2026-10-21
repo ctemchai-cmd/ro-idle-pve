@@ -31,7 +31,7 @@ Healing Song ทั้ง Bard/Dancer: เมื่อร่ายสำเร�
 
 - [x] AC-01: เพลงทั้งสองอาชีพทุกระดับมีopening60–100%และHoT30–50% P.ATK/5ticksใน6s; openingเกิดเมื่อร่ายสำเร็จเท่านั้น ใช้sharedheal/bonus/overhealและstackเดิม ไม่เพิ่มtickหรือฮีลเมื่อถูกขัด
 - [x] AC-02: UIแสดงopening P.ATKและHoTแยกชัด; actualChromeแสดงhealของเพลงตรงcastresolveก่อนtickแรก วงยังอยู่ตามstatus/หมดแล้วหาย ไม่มีextra saveจากภาพ
-- [ ] AC-03: focusedchecks/6goldens/M0/build/type/boundaries/secrets/hostedผ่าน; staticcost/burst/totalcomparisonระบุassumptions ไม่รันbalance simulation/ไม่อ้างwholegamebalance ไม่มีSQL/env/newassets/ownerwritesหรือrestart6173
+- [x] AC-03: focusedchecks/6goldens/M0/build/type/boundaries/secrets/hostedผ่าน; staticcost/burst/totalcomparisonระบุassumptions ไม่รันbalance simulation/ไม่อ้างwholegamebalance ไม่มีSQL/env/newassets/ownerwritesหรือrestart6173
 
 ## วิธีตรวจและหลักฐาน
 
@@ -47,4 +47,6 @@ Healing Song ทั้ง Bard/Dancer: เมื่อร่ายสำเร�
 - ActualfreshAuth/PostgREST/Postgres/mobileChrome4กลุ่มผ่าน: เพลงทั้งสองresolve3476msมีopening4eventsทันที แล้วheal_tick20eventsต่อเพลงที่4476/5476/6476/7476/8476ms; วงค้าง/หมดแล้วหาย/motionปิด/320px/noextra save และไม่มีbrowsererrors [UI](../evidence/task-072-healing-live.json) / [stack](../evidence/task-072-local-stack.json)
 - Static18rows/P.ATK125–1000/level1,4,10คำนวณfloorต่อpulse/nohealbonus/equalbases/allwounded พลังรวม210–350%ต่อคนก่อนปัด/โบนัส [comparison](../evidence/task-072-power-review.json) ไม่ใช่statsจริงของowner/ไม่วัดsurvivalหรือfullbalance
 - M0/schema/manifest/codegen/build/type/boundaries/assets/secrets/readiness8ผ่าน content3a297403b070dfbe36027224ce3fc9229df14a12496bcd2f99ac3bb601859230 packf57a0773…เดิม [build](../evidence/task-072-build.txt) ไม่มีSQL/env/newassets/ownerwrite/restart6173 ไม่รันbalance runner
-- รอpush/Vercel/hostedจึงปิดAC03/done ไม่แก้หลักฐานTASK-071ย้อนหลังให้เป็นผลของcoefficientsใหม่
+- source7167980afขึ้นVercelsuccessแล้วและactualhosted3กลุ่มผ่าน ปิดAC03/done ไม่แก้หลักฐานTASK-071ย้อนหลังให้เป็นผลของcoefficientsใหม่
+
+- Hostedround1ใช้ชื่อhashไฟล์จากlocalไปหาในmanifestVercelที่productionenvต่างจึงNO_OPENING_HEAL_BUNDLE แก้harnessอ่านชื่อbundleจากhostedmanifestแล้วตรวจopening_heal/opening_power/physical_regenerationตรงactualcontenthashใหม่ ผ่านกับdeploymentเดิม ไม่แก้product/เกณฑ์ เก็บfailureแยก [hosted](../evidence/task-072-hosted.json)

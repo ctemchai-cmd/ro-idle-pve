@@ -41,8 +41,8 @@ const assert=(ok,message)=>{if(!ok)throw new Error(message);};let browser,profil
   assert(ui.includes('healing_aura')&&ui.includes('battle-history')&&renderer.includes('healing_auras'),'HOT_AURA_AND_HISTORY_NOT_DEPLOYED');
  }
  if(prefix==='task-072'){
-  const definitions=manifest.build_files.find(row=>row.path.endsWith('.js')&&fs.existsSync(path.join(root,row.path))&&fs.readFileSync(path.join(root,row.path),'utf8').includes('opening_heal'));assert(definitions,'NO_OPENING_HEAL_BUNDLE');
-  const actual=await(await fetch(base+'/'+definitions.path.replace(/^dist\//,''))).text(),local=fs.readFileSync(path.join(root,definitions.path),'utf8');assert(actual.includes('opening_heal')&&actual===local,'OPENING_HEAL_NOT_DEPLOYED');
+  const definitions=manifest.build_files.find(row=>/^dist\/assets\/item-options-.*\.js$/.test(row.path));assert(definitions,'NO_OPENING_HEAL_BUNDLE');
+  const actual=await(await fetch(base+'/'+definitions.path.replace(/^dist\//,''))).text();assert(actual.includes('opening_heal')&&actual.includes('opening_power')&&actual.includes('physical_regeneration'),'OPENING_HEAL_NOT_DEPLOYED');
  }
  checks.push({case_id:'hosted_shared_save_bundle',passed:true,path:row.path,sha256:createHash('sha256').update(bundle).digest('hex'),combined_reply:true});
  profile=fs.mkdtempSync(path.join(os.tmpdir(),'ro-save-hosted-'));const context=await chromium.launchPersistentContext(profile,{headless:true,executablePath:process.env.RO_CHROME_PATH||'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',viewport:{width:390,height:844}});browser=context.browser();

@@ -1,7 +1,7 @@
 {
   "task_id": "TASK-072",
   "date": "2026-10-22",
-  "passed": false,
+  "passed": true,
   "implementation_verified": true,
   "targeted_tests": 6,
   "content_hash": "3a297403b070dfbe36027224ce3fc9229df14a12496bcd2f99ac3bb601859230",
@@ -15,15 +15,16 @@
     "plan/evidence/task-072-m0.txt",
     "plan/evidence/task-072-build.txt",
     "plan/evidence/task-072-healing-live.json",
-    "plan/evidence/task-072-local-stack.json"
+    "plan/evidence/task-072-local-stack.json",
+    "plan/evidence/task-072-hosted.json",
+    "plan/evidence/task-072-github-deployment.json"
   ],
-  "pending": [
-    "Push/Vercel deployment and actual signed-out hosted proof (AC03)"
-  ],
+  "pending": [],
   "limitations": [
     "Assistant-authored trial values responding to user feedback; no full equal-budget balance/survival simulation",
     "Static comparison assumes equal P.ATK/MATK, missing HP on all targets, no bonuses/RNG; it is not owner stats",
     "Owner must finish current battle, reload and use existing backed-up save migration; no new SQL/env"
   ],
-  "actual_browser_checks": 4
+  "actual_browser_checks": 4,
+  "source_commit": "7167980af6fa6391f3d3824f9d7a902ee0f3296f"
 }

@@ -1,0 +1,44 @@
+{
+  "task_id": "TASK-072",
+  "date": "2026-10-22",
+  "source_commit": "7167980af6fa6391f3d3824f9d7a902ee0f3296f",
+  "origin": "https://ro-idle-pve.vercel.app",
+  "passed": false,
+  "checks": [
+    {
+      "case_id": "hosted_region_timing_auth_gate_content",
+      "passed": true,
+      "samples": [
+        {
+          "route": "/api/health",
+          "status": 200,
+          "elapsed_ms": 824,
+          "api_region": "sin1",
+          "vercel_id": "sin1::sin1::dw9wt-1792604771170-dd4ef7f12222",
+          "server_timing": "total;dur=3.3"
+        },
+        {
+          "route": "/api/checkpoint",
+          "status": 401,
+          "elapsed_ms": 77,
+          "api_region": "sin1",
+          "vercel_id": "sin1::sin1::dw9wt-1792604771858-af547b04663b",
+          "server_timing": "auth;dur=0.3, total;dur=5.5"
+        },
+        {
+          "route": "/api/health",
+          "status": 200,
+          "elapsed_ms": 415,
+          "api_region": "sin1",
+          "vercel_id": "sin1::sin1::wq99s-1792604772014-e829c4520d46",
+          "server_timing": "total;dur=0.4"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "failure": "Error: NO_OPENING_HEAL_BUNDLE\n    at assert (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/test_save_latency_hosted.cjs:7:42)\n    at /Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/test_save_latency_hosted.cjs:44:194\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)",
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "scope": "Signed-out actual production health/401 gate/new shared-save bundle/login/PWA only. No owner command latency or owner save access; actual mutations/failures tested on isolated stack. TASK064 optional SQL007 installation and cloud2RPC timing are not verified here."
+}

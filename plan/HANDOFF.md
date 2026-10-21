@@ -4,15 +4,16 @@
 
 
 
-## 22 ต.ค. 2026 · Codex — TASK-072 เพลงฮีลทันที+HoTแรงขึ้น จากfeedbackเจ้าของ
+## 22 ต.ค. 2026 · Codex — TASK-072 เพลงฮีลทันที+HoTแรงขึ้น ขึ้นVercelแล้ว; งานการ์ด/อุปกรณ์ต่อ
 
 - ผู้ใช้รายงานMonkP.ATKยังHeal250แต่BardP.ATKเพลง25/sไม่ทันตบตาย ตรวจdataพบHeal120–220%MATKทีเดียว/SP18 เพลงเดิม10–20%P.ATK/5ticks/SP38และdelay1sหลังresolve เปลี่ยนฐานอย่างเดียวไม่พอ จึงแก้ทั้งopeningและอัตรา ไม่มีคำถามใหม่จำเป็น ห้ามrenewedbalance simulationยังมีผล
 - D-098/TASK-072 เพิ่มopening_healชนิดheal/physical_power/friendsที่castresolve60–100%P.ATKแล้วapply_statusเดิมให้30–50%P.ATK/s5ticksใน6s รวม210–350%ต่อคนก่อนโบนัส เพลงBard/Dancerเท่ากันทุกระดับ คงSP38/CT800/ACD1200/bonuses/stack/snapshot/no tickonapply/วงเดิม ไม่มีdomainformula/schema/SQL/env/newassets/ownerwrite/6173restart
 - Focused6testsผ่าน รวม20resolvedlevels/6goldens/physicalvsMATK/armor-crit-ignore/bonuses/independentstacks/expiry/dispel/deaths/5ticks และopeningatresolveทั้งทีม/overheal/interruptไม่heal-SPไม่คืน UIsummaryopeningP.ATKและHoTแยก คง071evidenceเป็นhistoryไม่overwrite
 - static18rows task072power-reviewอ่านdataเทียบeaa8: equalbase/nohealbonus/allwounded/perpulsefloor ไม่เรียกengine/runner พบopening50→45%ของHealและsingle-targethealต่อSP75–83%ของHeal เพลงคุ้มจากหลายคนเจ็บ ต้องรอ5sถึงยอดเต็ม ไม่อ้างรู้ownerstatsหรือwholebalance
 - M0/readiness8/build/type/boundaries/assets/secretsผ่าน content **3a297403b070dfbe36027224ce3fc9229df14a12496bcd2f99ac3bb601859230** packf57a0773…/27,200,551Bเดิม
-- ActualisolatedAuth/Postgres/Chrome4กลุ่มผ่านแล้ว session59689exit0 RO_EVIDENCE_PREFIX=task-072/FOCUS=healing มีtest-onlyprototype.acceptเก็บactualsongcastresolve/healsเพื่อตรวจopening4ที่เวลาresolveและ5ticks×4หลังจากนั้น Product/codegenfrozenขณะliveและจบแล้ว เพลงทั้งคู่opening4events3476ms/5ticks×4ที่4476–8476 วงexpiry/motion/320px/noextra saveผ่าน ต่อไปcommit/push Vercel/hostedแล้วค่อยปิด072/board58of72; ปัจจุบัน57of72/inprogress5 รวม072
-- ผู้ใช้เพิ่มงานหลังแก้สกิลคืนนี้: เปลี่ยนการ์ดให้เป็นROmonster/Mini/MVPจริง+farmdrop/ด่านหลังการ์ดดีขึ้น, optionsเป็นบรรทัดมีสี, weaponpickerเฉพาะที่อาชีพใส่ได้ รับทำต่อแล้ว ยังไม่เริ่มproduct073 ห้ามลืมหรือปิดturnหลัง072อย่างเดียว
+- ActualisolatedAuth/Postgres/Chrome4กลุ่มผ่านแล้ว session59689exit0 RO_EVIDENCE_PREFIX=task-072/FOCUS=healing มีtest-onlyprototype.acceptเก็บactualsongcastresolve/healsเพื่อตรวจopening4ที่เวลาresolveและ5ticks×4หลังจากนั้น Product/codegenfrozenขณะliveและจบแล้ว เพลงทั้งคู่opening4events3476ms/5ticks×4ที่4476–8476 วงexpiry/motion/320px/noextra saveผ่าน source7167980af6fa6391f3d3824f9d7a902ee0f3296fขึ้นVercelsuccessแล้ว actualpublichosted3ผ่าน ปิด072done/board58of72/inprogress4แล้ว
+- Hostedround1harnessผิดเรื่องlocalhashfilenameต่างproductionenv แก้อ่านhostedmanifestแล้วcheckopening_heal/opening_power/physical_regenerationในactualbundle/healthhashใหม่ รันdeploymentเดิมผ่าน ไม่แก้product/เกณฑ์ เก็บfailureแยก
+- ผู้ใช้เพิ่มงานหลังแก้สกิลคืนนี้: เปลี่ยนการ์ดให้เป็นROmonster/Mini/MVPจริง+farmdrop/ด่านหลังการ์ดดีขึ้น, optionsเป็นบรรทัดมีสี, weaponpickerเฉพาะที่อาชีพใส่ได้ รับทำต่อแล้ว ยังไม่เริ่มproduct073 ห้ามลืมหรือปิดturnหลัง072อย่างเดียว ได้browseROofficialPoring4001และrAthenaactualpre-reitem/mobDBแล้ว tempYAMLอยู่/private/tmp/ro-card-reference (PyYAMLมี) Carddefsปัจจุบัน60มี18fake+42ROชื่อแต่ช่อง/เอฟเฟคผิด และไม่มีMiniชัด Nativecardicon/collectionเป็นgenericshared1097IDs ไม่มีcardbmpในการimporter ต้องหาartจริง แหล่งhttps://assets.latam-tools.com.br/illust/card/4001.pngจากadsonpleal/ragassets repoREADMEน่าลอง; divine-prideimagescollection/illustration4001HTTPerror 072ไม่ต้องcodegen/buildซ้ำจากdocs/harnesschanges
 - ให้ownerจบไฟต์/reload→สำรองแล้วอัปเดตเซฟหลังdeploy ไม่มีSQL/envใหม่ 067Essencerefund/064cloudtiming/058transferยังค้าง ห้ามแตะprivate/env/ownerdata/6173
 
 ## 22 ต.ค. 2026 · Codex — TASK-070 Timelineย้อนหลัง และ TASK-071 เพลง P.ATK/วงฮีล ขึ้น Vercel แล้ว
