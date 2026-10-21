@@ -29,17 +29,17 @@ Milestone: M4 · อ้างอิง D-087
 - [x] AC-01: confirmedcommandบนsharedpathใช้POSTเดียวในกรณีปกติ ได้DBverifiedcheckpointโดยไม่GETreceipt/checkpointซ้ำ; legacyfallbackไม่lookupknownreceipt
 - [x] AC-02: UUIDpersistก่อนส่ง, response loss/retryจ่ายครั้งเดียว; wrongowner/stalerevision/hash/schema/signatureและoffline/readonlyไม่ถูกยอมรับ; recovery/migration/battleยังถูกต้อง
 - [x] AC-03: actualisolatedAuth/Postgres/Chromeทดสอบหลายmutationและnetworkdelay วัดrequestcount/latencyก่อนหลังด้วยbudgetเดียวกัน ไม่ใช้ownercloudsave
-- [ ] AC-04: build/type/boundaries/secretsผ่าน contenthash768e12a4เดิม; deployedAPIมีServer-Timing/region และhostedsmokeผ่าน ไม่เพิ่มSQL/envหรือrestart6173
+- [x] AC-04: build/type/boundaries/secretsผ่าน contenthash768e12a4เดิม; deployedAPIมีServer-Timing/region และhostedsmokeผ่าน ไม่เพิ่มSQL/envหรือrestart6173
 
 ## วิธีตรวจและหลักฐาน
 
 Unit/sharedAPI+browserports, isolatedrealstackและChrome; productionตรวจpublichealth/anonymousgate/bundleเท่านั้น ไม่อ้างว่าอ่านเซฟจริงหรือวัดlatencyของมือถือผู้ใช้แล้ว
 
 - 37targetedtestsผ่าน: API/auth/recurring/backup รวมforeign/stalecheckpoint/response-loss/maintenanceguards
-- [actualChrome4กลุ่ม](../evidence/task-063-save-latency-live.json): creation/level/skill/loadout/equipment/teamแต่ละครั้งPOSTเดียว; equal120msdelay/3pairedpartycommands median477→169ms เป็นcontrolledbenchmarkไม่ใช่latencyเครื่องผู้ใช้
+- [actualChrome4กลุ่ม](../evidence/task-063-save-latency-live.json): creation/level/skill/loadout/equipment/teamแต่ละครั้งPOSTเดียว; equal120msdelay/3pairedpartycommands median529→219ms เป็นcontrolledbenchmarkไม่ใช่latencyเครื่องผู้ใช้
 - Droppedreplyหลังcommit→receipt/checkpointreconcileโดยไม่POSTซ้ำ; receipt-onlyfallback2requests; corruptinlinehashถูกปฏิเสธแล้วreconcile
 - Buildผ่าน contenthash768e12a4…เดิม; [actualbattleChrome4กลุ่ม](../evidence/task-063-cadence-live.json) ผ่านstart/finish/speed/reward/offline/reloadไม่มีmidfightPOST
-- Vercelsuccess sourcecb98c2bbe; [hosted3กลุ่ม](../evidence/task-063-hosted.json) health/401gate/Server-Timing/region sin1, newsharedsavebundle, signedoutlogin/PWAcacheผ่าน ไม่มีownerlogin/command การวัดcontrolledbenchmarkไม่รับประกันphoneRTTจริง
+- Vercelsuccess sourcee39c7d071 (ต่อจากcb98c2bbe); [hosted3กลุ่ม](../evidence/task-063-hosted.json) health/401gate/Server-Timing/region sin1, newsharedsavebundle, signedoutlogin/PWAcacheผ่าน ไม่มีownerlogin/command การวัดcontrolledbenchmarkไม่รับประกันphoneRTTจริง
 - Failedharnessround1–2: Playwrightrequest.methodใช้propertyแทนmethod()ทำให้faultinjectionไม่เข้า แก้harnessเท่านั้นและเก็บfailureแยก รอบแรกskilltarget1เป็นstarterเดิมจึงแก้fixtureเป็นLv10/skill2ให้upgradeจริง ไม่เปลี่ยนproduct/เกณฑ์ให้หลบfail
 
 สรุป [review](../evidence/task-063-review.json) · Codex · 21ต.ค.2026 · ทดสอบ37TS + Chrome8กลุ่ม + readiness8 + hosted3กลุ่มผ่าน ไม่มีcontent/schema/SQLเปลี่ยน ไม่รีสตาร์ต6173
@@ -48,4 +48,4 @@ Unit/sharedAPI+browserports, isolatedrealstackและChrome; productionตร�
 
 ไม่มี ต้องวัดremaininglatencyจริงหลังdeploy ไม่สัญญาว่าทุกครั้งจะตอบภายในตัวเลขคงที่
 
-- ตรวจhostedfirstdeployพบanonymouscheckpoint auth0.3msแต่total1150.1msเพราะสร้างAccountCreationRulesและAccountCommandRulesก่อนAuth จึงเพิ่มlazyhandlersหลังAuthและใช้AccountCommandRules(inheritsCreationRules)ชุดเดียวต่อAPIinstance ไม่แก้domain/contenthash รอทดสอบและdeployเพิ่ม เก็บfirstdeployproofแยก
+- ตรวจhostedfirstdeployพบanonymouscheckpoint auth0.3msแต่total1150.1msเพราะสร้างAccountCreationRulesและAccountCommandRulesก่อนAuth จึงเพิ่มlazyhandlersหลังAuthและใช้AccountCommandRules(inheritsCreationRules)ชุดเดียวต่อAPIinstance ไม่แก้domain/contenthash รัน37TS/Chrome8กลุ่มใหม่ผ่านและdeployเพิ่มแล้ว Anonymouscheckpointhandler total4.9msหลังแก้ (เป็น401probeไม่ใช่ownercommand) เก็บfirstdeployproofแยก

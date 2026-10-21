@@ -1,0 +1,65 @@
+{
+  "task_id": "TASK-063",
+  "date": "2026-10-21",
+  "source_commit": "cb98c2bbe86440692e684872f21f961878a37a66",
+  "origin": "https://ro-idle-pve.vercel.app",
+  "passed": true,
+  "checks": [
+    {
+      "case_id": "hosted_region_timing_auth_gate_content",
+      "passed": true,
+      "samples": [
+        {
+          "route": "/api/health",
+          "status": 200,
+          "elapsed_ms": 837,
+          "api_region": "sin1",
+          "vercel_id": "sin1::sin1::jp77r-1792576095889-b3af0b18db9f",
+          "server_timing": "total;dur=2.8"
+        },
+        {
+          "route": "/api/checkpoint",
+          "status": 401,
+          "elapsed_ms": 1476,
+          "api_region": "sin1",
+          "vercel_id": "sin1::sin1::lqmvb-1792576096508-2e840ecebbae",
+          "server_timing": "auth;dur=0.3, total;dur=1150.1"
+        },
+        {
+          "route": "/api/health",
+          "status": 200,
+          "elapsed_ms": 431,
+          "api_region": "sin1",
+          "vercel_id": "sin1::sin1::4jrj7-1792576098068-fa7855fe869f",
+          "server_timing": "total;dur=0.3"
+        }
+      ]
+    },
+    {
+      "case_id": "hosted_shared_save_bundle",
+      "passed": true,
+      "path": "dist/assets/account-session-DVG0V4hN.js",
+      "sha256": "18eda71089affcf7db3844bf3c86ad899d244e1372fa20407cb0db97da2ce809",
+      "combined_reply": true
+    },
+    {
+      "case_id": "hosted_login_pwa_no_private_cache",
+      "passed": true,
+      "login_visible": true,
+      "cache": {
+        "ro-idle-pwa-418eb2cdeafc9d88": [
+          "/offline.html",
+          "/pwa/icon-192.png",
+          "/pwa/icon-512.png",
+          "/pwa/icon-maskable-512.png",
+          "/pwa/apple-touch-icon.png"
+        ]
+      },
+      "mutations": []
+    }
+  ],
+  "errors": [],
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "scope": "Signed-out actual production health/401 gate/new shared-save bundle/login/PWA only. No owner command latency or owner save access; actual mutations/failures tested on isolated stack."
+}

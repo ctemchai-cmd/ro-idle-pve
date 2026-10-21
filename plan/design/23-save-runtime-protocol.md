@@ -8,6 +8,8 @@ D-087/TASK-063: sharedtransportสำหรับทุกmutationใช้ `POS
 
 Servers/clientsรุ่นเก่ายังใช้receipt-onlyได้: fallbackGETcheckpointโดยไม่lookupreceiptที่เพิ่งตอบสำเร็จซ้ำ ส่วนoutcomeไม่ทราบ/refreshยังlookupUUIDเดิมก่อนretryและcheckpointตามเดิม `Server-Timing` แยกauth/command/checkpoint/totalเฉพาะเวลาในhandler ไม่รวมnetwork/coldmoduleinit และ `x-ro-api-region` เปิดเผยเฉพาะregionไม่มีข้อมูลบัญชี ไม่มีSQL/env/contenthashใหม่
 
+APIสร้างrules/validatorsหลังAuthผ่านเท่านั้น โดยใช้AccountCommandRulesซึ่งสืบทอดCreationRulesชุดเดียวต่อAPIinstance ไม่validate/compileข้อมูลเกมซ้ำสองชุด ไม่มีownerstateหรือAuthdecisionในcache Request-specificstate/time/RNGยังเป็นlocalvariablesที่ผ่านCAS/HMACตามเดิม
+
 ส่วนนี้ลงรายละเอียด implementation ของ design11 ไม่เปลี่ยนกติกาเล่นหรือเพิ่ม multiplayer ฐานข้อมูลเป็นเจ้าของเวลาและ revision; TypeScript domain เป็นเจ้าของสูตร ไม่มีสูตรเงิน/ดาเมจซ้ำใน SQL
 
 ## ขอบเขตและข้อมูลเข้าออก

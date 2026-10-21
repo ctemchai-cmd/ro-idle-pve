@@ -2,6 +2,19 @@
 
 ไฟล์นี้บันทึกงานที่ agent ตัวหนึ่งทำแล้ว เพื่อให้ตัวถัดไป (Codex/Claude) ทำต่อได้ทันที อ่านคู่กับ [overview](overview.md) และ [AGENTS.md](../AGENTS.md) ล่าสุดอยู่บนสุด
 
+## 21 ต.ค. 2026 · Codex — TASK-063 ลดเวลารอบันทึกทุก mutation ขึ้น Vercel แล้ว
+
+- ผู้ใช้มือถือผ่านVercel/DBSingaporeรู้สึกทุกการบันทึกรอ1–2s (ย้ำไม่ใช่เฉพาะlevel) ตรวจpublicheadersยืนยันAPI **sin1::sin1** จริง พบsharedSaveControllerส่งPOST→GETreceiptซ้ำ→GETcheckpointทุกครั้ง (รวมAuth/DBroundtrips) ไม่ได้สรุปว่าregionผิด
+- **Sourcee39c7d071 pushmain/Vercelsuccessแล้ว** (ต่อจากcb98c2bbe) [hosted3กลุ่ม](evidence/task-063-hosted.json): actualAPIhealth200/content768e12a4…เดิม, anonymouscheckpoint401, Server-Timingและx-ro-api-regionsin1, bundleมีsendWithCheckpoint/x-ro-checkpoint, login/PWAcache5publicfilesถูกต้อง ไม่มีownerlogin/command/เซฟwrite
+- Browserใช้optional`sendWithCheckpoint`ส่ง`x-ro-checkpoint: include`; sharedAPIหลังcommitเรียกcheckpointDB/verifyเดิมแล้วคืนreceipt+checkpointในPOSTเดียวทุกmutation (รวมcreate/maintenance/battle) Browserใช้validatorเดียวกับGET(owner/schema/version/hash/history)และminimumrevisionก่อนpersist/ready ไม่มีreceipt-delta/optimisticwallet/เลื่อนsave ถ้าcheckpointreadล้มยังคืนreceiptให้fallbackGETcheckpointโดยไม่อ่านknownreceiptซ้ำ; outcomeไม่ทราบยังlookupUUIDก่อนretryตามเดิม คนละversionรองรับreceipt-onlyได้
+- เพิ่มServer-Timingแยกauth/command/checkpoint/totalhandler และx-ro-api-region โดยไม่เผยUID/key; totalไม่รวมnetwork/coldmoduleinit Pinvercelregionssin1ตามuserและผลจริง ไม่เปลี่ยนAuthgetUser/RLS/CAS/signature/backup/refund/DBschemas/contenthash/pack **ไม่ต้องเพิ่มenv/SQL/migration** ห้ามรีสตาร์ต6173
+- QA **37targetedTSผ่าน** (API/Auth/recurring/backup), **actualChrome8กลุ่ม** บนfreshAuth/PostgREST/PG: save_latency4กลุ่มทดสอบcreate/level/skillupgrade/loadout/equipment/teamPOSTเดียว, response-lossหลังcommitreconcileไม่POSTซ้ำ, legacyfallback2requests, corruptinlinehashปฏิเสธ; settlement4กลุ่มยืนยันstart/finish/speed/reward/offline/reloadเดิม ไม่มีmidfightwrite Build/env/assets/content/boundaries/type/secretsและreadiness8ผ่าน ดู [review](evidence/task-063-review.json)
+- Controlledbenchmark3pairedpartycommands +120msdelay/request เท่ากัน: median **529→219ms**, requests3→1 เป็นfixtureprotocolbenchmarkไม่ใช่เครื่อง/เครือข่ายจริงของผู้ใช้ ไม่อ้างว่าทุกsaveบนมือถือจะเร็วตามตัวเลขนี้ ไม่มีownercloudcredentialหรือmutation ต้องให้ผู้ใช้จบไฟต์แล้วreload/PWAเปิดใหม่เพื่อรับbundleล่าสุด Newworkerไม่auto reloadตามD-086
+- Failedround1–2เกิดharnessใช้Playwrightrequest.methodแทนmethod() faultinjectionไม่เข้า แก้harnessไม่เปลี่ยนproduct เก็บfailureแยก แก้fixturestarterFireBolt1ให้level10/skill2จึงอัปจริง ไม่ผ่อนexpected รันactualstackใหม่ผ่าน Source/codegenไม่เปลี่ยนระหว่างlive tests หลักฐานlocal-stackเป็นsettlement ส่วนsave-latency-stackเก็บแยก
+- Board **51/63done**, TASK063done; 041/058inprogressและvisualreview5งานเดิม Task042fullmobileperf/043–046releasegatesยังค้าง การย้ายเซฟ058ยังต้องmetadataใหม่ ไม่ใช้SQLเก่าblind งานนี้ไม่อ่านlogin/env/private filesหรือแตะ6173
+
+- Firstdeploypublictimingพบanonymouscheckpoint auth0.3msแต่total1150.1ms (eagerสร้างcreation+recurringrulesก่อนAuth) จึงแก้configuredServicesให้lazyหลังAuthและแชร์statelessAccountCommandRules(inheritsCreationRules)ชุดเดียวต่อinstance ไม่cacheownerstate/Authdecision Domain/contenthashเดิม รัน37TS+Chrome8กลุ่มใหม่ผ่านพร้อมbuild แล้วdeploye39c7d071: anonymouscheckpointtotal4.9ms/APIregionSGจริง [firstdeploy](evidence/task-063-hosted-firstdeploy.json) เทียบ [final](evidence/task-063-hosted.json) ตัวเลข401probeไม่ใช่ownercommandlatency
+
 ## 21 ต.ค. 2026 · Codex — TASK-062 PWA ขึ้น Vercel แล้ว
 
 - ผู้ใช้ขอPWA (D-086) เพิ่มmanifest `/play`/scope`/`/standalone/portrait, SVGmark+PNG192/512/512maskable/Apple180, viewport-fit=coverและAuthsafearea ปุ่มติดตั้งอยู่login/settings ใช้beforeinstallpromptจากusergestureครั้งเดียวพร้อมfallbackguide/iOSSafari→แชร์→เพิ่มหน้าจอโฮม ซ่อนเมื่อstandalone ย่อSVGหัวlogin44pxที่เดิมขยายกินviewport

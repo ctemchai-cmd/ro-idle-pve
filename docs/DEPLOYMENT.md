@@ -125,3 +125,5 @@ TASK-060/061 ไม่ต้องเพิ่ม SQL migration: ใช้6ไ�
 ทุกปุ่มใช้sharedsavepathเดียวกัน กรณีปกติPOSTครั้งเดียวคืนreceiptและcheckpointที่โหลด/verifyจากDBแล้ว ยังรอcommitจริงก่อนแสดงผล ไม่เลื่อนsaveหรือใช้ยอดเงินคาดการณ์ เก่าหรือcheckpointreadล้มfallbackGETcheckpoint; response lossยังreconcile UUIDเดิมก่อนส่งซ้ำ ไม่ต้องเพิ่มSQL/envหรือmigrateเซฟ
 
 DevTools Networkดู `Server-Timing`: auth=ตรวจผู้ใช้กับSupabase, command=ตรวจintent/DB/คำนวณ/commit, checkpoint=โหลดและverifyผล, total=handlerทั้งหมด ตัวเลขนี้ไม่รวมเครือข่าย/โหลดmoduleตอนcoldstart จึงต้องอ่านคู่requestduration ไม่ควรนำpublichealthมาแทนlatencyของownercommand และไม่ส่งtoken/headersAuthorizationในรายงาน
+
+APIเตรียมrules/validatorsหลังAuthผ่านและใช้ชุดเดียวร่วมcreation/recurringต่อinstance เพื่อลดcoldinitialization ไม่cacheownerstateหรือAuthdecision หากtotalสูงแต่auth/command/checkpointต่ำ ให้ตรวจsetup/module/networkแยกกันก่อนสรุปว่าฐานข้อมูลช้า
