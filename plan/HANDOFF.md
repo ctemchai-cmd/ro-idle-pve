@@ -4,6 +4,8 @@
 
 ## 21 ต.ค. 2026 · Codex — D-083/TASK-059 ลดเซฟระหว่างสู้เป็น4วินาที
 
+- **Source commit `0007542d8` push mainสำเร็จและVercelstatussuccessแล้ว** Chromeบนproductionโหลด `/assets/shell-DUroR1Ro.js` พบ4s schedulerจริง, loginแสดง, publichealth200/ok ไม่มีgame mutation [hostedproof](evidence/task-059-hosted.json) ไม่อ้างว่าอ่านหรือเล่นด้วยowner cloud saveจริง แนะนำจบไฟต์ก่อนreloadรับbundleใหม่
+
 - ผู้ใช้เห็นเซฟรัวระหว่างสู้และขอลด แก้เฉพาะ client/UI: `BattleAckSchedule` กำหนด deadline4000msจากเริ่มrequest ไม่บวกresponse/checkpointlatencyทุกครั้ง ไม่มีcatch-upหลายคำสั่ง; RAF/shared predictionเดิมยังเดินทุกframe คำสั่งผู้เล่นยังส่งทันที ไม่มีการเปลี่ยนSQL/formulas/DBcap5000ms/lease15000ms/offlinepolicy
 - SpeedButton ยืนยัน `battle.advance` ที่ความเร็วเดิมก่อนสลับ1×/2×/4× และเลื่อนdeadlineตามrequestนั้น ถ้าคำสั่งยังไม่confirmed/มีpendingไม่สลับ ผลที่predictionเห็นว่าจบแล้วรอperiodicackถัดไป(ปกติ≤4วินาที+network)ก่อนจ่ายจริง Hidden/offline/refreshยังreconcile/retreat ไม่อ้างว่าปิดหน้าระหว่างสู้แล้วเก็บผลที่ยังไม่ยืนยัน
 - QA: **32 targetedTS tests** รวมStory/Tower/Daily/SaveProtocol/recurring/transfer/schedulerผ่าน; actualisolatedChrome+upstreamAuth/PostgREST/Postgresผ่าน4กลุ่ม Cadenceวัด3995/4014msแม้delayresponse400ms, peakcommand1, game_msเดินระหว่างrequest, speed1/2/4/settlement/claim/reload/offline/reconnectผ่าน [review](evidence/task-059-review.json) / `RO_EVIDENCE_PREFIX=task-059 RO_LOCAL_TEST_FOCUS=cadence python3 scripts/test_auth_stack.py`

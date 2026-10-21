@@ -49,3 +49,5 @@ Milestone: M4 · ประเภท: พัฒนา/ตรวจรับ · �
 - [Review](../evidence/task-059-review.json): measured3995/4014ms, responseหน่วง400ms, peakwriter1, RAFเดินระหว่างrequest; 1×/2×/4×/ผลชนะ/รับรางวัล/รีโหลด/offline/reconnectครบ4กลุ่มบนstackจริงแยก
 - รอบแรก harnessรอloginเพียง700msจึงออกจากหน้าเร็วเกินและหาMageไม่เจอ แก้รอheadingsigned-inจริง เก็บround1report ไม่เปลี่ยนproductเพื่อหลบเกณฑ์
 - Build/env/assets/content/boundaries/typecheck/secretsผ่าน contenthash2c1ac034เดิม ไม่เปลี่ยนเกมหรือเซฟและไม่รีสตาร์ต6173
+
+- Source `0007542d8` push mainและVerceldeploysuccessแล้ว [hosted smoke](../evidence/task-059-hosted.json): actualJSมี4s scheduler/login/publichealth200 ไม่มีcloudwrite (ไม่ใช่ownercombatproof)
