@@ -1,7 +1,7 @@
 {
   "task_id": "TASK-074",
   "date": "2026-10-22",
-  "passed": false,
+  "passed": true,
   "implementation_verified": true,
   "content_hash": "4e44083962ef36aa61ab5e80cd86e1e3ed088ebb0d136744cb8ca2160655ca57",
   "asset_pack_hash": "c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2",
@@ -17,7 +17,7 @@
   "acceptance": {
     "AC-01": "passed",
     "AC-02": "passed",
-    "AC-03": "pending_hosted"
+    "AC-03": "passed"
   },
   "evidence": [
     "plan/evidence/task-073-source-audit.json",
@@ -30,11 +30,11 @@
     "plan/evidence/task-073-m0.txt",
     "plan/evidence/task-073-build.txt",
     "plan/evidence/task-073-074-ui-live.json",
-    "plan/evidence/task-073-local-stack.json"
+    "plan/evidence/task-073-local-stack.json",
+    "plan/evidence/task-073-hosted.json",
+    "plan/evidence/task-073-github-deployment.json"
   ],
-  "pending": [
-    "Push and signed-out hosted deployment proof"
-  ],
+  "pending": [],
   "balance_simulation": false,
   "owner_cloud_writes": false,
   "personal_preview_restarted": false,
@@ -42,5 +42,8 @@
     "Source identity/slot/trait basis is RO; normalized idle coefficients and source conversions are explicit in authoring spec, not exact RO PC/Idle formulas",
     "No whole-game balance/calibration run; actual mobile browser uses a disposable signed fixture, not owner resources or Android hardware",
     "Owner backup/migration still manual; legacy AFK settled once before new card accrual"
-  ]
+  ],
+  "source_commit": "00e74417d2bf7ddecc435903a71cd353cc33d559",
+  "deployment_url": "https://vercel.com/chanon2/ro-idle-pve/AJGYJc2oAfscg3hTVGUEjibjU4hy",
+  "hosted_checks": 3
 }

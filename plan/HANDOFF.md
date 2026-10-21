@@ -4,9 +4,10 @@
 
 
 
-## 22 ต.ค. 2026 · Codex — TASK-073/074 ตรวจlocalครบ รอpush/Vercelhosted
+## 22 ต.ค. 2026 · Codex — TASK-073/074 done และขึ้นVercelแล้ว
 
-- Userงานคืนนี้ทุกข้อทำproductครบ: Healing072doneขึ้นVercelแล้ว(source7167980af6/docsb3d90044e), 073ROcards66/nativeart/AFKdrop, 074optionvertical/weaponfamilyfilter อย่าจบโดยลืมpush073/074 ไม่มีsubagents/balance simulation/ownerwrite/6173restart/อ่านenv-login
+- **SOURCE `00e74417d2bf7ddecc435903a71cd353cc33d559` pushmain/VercelSUCCESS** https://vercel.com/chanon2/ro-idle-pve/AJGYJc2oAfscg3hTVGUEjibjU4hy และactualpublichosted3กลุ่มผ่าน health200/hashตรง/checkpoint401/newUI-data/nativePoringSHA/loginPWA ไม่มีownerwrite
+- Userงานคืนนี้ทุกข้อทำproductครบ: Healing072doneขึ้นVercelแล้ว(source7167980af6/docsb3d90044e), 073ROcards66/nativeart/AFKdrop, 074optionvertical/weaponfamilyfilter 073/074sourceและdocscloseบันทึกครบแล้ว ไม่มีsubagents/balance simulation/ownerwrite/6173restart/อ่านenv-login
 - 073catalog49Normal/6Mini/11MVP คง60olddefinitionIDs+Mini6 SourceofficialPoring/rAthenaemulatorpre-re, ไม่จัดAbysmalเป็นMVP Shield→armorเพราะ6slots. spec plan/generators/cards-spec.json +card_catalog.pyเรียกจากitems.py สำคัญอย่ารันtempone-offauthoringย้อน. sourceaudit66actualdrop-owner/Class/MvpExpในtask073source-audit.json
 - Artnative300×400losslessWebP66ภาพ/rootstarter110รวม67,496IDs fromragassets endpoint มีmeta/SHA/provenance/contactsheet3หน้าเปิดดูครบ 5.1→3.35MBลบเฉพาะnewPNGหลังRGBAverified Runtimepackc7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2=30,640,189B/32MiBcap initial1,582,917B/8MiB lazyไม่โหลดposterทั้งหมดหน้าแรก Assetchecks/importerPython35ผ่าน
 - Shared optional defense_element/accepted_damage_types trigger +19default-zero ratio stats supportcardidentity viaengine noitemnamehardcode/AIchange/globalCCimmunity. zeroresไม่เพิ่มRNG truebypassnewres; Phenไม่กันhardCC. Benefits×quality-level/penalties÷scale viahigher_is_better; proc power scales once or pureutilitychance scales, notboth. Newstatunits/AdditionalStats41อ่านdataไม่ตกหล่นfuturestats Defaultprimary/speedgrowthไม่เปลี่ยน
@@ -17,8 +18,9 @@
 - Finalbuild/type/boundaries/secrets/contentcheck/M0ผ่าน content **4e44083962ef36aa61ab5e80cd86e1e3ed088ebb0d136744cb8ca2160655ca57**. Unitregressions84+focused14(overlap)+spatial6+format1/Python35ผ่าน ไม่มีbalance/calibrationrunner. See task073review
 - ActualfreshAuth/Postgres/PostgREST/mobileChrome **5groupspassed finalsource** viaRO_LOCAL_TEST_FOCUS=cards/RO_EVIDENCE_PREFIX=task073:12h actualfarmcards claim+receipt replay, Knight/WizardfamilyincludingLv60locked/equip/reload, portraits/grade/320-390/noinspectionAPI, actualAFKearnedcardassign/reload, actualgachareveal/details. Options1–5lineและAdditionalStats41ผ่าน ภาพเปิดดูแล้วgachaanimationcomplete. JSONtask073-074-ui-live +local-stack authoritative
 - คงfailedrounds: firstPython27capassert/authorwrongbucket/M0ref paths; buildround1importboundary/round2storeimport-testtypes/round3fixturetuple/round4unusedtype. **Chrome round1harnessผิด includes(_card_)นับqa fixtures3เป็นearned** เจอจากภาพ53vsreport56 แก้regex^farm_.+_card_[0-9]+$+level1และrerunactualearnedassignผ่าน คงround1reviewacceptedfalse รอบ2/3validแต่ถูกsupersedeด้วยfinal5checks/animation/AdditionalStats ไม่อ้างownerprogress
-- Board58/74done/inprogress4(041/058/064/067)/review7(5old+073/074pendinghosted)/todo5 Tasks073/074อยู่review ACสุดท้ายยังไม่check รอcommitpushmain/ghdeployment/publichostedด้วยupdatedscripts/test_save_latency_hosted.cjs RO_EVIDENCE_PREFIX=task073. แล้วปิด073/074done=>60/74,review5,M4done20/29. อัปเดตcases/matrix/reports/HANDOFF/sourcecommit/ghproofแล้วdocscommitpush ห้ามปิดownerpending4เดิม
-- Ownerเมื่อdeploymentพร้อมreload/สำรองอัปเดตเซฟผ่านของเดิม ไม่SQL/envใหม่ แล้วcollectoldAFKครั้งแรกก่อนnewcardsเริ่ม ไม่อ้างownerทำแล้ว sourceproject.gitignoreกันprivateแล้ว gitpushauthorizedต่อเนื่องไม่ถามใหม่
+- Board**60/74done/inprogress4(041/058/064/067)/review5(oldvisual)/todo5** M4done20/29 Tasks073/074อยู่doneทุกACผ่าน cases/matrix/reviewreportsupdated. Sourcecommit/ghproof/hostedข้างบน อย่าปิดownerpending4เดิม. ไม่มีproductworkค้างในคำขอคืนนี้ docscloseตามหลังsource
+
+- Ownerสามารถreload/สำรองอัปเดตเซฟผ่านของเดิม ไม่SQL/envใหม่ แล้วcollectoldAFKครั้งแรกก่อนnewcardsเริ่ม ไม่อ้างownerทำแล้ว sourceproject.gitignoreกันprivateแล้ว gitpushauthorizedต่อเนื่องไม่ถามใหม่
 
 ## 22 ต.ค. 2026 · Codex — TASK-072 เพลงฮีลทันที+HoTแรงขึ้น ขึ้นVercelแล้ว; งานการ์ด/อุปกรณ์ต่อ
 

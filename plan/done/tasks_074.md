@@ -21,7 +21,7 @@ Milestone: M4 · อ้างอิง D-100
 
 - [x] AC-01: Optionทุกบรรทัดแยกlabel/valueและมีสีชัดทั้งรายละเอียดในbag/ช่องอุปกรณ์/เลือกเปลี่ยนของ ค่าตรงsharedmodifierเดิม ไม่เปลี่ยนroll/เซฟ หน้า320/390pxไม่ล้นและไม่มีemojiใหม่
 - [x] AC-02: หน้าเลือกอาวุธแสดงเฉพาะfamilyที่jobใส่ได้ แม้ของต่างfamilyจะlevelสูง/อยู่กับเพื่อน; ของfamilyถูกแต่levelสูงยังบอกเงื่อนไขได้ สลับตัวละคร/คลาสแล้วfilterตรง ใส่และreloadค่าตรง
-- [ ] AC-03: actualisolatedmobileChrome/productionbuild/type/boundaries/secrets/hostedผ่าน ไม่มีSQL/env/ownerwrite/restart6173หรือเพิ่มAPIจากการดู/กรอง
+- [x] AC-03: actualisolatedmobileChrome/productionbuild/type/boundaries/secrets/hostedผ่าน ไม่มีSQL/env/ownerwrite/restart6173หรือเพิ่มAPIจากการดู/กรอง
 
 ## วิธีตรวจและหลักฐาน
 
@@ -33,6 +33,8 @@ ActualisolatedAuth/Postgres/mobileChrome withmultiweapon/optionsfixture ตร�
 
 ## ผลตรวจจริง
 
-ผ่านactualmobileChromeบน320/390pxทุกOption1–5บรรทัด/หลายfamily/equip/reload/ไม่มีinspectionAPI และbuild/type/boundaries/secrets รอhostedหลังpush
+ผ่านactualmobileChromeบน320/390pxทุกOption1–5บรรทัด/หลายfamily/equip/reload/ไม่มีinspectionAPI และbuild/type/boundaries/secrets hosted3กลุ่มผ่านแล้ว
 
-หลักฐาน: `plan/evidence/task-073-074-ui-live.json`, `task-073-local-stack.json`, `task-073-card-targeted.txt`, `task-073-rules.txt`, `task-073-build.txt`, `task-073-presentation.txt` และภาพในevidenceที่เปิดดูจริง; ACที่รอhostedยังไม่ผ่าน
+หลักฐาน: `plan/evidence/task-073-074-ui-live.json`, `task-073-local-stack.json`, `task-073-card-targeted.txt`, `task-073-rules.txt`, `task-073-build.txt`, `task-073-presentation.txt` และภาพในevidenceที่เปิดดูจริง; ทุกACผ่านตามหลักฐานจริง
+
+ขึ้นVercelแล้ว source `00e74417d2bf7ddecc435903a71cd353cc33d559`; publichealth200/contentตรง, signedoutcheckpoint401, nativePoringcardSHAตรง, newbundles/login/PWAผ่าน ดู `plan/evidence/task-073-hosted.json` และ `task-073-github-deployment.json` ไม่แตะownerเซฟ

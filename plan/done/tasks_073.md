@@ -32,7 +32,7 @@ Milestone: M4 · อ้างอิง D-099
 - [x] AC-01: 66ใบมีชื่อมอนสเตอร์ RO / ROitemID / monsterID / sourcegradeและlocalcardartถูกตัว ไม่มีชื่อสมมติหรือskillsymbol; sourceกับadaptationแยกชัด และMVP/Miniไม่จัดจากการเดาชื่อ
 - [x] AC-02: ฟาร์มออนไลน์/AFKได้การ์ดตามseededreservation/5minroll/profileของด่าน; ด่านหลังเปิดpool/qualityดีขึ้น โอกาสถูกแสดงตามdata; splitinterval/12hcap/retry/fullbag/oldpendingไม่จ่ายซ้ำหรือreroll
 - [x] AC-03: การ์ดเดิมทั้ง60IDsยังอยู่ level/quality/lock/inventoryไม่หาย; migrationถอดเฉพาะใบที่ช่องไม่ตรงกลับกระเป๋า snapshotเก่าไม่retroactiveดรอป และeffect/triggerที่เพิ่มทำงานในsharedpipeline
-- [ ] AC-04: UIเห็นภาพจริง/ชื่อ/Normal-Mini-MVP/slot/ผล ทั้งbag/slot/gacha/reward; actualChrome claimและใส่การ์ดผ่าน M0/assets/build/type/boundaries/secrets/hosted ไม่มีownerwrite/6173restart/balance simulation Rawpack≤32MiBและinitial≤8MiB
+- [x] AC-04: UIเห็นภาพจริง/ชื่อ/Normal-Mini-MVP/slot/ผล ทั้งbag/slot/gacha/reward; actualChrome claimและใส่การ์ดผ่าน M0/assets/build/type/boundaries/secrets/hosted ไม่มีownerwrite/6173restart/balance simulation Rawpack≤32MiBและinitial≤8MiB
 
 ## วิธีตรวจและหลักฐาน
 
@@ -44,6 +44,8 @@ Focusedcard/farm/migrationunitcases/assetmetadatachecks + realisolatedAuth/Postg
 
 ## ผลตรวจจริง
 
-ผ่านsource/art66ใบ, focusedrules84+14overlap/Python35/M0/build/type/boundaries/secrets และactualmobileChrome5กลุ่มแล้ว รอhostedหลังpush เก็บfailedroundsที่เป็นbudget/authoring/testfixtureไว้ ไม่อ้างfullbalanceหรือownerเซฟถูกเปลี่ยนแล้ว
+ผ่านsource/art66ใบ, focusedrules84+14overlap/Python35/M0/build/type/boundaries/secrets และactualmobileChrome5กลุ่มแล้ว hosted3กลุ่มผ่านแล้ว เก็บfailedroundsที่เป็นbudget/authoring/testfixtureไว้ ไม่อ้างfullbalanceหรือownerเซฟถูกเปลี่ยนแล้ว
 
-หลักฐาน: `plan/evidence/task-073-074-ui-live.json`, `task-073-local-stack.json`, `task-073-card-targeted.txt`, `task-073-rules.txt`, `task-073-build.txt`, `task-073-presentation.txt` และภาพในevidenceที่เปิดดูจริง; ACที่รอhostedยังไม่ผ่าน
+หลักฐาน: `plan/evidence/task-073-074-ui-live.json`, `task-073-local-stack.json`, `task-073-card-targeted.txt`, `task-073-rules.txt`, `task-073-build.txt`, `task-073-presentation.txt` และภาพในevidenceที่เปิดดูจริง; ทุกACผ่านตามหลักฐานจริง
+
+ขึ้นVercelแล้ว source `00e74417d2bf7ddecc435903a71cd353cc33d559`; publichealth200/contentตรง, signedoutcheckpoint401, nativePoringcardSHAตรง, newbundles/login/PWAผ่าน ดู `plan/evidence/task-073-hosted.json` และ `task-073-github-deployment.json` ไม่แตะownerเซฟ
