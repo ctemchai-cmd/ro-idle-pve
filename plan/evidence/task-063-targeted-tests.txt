@@ -1,0 +1,45 @@
+✔ same Fetch entry serves local health; unfinished cloud routes return503 (1421.407167ms)
+✔ local repository exercises original receipt replay before revision and detects races (1.831583ms)
+✔ combined command reply reads one verified checkpoint after success; failures retain the receipt and legacy callers stay compatible (531.88ms)
+✔ modern Supabase secret environment works and legacy local configuration remains compatible (3.306583ms)
+✔ password signin preserves password bytes, trims email, and never exposes token in UI snapshot (1.282417ms)
+✔ expired/unauthorized sessions return signin without authorizing another request (0.319959ms)
+✔ password recovery persists across refresh and requires its own authenticated recovery session (0.324ms)
+✔ logout clears local identity and disposes listeners (0.227209ms)
+✔ stale initial getSession cannot overwrite a newer successful signin (0.675833ms)
+✔ initial session read cannot overwrite a newer provider event (0.143167ms)
+✔ pending token read cannot authorize after logout or a newer session event (0.141167ms)
+✔ public config rejects private keys and incomplete/remote HTTP configuration without logging values (0.282625ms)
+✔ server config pins non-production project reference and rejects production target or public key (0.148875ms)
+✔ server verifies bearer with getUser and derives identity from provider, not request claims (25.770667ms)
+✔ API scopes save lookup to verified identity and never manufactures a wallet on404 (1432.197375ms)
+✔ account reader does not merge snapshots, does not send owner IDs, and expires only on401 (0.893041ms)
+✔ account reader rejects another owner, broken envelopes and returns summary only (0.396417ms)
+✔ secret guard catches actual private env values, disguised public env names, and privileged JWTs (0.791792ms)
+✔ build rejects mismatched browser/server projects and production target in test (1.222625ms)
+✔ recurring receipt replay precedes revision, fixed claim pays once and rejected receipts stay immutable (1804.848584ms)
+✔ verified signed state and schema reject changed wallet, foreign history, raw client snapshots and content mismatch (1076.396542ms)
+✔ battle advance credits only DB time, persists checkpoint and replay adds no time; expiry rejects and retreat preserves wallet (2757.057667ms)
+✔ response-loss refresh reconciles the same receipt before cloud load without delta replay or another payment (996.093625ms)
+✔ offline and second-tab readers cannot submit; writer conflicts reload cloud without repeating an intent (1014.783083ms)
+✔ refresh with an active boss reconciles then retreats instead of simulating offline combat (579.056583ms)
+✔ an older checkpoint response cannot downgrade a committed receipt or replace the newer wallet backup (828.007166ms)
+✔ account creation persists a pending UUID without a checkpoint and refresh recovers its original receipt once (1039.659292ms)
+✔ confirmed legacy replies skip the redundant receipt GET; a combined verified checkpoint skips both GETs (1688.305792ms)
+✔ combined replies reject foreign/stale checkpoints and preserve the committed pending intent for reconciliation (1502.372375ms)
+✔ terminal-only start + finish writes twice; a lost finish response reconciles the original receipt without replaying rewards (1144.779417ms)
+✔ T040 AC-01: export → reset → restore brings back the same characters, NPCs, items and slot progress (1164.737833ms)
+✔ T040 AC-02: an older signed save is previewed then migrated with a backup; unsupported or broken saves are never changed (3995.905792ms)
+✔ T040 AC-03 + D-085: new game clears daily dungeons; restore guards AFK/shop/daily counters and restores once (1978.131208ms)
+✔ T040 AC-03/04: a quarantined save is recovered only from its signed tip; a healthy save refuses recovery (480.925375ms)
+✔ T040 AC-04: the client only sends maintenance writes the server asked for, and shows nothing until the receipt (0.884042ms)
+✔ D-085: migrating an already-reset locked game clears only carried daily progress, with backup; unlocked games retain it (1096.089833ms)
+✔ T040 AC-05: compatibility matrix — current/older/newer/unknown/cost-version fixtures migrate, reject or refund exactly (892.119292ms)
+ℹ tests 37
+ℹ suites 0
+ℹ pass 37
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 20177.553083

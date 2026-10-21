@@ -83,6 +83,26 @@ test('account creation persists a pending UUID without a checkpoint and refresh 
  const b=new SaveController(p.ports);await b.start(id);assert.equal(b.snapshot.status,'ready');assert.equal(b.snapshot.pending,null);assert.equal(sends,1);assert.equal(b.snapshot.lastReceipt?.command_type,'account.create');b.dispose();
 });
 
+test('confirmed legacy replies skip the redundant receipt GET; a combined verified checkpoint skips both GETs', async () => {
+ for (const combined of [false, true]) {
+  const f=fixture(),p=client(f);let loads=0,lookups=0;
+  const load=p.ports.checkpoint;p.ports.checkpoint=()=>{loads++;return load();};p.ports.receipt=async()=>{lookups++;throw new Error('CONFIRMED_RECEIPT_MUST_NOT_BE_READ_AGAIN');};
+  // The checkpoint is the same verified cloud object; the transport unwraps the HTTP body.
+  if(combined)p.ports.sendWithCheckpoint=async c=>{const receipt=await p.ports.send(c);const loaded=await f.server.checkpoint(identity);return{receipt,checkpoint:(loaded.body as any).checkpoint};};
+  const a=new SaveController(p.ports);await a.start(id);loads=0;await a.submit(f.command());
+  assert.equal(a.snapshot.status,'ready');assert.equal(a.snapshot.checkpoint!.save.revision,2);assert.equal(a.snapshot.pending,null);assert.equal(lookups,0);assert.equal(loads,combined?0:1);assert.equal(f.writes,1);a.dispose();
+ }
+});
+
+test('combined replies reject foreign/stale checkpoints and preserve the committed pending intent for reconciliation', async () => {
+ for (const foreign of [false,true]) {
+  const f=fixture(),p=client(f),old=structuredClone(f.context);
+  p.ports.sendWithCheckpoint=async c=>{const receipt=await p.ports.send(c);const bad=foreign?structuredClone(f.context):old;if(foreign)bad.save!.account_id='foreign';return{receipt,checkpoint:bad as never};};
+  const a=new SaveController(p.ports);await a.start(id);await a.submit(f.command());assert.equal(a.snapshot.status,'offline');assert.equal(a.snapshot.reason,foreign?'CHECKPOINT_OWNER_MISMATCH':'STALE_CHECKPOINT');assert.ok(a.snapshot.pending);assert.equal(f.writes,1);
+  await a.reconnect();assert.equal(a.snapshot.status,'ready');assert.equal(a.snapshot.checkpoint!.save.revision,2);assert.equal(f.writes,1);a.dispose();
+ }
+});
+
 test('terminal-only start + finish writes twice; a lost finish response reconciles the original receipt without replaying rewards', async () => {
  const f = fixture(), p = client(f), a = new SaveController(p.ports); await a.start(id);
  await a.submit(f.command('11111111-2222-4333-8444-555555555555', 'battle.start_story', { stage_id: '1-1' }));

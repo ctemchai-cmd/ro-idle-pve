@@ -40,26 +40,33 @@ export function createBrowserSavePorts(auth: AuthController, scope: string, stor
   const content = loaded.value, validator = new ContentValidator(structuredClone(content.schemas) as unknown as Record<string, ObjectValue>);
   const digest = async (value: unknown) => sha256Hex(canonical(value));
   const key = (accountId: string) => `ro-idle:save:v1:${scope}:${accountId}`;
-  async function call(url: string, command?: Command) {
+  async function call(url: string, command?: Command, includeCheckpoint = false) {
     const token = await auth.getAccessToken(); if (!token) throw new SaveProtocolError('SIGN_IN_REQUIRED', 401);
-    let response: Response; try { response = await request(url, { method: command ? 'POST' : 'GET', headers: { authorization: `Bearer ${token}`, ...(command ? { 'content-type': 'application/json' } : {}) }, body: command ? JSON.stringify(command) : undefined, cache: 'no-store' }); }
+    let response: Response; try { response = await request(url, { method: command ? 'POST' : 'GET', headers: { authorization: `Bearer ${token}`, ...(command ? { 'content-type': 'application/json' } : {}), ...(includeCheckpoint ? { 'x-ro-checkpoint': 'include' } : {}) }, body: command ? JSON.stringify(command) : undefined, cache: 'no-store' }); }
     catch { throw new SaveProtocolError('NETWORK_UNAVAILABLE'); }
     const body = await response.json() as Record<string, unknown>;
     if (!response.ok) { if (response.status === 401) auth.markUnauthorized(); throw new SaveProtocolError(typeof body.code === 'string' ? body.code : 'SAVE_UNAVAILABLE', response.status, body); }
     return body;
   }
   function validateReceipt(value: unknown): Receipt { validator.shape('receipt', value as Json, { source: 'save receipt', path: '' }); return value as Receipt; }
-  return {
-    async checkpoint() {
-      const body = await call('/api/checkpoint'), c = body.checkpoint as SaveCheckpoint;
+  async function validateCheckpoint(value: unknown): Promise<SaveCheckpoint> {
+      const c = value as SaveCheckpoint;
       if (!c?.save || !c.history || c.save.account_id !== auth.snapshot.user?.id || c.history.account_id !== c.save.account_id || !Number.isSafeInteger(c.save.revision) || c.save.revision < 1 || c.save.revision !== c.history.revision || !c.history.signature || c.history.key_version !== 1) throw new SaveProtocolError('INVALID_CHECKPOINT');
       if (c.save.content_hash !== content.manifest.content_hash || c.save.content_version !== content.manifest.content_version || c.save.rules_version !== content.manifest.rules_version || c.save.schema_version !== 1) throw new SaveProtocolError('CONTENT_VERSION_MISMATCH', 409);
       validator.shape('account-state', c.save.state as Json, { source: 'save checkpoint', path: '' });
       if (await digest(c.save.state) !== c.save.state_hash || c.history.state_hash !== c.save.state_hash || await digest(c.history.state) !== c.save.state_hash) throw new SaveProtocolError('INVALID_CHECKPOINT');
       return c;
+  }
+  return {
+    async checkpoint() {
+      return validateCheckpoint((await call('/api/checkpoint')).checkpoint);
     },
     async receipt(id) { try { return validateReceipt((await call('/api/receipts/' + encodeURIComponent(id))).receipt); } catch (error) { if (error instanceof SaveProtocolError && error.status === 404) return null; throw error; } },
     async send(command) { return validateReceipt((await call('/api/commands', command)).receipt); },
+    async sendWithCheckpoint(command) {
+      const body = await call('/api/commands', command, true), receipt = validateReceipt(body.receipt);
+      return { receipt, ...(body.checkpoint ? { checkpoint: await validateCheckpoint(body.checkpoint) } : {}) };
+    },
     load(accountId) {
       const text = storage.getItem(key(accountId)); if (!text) return null;
       try {

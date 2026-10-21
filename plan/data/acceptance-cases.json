@@ -8213,6 +8213,94 @@
       "execution_evidence": [
         "plan/evidence/task-062-review.json"
       ]
+    },
+    {
+      "id": "T063-AC-01",
+      "task_id": "TASK-063",
+      "acceptance_id": "AC-01",
+      "criterion": "confirmedcommandบนsharedpathใช้POSTเดียวในกรณีปกติ ได้DBverifiedcheckpointโดยไม่GETreceipt/checkpointซ้ำ; legacyfallbackไม่lookupknownreceipt",
+      "input_setup": "Production shared save ports/controller/API; fresh local Auth/Postgres/Chrome, matched120ms request delay, signed synthetic wallet; hosted read-only proof",
+      "input_refs": [
+        "plan/review/tasks_063.md",
+        "scripts/test_save_latency_live.cjs",
+        "src/client/save-controller.ts",
+        "api/index.ts"
+      ],
+      "parameters": {
+        "content_hash": "768e12a49bf339711d44f501c3710374adbcd10d9eb74d6a2e6f9b8aa79330af",
+        "network_delay_ms_per_request": 120
+      },
+      "expected": "confirmedcommandบนsharedpathใช้POSTเดียวในกรณีปกติ ได้DBverifiedcheckpointโดยไม่GETreceipt/checkpointซ้ำ; legacyfallbackไม่lookupknownreceipt",
+      "verification": "37targetedtests/actualChrome and real isolated Auth/Postgres; build and hosted public headers/bundle without owner writes",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T063-AC-02",
+      "task_id": "TASK-063",
+      "acceptance_id": "AC-02",
+      "criterion": "UUIDpersistก่อนส่ง, response loss/retryจ่ายครั้งเดียว; wrongowner/stalerevision/hash/schema/signatureและoffline/readonlyไม่ถูกยอมรับ; recovery/migration/battleยังถูกต้อง",
+      "input_setup": "Production shared save ports/controller/API; fresh local Auth/Postgres/Chrome, matched120ms request delay, signed synthetic wallet; hosted read-only proof",
+      "input_refs": [
+        "plan/review/tasks_063.md",
+        "scripts/test_save_latency_live.cjs",
+        "src/client/save-controller.ts",
+        "api/index.ts"
+      ],
+      "parameters": {
+        "content_hash": "768e12a49bf339711d44f501c3710374adbcd10d9eb74d6a2e6f9b8aa79330af",
+        "network_delay_ms_per_request": 120
+      },
+      "expected": "UUIDpersistก่อนส่ง, response loss/retryจ่ายครั้งเดียว; wrongowner/stalerevision/hash/schema/signatureและoffline/readonlyไม่ถูกยอมรับ; recovery/migration/battleยังถูกต้อง",
+      "verification": "37targetedtests/actualChrome and real isolated Auth/Postgres; build and hosted public headers/bundle without owner writes",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T063-AC-03",
+      "task_id": "TASK-063",
+      "acceptance_id": "AC-03",
+      "criterion": "actualisolatedAuth/Postgres/Chromeทดสอบหลายmutationและnetworkdelay วัดrequestcount/latencyก่อนหลังด้วยbudgetเดียวกัน ไม่ใช้ownercloudsave",
+      "input_setup": "Production shared save ports/controller/API; fresh local Auth/Postgres/Chrome, matched120ms request delay, signed synthetic wallet; hosted read-only proof",
+      "input_refs": [
+        "plan/review/tasks_063.md",
+        "scripts/test_save_latency_live.cjs",
+        "src/client/save-controller.ts",
+        "api/index.ts"
+      ],
+      "parameters": {
+        "content_hash": "768e12a49bf339711d44f501c3710374adbcd10d9eb74d6a2e6f9b8aa79330af",
+        "network_delay_ms_per_request": 120
+      },
+      "expected": "actualisolatedAuth/Postgres/Chromeทดสอบหลายmutationและnetworkdelay วัดrequestcount/latencyก่อนหลังด้วยbudgetเดียวกัน ไม่ใช้ownercloudsave",
+      "verification": "37targetedtests/actualChrome and real isolated Auth/Postgres; build and hosted public headers/bundle without owner writes",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T063-AC-04",
+      "task_id": "TASK-063",
+      "acceptance_id": "AC-04",
+      "criterion": "build/type/boundaries/secretsผ่าน contenthash768e12a4เดิม; deployedAPIมีServer-Timing/region และhostedsmokeผ่าน ไม่เพิ่มSQL/envหรือrestart6173",
+      "input_setup": "Production shared save ports/controller/API; fresh local Auth/Postgres/Chrome, matched120ms request delay, signed synthetic wallet; hosted read-only proof",
+      "input_refs": [
+        "plan/review/tasks_063.md",
+        "scripts/test_save_latency_live.cjs",
+        "src/client/save-controller.ts",
+        "api/index.ts"
+      ],
+      "parameters": {
+        "content_hash": "768e12a49bf339711d44f501c3710374adbcd10d9eb74d6a2e6f9b8aa79330af",
+        "network_delay_ms_per_request": 120
+      },
+      "expected": "build/type/boundaries/secretsผ่าน contenthash768e12a4เดิม; deployedAPIมีServer-Timing/region และhostedsmokeผ่าน ไม่เพิ่มSQL/envหรือrestart6173",
+      "verification": "37targetedtests/actualChrome and real isolated Auth/Postgres; build and hosted public headers/bundle without owner writes",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
     }
   ]
 }

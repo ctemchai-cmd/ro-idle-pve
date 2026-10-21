@@ -4,6 +4,10 @@
 
 **ปัจจุบัน D-084/TASK-060 ใช้ start/finish-only ตามหัวข้อท้ายไฟล์ ส่วน incremental checkpoints ด้านล่างเป็นสัญญารุ่นก่อนที่เก็บไว้สำหรับ diagnostic adapters**
 
+D-087/TASK-063: sharedtransportสำหรับทุกmutationใช้ `POST /api/commands` พร้อม `x-ro-checkpoint: include` เพื่อรับ `{receipt, checkpoint?}` ในroundtripเดียว Serverอ่านcheckpointจากDBและverifyเส้นทางเดียวกับGETหลังcommit ไม่มีการสร้างstateจากreceiptdelta ถ้าอ่านไม่ได้ยังคืนreceiptเพื่อfallback ไม่ทำconfirmedwriteเป็นerrorแล้วส่งซ้ำ Clientตรวจowner/schema/version/hash/history/minimumrevisionก่อนpersist/readyโดยใช้validatorเดียวกับGET checkpoint ไม่ใช้optimisticwallet
+
+Servers/clientsรุ่นเก่ายังใช้receipt-onlyได้: fallbackGETcheckpointโดยไม่lookupreceiptที่เพิ่งตอบสำเร็จซ้ำ ส่วนoutcomeไม่ทราบ/refreshยังlookupUUIDเดิมก่อนretryและcheckpointตามเดิม `Server-Timing` แยกauth/command/checkpoint/totalเฉพาะเวลาในhandler ไม่รวมnetwork/coldmoduleinit และ `x-ro-api-region` เปิดเผยเฉพาะregionไม่มีข้อมูลบัญชี ไม่มีSQL/env/contenthashใหม่
+
 ส่วนนี้ลงรายละเอียด implementation ของ design11 ไม่เปลี่ยนกติกาเล่นหรือเพิ่ม multiplayer ฐานข้อมูลเป็นเจ้าของเวลาและ revision; TypeScript domain เป็นเจ้าของสูตร ไม่มีสูตรเงิน/ดาเมจซ้ำใน SQL
 
 ## ขอบเขตและข้อมูลเข้าออก

@@ -3,10 +3,13 @@ import type { SaveCheckpoint } from '../contracts/save.ts';
 
 export class SaveProtocolError extends Error { constructor(readonly code: string, readonly status = 503, readonly detail: unknown = null) { super(code); } }
 export interface SaveBackup { checkpoint: SaveCheckpoint | null; pending: Command | null }
+export interface SaveCommandReply { receipt: Receipt; checkpoint?: SaveCheckpoint }
 export interface SavePorts {
   checkpoint(): Promise<SaveCheckpoint>;
   receipt(id: string): Promise<Receipt | null>;
   send(command: Command): Promise<Receipt>;
+  /** New servers can return the verified cloud checkpoint with the command receipt. */
+  sendWithCheckpoint?(command: Command): Promise<SaveCommandReply>;
   load(accountId: string): SaveBackup | null;
   store(accountId: string, value: SaveBackup): void;
   lock(accountId: string): Promise<(() => void) | null>;
@@ -62,7 +65,9 @@ export class SaveController {
       const pending = this.snapshot.pending; let reason: string | null = null, minimumRevision = this.snapshot.checkpoint?.save.revision ?? 0;
       if (pending && this.release) {
         this.persist();
-        const receipt = await this.ports.receipt(pending.request_id);
+        // A reply already received in this tab is authoritative; only uncertain outcomes need a lookup.
+        const known = this.snapshot.lastReceipt;
+        const receipt = known?.request_id === pending.request_id ? known : await this.ports.receipt(pending.request_id);
         if (!receipt) {
           try { const sent = await this.ports.send(pending); if (sent.request_id !== pending.request_id) throw new SaveProtocolError('INVALID_RECEIPT'); minimumRevision = Math.max(minimumRevision, sent.committed_revision); this.publish({ lastReceipt: sent }); }
           catch (error) { if (error instanceof SaveProtocolError && ['REVISION_CONFLICT', 'IDEMPOTENCY_KEY_REUSE'].includes(error.code)) reason = error.code; else throw error; }
@@ -102,10 +107,19 @@ export class SaveController {
     const epoch = ++this.epoch; this.publish({ status: 'saving', pending: structuredClone(command), reason: null, lastReceipt: null });
     try {
       this.persist(); // Persist the exact request ID BEFORE network I/O.
-      const receipt = await this.ports.send(command);
+      const reply = this.ports.sendWithCheckpoint ? await this.ports.sendWithCheckpoint(command) : { receipt: await this.ports.send(command) };
+      const receipt = reply.receipt;
       if (this.disposed || epoch !== this.epoch) return;
       if (receipt.request_id !== command.request_id) throw new SaveProtocolError('INVALID_RECEIPT');
       this.publish({ lastReceipt: receipt });
+      if (reply.checkpoint) {
+        const checkpoint = reply.checkpoint;
+        if (checkpoint.save.account_id !== this.accountId) throw new SaveProtocolError('CHECKPOINT_OWNER_MISMATCH');
+        if (checkpoint.save.revision < Math.max(receipt.committed_revision, this.snapshot.checkpoint?.save.revision ?? 0)) throw new SaveProtocolError('STALE_CHECKPOINT');
+        this.publish({ checkpoint, pending: null, reason: null, detail: null }); this.persist();
+        this.publish({ status: this.release ? 'ready' : 'read_only' });
+        return;
+      }
       await this.reconnect(false);
     } catch (error) {
       if (this.disposed || epoch !== this.epoch) return;

@@ -117,3 +117,11 @@ TASK-060/061 ไม่ต้องเพิ่ม SQL migration: ใช้6ไ�
 ## PWA (TASK-062)
 
 ใช้build/SQL/envเดิม ไม่ต้องเพิ่มkeyหรือmigration ไฟล์PWAอยู่ในdistและheadersในvercel.json เปิด/playจากไอคอน standalone แนวตั้ง ดู [วิธีติดตั้งและขอบเขตแคช](PWA.md) Workerไม่cacheเกม/API/เซฟและไม่reloadกลางไฟต์ Contenthash768e12a4…คงเดิมในรุ่นPWAนี้
+
+## เวลารอคำสั่งบันทึก (TASK-063)
+
+`vercel.json` ระบุ `regions: ["sin1"]` ให้ API อยู่ Singapore ตามDBและการตั้งค่าของผู้ใช้ ตรวจ actualruntimeด้วย `x-ro-api-region` และ `x-vercel-id` จาก `/api/health` ดู [Vercel Function regions](https://vercel.com/docs/functions/configuring-functions/region)
+
+ทุกปุ่มใช้sharedsavepathเดียวกัน กรณีปกติPOSTครั้งเดียวคืนreceiptและcheckpointที่โหลด/verifyจากDBแล้ว ยังรอcommitจริงก่อนแสดงผล ไม่เลื่อนsaveหรือใช้ยอดเงินคาดการณ์ เก่าหรือcheckpointreadล้มfallbackGETcheckpoint; response lossยังreconcile UUIDเดิมก่อนส่งซ้ำ ไม่ต้องเพิ่มSQL/envหรือmigrateเซฟ
+
+DevTools Networkดู `Server-Timing`: auth=ตรวจผู้ใช้กับSupabase, command=ตรวจintent/DB/คำนวณ/commit, checkpoint=โหลดและverifyผล, total=handlerทั้งหมด ตัวเลขนี้ไม่รวมเครือข่าย/โหลดmoduleตอนcoldstart จึงต้องอ่านคู่requestduration ไม่ควรนำpublichealthมาแทนlatencyของownercommand และไม่ส่งtoken/headersAuthorizationในรายงาน

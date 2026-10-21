@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-21",
+  "origin": "https://ro-idle-pve.vercel.app",
+  "samples": [
+    {
+      "route": "/api/health",
+      "elapsed_ms": 558,
+      "status": 200,
+      "region_prefix": "sin1::sin1"
+    },
+    {
+      "route": "/api/health",
+      "elapsed_ms": 156,
+      "status": 200,
+      "region_prefix": "sin1::sin1"
+    },
+    {
+      "route": "/api/checkpoint",
+      "elapsed_ms": 200,
+      "status": 401,
+      "region_prefix": "sin1::sin1"
+    },
+    {
+      "route": "/api/health",
+      "elapsed_ms": 161,
+      "status": 200,
+      "region_prefix": "sin1::sin1"
+    }
+  ],
+  "server_timing_present": false,
+  "scope": "Read-only, no auth/DB command. Establishes actual API region, not owner command latency."
+}

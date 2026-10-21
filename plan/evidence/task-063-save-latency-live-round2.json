@@ -1,0 +1,222 @@
+{
+  "task_id": "TASK-063",
+  "passed": false,
+  "checks": [
+    "Creation, level, skill upgrade/loadout, equipment and team use one actual HTTP POST with a schema/hash/owner-validated DB checkpoint",
+    "Three matched party commands compare historical POST/receipt/checkpoint against combined POST with identical120ms network delay per request"
+  ],
+  "errors": [
+    "LOSS:Error: LOSS_NOT_PAUSED:{\"request_id\":\"d2a6376f-58ae-475b-9e1a-ccc061ac6fb7\",\"status\":\"ready\",\"code\":\"PARTY_UPDATED\",\"revision\":13,\"elapsed_ms\":244,\"requests\":[{\"method\":\"POST\",\"path\":\"/api/commands\"}]}"
+  ],
+  "samples": [
+    {
+      "type": "account.create",
+      "request_id": "21b5106e-4fc6-4f69-a5ef-1596bfbba82e",
+      "status": "ready",
+      "code": "ACCOUNT_CREATED",
+      "revision": 1,
+      "elapsed_ms": 412,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/commands"
+        }
+      ]
+    },
+    {
+      "type": "character.level_up",
+      "request_id": "e6be4e3f-5886-4a38-999a-930c6127167a",
+      "status": "ready",
+      "code": "CHARACTER_LEVELLED",
+      "revision": 2,
+      "elapsed_ms": 419,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/commands"
+        }
+      ]
+    },
+    {
+      "type": "skill.upgrade",
+      "request_id": "58e26c5d-a4bd-4187-8b29-91d485768ea6",
+      "status": "ready",
+      "code": "SKILL_UPGRADED",
+      "revision": 3,
+      "elapsed_ms": 246,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/commands"
+        }
+      ]
+    },
+    {
+      "type": "skill.set_loadout",
+      "request_id": "3a068de6-5a4e-46a5-bc8c-04f8942227ff",
+      "status": "ready",
+      "code": "SKILL_LOADOUT_UPDATED",
+      "revision": 4,
+      "elapsed_ms": 395,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/commands"
+        }
+      ]
+    },
+    {
+      "type": "equipment.purchase_weapon",
+      "request_id": "b21253ef-84c3-4116-9172-cda5e4938dde",
+      "status": "ready",
+      "code": "TRAINING_WEAPON_PURCHASED",
+      "revision": 5,
+      "elapsed_ms": 360,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/commands"
+        }
+      ]
+    },
+    {
+      "type": "party.set",
+      "request_id": "19d033dc-491c-4671-be27-9b89587486fe",
+      "status": "ready",
+      "code": "PARTY_UPDATED",
+      "revision": 6,
+      "elapsed_ms": 236,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/commands"
+        }
+      ]
+    },
+    {
+      "paired_protocol_benchmark": [
+        {
+          "old_protocol": {
+            "requests": [
+              {
+                "method": "POST",
+                "path": "/api/commands"
+              },
+              {
+                "method": "GET",
+                "path": "/api/receipts/aaa5c7db-8c0d-48f9-bceb-afd7119b0d68"
+              },
+              {
+                "method": "GET",
+                "path": "/api/checkpoint"
+              }
+            ],
+            "elapsed_ms": 689
+          },
+          "combined": {
+            "request_id": "189ddd70-9c9d-4362-8fb8-cf2ffdff1bfb",
+            "status": "ready",
+            "code": "PARTY_UPDATED",
+            "revision": 8,
+            "elapsed_ms": 298,
+            "requests": [
+              {
+                "method": "POST",
+                "path": "/api/commands"
+              }
+            ]
+          }
+        },
+        {
+          "old_protocol": {
+            "requests": [
+              {
+                "method": "POST",
+                "path": "/api/commands"
+              },
+              {
+                "method": "GET",
+                "path": "/api/receipts/0e6856ac-1c0f-4614-aa6b-ea73a9da975e"
+              },
+              {
+                "method": "GET",
+                "path": "/api/checkpoint"
+              }
+            ],
+            "elapsed_ms": 587
+          },
+          "combined": {
+            "request_id": "8654f28c-3f5c-44eb-bf69-2e59ecf98cb5",
+            "status": "ready",
+            "code": "PARTY_UPDATED",
+            "revision": 10,
+            "elapsed_ms": 214,
+            "requests": [
+              {
+                "method": "POST",
+                "path": "/api/commands"
+              }
+            ]
+          }
+        },
+        {
+          "old_protocol": {
+            "requests": [
+              {
+                "method": "POST",
+                "path": "/api/commands"
+              },
+              {
+                "method": "GET",
+                "path": "/api/receipts/0be36ae9-f1b4-48ac-aa19-62ecafcdafdc"
+              },
+              {
+                "method": "GET",
+                "path": "/api/checkpoint"
+              }
+            ],
+            "elapsed_ms": 551
+          },
+          "combined": {
+            "request_id": "d49ac600-f0f1-490b-af22-afe45c83e95e",
+            "status": "ready",
+            "code": "PARTY_UPDATED",
+            "revision": 12,
+            "elapsed_ms": 237,
+            "requests": [
+              {
+                "method": "POST",
+                "path": "/api/commands"
+              }
+            ]
+          }
+        }
+      ],
+      "injected_network_delay_ms_per_request": 120
+    },
+    {
+      "dropped_reply": {
+        "request_id": "d2a6376f-58ae-475b-9e1a-ccc061ac6fb7",
+        "status": "ready",
+        "code": "PARTY_UPDATED",
+        "revision": 13,
+        "elapsed_ms": 244,
+        "requests": [
+          {
+            "method": "POST",
+            "path": "/api/commands"
+          }
+        ]
+      }
+    }
+  ],
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "input_sha256": {
+    "api/index.ts": "fc8aa58ecfa4df8f64eac93b8141d540e05e83ab3cb57cac29302a68e272da2a",
+    "src/client/save-controller.ts": "5a3b49bb0397a85d7963f877f9714271de7d31de923fe8650b8ee08c54184992",
+    "src/client/save-browser.ts": "aa3df2c7f3795b5ad0f059f360397e27863bf88801dade0d53eddbc3b7ad7955",
+    "scripts/test_save_latency_live.cjs": "8106a997249d96100107cdc0d66e692f0d42ee328e65e0eaf171b15c8eb57656"
+  },
+  "scope": "Actual fresh local Auth/PostgREST/Postgres and Chrome exercising the same browser save ports/controller as all UI commands. Equal artificial120ms request delay benchmarks protocol overhead, not actual owner phone/network latency. Wallet is a signed synthetic fixture; no owner login or cloud access."
+}

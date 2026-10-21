@@ -37,16 +37,21 @@ export function createApi(env: Record<string, string | undefined>, injected?: Ap
     services = { authenticate: request => authenticateRequest(request, client), ...reader, createAccount: initial, command: (identity, input) => (input as { type?: unknown })?.type === 'account.create' ? initial(identity, input) : recurring.command(identity, input), checkpoint: recurring.checkpoint, backups: recurring.backups }; return services;
   }
   return { async fetch(request: Request): Promise<Response> {
+    const started = performance.now(), timings: string[] = [];
+    async function measure<T>(name: string, run: () => Promise<T>): Promise<T> {
+      const at = performance.now(); try { return await run(); } finally { timings.push(`${name};dur=${(performance.now() - at).toFixed(1)}`); }
+    }
+    async function handle(): Promise<Response> {
     const path = new URL(request.url).pathname;
     if (path === '/api/health' && request.method === 'GET') return response({ ...status, persistence: configuration.kind === 'configured' || injected ? 'configured' : 'not_configured' }, status.ok ? 200 : 503);
     if (!['/api/account', '/api/commands', '/api/checkpoint', '/api/backups'].includes(path) && !path.startsWith('/api/receipts/') && !path.startsWith('/api/backups/')) return response({ code: 'NOT_FOUND' }, 404);
     try {
       const active = configuredServices();
       if (!active) return response({ code: configuration.kind === 'invalid' ? configuration.code : 'AUTH_NOT_CONFIGURED' }, 503);
-      const identity = await active.authenticate(request); if (!identity.ok) return response({ code: identity.code }, identity.status);
+      const identity = await measure('auth', () => active.authenticate(request)); if (!identity.ok) return response({ code: identity.code }, identity.status);
       if (path === '/api/checkpoint' && request.method === 'GET') {
         if (!active.checkpoint) return response({ code: 'CHECKPOINT_NOT_IMPLEMENTED' }, 501);
-        const reply = await active.checkpoint(identity.value); return response(reply.body, reply.status);
+        const reply = await measure('checkpoint', () => active.checkpoint!(identity.value)); return response(reply.body, reply.status);
       }
       if ((path === '/api/backups' || path.startsWith('/api/backups/')) && request.method === 'GET') {
         if (!active.backups) return response({ code: 'BACKUPS_NOT_IMPLEMENTED' }, 501);
@@ -70,10 +75,24 @@ export function createApi(env: Record<string, string | undefined>, injected?: Ap
         if (!handle) return response({ code: 'COMMANDS_NOT_IMPLEMENTED' }, 501);
         const text = await request.text(); if (text.length > 16384) return response({ code: 'COMMAND_TOO_LARGE' }, 413);
         let input: unknown; try { input = JSON.parse(text); } catch { return response({ code: 'INVALID_JSON' }, 400); }
-        const reply = await handle(identity.value, input); return response(reply.body, reply.status);
+        const reply = await measure('command', () => handle(identity.value, input));
+        if (reply.status === 200 && request.headers.get('x-ro-checkpoint') === 'include' && active.checkpoint) {
+          // A write may already be committed. Checkpoint failure must not turn it into an uncertain/retried write.
+          try {
+            const loaded = await measure('checkpoint', () => active.checkpoint!(identity.value));
+            if (loaded.status === 200) return response({ ...reply.body as Record<string, unknown>, ...loaded.body as Record<string, unknown> }, reply.status);
+          } catch { /* Receipt-only fallback: the client reconciles without resubmitting a confirmed command. */ }
+        }
+        return response(reply.body, reply.status);
       }
       return response({ code: 'METHOD_NOT_ALLOWED' }, 405);
     } catch { return response({ code: 'SAVE_OR_ENVIRONMENT_UNAVAILABLE' }, 503); }
+    }
+    const reply = await handle();
+    timings.push(`total;dur=${(performance.now() - started).toFixed(1)}`);
+    reply.headers.set('server-timing', timings.join(', '));
+    reply.headers.set('x-ro-api-region', /^[a-z0-9]+$/.test(env.VERCEL_REGION ?? '') ? env.VERCEL_REGION! : 'local');
+    return reply;
   } };
 }
 
