@@ -23,7 +23,7 @@ ROOT = Path(__file__).resolve().parents[1]
 RUN_TAG = os.environ.get("RO_EVIDENCE_PREFIX", "task-021")
 if not re.fullmatch(r"task-[0-9]{3}",RUN_TAG): raise SystemExit("INVALID_EVIDENCE_PREFIX")
 FOCUS = os.environ.get("RO_LOCAL_TEST_FOCUS", "all")
-if FOCUS not in ("all", "equipment", "slots", "growth", "shell", "compact", "cadence"): raise SystemExit("INVALID_TEST_FOCUS")
+if FOCUS not in ("all", "equipment", "slots", "growth", "shell", "compact", "cadence", "settlement", "daily_reset"): raise SystemExit("INVALID_TEST_FOCUS")
 TOOLS = Path(os.environ.get("RO_AUTH_TOOLS", "/private/tmp/ro-idle-auth-tools"))
 PG = Path(os.environ.get("RO_PG_BIN") or subprocess.check_output(["pg_config", "--bindir"], text=True).strip())
 NODE = os.environ.get("RO_NODE", "node")
@@ -149,6 +149,14 @@ with tempfile.TemporaryDirectory(prefix="ro-auth21-", dir="/private/tmp") as fol
             cadence_browser = run([NODE, ROOT/"scripts/test_battle_cadence_live.cjs"], environment)
             (ROOT/("plan/evidence/"+RUN_TAG+"-cadence-browser.txt")).write_text(cadence_browser)
             report["checks"].append("Battle save cadence: actual isolated Chrome/HTTP/SQL intervals, prediction, speed, settlement and reconnect passed")
+        if FOCUS == "settlement":
+            finish_browser = run([NODE, ROOT/"scripts/test_battle_finish_live.cjs"], environment)
+            (ROOT/("plan/evidence/"+RUN_TAG+"-finish-browser.txt")).write_text(finish_browser)
+            report["checks"].append("Terminal-only battle: actual Chrome/SQL zero mid-fight writes, local speed changes, one finish and reconnect passed")
+        if FOCUS == "daily_reset":
+            reset_browser = run([NODE, ROOT/"scripts/test_daily_reset_live.cjs"], environment)
+            (ROOT/("plan/evidence/"+RUN_TAG+"-reset-browser.txt")).write_text(reset_browser)
+            report["checks"].append("Daily reset: actual owner migration preview/backup/repair and typed new-game reset/reload passed")
         report["passed"] = True
     except Exception as error:
         report["error"] = str(error) if str(error).startswith(("LOCAL_",)) else "LOCAL_STACK_FAILED_REDACTED"

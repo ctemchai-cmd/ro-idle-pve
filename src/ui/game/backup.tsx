@@ -71,7 +71,7 @@ export function BackupSheet({ context, save, controller, close, focusReset = fal
         </li>; })}</ul>}
     </section>
     <details ref={danger} className="danger-zone" open={focusReset || undefined}><summary>โซนอันตราย · เริ่มเกมใหม่</summary>
-      <p className="hint">ลบความคืบหน้าทั้งหมดและเริ่มที่ Lv.1 ใหม่ เซฟตอนนี้จะถูกสำรองบนคลาวด์ก่อน และกู้คืนได้ 1 ครั้งจากรายการด้านบน สิทธิ์รายวันของวันนี้ไม่รีเซ็ต</p>
+      <p className="hint">เริ่มที่ Lv.1 พร้อมดันรายวันใหม่ เซฟตอนนี้จะถูกสำรองบนคลาวด์ก่อน และกู้คืนได้ 1 ครั้งจากรายการด้านบน ร้านค้าและภารกิจรายวันยังคงสิทธิ์ของวันนี้</p>
       {!reset.open ? <button className="btn danger wide" disabled={!ready} onClick={() => setReset(r => ({ ...r, open: true }))}>เริ่มเกมใหม่…</button> : <div className="reset-form">
         <div className="chip-row" role="radiogroup" aria-label="สายเริ่มต้น">{roots.map(root => <button key={root} role="radio" aria-checked={reset.root === root} className={`chip ${reset.root === root ? 'on' : ''}`} onClick={() => setReset(r => ({ ...r, root }))}><ClassIcon job={root} size={16} />{jobNames[root]}</button>)}</div>
         <div className="chip-row" role="radiogroup" aria-label="เพศ">{(['female', 'male'] as const).map(g => <button key={g} role="radio" aria-checked={reset.gender === g} className={`chip ${reset.gender === g ? 'on' : ''}`} onClick={() => setReset(r => ({ ...r, gender: g }))}>{g === 'female' ? 'หญิง' : 'ชาย'}</button>)}</div>

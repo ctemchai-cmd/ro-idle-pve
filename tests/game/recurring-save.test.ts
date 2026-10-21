@@ -82,3 +82,19 @@ test('account creation persists a pending UUID without a checkpoint and refresh 
  const a=new SaveController(p.ports);await a.start(id);assert.equal(a.snapshot.reason,'ACCOUNT_NOT_INITIALIZED');await a.submit(command);assert.equal(a.snapshot.status,'offline');assert.equal((backup as SaveBackup|null)?.checkpoint,null);assert.equal((backup as SaveBackup|null)?.pending?.request_id,command.request_id);a.dispose();
  const b=new SaveController(p.ports);await b.start(id);assert.equal(b.snapshot.status,'ready');assert.equal(b.snapshot.pending,null);assert.equal(sends,1);assert.equal(b.snapshot.lastReceipt?.command_type,'account.create');b.dispose();
 });
+
+test('terminal-only start + finish writes twice; a lost finish response reconciles the original receipt without replaying rewards', async () => {
+ const f = fixture(), p = client(f), a = new SaveController(p.ports); await a.start(id);
+ await a.submit(f.command('11111111-2222-4333-8444-555555555555', 'battle.start_story', { stage_id: '1-1' }));
+ assert.equal(f.writes, 1); const battleId = (f.context.save!.state as AccountState).active_battle!.battle_id;
+ f.time(30000); // The old 15s heartbeat lease has expired; the start ticket is still valid.
+ const send = p.ports.send; let lost = false;
+ p.ports.send = async command => { const result = await send(command); if (command.type === 'battle.finish' && !lost) { lost = true; throw new SaveProtocolError('NETWORK_UNAVAILABLE'); } return result; };
+ const finish = f.command('66666666-7777-4888-8999-000000000000', 'battle.finish', { battle_id: battleId });
+ await a.submit(finish); assert.equal(a.snapshot.status, 'offline'); assert.equal(a.snapshot.pending!.request_id, finish.request_id);
+ assert.equal(f.writes, 2); const after = structuredClone(f.context.save!.state); a.dispose();
+ const b = new SaveController(p.ports); await b.start(id);
+ assert.equal(b.snapshot.status, 'ready'); assert.equal(b.snapshot.pending, null); assert.equal(f.writes, 2); assert.deepEqual(f.context.save!.state, after);
+ assert.deepEqual((await f.server.command(identity, finish)).body, { receipt: f.receipts.get(finish.request_id)!.receipt }); assert.equal(f.writes, 2);
+ assert.equal((f.context.save!.state as AccountState).pending_rewards.filter(c => c.kind === 'story').length, 1); b.dispose();
+});

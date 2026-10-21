@@ -83,7 +83,7 @@ def graph():
  return {'modules':len(done),'cycles':0,'pure_transitive_adapter_imports':0,'actual_source_lint':'TASK-015/018, not executed by this graph check'}
 check('module_graph_and_public_ports',['AC-01','AC-08'],graph)
 def commands():
- registered={x['properties']['type']['const'] for x in c.SCHEMAS['command']['oneOf']};ui={x['id'] for x in load('ui-flows.json')['actions'] if x['durable']};assert registered==ui==set(modules['mutation_command_ids']);assert len(registered)==37  # +shop.buy, TASK-040 save.migrate + account.reset (D-063)
+ registered={x['properties']['type']['const'] for x in c.SCHEMAS['command']['oneOf']};ui={x['id'] for x in load('ui-flows.json')['actions'] if x['durable']};assert registered==ui==set(modules['mutation_command_ids']);assert len(registered)==38  # +battle.finish, TASK-060 (D-084); legacy advance retained for compatibility
  def sample(schema,key=''):
   if 'const' in schema:return schema['const']
   if schema.get('pattern')=='^[a-f0-9]{64}$':return '0'*64

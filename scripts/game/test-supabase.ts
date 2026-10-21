@@ -31,6 +31,7 @@ function expect(ok: unknown, code: string): asserts ok { if (!ok) throw new Erro
 function publicClient() { return createClient(settings.url, env.VITE_SUPABASE_PUBLISHABLE_KEY!, { auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false } }); }
 const clients = [publicClient(), publicClient()];
 let failure: string | null = null;
+let failure_details: { status: number; code: string | null } | null = null;
 const cleanupErrors: string[] = [];
 try {
   for (let i = 0; i < 2; i++) {
@@ -43,7 +44,9 @@ try {
   const api = createApi(env);
   const before = await clients[0]!.auth.getSession();
   const token = before.data.session?.access_token; expect(token, 'NO_ACCESS_TOKEN');
-  expect((await api.fetch(new Request('http://localhost/api/account', { headers: { authorization: `Bearer ${token}` } }))).status === 404, 'UNINITIALIZED_ACCOUNT_MUST_NOT_CREATE_WALLET');
+  const absent = await api.fetch(new Request('http://localhost/api/account', { headers: { authorization: `Bearer ${token}` } }));
+  if (absent.status !== 404) { const body = await absent.json() as { code?: unknown }; failure_details = { status: absent.status, code: typeof body.code === 'string' && /^[A-Z_]+$/.test(body.code) ? body.code : null }; }
+  expect(absent.status === 404, 'UNINITIALIZED_ACCOUNT_MUST_NOT_CREATE_WALLET');
   const content = loadValidatedContent(); expect(content.ok, 'CONTENT_INVALID');
   const creationRequestId = randomUUID();
   for (const [index, user] of users.entries()) {
@@ -182,7 +185,7 @@ try {
 finally {
   for (const client of clients) { try { await client.auth.signOut({ scope: 'local' }); } catch { /* Deleting run-owned users below revokes their refresh sessions. */ } }
   for (const user of users) { try { if ((await admin.auth.admin.deleteUser(user.id)).error) cleanupErrors.push('RUN_OWNED_USER_DELETE_FAILED'); } catch { cleanupErrors.push('RUN_OWNED_USER_DELETE_FAILED'); } }
-  const report = { task_id: evidencePrefix.toUpperCase(), passed: !failure && !cleanupErrors.length, actual_supabase_auth: true, self_hosted_local: local, checks, failure, cleanup_errors: cleanupErrors, source_sha256: hashes, limitations: ['No SMTP/browser redirect delivery test in this script; recovery uses admin-generated token, never sends email.', 'Recurring command/farm/battle protocol uses server-owned fixtures in TASK-022/023 runs; completed mode factories/settlement remain TASK-025/035/036.', 'Browser session-expiry behavior has separate UI tests.'], credentials_logged: false };
+  const report = { task_id: evidencePrefix.toUpperCase(), passed: !failure && !cleanupErrors.length, actual_supabase_auth: true, self_hosted_local: local, checks, failure, failure_details, cleanup_errors: cleanupErrors, source_sha256: hashes, limitations: ['No SMTP/browser redirect delivery test in this script; recovery uses admin-generated token, never sends email.', 'Recurring command/farm/battle protocol uses server-owned fixtures in TASK-022/023 runs; completed mode factories/settlement remain TASK-025/035/036.', 'Browser session-expiry behavior has separate UI tests.'], credentials_logged: false };
   await writeFile(`plan/evidence/${evidencePrefix}-supabase${local ? '-local' : ''}.json`, JSON.stringify(report, null, 2) + '\n'); console.log(JSON.stringify(report));
   if (!report.passed) process.exitCode = 1;
 }

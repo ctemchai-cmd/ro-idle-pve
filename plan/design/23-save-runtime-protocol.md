@@ -2,6 +2,8 @@
 
 วันที่: 20 ตุลาคม 2026 · TASK-022 · [ผลตรวจ](../evidence/task-022-review.json)
 
+**ปัจจุบัน D-084/TASK-060 ใช้ start/finish-only ตามหัวข้อท้ายไฟล์ ส่วน incremental checkpoints ด้านล่างเป็นสัญญารุ่นก่อนที่เก็บไว้สำหรับ diagnostic adapters**
+
 ส่วนนี้ลงรายละเอียด implementation ของ design11 ไม่เปลี่ยนกติกาเล่นหรือเพิ่ม multiplayer ฐานข้อมูลเป็นเจ้าของเวลาและ revision; TypeScript domain เป็นเจ้าของสูตร ไม่มีสูตรเงิน/ดาเมจซ้ำใน SQL
 
 ## ขอบเขตและข้อมูลเข้าออก
@@ -56,3 +58,17 @@ Active battle/farm rate/pending บางเคสใช้ server-owned fixture
 
 D-083/TASK-059: browser ส่ง periodic acknowledgement ทุก **4000ms wall time** จากเริ่ม request ไม่ใช่หลัง response เพื่อเผื่อ latency ภายใน cap5000ms; writer ไม่พร้อมให้รอหนึ่งคำสั่ง ไม่สะสมคำสั่งย้อนหลัง RAF/shared prediction ยังเดินทุก frame การเปลี่ยนความเร็วยืนยันเวลาที่ผ่านมาด้วยความเร็วเดิมก่อนสลับ และตั้ง deadline ใหม่ตาม request นั้น คำสั่งผู้เล่น/terminal settlement ยังผ่าน atomic receipts เดิม; ผลที่คาดการณ์ว่าจบแล้วรอ periodic ack ถัดไปก่อนจ่ายจริง (ปกติไม่เกิน4วินาที+network) Hidden/offline/refresh ยังคง suspend/reconcile/retreat ไม่อ้างว่าจะเก็บผลการต่อสู้ที่ยังไม่ได้ยืนยันเมื่อปิดหน้า
 
+
+## D-084 · เซฟเฉพาะเริ่ม/จบไฟต์ (TASK-060)
+
+แทน D-083: runtimeไม่มีperiodicackและการเปลี่ยน1×/2×/4×ไม่ส่งcommand มีwriteตอนเริ่มเพื่อเก็บseed/build/fullinitialsnapshotและกันdailyattempt จากนั้นclientใช้sharedengineต่อเนื่องจนterminalแล้วส่ง `battle.finish {battle_id}` เพียงครั้งเดียว Serverrestore snapshotที่ตนเก็บและจำลองถึงterminalด้วยengine/modePolicyเดียวกัน ไม่รับHP/damage/reward/ผลชนะที่clientอ้าง Story/Tower/dailyใช้settlementเดิมและatomicreceipt/CAS/history/deletecheckpointในtransactionเดียว
+
+Finishไม่ใช้heartbeatlease15s แต่ตรวจDBelapsed>=ceil(replayed terminalgame_ms/4)และticket<180s ตัวหาร4คือความเร็วสูงสุดที่เลือกได้ เป็นassistant timing baseline ไม่ใช่การตรวจประวัติความเร็วที่เลือกทุกช่วง (ทุกความเร็วให้ผลจำลองเดียวกัน) Legacybattle.advanceยังมีcreditcap/leaseเดิมสำหรับdiagnosticและhistoricaltests แต่gameclientไม่เรียก ไม่เก็บschedulerเก่าที่ไม่ได้ใช้
+
+Manualretreatของdailyส่งrequested_game_msได้ serverจำลองจากsnapshotเดิมถึงmin(request,DBelapsed×4,time_limit)ก่อนเก็บHP/phase/chests ปลายทางอยู่ในticketdayเดิม ส่วนrefresh/hidden/reconnectส่งretreatไม่มีtimeclaimจึงคงsnapshotเริ่มและไม่เดินบอสย้อนหลัง Attemptยังเสียตั้งแต่start กรณีfinishresponseหายให้reconcileUUID/receiptเดิมก่อนrecovery ไม่มีเงินจากpredictionและไม่สร้างfinishintentซ้ำเมื่อrerender
+
+## D-085 · เริ่มใหม่และซ่อมดันรายวันที่ติดมาจากเกมก่อน (TASK-061)
+
+account.resetยังbackup-before-write แต่daily_recordsของเกมใหม่ว่างทั้งหมด (attempt/phase/HP/rewardedchests) แยกจากguardRestoreที่ยังเก็บตัวนับที่ใช้ไป การซื้อร้านค้าและภารกิจรายวันยังใช้policyเดิม
+
+เซฟจากresetเก่าที่dailyยังไม่unlockแต่มีdaily_recordsเป็นcarry-over: contentmigrationpreviewจะแสดงการแก้ กดสำรองแล้วอัปเดตเซฟจึงbackupและล้างเฉพาะdaily_records/pendingdaily ไม่ล้างroster/wallet/inventory/Story/Tower ไม่ล้างdailyของเกมที่unlockแล้ว ผู้ใช้แก้เป้าหมายเป็นVercel; ไม่มีการเขียนDB6173หรือcloudsaveจากเครื่องโดยตรง

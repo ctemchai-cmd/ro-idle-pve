@@ -104,3 +104,12 @@ python3 scripts/prepare_local_cloud_transfer.py \
 ถ้าเกิดข้อผิดพลาดกลางทางทุกขั้นจะ rollback การรันไฟล์เดิมซ้ำหลังเล่นต่อเป็น no-op และไม่สร้าง archive ซ้ำ `TARGET_SAVE_CHANGED` หมายถึงปลายทางเปลี่ยนแล้ว ต้องตรวจใหม่ก่อนสร้างไฟล์; `TARGET_SIGNING_KEY_MISMATCH` หมายถึง signing key ไม่ตรง ห้ามข้าม guard ให้แก้ Vercel env ก่อน โหมดนี้ไม่ใช่ทางแทนเซฟที่เล่นไปแล้วหลาย revision
 
 อ้างอิง: [Vite บน Vercel](https://vercel.com/docs/frameworks/frontend/vite), [Node.js Web Standard handlers](https://vercel.com/docs/functions/runtimes/node-js), [Vercel project configuration](https://vercel.com/docs/project-configuration/vercel-json), [Supabase Auth](https://supabase.com/docs/guides/auth/passwords), [ปิด public signup](https://supabase.com/docs/guides/auth/general-configuration)
+
+
+## รุ่น terminal-only และการรีเซ็ตดันรายวัน (21 ต.ค.2026)
+
+TASK-060/061 ไม่ต้องเพิ่ม SQL migration: ใช้6ไฟล์เดิมและatomiccommitRPCเดิม เมื่อdeploycodeใหม่contenthashเปลี่ยน ให้จบ/ถอยไฟต์ก่อนreloadแล้วกด **สำรองแล้วอัปเดตเซฟ** เกมเก่าที่เริ่มใหม่แล้วแต่มีดันค้างขณะdailyยังล็อกจะซ่อมเฉพาะdailycarryoverในขั้นนี้ พร้อมbackupก่อน ไม่ต้องresetตัวละครอีกรอบ เกมที่unlockdailyแล้วจะไม่ถูกล้างอัตโนมัติ
+
+ระหว่างสู้ไม่มีwriteหรือheartbeat; เริ่มเก็บticket/snapshotแล้วจบส่งbattle.finishให้serverจำลองผลซ้ำ Speed1×/2×/4×เป็นpresentationclockในclient ไม่เปลี่ยนผลหรือAFKrate ส่วนmanualretreatยังสรุปdailyHPตามเวลาที่เล่นจริงภายใต้DBguard
+
+การย้ายเซฟ6173เป็นงานแยก ไฟล์transferที่เคยเตรียมผูกrevision/hashปลายทางเดิม หากเล่นหรือmigratecloudแล้วต้องตรวจmetadataและexportsourceล่าสุดก่อนcutover ห้ามรันไฟล์เก่าโดยข้ามguard

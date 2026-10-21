@@ -8,7 +8,7 @@ import { BattleRenderer } from '../../renderer/battle.ts';
 import { bossSkin, farmSkins, shellVisuals } from '../../renderer/shell.ts';
 import type { AssetPack } from '../../renderer/pack.ts';
 import { SkillTimeline } from '../skill-timeline.tsx';
-import { battleSpeed, subscribeBattleSpeed } from '../../client/battle-speed.ts';
+import { battleSpeed, cycleBattleSpeed, subscribeBattleSpeed } from '../../client/battle-speed.ts';
 import { BattleStatistics } from '../battle-statistics.tsx';
 import type { ChallengeTarget, GameContext } from './shell.tsx';
 import { ResIcon, Sheet, compact, duration, friendNames, full, iconUrl, mapNames, resourceNames, type Wallet } from './kit.tsx';
@@ -86,6 +86,13 @@ const phaseNames: Record<string, string> = { skill_interval: 'รอคิว', 
 function BossField({ context, app, running, checkpoint, outcome, retreat, statsRef }: { context: GameContext; app: { session: SavedBattleSession; id: string }; running: boolean; checkpoint: unknown; outcome: string | null; retreat: (() => Promise<void>) | null; statsRef: { current: (() => void) | null } }) {
   const { pack } = context, canvas = useRef<HTMLCanvasElement>(null), renderer = useRef<BattleRenderer | null>(null), clock = useRef(0), logical = useRef(app.session.state.game_time_ms), runningRef = useRef(running);
   const [view, setView] = useState<BattleRenderView>(() => app.session.view()), [selected, setSelected] = useState('main'), [panel, setPanel] = useState<'timeline' | 'statistics' | null>(null), [error, setError] = useState(''), [retreating, setRetreating] = useState(false);
+  const finishSent = useRef(false);
+  useEffect(() => {
+    if (!view.terminal || !running || document.hidden || finishSent.current) return;
+    finishSent.current = true;
+    // Persisted UUID/receipt recovery belongs to SaveController; never submit a second finish intent on a rerender.
+    void context.submitWhenReady('battle.finish', { battle_id: app.id }).then(ok => { if (!ok) setError('ยังยืนยันผลไฟต์ไม่ได้ กรุณาเชื่อมต่อเซฟอีกครั้ง'); });
+  }, [view.terminal, running, app.id, context.submitWhenReady]);
   // D-067: flash who cancelled a boss cast (stun/freeze/silence/interrupt) — read from the same engine events the renderer gets.
   const [cut, setCut] = useState<{ by: string; at: number } | null>(null);
   const feed = (events: readonly { type: string; actor_id?: string; detail?: string | null }[]) => { for (const e of events) if (e.type === 'cast_interrupt' && e.actor_id && e.actor_id.startsWith('enemy')) setCut({ by: friendNames[e.detail ?? ''] ?? '', at: Date.now() }); return events; };
@@ -98,7 +105,7 @@ function BossField({ context, app, running, checkpoint, outcome, retreat, statsR
     function frame(now: number) {
       const delta = document.hidden ? 0 : Math.max(0, Math.min(250, now - last)); last = now;
       try {
-        if (runningRef.current && !document.hidden && !app.session.state.terminal_result) { const speed = battleSpeed(); logical.current = Math.min(app.session.state.mode.time_limit_ms, app.session.confirmedMs() + 5000 * speed, Math.max(logical.current, app.session.state.game_time_ms) + delta * speed); if (logical.current - app.session.state.game_time_ms >= 50) renderer.current!.accept(feed(app.session.advanceTo(Math.floor(logical.current))) as never); }
+        if (runningRef.current && !document.hidden && !app.session.state.terminal_result) { const speed = battleSpeed(); logical.current = Math.min(app.session.state.mode.time_limit_ms, Math.max(logical.current, app.session.state.game_time_ms) + delta * speed); if (logical.current - app.session.state.game_time_ms >= 50) renderer.current!.accept(feed(app.session.advanceTo(Math.floor(logical.current))) as never); }
         if (app.session.state.terminal_result && !document.hidden) tail = Math.min(2500, tail + delta * battleSpeed());
         clock.current = app.session.state.terminal_result ? app.session.state.game_time_ms : Math.min(logical.current, app.session.state.game_time_ms + 49);
         renderer.current!.draw(app.session.view(), clock.current + tail); if (now - notify > 100) { setView(app.session.view()); notify = now; }
@@ -126,7 +133,7 @@ function BossField({ context, app, running, checkpoint, outcome, retreat, statsR
     <div className="boss-tools">
       <button className="chip-btn" onClick={() => setPanel('statistics')}><Icon name="chart" /><span>สถิติ</span></button>
       <button className="chip-btn" onClick={() => setPanel('timeline')}><Icon name="timeline" /><span>Timeline</span></button>
-      <SpeedButton change={context.changeBattleSpeed} />
+      <SpeedButton />
       {retreat && !outcome && <button className="chip-btn danger" disabled={retreating} onClick={() => { setRetreating(true); void retreat().finally(() => setRetreating(false)); }}><Icon name="retreat" /><span>{retreating ? 'กำลังถอย…' : 'ถอยทัพ'}</span></button>}
     </div>
     </div>
@@ -287,7 +294,7 @@ export function Field({ context, covered, save, request, consumeRequest }: { con
   const snapshot = state.farm.rate_snapshot, elapsed = snapshot ? Math.min(FARM_CAP_MS, Math.max(0, now - Date.parse(state.farm.reserved_through))) : 0;
   const showBoss = boss && (active?.battle_id === boss.id || outcome?.id === boss.id), bossIcon = iconUrl(pack, 'ui_icons', 'boss'), chest = iconUrl(pack, 'feature_icons', 'afk_chest'), mapIcon = iconUrl(pack, 'ui_icons', 'stage');
   return <div className={`field ${covered ? 'covered' : ''}`}>
-    {showBoss ? <BossField key={boss.id} context={context} app={boss} running={online && active?.battle_id === boss.id} checkpoint={active?.battle_id === boss.id ? battle?.payload : null} outcome={outcome?.id === boss.id ? outcome.code : null} retreat={active?.battle_id === boss.id ? async () => { await context.submitWhenReady('battle.retreat', { battle_id: active.battle_id }); } : null} statsRef={statsRef} /> : <FarmField context={context} covered={covered} />}
+    {showBoss ? <BossField key={boss.id} context={context} app={boss} running={online && active?.battle_id === boss.id} checkpoint={active?.battle_id === boss.id ? battle?.payload : null} outcome={outcome?.id === boss.id ? outcome.code : null} retreat={active?.battle_id === boss.id ? async () => { await context.submitWhenReady('battle.retreat', { battle_id: active.battle_id, requested_game_ms: boss.session.state.game_time_ms }); } : null} statsRef={statsRef} /> : <FarmField context={context} covered={covered} />}
     {!covered && !showBoss && <>
       <button className="stage-chip" onClick={() => setSheet('stage')} aria-label="เปิดแผนที่และเลือกด่าน">
         {mapIcon && <img src={mapIcon} alt="" />}<span><small>{mapName}</small><b>ฟาร์ม {farmStage.id}</b></span>
@@ -306,8 +313,7 @@ export function Field({ context, covered, save, request, consumeRequest }: { con
   </div>;
 }
 /** D-071: fast-forward 1×/2×/4× for boss fights; the server credits wall time × speed, so prediction and save stay in step. */
-function SpeedButton({ change }: { change: () => Promise<void> }) {
+function SpeedButton() {
   const speed = useSyncExternalStore(subscribeBattleSpeed, battleSpeed);
-  const [changing, setChanging] = useState(false);
-  return <button className={`chip-btn speed ${speed > 1 ? 'on' : ''}`} disabled={changing} aria-label={`ความเร็วต่อสู้ ${speed} เท่า กดเพื่อเปลี่ยน`} onClick={() => { setChanging(true); void change().finally(() => setChanging(false)); }}><Icon name="fast-forward" /><span>{speed}×</span></button>;
+  return <button className={`chip-btn speed ${speed > 1 ? 'on' : ''}`} aria-label={`ความเร็วต่อสู้ ${speed} เท่า กดเพื่อเปลี่ยน`} onClick={() => cycleBattleSpeed()}><Icon name="fast-forward" /><span>{speed}×</span></button>;
 }

@@ -7929,6 +7929,182 @@
       "existing_oracle_case_ids": [],
       "status": "not_run_implementation",
       "execution_evidence": []
+    },
+    {
+      "id": "T058-AC-06",
+      "task_id": "TASK-058",
+      "acceptance_id": "AC-06",
+      "criterion": "explicit replacement ยอมเฉพาะ revision1/hash/content/history/HMAC ตรงและไม่มีไฟต์ → private archive/save/history/import receipt atomic; failure ย้อนทุกแถว, replay หลังเล่นต่อไม่ทับ, Auth userคงเดิม; frozen source ต้องใช้ validator hashตรงกัน",
+      "input_setup": "Synthetic signed state and deterministic mode fixtures on an isolated stack; hosted checks do not write owner saves",
+      "input_refs": [
+        "plan/inprogress/tasks_058.md",
+        "tests/game/cloud-transfer.test.ts"
+      ],
+      "parameters": {},
+      "expected": "explicit replacement ยอมเฉพาะ revision1/hash/content/history/HMAC ตรงและไม่มีไฟต์ → private archive/save/history/import receipt atomic; failure ย้อนทุกแถว, replay หลังเล่นต่อไม่ทับ, Auth userคงเดิม; frozen source ต้องใช้ validator hashตรงกัน",
+      "verification": "Unit/shared API/schema tests; isolated PostgreSQL/Chrome evidence in the task, backup before maintenance",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T059-AC-01",
+      "task_id": "TASK-059",
+      "acceptance_id": "AC-01",
+      "criterion": "request ปกติห่างประมาณ4วินาที ภาพ game_ms เดินระหว่าง request รวม response latency; ไม่ส่งซ้อนและรอบใหม่ไม่ใช้ deadline เก่า",
+      "input_setup": "Synthetic signed state and deterministic mode fixtures on an isolated stack; hosted checks do not write owner saves",
+      "input_refs": [
+        "plan/done/tasks_059.md",
+        "plan/evidence/task-059-review.json"
+      ],
+      "parameters": {},
+      "expected": "request ปกติห่างประมาณ4วินาที ภาพ game_ms เดินระหว่าง request รวม response latency; ไม่ส่งซ้อนและรอบใหม่ไม่ใช้ deadline เก่า",
+      "verification": "Unit/shared API/schema tests; isolated PostgreSQL/Chrome evidence in the task, backup before maintenance",
+      "existing_oracle_case_ids": [],
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-059-review.json"
+      ]
+    },
+    {
+      "id": "T059-AC-02",
+      "task_id": "TASK-059",
+      "acceptance_id": "AC-02",
+      "criterion": "1×/2×/4× และการเปลี่ยนความเร็วใช้ shared server credit เดิม; ผลไฟต์ได้รับการยืนยันและรับรางวัลได้ครั้งเดียว",
+      "input_setup": "Synthetic signed state and deterministic mode fixtures on an isolated stack; hosted checks do not write owner saves",
+      "input_refs": [
+        "plan/done/tasks_059.md",
+        "plan/evidence/task-059-review.json"
+      ],
+      "parameters": {},
+      "expected": "1×/2×/4× และการเปลี่ยนความเร็วใช้ shared server credit เดิม; ผลไฟต์ได้รับการยืนยันและรับรางวัลได้ครั้งเดียว",
+      "verification": "Unit/shared API/schema tests; isolated PostgreSQL/Chrome evidence in the task, backup before maintenance",
+      "existing_oracle_case_ids": [],
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-059-review.json"
+      ]
+    },
+    {
+      "id": "T059-AC-03",
+      "task_id": "TASK-059",
+      "acceptance_id": "AC-03",
+      "criterion": "offline หยุดคำสั่งใหม่ reconnect/refresh ถอยไฟต์และไม่ให้รางวัลซ้ำ; คำสั่งผู้เล่นยังส่งทันที; content hash คงเดิม",
+      "input_setup": "Synthetic signed state and deterministic mode fixtures on an isolated stack; hosted checks do not write owner saves",
+      "input_refs": [
+        "plan/done/tasks_059.md",
+        "plan/evidence/task-059-review.json"
+      ],
+      "parameters": {},
+      "expected": "offline หยุดคำสั่งใหม่ reconnect/refresh ถอยไฟต์และไม่ให้รางวัลซ้ำ; คำสั่งผู้เล่นยังส่งทันที; content hash คงเดิม",
+      "verification": "Unit/shared API/schema tests; isolated PostgreSQL/Chrome evidence in the task, backup before maintenance",
+      "existing_oracle_case_ids": [],
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-059-review.json"
+      ]
+    },
+    {
+      "id": "T060-AC-01",
+      "task_id": "TASK-060",
+      "acceptance_id": "AC-01",
+      "criterion": "ไฟต์ยาว>15sและเปลี่ยนความเร็วระหว่างไฟต์ → revision/checkpointยังอยู่จุดเริ่มและไม่มีPOSTกลางไฟต์; จบส่งfinishครั้งเดียว/ผลตรงsharedreplay",
+      "input_setup": "Synthetic signed state and deterministic mode fixtures on an isolated stack; hosted checks do not write owner saves",
+      "input_refs": [
+        "plan/review/tasks_060.md",
+        "tests/game/battle-finish.test.ts"
+      ],
+      "parameters": {},
+      "expected": "ไฟต์ยาว>15sและเปลี่ยนความเร็วระหว่างไฟต์ → revision/checkpointยังอยู่จุดเริ่มและไม่มีPOSTกลางไฟต์; จบส่งfinishครั้งเดียว/ผลตรงsharedreplay",
+      "verification": "Unit/shared API/schema tests; isolated PostgreSQL/Chrome evidence in the task, backup before maintenance",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T060-AC-02",
+      "task_id": "TASK-060",
+      "acceptance_id": "AC-02",
+      "criterion": "Story/Tower/daily win/loss/timeoutและmanualretreat → rewards/HP/chests/day/attemptsถูกต้อง; tooearly/expired/foreign/forged fieldsไม่จ่าย; receipt replay/response lossไม่จ่ายซ้ำ",
+      "input_setup": "Synthetic signed state and deterministic mode fixtures on an isolated stack; hosted checks do not write owner saves",
+      "input_refs": [
+        "plan/review/tasks_060.md",
+        "tests/game/battle-finish.test.ts"
+      ],
+      "parameters": {},
+      "expected": "Story/Tower/daily win/loss/timeoutและmanualretreat → rewards/HP/chests/day/attemptsถูกต้อง; tooearly/expired/foreign/forged fieldsไม่จ่าย; receipt replay/response lossไม่จ่ายซ้ำ",
+      "verification": "Unit/shared API/schema tests; isolated PostgreSQL/Chrome evidence in the task, backup before maintenance",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T060-AC-03",
+      "task_id": "TASK-060",
+      "acceptance_id": "AC-03",
+      "criterion": "offline/refreshไม่จำลองบอสย้อนหลัง; pure engineยังแยกจากnetwork; tests/build/schema/migrationผ่านและdeployตรวจbundleจริงโดยไม่แตะเซฟส่วนตัว",
+      "input_setup": "Synthetic signed state and deterministic mode fixtures on an isolated stack; hosted checks do not write owner saves",
+      "input_refs": [
+        "plan/review/tasks_060.md",
+        "tests/game/battle-finish.test.ts"
+      ],
+      "parameters": {},
+      "expected": "offline/refreshไม่จำลองบอสย้อนหลัง; pure engineยังแยกจากnetwork; tests/build/schema/migrationผ่านและdeployตรวจbundleจริงโดยไม่แตะเซฟส่วนตัว",
+      "verification": "Unit/shared API/schema tests; isolated PostgreSQL/Chrome evidence in the task, backup before maintenance",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T061-AC-01",
+      "task_id": "TASK-061",
+      "acceptance_id": "AC-01",
+      "criterion": "เริ่มใหม่จากเซฟมีdailyprogress → rosterLv1/Storyใหม่และdaily_recordsว่าง มีbackupก่อนและredo receiptไม่ทำซ้ำ; restoreยังมีcountersจากเกมที่กู้",
+      "input_setup": "Synthetic signed state and deterministic mode fixtures on an isolated stack; hosted checks do not write owner saves",
+      "input_refs": [
+        "plan/review/tasks_061.md",
+        "tests/game/save-backup.test.ts"
+      ],
+      "parameters": {},
+      "expected": "เริ่มใหม่จากเซฟมีdailyprogress → rosterLv1/Storyใหม่และdaily_recordsว่าง มีbackupก่อนและredo receiptไม่ทำซ้ำ; restoreยังมีcountersจากเกมที่กู้",
+      "verification": "Unit/shared API/schema tests; isolated PostgreSQL/Chrome evidence in the task, backup before maintenance",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T061-AC-02",
+      "task_id": "TASK-061",
+      "acceptance_id": "AC-02",
+      "criterion": "locked legacy reset saveมีdailyprogress → previewไม่เขียน; migrateมีbackupก่อนแล้วล้างเฉพาะdailycarryover ตัวละคร/เงิน/ของ/Story/Towerเดิม; unlocked saveคงdailyprogress",
+      "input_setup": "Synthetic signed state and deterministic mode fixtures on an isolated stack; hosted checks do not write owner saves",
+      "input_refs": [
+        "plan/review/tasks_061.md",
+        "tests/game/save-backup.test.ts"
+      ],
+      "parameters": {},
+      "expected": "locked legacy reset saveมีdailyprogress → previewไม่เขียน; migrateมีbackupก่อนแล้วล้างเฉพาะdailycarryover ตัวละคร/เงิน/ของ/Story/Towerเดิม; unlocked saveคงdailyprogress",
+      "verification": "Unit/shared API/schema tests; isolated PostgreSQL/Chrome evidence in the task, backup before maintenance",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T061-AC-03",
+      "task_id": "TASK-061",
+      "acceptance_id": "AC-03",
+      "criterion": "build/migration testsผ่านและเผยแพร่บนVercel ไม่มีการอ่านloginหรือแก้DB6173 และไม่อ้างว่าซ่อมcloudsaveก่อนเจ้าของกดmigration",
+      "input_setup": "Synthetic signed state and deterministic mode fixtures on an isolated stack; hosted checks do not write owner saves",
+      "input_refs": [
+        "plan/review/tasks_061.md",
+        "tests/game/save-backup.test.ts"
+      ],
+      "parameters": {},
+      "expected": "build/migration testsผ่านและเผยแพร่บนVercel ไม่มีการอ่านloginหรือแก้DB6173 และไม่อ้างว่าซ่อมcloudsaveก่อนเจ้าของกดmigration",
+      "verification": "Unit/shared API/schema tests; isolated PostgreSQL/Chrome evidence in the task, backup before maintenance",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
     }
   ]
 }

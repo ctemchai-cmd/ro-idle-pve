@@ -36,10 +36,11 @@ export function guardRestore(restored: AccountState, current: AccountState | nul
   mergeDayCounters(next, current, today, yesterday);
   return next;
 }
-/** New game: a fresh state that still remembers today's spent counters of the replaced save. */
+/** New game resets daily dungeons too (D-085); shop/objective limits still survive. Restore remains guarded separately. */
 export function resetAccount(current: AccountState, fresh: AccountState, today: string, yesterday: string): AccountState {
   const next = structuredClone(fresh);
   mergeDayCounters(next, current, today, yesterday);
+  next.daily_records = [];
   return next;
 }
 /** Backup file/summary helpers are shared with the client through the build module; the API reaches them here. */

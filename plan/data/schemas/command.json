@@ -2149,6 +2149,65 @@
           "maxLength": 120
         },
         "type": {
+          "const": "battle.finish"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "battle_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            }
+          },
+          "required": [
+            "battle_id"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
           "const": "battle.retreat"
         },
         "params": {
@@ -2158,6 +2217,11 @@
               "type": "string",
               "minLength": 1,
               "maxLength": 120
+            },
+            "requested_game_ms": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 90000
             }
           },
           "required": [

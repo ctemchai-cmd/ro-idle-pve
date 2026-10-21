@@ -36,7 +36,7 @@ export interface CommandProposal { state: AccountState; receipt: Receipt; battle
 export class AccountCommandRules extends AccountCreationRules {
   buildInputs(state:AccountState){return Object.fromEntries(state.roster.map(actor=>[actor.character_id,{actor,items:boundItemInstances(actor,state)}]));}
   get leaseMs() { return Number((this.content.documents['save-contracts.json']!.battle_protocol as unknown as { lease_ms: number }).lease_ms); }
-  supports(type: Command['type']) { return ['farm.claim', 'reward.claim', 'battle.advance', 'battle.retreat', 'party.set', 'character.level_up', 'character.breakthrough', 'character.allocate_status', 'character.reset_build', 'character.change_job', 'skill.upgrade', 'skill.set_loadout', 'battle.start_story', 'farm.set_stage', 'equipment.equip', 'equipment.unequip', 'equipment.lock', 'equipment.salvage', 'equipment.purchase_weapon', 'slot.refine', 'slot.enchant', 'slot.change_enchant', 'card.assign', 'card.unassign', 'card.upgrade', 'card.salvage', 'equipment.fuse', 'equipment.tier_up', 'battle.start_tower', 'battle.start_daily', 'gacha.pull', 'shop.buy', 'daily.objective_claim'].includes(type); }
+  supports(type: Command['type']) { return ['farm.claim', 'reward.claim', 'battle.advance', 'battle.finish', 'battle.retreat', 'party.set', 'character.level_up', 'character.breakthrough', 'character.allocate_status', 'character.reset_build', 'character.change_job', 'skill.upgrade', 'skill.set_loadout', 'battle.start_story', 'farm.set_stage', 'equipment.equip', 'equipment.unequip', 'equipment.lock', 'equipment.salvage', 'equipment.purchase_weapon', 'slot.refine', 'slot.enchant', 'slot.change_enchant', 'card.assign', 'card.unassign', 'card.upgrade', 'card.salvage', 'equipment.fuse', 'equipment.tier_up', 'battle.start_tower', 'battle.start_daily', 'gacha.pull', 'shop.buy', 'daily.objective_claim'].includes(type); }
   /** TASK-040 (D-064): maintenance proposals. The API proves integrity/ownership and supplies time, ids and seed. */
   migrateSave(stored: unknown): { state: AccountState; changes: string[] } { const migrated = migrateAccountState(stored, this.content); return { state: this.validateAccount(migrated.state), changes: migrated.changes }; }
   restoreSave(restored: unknown, current: AccountState | null, nowMs: number): AccountState { return this.validateAccount(guardRestore(this.validateAccount(restored), current, bangkokDay(nowMs), bangkokDay(nowMs - 86400000))); }
@@ -178,23 +178,51 @@ export class AccountCommandRules extends AccountCreationRules {
           if (!Number.isSafeInteger(total)) reject('RESOURCE_OVERFLOW'); state.wallet[resource] = total;
         }
         state.inventory.push(...claim!.items); state.pending_rewards = state.pending_rewards.filter(c => c !== claim); if (claim!.kind === 'farm') state.daily_objectives.farm_claimed = true; code = 'REWARD_CLAIMED';
-      } else if (command.type === 'battle.retreat' || command.type === 'battle.advance') {
+      } else if (command.type === 'battle.retreat' || command.type === 'battle.advance' || command.type === 'battle.finish') {
         const pointer = state.active_battle;
         if (!pointer || pointer.battle_id !== command.params.battle_id) reject('ACTIVE_BATTLE_MISMATCH');
         if (command.type === 'battle.retreat') {
-          // A daily attempt keeps only the server-acknowledged progress of its own ticket day.
-          if (pointer!.mode === 'daily' && battle && battle.battle_id === pointer!.battle_id) { const stored = restoreBattle(battle.payload, this.content); if (stored.ok) settleDaily(stored.value as BattleCheckpoint); }
+          // Manual retreat may settle played daily damage; reconnect sends no time claim and never catches up offline.
+          if (pointer!.mode === 'daily' && battle && battle.battle_id === pointer!.battle_id) {
+            const stored = restoreBattle(battle.payload, this.content);
+            if (stored.ok) {
+              let checkpoint = stored.value;
+              if (command.params.requested_game_ms !== undefined) {
+                const elapsed = time.now_ms - time.started_ms, protocol = this.content.documents['save-contracts.json']!.battle_protocol as unknown as { ticket_wall_max_ms: number; speed_multipliers: number[] };
+                if (elapsed < 0) reject('CLOCK_REGRESSION');
+                if (elapsed < protocol.ticket_wall_max_ms) {
+                  const target = Math.min(command.params.requested_game_ms, elapsed * Math.max(...protocol.speed_multipliers), checkpoint.mode.time_limit_ms);
+                  const replay = advanceUntil(checkpoint, Math.max(checkpoint.game_time_ms, target), this.content, modePolicy(checkpoint.mode, this.content));
+                  if (!replay.ok) reject('BATTLE_ADVANCE_FAILED');
+                  checkpoint = replay.ok ? replay.value.state : checkpoint;
+                }
+              }
+              settleDaily(checkpoint as BattleCheckpoint);
+            }
+          }
           state.active_battle = null; battleWrite = { kind: 'delete', battle_id: pointer!.battle_id }; code = pointer!.mode === 'daily' ? 'DAILY_RETREATED' : 'BATTLE_ABORTED';
         }
         else {
           if (!battle || battle.battle_id !== pointer!.battle_id || battle.content_hash !== this.versions.content_hash || time.stored_last_ack_ms !== time.last_ack_ms || time.stored_lease_ms !== time.lease_expires_ms) reject('BATTLE_CONTEXT_MISMATCH');
           const checkpoint = restoreBattle(battle!.payload, this.content); if (!checkpoint.ok) reject('INCOMPATIBLE_CHECKPOINT');
-          const protocol = this.content.documents['save-contracts.json']!.battle_protocol as unknown as { max_credited_wall_gap_ms: number; ticket_wall_max_ms: number };
+          const protocol = this.content.documents['save-contracts.json']!.battle_protocol as unknown as { max_credited_wall_gap_ms: number; ticket_wall_max_ms: number; speed_multipliers: number[] };
+          if (time.now_ms < time.started_ms) reject('CLOCK_REGRESSION');
           if (time.now_ms - time.started_ms >= protocol.ticket_wall_max_ms) reject('BATTLE_TICKET_EXPIRED');
-          const credit = calculateBattleCredit({ last_ack_ms: time.last_ack_ms, lease_expires_ms: time.lease_expires_ms, database_now_ms: time.now_ms, game_time_ms: checkpoint.ok ? checkpoint.value.game_time_ms : 0, requested_game_ms: command.params.requested_game_ms, max_wall_gap_ms: protocol.max_credited_wall_gap_ms, speed: command.params.speed ?? 1 });
-          if (!credit.ok) reject(credit.code);
-          const next = advanceUntil(checkpoint.ok ? checkpoint.value : null!, credit.ok ? credit.game_time_ms : 0, this.content, checkpoint.ok ? modePolicy(checkpoint.value.mode, this.content) : {});
+          let target: number;
+          if (command.type === 'battle.finish') target = checkpoint.ok ? checkpoint.value.mode.time_limit_ms : 0;
+          else {
+            // Kept for historical/diagnostic adapters; the game client uses terminal-only settlement.
+            const credit = calculateBattleCredit({ last_ack_ms: time.last_ack_ms, lease_expires_ms: time.lease_expires_ms, database_now_ms: time.now_ms, game_time_ms: checkpoint.ok ? checkpoint.value.game_time_ms : 0, requested_game_ms: command.params.requested_game_ms, max_wall_gap_ms: protocol.max_credited_wall_gap_ms, speed: command.params.speed ?? 1 });
+            if (!credit.ok) reject(credit.code);
+            target = credit.ok ? credit.game_time_ms : 0;
+          }
+          const next = advanceUntil(checkpoint.ok ? checkpoint.value : null!, target, this.content, checkpoint.ok ? modePolicy(checkpoint.value.mode, this.content) : {});
           if (!next.ok) reject('BATTLE_ADVANCE_FAILED');
+          if (command.type === 'battle.finish') {
+            if (!next.ok || !next.value.state.terminal_result) reject('BATTLE_NOT_FINISHED');
+            // All supported speed choices lead to the same replay. Enforce the fastest legal wall-time bound.
+            if (time.now_ms - time.started_ms < Math.ceil((next.ok ? next.value.state.game_time_ms : 0) / Math.max(...protocol.speed_multipliers))) reject('BATTLE_FINISH_TOO_EARLY');
+          }
           pointer!.last_ack_at = time.server_at; pointer!.lease_expires_at = time.new_lease_at;
           battleWrite = { kind: 'upsert', battle: { ...battle!, payload: next.ok ? serializeBattle(next.value.state) : null, last_ack_at: time.server_at, lease_expires_at: time.new_lease_at } };
           // TASK-025/035/036 own mode completion and fixed reward reservation.
@@ -236,6 +264,7 @@ export class AccountCommandRules extends AccountCreationRules {
             state.active_battle=null;state.daily_objectives.battle_finished=true;
             battleWrite={kind:'delete',battle_id:pointer!.battle_id};code=result.kind==='victory'?'TOWER_WON':result.kind==='time_limit'?'TOWER_TIME_LIMIT':'TOWER_DEFEATED';
           }
+          if (command.type === 'battle.finish' && state.active_battle) reject('BATTLE_CONTEXT_MISMATCH');
         }
       } else if (command.type.startsWith('slot.') || command.type.startsWith('card.')) code = applySlotCommand(state, command as SlotCommand, this.content, time.battle_seed === undefined ? null : nextRandom({ state: time.battle_seed >>> 0, draw_count: 0 }));
       else if (command.type === 'equipment.fuse' || command.type === 'equipment.tier_up') { const rng = { state: (time.battle_seed ?? 0) >>> 0, draw_count: 0 }; code = applyGearUpgrade(state, command as GearUpgradeCommand, this.content, time.battle_seed === undefined ? null : () => nextRandom(rng)); }

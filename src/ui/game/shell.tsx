@@ -10,8 +10,6 @@ import { readAudioLevels } from '../../renderer/audio-preferences.ts';
 import { reasonText, type Submit } from './kit.tsx';
 import { TopHud } from './hud.tsx';
 import { MaintenancePanel } from './backup.tsx';
-import { battleSpeed, cycleBattleSpeed } from '../../client/battle-speed.ts';
-import { BattleAckSchedule } from '../../client/battle-ack.ts';
 import { BottomBar, type Tab } from './nav.tsx';
 import { Field } from './field.tsx';
 import { BuddyPage } from './buddy.tsx';
@@ -31,10 +29,8 @@ export type View = 'home' | 'backpack' | 'team' | 'buddy' | 'skills' | 'stats' |
 export type ChallengeTarget = { kind: 'story'; id: string } | { kind: 'tower'; floor: number } | { kind: 'daily'; boss: string };
 export interface GameContext {
   state: AccountState; pack: AssetPack | null; locked: boolean; busy: boolean; submit: Submit; latest: () => AccountState | undefined;
-  /** Waits for the writer between the boss clock's recurring commands, then submits once. */
+  /** Waits for the current writer, then submits one intent. */
   submitWhenReady: Submit;
-  /** Confirm elapsed time at the old speed before changing the local prediction speed. */
-  changeBattleSpeed: () => Promise<void>;
   /** Result code of the most recent receipt (e.g. a Refine outcome). */
   lastCode: () => string | null;
   /** Instance ids created by the most recent receipt (gacha reveals). */
@@ -63,7 +59,6 @@ function ConnectedGame({ auth, scope }: { auth: AuthController; scope: string })
   const { controller, save } = useAccountSave(auth, scope);
   const [pack, setPack] = useState<AssetPack | null>(null), [route, setRoute] = useState(readRoute), [toasts, setToasts] = useState<{ id: number; text: string }[]>([]), [sound, setSound] = useState(false);
   const toastId = useRef(0), pageLayer = useRef<HTMLElement>(null), rotated = useRotated();
-  const battleAck = useRef(new BattleAckSchedule());
   useEffect(() => { pageLayer.current?.scrollTo({ top: 0 }); }, [route.view, route.character]);
   const state = save.checkpoint?.save.state as AccountState | undefined, ready = save.status === 'ready', busy = save.status === 'saving' || !!save.pending;
   const toast = useCallback((text: string) => { const id = ++toastId.current; setToasts(list => [...list.slice(-2), { id, text }]); setTimeout(() => setToasts(list => list.filter(t => t.id !== id)), 2800); }, []);
@@ -81,7 +76,6 @@ function ConnectedGame({ auth, scope }: { auth: AuthController; scope: string })
   const submit: Submit = useCallback(async (type, params, requestId) => {
     const snapshot = controller.snapshot.checkpoint?.save, request = requestId ?? randomId();
     try {
-      if (type === 'battle.advance' && controller.snapshot.status === 'ready' && !controller.snapshot.pending) battleAck.current.sent((params as { battle_id: string }).battle_id, performance.now());
       await controller.submit({ type, params, request_id: request, expected_revision: snapshot?.revision ?? 0, ...storyVersions } as Command);
       const receipt = controller.snapshot.lastReceipt;
       if (receipt?.request_id === request && receipt.outcome === 'rejected') { toast(reasonText[receipt.result.code] ?? 'ยังทำรายการนี้ไม่ได้'); return false; }
@@ -99,19 +93,6 @@ function ConnectedGame({ auth, scope }: { auth: AuthController; scope: string })
   }, [controller, submit, toast]);
   const active = state?.active_battle;
   const [request, setRequest] = useState<(ChallengeTarget & { at: number }) | null>(null);
-  // Keep 1s of headroom below the server's 5s credit cap; RAF prediction still runs every frame.
-  useEffect(() => {
-    if (!active) { battleAck.current.reset(); return; }
-    if (!ready || !active || document.hidden) return;
-    const timer = setTimeout(() => { const latest = controller.snapshot; if (latest.status === 'ready' && !latest.pending && !document.hidden && (latest.checkpoint?.save.state as AccountState | undefined)?.active_battle?.battle_id === active.battle_id) void submit('battle.advance', { battle_id: active.battle_id, requested_game_ms: 90000, speed: battleSpeed() }); }, battleAck.current.delay(active.battle_id, performance.now()));
-    return () => clearTimeout(timer);
-  }, [ready, active, save.checkpoint?.save.revision, controller, submit]);
-  const changeBattleSpeed = async () => {
-    const active = (controller.snapshot.checkpoint?.save.state as AccountState | undefined)?.active_battle;
-    if (!active) return;
-    const confirmed = await submitWhenReady('battle.advance', { battle_id: active.battle_id, requested_game_ms: 90000, speed: battleSpeed() });
-    if (confirmed && controller.snapshot.status === 'ready' && !controller.snapshot.pending) cycleBattleSpeed();
-  };
   async function toggleSound() {
     if (!pack) return;
     try { if (!pack.currentScene) throw new Error('SCENE_NOT_READY'); await pack.enableAudio(!sound, pack.currentScene); setSound(pack.soundEnabled); } catch { toast('เปิดเสียงไม่สำเร็จ ลองกดอีกครั้ง'); }
@@ -125,7 +106,7 @@ function ConnectedGame({ auth, scope }: { auth: AuthController; scope: string })
     return <div className="game-root"><div className="game-splash" role="status"><div className="splash-logo">RO <span>Idle</span></div><p>{save.status === 'incompatible' ? 'มีเกมรุ่นใหม่ กรุณาโหลดหน้าใหม่' : save.status === 'offline' ? 'ขาดการเชื่อมต่อ · รอเชื่อมต่อเพื่อโหลดเซฟ' : 'กำลังโหลดเซฟ…'}</p>{(save.status === 'offline' || save.status === 'error') && <button className="btn primary" onClick={() => void controller.reconnect()}>เชื่อมต่อใหม่</button>}</div></div>;
   }
   const characterId = state.roster.some(a => a.character_id === route.character) ? route.character : 'main';
-  const context: GameContext = { state, pack, locked: !ready || busy || !!active, busy: !ready || busy, submit, submitWhenReady, changeBattleSpeed, lastCode: () => controller.snapshot.lastReceipt?.result.code ?? null, lastCreated: () => [...(controller.snapshot.lastReceipt?.result.created_instance_ids ?? [])], latest: () => controller.snapshot.checkpoint?.save.state as AccountState | undefined, toast, go, characterId, selectCharacter: id => go(route.view, id) , challenge: target => { setRequest({ ...target, at: Date.now() }); go('home'); } };
+  const context: GameContext = { state, pack, locked: !ready || busy || !!active, busy: !ready || busy, submit, submitWhenReady, lastCode: () => controller.snapshot.lastReceipt?.result.code ?? null, lastCreated: () => [...(controller.snapshot.lastReceipt?.result.created_instance_ids ?? [])], latest: () => controller.snapshot.checkpoint?.save.state as AccountState | undefined, toast, go, characterId, selectCharacter: id => go(route.view, id) , challenge: target => { setRequest({ ...target, at: Date.now() }); go('home'); } };
   const tab: Tab | null = route.view === 'home' ? null : route.view === 'skills' || route.view === 'stats' ? 'buddy' : route.view === 'tower' || route.view === 'daily' ? 'dungeon' : route.view;
   return <div className="game-root">
     <div className="game-frame">

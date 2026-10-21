@@ -1,0 +1,73 @@
+✔ finish replays the same seeded battle after >15s without any intermediate checkpoint/revision; Story rewards once (13460.786791ms)
+✔ finish refuses too-early, foreign id, expired ticket, clock regression and client-supplied results without paying (32408.570583ms)
+✔ finish handles timeout and defeat without first-clear rewards; no heartbeat is required (3221.877375ms)
+✔ Tower and daily finish match shared replay; daily crosses midnight and preserves only the ticket day/partial HP (1033.819709ms)
+✔ manual daily retreat replays only bounded played time; reconnect without a time claim leaves the initial daily HP/attempt (4304.603041ms)
+✔ T036 AC-01: 3 bosses × 3 attempts per Bangkok day; the attempt is spent at start, HP carries over and the party restarts full (4387.533459ms)
+✔ T036 AC-02: clearing several phases in one timed attempt gives one chest per phase, each next phase stronger at once without resetting the clock (9845.846166ms)
+✔ T036 AC-03: an attempt started 23:59:45 Bangkok and finished after midnight writes only its own ticket day; the new day starts fresh (6353.228833ms)
+✔ T036 AC-04: no double attempts/chests/HP rollback across replays, a second start or stale advances; client prediction matches the server (16008.372125ms)
+✔ recurring receipt replay precedes revision, fixed claim pays once and rejected receipts stay immutable (6157.078ms)
+✔ verified signed state and schema reject changed wallet, foreign history, raw client snapshots and content mismatch (2871.289375ms)
+✔ battle advance credits only DB time, persists checkpoint and replay adds no time; expiry rejects and retreat preserves wallet (797.788916ms)
+✔ response-loss refresh reconciles the same receipt before cloud load without delta replay or another payment (710.123041ms)
+✔ offline and second-tab readers cannot submit; writer conflicts reload cloud without repeating an intent (608.028084ms)
+✔ refresh with an active boss reconciles then retreats instead of simulating offline combat (1357.531625ms)
+✔ an older checkpoint response cannot downgrade a committed receipt or replace the newer wallet backup (1855.439792ms)
+✔ account creation persists a pending UUID without a checkpoint and refresh recovers its original receipt once (6323.037625ms)
+✔ terminal-only start + finish writes twice; a lost finish response reconciles the original receipt without replaying rewards (3994.109292ms)
+✔ T040 AC-01: export → reset → restore brings back the same characters, NPCs, items and slot progress (2820.885792ms)
+✔ T040 AC-02: an older signed save is previewed then migrated with a backup; unsupported or broken saves are never changed (8441.546042ms)
+✔ T040 AC-03 + D-085: new game clears daily dungeons; restore guards AFK/shop/daily counters and restores once (7407.475542ms)
+✔ T040 AC-03/04: a quarantined save is recovered only from its signed tip; a healthy save refuses recovery (1316.658833ms)
+✔ T040 AC-04: the client only sends maintenance writes the server asked for, and shows nothing until the receipt (1.558209ms)
+✖ D-085: migrating an already-reset locked game clears only carried daily progress, with backup; unlocked games retain it (2382.697834ms)
+✔ T040 AC-05: compatibility matrix — current/older/newer/unknown/cost-version fixtures migrate, reject or refund exactly (2775.155292ms)
+✔ D-058 migration fills new fields, rebalances status budgets and drops dangling stages, then passes the server validator (113.301625ms)
+✔ D-058 migration refunds status investments that exceed the new budget instead of keeping unfunded stats (1.239666ms)
+✔ D-058 migration SQL appends one signed revision per outdated save and skips current saves (6361.099875ms)
+✔ command payload fingerprint excludes receipt UUID and preserves all semantic/version fields (0.5975ms)
+✔ requested90000 cannot grant more battle time than actual DB interval (0.50575ms)
+✔ credited battle time respects the authorized5000ms gap and requested interval (0.069917ms)
+✔ DB regression, exact lease expiry and game-time regression never produce partial credit (0.077584ms)
+✔ D-071 fast-forward: speed 2/4 credits the DB interval ×speed, still bounded by the scaled gap and the request; other speeds are refused (0.123791ms)
+✔ actual Story factory compiles saved four-person team/gear/learned skills, one boss and3s pacing for all80 authored stages (1746.731ms)
+✔ new account cannot skip stages/farm uncleared; actual combat victory reserves first clear once, unlocks next and starts frozen farm (2457.870458ms)
+✔ farm selection closes exactly the old unpaid interval, retains carries, gates ore/essence until1-5 and never awards visual kills (2494.31125ms)
+✔ retreat/refresh recovery cannot unlock or pay; timeout clears active battle and free retry starts full HP/SP (3840.355375ms)
+✔ visual prediction replays server acknowledgements at irregular frame times without rewinding or changing account rewards (4765.108083ms)
+✔ T035 AC-01: floors 1/100/101/1000 come from one generator (HP 708/90600/…/8100600), load valid refs and start a real battle (77.372208ms)
+✔ T035 AC-02: the frontier floor pays its first clear once; replays, losses and locked floors pay nothing (2951.545708ms)
+✔ T035 AC-03: the Tower never resets across the Bangkok day and survives a reload; the team stays as saved (42.019625ms)
+✔ T035 AC-04: generated floors stay finite and safe until the generator itself refuses with TOWER_FLOOR_OVERFLOW (0.470209ms)
+✔ T035 AC-01: the client battle session builds a Tower scene (floor title, template boss look) from the server checkpoint (1122.911666ms)
+✔ D-071: battle.advance speed 4 credits four times the wall interval through the real command path; the schema refuses speed 3 (52.788792ms)
+✔ T053 AC-02: a Tower card chest gives a card of the player's tier (chapter 2 cleared → tier 20; chapter 4 → tier 40) (89.087ms)
+ℹ tests 45
+ℹ suites 0
+ℹ pass 44
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 104687.232958
+
+✖ failing tests:
+
+test at tests/game/save-backup.test.ts:1:17950
+✖ D-085: migrating an already-reset locked game clears only carried daily progress, with backup; unlocked games retain it (2382.697834ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'MIGRATION_UNSUPPORTED'
+  - 'SAVE_MIGRATION_REQUIRED'
+
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/save-backup.test.ts:187:50)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'MIGRATION_UNSUPPORTED',
+    expected: 'SAVE_MIGRATION_REQUIRED',
+    operator: 'strictEqual'
+  }

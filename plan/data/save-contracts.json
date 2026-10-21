@@ -113,15 +113,18 @@
     "lease_ms": 15000,
     "ticket_wall_max_ms": 180000,
     "checkpoint": "full virtual state after timestamp barrier; server recomputes requested interval, browser only predicts",
-    "offline": "no credited combat after last authorized checkpoint; gap>=lease aborts, never catch-up a boss during AFK",
-    "daily_abort": "attempt stays spent; last committed phase/HP/chests retained",
+    "offline": "No offline boss simulation; reconnect/refresh retreat. A pending finish intent reconciles its original receipt before recovery.",
+    "daily_abort": "Attempt stays spent. Manual retreat may submit requested_game_ms bounded by DB elapsed × max speed for shared replay/partial HP/chests; reconnect without a time claim preserves the stored start only. Finished attempts carry HP/chests across rounds in their Bangkok ticket day.",
     "story_tower_abort": "no reward/unlock; free new attempt full team HP/SP",
     "speed_multipliers": [
       1,
       2,
       4
     ],
-    "speed": "battle.advance may carry speed 1/2/4 (player fast-forward, D-071): credited game time = min(requested, wall gap × speed, max_credited_wall_gap_ms × speed); lease/ticket wall limits unchanged, AFK/offline rewards stay wall-time based"
+    "speed": "battle.advance may carry speed 1/2/4 (player fast-forward, D-071): credited game time = min(requested, wall gap × speed, max_credited_wall_gap_ms × speed); lease/ticket wall limits unchanged, AFK/offline rewards stay wall-time based",
+    "runtime_protocol": "terminal_only",
+    "settlement": "Write at start and finish/retreat only. battle.finish replays the stored initial snapshot to terminal with the shared engine; client sends no HP/damage/reward result. No periodic acknowledgement or speed-change writes.",
+    "finish_time_guard": "DB elapsed since start must be >= ceil(replayed terminal game_ms / max(speed_multipliers)); 180s ticket remains. No heartbeat lease for finish. Legacy battle.advance retains its own lease/cap for historical adapters."
   },
   "compatibility": [
     {

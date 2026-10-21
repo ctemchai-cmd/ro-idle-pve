@@ -124,7 +124,7 @@ test('T040 AC-02: an older signed save is previewed then migrated with a backup;
   for (const bad of [null, { format: 'other' }, { format: 'ro-idle-classic-backup', format_version: 9 }, { format: 'ro-idle-classic-backup', format_version: 1, save: { account_id: id } }]) assert.equal(parseBackupFile(bad).ok, false, JSON.stringify(bad));
 });
 
-test('T040 AC-03: reset/restore keep revision and ownership and never rewind AFK, shop or daily counters; a backup restores once', async () => {
+test('T040 AC-03 + D-085: new game clears daily dungeons; restore guards AFK/shop/daily counters and restores once', async () => {
   const f = await grown(); f.advance(2 * hour);
   assert.equal((await f.send('farm.claim', {})).body.receipt?.result.code, 'FARM_RESERVED'); const cursor = f.state.farm.reserved_through;
   assert.equal((await f.send('battle.start_daily', { boss_id: 'treasury' })).body.receipt?.result.code, 'DAILY_STARTED');
@@ -133,7 +133,7 @@ test('T040 AC-03: reset/restore keep revision and ownership and never rewind AFK
   assert.equal((await f.send('account.reset', { root_job_id: 'mage', gender: 'female', confirm: 'RESET' }, f.save.revision - 1)).body.code, 'REVISION_CONFLICT');
   await f.send('account.reset', { root_job_id: 'mage', gender: 'female', confirm: 'RESET' });
   assert.equal(f.state.shop.purchases.ore_pack, 5, 'today\'s shop limit survives a reset'); assert.ok(f.state.farm.reserved_through > cursor);
-  assert.equal(f.state.daily_records.find(r => r.boss_id === 'treasury')!.attempts_used, 1, 'today\'s daily attempt survives a reset');
+  assert.equal(f.state.daily_records.slice().length, 0, 'a new game starts daily dungeons fresh (D-085)');
   f.advance(3 * hour);
   const list = (await f.backupsReply()).body.backups as { backup_id: string; signature: string }[], target = list[0]!;
   assert.equal((await f.send('backup.restore_request', { checkpoint_id: `backup:${target.backup_id}`, signature: 'x'.repeat(43) })).body.code, 'BACKUP_SIGNATURE_INVALID');
@@ -176,6 +176,22 @@ test('T040 AC-04: the client only sends maintenance writes the server asked for,
   await assert.rejects(controller.maintain(migrate(3)), /WRITER_NOT_READY/, 'revision must come from the server detail');
   await assert.rejects(controller.maintain({ ...migrate(4), type: 'account.reset', params: { root_job_id: 'mage', gender: 'female', confirm: 'RESET' } } as Command), /WRITER_NOT_READY/);
   await controller.maintain(migrate(4)); assert.equal(sent, 1); assert.equal(controller.snapshot.lastReceipt, null, 'no success without a receipt'); assert.notEqual(controller.snapshot.status, 'ready');
+});
+
+test('D-085: migrating an already-reset locked game clears only carried daily progress, with backup; unlocked games retain it', async () => {
+  for (const unlocked of [false, true]) {
+    const s = progressed();
+    s.daily_records = [{ boss_id: 'treasury', ticket_day: '2026-10-20', attempts_used: 3, phase: 8, current_hp: 999, rewarded_phases: [1, 2, 3], chapter_snapshot: 2 }];
+    if (!unlocked) { s.story.cleared_stage_ids = []; s.story.selected_farm_stage = null; s.farm.rate_snapshot = null; }
+    const before = structuredClone(s), f = stack(s, { content_hash: OLD });
+    const preview = await f.checkpoint(); assert.equal(preview.body.code, 'SAVE_MIGRATION_REQUIRED');
+    assert.equal(f.backups.length, 0, 'preview does not reset the save');
+    assert.equal((await f.send('save.migrate', { from_revision: 1, from_content_hash: OLD })).body.receipt?.result.code, 'SAVE_MIGRATED');
+    assert.deepEqual(f.backups[0]!.state, before, 'exact pre-repair signed state retained');
+    assert.deepEqual(kept(f.state), kept(before), 'characters/equipment/wallet/Story/Tower/farm/team untouched');
+    assert.deepEqual(f.state.daily_records, unlocked ? before.daily_records : []);
+    assert.equal((await f.checkpoint()).status, 200);
+  }
 });
 
 test('T040 AC-05: compatibility matrix — current/older/newer/unknown/cost-version fixtures migrate, reject or refund exactly', async () => {

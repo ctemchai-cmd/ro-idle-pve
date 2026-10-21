@@ -4,6 +4,7 @@ import { progressionData } from '../progression/characters.ts';
 import { storyStage, storyFarmSnapshot } from '../modes/story.ts';
 import { legacyOptionSeed, rollItemOptions } from '../build/item-options.ts';
 import { nextRandom } from '../../content/random.ts';
+import { dailyUnlocked } from '../modes/daily.ts';
 
 export interface SaveMigration { state: AccountState; changes: string[] }
 const canonicalPool = (pool: readonly string[]) => [...pool].sort().join(',');
@@ -30,6 +31,13 @@ export function migrateAccountState(input: unknown, content: ValidatedContent): 
   if (state.active_battle) { state.active_battle = null; changes.push('active battle ended (battles never cross content versions)'); }
   const known = (id: string) => !!storyStage(id, content), cleared = state.story.cleared_stage_ids.filter(known);
   if (cleared.length !== state.story.cleared_stage_ids.length) { changes.push(`dropped unknown cleared stages: ${state.story.cleared_stage_ids.filter(id => !known(id)).join(',')}`); state.story.cleared_stage_ids = cleared; }
+  // Earlier new-game resets kept dungeon counters. A game that has not unlocked daily
+  // cannot have earned these records: clear only this carry-over, never an unlocked game's progress.
+  if (!dailyUnlocked(state, content) && state.daily_records.length) {
+    state.daily_records = [];
+    state.pending_rewards = state.pending_rewards.filter(claim => claim.kind !== 'daily');
+    changes.push('daily dungeons reset: removed progress carried over before their unlock');
+  }
   if (state.story.selected_farm_stage && !known(state.story.selected_farm_stage)) { changes.push(`farm stage ${state.story.selected_farm_stage} no longer exists`); state.story.selected_farm_stage = null; }
   if (state.farm.rate_snapshot) {
     const stage = state.story.selected_farm_stage ? storyStage(state.story.selected_farm_stage, content) : undefined;
