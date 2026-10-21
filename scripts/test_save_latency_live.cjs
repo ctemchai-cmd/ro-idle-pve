@@ -8,16 +8,18 @@ const canonical=v=>Array.isArray(v)?'['+v.map(canonical).join(',')+']':v&&typeof
 (async()=>{
  const admin=createClient(gateway,process.env.SUPABASE_SERVICE_ROLE_KEY,{auth:{persistSession:false,autoRefreshToken:false}}),email='latency-'+randomUUID()+'@example.invalid',password=randomBytes(24).toString('base64url');
  const created=await admin.auth.admin.createUser({email,password,email_confirm:true});assert(!created.error&&created.data.user,'USER_CREATE_FAILED');const uid=created.data.user.id;
- let browser,page,stage='BOOT';const requests=[];let measure=false,drop=false,legacy=false,corrupt=false;
+ let browser,page,stage='BOOT';const requests=[];let measure=false,drop=false,legacy=false,corrupt=false,hold=false,releaseSave;const dbSamples=[];
  try{
   const sdk=createClient(gateway,process.env.VITE_SUPABASE_PUBLISHABLE_KEY,{auth:{persistSession:false,autoRefreshToken:false}}),login=await sdk.auth.signInWithPassword({email,password});assert(!login.error&&login.data.session,'LOGIN_FAILED');
   browser=await chromium.launch({headless:true,executablePath:process.env.RO_CHROME_PATH||'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});
   const context=await browser.newContext({viewport:{width:390,height:844}});page=await context.newPage();page.on('pageerror',()=>errors.push('BROWSER_RUNTIME_ERROR'));
   await page.route('**/api/**',async route=>{
    const request=route.request(),url=new URL(request.url());if(measure)requests.push({method:request.method(),path:url.pathname});
+   if(hold&&request.method()==='POST'&&url.pathname==='/api/commands')await new Promise(resolve=>{releaseSave=resolve;});
    await new Promise(resolve=>setTimeout(resolve,120)); // Equal, explicit network round-trip penalty for baseline/new paths.
    const response=await route.fetch();
    if(request.method()==='POST'&&url.pathname==='/api/commands'){
+    const timing=response.headers()['server-timing']||'';dbSamples.push({type:request.postDataJSON().type,timing});
     if(drop){await route.abort('failed');return;}
     if(legacy||corrupt){const body=await response.json();if(legacy)delete body.checkpoint;if(corrupt&&body.checkpoint){body.checkpoint.save.state.wallet.gold++;corrupt=false;}await route.fulfill({response,json:body});return;}
    }
@@ -57,7 +59,8 @@ const canonical=v=>Array.isArray(v)?'['+v.map(canonical).join(',')+']':v&&typeof
    const old={requests:[...requests],elapsed_ms:Math.round(performance.now()-before)};assert(old.requests.length===3,'BASELINE_NOT_THREE_REQUESTS');
    await page.evaluate(()=>window.__save.reconnect());const next=await submit('party.set',{placements:state.team});single(next);pairs.push({old_protocol:old,combined:next});
   }
-  assert(pairs.every(p=>p.combined.elapsed_ms<p.old_protocol.elapsed_ms),'NO_CONTROLLED_LATENCY_IMPROVEMENT');samples.push({paired_protocol_benchmark:pairs,injected_network_delay_ms_per_request:120});
+  samples.push({paired_protocol_benchmark:pairs,injected_network_delay_ms_per_request:120});
+  assert(pairs.every(p=>p.combined.elapsed_ms<p.old_protocol.elapsed_ms),'NO_CONTROLLED_LATENCY_IMPROVEMENT:'+JSON.stringify(pairs.map(p=>({old:p.old_protocol.elapsed_ms,combined:p.combined.elapsed_ms}))));
   checks.push('Three matched party commands compare historical POST/receipt/checkpoint against combined POST with identical120ms network delay per request');
   stage='LOSS';const beforeLoss=await row();drop=true;const loss=await submit('party.set',{placements:state.team});drop=false;samples.push({dropped_reply:loss});assert(loss.status==='offline','LOSS_NOT_PAUSED:'+JSON.stringify(loss));
   const afterLoss=await row();assert(afterLoss.revision===beforeLoss.revision+1,'LOSS_NOT_COMMITTED_ONCE');requests.length=0;measure=true;await page.evaluate(()=>window.__save.reconnect());measure=false;
@@ -67,11 +70,31 @@ const canonical=v=>Array.isArray(v)?'['+v.map(canonical).join(',')+']':v&&typeof
   stage='CORRUPT';corrupt=true;const bad=await submit('party.set',{placements:state.team});assert(bad.status==='offline','CORRUPT_CHECKPOINT_ACCEPTED');await page.evaluate(()=>window.__save.reconnect());assert(await page.evaluate(()=>window.__save.snapshot.status)==='ready','CORRUPT_RECONCILE_FAILED');
   checks.push('Receipt-only compatibility uses POST+checkpoint without redundant receipt lookup; tampered inline state hash is rejected and reconciled');
   await page.evaluate(()=>window.__save.dispose());
+  if(prefix==='task-064'){
+   stage='DATABASE_ROUNDS';const recurring=dbSamples.filter(s=>s.type!=='account.create');
+   assert(recurring.length>=5&&recurring.every(s=>/db_read;dur=[\d.]+;desc="1 calls"/.test(s.timing)&&/db_commit;dur=[\d.]+;desc="1 calls"/.test(s.timing)&&!/db_(environment|receipt|context);/.test(s.timing)),'DATABASE_ROUNDTRIPS_NOT_REDUCED');
+   samples.push({database_roundtrips:recurring.slice(0,5)});
+   checks.push('Real recurring commands read context/receipt in one DB RPC and commit/return the DB checkpoint in one RPC; no additional context/receipt/environment HTTP calls');
+   stage='ACTUAL_UI';await page.getByLabel('อีเมล',{exact:true}).fill(email);await page.getByLabel('รหัสผ่าน',{exact:true}).fill(password);await page.getByRole('button',{name:'เข้าสู่บัญชี',exact:true}).click();
+   await page.waitForTimeout(300);await page.goto(base+'/play?v=buddy');await page.locator('.hud-save.ok').waitFor();
+   await page.getByRole('button',{name:'Upgrade',exact:true}).click();await page.locator('.level-jump > b').first().filter({hasText:'Lv.10'}).waitFor();
+   const devtools=await context.newCDPSession(page);await devtools.send('Emulation.setCPUThrottlingRate',{rate:4});
+   hold=true;const started=performance.now();await page.getByRole('button',{name:'อัป +1',exact:true}).click();
+   await page.locator('.level-jump > b').first().filter({hasText:'Lv.11'}).waitFor({timeout:1500});const displayMs=Math.round(performance.now()-started);
+   assert(displayMs<1000,'LEVEL_DISPLAY_WAITS_FOR_NETWORK');assert((await row()).state.roster.find(a=>a.character_id==='main').level===10,'HELD_WRITE_ALREADY_COMMITTED');
+   await page.waitForFunction(()=>!!document.querySelector('.hud-save.busy'));
+   await page.screenshot({path:path.join(root,'plan/evidence/task-064-level-immediate.png')});
+   assert(releaseSave,'SAVE_NOT_SENT');hold=false;releaseSave();await page.locator('.hud-save.ok').waitFor();
+   assert((await row()).state.roster.find(a=>a.character_id==='main').level===11,'LEVEL_NOT_SAVED');
+   await devtools.send('Emulation.setCPUThrottlingRate',{rate:1});await page.reload();await page.locator('.hud-save.ok').waitFor();assert((await row()).state.roster.find(a=>a.character_id==='main').level===11,'RELOAD_LOST_LEVEL');
+   samples.push({actual_mobile_ui_click_to_level_ms:displayMs,cpu_throttling:4,server_reply_held_until_after_preview:true});
+   checks.push('Actual mobile game UI level-up renders before a deliberately held server request under4x CPU throttle; release saves once and reload retains the level');
+  }
  }catch(error){errors.push(stage+':'+String(error));}
  finally{
   if(browser)await browser.close();if((await admin.auth.admin.deleteUser(uid)).error)errors.push('FIXTURE_CLEANUP_FAILED');
   const refs=['api/index.ts','src/client/save-controller.ts','src/client/save-browser.ts','scripts/test_save_latency_live.cjs'];
-  const report={task_id:'TASK-063',passed:checks.length===4&&!errors.length,checks,errors,samples,owner_cloud_writes:false,personal_preview_restarted:false,input_sha256:Object.fromEntries(refs.map(ref=>[ref,createHash('sha256').update(fs.readFileSync(path.join(root,ref))).digest('hex')])),scope:'Actual fresh local Auth/PostgREST/Postgres and Chrome exercising the same browser save ports/controller as all UI commands. Equal artificial120ms request delay benchmarks protocol overhead, not actual owner phone/network latency. Wallet is a signed synthetic fixture; no owner login or cloud access.'};
+  const report={task_id:prefix.toUpperCase(),passed:checks.length===(prefix==='task-064'?6:4)&&!errors.length,checks,errors,samples,owner_cloud_writes:false,personal_preview_restarted:false,input_sha256:Object.fromEntries(refs.map(ref=>[ref,createHash('sha256').update(fs.readFileSync(path.join(root,ref))).digest('hex')])),scope:'Actual fresh local Auth/PostgREST/Postgres and Chrome. TASK064 additionally clicks the real mobile game UI with server response held and4x CPU throttle. Equal artificial120ms request delay benchmarks protocol overhead, not actual owner phone/network latency. Wallet is a signed synthetic fixture; no owner login or cloud access.'};
   fs.writeFileSync(path.join(root,`plan/evidence/${prefix}-save-latency-live.json`),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));if(!report.passed)process.exitCode=1;
  }
 })().catch(error=>{console.error('LATENCY_TEST_FAILED');process.exitCode=1;});

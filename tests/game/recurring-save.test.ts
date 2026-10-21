@@ -9,9 +9,39 @@ import type { CommandCommit, ReceiptRecord, SaveContext } from '../../src/contra
 import { content, battle, actor, skill } from './combat-fixtures.ts';
 import { canonical } from '../../src/content/value.ts';
 import { SaveController, SaveProtocolError, type SaveBackup, type SavePorts } from '../../src/client/save-controller.ts';
+import { previewSave } from '../../src/client/save-preview.ts';
 const id = '11111111-1111-4111-8111-111111111111', identity = { account_id: id, email: null };
 const key = 'isolated-unit-signing-key-'.repeat(3), start = '2026-10-20T00:00:00.000Z';
 const hash = (v: unknown) => createHash('sha256').update(canonical(v)).digest('hex');
+
+test('level appears before the server replies; only the confirmed checkpoint is backed up, then the cloud replaces the preview', async () => {
+ const f=fixture(),p=client(f),a=new SaveController(p.ports);
+ p.ports.preview=(state,command)=>previewSave(state,command,content);
+ const send=p.ports.send;let release!:()=>void;
+ p.ports.send=async c=>{await new Promise<void>(resolve=>{release=resolve;});return send(c);};
+ await a.start(id);const before=structuredClone(a.snapshot.checkpoint),c=f.command(undefined,'character.level_up',{character_id:'main',target_level:2});
+ const saving=a.submit(c);
+ assert.equal(a.snapshot.preview?.roster[0]?.level,2);assert.equal(a.snapshot.status,'saving');
+ assert.deepEqual(a.snapshot.checkpoint,before);assert.deepEqual(p.backup!.checkpoint,before);assert.equal(p.backup!.pending!.request_id,c.request_id);
+ assert.equal(f.writes,0);release();await saving;
+ assert.equal(a.snapshot.status,'ready');assert.equal(a.snapshot.preview,null);assert.equal((a.snapshot.checkpoint!.save.state as AccountState).roster[0]!.level,2);assert.equal(f.writes,1);a.dispose();
+});
+
+test('failed save removes the display preview; reconnect resolves the original request without double spending', async () => {
+ const f=fixture(),p=client(f,{loss:true}),a=new SaveController(p.ports);p.ports.preview=(state,command)=>previewSave(state,command,content);
+ await a.start(id);await a.submit(f.command(undefined,'character.level_up',{character_id:'main',target_level:2}));
+ assert.equal(a.snapshot.status,'offline');assert.equal(a.snapshot.preview,null);assert.equal((a.snapshot.checkpoint!.save.state as AccountState).roster[0]!.level,1);
+ assert.ok(p.backup!.pending);assert.equal(f.writes,1);await a.reconnect();
+ assert.equal(a.snapshot.status,'ready');assert.equal((a.snapshot.checkpoint!.save.state as AccountState).roster[0]!.level,2);assert.equal(f.writes,1);assert.equal(p.sends,1);a.dispose();
+});
+
+test('display preview never mutates input, guesses random upgrades or applies unavailable levels', () => {
+ const f=fixture(),state=f.context.save!.state as AccountState,before=structuredClone(state);
+ assert.equal(previewSave(state,f.command(undefined,'character.level_up',{character_id:'main',target_level:70}),content),null);
+ assert.equal(previewSave(state,f.command(undefined,'slot.refine',{character_id:'main',slot:'weapon',target_level:1}),content),null);
+ assert.equal(previewSave(state,f.command(undefined,'gacha.pull',{banner_id:'cards',count:1}),content),null);
+ assert.deepEqual(state,before);
+});
 function fixture(active = false) {
  const rules = new AccountCommandRules(), state = initializeAccount(content, { root_job_id: 'mage', gender: 'male' }, start, '2026-10-20', 1);
  state.pending_rewards.push({ claim_id: 'fixed_farm_1', kind: 'farm', resource_vector: { ...Object.fromEntries(Object.keys(state.wallet).map(k => [k, 0])), gold: 100 } as AccountState['wallet'], items: [], content_version: rules.versions.content_version, reserved_at: start, source_keys: ['farm:fixed_0_1000'], status: 'pending' });

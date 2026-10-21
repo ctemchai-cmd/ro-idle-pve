@@ -111,6 +111,8 @@
 | D-086 | 21 ต.ค.2026 ผู้ใช้ขอ PWA: ติดตั้งบนมือถือที่รองรับ เปิดไอคอนเข้า/play แบบstandaloneแนวตั้ง มีปุ่มติดตั้งและคำแนะนำiOS ใช้Supabaseและonline-primaryเดิม | TASK-062; assistantเลือกcacheเฉพาะหน้าoffline+4icons≤128KiB ไม่cacheเกม/API/Auth/เซฟ ไม่reloadกลางไฟต์ และไม่เปลี่ยนcontenthash |
 | D-087 | 21 ต.ค.2026 ผู้ใช้เล่นมือถือผ่านVercel/DBSingaporeแล้วทุกการบันทึกรอ1–2s ไม่ใช่เฉพาะอัปเลเวล: ปรับsharedsavepathทุกmutationให้ลดroundtrips โดยยังบันทึกจริงก่อนยืนยันผล | TASK-063; assistantเลือกoptionalreceipt+verifiedcheckpointในPOSTเดียว/knownreceiptไม่lookupซ้ำ/legacyfallbackและuncertainretryเดิม เพิ่มServer-Timingและpinregionที่ตรวจแล้วsin1 ไม่เปลี่ยนสูตรหรือเลื่อนsaveเป็นbatch |
 
+| D-088 | 21 ต.ค.2026 ผู้ใช้ย้ำว่าทุกsaveยังรอ2sและเป็นเกมส่วนตัวไม่ต้องเน้นทดสอบกันโกง: ให้ปรับการกดให้เห็นผลทันทีพร้อมตรวจเฉพาะเซฟไม่หาย/ไม่หักซ้ำ | TASK-064 assistantเลือกdisplaypreviewจากsharedreducersสำหรับผลแน่นอน ไม่เขียนpreviewลงconfirmedbackup/ไม่เดาผลสุ่ม คืนค่าหากsaveล้ม ยังมีpendingUUIDเดิม; optionalSQL007รวมอ่านreceipt+context/commit+contextเหลือ2DBRPC ใช้legacyถ้ายังไม่ติดตั้ง ไม่เพิ่มanti-cheatระบบใหม่ |
+
 ## คำถามหลักที่ส่งให้ผู้ใช้แล้ว
 
 | ID | ประเด็น | สถานะ |

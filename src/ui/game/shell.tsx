@@ -60,7 +60,7 @@ function ConnectedGame({ auth, scope }: { auth: AuthController; scope: string })
   const [pack, setPack] = useState<AssetPack | null>(null), [route, setRoute] = useState(readRoute), [toasts, setToasts] = useState<{ id: number; text: string }[]>([]), [sound, setSound] = useState(false);
   const toastId = useRef(0), pageLayer = useRef<HTMLElement>(null), rotated = useRotated();
   useEffect(() => { pageLayer.current?.scrollTo({ top: 0 }); }, [route.view, route.character]);
-  const state = save.checkpoint?.save.state as AccountState | undefined, ready = save.status === 'ready', busy = save.status === 'saving' || !!save.pending;
+  const state = save.preview ?? save.checkpoint?.save.state as AccountState | undefined, ready = save.status === 'ready', busy = save.status === 'saving' || !!save.pending;
   const toast = useCallback((text: string) => { const id = ++toastId.current; setToasts(list => [...list.slice(-2), { id, text }]); setTimeout(() => setToasts(list => list.filter(t => t.id !== id)), 2800); }, []);
   useEffect(() => { let disposed = false; void AssetPack.open(STORY_PACK_HASH).then(p => { if (disposed) { p.dispose(); return; } try { p.setAudioLevels(readAudioLevels(localStorage)); } catch { /* Defaults remain. */ } setPack(p); }).catch(() => toast('ยังเตรียมภาพไม่ได้ กรุณาโหลดหน้าใหม่')); return () => { disposed = true; }; }, [toast]);
   useEffect(() => () => pack?.dispose(), [pack]);
@@ -79,6 +79,7 @@ function ConnectedGame({ auth, scope }: { auth: AuthController; scope: string })
       await controller.submit({ type, params, request_id: request, expected_revision: snapshot?.revision ?? 0, ...storyVersions } as Command);
       const receipt = controller.snapshot.lastReceipt;
       if (receipt?.request_id === request && receipt.outcome === 'rejected') { toast(reasonText[receipt.result.code] ?? 'ยังทำรายการนี้ไม่ได้'); return false; }
+      if (controller.snapshot.status !== 'ready' || receipt?.request_id !== request) { toast('ยังบันทึกไม่สำเร็จ · เชื่อมต่อใหม่เพื่อตรวจรายการเดิม'); return false; }
       return true;
     } catch (error) { toast(reasonText[error instanceof Error ? error.message : ''] ?? 'ยังเชื่อมต่อเซฟไม่ได้ กรุณาลองอีกครั้ง'); return false; }
   }, [controller, toast]);

@@ -13,6 +13,7 @@ import { canonicalCommand } from '../src/domain/account/protocol.ts';
 import type { AccountState } from '../src/contracts/index.ts';
 import type { BackupReason, StoredBackup } from '../src/contracts/save.ts';
 import { backupFile, saveSummary } from '../src/domain/account/maintenance.ts';
+import { captureTiming, timedSync } from '../src/server/persistence/timing.ts';
 
 interface CreationReply { body: unknown; status: number }
 
@@ -37,7 +38,7 @@ export function createApi(env: Record<string, string | undefined>, injected?: Ap
     // and do not validate the whole game twice (or at all for an unauthenticated request).
     let handlers: { initial: ReturnType<typeof createAccountHandler>; recurring: ReturnType<typeof createRecurringHandlers> } | undefined;
     function rulesHandlers() {
-      if (!handlers) { const rules = new AccountCommandRules(); handlers = { initial: createAccountHandler(reader, env.SAVE_SIGNING_KEY, rules), recurring: createRecurringHandlers(reader, env.SAVE_SIGNING_KEY, rules) }; }
+      if (!handlers) { const rules = timedSync('rules_init', () => new AccountCommandRules()); handlers = { initial: createAccountHandler(reader, env.SAVE_SIGNING_KEY, rules), recurring: createRecurringHandlers(reader, env.SAVE_SIGNING_KEY, rules) }; }
       return handlers;
     }
     services = { authenticate: request => authenticateRequest(request, client), ...reader, createAccount: (identity, input) => rulesHandlers().initial(identity, input), command: (identity, input) => (input as { type?: unknown })?.type === 'account.create' ? rulesHandlers().initial(identity, input) : rulesHandlers().recurring.command(identity, input), checkpoint: identity => rulesHandlers().recurring.checkpoint(identity), backups: (identity, id) => rulesHandlers().recurring.backups(identity, id) }; return services;
@@ -82,7 +83,7 @@ export function createApi(env: Record<string, string | undefined>, injected?: Ap
         const text = await request.text(); if (text.length > 16384) return response({ code: 'COMMAND_TOO_LARGE' }, 413);
         let input: unknown; try { input = JSON.parse(text); } catch { return response({ code: 'INVALID_JSON' }, 400); }
         const reply = await measure('command', () => handle(identity.value, input));
-        if (reply.status === 200 && request.headers.get('x-ro-checkpoint') === 'include' && active.checkpoint) {
+        if (reply.status === 200 && request.headers.get('x-ro-checkpoint') === 'include' && active.checkpoint && !(reply.body as { checkpoint?: unknown })?.checkpoint) {
           // A write may already be committed. Checkpoint failure must not turn it into an uncertain/retried write.
           try {
             const loaded = await measure('checkpoint', () => active.checkpoint!(identity.value));
@@ -94,7 +95,8 @@ export function createApi(env: Record<string, string | undefined>, injected?: Ap
       return response({ code: 'METHOD_NOT_ALLOWED' }, 405);
     } catch { return response({ code: 'SAVE_OR_ENVIRONMENT_UNAVAILABLE' }, 503); }
     }
-    const reply = await handle();
+    const captured = await captureTiming(handle), reply = captured.value;
+    if (captured.header) timings.push(captured.header);
     timings.push(`total;dur=${(performance.now() - started).toFixed(1)}`);
     reply.headers.set('server-timing', timings.join(', '));
     reply.headers.set('x-ro-api-region', /^[a-z0-9]+$/.test(env.VERCEL_REGION ?? '') ? env.VERCEL_REGION! : 'local');
@@ -103,7 +105,7 @@ export function createApi(env: Record<string, string | undefined>, injected?: Ap
 }
 
 /** Shared server command path; injectable store permits fault/race tests. */
-export function createRecurringHandlers(store: Pick<ReturnType<typeof createSaveStore>, 'loadContext' | 'readCreationReceipt' | 'commitCommand'> & Partial<Pick<ReturnType<typeof createSaveStore>, 'commitMaintenance' | 'listBackups'>>, signingKey: string | undefined, rules = new AccountCommandRules()) {
+export function createRecurringHandlers(store: Pick<ReturnType<typeof createSaveStore>, 'loadContext' | 'readCreationReceipt' | 'commitCommand'> & Partial<Pick<ReturnType<typeof createSaveStore>, 'commitMaintenance' | 'listBackups' | 'loadCommandContext' | 'commitCommandContext'>>, signingKey: string | undefined, rules = new AccountCommandRules()) {
   const sha = (value: unknown) => createHash('sha256').update(rules.canonical(value)).digest('hex');
   const fail = (code: string, status: number): CreationReply => ({ body: { code }, status });
   function signature(accountId: string, revision: number, stateHash: string, contentHash: string, schemaVersion: number) {
@@ -218,19 +220,32 @@ export function createRecurringHandlers(store: Pick<ReturnType<typeof createSave
     async command(identity: AuthenticatedIdentity, input: unknown): Promise<CreationReply> {
       let command: Command; try { command = rules.parse(input); } catch { return fail('INVALID_COMMAND', 400); }
       const requestHash = createHash('sha256').update(canonicalCommand(command)).digest('hex');
-      const old = await store.readCreationReceipt(identity, command.request_id);
-      if (old) return old.request_hash === requestHash ? { body: { receipt: old.receipt }, status: 200 } : fail('IDEMPOTENCY_KEY_REUSE', 409);
+      let combined: Awaited<ReturnType<NonNullable<typeof store.loadCommandContext>>>;
+      try { combined = await store.loadCommandContext?.(identity, command.request_id); } catch (error) { return contextFailure(error); }
+      const old = combined ? combined.previous : await store.readCreationReceipt(identity, command.request_id);
+      if (old) {
+        if (old.request_hash !== requestHash) return fail('IDEMPOTENCY_KEY_REUSE', 409);
+        if (combined) { try { verified(combined.context, identity.account_id); if (combined.context.save!.revision >= old.receipt.committed_revision) return { body: { receipt: old.receipt, checkpoint: combined.context }, status: 200 }; } catch { /* Replay still precedes current-version admission; the normal checkpoint path reports incompatibility. */ } }
+        return { body: { receipt: old.receipt }, status: 200 };
+      }
       if (command.content_hash !== rules.versions.content_hash || command.content_version !== rules.versions.content_version || command.rules_version !== rules.versions.rules_version) return fail('CONTENT_VERSION_MISMATCH', 409);
       if (command.type === 'save.migrate' || command.type === 'account.reset' || command.type === 'backup.restore_request') { try { return await maintenance(identity, command, requestHash); } catch (error) { return contextFailure(error); } }
       if (!rules.supports(command.type)) return fail('COMMANDS_NOT_IMPLEMENTED', 501);
       try {
-        const context = await store.loadContext(identity), { save, state } = verified(context, identity.account_id);
+        const context = combined?.context ?? await store.loadContext(identity), { save, state } = timedSync('verify_state', () => verified(context, identity.account_id));
         if (command.expected_revision !== save.revision) return fail('REVISION_CONFLICT', 409);
         const now = Date.parse(context.server_at), pointer = state.active_battle;
         if (!Number.isSafeInteger(now)) return fail('INVALID_DATABASE_TIME', 503);
         const time = { account_id: identity.account_id, battle_id: randomUUID(), battle_seed: randomBytes(4).readUInt32LE(), build_hashes: Object.fromEntries(Object.entries(rules.buildInputs(state)).map(([id,build])=>[id,sha({content_hash:rules.versions.content_hash,...build})])), server_at: context.server_at, now_ms: now, new_lease_at: new Date(now + rules.leaseMs).toISOString(), last_ack_ms: pointer ? Date.parse(pointer.last_ack_at) : 0, lease_expires_ms: pointer ? Date.parse(pointer.lease_expires_at) : 0, started_ms: pointer ? Date.parse(pointer.started_at) : 0, farm_from_ms: Date.parse(state.farm.reserved_through), stored_last_ack_ms: context.battle ? Date.parse(context.battle.last_ack_at) : 0, stored_lease_ms: context.battle ? Date.parse(context.battle.lease_expires_at) : 0 };
-        const proposal = rules.decide(command, state, context.battle, time, requestHash), stateHash = sha(proposal.state);
-        const committed = await store.commitCommand({ account_id: identity.account_id, expected_revision: command.expected_revision, request_id: command.request_id, request_hash: requestHash, state: proposal.state, state_hash: stateHash, receipt: proposal.receipt, signature: signature(identity.account_id, proposal.receipt.committed_revision, stateHash, rules.versions.content_hash, 1), key_version: 1, schema_version: 1, ...rules.versions, battle_write: proposal.battle_write });
+        const proposal = timedSync('calculate', () => rules.decide(command, state, context.battle, time, requestHash)), stateHash = sha(proposal.state);
+        const commit = { account_id: identity.account_id, expected_revision: command.expected_revision, request_id: command.request_id, request_hash: requestHash, state: proposal.state, state_hash: stateHash, receipt: proposal.receipt, signature: signature(identity.account_id, proposal.receipt.committed_revision, stateHash, rules.versions.content_hash, 1), key_version: 1, schema_version: 1, ...rules.versions, battle_write: proposal.battle_write };
+        const fast = combined ? await store.commitCommandContext?.(commit) : undefined;
+        if (fast && !fast.error && fast.data) {
+          timedSync('verify_reply', () => verified(fast.data.context, identity.account_id));
+          if (fast.data.context.save!.revision < fast.data.receipt.committed_revision) throw new Error('SAVE_CONTEXT_REVISION_MISMATCH');
+          return { body: { receipt: fast.data.receipt, checkpoint: fast.data.context }, status: 200 };
+        }
+        const committed = fast ?? await store.commitCommand(commit);
         if (committed.error) { const code = committed.error.message; return fail(['REVISION_CONFLICT','IDEMPOTENCY_KEY_REUSE','CONTENT_VERSION_MISMATCH','BATTLE_LEASE_EXPIRED'].includes(code) ? code : 'COMMAND_COMMIT_FAILED', ['REVISION_CONFLICT','IDEMPOTENCY_KEY_REUSE','CONTENT_VERSION_MISMATCH','BATTLE_LEASE_EXPIRED'].includes(code) ? 409 : 503); }
         return { body: { receipt: committed.data }, status: 200 };
       } catch (error) { return contextFailure(error); }

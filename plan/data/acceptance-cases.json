@@ -8309,6 +8309,90 @@
       "execution_evidence": [
         "plan/evidence/task-063-review.json"
       ]
+    },
+    {
+      "id": "T064-AC-01",
+      "task_id": "TASK-064",
+      "acceptance_id": "AC-01",
+      "criterion": "ordinaryrecurringcommandใช้RPC2รอบ(+Auth1) ไม่มีreceiptassert/load/reloadHTTPซ้ำ และcheckpointมาจากDBtransactionจริง",
+      "input_setup": "Shared save path and signed throwaway account on fresh Auth/PostgREST/Postgres; actualmobileUIclick with held request and CPU4x, no owner state",
+      "input_refs": [
+        "plan/inprogress/tasks_064.md",
+        "src/client/save-preview.ts",
+        "scripts/test_save_latency_live.cjs",
+        "supabase/migrations/202610210007_command_roundtrips.sql"
+      ],
+      "parameters": {
+        "cpu_throttling": 4,
+        "network_delay_ms_per_request": 120
+      },
+      "expected": "ordinaryrecurringcommandใช้RPC2รอบ(+Auth1) ไม่มีreceiptassert/load/reloadHTTPซ้ำ และcheckpointมาจากDBtransactionจริง",
+      "verification": "Targeted save tests, fresh realDB/Chrome, build and read-only hosted check; user SQL007/cloud timing pending",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation"
+    },
+    {
+      "id": "T064-AC-02",
+      "task_id": "TASK-064",
+      "acceptance_id": "AC-02",
+      "criterion": "displaypreviewไม่เปลี่ยนcheckpoint/backup; response lossคืนค่าที่แสดงและreconcileUUIDเดิมไม่หักซ้ำ; optionalRPCหายใช้legacyได้ แต่DBerrorไม่fallbackเขียนซ้ำ และใช้transaction/guardsเดิมโดยไม่เขียนเซฟเจ้าของ",
+      "input_setup": "Shared save path and signed throwaway account on fresh Auth/PostgREST/Postgres; actualmobileUIclick with held request and CPU4x, no owner state",
+      "input_refs": [
+        "plan/inprogress/tasks_064.md",
+        "src/client/save-preview.ts",
+        "scripts/test_save_latency_live.cjs",
+        "supabase/migrations/202610210007_command_roundtrips.sql"
+      ],
+      "parameters": {
+        "cpu_throttling": 4,
+        "network_delay_ms_per_request": 120
+      },
+      "expected": "displaypreviewไม่เปลี่ยนcheckpoint/backup; response lossคืนค่าที่แสดงและreconcileUUIDเดิมไม่หักซ้ำ; optionalRPCหายใช้legacyได้ แต่DBerrorไม่fallbackเขียนซ้ำ และใช้transaction/guardsเดิมโดยไม่เขียนเซฟเจ้าของ",
+      "verification": "Targeted save tests, fresh realDB/Chrome, build and read-only hosted check; user SQL007/cloud timing pending",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation"
+    },
+    {
+      "id": "T064-AC-03",
+      "task_id": "TASK-064",
+      "acceptance_id": "AC-03",
+      "criterion": "actualmobileUIกดอัป+1แสดงLv.11ก่อนปล่อยserverrequestที่holdไว้ ภายใน1sรวมautomationบนCPUthrottle4×; ปล่อยrequestแล้วsave/reloadยังLv.11 พร้อมServer-TimingแยกDB/compute ไม่มีownerdata",
+      "input_setup": "Shared save path and signed throwaway account on fresh Auth/PostgREST/Postgres; actualmobileUIclick with held request and CPU4x, no owner state",
+      "input_refs": [
+        "plan/inprogress/tasks_064.md",
+        "src/client/save-preview.ts",
+        "scripts/test_save_latency_live.cjs",
+        "supabase/migrations/202610210007_command_roundtrips.sql"
+      ],
+      "parameters": {
+        "cpu_throttling": 4,
+        "network_delay_ms_per_request": 120
+      },
+      "expected": "actualmobileUIกดอัป+1แสดงLv.11ก่อนปล่อยserverrequestที่holdไว้ ภายใน1sรวมautomationบนCPUthrottle4×; ปล่อยrequestแล้วsave/reloadยังLv.11 พร้อมServer-TimingแยกDB/compute ไม่มีownerdata",
+      "verification": "Targeted save tests, fresh realDB/Chrome, build and read-only hosted check; user SQL007/cloud timing pending",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation"
+    },
+    {
+      "id": "T064-AC-04",
+      "task_id": "TASK-064",
+      "acceptance_id": "AC-04",
+      "criterion": "build/type/boundaries/secrets/contenthashเดิม/hostedsmokeผ่าน ผู้ใช้ติดตั้งSQL007และมีหลักฐานfastpathบนcloudก่อนdone ไม่อ้างผลlocalhostแทนมือถือจริง",
+      "input_setup": "Shared save path and signed throwaway account on fresh Auth/PostgREST/Postgres; actualmobileUIclick with held request and CPU4x, no owner state",
+      "input_refs": [
+        "plan/inprogress/tasks_064.md",
+        "src/client/save-preview.ts",
+        "scripts/test_save_latency_live.cjs",
+        "supabase/migrations/202610210007_command_roundtrips.sql"
+      ],
+      "parameters": {
+        "cpu_throttling": 4,
+        "network_delay_ms_per_request": 120
+      },
+      "expected": "build/type/boundaries/secrets/contenthashเดิม/hostedsmokeผ่าน ผู้ใช้ติดตั้งSQL007และมีหลักฐานfastpathบนcloudก่อนdone ไม่อ้างผลlocalhostแทนมือถือจริง",
+      "verification": "Targeted save tests, fresh realDB/Chrome, build and read-only hosted check; user SQL007/cloud timing pending",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation"
     }
   ]
 }

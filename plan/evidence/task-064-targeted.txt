@@ -1,0 +1,28 @@
+✔ same Fetch entry serves local health; unfinished cloud routes return503 (271.145791ms)
+✔ local repository exercises original receipt replay before revision and detects races (0.575875ms)
+✔ combined command reply reads one verified checkpoint after success; failures retain the receipt and legacy callers stay compatible (181.963ms)
+✔ level appears before the server replies; only the confirmed checkpoint is backed up, then the cloud replaces the preview (871.92ms)
+✔ failed save removes the display preview; reconnect resolves the original request without double spending (524.201208ms)
+✔ display preview never mutates input, guesses random upgrades or applies unavailable levels (309.108166ms)
+✔ recurring receipt replay precedes revision, fixed claim pays once and rejected receipts stay immutable (393.7525ms)
+✔ verified signed state and schema reject changed wallet, foreign history, raw client snapshots and content mismatch (814.4375ms)
+✔ battle advance credits only DB time, persists checkpoint and replay adds no time; expiry rejects and retreat preserves wallet (513.936541ms)
+✔ response-loss refresh reconciles the same receipt before cloud load without delta replay or another payment (339.978125ms)
+✔ offline and second-tab readers cannot submit; writer conflicts reload cloud without repeating an intent (336.411083ms)
+✔ refresh with an active boss reconciles then retreats instead of simulating offline combat (337.65375ms)
+✔ an older checkpoint response cannot downgrade a committed receipt or replace the newer wallet backup (344.06725ms)
+✔ account creation persists a pending UUID without a checkpoint and refresh recovers its original receipt once (448.073084ms)
+✔ confirmed legacy replies skip the redundant receipt GET; a combined verified checkpoint skips both GETs (865.113625ms)
+✔ combined replies reject foreign/stale checkpoints and preserve the committed pending intent for reconciliation (682.136875ms)
+✔ terminal-only start + finish writes twice; a lost finish response reconciles the original receipt without replaying rewards (498.13775ms)
+✔ an uninstalled optional RPC falls back and is not probed again on each button press (7.277792ms)
+✔ a database outage does not silently fall back into a second write (0.348625ms)
+✔ timings for overlapping requests remain separate (18.857584ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8967.265333

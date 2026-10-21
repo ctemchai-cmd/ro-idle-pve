@@ -127,3 +127,11 @@ TASK-060/061 ไม่ต้องเพิ่ม SQL migration: ใช้6ไ�
 DevTools Networkดู `Server-Timing`: auth=ตรวจผู้ใช้กับSupabase, command=ตรวจintent/DB/คำนวณ/commit, checkpoint=โหลดและverifyผล, total=handlerทั้งหมด ตัวเลขนี้ไม่รวมเครือข่าย/โหลดmoduleตอนcoldstart จึงต้องอ่านคู่requestduration ไม่ควรนำpublichealthมาแทนlatencyของownercommand และไม่ส่งtoken/headersAuthorizationในรายงาน
 
 APIเตรียมrules/validatorsหลังAuthผ่านและใช้ชุดเดียวร่วมcreation/recurringต่อinstance เพื่อลดcoldinitialization ไม่cacheownerstateหรือAuthdecision หากtotalสูงแต่auth/command/checkpointต่ำ ให้ตรวจsetup/module/networkแยกกันก่อนสรุปว่าฐานข้อมูลช้า
+
+## การอัปเกรดตอบสนองทันที (TASK-064)
+
+UI ใหม่แสดงเลเวล/แต้ม/สกิล/อุปกรณ์ทันทีระหว่างบันทึก ใช้กติกาเดิมคำนวณผลที่แน่นอน หากบันทึกไม่สำเร็จคืนค่าที่แสดงและreconcileคำขอเดิม ไม่เขียนpreviewทับconfirmedbackup ไม่เดาผลกาชา/Refine/Fusion ยังรอบันทึกหนึ่งรายการก่อนรับรายการถัดไป
+
+การลดเวลาDBเพิ่มเติม: รัน [SQL007](../supabase/migrations/202610210007_command_roundtrips.sql) ทั้งไฟล์ในSupabaseSQL Editorของprojectเดิม ปลอดการแก้ข้อมูลเซฟ/ไม่มีkeysในไฟล์ รันซ้ำได้ เพิ่มwrapperสองตัวรอบatomicRPCเดิม แล้วรอไม่เกิน10วินาทีให้missing-function cacheหมด ก่อนติดตั้งเกมยังใช้เส้นทางเดิมและUIตอบสนองทันทีได้ ไม่ต้องเพิ่มenvหรือmigrateเซฟ
+
+Server-Timing `db_read`และ`db_commit`อย่างละ1callsยืนยัน2DBHTTPในordinarycommand ไม่รวมAuthgetUser; `rules_init`/`verify_state`/`calculate`/`verify_reply`แยกCPU Existinginitialaccount/maintenance/recoveryยังใช้เส้นทางเดิม ข้อมูลนี้ไม่ใช่การรับรองlatencyบนเครื่องผู้ใช้ ก่อนreloadให้จบไฟต์ก่อนตามPWAเดิม

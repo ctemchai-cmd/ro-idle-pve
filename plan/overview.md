@@ -1,6 +1,6 @@
 # ภาพรวมแผนและความคืบหน้า
 
-อัปเดต: 21 ตุลาคม 2026 · ระยะปัจจุบัน: **51/63 งานผ่าน done; TASK-041 บาลานซ์และ TASK-058 ย้ายเซฟอยู่ inprogress; TASK-062 PWAขึ้นVercelและผ่านhostedแล้ว; TASK-063 ทุกmutationลด3→1requestsขึ้นVercelผ่านแล้ว; TASK-060 เซฟเริ่ม/จบและ TASK-061 resetดันขึ้นVercelแล้ว; TASK-048/054/055/056/057 อยู่ review รอผู้ใช้ตรวจภาพ**
+อัปเดต: 21 ตุลาคม 2026 · ระยะปัจจุบัน: **51/64 งานผ่าน done; TASK-041 บาลานซ์, TASK-058 ย้ายเซฟ และ TASK-064 แสดงอัปเกรดทันที/ลดDBรอบอยู่ inprogress; TASK-062 PWAขึ้นVercelและผ่านhostedแล้ว; TASK-063 ทุกmutationลด3→1requestsขึ้นVercelผ่านแล้ว; TASK-060 เซฟเริ่ม/จบและ TASK-061 resetดันขึ้นVercelแล้ว; TASK-048/054/055/056/057 อยู่ review รอผู้ใช้ตรวจภาพ**
 
 เกมเว็บเล่นคนเดียวอ้างอิง Ragnarok Idle Adventure Plus จัดทีม main + NPC 3 คน คิว Active ตัวละสี่ช่อง ทำงานพร้อมกัน ฟาร์มทรัพยากรแล้วกดท้าบอส ใช้ Supabase เซฟหลักด้วยอีเมล/รหัสผ่าน ออนไลน์เป็นหลักพร้อมเซฟสำรองในเครื่อง และ deploy เว็บบน Vercel
 
@@ -13,6 +13,8 @@ Source ทั้งโปรเจกต์เผยแพร่ที่ [ctemc
 [TASK-059](done/tasks_059.md) เป็นประวัติและถูกแทนด้วยTASK-060แล้ว: รอบเดิมลด periodic battle.advance เป็น4วินาที (~75% fewer recurring writes) ภาพเดินทุกframe/คำสั่งผู้เล่นทันที ยืนยันold speedก่อนเปลี่ยน1×/2×/4×; tests32ข้อ + isolatedChrome/Auth/API/SQL + buildผ่าน contenthashเดิม ไม่รีสตาร์ต6173 [หลักฐาน](evidence/task-059-review.json)
 
 [TASK-060/061](done/tasks_060.md) ผ่านและขึ้นVercelที่5215676f8: ไม่มีเซฟระหว่างไฟต์/เปลี่ยนspeed, finishครั้งเดียว; resetล้างดันและmigrationซ่อมcarry-overในเกมที่dailyยังlocked Tests45ข้อ + isolatedChromeสองชุด + build/hostedsmokeผ่าน [หลักฐาน](evidence/task-060-061-hosted.json) Contenthash768e12a4… เจ้าของกดสำรองแล้วอัปเดตเซฟจึงซ่อมstateจริง ไม่แตะ6173
+
+[TASK-064](inprogress/tasks_064.md) กำลังปรับตามผู้ใช้: แสดงผลอัปเลเวล/สกิล/อุปกรณ์ทันทีขณะเซฟตามหลัง พร้อมคืนค่าถ้าเชื่อมต่อขาด; optionalSQL007ลดDBHTTP5→2รอบ ยังคงpendingUUID/confirmedbackupเดิม ไม่เพิ่มระบบกันโกง รอactualUI/DBproofและdeploy
 
 [TASK-063](done/tasks_063.md) ขึ้นVercelที่e39c7d071แล้ว: ทุกmutationใช้lazysharedrulesหลังAuthและรับreceipt+verifiedcheckpointในPOSTเดียวแทน3requests มีlegacyfallback/UUIDreconcileเดิม Server-Timing/regionsin1 ตรวจ37TS+Chrome8กลุ่ม/build/readiness8/hosted3ผ่าน ไม่เปลี่ยนcontenthash/SQL/6173 [หลักฐาน](evidence/task-063-review.json) ตัวเลขlatencybenchmarkเป็นcontrolledfixtureไม่ใช่เครื่องผู้ใช้
 
@@ -43,7 +45,7 @@ Q-001–Q-022 ตอบแล้ว: บัฟบวกกันไม่มี�
 | review | 5 | [TASK-048](review/tasks_048.md) game shell /play รอผู้ใช้ตรวจหน้าตา (AC-08), [TASK-054](review/tasks_054.md) ภาพการต่อสู้ตรง RO รอผู้ใช้ตรวจ (AC-06), [TASK-055](review/tasks_055.md) คำขอระหว่างลองเล่น รอผู้ใช้ (AC-06), [TASK-056](review/tasks_056.md) UI D-076–078/080 อัปเดตแล้วรอผู้ใช้ตรวจภาพ (AC-06), [TASK-057](review/tasks_057.md) ทรงผม D-079 อัปเดตแล้วรอผู้ใช้ตรวจ (AC-05) |
 | done | 51 | ผ่าน review ตามหลักฐานในแต่ละงาน |
 
-Progress ของกระดาน: **51/63 งานผ่าน done** ไม่รวมงานเตรียม assets ที่ทำก่อนเริ่มใช้กระดาน ตำแหน่งไฟล์เป็นสถานะจริง ID คงเดิม เมื่อย้ายไฟล์ให้อัปเดตจำนวนและลิงก์ในเอกสารนี้
+Progress ของกระดาน: **51/64 งานผ่าน done** ไม่รวมงานเตรียม assets ที่ทำก่อนเริ่มใช้กระดาน ตำแหน่งไฟล์เป็นสถานะจริง ID คงเดิม เมื่อย้ายไฟล์ให้อัปเดตจำนวนและลิงก์ในเอกสารนี้
 
 TASK-001–014 และ TASK-047 อยู่doneครบM0 TASK-015–028ผ่านแล้ว รอบภาพล่าสุด [TASK-020รอบ11](evidence/task-020-focus-impact-review.json) ผ่าน184TStests+4native/build/Chrome: focusนุ่มไร้กรอบและdamage numbersตรงnative ACTcontact/ลูกธนู-ลูกเวทย์กระทบ ภาพไม่เปลี่ยนผลcombat Runtimepack252IDs/505files/35audioรวม22.5MB
 

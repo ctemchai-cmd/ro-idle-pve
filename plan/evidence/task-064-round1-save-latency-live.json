@@ -1,0 +1,111 @@
+{
+  "task_id": "TASK-064",
+  "passed": false,
+  "checks": [
+    "Creation, level, skill upgrade/loadout, equipment and team use one actual HTTP POST with a schema/hash/owner-validated DB checkpoint"
+  ],
+  "errors": [
+    "BASELINE:Error: NO_CONTROLLED_LATENCY_IMPROVEMENT"
+  ],
+  "samples": [
+    {
+      "type": "account.create",
+      "request_id": "10616c8e-182e-4499-a17d-b63cf4aedfc5",
+      "status": "ready",
+      "outcome": "committed",
+      "code": "ACCOUNT_CREATED",
+      "revision": 1,
+      "elapsed_ms": 240,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/commands"
+        }
+      ]
+    },
+    {
+      "type": "character.level_up",
+      "request_id": "ab9aa332-5a1b-40c9-a206-72cf62674123",
+      "status": "ready",
+      "outcome": "committed",
+      "code": "CHARACTER_LEVELLED",
+      "revision": 2,
+      "elapsed_ms": 223,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/commands"
+        }
+      ]
+    },
+    {
+      "type": "skill.upgrade",
+      "request_id": "eef2f0dc-33df-4e27-a9b7-409adb5a7514",
+      "status": "ready",
+      "outcome": "committed",
+      "code": "SKILL_UPGRADED",
+      "revision": 3,
+      "elapsed_ms": 182,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/commands"
+        }
+      ]
+    },
+    {
+      "type": "skill.set_loadout",
+      "request_id": "62343aad-25c8-4791-9a9d-a16b27756356",
+      "status": "ready",
+      "outcome": "committed",
+      "code": "SKILL_LOADOUT_UPDATED",
+      "revision": 4,
+      "elapsed_ms": 171,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/commands"
+        }
+      ]
+    },
+    {
+      "type": "equipment.purchase_weapon",
+      "request_id": "8730d4ca-3357-4c16-8394-7be22bf4bfd8",
+      "status": "ready",
+      "outcome": "committed",
+      "code": "TRAINING_WEAPON_PURCHASED",
+      "revision": 5,
+      "elapsed_ms": 169,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/commands"
+        }
+      ]
+    },
+    {
+      "type": "party.set",
+      "request_id": "8b73cd08-46f1-4203-854a-673f280b979b",
+      "status": "ready",
+      "outcome": "committed",
+      "code": "PARTY_UPDATED",
+      "revision": 6,
+      "elapsed_ms": 181,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/commands"
+        }
+      ]
+    }
+  ],
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "input_sha256": {
+    "api/index.ts": "e30c3e60baf99a28a729ce7c6c0f3b15cb4e37ad9c7cc50da1166204813a193b",
+    "src/client/save-controller.ts": "d09887a9f399f1fe58d138b79281bed91de52351753afd5872a6b93345b8817f",
+    "src/client/save-browser.ts": "3f1591c23fdb681f27a473f0876d4fc7bfdf515ca28dbf586e00fc1a0992a537",
+    "scripts/test_save_latency_live.cjs": "0991a1da5e31fe69de9309320592e5cbcc35993139e7722a0d0a79f6c2abb43e"
+  },
+  "scope": "Actual fresh local Auth/PostgREST/Postgres and Chrome. TASK064 additionally clicks the real mobile game UI with server response held and4x CPU throttle. Equal artificial120ms request delay benchmarks protocol overhead, not actual owner phone/network latency. Wallet is a signed synthetic fixture; no owner login or cloud access."
+}

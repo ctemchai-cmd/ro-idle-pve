@@ -5,6 +5,7 @@ export class SaveProtocolError extends Error { constructor(readonly code: string
 export interface SaveBackup { checkpoint: SaveCheckpoint | null; pending: Command | null }
 export interface SaveCommandReply { receipt: Receipt; checkpoint?: SaveCheckpoint }
 export interface SavePorts {
+  preview?(state: AccountState, command: Command): AccountState | null;
   checkpoint(): Promise<SaveCheckpoint>;
   receipt(id: string): Promise<Receipt | null>;
   send(command: Command): Promise<Receipt>;
@@ -20,8 +21,8 @@ export interface SavePorts {
 }
 export interface BackupListing { backup_id: string; reason: 'migration' | 'reset' | 'restore' | 'quarantine'; revision: number; created_at: string; content_hash: string; signed: boolean; restorable: boolean; signature: string | null; summary: unknown }
 export type SaveStatus = 'idle' | 'loading' | 'ready' | 'saving' | 'offline' | 'read_only' | 'signed_out' | 'incompatible' | 'error';
-export interface SaveSnapshot extends SaveBackup { status: SaveStatus; reason: string | null; lastReceipt: Receipt | null; detail?: unknown }
-/** Never applies receipt deltas locally or uploads cached snapshots. */
+export interface SaveSnapshot extends SaveBackup { status: SaveStatus; reason: string | null; lastReceipt: Receipt | null; detail?: unknown; preview?: AccountState | null }
+/** Display previews are transient; only confirmed checkpoints are persisted. Never uploads cached snapshots. */
 export class SaveController {
   snapshot: SaveSnapshot = { status: 'idle', reason: null, checkpoint: null, pending: null, lastReceipt: null };
   private listeners = new Set<(state: SaveSnapshot) => void>();
@@ -37,18 +38,18 @@ export class SaveController {
   private failed(error: unknown) {
     const e = error instanceof SaveProtocolError ? error : new SaveProtocolError('NETWORK_UNAVAILABLE');
     const incompatible = ['CONTENT_VERSION_MISMATCH', 'SAVE_MIGRATION_REQUIRED', 'UPDATE_REQUIRED', 'MIGRATION_UNSUPPORTED'].includes(e.code);
-    this.publish({ status: e.status === 401 ? 'signed_out' : incompatible ? 'incompatible' : e.code === 'SAVE_INTEGRITY_FAILED' ? 'error' : e.status >= 500 ? 'offline' : 'error', reason: e.code, detail: e.detail });
+    this.publish({ preview: null, status: e.status === 401 ? 'signed_out' : incompatible ? 'incompatible' : e.code === 'SAVE_INTEGRITY_FAILED' ? 'error' : e.status >= 500 ? 'offline' : 'error', reason: e.code, detail: e.detail });
   }
   async start(accountId: string): Promise<void> {
     const epoch = ++this.epoch; this.release?.(); this.release = null; this.accountId = accountId;
     let backup: SaveBackup | null = null; try { backup = this.ports.load(accountId); } catch { /* Cloud is still authoritative. */ }
     if (backup?.checkpoint && backup.checkpoint.save.account_id !== accountId) backup = null;
-    this.publish({ status: this.online ? 'loading' : 'offline', reason: null, checkpoint: backup?.checkpoint ?? null, pending: backup?.pending ?? null, lastReceipt: null });
+    this.publish({ preview: null, status: this.online ? 'loading' : 'offline', reason: null, checkpoint: backup?.checkpoint ?? null, pending: backup?.pending ?? null, lastReceipt: null });
     const release = await this.ports.lock(accountId);
     if (this.disposed || epoch !== this.epoch) { release?.(); return; } this.release = release;
     await this.reconnect();
   }
-  setOnline(online: boolean) { this.online = online; if (!online) { this.epoch++; this.publish({ status: 'offline', reason: 'NETWORK_UNAVAILABLE' }); } }
+  setOnline(online: boolean) { this.online = online; if (!online) { this.epoch++; this.publish({ preview: null, status: 'offline', reason: 'NETWORK_UNAVAILABLE' }); } }
   private retreatCommand(): Command | null {
     const save = this.snapshot.checkpoint?.save, battle = (save?.state as AccountState | undefined)?.active_battle;
     return save && battle ? { type: 'battle.retreat', params: { battle_id: battle.battle_id }, request_id: this.ports.requestId(), expected_revision: save.revision, schema_version: 1, content_version: save.content_version, content_hash: save.content_hash, rules_version: save.rules_version } : null;
@@ -56,7 +57,7 @@ export class SaveController {
   async suspend(): Promise<void> { const command = this.retreatCommand(); if (command && this.snapshot.status === 'ready') await this.submit(command); }
   async reconnect(recover = true): Promise<void> {
     if (!this.accountId || this.disposed || !this.online) return;
-    const epoch = ++this.epoch; this.publish({ status: 'loading', reason: null });
+    const epoch = ++this.epoch; this.publish({ preview: null, status: 'loading', reason: null });
     try {
       if (!this.release) {
         const release = await this.ports.lock(this.accountId);
@@ -107,6 +108,10 @@ export class SaveController {
     const epoch = ++this.epoch; this.publish({ status: 'saving', pending: structuredClone(command), reason: null, lastReceipt: null });
     try {
       this.persist(); // Persist the exact request ID BEFORE network I/O.
+      const state = this.snapshot.checkpoint?.save.state as AccountState | undefined;
+      if (state && this.ports.preview) {
+        try { this.publish({ preview: this.ports.preview(state, command) }); } catch { /* Display must not prevent saving. */ }
+      }
       const reply = this.ports.sendWithCheckpoint ? await this.ports.sendWithCheckpoint(command) : { receipt: await this.ports.send(command) };
       const receipt = reply.receipt;
       if (this.disposed || epoch !== this.epoch) return;
@@ -116,7 +121,7 @@ export class SaveController {
         const checkpoint = reply.checkpoint;
         if (checkpoint.save.account_id !== this.accountId) throw new SaveProtocolError('CHECKPOINT_OWNER_MISMATCH');
         if (checkpoint.save.revision < Math.max(receipt.committed_revision, this.snapshot.checkpoint?.save.revision ?? 0)) throw new SaveProtocolError('STALE_CHECKPOINT');
-        this.publish({ checkpoint, pending: null, reason: null, detail: null }); this.persist();
+        this.publish({ preview: null, checkpoint, pending: null, reason: null, detail: null }); this.persist();
         this.publish({ status: this.release ? 'ready' : 'read_only' });
         return;
       }

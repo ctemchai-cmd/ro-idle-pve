@@ -7,6 +7,7 @@ import { ContentValidator } from '../content/validation.ts';
 import type { Json, ObjectValue } from '../content/value.ts';
 import { canonical } from '../content/value.ts';
 import { randomId, sha256Hex } from './secure-context.ts';
+import { previewSave } from './save-preview.ts';
 
 /**
  * Single-writer fallback when Web Locks is missing (plain-http LAN pages are not secure contexts, D-075): a localStorage
@@ -58,6 +59,7 @@ export function createBrowserSavePorts(auth: AuthController, scope: string, stor
       return c;
   }
   return {
+    preview: (state, command) => previewSave(state, command, content),
     async checkpoint() {
       return validateCheckpoint((await call('/api/checkpoint')).checkpoint);
     },
