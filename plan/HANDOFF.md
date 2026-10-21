@@ -4,6 +4,14 @@
 
 
 
+## 21 ต.ค. 2026 · Codex — TASK-066 ขึ้น Vercel และปิดงานแล้ว
+
+- ผู้ใช้ตอบสถานะ deployment ของ `120647c47` ว่า **Ready** ตรวจใหม่ได้ GitHub Vercel `success / Deployment has completed` และ actual hosted smoke3กลุ่มผ่าน [หลักฐาน](evidence/task-066-hosted.json) publicbundleมีVirtualGrid/bag-window/data-window-startจริง, APIhealth200/content768e12a4…เดิม/regionSG/anonymouscheckpoint401, login/PWA/cacheถูกต้อง ไม่มีownerloginหรือownerwrite
+- ย้าย [TASK-066](done/tasks_066.md) ไปdone, ACครบ3ข้อและreviewpassedจริง อัปเดตcases/matrix/overview กระดาน **53/67done**, inprogress041/058/064/067รวม4, review5/todo5 ไม่ต้องbuildซ้ำเพราะรอบนี้แก้เฉพาะdocs/evidence ไม่มีproductsource/SQL/env/migrationเพิ่ม
+- ชุดเมนูที่ขึ้นเว็บเป็นsource120647c47ตรงกับที่วัดactualtouch/CPU4x/Class2/500itemsไว้: Backpackmedian449→120ms, overall79→46ms/p95449→121ms ไม่อ้างว่าเป็นมือถือจริงของowner
+- ผู้ใช้ยังไม่ได้ยืนยันกดปุ่มคืนสิทธิ์Essence งาน067AC03ยังค้าง รักษาสถานะเดิม ไม่อ้างคืนquotaแล้ว ไม่แตะ6173/5173/private/env/ownerdata งาน064ยังรอauthenticatedcloudtiming ไม่ใช่รอinstallSQL007
+- ขั้นถัดไป: แจ้งผู้ใช้จบไฟต์ก่อนrefreshเพื่อรับbundleใหม่บนAndroid Chrome/PWA ไม่ต้องล้างข้อมูลแอป/ติดตั้งใหม่ การรีโหลดไฟต์ที่ยังไม่จบจะretreatตามกติกาเดิม ถ้ายืนยันEssencequotaคืนแล้วจึงปิด067ได้ หลักฐานงานก่อนหน้าคงอยู่ด้านล่าง
+
 ## 21 ต.ค. 2026 · Codex — TASK-065/066/067 Auth, navigation และดันค้าง
 
 - ผู้ใช้ยืนยันSQL007ติดตั้งแล้วและเร็วขึ้นประมาณครึ่งหนึ่ง จากนั้นรายงานเมนูหน่วง0.5–1s, ดันแก่นพลังจบค้าง/refreshเสียสิทธิ์ และย้ำ1×/2×/4×ต้องคำนวณ/ขัดร่ายเหมือนกัน ผู้ใช้ตอบอุปกรณ์ **Android Chrome/PWA**; navigationยังเป็นงานต่อเนื่อง ไม่แทนด้วยแค่ตอบspeed
@@ -13,10 +21,10 @@
 - **Dailyrootcause** BossFieldcaplogicalที่time_limitแต่advancegate>=50ms เศษ1–49msจึงไม่ถึงterminal/finish แก้client `shouldAdvanceBattleFrame` flushเมื่อถึงdeadline ไม่เปลี่ยนengine/formulas Unitทุก1–49ms×60/90sผ่าน ActualChrome/SQLเล่นEssence60000msที่4×จบจริง/finish1/0advance/0retreat/reloadquotaเดิม
 - **Exact speed parity** 3heavy×4CCtypes×1/2/4 (Stun/Freeze/Silence/interrupt) comparefull eventtrace+serializedcheckpoint และspatialdailycompareevents/RNG/phase/metricsตรง ใช้seedเดียวกัน/forceCCchance1เพื่อตรวจrule ไม่มีspeed-dependentASPD/CCchance
 - **ยังไม่ได้คืนownerquota** แจ้งผู้ใช้แล้วให้จบไฟต์/reload→ตั้งค่า→คืนสิทธิ์แก่นพลังรอบที่ค้าง ปุ่มเฉพาะ21OctและEssenceattempt>0 ส่งexistingbackup.restore_request marker daily-clock:essence:2026-10-21 serverตรวจprior>=15s dailyretreatก่อน2026-10-21T14:07:06Z/once-only receipt คืนcounter1พร้อมsignedbackup/CAS ไม่แตะstateอื่น/noSQLใหม่ FreshUUIDretryrejectedreceipt200ไม่เพิ่มquota/revision ActualfixtureChrome/SQL4กลุ่มผ่าน TASK067AC03ยังรอownerกด/ยืนยัน ไม่ปิดจากfixture ไม่มีownerAuth/adminDBในsession
-- **TASK066 implementationผ่าน กำลังส่งdeploy**: baselineactualtouch/CPU4x/Class2/500items/27samples Backpack399–499ms/0API profilerพบeagerDOM+scrollToforcedlayout แก้VirtualGrid mount96cells/scrollrowoverscanจากviewport, fullfilteredlistยังใช้bulkselectionและlivevalues ไม่cacheownerstate; keyedmainตามview/characterแทนscrollToeffect จึงscroll0และclearpage-localdraftตามroute
+- **TASK066 implementationผ่านและpushแล้วที่120647c47b79b4e299bd2f491ef727ae3bb1e2e6 แต่ยังไม่hostedproof**: baselineactualtouch/CPU4x/Class2/500items/27samples Backpack399–499ms/0API profilerพบeagerDOM+scrollToforcedlayout แก้VirtualGrid mount96cells/scrollrowoverscanจากviewport, fullfilteredlistยังใช้bulkselectionและlivevalues ไม่cacheownerstate; keyedmainตามview/characterแทนscrollToeffect จึงscroll0และclearpage-localdraftตามroute
 - Matchedafter27samples overallmedian79→46ms/p95449→121ms, Backpackmedian449→120ms, Stats90→46ms, Skills158.5→99.5ms ทุกnavigate0API [comparison](evidence/task-066-navigation-comparison.json) เป็นdevelopmentbundle/CPU4x/mobileemulation **ไม่ใช่ownerphonebenchmark** ActualChrome Auth/PostgREST/SQL: lastitem/scroll/filter/320pxresize/bulk457ชิ้นรวมoffscreen, savedlock/statusINT/skillupgrade/equip/reloadค่าตรง ผ่าน [after](evidence/task-066-navigation-touch-full-after.json) Round1selectorชื่อสกิลในharnessไม่ตรงaccessiblelabel เก็บfailureแยก เปลี่ยนselectorเท่านั้นไม่ผ่อนexpected ก่อนrunใหม่ผ่าน
 - Build/env/assets/content/boundaries/type/secretsผ่าน content **768e12a49bf339711d44f501c3710374adbcd10d9eb74d6a2e6f9b8aa79330af** /pack **f57a0773675ff37a1f16467f2606546404286a4ffb42da90766b7cab93970dae** เดิม ไม่มีnewSQL/env/migration ไม่แตะ6173/5173 ไม่อ่านprivate/login/env/ownerstate Freezeproduct/codegenขณะlivebrowser; sessions93388round1exit1,7664finalexit0,89431buildexit0
-- ขั้นถัดไป: pushnavigation→ตรวจVercelstatus→RO_EVIDENCE_PREFIX=task-066 RO_DEPLOY_COMMIT=<source> node scripts/test_save_latency_hosted.cjs (เพิ่มbag-window/data-window-start markerแล้ว)→ถ้าผ่านปิดTASK066/อัปเดตboardและreadiness ห้ามบอกownerquotaคืนแล้วจนผู้ใช้กด/ยืนยัน ตอนนี้board52/67doneหลัง065
+- ขั้นถัดไป: source120647c47pushแล้วแต่ผ่านประมาณ10นาทียังGitHubstatuspending/statuses[]/checks[]/deployments[]และpublicshell-CtMq5SHQ.jsไม่มีbag-window (ตรวจno-cache+nonceแล้ว) ไม่มีVercelCLI/connectedmanagementsession ไม่เดาว่าbuildfailed ถามuserasyncหน้าDeploymentsของcommit120647c47สถานะอะไรอยู่ระหว่างรอคำตอบ อย่าปิดTASK066AC03หรืออ้างขึ้นเว็บแล้ว ต้องตรวจVercelstatus→RO_EVIDENCE_PREFIX=task-066 RO_DEPLOY_COMMIT=<source> node scripts/test_save_latency_hosted.cjs (เพิ่มbag-window/data-window-start markerแล้ว)→ถ้าผ่านปิดTASK066/อัปเดตboardและreadiness ห้ามบอกownerquotaคืนแล้วจนผู้ใช้กด/ยืนยัน ตอนนี้board52/67doneหลัง065
 
 ## 21 ต.ค. 2026 · Codex — TASK-064 แสดงอัปเกรดก่อนเซิร์ฟเวอร์ตอบ + optional2DBRPC
 

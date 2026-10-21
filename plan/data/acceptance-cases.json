@@ -8476,7 +8476,7 @@
       "criterion": "มีbefore/afterclick→paintของเมนูหลัก, Stats/Skills และสลับตัวละครบนCPU4×; median/p95ดีขึ้นโดยไม่มีAPIrequestเพื่อnavigate",
       "input_setup": "Isolated fixture only, same content/seed/CPU budget; preserve owner save and6173",
       "input_refs": [
-        "plan/inprogress/tasks_066.md",
+        "plan/done/tasks_066.md",
         "scripts/test_navigation_live.cjs"
       ],
       "parameters": {
@@ -8485,7 +8485,11 @@
       "expected": "มีbefore/afterclick→paintของเมนูหลัก, Stats/Skills และสลับตัวละครบนCPU4×; median/p95ดีขึ้นโดยไม่มีAPIrequestเพื่อnavigate",
       "verification": "Targeted unit traces and actualChrome/API/SQL before deployment; ownerquota requires ownerAuth confirmation",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation"
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-066-review.json",
+        "plan/evidence/task-066-hosted.json"
+      ]
     },
     {
       "id": "T066-AC-02",
@@ -8494,7 +8498,7 @@
       "criterion": "เปลี่ยนตัว/อัปเกรด/เซฟ/เปลี่ยนของแล้วยังเห็นค่าปัจจุบัน ไม่ใช้ข้อมูลเก่า และไม่มีlayout/consoleerrorใหม่",
       "input_setup": "Isolated fixture only, same content/seed/CPU budget; preserve owner save and6173",
       "input_refs": [
-        "plan/inprogress/tasks_066.md",
+        "plan/done/tasks_066.md",
         "scripts/test_navigation_live.cjs"
       ],
       "parameters": {
@@ -8503,7 +8507,11 @@
       "expected": "เปลี่ยนตัว/อัปเกรด/เซฟ/เปลี่ยนของแล้วยังเห็นค่าปัจจุบัน ไม่ใช้ข้อมูลเก่า และไม่มีlayout/consoleerrorใหม่",
       "verification": "Targeted unit traces and actualChrome/API/SQL before deployment; ownerquota requires ownerAuth confirmation",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation"
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-066-review.json",
+        "plan/evidence/task-066-hosted.json"
+      ]
     },
     {
       "id": "T066-AC-03",
@@ -8512,7 +8520,7 @@
       "criterion": "build/type/boundaries/secretsผ่าน contenthashเดิมถ้ากติกาไม่เปลี่ยน โค้ดขึ้นVercelพร้อมpublicsmoke; แยกfixturemetricsกับมือถือจริง",
       "input_setup": "Isolated fixture only, same content/seed/CPU budget; preserve owner save and6173",
       "input_refs": [
-        "plan/inprogress/tasks_066.md",
+        "plan/done/tasks_066.md",
         "scripts/test_navigation_live.cjs"
       ],
       "parameters": {
@@ -8521,7 +8529,11 @@
       "expected": "build/type/boundaries/secretsผ่าน contenthashเดิมถ้ากติกาไม่เปลี่ยน โค้ดขึ้นVercelพร้อมpublicsmoke; แยกfixturemetricsกับมือถือจริง",
       "verification": "Targeted unit traces and actualChrome/API/SQL before deployment; ownerquota requires ownerAuth confirmation",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation"
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-066-review.json",
+        "plan/evidence/task-066-hosted.json"
+      ]
     },
     {
       "id": "T067-AC-01",

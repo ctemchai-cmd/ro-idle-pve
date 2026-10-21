@@ -1,7 +1,7 @@
 {
   "task_id": "TASK-066",
   "date": "2026-10-21",
-  "passed": false,
+  "passed": true,
   "implementation_verified": true,
   "content_hash": "768e12a49bf339711d44f501c3710374adbcd10d9eb74d6a2e6f9b8aa79330af",
   "owner_cloud_writes": false,
@@ -14,13 +14,13 @@
     "plan/evidence/task-066-navigation-comparison.json",
     "plan/evidence/task-066-navigation-touch-full-after.json",
     "plan/evidence/task-066-local-stack.json",
-    "plan/evidence/task-066-build.txt"
+    "plan/evidence/task-066-build.txt",
+    "plan/evidence/task-066-hosted.json"
   ],
-  "pending": [
-    "Deploy and public hosted smoke"
-  ],
+  "pending": [],
   "limitations": [
     "CPU4x actual Chrome touch emulation/development bundle, not measured owner Android Chrome/PWA",
     "First navigation may still load uncached art; runtime assets unchanged"
-  ]
+  ],
+  "source_commit": "120647c47b79b4e299bd2f491ef727ae3bb1e2e6"
 }

@@ -20,7 +20,7 @@ Milestone: M4 · อ้างอิง D-090
 
 - [x] AC-01: มีbefore/afterclick→paintของเมนูหลัก, Stats/Skills และสลับตัวละครบนCPU4×; median/p95ดีขึ้นโดยไม่มีAPIrequestเพื่อnavigate
 - [x] AC-02: เปลี่ยนตัว/อัปเกรด/เซฟ/เปลี่ยนของแล้วยังเห็นค่าปัจจุบัน ไม่ใช้ข้อมูลเก่า และไม่มีlayout/consoleerrorใหม่
-- [ ] AC-03: build/type/boundaries/secretsผ่าน contenthashเดิมถ้ากติกาไม่เปลี่ยน โค้ดขึ้นVercelพร้อมpublicsmoke; แยกfixturemetricsกับมือถือจริง
+- [x] AC-03: build/type/boundaries/secretsผ่าน contenthashเดิมถ้ากติกาไม่เปลี่ยน โค้ดขึ้นVercelพร้อมpublicsmoke; แยกfixturemetricsกับมือถือจริง
 
 ## วิธีตรวจและหลักฐาน
 
@@ -28,9 +28,9 @@ Milestone: M4 · อ้างอิง D-090
 
 ## Blocker / คำถาม
 
-ผู้ใช้ยืนยัน Android Chrome/PWA; matched500itemfixtureพบeagerDOM/forcedscrolllayout ไม่ใช่saveAPI แก้virtualrows+nativeper-route scrollcontainerแล้ว กำลังตรวจfunctional/deploy
+ผู้ใช้ยืนยัน Android Chrome/PWA; matched500itemfixtureพบeagerDOM/forcedscrolllayout ไม่ใช่saveAPI แก้virtualrows+nativeper-route scrollcontainerแล้ว functional/build/deploy/publicsmokeผ่านแล้ว ไม่มีblockerของงานนี้
 
-Baseline actualtouch/CPU4x/Class2/500items/27samples กระเป๋า399–499ms/0APIrequests; emptybag15samples35–115msเป็นhistoricalscenarioแยก Round1หลังแก้functional selectorของharnessไม่ตรงชื่อสกิล (ไม่ใช่producterror) เก็บround1แยกก่อนรันใหม่ ไม่อ้างว่าปิดงานแล้ว
+Baseline actualtouch/CPU4x/Class2/500items/27samples กระเป๋า399–499ms/0APIrequests; emptybag15samples35–115msเป็นhistoricalscenarioแยก Round1หลังแก้functional selectorของharnessไม่ตรงชื่อสกิล (ไม่ใช่producterror) เก็บround1แยกก่อนรันใหม่ผ่านตามเกณฑ์เดิม
 
 ## ผลตรวจจริง
 
@@ -38,4 +38,6 @@ Baseline actualtouch/CPU4x/Class2/500items/27samples กระเป๋า399–
 - VirtualGrid mount96cellsแทน500และเก็บความสูง/scrollrangeเดิม เลื่อนถึงชิ้นสุดท้าย/กรองหลังเลื่อน/320pxresize/bulkเลือก457ชิ้นรวมoffscreenผ่าน เลือกทั้งหมดใช้fullfilteredlist ไม่ใช่เฉพาะmountedrows ไม่มีcacheownerstate
 - ใช้mainkeyตามview/characterแทนscrollTo effectเพื่อให้เริ่มต้นscroll0โดยไม่force synchronouslayout เดิม รอบStats/Skillเปลี่ยนตัวแล้วยังclear draftsตามกติกา
 - ActualfreshAuth/PostgREST/SQL/ChromeยืนยันallocateINT→สลับกลับค่าตรง, upgradeskill→ไปกลับค่าตรง, equipoffscreenitem→badgeตรง/reloadยังตรง พร้อมlock/saveในกระเป๋า ไม่มีconsole/layoutoverflow [after](../evidence/task-066-navigation-touch-full-after.json)
-- Build/type/boundaries/assets/content/secretsผ่าน content768e12a4…/packf57a0773…เดิม ไม่มีSQL/env/migrationใหม่ ไม่restart6173 รอVercel/publicsmokeก่อนAC03
+- Build/type/boundaries/assets/content/secretsผ่าน content768e12a4…/packf57a0773…เดิม ไม่มีSQL/env/migrationใหม่ ไม่restart6173 Vercel120647c47สำเร็จและpublicsmoke3กลุ่มผ่านแล้ว
+
+ผู้ใช้ยืนยันReadyแล้ว ตรวจเว็บจริงซ้ำยืนยันbundleมีVirtualGrid, APIregionSG/contenthashเดิม, anonymouscheckpoint401, login/PWAและprivatecachepolicyถูกต้อง ไม่มีownerwrite [hosted](../evidence/task-066-hosted.json) ไม่มีSQL/env/migrationเพิ่ม ปิดAC03และย้ายdone
