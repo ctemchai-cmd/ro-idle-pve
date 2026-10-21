@@ -1,8 +1,9 @@
-# CLI deployment input only; GitHub retains the complete source asset library.
+# Build input filter (Git integration and CLI); GitHub retains the source library.
 .git/
 .local/
 .env
 .env.*
+*.env
 !.env.example
 node_modules/
 dist/

@@ -45,7 +45,7 @@ Milestone: M4 · ประเภท: เครื่องมือผู้ด�
 | AC-02 | PostgreSQL แยก: success/replay/collision/marker/owner/existing/rollback | [SQL report](../evidence/task-058-postgres.json) ผ่าน fresh cluster รวม replay หลังเล่นต่อ/collision/rollback ทั้ง3ตาราง | ผ่าน self-check |
 | AC-03 | helper บน disposable local fixture และ permissions/gitignore audit | backup/context/SQL/key file private0600/dir0700, source fingerprintเดิม, ไม่มี key ในSQL, .local ignored; ยังไม่ export เซฟจริง | ผ่าน fixture |
 | AC-04 | migrated context ผ่าน API shared handler และคำสั่งถัดไป | checkpoint200/targetsignatureผ่าน equipment.lock commit revision23→24; wallet/farm/ledger/pending/roster/team/story/daily/gacha/shopเดิม | ผ่าน fixture |
-| AC-05 | hosted owner login/SQL/browser ก่อนและหลัง reload | รอ Project URL/User ID/env | ยังไม่ตรวจ |
+| AC-05 | hosted owner login/SQL/browser ก่อนและหลัง reload | ได้ Project URL/User ID และผู้ใช้เริ่ม Vercel build; แก้ source-assets check แล้ว รอ hosted build/URL/import/login จริง | ยังไม่ตรวจ |
 
 ผู้ตรวจ: Codex self-check เฉพาะเครื่องมือ · วันที่: 21 ตุลาคม 2026 · รอบ review: 1 · ยัง inprogress รอ hosted AC05
 
@@ -62,3 +62,5 @@ Milestone: M4 · ประเภท: เครื่องมือผู้ด�
 - ได้targetproject/User UIDจริงแล้ว exportส่วนตัวrevision2933ผ่าน source signature/content/state validation และสำรองgame tablesไว้ใน.local ไม่มีcloudwrite; [รายงานmetadata](../evidence/task-058-personal-export.json) APIkeysยังให้ผู้ใช้ใส่Vercelเองตามที่เลือก
 
 - ผู้ใช้สับสน Secret/legacy: เปลี่ยน env หลักเป็น SUPABASE_SECRET_KEY ให้ตรงชนิด key ใหม่ รองรับชื่อเก่าเพื่อ local stack แต่ปฏิเสธสองชื่อที่ค่าต่างกัน; 20 targeted Auth/transfer tests ผ่าน รวมกัน key รั่วเข้า VITE_ และ modern/legacy compatibility; อัปเดต envexample/docs/private env โดยไม่เปิดเผยค่า
+
+- ผู้ใช้ส่ง hosted Vercel log: env configured ผ่าน แต่ assets:check ล้มเพราะ ignored source files เหลือโฟลเดอร์ว่าง เพิ่ม explicit artifact-only validation ใน build โดยยังตรวจ runtime checksum/selection/manifest ครบ; Python12tests และ isolated production build ผ่าน [หลักฐาน](../evidence/vercel-runtime-build.json) ยังไม่ย้าย cloud/ไม่รีสตาร์ต6173

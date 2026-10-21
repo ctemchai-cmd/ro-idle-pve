@@ -42,7 +42,9 @@ Import `ctemchai-cmd/ro-idle-pve` เลือกสาขา `main`, Root Direc
 
 Preview แบบเชื่อมฐานทดสอบใช้ `VITE_APP_ENV=preview`, `APP_ENV=preview`, URL/keys ของ project แยก และ `SUPABASE_TEST_PROJECT_REF` ตรง marker `preview` หากไม่ตั้ง Auth environment เลย เว็บจะแสดงสนามทดลองและสถานะยังไม่เชื่อมบัญชี ไม่สร้างเซฟจำลอง
 
-`.vercelignore` ลด source upload เมื่อใช้ CLI โดยกันคลังต้นทาง/หลักฐาน/ไฟล์ส่วนตัว แต่ยังส่ง `runtime/ro/`, `plan/data/` และ build tools ครบ Git integration ยัง clone repository เต็ม; output ที่ให้ผู้เล่นโหลดคือ `dist` และ API function
+`.vercelignore` กันคลังต้นทาง/หลักฐาน/ไฟล์ส่วนตัวออกจาก build input ทั้ง Git integration และ CLI แต่ยังเก็บ `runtime/ro/`, `plan/data/` และ build tools ครบ Git integration clone repository ก่อนแล้วจึงลบไฟล์ที่ ignore ซึ่งอาจเหลือโฟลเดอร์ว่าง Output ที่ให้ผู้เล่นโหลดคือ `dist` และ API function
+
+`npm run build` ใช้ `assets:check:runtime` ตรวจรายการไฟล์/checksum/manifest/asset-selection ของ artifact โดยไม่ต้องมีคลังต้นทาง ส่วน `npm run assets:check` ใช้บนเครื่องที่มีคลังเต็มเพื่อตรวจเทียบต้นทางเพิ่ม ก่อน commit การเปลี่ยน assets ให้รัน `npm run assets:build` แล้ว `npm run assets:check` และ commit ชุด `runtime/ro/` ที่สร้างใหม่ด้วย ไฟล์ env สำเนาชื่อ `*.env` ถูกกันออกจาก Git และ Vercel เช่นเดียวกับ `.env.*`
 
 ## 3. ตรวจหลัง deploy
 

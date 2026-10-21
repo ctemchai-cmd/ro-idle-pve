@@ -234,7 +234,12 @@ def build(output=OUT, data_root=DATA, ro_root=RO):
     (output / 'manifest.json').write_bytes(encoded(index))
     return index
 
-def verify(output=OUT, data_root=DATA):
+def verify(output=OUT, data_root=DATA, *, artifact_only=False, ro_root=RO):
+    """Verify the shipped pack; local checks also require matching source files.
+
+    Deployment input intentionally excludes the source library. Select that mode
+    explicitly: Vercel can leave empty directories after applying .vercelignore.
+    """
     output = Path(output)
     index = read(output / 'manifest.json')
     _, _, _, selection_hash, _ = selection(data_root)
@@ -248,14 +253,14 @@ def verify(output=OUT, data_root=DATA):
         payload = (output / 'payload' / relative_ref(row['path'])).read_bytes()
         if sha(payload) != row['sha256'] or len(payload) != row['bytes']:
             raise ValueError('Pack payload changed: ' + row['path'])
-        if RO.exists():
-            source = RO / relative_ref(row['path'])
+        if not artifact_only:
+            source = ro_root / relative_ref(row['path'])
             if not source.is_file() or sha(source.read_bytes()) != row['sha256']:
                 raise ValueError('Selected local source changed; rebuild pack: ' + row['path'])
-    if (RO / 'prepared/game-pack.json').exists():
-        prepared = read(RO / 'prepared/game-pack.json')
+    if not artifact_only:
+        prepared = read(ro_root / 'prepared/game-pack.json')
         recipe_ids = {row['skill_id'] for row in index['recipes']}
-        current_recipes = [row for row in read(RO / 'prepared/skill-recipes.json')['recipes'] if row['skill_id'] in recipe_ids]
+        current_recipes = [row for row in read(ro_root / 'prepared/skill-recipes.json')['recipes'] if row['skill_id'] in recipe_ids]
         if encoded([prepared['font'], prepared['audio_events'], current_recipes]) != encoded([index['font'], index['audio_events'], index['recipes']]):
             raise ValueError('Prepared font/audio/recipes changed; rebuild pack')
     identity = {k: v for k, v in index.items() if k not in ['pack_hash', 'base_url', 'sizes', 'source_inputs_at_build']}
@@ -273,8 +278,12 @@ def verify(output=OUT, data_root=DATA):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--check', action='store_true')
+    parser.add_argument('--artifact-only', action='store_true',
+                        help='With --check, validate the runtime pack without the excluded source library')
     args = parser.parse_args()
-    index = verify() if args.check else build()
+    if args.artifact_only and not args.check:
+        parser.error('--artifact-only requires --check')
+    index = verify(artifact_only=args.artifact_only) if args.check else build()
     print(json.dumps({'pack_hash': index['pack_hash'], 'assets': len(index['assets']), 'files': len(index['files']), **index['sizes']}, ensure_ascii=False))
 
 if __name__ == '__main__':

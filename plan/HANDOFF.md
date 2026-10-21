@@ -2,6 +2,15 @@
 
 ไฟล์นี้บันทึกงานที่ agent ตัวหนึ่งทำแล้ว เพื่อให้ตัวถัดไป (Codex/Claude) ทำต่อได้ทันที อ่านคู่กับ [overview](overview.md) และ [AGENTS.md](../AGENTS.md) ล่าสุดอยู่บนสุด
 
+## 21 ต.ค. 2026 · Codex — แก้ Vercel build ติด source assets หลัง .vercelignore
+
+- ผู้ใช้ส่ง hosted build log ของ commit `7231312`: env ผ่านแล้ว แต่ assets:check ล้มที่ `library/characters/body_atlas/_--011e9b38cbbb.meta.json` หลัง Vercel clone แล้วลบ ignored files การทดสอบเดิมไม่มี assets directory เลยจึงไม่ครอบคลุมโฟลเดอร์ว่างที่เหลืออยู่
+- ทำซ้ำด้วย verifier จาก commit เดิมใน source context แยกที่มี `assets/ro/` ว่าง ได้ error ตรงรายงาน เพิ่ม explicit `--check --artifact-only` / `npm run assets:check:runtime` และให้ build ใช้คำสั่งนี้ ตรวจ payload checksum/file set/selection/manifest fingerprint/size เดิมครบโดยไม่อ่านคลังต้นทาง `npm run assets:check` ยังคงตรวจต้นทางอย่างเข้มงวดและปฏิเสธคลังไม่ครบ ไม่เปลี่ยนเป็นข้ามไฟล์หายรายตัว
+- เพิ่ม regression 4 กลุ่ม: empty/partial source tree, corrupt/missing/extra runtime files, stale selection และ manifest fingerprint ชุด Python runtime assets **12 tests ผ่าน** รวม local rebuild repeatability/source checks
+- Isolated production-configured `npm run build` ผ่าน env/assets/content/boundaries/typecheck/Vite/output/secrets ใน `/private/tmp/ro-vercel-build-t0fnr833` ใช้ dependencies เดิมผ่าน symlink, synthetic env ไม่มีจริง, ไม่มี .local/คลังต้นทาง แต่มี source directories ว่าง หลักฐาน `plan/evidence/vercel-runtime-build.{json,txt}` ไม่ใช่ hosted Vercel proof Content `14ffbc71…` / pack `f57a0773…` คงเดิม ไม่เปลี่ยน assets/gameplay/save
+- เพิ่ม `*.env` ใน .gitignore/.vercelignore ครอบคลุมไฟล์ env สำเนาที่ผู้ใช้สร้างไว้ราก project โดยไม่อ่าน/ลบ/ส่งไฟล์นั้น แก้ docs ให้ตรงว่า Git integration ใช้ .vercelignore หลัง clone เช่นเดียวกับ CLI
+- ไม่มี restart6173 หรือ cloud write; TASK-058 AC05/hosted deployment ยังรอตรวจจริง ขั้นถัดไปตรวจ Vercel deployment ของ commit ใหม่และขอ URL เมื่อพร้อม แล้วทำ hosted Auth/save transfer ตามหัวข้อถัดไป ไม่ปิด TASK-043/045/046/058 จาก local build เพียงอย่างเดียว
+
 
 
 ## 21 ต.ค. 2026 · Codex — TASK-058 ย้ายเซฟไป Supabase: เตรียม snapshot จริงแล้ว ยังไม่ import cloud

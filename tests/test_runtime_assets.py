@@ -89,5 +89,63 @@ class RuntimeAssetsTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'missing or unexpected'):
                 pack.verify(output)
 
+    def test_deployment_check_allows_empty_or_partial_source_directories(self):
+        with tempfile.TemporaryDirectory(prefix='ro-pack-', dir='/private/tmp') as work:
+            source = Path(work) / 'assets/ro'
+            # Git deployments can retain these directories after ignoring files.
+            (source / 'library/characters/body_atlas').mkdir(parents=True)
+            expected = pack.read(ROOT / 'runtime/ro/manifest.json')['pack_hash']
+            for state in ['empty', 'partial']:
+                with self.subTest(source=state):
+                    if state == 'partial':
+                        (source / 'prepared').mkdir()
+                        (source / 'prepared/game-pack.json').write_text('{}')
+                    self.assertEqual(pack.verify(artifact_only=True, ro_root=source)['pack_hash'], expected)
+                    with self.assertRaisesRegex(ValueError, 'Selected local source changed'):
+                        pack.verify(ro_root=source)
+            shutil.rmtree(source)
+            with self.assertRaisesRegex(ValueError, 'Selected local source changed'):
+                pack.verify(ro_root=source)
+
+    def test_deployment_check_rejects_changed_missing_or_extra_runtime_payload(self):
+        with tempfile.TemporaryDirectory(prefix='ro-pack-', dir='/private/tmp') as work:
+            output = Path(work) / 'runtime'
+            shutil.copytree(ROOT / 'runtime/ro', output)
+            row = pack.read(output / 'manifest.json')['files'][0]
+            payload = output / 'payload' / row['path']
+            original = payload.read_bytes()
+            payload.write_bytes(b'corrupted')
+            with self.assertRaisesRegex(ValueError, 'Pack payload changed'):
+                pack.verify(output, artifact_only=True)
+            payload.unlink()
+            with self.assertRaisesRegex(ValueError, 'missing or unexpected'):
+                pack.verify(output, artifact_only=True)
+            payload.write_bytes(original)
+            (output / 'payload/unexpected.txt').write_text('extra')
+            with self.assertRaisesRegex(ValueError, 'missing or unexpected'):
+                pack.verify(output, artifact_only=True)
+
+    def test_deployment_check_still_requires_matching_selection(self):
+        with tempfile.TemporaryDirectory(prefix='ro-pack-', dir='/private/tmp') as work:
+            data = Path(work) / 'data'
+            shutil.copytree(ROOT / 'plan/data', data)
+            file = data / 'skills/swordsman.json'
+            document = pack.read(file)
+            document['skills'][0]['presentation_id'] = 'changed_visual'
+            file.write_text(json.dumps(document))
+            with self.assertRaisesRegex(ValueError, 'Asset selection changed'):
+                pack.verify(data_root=data, artifact_only=True)
+
+    def test_deployment_check_still_requires_manifest_fingerprint(self):
+        with tempfile.TemporaryDirectory(prefix='ro-pack-', dir='/private/tmp') as work:
+            output = Path(work) / 'runtime'
+            shutil.copytree(ROOT / 'runtime/ro', output)
+            manifest = output / 'manifest.json'
+            index = pack.read(manifest)
+            index['audio_events'] = {}
+            manifest.write_bytes(pack.encoded(index))
+            with self.assertRaisesRegex(ValueError, 'manifest fingerprint mismatch'):
+                pack.verify(output, artifact_only=True)
+
 if __name__ == '__main__':
     unittest.main()

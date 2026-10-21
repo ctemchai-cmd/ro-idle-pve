@@ -46,7 +46,7 @@ Viteเสิร์ฟ `/ro/manifest.json` กับเฉพาะไฟล์�
 
 ไฟล์packรวมราว22MB แต่โหลดdefaultsceneเพียงบางส่วนและโหลดงาน/เพศ/ฉาก/เสียงอื่นตามต้องใช้ UIpanelวาดCSSและใช้ไอคอนที่คัดแล้ว รายงานinitialprofileเป็นงบscenario4Class1ชาย/ด่านแรก/ปิดเสียง ไม่ใช่ผลbrowsernetworkหรือการวัดทุกทีมที่ผู้ใช้เลือก
 
-สำหรับขั้นdeployในTASK-043: source uploadต้องมีselected runtime/ro,sourcecode,authored gameJSON/schemasและbuild toolsพร้อมmanifest ห้ามคัดคลังต้นทาง/node_modules/archivesไปweb output ปัจจุบันเก็บ `runtime/ro` ในGitเป็นartifactเพื่อbuildจากcheckoutใหม่ได้ และใช้ `.vercelignore` ลดCLIupload `assets:check` ตรวจartifactได้โดยไม่มีคลังต้นทาง ส่วนrebuildต้องทำบนเครื่องที่มีsource assets ดู [DEPLOYMENT.md](DEPLOYMENT.md) การเตรียมconfigยังไม่ใช่ผลทดสอบhosted deployment
+สำหรับขั้นdeployในTASK-043: source uploadต้องมีselected runtime/ro,sourcecode,authored gameJSON/schemasและbuild toolsพร้อมmanifest ห้ามคัดคลังต้นทาง/node_modules/archivesไปweb output ปัจจุบันเก็บ `runtime/ro` ในGitเป็นartifactเพื่อbuildจากcheckoutใหม่ได้ และใช้ `.vercelignore` กรองbuild inputทั้งGit integration/CLI `assets:check:runtime` ตรวจartifactโดยไม่ใช้คลังต้นทาง ส่วน `assets:check` ตรวจเทียบคลังเต็มและrebuildต้องทำบนเครื่องที่มีsource assets ดู [DEPLOYMENT.md](DEPLOYMENT.md) การเตรียมconfigยังไม่ใช่ผลทดสอบhosted deployment
 
 Simulation CLI and replay/report contracts: [SIMULATION.md](SIMULATION.md). The six bundled probes are not a balance verdict or an account progression simulator.
 
