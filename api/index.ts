@@ -41,7 +41,7 @@ export function createApi(env: Record<string, string | undefined>, injected?: Ap
       if (!handlers) { const rules = timedSync('rules_init', () => new AccountCommandRules()); handlers = { initial: createAccountHandler(reader, env.SAVE_SIGNING_KEY, rules), recurring: createRecurringHandlers(reader, env.SAVE_SIGNING_KEY, rules) }; }
       return handlers;
     }
-    services = { authenticate: request => authenticateRequest(request, client), ...reader, createAccount: (identity, input) => rulesHandlers().initial(identity, input), command: (identity, input) => (input as { type?: unknown })?.type === 'account.create' ? rulesHandlers().initial(identity, input) : rulesHandlers().recurring.command(identity, input), checkpoint: identity => rulesHandlers().recurring.checkpoint(identity), backups: (identity, id) => rulesHandlers().recurring.backups(identity, id) }; return services;
+    services = { authenticate: request => authenticateRequest(request, client, configuration.config.url + '/auth/v1'), ...reader, createAccount: (identity, input) => rulesHandlers().initial(identity, input), command: (identity, input) => (input as { type?: unknown })?.type === 'account.create' ? rulesHandlers().initial(identity, input) : rulesHandlers().recurring.command(identity, input), checkpoint: identity => rulesHandlers().recurring.checkpoint(identity), backups: (identity, id) => rulesHandlers().recurring.backups(identity, id) }; return services;
   }
   return { async fetch(request: Request): Promise<Response> {
     const started = performance.now(), timings: string[] = [];
@@ -105,7 +105,7 @@ export function createApi(env: Record<string, string | undefined>, injected?: Ap
 }
 
 /** Shared server command path; injectable store permits fault/race tests. */
-export function createRecurringHandlers(store: Pick<ReturnType<typeof createSaveStore>, 'loadContext' | 'readCreationReceipt' | 'commitCommand'> & Partial<Pick<ReturnType<typeof createSaveStore>, 'commitMaintenance' | 'listBackups' | 'loadCommandContext' | 'commitCommandContext'>>, signingKey: string | undefined, rules = new AccountCommandRules()) {
+export function createRecurringHandlers(store: Pick<ReturnType<typeof createSaveStore>, 'loadContext' | 'readCreationReceipt' | 'commitCommand'> & Partial<Pick<ReturnType<typeof createSaveStore>, 'commitMaintenance' | 'listBackups' | 'loadCommandContext' | 'commitCommandContext' | 'dailyClockReceipts'>>, signingKey: string | undefined, rules = new AccountCommandRules()) {
   const sha = (value: unknown) => createHash('sha256').update(rules.canonical(value)).digest('hex');
   const fail = (code: string, status: number): CreationReply => ({ body: { code }, status });
   function signature(accountId: string, revision: number, stateHash: string, contentHash: string, schemaVersion: number) {
@@ -183,6 +183,23 @@ export function createRecurringHandlers(store: Pick<ReturnType<typeof createSave
           if (!row.signature || row.signature !== command.params.signature || row.account_id !== accountId || sha(row.state) !== row.state_hash || !signed(row.signature, accountId, row.revision, row.state_hash, row.content_hash, row.schema_version)) return fail('BACKUP_SIGNATURE_INVALID', 409);
           let state: unknown = row.state; if (row.content_hash !== rules.versions.content_hash) { try { state = rules.migrateSave(state).state; } catch { return fail('MIGRATION_UNSUPPORTED', 409); } }
           next = rules.restoreSave(state, live, nowMs); reason = 'restore'; code = 'BACKUP_RESTORED';
+        } else if (kind === 'daily-clock' && command.params.checkpoint_id === 'daily-clock:essence:2026-10-21' && command.params.signature === 'daily-clock-incident-2026-10-21') {
+          // One explicitly requested incident correction, through the existing signed backup-before-write restore transaction.
+          if (!live || !store.dailyClockReceipts) return fail('DAILY_CLOCK_REPAIR_UNAVAILABLE', 409);
+          const rows = await store.dailyClockReceipts(identity), cutoff = Date.parse('2026-10-21T14:07:06.000Z');
+          const restored = rows.some(r => r.result.code === 'DAILY_CLOCK_ESSENCE_REFUNDED');
+          const affected = rows.find(r => r.result.code === 'DAILY_RETREATED' && Date.parse(r.server_at) <= cutoff && rows.some(start => start.command_type === 'battle.start_daily' && start.result.battle_id === r.result.battle_id && Date.parse(r.server_at) - Date.parse(start.server_at) >= 15000));
+          const record = live.daily_records.find(r => r.boss_id === 'essence' && r.ticket_day === '2026-10-21');
+          const today = new Date(nowMs + 7 * 3600000).toISOString().slice(0, 10);
+          if (restored || !affected || !record?.attempts_used || live.active_battle || today !== '2026-10-21') {
+            const receipt = rules.maintenanceReceipt(command, requestHash, live, live, context.server_at, restored ? 'DAILY_CLOCK_ALREADY_REFUNDED' : 'DAILY_CLOCK_NOT_AFFECTED');
+            receipt.outcome = 'rejected'; receipt.committed_revision = save.revision;
+            const committed = await store.commitCommand({ account_id: accountId, request_id: command.request_id, request_hash: requestHash, expected_revision: save.revision, state: live, state_hash: save.state_hash, receipt, signature: context.history.signature, key_version: 1, schema_version: 1, ...rules.versions, battle_write: { kind: 'keep' } });
+            if (committed.error) return fail(committed.error.message, committed.error.message === 'REVISION_CONFLICT' ? 409 : 503);
+            return { status: 200, body: { receipt: committed.data } };
+          }
+          next = structuredClone(live); next.daily_records.find(r => r.boss_id === 'essence' && r.ticket_day === '2026-10-21')!.attempts_used--;
+          reason = 'restore'; code = 'DAILY_CLOCK_ESSENCE_REFUNDED';
         } else return fail('INVALID_CHECKPOINT_ID', 400);
       } else return fail('COMMANDS_NOT_IMPLEMENTED', 501);
     } catch { return fail('MAINTENANCE_STATE_INVALID', 409); }

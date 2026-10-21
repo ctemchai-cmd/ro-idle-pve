@@ -9,6 +9,7 @@ import { bossSkin, farmSkins, shellVisuals } from '../../renderer/shell.ts';
 import type { AssetPack } from '../../renderer/pack.ts';
 import { SkillTimeline } from '../skill-timeline.tsx';
 import { battleSpeed, cycleBattleSpeed, subscribeBattleSpeed } from '../../client/battle-speed.ts';
+import { shouldAdvanceBattleFrame } from '../../client/battle-frame.ts';
 import { BattleStatistics } from '../battle-statistics.tsx';
 import type { ChallengeTarget, GameContext } from './shell.tsx';
 import { ResIcon, Sheet, compact, duration, friendNames, full, iconUrl, mapNames, resourceNames, type Wallet } from './kit.tsx';
@@ -105,7 +106,7 @@ function BossField({ context, app, running, checkpoint, outcome, retreat, statsR
     function frame(now: number) {
       const delta = document.hidden ? 0 : Math.max(0, Math.min(250, now - last)); last = now;
       try {
-        if (runningRef.current && !document.hidden && !app.session.state.terminal_result) { const speed = battleSpeed(); logical.current = Math.min(app.session.state.mode.time_limit_ms, Math.max(logical.current, app.session.state.game_time_ms) + delta * speed); if (logical.current - app.session.state.game_time_ms >= 50) renderer.current!.accept(feed(app.session.advanceTo(Math.floor(logical.current))) as never); }
+        if (runningRef.current && !document.hidden && !app.session.state.terminal_result) { const speed = battleSpeed(); logical.current = Math.min(app.session.state.mode.time_limit_ms, Math.max(logical.current, app.session.state.game_time_ms) + delta * speed); if (shouldAdvanceBattleFrame(app.session.state.game_time_ms, logical.current, app.session.state.mode.time_limit_ms)) renderer.current!.accept(feed(app.session.advanceTo(Math.floor(logical.current))) as never); }
         if (app.session.state.terminal_result && !document.hidden) tail = Math.min(2500, tail + delta * battleSpeed());
         clock.current = app.session.state.terminal_result ? app.session.state.game_time_ms : Math.min(logical.current, app.session.state.game_time_ms + 49);
         renderer.current!.draw(app.session.view(), clock.current + tail); if (now - notify > 100) { setView(app.session.view()); notify = now; }

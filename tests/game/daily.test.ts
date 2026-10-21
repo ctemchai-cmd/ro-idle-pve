@@ -10,6 +10,7 @@ import { bangkokDay, dailyBoss, dailyChest, dailyPhaseStats, modePolicy } from '
 import { captureReplay, runScenario } from '../../src/simulation/index.ts';
 import { content, unwrap } from './combat-fixtures.ts';
 import { buildAccount, treeData } from './class-skills.ts';
+import { shouldAdvanceBattleFrame } from '../../src/client/battle-frame.ts';
 
 const rules = new AccountCommandRules();
 function fixture(state: AccountState, startIso = '2026-10-20T05:00:00.000Z') {
@@ -30,6 +31,15 @@ function fixture(state: AccountState, startIso = '2026-10-20T05:00:00.000Z') {
 }
 const unlocked = (builds: string[] = ['knight_striker', 'crusader_holy_striker']) => { const tree = treeData('swordsman'); const state = buildAccount('swordsman', builds.map(id => tree.builds.find(b => b.id === id)!)); state.story.cleared_stage_ids = storyStages(content).slice(0, 20).map(s => s.id); return state; };
 const record = (state: AccountState, boss: string, day: string) => state.daily_records.find(row => row.boss_id === boss && row.ticket_day === day);
+test('daily spatial combat at1x/2x/4x preserves exact events, phases, RNG and all final metrics', () => {
+ const f=fixture(unlocked());assert.equal(f.run('battle.start_daily',{boss_id:'essence'}).outcome,'committed');const initial=structuredClone(f.stored!.payload);
+ const runs=[1,2,4].map(speed=>{
+  let state=unwrap(restoreBattle(initial,content)),logical=state.game_time_ms;const events=[];
+  while(!state.terminal_result){logical=Math.min(state.mode.time_limit_ms,logical+17*speed);if(shouldAdvanceBattleFrame(state.game_time_ms,logical,state.mode.time_limit_ms)){const step=unwrap(advanceUntil(state,logical,content,modePolicy(state.mode,content)));state=step.state;events.push(...step.events);}}
+  return{events,state:serializeBattle(state)};
+ });
+ assert.deepEqual(runs[1],runs[0]);assert.deepEqual(runs[2],runs[0]);
+});
 
 test('T036 AC-01: 3 bosses × 3 attempts per Bangkok day; the attempt is spent at start, HP carries over and the party restarts full', () => {
   const f = fixture(unlocked([])), day = bangkokDay(f.now + 1000);

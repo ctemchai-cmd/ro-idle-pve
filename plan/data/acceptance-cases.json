@@ -8393,6 +8393,183 @@
       "verification": "Targeted save tests, fresh realDB/Chrome, build and read-only hosted check; user SQL007/cloud timing pending",
       "existing_oracle_case_ids": [],
       "status": "not_run_implementation"
+    },
+    {
+      "id": "T065-AC-01",
+      "task_id": "TASK-065",
+      "acceptance_id": "AC-01",
+      "criterion": "actual SDK ES256 verification ใช้ JWKS HTTP1ครั้งแล้วคำขอถัดไปไม่ติดต่อ Auth; verified identityถูกต้อง และผิด signature/expiry/issuer/audience/roleไม่ยอมรับ",
+      "input_setup": "Pinned SupabaseSDK with ephemeral ES256 signer and project-scoped JWKS fetchcounter; fresh upstream local HS256 Auth/PostgREST and disposable accounts",
+      "input_refs": [
+        "plan/inprogress/tasks_065.md",
+        "src/server/auth/index.ts",
+        "tests/game/auth-jwks.test.ts",
+        "scripts/test_auth_stack.py"
+      ],
+      "parameters": {
+        "warm_request_count": 8,
+        "owner_cloud_writes": false
+      },
+      "expected": "actual SDK ES256 verification ใช้ JWKS HTTP1ครั้งแล้วคำขอถัดไปไม่ติดต่อ Auth; verified identityถูกต้อง และผิด signature/expiry/issuer/audience/roleไม่ยอมรับ",
+      "verification": "Targeted auth tests, fresh upstream Auth/API save replay, build and readonly hosted proof",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation"
+    },
+    {
+      "id": "T065-AC-02",
+      "task_id": "TASK-065",
+      "acceptance_id": "AC-02",
+      "criterion": "local HS256 upstream Auth/PostgREST API sign-in/owner-save/retryยังผ่านด้วย SDKfallback และไม่มี ownercloudwrite/6173restart",
+      "input_setup": "Pinned SupabaseSDK with ephemeral ES256 signer and project-scoped JWKS fetchcounter; fresh upstream local HS256 Auth/PostgREST and disposable accounts",
+      "input_refs": [
+        "plan/inprogress/tasks_065.md",
+        "src/server/auth/index.ts",
+        "tests/game/auth-jwks.test.ts",
+        "scripts/test_auth_stack.py"
+      ],
+      "parameters": {
+        "warm_request_count": 8,
+        "owner_cloud_writes": false
+      },
+      "expected": "local HS256 upstream Auth/PostgREST API sign-in/owner-save/retryยังผ่านด้วย SDKfallback และไม่มี ownercloudwrite/6173restart",
+      "verification": "Targeted auth tests, fresh upstream Auth/API save replay, build and readonly hosted proof",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation"
+    },
+    {
+      "id": "T065-AC-03",
+      "task_id": "TASK-065",
+      "acceptance_id": "AC-03",
+      "criterion": "build/type/boundaries/secretsผ่าน contenthashเดิม; โค้ดขึ้น Vercelและpublicsmokeผ่าน ไม่มีenv/SQLใหม่ ไม่อ้างตัวเลขphoneที่ยังไม่วัด",
+      "input_setup": "Pinned SupabaseSDK with ephemeral ES256 signer and project-scoped JWKS fetchcounter; fresh upstream local HS256 Auth/PostgREST and disposable accounts",
+      "input_refs": [
+        "plan/inprogress/tasks_065.md",
+        "src/server/auth/index.ts",
+        "tests/game/auth-jwks.test.ts",
+        "scripts/test_auth_stack.py"
+      ],
+      "parameters": {
+        "warm_request_count": 8,
+        "owner_cloud_writes": false
+      },
+      "expected": "build/type/boundaries/secretsผ่าน contenthashเดิม; โค้ดขึ้น Vercelและpublicsmokeผ่าน ไม่มีenv/SQLใหม่ ไม่อ้างตัวเลขphoneที่ยังไม่วัด",
+      "verification": "Targeted auth tests, fresh upstream Auth/API save replay, build and readonly hosted proof",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation"
+    },
+    {
+      "id": "T066-AC-01",
+      "task_id": "TASK-066",
+      "acceptance_id": "AC-01",
+      "criterion": "มีbefore/afterclick→paintของเมนูหลัก, Stats/Skills และสลับตัวละครบนCPU4×; median/p95ดีขึ้นโดยไม่มีAPIrequestเพื่อnavigate",
+      "input_setup": "Isolated fixture only, same content/seed/CPU budget; preserve owner save and6173",
+      "input_refs": [
+        "plan/inprogress/tasks_066.md",
+        "scripts/test_navigation_live.cjs"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false
+      },
+      "expected": "มีbefore/afterclick→paintของเมนูหลัก, Stats/Skills และสลับตัวละครบนCPU4×; median/p95ดีขึ้นโดยไม่มีAPIrequestเพื่อnavigate",
+      "verification": "Targeted unit traces and actualChrome/API/SQL before deployment; ownerquota requires ownerAuth confirmation",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation"
+    },
+    {
+      "id": "T066-AC-02",
+      "task_id": "TASK-066",
+      "acceptance_id": "AC-02",
+      "criterion": "เปลี่ยนตัว/อัปเกรด/เซฟ/เปลี่ยนของแล้วยังเห็นค่าปัจจุบัน ไม่ใช้ข้อมูลเก่า และไม่มีlayout/consoleerrorใหม่",
+      "input_setup": "Isolated fixture only, same content/seed/CPU budget; preserve owner save and6173",
+      "input_refs": [
+        "plan/inprogress/tasks_066.md",
+        "scripts/test_navigation_live.cjs"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false
+      },
+      "expected": "เปลี่ยนตัว/อัปเกรด/เซฟ/เปลี่ยนของแล้วยังเห็นค่าปัจจุบัน ไม่ใช้ข้อมูลเก่า และไม่มีlayout/consoleerrorใหม่",
+      "verification": "Targeted unit traces and actualChrome/API/SQL before deployment; ownerquota requires ownerAuth confirmation",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation"
+    },
+    {
+      "id": "T066-AC-03",
+      "task_id": "TASK-066",
+      "acceptance_id": "AC-03",
+      "criterion": "build/type/boundaries/secretsผ่าน contenthashเดิมถ้ากติกาไม่เปลี่ยน โค้ดขึ้นVercelพร้อมpublicsmoke; แยกfixturemetricsกับมือถือจริง",
+      "input_setup": "Isolated fixture only, same content/seed/CPU budget; preserve owner save and6173",
+      "input_refs": [
+        "plan/inprogress/tasks_066.md",
+        "scripts/test_navigation_live.cjs"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false
+      },
+      "expected": "build/type/boundaries/secretsผ่าน contenthashเดิมถ้ากติกาไม่เปลี่ยน โค้ดขึ้นVercelพร้อมpublicsmoke; แยกfixturemetricsกับมือถือจริง",
+      "verification": "Targeted unit traces and actualChrome/API/SQL before deployment; ownerquota requires ownerAuth confirmation",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation"
+    },
+    {
+      "id": "T067-AC-01",
+      "task_id": "TASK-067",
+      "acceptance_id": "AC-01",
+      "criterion": "ทุกfinalremainder1–49msของ60/90sเดินถึงdeadline; actualdailyUIจบและส่งfinishครั้งเดียว ไม่ค้าง/ไม่retreatเอง",
+      "input_setup": "Isolated fixture only, same content/seed/CPU budget; preserve owner save and6173",
+      "input_refs": [
+        "plan/inprogress/tasks_067.md",
+        "src/client/battle-frame.ts",
+        "scripts/test_daily_terminal_live.cjs",
+        "tests/game/heavy-cast.test.ts"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false
+      },
+      "expected": "ทุกfinalremainder1–49msของ60/90sเดินถึงdeadline; actualdailyUIจบและส่งfinishครั้งเดียว ไม่ค้าง/ไม่retreatเอง",
+      "verification": "Targeted unit traces and actualChrome/API/SQL before deployment; ownerquota requires ownerAuth confirmation",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation"
+    },
+    {
+      "id": "T067-AC-02",
+      "task_id": "TASK-067",
+      "acceptance_id": "AC-02",
+      "criterion": "finish/reload/recoveryไม่เสียสิทธิ์เพิ่มและไม่รับรางวัลซ้ำ; targetedchecks/build/contenthashเดิมผ่าน และdeploy/publicsmokeจริง",
+      "input_setup": "Isolated fixture only, same content/seed/CPU budget; preserve owner save and6173",
+      "input_refs": [
+        "plan/inprogress/tasks_067.md",
+        "src/client/battle-frame.ts",
+        "scripts/test_daily_terminal_live.cjs",
+        "tests/game/heavy-cast.test.ts"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false
+      },
+      "expected": "finish/reload/recoveryไม่เสียสิทธิ์เพิ่มและไม่รับรางวัลซ้ำ; targetedchecks/build/contenthashเดิมผ่าน และdeploy/publicsmokeจริง",
+      "verification": "Targeted unit traces and actualChrome/API/SQL before deployment; ownerquota requires ownerAuth confirmation",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation"
+    },
+    {
+      "id": "T067-AC-03",
+      "task_id": "TASK-067",
+      "acceptance_id": "AC-03",
+      "criterion": "ผู้ใช้ได้คืนสิทธิ์รอบเสียที่ระบุ โดยมีbackup/receiptและไม่เปลี่ยนความก้าวหน้าหรือดันอื่น; ถ้ายังทำไม่ได้ระบุข้อมูล/การเข้าถึงที่ขาด ไม่อ้างคืนแล้ว",
+      "input_setup": "Isolated fixture only, same content/seed/CPU budget; preserve owner save and6173",
+      "input_refs": [
+        "plan/inprogress/tasks_067.md",
+        "src/client/battle-frame.ts",
+        "scripts/test_daily_terminal_live.cjs",
+        "tests/game/heavy-cast.test.ts"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false
+      },
+      "expected": "ผู้ใช้ได้คืนสิทธิ์รอบเสียที่ระบุ โดยมีbackup/receiptและไม่เปลี่ยนความก้าวหน้าหรือดันอื่น; ถ้ายังทำไม่ได้ระบุข้อมูล/การเข้าถึงที่ขาด ไม่อ้างคืนแล้ว",
+      "verification": "Targeted unit traces and actualChrome/API/SQL before deployment; ownerquota requires ownerAuth confirmation",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation"
     }
   ]
 }

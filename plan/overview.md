@@ -1,6 +1,6 @@
 # ภาพรวมแผนและความคืบหน้า
 
-อัปเดต: 21 ตุลาคม 2026 · ระยะปัจจุบัน: **51/64 งานผ่าน done; TASK-041 บาลานซ์, TASK-058 ย้ายเซฟ และ TASK-064 อัปเกรดทันทีขึ้นVercelแล้ว/รอติดตั้งSQL007อยู่ inprogress; TASK-062 PWAขึ้นVercelและผ่านhostedแล้ว; TASK-063 ทุกmutationลด3→1requestsขึ้นVercelผ่านแล้ว; TASK-060 เซฟเริ่ม/จบและ TASK-061 resetดันขึ้นVercelแล้ว; TASK-048/054/055/056/057 อยู่ review รอผู้ใช้ตรวจภาพ**
+อัปเดต: 21 ตุลาคม 2026 · ระยะปัจจุบัน: **51/67 งานผ่าน done; TASK-041 บาลานซ์, TASK-058 ย้ายเซฟ และ TASK-064 อัปเกรดทันทีขึ้นVercelแล้ว/SQL007ติดตั้งแล้ว/รอcloudtimingอยู่ inprogress; TASK-062 PWAขึ้นVercelและผ่านhostedแล้ว; TASK-063 ทุกmutationลด3→1requestsขึ้นVercelผ่านแล้ว; TASK-060 เซฟเริ่ม/จบและ TASK-061 resetดันขึ้นVercelแล้ว; TASK-048/054/055/056/057 อยู่ review รอผู้ใช้ตรวจภาพ**
 
 เกมเว็บเล่นคนเดียวอ้างอิง Ragnarok Idle Adventure Plus จัดทีม main + NPC 3 คน คิว Active ตัวละสี่ช่อง ทำงานพร้อมกัน ฟาร์มทรัพยากรแล้วกดท้าบอส ใช้ Supabase เซฟหลักด้วยอีเมล/รหัสผ่าน ออนไลน์เป็นหลักพร้อมเซฟสำรองในเครื่อง และ deploy เว็บบน Vercel
 
@@ -14,7 +14,13 @@ Source ทั้งโปรเจกต์เผยแพร่ที่ [ctemc
 
 [TASK-060/061](done/tasks_060.md) ผ่านและขึ้นVercelที่5215676f8: ไม่มีเซฟระหว่างไฟต์/เปลี่ยนspeed, finishครั้งเดียว; resetล้างดันและmigrationซ่อมcarry-overในเกมที่dailyยังlocked Tests45ข้อ + isolatedChromeสองชุด + build/hostedsmokeผ่าน [หลักฐาน](evidence/task-060-061-hosted.json) Contenthash768e12a4… เจ้าของกดสำรองแล้วอัปเดตเซฟจึงซ่อมstateจริง ไม่แตะ6173
 
-[TASK-064](inprogress/tasks_064.md) Source65541f2abขึ้นVercelแล้ว: แสดงผลอัปเลเวล/สกิล/อุปกรณ์ทันทีขณะเซฟตามหลัง พร้อมคืนค่าถ้าเชื่อมต่อขาด; actualmobileUI/heldrequest/CPU4×และDB2RPCผ่านจริงในfreshstack, 20targetedchecks/build/readiness8/hosted3ผ่าน ไม่แตะ6173 ยังsingle-flight ไม่กดรัว ยังรอผู้ใช้ติดตั้งoptionalSQL007+cloud2RPCproofจึงdoneได้ ดู [หลักฐาน](evidence/task-064-review.json)
+[TASK-067](inprogress/tasks_067.md) เร่งด่วน: แก้dailyหมดเวลาค้างจากเศษ1–49ms และเตรียมปุ่มคืนEssence1attemptผ่านsignedbackup/replayguard ผู้ใช้ย้ำspeed1/2/4ต้องeventsและCCเหมือนกัน; actualdaily60s/reload/compensationผ่านfreshstack กำลังbuild/deploy ไม่คืนownerquotaแล้ว
+
+[TASK-066](inprogress/tasks_066.md) กำลังprofileเปลี่ยนหน้ามือถือ ยังไม่แก้/ยังไม่อ้างว่าเร็วขึ้น; emptybagbaseline35–115ms/CPU4x,0API รอtouch/populatedbag/เครื่องผู้ใช้ งานเร่งด่วน067ก่อน
+
+[TASK-065](inprogress/tasks_065.md) กำลังลดAuth HTTPต่อทุกsaveด้วยSDKgetClaims/cachedprojectJWKS หลังตรวจpublicES256จริง ไม่มีSQL/envใหม่ ผู้ใช้ยืนยันติดตั้งSQL007และเร็วขึ้นประมาณครึ่งหนึ่งแล้ว แต่ยังไม่ใช่instrumentedcloudtiming
+
+[TASK-064](inprogress/tasks_064.md) Source65541f2abขึ้นVercelแล้ว: แสดงผลอัปเลเวล/สกิล/อุปกรณ์ทันทีขณะเซฟตามหลัง พร้อมคืนค่าถ้าเชื่อมต่อขาด; actualmobileUI/heldrequest/CPU4×และDB2RPCผ่านจริงในfreshstack, 20targetedchecks/build/readiness8/hosted3ผ่าน ไม่แตะ6173 ยังsingle-flight ไม่กดรัว ผู้ใช้ติดตั้งSQL007แล้วและรายงานเร็วขึ้นครึ่งหนึ่ง ยังรอinstrumentedcloud2RPCproofจึงdoneได้ ดู [หลักฐาน](evidence/task-064-review.json)
 
 [TASK-063](done/tasks_063.md) ขึ้นVercelที่e39c7d071แล้ว: ทุกmutationใช้lazysharedrulesหลังAuthและรับreceipt+verifiedcheckpointในPOSTเดียวแทน3requests มีlegacyfallback/UUIDreconcileเดิม Server-Timing/regionsin1 ตรวจ37TS+Chrome8กลุ่ม/build/readiness8/hosted3ผ่าน ไม่เปลี่ยนcontenthash/SQL/6173 [หลักฐาน](evidence/task-063-review.json) ตัวเลขlatencybenchmarkเป็นcontrolledfixtureไม่ใช่เครื่องผู้ใช้
 
@@ -45,7 +51,7 @@ Q-001–Q-022 ตอบแล้ว: บัฟบวกกันไม่มี�
 | review | 5 | [TASK-048](review/tasks_048.md) game shell /play รอผู้ใช้ตรวจหน้าตา (AC-08), [TASK-054](review/tasks_054.md) ภาพการต่อสู้ตรง RO รอผู้ใช้ตรวจ (AC-06), [TASK-055](review/tasks_055.md) คำขอระหว่างลองเล่น รอผู้ใช้ (AC-06), [TASK-056](review/tasks_056.md) UI D-076–078/080 อัปเดตแล้วรอผู้ใช้ตรวจภาพ (AC-06), [TASK-057](review/tasks_057.md) ทรงผม D-079 อัปเดตแล้วรอผู้ใช้ตรวจ (AC-05) |
 | done | 51 | ผ่าน review ตามหลักฐานในแต่ละงาน |
 
-Progress ของกระดาน: **51/64 งานผ่าน done** ไม่รวมงานเตรียม assets ที่ทำก่อนเริ่มใช้กระดาน ตำแหน่งไฟล์เป็นสถานะจริง ID คงเดิม เมื่อย้ายไฟล์ให้อัปเดตจำนวนและลิงก์ในเอกสารนี้
+Progress ของกระดาน: **51/67 งานผ่าน done** ไม่รวมงานเตรียม assets ที่ทำก่อนเริ่มใช้กระดาน ตำแหน่งไฟล์เป็นสถานะจริง ID คงเดิม เมื่อย้ายไฟล์ให้อัปเดตจำนวนและลิงก์ในเอกสารนี้
 
 TASK-001–014 และ TASK-047 อยู่doneครบM0 TASK-015–028ผ่านแล้ว รอบภาพล่าสุด [TASK-020รอบ11](evidence/task-020-focus-impact-review.json) ผ่าน184TStests+4native/build/Chrome: focusนุ่มไร้กรอบและdamage numbersตรงnative ACTcontact/ลูกธนู-ลูกเวทย์กระทบ ภาพไม่เปลี่ยนผลcombat Runtimepack252IDs/505files/35audioรวม22.5MB
 

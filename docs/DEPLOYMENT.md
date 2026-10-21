@@ -135,3 +135,17 @@ UI ใหม่แสดงเลเวล/แต้ม/สกิล/อุป�
 การลดเวลาDBเพิ่มเติม: รัน [SQL007](../supabase/migrations/202610210007_command_roundtrips.sql) ทั้งไฟล์ในSupabaseSQL Editorของprojectเดิม ปลอดการแก้ข้อมูลเซฟ/ไม่มีkeysในไฟล์ รันซ้ำได้ เพิ่มwrapperสองตัวรอบatomicRPCเดิม แล้วรอไม่เกิน10วินาทีให้missing-function cacheหมด ก่อนติดตั้งเกมยังใช้เส้นทางเดิมและUIตอบสนองทันทีได้ ไม่ต้องเพิ่มenvหรือmigrateเซฟ
 
 Server-Timing `db_read`และ`db_commit`อย่างละ1callsยืนยัน2DBHTTPในordinarycommand ไม่รวมAuthgetUser; `rules_init`/`verify_state`/`calculate`/`verify_reply`แยกCPU Existinginitialaccount/maintenance/recoveryยังใช้เส้นทางเดิม ข้อมูลนี้ไม่ใช่การรับรองlatencyบนเครื่องผู้ใช้ ก่อนreloadให้จบไฟต์ก่อนตามPWAเดิม
+
+## ลด HTTP ตรวจล็อกอินซ้ำ (TASK-065)
+
+Serverใช้SDK `getClaims` ตรวจลายเซ็น/expiryด้วยprojectJWKSที่cacheไว้ แทน `getUser` ที่เรียกAuth serverทุกคำขอ กรณีES256/RSAหลังkeycacheแล้วไม่มีAuth HTTPเพิ่ม LegacyHS256ยังใช้fallbackAuthจริง ตรวจissuer/audience/role/UIDทุกrequest ไม่มีcacheuserdecision ไม่ต้องเพิ่มenvหรือSQL
+
+การตรวจJWTlocalยอมรับtokenที่ยังไม่หมดอายุ ไม่ตรวจuserban/globalrevocationกับAuthทุกครั้ง บัญชีส่วนตัวไม่มีkey/sessionเปลี่ยนในงานนี้ Requestdurationรวมnetwork/APIcoldstart/Auth/DB ไม่ใช่เวลาที่DBเขียนเพียงอย่างเดียว ยังต้องวัดcloudcommandเพื่อแยกเวลาที่เหลือ
+
+อ้างอิง [Supabase getClaims](https://supabase.com/docs/reference/javascript/auth-getclaims) โครงการจริงมีpublicES256JWKS แต่tokenเก่าที่เป็นHS256ยังใช้fallbackจนได้รับtokenใหม่ตามAuthปกติ
+
+## แก้ดันหมดเวลาค้างและสิทธิ์แก่นพลัง (TASK-067)
+
+Sourceใหม่flushเศษเวลา1–49msเมื่อชนdeadline จึงส่งbattle.finishได้จริง Speed1/2/4ยังใช้engine/seed/สูตรเดียวกัน ไม่เพิ่มmidfightwrites ไม่มีnewSQL/env/contentmigration
+
+กรณีผู้ใช้เสียสิทธิ์แก่นพลัง21Octจากบั๊กนี้ หลังจบไฟต์และreloadเปิดตั้งค่า→คืนสิทธิ์แก่นพลังรอบที่ค้าง ใช้ownerAuth/receiptเดิม ตรวจdailyretreat≥15sก่อนcutoff14:07:06UTCและcounterวันที่21Oct คืน1attemptเท่านั้น สำรองsignedstateก่อนCASและใช้receiptmarkerกันfreshUUIDซ้ำ ไม่ล้างHP/phase/chests/ทรัพยากร/ดันอื่น ไม่ใช่คำสั่งresetdailyทั่วไป และยังไม่อ้างว่ากดให้ownerแล้ว

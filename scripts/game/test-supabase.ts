@@ -31,7 +31,7 @@ function expect(ok: unknown, code: string): asserts ok { if (!ok) throw new Erro
 function publicClient() { return createClient(settings.url, env.VITE_SUPABASE_PUBLISHABLE_KEY!, { auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false } }); }
 const clients = [publicClient(), publicClient()];
 let failure: string | null = null;
-let failure_details: { status: number; code: string | null } | null = null;
+let failure_details: { status: number; code: string | null; verified_claims?: boolean; issuer_matches?: boolean; audience_matches?: boolean; role_matches?: boolean } | null = null;
 const cleanupErrors: string[] = [];
 try {
   for (let i = 0; i < 2; i++) {
@@ -45,7 +45,10 @@ try {
   const before = await clients[0]!.auth.getSession();
   const token = before.data.session?.access_token; expect(token, 'NO_ACCESS_TOKEN');
   const absent = await api.fetch(new Request('http://localhost/api/account', { headers: { authorization: `Bearer ${token}` } }));
-  if (absent.status !== 404) { const body = await absent.json() as { code?: unknown }; failure_details = { status: absent.status, code: typeof body.code === 'string' && /^[A-Z_]+$/.test(body.code) ? body.code : null }; }
+  if (absent.status !== 404) {
+    const body = await absent.json() as { code?: unknown }, checked = await clients[0]!.auth.getClaims(token), c = checked.data?.claims;
+    failure_details = { status: absent.status, code: typeof body.code === 'string' && /^[A-Z_]+$/.test(body.code) ? body.code : null, verified_claims: !!c && !checked.error, issuer_matches: c?.iss === settings.url + '/auth/v1', audience_matches: c?.aud === 'authenticated', role_matches: c?.role === 'authenticated' };
+  }
   expect(absent.status === 404, 'UNINITIALIZED_ACCOUNT_MUST_NOT_CREATE_WALLET');
   const content = loadValidatedContent(); expect(content.ok, 'CONTENT_INVALID');
   const creationRequestId = randomUUID();

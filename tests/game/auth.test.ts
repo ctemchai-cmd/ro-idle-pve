@@ -76,9 +76,9 @@ test('server config pins non-production project reference and rejects production
   assert.equal(readServerAuthConfig({ ...base, SUPABASE_SERVICE_ROLE_KEY: 'sb_publishable_fixture_only_123456' }).kind, 'invalid');
   assert.equal(readServerAuthConfig({ ...base, SUPABASE_TEST_PROJECT_REF: '' }).kind, 'invalid');
 });
-test('server verifies bearer with getUser and derives identity from provider, not request claims', async () => {
+test('server verifies bearer with getClaims and derives identity from the verified subject', async () => {
   const tokens: string[] = [];
-  const client = { auth: { async getUser(token: string) { tokens.push(token); return { data: { user: { id: uid, email: 'owner@example.invalid' } }, error: null }; } } } as unknown as Pick<SupabaseClient, 'auth'>;
+  const client = { auth: { async getClaims(token: string) { tokens.push(token); return { data: { header: { alg: 'ES256' }, claims: { sub: uid, email: 'owner@example.invalid', role: 'authenticated', aud: 'authenticated' } }, error: null }; } } } as unknown as Pick<SupabaseClient, 'auth'>;
   assert.equal((await authenticateRequest(new Request('http://localhost'), client)).ok, false);
   const request = new Request('http://localhost?account_id=other', { headers: { authorization: 'Bearer fixture.jwt.token' } }); const result = await authenticateRequest(request, client); assert.ok(result.ok); if (result.ok) assert.equal(result.value.account_id, uid); assert.deepEqual(tokens, ['fixture.jwt.token']);
 });

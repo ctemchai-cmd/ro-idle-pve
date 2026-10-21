@@ -12,6 +12,7 @@ import { storyFarmSnapshot, storyStage, storyStages } from '../../src/domain/mod
 import { backupCompat, backupFile, backupRelation, parseBackupFile, saveSummary } from '../../src/domain/build/save-summary.ts';
 import { SaveController, SaveProtocolError, type SavePorts } from '../../src/client/save-controller.ts';
 import { content } from './combat-fixtures.ts';
+import { dailyBoss, dailyPhaseStats } from '../../src/domain/modes/daily.ts';
 
 const rules = new AccountCommandRules(), key = 'k'.repeat(48), id = '11111111-1111-4111-8111-111111111111', other = '99999999-9999-4999-8999-999999999999';
 const sha = (value: unknown) => createHash('sha256').update(rules.canonical(value)).digest('hex');
@@ -26,7 +27,9 @@ function stack(state: AccountState, versions: Partial<StoredSave> = {}, account 
   let save: StoredSave = { account_id: account, revision: 1, ...versionRow, state_hash: sha(state), state: structuredClone(state), updated_at: new Date(now).toISOString() };
   const history = new Map<number, StoredHistory>([[1, { account_id: account, revision: 1, state: structuredClone(state), state_hash: sha(state), signature: sign(account, 1, sha(state), versionRow.content_hash, versionRow.schema_version), key_version: 1, created_at: save.updated_at }]]);
   const backups: StoredBackup[] = [], receipts = new Map<string, { request_hash: string; receipt: Receipt }>();
+  const clockReceipts: Receipt[] = [];
   const store = {
+    async dailyClockReceipts() { return structuredClone([...clockReceipts, ...[...receipts.values()].map(r => r.receipt)]); },
     async loadContext(): Promise<SaveContext> { return structuredClone({ server_at: new Date(now).toISOString(), save, history: history.get(save.revision) ?? null, battle }); },
     async readCreationReceipt(_: unknown, requestId: string) { return structuredClone(receipts.get(requestId) ?? null); },
     async commitCommand(input: CommandCommit) {
@@ -57,7 +60,7 @@ function stack(state: AccountState, versions: Partial<StoredSave> = {}, account 
   }
   async function send(type: string, params: unknown, revision?: number, requestId?: string) { now += 1000; const reply = await api.command(identity, command(type, params, revision, requestId)); return reply as { status: number; body: { receipt?: Receipt; code?: string } }; }
   return {
-    api, identity, send, command, backups, history,
+    api, identity, send, command, backups, history, clockReceipts,
     get save() { return save; }, get state() { return save.state as AccountState; }, get now() { return now; },
     advance(ms: number) { now += ms; },
     corrupt(edit: (s: AccountState) => void) { const s = structuredClone(save.state) as AccountState; edit(s); save = { ...save, state: s }; },
@@ -208,4 +211,27 @@ test('T040 AC-05: compatibility matrix — current/older/newer/unknown/cost-vers
   const wallet = structuredClone(old.state.wallet), refund = await old.send('character.reset_build', { character_id: 'main', features: ['skills'] });
   assert.equal(refund.body.receipt?.result.code, 'BUILD_RESET'); assert.equal(old.state.wallet.gold - wallet.gold, 60, `refund the paid 60, not today\'s ${currentPrice.gold}`); assert.equal(old.state.wallet.skill_manual - wallet.skill_manual, 12);
   assert.equal((await old.send('character.reset_build', { character_id: 'main', features: ['skills'] })).body.receipt?.result.resource_delta.gold, 0, 'second reset refunds nothing');
+});
+
+
+test('21Oct daily clock incident refunds one Essence attempt with signed backup; retries cannot refund twice', async () => {
+ const state:AccountState=progressed();
+ state.daily_records=(['essence','treasury'] as const).map(boss=>({boss_id:boss,ticket_day:'2026-10-21',attempts_used:2,phase:1,current_hp:dailyPhaseStats(dailyBoss(boss,content),1,2).hp,rewarded_phases:[],chapter_snapshot:2})) as AccountState['daily_records'];
+ const f=stack(state);f.advance(24*hour+hour);
+ const start=rules.maintenanceReceipt(f.command('battle.start_daily',{boss_id:'essence'}),'a'.repeat(64),state,state,'2026-10-21T05:00:00.000Z','DAILY_STARTED');start.result.battle_id='33333333-3333-4333-8333-333333333333';
+ const retreat=structuredClone(start);retreat.command_type='battle.retreat';retreat.server_at='2026-10-21T05:01:00.000Z';retreat.result.code='DAILY_RETREATED';f.clockReceipts.push(start,retreat);
+ const params={checkpoint_id:'daily-clock:essence:2026-10-21',signature:'daily-clock-incident-2026-10-21'};
+ const result=await f.send('backup.restore_request',params);
+ assert.equal(result.status,200);assert.equal(result.body.receipt?.result.code,'DAILY_CLOCK_ESSENCE_REFUNDED');
+ const expected=structuredClone(state);expected.daily_records.find(r=>r.boss_id==='essence')!.attempts_used=1;
+ assert.deepEqual(f.state,expected);assert.equal(f.backups.length,1);assert.deepEqual(f.backups[0]!.state,state);assert.ok(f.backups[0]!.signature);assert.equal((await f.checkpoint()).status,200);
+ const again=await f.send('backup.restore_request',params);
+ assert.equal(again.status,200);assert.equal(again.body.receipt?.outcome,'rejected');assert.equal(again.body.receipt?.result.code,'DAILY_CLOCK_ALREADY_REFUNDED');assert.equal(f.backups.length,1);assert.deepEqual(f.state,expected);
+});
+
+test('daily clock repair without an affected historical retreat does not change quota or create a backup', async () => {
+ const state:AccountState=progressed();state.daily_records=[{boss_id:'essence',ticket_day:'2026-10-21',attempts_used:1,phase:1,current_hp:dailyPhaseStats(dailyBoss('essence',content),1,2).hp,rewarded_phases:[],chapter_snapshot:2}];
+ const f=stack(state);f.advance(24*hour);
+ const result=await f.send('backup.restore_request',{checkpoint_id:'daily-clock:essence:2026-10-21',signature:'daily-clock-incident-2026-10-21'});
+ assert.equal(result.status,200);assert.equal(result.body.receipt?.outcome,'rejected');assert.equal(result.body.receipt?.result.code,'DAILY_CLOCK_NOT_AFFECTED');assert.deepEqual(f.state,state);assert.equal(f.backups.length,0);
 });

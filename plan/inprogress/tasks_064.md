@@ -53,3 +53,7 @@ Targetedtests + freshPostgres/Auth/Chrome; productionอ่านpublicroutesเ
 - Source65541f2abdeployแล้วและpublicsmoke3กลุ่มผ่าน ก่อนdoneยังต้องSQL007ติดตั้งจริงและcloud2RPCproof; UIpreviewใช้ได้แม้SQLยังไม่ติดตั้ง
 
 รับbundleใหม่: จบไฟต์แล้วreloadเว็บ/PWA ไม่มีauto-reloadกลางไฟต์ แสดงผลทันทีทำงานก่อนSQL007 แต่การลดเวลาบันทึกจริงต้องให้ผู้ใช้รันSQL007เอง
+
+## ข้อมูลผู้ใช้เพิ่มเติม 21 ต.ค.2026
+
+ผู้ใช้ยืนยันรันSQL007แล้วและรายงานว่าเร็วขึ้นครึ่งหนึ่ง ไม่ถือเป็นตัวเลขDBwrite/Server-Timingที่วัดโดยตรง AC04ยังรอinstrumentedcloudfastpath; TASK065ลดAuthHTTPเป็นงานต่อเนื่อง ไม่reopenการรันSQL

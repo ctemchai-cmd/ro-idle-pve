@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-21",
+  "passed": false,
+  "implementation_verified": true,
+  "targeted_tests": 41,
+  "content_hash": "768e12a49bf339711d44f501c3710374adbcd10d9eb74d6a2e6f9b8aa79330af",
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "evidence": [
+    "plan/evidence/task-067-targeted.txt",
+    "plan/evidence/task-067-build.txt",
+    "plan/evidence/task-067-local-stack.json",
+    "plan/evidence/task-067-daily-terminal-live.json"
+  ],
+  "pending": [
+    "Deployment and publicsmoke",
+    "Owner clicksSettings oneoffEssence refund and confirms quota"
+  ],
+  "task_id": "TASK-067",
+  "root_cause": "Final1–49ms remains below the50ms gate while logicaltime is capped, preventing the terminalevent and finishrequest",
+  "fixed": "Always flush atdeadline; engine/formulas unchanged",
+  "speed_parity": {
+    "speeds": [
+      1,
+      2,
+      4
+    ],
+    "heavy_skills": 3,
+    "control_types": 4,
+    "compared": [
+      "completeevents",
+      "interrupts",
+      "RNG",
+      "finalcheckpoint",
+      "metrics",
+      "spatialdailyphases"
+    ]
+  },
+  "limitations": [
+    "Refund is1Essence attempt on21Oct only, requires prior>=15s dailyretreat before14:07:06UTC, backed up and once-only",
+    "Owner quota not modified yet"
+  ]
+}

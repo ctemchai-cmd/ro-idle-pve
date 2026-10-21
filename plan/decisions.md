@@ -113,6 +113,11 @@
 
 | D-088 | 21 ต.ค.2026 ผู้ใช้ย้ำว่าทุกsaveยังรอ2sและเป็นเกมส่วนตัวไม่ต้องเน้นทดสอบกันโกง: ให้ปรับการกดให้เห็นผลทันทีพร้อมตรวจเฉพาะเซฟไม่หาย/ไม่หักซ้ำ | TASK-064 assistantเลือกdisplaypreviewจากsharedreducersสำหรับผลแน่นอน ไม่เขียนpreviewลงconfirmedbackup/ไม่เดาผลสุ่ม คืนค่าหากsaveล้ม ยังมีpendingUUIDเดิม; optionalSQL007รวมอ่านreceipt+context/commit+contextเหลือ2DBRPC ใช้legacyถ้ายังไม่ติดตั้ง ไม่เพิ่มanti-cheatระบบใหม่ |
 
+| D-089 | 21 ต.ค.2026 ผู้ใช้รันSQL007แล้วรายงานว่าเร็วขึ้นครึ่งหนึ่ง และถามว่ายังลดได้ไหม/ทำไมการบันทึกDBจึงนาน: แยกเวลารวมnetwork/API/Auth/DBและลดงานนอกDBต่อ | TASK-065 ใช้SDKgetClaimsตรวจJWTกับcachedprojectJWKSแทนAuthgetUserHTTPทุกครั้ง โปรเจกต์publicJWKSมีES256จริง LegacyHS256ใช้SDKfallbackAuthเดิม ไม่มีnewSQL/env/สูตร ไม่cacheผลอนุญาตหรือownerstate ไม่มีการหมุนkey/session |
+
+| D-090 | 21 ต.ค.2026 ผู้ใช้รายงานเปลี่ยนแต่ละหน้า0.5–1s ขอให้ลื่นขึ้น | TASK-066 profileactualmobilemenus/touch/CPUก่อนแก้ Emptybag15clicks/CPU4xได้35–115msและ0APIrequests ยังไม่พออ้างว่าreproduceบนเครื่องผู้ใช้ |
+| D-091 | 21 ต.ค.2026 ดันแก่นพลังจบค้าง รีเฟรชแล้วเสียquota; ผู้ใช้ย้ำx1/x2/x4ต้องคำนวณและขัดร่ายเหมือนเดิม | TASK-067 priorityก่อนnavigation: final1–49msถูก50msgateทิ้ง แก้flushdeadlineในclientadapter ไม่เปลี่ยนengine/สูตร; exactspeedparitytestsและactualdaily60s+signedonce-onlyEssencequota compensationผ่านfixture ผู้ใช้ต้องกดคืนผ่านownerAuth ไม่มีrawstateimport/SQL/envใหม่ |
+
 ## คำถามหลักที่ส่งให้ผู้ใช้แล้ว
 
 | ID | ประเด็น | สถานะ |

@@ -2,7 +2,8 @@
 // interrupt effect cancels it, and every Class 1 tree owns such a skill by Lv.5 so no stage forces one class.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { advanceUntil, createBattle } from '../../src/domain/combat/index.ts';
+import { advanceUntil, createBattle, serializeBattle } from '../../src/domain/combat/index.ts';
+import { shouldAdvanceBattleFrame } from '../../src/client/battle-frame.ts';
 import { storyStages, storyBoss } from '../../src/domain/modes/story.ts';
 import { interruptSkills } from '../../src/simulation/balance.ts';
 import { content, unwrap } from './combat-fixtures.ts';
@@ -11,6 +12,28 @@ import { probe, resolved } from './class-skills.ts';
 const mode = { kind: 'story' as const, ref: 'heavy-cast', time_limit_ms: 20000, ticket_day: null, daily_phase: null, daily_current_hp: null, reserved_phase_keys: [] };
 /** A boss that only casts Cataclysm against one player who uses `skill` (chance forced to 1 so the rule, not luck, is tested). */
 const HEAVY = ['enemy_cataclysm', 'enemy_doom', 'enemy_twin_hex'] as const;
+test('1x/2x/4x frame clocks preserve exact events, interruptions and final state for all heavy casts and four interrupt types', () => {
+  for (const heavy of HEAVY) for (const [skill, effect] of [['swordsman_bash', 'stun'], ['mage_cold_bolt', 'freeze'], ['acolyte_holy_light', 'silence'], ['sage_spell_breaker', 'interrupt']] as const) {
+    const runs = [1, 2, 4].map(speed => {
+      const own = resolved(skill, 10) as unknown as { definition: { effects: { type: string; status_id?: string; chance?: number }[] } };
+      for (const e of own.definition.effects) if (e.type === 'interrupt' || e.status_id === effect) e.chance = 1;
+      const player = probe('p', 'player', 'front_1', [own as never], false), boss = probe('e_boss', 'enemy', 'front_1', [resolved(heavy, 1)], false);
+      player.stat_blueprint.derived_offsets.max_hp = boss.stat_blueprint.derived_offsets.max_hp = 100000;
+      let state = unwrap(createBattle({ actors: [player, boss], mode }, content, 4)), logical = 0;
+      const events = [];
+      while (!state.terminal_result) {
+        logical = Math.min(mode.time_limit_ms, logical + 17 * speed);
+        if (shouldAdvanceBattleFrame(state.game_time_ms, logical, mode.time_limit_ms)) {
+          const next = unwrap(advanceUntil(state, logical, content)); state = next.state; events.push(...next.events);
+        }
+      }
+      assert.ok(events.some(e => e.type === 'cast_interrupt' && e.actor_id === 'e_boss' && e.skill_id === heavy));
+      return { events, state: serializeBattle(state) };
+    });
+    assert.deepEqual(runs[1], runs[0], `${heavy}/${effect}: 2x differs from1x`);
+    assert.deepEqual(runs[2], runs[0], `${heavy}/${effect}: 4x differs from1x`);
+  }
+});
 function duel(skill: string, statusOrEffect: string, heavy: string = 'enemy_cataclysm') {
   const own = resolved(skill, 10) as unknown as { definition: { effects: { type: string; status_id?: string; chance?: number }[] } };
   for (const effect of own.definition.effects) if (effect.type === 'interrupt' || effect.status_id === statusOrEffect) effect.chance = 1;

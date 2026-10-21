@@ -1,5 +1,6 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 import type { AuthenticatedIdentity } from '../../contracts/auth.ts';
+import type { Receipt } from '../../contracts/index.ts';
 import type { CommandCommit, InitialSaveCommit, MaintenanceCommit, ReceiptRecord, SaveContext, StoredBackup, StoredSave } from '../../contracts/save.ts';
 import { timed } from './timing.ts';
 export type { StoredSave } from '../../contracts/save.ts';
@@ -22,6 +23,14 @@ export function createSaveStore(client: SupabaseClient, environment: string, pro
     if (error || data !== true) throw new Error('DATABASE_ENVIRONMENT_MISMATCH');
   }
   return {
+    /** Read-only incident evidence; used only when the owner explicitly requests the21Oct daily-clock refund. */
+    async dailyClockReceipts(identity: AuthenticatedIdentity): Promise<Receipt[]> {
+      await assertEnvironment();
+      const { data, error } = await client.from('game_command_receipts').select('account_id,receipt').eq('account_id', identity.account_id).in('command_type', ['battle.start_daily', 'battle.retreat', 'backup.restore_request']).gte('created_at', '2026-10-20T17:00:00.000Z').order('created_at', { ascending: false }).limit(200);
+      if (error) throw new Error('RECEIPT_READ_FAILED');
+      for (const row of data ?? []) if (row.account_id !== identity.account_id) throw new Error('SAVE_CONTEXT_OWNER_MISMATCH');
+      return (data ?? []).map(row => row.receipt as Receipt);
+    },
     async loadContext(identity: AuthenticatedIdentity): Promise<SaveContext> {
       const { data, error } = await timed('db_context', () => client.rpc('game_load_context', { p_account_id: identity.account_id, p_environment: environment, p_project_ref: projectRef }));
       if (error) throw new Error('SAVE_CONTEXT_UNAVAILABLE');

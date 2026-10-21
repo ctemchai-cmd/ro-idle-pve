@@ -17,6 +17,8 @@ export function TopHud({ context, save, controller, sound, toggleSound, reconnec
   // TASK-040: the maintenance panel explains a save that needs migration/recovery; the generic alert would mislead.
   const maintenance = save.reason === 'SAVE_MIGRATION_REQUIRED' || save.reason === 'SAVE_INTEGRITY_FAILED';
   const [levels, setLevels] = useState(() => { try { return readAudioLevels(window.localStorage); } catch { return { music: .12, effects: .2 }; } });
+  const [dailyRepaired, setDailyRepaired] = useState(false);
+  const canRepairDaily = !dailyRepaired && new Date(Date.now() + 7 * 3600000).toISOString().slice(0, 10) === '2026-10-21' && state.daily_records.some(r => r.boss_id === 'essence' && r.ticket_day === '2026-10-21' && r.attempts_used > 0);
   // Volume applies immediately and is remembered on this device only.
   function changeLevel(kind: 'music' | 'effects', percent: number) { const next = { ...levels, [kind]: percent / 100 }; setLevels(next); pack?.setAudioLevels(next); try { saveAudioLevels(window.localStorage, next); } catch { /* Session-only fallback. */ } }
   return <>
@@ -49,6 +51,7 @@ export function TopHud({ context, save, controller, sound, toggleSound, reconnec
         <div className="settings-row"><span>เสียงและเพลง</span><button className="btn small" onClick={toggleSound}>{sound ? 'ปิดเสียง' : 'เปิดเสียง'}</button></div>
         {(['music', 'effects'] as const).map(kind => <label key={kind} className="volume-row"><span><Icon name={kind === 'music' ? 'music' : 'sound'} /> {kind === 'music' ? 'เพลง' : 'เอฟเฟกต์'}</span><input type="range" min={0} max={100} step={5} value={Math.round(levels[kind] * 100)} aria-label={kind === 'music' ? 'ระดับเสียงเพลง' : 'ระดับเสียงเอฟเฟกต์'} onChange={e => changeLevel(kind, Number(e.target.value))} /><output>{Math.round(levels[kind] * 100)}%</output></label>)}
         <button className="btn" onClick={() => setSheet('backup')}><Icon name="save" />สำรอง / กู้คืนเซฟ</button>
+        {canRepairDaily && <button className="btn" disabled={context.locked} onClick={() => void context.submit('backup.restore_request', { checkpoint_id: 'daily-clock:essence:2026-10-21', signature: 'daily-clock-incident-2026-10-21' }).then(ok => { if (ok) { setDailyRepaired(true); context.toast('คืนสิทธิ์แก่นพลัง 1 ครั้งแล้ว'); } })}>คืนสิทธิ์แก่นพลังรอบที่ค้าง</button>}
         <button className="btn danger-outline" onClick={() => setSheet('reset')}><Icon name="reset" />รีเซ็ตเซฟ · เริ่มเกมใหม่</button>
         <a className="btn" href="/auth">บัญชี / ออกจากระบบ</a>
         <a className="btn ghost" href="/">สนามทดลองการต่อสู้</a>
