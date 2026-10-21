@@ -1,0 +1,31 @@
+{
+  "task_id": "TASK-021",
+  "passed": true,
+  "actual_supabase_auth": true,
+  "self_hosted_local": true,
+  "checks": [
+    "Two throwaway identities sign in with email/password against real Auth",
+    "Verified-UID account.create writes canonical seven-character/42-item state, signed history and receipt atomically; concurrent/repeated requests grant once; forged owner/wallet and raw privileged RPC rejected",
+    "Actual JWT/PostgREST RLS: both owners read own four tables/RPC; other owners hidden; direct raw writes and privileged RPC denied",
+    "Anonymous/invalid JWT API denied; caller-supplied account ID cannot redirect own save read",
+    "Real session refresh/logout and one-use provider recovery token changes password; old password fails, new password signs in"
+  ],
+  "failure": null,
+  "cleanup_errors": [],
+  "source_sha256": {
+    "scripts/game/test-supabase.ts": "9ac4c3a4e86757d4c46b95e3f72eb89af62c886d2e733bad2992dc5ac6308f95",
+    "supabase/migrations/202610190001_game_storage.sql": "2e1f7249e325dbf28394bced7e6a38669c1ab120889e5e1770a78fa6b57d0583",
+    "supabase/migrations/202610190002_account_creation.sql": "4b6442e786e6b39c0f4d3f39537d7f1f9c136f57fb530eac50bf1df29b1d0f1e",
+    "src/domain/account/creation.ts": "4d1494770b49148c4ef56ced2051a28a386e2452b6de63f714bc60465eb4b6ce",
+    "src/domain/account/initialize.ts": "952c1855249b2a6ecde6fa9220ed210533e47f71979f8fab2f890071ac2a870e",
+    "src/server/persistence/supabase.ts": "b52c54b411099ab031effc2a1308110e82da808b5a233099fccae93d0cea2a8d",
+    "src/server/auth/index.ts": "c291652d29b8c4de1b76f0e1a9b2673e4c7307f7d7c7c3035b8d6137b46e8615",
+    "api/index.ts": "8b976d62383fe0258dd568c3361a74c2ccf70254d5d5b7e27266b2c084cd2f3a"
+  },
+  "limitations": [
+    "No SMTP/browser redirect delivery test in this script; recovery uses admin-generated token, never sends email.",
+    "Only account.create writes here; recurring mutations/checkpoints/reconnect remain TASK-022.",
+    "Browser session-expiry behavior has separate UI tests."
+  ],
+  "credentials_logged": false
+}

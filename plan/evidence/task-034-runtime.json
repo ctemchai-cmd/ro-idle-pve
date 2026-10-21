@@ -1,0 +1,476 @@
+{
+ "task_id": "TASK-034",
+ "content_hash": "4a7901023a240045d17c8aaa7e74d77f2e85f76c8afae3e66ac2d2881bccef90",
+ "rules_version": "combat-baseline-v1",
+ "golden_cases": 57,
+ "active_probe": {
+  "seed": 1,
+  "game_ms": 60000,
+  "resolves_per_level": {
+   "merchant_mammonite": [
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28
+   ],
+   "merchant_cart_revolution": [
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26
+   ],
+   "merchant_loud_voice": [
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26
+   ],
+   "merchant_first_aid": [
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26
+   ],
+   "blacksmith_hammer_fall": [
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24
+   ],
+   "blacksmith_adrenaline": [
+    27,
+    28,
+    28,
+    28,
+    29,
+    29,
+    29,
+    30,
+    30,
+    30
+   ],
+   "blacksmith_weapon_perfection": [
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24
+   ],
+   "blacksmith_meltdown": [
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25
+   ],
+   "blacksmith_cart_crash": [
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22
+   ],
+   "alchemist_acid_terror": [
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24
+   ],
+   "alchemist_potion_pitcher": [
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25
+   ],
+   "alchemist_hell_plant": [
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20
+   ],
+   "alchemist_bio_cannibalize": [
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20
+   ],
+   "alchemist_demonstration": [
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21
+   ]
+  }
+ },
+ "hell_plant": {
+  "plants": 31,
+  "replaced": 25,
+  "expired": 4,
+  "owner_damage": 1560
+ },
+ "healing_plant": {
+  "plants": 6,
+  "owner_death_despawned": 2
+ },
+ "blacksmith": {
+  "attack_speed": [
+   107.25,
+   134.0625
+  ],
+  "physical_attack": [
+   631,
+   782.4399999999999
+  ],
+  "magical_attack": [
+   640,
+   640
+  ]
+ },
+ "dry_trace": {
+  "blacksmith_hammer": {
+   "si_ms": 1370,
+   "cycle_ms": 9484,
+   "passive_changed_stats": [
+    "physical_attack",
+    "max_hp",
+    "physical_defense"
+   ]
+  },
+  "blacksmith_weaponsmith": {
+   "si_ms": 1325,
+   "cycle_ms": 8815,
+   "passive_changed_stats": [
+    "physical_attack",
+    "max_hp",
+    "physical_defense"
+   ]
+  },
+  "alchemist_chemist": {
+   "si_ms": 1355,
+   "cycle_ms": 9833,
+   "passive_changed_stats": [
+    "magical_attack",
+    "max_hp",
+    "outgoing_healing_bonus"
+   ]
+  },
+  "alchemist_gardener": {
+   "si_ms": 1340,
+   "cycle_ms": 9624,
+   "passive_changed_stats": [
+    "magical_attack",
+    "max_hp",
+    "outgoing_healing_bonus"
+   ]
+  }
+ },
+ "real_fight_first_starts": {
+  "blacksmith_hammer": {
+   "real": [
+    {
+     "skill_id": "blacksmith_meltdown",
+     "start_ms": 1370
+    },
+    {
+     "skill_id": "blacksmith_hammer_fall",
+     "start_ms": 3700
+    },
+    {
+     "skill_id": "blacksmith_cart_crash",
+     "start_ms": 6129
+    },
+    {
+     "skill_id": "merchant_mammonite",
+     "start_ms": 8789
+    }
+   ],
+   "dry": [
+    {
+     "skill_id": "blacksmith_meltdown",
+     "start_ms": 1370
+    },
+    {
+     "skill_id": "blacksmith_hammer_fall",
+     "start_ms": 3700
+    },
+    {
+     "skill_id": "blacksmith_cart_crash",
+     "start_ms": 6129
+    },
+    {
+     "skill_id": "merchant_mammonite",
+     "start_ms": 8789
+    }
+   ]
+  },
+  "blacksmith_weaponsmith": {
+   "real": [
+    {
+     "skill_id": "blacksmith_adrenaline",
+     "start_ms": 1325
+    },
+    {
+     "skill_id": "blacksmith_weapon_perfection",
+     "start_ms": 3365
+    },
+    {
+     "skill_id": "merchant_loud_voice",
+     "start_ms": 5376
+    },
+    {
+     "skill_id": "blacksmith_meltdown",
+     "start_ms": 7185
+    }
+   ],
+   "dry": [
+    {
+     "skill_id": "blacksmith_adrenaline",
+     "start_ms": 1325
+    },
+    {
+     "skill_id": "blacksmith_weapon_perfection",
+     "start_ms": 3630
+    },
+    {
+     "skill_id": "merchant_loud_voice",
+     "start_ms": 5906
+    },
+    {
+     "skill_id": "blacksmith_meltdown",
+     "start_ms": 7980
+    }
+   ]
+  },
+  "alchemist_chemist": {
+   "real": [
+    {
+     "skill_id": "alchemist_demonstration",
+     "start_ms": 1355
+    },
+    {
+     "skill_id": "alchemist_acid_terror",
+     "start_ms": 3921
+    },
+    {
+     "skill_id": "alchemist_hell_plant",
+     "start_ms": 6228
+    },
+    {
+     "skill_id": "alchemist_potion_pitcher",
+     "start_ms": 8968
+    }
+   ],
+   "dry": [
+    {
+     "skill_id": "alchemist_demonstration",
+     "start_ms": 1355
+    },
+    {
+     "skill_id": "alchemist_acid_terror",
+     "start_ms": 3921
+    },
+    {
+     "skill_id": "alchemist_hell_plant",
+     "start_ms": 6228
+    },
+    {
+     "skill_id": "alchemist_potion_pitcher",
+     "start_ms": 8968
+    }
+   ]
+  },
+  "alchemist_gardener": {
+   "real": [
+    {
+     "skill_id": "alchemist_hell_plant",
+     "start_ms": 1340
+    },
+    {
+     "skill_id": "alchemist_bio_cannibalize",
+     "start_ms": 4026
+    },
+    {
+     "skill_id": "alchemist_potion_pitcher",
+     "start_ms": 6712
+    },
+    {
+     "skill_id": "merchant_loud_voice",
+     "start_ms": 8894
+    }
+   ],
+   "dry": [
+    {
+     "skill_id": "alchemist_hell_plant",
+     "start_ms": 1340
+    },
+    {
+     "skill_id": "alchemist_bio_cannibalize",
+     "start_ms": 4026
+    },
+    {
+     "skill_id": "alchemist_potion_pitcher",
+     "start_ms": 6712
+    },
+    {
+     "skill_id": "merchant_loud_voice",
+     "start_ms": 8894
+    }
+   ]
+  }
+ },
+ "parity": {
+  "stage": "6-20",
+  "seed": 34,
+  "team": [
+   {
+    "character_id": "main",
+    "position": "back_1"
+   },
+   {
+    "character_id": "npc_swordsman",
+    "position": "front_1"
+   },
+   {
+    "character_id": "npc_acolyte",
+    "position": "back_2"
+   },
+   {
+    "character_id": "npc_merchant",
+    "position": "front_2"
+   }
+  ],
+  "outcome": "STORY_WON",
+  "end_ms": 79023,
+  "events": 989,
+  "server_confirmations": 79,
+  "event_digest": {
+   "algorithm": "fnv1a32-v1",
+   "value": "b561cb9b"
+  },
+  "plant_actions": 68,
+  "summons": 12,
+  "despawns": {
+   "expired": 10,
+   "replaced": 0,
+   "owner_dead": 0,
+   "battle_end": 2
+  },
+  "tree_skill_metrics": {
+   "npc_merchant:blacksmith_adrenaline": {
+    "casts_resolved": 6,
+    "hp_damage": 0,
+    "effective_heal": 0
+   },
+   "main:alchemist_hell_plant": {
+    "casts_resolved": 6,
+    "hp_damage": 1782,
+    "effective_heal": 0
+   },
+   "npc_merchant:blacksmith_weapon_perfection": {
+    "casts_resolved": 6,
+    "hp_damage": 0,
+    "effective_heal": 0
+   },
+   "main:alchemist_bio_cannibalize": {
+    "casts_resolved": 6,
+    "hp_damage": 0,
+    "effective_heal": 1007
+   },
+   "npc_merchant:merchant_loud_voice": {
+    "casts_resolved": 6,
+    "hp_damage": 0,
+    "effective_heal": 0
+   },
+   "main:alchemist_potion_pitcher": {
+    "casts_resolved": 5,
+    "hp_damage": 0,
+    "effective_heal": 2656
+   },
+   "npc_merchant:blacksmith_meltdown": {
+    "casts_resolved": 6,
+    "hp_damage": 4601,
+    "effective_heal": 0
+   },
+   "main:merchant_loud_voice": {
+    "casts_resolved": 5,
+    "hp_damage": 0,
+    "effective_heal": 0
+   }
+  }
+ }
+}

@@ -1,0 +1,2967 @@
+{
+  "schema_version": 1,
+  "content_version": "swordsman-class2-v1",
+  "authoring_status": "M0 baseline for this game; not verified RO Idle equations or measured balance",
+  "root_job_id": "swordsman",
+  "inheritance": "Class2 learns root and selected branch only; inactive branch investments are refunded/reset per paid ledger",
+  "skill_cap": "min(definition.max_level,1+floor((character_level-1)/5))",
+  "learn_policy": "Unlock does not auto-learn or auto-upgrade; user calls skill.upgrade target_level1 to learn for free. Only two root starter actives are granted; learned Passives then apply automatically.",
+  "skills": [
+    {
+      "id": "swordsman_bash",
+      "name_key": "swordsman_bash",
+      "class_id": "swordsman",
+      "max_level": 10,
+      "unlock_level": 1,
+      "tags": [
+        "swordsman",
+        "bash"
+      ],
+      "level_parameters": {
+        "power": [
+          1.4,
+          1.488889,
+          1.577778,
+          1.666667,
+          1.755556,
+          1.844444,
+          1.933333,
+          2.022222,
+          2.111111,
+          2.2
+        ]
+      },
+      "presentation_id": "visual_swordsman_bash",
+      "kind": "active",
+      "cost": {
+        "sp": 12,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 500,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "stun",
+          "duration_ms": 1000,
+          "params": {},
+          "chance": 0.6,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    },
+    {
+      "id": "swordsman_provoke",
+      "name_key": "swordsman_provoke",
+      "class_id": "swordsman",
+      "max_level": 10,
+      "unlock_level": 1,
+      "tags": [
+        "swordsman",
+        "provoke"
+      ],
+      "level_parameters": {
+        "sp_cost": [
+          19,
+          18,
+          17,
+          16,
+          15,
+          14,
+          13,
+          12,
+          11,
+          10
+        ]
+      },
+      "presentation_id": "visual_swordsman_provoke",
+      "kind": "active",
+      "cost": {
+        "sp": {
+          "level_param": "sp_cost"
+        },
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 450,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "provoke",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "provoke",
+          "duration_ms": 4500,
+          "params": {},
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "swordsman_magnum_break",
+      "name_key": "swordsman_magnum_break",
+      "class_id": "swordsman",
+      "max_level": 10,
+      "unlock_level": 5,
+      "tags": [
+        "swordsman",
+        "magnum_break"
+      ],
+      "level_parameters": {
+        "power": [
+          0.85,
+          0.905556,
+          0.961111,
+          1.016667,
+          1.072222,
+          1.127778,
+          1.183333,
+          1.238889,
+          1.294444,
+          1.35
+        ]
+      },
+      "presentation_id": "visual_swordsman_magnum_break",
+      "kind": "active",
+      "cost": {
+        "sp": 24,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 250,
+        "after_cast_ms": 800,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "fire",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "swordsman_endure",
+      "name_key": "swordsman_endure",
+      "class_id": "swordsman",
+      "max_level": 10,
+      "unlock_level": 10,
+      "tags": [
+        "swordsman",
+        "endure"
+      ],
+      "level_parameters": {
+        "guard": [
+          0.08,
+          0.088889,
+          0.097778,
+          0.106667,
+          0.115556,
+          0.124444,
+          0.133333,
+          0.142222,
+          0.151111,
+          0.16
+        ]
+      },
+      "presentation_id": "visual_swordsman_endure",
+      "kind": "active",
+      "cost": {
+        "sp": 14,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 500,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "guard_up",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "guard_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "guard"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "swordsman_sword_mastery",
+      "name_key": "swordsman_sword_mastery",
+      "class_id": "swordsman",
+      "max_level": 10,
+      "unlock_level": 10,
+      "tags": [
+        "swordsman",
+        "sword_mastery"
+      ],
+      "level_parameters": {
+        "attack": [
+          0.03,
+          0.04,
+          0.05,
+          0.06,
+          0.07,
+          0.08,
+          0.09,
+          0.1,
+          0.11,
+          0.12
+        ]
+      },
+      "presentation_id": "visual_swordsman_sword_mastery",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "attack"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "knight_pierce",
+      "name_key": "knight_pierce",
+      "class_id": "knight",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "knight",
+        "pierce"
+      ],
+      "level_parameters": {
+        "power": [
+          0.65,
+          0.694444,
+          0.738889,
+          0.783333,
+          0.827778,
+          0.872222,
+          0.916667,
+          0.961111,
+          1.005556,
+          1.05
+        ]
+      },
+      "presentation_id": "visual_knight_pierce",
+      "kind": "active",
+      "cost": {
+        "sp": 26,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 350,
+        "after_cast_ms": 800,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 3,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "knight_twohand_quicken",
+      "name_key": "knight_twohand_quicken",
+      "class_id": "knight",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "knight",
+        "twohand_quicken"
+      ],
+      "level_parameters": {
+        "speed": [
+          0.12,
+          0.134444,
+          0.148889,
+          0.163333,
+          0.177778,
+          0.192222,
+          0.206667,
+          0.221111,
+          0.235556,
+          0.25
+        ]
+      },
+      "presentation_id": "visual_knight_twohand_quicken",
+      "kind": "active",
+      "cost": {
+        "sp": 24,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 200,
+        "after_cast_ms": 650,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "aspd_up",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "aspd_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "speed"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "knight_brandish",
+      "name_key": "knight_brandish",
+      "class_id": "knight",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "knight",
+        "brandish"
+      ],
+      "level_parameters": {
+        "power": [
+          1.2,
+          1.288889,
+          1.377778,
+          1.466667,
+          1.555556,
+          1.644444,
+          1.733333,
+          1.822222,
+          1.911111,
+          2.0
+        ]
+      },
+      "presentation_id": "visual_knight_brandish",
+      "kind": "active",
+      "cost": {
+        "sp": 36,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 650,
+        "after_cast_ms": 1000,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "knight_battle_cry",
+      "name_key": "knight_battle_cry",
+      "class_id": "knight",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "knight",
+        "battle_cry"
+      ],
+      "level_parameters": {
+        "attack": [
+          0.05,
+          0.057778,
+          0.065556,
+          0.073333,
+          0.081111,
+          0.088889,
+          0.096667,
+          0.104444,
+          0.112222,
+          0.12
+        ]
+      },
+      "presentation_id": "visual_knight_battle_cry",
+      "kind": "active",
+      "cost": {
+        "sp": 30,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 450,
+        "after_cast_ms": 900,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "attack_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "attack_up",
+          "duration_ms": 4500,
+          "params": {
+            "ratio": {
+              "level_param": "attack"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "knight_counter_stance",
+      "name_key": "knight_counter_stance",
+      "class_id": "knight",
+      "max_level": 10,
+      "unlock_level": 40,
+      "tags": [
+        "knight",
+        "counter_stance"
+      ],
+      "level_parameters": {
+        "power": [
+          0.35,
+          0.383333,
+          0.416667,
+          0.45,
+          0.483333,
+          0.516667,
+          0.55,
+          0.583333,
+          0.616667,
+          0.65
+        ]
+      },
+      "presentation_id": "visual_knight_counter_stance",
+      "kind": "active",
+      "cost": {
+        "sp": 24,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 800,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "counter_stance",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "counter_stance",
+          "duration_ms": 4500,
+          "params": {
+            "ratio": {
+              "level_param": "power"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "knight_veteran",
+      "name_key": "knight_veteran",
+      "class_id": "knight",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "knight",
+        "veteran"
+      ],
+      "level_parameters": {
+        "hp": [
+          0.05,
+          0.061111,
+          0.072222,
+          0.083333,
+          0.094444,
+          0.105556,
+          0.116667,
+          0.127778,
+          0.138889,
+          0.15
+        ]
+      },
+      "presentation_id": "visual_knight_veteran",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "hp"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "knight_weapon_drill",
+      "name_key": "knight_weapon_drill",
+      "class_id": "knight",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "knight",
+        "weapon_drill"
+      ],
+      "level_parameters": {
+        "crit": [
+          0.05,
+          0.066667,
+          0.083333,
+          0.1,
+          0.116667,
+          0.133333,
+          0.15,
+          0.166667,
+          0.183333,
+          0.2
+        ]
+      },
+      "presentation_id": "visual_knight_weapon_drill",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "crit_damage_bonus",
+          "stat": "crit_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "crit"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "crusader_holy_cross",
+      "name_key": "crusader_holy_cross",
+      "class_id": "crusader",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "crusader",
+        "holy_cross"
+      ],
+      "level_parameters": {
+        "power": [
+          0.8,
+          0.85,
+          0.9,
+          0.95,
+          1.0,
+          1.05,
+          1.1,
+          1.15,
+          1.2,
+          1.25
+        ]
+      },
+      "presentation_id": "visual_crusader_holy_cross",
+      "kind": "active",
+      "cost": {
+        "sp": 28,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 500,
+        "after_cast_ms": 850,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "holy",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 2,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "crusader_auto_guard",
+      "name_key": "crusader_auto_guard",
+      "class_id": "crusader",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "crusader",
+        "auto_guard"
+      ],
+      "level_parameters": {
+        "guard": [
+          0.15,
+          0.164444,
+          0.178889,
+          0.193333,
+          0.207778,
+          0.222222,
+          0.236667,
+          0.251111,
+          0.265556,
+          0.28
+        ]
+      },
+      "presentation_id": "visual_crusader_auto_guard",
+      "kind": "active",
+      "cost": {
+        "sp": 24,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 100,
+        "after_cast_ms": 700,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "guard_up",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "guard_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "guard"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "crusader_devotion",
+      "name_key": "crusader_devotion",
+      "class_id": "crusader",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "crusader",
+        "devotion"
+      ],
+      "level_parameters": {
+        "redirect": [
+          0.15,
+          0.166667,
+          0.183333,
+          0.2,
+          0.216667,
+          0.233333,
+          0.25,
+          0.266667,
+          0.283333,
+          0.3
+        ]
+      },
+      "presentation_id": "visual_crusader_devotion",
+      "kind": "active",
+      "cost": {
+        "sp": 38,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 550,
+        "after_cast_ms": 1000,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "devotion",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "devotion",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "redirect"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "crusader_grand_cross",
+      "name_key": "crusader_grand_cross",
+      "class_id": "crusader",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "crusader",
+        "grand_cross"
+      ],
+      "level_parameters": {
+        "power": [
+          1.7,
+          1.822222,
+          1.944444,
+          2.066667,
+          2.188889,
+          2.311111,
+          2.433333,
+          2.555556,
+          2.677778,
+          2.8
+        ]
+      },
+      "presentation_id": "visual_crusader_grand_cross",
+      "kind": "active",
+      "cost": {
+        "sp": 48,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 1100,
+        "after_cast_ms": 1200,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "holy",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "crusader_defender",
+      "name_key": "crusader_defender",
+      "class_id": "crusader",
+      "max_level": 10,
+      "unlock_level": 40,
+      "tags": [
+        "crusader",
+        "defender"
+      ],
+      "level_parameters": {
+        "defense": [
+          0.15,
+          0.166667,
+          0.183333,
+          0.2,
+          0.216667,
+          0.233333,
+          0.25,
+          0.266667,
+          0.283333,
+          0.3
+        ]
+      },
+      "presentation_id": "visual_crusader_defender",
+      "kind": "active",
+      "cost": {
+        "sp": 34,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 600,
+        "after_cast_ms": 1100,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "defense_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "defense_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "defense"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "magic_defense_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "magic_defense_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "defense"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "crusader_faith",
+      "name_key": "crusader_faith",
+      "class_id": "crusader",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "crusader",
+        "faith"
+      ],
+      "level_parameters": {
+        "hp": [
+          0.08,
+          0.095556,
+          0.111111,
+          0.126667,
+          0.142222,
+          0.157778,
+          0.173333,
+          0.188889,
+          0.204444,
+          0.22
+        ]
+      },
+      "presentation_id": "visual_crusader_faith",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "hp"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "crusader_reflect",
+      "name_key": "crusader_reflect",
+      "class_id": "crusader",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "crusader",
+        "reflect"
+      ],
+      "level_parameters": {
+        "power": [
+          0.05,
+          0.061111,
+          0.072222,
+          0.083333,
+          0.094444,
+          0.105556,
+          0.116667,
+          0.127778,
+          0.138889,
+          0.15
+        ]
+      },
+      "presentation_id": "visual_crusader_reflect",
+      "kind": "passive",
+      "modifiers": [],
+      "triggers": [
+        {
+          "id": "reflect",
+          "event": "damage_received",
+          "chance": 1,
+          "accepted_origins": [
+            "skill",
+            "normal"
+          ],
+          "limit_scope": "none",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {},
+          "effects": [
+            {
+              "id": "return_hit",
+              "type": "damage",
+              "target": "event_source",
+              "formula": {
+                "id": "event_damage_power",
+                "params": {
+                  "ratio": {
+                    "level_param": "power"
+                  }
+                }
+              },
+              "damage_type": "physical",
+              "element": "holy",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal",
+              "as_reflect": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "upgrades": {
+    "swordsman_bash": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 50,
+          "skill_manual": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 150,
+          "skill_manual": 30
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 250,
+          "skill_manual": 50
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 350,
+          "skill_manual": 70
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 450,
+          "skill_manual": 90
+        }
+      ]
+    },
+    "swordsman_provoke": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 50,
+          "skill_manual": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 150,
+          "skill_manual": 30
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 250,
+          "skill_manual": 50
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 350,
+          "skill_manual": 70
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 450,
+          "skill_manual": 90
+        }
+      ]
+    },
+    "swordsman_magnum_break": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 50,
+          "skill_manual": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 150,
+          "skill_manual": 30
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 250,
+          "skill_manual": 50
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 350,
+          "skill_manual": 70
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 450,
+          "skill_manual": 90
+        }
+      ]
+    },
+    "swordsman_endure": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 50,
+          "skill_manual": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 150,
+          "skill_manual": 30
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 250,
+          "skill_manual": 50
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 350,
+          "skill_manual": 70
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 450,
+          "skill_manual": 90
+        }
+      ]
+    },
+    "swordsman_sword_mastery": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 50,
+          "skill_manual": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 150,
+          "skill_manual": 30
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 250,
+          "skill_manual": 50
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 350,
+          "skill_manual": 70
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 450,
+          "skill_manual": 90
+        }
+      ]
+    },
+    "knight_pierce": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "knight_twohand_quicken": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "knight_brandish": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "knight_battle_cry": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "knight_counter_stance": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "knight_veteran": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "knight_weapon_drill": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "crusader_holy_cross": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "crusader_auto_guard": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "crusader_devotion": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "crusader_grand_cross": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "crusader_defender": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "crusader_faith": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "crusader_reflect": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    }
+  },
+  "builds": [
+    {
+      "id": "knight_striker",
+      "job_id": "knight",
+      "level": 70,
+      "role": "single-target sustained physical damage",
+      "primary_stats": {
+        "str": 50,
+        "agi": 30,
+        "vit": 20,
+        "int": 1,
+        "dex": 20,
+        "luk": 1
+      },
+      "spent_status_points": 258,
+      "unspent_status_points": 418,
+      "active_slots": [
+        "knight_twohand_quicken",
+        "knight_pierce",
+        "swordsman_bash",
+        "knight_brandish"
+      ],
+      "skill_levels": {
+        "swordsman_bash": 10,
+        "swordsman_provoke": 1,
+        "swordsman_magnum_break": 1,
+        "swordsman_endure": 1,
+        "swordsman_sword_mastery": 10,
+        "knight_pierce": 10,
+        "knight_twohand_quicken": 10,
+        "knight_brandish": 10,
+        "knight_battle_cry": 1,
+        "knight_counter_stance": 1,
+        "knight_veteran": 10,
+        "knight_weapon_drill": 10
+      },
+      "automatic_passives": [
+        "swordsman_sword_mastery",
+        "knight_veteran",
+        "knight_weapon_drill"
+      ],
+      "paid_upgrade_budget": {
+        "gold": 27000,
+        "skill_manual": 5400
+      },
+      "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+      "queue_estimate": {
+        "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+        "si_ms": 1084,
+        "cycle_ms": 7459,
+        "starts": [
+          {
+            "skill_id": "knight_twohand_quicken",
+            "start_ms": 1084,
+            "resolve_ms": 1235,
+            "acd_end_ms": 1724
+          },
+          {
+            "skill_id": "knight_pierce",
+            "start_ms": 2808,
+            "resolve_ms": 3072,
+            "acd_end_ms": 3674
+          },
+          {
+            "skill_id": "swordsman_bash",
+            "start_ms": 4758,
+            "resolve_ms": 4758,
+            "acd_end_ms": 5134
+          },
+          {
+            "skill_id": "knight_brandish",
+            "start_ms": 6218,
+            "resolve_ms": 6707,
+            "acd_end_ms": 7459
+          }
+        ],
+        "fixed_sp_per_cycle": 98,
+        "job_bonus": "D-061 job bonus included in primary stats"
+      }
+    },
+    {
+      "id": "knight_counter_tank",
+      "job_id": "knight",
+      "level": 70,
+      "role": "provoke plus reactive counter damage",
+      "primary_stats": {
+        "str": 30,
+        "agi": 1,
+        "vit": 60,
+        "int": 1,
+        "dex": 20,
+        "luk": 1
+      },
+      "spent_status_points": 289,
+      "unspent_status_points": 387,
+      "active_slots": [
+        "swordsman_provoke",
+        "knight_counter_stance",
+        "swordsman_endure",
+        "knight_battle_cry"
+      ],
+      "skill_levels": {
+        "swordsman_bash": 1,
+        "swordsman_provoke": 10,
+        "swordsman_magnum_break": 1,
+        "swordsman_endure": 10,
+        "swordsman_sword_mastery": 10,
+        "knight_pierce": 1,
+        "knight_twohand_quicken": 1,
+        "knight_brandish": 1,
+        "knight_battle_cry": 10,
+        "knight_counter_stance": 10,
+        "knight_veteran": 10,
+        "knight_weapon_drill": 10
+      },
+      "automatic_passives": [
+        "swordsman_sword_mastery",
+        "knight_veteran",
+        "knight_weapon_drill"
+      ],
+      "paid_upgrade_budget": {
+        "gold": 24750,
+        "skill_manual": 4950
+      },
+      "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+      "queue_estimate": {
+        "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+        "si_ms": 1370,
+        "cycle_ms": 7813,
+        "starts": [
+          {
+            "skill_id": "swordsman_provoke",
+            "start_ms": 1370,
+            "resolve_ms": 1370,
+            "acd_end_ms": 1709
+          },
+          {
+            "skill_id": "knight_counter_stance",
+            "start_ms": 3079,
+            "resolve_ms": 3079,
+            "acd_end_ms": 3681
+          },
+          {
+            "skill_id": "swordsman_endure",
+            "start_ms": 5051,
+            "resolve_ms": 5051,
+            "acd_end_ms": 5427
+          },
+          {
+            "skill_id": "knight_battle_cry",
+            "start_ms": 6797,
+            "resolve_ms": 7136,
+            "acd_end_ms": 7813
+          }
+        ],
+        "fixed_sp_per_cycle": 78,
+        "job_bonus": "D-061 job bonus included in primary stats"
+      }
+    },
+    {
+      "id": "crusader_guardian",
+      "job_id": "crusader",
+      "level": 70,
+      "role": "redirect and team defense",
+      "primary_stats": {
+        "str": 1,
+        "agi": 1,
+        "vit": 60,
+        "int": 25,
+        "dex": 25,
+        "luk": 1
+      },
+      "spent_status_points": 288,
+      "unspent_status_points": 388,
+      "active_slots": [
+        "swordsman_provoke",
+        "crusader_devotion",
+        "crusader_auto_guard",
+        "crusader_defender"
+      ],
+      "skill_levels": {
+        "swordsman_bash": 1,
+        "swordsman_provoke": 10,
+        "swordsman_magnum_break": 1,
+        "swordsman_endure": 1,
+        "swordsman_sword_mastery": 10,
+        "crusader_holy_cross": 1,
+        "crusader_auto_guard": 10,
+        "crusader_devotion": 10,
+        "crusader_grand_cross": 1,
+        "crusader_defender": 10,
+        "crusader_faith": 10,
+        "crusader_reflect": 10
+      },
+      "automatic_passives": [
+        "swordsman_sword_mastery",
+        "crusader_faith",
+        "crusader_reflect"
+      ],
+      "paid_upgrade_budget": {
+        "gold": 27000,
+        "skill_manual": 5400
+      },
+      "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+      "queue_estimate": {
+        "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+        "si_ms": 1355,
+        "cycle_ms": 8495,
+        "starts": [
+          {
+            "skill_id": "swordsman_provoke",
+            "start_ms": 1355,
+            "resolve_ms": 1355,
+            "acd_end_ms": 1663
+          },
+          {
+            "skill_id": "crusader_devotion",
+            "start_ms": 3018,
+            "resolve_ms": 3394,
+            "acd_end_ms": 4077
+          },
+          {
+            "skill_id": "crusader_auto_guard",
+            "start_ms": 5432,
+            "resolve_ms": 5501,
+            "acd_end_ms": 5979
+          },
+          {
+            "skill_id": "crusader_defender",
+            "start_ms": 7334,
+            "resolve_ms": 7744,
+            "acd_end_ms": 8495
+          }
+        ],
+        "fixed_sp_per_cycle": 106,
+        "job_bonus": "D-061 job bonus included in primary stats"
+      }
+    },
+    {
+      "id": "crusader_holy_striker",
+      "job_id": "crusader",
+      "level": 70,
+      "role": "holy burst with personal mitigation",
+      "primary_stats": {
+        "str": 60,
+        "agi": 1,
+        "vit": 1,
+        "int": 20,
+        "dex": 30,
+        "luk": 1
+      },
+      "spent_status_points": 289,
+      "unspent_status_points": 387,
+      "active_slots": [
+        "crusader_holy_cross",
+        "crusader_grand_cross",
+        "crusader_auto_guard",
+        "swordsman_bash"
+      ],
+      "skill_levels": {
+        "swordsman_bash": 10,
+        "swordsman_provoke": 1,
+        "swordsman_magnum_break": 1,
+        "swordsman_endure": 1,
+        "swordsman_sword_mastery": 10,
+        "crusader_holy_cross": 10,
+        "crusader_auto_guard": 10,
+        "crusader_devotion": 1,
+        "crusader_grand_cross": 10,
+        "crusader_defender": 1,
+        "crusader_faith": 10,
+        "crusader_reflect": 10
+      },
+      "automatic_passives": [
+        "swordsman_sword_mastery",
+        "crusader_faith",
+        "crusader_reflect"
+      ],
+      "paid_upgrade_budget": {
+        "gold": 27000,
+        "skill_manual": 5400
+      },
+      "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+      "queue_estimate": {
+        "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+        "si_ms": 1340,
+        "cycle_ms": 8605,
+        "starts": [
+          {
+            "skill_id": "crusader_holy_cross",
+            "start_ms": 1340,
+            "resolve_ms": 1668,
+            "acd_end_ms": 2225
+          },
+          {
+            "skill_id": "crusader_grand_cross",
+            "start_ms": 3565,
+            "resolve_ms": 4286,
+            "acd_end_ms": 5072
+          },
+          {
+            "skill_id": "crusader_auto_guard",
+            "start_ms": 6412,
+            "resolve_ms": 6478,
+            "acd_end_ms": 6937
+          },
+          {
+            "skill_id": "swordsman_bash",
+            "start_ms": 8277,
+            "resolve_ms": 8277,
+            "acd_end_ms": 8605
+          }
+        ],
+        "fixed_sp_per_cycle": 112,
+        "job_bonus": "D-061 job bonus included in primary stats"
+      }
+    }
+  ],
+  "notes": {
+    "swordsman_bash": "",
+    "swordsman_provoke": "Hostile selectors target source; no damage transfer.",
+    "swordsman_magnum_break": "",
+    "swordsman_endure": "",
+    "swordsman_sword_mastery": "",
+    "knight_pierce": "",
+    "knight_twohand_quicken": "",
+    "knight_brandish": "",
+    "knight_battle_cry": "",
+    "knight_counter_stance": "",
+    "knight_veteran": "",
+    "knight_weapon_drill": "",
+    "crusader_holy_cross": "",
+    "crusader_auto_guard": "",
+    "crusader_devotion": "Transfer before shields, excluding caster; independent fractions, conserved HP damage, one routing pass.",
+    "crusader_grand_cross": "",
+    "crusader_defender": "",
+    "crusader_faith": "",
+    "crusader_reflect": ""
+  },
+  "future_awaken": "stable skill/effect IDs; no hi-class definitions required by these builds"
+}

@@ -1,0 +1,601 @@
+{
+ "task_id": "TASK-033",
+ "content_hash": "4a7901023a240045d17c8aaa7e74d77f2e85f76c8afae3e66ac2d2881bccef90",
+ "rules_version": "combat-baseline-v1",
+ "golden_cases": 72,
+ "active_probe": {
+  "seed": 1,
+  "game_ms": 60000,
+  "resolves_per_level": {
+   "thief_envenom": [
+    31,
+    31,
+    31,
+    31,
+    31,
+    31,
+    31,
+    31,
+    31,
+    31
+   ],
+   "thief_quick_step": [
+    40,
+    41,
+    42,
+    43,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51
+   ],
+   "thief_sand_attack": [
+    29,
+    29,
+    29,
+    29,
+    29,
+    29,
+    29,
+    29,
+    29,
+    29
+   ],
+   "thief_backstab": [
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27
+   ],
+   "assassin_sonic_blow": [
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25
+   ],
+   "assassin_enchant_poison": [
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27
+   ],
+   "assassin_venom_dust": [
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23
+   ],
+   "assassin_detonate": [
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22
+   ],
+   "assassin_grimtooth": [
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25
+   ],
+   "rogue_strip_armor": [
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26
+   ],
+   "rogue_strip_weapon": [
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25
+   ],
+   "rogue_expose": [
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25
+   ],
+   "rogue_intimidate": [
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25
+   ],
+   "rogue_raid": [
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23
+   ],
+   "rogue_copy_swordsman_bash": [
+    34,
+    34,
+    34,
+    34,
+    34,
+    34,
+    34,
+    34,
+    34,
+    34
+   ],
+   "rogue_copy_acolyte_heal": [
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26
+   ],
+   "rogue_copy_archer_double_strafe": [
+    33,
+    33,
+    33,
+    33,
+    33,
+    33,
+    33,
+    33,
+    33,
+    33
+   ],
+   "rogue_copy_mage_fire_bolt": [
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25
+   ],
+   "rogue_copy_merchant_cart_revolution": [
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26
+   ]
+  }
+ },
+ "passive_probe": {
+  "thief_double_attack": [
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3
+  ],
+  "assassin_katar_mastery": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "assassin_poison_edge": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "rogue_dodge": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "rogue_dirty_tricks": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ]
+ },
+ "copies": [
+  {
+   "copy": "rogue_copy_swordsman_bash",
+   "source": "swordsman_bash",
+   "sp": 15
+  },
+  {
+   "copy": "rogue_copy_acolyte_heal",
+   "source": "acolyte_heal",
+   "sp": 23
+  },
+  {
+   "copy": "rogue_copy_archer_double_strafe",
+   "source": "archer_double_strafe",
+   "sp": 20
+  },
+  {
+   "copy": "rogue_copy_mage_fire_bolt",
+   "source": "mage_fire_bolt",
+   "sp": 23
+  },
+  {
+   "copy": "rogue_copy_merchant_cart_revolution",
+   "source": "merchant_cart_revolution",
+   "sp": 30
+  }
+ ],
+ "detonate": {
+  "detonations": 5,
+  "checked_two_own_one_ally": 5,
+  "raws": [
+   240,
+   240,
+   240,
+   240,
+   240
+  ]
+ },
+ "dry_trace": {
+  "assassin_critical": {
+   "si_ms": 1042,
+   "cycle_ms": 8464,
+   "passive_changed_stats": [
+    "crit_chance_bonus",
+    "outgoing_physical_bonus"
+   ]
+  },
+  "assassin_venom": {
+   "si_ms": 1053,
+   "cycle_ms": 8038,
+   "passive_changed_stats": [
+    "crit_chance_bonus",
+    "outgoing_physical_bonus"
+   ]
+  },
+  "rogue_stripper": {
+   "si_ms": 1227,
+   "cycle_ms": 8115,
+   "passive_changed_stats": [
+    "evasion_bonus",
+    "control_accuracy"
+   ]
+  },
+  "rogue_support_copy": {
+   "si_ms": 1240,
+   "cycle_ms": 8023,
+   "passive_changed_stats": [
+    "evasion_bonus",
+    "control_accuracy"
+   ]
+  }
+ },
+ "real_fight_first_starts": {
+  "assassin_critical": {
+   "real": [
+    {
+     "skill_id": "thief_quick_step",
+     "start_ms": 1042
+    },
+    {
+     "skill_id": "assassin_enchant_poison",
+     "start_ms": 2463
+    },
+    {
+     "skill_id": "assassin_sonic_blow",
+     "start_ms": 4497
+    },
+    {
+     "skill_id": "thief_backstab",
+     "start_ms": 6955
+    }
+   ],
+   "dry": [
+    {
+     "skill_id": "thief_quick_step",
+     "start_ms": 1042
+    },
+    {
+     "skill_id": "assassin_enchant_poison",
+     "start_ms": 2651
+    },
+    {
+     "skill_id": "assassin_sonic_blow",
+     "start_ms": 4873
+    },
+    {
+     "skill_id": "thief_backstab",
+     "start_ms": 7331
+    }
+   ]
+  },
+  "assassin_venom": {
+   "real": [
+    {
+     "skill_id": "thief_envenom",
+     "start_ms": 1053
+    },
+    {
+     "skill_id": "assassin_venom_dust",
+     "start_ms": 2617
+    },
+    {
+     "skill_id": "assassin_detonate",
+     "start_ms": 4786
+    },
+    {
+     "skill_id": "assassin_sonic_blow",
+     "start_ms": 7082
+    }
+   ],
+   "dry": [
+    {
+     "skill_id": "thief_envenom",
+     "start_ms": 1053
+    },
+    {
+     "skill_id": "assassin_venom_dust",
+     "start_ms": 2617
+    },
+    {
+     "skill_id": "assassin_detonate",
+     "start_ms": 4786
+    },
+    {
+     "skill_id": "assassin_sonic_blow",
+     "start_ms": 7082
+    }
+   ]
+  },
+  "rogue_stripper": {
+   "real": [
+    {
+     "skill_id": "rogue_strip_armor",
+     "start_ms": 1227
+    },
+    {
+     "skill_id": "rogue_strip_weapon",
+     "start_ms": 3207
+    },
+    {
+     "skill_id": "rogue_expose",
+     "start_ms": 5243
+    },
+    {
+     "skill_id": "rogue_intimidate",
+     "start_ms": 7307
+    }
+   ],
+   "dry": [
+    {
+     "skill_id": "rogue_strip_armor",
+     "start_ms": 1227
+    },
+    {
+     "skill_id": "rogue_strip_weapon",
+     "start_ms": 3207
+    },
+    {
+     "skill_id": "rogue_expose",
+     "start_ms": 5243
+    },
+    {
+     "skill_id": "rogue_intimidate",
+     "start_ms": 7307
+    }
+   ]
+  },
+  "rogue_support_copy": {
+   "real": [
+    {
+     "skill_id": "rogue_strip_armor",
+     "start_ms": 1240
+    },
+    {
+     "skill_id": "rogue_expose",
+     "start_ms": 3218
+    },
+    {
+     "skill_id": "rogue_copy_acolyte_heal",
+     "start_ms": 5279
+    },
+    {
+     "skill_id": "rogue_intimidate",
+     "start_ms": 7230
+    }
+   ],
+   "dry": [
+    {
+     "skill_id": "rogue_strip_armor",
+     "start_ms": 1240
+    },
+    {
+     "skill_id": "rogue_expose",
+     "start_ms": 3218
+    },
+    {
+     "skill_id": "rogue_copy_acolyte_heal",
+     "start_ms": 5279
+    },
+    {
+     "skill_id": "rogue_intimidate",
+     "start_ms": 7230
+    }
+   ]
+  }
+ },
+ "parity": {
+  "stage": "6-20",
+  "seed": 33,
+  "team": [
+   {
+    "character_id": "main",
+    "position": "back_1"
+   },
+   {
+    "character_id": "npc_swordsman",
+    "position": "front_1"
+   },
+   {
+    "character_id": "npc_acolyte",
+    "position": "back_2"
+   },
+   {
+    "character_id": "npc_thief",
+    "position": "front_2"
+   }
+  ],
+  "outcome": "STORY_WON",
+  "end_ms": 50305,
+  "events": 602,
+  "server_confirmations": 50,
+  "event_digest": {
+   "algorithm": "fnv1a32-v1",
+   "value": "9b4b0daa"
+  },
+  "venom_ticks": 28,
+  "tree_skill_metrics": {
+   "main:thief_envenom": {
+    "casts_resolved": 4,
+    "hp_damage": 4656
+   },
+   "npc_thief:rogue_strip_armor": {
+    "casts_resolved": 4,
+    "hp_damage": 0
+   },
+   "main:thief_double_attack": {
+    "casts_resolved": 0,
+    "hp_damage": 2895
+   },
+   "main:assassin_venom_dust": {
+    "casts_resolved": 4,
+    "hp_damage": 2662
+   },
+   "npc_thief:rogue_expose": {
+    "casts_resolved": 4,
+    "hp_damage": 1690
+   },
+   "main:assassin_detonate": {
+    "casts_resolved": 4,
+    "hp_damage": 445
+   },
+   "npc_thief:rogue_copy_acolyte_heal": {
+    "casts_resolved": 4,
+    "hp_damage": 0
+   },
+   "npc_thief:thief_double_attack": {
+    "casts_resolved": 0,
+    "hp_damage": 1048
+   },
+   "main:assassin_sonic_blow": {
+    "casts_resolved": 4,
+    "hp_damage": 6232
+   },
+   "npc_thief:rogue_intimidate": {
+    "casts_resolved": 3,
+    "hp_damage": 0
+   }
+  }
+ }
+}

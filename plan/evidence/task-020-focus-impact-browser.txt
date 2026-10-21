@@ -1,0 +1,189 @@
+{
+  "task_id": "TASK-020",
+  "round": 11,
+  "date": "2026-10-20",
+  "passed": true,
+  "checks": [
+    {
+      "case_id": "soft_focus_four_actors_mobile_clicks_and_hitboxes",
+      "passed": true,
+      "result": [
+        {
+          "width": 390,
+          "height": 844,
+          "controls": [
+            {
+              "border": "0px",
+              "shadow": "none",
+              "pressed": "false",
+              "width": 86.25,
+              "height": 70,
+              "label": "คุณ Lv.10"
+            },
+            {
+              "border": "0px",
+              "shadow": "none",
+              "pressed": "false",
+              "width": 86.25,
+              "height": 70,
+              "label": "ลูเมน Lv.10"
+            },
+            {
+              "border": "0px",
+              "shadow": "none",
+              "pressed": "false",
+              "width": 86.25,
+              "height": 70,
+              "label": "อารี Lv.10"
+            },
+            {
+              "border": "0px",
+              "shadow": "none",
+              "pressed": "true",
+              "width": 86.25,
+              "height": 70,
+              "label": "เรน Lv.10"
+            }
+          ]
+        },
+        {
+          "width": 360,
+          "height": 640,
+          "controls": [
+            {
+              "border": "0px",
+              "shadow": "none",
+              "pressed": "false",
+              "width": 78.75,
+              "height": 67.75,
+              "label": "คุณ Lv.10"
+            },
+            {
+              "border": "0px",
+              "shadow": "none",
+              "pressed": "false",
+              "width": 78.75,
+              "height": 67.75,
+              "label": "ลูเมน Lv.10"
+            },
+            {
+              "border": "0px",
+              "shadow": "none",
+              "pressed": "false",
+              "width": 78.75,
+              "height": 67.75,
+              "label": "อารี Lv.10"
+            },
+            {
+              "border": "0px",
+              "shadow": "none",
+              "pressed": "true",
+              "width": 78.75,
+              "height": 67.75,
+              "label": "เรน Lv.10"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "native_contact_and_projectile_arrival_gate_numbers",
+      "passed": true,
+      "result": [
+        {
+          "actor": "main",
+          "contact_ms": 500,
+          "impact_delay_ms": 500,
+          "event_at": 1364,
+          "amount": 88,
+          "samples": [
+            {
+              "offset": 0,
+              "visible": false,
+              "projectiles": 0
+            },
+            {
+              "offset": 499,
+              "visible": false,
+              "projectiles": 0
+            },
+            {
+              "offset": 500,
+              "visible": true,
+              "projectiles": 0
+            }
+          ],
+          "reduced_motion_visible": true,
+          "checkpoint_unchanged": true
+        },
+        {
+          "actor": "npc_archer",
+          "contact_ms": 100,
+          "impact_delay_ms": 440,
+          "event_at": 1225,
+          "amount": 77,
+          "samples": [
+            {
+              "offset": 0,
+              "visible": false,
+              "projectiles": 0
+            },
+            {
+              "offset": 439,
+              "visible": false,
+              "projectiles": 1
+            },
+            {
+              "offset": 440,
+              "visible": true,
+              "projectiles": 1
+            }
+          ],
+          "reduced_motion_visible": true,
+          "checkpoint_unchanged": true
+        },
+        {
+          "actor": "npc_mage",
+          "contact_ms": 500,
+          "impact_delay_ms": 860,
+          "event_at": 1550,
+          "amount": 77,
+          "samples": [
+            {
+              "offset": 0,
+              "visible": false,
+              "projectiles": 0
+            },
+            {
+              "offset": 859,
+              "visible": false,
+              "projectiles": 1
+            },
+            {
+              "offset": 860,
+              "visible": true,
+              "projectiles": 1
+            }
+          ],
+          "reduced_motion_visible": true,
+          "checkpoint_unchanged": true
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "input_sha256": {
+    "src/ui/modern-theme.css": "febdb22e64022747e6e8814037add3e491e244a0d08a852245b0de94c5629d80",
+    "src/renderer/impact-timing.ts": "e5a8b0fdde8ddda94cc3c9a483ddb4f70ccc824bd7bbe902f97374f49fcb39dc",
+    "src/renderer/battle.ts": "afaf185b14f690d4a833f8216633ccc7a593836112d32d05e678cf1998156a01",
+    "src/renderer/native.d.mts": "b277d3759a54f7b6d5e543f129135b5c852e0f0720fcfc2971c69b682653d069",
+    "scripts/test_focus_impact.cjs": "6c3231d9fc3060e5118e1811fba73550ea98449063e0ae7bd66f7354f0a07fa3"
+  },
+  "screenshots": {
+    "docs/screenshots/focus-soft-390.png": "56234dc6104ec0572c7ed2724585b56d9823a2aa398d2fcf6ae81441345e91ee",
+    "docs/screenshots/focus-soft-360.png": "2edf94b90a8ed00c39f655a8840f94ff1058ff83890b8e6961b4d76bc456b6e1",
+    "docs/screenshots/impact-windup.png": "e25f26bc27b5be0fc55f6b8968e0e230cb29fd2a871e1aaa82933bf252a164eb",
+    "docs/screenshots/impact-contact.png": "e290bd631a8a58ae30aaaf604aca32003048ce3a7aecae3d3c21ae668b714a5d"
+  },
+  "scope": "Actual local Chrome mobile focus interactions and controlled native-frame rendering of real engine normal-hit events. No physical device/Safari certification."
+}

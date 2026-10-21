@@ -1,0 +1,267 @@
+{
+  "schema_version": 1,
+  "modules": {
+    "content": {
+      "path": "src/content",
+      "imports": [],
+      "public": [
+        "validateContent",
+        "loadValidatedContent",
+        "resolveAliases"
+      ]
+    },
+    "math": {
+      "path": "src/domain/math",
+      "imports": [
+        "content"
+      ],
+      "public": [
+        "resolveStats",
+        "calculateDamage",
+        "skillIntervalMs",
+        "castDurationMs"
+      ]
+    },
+    "build": {
+      "path": "src/domain/build",
+      "imports": [
+        "content",
+        "math"
+      ],
+      "public": [
+        "compileBuild",
+        "applySkillPatches",
+        "validateParty"
+      ]
+    },
+    "combat": {
+      "path": "src/domain/combat",
+      "imports": [
+        "content",
+        "math",
+        "build"
+      ],
+      "public": [
+        "createBattle",
+        "advanceUntil",
+        "serializeBattle",
+        "restoreBattle"
+      ]
+    },
+    "modes": {
+      "path": "src/domain/modes",
+      "imports": [
+        "content",
+        "combat"
+      ],
+      "public": [
+        "createEncounter",
+        "continueDailyPhase",
+        "classifyResult"
+      ]
+    },
+    "progression": {
+      "path": "src/domain/progression",
+      "imports": [
+        "content",
+        "math",
+        "build"
+      ],
+      "public": [
+        "quoteUpgrade",
+        "allocateStats",
+        "refundPaidLedger"
+      ]
+    },
+    "rewards": {
+      "path": "src/domain/rewards",
+      "imports": [
+        "content",
+        "build"
+      ],
+      "public": [
+        "calculateFarmClaim",
+        "rollGacha",
+        "buildFixedLoot"
+      ]
+    },
+    "account": {
+      "path": "src/domain/account",
+      "imports": [
+        "content",
+        "build",
+        "combat",
+        "modes",
+        "progression",
+        "rewards"
+      ],
+      "public": [
+        "decideCommand",
+        "validateAccount"
+      ]
+    },
+    "simulation": {
+      "path": "src/simulation",
+      "imports": [
+        "content",
+        "build",
+        "combat",
+        "modes",
+        "progression",
+        "rewards"
+      ],
+      "public": [
+        "runScenario",
+        "runMatchedBatch",
+        "replayBattle"
+      ]
+    },
+    "client": {
+      "path": "src/client",
+      "imports": [
+        "content",
+        "math",
+        "build",
+        "combat",
+        "modes",
+        "progression",
+        "rewards"
+      ],
+      "public": [
+        "predictBattle",
+        "previewBuild"
+      ]
+    },
+    "ui": {
+      "path": "src/ui",
+      "imports": [
+        "client",
+        "renderer"
+      ],
+      "public": [
+        "renderGame"
+      ]
+    },
+    "renderer": {
+      "path": "src/renderer",
+      "imports": [
+        "contracts"
+      ],
+      "public": [
+        "drawBattleView",
+        "playPresentationEvent"
+      ]
+    },
+    "api": {
+      "path": "api/index.ts",
+      "imports": [
+        "account",
+        "persistence",
+        "auth"
+      ],
+      "public": [
+        "fetch"
+      ]
+    },
+    "persistence": {
+      "path": "src/server/persistence",
+      "imports": [
+        "contracts"
+      ],
+      "public": [
+        "readAccount",
+        "lookupReceipt",
+        "commitCommand"
+      ]
+    },
+    "contracts": {
+      "path": "src/contracts",
+      "imports": [],
+      "public": [
+        "Command",
+        "Receipt",
+        "AccountState",
+        "BattleInput",
+        "BattleState",
+        "BattleEvent",
+        "Scenario",
+        "Metrics"
+      ]
+    },
+    "auth": {
+      "path": "src/server/auth",
+      "imports": [
+        "contracts"
+      ],
+      "public": [
+        "authenticateRequest"
+      ]
+    }
+  },
+  "pure_modules": [
+    "content",
+    "math",
+    "build",
+    "combat",
+    "modes",
+    "progression",
+    "rewards",
+    "account",
+    "simulation",
+    "contracts"
+  ],
+  "forbidden_pure_imports": [
+    "react",
+    "window",
+    "document",
+    "canvas",
+    "supabase",
+    "fetch",
+    "Date.now",
+    "Math.random",
+    "node:fs",
+    "node:crypto"
+  ],
+  "mutation_command_ids": [
+    "account.create",
+    "party.set",
+    "character.level_up",
+    "character.breakthrough",
+    "character.change_job",
+    "character.allocate_status",
+    "character.reset_build",
+    "skill.upgrade",
+    "skill.set_loadout",
+    "equipment.equip",
+    "equipment.unequip",
+    "equipment.lock",
+    "equipment.salvage",
+    "equipment.fuse",
+    "equipment.tier_up",
+    "equipment.purchase_weapon",
+    "slot.refine",
+    "slot.enchant",
+    "slot.change_enchant",
+    "card.assign",
+    "card.unassign",
+    "card.upgrade",
+    "card.salvage",
+    "farm.set_stage",
+    "farm.claim",
+    "reward.claim",
+    "battle.start_story",
+    "battle.start_tower",
+    "battle.start_daily",
+    "battle.advance",
+    "battle.retreat",
+    "daily.objective_claim",
+    "gacha.pull",
+    "backup.restore_request",
+    "shop.buy",
+    "save.migrate",
+    "account.reset"
+  ],
+  "canonical_definition_source": "plan/data authored JSON; build selects files and emits generated immutable bundle with source hashes, no handwritten duplicate in SQL",
+  "battle_actors": "array of stable IDs, owner/source/life_epoch; party-size validation belongs to build, not combat iteration",
+  "snapshot_boundary": "advanceUntil returns only after full timestamp/reaction barrier; no partial effect program checkpoint"
+}

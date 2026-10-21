@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "processes": 2,
+  "scenario": "cc_resistance",
+  "seed": 7,
+  "report_bytes": 430885,
+  "sha256": "dc37ac656118740ada7c70d6bad416f9f55c29bed75a7a4430e2705dae91b06d",
+  "content_hash": "3b6b91759016be898d4edbdf15c4c1522270359fcc73b0b6d9e3f7d678526233",
+  "commands": [
+    "npm run simulate -- run cc_resistance --seed 7 --trace --out /private/tmp/ro-sim-first.json --replay-out /private/tmp/ro-sim-replay.json",
+    "npm run simulate -- replay /private/tmp/ro-sim-replay.json --out /private/tmp/ro-sim-second.json"
+  ],
+  "scope": "exact byte comparison, same code/content; not a future-version compatibility promise"
+}

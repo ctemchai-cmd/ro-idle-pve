@@ -1,0 +1,149 @@
+{
+  "task_id": "TASK-020",
+  "round": 9,
+  "date": "2026-10-20",
+  "reviewer": "Codex self-review",
+  "passed": true,
+  "scope": "CSS-only presentation refinement requested by user:56px unboxed skill icons with subtle short dividers/next marker; remove horizontal actor separators and track baselines in Timeline. Dock height follows content so progress caption stays above nav.",
+  "input_sha256": {
+    "src/ui/modern-theme.css": "3064dbe912664720c4698e5af0bc06e9223e1b972b01099a2a76750a00887e1f",
+    "src/ui/timeline.css": "93e6db83178cb56db4e71d7a240055751dbc1606220451fcdc89b4988bb33ab3",
+    "src/ui/adventure.css": "98d15a114a7679013b785e122630beef6b61f818511bf860e01da96badfeaba6",
+    "src/ui/battle-app.tsx": "f5c2ff89d9c3e296caff2603465a35007ca735522c620e6c1c97db29b8dbd469",
+    "src/ui/skill-timeline.tsx": "c8cd3e0a48a05598e9396117177d9eacc2206719f77f142bc19b931f98aed48f"
+  },
+  "unchanged_core_input_sha256": {
+    "src/renderer/audio.ts": "915e296aa7c108863f9f8ab2223a9287ae2d2d8121e1850c82fe3fbd1616f26c",
+    "src/renderer/audio-preferences.ts": "71c4e7d51127c8d3aac8cc06535b77d5795d9685d70a5ed61f75d216eacc1885",
+    "src/renderer/pack.ts": "a0d20b6156e2590104e53dc35b35a7b3f81470640e29bbc993881a1d467f7d75",
+    "src/renderer/battle.ts": "4e52db0660b9d0b63676685b3300bf75eaa9b468d5b4db7f0a2cad61297b4caa",
+    "src/contracts/audio.ts": "80a2ab54743f24c5e46270c0dc67d861e157b68970bc731392f1bbb730705cd7",
+    "src/contracts/combat-statistics.ts": "045879940cb7c98f43e35118611c52fb12a8619a430bffeeaef98a24ef2552d0",
+    "src/domain/combat/model.ts": "5f262bc967a4108daa1b6ebe7afcddd8f3ff9eb5e545c444fda55a2f17b0431a",
+    "src/domain/combat/effects.ts": "a987f66aecbbd2edc4263b0af2667e2708dda84901ce3824cba39a0390413f28",
+    "src/domain/combat/statistics.ts": "a58475a4585ff2b1ff787d78bb00b07fc6974e952e440104607053ef1fc6caae",
+    "src/domain/combat/engine.ts": "a7c3b59cfb74ecd43fa5c158e84e7b6b04d70b8fb45a17c9ac2b5aa0ae4d4d45",
+    "src/client/demo.ts": "95f5fa38622f86f8114699c1269892a16e956d7ec9a4e150fcb46f3b63e41a6d",
+    "src/simulation/index.ts": "a652b007cb6acc484fb25306d963a1cc4677351ae3bbffa2302fa82aa9d8e282",
+    "src/generated/runtime-manifest.json": "696a5b5262810f449b1657c0801b34f58a6c27b82c8b8ab3e2c0f9c8b88bfbc4",
+    "runtime/ro/manifest.json": "427e17705172e8c924e5aabcf27534b26a98d2f069a3b0ee7d07cae61ff47b47",
+    "tests/game/audio.test.ts": "a1cfc8f1b67cd28e6205ed7f5e7a95666aa4f2a3080fae7eae00fae590478f96",
+    "tests/game/combat-statistics.test.ts": "fb14f6cd69eb9f9f38d7a5591db3e95a43dfa038d87d8908f380787c4363d8bf",
+    "tests/game/assets.test.ts": "5b9c79b26c39e3342da0066b4eebcde161d8623a236453dc24843fdd20d5d131"
+  },
+  "checks": [
+    {
+      "case_id": "unchanged_native_actors_and_scoped_visual_review",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "retained_evidence": "task-020-audio-statistics-review.json",
+        "unchanged_core_inputs": 17,
+        "new_visual_scope": [
+          "390x844 and360x640 Acolyte dock screenshots",
+          "390x844 clean Timeline screenshot"
+        ],
+        "note": "Renderer/native actors/assets are unchanged. Prior native/multi-frame evidence retained; not rerun or claimed newly exhaustive."
+      }
+    },
+    {
+      "case_id": "mobile_skill_dock_and_clean_timeline",
+      "acceptance": [
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "browser_report": "task-020-icon-dock-browser.json",
+        "checks": 3,
+        "viewports": [
+          [
+            390,
+            844
+          ],
+          [
+            360,
+            640
+          ],
+          [
+            1280,
+            900
+          ]
+        ],
+        "verified": [
+          "Four56px images, readable labels,44px+hitboxes, transparent borderless controls",
+          "Progress caption remains inside dock and above navigation",
+          "Skill inspection, keyboard focus, real first/second queue swap and restart",
+          "All5 Timeline rows without horizontal borders/baselines; timing bars/current marker/details/zoom/pause/Escape and focus restoration work"
+        ]
+      }
+    },
+    {
+      "case_id": "unchanged_combat_and_interaction_contracts",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "retained_evidence": "task-020-audio-statistics-review.json",
+        "core_inputs_match": true,
+        "note": "179TS tests and4native tests passed in round8 and are retained as history. This CSS-only round did not rerun them. No queue formulas, clocks, engine, RNG, rates or rendering adapter code changed. Browser exercises queue swap and paused Timeline; full9render-parity runs remain round6 history."
+      }
+    },
+    {
+      "case_id": "current_build_and_local_pack_requests",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "build": "npm run build passed assets/content/boundaries/typecheck/Vite/output/secrets",
+        "external_requests": [],
+        "browser_errors": [],
+        "pack_hash": "4cc4d9d4f4a8e58a432de095b9436470801b7799d1e26b903cb3208bed3ad032",
+        "pack_changed": false,
+        "media_decode_evidence": "task-020-audio-statistics-browser.json",
+        "note": "Pack unchanged;216image/34audio/font decode evidence retained from round8, not rerun as a full decode in this round."
+      }
+    }
+  ],
+  "commands": [
+    "npm run build",
+    "node /private/tmp/ro_icon_dock_review.cjs"
+  ],
+  "manual_reproduction": [
+    "Open localhost:5173, wait for fight, pause, select Acolyte. Inspect four icons and complete labels at390x844,360x640 and1280x900.",
+    "Tap a skill for SP/timing detail. Tab to another skill. Open จัดคิว, swap first/second skills, confirm restarted order.",
+    "Open Timeline; confirm5rows without horizontal separators, tap a skill for details, change20s to10s, pause time and close with Escape."
+  ],
+  "evidence": [
+    "task-020-icon-dock-browser.json",
+    "task-020-icon-dock-browser.txt",
+    "task-020-icon-dock-build.txt"
+  ],
+  "evidence_sha256": {
+    "task-020-icon-dock-browser.json": "ae4932218650cd3680ee0c1f0594c3e29ee2fe7d1e7bfc06b5d339f88dd109ef",
+    "task-020-icon-dock-browser.txt": "ae4932218650cd3680ee0c1f0594c3e29ee2fe7d1e7bfc06b5d339f88dd109ef",
+    "task-020-icon-dock-build.txt": "914acf63fbe1943dc07b0ab551be00e79f2527c34a1257886f1ddc1f7e5b12a4"
+  },
+  "screenshots": {
+    "docs/screenshots/skill-icons-390.png": "e116195121a34d2690860465cb1521744af3d7a843fd1778eaa09ed5d85dd68f",
+    "docs/screenshots/skill-icons-360.png": "9f160122324840a54c5a7c6d2aaded59080911c5724722c178b9e2c5020c165b",
+    "docs/screenshots/skill-icons-1280.png": "9877632b69257621be0b7983132f6e3c8b2394e2cd23608ff1dc1987772bc133",
+    "docs/screenshots/timeline-clean-390.png": "9e0e1a6c58f425299c4bfc64073f2c97ba683a77e8146dcd11b5d3229de26cc0"
+  },
+  "visual_review": {
+    "method": "Directly opened the final390px/360px skill-dock screenshots and390px Timeline screenshot. Static appearance/spacing/type/progress containment only.",
+    "files": [
+      "docs/screenshots/skill-icons-390.png",
+      "docs/screenshots/skill-icons-360.png",
+      "docs/screenshots/timeline-clean-390.png"
+    ]
+  },
+  "limitations": [
+    "Chrome viewport emulation, not physical phones or Safari.",
+    "Only CSS layout/appearance changed; inherited native/combat/media proof is explicitly historical.",
+    "Existing large JS chunk warning remains TASK-042. No hosted Supabase/Vercel deployment or completed durable-save loop."
+  ]
+}

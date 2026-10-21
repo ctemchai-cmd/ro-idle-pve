@@ -1,0 +1,96 @@
+{
+  "task_id": "TASK-020",
+  "reviewer": "Codex self-review",
+  "review_round": 4,
+  "date": "2026-10-19",
+  "passed": true,
+  "scope": "Supplement superseding round3 animation acceptance after user reported detached heads. Historical report and screenshots retained unchanged. Timeline added at user request.",
+  "previous_review": "task-020-review.json",
+  "content_hash": "b6e6b2aa466ae53169c04cacf0c42ac129409db570a4f1d36033071e891d27fb",
+  "implementation_hash": "04417a54f7cc4a3ac5f6d3bcb930122cd0b97b9bede270867d216395153e0f92",
+  "asset_pack_hash": "47f97d9aaac2bf10ac3279e5634052b72a55a26fefe1048de0c537387332d307",
+  "input_sha256": {
+    "src/renderer/native.mjs": "c81fae7cc08d0f718b41bace186c9726b6309483b44f14194bb6abc91c88c029",
+    "src/renderer/actor-animation.ts": "a46796c5c8fb05728b6f62a20a8bcef6a0fc7bed41391297b31e73048e3e8e43",
+    "src/renderer/battle.ts": "2363ae3a2678804839625729a19fab0aa0df2b0c5104db8a5312f7ea07d31441",
+    "src/client/battle-timeline.ts": "986de0b8a37e3f5daf5ae3e5a9b98638dfceb43936c4d23887635263051690f6",
+    "src/client/demo.ts": "537724479907cf568b3a426fbef57996f33e369483ed9424db505ca356187969",
+    "src/contracts/presentation.ts": "6b267dd5b71e15ef0a9a090edd2bbe9926eecb73003077c2aa9a9eed564674aa",
+    "src/ui/skill-timeline.tsx": "8b07b94a6c3b06f6a7d5ce580412c503ddf6ec18360fb97efd1ed9f2d1408232",
+    "src/ui/timeline.css": "3cc0484272e5a2a3e02f1f885ffd66ba7a4d406c090cecf4ff7433d9fc2810fc",
+    "src/ui/battle-app.tsx": "6c43c1714c681e41e432af2f26e28bc3db2ee1254f342801f54c3ba0cd90bbeb",
+    "tests/game/animation.test.ts": "52f998bb2f5c62c3e53fe7538361e4efdf3eb7b771195d256c2bda3829493b21",
+    "tests/game/timeline.test.ts": "58ad6e6d197ebbfef2b0ce24457c14fd0862f92385ae89c07ea5f7c17767a208",
+    "tests/renderer.test.mjs": "d788b5a60de77e4c00b41d2a585906b8e48b3cd93918ed312f5a62551575755b",
+    "scripts/test_animation_timeline.cjs": "94427072d220fafb627ffab26283c62fdf857e1caba3cb6c67a0b4dc57e1cdbb",
+    "runtime/ro/manifest.json": "ce7c8897a8a240338f6be27509d4305a846be95f4db2a99d9b0a4d01dcc271d9",
+    "src/generated/runtime-manifest.json": "d399e6b85b865fccd31a8d0a5a48208800b074a4e2a788b7536e117398db5efb",
+    "src/renderer/native.d.mts": "14536617f5bb7bb3d39d71f21925ced4812a8d5d053fe21e931f9d4f34b74e89",
+    "docs/BATTLE-DEMO.md": "f01e0438bcec700cbf282dc23dd6bfa72793e589747a4393805ac3006dcbaded"
+  },
+  "checks": [
+    {
+      "case_id": "synchronized_native_attachments_and_complete_clips",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": "36presets:648idle pixel comparisons at10timestamps across both directions;626attack frame images/313complete-actor mirror checks;4native tests. ActorAnimation regression covers900msattack/hitpriority/flinch/castphase/death/revive; gallery and reported18s scene visually reviewed."
+    },
+    {
+      "case_id": "shared_axis_timeline_and_exact_engine_projection",
+      "acceptance": [
+        "AC-02"
+      ],
+      "passed": true,
+      "result": "7actor rows with party/enemy separator,1.5sunder initial skills,sharednowline,CT/ACDbars,10/20/40szoom,pause,selection,rotationrefresh,mobilehorizontal scroll/keyboard. Projection cast/interrupt/skip and actual recovery barriers equal engine in all4encounters. No duplicate timing formula."
+    },
+    {
+      "case_id": "forecast_and_render_preserve_authoritative_battle",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": true,
+      "result": "Browser3encountersxrender-off/30/60FPS plus drawpause:fullstate/events/RNG/metrics identical to engine. Node checks forecast leaves live state/history/initial untouched; cached per session;newrotation projects separately.156TStests/typecheck/content/boundaries pass."
+    },
+    {
+      "case_id": "unchanged_pack_and_browser_build",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": "Current assets:check/build/secrets check passes;no browser external/HTTP/runtime errors. Historical round3 full214image/34audio/fontdecode and production-recovery evidence retained;media/sidecars/pack unchanged. New runtime topology is249IDs and same47fpackhash."
+    }
+  ],
+  "evidence": [
+    "task-020-animation-timeline-browser.json",
+    "task-020-animation-timeline-browser.txt",
+    "task-020-animation-timeline-checks.txt",
+    "task-020-animation-timeline-native.txt",
+    "task-020-animation-timeline-build.txt",
+    "task-020-browser.json",
+    "task-020-production.json"
+  ],
+  "visual_review": {
+    "status": "reviewed",
+    "scope": "Four core male party actors only:10pose samples each in gallery (idle0/100/200,attack0/300/700/850,standby300,hurt200,dead800); reportedboss scene18s; desktopTimeline and390pxmobile. Heads attached; left-right/many-class coverage is automated, not manual inspection of all cosmetics.",
+    "screenshots": {
+      "docs/screenshots/battle-animation-frames.png": "7dbcc7a4fd698f39775b81db7aaf5d03dfd118b113050a08b042c9e3359f7f05",
+      "docs/screenshots/battle-heads-fixed-18s.png": "21257c1277532a914190af5267e845f065c726b70ab88f3f8753cd32403f7517",
+      "docs/screenshots/battle-timeline.png": "a70a9838b85e62125b658bf1c8616ff05b2741ca16a09f7ca0a1c6ab417894de",
+      "docs/screenshots/battle-timeline-mobile.png": "414274117d879cb64b0295e2161f1d2dbb3f9a50e54033c5a079b9d7255edb74"
+    }
+  },
+  "findings_resolved": [
+    "Round3 static350ms checks missed body idle anchor changing under frozen head. Human idle/sit body and attachments now select pose0 together; monsters still loop.",
+    "Shared body frame clock and per-frame anchor transforms for head; shorter attachments clamp to last frame instead of wrapping.",
+    "Removed650ms attack truncation; metadata clip length and one-shot clamp; ordinary multi-hit damage cannot repeatedly restart active hit/swing/death poses. Casting starts at authoritative phase time.",
+    "Timeline is a read-only engine replay in yielded chunks, cached per disposable scene; future forecast marked dashed and rebuilt when rotation changes."
+  ],
+  "limitations": [
+    "Local Chrome headless; real device/Safari/FPS-memory budgets remain TASK-042. Native ACT frame cadence retained, no claim of60unique artwork frames/sec.",
+    "Timeline projects deterministic disposable demo inputs. Future build/manual input changes during battle must invalidate projections; current rotation change starts a new fight.",
+    "No new account/save/progression/farm/deployment evidence;TASK-022 remains inprogress.",
+    "Unchanged historical media decode/production-recovery evidence reused; not rerun against new renderer because those asset and recovery paths were unchanged."
+  ]
+}

@@ -1,0 +1,261 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ro-idle.local/schemas/status.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "polarity": {
+      "enum": [
+        "buff",
+        "debuff"
+      ]
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]*$"
+      }
+    },
+    "parameter_schema": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "object"
+        },
+        "properties": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "const": "number"
+              },
+              "minimum": {
+                "type": "number"
+              },
+              "maximum": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "type"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          }
+        },
+        "additionalProperties": {
+          "const": false
+        }
+      },
+      "required": [
+        "type",
+        "properties",
+        "required",
+        "additionalProperties"
+      ],
+      "additionalProperties": false
+    },
+    "weapon_element": {
+      "enum": [
+        "neutral",
+        "water",
+        "earth",
+        "fire",
+        "wind",
+        "poison",
+        "holy",
+        "dark",
+        "ghost",
+        "undead",
+        null
+      ]
+    },
+    "stacking": {
+      "type": "object",
+      "properties": {
+        "admission": {
+          "const": "independent"
+        },
+        "max_instances": {
+          "type": "null"
+        },
+        "magnitude_cap": {
+          "type": "null"
+        },
+        "expiry": {
+          "const": "per_instance"
+        }
+      },
+      "required": [
+        "admission",
+        "max_instances",
+        "magnitude_cap",
+        "expiry"
+      ],
+      "additionalProperties": false
+    },
+    "restrictions": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "no_new_skill",
+          "no_normal_attack",
+          "interrupt_interruptible_cast"
+        ]
+      }
+    },
+    "cleanseable": {
+      "type": "boolean"
+    },
+    "dispelable": {
+      "type": "boolean"
+    },
+    "source_death": {
+      "enum": [
+        "persist",
+        "remove"
+      ]
+    },
+    "target_death": {
+      "const": "remove"
+    },
+    "battle_end": {
+      "const": "remove"
+    },
+    "remove_on_hp_damage": {
+      "type": "boolean"
+    },
+    "modifiers": {
+      "type": "array",
+      "items": {
+        "$ref": "modifier.json"
+      }
+    },
+    "triggers": {
+      "type": "array",
+      "items": {
+        "$ref": "trigger.json"
+      }
+    },
+    "periodic": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "interval_ms": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "tick_on_apply": {
+              "type": "boolean"
+            },
+            "offense": {
+              "enum": [
+                "application_snapshot",
+                "live_source"
+              ]
+            },
+            "mitigation": {
+              "const": "live_target"
+            },
+            "effects": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "effect.json"
+              }
+            }
+          },
+          "required": [
+            "interval_ms",
+            "tick_on_apply",
+            "offense",
+            "mitigation",
+            "effects"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "damage_redirect": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "ratio": {
+              "oneOf": [
+                {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "status_param": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "status_param"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            },
+            "recipient": {
+              "const": "source_actor"
+            }
+          },
+          "required": [
+            "ratio",
+            "recipient"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "polarity",
+    "tags",
+    "parameter_schema",
+    "weapon_element",
+    "stacking",
+    "restrictions",
+    "cleanseable",
+    "dispelable",
+    "source_death",
+    "target_death",
+    "battle_end",
+    "remove_on_hp_damage",
+    "modifiers",
+    "triggers",
+    "periodic"
+  ],
+  "additionalProperties": false
+}

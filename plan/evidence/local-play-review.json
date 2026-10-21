@@ -1,0 +1,49 @@
+{
+  "passed": true,
+  "date": "2026-10-20",
+  "url": "http://127.0.0.1:6173/auth",
+  "snapshot_content_hash": "65b82feb21f654bb17521bdc4417245c630d0cf6f0149f5877ab93b5ec3b9dc2",
+  "runtime_through": "TASK-028 (M2 plus equipment/slot/card/rarity/tier; not all M3/M4)",
+  "source_sha256": {
+    "scripts/play_local.py": "a7598adee23acb81ad017d0f7b46a0e7895545128c6cce2e9dc04c49e2ecab06",
+    "scripts/game/local-supabase-gateway.ts": "1d4d8a37bc749fcf6c2d18039baf9faf2a30c0a8008105d07cb19ab6772a984b",
+    "vite.config.ts": "d02fafed98163600da0d05b6426a77a44a0e4b790d3e62db9a83630eeb3a283a",
+    "package.json": "6e8938aafcff45f8fd57eb20e59ac6003cd91503a5f48f417e64fe2b05f5eb8a"
+  },
+  "checks": [
+    "Real local owner checkpoint keeps revision2/gold978/mainLv2",
+    "Static server denies env/source/traversal/symlink paths and anonymous game saves",
+    "Actual frozen build Chrome login and saved four-person Story preview ready",
+    "Actual frozen roster exposes six gear slots, Refine/Enchant/card and rarity/tier modules with poor-wallet101.5 CastSpeed preview",
+    "Stable manifest revalidates while payload paths remain content-addressed",
+    "Personal local player remains uninitialized for user to choose main class",
+    "Verified zero game saves before deliberate refresh; retained same personal Auth and created private DB backups plus source archives",
+    "Actual nonempty refresh refused with LOCAL_PLAY_REFRESH_REQUIRES_EMPTY_DATABASE before extra backup/archive or snapshot changes",
+    "Synthetic Lv2/gold978/revision2 persisted through service stop/start and refused refresh; synthetic users removed after verification",
+    "Final actual personal email/password login succeeds and checkpoint404 leaves user main/class/gender unchosen",
+    "Vite5173 denies private path403; frozen6173 denies404; private files0600/root0700",
+    "Frozen content hash equals latest reviewed runtime; public manifest no-store, hashed payload immutable"
+  ],
+  "evidence": [
+    "local-play-smoke.json",
+    "local-play-final-ui.txt",
+    "local-play-final-restart.txt",
+    "local-play-refresh-guard.txt",
+    "local-play-final-privacy.json",
+    "local-play-native.txt"
+  ],
+  "screenshots": [
+    "docs/screenshots/local-play-ready.png",
+    "docs/screenshots/local-play-equipment-ready.png"
+  ],
+  "retained_backup_count": 2,
+  "retained_snapshot_archive_count": 2,
+  "credentials_logged": false,
+  "limitations": [
+    "Loopback self-hosted upstream services; no hosted Supabase/Vercel/SMTP delivery.",
+    "Class-specific effects029–034, additional modes/gacha/AFK/recovery/balance remain; card acquisition is not yet in personal game.",
+    "Snapshot refresh is deliberately only for zero game saves; no migration of an already started personal game and no tested full dump restore (TASK-040).",
+    "Optional static manifest cache header changed after full task028 regression; final real frozen Chrome/HTTP checks independently cover that read-only change.",
+    "Verified tool binaries cached under /private/tmp, player data under project .local/play; normal restart does not auto-update source."
+  ]
+}

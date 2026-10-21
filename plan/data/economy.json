@@ -1,0 +1,577 @@
+{
+  "schema_version": 1,
+  "content_version": "economy-v1",
+  "rates": [
+    {
+      "chapter": 1,
+      "per_hour": {
+        "gold": 2110,
+        "hero_exp": 4900,
+        "skill_manual": 57,
+        "refine_ore": 1,
+        "breakthrough_essence": 1,
+        "enchant_dust": 0
+      }
+    },
+    {
+      "chapter": 2,
+      "per_hour": {
+        "gold": 2136,
+        "hero_exp": 4900,
+        "skill_manual": 57,
+        "refine_ore": 13,
+        "breakthrough_essence": 9,
+        "enchant_dust": 1
+      }
+    },
+    {
+      "chapter": 3,
+      "per_hour": {
+        "gold": 7238,
+        "hero_exp": 4900,
+        "skill_manual": 137,
+        "refine_ore": 34,
+        "breakthrough_essence": 9,
+        "enchant_dust": 4
+      }
+    },
+    {
+      "chapter": 4,
+      "per_hour": {
+        "gold": 7238,
+        "hero_exp": 4900,
+        "skill_manual": 137,
+        "refine_ore": 34,
+        "breakthrough_essence": 9,
+        "enchant_dust": 5
+      }
+    },
+    {
+      "chapter": 5,
+      "per_hour": {
+        "gold": 9057,
+        "hero_exp": 4900,
+        "skill_manual": 204,
+        "refine_ore": 34,
+        "breakthrough_essence": 9,
+        "enchant_dust": 6
+      }
+    },
+    {
+      "chapter": 6,
+      "per_hour": {
+        "gold": 9057,
+        "hero_exp": 5767,
+        "skill_manual": 204,
+        "refine_ore": 34,
+        "breakthrough_essence": 9,
+        "enchant_dust": 6
+      }
+    },
+    {
+      "chapter": 7,
+      "per_hour": {
+        "gold": 9057,
+        "hero_exp": 7815,
+        "skill_manual": 204,
+        "refine_ore": 34,
+        "breakthrough_essence": 17,
+        "enchant_dust": 6
+      }
+    },
+    {
+      "chapter": 8,
+      "per_hour": {
+        "gold": 17970,
+        "hero_exp": 9788,
+        "skill_manual": 204,
+        "refine_ore": 34,
+        "breakthrough_essence": 17,
+        "enchant_dust": 6
+      }
+    }
+  ],
+  "farm": {
+    "unlock": "clear 1-1",
+    "stage_selection": "any cleared stage; same stage always same rate snapshot",
+    "offline_cap_seconds": 43200,
+    "equipment_drop_interval_seconds": 300,
+    "tick_unit_seconds": 0.001,
+    "reward_quantization": "floor((elapsed_ms*rate_per_hour+carry)/3600000); carry integer remainder so sub-second claims/rate changes lose no time",
+    "rate_restrictions": {
+      "refine_ore": "clear 1-5",
+      "breakthrough_essence": "clear 1-5",
+      "enchant_dust": "clear 2-5"
+    },
+    "crystal_from_farm": false,
+    "during_other_modes": "farm accrues continuously at selected cleared stage during Story/Tower/daily; mode reward is additional; never also grant kill-based farm currency",
+    "AFK_does_not_unlock_stages": true,
+    "equipment_drop_interval_ms": 300000
+  },
+  "resources": [
+    {
+      "id": "gold",
+      "sources": [
+        "account_grant",
+        "farm",
+        "story_first_clear",
+        "tower_first_clear",
+        "daily_chests",
+        "equipment_salvage"
+      ],
+      "sinks": [
+        "level",
+        "skill",
+        "breakthrough",
+        "refine",
+        "enchant",
+        "card_level",
+        "tier_upgrade",
+        "targeted_weapon"
+      ]
+    },
+    {
+      "id": "hero_exp",
+      "sources": [
+        "account_grant",
+        "farm",
+        "story_first_clear",
+        "daily_chests"
+      ],
+      "sinks": [
+        "manual_character_level"
+      ]
+    },
+    {
+      "id": "skill_manual",
+      "sources": [
+        "account_grant",
+        "farm",
+        "story_first_clear",
+        "daily_chests"
+      ],
+      "sinks": [
+        "manual_skill_upgrade"
+      ]
+    },
+    {
+      "id": "refine_ore",
+      "sources": [
+        "farm_from_1-5",
+        "equipment_salvage",
+        "daily_chests"
+      ],
+      "sinks": [
+        "refine",
+        "tier_upgrade"
+      ]
+    },
+    {
+      "id": "breakthrough_essence",
+      "sources": [
+        "farm_from_1-5",
+        "daily_chests"
+      ],
+      "sinks": [
+        "breakthrough_20_40_60"
+      ]
+    },
+    {
+      "id": "enchant_dust",
+      "sources": [
+        "farm_from_2-5",
+        "daily_chests"
+      ],
+      "sinks": [
+        "enchant"
+      ]
+    },
+    {
+      "id": "card_dust",
+      "sources": [
+        "explicit_card_instance_salvage"
+      ],
+      "sinks": [
+        "card_level"
+      ]
+    },
+    {
+      "id": "crystal",
+      "sources": [
+        "story_first_clear",
+        "tower_first_clear",
+        "daily_objective"
+      ],
+      "sinks": [
+        "card_gacha"
+      ]
+    }
+  ],
+  "daily_objective": {
+    "claim": "once per account Bangkok date",
+    "conditions": [
+      "claim farm rewards at least once",
+      "finish one battle attempt, win or loss"
+    ],
+    "crystal": 100,
+    "unlocks_after": "2-10"
+  },
+  "first_clear_story": {
+    "per_stage_gold_base": 250,
+    "gold_chapter_squared": true,
+    "hero_exp_base": 400,
+    "hero_exp_chapter_squared": true,
+    "manual_per_chapter_unit": 10,
+    "crystal_per_stage": 20,
+    "claim_scope": "stage_id once per account"
+  },
+  "checkpoints": [
+    {
+      "id": "early_one_character_4_to_10",
+      "chapter": 1,
+      "cost": {
+        "hero_exp": 3305,
+        "gold": 1322
+      },
+      "acceptable_minutes": [
+        24,
+        57
+      ],
+      "expected_minutes": 40.46938775510204,
+      "pace_basis": "D-069 rates (2–3 weeks to max); window is ±40 % of the computed budget minutes"
+    },
+    {
+      "id": "team_39_to_40",
+      "chapter": 4,
+      "cost": {
+        "hero_exp": 38220,
+        "gold": 15288
+      },
+      "acceptable_minutes": [
+        280,
+        656
+      ],
+      "expected_minutes": 468.0,
+      "pace_basis": "D-069 rates (2–3 weeks to max); window is ±40 % of the computed budget minutes"
+    },
+    {
+      "id": "two_class2_skills_7_to_8",
+      "chapter": 4,
+      "cost": {
+        "skill_manual": 280,
+        "gold": 1400
+      },
+      "acceptable_minutes": [
+        73,
+        172
+      ],
+      "expected_minutes": 122.62773722627739,
+      "pace_basis": "D-069 rates (2–3 weeks to max); window is ±40 % of the computed budget minutes"
+    },
+    {
+      "id": "team_breakthrough_40",
+      "chapter": 4,
+      "cost": {
+        "gold": 100000,
+        "breakthrough_essence": 400
+      },
+      "acceptable_minutes": [
+        1599,
+        3734
+      ],
+      "expected_minutes": 2666.6666666666665,
+      "pace_basis": "D-069 rates (2–3 weeks to max); window is ±40 % of the computed budget minutes"
+    },
+    {
+      "id": "team_breakthrough_60",
+      "chapter": 6,
+      "cost": {
+        "gold": 400000,
+        "breakthrough_essence": 1600
+      },
+      "acceptable_minutes": [
+        6399,
+        14934
+      ],
+      "expected_minutes": 10666.666666666666,
+      "pace_basis": "D-069 rates (2–3 weeks to max); window is ±40 % of the computed budget minutes"
+    },
+    {
+      "id": "team_24_slots_refine10",
+      "chapter": 6,
+      "cost": {
+        "gold": 3961572,
+        "refine_ore": 12635
+      },
+      "acceptable_minutes": [
+        15746,
+        36742
+      ],
+      "expected_minutes": 26244.266313348788,
+      "cost_basis": "expected cost of 0->+10 x24 under D-057 refine chance/pity (step prices unchanged); acceptance widened from 3600 to 4800 minutes as a D-057 pacing consequence, to tune in TASK-041",
+      "pace_basis": "D-069 rates (2–3 weeks to max); window is ±40 % of the computed budget minutes"
+    }
+  ],
+  "checkpoint_limits": "Empty starting wallet and static unlocked farm chapter; costs are illustrative independent budgets at the D-069 rates, not a measured timeline (scripts/game/journey.ts measures that). First clears/daily/salvage accelerate these estimates. Cannot spend same income on two checkpoints at once.",
+  "reference_team": {
+    "characters": [
+      "main_mage",
+      "npc_swordsman",
+      "npc_acolyte",
+      "npc_archer"
+    ],
+    "party_size": 4,
+    "same_budget_rule": "equal cumulative gold/EXP/manual/gear rarity and stat points; substitution changes roles but not budget"
+  },
+  "long_term_target": "D-069: Lv70 Class2 and chapter 8 in about 240 continuous farm hours (~10 days with AFK claimed twice a day), maxed gear around 2–3 weeks, then wait for Hi-class; no fixed wait per stage",
+  "shop": {
+    "rule_source": "D-063 user request 2026-10-20; offers, prices and limits are an assistant baseline to tune in TASK-041",
+    "reset": "server Asia/Bangkok day (same ticket day as daily dungeon)",
+    "max_quantity_per_command": 10,
+    "offers": [
+      {
+        "id": "exp_pack",
+        "price": {
+          "gold": 2000
+        },
+        "grant": {
+          "hero_exp": 1000
+        },
+        "daily_limit": 5
+      },
+      {
+        "id": "manual_pack",
+        "price": {
+          "gold": 2500
+        },
+        "grant": {
+          "skill_manual": 40
+        },
+        "daily_limit": 5
+      },
+      {
+        "id": "ore_pack",
+        "price": {
+          "gold": 3000
+        },
+        "grant": {
+          "refine_ore": 10
+        },
+        "daily_limit": 5
+      },
+      {
+        "id": "enchant_pack",
+        "price": {
+          "gold": 4000
+        },
+        "grant": {
+          "enchant_dust": 4
+        },
+        "daily_limit": 5
+      },
+      {
+        "id": "card_dust_pack",
+        "price": {
+          "crystal": 20
+        },
+        "grant": {
+          "card_dust": 40
+        },
+        "daily_limit": 3
+      },
+      {
+        "id": "essence_pack",
+        "price": {
+          "crystal": 30
+        },
+        "grant": {
+          "breakthrough_essence": 5
+        },
+        "daily_limit": 3
+      },
+      {
+        "id": "crystal_exchange",
+        "price": {
+          "gold": 20000
+        },
+        "grant": {
+          "crystal": 10
+        },
+        "daily_limit": 1
+      }
+    ],
+    "pace_note": "D-069: each daily offer is a 5–15 % top-up of the D-069 farm income, never a substitute for it"
+  },
+  "pace_target": {
+    "chapter_hours": [
+      3,
+      9,
+      18,
+      30,
+      40,
+      45,
+      47,
+      48
+    ],
+    "story_end_hours": 240,
+    "refine_target": [
+      0,
+      1,
+      3,
+      3,
+      5,
+      5,
+      6,
+      7
+    ],
+    "enchant_target": [
+      0,
+      0,
+      1,
+      2,
+      3,
+      4,
+      4,
+      5
+    ],
+    "reference_builds": {
+      "mage": "wizard_artillery",
+      "swordsman": "crusader_guardian",
+      "acolyte": "priest_healer",
+      "archer": "hunter_sniper"
+    },
+    "chapter_end_plan": [
+      {
+        "chapter": 1,
+        "level": 11,
+        "refine": 0,
+        "enchant": 0,
+        "cumulative_need": {
+          "gold": 8830,
+          "hero_exp": 18700,
+          "skill_manual": 270,
+          "refine_ore": 0,
+          "breakthrough_essence": 0,
+          "enchant_dust": 0
+        }
+      },
+      {
+        "chapter": 2,
+        "level": 19,
+        "refine": 1,
+        "enchant": 0,
+        "cumulative_need": {
+          "gold": 38052,
+          "hero_exp": 76380,
+          "skill_manual": 540,
+          "refine_ore": 120,
+          "breakthrough_essence": 80,
+          "enchant_dust": 0
+        }
+      },
+      {
+        "chapter": 3,
+        "level": 27,
+        "refine": 3,
+        "enchant": 1,
+        "cumulative_need": {
+          "gold": 190838,
+          "hero_exp": 194220,
+          "skill_manual": 3750,
+          "refine_ore": 720,
+          "breakthrough_essence": 80,
+          "enchant_dust": 72
+        }
+      },
+      {
+        "chapter": 4,
+        "level": 35,
+        "refine": 3,
+        "enchant": 2,
+        "cumulative_need": {
+          "gold": 321230,
+          "hero_exp": 392700,
+          "skill_manual": 8190,
+          "refine_ore": 720,
+          "breakthrough_essence": 480,
+          "enchant_dust": 216
+        }
+      },
+      {
+        "chapter": 5,
+        "level": 43,
+        "refine": 5,
+        "enchant": 3,
+        "cumulative_need": {
+          "gold": 872720,
+          "hero_exp": 692300,
+          "skill_manual": 16920,
+          "refine_ore": 1932,
+          "breakthrough_essence": 480,
+          "enchant_dust": 432
+        }
+      },
+      {
+        "chapter": 6,
+        "level": 51,
+        "refine": 5,
+        "enchant": 4,
+        "cumulative_need": {
+          "gold": 1177550,
+          "hero_exp": 1113500,
+          "skill_manual": 21150,
+          "refine_ore": 1932,
+          "breakthrough_essence": 480,
+          "enchant_dust": 720
+        }
+      },
+      {
+        "chapter": 7,
+        "level": 59,
+        "refine": 6,
+        "enchant": 4,
+        "cumulative_need": {
+          "gold": 1653643,
+          "hero_exp": 1676780,
+          "skill_manual": 21150,
+          "refine_ore": 2976,
+          "breakthrough_essence": 2080,
+          "enchant_dust": 720
+        }
+      },
+      {
+        "chapter": 8,
+        "level": 67,
+        "refine": 7,
+        "enchant": 5,
+        "cumulative_need": {
+          "gold": 2941036,
+          "hero_exp": 2402620,
+          "skill_manual": 21150,
+          "refine_ore": 4466,
+          "breakthrough_essence": 2080,
+          "enchant_dust": 1080
+        }
+      }
+    ],
+    "exp_scale_vs_m0": [
+      0.5444,
+      0.1361,
+      0.0681,
+      0.0371,
+      0.0204,
+      0.0137,
+      0.0118,
+      0.0096
+    ],
+    "resource_bias": {
+      "gold": 1.0,
+      "hero_exp": 1.0,
+      "skill_manual": 1.0,
+      "refine_ore": 1.0,
+      "breakthrough_essence": 1.0,
+      "enchant_dust": 1.0
+    },
+    "generator": "plan/generators/economy_pace.py"
+  }
+}

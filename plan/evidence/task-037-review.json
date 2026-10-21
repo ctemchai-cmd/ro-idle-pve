@@ -1,0 +1,48 @@
+{
+ "task_id": "TASK-037",
+ "passed": true,
+ "round": 1,
+ "date": "2026-10-20",
+ "reviewer": "Claude self-check",
+ "content_hash": "ab45f2161932dad06f12935577f62c9f6e4278ae0d910bc87c5707db0540ca06",
+ "checks": [
+  {
+   "acceptance": "AC-01",
+   "passed": true,
+   "result": "The card pool is the 18 data cards at 75/22/3% for 100/1000 crystal; pet/artifact pools are disabled and never appear; the Store page shows those rates/prices from the same data."
+  },
+  {
+   "acceptance": "AC-02",
+   "passed": true,
+   "result": "A pull debits crystal, adds the cards and moves pity in one receipt; with 99 crystal the state is unchanged (INSUFFICIENT_RESOURCES)."
+  },
+  {
+   "acceptance": "AC-03",
+   "passed": true,
+   "result": "The same server seed reproduces identical cards and pity; duplicates are distinct instances that feed card dust (20/40/80) for the existing card upgrade path, and locked cards refuse salvage."
+  },
+  {
+   "acceptance": "AC-04",
+   "passed": true,
+   "result": "A worst-case sequence gives silver at pull 10 and 20, gold at 30, then the counters reset; counters live in the save and pass validateAccount (reload). Live: 1 card pull through the real API/DB."
+  }
+ ],
+ "commands": [
+  "node --import tsx --test tests/game/gacha-shop.test.ts (10 pass)",
+  "npm run check (327 pass)",
+  "RO_EVIDENCE_PREFIX=task-048 RO_LOCAL_TEST_FOCUS=shell python3 scripts/test_auth_stack.py"
+ ],
+ "limitations": [
+  "There is no separate pull-history screen; the persisted pity counters and receipts are the history. Rates are baselines for TASK-041."
+ ],
+ "source_sha256": {
+  "tests/game/gacha-shop.test.ts": "525574cc6c86c6653933c72621bc45f1db4bbda7fb4a3f62985cb8700fc5fa35",
+  "src/domain/rewards/gacha.ts": "64e248dfc0ca6471e4dc718c7f3488134173370e4d5cd51d1c2e13bdcca6b82a",
+  "src/domain/rewards/cards.ts": "850486a52ef63a1ad377c6c65b5895b177a6b83bf3aa3aaa75f39294581fdf64",
+  "src/domain/account/commands.ts": "d412eadffadee8e908a4d746c1fbbd70036d288fad563f7977f89ad29f4ca3ae",
+  "src/client/store.ts": "429bc72b5cad0179c3d53d0642dc3e93e67009bfb4e4efbea7457ce96089432b",
+  "src/ui/game/store.tsx": "d112f13f855ce78c3c25721e3843e90759611cb0b871cfb2ae4dc0d7d9e70d48",
+  "plan/data/gacha.json": "84d900888ebb538a12a768d4b71943c5745f8981f9dd882e13f2a2a3ea8e269d"
+ },
+ "credentials_logged": false
+}

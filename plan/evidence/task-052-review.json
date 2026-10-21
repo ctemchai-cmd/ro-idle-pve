@@ -1,0 +1,51 @@
+{
+ "task_id": "TASK-052",
+ "passed": true,
+ "round": 1,
+ "date": "2026-10-20",
+ "reviewer": "Claude self-check",
+ "content_hash": "ab45f2161932dad06f12935577f62c9f6e4278ae0d910bc87c5707db0540ca06",
+ "checks": [
+  {
+   "acceptance": "AC-01",
+   "passed": true,
+   "result": "Lines by rarity are common/uncommon 0, rare 1, epic 2, legendary/immortal 3, supreme 4; farm drops, equipment gacha and fusion all produce that many lines with no repeated stat, values inside the pool range, and identical results for the same seed."
+  },
+  {
+   "acceptance": "AC-02",
+   "passed": true,
+   "result": "Options enter the shared equippedSources pipeline (used by Story battles and every preview) exactly once (opt_hp 0.05 at roll 1000, opt_crit 0.005 at roll 0); the pool has no attack_speed/cast_speed/AGI/DEX lines."
+  },
+  {
+   "acceptance": "AC-03",
+   "passed": true,
+   "result": "Tier-up 1→20 keeps the rolls and scales the value ×1.5; fusion re-rolls; migrating an old save gives stable lines (same result twice) that pass validateAccount."
+  },
+  {
+   "acceptance": "AC-04",
+   "passed": true,
+   "result": "Live: the backpack item sheet shows the ✦ option lines for pulled gear; equip-slot and change sheets use the same OptionLines component."
+  }
+ ],
+ "commands": [
+  "node --import tsx --test tests/game/gacha-shop.test.ts tests/game/farm-reservation.test.ts",
+  "npm run check (327 pass)",
+  "RO_EVIDENCE_PREFIX=task-048 RO_LOCAL_TEST_FOCUS=shell python3 scripts/test_auth_stack.py"
+ ],
+ "limitations": [
+  "Option magnitudes are baselines; TASK-041 measures their effect. Simulation uses the same Story compile path (storyParty → equippedSources)."
+ ],
+ "source_sha256": {
+  "tests/game/gacha-shop.test.ts": "525574cc6c86c6653933c72621bc45f1db4bbda7fb4a3f62985cb8700fc5fa35",
+  "tests/game/farm-reservation.test.ts": "17a1d73830d0cad740e8506c5833231d39e1b733c57c750037818e121ae4ac27",
+  "src/domain/build/item-options.ts": "cc06162c72bb254de1c2e9acd5d01044c9ba037e725680059323ddcb20dc9646",
+  "src/domain/build/equipment.ts": "01c15ab2285d3a7deacf110de14f10e55aa559aad531bc081a438cec2b069e89",
+  "src/domain/rewards/farm.ts": "e1fa5b7d69a16d7137deed81cd922a4e80332aa8b35933814cb4765fd9845c0b",
+  "src/domain/progression/gear-upgrades.ts": "badd39b30eb63d1c82540c52d64acfa1bccf01102b5a02d6c36b2e36b48350ed",
+  "src/domain/account/migrate.ts": "1ab551499e1cb36c2674adb0fdc26917a85314a37b102114d541fee0f9d51e3e",
+  "src/ui/game/buddy.tsx": "0e214e85e593352fb513ec6b8433e2701bd140563a1013428ebdc2c7a60aabe3",
+  "plan/data/equipment.json": "0e3b54ff8537fb4351ea845813bb81d2cf01f4f5cc9191e4ef5323f685e1e9a9",
+  "scripts/test_game_shell_live.cjs": "70d0ed6d0f6b1b281580e52b2587de1f4e85aa92748ded5e184fe5035cb03f77"
+ },
+ "credentials_logged": false
+}

@@ -1,0 +1,111 @@
+{
+  "task_id": "TASK-021",
+  "date": "2026-10-19",
+  "reviewer": "Codex self-review",
+  "review_round": 1,
+  "passed": true,
+  "content_hash": "0c61c705536f5a7dec1d36fc3848677759e25924acb39607ed507cc718d1dea3",
+  "checks": [
+    {
+      "acceptance_id": "AC-01",
+      "passed": true,
+      "evidence": [
+        "plan/evidence/task-021-live-browser.json",
+        "plan/evidence/task-021-browser.json",
+        "plan/evidence/task-021-checks-final.txt"
+      ],
+      "scope": "Real local GoTrue email/password, reload/logout, SMTP-captured PKCE recovery; fixture expiry/401 handling plus unit expiry and race cases"
+    },
+    {
+      "acceptance_id": "AC-02",
+      "passed": true,
+      "evidence": [
+        "plan/evidence/task-021-supabase-local.json",
+        "plan/evidence/task-021-postgres.json"
+      ],
+      "scope": "Real JWT/PostgREST two owners and anon, tables/RPC, verified-UID HTTP account.create; atomic save+receipt+signed history, concurrent duplicate grants once, forged owner/wallet/raw RPC denied"
+    },
+    {
+      "acceptance_id": "AC-03",
+      "passed": true,
+      "evidence": [
+        "plan/evidence/task-021-local-stack.json",
+        "plan/evidence/task-021-postgres.json",
+        "plan/evidence/task-021-checks-final.txt"
+      ],
+      "scope": "Two fresh disposable PostgreSQL clusters; upstream Auth + game migrations; environment/ref mismatch rejected and runtime cannot relabel marker; production project pin guard unit-tested"
+    },
+    {
+      "acceptance_id": "AC-04",
+      "passed": true,
+      "evidence": [
+        "plan/evidence/task-021-build-final.txt",
+        "plan/evidence/task-021-production.json",
+        "docs/SUPABASE.md"
+      ],
+      "scope": "Build guard and59text-file executable/source scan, private/public env separation; real local callback, account setup documentation; workspace has no Git so source files scanned instead of claiming tracked-file audit"
+    }
+  ],
+  "unit_tests_passed": 167,
+  "self_hosted_local_auth_tested": true,
+  "hosted_supabase_tested": false,
+  "input_sha256": {
+    "src/client/auth-config.ts": "b72300ec8b00ac39dcf236cebc4bc9e3db708e12b8c9c69f2eb799b85217e6b9",
+    "src/client/auth-controller.ts": "204a1c25fab641e0dad8c8c25c775c20f5c5b42281f4b8d2f63f741c123bbe48",
+    "src/client/supabase-auth.ts": "7541df8dca31f24a662e58ec01305a6f3d23f641deea34aed00479a844959093",
+    "src/client/account.ts": "7d9a3e7d05ae6ea728d1ebad014654ebe0ba32b3a2a6962c57a0c744f49fb83e",
+    "src/server/auth/index.ts": "c291652d29b8c4de1b76f0e1a9b2673e4c7307f7d7c7c3035b8d6137b46e8615",
+    "src/server/auth/config.ts": "ab8decaad6a883d61922a79a358c997bee48f552711a6d2d1887df4d691aa253",
+    "src/server/persistence/memory.ts": "459be06e40ff8cad98600a60dc68a4094775bf270c092a0c77195078e7884bc3",
+    "src/server/persistence/supabase.ts": "b52c54b411099ab031effc2a1308110e82da808b5a233099fccae93d0cea2a8d",
+    "src/domain/account/initialize.ts": "952c1855249b2a6ecde6fa9220ed210533e47f71979f8fab2f890071ac2a870e",
+    "src/domain/account/index.ts": "241171fd9565de577d462da707bc652809a785998a7c22c4778a2b0b17c077dc",
+    "src/domain/account/creation.ts": "4d1494770b49148c4ef56ced2051a28a386e2452b6de63f714bc60465eb4b6ce",
+    "src/contracts/auth.ts": "ee8ef0b7db4d7350c604134a462d972b1617af00c99ef51becffb033e6cbb999",
+    "src/contracts/save.ts": "b64171d1f8fb2f2f32c34dacc56e3b85e9392cafc8a6f1b080a4924a0353a969",
+    "src/ui/auth-page.tsx": "a7d019017133b970af2caf31da969eda10f9ffc120fadcc749155ea4640c868f",
+    "src/ui/auth.css": "20771ffae4ab21963bd50862f18fb91a056d9988ff335105decc919be9008489",
+    "src/ui/main.tsx": "df93232995afc95e0860d1fd9223de37d69446ecbd4aa764fad09114d350de19",
+    "src/ui/battle-app.tsx": "07a1d2161adbb0bd299466aabaadaa4ef77b3a8c2f744ed88ced1f26e0f3747f",
+    "api/index.ts": "8b976d62383fe0258dd568c3361a74c2ccf70254d5d5b7e27266b2c084cd2f3a",
+    "package.json": "022cf174e1d6989afc67497f1018e46c210141cd5925c4d7e8e4e56bc5912222",
+    "package-lock.json": "66c4d651985f06faefbf7ce06aeb2cb98039f6e9e24ce7bfb023d34a45efdaea",
+    "vite.config.ts": "2cbee9411d38eefdaaad5535f4dee6da0da0b5d6a9d6e80caf8802c031fe627e",
+    ".env.example": "cbd1b5e051085ae719a3f3dfb70b249d44bb19aff3d0c70ac6ef3f89015cbe19",
+    "docs/SUPABASE.md": "955856ff7cf02dc253f065a8d90bac5b4bcb8c51ef1f1fbef9635f52d7ed4c26",
+    "supabase/migrations/202610190001_game_storage.sql": "2e1f7249e325dbf28394bced7e6a38669c1ab120889e5e1770a78fa6b57d0583",
+    "supabase/migrations/202610190002_account_creation.sql": "4b6442e786e6b39c0f4d3f39537d7f1f9c136f57fb530eac50bf1df29b1d0f1e",
+    "supabase/tests/bootstrap_local_postgres.sql": "cf6127d751fab8adfe93d2b7ad5d1e488f88a488e1fe66055692c6e7361ac4f4",
+    "supabase/tests/storage_ownership.sql": "9bf8953606cbf383ee27b90678281089c1930f45f926198c05e85114b0706837",
+    "supabase/tests/local-tools.json": "5bcbdbcc8283bc085aa43b548f547fbc64d581a00767339cf36bf395eb4f259b",
+    "scripts/test_auth_stack.py": "158b321b790e3669c6462559b7519bf1cf4e36e37961da36f18ab64bb0bdf49b",
+    "scripts/test_auth_live.cjs": "e867e5235a77f3b68150083098749b44e2ecdc486a9a254597f81822c285fafa",
+    "scripts/game/test-supabase.ts": "9ac4c3a4e86757d4c46b95e3f72eb89af62c886d2e733bad2992dc5ac6308f95",
+    "scripts/game/local-supabase-gateway.ts": "f97229465b77baaef4d28af8b6151cd22e6df4627e1d98fc3955c000824efc17",
+    "scripts/game/check-env.ts": "8595b7e42a5e457a3be023b8fe5278e5a785d3f0971b1e8826a92ea1736cc526",
+    "scripts/game/validate-env.ts": "9e00a32204dbb4e48c0fbb07a07b1c87b96ad11f9971ccc2e4cac0325fa81f31",
+    "scripts/game/secret-guard.ts": "2f299ab6337cde7c1e22553cc7cd55eb44099b050dbff85b5b27826bf812815c",
+    "scripts/game/check-secrets.ts": "2664bfd5c18a8bbd74e54995f006f229d744a779bdf2dc7a92117f687e672d8e",
+    "tests/game/auth.test.ts": "19c629948b94d0ffc15e2ee9628ded38eeaa0a34d71006f43001a89e0bd7c6fd",
+    "tests/game/account-initialize.test.ts": "14fb76bb795fed98594243d906a8f9013dd158f22bda9b2742975daad66013bd"
+  },
+  "findings_resolved": [
+    "Real PKCE recovery event arrived before React subscribed: browser factory now subscribes synchronously; actual SMTP callback test passed.",
+    "Removed owner field check inside JSON state: schema owns identity only in account_id column; canonical M0 oracle matches exactly.",
+    "Preserved module graph: pure account preparation, API time/seed/signing, persistence storage-only; static boundary check passed."
+  ],
+  "visual_review": {
+    "scope": "390px signin and actual local recovered account state, plus production route screenshot; not all devices/browser engines",
+    "images": [
+      "docs/screenshots/auth-390.png",
+      "docs/screenshots/auth-live-local.png",
+      "docs/screenshots/auth-production.png"
+    ]
+  },
+  "limitations": [
+    "No hosted project, external SMTP delivery or Vercel deployment: later deployment tasks.",
+    "Initial account.create only; recurring commands/checkpoints/autosave/reconnect/AFK remain TASK-022 and later.",
+    "Auth service uses DB owner to run upstream migrations in the disposable local cluster; game RLS requests use non-superuser authenticator/JWT roles.",
+    "No Git repository; checked application/SQL source and bundle, not a Git index."
+  ]
+}

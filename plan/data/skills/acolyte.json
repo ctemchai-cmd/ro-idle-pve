@@ -1,0 +1,2953 @@
+{
+  "schema_version": 1,
+  "content_version": "acolyte-class2-v1",
+  "authoring_status": "M0 baseline for this game; not verified RO Idle equations or measured balance",
+  "root_job_id": "acolyte",
+  "inheritance": "Class2 learns root and selected branch only; inactive branch investments are refunded/reset per paid ledger",
+  "skill_cap": "min(definition.max_level,1+floor((character_level-1)/5))",
+  "learn_policy": "Unlock does not auto-learn or auto-upgrade; user calls skill.upgrade target_level1 to learn for free. Only two root starter actives are granted; learned Passives then apply automatically.",
+  "skills": [
+    {
+      "id": "acolyte_heal",
+      "name_key": "acolyte_heal",
+      "class_id": "acolyte",
+      "max_level": 10,
+      "unlock_level": 1,
+      "tags": [
+        "acolyte",
+        "heal"
+      ],
+      "level_parameters": {
+        "power": [
+          1.2,
+          1.311111,
+          1.422222,
+          1.533333,
+          1.644444,
+          1.755556,
+          1.866667,
+          1.977778,
+          2.088889,
+          2.2
+        ]
+      },
+      "presentation_id": "visual_acolyte_heal",
+      "kind": "active",
+      "cost": {
+        "sp": 18,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 600,
+        "after_cast_ms": 700,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "heal",
+          "type": "heal",
+          "target": "friend",
+          "formula": {
+            "id": "healing_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "acolyte_blessing",
+      "name_key": "acolyte_blessing",
+      "class_id": "acolyte",
+      "max_level": 10,
+      "unlock_level": 1,
+      "tags": [
+        "acolyte",
+        "blessing"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.06,
+          0.07,
+          0.08,
+          0.09,
+          0.1,
+          0.11,
+          0.12,
+          0.13,
+          0.14,
+          0.15
+        ]
+      },
+      "presentation_id": "visual_acolyte_blessing",
+      "kind": "active",
+      "cost": {
+        "sp": 24,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 450,
+        "after_cast_ms": 800,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "attack_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "attack_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "magic_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "magic_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "acolyte_holy_light",
+      "name_key": "acolyte_holy_light",
+      "class_id": "acolyte",
+      "max_level": 10,
+      "unlock_level": 5,
+      "tags": [
+        "acolyte",
+        "holy_light"
+      ],
+      "level_parameters": {
+        "power": [
+          1.1,
+          1.188889,
+          1.277778,
+          1.366667,
+          1.455556,
+          1.544444,
+          1.633333,
+          1.722222,
+          1.811111,
+          1.9
+        ]
+      },
+      "presentation_id": "visual_acolyte_holy_light",
+      "kind": "active",
+      "cost": {
+        "sp": 16,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 650,
+        "after_cast_ms": 650,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "holy",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "silence",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "silence",
+          "duration_ms": 1500,
+          "params": {},
+          "chance": 0.5,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    },
+    {
+      "id": "acolyte_increase_agi",
+      "name_key": "acolyte_increase_agi",
+      "class_id": "acolyte",
+      "max_level": 10,
+      "unlock_level": 10,
+      "tags": [
+        "acolyte",
+        "increase_agi"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.06,
+          0.068889,
+          0.077778,
+          0.086667,
+          0.095556,
+          0.104444,
+          0.113333,
+          0.122222,
+          0.131111,
+          0.14
+        ]
+      },
+      "presentation_id": "visual_acolyte_increase_agi",
+      "kind": "active",
+      "cost": {
+        "sp": 26,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 500,
+        "after_cast_ms": 900,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "aspd_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "aspd_up",
+          "duration_ms": 4500,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "acolyte_meditation",
+      "name_key": "acolyte_meditation",
+      "class_id": "acolyte",
+      "max_level": 10,
+      "unlock_level": 10,
+      "tags": [
+        "acolyte",
+        "meditation"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.05,
+          0.066667,
+          0.083333,
+          0.1,
+          0.116667,
+          0.133333,
+          0.15,
+          0.166667,
+          0.183333,
+          0.2
+        ]
+      },
+      "presentation_id": "visual_acolyte_meditation",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "ratio"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "priest_sanctuary",
+      "name_key": "priest_sanctuary",
+      "class_id": "priest",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "priest",
+        "sanctuary"
+      ],
+      "level_parameters": {
+        "power": [
+          0.15,
+          0.164444,
+          0.178889,
+          0.193333,
+          0.207778,
+          0.222222,
+          0.236667,
+          0.251111,
+          0.265556,
+          0.28
+        ]
+      },
+      "presentation_id": "visual_priest_sanctuary",
+      "kind": "active",
+      "cost": {
+        "sp": 40,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 900,
+        "after_cast_ms": 1000,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "regeneration",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "regeneration",
+          "duration_ms": 6000,
+          "params": {
+            "power_ratio": {
+              "level_param": "power"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "priest_impositio",
+      "name_key": "priest_impositio",
+      "class_id": "priest",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "priest",
+        "impositio"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.12,
+          0.134444,
+          0.148889,
+          0.163333,
+          0.177778,
+          0.192222,
+          0.206667,
+          0.221111,
+          0.235556,
+          0.25
+        ]
+      },
+      "presentation_id": "visual_priest_impositio",
+      "kind": "active",
+      "cost": {
+        "sp": 32,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 650,
+        "after_cast_ms": 900,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "attack_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "attack_up",
+          "duration_ms": 5500,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "priest_magnificat",
+      "name_key": "priest_magnificat",
+      "class_id": "priest",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "priest",
+        "magnificat"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.2,
+          0.233333,
+          0.266667,
+          0.3,
+          0.333333,
+          0.366667,
+          0.4,
+          0.433333,
+          0.466667,
+          0.5
+        ]
+      },
+      "presentation_id": "visual_priest_magnificat",
+      "kind": "active",
+      "cost": {
+        "sp": 38,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 900,
+        "after_cast_ms": 1100,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "mana_regen_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "mana_regen_up",
+          "duration_ms": 6500,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "priest_resurrection",
+      "name_key": "priest_resurrection",
+      "class_id": "priest",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "priest",
+        "resurrection"
+      ],
+      "level_parameters": {
+        "hp": [
+          0.2,
+          0.222222,
+          0.244444,
+          0.266667,
+          0.288889,
+          0.311111,
+          0.333333,
+          0.355556,
+          0.377778,
+          0.4
+        ]
+      },
+      "presentation_id": "visual_priest_resurrection",
+      "kind": "active",
+      "cost": {
+        "sp": 60,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 1600,
+        "after_cast_ms": 1300,
+        "interruptible": true
+      },
+      "selectors": {
+        "dead_friend": {
+          "team": "allies",
+          "life": "dead",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "revive",
+          "type": "revive",
+          "target": "dead_friend",
+          "hp_ratio": {
+            "level_param": "hp"
+          },
+          "sp_ratio": 0
+        }
+      ]
+    },
+    {
+      "id": "priest_kyrie",
+      "name_key": "priest_kyrie",
+      "class_id": "priest",
+      "max_level": 10,
+      "unlock_level": 40,
+      "tags": [
+        "priest",
+        "kyrie"
+      ],
+      "level_parameters": {
+        "power": [
+          0.45,
+          0.5,
+          0.55,
+          0.6,
+          0.65,
+          0.7,
+          0.75,
+          0.8,
+          0.85,
+          0.9
+        ]
+      },
+      "presentation_id": "visual_priest_kyrie",
+      "kind": "active",
+      "cost": {
+        "sp": 44,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 900,
+        "after_cast_ms": 1100,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "shield",
+          "type": "shield",
+          "target": "friends",
+          "formula": {
+            "id": "healing_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 30
+            }
+          },
+          "duration_ms": 5000,
+          "dispelable": true
+        }
+      ]
+    },
+    {
+      "id": "priest_healing_art",
+      "name_key": "priest_healing_art",
+      "class_id": "priest",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "priest",
+        "healing_art"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.05,
+          0.064444,
+          0.078889,
+          0.093333,
+          0.107778,
+          0.122222,
+          0.136667,
+          0.151111,
+          0.165556,
+          0.18
+        ]
+      },
+      "presentation_id": "visual_priest_healing_art",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "outgoing_healing_bonus",
+          "stat": "outgoing_healing_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "ratio"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "priest_spirit_recovery",
+      "name_key": "priest_spirit_recovery",
+      "class_id": "priest",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "priest",
+        "spirit_recovery"
+      ],
+      "level_parameters": {
+        "regen": [
+          1.0,
+          1.222222,
+          1.444444,
+          1.666667,
+          1.888889,
+          2.111111,
+          2.333333,
+          2.555556,
+          2.777778,
+          3.0
+        ]
+      },
+      "presentation_id": "visual_priest_spirit_recovery",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "flat_sp_regen",
+          "stat": "flat_sp_regen",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "regen"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "monk_call_spirits",
+      "name_key": "monk_call_spirits",
+      "class_id": "monk",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "monk",
+        "call_spirits"
+      ],
+      "level_parameters": {
+        "sp_cost": [
+          27,
+          26,
+          25,
+          24,
+          23,
+          22,
+          21,
+          20,
+          19,
+          18
+        ]
+      },
+      "presentation_id": "visual_monk_call_spirits",
+      "kind": "active",
+      "cost": {
+        "sp": {
+          "level_param": "sp_cost"
+        },
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 400,
+        "after_cast_ms": 700,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "resource",
+          "type": "resource_change",
+          "target": "self",
+          "resource": "spirit_spheres",
+          "amount": 5
+        }
+      ]
+    },
+    {
+      "id": "monk_triple_attack",
+      "name_key": "monk_triple_attack",
+      "class_id": "monk",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "monk",
+        "triple_attack"
+      ],
+      "level_parameters": {
+        "power": [
+          0.5,
+          0.538889,
+          0.577778,
+          0.616667,
+          0.655556,
+          0.694444,
+          0.733333,
+          0.772222,
+          0.811111,
+          0.85
+        ]
+      },
+      "presentation_id": "visual_monk_triple_attack",
+      "kind": "active",
+      "cost": {
+        "sp": 24,
+        "spirit_spheres": 1
+      },
+      "timing": {
+        "cast_ms": 150,
+        "after_cast_ms": 750,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 3,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "monk_finger_offensive",
+      "name_key": "monk_finger_offensive",
+      "class_id": "monk",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "monk",
+        "finger_offensive"
+      ],
+      "level_parameters": {
+        "power": [
+          0.38,
+          0.41,
+          0.44,
+          0.47,
+          0.5,
+          0.53,
+          0.56,
+          0.59,
+          0.62,
+          0.65
+        ]
+      },
+      "presentation_id": "visual_monk_finger_offensive",
+      "kind": "active",
+      "cost": {
+        "sp": 35,
+        "spirit_spheres": 5
+      },
+      "timing": {
+        "cast_ms": 1000,
+        "after_cast_ms": 1000,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 5,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "monk_asura",
+      "name_key": "monk_asura",
+      "class_id": "monk",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "monk",
+        "asura"
+      ],
+      "level_parameters": {
+        "attack": [
+          1.5,
+          1.611111,
+          1.722222,
+          1.833333,
+          1.944444,
+          2.055556,
+          2.166667,
+          2.277778,
+          2.388889,
+          2.5
+        ],
+        "mana": [
+          0.7,
+          0.766667,
+          0.833333,
+          0.9,
+          0.966667,
+          1.033333,
+          1.1,
+          1.166667,
+          1.233333,
+          1.3
+        ]
+      },
+      "presentation_id": "visual_monk_asura",
+      "kind": "active",
+      "cost": {
+        "sp": {
+          "mode": "all_current",
+          "minimum_sp": 30
+        },
+        "spirit_spheres": 5
+      },
+      "timing": {
+        "cast_ms": 1300,
+        "after_cast_ms": 1600,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "sp_burst_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "attack"
+              },
+              "sp_ratio": {
+                "level_param": "mana"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "monk_steel_body",
+      "name_key": "monk_steel_body",
+      "class_id": "monk",
+      "max_level": 10,
+      "unlock_level": 40,
+      "tags": [
+        "monk",
+        "steel_body"
+      ],
+      "level_parameters": {
+        "guard": [
+          0.25,
+          0.266667,
+          0.283333,
+          0.3,
+          0.316667,
+          0.333333,
+          0.35,
+          0.366667,
+          0.383333,
+          0.4
+        ]
+      },
+      "presentation_id": "visual_monk_steel_body",
+      "kind": "active",
+      "cost": {
+        "sp": 35,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 600,
+        "after_cast_ms": 1200,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "guard_up",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "guard_up",
+          "duration_ms": 6000,
+          "params": {
+            "ratio": {
+              "level_param": "guard"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "provoke",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "provoke",
+          "duration_ms": 5000,
+          "params": {},
+          "chance": 1
+        },
+        {
+          "id": "slow",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "slow",
+          "duration_ms": 6000,
+          "params": {
+            "ratio": -0.3
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "monk_iron_fist",
+      "name_key": "monk_iron_fist",
+      "class_id": "monk",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "monk",
+        "iron_fist"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.05,
+          0.064444,
+          0.078889,
+          0.093333,
+          0.107778,
+          0.122222,
+          0.136667,
+          0.151111,
+          0.165556,
+          0.18
+        ]
+      },
+      "presentation_id": "visual_monk_iron_fist",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "ratio"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "monk_spirit_combo",
+      "name_key": "monk_spirit_combo",
+      "class_id": "monk",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "monk",
+        "spirit_combo"
+      ],
+      "level_parameters": {
+        "chance": [
+          0.15,
+          0.172222,
+          0.194444,
+          0.216667,
+          0.238889,
+          0.261111,
+          0.283333,
+          0.305556,
+          0.327778,
+          0.35
+        ]
+      },
+      "presentation_id": "visual_monk_spirit_combo",
+      "kind": "passive",
+      "modifiers": [],
+      "triggers": [
+        {
+          "id": "spirit_on_hit",
+          "event": "normal_attack_hit",
+          "chance": {
+            "level_param": "chance"
+          },
+          "accepted_origins": [
+            "normal"
+          ],
+          "limit_scope": "none",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {},
+          "effects": [
+            {
+              "id": "resource",
+              "type": "resource_change",
+              "target": "self",
+              "resource": "spirit_spheres",
+              "amount": 1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "upgrades": {
+    "acolyte_heal": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 50,
+          "skill_manual": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 150,
+          "skill_manual": 30
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 250,
+          "skill_manual": 50
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 350,
+          "skill_manual": 70
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 450,
+          "skill_manual": 90
+        }
+      ]
+    },
+    "acolyte_blessing": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 50,
+          "skill_manual": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 150,
+          "skill_manual": 30
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 250,
+          "skill_manual": 50
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 350,
+          "skill_manual": 70
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 450,
+          "skill_manual": 90
+        }
+      ]
+    },
+    "acolyte_holy_light": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 50,
+          "skill_manual": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 150,
+          "skill_manual": 30
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 250,
+          "skill_manual": 50
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 350,
+          "skill_manual": 70
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 450,
+          "skill_manual": 90
+        }
+      ]
+    },
+    "acolyte_increase_agi": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 50,
+          "skill_manual": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 150,
+          "skill_manual": 30
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 250,
+          "skill_manual": 50
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 350,
+          "skill_manual": 70
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 450,
+          "skill_manual": 90
+        }
+      ]
+    },
+    "acolyte_meditation": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 50,
+          "skill_manual": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 150,
+          "skill_manual": 30
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 250,
+          "skill_manual": 50
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 350,
+          "skill_manual": 70
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 450,
+          "skill_manual": 90
+        }
+      ]
+    },
+    "priest_sanctuary": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "priest_impositio": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "priest_magnificat": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "priest_resurrection": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "priest_kyrie": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "priest_healing_art": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "priest_spirit_recovery": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "monk_call_spirits": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "monk_triple_attack": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "monk_finger_offensive": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "monk_asura": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "monk_steel_body": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "monk_iron_fist": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "monk_spirit_combo": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    }
+  },
+  "builds": [
+    {
+      "id": "priest_healer",
+      "job_id": "priest",
+      "level": 70,
+      "role": "burst healing and shields",
+      "primary_stats": {
+        "str": 1,
+        "agi": 1,
+        "vit": 20,
+        "int": 60,
+        "dex": 40,
+        "luk": 1
+      },
+      "spent_status_points": 328,
+      "unspent_status_points": 348,
+      "active_slots": [
+        "acolyte_heal",
+        "priest_sanctuary",
+        "priest_kyrie",
+        "priest_magnificat"
+      ],
+      "skill_levels": {
+        "acolyte_heal": 10,
+        "acolyte_blessing": 1,
+        "acolyte_holy_light": 1,
+        "acolyte_increase_agi": 1,
+        "acolyte_meditation": 10,
+        "priest_sanctuary": 10,
+        "priest_impositio": 1,
+        "priest_magnificat": 10,
+        "priest_resurrection": 1,
+        "priest_kyrie": 10,
+        "priest_healing_art": 10,
+        "priest_spirit_recovery": 10
+      },
+      "automatic_passives": [
+        "acolyte_meditation",
+        "priest_healing_art",
+        "priest_spirit_recovery"
+      ],
+      "paid_upgrade_budget": {
+        "gold": 27000,
+        "skill_manual": 5400
+      },
+      "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+      "queue_estimate": {
+        "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+        "si_ms": 1328,
+        "cycle_ms": 9256,
+        "starts": [
+          {
+            "skill_id": "acolyte_heal",
+            "start_ms": 1328,
+            "resolve_ms": 1657,
+            "acd_end_ms": 2041
+          },
+          {
+            "skill_id": "priest_sanctuary",
+            "start_ms": 3369,
+            "resolve_ms": 3862,
+            "acd_end_ms": 4410
+          },
+          {
+            "skill_id": "priest_kyrie",
+            "start_ms": 5738,
+            "resolve_ms": 6231,
+            "acd_end_ms": 6833
+          },
+          {
+            "skill_id": "priest_magnificat",
+            "start_ms": 8161,
+            "resolve_ms": 8654,
+            "acd_end_ms": 9256
+          }
+        ],
+        "fixed_sp_per_cycle": 140,
+        "job_bonus": "D-061 job bonus included in primary stats"
+      }
+    },
+    {
+      "id": "priest_buffer",
+      "job_id": "priest",
+      "level": 70,
+      "role": "offense and SP support",
+      "primary_stats": {
+        "str": 1,
+        "agi": 1,
+        "vit": 20,
+        "int": 45,
+        "dex": 50,
+        "luk": 1
+      },
+      "spent_status_points": 293,
+      "unspent_status_points": 383,
+      "active_slots": [
+        "acolyte_blessing",
+        "priest_impositio",
+        "priest_magnificat",
+        "acolyte_heal"
+      ],
+      "skill_levels": {
+        "acolyte_heal": 10,
+        "acolyte_blessing": 10,
+        "acolyte_holy_light": 1,
+        "acolyte_increase_agi": 1,
+        "acolyte_meditation": 10,
+        "priest_sanctuary": 1,
+        "priest_impositio": 10,
+        "priest_magnificat": 10,
+        "priest_resurrection": 1,
+        "priest_kyrie": 1,
+        "priest_healing_art": 10,
+        "priest_spirit_recovery": 10
+      },
+      "automatic_passives": [
+        "acolyte_meditation",
+        "priest_healing_art",
+        "priest_spirit_recovery"
+      ],
+      "paid_upgrade_budget": {
+        "gold": 24750,
+        "skill_manual": 4950
+      },
+      "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+      "queue_estimate": {
+        "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+        "si_ms": 1299,
+        "cycle_ms": 8344,
+        "starts": [
+          {
+            "skill_id": "acolyte_blessing",
+            "start_ms": 1299,
+            "resolve_ms": 1531,
+            "acd_end_ms": 1944
+          },
+          {
+            "skill_id": "priest_impositio",
+            "start_ms": 3243,
+            "resolve_ms": 3579,
+            "acd_end_ms": 4043
+          },
+          {
+            "skill_id": "priest_magnificat",
+            "start_ms": 5342,
+            "resolve_ms": 5806,
+            "acd_end_ms": 6374
+          },
+          {
+            "skill_id": "acolyte_heal",
+            "start_ms": 7673,
+            "resolve_ms": 7983,
+            "acd_end_ms": 8344
+          }
+        ],
+        "fixed_sp_per_cycle": 112,
+        "job_bonus": "D-061 job bonus included in primary stats"
+      }
+    },
+    {
+      "id": "monk_finisher",
+      "job_id": "monk",
+      "level": 70,
+      "role": "sphere-funded SP burst",
+      "primary_stats": {
+        "str": 50,
+        "agi": 1,
+        "vit": 1,
+        "int": 35,
+        "dex": 30,
+        "luk": 1
+      },
+      "spent_status_points": 278,
+      "unspent_status_points": 398,
+      "active_slots": [
+        "monk_call_spirits",
+        "monk_asura",
+        "acolyte_heal",
+        "monk_triple_attack"
+      ],
+      "skill_levels": {
+        "acolyte_heal": 10,
+        "acolyte_blessing": 1,
+        "acolyte_holy_light": 1,
+        "acolyte_increase_agi": 1,
+        "acolyte_meditation": 10,
+        "monk_call_spirits": 10,
+        "monk_triple_attack": 10,
+        "monk_finger_offensive": 1,
+        "monk_asura": 10,
+        "monk_steel_body": 1,
+        "monk_iron_fist": 10,
+        "monk_spirit_combo": 10
+      },
+      "automatic_passives": [
+        "acolyte_meditation",
+        "monk_iron_fist",
+        "monk_spirit_combo"
+      ],
+      "paid_upgrade_budget": {
+        "gold": 27000,
+        "skill_manual": 5400
+      },
+      "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+      "queue_estimate": {
+        "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+        "si_ms": 1358,
+        "cycle_ms": 9274,
+        "starts": [
+          {
+            "skill_id": "monk_call_spirits",
+            "start_ms": 1358,
+            "resolve_ms": 1606,
+            "acd_end_ms": 2040
+          },
+          {
+            "skill_id": "monk_asura",
+            "start_ms": 3398,
+            "resolve_ms": 4203,
+            "acd_end_ms": 5194
+          },
+          {
+            "skill_id": "acolyte_heal",
+            "start_ms": 6552,
+            "resolve_ms": 6924,
+            "acd_end_ms": 7358
+          },
+          {
+            "skill_id": "monk_triple_attack",
+            "start_ms": 8716,
+            "resolve_ms": 8809,
+            "acd_end_ms": 9274
+          }
+        ],
+        "fixed_sp_per_cycle": 60,
+        "job_bonus": "D-061 job bonus included in primary stats"
+      }
+    },
+    {
+      "id": "monk_steel_tank",
+      "job_id": "monk",
+      "level": 70,
+      "role": "provoke and guard with emergency healing",
+      "primary_stats": {
+        "str": 1,
+        "agi": 1,
+        "vit": 60,
+        "int": 30,
+        "dex": 25,
+        "luk": 1
+      },
+      "spent_status_points": 303,
+      "unspent_status_points": 373,
+      "active_slots": [
+        "monk_steel_body",
+        "monk_call_spirits",
+        "acolyte_heal",
+        "acolyte_blessing"
+      ],
+      "skill_levels": {
+        "acolyte_heal": 10,
+        "acolyte_blessing": 10,
+        "acolyte_holy_light": 1,
+        "acolyte_increase_agi": 1,
+        "acolyte_meditation": 10,
+        "monk_call_spirits": 10,
+        "monk_triple_attack": 1,
+        "monk_finger_offensive": 1,
+        "monk_asura": 1,
+        "monk_steel_body": 10,
+        "monk_iron_fist": 10,
+        "monk_spirit_combo": 10
+      },
+      "automatic_passives": [
+        "acolyte_meditation",
+        "monk_iron_fist",
+        "monk_spirit_combo"
+      ],
+      "paid_upgrade_budget": {
+        "gold": 24750,
+        "skill_manual": 4950
+      },
+      "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+      "queue_estimate": {
+        "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+        "si_ms": 1373,
+        "cycle_ms": 9063,
+        "starts": [
+          {
+            "skill_id": "monk_steel_body",
+            "start_ms": 1373,
+            "resolve_ms": 1766,
+            "acd_end_ms": 2552
+          },
+          {
+            "skill_id": "monk_call_spirits",
+            "start_ms": 3925,
+            "resolve_ms": 4187,
+            "acd_end_ms": 4646
+          },
+          {
+            "skill_id": "acolyte_heal",
+            "start_ms": 6019,
+            "resolve_ms": 6412,
+            "acd_end_ms": 6871
+          },
+          {
+            "skill_id": "acolyte_blessing",
+            "start_ms": 8244,
+            "resolve_ms": 8539,
+            "acd_end_ms": 9063
+          }
+        ],
+        "fixed_sp_per_cycle": 95,
+        "job_bonus": "D-061 job bonus included in primary stats"
+      }
+    }
+  ],
+  "notes": {
+    "acolyte_heal": "Always cast; full HP gives overheal, no refund.",
+    "acolyte_blessing": "",
+    "acolyte_holy_light": "",
+    "acolyte_increase_agi": "",
+    "acolyte_meditation": "",
+    "priest_sanctuary": "",
+    "priest_impositio": "",
+    "priest_magnificat": "",
+    "priest_resurrection": "Empty dead selector still spends SP; no HP-condition AI.",
+    "priest_kyrie": "",
+    "priest_healing_art": "",
+    "priest_spirit_recovery": "",
+    "monk_call_spirits": "",
+    "monk_triple_attack": "",
+    "monk_finger_offensive": "",
+    "monk_asura": "",
+    "monk_steel_body": "Loses attack frequency while guarding, and spends an Active slot.",
+    "monk_iron_fist": "",
+    "monk_spirit_combo": ""
+  },
+  "future_awaken": "stable skill/effect IDs; no hi-class definitions required by these builds"
+}

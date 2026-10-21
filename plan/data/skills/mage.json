@@ -1,0 +1,3021 @@
+{
+  "schema_version": 1,
+  "content_version": "mage-class2-v1",
+  "authoring_status": "M0 baseline for this game; not verified RO Idle equations or measured balance",
+  "root_job_id": "mage",
+  "inheritance": "Class2 learns root and selected branch only; inactive branch investments are refunded/reset per paid ledger",
+  "skill_cap": "min(definition.max_level,1+floor((character_level-1)/5))",
+  "learn_policy": "Unlock does not auto-learn or auto-upgrade; user calls skill.upgrade target_level1 to learn for free. Only two root starter actives are granted; learned Passives then apply automatically.",
+  "skills": [
+    {
+      "id": "mage_fire_bolt",
+      "name_key": "mage_fire_bolt",
+      "class_id": "mage",
+      "max_level": 10,
+      "unlock_level": 1,
+      "tags": [
+        "mage",
+        "fire_bolt"
+      ],
+      "level_parameters": {
+        "power": [
+          0.4,
+          0.433333,
+          0.466667,
+          0.5,
+          0.533333,
+          0.566667,
+          0.6,
+          0.633333,
+          0.666667,
+          0.7
+        ]
+      },
+      "presentation_id": "visual_mage_fire_bolt",
+      "kind": "active",
+      "cost": {
+        "sp": 18,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 800,
+        "after_cast_ms": 650,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "fire",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 3,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "mage_cold_bolt",
+      "name_key": "mage_cold_bolt",
+      "class_id": "mage",
+      "max_level": 10,
+      "unlock_level": 1,
+      "tags": [
+        "mage",
+        "cold_bolt"
+      ],
+      "level_parameters": {
+        "power": [
+          0.35,
+          0.383333,
+          0.416667,
+          0.45,
+          0.483333,
+          0.516667,
+          0.55,
+          0.583333,
+          0.616667,
+          0.65
+        ]
+      },
+      "presentation_id": "visual_mage_cold_bolt",
+      "kind": "active",
+      "cost": {
+        "sp": 18,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 850,
+        "after_cast_ms": 650,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "water",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 3,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "freeze",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "freeze",
+          "duration_ms": 1000,
+          "params": {},
+          "chance": 0.3,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    },
+    {
+      "id": "mage_lightning_bolt",
+      "name_key": "mage_lightning_bolt",
+      "class_id": "mage",
+      "max_level": 10,
+      "unlock_level": 5,
+      "tags": [
+        "mage",
+        "lightning_bolt"
+      ],
+      "level_parameters": {
+        "power": [
+          0.4,
+          0.433333,
+          0.466667,
+          0.5,
+          0.533333,
+          0.566667,
+          0.6,
+          0.633333,
+          0.666667,
+          0.7
+        ]
+      },
+      "presentation_id": "visual_mage_lightning_bolt",
+      "kind": "active",
+      "cost": {
+        "sp": 20,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 850,
+        "after_cast_ms": 700,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "wind",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 3,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "mage_soul_strike",
+      "name_key": "mage_soul_strike",
+      "class_id": "mage",
+      "max_level": 10,
+      "unlock_level": 10,
+      "tags": [
+        "mage",
+        "soul_strike"
+      ],
+      "level_parameters": {
+        "power": [
+          1.1,
+          1.188889,
+          1.277778,
+          1.366667,
+          1.455556,
+          1.544444,
+          1.633333,
+          1.722222,
+          1.811111,
+          1.9
+        ]
+      },
+      "presentation_id": "visual_mage_soul_strike",
+      "kind": "active",
+      "cost": {
+        "sp": 18,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 500,
+        "after_cast_ms": 750,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "ghost",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 1,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "mage_sp_recovery",
+      "name_key": "mage_sp_recovery",
+      "class_id": "mage",
+      "max_level": 10,
+      "unlock_level": 10,
+      "tags": [
+        "mage",
+        "sp_recovery"
+      ],
+      "level_parameters": {
+        "regen": [
+          1.0,
+          1.222222,
+          1.444444,
+          1.666667,
+          1.888889,
+          2.111111,
+          2.333333,
+          2.555556,
+          2.777778,
+          3.0
+        ]
+      },
+      "presentation_id": "visual_mage_sp_recovery",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "flat_sp_regen",
+          "stat": "flat_sp_regen",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "regen"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "wizard_storm_gust",
+      "name_key": "wizard_storm_gust",
+      "class_id": "wizard",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "wizard",
+        "storm_gust"
+      ],
+      "level_parameters": {
+        "power": [
+          0.35,
+          0.377778,
+          0.405556,
+          0.433333,
+          0.461111,
+          0.488889,
+          0.516667,
+          0.544444,
+          0.572222,
+          0.6
+        ]
+      },
+      "presentation_id": "visual_wizard_storm_gust",
+      "kind": "active",
+      "cost": {
+        "sp": 52,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 1800,
+        "after_cast_ms": 1200,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "frost_field",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "frost_field",
+          "duration_ms": 5000,
+          "params": {
+            "power_ratio": {
+              "level_param": "power"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "wizard_jupitel",
+      "name_key": "wizard_jupitel",
+      "class_id": "wizard",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "wizard",
+        "jupitel"
+      ],
+      "level_parameters": {
+        "power": [
+          0.45,
+          0.483333,
+          0.516667,
+          0.55,
+          0.583333,
+          0.616667,
+          0.65,
+          0.683333,
+          0.716667,
+          0.75
+        ]
+      },
+      "presentation_id": "visual_wizard_jupitel",
+      "kind": "active",
+      "cost": {
+        "sp": 32,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 950,
+        "after_cast_ms": 850,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "wind",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 4,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "wizard_meteor",
+      "name_key": "wizard_meteor",
+      "class_id": "wizard",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "wizard",
+        "meteor"
+      ],
+      "level_parameters": {
+        "power": [
+          0.5,
+          0.538889,
+          0.577778,
+          0.616667,
+          0.655556,
+          0.694444,
+          0.733333,
+          0.772222,
+          0.811111,
+          0.85
+        ]
+      },
+      "presentation_id": "visual_wizard_meteor",
+      "kind": "active",
+      "cost": {
+        "sp": 54,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 2000,
+        "after_cast_ms": 1300,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "fire",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 3,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "wizard_quagmire",
+      "name_key": "wizard_quagmire",
+      "class_id": "wizard",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "wizard",
+        "quagmire"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.1,
+          0.113333,
+          0.126667,
+          0.14,
+          0.153333,
+          0.166667,
+          0.18,
+          0.193333,
+          0.206667,
+          0.22
+        ]
+      },
+      "presentation_id": "visual_wizard_quagmire",
+      "kind": "active",
+      "cost": {
+        "sp": 36,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 1000,
+        "after_cast_ms": 1100,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "slow",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "slow",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": -0.3
+          },
+          "chance": 1
+        },
+        {
+          "id": "armor_break",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "armor_break",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "wizard_heavens_drive",
+      "name_key": "wizard_heavens_drive",
+      "class_id": "wizard",
+      "max_level": 10,
+      "unlock_level": 40,
+      "tags": [
+        "wizard",
+        "heavens_drive"
+      ],
+      "level_parameters": {
+        "power": [
+          1.3,
+          1.4,
+          1.5,
+          1.6,
+          1.7,
+          1.8,
+          1.9,
+          2.0,
+          2.1,
+          2.2
+        ]
+      },
+      "presentation_id": "visual_wizard_heavens_drive",
+      "kind": "active",
+      "cost": {
+        "sp": 42,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 1300,
+        "after_cast_ms": 1100,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "earth",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 1,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "wizard_amplified_magic",
+      "name_key": "wizard_amplified_magic",
+      "class_id": "wizard",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "wizard",
+        "amplified_magic"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.06,
+          0.075556,
+          0.091111,
+          0.106667,
+          0.122222,
+          0.137778,
+          0.153333,
+          0.168889,
+          0.184444,
+          0.2
+        ]
+      },
+      "presentation_id": "visual_wizard_amplified_magic",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "ratio"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "wizard_frost_control",
+      "name_key": "wizard_frost_control",
+      "class_id": "wizard",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "wizard",
+        "frost_control"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.02,
+          0.028889,
+          0.037778,
+          0.046667,
+          0.055556,
+          0.064444,
+          0.073333,
+          0.082222,
+          0.091111,
+          0.1
+        ]
+      },
+      "presentation_id": "visual_wizard_frost_control",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "control_accuracy",
+          "stat": "control_accuracy",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "ratio"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "sage_fire_endow",
+      "name_key": "sage_fire_endow",
+      "class_id": "sage",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "sage",
+        "fire_endow"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.06,
+          0.07,
+          0.08,
+          0.09,
+          0.1,
+          0.11,
+          0.12,
+          0.13,
+          0.14,
+          0.15
+        ]
+      },
+      "presentation_id": "visual_sage_fire_endow",
+      "kind": "active",
+      "cost": {
+        "sp": 32,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 700,
+        "after_cast_ms": 1000,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "fire_endow",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "fire_endow",
+          "duration_ms": 6500,
+          "params": {},
+          "chance": 1
+        },
+        {
+          "id": "magic_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "magic_up",
+          "duration_ms": 5500,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "sage_spell_breaker",
+      "name_key": "sage_spell_breaker",
+      "class_id": "sage",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "sage",
+        "spell_breaker"
+      ],
+      "level_parameters": {
+        "sp_cost": [
+          37,
+          36,
+          35,
+          34,
+          33,
+          32,
+          31,
+          30,
+          29,
+          28
+        ]
+      },
+      "presentation_id": "visual_sage_spell_breaker",
+      "kind": "active",
+      "cost": {
+        "sp": {
+          "level_param": "sp_cost"
+        },
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 200,
+        "after_cast_ms": 800,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "interrupt",
+          "type": "interrupt",
+          "target": "foe"
+        },
+        {
+          "id": "resource",
+          "type": "resource_change",
+          "target": "foe",
+          "resource": "sp",
+          "amount": -20
+        }
+      ]
+    },
+    {
+      "id": "sage_dispel",
+      "name_key": "sage_dispel",
+      "class_id": "sage",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "sage",
+        "dispel"
+      ],
+      "level_parameters": {
+        "sp_cost": [
+          49,
+          48,
+          47,
+          46,
+          45,
+          44,
+          43,
+          42,
+          41,
+          40
+        ]
+      },
+      "presentation_id": "visual_sage_dispel",
+      "kind": "active",
+      "cost": {
+        "sp": {
+          "level_param": "sp_cost"
+        },
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 1000,
+        "after_cast_ms": 1100,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "dispel",
+          "type": "remove_status",
+          "target": "foes",
+          "polarity": "buff",
+          "tags": [],
+          "permission": "dispel",
+          "max_instances": 2
+        }
+      ]
+    },
+    {
+      "id": "sage_psychic_bolt",
+      "name_key": "sage_psychic_bolt",
+      "class_id": "sage",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "sage",
+        "psychic_bolt"
+      ],
+      "level_parameters": {
+        "power": [
+          1.8,
+          1.933333,
+          2.066667,
+          2.2,
+          2.333333,
+          2.466667,
+          2.6,
+          2.733333,
+          2.866667,
+          3.0
+        ]
+      },
+      "presentation_id": "visual_sage_psychic_bolt",
+      "kind": "active",
+      "cost": {
+        "sp": 32,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 750,
+        "after_cast_ms": 800,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "neutral",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 1,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "sage_magic_barrier",
+      "name_key": "sage_magic_barrier",
+      "class_id": "sage",
+      "max_level": 10,
+      "unlock_level": 40,
+      "tags": [
+        "sage",
+        "magic_barrier"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.2,
+          0.222222,
+          0.244444,
+          0.266667,
+          0.288889,
+          0.311111,
+          0.333333,
+          0.355556,
+          0.377778,
+          0.4
+        ],
+        "mana": [
+          0.1,
+          0.116667,
+          0.133333,
+          0.15,
+          0.166667,
+          0.183333,
+          0.2,
+          0.216667,
+          0.233333,
+          0.25
+        ]
+      },
+      "presentation_id": "visual_sage_magic_barrier",
+      "kind": "active",
+      "cost": {
+        "sp": 38,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 850,
+        "after_cast_ms": 1150,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "magic_defense_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "magic_defense_up",
+          "duration_ms": 6000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "mana_regen_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "mana_regen_up",
+          "duration_ms": 6000,
+          "params": {
+            "ratio": {
+              "level_param": "mana"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "sage_auto_bolt",
+      "name_key": "sage_auto_bolt",
+      "class_id": "sage",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "sage",
+        "auto_bolt"
+      ],
+      "level_parameters": {
+        "power": [
+          0.4,
+          0.444444,
+          0.488889,
+          0.533333,
+          0.577778,
+          0.622222,
+          0.666667,
+          0.711111,
+          0.755556,
+          0.8
+        ]
+      },
+      "presentation_id": "visual_sage_auto_bolt",
+      "kind": "passive",
+      "modifiers": [],
+      "triggers": [
+        {
+          "id": "auto_bolt",
+          "event": "normal_attack_hit",
+          "chance": 0.35,
+          "accepted_origins": [
+            "normal"
+          ],
+          "limit_scope": "none",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {},
+          "effects": [
+            {
+              "id": "bolt",
+              "type": "damage",
+              "target": "event_target",
+              "formula": {
+                "id": "magical_power",
+                "params": {
+                  "attack_ratio": {
+                    "level_param": "power"
+                  },
+                  "flat_power": 0
+                }
+              },
+              "damage_type": "magical",
+              "element": "fire",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sage_wisdom",
+      "name_key": "sage_wisdom",
+      "class_id": "sage",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "sage",
+        "wisdom"
+      ],
+      "level_parameters": {
+        "speed": [
+          0.03,
+          0.04,
+          0.05,
+          0.06,
+          0.07,
+          0.08,
+          0.09,
+          0.1,
+          0.11,
+          0.12
+        ]
+      },
+      "presentation_id": "visual_sage_wisdom",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "cast_speed",
+          "stat": "cast_speed",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "speed"
+          }
+        }
+      ],
+      "triggers": []
+    }
+  ],
+  "upgrades": {
+    "mage_fire_bolt": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 50,
+          "skill_manual": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 150,
+          "skill_manual": 30
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 250,
+          "skill_manual": 50
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 350,
+          "skill_manual": 70
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 450,
+          "skill_manual": 90
+        }
+      ]
+    },
+    "mage_cold_bolt": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 50,
+          "skill_manual": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 150,
+          "skill_manual": 30
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 250,
+          "skill_manual": 50
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 350,
+          "skill_manual": 70
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 450,
+          "skill_manual": 90
+        }
+      ]
+    },
+    "mage_lightning_bolt": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 50,
+          "skill_manual": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 150,
+          "skill_manual": 30
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 250,
+          "skill_manual": 50
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 350,
+          "skill_manual": 70
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 450,
+          "skill_manual": 90
+        }
+      ]
+    },
+    "mage_soul_strike": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 50,
+          "skill_manual": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 150,
+          "skill_manual": 30
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 250,
+          "skill_manual": 50
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 350,
+          "skill_manual": 70
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 450,
+          "skill_manual": 90
+        }
+      ]
+    },
+    "mage_sp_recovery": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 50,
+          "skill_manual": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 150,
+          "skill_manual": 30
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 250,
+          "skill_manual": 50
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 350,
+          "skill_manual": 70
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 450,
+          "skill_manual": 90
+        }
+      ]
+    },
+    "wizard_storm_gust": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "wizard_jupitel": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "wizard_meteor": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "wizard_quagmire": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "wizard_heavens_drive": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "wizard_amplified_magic": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "wizard_frost_control": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "sage_fire_endow": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "sage_spell_breaker": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "sage_dispel": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "sage_psychic_bolt": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "sage_magic_barrier": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "sage_auto_bolt": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "sage_wisdom": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    }
+  },
+  "builds": [
+    {
+      "id": "wizard_artillery",
+      "job_id": "wizard",
+      "level": 70,
+      "role": "area burst",
+      "primary_stats": {
+        "str": 1,
+        "agi": 1,
+        "vit": 1,
+        "int": 60,
+        "dex": 45,
+        "luk": 1
+      },
+      "spent_status_points": 324,
+      "unspent_status_points": 352,
+      "active_slots": [
+        "wizard_meteor",
+        "wizard_heavens_drive",
+        "wizard_jupitel",
+        "mage_fire_bolt"
+      ],
+      "skill_levels": {
+        "mage_fire_bolt": 10,
+        "mage_cold_bolt": 1,
+        "mage_lightning_bolt": 1,
+        "mage_soul_strike": 1,
+        "mage_sp_recovery": 10,
+        "wizard_storm_gust": 1,
+        "wizard_jupitel": 10,
+        "wizard_meteor": 10,
+        "wizard_quagmire": 1,
+        "wizard_heavens_drive": 10,
+        "wizard_amplified_magic": 10,
+        "wizard_frost_control": 10
+      },
+      "automatic_passives": [
+        "mage_sp_recovery",
+        "wizard_amplified_magic",
+        "wizard_frost_control"
+      ],
+      "paid_upgrade_budget": {
+        "gold": 27000,
+        "skill_manual": 5400
+      },
+      "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+      "queue_estimate": {
+        "assumptions": "temporary Active buffs excluded; learned permanent Passives included; no gear, sufficient resources assumed. Actual SP/spheres/CC/procs require engine later",
+        "attack_speed_rating": 114.75,
+        "cast_speed_rating": 193.75,
+        "si_ms": 1308,
+        "cycle_ms": 9854,
+        "starts": [
+          {
+            "skill_id": "wizard_meteor",
+            "start_ms": 1308,
+            "resolve_ms": 2341,
+            "acd_end_ms": 3012
+          },
+          {
+            "skill_id": "wizard_heavens_drive",
+            "start_ms": 4320,
+            "resolve_ms": 4991,
+            "acd_end_ms": 5559
+          },
+          {
+            "skill_id": "wizard_jupitel",
+            "start_ms": 6867,
+            "resolve_ms": 7358,
+            "acd_end_ms": 7797
+          },
+          {
+            "skill_id": "mage_fire_bolt",
+            "start_ms": 9105,
+            "resolve_ms": 9518,
+            "acd_end_ms": 9854
+          }
+        ],
+        "fixed_sp_per_cycle": 146,
+        "job_bonus": "D-061 job bonus included in primary stats"
+      }
+    },
+    {
+      "id": "wizard_controller",
+      "job_id": "wizard",
+      "level": 70,
+      "role": "periodic freeze and slowdown",
+      "primary_stats": {
+        "str": 1,
+        "agi": 1,
+        "vit": 20,
+        "int": 45,
+        "dex": 50,
+        "luk": 1
+      },
+      "spent_status_points": 293,
+      "unspent_status_points": 383,
+      "active_slots": [
+        "wizard_quagmire",
+        "wizard_storm_gust",
+        "wizard_jupitel",
+        "mage_cold_bolt"
+      ],
+      "skill_levels": {
+        "mage_fire_bolt": 1,
+        "mage_cold_bolt": 10,
+        "mage_lightning_bolt": 1,
+        "mage_soul_strike": 1,
+        "mage_sp_recovery": 10,
+        "wizard_storm_gust": 10,
+        "wizard_jupitel": 10,
+        "wizard_meteor": 1,
+        "wizard_quagmire": 10,
+        "wizard_heavens_drive": 1,
+        "wizard_amplified_magic": 10,
+        "wizard_frost_control": 10
+      },
+      "automatic_passives": [
+        "mage_sp_recovery",
+        "wizard_amplified_magic",
+        "wizard_frost_control"
+      ],
+      "paid_upgrade_budget": {
+        "gold": 27000,
+        "skill_manual": 5400
+      },
+      "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+      "queue_estimate": {
+        "assumptions": "temporary Active buffs excluded; learned permanent Passives included; no gear, sufficient resources assumed. Actual SP/spheres/CC/procs require engine later",
+        "attack_speed_rating": 116.0,
+        "cast_speed_rating": 197.5,
+        "si_ms": 1294,
+        "cycle_ms": 9434,
+        "starts": [
+          {
+            "skill_id": "wizard_quagmire",
+            "start_ms": 1294,
+            "resolve_ms": 1801,
+            "acd_end_ms": 2358
+          },
+          {
+            "skill_id": "wizard_storm_gust",
+            "start_ms": 3652,
+            "resolve_ms": 4564,
+            "acd_end_ms": 5172
+          },
+          {
+            "skill_id": "wizard_jupitel",
+            "start_ms": 6466,
+            "resolve_ms": 6948,
+            "acd_end_ms": 7379
+          },
+          {
+            "skill_id": "mage_cold_bolt",
+            "start_ms": 8673,
+            "resolve_ms": 9104,
+            "acd_end_ms": 9434
+          }
+        ],
+        "fixed_sp_per_cycle": 138,
+        "job_bonus": "D-061 job bonus included in primary stats"
+      }
+    },
+    {
+      "id": "sage_auto_bolt",
+      "job_id": "sage",
+      "level": 70,
+      "role": "normal attacks fund passive bolts",
+      "primary_stats": {
+        "str": 1,
+        "agi": 45,
+        "vit": 1,
+        "int": 45,
+        "dex": 25,
+        "luk": 1
+      },
+      "spent_status_points": 282,
+      "unspent_status_points": 394,
+      "active_slots": [
+        "sage_fire_endow",
+        "sage_psychic_bolt",
+        "sage_spell_breaker",
+        "mage_soul_strike"
+      ],
+      "skill_levels": {
+        "mage_fire_bolt": 1,
+        "mage_cold_bolt": 1,
+        "mage_lightning_bolt": 1,
+        "mage_soul_strike": 10,
+        "mage_sp_recovery": 10,
+        "sage_fire_endow": 10,
+        "sage_spell_breaker": 10,
+        "sage_dispel": 1,
+        "sage_psychic_bolt": 10,
+        "sage_magic_barrier": 1,
+        "sage_auto_bolt": 10,
+        "sage_wisdom": 10
+      },
+      "automatic_passives": [
+        "mage_sp_recovery",
+        "sage_auto_bolt",
+        "sage_wisdom"
+      ],
+      "paid_upgrade_budget": {
+        "gold": 27000,
+        "skill_manual": 5400
+      },
+      "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+      "queue_estimate": {
+        "assumptions": "temporary Active buffs excluded; learned permanent Passives included; no gear, sufficient resources assumed. Actual SP/spheres/CC/procs require engine later",
+        "attack_speed_rating": 153.75,
+        "cast_speed_rating": 179.20000000000002,
+        "si_ms": 976,
+        "cycle_ms": 6978,
+        "starts": [
+          {
+            "skill_id": "sage_fire_endow",
+            "start_ms": 976,
+            "resolve_ms": 1367,
+            "acd_end_ms": 1926
+          },
+          {
+            "skill_id": "sage_psychic_bolt",
+            "start_ms": 2902,
+            "resolve_ms": 3321,
+            "acd_end_ms": 3768
+          },
+          {
+            "skill_id": "sage_spell_breaker",
+            "start_ms": 4744,
+            "resolve_ms": 4856,
+            "acd_end_ms": 5303
+          },
+          {
+            "skill_id": "mage_soul_strike",
+            "start_ms": 6279,
+            "resolve_ms": 6559,
+            "acd_end_ms": 6978
+          }
+        ],
+        "fixed_sp_per_cycle": 110,
+        "job_bonus": "D-061 job bonus included in primary stats"
+      }
+    },
+    {
+      "id": "sage_anti_magic",
+      "job_id": "sage",
+      "level": 70,
+      "role": "enemy buff removal and team protection",
+      "primary_stats": {
+        "str": 1,
+        "agi": 1,
+        "vit": 30,
+        "int": 40,
+        "dex": 50,
+        "luk": 1
+      },
+      "spent_status_points": 298,
+      "unspent_status_points": 378,
+      "active_slots": [
+        "sage_magic_barrier",
+        "sage_dispel",
+        "sage_spell_breaker",
+        "sage_fire_endow"
+      ],
+      "skill_levels": {
+        "mage_fire_bolt": 1,
+        "mage_cold_bolt": 1,
+        "mage_lightning_bolt": 1,
+        "mage_soul_strike": 1,
+        "mage_sp_recovery": 10,
+        "sage_fire_endow": 10,
+        "sage_spell_breaker": 10,
+        "sage_dispel": 10,
+        "sage_psychic_bolt": 1,
+        "sage_magic_barrier": 10,
+        "sage_auto_bolt": 10,
+        "sage_wisdom": 10
+      },
+      "automatic_passives": [
+        "mage_sp_recovery",
+        "sage_auto_bolt",
+        "sage_wisdom"
+      ],
+      "paid_upgrade_budget": {
+        "gold": 29250,
+        "skill_manual": 5850
+      },
+      "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+      "queue_estimate": {
+        "assumptions": "temporary Active buffs excluded; learned permanent Passives included; no gear, sufficient resources assumed. Actual SP/spheres/CC/procs require engine later",
+        "attack_speed_rating": 116.0,
+        "cast_speed_rating": 219.8,
+        "si_ms": 1294,
+        "cycle_ms": 8272,
+        "starts": [
+          {
+            "skill_id": "sage_magic_barrier",
+            "start_ms": 1294,
+            "resolve_ms": 1681,
+            "acd_end_ms": 2205
+          },
+          {
+            "skill_id": "sage_dispel",
+            "start_ms": 3499,
+            "resolve_ms": 3954,
+            "acd_end_ms": 4455
+          },
+          {
+            "skill_id": "sage_spell_breaker",
+            "start_ms": 5749,
+            "resolve_ms": 5840,
+            "acd_end_ms": 6204
+          },
+          {
+            "skill_id": "sage_fire_endow",
+            "start_ms": 7498,
+            "resolve_ms": 7817,
+            "acd_end_ms": 8272
+          }
+        ],
+        "fixed_sp_per_cycle": 138,
+        "job_bonus": "D-061 job bonus included in primary stats"
+      }
+    }
+  ],
+  "notes": {
+    "mage_fire_bolt": "",
+    "mage_cold_bolt": "",
+    "mage_lightning_bolt": "",
+    "mage_soul_strike": "",
+    "mage_sp_recovery": "",
+    "wizard_storm_gust": "",
+    "wizard_jupitel": "",
+    "wizard_meteor": "",
+    "wizard_quagmire": "",
+    "wizard_heavens_drive": "",
+    "wizard_amplified_magic": "",
+    "wizard_frost_control": "",
+    "sage_fire_endow": "",
+    "sage_spell_breaker": "",
+    "sage_dispel": "",
+    "sage_psychic_bolt": "",
+    "sage_magic_barrier": "",
+    "sage_auto_bolt": "Only normal origin hits in SI/ACD; no NA during CT, no recursive skill cast.",
+    "sage_wisdom": ""
+  },
+  "future_awaken": "stable skill/effect IDs; no hi-class definitions required by these builds"
+}

@@ -1,0 +1,866 @@
+{
+  "task_id": "TASK-002",
+  "review_date": "2026-10-19",
+  "review_round": 2,
+  "reviewer": "Codex self-review",
+  "resolved_round1_findings": [
+    "negative SP regen now zero, with a new reference case",
+    "resource maxima rounding/minima explicit, with a new contract check"
+  ],
+  "method": "independent arithmetic and explicit trace-contract review; no live engine or scheduler",
+  "command": "python3 plan/checks/combat.py --write-report",
+  "rules_version": "combat-baseline-v1",
+  "input_sha256": {
+    "plan/data/combat-rules.json": "a24fce13fa08faf72b4a7317cb58d03eb8279861f78a674d84ec88bc065f6e07",
+    "plan/data/combat-cases.json": "7aca955d623c2352e4224a5344f4d3ef9b6958a27fa2c72d33fd0e8ccea889e4",
+    "plan/data/progression.json": "623fd84f9a31d7caa3e5af10cb5a9996c5709eecada1bf000e6bf1e0c27f992f"
+  },
+  "acceptance_results": {
+    "AC-01": "pass",
+    "AC-02": "pass",
+    "AC-03": "pass",
+    "AC-04": "pass"
+  },
+  "checks": [
+    {
+      "ac": "AC-01",
+      "case_id": "matching-rules-version",
+      "passed": true,
+      "result": "combat-baseline-v1"
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "base_level1",
+      "passed": true,
+      "result": {
+        "physical_attack": 33,
+        "magical_attack": 33,
+        "max_hp": 220,
+        "max_sp": 64,
+        "physical_defense": 12,
+        "magical_defense": 12,
+        "attack_speed": 100.0,
+        "cast_speed": 100.0
+      }
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "base_level70_no_speed_growth",
+      "passed": true,
+      "result": {
+        "physical_attack": 309,
+        "magical_attack": 309,
+        "max_hp": 1945,
+        "max_sp": 271,
+        "physical_defense": 150,
+        "magical_defense": 150,
+        "attack_speed": 100.0,
+        "cast_speed": 100.0
+      }
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "level20_manual_spread",
+      "passed": true,
+      "result": {
+        "physical_attack": 169,
+        "magical_attack": 109,
+        "max_hp": 1195,
+        "max_sp": 121,
+        "physical_defense": 90,
+        "magical_defense": 50,
+        "attack_speed": 112.5,
+        "cast_speed": 115.0
+      }
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "armor_0",
+      "passed": true,
+      "result": {
+        "effective_defense": 0,
+        "before_shield": 200,
+        "absorbed": 0,
+        "hp_loss": 200,
+        "hp_after": 0,
+        "overkill": 0,
+        "before_shield_per_hit": 200,
+        "total_before_shield": 200,
+        "total_hp_loss": 200
+      }
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "armor_200",
+      "passed": true,
+      "result": {
+        "effective_defense": 200,
+        "before_shield": 140,
+        "absorbed": 0,
+        "hp_loss": 140,
+        "hp_after": 0,
+        "overkill": 0,
+        "before_shield_per_hit": 140,
+        "total_before_shield": 140,
+        "total_hp_loss": 140
+      }
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "armor_400",
+      "passed": true,
+      "result": {
+        "effective_defense": 400,
+        "before_shield": 110,
+        "absorbed": 0,
+        "hp_loss": 110,
+        "hp_after": 0,
+        "overkill": 0,
+        "before_shield_per_hit": 110,
+        "total_before_shield": 110,
+        "total_hp_loss": 110
+      }
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "armor_800",
+      "passed": true,
+      "result": {
+        "effective_defense": 800,
+        "before_shield": 80,
+        "absorbed": 0,
+        "hp_loss": 80,
+        "hp_after": 0,
+        "overkill": 0,
+        "before_shield_per_hit": 80,
+        "total_before_shield": 80,
+        "total_hp_loss": 80
+      }
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "armor_1600",
+      "passed": true,
+      "result": {
+        "effective_defense": 1600,
+        "before_shield": 56,
+        "absorbed": 0,
+        "hp_loss": 56,
+        "hp_after": 0,
+        "overkill": 0,
+        "before_shield_per_hit": 56,
+        "total_before_shield": 56,
+        "total_hp_loss": 56
+      }
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "break_and_penetration",
+      "passed": true,
+      "result": {
+        "effective_defense": 100.0,
+        "before_shield": 164,
+        "absorbed": 0,
+        "hp_loss": 164,
+        "hp_after": 0,
+        "overkill": 0,
+        "before_shield_per_hit": 164,
+        "total_before_shield": 164,
+        "total_hp_loss": 164
+      }
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "over_100_percent_break_no_negative_defense",
+      "passed": true,
+      "result": {
+        "effective_defense": 0,
+        "before_shield": 200,
+        "absorbed": 0,
+        "hp_loss": 200,
+        "hp_after": 0,
+        "overkill": 0,
+        "before_shield_per_hit": 200,
+        "total_before_shield": 200,
+        "total_hp_loss": 200
+      }
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "crit_uses_armor",
+      "passed": true,
+      "result": {
+        "effective_defense": 400,
+        "before_shield": 165,
+        "absorbed": 0,
+        "hp_loss": 165,
+        "hp_after": 0,
+        "overkill": 0,
+        "before_shield_per_hit": 165,
+        "total_before_shield": 165,
+        "total_hp_loss": 165
+      }
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "guard_vulnerability_shield",
+      "passed": true,
+      "result": {
+        "effective_defense": 400,
+        "before_shield": 96,
+        "absorbed": 30,
+        "hp_loss": 66,
+        "hp_after": 434,
+        "overkill": 0,
+        "before_shield_per_hit": 96,
+        "total_before_shield": 96,
+        "total_hp_loss": 66
+      }
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "ordered_full_pipeline",
+      "passed": true,
+      "result": {
+        "effective_defense": 400,
+        "before_shield": 297,
+        "absorbed": 50,
+        "hp_loss": 247,
+        "hp_after": 753,
+        "overkill": 0,
+        "before_shield_per_hit": 297,
+        "total_before_shield": 297,
+        "total_hp_loss": 247
+      }
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "uncapped_guard_has_zero_damage_floor",
+      "passed": true,
+      "result": {
+        "effective_defense": 400,
+        "before_shield": 0,
+        "absorbed": 0,
+        "hp_loss": 0,
+        "hp_after": 0,
+        "overkill": 0,
+        "before_shield_per_hit": 0,
+        "total_before_shield": 0,
+        "total_hp_loss": 0
+      }
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "shield_landed_not_hp_loss",
+      "passed": true,
+      "result": {
+        "effective_defense": 0,
+        "before_shield": 200,
+        "absorbed": 200,
+        "hp_loss": 0,
+        "hp_after": 500,
+        "overkill": 0,
+        "before_shield_per_hit": 200,
+        "total_before_shield": 200,
+        "total_hp_loss": 0
+      }
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "overkill_separate",
+      "passed": true,
+      "result": {
+        "effective_defense": 0,
+        "before_shield": 200,
+        "absorbed": 0,
+        "hp_loss": 50,
+        "hp_after": 0,
+        "overkill": 150,
+        "before_shield_per_hit": 200,
+        "total_before_shield": 200,
+        "total_hp_loss": 50
+      }
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "each_hit_rounds_once",
+      "passed": true,
+      "result": {
+        "effective_defense": 400,
+        "before_shield": 22,
+        "absorbed": 20,
+        "hp_loss": 46,
+        "hp_after": 454,
+        "overkill": 0,
+        "before_shield_per_hit": 22,
+        "total_before_shield": 66,
+        "total_hp_loss": 46
+      }
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "armor_near_asymptotic_reduction",
+      "passed": true,
+      "result": {
+        "effective_defense": 1000000,
+        "before_shield": 20,
+        "absorbed": 0,
+        "hp_loss": 20,
+        "hp_after": 0,
+        "overkill": 0,
+        "before_shield_per_hit": 20,
+        "total_before_shield": 20,
+        "total_hp_loss": 20
+      }
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "full_penetration",
+      "passed": true,
+      "result": {
+        "effective_defense": 0,
+        "before_shield": 200,
+        "absorbed": 0,
+        "hp_loss": 200,
+        "hp_after": 0,
+        "overkill": 0,
+        "before_shield_per_hit": 200,
+        "total_before_shield": 200,
+        "total_hp_loss": 200
+      }
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "zero_crit",
+      "passed": true,
+      "result": 1.0
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "mid_crit",
+      "passed": true,
+      "result": 1.15
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "max_crit",
+      "passed": true,
+      "result": 1.5
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "over_one_probability_is_not_extra_hit",
+      "passed": true,
+      "result": 2
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "element-table-complete",
+      "passed": true,
+      "result": 100
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "uncapped-additive-buff-policy",
+      "passed": true,
+      "result": {
+        "primary_resolution": "base+sum_flat then multiply by 1+sum_add_percent",
+        "derived_resolution": "formula(primary)+sum_flat then multiply by 1+sum_add_percent",
+        "sum_at_each_named_bucket": true,
+        "buff_max_stacks": null,
+        "buff_magnitude_cap": null,
+        "same_caster_reapply": "new_independent_instance",
+        "level_auto_primary_growth": false,
+        "current_resource_when_max_changes": "retain_absolute_current_amount_then_clamp_to_new_max; raising_max_is_not_heal",
+        "primary_minimum": 0,
+        "derived_minimum": {
+          "physical_attack": 0,
+          "magical_attack": 0,
+          "max_hp": 1,
+          "max_sp": 0,
+          "physical_defense": 0,
+          "magical_defense": 0,
+          "attack_speed": 1,
+          "cast_speed": 1
+        },
+        "integer_derived_fields": [
+          "max_hp",
+          "max_sp"
+        ],
+        "positive_aggregate_buff_cap": null
+      }
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "crit-eligibility-no-free-armor-ignore",
+      "passed": true,
+      "result": "DoT/heal/reflect do not inherit critical hits"
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "natural-hp-regen-explicit-zero",
+      "passed": true,
+      "result": "in-battle HP regen requires an explicit stat/effect source"
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "resource-minima-rounding-explicit",
+      "passed": true,
+      "result": "resource maxima floor after modifiers; positive buff aggregation remains uncapped"
+    },
+    {
+      "ac": "AC-02",
+      "case_id": "parallel_casts",
+      "passed": true,
+      "result": {
+        "start_a_ms": 1500,
+        "start_b_ms": 1500,
+        "resolve_a_ms": 2500,
+        "resolve_b_ms": 2000,
+        "next_start_a_ms": 4500,
+        "next_start_b_ms": 4000
+      }
+    },
+    {
+      "ac": "AC-02",
+      "case_id": "insufficient_sp",
+      "passed": true,
+      "result": {
+        "cast_started": false,
+        "sp_after": 11,
+        "next_slot_ready_ms": 3000
+      }
+    },
+    {
+      "ac": "AC-03",
+      "case_id": "stun_before_cast",
+      "passed": true,
+      "result": {
+        "start_ms": 3000,
+        "slot_consumed_before_start": false
+      }
+    },
+    {
+      "ac": "AC-03",
+      "case_id": "interrupt_and_cc",
+      "passed": true,
+      "result": {
+        "old_resolve_ms": 2500,
+        "old_event_valid": false,
+        "acd_end_ms": 2300,
+        "next_ready_ms": 3800,
+        "next_start_ms": 5000,
+        "sp_after": 52,
+        "used_slots": 1
+      }
+    },
+    {
+      "ac": "AC-03",
+      "case_id": "stun_reapplication_before_cast",
+      "passed": true,
+      "result": {
+        "start_ms": 4000,
+        "slot_consumed_before_start": false
+      }
+    },
+    {
+      "ac": "AC-02",
+      "case_id": "zero_cast_time",
+      "passed": true,
+      "result": {
+        "start_ms": 1500,
+        "resolve_ms": 1500,
+        "normal_earliest_ms": 1501,
+        "next_start_ms": 3500
+      }
+    },
+    {
+      "ac": "AC-02",
+      "case_id": "same_time_completion_batch",
+      "passed": true,
+      "result": {
+        "actor_a_cast_emits": true,
+        "actor_b_cast_emits": true,
+        "result": "player_loss_both_wipe"
+      }
+    },
+    {
+      "ac": "AC-02",
+      "case_id": "target_dies_retarget",
+      "passed": true,
+      "result": {
+        "retargeted": true,
+        "sp_refunded": false
+      }
+    },
+    {
+      "ac": "AC-02",
+      "case_id": "locked_target_dies",
+      "passed": true,
+      "result": {
+        "retargeted": false,
+        "sp_refunded": false
+      }
+    },
+    {
+      "ac": "AC-02",
+      "case_id": "speed_buff_during_si",
+      "passed": true,
+      "result": {
+        "first_cast_ms": 1500,
+        "next_cast_ms": 2750
+      }
+    },
+    {
+      "ac": "AC-02",
+      "case_id": "cast_speed_during_ct",
+      "passed": true,
+      "result": {
+        "resolve_ms": 2500,
+        "acd_end_ms": 2750
+      }
+    },
+    {
+      "ac": "AC-02",
+      "case_id": "normal_clock_pauses_during_ct",
+      "passed": true,
+      "result": {
+        "normal_due_after_pause_ms": 4000
+      }
+    },
+    {
+      "ac": "AC-02",
+      "case_id": "all_slots_empty",
+      "passed": true,
+      "result": {
+        "mode": "normal_only",
+        "skill_timer_events": 0,
+        "max_slots_scanned": 4
+      }
+    },
+    {
+      "ac": "AC-02",
+      "case_id": "empty_slots_between_skills",
+      "passed": true,
+      "result": {
+        "mode": "rotation",
+        "next_after_a": "b",
+        "extra_SI_for_empty": 0,
+        "max_slots_scanned": 4
+      }
+    },
+    {
+      "ac": "AC-02",
+      "case_id": "silence_ready_gate",
+      "passed": true,
+      "result": {
+        "skill_start_ms": 4000,
+        "normal_hit_times_before_skill_ms": [
+          1500,
+          3000
+        ],
+        "slot_consumed_before_start": false
+      }
+    },
+    {
+      "ac": "AC-03",
+      "case_id": "death_mid_cast",
+      "passed": true,
+      "result": {
+        "cast_resolves": false,
+        "sp_after": 52,
+        "sp_refunded": false
+      }
+    },
+    {
+      "ac": "AC-02",
+      "case_id": "full_hp_heal_still_casts",
+      "passed": true,
+      "result": {
+        "cast_started": true,
+        "sp_after": 52,
+        "effective_heal": 0,
+        "overheal": 100
+      }
+    },
+    {
+      "ac": "AC-02",
+      "case_id": "timeout_at_exact_limit",
+      "passed": true,
+      "result": {
+        "event_processed": false,
+        "result": "timeout"
+      }
+    },
+    {
+      "ac": "AC-03",
+      "case_id": "uninterruptible_under_stun",
+      "passed": true,
+      "result": {
+        "cast_resolves_at_ms": 2500,
+        "next_ready_ms": 4500,
+        "next_start_ms": 5000
+      }
+    },
+    {
+      "ac": "AC-03",
+      "case_id": "chain_cc_normal_duration",
+      "passed": true,
+      "result": {
+        "blocked_from_ms": 1000,
+        "blocked_until_ms": 4500,
+        "immunity_window_ms": 0
+      }
+    },
+    {
+      "ac": "AC-03",
+      "case_id": "cc_resistance_only_next_attempt",
+      "passed": true,
+      "result": {
+        "apply_chance": 0.8,
+        "duration_if_applied_ms": 1000
+      }
+    },
+    {
+      "ac": "AC-02",
+      "case_id": "sp_regen_during_cast_or_cc",
+      "passed": true,
+      "result": {
+        "gain": 3,
+        "sp_after": 63
+      }
+    },
+    {
+      "ac": "AC-02",
+      "case_id": "max_resource_change_does_not_heal",
+      "passed": true,
+      "result": {
+        "current_after": 120
+      }
+    },
+    {
+      "ac": "AC-02",
+      "case_id": "max_resource_loss_clamps",
+      "passed": true,
+      "result": {
+        "current_after": 80
+      }
+    },
+    {
+      "ac": "AC-02",
+      "case_id": "periodic_expiry_exclusive",
+      "passed": true,
+      "result": {
+        "tick_times_ms": [
+          1000,
+          2000
+        ],
+        "total_amount": 40
+      }
+    },
+    {
+      "ac": "AC-02",
+      "case_id": "periodic_immediate_first_pulse",
+      "passed": true,
+      "result": {
+        "tick_times_ms": [
+          0,
+          1000,
+          2000
+        ],
+        "total_amount": 60
+      }
+    },
+    {
+      "ac": "AC-02",
+      "case_id": "area_effect_scope",
+      "passed": true,
+      "result": {
+        "eligible_for_stun": [
+          "enemy_a"
+        ]
+      }
+    },
+    {
+      "ac": "AC-02",
+      "case_id": "normal_damage_no_implicit_interrupt",
+      "passed": true,
+      "result": {
+        "cast_cancelled": false
+      }
+    },
+    {
+      "ac": "AC-02",
+      "case_id": "periodic_death_before_same_time_cast_lock",
+      "passed": true,
+      "result": {
+        "cast_completes": false,
+        "refund_sp": false
+      }
+    },
+    {
+      "ac": "AC-02",
+      "case_id": "negative_sp_regen_modifier_no_resource_drain",
+      "passed": true,
+      "result": {
+        "gain": 0,
+        "sp_after": 60
+      }
+    },
+    {
+      "ac": "AC-02",
+      "case_id": "stacked_sp_regen_not_aggregate_capped",
+      "passed": true,
+      "result": {
+        "gain": 12,
+        "sp_after": 22
+      }
+    },
+    {
+      "ac": "AC-02",
+      "case_id": "normal-only-in-SI-ACD-and-no-CD",
+      "passed": true,
+      "result": "NA clock paused during CT; phase boundaries independent of FPS"
+    },
+    {
+      "ac": "AC-03",
+      "case_id": "cast-token-and-spending-contract",
+      "passed": true,
+      "result": "started cast remains spent, unstarted slot remains unspent"
+    },
+    {
+      "ac": "AC-04",
+      "case_id": "budget_20_str",
+      "passed": true,
+      "result": {
+        "attack": 198,
+        "si_ms": 1500,
+        "cycle_ms": 8000,
+        "sp_per_second": 6.0,
+        "burst_upper_bound_dps": 321.3375,
+        "spent_points": 88
+      }
+    },
+    {
+      "ac": "AC-04",
+      "case_id": "budget_20_agi",
+      "passed": true,
+      "result": {
+        "attack": 109,
+        "si_ms": 1095,
+        "cycle_ms": 6380,
+        "sp_per_second": 7.523510971786834,
+        "burst_upper_bound_dps": 230.01970698959357,
+        "spent_points": 88
+      }
+    },
+    {
+      "ac": "AC-04",
+      "case_id": "budget_20_luk",
+      "passed": true,
+      "result": {
+        "attack": 109,
+        "si_ms": 1500,
+        "cycle_ms": 8000,
+        "sp_per_second": 6.0,
+        "burst_upper_bound_dps": 225.4867958,
+        "spent_points": 88
+      }
+    },
+    {
+      "ac": "AC-04",
+      "case_id": "budget_70_str",
+      "passed": true,
+      "result": {
+        "attack": 550,
+        "si_ms": 1500,
+        "cycle_ms": 8000,
+        "sp_per_second": 6.0,
+        "burst_upper_bound_dps": 892.6041666666666,
+        "spent_points": 530
+      }
+    },
+    {
+      "ac": "AC-04",
+      "case_id": "budget_70_agi",
+      "passed": true,
+      "result": {
+        "attack": 309,
+        "si_ms": 758,
+        "cycle_ms": 5032,
+        "sp_per_second": 9.538950715421304,
+        "burst_upper_bound_dps": 875.3113503655758,
+        "spent_points": 530
+      }
+    },
+    {
+      "ac": "AC-04",
+      "case_id": "budget_70_luk",
+      "passed": true,
+      "result": {
+        "attack": 309,
+        "si_ms": 1500,
+        "cycle_ms": 8000,
+        "sp_per_second": 6.0,
+        "burst_upper_bound_dps": 986.1014,
+        "spent_points": 530
+      }
+    },
+    {
+      "ac": "AC-04",
+      "case_id": "equal-status-budget-within-level",
+      "passed": true,
+      "result": {
+        "20": [
+          88
+        ],
+        "70": [
+          530
+        ]
+      }
+    },
+    {
+      "ac": "AC-04",
+      "case_id": "lcg32-known-sequence",
+      "passed": true,
+      "result": [
+        1015568748,
+        1586005467,
+        2165703038,
+        3027450565,
+        217083232
+      ]
+    },
+    {
+      "ac": "AC-04",
+      "case_id": "replay-restoration-contract",
+      "passed": true,
+      "result": [
+        "actor_state",
+        "cast_tokens",
+        "event_sequence",
+        "game_time_ms",
+        "paused_normal_remaining_ms",
+        "pending_events",
+        "phase",
+        "phase_ready_at",
+        "rng_state",
+        "rotation_cursor",
+        "shield_pools",
+        "status_instances"
+      ]
+    },
+    {
+      "ac": "AC-04",
+      "case_id": "SP-cost-not-hidden-by-burst-DPS",
+      "passed": true,
+      "result": "AGI consumes SP faster; measured sustainable DPS waits for the shared engine"
+    }
+  ],
+  "passed": true,
+  "limits": [
+    "M1 must execute these traces with the actual shared engine",
+    "sensitivity is an analytical burst upper bound, not measured balance",
+    "status catalogs and typed composition schemas are TASK-047"
+  ]
+}

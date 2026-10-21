@@ -1,0 +1,1133 @@
+{
+  "schema_version": 1,
+  "version": "composition-v1",
+  "fixtures": {
+    "skills": [
+      {
+        "id": "fixture_bash",
+        "name_key": "fixture_bash",
+        "class_id": "swordsman",
+        "max_level": 2,
+        "unlock_level": 1,
+        "tags": [
+          "physical"
+        ],
+        "level_parameters": {
+          "power": [
+            2,
+            2.2
+          ]
+        },
+        "kind": "active",
+        "cost": {
+          "sp": 12,
+          "spirit_spheres": 0
+        },
+        "timing": {
+          "cast_ms": 0,
+          "after_cast_ms": 500,
+          "interruptible": true
+        },
+        "selectors": {
+          "foes": {
+            "team": "enemies",
+            "life": "living",
+            "select": "all",
+            "count": null,
+            "phase": "cast_resolve",
+            "missing": "skip"
+          }
+        },
+        "start_effects": [],
+        "effects": [
+          {
+            "id": "hit",
+            "type": "damage",
+            "target": "foes",
+            "formula": {
+              "id": "physical_power",
+              "params": {
+                "attack_ratio": {
+                  "level_param": "power"
+                },
+                "flat_power": 0
+              }
+            },
+            "damage_type": "physical",
+            "element": "weapon",
+            "hit_rule": "physical_roll",
+            "can_crit": true,
+            "hits": 1,
+            "armor_rule": "normal"
+          },
+          {
+            "id": "stun",
+            "type": "apply_status",
+            "target": "foes",
+            "status_id": "stun",
+            "duration_ms": 1000,
+            "params": {},
+            "chance": 1,
+            "when": {
+              "type": "hit_landed",
+              "effect_id": "hit",
+              "scope": "same_target",
+              "hit_index": "any"
+            }
+          }
+        ]
+      },
+      {
+        "id": "fixture_support",
+        "name_key": "fixture_support",
+        "class_id": "acolyte",
+        "max_level": 1,
+        "unlock_level": 1,
+        "tags": [
+          "physical"
+        ],
+        "level_parameters": {},
+        "kind": "active",
+        "cost": {
+          "sp": 12,
+          "spirit_spheres": 0
+        },
+        "timing": {
+          "cast_ms": 0,
+          "after_cast_ms": 500,
+          "interruptible": true
+        },
+        "selectors": {
+          "friends": {
+            "team": "allies",
+            "life": "living",
+            "select": "all",
+            "count": null,
+            "phase": "cast_resolve",
+            "missing": "skip"
+          }
+        },
+        "start_effects": [],
+        "effects": [
+          {
+            "id": "heal",
+            "type": "heal",
+            "target": "friends",
+            "formula": {
+              "id": "healing_power",
+              "params": {
+                "attack_ratio": 1,
+                "flat_power": 0
+              }
+            }
+          },
+          {
+            "id": "buff",
+            "type": "apply_status",
+            "target": "friends",
+            "status_id": "attack_up",
+            "duration_ms": 5000,
+            "params": {
+              "ratio": 0.3
+            },
+            "chance": 1
+          }
+        ]
+      },
+      {
+        "id": "fixture_autobolt",
+        "name_key": "fixture_autobolt",
+        "class_id": "swordsman",
+        "max_level": 1,
+        "unlock_level": 1,
+        "tags": [
+          "physical"
+        ],
+        "level_parameters": {},
+        "kind": "passive",
+        "modifiers": [],
+        "triggers": [
+          {
+            "id": "auto_bolt",
+            "event": "normal_attack_hit",
+            "chance": 1,
+            "accepted_origins": [
+              "normal"
+            ],
+            "limit_scope": "none",
+            "limit_count": 1,
+            "reentry": "deny_same_source_trigger_in_ancestry",
+            "selectors": {},
+            "effects": [
+              {
+                "id": "bolt",
+                "type": "damage",
+                "target": "event_target",
+                "formula": {
+                  "id": "magical_power",
+                  "params": {
+                    "attack_ratio": 0.5,
+                    "flat_power": 0
+                  }
+                },
+                "damage_type": "magical",
+                "element": "fire",
+                "hit_rule": "always",
+                "can_crit": false,
+                "hits": 1,
+                "armor_rule": "normal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "fixture_boss_adaptive",
+        "name_key": "fixture_boss_adaptive",
+        "class_id": "swordsman",
+        "max_level": 1,
+        "unlock_level": 1,
+        "tags": [
+          "physical"
+        ],
+        "level_parameters": {},
+        "kind": "passive",
+        "modifiers": [],
+        "triggers": [
+          {
+            "id": "adaptive_cc",
+            "event": "control_applied",
+            "chance": 1,
+            "accepted_origins": [
+              "skill",
+              "proc",
+              "periodic"
+            ],
+            "limit_scope": "none",
+            "limit_count": 1,
+            "reentry": "deny_same_source_trigger_in_ancestry",
+            "selectors": {},
+            "effects": [
+              {
+                "id": "resist",
+                "type": "apply_status",
+                "target": "self",
+                "status_id": "cc_resistance_up",
+                "duration_ms": 6000,
+                "params": {
+                  "ratio": 0.1
+                },
+                "chance": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "fixture_sp_burst",
+        "name_key": "fixture_sp_burst",
+        "class_id": "swordsman",
+        "max_level": 1,
+        "unlock_level": 1,
+        "tags": [
+          "physical"
+        ],
+        "level_parameters": {},
+        "kind": "active",
+        "cost": {
+          "sp": {
+            "mode": "all_current",
+            "minimum_sp": 1
+          },
+          "spirit_spheres": 5
+        },
+        "timing": {
+          "cast_ms": 0,
+          "after_cast_ms": 500,
+          "interruptible": true
+        },
+        "selectors": {
+          "foes": {
+            "team": "enemies",
+            "life": "living",
+            "select": "all",
+            "count": null,
+            "phase": "cast_resolve",
+            "missing": "skip"
+          }
+        },
+        "start_effects": [],
+        "effects": [
+          {
+            "id": "burst",
+            "type": "damage",
+            "target": "foes",
+            "formula": {
+              "id": "sp_burst_power",
+              "params": {
+                "attack_ratio": 2,
+                "sp_ratio": 3,
+                "flat_power": 0
+              }
+            },
+            "damage_type": "physical",
+            "element": "neutral",
+            "hit_rule": "physical_roll",
+            "can_crit": true,
+            "hits": 1,
+            "armor_rule": "normal"
+          }
+        ]
+      },
+      {
+        "id": "fixture_utility",
+        "name_key": "fixture_utility",
+        "class_id": "acolyte",
+        "max_level": 1,
+        "unlock_level": 1,
+        "tags": [
+          "physical"
+        ],
+        "level_parameters": {},
+        "kind": "active",
+        "cost": {
+          "sp": 12,
+          "spirit_spheres": 0
+        },
+        "timing": {
+          "cast_ms": 0,
+          "after_cast_ms": 500,
+          "interruptible": true
+        },
+        "selectors": {
+          "friends": {
+            "team": "allies",
+            "life": "living",
+            "select": "all",
+            "count": null,
+            "phase": "cast_resolve",
+            "missing": "skip"
+          }
+        },
+        "start_effects": [],
+        "effects": [
+          {
+            "id": "poison",
+            "type": "apply_status",
+            "target": "self",
+            "status_id": "poison",
+            "duration_ms": 3000,
+            "params": {
+              "power_ratio": 0.4
+            },
+            "chance": 1
+          },
+          {
+            "id": "hot",
+            "type": "apply_status",
+            "target": "self",
+            "status_id": "regeneration",
+            "duration_ms": 3000,
+            "params": {
+              "power_ratio": 0.4
+            },
+            "chance": 1
+          },
+          {
+            "id": "barrier",
+            "type": "shield",
+            "target": "self",
+            "formula": {
+              "id": "flat_power",
+              "params": {
+                "amount": 60
+              }
+            },
+            "duration_ms": 3000,
+            "dispelable": true
+          },
+          {
+            "id": "cleanse",
+            "type": "remove_status",
+            "target": "self",
+            "polarity": "debuff",
+            "tags": [],
+            "permission": "cleanse",
+            "max_instances": 1
+          },
+          {
+            "id": "spheres",
+            "type": "resource_change",
+            "target": "self",
+            "resource": "spirit_spheres",
+            "amount": 1
+          },
+          {
+            "id": "interrupt",
+            "type": "interrupt",
+            "target": "self"
+          },
+          {
+            "id": "detonate",
+            "type": "handler",
+            "target": "self",
+            "handler_id": "detonate_own_status",
+            "params": {
+              "status_id": "poison",
+              "power_per_instance": 50,
+              "max_consumed": null,
+              "damage_type": "magical",
+              "element": "poison"
+            }
+          }
+        ]
+      },
+      {
+        "id": "fixture_revive",
+        "name_key": "fixture_revive",
+        "class_id": "acolyte",
+        "max_level": 1,
+        "unlock_level": 1,
+        "tags": [
+          "physical"
+        ],
+        "level_parameters": {},
+        "kind": "active",
+        "cost": {
+          "sp": 12,
+          "spirit_spheres": 0
+        },
+        "timing": {
+          "cast_ms": 0,
+          "after_cast_ms": 500,
+          "interruptible": true
+        },
+        "selectors": {
+          "corpses": {
+            "team": "allies",
+            "life": "dead",
+            "select": "front_first",
+            "count": null,
+            "phase": "cast_resolve",
+            "missing": "skip"
+          }
+        },
+        "start_effects": [],
+        "effects": [
+          {
+            "id": "resurrection",
+            "type": "revive",
+            "target": "corpses",
+            "hp_ratio": 0.3,
+            "sp_ratio": 0
+          }
+        ]
+      },
+      {
+        "id": "fixture_plant",
+        "name_key": "fixture_plant",
+        "class_id": "acolyte",
+        "max_level": 1,
+        "unlock_level": 1,
+        "tags": [
+          "physical"
+        ],
+        "level_parameters": {},
+        "kind": "active",
+        "cost": {
+          "sp": 12,
+          "spirit_spheres": 0
+        },
+        "timing": {
+          "cast_ms": 0,
+          "after_cast_ms": 500,
+          "interruptible": true
+        },
+        "selectors": {
+          "friends": {
+            "team": "allies",
+            "life": "living",
+            "select": "all",
+            "count": null,
+            "phase": "cast_resolve",
+            "missing": "skip"
+          }
+        },
+        "start_effects": [],
+        "effects": [
+          {
+            "id": "plant",
+            "type": "summon",
+            "target": "self",
+            "actor_definition_id": "fixture_sprout",
+            "duration_ms": 6000,
+            "max_owned": 2,
+            "at_limit": "replace_oldest"
+          }
+        ]
+      }
+    ],
+    "items": [
+      {
+        "id": "fixture_card",
+        "name_key": "fixture_card",
+        "kind": "card",
+        "slot": "armor",
+        "weapon_type": null,
+        "tier_level": 1,
+        "required_level": 1,
+        "modifiers": [
+          {
+            "id": "attack",
+            "stat": "physical_attack",
+            "op": "add_flat",
+            "bucket": "derived",
+            "value": 20
+          }
+        ],
+        "triggers": [
+          {
+            "id": "fixture_thorns",
+            "event": "damage_received",
+            "chance": 1,
+            "accepted_origins": [
+              "skill",
+              "normal"
+            ],
+            "limit_scope": "none",
+            "limit_count": 1,
+            "reentry": "deny_same_source_trigger_in_ancestry",
+            "selectors": {},
+            "effects": [
+              {
+                "id": "reflect",
+                "type": "damage",
+                "target": "event_source",
+                "formula": {
+                  "id": "event_damage_power",
+                  "params": {
+                    "ratio": 0.2
+                  }
+                },
+                "damage_type": "physical",
+                "element": "neutral",
+                "hit_rule": "always",
+                "can_crit": false,
+                "hits": 1,
+                "armor_rule": "normal",
+                "as_reflect": true
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "actor_ids": [
+      "fixture_sprout"
+    ]
+  },
+  "arithmetic_cases": [
+    {
+      "id": "buff_same_source_independent",
+      "kind": "buff",
+      "input": {
+        "base": 100,
+        "flat": 20,
+        "instances": [
+          {
+            "id": "a",
+            "source": "main",
+            "ratio": 0.3,
+            "start": 0,
+            "end": 5000
+          },
+          {
+            "id": "b",
+            "source": "main",
+            "ratio": 0.3,
+            "start": 1000,
+            "end": 6000
+          },
+          {
+            "id": "c",
+            "source": "npc",
+            "ratio": 0.8,
+            "start": 1000,
+            "end": 7000
+          }
+        ],
+        "times": [
+          0,
+          1000,
+          5000,
+          6000,
+          7000
+        ]
+      },
+      "expected": [
+        156,
+        288,
+        252,
+        216,
+        120
+      ]
+    },
+    {
+      "id": "remove_source_recompute",
+      "kind": "sources",
+      "input": {
+        "base": 100,
+        "flats": {
+          "item": 20,
+          "passive": 10
+        },
+        "percents": {
+          "buff_a": 0.3,
+          "buff_b": 0.4
+        },
+        "remove": [
+          "item",
+          "buff_a"
+        ]
+      },
+      "expected": {
+        "before": 221,
+        "after": 154
+      }
+    },
+    {
+      "id": "aoe_target_scope",
+      "kind": "hit_scope",
+      "input": {
+        "A": true,
+        "B": false
+      },
+      "expected": [
+        "A"
+      ]
+    },
+    {
+      "id": "healing_then_buff",
+      "kind": "support",
+      "input": {
+        "matk": 100,
+        "hp": [
+          80,
+          40
+        ],
+        "max_hp": [
+          100,
+          100
+        ],
+        "patk": [
+          100,
+          200
+        ],
+        "buff": 0.3
+      },
+      "expected": {
+        "hp": [
+          100,
+          100
+        ],
+        "effective_heal": 80,
+        "overheal": 120,
+        "patk": [
+          130,
+          260
+        ]
+      }
+    },
+    {
+      "id": "dot_expiry_shield",
+      "kind": "dot_shield",
+      "input": {
+        "start": 0,
+        "duration": 3000,
+        "interval": 1000,
+        "damage": 40,
+        "shield": 60,
+        "hp": 100
+      },
+      "expected": {
+        "ticks": [
+          1000,
+          2000
+        ],
+        "absorbed": 60,
+        "hp_after": 80
+      }
+    },
+    {
+      "id": "chain_cc_plain",
+      "kind": "cc",
+      "input": {
+        "base_chance": 1,
+        "applications": [
+          0,
+          900,
+          1800
+        ],
+        "duration": 1000,
+        "adaptive": false
+      },
+      "expected": {
+        "chances": [
+          1,
+          1,
+          1
+        ],
+        "blocked_until": 2800,
+        "global_immunity": false
+      }
+    },
+    {
+      "id": "chain_cc_adaptive",
+      "kind": "cc",
+      "input": {
+        "base_chance": 1,
+        "applications": [
+          0,
+          900,
+          1800
+        ],
+        "duration": 1000,
+        "adaptive": true
+      },
+      "expected": {
+        "chances": [
+          1,
+          0.9,
+          0.8
+        ],
+        "blocked_until": 2800,
+        "global_immunity": false
+      }
+    },
+    {
+      "id": "resistance_independent_expiry",
+      "kind": "resist_expiry",
+      "input": {
+        "starts": [
+          0,
+          900,
+          1800
+        ],
+        "duration": 6000,
+        "times": [
+          1800,
+          6000,
+          6900,
+          7800
+        ],
+        "per_instance": 0.1
+      },
+      "expected": [
+        0.3,
+        0.2,
+        0.1,
+        0
+      ]
+    },
+    {
+      "id": "sp_pre_cost_snapshot",
+      "kind": "sp_snapshot",
+      "input": {
+        "patk": 100,
+        "sp": 80,
+        "attack_ratio": 2,
+        "sp_ratio": 3
+      },
+      "expected": {
+        "raw_power": 440,
+        "sp_after_start": 0,
+        "sp_after_interrupt": 0
+      }
+    },
+    {
+      "id": "conditional_bonus_no_skill_hold",
+      "kind": "conditional",
+      "input": {
+        "patk": 100,
+        "base_ratio": 2,
+        "bonus_ratio": 0.5,
+        "target_has_poison": false
+      },
+      "expected": {
+        "cast_started": true,
+        "raw_power": 200
+      }
+    },
+    {
+      "id": "conditional_bonus_present",
+      "kind": "conditional",
+      "input": {
+        "patk": 100,
+        "base_ratio": 2,
+        "bonus_ratio": 0.5,
+        "target_has_poison": true
+      },
+      "expected": {
+        "cast_started": true,
+        "raw_power": 250
+      }
+    },
+    {
+      "id": "consume_poison_own_only",
+      "kind": "detonate",
+      "input": {
+        "sources": [
+          "main",
+          "main",
+          "npc"
+        ],
+        "source": "main",
+        "power_per_instance": 50
+      },
+      "expected": {
+        "raw_power": 100,
+        "consumed": 2,
+        "remaining": 1
+      }
+    },
+    {
+      "id": "shield_hit_counts_as_landed",
+      "kind": "shield_hit",
+      "input": {
+        "landed": true,
+        "shield": 100,
+        "damage": 50
+      },
+      "expected": {
+        "hp_damage": 0,
+        "stun_eligible": true
+      }
+    },
+    {
+      "id": "cleanse_instances",
+      "kind": "cleanse",
+      "input": {
+        "instances": [
+          {
+            "id": "a",
+            "end": 5000,
+            "cleanseable": true
+          },
+          {
+            "id": "b",
+            "end": 3000,
+            "cleanseable": true
+          },
+          {
+            "id": "c",
+            "end": 1000,
+            "cleanseable": false
+          }
+        ],
+        "max_instances": 1
+      },
+      "expected": [
+        "b"
+      ]
+    },
+    {
+      "id": "proc_same_ancestry_rejected",
+      "kind": "proc_guard",
+      "input": {
+        "ancestry": [
+          [
+            "card_1",
+            "reflect"
+          ]
+        ],
+        "candidate": [
+          "card_1",
+          "reflect"
+        ]
+      },
+      "expected": false
+    },
+    {
+      "id": "proc_separate_instance_allowed",
+      "kind": "proc_guard",
+      "input": {
+        "ancestry": [
+          [
+            "card_1",
+            "reflect"
+          ]
+        ],
+        "candidate": [
+          "card_2",
+          "reflect"
+        ]
+      },
+      "expected": true
+    },
+    {
+      "id": "proc_sibling_hit_allowed",
+      "kind": "proc_guard",
+      "input": {
+        "ancestry": [],
+        "candidate": [
+          "card_1",
+          "reflect"
+        ]
+      },
+      "expected": true
+    },
+    {
+      "id": "periodic_source_death",
+      "kind": "status_lifetime",
+      "input": {
+        "source_death": "persist",
+        "target_death": "remove"
+      },
+      "expected": {
+        "after_source_death": "active",
+        "after_target_death": "removed"
+      }
+    },
+    {
+      "id": "bash_interrupt_sp_and_queue",
+      "kind": "bash_interrupt",
+      "input": {
+        "bash_at": 1500,
+        "bash_sp": 50,
+        "bash_cost": 12,
+        "enemy_sp": 60,
+        "enemy_cost": 15,
+        "enemy_acd": 500,
+        "enemy_si": 1500,
+        "stun_duration": 1000,
+        "enemy_cast_start": 500,
+        "enemy_cast_ms": 2000,
+        "enemy_interruptible": true,
+        "bash_landed": true
+      },
+      "expected": {
+        "bash_sp_after": 38,
+        "enemy_sp_after": 45,
+        "enemy_cast_resolves": false,
+        "enemy_sp_refund": 0,
+        "enemy_next_start": 3500,
+        "enemy_slots_consumed": 1
+      }
+    }
+  ],
+  "variant_cases": {
+    "base_skill": "fixture_bash",
+    "base_level": 1,
+    "patches": [
+      {
+        "id": "awakening",
+        "skill_id": "fixture_bash",
+        "stage": "awaken",
+        "priority": 0,
+        "operation": "set_param",
+        "effect_id": "hit",
+        "param": "formula.params.attack_ratio",
+        "value": 2.4
+      },
+      {
+        "id": "artifact_power",
+        "skill_id": "fixture_bash",
+        "stage": "artifact",
+        "priority": 0,
+        "operation": "add_param",
+        "effect_id": "hit",
+        "param": "formula.params.attack_ratio",
+        "value": 0.2
+      },
+      {
+        "id": "artifact_buff",
+        "skill_id": "fixture_bash",
+        "stage": "artifact",
+        "priority": 1,
+        "operation": "append_effect",
+        "effect_id": "artifact_guard",
+        "effect": {
+          "id": "artifact_guard",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "guard_up",
+          "duration_ms": 3000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      }
+    ],
+    "expected": {
+      "base": 2,
+      "awakened": 2.4,
+      "artifact": 2.6,
+      "second_actor": 2,
+      "base_effect_count": 2,
+      "variant_effect_count": 3
+    }
+  },
+  "negative_cases": [
+    {
+      "id": "unknown_stat",
+      "mutation": "unknown_stat",
+      "expected_error": "schema"
+    },
+    {
+      "id": "unknown_formula",
+      "mutation": "unknown_formula",
+      "expected_error": "schema"
+    },
+    {
+      "id": "unknown_formula_param",
+      "mutation": "unknown_formula_param",
+      "expected_error": "schema"
+    },
+    {
+      "id": "unknown_status",
+      "mutation": "unknown_status",
+      "expected_error": "unknown_status"
+    },
+    {
+      "id": "unknown_binding",
+      "mutation": "unknown_binding",
+      "expected_error": "unknown_binding"
+    },
+    {
+      "id": "outcome_other_target",
+      "mutation": "outcome_other_target",
+      "expected_error": "schema"
+    },
+    {
+      "id": "outcome_forward_reference",
+      "mutation": "outcome_forward_reference",
+      "expected_error": "outcome_reference"
+    },
+    {
+      "id": "outcome_different_binding",
+      "mutation": "outcome_different_binding",
+      "expected_error": "outcome_scope"
+    },
+    {
+      "id": "unknown_status_param",
+      "mutation": "unknown_status_param",
+      "expected_error": "status_params"
+    },
+    {
+      "id": "undefined_level_param",
+      "mutation": "undefined_level_param",
+      "expected_error": "level_param"
+    },
+    {
+      "id": "level_curve_length",
+      "mutation": "level_curve_length",
+      "expected_error": "level_curve"
+    },
+    {
+      "id": "invalid_modifier_bucket",
+      "mutation": "invalid_modifier_bucket",
+      "expected_error": "modifier_bucket"
+    },
+    {
+      "id": "ratio_as_add_percent",
+      "mutation": "ratio_as_add_percent",
+      "expected_error": "modifier_unit"
+    },
+    {
+      "id": "buff_cap",
+      "mutation": "buff_cap",
+      "expected_error": "schema"
+    },
+    {
+      "id": "chance_above_one",
+      "mutation": "chance_above_one",
+      "expected_error": "probability"
+    },
+    {
+      "id": "event_formula_without_event",
+      "mutation": "event_formula_without_event",
+      "expected_error": "event_context"
+    },
+    {
+      "id": "status_param_in_skill",
+      "mutation": "status_param_in_skill",
+      "expected_error": "status_param_scope"
+    },
+    {
+      "id": "dead_heal_binding",
+      "mutation": "dead_heal_binding",
+      "expected_error": "target_life"
+    },
+    {
+      "id": "non_finite_number",
+      "mutation": "non_finite_number",
+      "expected_error": "non_finite"
+    },
+    {
+      "id": "unknown_json_field",
+      "mutation": "unknown_json_field",
+      "expected_error": "schema"
+    },
+    {
+      "id": "effect_id_duplicate",
+      "mutation": "effect_id_duplicate",
+      "expected_error": "duplicate_id"
+    },
+    {
+      "id": "source_sp_double_charge",
+      "mutation": "source_sp_double_charge",
+      "expected_error": "double_cost"
+    },
+    {
+      "id": "patch_missing_anchor",
+      "mutation": "patch_missing_anchor",
+      "expected_error": "patch_anchor"
+    },
+    {
+      "id": "patch_set_conflict",
+      "mutation": "patch_set_conflict",
+      "expected_error": "patch_conflict"
+    },
+    {
+      "id": "unknown_actor_reference",
+      "mutation": "unknown_actor_reference",
+      "expected_error": "unknown_actor"
+    },
+    {
+      "id": "modifier_feedback_predicate",
+      "mutation": "modifier_feedback_predicate",
+      "expected_error": "modifier_predicate_cycle"
+    },
+    {
+      "id": "unsafe_number",
+      "mutation": "unsafe_number",
+      "expected_error": "unsafe_number"
+    },
+    {
+      "id": "status_remote_schema",
+      "mutation": "status_remote_schema",
+      "expected_error": "schema"
+    },
+    {
+      "id": "skill_as_reflect",
+      "mutation": "skill_as_reflect",
+      "expected_error": "reflection_context"
+    },
+    {
+      "id": "battle_start_event_target",
+      "mutation": "battle_start_event_target",
+      "expected_error": "unknown_binding"
+    },
+    {
+      "id": "cast_event_ambiguous_target",
+      "mutation": "cast_event_ambiguous_target",
+      "expected_error": "unknown_binding"
+    },
+    {
+      "id": "live_source_after_death",
+      "mutation": "live_source_after_death",
+      "expected_error": "status_lifecycle"
+    }
+  ]
+}

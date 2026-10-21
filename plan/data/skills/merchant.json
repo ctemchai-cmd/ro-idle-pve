@@ -1,0 +1,2999 @@
+{
+  "schema_version": 1,
+  "content_version": "merchant-class2-v1",
+  "authoring_status": "M0 baseline for this game; not verified RO Idle equations or measured balance",
+  "root_job_id": "merchant",
+  "inheritance": "Class2 learns root and selected branch only; inactive branch investments are refunded/reset per paid ledger",
+  "skill_cap": "min(definition.max_level,1+floor((character_level-1)/5))",
+  "learn_policy": "Unlock does not auto-learn or auto-upgrade; user calls skill.upgrade target_level1 to learn for free. Only two root starter actives are granted; learned Passives then apply automatically.",
+  "skills": [
+    {
+      "id": "merchant_mammonite",
+      "name_key": "merchant_mammonite",
+      "class_id": "merchant",
+      "max_level": 10,
+      "unlock_level": 1,
+      "tags": [
+        "merchant",
+        "mammonite"
+      ],
+      "level_parameters": {
+        "power": [
+          1.5,
+          1.611111,
+          1.722222,
+          1.833333,
+          1.944444,
+          2.055556,
+          2.166667,
+          2.277778,
+          2.388889,
+          2.5
+        ]
+      },
+      "presentation_id": "visual_merchant_mammonite",
+      "kind": "active",
+      "cost": {
+        "sp": 22,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 200,
+        "after_cast_ms": 850,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "merchant_cart_revolution",
+      "name_key": "merchant_cart_revolution",
+      "class_id": "merchant",
+      "max_level": 10,
+      "unlock_level": 1,
+      "tags": [
+        "merchant",
+        "cart_revolution"
+      ],
+      "level_parameters": {
+        "power": [
+          0.8,
+          0.866667,
+          0.933333,
+          1.0,
+          1.066667,
+          1.133333,
+          1.2,
+          1.266667,
+          1.333333,
+          1.4
+        ]
+      },
+      "presentation_id": "visual_merchant_cart_revolution",
+      "kind": "active",
+      "cost": {
+        "sp": 24,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 400,
+        "after_cast_ms": 900,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": 1000,
+          "params": {},
+          "chance": 0.4,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    },
+    {
+      "id": "merchant_loud_voice",
+      "name_key": "merchant_loud_voice",
+      "class_id": "merchant",
+      "max_level": 10,
+      "unlock_level": 5,
+      "tags": [
+        "merchant",
+        "loud_voice"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.05,
+          0.057778,
+          0.065556,
+          0.073333,
+          0.081111,
+          0.088889,
+          0.096667,
+          0.104444,
+          0.112222,
+          0.12
+        ]
+      },
+      "presentation_id": "visual_merchant_loud_voice",
+      "kind": "active",
+      "cost": {
+        "sp": 26,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 450,
+        "after_cast_ms": 850,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "attack_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "attack_up",
+          "duration_ms": 4500,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "merchant_first_aid",
+      "name_key": "merchant_first_aid",
+      "class_id": "merchant",
+      "max_level": 10,
+      "unlock_level": 10,
+      "tags": [
+        "merchant",
+        "first_aid"
+      ],
+      "level_parameters": {
+        "power": [
+          0.6,
+          0.655556,
+          0.711111,
+          0.766667,
+          0.822222,
+          0.877778,
+          0.933333,
+          0.988889,
+          1.044444,
+          1.1
+        ]
+      },
+      "presentation_id": "visual_merchant_first_aid",
+      "kind": "active",
+      "cost": {
+        "sp": 18,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 500,
+        "after_cast_ms": 800,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "heal",
+          "type": "heal",
+          "target": "self",
+          "formula": {
+            "id": "healing_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "merchant_trading_stamina",
+      "name_key": "merchant_trading_stamina",
+      "class_id": "merchant",
+      "max_level": 10,
+      "unlock_level": 10,
+      "tags": [
+        "merchant",
+        "trading_stamina"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.03,
+          0.04,
+          0.05,
+          0.06,
+          0.07,
+          0.08,
+          0.09,
+          0.1,
+          0.11,
+          0.12
+        ]
+      },
+      "presentation_id": "visual_merchant_trading_stamina",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "ratio"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "blacksmith_hammer_fall",
+      "name_key": "blacksmith_hammer_fall",
+      "class_id": "blacksmith",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "blacksmith",
+        "hammer_fall"
+      ],
+      "level_parameters": {
+        "power": [
+          0.8,
+          0.855556,
+          0.911111,
+          0.966667,
+          1.022222,
+          1.077778,
+          1.133333,
+          1.188889,
+          1.244444,
+          1.3
+        ]
+      },
+      "presentation_id": "visual_blacksmith_hammer_fall",
+      "kind": "active",
+      "cost": {
+        "sp": 34,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 600,
+        "after_cast_ms": 1000,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": 1000,
+          "params": {},
+          "chance": 0.4,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    },
+    {
+      "id": "blacksmith_adrenaline",
+      "name_key": "blacksmith_adrenaline",
+      "class_id": "blacksmith",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "blacksmith",
+        "adrenaline"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.12,
+          0.134444,
+          0.148889,
+          0.163333,
+          0.177778,
+          0.192222,
+          0.206667,
+          0.221111,
+          0.235556,
+          0.25
+        ]
+      },
+      "presentation_id": "visual_blacksmith_adrenaline",
+      "kind": "active",
+      "cost": {
+        "sp": 36,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 600,
+        "after_cast_ms": 1100,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "aspd_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "aspd_up",
+          "duration_ms": 5500,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "blacksmith_weapon_perfection",
+      "name_key": "blacksmith_weapon_perfection",
+      "class_id": "blacksmith",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "blacksmith",
+        "weapon_perfection"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.12,
+          0.133333,
+          0.146667,
+          0.16,
+          0.173333,
+          0.186667,
+          0.2,
+          0.213333,
+          0.226667,
+          0.24
+        ]
+      },
+      "presentation_id": "visual_blacksmith_weapon_perfection",
+      "kind": "active",
+      "cost": {
+        "sp": 34,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 650,
+        "after_cast_ms": 1000,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "attack_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "attack_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "blacksmith_meltdown",
+      "name_key": "blacksmith_meltdown",
+      "class_id": "blacksmith",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "blacksmith",
+        "meltdown"
+      ],
+      "level_parameters": {
+        "power": [
+          1.2,
+          1.277778,
+          1.355556,
+          1.433333,
+          1.511111,
+          1.588889,
+          1.666667,
+          1.744444,
+          1.822222,
+          1.9
+        ],
+        "break": [
+          0.15,
+          0.166667,
+          0.183333,
+          0.2,
+          0.216667,
+          0.233333,
+          0.25,
+          0.266667,
+          0.283333,
+          0.3
+        ]
+      },
+      "presentation_id": "visual_blacksmith_meltdown",
+      "kind": "active",
+      "cost": {
+        "sp": 34,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 500,
+        "after_cast_ms": 950,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "armor_break",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "armor_break",
+          "duration_ms": 5500,
+          "params": {
+            "ratio": {
+              "level_param": "break"
+            }
+          },
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    },
+    {
+      "id": "blacksmith_cart_crash",
+      "name_key": "blacksmith_cart_crash",
+      "class_id": "blacksmith",
+      "max_level": 10,
+      "unlock_level": 40,
+      "tags": [
+        "blacksmith",
+        "cart_crash"
+      ],
+      "level_parameters": {
+        "power": [
+          0.8,
+          0.855556,
+          0.911111,
+          0.966667,
+          1.022222,
+          1.077778,
+          1.133333,
+          1.188889,
+          1.244444,
+          1.3
+        ]
+      },
+      "presentation_id": "visual_blacksmith_cart_crash",
+      "kind": "active",
+      "cost": {
+        "sp": 44,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 850,
+        "after_cast_ms": 1100,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 2,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "blacksmith_weapon_research",
+      "name_key": "blacksmith_weapon_research",
+      "class_id": "blacksmith",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "blacksmith",
+        "weapon_research"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.05,
+          0.064444,
+          0.078889,
+          0.093333,
+          0.107778,
+          0.122222,
+          0.136667,
+          0.151111,
+          0.165556,
+          0.18
+        ]
+      },
+      "presentation_id": "visual_blacksmith_weapon_research",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "ratio"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "blacksmith_tempering",
+      "name_key": "blacksmith_tempering",
+      "class_id": "blacksmith",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "blacksmith",
+        "tempering"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.08,
+          0.095556,
+          0.111111,
+          0.126667,
+          0.142222,
+          0.157778,
+          0.173333,
+          0.188889,
+          0.204444,
+          0.22
+        ]
+      },
+      "presentation_id": "visual_blacksmith_tempering",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "ratio"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "alchemist_acid_terror",
+      "name_key": "alchemist_acid_terror",
+      "class_id": "alchemist",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "alchemist",
+        "acid_terror"
+      ],
+      "level_parameters": {
+        "power": [
+          1.4,
+          1.511111,
+          1.622222,
+          1.733333,
+          1.844444,
+          1.955556,
+          2.066667,
+          2.177778,
+          2.288889,
+          2.4
+        ],
+        "break": [
+          0.08,
+          0.091111,
+          0.102222,
+          0.113333,
+          0.124444,
+          0.135556,
+          0.146667,
+          0.157778,
+          0.168889,
+          0.18
+        ]
+      },
+      "presentation_id": "visual_alchemist_acid_terror",
+      "kind": "active",
+      "cost": {
+        "sp": 32,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 750,
+        "after_cast_ms": 900,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "poison",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "armor_break",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "armor_break",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "break"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "alchemist_potion_pitcher",
+      "name_key": "alchemist_potion_pitcher",
+      "class_id": "alchemist",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "alchemist",
+        "potion_pitcher"
+      ],
+      "level_parameters": {
+        "power": [
+          0.9,
+          0.977778,
+          1.055556,
+          1.133333,
+          1.211111,
+          1.288889,
+          1.366667,
+          1.444444,
+          1.522222,
+          1.6
+        ]
+      },
+      "presentation_id": "visual_alchemist_potion_pitcher",
+      "kind": "active",
+      "cost": {
+        "sp": 26,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 600,
+        "after_cast_ms": 900,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "heal",
+          "type": "heal",
+          "target": "friend",
+          "formula": {
+            "id": "healing_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "alchemist_hell_plant",
+      "name_key": "alchemist_hell_plant",
+      "class_id": "alchemist",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "alchemist",
+        "hell_plant"
+      ],
+      "level_parameters": {
+        "sp_cost": [
+          53,
+          52,
+          51,
+          50,
+          49,
+          48,
+          47,
+          46,
+          45,
+          44
+        ]
+      },
+      "presentation_id": "visual_alchemist_hell_plant",
+      "kind": "active",
+      "cost": {
+        "sp": {
+          "level_param": "sp_cost"
+        },
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 1100,
+        "after_cast_ms": 1300,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "spawn",
+          "type": "summon",
+          "target": "self",
+          "actor_definition_id": "hell_plant",
+          "duration_ms": 6500,
+          "max_owned": 2,
+          "at_limit": "replace_oldest"
+        }
+      ]
+    },
+    {
+      "id": "alchemist_bio_cannibalize",
+      "name_key": "alchemist_bio_cannibalize",
+      "class_id": "alchemist",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "alchemist",
+        "bio_cannibalize"
+      ],
+      "level_parameters": {
+        "sp_cost": [
+          49,
+          48,
+          47,
+          46,
+          45,
+          44,
+          43,
+          42,
+          41,
+          40
+        ]
+      },
+      "presentation_id": "visual_alchemist_bio_cannibalize",
+      "kind": "active",
+      "cost": {
+        "sp": {
+          "level_param": "sp_cost"
+        },
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 1100,
+        "after_cast_ms": 1300,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "spawn",
+          "type": "summon",
+          "target": "self",
+          "actor_definition_id": "healing_plant",
+          "duration_ms": 6500,
+          "max_owned": 1,
+          "at_limit": "replace_oldest"
+        }
+      ]
+    },
+    {
+      "id": "alchemist_demonstration",
+      "name_key": "alchemist_demonstration",
+      "class_id": "alchemist",
+      "max_level": 10,
+      "unlock_level": 40,
+      "tags": [
+        "alchemist",
+        "demonstration"
+      ],
+      "level_parameters": {
+        "power": [
+          0.3,
+          0.327778,
+          0.355556,
+          0.383333,
+          0.411111,
+          0.438889,
+          0.466667,
+          0.494444,
+          0.522222,
+          0.55
+        ]
+      },
+      "presentation_id": "visual_alchemist_demonstration",
+      "kind": "active",
+      "cost": {
+        "sp": 44,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 900,
+        "after_cast_ms": 1200,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "chemical_burn",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "chemical_burn",
+          "duration_ms": 5000,
+          "params": {
+            "power_ratio": {
+              "level_param": "power"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "alchemist_learning_potion",
+      "name_key": "alchemist_learning_potion",
+      "class_id": "alchemist",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "alchemist",
+        "learning_potion"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.04,
+          0.052222,
+          0.064444,
+          0.076667,
+          0.088889,
+          0.101111,
+          0.113333,
+          0.125556,
+          0.137778,
+          0.15
+        ]
+      },
+      "presentation_id": "visual_alchemist_learning_potion",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "outgoing_healing_bonus",
+          "stat": "outgoing_healing_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "ratio"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "alchemist_chemical_expertise",
+      "name_key": "alchemist_chemical_expertise",
+      "class_id": "alchemist",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "alchemist",
+        "chemical_expertise"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.04,
+          0.052222,
+          0.064444,
+          0.076667,
+          0.088889,
+          0.101111,
+          0.113333,
+          0.125556,
+          0.137778,
+          0.15
+        ]
+      },
+      "presentation_id": "visual_alchemist_chemical_expertise",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "ratio"
+          }
+        }
+      ],
+      "triggers": []
+    }
+  ],
+  "upgrades": {
+    "merchant_mammonite": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 50,
+          "skill_manual": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 150,
+          "skill_manual": 30
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 250,
+          "skill_manual": 50
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 350,
+          "skill_manual": 70
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 450,
+          "skill_manual": 90
+        }
+      ]
+    },
+    "merchant_cart_revolution": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 50,
+          "skill_manual": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 150,
+          "skill_manual": 30
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 250,
+          "skill_manual": 50
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 350,
+          "skill_manual": 70
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 450,
+          "skill_manual": 90
+        }
+      ]
+    },
+    "merchant_loud_voice": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 50,
+          "skill_manual": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 150,
+          "skill_manual": 30
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 250,
+          "skill_manual": 50
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 350,
+          "skill_manual": 70
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 450,
+          "skill_manual": 90
+        }
+      ]
+    },
+    "merchant_first_aid": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 50,
+          "skill_manual": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 150,
+          "skill_manual": 30
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 250,
+          "skill_manual": 50
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 350,
+          "skill_manual": 70
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 450,
+          "skill_manual": 90
+        }
+      ]
+    },
+    "merchant_trading_stamina": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 50,
+          "skill_manual": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 150,
+          "skill_manual": 30
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 250,
+          "skill_manual": 50
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 350,
+          "skill_manual": 70
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 450,
+          "skill_manual": 90
+        }
+      ]
+    },
+    "blacksmith_hammer_fall": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "blacksmith_adrenaline": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "blacksmith_weapon_perfection": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "blacksmith_meltdown": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "blacksmith_cart_crash": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "blacksmith_weapon_research": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "blacksmith_tempering": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "alchemist_acid_terror": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "alchemist_potion_pitcher": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "alchemist_hell_plant": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "alchemist_bio_cannibalize": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "alchemist_demonstration": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "alchemist_learning_potion": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "alchemist_chemical_expertise": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    }
+  },
+  "builds": [
+    {
+      "id": "blacksmith_hammer",
+      "job_id": "blacksmith",
+      "level": 70,
+      "role": "heavy area damage and armor break",
+      "primary_stats": {
+        "str": 60,
+        "agi": 1,
+        "vit": 25,
+        "int": 1,
+        "dex": 30,
+        "luk": 1
+      },
+      "spent_status_points": 303,
+      "unspent_status_points": 373,
+      "active_slots": [
+        "blacksmith_meltdown",
+        "blacksmith_hammer_fall",
+        "blacksmith_cart_crash",
+        "merchant_mammonite"
+      ],
+      "skill_levels": {
+        "merchant_mammonite": 10,
+        "merchant_cart_revolution": 1,
+        "merchant_loud_voice": 1,
+        "merchant_first_aid": 1,
+        "merchant_trading_stamina": 10,
+        "blacksmith_hammer_fall": 10,
+        "blacksmith_adrenaline": 1,
+        "blacksmith_weapon_perfection": 1,
+        "blacksmith_meltdown": 10,
+        "blacksmith_cart_crash": 10,
+        "blacksmith_weapon_research": 10,
+        "blacksmith_tempering": 10
+      },
+      "automatic_passives": [
+        "merchant_trading_stamina",
+        "blacksmith_weapon_research",
+        "blacksmith_tempering"
+      ],
+      "paid_upgrade_budget": {
+        "gold": 27000,
+        "skill_manual": 5400
+      },
+      "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+      "queue_estimate": {
+        "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+        "si_ms": 1370,
+        "cycle_ms": 9484,
+        "starts": [
+          {
+            "skill_id": "blacksmith_meltdown",
+            "start_ms": 1370,
+            "resolve_ms": 1701,
+            "acd_end_ms": 2330
+          },
+          {
+            "skill_id": "blacksmith_hammer_fall",
+            "start_ms": 3700,
+            "resolve_ms": 4097,
+            "acd_end_ms": 4759
+          },
+          {
+            "skill_id": "blacksmith_cart_crash",
+            "start_ms": 6129,
+            "resolve_ms": 6691,
+            "acd_end_ms": 7419
+          },
+          {
+            "skill_id": "merchant_mammonite",
+            "start_ms": 8789,
+            "resolve_ms": 8922,
+            "acd_end_ms": 9484
+          }
+        ],
+        "fixed_sp_per_cycle": 134,
+        "job_bonus": "D-061 job bonus included in primary stats"
+      }
+    },
+    {
+      "id": "blacksmith_weaponsmith",
+      "job_id": "blacksmith",
+      "level": 70,
+      "role": "physical team support",
+      "primary_stats": {
+        "str": 35,
+        "agi": 1,
+        "vit": 35,
+        "int": 1,
+        "dex": 45,
+        "luk": 1
+      },
+      "spent_status_points": 272,
+      "unspent_status_points": 404,
+      "active_slots": [
+        "blacksmith_adrenaline",
+        "blacksmith_weapon_perfection",
+        "merchant_loud_voice",
+        "blacksmith_meltdown"
+      ],
+      "skill_levels": {
+        "merchant_mammonite": 1,
+        "merchant_cart_revolution": 1,
+        "merchant_loud_voice": 10,
+        "merchant_first_aid": 1,
+        "merchant_trading_stamina": 10,
+        "blacksmith_hammer_fall": 1,
+        "blacksmith_adrenaline": 10,
+        "blacksmith_weapon_perfection": 10,
+        "blacksmith_meltdown": 10,
+        "blacksmith_cart_crash": 1,
+        "blacksmith_weapon_research": 10,
+        "blacksmith_tempering": 10
+      },
+      "automatic_passives": [
+        "merchant_trading_stamina",
+        "blacksmith_weapon_research",
+        "blacksmith_tempering"
+      ],
+      "paid_upgrade_budget": {
+        "gold": 27000,
+        "skill_manual": 5400
+      },
+      "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+      "queue_estimate": {
+        "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+        "si_ms": 1325,
+        "cycle_ms": 8815,
+        "starts": [
+          {
+            "skill_id": "blacksmith_adrenaline",
+            "start_ms": 1325,
+            "resolve_ms": 1671,
+            "acd_end_ms": 2305
+          },
+          {
+            "skill_id": "blacksmith_weapon_perfection",
+            "start_ms": 3630,
+            "resolve_ms": 4005,
+            "acd_end_ms": 4581
+          },
+          {
+            "skill_id": "merchant_loud_voice",
+            "start_ms": 5906,
+            "resolve_ms": 6165,
+            "acd_end_ms": 6655
+          },
+          {
+            "skill_id": "blacksmith_meltdown",
+            "start_ms": 7980,
+            "resolve_ms": 8268,
+            "acd_end_ms": 8815
+          }
+        ],
+        "fixed_sp_per_cycle": 130,
+        "job_bonus": "D-061 job bonus included in primary stats"
+      }
+    },
+    {
+      "id": "alchemist_chemist",
+      "job_id": "alchemist",
+      "level": 70,
+      "role": "chemical area damage",
+      "primary_stats": {
+        "str": 1,
+        "agi": 1,
+        "vit": 25,
+        "int": 60,
+        "dex": 35,
+        "luk": 1
+      },
+      "spent_status_points": 322,
+      "unspent_status_points": 354,
+      "active_slots": [
+        "alchemist_demonstration",
+        "alchemist_acid_terror",
+        "alchemist_hell_plant",
+        "alchemist_potion_pitcher"
+      ],
+      "skill_levels": {
+        "merchant_mammonite": 1,
+        "merchant_cart_revolution": 1,
+        "merchant_loud_voice": 1,
+        "merchant_first_aid": 1,
+        "merchant_trading_stamina": 10,
+        "alchemist_acid_terror": 10,
+        "alchemist_potion_pitcher": 10,
+        "alchemist_hell_plant": 10,
+        "alchemist_bio_cannibalize": 1,
+        "alchemist_demonstration": 10,
+        "alchemist_learning_potion": 10,
+        "alchemist_chemical_expertise": 10
+      },
+      "automatic_passives": [
+        "merchant_trading_stamina",
+        "alchemist_learning_potion",
+        "alchemist_chemical_expertise"
+      ],
+      "paid_upgrade_budget": {
+        "gold": 29250,
+        "skill_manual": 5850
+      },
+      "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+      "queue_estimate": {
+        "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+        "si_ms": 1355,
+        "cycle_ms": 9833,
+        "starts": [
+          {
+            "skill_id": "alchemist_demonstration",
+            "start_ms": 1355,
+            "resolve_ms": 1874,
+            "acd_end_ms": 2566
+          },
+          {
+            "skill_id": "alchemist_acid_terror",
+            "start_ms": 3921,
+            "resolve_ms": 4354,
+            "acd_end_ms": 4873
+          },
+          {
+            "skill_id": "alchemist_hell_plant",
+            "start_ms": 6228,
+            "resolve_ms": 6863,
+            "acd_end_ms": 7613
+          },
+          {
+            "skill_id": "alchemist_potion_pitcher",
+            "start_ms": 8968,
+            "resolve_ms": 9314,
+            "acd_end_ms": 9833
+          }
+        ],
+        "fixed_sp_per_cycle": 146,
+        "job_bonus": "D-061 job bonus included in primary stats"
+      }
+    },
+    {
+      "id": "alchemist_gardener",
+      "job_id": "alchemist",
+      "level": 70,
+      "role": "bounded plants with supporting heals",
+      "primary_stats": {
+        "str": 1,
+        "agi": 1,
+        "vit": 30,
+        "int": 50,
+        "dex": 40,
+        "luk": 1
+      },
+      "spent_status_points": 298,
+      "unspent_status_points": 378,
+      "active_slots": [
+        "alchemist_hell_plant",
+        "alchemist_bio_cannibalize",
+        "alchemist_potion_pitcher",
+        "merchant_loud_voice"
+      ],
+      "skill_levels": {
+        "merchant_mammonite": 1,
+        "merchant_cart_revolution": 1,
+        "merchant_loud_voice": 10,
+        "merchant_first_aid": 1,
+        "merchant_trading_stamina": 10,
+        "alchemist_acid_terror": 1,
+        "alchemist_potion_pitcher": 10,
+        "alchemist_hell_plant": 10,
+        "alchemist_bio_cannibalize": 10,
+        "alchemist_demonstration": 1,
+        "alchemist_learning_potion": 10,
+        "alchemist_chemical_expertise": 10
+      },
+      "automatic_passives": [
+        "merchant_trading_stamina",
+        "alchemist_learning_potion",
+        "alchemist_chemical_expertise"
+      ],
+      "paid_upgrade_budget": {
+        "gold": 27000,
+        "skill_manual": 5400
+      },
+      "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+      "queue_estimate": {
+        "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+        "si_ms": 1340,
+        "cycle_ms": 9624,
+        "starts": [
+          {
+            "skill_id": "alchemist_hell_plant",
+            "start_ms": 1340,
+            "resolve_ms": 1957,
+            "acd_end_ms": 2686
+          },
+          {
+            "skill_id": "alchemist_bio_cannibalize",
+            "start_ms": 4026,
+            "resolve_ms": 4643,
+            "acd_end_ms": 5372
+          },
+          {
+            "skill_id": "alchemist_potion_pitcher",
+            "start_ms": 6712,
+            "resolve_ms": 7049,
+            "acd_end_ms": 7554
+          },
+          {
+            "skill_id": "merchant_loud_voice",
+            "start_ms": 8894,
+            "resolve_ms": 9147,
+            "acd_end_ms": 9624
+          }
+        ],
+        "fixed_sp_per_cycle": 136,
+        "job_bonus": "D-061 job bonus included in primary stats"
+      }
+    }
+  ],
+  "notes": {
+    "merchant_mammonite": "Combat SP only; does not consume durable gold per hit.",
+    "merchant_cart_revolution": "",
+    "merchant_loud_voice": "",
+    "merchant_first_aid": "",
+    "merchant_trading_stamina": "",
+    "blacksmith_hammer_fall": "",
+    "blacksmith_adrenaline": "",
+    "blacksmith_weapon_perfection": "",
+    "blacksmith_meltdown": "",
+    "blacksmith_cart_crash": "",
+    "blacksmith_weapon_research": "",
+    "blacksmith_tempering": "",
+    "alchemist_acid_terror": "",
+    "alchemist_potion_pitcher": "",
+    "alchemist_hell_plant": "Deliberate Class2 adaptation; separate from future Geneticist progression.",
+    "alchemist_bio_cannibalize": "",
+    "alchemist_demonstration": "",
+    "alchemist_learning_potion": "",
+    "alchemist_chemical_expertise": ""
+  },
+  "future_awaken": "stable skill/effect IDs; no hi-class definitions required by these builds"
+}

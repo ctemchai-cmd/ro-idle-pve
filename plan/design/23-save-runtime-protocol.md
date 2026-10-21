@@ -1,0 +1,56 @@
+# สัญญาเซฟที่ใช้งานจริง
+
+วันที่: 20 ตุลาคม 2026 · TASK-022 · [ผลตรวจ](../evidence/task-022-review.json)
+
+ส่วนนี้ลงรายละเอียด implementation ของ design11 ไม่เปลี่ยนกติกาเล่นหรือเพิ่ม multiplayer ฐานข้อมูลเป็นเจ้าของเวลาและ revision; TypeScript domain เป็นเจ้าของสูตร ไม่มีสูตรเงิน/ดาเมจซ้ำใน SQL
+
+## ขอบเขตและข้อมูลเข้าออก
+
+| ส่วน | รับ | คืน/รับผิดชอบ |
+| --- | --- | --- |
+| AccountCommandRules | Command ที่ผ่าน closed schema, AccountState, StoredBattle, เวลาจาก DB, request hash | สำเนา state, immutable receipt, keep/delete/upsert battle; business rejection ไม่เปลี่ยน state |
+| reserveFarm | state, cursor/time ตัวเลข, UTC สำหรับบันทึก, claim ID, validated content | state ใหม่ที่จอง fixed pending bundle และเลื่อน cursor/carry/RNG; ไม่จ่าย wallet |
+| API recurring handlers | verified Auth UID + intent | ตรวจ canonical hash/receipt/version/history signature/revision แล้วส่ง proposal เข้า repository |
+| game_commit_command | UID จาก server, expected revision, signed proposal | CAS transaction เดียวสำหรับ save/receipt/history/battle; rejected receipt ไม่เพิ่ม revision |
+| SaveController | injected network/storage/lock ports | สถานะ ready/saving/offline/read_only/incompatible และ checkpoint ล่าสุด; ไม่คำนวณทรัพย์สินจาก receipt delta |
+| browser ports | Auth session, environment scope, Web Locks/localStorage | HTTP adapters และ backup ตาม owner/environment; ไม่เก็บ credentials ใน backup |
+
+GET `/api/checkpoint` อ่าน save/history/battle/DB UTC ใน snapshot เดียว ลงนาม HMAC ฝั่ง server และตรวจ SHA256 ของ state ทั้งฝั่ง API/เบราว์เซอร์ HMAC key อยู่เฉพาะ server เบราว์เซอร์ไม่สามารถพิสูจน์ HMAC เอง; local cache ไม่มีอำนาจเขียนทับ cloud
+
+## คำสั่งและการกู้
+
+`account.create` ใช้ grant เดิม ส่วน `reward.claim`, `farm.claim`, `battle.advance`, `battle.retreat` ผ่าน recurring boundary คำสั่งระบบตัวละคร/สกิล/ของ/โหมดจะเพิ่ม reducers ที่จุดนี้ตาม task ของตน คำสั่งที่ยังไม่รองรับไม่ถูกถือว่าผ่านแล้ว
+
+ก่อนส่ง client เก็บ intent พร้อม UUID เดิมลง backup ถ้าคำตอบหาย ให้ lookup receipt ก่อน ส่งซ้ำ UUID/payload เดิมเมื่อยังไม่มี receipt แล้วโหลด checkpoint authoritative; ไม่สร้าง UUID ใหม่ให้การ retry อัตโนมัติ ID เดิมคนละ payload ถูกปฏิเสธ revision เก่าต้อง reconcile ไม่ merge snapshot เงิน/ของ ไม่มี raw snapshot upload/autosave ที่เขียนทับยอดใหม่
+
+Web Locks ให้หนึ่งแท็บเขียน แท็บอื่นเปิดดูและลองยึด lock หลังแท็บเดิมปิดได้ Backend CAS ยังป้องกันสองอุปกรณ์ ไม่มีการเชื่อมต่อแล้ว client หยุดคำสั่งถาวรและ invalidate คำตอบจาก epoch เก่า checkpoint ต่ำกว่า revision ที่ทราบจาก receipt ถูกปฏิเสธ เมื่อ refresh/reconnect ที่มี active battle ให้ retreat ผ่านคำสั่งเดิม ไม่เดินไฟต์ย้อนหลังตอนปิดหน้า
+
+## ช่วงฟาร์มกับไฟต์
+
+ฟาร์ม online/AFK ใช้ cursor เดียว ไม่จ่ายตาม kill ในฉาก จองได้เฉพาะช่วงยังไม่จอง สูงสุด12ชั่วโมง และ pending queue32 ใช้ frozen rate/rarity/tier/definition snapshot, integer carry และ shared seeded RNG (rarity ก่อน definition สอง draws/ชิ้น) จองสำเร็จแล้ว pending ไม่เปลี่ยนตามราคาใหม่ รับเข้ากระเป๋าด้วย `reward.claim` แยกครั้งเดียว หากเต็มไม่เลื่อน cursor/กินของอย่างเงียบ
+
+`battle.advance` restore shared engine checkpoint ให้เวลาไม่เกิน DB elapsed/request/5000ms ต่อครั้ง มี lease15000ms และ ticket180000ms ตำแหน่ง คิว สถานะ RNG และ metrics อยู่ใน checkpoint เดียว ผล terminal ยังเก็บไว้ให้ reducer ของ Story/Tower/daily ทำ mode settlement ใน TASK-025/035/036 ไม่แจกผลชนะชั่วคราวที่ task นี้ Retreat ลบ pointer/checkpoint ใน transaction เดียวและไม่จ่ายรายได้จาก kill
+
+## ขอบเขตหลักฐาน
+
+195 TypeScript tests, build และ isolated real PostgreSQL/Auth/PostgREST/SMTP/Chrome ผ่าน ทดสอบ CAS/rollback/owner/RLS, farm12h144ชิ้น288draws, battle DB credit, lost response/refresh/offline/two tabs มีรูป `docs/screenshots/save-reconnect-local.png` ที่ปิดอีเมลแล้ว
+
+Active battle/farm rate/pending บางเคสใช้ server-owned fixtures เพื่อพิสูจน์ storage protocol; game loop, mode factories/settlement และ AFK UX ครบวงจรยังเป็น TASK-025/035/036/038 การเปลี่ยน content hash ยังปฏิเสธเซฟรุ่นเก่าโดยชัดเจน migration compatibility เต็มเป็น TASK-040 ไม่มี hosted project/Vercel หรือหลักฐานบน Safari/มือถือจริง
+
+## สำรอง/กู้คืน/ย้ายรุ่น (TASK-040, D-064)
+
+| การกระทำ | ใครเริ่ม | สิ่งที่เซิร์ฟเวอร์ทำ | ไม่ทำ |
+| --- | --- | --- | --- |
+| ส่งออก `backup.export` | ผู้เล่น (ตั้งค่า › สำรอง) | ไม่มี — client สร้างไฟล์จาก checkpoint ที่ตรวจแล้ว (`backupFile`) | ไม่ใส่ battle/token/อีเมล |
+| ตรวจไฟล์ (import preview) | ผู้เล่น | ไม่มี — client ตรวจรูปแบบ + sha256 แล้วเทียบ revision/บัญชี/รุ่น | ไม่ส่ง state ในไฟล์เป็นคำสั่ง |
+| `save.migrate` | ผู้เล่นกดหลังเห็น before/after (checkpoint ตอบ 409 `SAVE_MIGRATION_REQUIRED`) | ตรวจลายเซ็นของรุ่นเดิม → `migrateAccountState` + validator → สำรองแถวเดิม (migration) → revision+1 | schema ใหม่กว่า (`UPDATE_REQUIRED`) / ID ไม่รู้จัก (`MIGRATION_UNSUPPORTED`) ไม่เขียนอะไร |
+| `backup.restore_request` `history:N` | ผู้เล่นเมื่อ checkpoint ตอบ 503 `SAVE_INTEGRITY_FAILED` พร้อม candidate | ใช้ signed tip ของ revision เดียวกันเท่านั้น → สำรองแถวเสีย (quarantine, ไม่มีลายเซ็น) → revision+1 | ไม่กู้ถ้าเซฟปกติ (`RECOVERY_NOT_NEEDED`), ไม่ใช้ revision เก่ากว่า tip |
+| `account.reset` | ผู้เล่นพิมพ์ RESET ในโซนอันตราย | สำรองแถวปัจจุบัน (reset) → state ใหม่ Lv.1 พร้อมตัวนับรายวันของวันนี้ → revision+1 | ไม่รีเซ็ต revision/receipts |
+| `backup.restore_request` `backup:<id>` | ผู้เล่น (undo reset) | เฉพาะ reset backup ล่าสุดที่ยังไม่ถูก restore, ตรวจลายเซ็น → สำรองแถวปัจจุบัน (restore) → `guardRestore` → revision+1 | ไม่ restore backup เหตุผลอื่น/ซ้ำ |
+
+ทุกการเขียนผ่าน `game_commit_maintenance` (advisory lock, receipt replay, CAS, ลบ battle checkpoint, history, เก็บ backup 10 ชุด) `guardRestore`/`resetAccount` ไม่ย้อน `farm.reserved_through` และรวมตัวนับวันนี้/เมื่อวาน (daily attempts/chests, shop, daily objectives) แบบค่ามากสุด wallet/ของ/ความคืบหน้าใช้ของจุดที่เลือกทั้งก้อน หลักฐาน: `tests/game/save-backup.test.ts`, `supabase/tests/storage_ownership.sql` (`plan/evidence/task-040-postgres.json`), live `BACKUP_040` ใน `scripts/test_game_shell_live.cjs` ข้อจำกัด: ลำดับรุ่น content ไม่มีเลขเวอร์ชันเรียง จึงถือว่า hash ต่างที่ผ่าน validator = รุ่นเก่า ถ้าถอยโค้ดต้องใช้ maintenance/backup migration กู้แทน
+
+## D-071 เร่งความเร็วไฟต์บอส (TASK-055, 20 ต.ค. 2026)
+
+`battle.advance` รับ `speed` 1/2/4 (ไม่ส่ง = 1) `calculateBattleCredit` ให้เวลาเกม = min(`requested_game_ms` − เวลาปัจจุบัน, (DB now − last ack) × speed, `max_credited_wall_gap_ms` × speed) ค่าอื่นได้ `INVALID_CLOCK_INPUT` และ schema ปฏิเสธก่อนถึง reducer; lease 15 วินาที, ticket 180 วินาที และกติกา offline/reconnect นับตามเวลาจริงเหมือนเดิม ฝั่ง browser ทำนายล่วงหน้าได้ถึง confirmed + 5000 × speed ความเร็วเป็นค่าของเบราว์เซอร์ (localStorage) ไม่อยู่ในเซฟ จึงไม่มีการย้ายโครงสร้างเซฟ รางวัล AFK/ฟาร์มยังคิดตามเวลาจริงทั้งหมด
+

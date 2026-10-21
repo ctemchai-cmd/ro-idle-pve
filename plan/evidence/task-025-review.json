@@ -1,0 +1,77 @@
+{
+  "task_id": "TASK-025",
+  "passed": true,
+  "round": 1,
+  "date": "2026-10-20",
+  "reviewer": "Codex self-review",
+  "typescript_tests": 213,
+  "native_renderer_tests": 4,
+  "build": "passed; bundle-size warning tracked TASK-042, publish_ready false",
+  "source_sha256": {
+    "src/domain/modes/story.ts": "beceadccc7abf51bcdcadf4064ead08d3d9126f14ab00c7b9940805c202affd9",
+    "src/domain/build/story.ts": "9d5f822d891056f1670f99326f5a906018b2b1f443df1ff0bf02b113d786d5ba",
+    "src/contracts/battle-input.ts": "34789a2d3d2b3ea1839b0ffc9bcaf5c6d233ba79bff7f70ab34cf34adf1a4e6a",
+    "src/domain/account/commands.ts": "c61f00e199f8753eb54851f97fc0e98d12250fa860bffefa18546b6d371d6596",
+    "src/client/story.ts": "5658fbf550c8d9958170bff0cb44186cca82eb7b98b18bb191102eb903d55779",
+    "src/ui/story-page.tsx": "e339a8f0e6bcf66154dc530f3e1d8d0b09108e376d844452fe92f21b30b5bac2",
+    "src/ui/story-fight.tsx": "b6bfbad03ae81d3b875bd8c46850585cf3894dd705649184bc14303ef1025d7f",
+    "src/ui/story.css": "362eec9f5ed2a4bc2d3d7ec3fc7669c4a8cc8c55c6f4e48def5bc0d78da576b0",
+    "src/ui/account-session.ts": "fe2f06698240f30bf62d8d71c9b728012cf1338dea8c0e40e1036a3070900acf",
+    "api/index.ts": "122dd8f8577a29b2ae00d775494a52768dcde5b473b786579f696735385a2a65",
+    "supabase/migrations/202610200005_story_settlement.sql": "1b56f23529b53e1a3c9861ec11fca81609012fa8e0057fd2d39ba3380ac2b7d8",
+    "tests/game/story-progression.test.ts": "74d9d6ff0eb4ffa244a660b54c025f80402b304b88dec81d8ebe0043457d2d7f",
+    "scripts/test_story_live.cjs": "de790af350718a1ba89e7c7f1a27c50dc3463f317d3673ff78d9b13b7cdc9def",
+    "scripts/game/test-story-supabase.ts": "e6abcf754831550fd8b1aab97056aef13fedf1bea1d4cfe4100a1da13383b589"
+  },
+  "checks": [
+    {
+      "acceptance": "AC-01",
+      "passed": true,
+      "result": "Actual fresh-account browser firstclear unlocks1-2; pure stage factory covers80 rows with oneboss; farm locked until actual clear. No all-stage balance claim."
+    },
+    {
+      "acceptance": "AC-02",
+      "passed": true,
+      "result": "Shared engine tests plus real owner API/SQL server-owned main-death, all-dead and exact90s fixtures; main alone does not lose; retry fullHP/SP, free; late terminal lease rejected without mutation."
+    },
+    {
+      "acceptance": "AC-03",
+      "passed": true,
+      "result": "Actual Chrome drops terminal HTTP response after SQL commit; same pendingUUID/receipt reconciles once; firstclear250gold/400EXP/20crystal paid once; farm separately reserved and claimed; repeatboss no kill income."
+    },
+    {
+      "acceptance": "AC-04",
+      "passed": true,
+      "result": "Actual saved femaleMage/four-person build rendered with native actors/audio/Timeline; farm→Lv2/INT2→repeatboss; reload during1-2 retreats, never grants offline win;390/360/compact layouts verified."
+    }
+  ],
+  "evidence": [
+    "task-025-check.txt",
+    "task-025-build.txt",
+    "task-025-native.txt",
+    "task-025-local-stack.json",
+    "task-025-story-api.json",
+    "task-025-story-live-browser.json",
+    "task-025-save-live-browser.json",
+    "task-025-roster-live-browser.json",
+    "task-025-skills-live-browser.json",
+    "local-play-m2-review.json"
+  ],
+  "visual_review": {
+    "files": [
+      "docs/screenshots/story-fight-390.png",
+      "docs/screenshots/story-360-compact.png",
+      "docs/screenshots/local-play-ready.png"
+    ],
+    "scope": "Manual image inspection of actual Chrome mobile Story HUD/four assembled actors/persistent frozen preview; no claim every skill/class/encounter visually reviewed."
+  },
+  "limitations": [
+    "Real local Auth/PostgREST/SQL/SMTP/Chrome, no hosted Supabase or Vercel",
+    "Single-boss factory intentionally supersedes old enemy-add templates;80 row shapes checked, full balance TASK-041",
+    "Base equipment applied; inventory/slot progression026–028 and class-specific handlers029–034 remain",
+    "Main-death/defeat/exact90s/late-lease tests use explicit server-owned fixtures; fresh-account browser walkthrough uses no game grants/checkpoint seeding",
+    "Full12h AFK/recovery/release performance validation remains038/040/042",
+    "Local stack historical gateway hash predates optional static TTF MIME addition; frozen static preview separately verified by local-play-review"
+  ],
+  "historical_local_preview": "Original M2 review retained as local-play-m2-review.json; latest deliberately refreshed preview is local-play-review.json"
+}

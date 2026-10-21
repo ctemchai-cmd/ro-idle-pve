@@ -1,0 +1,141 @@
+{
+  "task_id": "TASK-014",
+  "reviewer": "Codex self-review",
+  "review_date": "2026-10-19",
+  "review_round": 1,
+  "scope": "M0 design gate only. Implementation tasks and their134ACs remain unexecuted.",
+  "checks": [
+    {
+      "case_id": "all_M0_prerequisites_and_fresh_evidence",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "prerequisite_tasks": 14,
+        "M0_checks": 749,
+        "counts": {
+          "TASK-001": 29,
+          "TASK-002": 72,
+          "TASK-003": 48,
+          "TASK-004": 46,
+          "TASK-005": 63,
+          "TASK-006": 46,
+          "TASK-007": 60,
+          "TASK-008": 47,
+          "TASK-009": 84,
+          "TASK-010": 12,
+          "TASK-011": 103,
+          "TASK-012": 10,
+          "TASK-013": 25,
+          "TASK-047": 104
+        },
+        "scope": "design/schema/arithmetic review only"
+      }
+    },
+    {
+      "case_id": "task_graph_and_implementation_gate",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "task_count": 47,
+        "cycles": 0,
+        "all_implementation_tasks_wait_for_014": true
+      }
+    },
+    {
+      "case_id": "confirmed_decisions_preserved",
+      "acceptance": [
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "buffs": "independent, additive, uncapped even same caster",
+        "primary_growth": "manual only",
+        "cap": 70,
+        "skill_cooldowns": false,
+        "farm_precision": "integer milliseconds"
+      }
+    },
+    {
+      "case_id": "complete_content_refs_names_versions",
+      "acceptance": [
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "skills": 126,
+        "builds": 26,
+        "equipment": 60,
+        "cards": 18,
+        "golden_raw_intents": 378,
+        "notes": "golden fixtures not executed TS battles; manifest implementation not built"
+      }
+    },
+    {
+      "case_id": "actor_and_presentation_references",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "jobs": 19,
+        "presets": 36,
+        "card_symbol_media": 18,
+        "scope": "selected sidecar/media integrity only, not new visual review or runtime closure pack"
+      }
+    },
+    {
+      "case_id": "all_201_acceptance_criteria_traceable",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "rows": 201,
+        "M0_acceptance_rows": 67,
+        "future_implementation_not_run": 134,
+        "all_setups_expected_and_methods_present": true
+      }
+    },
+    {
+      "case_id": "architecture_design_closure_and_runtime_owners",
+      "acceptance": [
+        "AC-05"
+      ],
+      "passed": true,
+      "result": {
+        "findings_design_closed": 8,
+        "runtime_proof": "pending named owner tasks; no DB/API/renderer/engine tests claimed",
+        "quality_targets": 17
+      }
+    },
+    {
+      "case_id": "documentation_links",
+      "acceptance": [
+        "AC-03",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "markdown_files": 78,
+        "broken_local_links": 0
+      }
+    }
+  ],
+  "passed": true,
+  "limitations": [
+    "No TS engine/runner, SQL/API transaction, browser-game, remote infrastructure or deployment evidence exists at this gate.",
+    "Pace/balance/performance numbers are targets requiring actual M1/M4 measurement.",
+    "Future Hi-class/Awaken/Artifact remain a roadmap, not a complete implemented patch."
+  ],
+  "resolved_findings": [
+    "Subsecond farm claim/rate-switch rounding corrected to integer milliseconds with preserved carry.",
+    "Sage dry queue estimate now includes learned Wisdom; golden164.64speed/7344ms trace.",
+    "Stale speed-cap wording in TASK-027/035 aligned with user no-buff-cap decision.",
+    "Generic card item art is shared; authored card faces use18distinct local symbols, not claimed native portraits."
+  ]
+}

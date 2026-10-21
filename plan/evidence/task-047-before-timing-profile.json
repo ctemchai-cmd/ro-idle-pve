@@ -1,0 +1,1202 @@
+{
+  "task": "TASK-047",
+  "reviewer": "Codex self-review",
+  "date": "2026-10-19",
+  "review_round": 2,
+  "scope": "M0 JSON Schema and semantic/independent arithmetic review, not runtime simulation",
+  "input_sha256": {
+    "plan/data/stat-definitions.json": "810b43c0356247a24baf3b06bc194f801a7f7a951f2e75294c7c6b7f9b58ab01",
+    "plan/data/status-effects.json": "93c249bf5ffb84f44742f7ee462c28b76a5fd001daa71db081e75b61729763f3",
+    "plan/data/effect-primitives.json": "d0da135a6b91756c77cdcc4e976e031b5c7134f25e12e4fa1e4ede989dbebcc6",
+    "plan/data/formula-registry.json": "ed2975ebe44959fe0010a0c8978a29ef2facb7dedc75fe503cda5ec6bc32918b",
+    "plan/data/composition-cases.json": "1d9466b629619f29f4d98cc775b372fbcc8c466c987b00814f2b1f22c843bf2a",
+    "plan/data/combat-rules.json": "dc58dc9ffb631c5820cd423762f744e9ccaa01534f98d943a861452503465541",
+    "plan/data/schemas/account-state.json": "0ebe7da4ca691ffdfb356e41fdf074429ffc38b4ec7387e7d71d5fe4be73d2fa",
+    "plan/data/schemas/battle-checkpoint.json": "4d33b8391c3274ebb6c704a7e83540ecfa5a8c7caf214ef90abebbe63b861f1b",
+    "plan/data/schemas/command.json": "16c0addc99bc0c1ac9a633d029e43ba1e4ae42f8233b13262fd96fb410ac2664",
+    "plan/data/schemas/common.json": "a1e6f0140cd31dc4fa361b1447331c0ea8daa667c965bbfc5497da86d38fd2bd",
+    "plan/data/schemas/effect.json": "b0da67c8b4f8a87a65b79a96757370d5c19951bfed6e5b794c04833cf8c7ea04",
+    "plan/data/schemas/formula-call.json": "5bcee1d3bbb36d98dc0cfd861e348c078fe3da3a3e56be31d89213e3b2297eb8",
+    "plan/data/schemas/item.json": "a363a64325f20e9d6df7b1a18c535565306132b50ca92b2877eb6b8e7145183b",
+    "plan/data/schemas/modifier.json": "d4e6ef2dd03a6afd905f4dc0c1ffcd9ee9aa6438f0563e2a2734f446c8016cc1",
+    "plan/data/schemas/patch.json": "cedfbd99b2d91cc477c8a19efa585b2a7371b7e4e729932b071c0efd790fe082",
+    "plan/data/schemas/predicate.json": "2b88514d771a533bf445987321d901676c836fa0f24bc12bf396a58d190691aa",
+    "plan/data/schemas/receipt.json": "a6fc43ddbc931426e321d31d5b31029acba606abf6449f984bc88a3bed17425a",
+    "plan/data/schemas/selector.json": "5accf16ed050f124350614af6a924cec716cad75bdcd0d089330dd3806ebd2b2",
+    "plan/data/schemas/simulation-scenario.json": "27db3d11711f2bf3f56188510319b8a68b9284565aded730ea84ccfebd4f71b7",
+    "plan/data/schemas/skill.json": "060f7cdfc4a8b3a5bfdbf8e3060b6c96863452fe6b136b32fcd7fdf6288cc708",
+    "plan/data/schemas/status.json": "d998199e6e2fb6f7a74f399a7a55bf0d4fe2489bf7615225de8107ab910cbc15",
+    "plan/data/schemas/trigger.json": "91d1dd01928ec0881c31e488484dc2649eb6715a07370601a847fd3dea36a0a5",
+    "plan/checks/composition.py": "ccc4012d5778d1e85cc13ec95341423a6b5095d10628050e5447895ba3ddaaa9",
+    "plan/design/15-combat-baseline.md": "9534895ba47a0bc434e40c393310d921f643d8585b67d0f93770b7fb17bf951d",
+    "plan/design/16-composition-baseline.md": "be54573a1e47bccb7397c751ba871ae21b399e146774e4f620541c9eb1101823",
+    "plan/data/class-status-effects.json": "b7c72874eb47e2a2fc0bd917fb85c36161c05923cd1c96af2f26266df56bb831"
+  },
+  "checks": [
+    {
+      "case_id": "schema_account-state",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "schema_battle-checkpoint",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "schema_command",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "schema_common",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "schema_effect",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "schema_formula-call",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "schema_item",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "schema_modifier",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "schema_patch",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "schema_predicate",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "schema_receipt",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "schema_selector",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "schema_simulation-scenario",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "schema_skill",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "schema_status",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "schema_trigger",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "status_attack_up",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {
+          "ratio": 0
+        }
+      }
+    },
+    {
+      "case_id": "status_magic_up",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {
+          "ratio": 0
+        }
+      }
+    },
+    {
+      "case_id": "status_aspd_up",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {
+          "ratio": 0
+        }
+      }
+    },
+    {
+      "case_id": "status_cast_speed_up",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {
+          "ratio": 0
+        }
+      }
+    },
+    {
+      "case_id": "status_defense_up",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {
+          "ratio": 0
+        }
+      }
+    },
+    {
+      "case_id": "status_magic_defense_up",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {
+          "ratio": 0
+        }
+      }
+    },
+    {
+      "case_id": "status_guard_up",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {
+          "ratio": 0
+        }
+      }
+    },
+    {
+      "case_id": "status_crit_up",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {
+          "ratio": 0
+        }
+      }
+    },
+    {
+      "case_id": "status_mana_regen_up",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {
+          "ratio": 0
+        }
+      }
+    },
+    {
+      "case_id": "status_cc_resistance_up",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {
+          "ratio": 0
+        }
+      }
+    },
+    {
+      "case_id": "status_armor_break",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {
+          "ratio": 0
+        }
+      }
+    },
+    {
+      "case_id": "status_exposed",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {
+          "ratio": 0
+        }
+      }
+    },
+    {
+      "case_id": "status_slow",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {
+          "ratio": -1
+        }
+      }
+    },
+    {
+      "case_id": "status_stun",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {}
+      }
+    },
+    {
+      "case_id": "status_freeze",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {}
+      }
+    },
+    {
+      "case_id": "status_silence",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {}
+      }
+    },
+    {
+      "case_id": "status_provoke",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {}
+      }
+    },
+    {
+      "case_id": "status_poison",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {
+          "power_ratio": 0
+        }
+      }
+    },
+    {
+      "case_id": "status_regeneration",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {
+          "power_ratio": 0
+        }
+      }
+    },
+    {
+      "case_id": "status_fire_endow",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {}
+      }
+    },
+    {
+      "case_id": "status_counter_stance",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {
+          "ratio": 0
+        }
+      }
+    },
+    {
+      "case_id": "status_devotion",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {
+          "ratio": 0
+        }
+      }
+    },
+    {
+      "case_id": "status_attack_down",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {
+          "ratio": -1
+        }
+      }
+    },
+    {
+      "case_id": "status_accuracy_down",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {
+          "ratio": -1
+        }
+      }
+    },
+    {
+      "case_id": "status_venom",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {
+          "power_ratio": 0
+        }
+      }
+    },
+    {
+      "case_id": "status_chemical_burn",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {
+          "power_ratio": 0
+        }
+      }
+    },
+    {
+      "case_id": "status_frost_field",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {
+          "power_ratio": 0
+        }
+      }
+    },
+    {
+      "case_id": "fixture_fixture_bash",
+      "acceptance": [
+        "AC-01",
+        "AC-05"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "fixture_fixture_support",
+      "acceptance": [
+        "AC-01",
+        "AC-05"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "fixture_fixture_autobolt",
+      "acceptance": [
+        "AC-01",
+        "AC-05"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "fixture_fixture_boss_adaptive",
+      "acceptance": [
+        "AC-01",
+        "AC-05"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "fixture_fixture_sp_burst",
+      "acceptance": [
+        "AC-01",
+        "AC-05"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "fixture_fixture_utility",
+      "acceptance": [
+        "AC-01",
+        "AC-05"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "fixture_fixture_revive",
+      "acceptance": [
+        "AC-01",
+        "AC-05"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "fixture_fixture_plant",
+      "acceptance": [
+        "AC-01",
+        "AC-05"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "fixture_fixture_card",
+      "acceptance": [
+        "AC-01",
+        "AC-05"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "buff_same_source_independent",
+      "acceptance": [
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": [
+        156.0,
+        288.0,
+        252.0,
+        216.0,
+        120
+      ]
+    },
+    {
+      "case_id": "remove_source_recompute",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "before": 221.0,
+        "after": 154.0
+      }
+    },
+    {
+      "case_id": "aoe_target_scope",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": [
+        "A"
+      ]
+    },
+    {
+      "case_id": "healing_then_buff",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "hp": [
+          100,
+          100
+        ],
+        "effective_heal": 80,
+        "overheal": 120,
+        "patk": [
+          130.0,
+          260.0
+        ]
+      }
+    },
+    {
+      "case_id": "dot_expiry_shield",
+      "acceptance": [
+        "AC-02",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "ticks": [
+          1000,
+          2000
+        ],
+        "absorbed": 60,
+        "hp_after": 80
+      }
+    },
+    {
+      "case_id": "chain_cc_plain",
+      "acceptance": [
+        "AC-02",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "chances": [
+          1,
+          1,
+          1
+        ],
+        "blocked_until": 2800,
+        "global_immunity": false
+      }
+    },
+    {
+      "case_id": "chain_cc_adaptive",
+      "acceptance": [
+        "AC-02",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "chances": [
+          1,
+          0.9,
+          0.8
+        ],
+        "blocked_until": 2800,
+        "global_immunity": false
+      }
+    },
+    {
+      "case_id": "resistance_independent_expiry",
+      "acceptance": [
+        "AC-02",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": [
+        0.30000000000000004,
+        0.2,
+        0.1,
+        0
+      ]
+    },
+    {
+      "case_id": "sp_pre_cost_snapshot",
+      "acceptance": [
+        "AC-05"
+      ],
+      "passed": true,
+      "result": {
+        "raw_power": 440,
+        "sp_after_start": 0,
+        "sp_after_interrupt": 0
+      }
+    },
+    {
+      "case_id": "conditional_bonus_no_skill_hold",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "cast_started": true,
+        "raw_power": 200
+      }
+    },
+    {
+      "case_id": "conditional_bonus_present",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "cast_started": true,
+        "raw_power": 250.0
+      }
+    },
+    {
+      "case_id": "consume_poison_own_only",
+      "acceptance": [
+        "AC-05"
+      ],
+      "passed": true,
+      "result": {
+        "raw_power": 100,
+        "consumed": 2,
+        "remaining": 1
+      }
+    },
+    {
+      "case_id": "shield_hit_counts_as_landed",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "hp_damage": 0,
+        "stun_eligible": true
+      }
+    },
+    {
+      "case_id": "cleanse_instances",
+      "acceptance": [
+        "AC-02",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": [
+        "b"
+      ]
+    },
+    {
+      "case_id": "proc_same_ancestry_rejected",
+      "acceptance": [
+        "AC-05"
+      ],
+      "passed": true,
+      "result": false
+    },
+    {
+      "case_id": "proc_separate_instance_allowed",
+      "acceptance": [
+        "AC-05"
+      ],
+      "passed": true,
+      "result": true
+    },
+    {
+      "case_id": "proc_sibling_hit_allowed",
+      "acceptance": [
+        "AC-05"
+      ],
+      "passed": true,
+      "result": true
+    },
+    {
+      "case_id": "periodic_source_death",
+      "acceptance": [
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "after_source_death": "active",
+        "after_target_death": "removed"
+      }
+    },
+    {
+      "case_id": "bash_interrupt_sp_and_queue",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "bash_sp_after": 38,
+        "enemy_sp_after": 45,
+        "enemy_cast_resolves": false,
+        "enemy_sp_refund": 0,
+        "enemy_next_start": 3500,
+        "enemy_slots_consumed": 1
+      }
+    },
+    {
+      "case_id": "unknown_stat",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "rejected_with": "schema"
+      }
+    },
+    {
+      "case_id": "unknown_formula",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "rejected_with": "schema"
+      }
+    },
+    {
+      "case_id": "unknown_formula_param",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "rejected_with": "schema"
+      }
+    },
+    {
+      "case_id": "unknown_status",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "rejected_with": "unknown_status"
+      }
+    },
+    {
+      "case_id": "unknown_binding",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "rejected_with": "unknown_binding"
+      }
+    },
+    {
+      "case_id": "outcome_other_target",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "rejected_with": "schema"
+      }
+    },
+    {
+      "case_id": "outcome_forward_reference",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "rejected_with": "outcome_reference"
+      }
+    },
+    {
+      "case_id": "outcome_different_binding",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "rejected_with": "outcome_scope"
+      }
+    },
+    {
+      "case_id": "unknown_status_param",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "rejected_with": "status_params"
+      }
+    },
+    {
+      "case_id": "undefined_level_param",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "rejected_with": "level_param"
+      }
+    },
+    {
+      "case_id": "level_curve_length",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "rejected_with": "level_curve"
+      }
+    },
+    {
+      "case_id": "invalid_modifier_bucket",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "rejected_with": "modifier_bucket"
+      }
+    },
+    {
+      "case_id": "ratio_as_add_percent",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "rejected_with": "modifier_unit"
+      }
+    },
+    {
+      "case_id": "buff_cap",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "rejected_with": "schema"
+      }
+    },
+    {
+      "case_id": "chance_above_one",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "rejected_with": "probability"
+      }
+    },
+    {
+      "case_id": "event_formula_without_event",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "rejected_with": "event_context"
+      }
+    },
+    {
+      "case_id": "status_param_in_skill",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "rejected_with": "status_param_scope"
+      }
+    },
+    {
+      "case_id": "dead_heal_binding",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "rejected_with": "target_life"
+      }
+    },
+    {
+      "case_id": "non_finite_number",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "rejected_with": "non_finite"
+      }
+    },
+    {
+      "case_id": "unknown_json_field",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "rejected_with": "schema"
+      }
+    },
+    {
+      "case_id": "effect_id_duplicate",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "rejected_with": "duplicate_id"
+      }
+    },
+    {
+      "case_id": "source_sp_double_charge",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "rejected_with": "double_cost"
+      }
+    },
+    {
+      "case_id": "patch_missing_anchor",
+      "acceptance": [
+        "AC-01",
+        "AC-05",
+        "AC-06"
+      ],
+      "passed": true,
+      "result": {
+        "rejected_with": "patch_anchor"
+      }
+    },
+    {
+      "case_id": "patch_set_conflict",
+      "acceptance": [
+        "AC-01",
+        "AC-05",
+        "AC-06"
+      ],
+      "passed": true,
+      "result": {
+        "rejected_with": "patch_conflict"
+      }
+    },
+    {
+      "case_id": "unknown_actor_reference",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "rejected_with": "unknown_actor"
+      }
+    },
+    {
+      "case_id": "modifier_feedback_predicate",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "rejected_with": "modifier_predicate_cycle"
+      }
+    },
+    {
+      "case_id": "unsafe_number",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "rejected_with": "unsafe_number"
+      }
+    },
+    {
+      "case_id": "status_remote_schema",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "rejected_with": "schema"
+      }
+    },
+    {
+      "case_id": "skill_as_reflect",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "rejected_with": "reflection_context"
+      }
+    },
+    {
+      "case_id": "battle_start_event_target",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "rejected_with": "unknown_binding"
+      }
+    },
+    {
+      "case_id": "cast_event_ambiguous_target",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "rejected_with": "unknown_binding"
+      }
+    },
+    {
+      "case_id": "live_source_after_death",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "rejected_with": "status_lifecycle"
+      }
+    },
+    {
+      "case_id": "variant_isolation_and_append",
+      "acceptance": [
+        "AC-06"
+      ],
+      "passed": true,
+      "result": {
+        "base": 2,
+        "awakened": 2.4,
+        "artifact": 2.6,
+        "second_actor": 2,
+        "base_effect_count": 2,
+        "variant_effect_count": 3
+      }
+    }
+  ],
+  "total": 104,
+  "passed": true,
+  "manual_review": [
+    {
+      "acceptance": "AC-01",
+      "finding": "Closed schemas + binding/phase/typed formula params; same-target outcomes cannot borrow another target or later effect."
+    },
+    {
+      "acceptance": "AC-02",
+      "finding": "Independent source/application IDs, no numeric buff caps; expiry/ticks/death/cleanse policies stated in catalog and baseline16."
+    },
+    {
+      "acceptance": "AC-03",
+      "finding": "Single primary/derived/bonus aggregation, source withdrawal recomputes without inverse mutations; enum element override has an explicit separate policy."
+    },
+    {
+      "acceptance": "AC-04",
+      "finding": "Hand-calculated mixed, periodic, shield, CC/resistance cases matched; adaptive reaction applies after the existing batch barrier, not retroactively."
+    },
+    {
+      "acceptance": "AC-05",
+      "finding": "Raw typed formulas/handler intents, pre-cost snapshots, event capability checks, origin filters and ancestry guards; no account side effects."
+    },
+    {
+      "acceptance": "AC-06",
+      "finding": "Fixture deep copies and stable anchors isolate actor/base/variant; same-stage/priority writes conflict, missing anchors reject."
+    }
+  ],
+  "limitations": [
+    "No scheduler, registry handlers, trigger engine or game runtime has been implemented.",
+    "Manual lifecycle/interface review is required alongside these checks.",
+    "Class/encounter/production asset catalogs and numeric balance remain subsequent M0 tasks.",
+    "Summon fixtures use explicitly supplied fixture actor IDs; production actors are subsequent class/encounter work."
+  ]
+}

@@ -1,0 +1,727 @@
+{
+ "task_id": "TASK-031",
+ "content_hash": "7b54253e170bb74c0a8933616f78c439e43791a43f76141bc8894272c5f8a00e",
+ "rules_version": "combat-baseline-v1",
+ "golden_cases": 78,
+ "active_probe": {
+  "seed": 1,
+  "game_ms": 60000,
+  "resolves_per_level": {
+   "archer_double_strafe": [
+    33,
+    33,
+    33,
+    33,
+    33,
+    33,
+    33,
+    33,
+    33,
+    33
+   ],
+   "archer_concentration": [
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30
+   ],
+   "archer_arrow_shower": [
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27
+   ],
+   "archer_crippling_shot": [
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27
+   ],
+   "hunter_blitz_beat": [
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27
+   ],
+   "hunter_hunters_mark": [
+    29,
+    29,
+    29,
+    29,
+    29,
+    29,
+    29,
+    29,
+    29,
+    29
+   ],
+   "hunter_ankle_snare": [
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24
+   ],
+   "hunter_claymore": [
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23
+   ],
+   "hunter_rapid_fire": [
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25
+   ],
+   "bard_performance_strike": [
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27
+   ],
+   "bard_healing_song": [
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22
+   ],
+   "bard_battle_song": [
+    24,
+    24,
+    24,
+    24,
+    25,
+    25,
+    25,
+    26,
+    27,
+    27
+   ],
+   "bard_dissonance": [
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21
+   ],
+   "bard_encore": [
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20
+   ],
+   "dancer_performance_strike": [
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27
+   ],
+   "dancer_healing_song": [
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22
+   ],
+   "dancer_battle_song": [
+    24,
+    24,
+    24,
+    24,
+    25,
+    25,
+    25,
+    26,
+    27,
+    27
+   ],
+   "dancer_dissonance": [
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21
+   ],
+   "dancer_encore": [
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20
+   ]
+  }
+ },
+ "passive_probe": {
+  "archer_vulture_eye": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "hunter_falcon": [
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3
+  ],
+  "hunter_steel_crow": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "bard_music_lesson": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "bard_breathing": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "dancer_music_lesson": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "dancer_breathing": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ]
+ },
+ "falcon_normal_only": {
+  "falcon_hits": 5,
+  "skill_hits": 44
+ },
+ "bard_dancer": {
+  "appearance": {
+   "bard_support": {
+    "job": "bard",
+    "gender": "male",
+    "weapon": "instrument",
+    "body": "characters.973413ffa5fe5064",
+    "weapon_overlay": "weapons.ceeaaa199e788467"
+   },
+   "dancer_support": {
+    "job": "dancer",
+    "gender": "female",
+    "weapon": "whip",
+    "body": "characters.f7413ac3881af9e6",
+    "weapon_overlay": "weapons.1a059fe122821dc7"
+   }
+  },
+  "equal_resolved_pairs_checked": 70
+ },
+ "song_stacks": {
+  "applied_ms": [
+   1963,
+   4452,
+   6759,
+   9066,
+   11241
+  ],
+  "expires_ms": [
+   7463,
+   9952,
+   12259,
+   14566,
+   16741
+  ],
+  "max_active": 3
+ },
+ "dry_trace": {
+  "bard_support": {
+   "si_ms": 1367,
+   "cycle_ms": 9454,
+   "passive_changed_stats": [
+    "hit_bonus",
+    "outgoing_healing_bonus",
+    "sp_regen_percent"
+   ]
+  },
+  "bard_disruptor": {
+   "si_ms": 1091,
+   "cycle_ms": 8458,
+   "passive_changed_stats": [
+    "hit_bonus",
+    "outgoing_healing_bonus",
+    "sp_regen_percent"
+   ]
+  },
+  "dancer_support": {
+   "si_ms": 1367,
+   "cycle_ms": 9454,
+   "passive_changed_stats": [
+    "hit_bonus",
+    "outgoing_healing_bonus",
+    "sp_regen_percent"
+   ]
+  },
+  "dancer_disruptor": {
+   "si_ms": 1091,
+   "cycle_ms": 8458,
+   "passive_changed_stats": [
+    "hit_bonus",
+    "outgoing_healing_bonus",
+    "sp_regen_percent"
+   ]
+  },
+  "hunter_sniper": {
+   "si_ms": 1026,
+   "cycle_ms": 6356,
+   "passive_changed_stats": [
+    "hit_bonus",
+    "outgoing_physical_bonus"
+   ]
+  },
+  "hunter_trapper": {
+   "si_ms": 1337,
+   "cycle_ms": 8752,
+   "passive_changed_stats": [
+    "hit_bonus",
+    "outgoing_physical_bonus"
+   ]
+  }
+ },
+ "real_fight_first_starts": {
+  "bard_support": {
+   "real": [
+    {
+     "skill_id": "bard_battle_song",
+     "start_ms": 1367
+    },
+    {
+     "skill_id": "bard_healing_song",
+     "start_ms": 3671
+    },
+    {
+     "skill_id": "bard_dissonance",
+     "start_ms": 5946
+    },
+    {
+     "skill_id": "archer_double_strafe",
+     "start_ms": 8310
+    }
+   ],
+   "dry": [
+    {
+     "skill_id": "bard_battle_song",
+     "start_ms": 1367
+    },
+    {
+     "skill_id": "bard_healing_song",
+     "start_ms": 3935
+    },
+    {
+     "skill_id": "bard_dissonance",
+     "start_ms": 6474
+    },
+    {
+     "skill_id": "archer_double_strafe",
+     "start_ms": 9102
+    }
+   ]
+  },
+  "bard_disruptor": {
+   "real": [
+    {
+     "skill_id": "bard_dissonance",
+     "start_ms": 1091
+    },
+    {
+     "skill_id": "bard_encore",
+     "start_ms": 3317
+    },
+    {
+     "skill_id": "bard_performance_strike",
+     "start_ms": 5676
+    },
+    {
+     "skill_id": "bard_healing_song",
+     "start_ms": 7401
+    }
+   ],
+   "dry": [
+    {
+     "skill_id": "bard_dissonance",
+     "start_ms": 1091
+    },
+    {
+     "skill_id": "bard_encore",
+     "start_ms": 3317
+    },
+    {
+     "skill_id": "bard_performance_strike",
+     "start_ms": 5676
+    },
+    {
+     "skill_id": "bard_healing_song",
+     "start_ms": 7401
+    }
+   ]
+  },
+  "dancer_support": {
+   "real": [
+    {
+     "skill_id": "dancer_battle_song",
+     "start_ms": 1367
+    },
+    {
+     "skill_id": "dancer_healing_song",
+     "start_ms": 3671
+    },
+    {
+     "skill_id": "dancer_dissonance",
+     "start_ms": 5946
+    },
+    {
+     "skill_id": "archer_double_strafe",
+     "start_ms": 8310
+    }
+   ],
+   "dry": [
+    {
+     "skill_id": "dancer_battle_song",
+     "start_ms": 1367
+    },
+    {
+     "skill_id": "dancer_healing_song",
+     "start_ms": 3935
+    },
+    {
+     "skill_id": "dancer_dissonance",
+     "start_ms": 6474
+    },
+    {
+     "skill_id": "archer_double_strafe",
+     "start_ms": 9102
+    }
+   ]
+  },
+  "dancer_disruptor": {
+   "real": [
+    {
+     "skill_id": "dancer_dissonance",
+     "start_ms": 1091
+    },
+    {
+     "skill_id": "dancer_encore",
+     "start_ms": 3317
+    },
+    {
+     "skill_id": "dancer_performance_strike",
+     "start_ms": 5676
+    },
+    {
+     "skill_id": "dancer_healing_song",
+     "start_ms": 7401
+    }
+   ],
+   "dry": [
+    {
+     "skill_id": "dancer_dissonance",
+     "start_ms": 1091
+    },
+    {
+     "skill_id": "dancer_encore",
+     "start_ms": 3317
+    },
+    {
+     "skill_id": "dancer_performance_strike",
+     "start_ms": 5676
+    },
+    {
+     "skill_id": "dancer_healing_song",
+     "start_ms": 7401
+    }
+   ]
+  },
+  "hunter_sniper": {
+   "real": [
+    {
+     "skill_id": "hunter_hunters_mark",
+     "start_ms": 1026
+    },
+    {
+     "skill_id": "archer_concentration",
+     "start_ms": 2630
+    },
+    {
+     "skill_id": "hunter_rapid_fire",
+     "start_ms": 4147
+    },
+    {
+     "skill_id": "archer_double_strafe",
+     "start_ms": 6010
+    }
+   ],
+   "dry": [
+    {
+     "skill_id": "hunter_hunters_mark",
+     "start_ms": 1026
+    },
+    {
+     "skill_id": "archer_concentration",
+     "start_ms": 2630
+    },
+    {
+     "skill_id": "hunter_rapid_fire",
+     "start_ms": 4147
+    },
+    {
+     "skill_id": "archer_double_strafe",
+     "start_ms": 6010
+    }
+   ]
+  },
+  "hunter_trapper": {
+   "real": [
+    {
+     "skill_id": "hunter_ankle_snare",
+     "start_ms": 1337
+    },
+    {
+     "skill_id": "hunter_claymore",
+     "start_ms": 3626
+    },
+    {
+     "skill_id": "hunter_blitz_beat",
+     "start_ms": 6002
+    },
+    {
+     "skill_id": "archer_arrow_shower",
+     "start_ms": 8031
+    }
+   ],
+   "dry": [
+    {
+     "skill_id": "hunter_ankle_snare",
+     "start_ms": 1337
+    },
+    {
+     "skill_id": "hunter_claymore",
+     "start_ms": 3626
+    },
+    {
+     "skill_id": "hunter_blitz_beat",
+     "start_ms": 6002
+    },
+    {
+     "skill_id": "archer_arrow_shower",
+     "start_ms": 8031
+    }
+   ]
+  }
+ },
+ "parity": {
+  "stage": "6-20",
+  "seed": 31,
+  "team": [
+   {
+    "character_id": "main",
+    "position": "back_1"
+   },
+   {
+    "character_id": "npc_swordsman",
+    "position": "front_1"
+   },
+   {
+    "character_id": "npc_acolyte",
+    "position": "back_2"
+   },
+   {
+    "character_id": "npc_archer",
+    "position": "front_2"
+   }
+  ],
+  "outcome": "STORY_WON",
+  "end_ms": 78460,
+  "events": 910,
+  "server_confirmations": 78,
+  "event_digest": {
+   "algorithm": "fnv1a32-v1",
+   "value": "a023441c"
+  },
+  "tree_skill_metrics": {
+   "main:hunter_falcon": {
+    "casts_resolved": 0,
+    "hp_damage": 3563,
+    "effective_heal": 0
+   },
+   "main:hunter_ankle_snare": {
+    "casts_resolved": 6,
+    "hp_damage": 0,
+    "effective_heal": 0
+   },
+   "npc_archer:bard_battle_song": {
+    "casts_resolved": 6,
+    "hp_damage": 0,
+    "effective_heal": 0
+   },
+   "main:hunter_claymore": {
+    "casts_resolved": 6,
+    "hp_damage": 4939,
+    "effective_heal": 0
+   },
+   "npc_archer:bard_healing_song": {
+    "casts_resolved": 6,
+    "hp_damage": 0,
+    "effective_heal": 4035
+   },
+   "main:hunter_blitz_beat": {
+    "casts_resolved": 6,
+    "hp_damage": 3012,
+    "effective_heal": 0
+   },
+   "npc_archer:bard_dissonance": {
+    "casts_resolved": 5,
+    "hp_damage": 0,
+    "effective_heal": 0
+   },
+   "main:archer_arrow_shower": {
+    "casts_resolved": 5,
+    "hp_damage": 2394,
+    "effective_heal": 0
+   },
+   "npc_archer:archer_double_strafe": {
+    "casts_resolved": 5,
+    "hp_damage": 2656,
+    "effective_heal": 0
+   }
+  }
+ }
+}

@@ -1,0 +1,48 @@
+{
+ "task_id": "TASK-035",
+ "passed": true,
+ "round": 1,
+ "date": "2026-10-20",
+ "reviewer": "Claude self-check",
+ "content_hash": "ab45f2161932dad06f12935577f62c9f6e4278ae0d910bc87c5707db0540ca06",
+ "checks": [
+  {
+   "acceptance": "AC-01",
+   "passed": true,
+   "result": "Authored floors equal the generator; floors 1/100/1000 have HP 708/90600/8100600 and 101 follows 600+100f+8f²; floors 1/20/100/101/1000 start real battles whose boss HP/DEF match the row, with valid skill IDs and the adaptive passive only every 20th floor. The client session builds the Tower scene."
+  },
+  {
+   "acceptance": "AC-02",
+   "passed": true,
+   "result": "Floor 2 is locked until floor 1; floor 1 pays tower_1 (115 gold) once; replaying floor 1 pays nothing; floor 10 pays 10 crystal plus one card; a defeat/time-out at floor 200 leaves the frontier, wallet and pending rewards unchanged. Live: floor 1 fought through the real API/DB, first clear paid once and claimed."
+  },
+  {
+   "acceptance": "AC-03",
+   "passed": true,
+   "result": "A clear at 23:58 Bangkok keeps floor 1 after validateAccount reload and after the next Bangkok day; the team stays as saved and floor 2 starts."
+  },
+  {
+   "acceptance": "AC-04",
+   "passed": true,
+   "result": "Floors 500…30,000,000 give safe integers and valid skills with attack_speed fixed at 100 (no hidden speed scaling); 40,000,000 throws TOWER_FLOOR_OVERFLOW and floor 0 INVALID_TOWER_FLOOR."
+  }
+ ],
+ "commands": [
+  "node --import tsx --test tests/game/tower.test.ts (5 pass)",
+  "npm run check (327 pass)",
+  "RO_EVIDENCE_PREFIX=task-048 RO_LOCAL_TEST_FOCUS=shell python3 scripts/test_auth_stack.py (19 checks, 0 browser errors)"
+ ],
+ "limitations": [
+  "Tower balance (whether floor N is beatable at level L) is not measured here; TASK-041 owns pace/balance via simulation.",
+  "Floors beyond 40M are refused by the generator rather than wrapped."
+ ],
+ "source_sha256": {
+  "tests/game/tower.test.ts": "9e8c5280c044c9b8ff93246d46b5a4ec71716d468e9d3fb55fb30a6f3611fae0",
+  "src/domain/modes/tower.ts": "1336d546df048b765534d4a86efd99fc39eec28b5fcaf94a6e4dec50a2a8868b",
+  "src/domain/account/commands.ts": "d412eadffadee8e908a4d746c1fbbd70036d288fad563f7977f89ad29f4ca3ae",
+  "src/client/story.ts": "1330a41bc8a290c1e0f615effd647324e064fcf2a8109a10d01b34e98206e87c",
+  "src/ui/game/tower.tsx": "dd9a66ccd1e163ee0acf73dc88e13deb47a0177e64588990b4b919bb008a2882",
+  "scripts/test_game_shell_live.cjs": "70d0ed6d0f6b1b281580e52b2587de1f4e85aa92748ded5e184fe5035cb03f77"
+ },
+ "credentials_logged": false
+}

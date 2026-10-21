@@ -1,0 +1,4080 @@
+{
+  "schema_version": 1,
+  "content_version": "archer-class2-v1",
+  "authoring_status": "M0 baseline for this game; not verified RO Idle equations or measured balance",
+  "root_job_id": "archer",
+  "inheritance": "Class2 learns root and selected branch only; inactive branch investments are refunded/reset per paid ledger",
+  "skill_cap": "min(definition.max_level,1+floor((character_level-1)/5))",
+  "learn_policy": "Unlock does not auto-learn or auto-upgrade; user calls skill.upgrade target_level1 to learn for free. Only two root starter actives are granted; learned Passives then apply automatically.",
+  "skills": [
+    {
+      "id": "archer_double_strafe",
+      "name_key": "archer_double_strafe",
+      "class_id": "archer",
+      "max_level": 10,
+      "unlock_level": 1,
+      "tags": [
+        "archer",
+        "double_strafe"
+      ],
+      "level_parameters": {
+        "power": [
+          0.7,
+          0.744444,
+          0.788889,
+          0.833333,
+          0.877778,
+          0.922222,
+          0.966667,
+          1.011111,
+          1.055556,
+          1.1
+        ]
+      },
+      "presentation_id": "visual_archer_double_strafe",
+      "kind": "active",
+      "cost": {
+        "sp": 16,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 600,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 2,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "archer_concentration",
+      "name_key": "archer_concentration",
+      "class_id": "archer",
+      "max_level": 10,
+      "unlock_level": 1,
+      "tags": [
+        "archer",
+        "concentration"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.08,
+          0.093333,
+          0.106667,
+          0.12,
+          0.133333,
+          0.146667,
+          0.16,
+          0.173333,
+          0.186667,
+          0.2
+        ]
+      },
+      "presentation_id": "visual_archer_concentration",
+      "kind": "active",
+      "cost": {
+        "sp": 18,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 200,
+        "after_cast_ms": 650,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "crit_up",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "crit_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "archer_arrow_shower",
+      "name_key": "archer_arrow_shower",
+      "class_id": "archer",
+      "max_level": 10,
+      "unlock_level": 5,
+      "tags": [
+        "archer",
+        "arrow_shower"
+      ],
+      "level_parameters": {
+        "power": [
+          0.8,
+          0.861111,
+          0.922222,
+          0.983333,
+          1.044444,
+          1.105556,
+          1.166667,
+          1.227778,
+          1.288889,
+          1.35
+        ]
+      },
+      "presentation_id": "visual_archer_arrow_shower",
+      "kind": "active",
+      "cost": {
+        "sp": 26,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 400,
+        "after_cast_ms": 850,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": 1000,
+          "params": {},
+          "chance": 0.4,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    },
+    {
+      "id": "archer_crippling_shot",
+      "name_key": "archer_crippling_shot",
+      "class_id": "archer",
+      "max_level": 10,
+      "unlock_level": 10,
+      "tags": [
+        "archer",
+        "crippling_shot"
+      ],
+      "level_parameters": {
+        "power": [
+          1.0,
+          1.077778,
+          1.155556,
+          1.233333,
+          1.311111,
+          1.388889,
+          1.466667,
+          1.544444,
+          1.622222,
+          1.7
+        ]
+      },
+      "presentation_id": "visual_archer_crippling_shot",
+      "kind": "active",
+      "cost": {
+        "sp": 22,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 450,
+        "after_cast_ms": 750,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "slow",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "slow",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": -0.2
+          },
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    },
+    {
+      "id": "archer_vulture_eye",
+      "name_key": "archer_vulture_eye",
+      "class_id": "archer",
+      "max_level": 10,
+      "unlock_level": 10,
+      "tags": [
+        "archer",
+        "vulture_eye"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.02,
+          0.026667,
+          0.033333,
+          0.04,
+          0.046667,
+          0.053333,
+          0.06,
+          0.066667,
+          0.073333,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_archer_vulture_eye",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "hit_bonus",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "ratio"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "hunter_blitz_beat",
+      "name_key": "hunter_blitz_beat",
+      "class_id": "hunter",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "hunter",
+        "blitz_beat"
+      ],
+      "level_parameters": {
+        "power": [
+          0.9,
+          0.977778,
+          1.055556,
+          1.133333,
+          1.211111,
+          1.288889,
+          1.366667,
+          1.444444,
+          1.522222,
+          1.6
+        ]
+      },
+      "presentation_id": "visual_hunter_blitz_beat",
+      "kind": "active",
+      "cost": {
+        "sp": 30,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 350,
+        "after_cast_ms": 850,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "neutral",
+          "hit_rule": "physical_roll",
+          "can_crit": false,
+          "hits": 1,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "hunter_hunters_mark",
+      "name_key": "hunter_hunters_mark",
+      "class_id": "hunter",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "hunter",
+        "hunters_mark"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.1,
+          0.113333,
+          0.126667,
+          0.14,
+          0.153333,
+          0.166667,
+          0.18,
+          0.193333,
+          0.206667,
+          0.22
+        ]
+      },
+      "presentation_id": "visual_hunter_hunters_mark",
+      "kind": "active",
+      "cost": {
+        "sp": 26,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 200,
+        "after_cast_ms": 800,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "exposed",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "exposed",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "hunter_ankle_snare",
+      "name_key": "hunter_ankle_snare",
+      "class_id": "hunter",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "hunter",
+        "ankle_snare"
+      ],
+      "level_parameters": {
+        "sp_cost": [
+          41,
+          40,
+          39,
+          38,
+          37,
+          36,
+          35,
+          34,
+          33,
+          32
+        ]
+      },
+      "presentation_id": "visual_hunter_ankle_snare",
+      "kind": "active",
+      "cost": {
+        "sp": {
+          "level_param": "sp_cost"
+        },
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 650,
+        "after_cast_ms": 1000,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "stun",
+          "duration_ms": 1200,
+          "params": {},
+          "chance": 0.75
+        }
+      ]
+    },
+    {
+      "id": "hunter_claymore",
+      "name_key": "hunter_claymore",
+      "class_id": "hunter",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "hunter",
+        "claymore"
+      ],
+      "level_parameters": {
+        "power": [
+          1.25,
+          1.344444,
+          1.438889,
+          1.533333,
+          1.627778,
+          1.722222,
+          1.816667,
+          1.911111,
+          2.005556,
+          2.1
+        ]
+      },
+      "presentation_id": "visual_hunter_claymore",
+      "kind": "active",
+      "cost": {
+        "sp": 40,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 800,
+        "after_cast_ms": 1000,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "fire",
+          "hit_rule": "physical_roll",
+          "can_crit": false,
+          "hits": 1,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "hunter_rapid_fire",
+      "name_key": "hunter_rapid_fire",
+      "class_id": "hunter",
+      "max_level": 10,
+      "unlock_level": 40,
+      "tags": [
+        "hunter",
+        "rapid_fire"
+      ],
+      "level_parameters": {
+        "power": [
+          0.45,
+          0.483333,
+          0.516667,
+          0.55,
+          0.583333,
+          0.616667,
+          0.65,
+          0.683333,
+          0.716667,
+          0.75
+        ]
+      },
+      "presentation_id": "visual_hunter_rapid_fire",
+      "kind": "active",
+      "cost": {
+        "sp": 38,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 500,
+        "after_cast_ms": 950,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 4,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "hunter_falcon",
+      "name_key": "hunter_falcon",
+      "class_id": "hunter",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "hunter",
+        "falcon"
+      ],
+      "level_parameters": {
+        "power": [
+          0.3,
+          0.333333,
+          0.366667,
+          0.4,
+          0.433333,
+          0.466667,
+          0.5,
+          0.533333,
+          0.566667,
+          0.6
+        ]
+      },
+      "presentation_id": "visual_hunter_falcon",
+      "kind": "passive",
+      "modifiers": [],
+      "triggers": [
+        {
+          "id": "falcon_hit",
+          "event": "normal_attack_hit",
+          "chance": 0.3,
+          "accepted_origins": [
+            "normal"
+          ],
+          "limit_scope": "none",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {},
+          "effects": [
+            {
+              "id": "falcon",
+              "type": "damage",
+              "target": "event_target",
+              "formula": {
+                "id": "physical_power",
+                "params": {
+                  "attack_ratio": {
+                    "level_param": "power"
+                  },
+                  "flat_power": 0
+                }
+              },
+              "damage_type": "physical",
+              "element": "neutral",
+              "hit_rule": "physical_roll",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hunter_steel_crow",
+      "name_key": "hunter_steel_crow",
+      "class_id": "hunter",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "hunter",
+        "steel_crow"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.04,
+          0.048889,
+          0.057778,
+          0.066667,
+          0.075556,
+          0.084444,
+          0.093333,
+          0.102222,
+          0.111111,
+          0.12
+        ]
+      },
+      "presentation_id": "visual_hunter_steel_crow",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "outgoing_physical_bonus",
+          "stat": "outgoing_physical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "ratio"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "bard_performance_strike",
+      "name_key": "bard_performance_strike",
+      "class_id": "bard",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "bard",
+        "performance_strike"
+      ],
+      "level_parameters": {
+        "power": [
+          1.4,
+          1.5,
+          1.6,
+          1.7,
+          1.8,
+          1.9,
+          2.0,
+          2.1,
+          2.2,
+          2.3
+        ]
+      },
+      "presentation_id": "visual_bard_performance_strike",
+      "kind": "active",
+      "cost": {
+        "sp": 24,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 350,
+        "after_cast_ms": 850,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "bard_healing_song",
+      "name_key": "bard_healing_song",
+      "class_id": "bard",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "bard",
+        "healing_song"
+      ],
+      "level_parameters": {
+        "power": [
+          0.1,
+          0.111111,
+          0.122222,
+          0.133333,
+          0.144444,
+          0.155556,
+          0.166667,
+          0.177778,
+          0.188889,
+          0.2
+        ]
+      },
+      "presentation_id": "visual_bard_healing_song",
+      "kind": "active",
+      "cost": {
+        "sp": 38,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 800,
+        "after_cast_ms": 1200,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "regeneration",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "regeneration",
+          "duration_ms": 6000,
+          "params": {
+            "power_ratio": {
+              "level_param": "power"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "bard_battle_song",
+      "name_key": "bard_battle_song",
+      "class_id": "bard",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "bard",
+        "battle_song"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.12,
+          0.133333,
+          0.146667,
+          0.16,
+          0.173333,
+          0.186667,
+          0.2,
+          0.213333,
+          0.226667,
+          0.24
+        ]
+      },
+      "presentation_id": "visual_bard_battle_song",
+      "kind": "active",
+      "cost": {
+        "sp": 36,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 850,
+        "after_cast_ms": 1200,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "aspd_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "aspd_up",
+          "duration_ms": 5500,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "bard_dissonance",
+      "name_key": "bard_dissonance",
+      "class_id": "bard",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "bard",
+        "dissonance"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.12,
+          0.134444,
+          0.148889,
+          0.163333,
+          0.177778,
+          0.192222,
+          0.206667,
+          0.221111,
+          0.235556,
+          0.25
+        ]
+      },
+      "presentation_id": "visual_bard_dissonance",
+      "kind": "active",
+      "cost": {
+        "sp": 40,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 900,
+        "after_cast_ms": 1250,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "armor_break",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "armor_break",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "resource",
+          "type": "resource_change",
+          "target": "foes",
+          "resource": "sp",
+          "amount": -10
+        }
+      ]
+    },
+    {
+      "id": "bard_encore",
+      "name_key": "bard_encore",
+      "class_id": "bard",
+      "max_level": 10,
+      "unlock_level": 40,
+      "tags": [
+        "bard",
+        "encore"
+      ],
+      "level_parameters": {
+        "sp_cost": [
+          51,
+          50,
+          49,
+          48,
+          47,
+          46,
+          45,
+          44,
+          43,
+          42
+        ]
+      },
+      "presentation_id": "visual_bard_encore",
+      "kind": "active",
+      "cost": {
+        "sp": {
+          "level_param": "sp_cost"
+        },
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 1100,
+        "after_cast_ms": 1300,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": 1000,
+          "params": {},
+          "chance": 0.45
+        }
+      ]
+    },
+    {
+      "id": "bard_music_lesson",
+      "name_key": "bard_music_lesson",
+      "class_id": "bard",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "bard",
+        "music_lesson"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.03,
+          0.037778,
+          0.045556,
+          0.053333,
+          0.061111,
+          0.068889,
+          0.076667,
+          0.084444,
+          0.092222,
+          0.1
+        ]
+      },
+      "presentation_id": "visual_bard_music_lesson",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "outgoing_healing_bonus",
+          "stat": "outgoing_healing_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "ratio"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "bard_breathing",
+      "name_key": "bard_breathing",
+      "class_id": "bard",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "bard",
+        "breathing"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.08,
+          0.098889,
+          0.117778,
+          0.136667,
+          0.155556,
+          0.174444,
+          0.193333,
+          0.212222,
+          0.231111,
+          0.25
+        ]
+      },
+      "presentation_id": "visual_bard_breathing",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "ratio"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "dancer_performance_strike",
+      "name_key": "dancer_performance_strike",
+      "class_id": "dancer",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "dancer",
+        "performance_strike"
+      ],
+      "level_parameters": {
+        "power": [
+          1.4,
+          1.5,
+          1.6,
+          1.7,
+          1.8,
+          1.9,
+          2.0,
+          2.1,
+          2.2,
+          2.3
+        ]
+      },
+      "presentation_id": "visual_dancer_performance_strike",
+      "kind": "active",
+      "cost": {
+        "sp": 24,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 350,
+        "after_cast_ms": 850,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "dancer_healing_song",
+      "name_key": "dancer_healing_song",
+      "class_id": "dancer",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "dancer",
+        "healing_song"
+      ],
+      "level_parameters": {
+        "power": [
+          0.1,
+          0.111111,
+          0.122222,
+          0.133333,
+          0.144444,
+          0.155556,
+          0.166667,
+          0.177778,
+          0.188889,
+          0.2
+        ]
+      },
+      "presentation_id": "visual_dancer_healing_song",
+      "kind": "active",
+      "cost": {
+        "sp": 38,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 800,
+        "after_cast_ms": 1200,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "regeneration",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "regeneration",
+          "duration_ms": 6000,
+          "params": {
+            "power_ratio": {
+              "level_param": "power"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "dancer_battle_song",
+      "name_key": "dancer_battle_song",
+      "class_id": "dancer",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "dancer",
+        "battle_song"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.12,
+          0.133333,
+          0.146667,
+          0.16,
+          0.173333,
+          0.186667,
+          0.2,
+          0.213333,
+          0.226667,
+          0.24
+        ]
+      },
+      "presentation_id": "visual_dancer_battle_song",
+      "kind": "active",
+      "cost": {
+        "sp": 36,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 850,
+        "after_cast_ms": 1200,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "aspd_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "aspd_up",
+          "duration_ms": 5500,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "dancer_dissonance",
+      "name_key": "dancer_dissonance",
+      "class_id": "dancer",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "dancer",
+        "dissonance"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.12,
+          0.134444,
+          0.148889,
+          0.163333,
+          0.177778,
+          0.192222,
+          0.206667,
+          0.221111,
+          0.235556,
+          0.25
+        ]
+      },
+      "presentation_id": "visual_dancer_dissonance",
+      "kind": "active",
+      "cost": {
+        "sp": 40,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 900,
+        "after_cast_ms": 1250,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "armor_break",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "armor_break",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "resource",
+          "type": "resource_change",
+          "target": "foes",
+          "resource": "sp",
+          "amount": -10
+        }
+      ]
+    },
+    {
+      "id": "dancer_encore",
+      "name_key": "dancer_encore",
+      "class_id": "dancer",
+      "max_level": 10,
+      "unlock_level": 40,
+      "tags": [
+        "dancer",
+        "encore"
+      ],
+      "level_parameters": {
+        "sp_cost": [
+          51,
+          50,
+          49,
+          48,
+          47,
+          46,
+          45,
+          44,
+          43,
+          42
+        ]
+      },
+      "presentation_id": "visual_dancer_encore",
+      "kind": "active",
+      "cost": {
+        "sp": {
+          "level_param": "sp_cost"
+        },
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 1100,
+        "after_cast_ms": 1300,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": 1000,
+          "params": {},
+          "chance": 0.45
+        }
+      ]
+    },
+    {
+      "id": "dancer_music_lesson",
+      "name_key": "dancer_music_lesson",
+      "class_id": "dancer",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "dancer",
+        "music_lesson"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.03,
+          0.037778,
+          0.045556,
+          0.053333,
+          0.061111,
+          0.068889,
+          0.076667,
+          0.084444,
+          0.092222,
+          0.1
+        ]
+      },
+      "presentation_id": "visual_dancer_music_lesson",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "outgoing_healing_bonus",
+          "stat": "outgoing_healing_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "ratio"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "dancer_breathing",
+      "name_key": "dancer_breathing",
+      "class_id": "dancer",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "dancer",
+        "breathing"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.08,
+          0.098889,
+          0.117778,
+          0.136667,
+          0.155556,
+          0.174444,
+          0.193333,
+          0.212222,
+          0.231111,
+          0.25
+        ]
+      },
+      "presentation_id": "visual_dancer_breathing",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "ratio"
+          }
+        }
+      ],
+      "triggers": []
+    }
+  ],
+  "upgrades": {
+    "archer_double_strafe": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 50,
+          "skill_manual": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 150,
+          "skill_manual": 30
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 250,
+          "skill_manual": 50
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 350,
+          "skill_manual": 70
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 450,
+          "skill_manual": 90
+        }
+      ]
+    },
+    "archer_concentration": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 50,
+          "skill_manual": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 150,
+          "skill_manual": 30
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 250,
+          "skill_manual": 50
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 350,
+          "skill_manual": 70
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 450,
+          "skill_manual": 90
+        }
+      ]
+    },
+    "archer_arrow_shower": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 50,
+          "skill_manual": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 150,
+          "skill_manual": 30
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 250,
+          "skill_manual": 50
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 350,
+          "skill_manual": 70
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 450,
+          "skill_manual": 90
+        }
+      ]
+    },
+    "archer_crippling_shot": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 50,
+          "skill_manual": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 150,
+          "skill_manual": 30
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 250,
+          "skill_manual": 50
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 350,
+          "skill_manual": 70
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 450,
+          "skill_manual": 90
+        }
+      ]
+    },
+    "archer_vulture_eye": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 50,
+          "skill_manual": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 150,
+          "skill_manual": 30
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 250,
+          "skill_manual": 50
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 350,
+          "skill_manual": 70
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 450,
+          "skill_manual": 90
+        }
+      ]
+    },
+    "hunter_blitz_beat": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "hunter_hunters_mark": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "hunter_ankle_snare": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "hunter_claymore": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "hunter_rapid_fire": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "hunter_falcon": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "hunter_steel_crow": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "bard_performance_strike": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "bard_healing_song": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "bard_battle_song": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "bard_dissonance": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "bard_encore": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "bard_music_lesson": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "bard_breathing": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "dancer_performance_strike": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "dancer_healing_song": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "dancer_battle_song": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "dancer_dissonance": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "dancer_encore": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "dancer_music_lesson": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "dancer_breathing": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    }
+  },
+  "builds": [
+    {
+      "id": "bard_support",
+      "job_id": "bard",
+      "level": 70,
+      "role": "gradual team recovery and attack-speed songs",
+      "primary_stats": {
+        "str": 1,
+        "agi": 1,
+        "vit": 25,
+        "int": 50,
+        "dex": 40,
+        "luk": 1
+      },
+      "spent_status_points": 283,
+      "unspent_status_points": 393,
+      "active_slots": [
+        "bard_battle_song",
+        "bard_healing_song",
+        "bard_dissonance",
+        "archer_double_strafe"
+      ],
+      "skill_levels": {
+        "archer_double_strafe": 10,
+        "archer_concentration": 1,
+        "archer_arrow_shower": 1,
+        "archer_crippling_shot": 1,
+        "archer_vulture_eye": 10,
+        "bard_performance_strike": 1,
+        "bard_healing_song": 10,
+        "bard_battle_song": 10,
+        "bard_dissonance": 10,
+        "bard_encore": 1,
+        "bard_music_lesson": 10,
+        "bard_breathing": 10
+      },
+      "automatic_passives": [
+        "archer_vulture_eye",
+        "bard_music_lesson",
+        "bard_breathing"
+      ],
+      "paid_upgrade_budget": {
+        "gold": 27000,
+        "skill_manual": 5400
+      },
+      "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+      "queue_estimate": {
+        "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+        "si_ms": 1272,
+        "cycle_ms": 8777,
+        "starts": [
+          {
+            "skill_id": "bard_battle_song",
+            "start_ms": 1272,
+            "resolve_ms": 1733,
+            "acd_end_ms": 2384
+          },
+          {
+            "skill_id": "bard_healing_song",
+            "start_ms": 3656,
+            "resolve_ms": 4090,
+            "acd_end_ms": 4741
+          },
+          {
+            "skill_id": "bard_dissonance",
+            "start_ms": 6013,
+            "resolve_ms": 6501,
+            "acd_end_ms": 7179
+          },
+          {
+            "skill_id": "archer_double_strafe",
+            "start_ms": 8451,
+            "resolve_ms": 8451,
+            "acd_end_ms": 8777
+          }
+        ],
+        "fixed_sp_per_cycle": 130,
+        "job_bonus": "D-061 job bonus included in primary stats"
+      }
+    },
+    {
+      "id": "bard_disruptor",
+      "job_id": "bard",
+      "level": 70,
+      "role": "team debuffs and timed group control",
+      "primary_stats": {
+        "str": 1,
+        "agi": 25,
+        "vit": 1,
+        "int": 35,
+        "dex": 55,
+        "luk": 1
+      },
+      "spent_status_points": 292,
+      "unspent_status_points": 384,
+      "active_slots": [
+        "bard_dissonance",
+        "bard_encore",
+        "bard_performance_strike",
+        "bard_healing_song"
+      ],
+      "skill_levels": {
+        "archer_double_strafe": 1,
+        "archer_concentration": 1,
+        "archer_arrow_shower": 1,
+        "archer_crippling_shot": 1,
+        "archer_vulture_eye": 10,
+        "bard_performance_strike": 10,
+        "bard_healing_song": 10,
+        "bard_battle_song": 1,
+        "bard_dissonance": 10,
+        "bard_encore": 10,
+        "bard_music_lesson": 10,
+        "bard_breathing": 10
+      },
+      "automatic_passives": [
+        "archer_vulture_eye",
+        "bard_music_lesson",
+        "bard_breathing"
+      ],
+      "paid_upgrade_budget": {
+        "gold": 29250,
+        "skill_manual": 5850
+      },
+      "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+      "queue_estimate": {
+        "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+        "si_ms": 1030,
+        "cycle_ms": 7938,
+        "starts": [
+          {
+            "skill_id": "bard_dissonance",
+            "start_ms": 1030,
+            "resolve_ms": 1473,
+            "acd_end_ms": 2089
+          },
+          {
+            "skill_id": "bard_encore",
+            "start_ms": 3119,
+            "resolve_ms": 3661,
+            "acd_end_ms": 4301
+          },
+          {
+            "skill_id": "bard_performance_strike",
+            "start_ms": 5331,
+            "resolve_ms": 5504,
+            "acd_end_ms": 5923
+          },
+          {
+            "skill_id": "bard_healing_song",
+            "start_ms": 6953,
+            "resolve_ms": 7347,
+            "acd_end_ms": 7938
+          }
+        ],
+        "fixed_sp_per_cycle": 144,
+        "job_bonus": "D-061 job bonus included in primary stats"
+      }
+    },
+    {
+      "id": "dancer_support",
+      "job_id": "dancer",
+      "level": 70,
+      "role": "gradual team recovery and attack-speed songs",
+      "primary_stats": {
+        "str": 1,
+        "agi": 1,
+        "vit": 25,
+        "int": 50,
+        "dex": 40,
+        "luk": 1
+      },
+      "spent_status_points": 283,
+      "unspent_status_points": 393,
+      "active_slots": [
+        "dancer_battle_song",
+        "dancer_healing_song",
+        "dancer_dissonance",
+        "archer_double_strafe"
+      ],
+      "skill_levels": {
+        "archer_double_strafe": 10,
+        "archer_concentration": 1,
+        "archer_arrow_shower": 1,
+        "archer_crippling_shot": 1,
+        "archer_vulture_eye": 10,
+        "dancer_performance_strike": 1,
+        "dancer_healing_song": 10,
+        "dancer_battle_song": 10,
+        "dancer_dissonance": 10,
+        "dancer_encore": 1,
+        "dancer_music_lesson": 10,
+        "dancer_breathing": 10
+      },
+      "automatic_passives": [
+        "archer_vulture_eye",
+        "dancer_music_lesson",
+        "dancer_breathing"
+      ],
+      "paid_upgrade_budget": {
+        "gold": 27000,
+        "skill_manual": 5400
+      },
+      "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+      "queue_estimate": {
+        "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+        "si_ms": 1272,
+        "cycle_ms": 8777,
+        "starts": [
+          {
+            "skill_id": "dancer_battle_song",
+            "start_ms": 1272,
+            "resolve_ms": 1733,
+            "acd_end_ms": 2384
+          },
+          {
+            "skill_id": "dancer_healing_song",
+            "start_ms": 3656,
+            "resolve_ms": 4090,
+            "acd_end_ms": 4741
+          },
+          {
+            "skill_id": "dancer_dissonance",
+            "start_ms": 6013,
+            "resolve_ms": 6501,
+            "acd_end_ms": 7179
+          },
+          {
+            "skill_id": "archer_double_strafe",
+            "start_ms": 8451,
+            "resolve_ms": 8451,
+            "acd_end_ms": 8777
+          }
+        ],
+        "fixed_sp_per_cycle": 130,
+        "job_bonus": "D-061 job bonus included in primary stats"
+      }
+    },
+    {
+      "id": "dancer_disruptor",
+      "job_id": "dancer",
+      "level": 70,
+      "role": "team debuffs and timed group control",
+      "primary_stats": {
+        "str": 1,
+        "agi": 25,
+        "vit": 1,
+        "int": 35,
+        "dex": 55,
+        "luk": 1
+      },
+      "spent_status_points": 292,
+      "unspent_status_points": 384,
+      "active_slots": [
+        "dancer_dissonance",
+        "dancer_encore",
+        "dancer_performance_strike",
+        "dancer_healing_song"
+      ],
+      "skill_levels": {
+        "archer_double_strafe": 1,
+        "archer_concentration": 1,
+        "archer_arrow_shower": 1,
+        "archer_crippling_shot": 1,
+        "archer_vulture_eye": 10,
+        "dancer_performance_strike": 10,
+        "dancer_healing_song": 10,
+        "dancer_battle_song": 1,
+        "dancer_dissonance": 10,
+        "dancer_encore": 10,
+        "dancer_music_lesson": 10,
+        "dancer_breathing": 10
+      },
+      "automatic_passives": [
+        "archer_vulture_eye",
+        "dancer_music_lesson",
+        "dancer_breathing"
+      ],
+      "paid_upgrade_budget": {
+        "gold": 29250,
+        "skill_manual": 5850
+      },
+      "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+      "queue_estimate": {
+        "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+        "si_ms": 1030,
+        "cycle_ms": 7938,
+        "starts": [
+          {
+            "skill_id": "dancer_dissonance",
+            "start_ms": 1030,
+            "resolve_ms": 1473,
+            "acd_end_ms": 2089
+          },
+          {
+            "skill_id": "dancer_encore",
+            "start_ms": 3119,
+            "resolve_ms": 3661,
+            "acd_end_ms": 4301
+          },
+          {
+            "skill_id": "dancer_performance_strike",
+            "start_ms": 5331,
+            "resolve_ms": 5504,
+            "acd_end_ms": 5923
+          },
+          {
+            "skill_id": "dancer_healing_song",
+            "start_ms": 6953,
+            "resolve_ms": 7347,
+            "acd_end_ms": 7938
+          }
+        ],
+        "fixed_sp_per_cycle": 144,
+        "job_bonus": "D-061 job bonus included in primary stats"
+      }
+    },
+    {
+      "id": "hunter_sniper",
+      "job_id": "hunter",
+      "level": 70,
+      "role": "single-target hits and marks",
+      "primary_stats": {
+        "str": 30,
+        "agi": 35,
+        "vit": 1,
+        "int": 1,
+        "dex": 50,
+        "luk": 1
+      },
+      "spent_status_points": 278,
+      "unspent_status_points": 398,
+      "active_slots": [
+        "hunter_hunters_mark",
+        "archer_concentration",
+        "hunter_rapid_fire",
+        "archer_double_strafe"
+      ],
+      "skill_levels": {
+        "archer_double_strafe": 10,
+        "archer_concentration": 10,
+        "archer_arrow_shower": 1,
+        "archer_crippling_shot": 1,
+        "archer_vulture_eye": 10,
+        "hunter_blitz_beat": 1,
+        "hunter_hunters_mark": 10,
+        "hunter_ankle_snare": 1,
+        "hunter_claymore": 1,
+        "hunter_rapid_fire": 10,
+        "hunter_falcon": 10,
+        "hunter_steel_crow": 10
+      },
+      "automatic_passives": [
+        "archer_vulture_eye",
+        "hunter_falcon",
+        "hunter_steel_crow"
+      ],
+      "paid_upgrade_budget": {
+        "gold": 24750,
+        "skill_manual": 4950
+      },
+      "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+      "queue_estimate": {
+        "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+        "si_ms": 971,
+        "cycle_ms": 5971,
+        "starts": [
+          {
+            "skill_id": "hunter_hunters_mark",
+            "start_ms": 971,
+            "resolve_ms": 1078,
+            "acd_end_ms": 1506
+          },
+          {
+            "skill_id": "archer_concentration",
+            "start_ms": 2477,
+            "resolve_ms": 2584,
+            "acd_end_ms": 2932
+          },
+          {
+            "skill_id": "hunter_rapid_fire",
+            "start_ms": 3903,
+            "resolve_ms": 4171,
+            "acd_end_ms": 4679
+          },
+          {
+            "skill_id": "archer_double_strafe",
+            "start_ms": 5650,
+            "resolve_ms": 5650,
+            "acd_end_ms": 5971
+          }
+        ],
+        "fixed_sp_per_cycle": 98,
+        "job_bonus": "D-061 job bonus included in primary stats"
+      }
+    },
+    {
+      "id": "hunter_trapper",
+      "job_id": "hunter",
+      "level": 70,
+      "role": "area pressure and CC",
+      "primary_stats": {
+        "str": 40,
+        "agi": 1,
+        "vit": 20,
+        "int": 1,
+        "dex": 50,
+        "luk": 1
+      },
+      "spent_status_points": 269,
+      "unspent_status_points": 407,
+      "active_slots": [
+        "hunter_ankle_snare",
+        "hunter_claymore",
+        "hunter_blitz_beat",
+        "archer_arrow_shower"
+      ],
+      "skill_levels": {
+        "archer_double_strafe": 1,
+        "archer_concentration": 1,
+        "archer_arrow_shower": 10,
+        "archer_crippling_shot": 1,
+        "archer_vulture_eye": 10,
+        "hunter_blitz_beat": 10,
+        "hunter_hunters_mark": 1,
+        "hunter_ankle_snare": 10,
+        "hunter_claymore": 10,
+        "hunter_rapid_fire": 1,
+        "hunter_falcon": 10,
+        "hunter_steel_crow": 10
+      },
+      "automatic_passives": [
+        "archer_vulture_eye",
+        "hunter_falcon",
+        "hunter_steel_crow"
+      ],
+      "paid_upgrade_budget": {
+        "gold": 27000,
+        "skill_manual": 5400
+      },
+      "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+      "queue_estimate": {
+        "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+        "si_ms": 1245,
+        "cycle_ms": 8135,
+        "starts": [
+          {
+            "skill_id": "hunter_ankle_snare",
+            "start_ms": 1245,
+            "resolve_ms": 1593,
+            "acd_end_ms": 2128
+          },
+          {
+            "skill_id": "hunter_claymore",
+            "start_ms": 3373,
+            "resolve_ms": 3801,
+            "acd_end_ms": 4336
+          },
+          {
+            "skill_id": "hunter_blitz_beat",
+            "start_ms": 5581,
+            "resolve_ms": 5768,
+            "acd_end_ms": 6222
+          },
+          {
+            "skill_id": "archer_arrow_shower",
+            "start_ms": 7467,
+            "resolve_ms": 7681,
+            "acd_end_ms": 8135
+          }
+        ],
+        "fixed_sp_per_cycle": 128,
+        "job_bonus": "D-061 job bonus included in primary stats"
+      }
+    }
+  ],
+  "notes": {
+    "archer_double_strafe": "",
+    "archer_concentration": "",
+    "archer_arrow_shower": "",
+    "archer_crippling_shot": "",
+    "archer_vulture_eye": "",
+    "hunter_blitz_beat": "",
+    "hunter_hunters_mark": "",
+    "hunter_ankle_snare": "",
+    "hunter_claymore": "",
+    "hunter_rapid_fire": "",
+    "hunter_falcon": "",
+    "hunter_steel_crow": "",
+    "bard_performance_strike": "",
+    "bard_healing_song": "",
+    "bard_battle_song": "",
+    "bard_dissonance": "",
+    "bard_encore": "",
+    "bard_music_lesson": "",
+    "bard_breathing": "",
+    "dancer_performance_strike": "",
+    "dancer_healing_song": "",
+    "dancer_battle_song": "",
+    "dancer_dissonance": "",
+    "dancer_encore": "",
+    "dancer_music_lesson": "",
+    "dancer_breathing": ""
+  },
+  "future_awaken": "stable skill/effect IDs; no hi-class definitions required by these builds"
+}

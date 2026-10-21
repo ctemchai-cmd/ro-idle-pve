@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ro-idle.local/schemas/patch.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "skill_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "stage": {
+      "enum": [
+        "awaken",
+        "artifact",
+        "scenario"
+      ]
+    },
+    "priority": {
+      "type": "integer"
+    },
+    "operation": {
+      "enum": [
+        "set_param",
+        "add_param",
+        "append_effect"
+      ]
+    },
+    "effect_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "param": {
+      "type": "string",
+      "minLength": 1
+    },
+    "value": {
+      "oneOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "level_param": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]*$"
+            }
+          },
+          "required": [
+            "level_param"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "status_param": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]*$"
+            }
+          },
+          "required": [
+            "status_param"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "effect": {
+      "$ref": "effect.json"
+    }
+  },
+  "required": [
+    "id",
+    "skill_id",
+    "stage",
+    "priority",
+    "operation",
+    "effect_id"
+  ],
+  "additionalProperties": false
+}

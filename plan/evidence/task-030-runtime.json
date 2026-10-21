@@ -1,0 +1,683 @@
+{
+ "task_id": "TASK-030",
+ "content_hash": "28af9b8367687adf4db841368b541ec1afb756120ffa899f3e92647ee7494aec",
+ "rules_version": "combat-baseline-v1",
+ "golden_cases": [
+  "acolyte_heal_level_1",
+  "acolyte_heal_level_4",
+  "acolyte_heal_level_10",
+  "acolyte_blessing_level_1",
+  "acolyte_blessing_level_4",
+  "acolyte_blessing_level_10",
+  "acolyte_holy_light_level_1",
+  "acolyte_holy_light_level_4",
+  "acolyte_holy_light_level_10",
+  "acolyte_increase_agi_level_1",
+  "acolyte_increase_agi_level_4",
+  "acolyte_increase_agi_level_10",
+  "acolyte_meditation_level_1",
+  "acolyte_meditation_level_4",
+  "acolyte_meditation_level_10",
+  "priest_sanctuary_level_1",
+  "priest_sanctuary_level_4",
+  "priest_sanctuary_level_10",
+  "priest_impositio_level_1",
+  "priest_impositio_level_4",
+  "priest_impositio_level_10",
+  "priest_magnificat_level_1",
+  "priest_magnificat_level_4",
+  "priest_magnificat_level_10",
+  "priest_resurrection_level_1",
+  "priest_resurrection_level_4",
+  "priest_resurrection_level_10",
+  "priest_kyrie_level_1",
+  "priest_kyrie_level_4",
+  "priest_kyrie_level_10",
+  "priest_healing_art_level_1",
+  "priest_healing_art_level_4",
+  "priest_healing_art_level_10",
+  "priest_spirit_recovery_level_1",
+  "priest_spirit_recovery_level_4",
+  "priest_spirit_recovery_level_10",
+  "monk_call_spirits_level_1",
+  "monk_call_spirits_level_4",
+  "monk_call_spirits_level_10",
+  "monk_triple_attack_level_1",
+  "monk_triple_attack_level_4",
+  "monk_triple_attack_level_10",
+  "monk_finger_offensive_level_1",
+  "monk_finger_offensive_level_4",
+  "monk_finger_offensive_level_10",
+  "monk_asura_level_1",
+  "monk_asura_level_4",
+  "monk_asura_level_10",
+  "monk_steel_body_level_1",
+  "monk_steel_body_level_4",
+  "monk_steel_body_level_10",
+  "monk_iron_fist_level_1",
+  "monk_iron_fist_level_4",
+  "monk_iron_fist_level_10",
+  "monk_spirit_combo_level_1",
+  "monk_spirit_combo_level_4",
+  "monk_spirit_combo_level_10"
+ ],
+ "active_probe": {
+  "seed": 1,
+  "game_ms": 60000,
+  "resolves_per_level": {
+   "acolyte_heal": [
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26
+   ],
+   "acolyte_blessing": [
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27
+   ],
+   "acolyte_holy_light": [
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26
+   ],
+   "acolyte_increase_agi": [
+    27,
+    27,
+    28,
+    28,
+    28,
+    28,
+    29,
+    29,
+    29,
+    29
+   ],
+   "priest_sanctuary": [
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22
+   ],
+   "priest_impositio": [
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24
+   ],
+   "priest_magnificat": [
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22
+   ],
+   "priest_resurrection": [
+    18,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18
+   ],
+   "priest_kyrie": [
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22
+   ],
+   "monk_call_spirits": [
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28
+   ],
+   "monk_triple_attack": [
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5
+   ],
+   "monk_finger_offensive": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "monk_asura": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "monk_steel_body": [
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13
+   ]
+  }
+ },
+ "passive_probe": {
+  "acolyte_meditation": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "priest_healing_art": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "priest_spirit_recovery": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "monk_iron_fist": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "monk_spirit_combo": [
+   3,
+   3,
+   3,
+   4,
+   4,
+   4,
+   4,
+   4,
+   4,
+   4
+  ]
+ },
+ "full_hp_heal": {
+  "casts": 9,
+  "sp_spent": 162,
+  "effective_heal": 0,
+  "overheal": 12672
+ },
+ "monk": {
+  "asura_casts_40s": 4,
+  "asura_sp_spent": [
+   407,
+   60,
+   48,
+   60
+  ],
+  "sphere_gained": 28,
+  "sphere_wasted": 5,
+  "interrupted_at_ms": 3686,
+  "interrupted_sp_spent": 407,
+  "stun_resolves_ms": 3951
+ },
+ "steel_body": {
+  "resolve_ms": 1835,
+  "guard": [
+   0,
+   0.4
+  ],
+  "attack_speed": [
+   106,
+   74.19999999999999
+  ]
+ },
+ "dry_trace": {
+  "priest_healer": {
+   "si_ms": 1367,
+   "cycle_ms": 9628,
+   "passive_changed_stats": [
+    "outgoing_healing_bonus",
+    "sp_regen_percent",
+    "flat_sp_regen"
+   ]
+  },
+  "priest_buffer": {
+   "si_ms": 1337,
+   "cycle_ms": 8658,
+   "passive_changed_stats": [
+    "outgoing_healing_bonus",
+    "sp_regen_percent",
+    "flat_sp_regen"
+   ]
+  },
+  "monk_finisher": {
+   "si_ms": 1399,
+   "cycle_ms": 9679,
+   "passive_changed_stats": [
+    "physical_attack",
+    "sp_regen_percent"
+   ]
+  },
+  "monk_steel_tank": {
+   "si_ms": 1416,
+   "cycle_ms": 9472,
+   "passive_changed_stats": [
+    "physical_attack",
+    "sp_regen_percent"
+   ]
+  }
+ },
+ "real_fight_first_starts": {
+  "priest_healer": {
+   "real": [
+    {
+     "type": "cast_start",
+     "skill_id": "acolyte_heal",
+     "at_ms": 1367
+    },
+    {
+     "type": "cast_start",
+     "skill_id": "priest_sanctuary",
+     "at_ms": 3486
+    },
+    {
+     "type": "cast_start",
+     "skill_id": "priest_kyrie",
+     "at_ms": 5951
+    },
+    {
+     "type": "cast_start",
+     "skill_id": "priest_magnificat",
+     "at_ms": 8473
+    },
+    {
+     "type": "cast_start",
+     "skill_id": "acolyte_heal",
+     "at_ms": 10995
+    }
+   ],
+   "dry": [
+    {
+     "skill_id": "acolyte_heal",
+     "start_ms": 1367
+    },
+    {
+     "skill_id": "priest_sanctuary",
+     "start_ms": 3486
+    },
+    {
+     "skill_id": "priest_kyrie",
+     "start_ms": 5951
+    },
+    {
+     "skill_id": "priest_magnificat",
+     "start_ms": 8473
+    }
+   ]
+  },
+  "priest_buffer": {
+   "real": [
+    {
+     "type": "cast_start",
+     "skill_id": "acolyte_blessing",
+     "at_ms": 1337
+    },
+    {
+     "type": "cast_start",
+     "skill_id": "priest_impositio",
+     "at_ms": 3352
+    },
+    {
+     "type": "cast_start",
+     "skill_id": "priest_magnificat",
+     "at_ms": 5530
+    },
+    {
+     "type": "cast_start",
+     "skill_id": "acolyte_heal",
+     "at_ms": 7952
+    },
+    {
+     "type": "cast_start",
+     "skill_id": "acolyte_blessing",
+     "at_ms": 9995
+    }
+   ],
+   "dry": [
+    {
+     "skill_id": "acolyte_blessing",
+     "start_ms": 1337
+    },
+    {
+     "skill_id": "priest_impositio",
+     "start_ms": 3352
+    },
+    {
+     "skill_id": "priest_magnificat",
+     "start_ms": 5530
+    },
+    {
+     "skill_id": "acolyte_heal",
+     "start_ms": 7952
+    }
+   ]
+  },
+  "monk_finisher": {
+   "real": [
+    {
+     "type": "cast_start",
+     "skill_id": "monk_call_spirits",
+     "at_ms": 1399
+    },
+    {
+     "type": "cast_start",
+     "skill_id": "monk_asura",
+     "at_ms": 3523
+    },
+    {
+     "type": "cast_start",
+     "skill_id": "acolyte_heal",
+     "at_ms": 6831
+    },
+    {
+     "type": "cast_start",
+     "skill_id": "monk_triple_attack",
+     "at_ms": 9086
+    },
+    {
+     "type": "cast_start",
+     "skill_id": "monk_call_spirits",
+     "at_ms": 11078
+    }
+   ],
+   "dry": [
+    {
+     "skill_id": "monk_call_spirits",
+     "start_ms": 1399
+    },
+    {
+     "skill_id": "monk_asura",
+     "start_ms": 3523
+    },
+    {
+     "skill_id": "acolyte_heal",
+     "start_ms": 6831
+    },
+    {
+     "skill_id": "monk_triple_attack",
+     "start_ms": 9086
+    }
+   ]
+  },
+  "monk_finisher_asura_sp": [
+   407,
+   60
+  ],
+  "monk_steel_tank": {
+   "real": [
+    {
+     "type": "cast_start",
+     "skill_id": "monk_steel_body",
+     "at_ms": 1416
+    },
+    {
+     "type": "cast_start",
+     "skill_id": "monk_call_spirits",
+     "at_ms": 4695
+    },
+    {
+     "type": "cast_start",
+     "skill_id": "acolyte_heal",
+     "at_ms": 7486
+    },
+    {
+     "type": "cast_start",
+     "skill_id": "acolyte_blessing",
+     "at_ms": 9810
+    },
+    {
+     "type": "cast_start",
+     "skill_id": "monk_steel_body",
+     "at_ms": 12100
+    }
+   ],
+   "dry": [
+    {
+     "skill_id": "monk_steel_body",
+     "start_ms": 1416
+    },
+    {
+     "skill_id": "monk_call_spirits",
+     "start_ms": 4089
+    },
+    {
+     "skill_id": "acolyte_heal",
+     "start_ms": 6274
+    },
+    {
+     "skill_id": "acolyte_blessing",
+     "start_ms": 8598
+    }
+   ]
+  }
+ },
+ "parity": {
+  "stage": "6-20",
+  "seed": 30,
+  "team": [
+   {
+    "character_id": "main",
+    "position": "back_1"
+   },
+   {
+    "character_id": "npc_swordsman",
+    "position": "front_1"
+   },
+   {
+    "character_id": "npc_acolyte",
+    "position": "back_2"
+   },
+   {
+    "character_id": "npc_archer",
+    "position": "front_2"
+   }
+  ],
+  "outcome": "STORY_TIME_LIMIT",
+  "end_ms": 90000,
+  "events": 945,
+  "server_confirmations": 89,
+  "event_digest": {
+   "algorithm": "fnv1a32-v1",
+   "value": "4804b1e3"
+  },
+  "tree_skill_metrics": {
+   "main:acolyte_heal": {
+    "effective_heal": 892,
+    "overheal": 7424,
+    "shield_created": 0,
+    "sp_spent": 108,
+    "sphere_gained": 0,
+    "sphere_wasted": 0,
+    "casts_resolved": 6,
+    "hp_damage": 0
+   },
+   "npc_acolyte:monk_call_spirits": {
+    "effective_heal": 0,
+    "overheal": 0,
+    "shield_created": 0,
+    "sp_spent": 108,
+    "sphere_gained": 23,
+    "sphere_wasted": 7,
+    "casts_resolved": 6,
+    "hp_damage": 0
+   },
+   "npc_acolyte:monk_spirit_combo": {
+    "effective_heal": 0,
+    "overheal": 0,
+    "shield_created": 0,
+    "sp_spent": 0,
+    "sphere_gained": 14,
+    "sphere_wasted": 2,
+    "casts_resolved": 0,
+    "hp_damage": 0
+   },
+   "main:priest_sanctuary": {
+    "effective_heal": 4170,
+    "overheal": 11670,
+    "shield_created": 0,
+    "sp_spent": 240,
+    "sphere_gained": 0,
+    "sphere_wasted": 0,
+    "casts_resolved": 6,
+    "hp_damage": 0
+   },
+   "npc_acolyte:monk_asura": {
+    "effective_heal": 0,
+    "overheal": 0,
+    "shield_created": 0,
+    "sp_spent": 1223,
+    "sphere_gained": 0,
+    "sphere_wasted": 0,
+    "casts_resolved": 6,
+    "hp_damage": 6504
+   },
+   "main:priest_kyrie": {
+    "effective_heal": 0,
+    "overheal": 0,
+    "shield_created": 9180,
+    "sp_spent": 264,
+    "sphere_gained": 0,
+    "sphere_wasted": 0,
+    "casts_resolved": 6,
+    "hp_damage": 0
+   },
+   "npc_acolyte:acolyte_heal": {
+    "effective_heal": 61,
+    "overheal": 5681,
+    "shield_created": 0,
+    "sp_spent": 108,
+    "sphere_gained": 0,
+    "sphere_wasted": 0,
+    "casts_resolved": 6,
+    "hp_damage": 0
+   },
+   "main:priest_magnificat": {
+    "effective_heal": 0,
+    "overheal": 0,
+    "shield_created": 0,
+    "sp_spent": 228,
+    "sphere_gained": 0,
+    "sphere_wasted": 0,
+    "casts_resolved": 6,
+    "hp_damage": 0
+   },
+   "npc_acolyte:monk_triple_attack": {
+    "effective_heal": 0,
+    "overheal": 0,
+    "shield_created": 0,
+    "sp_spent": 120,
+    "sphere_gained": 0,
+    "sphere_wasted": 0,
+    "casts_resolved": 5,
+    "hp_damage": 4356
+   }
+  }
+ }
+}

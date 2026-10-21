@@ -1,0 +1,352 @@
+{
+  "task_id": "TASK-020",
+  "round": 8,
+  "date": "2026-10-20",
+  "passed": true,
+  "checks": [
+    {
+      "case_id": "native_BGM_playback_and_actual_SFX_signal",
+      "passed": true,
+      "result": {
+        "bgm": {
+          "enabled": true,
+          "music_url": "/ro/4cc4d9d4f4a8e58a432de095b9436470801b7799d1e26b903cb3208bed3ad032/prepared/music/12--644547aaeff0.mp3",
+          "music_playing": true,
+          "levels": {
+            "music": 0.12,
+            "effects": 0.2
+          },
+          "active_effects": 0,
+          "loop": true,
+          "current_time": 0.199785,
+          "ready_state": 4
+        },
+        "peak": 0.40549442172050476,
+        "nonzero_frames": 141,
+        "refs": [
+          "effects.f41b117982c1d825",
+          "effects.fead1024113dad8a",
+          "effects.698e0b8224acf64e",
+          "effects.dae7cc8907cf9b48",
+          "effects.8427d4033ee23c84",
+          "effects.e412a71c8dcc2ef2",
+          "library/effects/sound/ef_hit2--e412a71c8dcc.meta.json",
+          "effects.39cb41c771a7b822",
+          "effects.0e36be4550b89a52"
+        ],
+        "state": {
+          "enabled": true,
+          "music_url": "/ro/4cc4d9d4f4a8e58a432de095b9436470801b7799d1e26b903cb3208bed3ad032/prepared/music/12--644547aaeff0.mp3",
+          "music_playing": true,
+          "levels": {
+            "music": 0.12,
+            "effects": 0.2
+          },
+          "active_effects": 3
+        },
+        "scope": "Native audio playback state and WebAudio SFX waveform measured; no subjective listening review."
+      }
+    },
+    {
+      "case_id": "DPS_Healing_Tank_actor_rows_equal_shared_checkpoint",
+      "passed": true,
+      "result": {
+        "samples": [
+          {
+            "category": "DPS",
+            "elapsed": 4766,
+            "rows": [
+              {
+                "id": "npc_archer",
+                "amount": 280,
+                "expected": 280,
+                "canonical": 280,
+                "rate": "58.74947545111204",
+                "expectedRate": 58.74947545111204,
+                "detail": "DPS 58.7\n32.8%"
+              },
+              {
+                "id": "main",
+                "amount": 269,
+                "expected": 269,
+                "canonical": 269,
+                "rate": "56.44146034410407",
+                "expectedRate": 56.44146034410407,
+                "detail": "DPS 56.4\n31.5%"
+              },
+              {
+                "id": "npc_mage",
+                "amount": 187,
+                "expected": 187,
+                "canonical": 187,
+                "rate": "39.23625681913554",
+                "expectedRate": 39.23625681913554,
+                "detail": "DPS 39.2\n21.9%"
+              },
+              {
+                "id": "npc_acolyte",
+                "amount": 118,
+                "expected": 118,
+                "canonical": 118,
+                "rate": "24.758707511540077",
+                "expectedRate": 24.758707511540077,
+                "detail": "DPS 24.8\n13.8%"
+              }
+            ]
+          },
+          {
+            "category": "Healing",
+            "elapsed": 4766,
+            "rows": [
+              {
+                "id": "npc_acolyte",
+                "amount": 81,
+                "expected": 81,
+                "canonical": 81,
+                "rate": "16.995383969785983",
+                "expectedRate": 16.995383969785983,
+                "detail": "HPS 17\n100.0%"
+              },
+              {
+                "id": "main",
+                "amount": 0,
+                "expected": 0,
+                "canonical": 0,
+                "rate": "0",
+                "expectedRate": 0,
+                "detail": "HPS 0\n0.0%"
+              },
+              {
+                "id": "npc_archer",
+                "amount": 0,
+                "expected": 0,
+                "canonical": 0,
+                "rate": "0",
+                "expectedRate": 0,
+                "detail": "HPS 0\n0.0%"
+              },
+              {
+                "id": "npc_mage",
+                "amount": 0,
+                "expected": 0,
+                "canonical": 0,
+                "rate": "0",
+                "expectedRate": 0,
+                "detail": "HPS 0\n0.0%"
+              }
+            ]
+          },
+          {
+            "category": "Tank",
+            "elapsed": 4766,
+            "rows": [
+              {
+                "id": "main",
+                "amount": 81,
+                "expected": 81,
+                "canonical": 81,
+                "rate": "",
+                "expectedRate": "",
+                "detail": "HP 81 · โล่ 0\n100.0%"
+              },
+              {
+                "id": "npc_acolyte",
+                "amount": 0,
+                "expected": 0,
+                "canonical": 0,
+                "rate": "",
+                "expectedRate": "",
+                "detail": "HP 0 · โล่ 0\n0.0%"
+              },
+              {
+                "id": "npc_archer",
+                "amount": 0,
+                "expected": 0,
+                "canonical": 0,
+                "rate": "",
+                "expectedRate": "",
+                "detail": "HP 0 · โล่ 0\n0.0%"
+              },
+              {
+                "id": "npc_mage",
+                "amount": 0,
+                "expected": 0,
+                "canonical": 0,
+                "rate": "",
+                "expectedRate": "",
+                "detail": "HP 0 · โล่ 0\n0.0%"
+              }
+            ]
+          }
+        ],
+        "sizes": [
+          {
+            "width": 360,
+            "height": 640,
+            "overflow": false,
+            "dialog": {
+              "x": 0,
+              "y": 76.8125,
+              "width": 360,
+              "height": 563.1875,
+              "top": 76.8125,
+              "right": 360,
+              "bottom": 640,
+              "left": 0
+            }
+          },
+          {
+            "width": 390,
+            "height": 844,
+            "overflow": false,
+            "dialog": {
+              "x": 0,
+              "y": 116,
+              "width": 390,
+              "height": 728,
+              "top": 116,
+              "right": 390,
+              "bottom": 844,
+              "left": 0
+            }
+          },
+          {
+            "width": 1280,
+            "height": 900,
+            "overflow": false,
+            "dialog": {
+              "x": 400,
+              "y": 172,
+              "width": 480,
+              "height": 728,
+              "top": 172,
+              "right": 880,
+              "bottom": 900,
+              "left": 400
+            }
+          }
+        ],
+        "all_actors_despite_focus": true,
+        "enemy_tab": true
+      }
+    },
+    {
+      "case_id": "terminal_statistics_stable_and_restart_resets_totals",
+      "passed": true,
+      "result": {
+        "terminal_frozen": true,
+        "new_fight_amounts": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "same_track": true,
+        "current_time": 11.525765
+      }
+    },
+    {
+      "case_id": "independent_volumes_scene_BGM_mute_visibility_and_prefs",
+      "passed": true,
+      "result": {
+        "levels": {
+          "state": {
+            "enabled": true,
+            "music_url": "/ro/4cc4d9d4f4a8e58a432de095b9436470801b7799d1e26b903cb3208bed3ad032/prepared/music/12--644547aaeff0.mp3",
+            "music_playing": true,
+            "levels": {
+              "music": 0.35,
+              "effects": 0.47
+            },
+            "active_effects": 2
+          },
+          "music_volume": 0.35,
+          "sfx_gain": 0.4699999988079071
+        },
+        "switched": {
+          "old_paused": true,
+          "new_track": true,
+          "state": {
+            "enabled": true,
+            "music_url": "/ro/4cc4d9d4f4a8e58a432de095b9436470801b7799d1e26b903cb3208bed3ad032/prepared/music/03--4fb2ad3def69.mp3",
+            "music_playing": true,
+            "levels": {
+              "music": 0.35,
+              "effects": 0.47
+            },
+            "active_effects": 0
+          }
+        },
+        "visibility": {
+          "hidden": {
+            "enabled": true,
+            "music_url": "/ro/4cc4d9d4f4a8e58a432de095b9436470801b7799d1e26b903cb3208bed3ad032/prepared/music/03--4fb2ad3def69.mp3",
+            "music_playing": false,
+            "levels": {
+              "music": 0.35,
+              "effects": 0.47
+            },
+            "active_effects": 0
+          },
+          "resumed": {
+            "enabled": true,
+            "music_url": "/ro/4cc4d9d4f4a8e58a432de095b9436470801b7799d1e26b903cb3208bed3ad032/prepared/music/03--4fb2ad3def69.mp3",
+            "music_playing": true,
+            "levels": {
+              "music": 0.35,
+              "effects": 0.47
+            },
+            "active_effects": 0
+          }
+        },
+        "muted": {
+          "enabled": false,
+          "music_url": "/ro/4cc4d9d4f4a8e58a432de095b9436470801b7799d1e26b903cb3208bed3ad032/prepared/music/03--4fb2ad3def69.mp3",
+          "music_playing": false,
+          "levels": {
+            "music": 0.35,
+            "effects": 0.47
+          },
+          "active_effects": 0
+        },
+        "preferences_restored": true,
+        "explicit_first_unlock": true
+      }
+    },
+    {
+      "case_id": "all_local_media_decode_and_clean_browser",
+      "passed": true,
+      "result": {
+        "images": 216,
+        "audio": 34,
+        "font": true
+      }
+    }
+  ],
+  "errors": [],
+  "external_requests": [],
+  "input_sha256": {
+    "src/renderer/audio.ts": "915e296aa7c108863f9f8ab2223a9287ae2d2d8121e1850c82fe3fbd1616f26c",
+    "src/renderer/audio-preferences.ts": "71c4e7d51127c8d3aac8cc06535b77d5795d9685d70a5ed61f75d216eacc1885",
+    "src/renderer/pack.ts": "a0d20b6156e2590104e53dc35b35a7b3f81470640e29bbc993881a1d467f7d75",
+    "src/renderer/battle.ts": "4e52db0660b9d0b63676685b3300bf75eaa9b468d5b4db7f0a2cad61297b4caa",
+    "src/contracts/audio.ts": "80a2ab54743f24c5e46270c0dc67d861e157b68970bc731392f1bbb730705cd7",
+    "src/contracts/combat-statistics.ts": "045879940cb7c98f43e35118611c52fb12a8619a430bffeeaef98a24ef2552d0",
+    "src/domain/combat/model.ts": "5f262bc967a4108daa1b6ebe7afcddd8f3ff9eb5e545c444fda55a2f17b0431a",
+    "src/domain/combat/effects.ts": "a987f66aecbbd2edc4263b0af2667e2708dda84901ce3824cba39a0390413f28",
+    "src/domain/combat/statistics.ts": "a58475a4585ff2b1ff787d78bb00b07fc6974e952e440104607053ef1fc6caae",
+    "src/domain/combat/engine.ts": "a7c3b59cfb74ecd43fa5c158e84e7b6b04d70b8fb45a17c9ac2b5aa0ae4d4d45",
+    "src/client/demo.ts": "95f5fa38622f86f8114699c1269892a16e956d7ec9a4e150fcb46f3b63e41a6d",
+    "src/ui/battle-app.tsx": "f5c2ff89d9c3e296caff2603465a35007ca735522c620e6c1c97db29b8dbd469",
+    "src/ui/battle-statistics.tsx": "eb98892be9ada1e270ad3892263181340b3fed3cf70ecc0d3f8dab1bfafd497b",
+    "src/ui/adventure.css": "183cbbabfc15dc735a43c1c42619d8b192420943ed6d0e0254f6c6d7f7612902",
+    "src/ui/modern-theme.css": "2a40227a3a8109391eb24a778bb518488fd4b43934be3f3dc711004b16ea08f5",
+    "src/ui/icon.tsx": "672e7a63fcd644a718f7e22b54187d3c9e5bbd796bebe4a126f318bce58af315",
+    "src/simulation/index.ts": "a652b007cb6acc484fb25306d963a1cc4677351ae3bbffa2302fa82aa9d8e282",
+    "plan/data/schemas/battle-checkpoint.json": "dad12610a8c646018162e625d3e07c0a5450b871e4581ac312756fc7d702b897",
+    "src/generated/runtime-manifest.json": "696a5b5262810f449b1657c0801b34f58a6c27b82c8b8ab3e2c0f9c8b88bfbc4",
+    "runtime/ro/manifest.json": "427e17705172e8c924e5aabcf27534b26a98d2f069a3b0ee7d07cae61ff47b47",
+    "scripts/test_audio_statistics.cjs": "265fe550e4e5631b2c9d2b1781b8f3ff9d0b7b1205b85aa4c23543407eed2930"
+  },
+  "scope": "Chrome viewport emulation, actual HTMLAudio playback/WebAudio waveform and canonical actor statistics. No subjective listening or physical device/Safari certification."
+}

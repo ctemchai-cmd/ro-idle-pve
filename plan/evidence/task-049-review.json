@@ -1,0 +1,78 @@
+{
+  "task_id": "TASK-049",
+  "passed": true,
+  "round": 1,
+  "date": "2026-10-20",
+  "reviewer": "Claude self-check",
+  "content_hash": "01876ded0ced64db8e4e5f875f96fd6dc86a95088e2d61ece89de16a150a1e19",
+  "previous_content_hash": "65b82feb21f654bb17521bdc4417245c630d0cf6f0149f5877ab93b5ec3b9dc2",
+  "engine_data_hash": "9afb443ec36a1092a7ebbb45c9475edee08fab779e0421d14e139890531e8580",
+  "runtime_asset_pack_hash": "5463d8807b78d2dc6af51385a0962f2dd15fb2b713394b60842fbc473629d296",
+  "checks": [
+    {
+      "acceptance": "AC-01",
+      "passed": true,
+      "result": "plan/generators/stages.py --legacy --check reproduces the reviewed 8x10 stages.json byte-for-byte; D-057 layout 10/10/10/20x5 = 130 stages, chapter bosses on the last stage (4-20 golem), chapter gold/EXP and crystal totals (1600) unchanged; levels.py 153 checks pass"
+    },
+    {
+      "acceptance": "AC-02",
+      "passed": true,
+      "result": "slot-progression tests: +1..+4 succeed even on a 0.995 roll; +5 failure commits REFINE_FAILED, spends 5000 gold/25 ore, keeps +4, failures=1, next chance 90%; success resets failures; +9->+10 reaches 100% after 8 failures; multi-step targets REFINE_ONE_STEP; unseeded chance<1 throws SERVER_ROLL_REQUIRED; API seeds each command (battle_seed) and receipt idempotency prevents rerolls"
+    },
+    {
+      "acceptance": "AC-03",
+      "passed": true,
+      "result": "progression.py 29 checks (Lv10 34, Lv20 91, Lv70 676; single stat reaches 99 with 146 left); combat.py 72 checks with milestone bonus; rules-d057 tests: STR10 adds 2+5 ATK, VIT10 +70 HP, AGI30 evasion 3%, ASPD/cast speed unchanged"
+    },
+    {
+      "acceptance": "AC-04",
+      "passed": true,
+      "result": "progression/combat/classes(6)/equipment/economy/levels/ui/architecture/composition checks pass; build_manifest rebuilt; readiness 8/8; npm run check 242 tests; build; assets build/check; tests.test_runtime_assets 8; renderer 4; isolated live walkthrough 13/13 with 0 browser errors; Refine tab shows chance/pity and Stats shows the bonus legend"
+    },
+    {
+      "acceptance": "AC-05",
+      "passed": true,
+      "result": "play_local.py --reset-saves-for-new-content: pg_dump .local/play/backups/before-new-content-reset-*.sql and JSON export of save #461 (acolyte Lv19, cleared to 3-1), game tables emptied, Auth kept, snapshot rebuilt on 01876ded; read-only login reaches onboarding with 0 commands and 0 browser errors"
+    }
+  ],
+  "economy_note": "Refine step prices unchanged, so expected 0->+10 cost x24 is ~2.14x; economy checkpoint now records the expected cost (4212 min at chapter 6) and the acceptable range widened 3600->4800 minutes as a D-057 consequence for TASK-041 to tune.",
+  "limitations": [
+    "Numbers (refine chances/pity, milestone bonuses, points/level) are assistant baselines from D-057, not measured balance.",
+    "Chapter 9+ (50 stages) is documented as future layout only.",
+    "test-story-supabase.ts Story SQL boundary suite was not rerun (shell focus); API/RLS integration suite passed.",
+    "readiness.py rewrites evidence/task-014-review.json on every run; it was rerun after generalising task/AC counts and passes."
+  ],
+  "source_sha256": {
+    "plan/generators/stages.py": "3470a618b1952225b93869b00815618c8ed554cf6271f4ea6666111968af22ec",
+    "plan/generators/stages-spec.json": "481ed0ba90c440735c3d463ba8e944aa154897d02fa26e82cbebf8363361c22d",
+    "plan/generators/status_points.py": "dde63102df7b9d5eaa45f3e37cb82e7a81033ad5b3773e9735e3046440d81a9e",
+    "plan/data/stages.json": "8365adff17ad645227f458db87f10aff950ad0a10a8a4e3e846b85a55af75b83",
+    "plan/data/progression.json": "f067a5fc37bc3332c56cf6e88b9b90df48454befb731f8cb9eba63baa9fcf28f",
+    "plan/data/combat-rules.json": "a24fce13fa08faf72b4a7317cb58d03eb8279861f78a674d84ec88bc065f6e07",
+    "plan/data/slot-progress.json": "d1f23febc0cc12c2413a1c300123e719a10c1e53c8bb1fe8d60bca4a7f04fde4",
+    "plan/data/economy.json": "5ee4bf9590e6a8a14199f75388afe3cd1949cf367a9abeff62176b763bc19f3b",
+    "plan/data/combat-cases.json": "7aca955d623c2352e4224a5344f4d3ef9b6958a27fa2c72d33fd0e8ccea889e4",
+    "plan/data/schemas/account-state.json": "b6d57f6b3bba25cd553f9898c04b8d46c9b66221def46803a009207ee1ba2d29",
+    "plan/data/simulation-initial-case.json": "50c246994ad9f2b2192dd8f16a1a405604efed42b440f8a38433db3ab8fc1e68",
+    "plan/data/account-initial-case.json": "6a68fda82f7274fed04c929bd573f2f3e25dd2fcc2b711346881db0ad28fc682",
+    "plan/data/release-content-manifest.json": "a3c403644c274b951fa5f8cea61e9388a2df9531d79b01ee1c6de70d50aa2692",
+    "plan/checks/levels.py": "fb7a9f49f9a1f7be03c565fb5047fa95a2464c16661850463c96f150164cff1b",
+    "plan/checks/progression.py": "38f9d26bdb2028ab1b707d1b90135a8c1013828ac02f10d4b96eae4e468779da",
+    "plan/checks/combat.py": "38f4288fa0e035a1b57e80ab71d6a1eec2dda44f5067ebca2ed4128b3880d7b8",
+    "plan/checks/classes.py": "e4944a169727de1e6b3ed0a64811df2b7c65a968a70848d774f037640225978c",
+    "plan/checks/architecture.py": "c7f44899cbdf6457c7f393e307df6374b5f648c42099a4761787078f056e0a73",
+    "plan/checks/readiness.py": "c6ec49e7eb4b44a276e9eb2c86ebe83cdaf93c8098dd224bb27cdb5169578dfc",
+    "src/domain/math/index.ts": "992f336a042e16600cd6c10e77441276336c46a0a3ba6198d35d9b301b5b11d3",
+    "src/domain/progression/slots.ts": "59f8cff123389e7cf1b66460cbb52997f352a8924111d1f9355a448afff8b5d5",
+    "src/domain/account/commands.ts": "d13442646db6cae75bedb593487dd7f2a706cd7dd529a950cc1638cd1260f973",
+    "src/domain/progression/initialize.ts": "f17b1715c5f37f66ab7e3413bdd4d655b2d80aaf0ed0b86f83cccb9c15d195d7",
+    "src/client/slots.ts": "c1dc0e9c1bdf2605432b0c375acf8f85438fb76cb73134e0286c9a91e3b1cade",
+    "src/client/roster.ts": "a168e185f2b428f16f27f7a573a981b5c761412170f791e4e029780a01d1c834",
+    "src/ui/game/buddy.tsx": "99eb847e72960e1d8703f046513cbfe4fe8cdae30cfc706faee22ef78dd60605",
+    "src/ui/game/stats.tsx": "a4f03aab24fd954f2a8a7777222c2bf1294a2559259f79b1ad2274727eb792e3",
+    "scripts/play_local.py": "2e9ed92524bf34b798d6ce0afe1730ececf72480f8c1561d95a7cfe466f34822",
+    "tests/game/slot-progression.test.ts": "2e6feb641a205c26076cbdf71f9a9829976753eebb9a8322b1dd9483c59ebcf8",
+    "tests/game/rules-d057.test.ts": "540baca1db1ecdef252ae6e652cf10168ab62a19b700e4f86d0483e414faf553"
+  },
+  "credentials_logged": false
+}

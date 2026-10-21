@@ -1,0 +1,889 @@
+{
+  "task_id": "TASK-007",
+  "reviewer": "Codex self-review",
+  "review_round": 1,
+  "review_date": "2026-10-19",
+  "scope": "M0 schemas/all skill levels/upgrade budgets/unbuffed queue estimates/local asset metadata; not battle simulation",
+  "input_sha256": {
+    "plan/data/skills/thief.json": "6bb46fba568a520f74edd58217b229061b6ab517e3697a45e70fde108c7f07e0",
+    "plan/data/presentations/thief.json": "8b6e19a9bd18fc23651a626e4b62cc6db1ff9e604b127a8ce0bcc3e52d2fccba",
+    "plan/data/class-status-effects.json": "b7c72874eb47e2a2fc0bd917fb85c36161c05923cd1c96af2f26266df56bb831",
+    "plan/data/combat-rules.json": "a24fce13fa08faf72b4a7317cb58d03eb8279861f78a674d84ec88bc065f6e07",
+    "plan/checks/classes.py": "d53a26a59ecc801d4dd152df161c3639c738cd174c5930b71cbe31b1990b397a"
+  },
+  "checks": [
+    {
+      "case_id": "thief_envenom",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 2250,
+          "skill_manual": 450
+        }
+      }
+    },
+    {
+      "case_id": "thief_quick_step",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 2250,
+          "skill_manual": 450
+        }
+      }
+    },
+    {
+      "case_id": "thief_sand_attack",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 2250,
+          "skill_manual": 450
+        }
+      }
+    },
+    {
+      "case_id": "thief_backstab",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 2250,
+          "skill_manual": 450
+        }
+      }
+    },
+    {
+      "case_id": "thief_double_attack",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 2250,
+          "skill_manual": 450
+        }
+      }
+    },
+    {
+      "case_id": "assassin_sonic_blow",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "assassin_enchant_poison",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "assassin_venom_dust",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "assassin_detonate",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "assassin_grimtooth",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "assassin_katar_mastery",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "assassin_poison_edge",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "rogue_strip_armor",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "rogue_strip_weapon",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "rogue_expose",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "rogue_intimidate",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "rogue_raid",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "rogue_dodge",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "rogue_dirty_tricks",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "rogue_copy_swordsman_bash",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "rogue_copy_acolyte_heal",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "rogue_copy_archer_double_strafe",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "rogue_copy_mage_fire_bolt",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "rogue_copy_merchant_cart_revolution",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "two_builds_assassin",
+      "acceptance": [
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": [
+        "assassin_critical",
+        "assassin_venom"
+      ]
+    },
+    {
+      "case_id": "two_builds_rogue",
+      "acceptance": [
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": [
+        "rogue_stripper",
+        "rogue_support_copy"
+      ]
+    },
+    {
+      "case_id": "assassin_critical",
+      "acceptance": [
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "spent_status_points": 272,
+        "unspent": 404,
+        "upgrade_budget": {
+          "gold": 24750,
+          "skill_manual": 4950
+        },
+        "unbuffed_cycle_ms": 8464,
+        "warning": "analytical schedule only; SP/sphere stalls/procs wait for engine"
+      }
+    },
+    {
+      "case_id": "assassin_venom",
+      "acceptance": [
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "spent_status_points": 292,
+        "unspent": 384,
+        "upgrade_budget": {
+          "gold": 27000,
+          "skill_manual": 5400
+        },
+        "unbuffed_cycle_ms": 8038,
+        "warning": "analytical schedule only; SP/sphere stalls/procs wait for engine"
+      }
+    },
+    {
+      "case_id": "rogue_stripper",
+      "acceptance": [
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "spent_status_points": 298,
+        "unspent": 378,
+        "upgrade_budget": {
+          "gold": 29250,
+          "skill_manual": 5850
+        },
+        "unbuffed_cycle_ms": 8115,
+        "warning": "analytical schedule only; SP/sphere stalls/procs wait for engine"
+      }
+    },
+    {
+      "case_id": "rogue_support_copy",
+      "acceptance": [
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "spent_status_points": 282,
+        "unspent": 394,
+        "upgrade_budget": {
+          "gold": 29250,
+          "skill_manual": 5850
+        },
+        "unbuffed_cycle_ms": 8023,
+        "warning": "analytical schedule only; SP/sphere stalls/procs wait for engine"
+      }
+    },
+    {
+      "case_id": "presentation_thief_envenom",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.6fafca6c8ed02fba",
+        "vfx_recipe": 52,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_thief_quick_step",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.c93c25b57696addc",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_thief_sand_attack",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.9d5d6c0a268995a0",
+        "vfx_recipe": 5,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_thief_backstab",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.69dfdf3b847c82db",
+        "vfx_recipe": 5,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_thief_double_attack",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.ae61e307116ab4b5",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_assassin_sonic_blow",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.1872788ad94e9f74",
+        "vfx_recipe": 5,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_assassin_enchant_poison",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.f3ccb6123c79f15f",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_assassin_venom_dust",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.d27819a55490bcaa",
+        "vfx_recipe": 5,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_assassin_detonate",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.44321de5ed5c916f",
+        "vfx_recipe": 5,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_assassin_grimtooth",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.8351c0fd35736659",
+        "vfx_recipe": 5,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_assassin_katar_mastery",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.ca2c61611a6e49b1",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_assassin_poison_edge",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.f3ccb6123c79f15f",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_rogue_strip_armor",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.d81d4df8c24feb9e",
+        "vfx_recipe": 5,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_rogue_strip_weapon",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.0d06675b3fa0e35d",
+        "vfx_recipe": 5,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_rogue_expose",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.589d6fdf80c6a777",
+        "vfx_recipe": 5,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_rogue_intimidate",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.d64c30956e1b516a",
+        "vfx_recipe": 5,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_rogue_raid",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.589d6fdf80c6a777",
+        "vfx_recipe": 5,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_rogue_dodge",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.6defe319188d7e9d",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_rogue_dirty_tricks",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.d81d4df8c24feb9e",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_rogue_copy_swordsman_bash",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.ea72634c4122b21e",
+        "vfx_recipe": 5,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_rogue_copy_acolyte_heal",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.52575fac5ecd0561",
+        "vfx_recipe": 28,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_rogue_copy_archer_double_strafe",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.95d0a77bf2b338b7",
+        "vfx_recipe": 46,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_rogue_copy_mage_fire_bolt",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.133883e2ee5579dc",
+        "vfx_recipe": 19,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_rogue_copy_merchant_cart_revolution",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.4151429ccb85ce94",
+        "vfx_recipe": 5,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "starter_two_skills",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": [
+        "thief_envenom",
+        "thief_quick_step"
+      ]
+    },
+    {
+      "case_id": "whitelist_rogue_copy_swordsman_bash",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "source": "swordsman_bash",
+        "sp": 15,
+        "one_slot": true
+      }
+    },
+    {
+      "case_id": "whitelist_rogue_copy_acolyte_heal",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "source": "acolyte_heal",
+        "sp": 23,
+        "one_slot": true
+      }
+    },
+    {
+      "case_id": "whitelist_rogue_copy_archer_double_strafe",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "source": "archer_double_strafe",
+        "sp": 20,
+        "one_slot": true
+      }
+    },
+    {
+      "case_id": "whitelist_rogue_copy_mage_fire_bolt",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "source": "mage_fire_bolt",
+        "sp": 23,
+        "one_slot": true
+      }
+    },
+    {
+      "case_id": "whitelist_rogue_copy_merchant_cart_revolution",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "source": "merchant_cart_revolution",
+        "sp": 30,
+        "one_slot": true
+      }
+    }
+  ],
+  "passed": true,
+  "skill_count": 24,
+  "build_count": 4,
+  "manual_review": {
+    "queue": "No per-slot hold conditions; start costs and snapshot follow baseline15/16. Four distinct active skills; passive triggers are not extra skill casts.",
+    "class_identity": "Build role labels and effects distinguish damage/support/control/guard; actual dominance waits for matched-seed runtime analysis.",
+    "assets": "Icon sidecars/payloads and selected prepared recipes resolve locally; visual adaptations explicitly labeled.",
+    "limits": "These are release selections, not every skill from the original RO client; no Hi-class prerequisite."
+  }
+}

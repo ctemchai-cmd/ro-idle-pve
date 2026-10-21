@@ -1,0 +1,363 @@
+{
+  "task_id": "TASK-020",
+  "date": "2026-10-20",
+  "passed": true,
+  "checks": [
+    {
+      "case_id": "portrait_first_working_panels_focus_edit_and_layout",
+      "passed": true,
+      "result": {
+        "sizes": [
+          {
+            "width": 360,
+            "height": 640,
+            "app": {
+              "x": 0,
+              "y": 0,
+              "width": 360,
+              "height": 640,
+              "top": 0,
+              "right": 360,
+              "bottom": 640,
+              "left": 0
+            },
+            "nav": {
+              "x": 0,
+              "y": 584,
+              "width": 360,
+              "height": 56,
+              "top": 584,
+              "right": 360,
+              "bottom": 640,
+              "left": 0
+            },
+            "arena": {
+              "x": 0,
+              "y": 48,
+              "width": 360,
+              "height": 350,
+              "top": 48,
+              "right": 360,
+              "bottom": 398,
+              "left": 0
+            },
+            "overflow": false,
+            "vertical": false
+          },
+          {
+            "width": 390,
+            "height": 844,
+            "app": {
+              "x": 0,
+              "y": 0,
+              "width": 390,
+              "height": 844,
+              "top": 0,
+              "right": 390,
+              "bottom": 844,
+              "left": 0
+            },
+            "nav": {
+              "x": 0,
+              "y": 782,
+              "width": 390,
+              "height": 62,
+              "top": 782,
+              "right": 390,
+              "bottom": 844,
+              "left": 0
+            },
+            "arena": {
+              "x": 0,
+              "y": 52,
+              "width": 390,
+              "height": 528,
+              "top": 52,
+              "right": 390,
+              "bottom": 580,
+              "left": 0
+            },
+            "overflow": false,
+            "vertical": false
+          },
+          {
+            "width": 430,
+            "height": 932,
+            "app": {
+              "x": 0,
+              "y": 0,
+              "width": 430,
+              "height": 932,
+              "top": 0,
+              "right": 430,
+              "bottom": 932,
+              "left": 0
+            },
+            "nav": {
+              "x": 0,
+              "y": 870,
+              "width": 430,
+              "height": 62,
+              "top": 870,
+              "right": 430,
+              "bottom": 932,
+              "left": 0
+            },
+            "arena": {
+              "x": 0,
+              "y": 52,
+              "width": 430,
+              "height": 616,
+              "top": 52,
+              "right": 430,
+              "bottom": 668,
+              "left": 0
+            },
+            "overflow": false,
+            "vertical": false
+          },
+          {
+            "width": 1280,
+            "height": 900,
+            "app": {
+              "x": 400,
+              "y": 0,
+              "width": 480,
+              "height": 900,
+              "top": 0,
+              "right": 880,
+              "bottom": 900,
+              "left": 400
+            },
+            "nav": {
+              "x": 401,
+              "y": 838,
+              "width": 478,
+              "height": 62,
+              "top": 838,
+              "right": 879,
+              "bottom": 900,
+              "left": 401
+            },
+            "arena": {
+              "x": 401,
+              "y": 52,
+              "width": 478,
+              "height": 584,
+              "top": 52,
+              "right": 879,
+              "bottom": 636,
+              "left": 401
+            },
+            "overflow": false,
+            "vertical": false
+          }
+        ],
+        "focus_switch": true,
+        "actual_rotation_swap": true,
+        "escape_close": true,
+        "tab_focus_trap": true,
+        "audio_toggle": true,
+        "warded_telegraph": true,
+        "initial_timeline_hidden": true
+      }
+    },
+    {
+      "case_id": "timeline_real_frame_motion_pause_and_solo_boss",
+      "passed": true,
+      "result": {
+        "frames": 84,
+        "moved": 84,
+        "moving_fraction": 1,
+        "p95_frame_ms": 16.700000000000728,
+        "backwards": 0,
+        "rows": 5,
+        "pause": true
+      }
+    },
+    {
+      "case_id": "walk_all_native_frames_heads_weapons_both_directions",
+      "passed": true,
+      "result": {
+        "presets": 36,
+        "frames": 576,
+        "mirror_pairs": 288,
+        "sources": [
+          "1-male",
+          "1-female",
+          "4-male",
+          "4-female",
+          "3-male",
+          "3-female",
+          "2-male",
+          "2-female",
+          "6-male",
+          "6-female",
+          "5-male",
+          "5-female",
+          "7-male",
+          "7-female",
+          "14-male",
+          "14-female",
+          "8-male",
+          "8-female",
+          "15-male",
+          "15-female",
+          "11-male",
+          "11-female",
+          "19-male",
+          "20-female",
+          "9-male",
+          "9-female",
+          "16-male",
+          "16-female",
+          "12-male",
+          "12-female",
+          "17-male",
+          "17-female",
+          "10-male",
+          "10-female",
+          "18-male",
+          "18-female"
+        ],
+        "scope": "All retained native walk frames of36 runtime presets, whole-rig exact flip. Automated structural/pixel checks; not exhaustive manual cosmetic review."
+      }
+    },
+    {
+      "case_id": "actual_range_projectiles_green_heal_and_bitmap_gallery",
+      "passed": true,
+      "result": {
+        "walk_sample_frames": 57,
+        "walk_moving_frames": 57,
+        "walk_max_step_world_units": 1.999999994668482,
+        "attacks": 32,
+        "projectile_frames": 147,
+        "effective_heal_events": 1,
+        "focused_damage_frames": 189,
+        "max_range_excess": 0,
+        "first_attack": {
+          "at": 1500,
+          "actor": "enemy_front",
+          "distance": 64.0000004177395,
+          "range": 80
+        },
+        "green_heal_pixels": 1834,
+        "heal_at_ms": 3600
+      }
+    },
+    {
+      "case_id": "spatial_engine_render30_60_off_checkpoint_events_metrics_parity",
+      "passed": true,
+      "result": {
+        "comparisons": [
+          {
+            "encounter": "field",
+            "render_fps": 30,
+            "frames": 466,
+            "end_ms": 17500,
+            "rng_draws": 165,
+            "exact_checkpoint_events_metrics": true
+          },
+          {
+            "encounter": "field",
+            "render_fps": 60,
+            "frames": 930,
+            "end_ms": 17500,
+            "rng_draws": 165,
+            "exact_checkpoint_events_metrics": true
+          },
+          {
+            "encounter": "field",
+            "render_fps": 0,
+            "frames": 0,
+            "end_ms": 17500,
+            "rng_draws": 165,
+            "exact_checkpoint_events_metrics": true
+          },
+          {
+            "encounter": "boss",
+            "render_fps": 30,
+            "frames": 572,
+            "end_ms": 20999,
+            "rng_draws": 171,
+            "exact_checkpoint_events_metrics": true
+          },
+          {
+            "encounter": "boss",
+            "render_fps": 60,
+            "frames": 1139,
+            "end_ms": 20999,
+            "rng_draws": 171,
+            "exact_checkpoint_events_metrics": true
+          },
+          {
+            "encounter": "boss",
+            "render_fps": 0,
+            "frames": 0,
+            "end_ms": 20999,
+            "rng_draws": 171,
+            "exact_checkpoint_events_metrics": true
+          },
+          {
+            "encounter": "storm",
+            "render_fps": 30,
+            "frames": 647,
+            "end_ms": 23499,
+            "rng_draws": 201,
+            "exact_checkpoint_events_metrics": true
+          },
+          {
+            "encounter": "storm",
+            "render_fps": 60,
+            "frames": 1289,
+            "end_ms": 23499,
+            "rng_draws": 201,
+            "exact_checkpoint_events_metrics": true
+          },
+          {
+            "encounter": "storm",
+            "render_fps": 0,
+            "frames": 0,
+            "end_ms": 23499,
+            "rng_draws": 201,
+            "exact_checkpoint_events_metrics": true
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "all_local_media_decode_no_external_or_browser_errors",
+      "passed": true,
+      "result": {
+        "images": 216,
+        "audio": 34,
+        "font": true,
+        "errors": [],
+        "external": []
+      }
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "input_sha256": {
+    "src/domain/combat/spatial.ts": "903aff490aa77470e0eb618968867a799720c37f57168f8b47b05c8e4d88c2ce",
+    "src/domain/combat/engine.ts": "b231970772f6d76d335dc3633fe42bbf11b4215a61e06af20856566831f026a1",
+    "src/domain/combat/checkpoint.ts": "f58de94bb2a3e630931e430a1dbfbb45d9c25ba4a16988352679801fff42da08",
+    "src/client/demo.ts": "3e9d127b0b2b280d7942eed1462b416c79567f4228253a033a610b43b9d74a82",
+    "src/contracts/presentation.ts": "d239b6645fb02297f4c6c466f455f90a5a7ce5af114c0c878e6ac012f5658d52",
+    "src/renderer/battle.ts": "5d05d175785ef1e0393d56a92f1e42e794d622bb2fdf686b1139af2d39db6afd",
+    "src/renderer/native.mjs": "7cf09a678ab4b3408160e608be73af31ebafcf0673f0e38e885274f2f487d630",
+    "src/renderer/actor-animation.ts": "5d09f2d86bc9e66178d7bdf2caad09874790a006ec604528d7cfafb90daba003",
+    "src/renderer/damage-numbers.ts": "30e3bddadec4421fa2f170127fb1ededf2dba4d12e6b64f63da74b69c00b739a",
+    "src/ui/battle-app.tsx": "23ac2e7c4ef358900f13178537520d5598c413d665cc37a1a763b78cbc5e82b8",
+    "src/ui/adventure.css": "5d9ffa5dae10a22e21bc72b8d7e424456d2131c03fa33b5e3106da6b09e33b06",
+    "scripts/test_mobile_spatial.cjs": "320c7d716cfca6fe3b9f14370e5199592868a3625594a2ab5571fecb1a80711f",
+    "src/generated/runtime-manifest.json": "a570e2bb9cef659eb4e4e17d85ebbca8b7dac182c494cf04a096b41e9f0f9f64",
+    "runtime/ro/manifest.json": "32d6b65a65409411c8da3b3fdc477a34848b66a574553842c0f282fc37cc0d6f"
+  },
+  "limitations": [
+    "Desktop Chrome mobile viewport emulation; not physical iOS/Android/Safari",
+    "Movement open arena without obstacles/navmesh; no skill range gating",
+    "Portrait UI for combat sandbox, not complete progression UI"
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "content_version": "daily-v1",
+  "unlocks_after": "1-10",
+  "timezone": "Asia/Bangkok",
+  "reset_local_time": "00:00",
+  "bosses": [
+    {
+      "id": "treasury",
+      "enemy_definition_id": "eddga",
+      "attempts_per_day": 3,
+      "time_limit_ms": 60000,
+      "first_phase": 1,
+      "phase_hp": {
+        "base": 5000,
+        "per_phase_after_first": 1500,
+        "per_unlocked_chapter_after_two_multiplier": 0.2
+      },
+      "phase_attack": {
+        "base": 30,
+        "per_phase_after_first": 5
+      },
+      "phase_defense": {
+        "base": 40,
+        "per_phase_after_first": 10
+      },
+      "active_slots": [
+        "enemy_bite",
+        "enemy_quake",
+        null,
+        null
+      ],
+      "reward_per_chest_base": {
+        "gold": 1000
+      },
+      "reward_phase_multiplier": "1+0.2*(phase-1), floor each currency",
+      "next_phase": "spawn immediately with increased full HP; keep battle clock/party state",
+      "counts_as_ordinary_terminal_enemy": false,
+      "checkpoint_fields": [
+        "phase",
+        "current_hp",
+        "rewarded_phases",
+        "attempts_used",
+        "day_rate_snapshot"
+      ]
+    },
+    {
+      "id": "forge",
+      "enemy_definition_id": "golem",
+      "attempts_per_day": 3,
+      "time_limit_ms": 60000,
+      "first_phase": 1,
+      "phase_hp": {
+        "base": 5000,
+        "per_phase_after_first": 1500,
+        "per_unlocked_chapter_after_two_multiplier": 0.2
+      },
+      "phase_attack": {
+        "base": 30,
+        "per_phase_after_first": 5
+      },
+      "phase_defense": {
+        "base": 40,
+        "per_phase_after_first": 10
+      },
+      "active_slots": [
+        "enemy_bite",
+        "enemy_quake",
+        null,
+        null
+      ],
+      "reward_per_chest_base": {
+        "refine_ore": 6,
+        "enchant_dust": 2
+      },
+      "reward_phase_multiplier": "1+0.2*(phase-1), floor each currency",
+      "next_phase": "spawn immediately with increased full HP; keep battle clock/party state",
+      "counts_as_ordinary_terminal_enemy": false,
+      "checkpoint_fields": [
+        "phase",
+        "current_hp",
+        "rewarded_phases",
+        "attempts_used",
+        "day_rate_snapshot"
+      ]
+    },
+    {
+      "id": "essence",
+      "enemy_definition_id": "osiris",
+      "attempts_per_day": 3,
+      "time_limit_ms": 60000,
+      "first_phase": 1,
+      "phase_hp": {
+        "base": 5000,
+        "per_phase_after_first": 1500,
+        "per_unlocked_chapter_after_two_multiplier": 0.2
+      },
+      "phase_attack": {
+        "base": 30,
+        "per_phase_after_first": 5
+      },
+      "phase_defense": {
+        "base": 40,
+        "per_phase_after_first": 10
+      },
+      "active_slots": [
+        "enemy_bite",
+        "enemy_quake",
+        null,
+        null
+      ],
+      "reward_per_chest_base": {
+        "breakthrough_essence": 2,
+        "hero_exp": 600
+      },
+      "reward_phase_multiplier": "1+0.2*(phase-1), floor each currency",
+      "next_phase": "spawn immediately with increased full HP; keep battle clock/party state",
+      "counts_as_ordinary_terminal_enemy": false,
+      "checkpoint_fields": [
+        "phase",
+        "current_hp",
+        "rewarded_phases",
+        "attempts_used",
+        "day_rate_snapshot"
+      ]
+    }
+  ],
+  "day_rate_snapshot": "highest cleared chapter, minimum2, at first entry per boss+server Bangkok date; no progress-based re-snapshot that day",
+  "attempt_reservation": "consume once in StartDaily receipt before combat, no refund on retreat/disconnect/loss",
+  "partial_damage": "retain committed phase/current HP between attempts; new party starts full HP/SP",
+  "reward_claim_key": "account_id+boss_id+ticket_day+phase, once",
+  "day_boundary": "battle belongs to start ticket_day; finish writes only that archived day and its pending chests, never new day attempt/HP; new day starts phase1 and0attempts, each has own IDs",
+  "no_offline_boss_damage": true,
+  "common_base": {
+    "str": 1,
+    "agi": 1,
+    "vit": 1,
+    "int": 1,
+    "dex": 1,
+    "luk": 1,
+    "attack_speed": 100,
+    "cast_speed": 100,
+    "max_sp": 100
+  },
+  "element": "neutral",
+  "position": "front_1",
+  "reward_pace_note": "D-069: chest bases sized to ~10–15 % of daily farm income of the matching resource at the D-069 rates"
+}

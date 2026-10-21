@@ -1,0 +1,89 @@
+
+> ro-idle-classic@0.1.0 check
+> npm run content:generate && npm run content:check && npm run boundaries && npm run typecheck && npm test
+
+
+> ro-idle-classic@0.1.0 content:generate
+> node --import tsx scripts/game/generate-content.ts
+
+{"content_hash":"8fd8b5c536556cbedbf5c9a21c2718a20422885b8c0ccbe722d03a2e3c673eb8","documents":34,"schemas":16,"asset_payloads":0}
+
+> ro-idle-classic@0.1.0 content:check
+> node --import tsx scripts/game/check-content.ts
+
+{"content_hash":"8fd8b5c536556cbedbf5c9a21c2718a20422885b8c0ccbe722d03a2e3c673eb8","skills_including_enemy":134,"items":78,"statuses":27,"immutable":true}
+
+> ro-idle-classic@0.1.0 boundaries
+> node --import tsx scripts/game/check-boundaries.ts
+
+{
+  "passed": true,
+  "issues": []
+}
+
+> ro-idle-classic@0.1.0 typecheck
+> tsc --noEmit
+
+
+> ro-idle-classic@0.1.0 test
+> node --import tsx --test tests/game/*.test.ts
+
+✔ same Fetch entry serves local health; unfinished cloud routes return503 (161.404416ms)
+✔ local repository exercises original receipt replay before revision and detects races (2.8955ms)
+✔ actual source respects ownership and dependency directions (502.538083ms)
+✔ boundary rejects DOM (0.780375ms)
+✔ boundary rejects clock alias (0.190167ms)
+✔ boundary rejects random alias (0.10775ms)
+✔ boundary rejects computed random (0.139958ms)
+✔ boundary rejects fetch (0.105917ms)
+✔ boundary rejects external side effect (0.072541ms)
+✔ boundary rejects transitive UI (0.116125ms)
+✔ boundary rejects UI DB (91.229667ms)
+✔ boundary rejects dynamic bypass (0.837ms)
+✔ boundary rejects locale order (40.193042ms)
+✔ pure combat can be imported in Node without browser/DB (296.643417ms)
+✔ all release catalogs load, are immutable, and expose gameplay counts (5514.764959ms)
+✔ reject reviewed input: unknown_stat (198.548458ms)
+✔ reject reviewed input: unknown_formula (6.001584ms)
+✔ reject reviewed input: unknown_formula_param (0.973667ms)
+✔ reject reviewed input: unknown_status (20.656416ms)
+✔ reject reviewed input: unknown_binding (0.927583ms)
+✔ reject reviewed input: outcome_other_target (0.450042ms)
+✔ reject reviewed input: outcome_forward_reference (0.50975ms)
+✔ reject reviewed input: outcome_different_binding (70.380583ms)
+✔ reject reviewed input: unknown_status_param (9.179833ms)
+✔ reject reviewed input: undefined_level_param (3.402666ms)
+✔ reject reviewed input: level_curve_length (1.457ms)
+✔ reject reviewed input: invalid_modifier_bucket (0.518583ms)
+✔ reject reviewed input: ratio_as_add_percent (0.832084ms)
+✔ reject reviewed input: buff_cap (2.246791ms)
+✔ reject reviewed input: chance_above_one (7.564459ms)
+✔ reject reviewed input: event_formula_without_event (0.618042ms)
+✔ reject reviewed input: status_param_in_skill (1.350459ms)
+✔ reject reviewed input: dead_heal_binding (7.685709ms)
+✔ reject reviewed input: unknown_json_field (0.575583ms)
+✔ reject reviewed input: effect_id_duplicate (0.494291ms)
+✔ reject reviewed input: source_sp_double_charge (0.567125ms)
+✔ reject reviewed input: patch_missing_anchor (3173.683583ms)
+✔ reject reviewed input: patch_set_conflict (2502.938959ms)
+✔ reject reviewed input: unknown_actor_reference (20.988ms)
+✔ reject reviewed input: modifier_feedback_predicate (34.057209ms)
+✔ reject reviewed input: unsafe_number (4.452125ms)
+✔ reject reviewed input: status_remote_schema (0.422375ms)
+✔ reject reviewed input: skill_as_reflect (4.534625ms)
+✔ reject reviewed input: battle_start_event_target (8.4805ms)
+✔ reject reviewed input: cast_event_ambiguous_target (0.718875ms)
+✔ reject reviewed input: live_source_after_death (0.71125ms)
+✔ reject NaN before schema or formula evaluation (5.069ms)
+✔ prototype properties cannot masquerade as target bindings (4.575875ms)
+✔ field errors identify originating definition/effect and JSON pointer (0.737166ms)
+✔ loader reports duplicate definitions and invalid document versions (8489.108875ms)
+✔ variants use stable IDs and preserve other actors/shared base (1356.702125ms)
+ℹ tests 51
+ℹ suites 0
+ℹ pass 51
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 27103.459333

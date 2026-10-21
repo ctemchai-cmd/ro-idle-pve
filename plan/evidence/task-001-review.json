@@ -1,0 +1,268 @@
+{
+  "task_id": "TASK-001",
+  "review_date": "2026-10-19",
+  "reviewer": "Codex self-review",
+  "method": "independent arithmetic and specification/fixture consistency; not game execution",
+  "command": "python3 plan/checks/progression.py --write-report",
+  "data_path": "plan/data/progression.json",
+  "data_sha256": "623fd84f9a31d7caa3e5af10cb5a9996c5709eecada1bf000e6bf1e0c27f992f",
+  "design_path": "plan/design/09-release-scope.md",
+  "content_version": "progression-baseline-v1",
+  "acceptance_results": {
+    "AC-01": "pass",
+    "AC-02": "pass",
+    "AC-03": "pass",
+    "AC-04": "pass"
+  },
+  "checks": [
+    {
+      "ac": "AC-01",
+      "case_id": "levels-1-through-70",
+      "passed": true,
+      "result": 70
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "no-level-71-or-breakthrough-70",
+      "passed": true,
+      "result": {
+        "cap": 70,
+        "gates": [
+          20,
+          40,
+          60
+        ]
+      }
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "transition-costs-positive-and-complete",
+      "passed": true,
+      "result": "69 transitions match the cost contract"
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "closed-form-cumulative-costs",
+      "passed": true,
+      "result": "all 70 cumulative rows checked using sum(L) and sum(L²)"
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "milestone-20",
+      "passed": true,
+      "result": {
+        "hero_exp": 21850,
+        "gold": 8740
+      }
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "milestone-40",
+      "passed": true,
+      "result": {
+        "hero_exp": 141700,
+        "gold": 56680
+      }
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "milestone-60",
+      "passed": true,
+      "result": {
+        "hero_exp": 439550,
+        "gold": 175820
+      }
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "milestone-70",
+      "passed": true,
+      "result": {
+        "hero_exp": 680225,
+        "gold": 272090
+      }
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "class2-independent-of-breakthrough",
+      "passed": true,
+      "result": "Lv.20 may promote while local cap remains 20"
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "future-cap-without-gate70",
+      "passed": true,
+      "result": "gate60 unlocks local80; release cap70 still applies"
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "resource-source-not-after-required-gate",
+      "passed": true,
+      "result": "essence available before any required promotion/breakthrough encounter"
+    },
+    {
+      "ac": "AC-01",
+      "case_id": "starter-wallet-four-level4",
+      "passed": true,
+      "result": {
+        "cost": {
+          "hero_exp": 1480,
+          "gold": 592
+        },
+        "remaining": {
+          "hero_exp": 120,
+          "gold": 408
+        }
+      }
+    },
+    {
+      "ac": "AC-02",
+      "case_id": "same-base-stats-no-auto-growth",
+      "passed": true,
+      "result": {
+        "str": 1,
+        "agi": 1,
+        "vit": 1,
+        "int": 1,
+        "dex": 1,
+        "luk": 1
+      }
+    },
+    {
+      "ac": "AC-02",
+      "case_id": "points-granted-not-auto-allocated",
+      "passed": true,
+      "result": "Lv1=0; Lv10=34; Lv20=91; Lv70=676 unallocated points"
+    },
+    {
+      "ac": "AC-02",
+      "case_id": "manual-stat-cost-boundaries",
+      "passed": true,
+      "result": {
+        "2": 1,
+        "11": 1,
+        "12": 2,
+        "21": 2,
+        "22": 3,
+        "91": 9,
+        "92": 10,
+        "99": 10
+      }
+    },
+    {
+      "ac": "AC-02",
+      "case_id": "single-stat-budget-boundary",
+      "passed": true,
+      "result": {
+        "stat": 99,
+        "spent": 530,
+        "budget": 676,
+        "note": "Lv70 can max one stat at the manual cap 99"
+      }
+    },
+    {
+      "ac": "AC-02",
+      "case_id": "manual-cap-does-not-cap-buffs",
+      "passed": true,
+      "result": "99 limits allocated primary value; buff magnitude remains uncapped"
+    },
+    {
+      "ac": "AC-03",
+      "case_id": "six-distinct-persistent-npcs",
+      "passed": true,
+      "result": [
+        "npc_swordsman",
+        "npc_acolyte",
+        "npc_archer",
+        "npc_mage",
+        "npc_thief",
+        "npc_merchant"
+      ]
+    },
+    {
+      "ac": "AC-03",
+      "case_id": "main-plus-three-unique-npc-roots",
+      "passed": true,
+      "result": "team positions contain references, not copies of progression"
+    },
+    {
+      "ac": "AC-03",
+      "case_id": "manual-off-team-upgrade",
+      "passed": true,
+      "result": "resource command names the selected character"
+    },
+    {
+      "ac": "AC-03",
+      "case_id": "npc-remove-and-return-preserves-investment",
+      "passed": true,
+      "result": {
+        "character": "npc_swordsman",
+        "spent_points": 90,
+        "unspent": 175,
+        "weapon_refine": 5
+      }
+    },
+    {
+      "ac": "AC-03",
+      "case_id": "replacement-not-inheriting-slot",
+      "passed": true,
+      "result": "replacement keeps its own progression"
+    },
+    {
+      "ac": "AC-04",
+      "case_id": "ledger-actual-paid-and-zero-grants",
+      "passed": true,
+      "result": "refunded progression is removed; a preset does not restore paid upgrades free"
+    },
+    {
+      "ac": "AC-04",
+      "case_id": "status-refund-character-owned",
+      "passed": true,
+      "result": "stat reset restores earned unallocated points to the same character, not the shared wallet"
+    },
+    {
+      "ac": "AC-04",
+      "case_id": "refund_cost_v1_to_v2_higher_price",
+      "passed": true,
+      "result": {
+        "wallet_plus_refundable_investment_conserved": true,
+        "old_and_new_payments_refunded_exactly": true,
+        "repeat_refund_credit_zero": true
+      }
+    },
+    {
+      "ac": "AC-04",
+      "case_id": "refund_cost_v1_to_v2_lower_price",
+      "passed": true,
+      "result": {
+        "wallet_plus_refundable_investment_conserved": true,
+        "old_and_new_payments_refunded_exactly": true,
+        "repeat_refund_credit_zero": true
+      }
+    },
+    {
+      "ac": "AC-04",
+      "case_id": "job-switch-keeps-level-and-root-rules",
+      "passed": true,
+      "result": "main may change root; NPC may change only branch; levels remain"
+    },
+    {
+      "ac": "AC-04",
+      "case_id": "inventory-full-whole-command-reject",
+      "passed": true,
+      "result": "no partial refund, item deletion or slot transfer"
+    },
+    {
+      "ac": "AC-04",
+      "case_id": "class2-level20-and-hi-class70",
+      "passed": true,
+      "result": "job promotion and breakthrough remain separate"
+    }
+  ],
+  "passed": true,
+  "limits": [
+    "income/pace and encounter balance await TASK-010/011/041",
+    "save transactions await TASK-013/022",
+    "no engine, browser or cloud tests performed"
+  ]
+}

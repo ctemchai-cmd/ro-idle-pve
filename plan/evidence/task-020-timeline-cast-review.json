@@ -1,0 +1,403 @@
+{
+  "task_id": "TASK-020",
+  "round": 10,
+  "date": "2026-10-20",
+  "reviewer": "Codex self-review",
+  "passed": true,
+  "scope": "Icon+time Timeline with per-actor horizontal rails and faint dashed vertical guides; explicit manually allocated demo builds reveal existing ASPD-based opening intervals; native beginspell audio on positive-duration cast_start with actor channel cancellation.",
+  "input_sha256": {
+    "src/ui/skill-timeline.tsx": "70b75e309a83e5fa584c41890c26ee4d9157b73e25b0ccc17904ddaf92fbb954",
+    "src/ui/timeline.css": "6a1ea8255c362e0c675866a29e18852d052518fa0fd095b410c01b5216c76fbf",
+    "src/ui/modern-theme.css": "297cb79b46f088622e5b7df5171436e19ab567e8a105ffae9146ad0d39bf731e",
+    "src/ui/adventure.css": "dd5e36b3374dc8427d0f33608f53bde9c3b6e0c1e6a10c16195f0f13406bd754",
+    "src/client/demo.ts": "e4631de3198fc3bf50314b59add3d848a605f542feec1fc5554172f18b9677a3",
+    "src/contracts/presentation.ts": "2c272a61ae1ae0da816e9dd3c024986260ba99c0c613801d0d5b406f93bcb241",
+    "src/domain/combat/engine.ts": "aaf499fd01843720f6cda8e659a71c09023ed21e00e15b4c7b01877d22166f9c",
+    "src/renderer/battle.ts": "98e437c0b9ce5a8a801de9a43e1663a81bbedf3047377ef3f7e8cae4b4716f1c",
+    "src/renderer/audio.ts": "cea677bb0e64606bba6ad241a319d7d1a233c26cde7722d7967f6414a5723bf0",
+    "src/renderer/pack.ts": "acd6a96a49cf158dfc13f4cee7b18d10b5bf747a27233cea1c9d453ef56890fe",
+    "assets/ro/prepared/game-pack.json": "7668e6de7c659fa8eab43f2f840a000e8fa0d7b65fee2527a3eb49c9b999c57f",
+    "assets/ro/library/effects/sound/ef_beginspell--082e3c4a333c.meta.json": "f83f0ed338a02c7071133b7e470105cd115296eb1723852e30437c3c5715cc67",
+    "runtime/ro/manifest.json": "d4b98f4e4c63ea89022af32fa79b72a3ba0667f7de20e06686ed1382af39f12c",
+    "src/generated/runtime-manifest.json": "79455bb0fef134fad56eaa066799942828d469f387a05cd82e3ad0aef692fd1c",
+    "scripts/build_preparation_manifest.py": "edaab2cea771b63c790c4b5613096b2bc395a602819d936173e9843fcbb53f0a",
+    "scripts/test_timeline_casting.cjs": "d8f9148c898dd9bf2f5517f7625bd8cf6d3134b4384e99365f0b855bf12978a5",
+    "tests/game/demo.test.ts": "c37dd4700cffe81ba875233e2cb5b78e5d7c36ad109119a69f7517445ca41608",
+    "tests/game/combat-presentation.test.ts": "09f4c2c9484b2c9f8289c39e66a38102441a33c26c344655e83243de4e4366cc",
+    "tests/game/timeline.test.ts": "226f2872916a8b87362ce7f1a6a755cb15fb864835ebdd73294f2b3c34a65943",
+    "tests/game/audio.test.ts": "39b4846a6e9f37d1335365eabad67436de804ff405d2df8e93a427aed978ef30"
+  },
+  "checks": [
+    {
+      "case_id": "native_rendering_and_scoped_Timeline_review",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "native_tests": 4,
+        "visual_scope": [
+          "390x844 Timeline",
+          "360x640 Timeline, scrollable sheet"
+        ],
+        "note": "No actor images, ACT data, rig or animation code changed. Native renderer tests rerun; historical multi-frame actor proof retained."
+      }
+    },
+    {
+      "case_id": "Timeline_rails_icons_and_authoritative_first_casts",
+      "acceptance": [
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "timings": [
+          {
+            "id": "main",
+            "aspd": 110,
+            "phase_ready_at": 2728,
+            "start_ms": 2728,
+            "label": "2.7s",
+            "title": "Bash · ช่อง 1 · เริ่ม 2.7s · ร่าย 0.0s · พัก 0.5s"
+          },
+          {
+            "id": "npc_acolyte",
+            "aspd": 101.25,
+            "phase_ready_at": 2963,
+            "start_ms": 2963,
+            "label": "3.0s",
+            "title": "Heal · ช่อง 1 · เริ่ม 3.0s · ร่าย 0.5s · พัก 0.6s"
+          },
+          {
+            "id": "npc_archer",
+            "aspd": 122.5,
+            "phase_ready_at": 2449,
+            "start_ms": 2449,
+            "label": "2.4s",
+            "title": "Double Strafe · ช่อง 1 · เริ่ม 2.4s · ร่าย 0.0s · พัก 0.5s"
+          },
+          {
+            "id": "npc_mage",
+            "aspd": 105,
+            "phase_ready_at": 2858,
+            "start_ms": 2858,
+            "label": "2.9s",
+            "title": "Fire Bolt · ช่อง 1 · เริ่ม 2.9s · ร่าย 0.6s · พัก 0.5s"
+          },
+          {
+            "id": "enemy_front",
+            "aspd": 100,
+            "phase_ready_at": 3000,
+            "start_ms": 3000,
+            "label": "3.0s",
+            "title": "Enemy Bite · ช่อง 1 · เริ่ม 3.0s · ร่าย 0.3s · พัก 0.7s"
+          }
+        ],
+        "geometry": {
+          "rows": [
+            {
+              "actor": "main",
+              "border": "0px",
+              "rail": "1px",
+              "rail_content": "\"\""
+            },
+            {
+              "actor": "npc_acolyte",
+              "border": "0px",
+              "rail": "1px",
+              "rail_content": "\"\""
+            },
+            {
+              "actor": "npc_archer",
+              "border": "0px",
+              "rail": "1px",
+              "rail_content": "\"\""
+            },
+            {
+              "actor": "npc_mage",
+              "border": "0px",
+              "rail": "1px",
+              "rail_content": "\"\""
+            },
+            {
+              "actor": "enemy_front",
+              "border": "0px",
+              "rail": "1px",
+              "rail_content": "\"\""
+            }
+          ],
+          "grid": {
+            "style": "dashed",
+            "opacity": "0.3"
+          },
+          "now": "dashed"
+        },
+        "sizes": [
+          {
+            "width": 390,
+            "height": 844,
+            "overflow": false
+          },
+          {
+            "width": 360,
+            "height": 640,
+            "overflow": false
+          },
+          {
+            "width": 1280,
+            "height": 900,
+            "overflow": false
+          }
+        ],
+        "zoom_and_details": true,
+        "pause_stable": true
+      }
+    },
+    {
+      "case_id": "shared_engine_replay_and_explicit_manual_allocations",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "typescript_tests": 182,
+        "timing_ms": {
+          "npc_archer": 2449,
+          "main": 2728,
+          "npc_mage": 2858,
+          "npc_acolyte": 2963,
+          "enemy_front": 3000
+        },
+        "manual_build_budget": 45,
+        "level_growth": "Same45point allocation atLv10 and20; no automatic primary/speed growth. Actual playable roster/stat allocation remains later tasks.",
+        "cast_fact": "cast_start carries resolved cast_duration_ms; audio adapter never recomputes cast speed.",
+        "coverage": [
+          "All demo forecasts equal actual cast/skip/completion/recovery events; projection does not change live state/history/RNG",
+          "Irregular UI/checkpoint and headless parity rerun in182test suite",
+          "Controlled unequal-ASPD long cast interrupted at1500ms: projection end/outcome equals actual event, initial duration2000ms, instant cast duration0",
+          "Actor audio channels stop active voices/cancel pending decodes without muting another actor"
+        ],
+        "note": "No change to skillIntervalMs or initial queue rules: the earlier demo gave every party member AGI/DEX1. Nine browser render-parity runs remain historical round6, not rerun here."
+      }
+    },
+    {
+      "case_id": "native_cast_audio_pack_and_build",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "signal": {
+          "peak": 0.338716983795166,
+          "nonzero_frames": 34,
+          "pack_hash": "91e45df5356ce566448b08111b32b8a933f8a1f057faae475526f599599b1a48",
+          "starts": [
+            {
+              "actor": "npc_archer",
+              "at": 2449,
+              "duration": 0
+            },
+            {
+              "actor": "main",
+              "at": 2728,
+              "duration": 0
+            },
+            {
+              "actor": "npc_mage",
+              "at": 2858,
+              "duration": 604
+            },
+            {
+              "actor": "npc_acolyte",
+              "at": 2963,
+              "duration": 534
+            },
+            {
+              "actor": "enemy_front",
+              "at": 3000,
+              "duration": 350
+            }
+          ],
+          "resolves": [
+            {
+              "actor": "npc_archer",
+              "at": 2449,
+              "type": "cast_resolve"
+            },
+            {
+              "actor": "main",
+              "at": 2728,
+              "type": "cast_resolve"
+            },
+            {
+              "actor": "enemy_front",
+              "at": 3350,
+              "type": "cast_resolve"
+            },
+            {
+              "actor": "npc_mage",
+              "at": 3462,
+              "type": "cast_resolve"
+            },
+            {
+              "actor": "npc_acolyte",
+              "at": 3497,
+              "type": "cast_resolve"
+            }
+          ],
+          "sounds": [
+            {
+              "ref": "effects.082e3c4a333c70e1",
+              "channel": "cast:npc_mage",
+              "game_ms": 2904
+            },
+            {
+              "ref": "effects.082e3c4a333c70e1",
+              "channel": "cast:npc_acolyte",
+              "game_ms": 3004
+            },
+            {
+              "ref": "effects.082e3c4a333c70e1",
+              "channel": "cast:enemy_front",
+              "game_ms": 3004
+            }
+          ],
+          "stops": [
+            {
+              "channel": "cast:npc_archer",
+              "game_ms": 2454
+            },
+            {
+              "channel": "cast:main",
+              "game_ms": 2754
+            },
+            {
+              "channel": "cast:npc_mage",
+              "game_ms": 2904
+            },
+            {
+              "channel": "cast:npc_acolyte",
+              "game_ms": 3004
+            },
+            {
+              "channel": "cast:enemy_front",
+              "game_ms": 3004
+            },
+            {
+              "channel": "cast:enemy_front",
+              "game_ms": 3354
+            },
+            {
+              "channel": "cast:npc_mage",
+              "game_ms": 3504
+            },
+            {
+              "channel": "cast:npc_acolyte",
+              "game_ms": 3504
+            }
+          ],
+          "state": {
+            "enabled": true,
+            "music_url": "/ro/91e45df5356ce566448b08111b32b8a933f8a1f057faae475526f599599b1a48/prepared/music/12--644547aaeff0.mp3",
+            "music_playing": true,
+            "levels": {
+              "music": 0.12,
+              "effects": 0.2
+            },
+            "active_effects": 0
+          },
+          "scope": "Live UI events routed through native beginspell audio. Non-cast SFX suppressed only in this instrumented sample to isolate actual cast waveform; BGM plays on its separate media element. Objective signal/lifecycle, not subjective listening."
+        },
+        "media": {
+          "images": 216,
+          "audio": 35,
+          "font": true,
+          "pack_hash": "91e45df5356ce566448b08111b32b8a933f8a1f057faae475526f599599b1a48",
+          "assets": 252
+        },
+        "native_source": {
+          "id": "effects.082e3c4a333c70e1",
+          "source_path": "data\\wav\\effect\\ef_beginspell.wav",
+          "duration_seconds": 1.0956916099773242,
+          "mapping_basis": "Authored cast-start cue using native file; source filename/provenance retained, no claim of reverse-engineered Idle Adventure audio rules."
+        },
+        "asset_checks": {
+          "starter": 44,
+          "library": 60460,
+          "prepared": 6926,
+          "failed": [],
+          "known_unresolved_native_dependencies": 9
+        },
+        "python_tests": 29,
+        "build": "assets/content/boundaries/typecheck/Vite/output/secrets passed",
+        "runtime_pack": {
+          "assets": 252,
+          "files": 505,
+          "bytes": 22499924,
+          "hash": "91e45df5356ce566448b08111b32b8a933f8a1f057faae475526f599599b1a48"
+        },
+        "content_hash": "f8188f99224da07e0da0ebe04e18f41a7ea8171e6c404439d50f974e9fab298d",
+        "external_requests": [],
+        "browser_errors": []
+      }
+    }
+  ],
+  "commands": [
+    "python3 scripts/build_preparation_manifest.py",
+    "python3 scripts/build_runtime_assets.py",
+    "npm run check",
+    "node --test tests/renderer.test.mjs",
+    "python3 scripts/import_ro_assets.py --check",
+    "python3 scripts/build_ro_library.py --check",
+    "python3 scripts/prepare_ro_pack.py --check",
+    "python3 -m unittest discover -s tests -v",
+    "npm run build",
+    "node scripts/test_timeline_casting.cjs"
+  ],
+  "resolved_findings": [
+    "Demo party all usedAGI/DEX1, so equal first-cast times were correct for those identical stats. Added explicit45point sample allocations, with point-cost/timing/level-invariance checks; no visual time offsets or class growth.",
+    "Old demo tests assumed all first casts at3000ms and that a particular seed always interrupted. Replaced the fixed-time assumption with per-actor interval assertions; interruption coverage moved to a controlled unequal-speed fixture rather than depending on demo balance."
+  ],
+  "evidence": [
+    "task-020-timeline-cast-browser.json",
+    "task-020-timeline-cast-check.txt",
+    "task-020-timeline-cast-build.txt",
+    "task-020-timeline-cast-browser.txt",
+    "task-020-timeline-cast-native.txt",
+    "task-020-timeline-cast-python.txt",
+    "task-020-timeline-cast-starter.txt",
+    "task-020-timeline-cast-library.txt",
+    "task-020-timeline-cast-prepared.txt"
+  ],
+  "evidence_sha256": {
+    "task-020-timeline-cast-browser.json": "ba28f5d2dfa76096aa04bb8dfea6dc53e4f5500989f38e37f4634e619334c1cb",
+    "task-020-timeline-cast-check.txt": "13cd5c220fecd61771bb42f3b3931645e5b2cc80f4c0c88fcf5d705fb5342e10",
+    "task-020-timeline-cast-build.txt": "ddf657dc50cbd56553dd4d7cbb470fac598696c0ac98463bcbcb86967a26fada",
+    "task-020-timeline-cast-browser.txt": "02864d545913f1f64d9f6178d9a5a604d3b4038a22de39810a5faa9f5556ccab",
+    "task-020-timeline-cast-native.txt": "f1e01ad3ecadeb5f5dd42138a8351b68087e36f97efb0e8a92e1a2e3fbafc730",
+    "task-020-timeline-cast-python.txt": "b600c27b111266bdcc40268895df2e8a4e706093668728a1098e1ef0b701e279",
+    "task-020-timeline-cast-starter.txt": "e9b782678a370db2c2c0550f8bbac8affd3e59bab1681f2b60f8a181fde49ba6",
+    "task-020-timeline-cast-library.txt": "9d9ed75c136c5ed7559a186da3fd0613f99c70b19f766dfd1773ea9be91736ed",
+    "task-020-timeline-cast-prepared.txt": "f4d53e620bc69ca11efe290f42e57a7cf034c7f5c85142dc28385aa68c2705d1"
+  },
+  "screenshots": {
+    "docs/screenshots/timeline-rails-390.png": "f49f06c746ec2361c83862a6659a6651a5baa7687b5aeca0f40795b9eb4d2c5b",
+    "docs/screenshots/timeline-rails-360.png": "5ec07e609921ad99d56755d5388962290393829993ec0842283b912b11538628",
+    "docs/screenshots/timeline-rails-1280.png": "291cf2ad56ae678290efcd19268aa04b37ca6a73e52303b464a50fab9dadf8e3"
+  },
+  "visual_review": {
+    "method": "Directly opened390px/360px final screenshots for icon+time/rail/grid/label composition.360px sheet scrolls to lower rows.",
+    "files": [
+      "docs/screenshots/timeline-rails-390.png",
+      "docs/screenshots/timeline-rails-360.png"
+    ],
+    "audio": "Objective native playback waveform only; no subjective listening review."
+  },
+  "limitations": [
+    "Chrome viewport emulation, not physical devices/Safari.",
+    "Audio capture suppresses non-cast SFX only in the instrumented measurement to isolate cast waveform. BGM remains on its separate media element. Normal runtime retains all cues.",
+    "Native cue is one-shot; it stops on completion/interruption/death/terminal, and is skipped for instant casts. Pending decode cancellation is unit-tested; live browser sample exercises completion, not an actual interrupted cast.",
+    "Demo allocations are sample builds, not class defaults, saved player choices or measured final balance.",
+    "Current pack/content hashes changed for one existing native sound; no source media downloads.",
+    "Large bundle/performance work remains TASK-042; durable saves remain TASK-022; no hosted Supabase/Vercel release."
+  ]
+}

@@ -1,0 +1,430 @@
+{
+  "task_id": "TASK-020",
+  "round": 6,
+  "date": "2026-10-20",
+  "reviewer": "Codex self-review",
+  "passed": true,
+  "input_sha256": {
+    "src/domain/combat/spatial.ts": "903aff490aa77470e0eb618968867a799720c37f57168f8b47b05c8e4d88c2ce",
+    "src/domain/combat/engine.ts": "b231970772f6d76d335dc3633fe42bbf11b4215a61e06af20856566831f026a1",
+    "src/domain/combat/checkpoint.ts": "f58de94bb2a3e630931e430a1dbfbb45d9c25ba4a16988352679801fff42da08",
+    "src/client/demo.ts": "3e9d127b0b2b280d7942eed1462b416c79567f4228253a033a610b43b9d74a82",
+    "src/contracts/presentation.ts": "d239b6645fb02297f4c6c466f455f90a5a7ce5af114c0c878e6ac012f5658d52",
+    "src/renderer/battle.ts": "5d05d175785ef1e0393d56a92f1e42e794d622bb2fdf686b1139af2d39db6afd",
+    "src/renderer/native.mjs": "7cf09a678ab4b3408160e608be73af31ebafcf0673f0e38e885274f2f487d630",
+    "src/renderer/actor-animation.ts": "5d09f2d86bc9e66178d7bdf2caad09874790a006ec604528d7cfafb90daba003",
+    "src/renderer/damage-numbers.ts": "30e3bddadec4421fa2f170127fb1ededf2dba4d12e6b64f63da74b69c00b739a",
+    "src/ui/battle-app.tsx": "23ac2e7c4ef358900f13178537520d5598c413d665cc37a1a763b78cbc5e82b8",
+    "src/ui/adventure.css": "5d9ffa5dae10a22e21bc72b8d7e424456d2131c03fa33b5e3106da6b09e33b06",
+    "scripts/test_mobile_spatial.cjs": "320c7d716cfca6fe3b9f14370e5199592868a3625594a2ab5571fecb1a80711f",
+    "src/generated/runtime-manifest.json": "a570e2bb9cef659eb4e4e17d85ebbca8b7dac182c494cf04a096b41e9f0f9f64",
+    "runtime/ro/manifest.json": "32d6b65a65409411c8da3b3fdc477a34848b66a574553842c0f282fc37cc0d6f",
+    "src/domain/combat/model.ts": "8aa12d91faae89a02c1d2a39499a87256e9b5fd45f55d80c632498018abd7af1",
+    "src/domain/combat/scheduler.ts": "b18527c74f0bc97d2a230d82e868a791abdfca070206313590270a8d7d655d72",
+    "src/domain/combat/program.ts": "90fbb73ab42669cda0a3a9ae859ced6829306c38f729548a5a163f7827cd270f",
+    "src/domain/combat/status.ts": "de7a6d3d7a43c9ed6e87144ce0581cac8624a0e5c9207d645a67b42ac02acba8",
+    "src/simulation/index.ts": "93a1da2c2937f97b9335a5f9822fb026f7157e3c638584c3e68011ad3f798fd2",
+    "src/renderer/projectiles.ts": "e3d7303ee5fb527607d9e523ee3b41dda870eb504baf245b6ee0fdb52dd8cc5e",
+    "src/ui/skill-timeline.tsx": "bfc2fc885594bcb7e3961a0b670f8a5e333a100ecaf0cf75a3b36b52e916e819",
+    "src/ui/timeline.css": "b43dcd89b400e39135704c7df755b39f9a04783d714ece6bf074f00b884ac719",
+    "plan/data/schemas/battle-checkpoint.json": "0f542f6d29951a4880ef38c2ccb5f53222985b6353b97c3e7bec367942591868",
+    "plan/data/schemas/selector.json": "c0593a4f50b3baaa11c87ef229900d5c6ae93036cf7848ced1f31341501946bc",
+    "tests/game/spatial.test.ts": "775b968a642ff24ebd0f243b469e382f03f6abddb2fcd58a3722aa2d0d5a625c",
+    "tests/game/demo.test.ts": "8e939008039965da0518f3509d88e03c644a2fcbdf3004695fb027c8f2e20e6d",
+    "tests/game/timeline.test.ts": "70cf947d1163b417eb58152ff155ddf7465f5e15fd0e72445d7f44a9c2479c06",
+    "tests/game/animation.test.ts": "b4da817826252d2cee9400706c06987bed66601896697ea890dd4aab4135b886",
+    "tests/renderer.test.mjs": "d788b5a60de77e4c00b41d2a585906b8e48b3cd93918ed312f5a62551575755b",
+    "docs/BATTLE-DEMO.md": "a0c8b30c18d3acd90c5402a9747d83b06d187a2432499c242d89a9c3a063dbd3",
+    "plan/design/21-spatial-combat-and-mobile.md": "d6299b7943ef5b6c6bdbe437f103639f276c4beecd7dbd1558c4b3d58b41daec"
+  },
+  "checks": [
+    {
+      "case_id": "spatial_normal_attack_and_native_walk_heal",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "presets": 36,
+        "frames": 576,
+        "mirror_pairs": 288,
+        "sources": [
+          "1-male",
+          "1-female",
+          "4-male",
+          "4-female",
+          "3-male",
+          "3-female",
+          "2-male",
+          "2-female",
+          "6-male",
+          "6-female",
+          "5-male",
+          "5-female",
+          "7-male",
+          "7-female",
+          "14-male",
+          "14-female",
+          "8-male",
+          "8-female",
+          "15-male",
+          "15-female",
+          "11-male",
+          "11-female",
+          "19-male",
+          "20-female",
+          "9-male",
+          "9-female",
+          "16-male",
+          "16-female",
+          "12-male",
+          "12-female",
+          "17-male",
+          "17-female",
+          "10-male",
+          "10-female",
+          "18-male",
+          "18-female"
+        ],
+        "scope": "All retained native walk frames of36 runtime presets, whole-rig exact flip. Automated structural/pixel checks; not exhaustive manual cosmetic review."
+      },
+      "additional": {
+        "walk_sample_frames": 57,
+        "walk_moving_frames": 57,
+        "walk_max_step_world_units": 1.999999994668482,
+        "attacks": 32,
+        "projectile_frames": 147,
+        "effective_heal_events": 1,
+        "focused_damage_frames": 189,
+        "max_range_excess": 0,
+        "first_attack": {
+          "at": 1500,
+          "actor": "enemy_front",
+          "distance": 64.0000004177395,
+          "range": 80
+        },
+        "green_heal_pixels": 1834,
+        "heal_at_ms": 3600
+      }
+    },
+    {
+      "case_id": "portrait_ui_queue_dialogs_telegraph_timeline",
+      "acceptance": [
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "sizes": [
+          {
+            "width": 360,
+            "height": 640,
+            "app": {
+              "x": 0,
+              "y": 0,
+              "width": 360,
+              "height": 640,
+              "top": 0,
+              "right": 360,
+              "bottom": 640,
+              "left": 0
+            },
+            "nav": {
+              "x": 0,
+              "y": 584,
+              "width": 360,
+              "height": 56,
+              "top": 584,
+              "right": 360,
+              "bottom": 640,
+              "left": 0
+            },
+            "arena": {
+              "x": 0,
+              "y": 48,
+              "width": 360,
+              "height": 350,
+              "top": 48,
+              "right": 360,
+              "bottom": 398,
+              "left": 0
+            },
+            "overflow": false,
+            "vertical": false
+          },
+          {
+            "width": 390,
+            "height": 844,
+            "app": {
+              "x": 0,
+              "y": 0,
+              "width": 390,
+              "height": 844,
+              "top": 0,
+              "right": 390,
+              "bottom": 844,
+              "left": 0
+            },
+            "nav": {
+              "x": 0,
+              "y": 782,
+              "width": 390,
+              "height": 62,
+              "top": 782,
+              "right": 390,
+              "bottom": 844,
+              "left": 0
+            },
+            "arena": {
+              "x": 0,
+              "y": 52,
+              "width": 390,
+              "height": 528,
+              "top": 52,
+              "right": 390,
+              "bottom": 580,
+              "left": 0
+            },
+            "overflow": false,
+            "vertical": false
+          },
+          {
+            "width": 430,
+            "height": 932,
+            "app": {
+              "x": 0,
+              "y": 0,
+              "width": 430,
+              "height": 932,
+              "top": 0,
+              "right": 430,
+              "bottom": 932,
+              "left": 0
+            },
+            "nav": {
+              "x": 0,
+              "y": 870,
+              "width": 430,
+              "height": 62,
+              "top": 870,
+              "right": 430,
+              "bottom": 932,
+              "left": 0
+            },
+            "arena": {
+              "x": 0,
+              "y": 52,
+              "width": 430,
+              "height": 616,
+              "top": 52,
+              "right": 430,
+              "bottom": 668,
+              "left": 0
+            },
+            "overflow": false,
+            "vertical": false
+          },
+          {
+            "width": 1280,
+            "height": 900,
+            "app": {
+              "x": 400,
+              "y": 0,
+              "width": 480,
+              "height": 900,
+              "top": 0,
+              "right": 880,
+              "bottom": 900,
+              "left": 400
+            },
+            "nav": {
+              "x": 401,
+              "y": 838,
+              "width": 478,
+              "height": 62,
+              "top": 838,
+              "right": 879,
+              "bottom": 900,
+              "left": 401
+            },
+            "arena": {
+              "x": 401,
+              "y": 52,
+              "width": 478,
+              "height": 584,
+              "top": 52,
+              "right": 879,
+              "bottom": 636,
+              "left": 401
+            },
+            "overflow": false,
+            "vertical": false
+          }
+        ],
+        "focus_switch": true,
+        "actual_rotation_swap": true,
+        "escape_close": true,
+        "tab_focus_trap": true,
+        "audio_toggle": true,
+        "warded_telegraph": true,
+        "initial_timeline_hidden": true
+      },
+      "timeline": {
+        "frames": 84,
+        "moved": 84,
+        "moving_fraction": 1,
+        "p95_frame_ms": 16.700000000000728,
+        "backwards": 0,
+        "rows": 5,
+        "pause": true
+      }
+    },
+    {
+      "case_id": "shared_spatial_engine_simulation_checkpoint_render_parity",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "comparisons": [
+          {
+            "encounter": "field",
+            "render_fps": 30,
+            "frames": 466,
+            "end_ms": 17500,
+            "rng_draws": 165,
+            "exact_checkpoint_events_metrics": true
+          },
+          {
+            "encounter": "field",
+            "render_fps": 60,
+            "frames": 930,
+            "end_ms": 17500,
+            "rng_draws": 165,
+            "exact_checkpoint_events_metrics": true
+          },
+          {
+            "encounter": "field",
+            "render_fps": 0,
+            "frames": 0,
+            "end_ms": 17500,
+            "rng_draws": 165,
+            "exact_checkpoint_events_metrics": true
+          },
+          {
+            "encounter": "boss",
+            "render_fps": 30,
+            "frames": 572,
+            "end_ms": 20999,
+            "rng_draws": 171,
+            "exact_checkpoint_events_metrics": true
+          },
+          {
+            "encounter": "boss",
+            "render_fps": 60,
+            "frames": 1139,
+            "end_ms": 20999,
+            "rng_draws": 171,
+            "exact_checkpoint_events_metrics": true
+          },
+          {
+            "encounter": "boss",
+            "render_fps": 0,
+            "frames": 0,
+            "end_ms": 20999,
+            "rng_draws": 171,
+            "exact_checkpoint_events_metrics": true
+          },
+          {
+            "encounter": "storm",
+            "render_fps": 30,
+            "frames": 647,
+            "end_ms": 23499,
+            "rng_draws": 201,
+            "exact_checkpoint_events_metrics": true
+          },
+          {
+            "encounter": "storm",
+            "render_fps": 60,
+            "frames": 1289,
+            "end_ms": 23499,
+            "rng_draws": 201,
+            "exact_checkpoint_events_metrics": true
+          },
+          {
+            "encounter": "storm",
+            "render_fps": 0,
+            "frames": 0,
+            "end_ms": 23499,
+            "rng_draws": 201,
+            "exact_checkpoint_events_metrics": true
+          }
+        ]
+      },
+      "unit_evidence": "170 TS tests pass, including6 new spatial tests: range/readiness/no catchup; any-range casts/spend; nearest/taunt/ties/dead origin; CC/cast/silence; irregular fast-forward+midwalk restore; bounds/separation/malformed profiles/timers. Existing timeline terminal oracle now excludes cleared phase_ready_at, and HUD interrupt probe uses solo boss because spatial field fight ends before its former interrupt."
+    },
+    {
+      "case_id": "local_assets_build_decode",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "images": 216,
+        "audio": 34,
+        "font": true,
+        "errors": [],
+        "external": []
+      },
+      "additional": "Build/assets/content/type/boundaries/secrets pass; native4tests pass. No source assets/importer changed, pack unchanged251IDs. Prior29Python asset checks remain historical, not claimed rerun here."
+    }
+  ],
+  "evidence": [
+    "task-020-mobile-spatial-browser.json",
+    "task-020-mobile-spatial-check.txt",
+    "task-020-mobile-spatial-build.txt",
+    "task-020-mobile-spatial-native.txt",
+    "task-020-mobile-spatial-browser.txt"
+  ],
+  "schema_revalidation": {
+    "composition_checks": 104,
+    "architecture_checks": 25,
+    "passed": true,
+    "backups": [
+      "task-013-review-before-spatial.json",
+      "task-047-review-before-spatial.json"
+    ],
+    "legacy_abstract_fixtures_preserved": true
+  },
+  "visual_review": {
+    "status": "reviewed",
+    "scope": "390x844 portrait main/team/settings/Timeline, warded boss cast, actual heal at3600ms and native white/crit/green glyph gallery. Four demo party actors in these scenes; not exhaustive manual review of36 jobs/cosmetics or all clips. Native walking36presets/576images/288mirror pairs are automated checks at integer scale2.",
+    "screenshots": {
+      "docs/screenshots/mobile-spatial-battle.png": "9628d1208e6f7d2e0957b8ff8b7867ece45b5308227195d472f0e32aa3f51168",
+      "docs/screenshots/mobile-spatial-heal.png": "024379de8706e6b77a1be7571abf248ad034a635efa4a1b72865dcaec9fae624",
+      "docs/screenshots/mobile-spatial-numbers.png": "af407f5829caaa4479db59801daba838ff6ddf3a8b6efffc715b1c220a69b5d5",
+      "docs/screenshots/mobile-spatial-settings.png": "7a37a021d745a5ccdab2d7ca9d60a9dce7965c1f804cec6dcef914e8c22dc952",
+      "docs/screenshots/mobile-spatial-team.png": "c32d9b0a49edadedcfb07782a01a51d0414d09c544397234e5e6aac6472c2d23",
+      "docs/screenshots/mobile-spatial-timeline.png": "f171a72a49b8eb87cfca6869a71479d215c71cbb11c6812315fb4df275ead9cb",
+      "docs/screenshots/mobile-spatial-warded.png": "ad1db5e3c9f0989e88d64271f016eb199c29d717148216d69c8c649d1e822f0c"
+    }
+  },
+  "findings_resolved": [
+    "Real engine positions replace fixed rendering slots. Nearest/taunt normal targeting, range-gated normals, fixed50ms motion/separation, checkpoint/resume and event coordinates. All skills remain any-range per explicit user correction.",
+    "Readiness waits while walking; one attack on arrival, no stored burst. Stun timers keep moving; casting/dead/hardCC stop locomotion, silence does not.",
+    "Camera fits arena from view; continuous snapshot interpolation; smaller complete actor rigs and native walk clips. Projectile launch source is pinned to event coordinates.",
+    "Mobile portrait shell with4 focus cards/4skills and working team/Timeline/settings dialogs, Escape/Tab loop/focus return; Timeline isolated from clutter and can pause battle inside its sheet.",
+    "Green bitmap heal digits plus improved recipient heal ring/particles; no zero-overheal numbers; focused outgoing damage and solo boss preserved."
+  ],
+  "limitations": [
+    "Chrome headless viewport emulation; no physical phone/Safari qualification or release performance budget proof.",
+    "Open arena local separation, no navmesh/obstacles; no assertion of deadlock freedom for arbitrary encounter sizes.",
+    "New range changes encounter balance; numbers remain tunable demo baseline pending TASK-041. Legacy non-spatial benchmark is intentionally separate.",
+    "No hosted Supabase/Vercel/durable combat progression implemented by this presentation task. TASK-022 remains inprogress.",
+    "Native ACT frame count retained; no invented extra artwork. Media pack unchanged, no full source library reinspection.",
+    "Vite emits a >500kB chunk warning; release size/performance work remains TASK-042."
+  ],
+  "reference": {
+    "url": "https://play.google.com/store/apps/details?id=com.gravitygamehub.roidle.aos",
+    "scope": "Official portrait screenshots used for UI hierarchy inspiration only; no claim of verified movement/balance formulas."
+  }
+}

@@ -1,0 +1,339 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ro-idle.local/schemas/receipt.json",
+  "type": "object",
+  "properties": {
+    "request_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "request_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "outcome": {
+      "enum": [
+        "committed",
+        "rejected"
+      ]
+    },
+    "committed_revision": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "server_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "content_version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "rules_version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "result": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "resource_delta": {
+          "type": "object",
+          "properties": {
+            "gold": {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "hero_exp": {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "skill_manual": {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "refine_ore": {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "breakthrough_essence": {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "enchant_dust": {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "card_dust": {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            "crystal": {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "gold",
+            "hero_exp",
+            "skill_manual",
+            "refine_ore",
+            "breakthrough_essence",
+            "enchant_dust",
+            "card_dust",
+            "crystal"
+          ],
+          "additionalProperties": false
+        },
+        "created_instance_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          }
+        },
+        "removed_instance_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          }
+        },
+        "pending_claim_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          }
+        },
+        "battle_id": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            }
+          ]
+        },
+        "reason_key": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            }
+          ]
+        },
+        "ledger_entry_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "refunded_ledger_entries": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "entry_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "character_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "feature_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "skill_id": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  }
+                ]
+              },
+              "quantity": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9007199254740991
+              },
+              "cost_version": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "paid_resources": {
+                "type": "object",
+                "properties": {
+                  "gold": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "hero_exp": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "skill_manual": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "refine_ore": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "breakthrough_essence": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "enchant_dust": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "card_dust": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "crystal": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "required": [
+                  "gold",
+                  "hero_exp",
+                  "skill_manual",
+                  "refine_ore",
+                  "breakthrough_essence",
+                  "enchant_dust",
+                  "card_dust",
+                  "crystal"
+                ],
+                "additionalProperties": false
+              },
+              "refund_state": {
+                "enum": [
+                  "active",
+                  "refunded"
+                ]
+              },
+              "refund_command_id": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  }
+                ]
+              },
+              "cost_versions": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "minItems": 1,
+                "uniqueItems": true
+              }
+            },
+            "required": [
+              "entry_id",
+              "character_id",
+              "feature_id",
+              "skill_id",
+              "quantity",
+              "cost_version",
+              "paid_resources",
+              "refund_state",
+              "refund_command_id",
+              "cost_versions"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "code",
+        "resource_delta",
+        "created_instance_ids",
+        "removed_instance_ids",
+        "pending_claim_ids",
+        "battle_id",
+        "reason_key",
+        "ledger_entry_ids",
+        "refunded_ledger_entries"
+      ],
+      "additionalProperties": false
+    },
+    "command_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "content_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "schema_version": {
+      "const": 1
+    }
+  },
+  "required": [
+    "request_id",
+    "request_hash",
+    "outcome",
+    "committed_revision",
+    "server_at",
+    "content_version",
+    "rules_version",
+    "result",
+    "command_type",
+    "content_hash",
+    "schema_version"
+  ],
+  "additionalProperties": false
+}

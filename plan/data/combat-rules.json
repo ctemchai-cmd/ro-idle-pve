@@ -1,0 +1,452 @@
+{
+  "schema_version": 1,
+  "rules_version": "combat-baseline-v1",
+  "content_version": "combat-rules-v1",
+  "status": "M0 baseline authored for this game; not reverse engineered reference formulas",
+  "depends_on_progression": "progression-baseline-v1",
+  "units": {
+    "time": "integer_game_ms",
+    "hp_sp": "nonnegative_integer",
+    "percent": "ratio:0.2 means +20%",
+    "probability": "0..1",
+    "rounding_hp_damage": "floor(max(0,value)+1e-9) once after mitigation and before shields",
+    "interval_rounding": "ceil, minimum representable duration 1ms",
+    "non_finite_or_unsafe_numeric_result": "diagnostic failure, never silently clamp buffs"
+  },
+  "derived_stats": {
+    "physical_attack": {
+      "base": 30,
+      "per_level_after_one": 4,
+      "primary": {
+        "str": 2,
+        "dex": 1
+      }
+    },
+    "magical_attack": {
+      "base": 30,
+      "per_level_after_one": 4,
+      "primary": {
+        "int": 3
+      }
+    },
+    "max_hp": {
+      "base": 200,
+      "per_level_after_one": 25,
+      "primary": {
+        "vit": 20
+      }
+    },
+    "max_sp": {
+      "base": 60,
+      "per_level_after_one": 3,
+      "primary": {
+        "int": 4
+      }
+    },
+    "physical_defense": {
+      "base": 10,
+      "per_level_after_one": 2,
+      "primary": {
+        "vit": 2
+      }
+    },
+    "magical_defense": {
+      "base": 10,
+      "per_level_after_one": 2,
+      "primary": {
+        "int": 2
+      }
+    },
+    "attack_speed": {
+      "base": 100,
+      "per_level_after_one": 0,
+      "primary_above_one": {
+        "agi": 1,
+        "dex": 0.25
+      }
+    },
+    "cast_speed": {
+      "base": 100,
+      "per_level_after_one": 0,
+      "primary_above_one": {
+        "dex": 1.5,
+        "int": 0.25
+      }
+    }
+  },
+  "primary_milestone_bonus": {
+    "every": 10,
+    "basis": "final primary value after equipment/enchant/status modifiers; steps = floor(value/10)",
+    "per_step": {
+      "str": {
+        "physical_attack": 5
+      },
+      "agi": {
+        "evasion_bonus": 0.01
+      },
+      "vit": {
+        "max_hp": 50
+      },
+      "int": {
+        "magical_attack": 8
+      },
+      "dex": {
+        "hit_bonus": 0.01
+      },
+      "luk": {
+        "crit_chance_bonus": 0.01
+      }
+    },
+    "timing_neutral": true,
+    "source": "D-057; assistant baseline to tune in TASK-041. Never adds attack_speed or cast_speed so manual AGI/DEX timing stays the only rotation lever."
+  },
+  "modifiers": {
+    "primary_resolution": "base+sum_flat then multiply by 1+sum_add_percent",
+    "derived_resolution": "formula(primary)+sum_flat then multiply by 1+sum_add_percent",
+    "sum_at_each_named_bucket": true,
+    "buff_max_stacks": null,
+    "buff_magnitude_cap": null,
+    "same_caster_reapply": "new_independent_instance",
+    "level_auto_primary_growth": false,
+    "current_resource_when_max_changes": "retain_absolute_current_amount_then_clamp_to_new_max; raising_max_is_not_heal",
+    "primary_minimum": 0,
+    "derived_minimum": {
+      "physical_attack": 0,
+      "magical_attack": 0,
+      "max_hp": 1,
+      "max_sp": 0,
+      "physical_defense": 0,
+      "magical_defense": 0,
+      "attack_speed": 1,
+      "cast_speed": 1
+    },
+    "integer_derived_fields": [
+      "max_hp",
+      "max_sp"
+    ],
+    "positive_aggregate_buff_cap": null
+  },
+  "combat_probabilities": {
+    "physical_hit": "clamp(0.95+0.002*(caster.dex-target.agi)+0.001*(caster.luk-1)+hit_bonus-evasion_bonus,0,1)",
+    "magical_hit_default": 1,
+    "crit_chance": "clamp(0.05+0.008*(caster.luk-1)+crit_chance_bonus-0.003*(target.luk-1)-target_crit_resistance,0,1)",
+    "crit_multiplier": "max(1,1.5+0.005*(caster.luk-1)+crit_damage_bonus)",
+    "crit_ignores_defense": false,
+    "default_crit_eligibility": {
+      "normal_attack": true,
+      "physical_skill": true,
+      "magical_skill": false,
+      "dot": false,
+      "hot": false,
+      "heal": false,
+      "reflect": false
+    },
+    "default_hit_roll": "per_target_per_hit",
+    "default_crit_roll": "per_landed_eligible_hit",
+    "guaranteed_chance_roll_consumes_rng": true,
+    "control_apply_chance": "clamp(effect_base_chance+control_accuracy-target_control_resistance,0,1); no_base_duration_reduction"
+  },
+  "damage_pipeline": [
+    "resolve_caster_primary_and_derived_sources",
+    "raw=attack_stat*coefficient+flat_power_per_hit",
+    "outgoing=max(0,1+sum_outgoing_bonus)",
+    "element=attack_vs_defense_chart",
+    "hit_then_crit_if_eligible",
+    "effective_defense=max(0,max(0,target_defense*(1-armor_break))*(1-penetration_percent)-flat_penetration)",
+    "armor_multiplier=1-0.9*effective_defense/(effective_defense+400)",
+    "flat_reduction=max(0,power_after_armor-flat_damage_reduction)",
+    "guard=max(0,1-sum_guard_percent)",
+    "vulnerability=max(0,1+sum_damage_taken_percent)",
+    "round_hp_amount_once",
+    "route_devotion_transfer_once_before_shields",
+    "shield_absorb",
+    "effective_hp_loss=min(current_hp,remaining_damage)",
+    "metrics_overkill_separate"
+  ],
+  "armor": {
+    "k": 400,
+    "asymptotic_reduction": 0.9,
+    "negative_defense_allowed": false,
+    "physical_uses": "physical_defense",
+    "magical_uses": "magical_defense",
+    "guard_aggregation_cap": null,
+    "guard_at_or_above_one": "zero_damage_multiplier; contributions remain uncapped",
+    "armor_break_policy_owner": "TASK-047"
+  },
+  "healing": {
+    "formula": "floor(max(0,healing_stat*coefficient+flat_heal)*max(0,1+outgoing_heal_bonus)*max(0,1+healing_received_bonus)+1e-9)",
+    "effective_heal": "min(max_hp-current_hp,raw_heal)",
+    "overheal": "raw_heal-effective_heal",
+    "default_crit": false,
+    "dead_target": "skip unless explicit revive operation"
+  },
+  "resources": {
+    "spend_skill_sp": "once_at_cast_start",
+    "insufficient_sp": "skip_current_slot_then_next_skill_interval",
+    "interrupted_refund": false,
+    "sp_regen_interval_ms": 1000,
+    "sp_regen_formula": "floor(max(0,2+0.02*max_sp+0.02*(int-1)+flat_sp_regen)*max(0,1+sp_regen_percent))",
+    "hp_regen_interval_ms": 1000,
+    "natural_hp_regen": 0,
+    "hp_regen_formula": "floor(max(0,flat_hp_regen+max_hp*hp_regen_percent))",
+    "regen_allowed_while_cast_or_cc": true,
+    "dead_actor_regen": false,
+    "new_battle_hp_sp": "full"
+  },
+  "element_chart": {
+    "neutral": {
+      "neutral": 1,
+      "water": 1,
+      "earth": 1,
+      "fire": 1,
+      "wind": 1,
+      "poison": 1,
+      "holy": 1,
+      "dark": 1,
+      "ghost": 0.75,
+      "undead": 1
+    },
+    "water": {
+      "neutral": 1,
+      "water": 1,
+      "earth": 1,
+      "fire": 1.25,
+      "wind": 0.75,
+      "poison": 1,
+      "holy": 1,
+      "dark": 1,
+      "ghost": 1,
+      "undead": 1
+    },
+    "earth": {
+      "neutral": 1,
+      "water": 1,
+      "earth": 1,
+      "fire": 0.75,
+      "wind": 1.25,
+      "poison": 1,
+      "holy": 1,
+      "dark": 1,
+      "ghost": 1,
+      "undead": 1
+    },
+    "fire": {
+      "neutral": 1,
+      "water": 0.75,
+      "earth": 1.25,
+      "fire": 1,
+      "wind": 1,
+      "poison": 1,
+      "holy": 1,
+      "dark": 1,
+      "ghost": 1,
+      "undead": 1.25
+    },
+    "wind": {
+      "neutral": 1,
+      "water": 1.25,
+      "earth": 0.75,
+      "fire": 1,
+      "wind": 1,
+      "poison": 1,
+      "holy": 1,
+      "dark": 1,
+      "ghost": 1,
+      "undead": 1
+    },
+    "poison": {
+      "neutral": 1,
+      "water": 1,
+      "earth": 1,
+      "fire": 1,
+      "wind": 1,
+      "poison": 1,
+      "holy": 1,
+      "dark": 1,
+      "ghost": 1,
+      "undead": 0.75
+    },
+    "holy": {
+      "neutral": 1,
+      "water": 1,
+      "earth": 1,
+      "fire": 1,
+      "wind": 1,
+      "poison": 1,
+      "holy": 1,
+      "dark": 1.25,
+      "ghost": 1,
+      "undead": 1.5
+    },
+    "dark": {
+      "neutral": 1,
+      "water": 1,
+      "earth": 1,
+      "fire": 1,
+      "wind": 1,
+      "poison": 1,
+      "holy": 1.25,
+      "dark": 1,
+      "ghost": 1,
+      "undead": 1
+    },
+    "ghost": {
+      "neutral": 0.75,
+      "water": 1,
+      "earth": 1,
+      "fire": 1,
+      "wind": 1,
+      "poison": 1,
+      "holy": 1,
+      "dark": 1,
+      "ghost": 1,
+      "undead": 1
+    },
+    "undead": {
+      "neutral": 1,
+      "water": 1,
+      "earth": 1,
+      "fire": 1,
+      "wind": 1,
+      "poison": 1,
+      "holy": 1,
+      "dark": 1,
+      "ghost": 1,
+      "undead": 1
+    }
+  },
+  "rotation": {
+    "slot_count": 4,
+    "logical_skill_unique": true,
+    "passives_automatic": true,
+    "separate_skill_cooldown": false,
+    "base_skill_interval_ms": 1500,
+    "base_normal_attack_interval_ms": 1500,
+    "skill_interval": "max(1,ceil(1500*100/max(1,attack_speed)))",
+    "normal_attack_interval": "max(1,ceil(1500*100/max(1,attack_speed)))",
+    "cast_time": "0 if base_cast_time_ms=0 else max(1,ceil(base_cast_time_ms*100/max(1,cast_speed)))",
+    "after_cast_delay": "0 if base_after_cast_ms=0 else max(1,ceil(base_after_cast_ms*100/max(1,cast_speed)))",
+    "snapshot_phase_speed": "at_start_of_each_SI_CT_ACD_or_NA_interval",
+    "normal_allowed_phases": [
+      "SI",
+      "ACD"
+    ],
+    "normal_during_CT": "pause_clock_preserve_remaining; no hits queued as catch-up",
+    "normal_ready_vs_cast_start_same_ms": "cast_start_wins; resume_normal_at_least_1ms_after_CT_end even if_CT_zero",
+    "cc_timer": "SI_ACD_advance_then_wait_at_action_gate",
+    "cc_does_not_spend_unstarted_slot": true,
+    "cast_start": "advance_cursor_and_spend_SP_atomically; no_next_cast_during_own_CT_or_ACD",
+    "interrupt": "invalidate_cast_token; start_ACD_at_interrupt_time then SI; both advance during_CC",
+    "empty_slots": "scan_at_most_four_for_next_occupied_before_starting_SI; no_extra_SI_for_empty",
+    "all_empty": "normal_only_no_skill_timer",
+    "silenced_ready_actor": "wait_until_skill_actions_allowed; do_not_consume_unstarted_slot",
+    "unusable_skill_reference": "build_validation_error, not silent_empty",
+    "normal_during_CC": "clock_advances_to_single_ready_attack; wait_for_actions_allowed; no_catch_up",
+    "interruptible": "skill_definition_flag default true; direct_interrupt_and_CC_cancel_only_if_true; normal_damage_does_not_interrupt_by_itself",
+    "uninterruptible_cast_under_CC": "continues_CT_and_can_resolve_if_alive; new_actions_still_blocked_by_CC"
+  },
+  "snapshots": {
+    "caster_offense": "cast_start; includes resolved_skill and pre_spend_SP for named formulas",
+    "target_defense": "each_hit_at_resolve",
+    "target_binding_default": "resolve_at_cast_resolve_once_per_binding",
+    "default_dead_primary": "retarget_by_same_selector_once_at_resolve; empty_target_set_consumes_cast_but_no_effect",
+    "event_target_binding": "fixed event actor; dead target is not retargeted",
+    "dot_hot": "status_definition_selects_snapshot_or_live; no hidden inheritance",
+    "shield_priority": "earliest_expiry_then_instance_id; each_pool_has_own_remaining_amount",
+    "buff_owner_death_default": "persists_to_expiry; owner-bound_aura/summon_may_explicitly_end",
+    "battle_end": "cancel_all_casts_events_statuses_shields_and_summons; preserve_durable_account_only"
+  },
+  "event_order": {
+    "time_domain": "integer ms and explicit sequence; independent of renderer FPS",
+    "timeout_boundary": "time >= battle_limit: timeout before events_at_that_timestamp",
+    "phases": [
+      "expire_status_and_shield_instances",
+      "periodic_regen_and_status_ticks_then_commit_deaths",
+      "lock_all_valid_existing_cast_completions_at_this_timestamp",
+      "resolve_locked_cast_programs_in_actor_id_action_id_order",
+      "drain_reactions_then_commit_deaths_and_check_terminal_result",
+      "start_ready_skills_in_actor_id_order_including_zero_CT_resolve",
+      "normal_attacks_in_actor_id_order",
+      "drain_reactions_commit_deaths_check_result_schedule_next_time"
+    ],
+    "cast_completion_batch": "locked completers emit even if killed/interrupted by another locked completer; HP0 is ineligible for ordinary heal; death reactions/cleanup commit at phase barrier",
+    "zero_CT": "start-and-resolve in ready-skill phase; still spends_SP/slot and suppresses coincident_normal",
+    "interrupt_at_cast_completion_same_time": "too_late_if_cast_already_locked_in_completion_batch",
+    "periodic_at_expiry": "expire_first; tick_only_if_scheduled_time_strictly_before_expiry",
+    "root_program_reactions": "enqueue_during_program; drain_at_phase_boundary, not JS callback order",
+    "death": "invalidate_remaining_nonlocked_casts; no_SP_refund",
+    "simultaneous_team_wipe": "loss_for_player",
+    "initial_tie_breaker": "stable actor_id, action_id, effect_order, target_id, hit_index, event_sequence",
+    "target_liveness": "HP > 0 for normal targeting/healing; locked caster admission is retained only for the admitted completion program"
+  },
+  "rng": {
+    "algorithm": "lcg32-v1",
+    "a": 1664525,
+    "c": 1013904223,
+    "modulus": 4294967296,
+    "seed_range": [
+      0,
+      4294967295
+    ],
+    "draw": "state=(a*state+c) mod 2^32; u=state/2^32",
+    "typescript_math": "Math.imul(a,state) and unsigned >>>0",
+    "order": "target_selection_if_random -> hit -> eligible_crit -> effect_chance per ordered_effect/target/hit",
+    "state_fields": [
+      "state_uint32",
+      "draw_count"
+    ],
+    "no_draw_for": "predicate_false, invalid/dead_skipped_target, ineligible_crit",
+    "attempted_probability_even_zero_or_one_consumes_draw": true
+  },
+  "simulation_contract": {
+    "required_versions": [
+      "schema_version",
+      "content_hash",
+      "rules_version",
+      "rng_algorithm"
+    ],
+    "restore_fields": [
+      "game_time_ms",
+      "phase",
+      "actor_state",
+      "rotation_cursor",
+      "phase_ready_at",
+      "paused_normal_remaining_ms",
+      "cast_tokens",
+      "pending_events",
+      "status_instances",
+      "shield_pools",
+      "rng_state",
+      "event_sequence"
+    ],
+    "unsupported_version": "explicit_incompatible_no_latest_fallback",
+    "guards": {
+      "max_events_per_fight": 1000000,
+      "max_reaction_depth": 32,
+      "on_exceeded": "diagnostic_error_with_seed_versions_input; do_not_drop_effects_to_make_success"
+    },
+    "reference_balance": "M0 arithmetic sensitivity, M1 runtime_parity, M4 measured_balance",
+    "checkpoint_field_mapping": {
+      "game_time_ms": "game_time_ms",
+      "phase": "phase",
+      "actor_state": "actors",
+      "cast_tokens": "actors[].cast.token",
+      "event_sequence": "event_sequence",
+      "paused_normal_remaining_ms": "actors[].normal_clock.remaining_ms",
+      "pending_events": "pending_events",
+      "phase_ready_at": "actors[].phase_ready_at",
+      "rng_state": "rng",
+      "rotation_cursor": "actors[].rotation_cursor",
+      "shield_pools": "actors[].shields",
+      "status_instances": "actors[].statuses"
+    }
+  },
+  "damage_redirect": {
+    "stage": "after rounded mitigation before target shields",
+    "eligibility": "live other actor on same team only; source_death removes link",
+    "aggregation": "sum independent fractions without cap; conserve original damage, proportional allocation if total fraction exceeds one",
+    "allocation": "total=min(P,floor(P*sumRatio)); floor proportional shares, distribute remaining points by instance ID; one routing pass",
+    "transfer": "recipient shields then HP; no second armor/crit/guard; origin transfer cannot redirect/reflect/proc unless a trigger explicitly accepts it",
+    "attribution": "original attacker/action plus redirecting status source; no damage creation"
+  }
+}

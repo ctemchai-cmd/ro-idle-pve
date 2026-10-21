@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "status": "design targets, not measured",
+  "profiles_source": "progression.json.reference_profiles",
+  "network": {
+    "down_mbps": 10,
+    "rtt_ms": 100,
+    "cache_for_first_load": "empty; production build with compression; fixed local fixture backend recorded separately"
+  },
+  "limits": {
+    "bootstrap_js_css_gzip_bytes": 358400,
+    "first_battle_transferred_bytes": 8388608,
+    "entire_selected_runtime_pack_bytes": 26214400,
+    "first_battle_desktop_seconds": 10,
+    "first_battle_mobile_seconds": 15,
+    "cached_reopen_seconds": 3,
+    "desktop_frame_p95_ms": 20,
+    "mobile_frame_p95_ms": 35,
+    "chrome_heap_peak_mib": 160,
+    "decoded_image_rgba_mib": 64,
+    "runner_100_fights_seconds": 5,
+    "runner_virtual_fight_ms": 90000,
+    "warm_api_p95_ms": 1000,
+    "warm_battle_advance_p95_ms": 500,
+    "account_json_bytes": 524288,
+    "battle_checkpoint_json_bytes": 2097152,
+    "command_body_bytes": 262144
+  },
+  "stress_scene": {
+    "party": 4,
+    "other_actors_up_to": 12,
+    "statuses_per_actor": 40,
+    "simultaneous_visual_effects": 16,
+    "no_gameplay_stack_cap": true
+  },
+  "measurement": {
+    "frames": "60s measured after10s warmup, p95 RAF intervals desktop/mobile Chrome and desktop Safari",
+    "memory": "Chrome DevTools heap after warmup + peak; decoded RGBA sum from actual loaded atlases; Safari allocation observation recorded separately",
+    "runner": "100 matched-seed 90s scenarios, rendering/log streaming disabled, warm process; build/install time excluded",
+    "api": "100 sequential valid commands warm against local or isolated test DB, latency profile recorded; cold start separate",
+    "size": "built transfer bytes and runtime manifest dependencies, never full library"
+  },
+  "owners": {
+    "runner": "TASK-018",
+    "load_frames_memory": "TASK-042",
+    "api_save": "TASK-022",
+    "pack": "TASK-019"
+  },
+  "missing_measurement": "not pass; fix/measure or explicitly revise design with rationale, never silently loosen target"
+}

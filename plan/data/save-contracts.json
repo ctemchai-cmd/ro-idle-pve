@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "current_versions": {
+    "schema": 1,
+    "content": "class2-v1.0.0",
+    "rules": "combat-baseline-v1",
+    "rng": "lcg32-v1"
+  },
+  "authority": {
+    "wallet_inventory_progression": "game_saves.state only",
+    "revision": "game_saves.revision column only",
+    "battle_clock_rng_hp_status_events": "game_battle_checkpoints.payload only; active_battle is a pointer",
+    "receipts": "game_command_receipts immutable by account+request ID",
+    "local_backup": "signed server checkpoint copy, never authorizes currency writes",
+    "UI_draft": "local configuration only; no optimistic wallet"
+  },
+  "tables": {
+    "game_saves": {
+      "primary_key": [
+        "account_id"
+      ],
+      "fields": [
+        "revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "state",
+        "state_hash",
+        "updated_at",
+        "content_hash"
+      ]
+    },
+    "game_command_receipts": {
+      "primary_key": [
+        "account_id",
+        "request_id"
+      ],
+      "fields": [
+        "request_hash",
+        "receipt",
+        "created_at",
+        "command_type"
+      ],
+      "retention": "keep immutable ID/hash/result permanently; no large full-save copies in receipts"
+    },
+    "game_battle_checkpoints": {
+      "primary_key": [
+        "account_id",
+        "battle_id"
+      ],
+      "fields": [
+        "payload",
+        "content_hash",
+        "last_ack_at",
+        "lease_expires_at"
+      ]
+    },
+    "game_save_history": {
+      "primary_key": [
+        "account_id",
+        "revision"
+      ],
+      "fields": [
+        "state",
+        "state_hash",
+        "signature",
+        "key_version"
+      ],
+      "retention": "last20 revisions plus last7 daily tips; receipts retain original outcomes"
+    }
+  },
+  "commit_order": [
+    "authenticate JWT and bind UID outside payload",
+    "lookup receipt and compare canonical request hash",
+    "read current save/battle checkpoint",
+    "validate version/revision/command params",
+    "pure decideCommand with server time and injected seed",
+    "SQL lock owner row; receipt lookup again; revision CAS",
+    "commit save+checkpoint+pendingclaims+ledger+receipt+history atomically"
+  ],
+  "same_id_same_hash": "return original receipt even if old revision/content, before current-content admission; client fetches latest state if needed",
+  "same_id_different_hash": "409 IDEMPOTENCY_KEY_REUSE, no mutation",
+  "new_id_stale_revision": "409 REVISION_CONFLICT, no command mutation; reload then new intentional command ID",
+  "rejected_business_command": "store rejected receipt, no account revision/currency change",
+  "SQL_balance_logic": false,
+  "farm": {
+    "cap_seconds": 43200,
+    "reserved_cursor": "advance atomically on fixed pending claim reservation, exactly once",
+    "paid_flag": "only when resources+items are atomically applied; pending already reserved intervals are never regenerated",
+    "rate_switch": "reserve old interval under old snapshot then switch; old pending remains payable",
+    "patch": "old stored numeric rate/drop snapshot until next reservation; use aliases/compensation migration for old definitions",
+    "too_old": "discard excess older than12h and move reserved_through to now once claim reserved",
+    "queue_limit": 32,
+    "full_queue": "deny new reservation/start before mutation; allow salvage/fusion/claim operations to free space",
+    "quantization": {
+      "elapsed_unit": "integer_ms",
+      "rate_unit": "integer_per_hour",
+      "divisor": 3600000,
+      "carry_range": [
+        0,
+        3599999
+      ],
+      "drop_interval_ms": 300000,
+      "drop_carry_range": [
+        0,
+        299999
+      ]
+    }
+  },
+  "battle_protocol": {
+    "ack_interval_ms": 2000,
+    "max_credited_wall_gap_ms": 5000,
+    "lease_ms": 15000,
+    "ticket_wall_max_ms": 180000,
+    "checkpoint": "full virtual state after timestamp barrier; server recomputes requested interval, browser only predicts",
+    "offline": "no credited combat after last authorized checkpoint; gap>=lease aborts, never catch-up a boss during AFK",
+    "daily_abort": "attempt stays spent; last committed phase/HP/chests retained",
+    "story_tower_abort": "no reward/unlock; free new attempt full team HP/SP",
+    "speed_multipliers": [
+      1,
+      2,
+      4
+    ],
+    "speed": "battle.advance may carry speed 1/2/4 (player fast-forward, D-071): credited game time = min(requested, wall gap × speed, max_credited_wall_gap_ms × speed); lease/ticket wall limits unchanged, AFK/offline rewards stay wall-time based"
+  },
+  "compatibility": [
+    {
+      "case": "same versions",
+      "result": "restore checkpoint normally"
+    },
+    {
+      "case": "content changed with same schema",
+      "result": "abort old active battle; settle farm from old snapshot; recompile next build, never apply patch midcast"
+    },
+    {
+      "case": "rules or RNG changed",
+      "result": "incompatible replay, retain old bundle for audit; abort active battle with mode policy"
+    },
+    {
+      "case": "schema old supported",
+      "result": "ordered atomic migration with ledger/ID maps and receipt; no implicit best-effort"
+    },
+    {
+      "case": "schema newer than client",
+      "result": "426 UPDATE_REQUIRED, read-only until reload"
+    },
+    {
+      "case": "asset-only patch",
+      "result": "engine hash/replay unchanged, presentation hash may change"
+    }
+  ],
+  "interruption": [
+    {
+      "mode": "story",
+      "refresh": "abort/restart",
+      "durable": "existing clear/pending rewards only",
+      "attempt_refund": "free retries",
+      "transient": "HP/SP/casts/status/events cleared"
+    },
+    {
+      "mode": "tower",
+      "refresh": "abort/restart floor",
+      "durable": "highest clear and fixed pending first-clear reward",
+      "attempt_refund": "free retries",
+      "transient": "cleared"
+    },
+    {
+      "mode": "daily",
+      "refresh": "abort ticket",
+      "durable": "spent attempt and last committed phase/HP/chests in ticket day",
+      "attempt_refund": "none",
+      "transient": "party HP/SP/events cleared; boss progress retained"
+    },
+    {
+      "mode": "farm",
+      "refresh": "settle unpaid unreserved interval capped12h",
+      "durable": "snapshot/carry/RNG/reserved cursor/pending claims",
+      "attempt_refund": "not applicable",
+      "transient": "visual kills irrelevant"
+    }
+  ],
+  "migration": {
+    "price_change_refund": "exact actual paid vector; free grants zero; mark ledger refunded once in same commit as reset",
+    "old_skill_removed": "require explicit alias+cap remap or one-time paid refund and detach skill; unknown required IDs block release",
+    "old_item_removed": "require compatible alias/retained legacy definition or explicit compensation migration; no silent delete",
+    "rollback": "roll code only if compatible with migrated schema; otherwise maintenance; never roll wallet backward over receipts",
+    "backup_restore": "same account, known signed history tip or verified replay to latest tip; stale local blob never overwrites newer cloud; recovery operation requires quarantined/corrupt save"
+  },
+  "rls": {
+    "anonymous": "no save access",
+    "authenticated": "SELECT own account_id=auth.uid(); no direct INSERT/UPDATE/DELETE/RPC writes",
+    "service_role": "server only; API binds authenticated UID and commit RPC not exposed to authenticated/anon",
+    "separate_preview_database": true
+  },
+  "test_routes": [
+    "GET /api/health",
+    "GET /api/account",
+    "GET /api/receipts/:id",
+    "POST /api/commands"
+  ],
+  "environment_variables": {
+    "browser": [
+      "VITE_SUPABASE_URL",
+      "VITE_SUPABASE_PUBLISHABLE_KEY",
+      "VITE_APP_ENV"
+    ],
+    "server": [
+      "SUPABASE_URL",
+      "SUPABASE_SERVICE_ROLE_KEY",
+      "SAVE_SIGNING_KEY",
+      "APP_ENV"
+    ]
+  },
+  "runtime_evidence_owners": [
+    "TASK-015",
+    "TASK-018",
+    "TASK-021",
+    "TASK-022",
+    "TASK-038",
+    "TASK-040",
+    "TASK-044"
+  ],
+  "ledger_compaction": {
+    "active": "one coalesced entry per character+feature+skill; actual paid vectors sum, cost_versions tracks all versions; cost_version denotes latest contribution",
+    "refund": "remove active entry and archive refunded full entry with refund command ID in immutable receipt; repeated new reset finds no refundable entry",
+    "nonrefundable_features": "level/refine/card upgrade receipts retained, no refundable ledger entry required because release never refunds them",
+    "bounded_size": "current skills+enchant lines at most136 active scopes over seven characters; refunded history stays in receipts, not account JSON"
+  },
+  "hash_policy": "Runtime bundle hash = SHA256(engine data projection + game schema hash + implementation source hash); presentation-only assets have separate hash. Requests must match exact runtime content_hash; human version strings alone are insufficient."
+}

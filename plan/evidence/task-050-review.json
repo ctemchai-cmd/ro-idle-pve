@@ -1,0 +1,40 @@
+{
+  "task_id": "TASK-050",
+  "passed": true,
+  "round": 1,
+  "date": "2026-10-20",
+  "reviewer": "Claude self-check",
+  "content_hash": "6dc3d68fda97673da3e4fb5d56107d2533a50433a09f6fd912640467f3d63328",
+  "checks": [
+    {
+      "acceptance": "AC-01",
+      "passed": true,
+      "result": "save-migration tests: old 5/level budget (unspent 65) becomes 61 under D-057; 45 invested at Lv10 exceeds 34 and is refunded; refine_failures filled; unknown 9-9 stage and farm stage dropped; validateAccount passes"
+    },
+    {
+      "acceptance": "AC-02",
+      "passed": true,
+      "result": "migrationSql appends revision+1 with HMAC signature identical to api/index.ts, guarded by expected old revision and a post-check; current saves skipped; invalid state throws"
+    },
+    {
+      "acceptance": "AC-03",
+      "passed": true,
+      "result": "temp instance (.local/e2e, port 6299) with the real old save #461 (content 65b82feb, old rules): --refresh-migrate-saves migrated to #462 on content 6dc3d68f (unspent 84, refine_failures 0); Chrome login loaded HUD (gold 6,454, farm 3-1) and commands FARM_RESERVED + REWARD_CLAIMED x4 reached #467 with 0 browser errors; instance and copied save deleted afterwards"
+    }
+  ],
+  "commands": [
+    "npm test (245 pass)",
+    "npm run boundaries"
+  ],
+  "limitations": [
+    "Local loopback only; hosted migration, player export/import and rollback remain TASK-040.",
+    "Transforms cover the current schema changes (refine_failures, status budget, story/farm references, active battle); future schema changes must add explicit transforms."
+  ],
+  "source_sha256": {
+    "src/domain/account/migrate.ts": "e7ec9c6e682b06771cf97a57843c83cd93aa5547502cb13c1fba4b80b69237ed",
+    "scripts/game/migrate-local-saves.ts": "c38ae686e1e2011a7fbfe2205d212ac39b7d712a14591d0a9f8c4b0a5bae3c11",
+    "scripts/play_local.py": "b76ab1d740afc04538fcd4d3a115248abb710b09e653dcc1c42964b97537086c",
+    "tests/game/save-migration.test.ts": "15d122f466f5686d722400c0c301379638e423795c37cd02655767b22cbdd81d"
+  },
+  "credentials_logged": false
+}

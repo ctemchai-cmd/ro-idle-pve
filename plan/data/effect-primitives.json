@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "version": "composition-v1",
+  "effects": [
+    {
+      "id": "damage",
+      "schema": "schemas/effect.json",
+      "result": "per-target per-hit hit/crit/raw/mitigated/absorbed/hp_damage/overkill"
+    },
+    {
+      "id": "heal",
+      "schema": "schemas/effect.json",
+      "result": "effective/overheal"
+    },
+    {
+      "id": "apply_status",
+      "schema": "schemas/effect.json",
+      "result": "applied(instance_id)/resisted"
+    },
+    {
+      "id": "shield",
+      "schema": "schemas/effect.json",
+      "result": "created(instance_id,remaining_pool,expiry)"
+    },
+    {
+      "id": "resource_change",
+      "schema": "schemas/effect.json",
+      "result": "actual_delta/clamped"
+    },
+    {
+      "id": "remove_status",
+      "schema": "schemas/effect.json",
+      "result": "removed_instance_ids"
+    },
+    {
+      "id": "interrupt",
+      "schema": "schemas/effect.json",
+      "result": "interrupted/no_interruptible_cast/late_locked"
+    },
+    {
+      "id": "summon",
+      "schema": "schemas/effect.json",
+      "result": "spawned_actor_id/replaced/skipped"
+    },
+    {
+      "id": "revive",
+      "schema": "schemas/effect.json",
+      "result": "revived/skipped"
+    },
+    {
+      "id": "handler",
+      "schema": "schemas/effect.json",
+      "result": "validated ordered effect intents"
+    }
+  ],
+  "handler_registry": [
+    {
+      "id": "detonate_own_status",
+      "version": 1,
+      "schema": "schemas/effect.json",
+      "contract": "select matching status instances on target with same source actor; select expiry then application_id up to max_consumed; consume exactly selected instances; emit flat raw power=count*power_per_instance through normal damage pipeline; snapshot consumed count once; cannot consume unrelated poison"
+    }
+  ],
+  "trigger_events": [
+    "battle_start",
+    "cast_start",
+    "cast_resolve",
+    "normal_attack_hit",
+    "damage_dealt",
+    "damage_received",
+    "control_applied",
+    "status_applied",
+    "status_expired",
+    "actor_death",
+    "ally_death"
+  ],
+  "reserved_targets": [
+    "self",
+    "source_actor",
+    "event_source",
+    "event_target"
+  ],
+  "modifier_source": "runtime attaches immutable source_instance_id; definitions cannot choose another owner source",
+  "proc_guard": {
+    "ancestry_key": [
+      "source_instance_id",
+      "trigger_id"
+    ],
+    "same_ancestry_reentry": "reject_with_outcome",
+    "event_budget": 1000000,
+    "max_depth": 32,
+    "limit_reached": "diagnostic failure, never silently truncate buff stacks"
+  },
+  "snapshot": "caster offense and pre-cost resources at cast start; status carries application offense snapshot; defense live per hit",
+  "special_effect_lifecycle": "shield independent pools; summoned actors not roster members and do not prevent party defeat; revive restarts next unspent SI, no refund or replay of spent slot"
+}

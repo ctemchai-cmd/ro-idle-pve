@@ -1,0 +1,2165 @@
+{
+  "schema_version": 1,
+  "content_version": "cards-v1",
+  "definitions": [
+    {
+      "id": "card_weapon_1",
+      "name_key": "card_weapon_1",
+      "kind": "card",
+      "slot": "weapon",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 8
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_weapon_1"
+    },
+    {
+      "id": "card_weapon_2",
+      "name_key": "card_weapon_2",
+      "kind": "card",
+      "slot": "weapon",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 8
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_weapon_2"
+    },
+    {
+      "id": "card_weapon_3",
+      "name_key": "card_weapon_3",
+      "kind": "card",
+      "slot": "weapon",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "crit_chance_bonus",
+          "stat": "crit_chance_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.02
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_weapon_3"
+    },
+    {
+      "id": "card_head_1",
+      "name_key": "card_head_1",
+      "kind": "card",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 10
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_head_1"
+    },
+    {
+      "id": "card_head_2",
+      "name_key": "card_head_2",
+      "kind": "card",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 8
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_head_2"
+    },
+    {
+      "id": "card_head_3",
+      "name_key": "card_head_3",
+      "kind": "card",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "flat_sp_regen",
+          "stat": "flat_sp_regen",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 1
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_head_3"
+    },
+    {
+      "id": "card_armor_1",
+      "name_key": "card_armor_1",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 60
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_armor_1"
+    },
+    {
+      "id": "card_armor_2",
+      "name_key": "card_armor_2",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 8
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_armor_2"
+    },
+    {
+      "id": "card_armor_3",
+      "name_key": "card_armor_3",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "guard_percent",
+          "stat": "guard_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.015
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_armor_3"
+    },
+    {
+      "id": "card_garment_1",
+      "name_key": "card_garment_1",
+      "kind": "card",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 8
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_garment_1"
+    },
+    {
+      "id": "card_garment_2",
+      "name_key": "card_garment_2",
+      "kind": "card",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 8
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_garment_2"
+    },
+    {
+      "id": "card_garment_3",
+      "name_key": "card_garment_3",
+      "kind": "card",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.02
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_garment_3"
+    },
+    {
+      "id": "card_shoes_1",
+      "name_key": "card_shoes_1",
+      "kind": "card",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 50
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_shoes_1"
+    },
+    {
+      "id": "card_shoes_2",
+      "name_key": "card_shoes_2",
+      "kind": "card",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 12
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_shoes_2"
+    },
+    {
+      "id": "card_shoes_3",
+      "name_key": "card_shoes_3",
+      "kind": "card",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "outgoing_healing_bonus",
+          "stat": "outgoing_healing_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.02
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_shoes_3"
+    },
+    {
+      "id": "card_accessory_1",
+      "name_key": "card_accessory_1",
+      "kind": "card",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 6
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_accessory_1"
+    },
+    {
+      "id": "card_accessory_2",
+      "name_key": "card_accessory_2",
+      "kind": "card",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 6
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_accessory_2"
+    },
+    {
+      "id": "card_accessory_3",
+      "name_key": "card_accessory_3",
+      "kind": "card",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "control_accuracy",
+          "stat": "control_accuracy",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.02
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_accessory_3"
+    },
+    {
+      "id": "card_fabre",
+      "name_key": "card_fabre",
+      "kind": "card",
+      "slot": "weapon",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "hit_bonus",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.03
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_fabre"
+    },
+    {
+      "id": "card_lunatic",
+      "name_key": "card_lunatic",
+      "kind": "card",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "int",
+          "stat": "int",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 2
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_lunatic"
+    },
+    {
+      "id": "card_pupa",
+      "name_key": "card_pupa",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 90
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_pupa"
+    },
+    {
+      "id": "card_spore",
+      "name_key": "card_spore",
+      "kind": "card",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "control_resistance",
+          "stat": "control_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.03
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_spore"
+    },
+    {
+      "id": "card_chonchon",
+      "name_key": "card_chonchon",
+      "kind": "card",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.02
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_chonchon"
+    },
+    {
+      "id": "card_rocker",
+      "name_key": "card_rocker",
+      "kind": "card",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "str",
+          "stat": "str",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 2
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_rocker"
+    },
+    {
+      "id": "card_hydra",
+      "name_key": "card_hydra",
+      "kind": "card",
+      "slot": "weapon",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "outgoing_physical_bonus",
+          "stat": "outgoing_physical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.05
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_hydra"
+    },
+    {
+      "id": "card_drainliar",
+      "name_key": "card_drainliar",
+      "kind": "card",
+      "slot": "weapon",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "outgoing_magical_bonus",
+          "stat": "outgoing_magical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.05
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_drainliar"
+    },
+    {
+      "id": "card_marc",
+      "name_key": "card_marc",
+      "kind": "card",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 20
+        },
+        {
+          "id": "control_resistance",
+          "stat": "control_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.03
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_marc"
+    },
+    {
+      "id": "card_kukre",
+      "name_key": "card_kukre",
+      "kind": "card",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 30
+        },
+        {
+          "id": "sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.06
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_kukre"
+    },
+    {
+      "id": "card_thara_frog",
+      "name_key": "card_thara_frog",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "guard_percent",
+          "stat": "guard_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.02
+        },
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 150
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_thara_frog"
+    },
+    {
+      "id": "card_pecopeco",
+      "name_key": "card_pecopeco",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.05
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_pecopeco"
+    },
+    {
+      "id": "card_mantis",
+      "name_key": "card_mantis",
+      "kind": "card",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.03
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_mantis"
+    },
+    {
+      "id": "card_dokebi",
+      "name_key": "card_dokebi",
+      "kind": "card",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 18
+        },
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 18
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_dokebi"
+    },
+    {
+      "id": "card_zerom",
+      "name_key": "card_zerom",
+      "kind": "card",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 220
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_zerom"
+    },
+    {
+      "id": "card_andre",
+      "name_key": "card_andre",
+      "kind": "card",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "outgoing_healing_bonus",
+          "stat": "outgoing_healing_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.04
+        },
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 20
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_andre"
+    },
+    {
+      "id": "card_savage",
+      "name_key": "card_savage",
+      "kind": "card",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "str",
+          "stat": "str",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 3
+        },
+        {
+          "id": "crit_chance_bonus",
+          "stat": "crit_chance_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.015
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_savage"
+    },
+    {
+      "id": "card_smokie",
+      "name_key": "card_smokie",
+      "kind": "card",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "int",
+          "stat": "int",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 3
+        },
+        {
+          "id": "control_accuracy",
+          "stat": "control_accuracy",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.03
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_smokie"
+    },
+    {
+      "id": "card_minorous",
+      "name_key": "card_minorous",
+      "kind": "card",
+      "slot": "weapon",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "outgoing_physical_bonus",
+          "stat": "outgoing_physical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.07
+        },
+        {
+          "id": "armor_break_percent",
+          "stat": "armor_break_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.03
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_minorous"
+    },
+    {
+      "id": "card_wraith",
+      "name_key": "card_wraith",
+      "kind": "card",
+      "slot": "weapon",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "outgoing_magical_bonus",
+          "stat": "outgoing_magical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.07
+        },
+        {
+          "id": "penetration_percent",
+          "stat": "penetration_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.03
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_wraith"
+    },
+    {
+      "id": "card_deviruchi",
+      "name_key": "card_deviruchi",
+      "kind": "card",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "int",
+          "stat": "int",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 4
+        },
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 40
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_deviruchi"
+    },
+    {
+      "id": "card_marduk",
+      "name_key": "card_marduk",
+      "kind": "card",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "control_resistance",
+          "stat": "control_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.06
+        },
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 30
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_marduk"
+    },
+    {
+      "id": "card_raydric",
+      "name_key": "card_raydric",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "damage_taken_bonus",
+          "stat": "damage_taken_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": -0.04
+        },
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 250
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_raydric"
+    },
+    {
+      "id": "card_evil_druid",
+      "name_key": "card_evil_druid",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 40
+        },
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.04
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_evil_druid"
+    },
+    {
+      "id": "card_isis",
+      "name_key": "card_isis",
+      "kind": "card",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.045
+        },
+        {
+          "id": "crit_resistance",
+          "stat": "crit_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.04
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_isis"
+    },
+    {
+      "id": "card_sohee",
+      "name_key": "card_sohee",
+      "kind": "card",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "control_resistance",
+          "stat": "control_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.06
+        },
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 30
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_sohee"
+    },
+    {
+      "id": "card_verit",
+      "name_key": "card_verit",
+      "kind": "card",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.06
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_verit"
+    },
+    {
+      "id": "card_kaho",
+      "name_key": "card_kaho",
+      "kind": "card",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.09
+        },
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 40
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_kaho"
+    },
+    {
+      "id": "card_phen",
+      "name_key": "card_phen",
+      "kind": "card",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "control_accuracy",
+          "stat": "control_accuracy",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.06
+        },
+        {
+          "id": "luk",
+          "stat": "luk",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 4
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_phen"
+    },
+    {
+      "id": "card_hode",
+      "name_key": "card_hode",
+      "kind": "card",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "str",
+          "stat": "str",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 4
+        },
+        {
+          "id": "crit_damage_bonus",
+          "stat": "crit_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.08
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_hode"
+    },
+    {
+      "id": "card_doppelganger",
+      "name_key": "card_doppelganger",
+      "kind": "card",
+      "slot": "weapon",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "crit_chance_bonus",
+          "stat": "crit_chance_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.05
+        },
+        {
+          "id": "crit_damage_bonus",
+          "stat": "crit_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.15
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_doppelganger"
+    },
+    {
+      "id": "card_dark_lord",
+      "name_key": "card_dark_lord",
+      "kind": "card",
+      "slot": "weapon",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "outgoing_magical_bonus",
+          "stat": "outgoing_magical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.1
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_dark_lord"
+    },
+    {
+      "id": "card_abysmal_knight",
+      "name_key": "card_abysmal_knight",
+      "kind": "card",
+      "slot": "weapon",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "outgoing_physical_bonus",
+          "stat": "outgoing_physical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.1
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_abysmal_knight"
+    },
+    {
+      "id": "card_osiris",
+      "name_key": "card_osiris",
+      "kind": "card",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "healing_received_bonus",
+          "stat": "healing_received_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.08
+        },
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 60
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_osiris"
+    },
+    {
+      "id": "card_maya",
+      "name_key": "card_maya",
+      "kind": "card",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "control_resistance",
+          "stat": "control_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.08
+        },
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 40
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_maya"
+    },
+    {
+      "id": "card_golden_thief_bug",
+      "name_key": "card_golden_thief_bug",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "damage_taken_bonus",
+          "stat": "damage_taken_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": -0.06
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_golden_thief_bug"
+    },
+    {
+      "id": "card_turtle_general",
+      "name_key": "card_turtle_general",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "guard_percent",
+          "stat": "guard_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.04
+        },
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.05
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_turtle_general"
+    },
+    {
+      "id": "card_stormy_knight",
+      "name_key": "card_stormy_knight",
+      "kind": "card",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.06
+        },
+        {
+          "id": "control_resistance",
+          "stat": "control_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.05
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_stormy_knight"
+    },
+    {
+      "id": "card_garm",
+      "name_key": "card_garm",
+      "kind": "card",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "control_resistance",
+          "stat": "control_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.08
+        },
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 40
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_garm"
+    },
+    {
+      "id": "card_moonlight_flower",
+      "name_key": "card_moonlight_flower",
+      "kind": "card",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.12
+        },
+        {
+          "id": "outgoing_healing_bonus",
+          "stat": "outgoing_healing_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.06
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_moonlight_flower"
+    },
+    {
+      "id": "card_eddga",
+      "name_key": "card_eddga",
+      "kind": "card",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.08
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_eddga"
+    },
+    {
+      "id": "card_baphomet",
+      "name_key": "card_baphomet",
+      "kind": "card",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "outgoing_physical_bonus",
+          "stat": "outgoing_physical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.05
+        },
+        {
+          "id": "outgoing_magical_bonus",
+          "stat": "outgoing_magical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.05
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_baphomet"
+    }
+  ],
+  "presentations": [
+    {
+      "id": "visual_card_weapon_1",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "authored prototype card face with a distinct local symbol; original item icon/illustration are generic shared card art; effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.52575fac5ecd0561",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/al_heal--52575fac5ecd.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_weapon_2",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "authored prototype card face with a distinct local symbol; original item icon/illustration are generic shared card art; effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.f7e2f6ead5344e20",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/al_blessing--f7e2f6ead534.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_weapon_3",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "authored prototype card face with a distinct local symbol; original item icon/illustration are generic shared card art; effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.e3b80b04275437b7",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/al_holylight--e3b80b042754.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_head_1",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "authored prototype card face with a distinct local symbol; original item icon/illustration are generic shared card art; effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.66a03d4ce0b01b95",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/al_incagi--66a03d4ce0b0.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_head_2",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "authored prototype card face with a distinct local symbol; original item icon/illustration are generic shared card art; effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.12ffdfc8e5149e0f",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/al_dp--12ffdfc8e514.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_head_3",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "authored prototype card face with a distinct local symbol; original item icon/illustration are generic shared card art; effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.40fd9432535fa338",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/pr_sanctuary--40fd9432535f.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_armor_1",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "authored prototype card face with a distinct local symbol; original item icon/illustration are generic shared card art; effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.8141fe1913fa5c06",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/pr_impositio--8141fe1913fa.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_armor_2",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "authored prototype card face with a distinct local symbol; original item icon/illustration are generic shared card art; effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.34d4ad4d5141aaf3",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/pr_magnificat--34d4ad4d5141.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_armor_3",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "authored prototype card face with a distinct local symbol; original item icon/illustration are generic shared card art; effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.741424b0645a8632",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/all_resurrection--741424b0645a.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_garment_1",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "authored prototype card face with a distinct local symbol; original item icon/illustration are generic shared card art; effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.63516e20f77c2d96",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/pr_kyrie--63516e20f77c.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_garment_2",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "authored prototype card face with a distinct local symbol; original item icon/illustration are generic shared card art; effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.3ba964829a02bd31",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/mg_srecovery--3ba964829a02.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_garment_3",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "authored prototype card face with a distinct local symbol; original item icon/illustration are generic shared card art; effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.2ce9eebd27704bd7",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/mo_callspirits--2ce9eebd2770.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_shoes_1",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "authored prototype card face with a distinct local symbol; original item icon/illustration are generic shared card art; effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.9603ba59209d4e21",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/mo_tripleattack--9603ba59209d.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_shoes_2",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "authored prototype card face with a distinct local symbol; original item icon/illustration are generic shared card art; effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.85e404862436b04e",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/mo_fingeroffensive--85e404862436.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_shoes_3",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "authored prototype card face with a distinct local symbol; original item icon/illustration are generic shared card art; effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.b13c6a057b6988b8",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/mo_extremityfist--b13c6a057b69.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_accessory_1",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "authored prototype card face with a distinct local symbol; original item icon/illustration are generic shared card art; effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.5fa3d4f34e2a5c92",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/mo_steelbody--5fa3d4f34e2a.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_accessory_2",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "authored prototype card face with a distinct local symbol; original item icon/illustration are generic shared card art; effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.1a20b54731737d2e",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/mo_ironhand--1a20b5473173.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_accessory_3",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "authored prototype card face with a distinct local symbol; original item icon/illustration are generic shared card art; effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.95d0a77bf2b338b7",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/ac_double--95d0a77bf2b3.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_fabre",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.52575fac5ecd0561",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/al_heal--52575fac5ecd.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_lunatic",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.12ffdfc8e5149e0f",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/al_dp--12ffdfc8e514.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_pupa",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.741424b0645a8632",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/all_resurrection--741424b0645a.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_spore",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.63516e20f77c2d96",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/pr_kyrie--63516e20f77c.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_chonchon",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.85e404862436b04e",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/mo_fingeroffensive--85e404862436.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_rocker",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.95d0a77bf2b338b7",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/ac_double--95d0a77bf2b3.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_hydra",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.52575fac5ecd0561",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/al_heal--52575fac5ecd.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_drainliar",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.f7e2f6ead5344e20",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/al_blessing--f7e2f6ead534.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_marc",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.40fd9432535fa338",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/pr_sanctuary--40fd9432535f.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_kukre",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.66a03d4ce0b01b95",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/al_incagi--66a03d4ce0b0.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_thara_frog",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.34d4ad4d5141aaf3",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/pr_magnificat--34d4ad4d5141.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_pecopeco",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.741424b0645a8632",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/all_resurrection--741424b0645a.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_mantis",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.63516e20f77c2d96",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/pr_kyrie--63516e20f77c.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_dokebi",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.3ba964829a02bd31",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/mg_srecovery--3ba964829a02.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_zerom",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.b13c6a057b6988b8",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/mo_extremityfist--b13c6a057b69.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_andre",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.9603ba59209d4e21",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/mo_tripleattack--9603ba59209d.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_savage",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.1a20b54731737d2e",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/mo_ironhand--1a20b5473173.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_smokie",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.95d0a77bf2b338b7",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/ac_double--95d0a77bf2b3.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_minorous",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.52575fac5ecd0561",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/al_heal--52575fac5ecd.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_wraith",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.f7e2f6ead5344e20",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/al_blessing--f7e2f6ead534.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_deviruchi",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.40fd9432535fa338",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/pr_sanctuary--40fd9432535f.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_marduk",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.66a03d4ce0b01b95",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/al_incagi--66a03d4ce0b0.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_raydric",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.34d4ad4d5141aaf3",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/pr_magnificat--34d4ad4d5141.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_evil_druid",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.741424b0645a8632",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/all_resurrection--741424b0645a.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_isis",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.63516e20f77c2d96",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/pr_kyrie--63516e20f77c.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_sohee",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.3ba964829a02bd31",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/mg_srecovery--3ba964829a02.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_verit",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.b13c6a057b6988b8",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/mo_extremityfist--b13c6a057b69.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_kaho",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.9603ba59209d4e21",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/mo_tripleattack--9603ba59209d.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_phen",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.1a20b54731737d2e",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/mo_ironhand--1a20b5473173.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_hode",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.95d0a77bf2b338b7",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/ac_double--95d0a77bf2b3.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_doppelganger",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.52575fac5ecd0561",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/al_heal--52575fac5ecd.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_dark_lord",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.f7e2f6ead5344e20",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/al_blessing--f7e2f6ead534.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_abysmal_knight",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.e3b80b04275437b7",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/al_holylight--e3b80b042754.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_osiris",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.66a03d4ce0b01b95",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/al_incagi--66a03d4ce0b0.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_maya",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.12ffdfc8e5149e0f",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/al_dp--12ffdfc8e514.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_golden_thief_bug",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.741424b0645a8632",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/all_resurrection--741424b0645a.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_turtle_general",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.8141fe1913fa5c06",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/pr_impositio--8141fe1913fa.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_stormy_knight",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.3ba964829a02bd31",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/mg_srecovery--3ba964829a02.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_garm",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.2ce9eebd27704bd7",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/mo_callspirits--2ce9eebd2770.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_moonlight_flower",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.9603ba59209d4e21",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/mo_tripleattack--9603ba59209d.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_eddga",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.85e404862436b04e",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/mo_fingeroffensive--85e404862436.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    },
+    {
+      "id": "visual_card_baphomet",
+      "icon_asset_id": "items.c57d296ea73ac09d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c57d296ea73a.meta.json",
+      "basis": "D-068 card: original slot card face and symbol reused; RO monster name is flavour, effects newly designed",
+      "illustration_asset_id": "items.70795dad5a3807d9",
+      "illustration_meta_path": "assets/ro/library/items/item_illustration/asset--70795dad5a38.meta.json",
+      "symbol_asset_id": "skills.95d0a77bf2b338b7",
+      "symbol_meta_path": "assets/ro/library/skills/skill_sprite_icon/ac_double--95d0a77bf2b3.meta.json",
+      "card_face_style": "authored panel with slot/rarity labels and source skill symbol",
+      "illustration_basis": "generic item card art shared by source card IDs; not a unique card portrait"
+    }
+  ],
+  "level_multipliers": [
+    1,
+    1.25,
+    1.5,
+    1.75,
+    2
+  ],
+  "rarities": [
+    {
+      "id": "bronze",
+      "multiplier": 1,
+      "salvage_card_dust": 20
+    },
+    {
+      "id": "silver",
+      "multiplier": 1.25,
+      "salvage_card_dust": 40
+    },
+    {
+      "id": "gold",
+      "multiplier": 1.5,
+      "salvage_card_dust": 80
+    }
+  ],
+  "rarity_is_equipment_rarity": false,
+  "level_cost_rows": [
+    {
+      "from": 1,
+      "to": 2,
+      "gold": 500,
+      "card_dust": 20
+    },
+    {
+      "from": 2,
+      "to": 3,
+      "gold": 1000,
+      "card_dust": 40
+    },
+    {
+      "from": 3,
+      "to": 4,
+      "gold": 2000,
+      "card_dust": 80
+    },
+    {
+      "from": 4,
+      "to": 5,
+      "gold": 4000,
+      "card_dust": 160
+    }
+  ],
+  "progression_owner": "card_instance_id; assigned to character equipment slot; not shared globally per definition",
+  "gacha_duplicates": "always distinct card instances so several characters can equip copies; user may consume only unequipped unlocked instances into card_dust for upgrades",
+  "resolve_rule": "base modifier * level multiplier * card rarity multiplier, retain fractional ratio/points until central rounding",
+  "free_remove_outside_battle": true
+}

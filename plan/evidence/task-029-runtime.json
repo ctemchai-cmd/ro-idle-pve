@@ -1,0 +1,563 @@
+{
+ "task_id": "TASK-029",
+ "content_hash": "5302fe90ea76945fe82ed837dd5c1885ff3bc76688b584f921cc148f93dd4bc4",
+ "rules_version": "combat-baseline-v1",
+ "golden_cases": [
+  "swordsman_bash_level_1",
+  "swordsman_bash_level_4",
+  "swordsman_bash_level_10",
+  "swordsman_provoke_level_1",
+  "swordsman_provoke_level_4",
+  "swordsman_provoke_level_10",
+  "swordsman_magnum_break_level_1",
+  "swordsman_magnum_break_level_4",
+  "swordsman_magnum_break_level_10",
+  "swordsman_endure_level_1",
+  "swordsman_endure_level_4",
+  "swordsman_endure_level_10",
+  "swordsman_sword_mastery_level_1",
+  "swordsman_sword_mastery_level_4",
+  "swordsman_sword_mastery_level_10",
+  "knight_pierce_level_1",
+  "knight_pierce_level_4",
+  "knight_pierce_level_10",
+  "knight_twohand_quicken_level_1",
+  "knight_twohand_quicken_level_4",
+  "knight_twohand_quicken_level_10",
+  "knight_brandish_level_1",
+  "knight_brandish_level_4",
+  "knight_brandish_level_10",
+  "knight_battle_cry_level_1",
+  "knight_battle_cry_level_4",
+  "knight_battle_cry_level_10",
+  "knight_counter_stance_level_1",
+  "knight_counter_stance_level_4",
+  "knight_counter_stance_level_10",
+  "knight_veteran_level_1",
+  "knight_veteran_level_4",
+  "knight_veteran_level_10",
+  "knight_weapon_drill_level_1",
+  "knight_weapon_drill_level_4",
+  "knight_weapon_drill_level_10",
+  "crusader_holy_cross_level_1",
+  "crusader_holy_cross_level_4",
+  "crusader_holy_cross_level_10",
+  "crusader_auto_guard_level_1",
+  "crusader_auto_guard_level_4",
+  "crusader_auto_guard_level_10",
+  "crusader_devotion_level_1",
+  "crusader_devotion_level_4",
+  "crusader_devotion_level_10",
+  "crusader_grand_cross_level_1",
+  "crusader_grand_cross_level_4",
+  "crusader_grand_cross_level_10",
+  "crusader_defender_level_1",
+  "crusader_defender_level_4",
+  "crusader_defender_level_10",
+  "crusader_faith_level_1",
+  "crusader_faith_level_4",
+  "crusader_faith_level_10",
+  "crusader_reflect_level_1",
+  "crusader_reflect_level_4",
+  "crusader_reflect_level_10"
+ ],
+ "active_probe": {
+  "seed": 1,
+  "game_ms": 60000,
+  "resolves_per_level": {
+   "swordsman_bash": [
+    34,
+    34,
+    34,
+    34,
+    34,
+    34,
+    34,
+    34,
+    34,
+    34
+   ],
+   "swordsman_provoke": [
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35,
+    35
+   ],
+   "swordsman_magnum_break": [
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28
+   ],
+   "swordsman_endure": [
+    34,
+    34,
+    34,
+    34,
+    34,
+    34,
+    34,
+    34,
+    34,
+    34
+   ],
+   "knight_pierce": [
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27
+   ],
+   "knight_twohand_quicken": [
+    37,
+    38,
+    38,
+    41,
+    42,
+    43,
+    44,
+    45,
+    45,
+    46
+   ],
+   "knight_brandish": [
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24
+   ],
+   "knight_battle_cry": [
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26
+   ],
+   "knight_counter_stance": [
+    31,
+    31,
+    31,
+    31,
+    31,
+    31,
+    31,
+    31,
+    31,
+    31
+   ],
+   "crusader_holy_cross": [
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26,
+    26
+   ],
+   "crusader_auto_guard": [
+    31,
+    31,
+    31,
+    31,
+    31,
+    31,
+    31,
+    31,
+    31,
+    31
+   ],
+   "crusader_devotion": [
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24
+   ],
+   "crusader_grand_cross": [
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20
+   ],
+   "crusader_defender": [
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24
+   ]
+  }
+ },
+ "passive_probe": {
+  "swordsman_sword_mastery": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "knight_veteran": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "knight_weapon_drill": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "crusader_faith": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "crusader_reflect": [
+   28,
+   28,
+   28,
+   28,
+   28,
+   28,
+   28,
+   28,
+   28,
+   28
+  ]
+ },
+ "dry_trace": {
+  "knight_striker": {
+   "si_ms": 1122,
+   "cycle_ms": 7721,
+   "physical_attack": [
+    451,
+    505.12000000000006
+   ],
+   "max_hp": [
+    2425,
+    2788
+   ]
+  },
+  "knight_counter_tank": {
+   "si_ms": 1432,
+   "cycle_ms": 8144,
+   "physical_attack": [
+    401,
+    449.12000000000006
+   ],
+   "max_hp": [
+    3425,
+    3938
+   ]
+  },
+  "crusader_guardian": {
+   "si_ms": 1416,
+   "cycle_ms": 8836,
+   "physical_attack": [
+    333,
+    372.96000000000004
+   ],
+   "max_hp": [
+    3425,
+    4178
+   ]
+  },
+  "crusader_holy_striker": {
+   "si_ms": 1399,
+   "cycle_ms": 8939,
+   "physical_attack": [
+    486,
+    544.32
+   ],
+   "max_hp": [
+    1945,
+    2372
+   ]
+  }
+ },
+ "real_fight_first_starts": {
+  "knight_striker": {
+   "real": [
+    1122,
+    2682,
+    4476,
+    5764
+   ],
+   "dry": [
+    1122,
+    2906,
+    4924,
+    6436
+   ]
+  },
+  "knight_counter_tank": {
+   "real": [
+    1432,
+    3215,
+    5270,
+    7092
+   ],
+   "dry": [
+    1432,
+    3215,
+    5270,
+    7092
+   ]
+  },
+  "crusader_guardian": {
+   "real": [
+    1416,
+    3149,
+    5658,
+    7638
+   ],
+   "dry": [
+    1416,
+    3149,
+    5658,
+    7638
+   ]
+  },
+  "crusader_holy_striker": {
+   "real": [
+    1399,
+    3710,
+    6661,
+    8601
+   ],
+   "dry": [
+    1399,
+    3710,
+    6661,
+    8601
+   ]
+  }
+ },
+ "roles": {
+  "seeds": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "encounter": "hero back_1 + 3 probe allies vs probe boss (normal attack + 120 flat cleave), 60s, no gear; role evidence, not a balance verdict",
+  "mean": {
+   "knight_striker": {
+    "dps": 667.72,
+    "heroTaken": 2261,
+    "alliesTaken": 16318.8,
+    "bossNormalsOnHero": 0,
+    "counter": 0,
+    "reflect": 0,
+    "transfer": 0,
+    "holy": 0,
+    "teamDefense": 0
+   },
+   "knight_counter_tank": {
+    "dps": 199.9066666666667,
+    "heroTaken": 3938,
+    "alliesTaken": 12992,
+    "bossNormalsOnHero": 12,
+    "counter": 3356.2,
+    "reflect": 0,
+    "transfer": 0,
+    "holy": 0,
+    "teamDefense": 0
+   },
+   "crusader_guardian": {
+    "dps": 93.34666666666666,
+    "heroTaken": 4178,
+    "alliesTaken": 12421,
+    "bossNormalsOnHero": 9.6,
+    "counter": 0,
+    "reflect": 331.4,
+    "transfer": 1064,
+    "holy": 0,
+    "teamDefense": 4
+   },
+   "crusader_holy_striker": {
+    "dps": 596.36,
+    "heroTaken": 2130,
+    "alliesTaken": 16367.6,
+    "bossNormalsOnHero": 0,
+    "counter": 0,
+    "reflect": 219,
+    "transfer": 0,
+    "holy": 15035.6,
+    "teamDefense": 0
+   }
+  }
+ },
+ "devotion": {
+  "lv10_p100": [
+   [
+    "p_crusader",
+    30,
+    "transfer"
+   ],
+   [
+    "p_ally",
+    70,
+    "skill"
+   ]
+  ],
+  "pair_06_06_p100": [
+   [
+    "p_cru_a",
+    50,
+    "transfer"
+   ],
+   [
+    "p_cru_b",
+    50,
+    "transfer"
+   ],
+   [
+    "p_ally",
+    0,
+    "skill"
+   ]
+  ]
+ },
+ "parity": {
+  "stage": "6-20",
+  "seed": 29,
+  "team": [
+   {
+    "character_id": "main",
+    "position": "back_1"
+   },
+   {
+    "character_id": "npc_swordsman",
+    "position": "front_1"
+   },
+   {
+    "character_id": "npc_acolyte",
+    "position": "back_2"
+   },
+   {
+    "character_id": "npc_archer",
+    "position": "front_2"
+   }
+  ],
+  "outcome": "STORY_TIME_LIMIT",
+  "end_ms": 90000,
+  "events": 1117,
+  "server_confirmations": 89,
+  "event_digest": {
+   "algorithm": "fnv1a32-v1",
+   "value": "c77f329e"
+  },
+  "tree_skill_metrics": {
+   "npc_swordsman:crusader_reflect": {
+    "casts_resolved": 0,
+    "hp_damage": 268
+   },
+   "npc_swordsman:swordsman_provoke": {
+    "casts_resolved": 7,
+    "hp_damage": 0
+   },
+   "main:swordsman_provoke": {
+    "casts_resolved": 7,
+    "hp_damage": 0
+   },
+   "npc_swordsman:crusader_devotion": {
+    "casts_resolved": 6,
+    "hp_damage": 0
+   },
+   "main:knight_counter_stance": {
+    "casts_resolved": 7,
+    "hp_damage": 559
+   },
+   "main:swordsman_endure": {
+    "casts_resolved": 6,
+    "hp_damage": 0
+   },
+   "npc_swordsman:crusader_auto_guard": {
+    "casts_resolved": 6,
+    "hp_damage": 0
+   },
+   "main:knight_battle_cry": {
+    "casts_resolved": 6,
+    "hp_damage": 0
+   },
+   "npc_swordsman:crusader_defender": {
+    "casts_resolved": 6,
+    "hp_damage": 0
+   }
+  }
+ }
+}

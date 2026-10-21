@@ -1,0 +1,172 @@
+
+> ro-idle-classic@0.1.0 check
+> npm run content:generate && npm run content:check && npm run boundaries && npm run typecheck && npm test
+
+
+> ro-idle-classic@0.1.0 content:generate
+> node --import tsx scripts/game/generate-content.ts
+
+{"content_hash":"6db2b55aeb422ae2c2130b8c0aeef3a9e25ac2415a818fcd9d8ec456b3cbaa27","documents":34,"schemas":16,"asset_payloads":0}
+
+> ro-idle-classic@0.1.0 content:check
+> node --import tsx scripts/game/check-content.ts
+
+{"content_hash":"6db2b55aeb422ae2c2130b8c0aeef3a9e25ac2415a818fcd9d8ec456b3cbaa27","skills_including_enemy":134,"items":78,"statuses":27,"immutable":true}
+
+> ro-idle-classic@0.1.0 boundaries
+> node --import tsx scripts/game/check-boundaries.ts
+
+{
+  "passed": true,
+  "issues": []
+}
+
+> ro-idle-classic@0.1.0 typecheck
+> tsc --noEmit
+
+
+> ro-idle-classic@0.1.0 test
+> node --import tsx --test tests/game/*.test.ts
+
+✔ same Fetch entry serves local health; unfinished cloud routes return503 (91.091292ms)
+✔ local repository exercises original receipt replay before revision and detects races (1.499542ms)
+✔ all126 skill IDs resolve icon/recipe/audio plus native StormGust (36.663792ms)
+✔ every selected asset resolves distinct metadata/media paths (12.628208ms)
+✔ unknown IDs and traversal do not fall back to external or guessed files (20.412958ms)
+✔ actual source respects ownership and dependency directions (769.075625ms)
+✔ boundary rejects DOM (3.851875ms)
+✔ boundary rejects clock alias (1.528792ms)
+✔ boundary rejects random alias (0.928042ms)
+✔ boundary rejects computed random (2.933708ms)
+✔ boundary rejects fetch (2.434708ms)
+✔ boundary rejects external side effect (0.684625ms)
+✔ boundary rejects transitive UI (0.491542ms)
+✔ boundary rejects UI DB (0.710292ms)
+✔ boundary rejects dynamic bypass (1.98925ms)
+✔ boundary rejects locale order (1.015833ms)
+✔ pure combat can be imported in Node without browser/DB (354.822458ms)
+✔ all release catalogs load, are immutable, and expose gameplay counts (2170.883584ms)
+✔ reject reviewed input: unknown_stat (296.281917ms)
+✔ reject reviewed input: unknown_formula (32.195083ms)
+✔ reject reviewed input: unknown_formula_param (0.695041ms)
+✔ reject reviewed input: unknown_status (2.761125ms)
+✔ reject reviewed input: unknown_binding (1.597625ms)
+✔ reject reviewed input: outcome_other_target (1.20525ms)
+✔ reject reviewed input: outcome_forward_reference (1.985ms)
+✔ reject reviewed input: outcome_different_binding (2.117791ms)
+✔ reject reviewed input: unknown_status_param (1.280041ms)
+✔ reject reviewed input: undefined_level_param (10.462ms)
+✔ reject reviewed input: level_curve_length (0.556666ms)
+✔ reject reviewed input: invalid_modifier_bucket (0.389166ms)
+✔ reject reviewed input: ratio_as_add_percent (0.222875ms)
+✔ reject reviewed input: buff_cap (39.963ms)
+✔ reject reviewed input: chance_above_one (1.732125ms)
+✔ reject reviewed input: event_formula_without_event (0.513375ms)
+✔ reject reviewed input: status_param_in_skill (0.738292ms)
+✔ reject reviewed input: dead_heal_binding (0.9865ms)
+✔ reject reviewed input: unknown_json_field (0.484709ms)
+✔ reject reviewed input: effect_id_duplicate (0.717541ms)
+✔ reject reviewed input: source_sp_double_charge (0.52075ms)
+✔ reject reviewed input: patch_missing_anchor (197.494166ms)
+✔ reject reviewed input: patch_set_conflict (864.305541ms)
+✔ reject reviewed input: unknown_actor_reference (10.413208ms)
+✔ reject reviewed input: modifier_feedback_predicate (7.583958ms)
+✔ reject reviewed input: unsafe_number (2.153292ms)
+✔ reject reviewed input: status_remote_schema (2.777041ms)
+✔ reject reviewed input: skill_as_reflect (3.871791ms)
+✔ reject reviewed input: battle_start_event_target (1.070458ms)
+✔ reject reviewed input: cast_event_ambiguous_target (3.281ms)
+✔ reject reviewed input: live_source_after_death (4.108167ms)
+✔ reject NaN before schema or formula evaluation (3.890625ms)
+✔ prototype properties cannot masquerade as target bindings (2.693292ms)
+✔ field errors identify originating definition/effect and JSON pointer (1.836667ms)
+✔ loader reports duplicate definitions and invalid document versions (1482.577625ms)
+✔ variants use stable IDs and preserve other actors/shared base (195.253292ms)
+✔ independent same-caster and NPC buffs reproduce 156/288/252/216/120 without refresh (11.693583ms)
+✔ buff magnitude and repeated applications have no hidden cap (146.776958ms)
+✔ removing one trait source and one status recomputes others instead of subtracting stats (17.531125ms)
+✔ AoE outcomes isolate A-hit/B-miss; a completely shielded hit still permits Stun (80.836042ms)
+✔ heal chooses lowest HP percent and still casts at full HP with all-overheal metrics (28.939542ms)
+✔ front ordering and latest living Provoke source; all/random selectors ignore it (1.197334ms)
+✔ locked dead target skips or reselects once; no automatic replacement mid-program (0.792166ms)
+✔ Stun before start leaves slot unspent and starts at recovery without restarting SI (1.253708ms)
+✔ interrupting CT consumes SP/slot exactly once and removes the old resolve token (0.827208ms)
+✔ same-time locked cast resolves even if another completion applies Stun (1.971458ms)
+✔ uninterruptible CT resolves under CC while Silence permits Normal Attack (2.408ms)
+✔ ordinary chain CC has normal independent durations and union vs instance metrics (3.665625ms)
+✔ optional reactive boss trait adds independent Resistance after successful CC only (1.972542ms)
+✔ periodic expiry is exclusive; shield absorbs60 then HP loses20 across two ticks (1.488333ms)
+✔ Freeze survives fully absorbed damage and breaks only on positive HP loss (0.695958ms)
+✔ cleanse/dispel removes permitted individual instances in expiry then ID order (0.751ms)
+✔ own-status detonation consumes only the acting source and uses the common damage pipeline (0.879ms)
+✔ learned Passive applies automatically with all four Active slots empty (0.336125ms)
+✔ proc ancestry blocks A→B→A reentry while sibling hits and separate instances still proc (4.054667ms)
+✔ proc per-battle counter survives serialized restore and never resets on a later advance (1235.27925ms)
+✔ battle_start entry trigger fires once even when the initial checkpoint is restored (15.698417ms)
+✔ weapon endow selection is latest active enum and reveals the previous value after expiry (2.534084ms)
+✔ a status whose source died persists or removes exactly as its catalog requires (3.799166ms)
+✔ resource gains clamp SP/spheres and expose restored vs wasted without touching wallets (0.659542ms)
+✔ all27 catalog statuses bind params, expire individually, and leave base stats unchanged (31.772709ms)
+✔ positive duration CC is not shortened when a boss gains Resistance after it applies (15.874833ms)
+✔ simultaneous completion CC uses pre-reaction Resistance for the entire batch (6.137333ms)
+✔ item/card/passive sources share the same proc path, with separate-instance and root limits (1.92575ms)
+✔ default card reflect accepts normal/skill and does not react to another reflect (0.774125ms)
+✔ Devotion conserves101 damage with proportional independent links and one routing pass (15.136042ms)
+✔ DoT retains original source attribution after caster dies and removes when carrier dies (4.360584ms)
+✔ every emitted engine event is canonical JSON with source/effect/hit attribution (0.64725ms)
+✔ overflow diagnostics return no partially spent state or truncated buff stacks (11.38575ms)
+✔ conditional passive modifiers follow active statuses without changing the scheduled SI (1.395917ms)
+✔ raising MaxHP does not heal; removal clamps down without granting resources (1.9355ms)
+✔ event budget also bounds timer-only battles and preserves input on failure (3.650083ms)
+✔ Silence chance uses control resistance but never emits hard-CC reactions (4.562875ms)
+✔ lethal damage reactions drain before death cleanup and can cause a mutual wipe (0.921417ms)
+✔ M0 stat golden: base_level1 (3.824334ms)
+✔ M0 stat golden: base_level70_no_speed_growth (0.618125ms)
+✔ M0 stat golden: level20_manual_spread (0.134834ms)
+✔ M0 mitigation golden: armor_0 (0.157375ms)
+✔ M0 mitigation golden: armor_200 (0.114541ms)
+✔ M0 mitigation golden: armor_400 (0.09175ms)
+✔ M0 mitigation golden: armor_800 (0.201125ms)
+✔ M0 mitigation golden: armor_1600 (0.047125ms)
+✔ M0 mitigation golden: break_and_penetration (0.100125ms)
+✔ M0 mitigation golden: over_100_percent_break_no_negative_defense (0.075583ms)
+✔ M0 mitigation golden: crit_uses_armor (0.109708ms)
+✔ M0 mitigation golden: guard_vulnerability_shield (0.086292ms)
+✔ M0 mitigation golden: ordered_full_pipeline (0.32175ms)
+✔ M0 mitigation golden: uncapped_guard_has_zero_damage_floor (0.08225ms)
+✔ M0 mitigation golden: shield_landed_not_hp_loss (0.037875ms)
+✔ M0 mitigation golden: overkill_separate (0.039416ms)
+✔ M0 mitigation golden: each_hit_rounds_once (0.04275ms)
+✔ M0 mitigation golden: armor_near_asymptotic_reduction (0.038833ms)
+✔ M0 mitigation golden: full_penetration (0.039ms)
+✔ RNG matches independently calculated states, including seed0 (0.106625ms)
+✔ timers have1ms natural minimum, with uncapped speed and zero CT (0.068417ms)
+✔ negative bonuses remain negative and max resources floor after modifiers (0.17875ms)
+✔ parallel timelines match M0 independent start/resolve/next-start golden (25.611708ms)
+✔ SP spends once at start; insufficient SP skips then waits one SI (0.99ms)
+✔ NA runs during SI/ACD, is paused by CT, and cast start wins ties (0.893125ms)
+✔ zero CT resolves immediately but suppresses same-time normal attack (2.153083ms)
+✔ same-time existing completions are locked before lethal damage (2.239917ms)
+✔ exact timeout cancels events at90s and fast-forward uses virtual time (12.95475ms)
+✔ one jump, repeated20Hz steps, and repeated seed have identical checkpoint/events (71.267875ms)
+✔ all empty slots stay normal-only with no skill timer; empty slots add no delay (2.742417ms)
+✔ diagnostic/budget failure never mutates input or returns partial proposal (0.563375ms)
+✔ steps share frozen definitions and copy mutable actor state (0.382041ms)
+✔ created and stepped checkpoints conform to M0 schema (663.206458ms)
+✔ checkpoint during CT restores same future events/RNG/metrics (1081.299792ms)
+✔ guaranteed hit consumes RNG; ineligible crit does not (19.352458ms)
+✔ speed changes affect the next phase and preserve the existing SI snapshot (3.939625ms)
+✔ CT keeps its speed snapshot; ACD observes the newer CastSpeed (6.79975ms)
+✔ offense snapshots at cast start; target mitigation remains live (10.622667ms)
+✔ an unregistered actor factory fails before a summon can spend resources (0.956084ms)
+✔ core mitigation and shield consumption match the M0 HP golden (2.423291ms)
+✔ Stun leaves an unstarted slot unspent and starts immediately at recovery (5.256875ms)
+✔ invalid duplicated logical skill slots reject before scheduling (3.486084ms)
+ℹ tests 134
+ℹ suites 0
+ℹ pass 134
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6705.988291

@@ -1,0 +1,71 @@
+{
+  "task_id": "TASK-024",
+  "passed": true,
+  "round": 1,
+  "date": "2026-10-20",
+  "reviewer": "Codex self-review",
+  "typescript_tests": 208,
+  "focused_preview_tests_after_UI_copy_fix": 7,
+  "build": "passed; bundle-size warning remains TASK-042",
+  "source_sha256": {
+    "src/domain/progression/skills.ts": "df99cdc925c68bd51e930b7bcbc180806e47644c0d304a1a98cea00ecd615285",
+    "src/domain/progression/rejection.ts": "e2230b96cf034c5fefc3cea3c69d82426f1a36013caa337cc787edb0c75bd472",
+    "src/domain/progression/characters.ts": "ad692802828106e1cbab1156c2dc7a7c81f8b5f5bb90045eca123263729a3954",
+    "src/domain/account/commands.ts": "3cd7c5e4e8dd3d88088ff79085df24c07ae5f5089fd906830c17eb1f0af9da48",
+    "src/domain/build/character.ts": "b8c801a52a586744768e897dd43be092051be082e18b57e62f466146295cb081",
+    "src/domain/combat/engine.ts": "cc478ebf7e80d7ffaafb44d26c7bdeded32165dddd041be8eabf14c15b07f6d1",
+    "src/client/skills.ts": "73e41c7b3355f81db8cc6f33ae30106d0c5683484cc38411f23cf9681a9ea891",
+    "src/client/roster.ts": "c3cde784b0cdc48e306f5a8f613f4883adef951dba7929fcfe66ebca2d2960ba",
+    "src/ui/character-skills.tsx": "de6e2de1d84e86a414e6d4bb78378e81e7c57296745742e6566c8235ebd1eead",
+    "src/ui/skills.css": "d9cedd009e7269105002c3a8bc240980d02c338405d0b846b4a8862ed4e778b4",
+    "src/ui/roster-page.tsx": "8068e54c570af00fbf6d427dcc291ea870dd011cbf44c2358a6ba5cdde50517c",
+    "tests/game/skill-progression.test.ts": "27314858f5ae8e50ae098862924b05da49e8faa9203aeac986f2f5287e9b4b23",
+    "scripts/test_skills_live.cjs": "87322e8e166e40e0b16315832dff06c4e12dc3847e2df2a2580950346f5485a1"
+  },
+  "checks": [
+    {
+      "acceptance": "AC-01",
+      "passed": true,
+      "result": "126 player price tables/max levels/branch/unlock/cap checked; real API rejectsLv3 atchar10/cap2, real lost-response upgrade pays50gold/10manual once; reset returns exact paid cost."
+    },
+    {
+      "acceptance": "AC-02",
+      "passed": true,
+      "result": "Four ordered slots/empty slots/duplicate/passive/exclusive-copy group rejected; UI swaps IDs; actual engine automatically attaches learned Sword Mastery and increasesphysical_attack; cast order verified."
+    },
+    {
+      "acceptance": "AC-03",
+      "passed": true,
+      "result": "Shared math CT/ACD/SP/level-effect deltas and only USED selector targets inUI; all class previews noNaN; actual mobileicons and before/after power140→148.89% tested; no conditional AI holding controls."
+    },
+    {
+      "acceptance": "AC-04",
+      "passed": true,
+      "result": "Actual SQL+Chrome main loadout/levels/Passive and off-team MageLv6/FireBolt2/reversedslots survive reload; noAwaken. Offline disables spending and reconnect restores currentcloud."
+    }
+  ],
+  "evidence": [
+    "task-024-check.txt",
+    "task-024-preview-tests.txt",
+    "task-024-build.txt",
+    "task-024-local-stack.json",
+    "task-024-supabase-local.json",
+    "task-024-save-live-browser.json",
+    "task-024-roster-live-browser.json",
+    "task-024-skills-live-browser.json"
+  ],
+  "visual_review": {
+    "files": [
+      "docs/screenshots/skills-390.png",
+      "docs/screenshots/skills-360.png"
+    ],
+    "scope": "Actual390/360 Chrome skill icons/CT/ACD/SP/effect/cap. FireBolt now shows enemy single only, not unused shared selector bindings. Manual image review, not all class variants."
+  },
+  "limitations": [
+    "Real isolated local services, not hostedSupabase/Vercel.",
+    "Skill prices/learned loadouts support126 player definitions; full class-specific handlers/summons/effects remain TASK-029–034/041.",
+    "UI preview before gear/temporary buffs; permanent gear integration TASK-026.",
+    "Current3s SI is an explicit preview/demo profile; abstract engine benchmark defaults remain1.5s. Storyfactory must select same profile inTASK-025.",
+    "Cloud battle/Story game loop remainsTASK-025."
+  ]
+}

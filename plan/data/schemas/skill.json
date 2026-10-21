@@ -1,0 +1,389 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ro-idle.local/schemas/skill.json",
+  "oneOf": [
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "name_key": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "class_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "max_level": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "unlock_level": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 70
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          }
+        },
+        "level_parameters": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "additionalProperties": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "number"
+            }
+          }
+        },
+        "presentation_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "const": "active"
+        },
+        "cost": {
+          "type": "object",
+          "properties": {
+            "sp": {
+              "oneOf": [
+                {
+                  "oneOf": [
+                    {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "level_param": {
+                          "type": "string",
+                          "pattern": "^[a-z][a-z0-9_]*$"
+                        }
+                      },
+                      "required": [
+                        "level_param"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "status_param": {
+                          "type": "string",
+                          "pattern": "^[a-z][a-z0-9_]*$"
+                        }
+                      },
+                      "required": [
+                        "status_param"
+                      ],
+                      "additionalProperties": false
+                    }
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "mode": {
+                      "const": "all_current"
+                    },
+                    "minimum_sp": {
+                      "oneOf": [
+                        {
+                          "type": "number",
+                          "minimum": 0
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "level_param": {
+                              "type": "string",
+                              "pattern": "^[a-z][a-z0-9_]*$"
+                            }
+                          },
+                          "required": [
+                            "level_param"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "status_param": {
+                              "type": "string",
+                              "pattern": "^[a-z][a-z0-9_]*$"
+                            }
+                          },
+                          "required": [
+                            "status_param"
+                          ],
+                          "additionalProperties": false
+                        }
+                      ]
+                    }
+                  },
+                  "required": [
+                    "mode",
+                    "minimum_sp"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            },
+            "spirit_spheres": {
+              "oneOf": [
+                {
+                  "type": "number",
+                  "minimum": 0
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "level_param": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-z0-9_]*$"
+                    }
+                  },
+                  "required": [
+                    "level_param"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "status_param": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-z0-9_]*$"
+                    }
+                  },
+                  "required": [
+                    "status_param"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            }
+          },
+          "required": [
+            "sp",
+            "spirit_spheres"
+          ],
+          "additionalProperties": false
+        },
+        "timing": {
+          "type": "object",
+          "properties": {
+            "cast_ms": {
+              "oneOf": [
+                {
+                  "type": "number",
+                  "minimum": 0
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "level_param": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-z0-9_]*$"
+                    }
+                  },
+                  "required": [
+                    "level_param"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "status_param": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-z0-9_]*$"
+                    }
+                  },
+                  "required": [
+                    "status_param"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            },
+            "after_cast_ms": {
+              "oneOf": [
+                {
+                  "type": "number",
+                  "minimum": 0
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "level_param": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-z0-9_]*$"
+                    }
+                  },
+                  "required": [
+                    "level_param"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "status_param": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-z0-9_]*$"
+                    }
+                  },
+                  "required": [
+                    "status_param"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            },
+            "interruptible": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "cast_ms",
+            "after_cast_ms",
+            "interruptible"
+          ],
+          "additionalProperties": false
+        },
+        "selectors": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "additionalProperties": {
+            "$ref": "selector.json"
+          }
+        },
+        "start_effects": {
+          "type": "array",
+          "items": {
+            "$ref": "effect.json"
+          }
+        },
+        "effects": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "effect.json"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "name_key",
+        "class_id",
+        "max_level",
+        "unlock_level",
+        "tags",
+        "level_parameters",
+        "kind",
+        "cost",
+        "timing",
+        "selectors",
+        "start_effects",
+        "effects"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "name_key": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "class_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "max_level": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "unlock_level": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 70
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          }
+        },
+        "level_parameters": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "additionalProperties": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "number"
+            }
+          }
+        },
+        "presentation_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "const": "passive"
+        },
+        "modifiers": {
+          "type": "array",
+          "items": {
+            "$ref": "modifier.json"
+          }
+        },
+        "triggers": {
+          "type": "array",
+          "items": {
+            "$ref": "trigger.json"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "name_key",
+        "class_id",
+        "max_level",
+        "unlock_level",
+        "tags",
+        "level_parameters",
+        "kind",
+        "modifiers",
+        "triggers"
+      ],
+      "additionalProperties": false
+    }
+  ]
+}

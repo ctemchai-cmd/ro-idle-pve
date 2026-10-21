@@ -1,0 +1,391 @@
+{
+  "schema_version": 1,
+  "actions": [
+    {
+      "id": "party.set",
+      "screen": "party",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "character.level_up",
+      "screen": "character",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "character.breakthrough",
+      "screen": "character",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "character.change_job",
+      "screen": "character",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "character.allocate_status",
+      "screen": "character",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "character.reset_build",
+      "screen": "character",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "skill.upgrade",
+      "screen": "skills",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "skill.set_loadout",
+      "screen": "skills",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "equipment.equip",
+      "screen": "inventory",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "equipment.unequip",
+      "screen": "inventory",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "equipment.lock",
+      "screen": "inventory",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "equipment.salvage",
+      "screen": "inventory",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "equipment.fuse",
+      "screen": "inventory",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "equipment.tier_up",
+      "screen": "inventory",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "equipment.purchase_weapon",
+      "screen": "inventory",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "slot.refine",
+      "screen": "slot",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "slot.enchant",
+      "screen": "slot",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "slot.change_enchant",
+      "screen": "slot",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "card.assign",
+      "screen": "slot",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "card.unassign",
+      "screen": "slot",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "card.upgrade",
+      "screen": "slot",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "card.salvage",
+      "screen": "slot",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "farm.set_stage",
+      "screen": "farm",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "farm.claim",
+      "screen": "farm",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "battle.start_story",
+      "screen": "farm",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "battle.advance",
+      "screen": "farm",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "battle.retreat",
+      "screen": "farm",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "reward.claim",
+      "screen": "farm",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "battle.start_tower",
+      "screen": "dungeons",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "battle.start_daily",
+      "screen": "dungeons",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "daily.objective_claim",
+      "screen": "dungeons",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "gacha.pull",
+      "screen": "gacha",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "account.create",
+      "screen": "creation",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "backup.restore_request",
+      "screen": "recovery",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "auth.signup",
+      "screen": "auth",
+      "authority": "supabase_auth",
+      "durable": false
+    },
+    {
+      "id": "auth.login",
+      "screen": "auth",
+      "authority": "supabase_auth",
+      "durable": false
+    },
+    {
+      "id": "auth.recover",
+      "screen": "auth",
+      "authority": "supabase_auth",
+      "durable": false
+    },
+    {
+      "id": "auth.logout",
+      "screen": "settings",
+      "authority": "supabase_auth",
+      "durable": false
+    },
+    {
+      "id": "settings.local",
+      "screen": "settings",
+      "authority": "local_preferences",
+      "durable": false
+    },
+    {
+      "id": "backup.export",
+      "screen": "settings",
+      "authority": "local_read",
+      "durable": false
+    },
+    {
+      "id": "shop.buy",
+      "screen": "gacha",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "save.migrate",
+      "screen": "recovery",
+      "authority": "account_command",
+      "durable": true
+    },
+    {
+      "id": "account.reset",
+      "screen": "settings",
+      "authority": "account_command",
+      "durable": true
+    }
+  ],
+  "durable_enabled_states": [
+    "ready"
+  ],
+  "read_only_states": [
+    "loading_cloud",
+    "command_pending",
+    "disconnected",
+    "session_expired",
+    "revision_conflict",
+    "inventory_full",
+    "incompatible_version",
+    "recovery_preview"
+  ],
+  "network_cases": [
+    {
+      "id": "offline_cannot_claim",
+      "state": "disconnected",
+      "action": "farm.claim",
+      "allowed": false
+    },
+    {
+      "id": "pending_no_double_gacha",
+      "state": "command_pending",
+      "action": "gacha.pull",
+      "allowed": false
+    },
+    {
+      "id": "ready_can_upgrade",
+      "state": "ready",
+      "action": "skill.upgrade",
+      "allowed": true
+    },
+    {
+      "id": "expired_cannot_spend",
+      "state": "session_expired",
+      "action": "slot.refine",
+      "allowed": false
+    },
+    {
+      "id": "conflict_cannot_overwrite",
+      "state": "revision_conflict",
+      "action": "party.set",
+      "allowed": false
+    },
+    {
+      "id": "offline_can_mute",
+      "state": "disconnected",
+      "action": "settings.local",
+      "allowed": true
+    },
+    {
+      "id": "inventory_full_can_free_space",
+      "state": "inventory_full",
+      "action": "equipment.salvage",
+      "allowed": true
+    }
+  ],
+  "viewports": [
+    {
+      "width": 360,
+      "height": 780
+    },
+    {
+      "width": 390,
+      "height": 844
+    },
+    {
+      "width": 844,
+      "height": 390
+    },
+    {
+      "width": 1280,
+      "height": 720
+    }
+  ],
+  "layout_rules": {
+    "minimum_width": 360,
+    "tap_target": 44,
+    "text_body": 14,
+    "text_secondary": 12,
+    "four_slot_gaps": 8,
+    "horizontal_padding": 16
+  },
+  "manual_flows": [
+    {
+      "id": "team_unique_roots",
+      "input": "mainMage + NPCSword/NPCSword/NPCAco",
+      "expected": "reject duplicate NPC root; main duplicate allowed with a different NPC selection"
+    },
+    {
+      "id": "insufficient_upgrade",
+      "input": "level upgrade wallet short",
+      "expected": "show missing resources; wallet and level unchanged"
+    },
+    {
+      "id": "response_lost",
+      "input": "gacha command committed, response lost",
+      "expected": "lookup/retry same request ID; display same instances once"
+    },
+    {
+      "id": "daily_midnight",
+      "input": "battle ticket19 finishes day20",
+      "expected": "show old ticket day; do not overwrite new-day attempts"
+    },
+    {
+      "id": "inventory_reward_pending",
+      "input": "inventory full at clear",
+      "expected": "pending fixed claim, open inventory then replay same claim"
+    },
+    {
+      "id": "tutorial_skip",
+      "input": "skip first Status tutorial",
+      "expected": "no required point spending, party stays valid"
+    },
+    {
+      "id": "recovery_old_backup",
+      "input": "local revision4 cloud revision8",
+      "expected": "cloud wins; backup readable/exportable; no currency merge"
+    }
+  ],
+  "durable_state_exceptions": {
+    "inventory_full": [
+      "equipment.salvage",
+      "equipment.fuse",
+      "card.salvage",
+      "equipment.lock"
+    ]
+  }
+}

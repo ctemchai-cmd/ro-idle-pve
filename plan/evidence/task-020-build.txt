@@ -1,0 +1,47 @@
+
+> ro-idle-classic@0.1.0 build
+> npm run assets:check && npm run content:generate && npm run content:check && npm run boundaries && npm run typecheck && vite build && node --import tsx scripts/game/build-output.ts
+
+
+> ro-idle-classic@0.1.0 assets:check
+> python3 scripts/build_runtime_assets.py --check
+
+{"pack_hash": "47f97d9aaac2bf10ac3279e5634052b72a55a26fefe1048de0c537387332d307", "assets": 249, "files": 499, "download_policy": "all files in pack are deployable; fetch initial profile then actors/icons/scenery/audio on demand", "first_battle_budget_bytes": 8388608, "initial_profile_raw_bytes": 1322269, "manifest_bytes": 259941, "media_and_sidecar_bytes": 22174754, "pack_budget_bytes": 26214400}
+
+> ro-idle-classic@0.1.0 content:generate
+> node --import tsx scripts/game/generate-content.ts
+
+{"content_hash":"bbd648fb0ed66e76b5e60cc8b621ef072b1c007e6b41264fff7320c7dc3a2df9","documents":34,"schemas":16,"asset_payloads":0}
+
+> ro-idle-classic@0.1.0 content:check
+> node --import tsx scripts/game/check-content.ts
+
+{"content_hash":"bbd648fb0ed66e76b5e60cc8b621ef072b1c007e6b41264fff7320c7dc3a2df9","skills_including_enemy":134,"items":78,"statuses":27,"immutable":true}
+
+> ro-idle-classic@0.1.0 boundaries
+> node --import tsx scripts/game/check-boundaries.ts
+
+{
+  "passed": true,
+  "issues": []
+}
+
+> ro-idle-classic@0.1.0 typecheck
+> tsc --noEmit
+
+vite v8.3.4 building client environment for production...
+transforming...
+✓ 125 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                     0.80 kB │ gzip:   0.54 kB
+dist/assets/index-DPFKNxbV.css     18.29 kB │ gzip:   4.67 kB
+dist/assets/index-YQaRV6Yj.js   1,221.17 kB │ gzip: 213.19 kB
+
+✓ built in 286ms
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+{"content_hash":"bbd648fb0ed66e76b5e60cc8b621ef072b1c007e6b41264fff7320c7dc3a2df9","files":503,"gzip_bytes":216305,"asset_pack_hash":"47f97d9aaac2bf10ac3279e5634052b72a55a26fefe1048de0c537387332d307","asset_pack_bytes":22434695,"publish_ready":false}

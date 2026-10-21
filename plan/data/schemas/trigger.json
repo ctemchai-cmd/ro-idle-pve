@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ro-idle.local/schemas/trigger.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "event": {
+      "enum": [
+        "battle_start",
+        "cast_start",
+        "cast_resolve",
+        "normal_attack_hit",
+        "damage_dealt",
+        "damage_received",
+        "control_applied",
+        "status_applied",
+        "status_expired",
+        "actor_death",
+        "ally_death"
+      ]
+    },
+    "chance": {
+      "oneOf": [
+        {
+          "type": "number",
+          "minimum": 0
+        },
+        {
+          "type": "object",
+          "properties": {
+            "level_param": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]*$"
+            }
+          },
+          "required": [
+            "level_param"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "status_param": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]*$"
+            }
+          },
+          "required": [
+            "status_param"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "when": {
+      "$ref": "predicate.json"
+    },
+    "accepted_origins": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "skill",
+          "normal",
+          "periodic",
+          "proc",
+          "reflect",
+          "system",
+          "transfer"
+        ]
+      }
+    },
+    "limit_scope": {
+      "enum": [
+        "none",
+        "per_root_action",
+        "per_battle"
+      ]
+    },
+    "limit_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "reentry": {
+      "const": "deny_same_source_trigger_in_ancestry"
+    },
+    "selectors": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]*$"
+      },
+      "additionalProperties": {
+        "$ref": "selector.json"
+      }
+    },
+    "effects": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "effect.json"
+      }
+    }
+  },
+  "required": [
+    "id",
+    "event",
+    "chance",
+    "accepted_origins",
+    "limit_scope",
+    "limit_count",
+    "reentry",
+    "selectors",
+    "effects"
+  ],
+  "additionalProperties": false
+}

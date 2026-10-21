@@ -1,0 +1,23 @@
+{
+  "task_id": "TASK-027",
+  "passed": true,
+  "actual_local_auth": true,
+  "checks": [
+    "Actual email login and UI-selected Archer/female creation; committed response lost before first checkpoint; reload reconciles exact UUID once, initial grant1000 and seven actors",
+    "Off-team Mage spends55EXP/22gold forLv2, gets5unspent points; manual AGI+1 costs1 with ledger, DEX stays1; other actors stayLv1",
+    "Actual team replacement twice, then reload: Mage retainsLv2/AGI2 off-team, Merchant remainsLv1; no progression transferred through formation slot",
+    "Server-owned Lv20/old-price fixture: UI Dancer promotion before breakthrough refunds exactly100gold/20manual once, same weapon remains in inventory, slot refine/enchant and identity retained; exact command replay has no second refund",
+    "Actual Breakthrough20 costs5000gold/20essence and unlocks40 independently of Class2; real offline disables upgrade; reconnect and390/360 mobile layouts pass"
+  ],
+  "errors": [],
+  "credentials_logged": false,
+  "source_sha256": {
+    "scripts/test_roster_live.cjs": "9216f39debc5fd8c605b5e7e084c4dd63992af2f5b711f7ea26426a2414e3702",
+    "src/ui/roster-page.tsx": "386528288155ed946846eda128ad863887b237b73545e8e65319b6247c1d5dbd",
+    "src/ui/roster.css": "69988b0f29559eeb6aea7b05432d03322c727d1e1e71b1044eff84c495f6af65",
+    "src/client/roster.ts": "b051aa9260b4915b977ba1bb510684fd7b3f89b1f0bb23fbe078daf879a038b7",
+    "src/domain/progression/characters.ts": "ad692802828106e1cbab1156c2dc7a7c81f8b5f5bb90045eca123263729a3954",
+    "src/client/save-controller.ts": "c3a0d0edbdb77bc7052fb4139b3cfcfd27c70c798bfe7c36628be80aef898fd0"
+  },
+  "scope": "Actual Chrome/local Auth/API/SQL owner saves. Lv20/old-price investment is a signed server-owned fixture, not completed Story/farming."
+}

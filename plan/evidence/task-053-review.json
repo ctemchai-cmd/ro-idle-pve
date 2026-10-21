@@ -1,0 +1,54 @@
+{
+ "task_id": "TASK-053",
+ "passed": true,
+ "round": 1,
+ "date": "2026-10-20",
+ "reviewer": "Claude self-check",
+ "content_hash": "6e7859d1ef10388a472c8223d7e40a3a4fcd8b7689e4afa5cd2813c3b1ffeafb",
+ "checks": [
+  {
+   "acceptance": "AC-01",
+   "passed": true,
+   "result": "Tiers 1/20/40/60 each have 36 definitions over 6 slots (two variants per weapon type); icons come from real RO item IDs via item-icons.json; tier 80 exists only as 36 future_definitions that never drop or roll; items.py --check matches."
+  },
+  {
+   "acceptance": "AC-02",
+   "passed": true,
+   "result": "60 cards split 24/12/12/12 by tier; card gacha and Tower card chests give the player's tier (tested chapter 1→1, 2→20, 4→40, 5→40); older saves migrate (farm pool refresh) and keep their original items/cards."
+  },
+  {
+   "acceptance": "AC-03",
+   "passed": true,
+   "result": "Random option lines by rarity are Rare 1 / Epic 2 / Legendary 3 / Immortal 4 / Supreme 5 on every creation path (farm, gacha, fusion), deterministic per seed."
+  },
+  {
+   "acceptance": "AC-04",
+   "passed": true,
+   "result": "Runtime pack 25.67 MiB raw within the 27 MiB cap (D-070), M0 checks and 349 TS tests pass, and the live shell suite's Store/Backpack stages pull and show the new tiered gear/cards with their option lines and 0 browser errors."
+  }
+ ],
+ "commands": [
+  "python3 plan/generators/items.py --check",
+  "bash scripts/m0_checks.sh",
+  "node --import tsx --test tests/game/gacha-shop.test.ts tests/game/tower.test.ts tests/game/farm-reservation.test.ts",
+  "npm test (349 pass)",
+  "npm run build",
+  "RO_EVIDENCE_PREFIX=task-048 RO_LOCAL_TEST_FOCUS=shell python3 scripts/test_auth_stack.py (33 checks, 0 browser errors)"
+ ],
+ "limitations": "Item/card numbers are assistant baselines; balance against the D-069 economy is measured in TASK-041. Card art reuses the slot's card face. Tier-80 items wait for the Hi-class level cap.",
+ "source_sha256": {
+  "plan/generators/items.py": "adc5d9668e18f3a78df376b3a251eae2892536c36c3c0ecfcd8d0e264d1cb059",
+  "plan/generators/item-icons.json": "06c6e887a331b7f669d2d3a99e2d74a3fb92ccfe26d975362b40c955a46ef2f1",
+  "plan/data/equipment.json": "115f1a363682d08ff26cd1ed1054e7fb4f020eed4287ff489a93e986e4e0b701",
+  "plan/data/cards.json": "4f830e21c36968e1c38f03773f9d32d338c1a09099e47d1f205ffd618b8fac87",
+  "plan/data/gacha.json": "e6f037cbaba098b7d4e928012c9248b36b495527b8c38f157f29508c62f8e950",
+  "src/domain/rewards/cards.ts": "59fd0d43646a95be8198e72689fe80f1ba01d1eb6574224a332a2ddf2af9eb48",
+  "src/domain/rewards/gacha.ts": "cee69bd5ba88c8798a2438de0aba77c57ecbfb842dcd9f9f2c9ba2649eb42429",
+  "src/domain/account/migrate.ts": "cb6d8e32d9c9d6f29769ca4ad3a2e19cc45c7a1a7a8754b4b74f7894575e6b0b",
+  "tests/game/gacha-shop.test.ts": "375793370c0c279bb35a24581cc913519bc1e9e01290f4f46f69b2d9488304e4",
+  "tests/game/tower.test.ts": "7ef846c6841bfa34fee3e549360b758886497d7f2cc27fdfcc3557a0eb399d5f",
+  "tests/game/farm-reservation.test.ts": "28f66062cb04496c15acb50cc47357b3c53ca98f0bb16cc88e50a87e88a3d51e",
+  "scripts/test_game_shell_live.cjs": "e1c69e2e0200d10fb941b8a9e0ddfba78ded884b1e1ba4d80cec81d68abdbb63"
+ },
+ "credentials_logged": false
+}

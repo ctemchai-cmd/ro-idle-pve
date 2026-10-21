@@ -1,0 +1,36 @@
+{
+  "task_id": "TASK-028",
+  "passed": true,
+  "checks": [
+    "Real UI Refine+1 response lost after SQL commit, refresh+sameUUID replay keeps one level and one200gold/5ore debit",
+    "Actual4→5 and9→10 UI unlocks sockets1→2→3, no+11; total+10 exactly77000gold/275ore",
+    "Distinct Bronze copies add16PATK; UI card1→2 pays500gold/20dust once under exact request replay; wrong-slot card rejects without mutation",
+    "Actual off-team card transfer preserves mainRefine10 and both owner slots; locked card cannot salvage, unlocked Silver returns40dust and removes one instance",
+    "UI Precision preview101.5 CastSpeed matches actual newly built battle DEX2/Cast101.5; saved allocatedDEX stays1 and engine rules own CT/ACD/SI",
+    "Signed old-price fixture refunds100gold/2dust exactly once through response loss, refresh and receipt replay; active ledger removed and full refunded entry archived.390/360 cards and offline/reconnect checked"
+  ],
+  "errors": [],
+  "layouts": [
+    {
+      "width": 390,
+      "content": 390
+    },
+    {
+      "width": 360,
+      "content": 360
+    }
+  ],
+  "actual_local_auth": true,
+  "credentials_logged": false,
+  "source_sha256": {
+    "scripts/test_slots_live.cjs": "4efe567dd94a17a4e1117ccb0c0a857739d0e78bb7c73af8b27071d3cdbfb1c3",
+    "src/domain/progression/slots.ts": "e623b257b8a8aca28faf099dcbaf32f2f3862bce0552c6a6389036b5c82105b0",
+    "src/domain/progression/ledger.ts": "1f54d409a0a0ff6a1444a42b56e75bcf5a4df70de7dd90ff0c7afbc1d1b006cc",
+    "src/domain/account/commands.ts": "8e64531d3a6512cb9e5dc54a2dc699bc76428039fe8cfbda2cbfc46b2e691a7e",
+    "src/domain/build/equipment.ts": "7fec1508c09511a3a342bed4f40a464db971e35345111d7d154ac2849d462795",
+    "src/client/slots.ts": "1cf23fc6ad8574b5b1008474a3de2f211ef230ddadb3057a1ad985187fd8cdbc",
+    "src/ui/slot-progress.tsx": "5e417ff6fe3d5f7646b8ee19ac73ea0d2948757e0c22471efc191cab0d9c3d27",
+    "src/ui/slots.css": "a03ecd0bb3d03f19d30b3a71049c3c5d96bc4ea94ac6bfe1df3f2744659e0eb7"
+  },
+  "scope": "Actual local Auth/API/SQL/Chrome. Explicit signed materials/card/old-price fixtures; not rewards earned through Story or gacha. Personal save untouched."
+}

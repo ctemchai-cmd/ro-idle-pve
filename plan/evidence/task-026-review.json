@@ -1,0 +1,76 @@
+{
+  "task_id": "TASK-026",
+  "passed": true,
+  "round": 2,
+  "date": "2026-10-20",
+  "reviewer": "Codex self-review",
+  "typescript_tests": 220,
+  "build": "passed; same22.5MB pack; bundle-size warning remains TASK-042",
+  "content_hash": "20c27130a8ed4b3ca27c371751e238d1a670c86291390d4fb3e5acafb63af0df",
+  "source_sha256": {
+    "src/domain/progression/equipment.ts": "0a4de8600d890f76efe732ad52aef333c30486375db092c2772561883a749efd",
+    "src/domain/build/equipment-definition.ts": "df7ecd1dede6b9e2e542ccacb53b5f545c7c5de861f3dcf3c1e920d75b6bd566",
+    "src/domain/build/equipment.ts": "65c9ef977b8c5bc1805757ad91bcc5f9371e5a60e84e61d79a962c9c6c4372e6",
+    "src/domain/build/story.ts": "8e0c949f8a424e645509e287d1cc0899be59246e91defadb370d7e0396517da7",
+    "src/domain/account/commands.ts": "2640fa027de448b1e14bdfe683c0ce5b0d5f2304f0558d2a414dfe2d71f8bedf",
+    "api/index.ts": "775b91071d4547c923da172f09c2893f4307060fdaacd7a29c116c24afd5d4b0",
+    "src/client/equipment.ts": "eeca4407b4666d4e8eb81e191d0aa5b265708a5c2e5ec12edfad320309abe66b",
+    "src/client/skills.ts": "cb547c6e58de112ae572a8abc2e96cb593d419597b9fbfbb5fe1021ee231b01b",
+    "src/client/story.ts": "4cafd9eba73606d0eb741fa72b1f34462dbd8e81414533566aa08018769ed6ee",
+    "src/ui/character-equipment.tsx": "b5b1c724ce01936626fa597acbdb7a59b1521bd0f2555a1b004c9612a5ab8f16",
+    "src/ui/equipment.css": "3d0e1acbf0712d5a14c07ee1cd856d6b582ce9d3aa1e9731b755cb39cc32022b",
+    "tests/game/equipment-progression.test.ts": "3db93c3bc9cb0f97efb3e1a99c265e60de0d5cce313d4f68868d8a3f7d3f2875",
+    "scripts/test_equipment_live.cjs": "12f306c9e269ab6c4deff0021b1b7283c4bf70a1c9ea2415476aae3a11454ddf"
+  },
+  "checks": [
+    {
+      "acceptance": "AC-01",
+      "passed": true,
+      "result": "Six slots and all19weapon job mappings, level/slot rejects; actual off-team Mage borrows Acolyte staff through Chrome, original slot empty and one canonical instance."
+    },
+    {
+      "acceptance": "AC-02",
+      "passed": true,
+      "result": "Common60→Epic60 changes base190→285 only; Refine10/Enchant2/GoldCard5 stay on main slot; actual battle PATK equals UI, separate owners keepRefine4/2; empty slot dormant."
+    },
+    {
+      "acceptance": "AC-03",
+      "passed": true,
+      "result": "500-item fixture retains exact pending drop and refuses purchase/claim; equip/unequip/unlock/salvage still usable. Protected batch rejects atomically; training discard zero; immutable removed IDs."
+    },
+    {
+      "acceptance": "AC-04",
+      "passed": true,
+      "result": "Shared compiler preview matches engine stats and skill CT/ACD; actual lost-purchase response reconciles one item/125gold once, reload preserves owners and progression, offline mutation disabled."
+    }
+  ],
+  "evidence": [
+    "task-026-check.txt",
+    "task-026-build.txt",
+    "task-026-local-stack.json",
+    "task-026-equipment-live-browser.json",
+    "task-026-story-api.json",
+    "task-026-story-live-browser.json",
+    "task-026-skills-live-browser.json",
+    "task-026-roster-live-browser.json",
+    "task-026-save-live-browser.json"
+  ],
+  "visual_review": {
+    "files": [
+      "docs/screenshots/equipment-390.png",
+      "docs/screenshots/equipment-360.png"
+    ],
+    "scope": "Manual inspection of actual390/360 Chrome equipped staff/icon/lock/salvage/full-bag notice; comparison+stat parity separately asserted by browser. No all-definition art review."
+  },
+  "resolved_findings": [
+    "Initial browser check compared JSON property order against PostgreSQL jsonb; changed to canonical value comparison and reran full real-service stack. No acceptance criteria weakened. Initial round preserved.",
+    "Kept shared definition/fit functions in build, reducers in progression; no reverse module edge added.",
+    "Build fingerprint now includes equipped card instance payloads as well as gear; unassigned drops do not reset a fight."
+  ],
+  "limitations": [
+    "Explicit signed server-owned Lv60/slot/card and500-item fixtures, not resources earned by play.",
+    "Slot/card upgrade commands remain TASK-027; rarity fusion/tier TASK-028.",
+    "Persistent local6173 intentionally remains frozen M2 until a deliberate safe snapshot refresh; development source is newer.",
+    "No hosted Supabase/Vercel deployment or all-encounter balance claim."
+  ]
+}

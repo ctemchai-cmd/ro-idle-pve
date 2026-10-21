@@ -1,0 +1,94 @@
+{
+  "task_id": "TASK-017",
+  "reviewer": "Codex self-review",
+  "review_round": 4,
+  "date": "2026-10-19",
+  "passed": true,
+  "content_hash": "6db2b55aeb422ae2c2130b8c0aeef3a9e25ac2415a818fcd9d8ec456b3cbaa27",
+  "input_sha256": {
+    "docs/COMBAT-ENGINE.md": "a4ad1eb0f6d0a483b751574ac23d1ce1cd51948be651e977205c7082056d2f1e",
+    "plan/data/battle-initial-case.json": "f22886843a5cd749e2269993c5e87c6e7bcaa01b9eb887f97609bbbc88d4f746",
+    "plan/data/schemas/battle-checkpoint.json": "4d33b8391c3274ebb6c704a7e83540ecfa5a8c7caf214ef90abebbe63b861f1b",
+    "src/domain/combat/checkpoint.ts": "48f28f40825b6b2ea4ed7a141ff89e495a2c5f2dae327d1cb8adf647a8006e6f",
+    "src/domain/combat/effects.ts": "d24347babe154e060b3556e42d6c6306b29e9726d4751580ab142c68069ee135",
+    "src/domain/combat/engine.ts": "c652b73e6fb617f7d285ab4bf7680a0d57b9edff77cef4a6db7d7bbfd0bfabc4",
+    "src/domain/combat/index.ts": "0402bdaa38aa141a29efe417b9cad588b20f8be2f7ea944da8affe71a6fc8291",
+    "src/domain/combat/model.ts": "8781499bd7a74e805b4aa09c24df01ab6f3a2d0748143708ac2e3082ddf126e7",
+    "src/domain/combat/program.ts": "0a4bc7ff4971bc76ab3980f36891ea3296c815c639c4d3890c1f97f1a6d29e38",
+    "src/domain/combat/rng.ts": "fa5fbb2a862a6e23122eb17cba6ba945e6ef540406438172340aa3f230c4d330",
+    "src/domain/combat/scheduler.ts": "25f170b962c879bc8db09442eb5ba3054fd584cc6eaf631f7d5f6495624af45a",
+    "src/domain/combat/state.ts": "792ec4ad429aba35832221ea964e7631515560823873a13fc4cd8649992dadbf",
+    "src/domain/combat/status.ts": "de7a6d3d7a43c9ed6e87144ce0581cac8624a0e5c9207d645a67b42ac02acba8",
+    "tests/game/effects.test.ts": "c4c3f3db00ee9794dcfbc528f26a1e0812dda3bf683abc0b4ce05ca335eea292"
+  },
+  "checks": [
+    {
+      "case_id": "cc_cast_commit_and_stale_token",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": "precast action gate; cast-start SP15/cursor spent; interrupt removes old token; late locked casts and uninterruptible CT resolve"
+    },
+    {
+      "case_id": "selectors_and_heal",
+      "acceptance": [
+        "AC-02"
+      ],
+      "passed": true,
+      "result": "lowestHP-percent/fullHP still casts; effective60/overheal140/SP20 aftertwo casts; latest livingProvoke; frontorder; lockedtarget skip/reselect"
+    },
+    {
+      "case_id": "catalog_composition_and_sources",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": true,
+      "result": "all27statusbind/expiry; 156/288/252/216/120 buffgolden;100samecasterstacks uncapped;source removal154golden;AoE A-hit/B-miss+shieldhit;normalchainCC;optional reactiveResist only;expire-before-tick"
+    },
+    {
+      "case_id": "passive_proc_metrics",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": "learnedPassive0slots;source-instance ancestry/siblings/rootlimits;perbattle counters survive restore;heal/overheal/shieldcreated/absorbed;CCunion vsinstance;lethalhit reactionsbeforedeath"
+    },
+    {
+      "case_id": "extra_lifecycle_guards",
+      "acceptance": [
+        "AC-01",
+        "AC-03",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": "Devotionconserves101onepass;reviveepoch+nextSI/nooldcast;conditionalstats/timers;overflow/timerworkbudget returnsnopartialstate;canonicalJSONevents include source/effect/hit"
+    }
+  ],
+  "evidence": [
+    "task-017-effects-round1.txt",
+    "task-017-effects-round2.txt",
+    "task-017-effects-round3.txt",
+    "task-017-checks-final.txt",
+    "task-017-tests-final.txt",
+    "task-017-build.txt"
+  ],
+  "validation": {
+    "tests": 135,
+    "typecheck": "passed",
+    "boundaries": "passed",
+    "build": "passed",
+    "M0_schema_refresh": "composition104 + architecture25 + readiness8 passed"
+  },
+  "review_findings_resolved": [
+    "Checkpoint missing per-battle proc counters now explicit schema field; content hash rejects old snapshots.",
+    "Round1 precast fixture repeatedly applied Bash; isolated one application before checking recovery, no change to gameplay rule.",
+    "Queued lethal-hit reactions now drain before death cleanup.",
+    "Event budget includes timer-only work; canonical events omit undefined optionals."
+  ],
+  "limitations": [
+    "No browser combat renderer, runner, cloud or deploy evidence in this task.",
+    "Summon actor factory explicitly rejected before spending until TASK-034; class copy/factory/build combinations remain TASK-029–034/041.",
+    "Current balance values are authored baselines;135 tests do not certify all126 skills or balance."
+  ]
+}

@@ -1,0 +1,50 @@
+{
+ "task_id": "TASK-051",
+ "passed": true,
+ "round": 1,
+ "date": "2026-10-20",
+ "reviewer": "Claude self-check",
+ "content_hash": "ab45f2161932dad06f12935577f62c9f6e4278ae0d910bc87c5707db0540ca06",
+ "checks": [
+  {
+   "acceptance": "AC-01",
+   "passed": true,
+   "result": "ore_pack ×3 debits 9000 gold and grants 30 ore; a 4th buy is SHOP_LIMIT_REACHED and an unaffordable crystal offer is INSUFFICIENT_RESOURCES with the state unchanged; unknown offers are refused; the next Bangkok day resets the limit."
+  },
+  {
+   "acceptance": "AC-02",
+   "passed": true,
+   "result": "Equipment gacha costs 150/1500 crystal; the same server seed gives identical items; the 10th pull after 9 rares is epic or better and the 50th after 49 misses is legendary or better, then counters reset."
+  },
+  {
+   "acceptance": "AC-03",
+   "passed": true,
+   "result": "30 pulled items are all tier 1 for a chapter-1 player with option lines per D-062; three pulled items of one rarity/slot fuse into a higher rarity with fresh lines; a pulled item tiers up to 20 keeping its lines, equips (EQUIPMENT_ASSIGNED) and salvages."
+  },
+  {
+   "acceptance": "AC-04",
+   "passed": true,
+   "result": "Live 390×844: the Store tab is unlocked; buying a daily offer, 1 card pull and 10 gear pulls go through the real API/DB with option lines per rarity and no browser errors."
+  }
+ ],
+ "commands": [
+  "node --import tsx --test tests/game/gacha-shop.test.ts (10 pass)",
+  "npm run check (327 pass)",
+  "RO_EVIDENCE_PREFIX=task-048 RO_LOCAL_TEST_FOCUS=shell python3 scripts/test_auth_stack.py (19 checks, 0 browser errors)"
+ ],
+ "limitations": [
+  "Shop prices, gacha rates and the crystal economy are baselines; TASK-041 tunes them via simulation."
+ ],
+ "source_sha256": {
+  "tests/game/gacha-shop.test.ts": "525574cc6c86c6653933c72621bc45f1db4bbda7fb4a3f62985cb8700fc5fa35",
+  "src/domain/rewards/gacha.ts": "64e248dfc0ca6471e4dc718c7f3488134173370e4d5cd51d1c2e13bdcca6b82a",
+  "src/domain/account/commands.ts": "d412eadffadee8e908a4d746c1fbbd70036d288fad563f7977f89ad29f4ca3ae",
+  "src/client/store.ts": "429bc72b5cad0179c3d53d0642dc3e93e67009bfb4e4efbea7457ce96089432b",
+  "src/ui/game/store.tsx": "d112f13f855ce78c3c25721e3843e90759611cb0b871cfb2ae4dc0d7d9e70d48",
+  "src/ui/game/nav.tsx": "2e040568c796a5be861bf0b46a7301311e9cbf9eb016bf59cedc0717d3c72a5b",
+  "plan/data/economy.json": "6e96a139c833fae60808daded69298ea170a3e6db066f4267f515e24f63c221b",
+  "plan/data/gacha.json": "84d900888ebb538a12a768d4b71943c5745f8981f9dd882e13f2a2a3ea8e269d",
+  "scripts/test_game_shell_live.cjs": "70d0ed6d0f6b1b281580e52b2587de1f4e85aa92748ded5e184fe5035cb03f77"
+ },
+ "credentials_logged": false
+}

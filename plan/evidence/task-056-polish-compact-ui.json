@@ -1,0 +1,1767 @@
+{
+  "passed": true,
+  "checks": [
+    "Stats and Skill arrows traverse all seven characters in team-first order, wrap both ways, retain the page, show the correct job/index and send no account command",
+    "Unconfirmed Status draft is discarded on switching; allocating INT after switching commits only to the selected NPC through real API/SQL; back returns to that character",
+    "Skill-picking mode is cleared on switching; skill upgrade and immediate slot placement target the selected NPC and persist in SQL",
+    "Draft Timeline opens in a closable sheet with all four party members; the compact skill page remains usable",
+    "360×640 / 390×844 / centered desktop across ten pages: no horizontal overflow or wrapped action labels; normal Stats and Skill need no page scroll; both arrows have 40×40px hit areas; four skill slots remain below the skill panels; SVG arrows centered within 0.5px, CSPD label, game text nonselectable and no home guide",
+    "Repeated clicks and dragging do not select game text; read-only text is nonselectable across all ten pages",
+    "Long skill list scrolls to its last selectable skill; expanded Additional Stats remain scrollable without trapping the allocation rows",
+    "Native hairstyles: 36 unique job/gender heads; 3420 decoded frame/facing/hat samples on the actual renderer",
+    "Daily battle toolbar is one row inside the boss card with four SVG icons; Statistics, Timeline, 1→2→4→1 speed and real API/SQL retreat all work without emoji"
+  ],
+  "audit": [
+    {
+      "width": 360,
+      "height": 640,
+      "view": "home",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 640,
+        "bottom": 640,
+        "right": 360
+      },
+      "horizontal": false,
+      "pageScroll": 0,
+      "layer": null,
+      "nav": [],
+      "split": null,
+      "timeline": null,
+      "loadout": null,
+      "foot": null,
+      "wrapped": [],
+      "overflows": [],
+      "hudConflicts": [],
+      "glyphs": [],
+      "selectable": [],
+      "hud": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 58,
+        "bottom": 58,
+        "right": 360
+      },
+      "bar": {
+        "x": 0,
+        "y": 580,
+        "width": 360,
+        "height": 60,
+        "bottom": 640,
+        "right": 360
+      }
+    },
+    {
+      "width": 360,
+      "height": 640,
+      "view": "buddy",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 640,
+        "bottom": 640,
+        "right": 360
+      },
+      "horizontal": false,
+      "pageScroll": 0,
+      "layer": {
+        "x": 0,
+        "y": 58,
+        "width": 360,
+        "height": 522,
+        "bottom": 580,
+        "right": 360
+      },
+      "nav": [],
+      "split": null,
+      "timeline": null,
+      "loadout": null,
+      "foot": null,
+      "wrapped": [],
+      "overflows": [],
+      "hudConflicts": [],
+      "glyphs": [],
+      "selectable": [],
+      "hud": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 58,
+        "bottom": 58,
+        "right": 360
+      },
+      "bar": {
+        "x": 0,
+        "y": 580,
+        "width": 360,
+        "height": 60,
+        "bottom": 640,
+        "right": 360
+      }
+    },
+    {
+      "width": 360,
+      "height": 640,
+      "view": "stats",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 640,
+        "bottom": 640,
+        "right": 360
+      },
+      "horizontal": false,
+      "pageScroll": 0,
+      "layer": {
+        "x": 0,
+        "y": 58,
+        "width": 360,
+        "height": 522,
+        "bottom": 580,
+        "right": 360
+      },
+      "nav": [
+        {
+          "x": 244,
+          "y": 64,
+          "width": 40,
+          "height": 40,
+          "bottom": 104,
+          "right": 284
+        },
+        {
+          "x": 310,
+          "y": 64,
+          "width": 40,
+          "height": 40,
+          "bottom": 104,
+          "right": 350
+        }
+      ],
+      "split": null,
+      "timeline": null,
+      "loadout": null,
+      "foot": {
+        "x": 10,
+        "y": 516.15625,
+        "width": 340,
+        "height": 52,
+        "bottom": 568.15625,
+        "right": 350
+      },
+      "wrapped": [],
+      "overflows": [],
+      "hudConflicts": [],
+      "glyphs": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "pathX": 12,
+          "pathY": 12
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "pathX": 12,
+          "pathY": 12
+        }
+      ],
+      "selectable": [],
+      "hud": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 58,
+        "bottom": 58,
+        "right": 360
+      },
+      "bar": {
+        "x": 0,
+        "y": 580,
+        "width": 360,
+        "height": 60,
+        "bottom": 640,
+        "right": 360
+      }
+    },
+    {
+      "width": 360,
+      "height": 640,
+      "view": "skills",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 640,
+        "bottom": 640,
+        "right": 360
+      },
+      "horizontal": false,
+      "pageScroll": 0,
+      "layer": {
+        "x": 0,
+        "y": 58,
+        "width": 360,
+        "height": 522,
+        "bottom": 580,
+        "right": 360
+      },
+      "nav": [
+        {
+          "x": 244,
+          "y": 64,
+          "width": 40,
+          "height": 40,
+          "bottom": 104,
+          "right": 284
+        },
+        {
+          "x": 310,
+          "y": 64,
+          "width": 40,
+          "height": 40,
+          "bottom": 104,
+          "right": 350
+        }
+      ],
+      "split": {
+        "x": 0,
+        "y": 116,
+        "width": 360,
+        "height": 312.609375,
+        "bottom": 428.609375,
+        "right": 360
+      },
+      "timeline": {
+        "x": 10,
+        "y": 532,
+        "width": 340,
+        "height": 40,
+        "bottom": 572,
+        "right": 350
+      },
+      "loadout": {
+        "x": 10,
+        "y": 434.609375,
+        "width": 340,
+        "height": 91.390625,
+        "bottom": 526,
+        "right": 350
+      },
+      "foot": null,
+      "wrapped": [],
+      "overflows": [],
+      "hudConflicts": [],
+      "glyphs": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "pathX": 12,
+          "pathY": 12
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "pathX": 12,
+          "pathY": 12
+        }
+      ],
+      "selectable": [],
+      "hud": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 58,
+        "bottom": 58,
+        "right": 360
+      },
+      "bar": {
+        "x": 0,
+        "y": 580,
+        "width": 360,
+        "height": 60,
+        "bottom": 640,
+        "right": 360
+      }
+    },
+    {
+      "width": 360,
+      "height": 640,
+      "view": "backpack",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 640,
+        "bottom": 640,
+        "right": 360
+      },
+      "horizontal": false,
+      "pageScroll": 12,
+      "layer": {
+        "x": 0,
+        "y": 58,
+        "width": 360,
+        "height": 522,
+        "bottom": 580,
+        "right": 360
+      },
+      "nav": [],
+      "split": null,
+      "timeline": null,
+      "loadout": null,
+      "foot": null,
+      "wrapped": [],
+      "overflows": [],
+      "hudConflicts": [],
+      "glyphs": [],
+      "selectable": [],
+      "hud": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 58,
+        "bottom": 58,
+        "right": 360
+      },
+      "bar": {
+        "x": 0,
+        "y": 580,
+        "width": 360,
+        "height": 60,
+        "bottom": 640,
+        "right": 360
+      }
+    },
+    {
+      "width": 360,
+      "height": 640,
+      "view": "team",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 640,
+        "bottom": 640,
+        "right": 360
+      },
+      "horizontal": false,
+      "pageScroll": 240,
+      "layer": {
+        "x": 0,
+        "y": 58,
+        "width": 360,
+        "height": 522,
+        "bottom": 580,
+        "right": 360
+      },
+      "nav": [],
+      "split": null,
+      "timeline": null,
+      "loadout": null,
+      "foot": null,
+      "wrapped": [],
+      "overflows": [],
+      "hudConflicts": [],
+      "glyphs": [],
+      "selectable": [],
+      "hud": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 58,
+        "bottom": 58,
+        "right": 360
+      },
+      "bar": {
+        "x": 0,
+        "y": 580,
+        "width": 360,
+        "height": 60,
+        "bottom": 640,
+        "right": 360
+      }
+    },
+    {
+      "width": 360,
+      "height": 640,
+      "view": "store",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 640,
+        "bottom": 640,
+        "right": 360
+      },
+      "horizontal": false,
+      "pageScroll": 148,
+      "layer": {
+        "x": 0,
+        "y": 58,
+        "width": 360,
+        "height": 522,
+        "bottom": 580,
+        "right": 360
+      },
+      "nav": [],
+      "split": null,
+      "timeline": null,
+      "loadout": null,
+      "foot": null,
+      "wrapped": [],
+      "overflows": [],
+      "hudConflicts": [],
+      "glyphs": [],
+      "selectable": [],
+      "hud": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 58,
+        "bottom": 58,
+        "right": 360
+      },
+      "bar": {
+        "x": 0,
+        "y": 580,
+        "width": 360,
+        "height": 60,
+        "bottom": 640,
+        "right": 360
+      }
+    },
+    {
+      "width": 360,
+      "height": 640,
+      "view": "dungeon",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 640,
+        "bottom": 640,
+        "right": 360
+      },
+      "horizontal": false,
+      "pageScroll": 0,
+      "layer": {
+        "x": 0,
+        "y": 58,
+        "width": 360,
+        "height": 522,
+        "bottom": 580,
+        "right": 360
+      },
+      "nav": [],
+      "split": null,
+      "timeline": null,
+      "loadout": null,
+      "foot": null,
+      "wrapped": [],
+      "overflows": [],
+      "hudConflicts": [],
+      "glyphs": [],
+      "selectable": [],
+      "hud": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 58,
+        "bottom": 58,
+        "right": 360
+      },
+      "bar": {
+        "x": 0,
+        "y": 580,
+        "width": 360,
+        "height": 60,
+        "bottom": 640,
+        "right": 360
+      }
+    },
+    {
+      "width": 360,
+      "height": 640,
+      "view": "daily",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 640,
+        "bottom": 640,
+        "right": 360
+      },
+      "horizontal": false,
+      "pageScroll": 97,
+      "layer": {
+        "x": 0,
+        "y": 58,
+        "width": 360,
+        "height": 522,
+        "bottom": 580,
+        "right": 360
+      },
+      "nav": [],
+      "split": null,
+      "timeline": null,
+      "loadout": null,
+      "foot": null,
+      "wrapped": [],
+      "overflows": [],
+      "hudConflicts": [],
+      "glyphs": [],
+      "selectable": [],
+      "hud": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 58,
+        "bottom": 58,
+        "right": 360
+      },
+      "bar": {
+        "x": 0,
+        "y": 580,
+        "width": 360,
+        "height": 60,
+        "bottom": 640,
+        "right": 360
+      }
+    },
+    {
+      "width": 360,
+      "height": 640,
+      "view": "tower",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 640,
+        "bottom": 640,
+        "right": 360
+      },
+      "horizontal": false,
+      "pageScroll": 289,
+      "layer": {
+        "x": 0,
+        "y": 58,
+        "width": 360,
+        "height": 522,
+        "bottom": 580,
+        "right": 360
+      },
+      "nav": [],
+      "split": null,
+      "timeline": null,
+      "loadout": null,
+      "foot": null,
+      "wrapped": [],
+      "overflows": [],
+      "hudConflicts": [],
+      "glyphs": [],
+      "selectable": [],
+      "hud": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 58,
+        "bottom": 58,
+        "right": 360
+      },
+      "bar": {
+        "x": 0,
+        "y": 580,
+        "width": 360,
+        "height": 60,
+        "bottom": 640,
+        "right": 360
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "view": "home",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "bottom": 844,
+        "right": 390
+      },
+      "horizontal": false,
+      "pageScroll": 0,
+      "layer": null,
+      "nav": [],
+      "split": null,
+      "timeline": null,
+      "loadout": null,
+      "foot": null,
+      "wrapped": [],
+      "overflows": [],
+      "hudConflicts": [],
+      "glyphs": [],
+      "selectable": [],
+      "hud": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 58,
+        "bottom": 58,
+        "right": 390
+      },
+      "bar": {
+        "x": 0,
+        "y": 784,
+        "width": 390,
+        "height": 60,
+        "bottom": 844,
+        "right": 390
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "view": "buddy",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "bottom": 844,
+        "right": 390
+      },
+      "horizontal": false,
+      "pageScroll": 0,
+      "layer": {
+        "x": 0,
+        "y": 58,
+        "width": 390,
+        "height": 726,
+        "bottom": 784,
+        "right": 390
+      },
+      "nav": [],
+      "split": null,
+      "timeline": null,
+      "loadout": null,
+      "foot": null,
+      "wrapped": [],
+      "overflows": [],
+      "hudConflicts": [],
+      "glyphs": [],
+      "selectable": [],
+      "hud": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 58,
+        "bottom": 58,
+        "right": 390
+      },
+      "bar": {
+        "x": 0,
+        "y": 784,
+        "width": 390,
+        "height": 60,
+        "bottom": 844,
+        "right": 390
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "view": "stats",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "bottom": 844,
+        "right": 390
+      },
+      "horizontal": false,
+      "pageScroll": 0,
+      "layer": {
+        "x": 0,
+        "y": 58,
+        "width": 390,
+        "height": 726,
+        "bottom": 784,
+        "right": 390
+      },
+      "nav": [
+        {
+          "x": 274,
+          "y": 64,
+          "width": 40,
+          "height": 40,
+          "bottom": 104,
+          "right": 314
+        },
+        {
+          "x": 340,
+          "y": 64,
+          "width": 40,
+          "height": 40,
+          "bottom": 104,
+          "right": 380
+        }
+      ],
+      "split": null,
+      "timeline": null,
+      "loadout": null,
+      "foot": {
+        "x": 10,
+        "y": 516.15625,
+        "width": 370,
+        "height": 52,
+        "bottom": 568.15625,
+        "right": 380
+      },
+      "wrapped": [],
+      "overflows": [],
+      "hudConflicts": [],
+      "glyphs": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "pathX": 12,
+          "pathY": 12
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "pathX": 12,
+          "pathY": 12
+        }
+      ],
+      "selectable": [],
+      "hud": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 58,
+        "bottom": 58,
+        "right": 390
+      },
+      "bar": {
+        "x": 0,
+        "y": 784,
+        "width": 390,
+        "height": 60,
+        "bottom": 844,
+        "right": 390
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "view": "skills",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "bottom": 844,
+        "right": 390
+      },
+      "horizontal": false,
+      "pageScroll": 0,
+      "layer": {
+        "x": 0,
+        "y": 58,
+        "width": 390,
+        "height": 726,
+        "bottom": 784,
+        "right": 390
+      },
+      "nav": [
+        {
+          "x": 274,
+          "y": 64,
+          "width": 40,
+          "height": 40,
+          "bottom": 104,
+          "right": 314
+        },
+        {
+          "x": 340,
+          "y": 64,
+          "width": 40,
+          "height": 40,
+          "bottom": 104,
+          "right": 380
+        }
+      ],
+      "split": {
+        "x": 0,
+        "y": 116,
+        "width": 390,
+        "height": 516.609375,
+        "bottom": 632.609375,
+        "right": 390
+      },
+      "timeline": {
+        "x": 10,
+        "y": 736,
+        "width": 370,
+        "height": 40,
+        "bottom": 776,
+        "right": 380
+      },
+      "loadout": {
+        "x": 10,
+        "y": 638.609375,
+        "width": 370,
+        "height": 91.390625,
+        "bottom": 730,
+        "right": 380
+      },
+      "foot": null,
+      "wrapped": [],
+      "overflows": [],
+      "hudConflicts": [],
+      "glyphs": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "pathX": 12,
+          "pathY": 12
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "pathX": 12,
+          "pathY": 12
+        }
+      ],
+      "selectable": [],
+      "hud": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 58,
+        "bottom": 58,
+        "right": 390
+      },
+      "bar": {
+        "x": 0,
+        "y": 784,
+        "width": 390,
+        "height": 60,
+        "bottom": 844,
+        "right": 390
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "view": "backpack",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "bottom": 844,
+        "right": 390
+      },
+      "horizontal": false,
+      "pageScroll": 0,
+      "layer": {
+        "x": 0,
+        "y": 58,
+        "width": 390,
+        "height": 726,
+        "bottom": 784,
+        "right": 390
+      },
+      "nav": [],
+      "split": null,
+      "timeline": null,
+      "loadout": null,
+      "foot": null,
+      "wrapped": [],
+      "overflows": [],
+      "hudConflicts": [],
+      "glyphs": [],
+      "selectable": [],
+      "hud": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 58,
+        "bottom": 58,
+        "right": 390
+      },
+      "bar": {
+        "x": 0,
+        "y": 784,
+        "width": 390,
+        "height": 60,
+        "bottom": 844,
+        "right": 390
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "view": "team",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "bottom": 844,
+        "right": 390
+      },
+      "horizontal": false,
+      "pageScroll": 36,
+      "layer": {
+        "x": 0,
+        "y": 58,
+        "width": 390,
+        "height": 726,
+        "bottom": 784,
+        "right": 390
+      },
+      "nav": [],
+      "split": null,
+      "timeline": null,
+      "loadout": null,
+      "foot": null,
+      "wrapped": [],
+      "overflows": [],
+      "hudConflicts": [],
+      "glyphs": [],
+      "selectable": [],
+      "hud": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 58,
+        "bottom": 58,
+        "right": 390
+      },
+      "bar": {
+        "x": 0,
+        "y": 784,
+        "width": 390,
+        "height": 60,
+        "bottom": 844,
+        "right": 390
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "view": "store",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "bottom": 844,
+        "right": 390
+      },
+      "horizontal": false,
+      "pageScroll": 0,
+      "layer": {
+        "x": 0,
+        "y": 58,
+        "width": 390,
+        "height": 726,
+        "bottom": 784,
+        "right": 390
+      },
+      "nav": [],
+      "split": null,
+      "timeline": null,
+      "loadout": null,
+      "foot": null,
+      "wrapped": [],
+      "overflows": [],
+      "hudConflicts": [],
+      "glyphs": [],
+      "selectable": [],
+      "hud": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 58,
+        "bottom": 58,
+        "right": 390
+      },
+      "bar": {
+        "x": 0,
+        "y": 784,
+        "width": 390,
+        "height": 60,
+        "bottom": 844,
+        "right": 390
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "view": "dungeon",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "bottom": 844,
+        "right": 390
+      },
+      "horizontal": false,
+      "pageScroll": 0,
+      "layer": {
+        "x": 0,
+        "y": 58,
+        "width": 390,
+        "height": 726,
+        "bottom": 784,
+        "right": 390
+      },
+      "nav": [],
+      "split": null,
+      "timeline": null,
+      "loadout": null,
+      "foot": null,
+      "wrapped": [],
+      "overflows": [],
+      "hudConflicts": [],
+      "glyphs": [],
+      "selectable": [],
+      "hud": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 58,
+        "bottom": 58,
+        "right": 390
+      },
+      "bar": {
+        "x": 0,
+        "y": 784,
+        "width": 390,
+        "height": 60,
+        "bottom": 844,
+        "right": 390
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "view": "daily",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "bottom": 844,
+        "right": 390
+      },
+      "horizontal": false,
+      "pageScroll": 0,
+      "layer": {
+        "x": 0,
+        "y": 58,
+        "width": 390,
+        "height": 726,
+        "bottom": 784,
+        "right": 390
+      },
+      "nav": [],
+      "split": null,
+      "timeline": null,
+      "loadout": null,
+      "foot": null,
+      "wrapped": [],
+      "overflows": [],
+      "hudConflicts": [],
+      "glyphs": [],
+      "selectable": [],
+      "hud": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 58,
+        "bottom": 58,
+        "right": 390
+      },
+      "bar": {
+        "x": 0,
+        "y": 784,
+        "width": 390,
+        "height": 60,
+        "bottom": 844,
+        "right": 390
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "view": "tower",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "bottom": 844,
+        "right": 390
+      },
+      "horizontal": false,
+      "pageScroll": 85,
+      "layer": {
+        "x": 0,
+        "y": 58,
+        "width": 390,
+        "height": 726,
+        "bottom": 784,
+        "right": 390
+      },
+      "nav": [],
+      "split": null,
+      "timeline": null,
+      "loadout": null,
+      "foot": null,
+      "wrapped": [],
+      "overflows": [],
+      "hudConflicts": [],
+      "glyphs": [],
+      "selectable": [],
+      "hud": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 58,
+        "bottom": 58,
+        "right": 390
+      },
+      "bar": {
+        "x": 0,
+        "y": 784,
+        "width": 390,
+        "height": 60,
+        "bottom": 844,
+        "right": 390
+      }
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "view": "home",
+      "frame": {
+        "x": 400,
+        "y": 0,
+        "width": 480,
+        "height": 800,
+        "bottom": 800,
+        "right": 880
+      },
+      "horizontal": false,
+      "pageScroll": 0,
+      "layer": null,
+      "nav": [],
+      "split": null,
+      "timeline": null,
+      "loadout": null,
+      "foot": null,
+      "wrapped": [],
+      "overflows": [],
+      "hudConflicts": [],
+      "glyphs": [],
+      "selectable": [],
+      "hud": {
+        "x": 400,
+        "y": 0,
+        "width": 480,
+        "height": 58,
+        "bottom": 58,
+        "right": 880
+      },
+      "bar": {
+        "x": 400,
+        "y": 740,
+        "width": 480,
+        "height": 60,
+        "bottom": 800,
+        "right": 880
+      }
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "view": "buddy",
+      "frame": {
+        "x": 400,
+        "y": 0,
+        "width": 480,
+        "height": 800,
+        "bottom": 800,
+        "right": 880
+      },
+      "horizontal": false,
+      "pageScroll": 0,
+      "layer": {
+        "x": 400,
+        "y": 58,
+        "width": 480,
+        "height": 682,
+        "bottom": 740,
+        "right": 880
+      },
+      "nav": [],
+      "split": null,
+      "timeline": null,
+      "loadout": null,
+      "foot": null,
+      "wrapped": [],
+      "overflows": [],
+      "hudConflicts": [],
+      "glyphs": [],
+      "selectable": [],
+      "hud": {
+        "x": 400,
+        "y": 0,
+        "width": 480,
+        "height": 58,
+        "bottom": 58,
+        "right": 880
+      },
+      "bar": {
+        "x": 400,
+        "y": 740,
+        "width": 480,
+        "height": 60,
+        "bottom": 800,
+        "right": 880
+      }
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "view": "stats",
+      "frame": {
+        "x": 400,
+        "y": 0,
+        "width": 480,
+        "height": 800,
+        "bottom": 800,
+        "right": 880
+      },
+      "horizontal": false,
+      "pageScroll": 0,
+      "layer": {
+        "x": 400,
+        "y": 58,
+        "width": 480,
+        "height": 682,
+        "bottom": 740,
+        "right": 880
+      },
+      "nav": [
+        {
+          "x": 764,
+          "y": 64,
+          "width": 40,
+          "height": 40,
+          "bottom": 104,
+          "right": 804
+        },
+        {
+          "x": 830,
+          "y": 64,
+          "width": 40,
+          "height": 40,
+          "bottom": 104,
+          "right": 870
+        }
+      ],
+      "split": null,
+      "timeline": null,
+      "loadout": null,
+      "foot": {
+        "x": 410,
+        "y": 516.15625,
+        "width": 460,
+        "height": 52,
+        "bottom": 568.15625,
+        "right": 870
+      },
+      "wrapped": [],
+      "overflows": [],
+      "hudConflicts": [],
+      "glyphs": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "pathX": 12,
+          "pathY": 12
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "pathX": 12,
+          "pathY": 12
+        }
+      ],
+      "selectable": [],
+      "hud": {
+        "x": 400,
+        "y": 0,
+        "width": 480,
+        "height": 58,
+        "bottom": 58,
+        "right": 880
+      },
+      "bar": {
+        "x": 400,
+        "y": 740,
+        "width": 480,
+        "height": 60,
+        "bottom": 800,
+        "right": 880
+      }
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "view": "skills",
+      "frame": {
+        "x": 400,
+        "y": 0,
+        "width": 480,
+        "height": 800,
+        "bottom": 800,
+        "right": 880
+      },
+      "horizontal": false,
+      "pageScroll": 0,
+      "layer": {
+        "x": 400,
+        "y": 58,
+        "width": 480,
+        "height": 682,
+        "bottom": 740,
+        "right": 880
+      },
+      "nav": [
+        {
+          "x": 764,
+          "y": 64,
+          "width": 40,
+          "height": 40,
+          "bottom": 104,
+          "right": 804
+        },
+        {
+          "x": 830,
+          "y": 64,
+          "width": 40,
+          "height": 40,
+          "bottom": 104,
+          "right": 870
+        }
+      ],
+      "split": {
+        "x": 400,
+        "y": 116,
+        "width": 480,
+        "height": 472.609375,
+        "bottom": 588.609375,
+        "right": 880
+      },
+      "timeline": {
+        "x": 410,
+        "y": 692,
+        "width": 460,
+        "height": 40,
+        "bottom": 732,
+        "right": 870
+      },
+      "loadout": {
+        "x": 410,
+        "y": 594.609375,
+        "width": 460,
+        "height": 91.390625,
+        "bottom": 686,
+        "right": 870
+      },
+      "foot": null,
+      "wrapped": [],
+      "overflows": [],
+      "hudConflicts": [],
+      "glyphs": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "pathX": 12,
+          "pathY": 12
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "pathX": 12,
+          "pathY": 12
+        }
+      ],
+      "selectable": [],
+      "hud": {
+        "x": 400,
+        "y": 0,
+        "width": 480,
+        "height": 58,
+        "bottom": 58,
+        "right": 880
+      },
+      "bar": {
+        "x": 400,
+        "y": 740,
+        "width": 480,
+        "height": 60,
+        "bottom": 800,
+        "right": 880
+      }
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "view": "backpack",
+      "frame": {
+        "x": 400,
+        "y": 0,
+        "width": 480,
+        "height": 800,
+        "bottom": 800,
+        "right": 880
+      },
+      "horizontal": false,
+      "pageScroll": 0,
+      "layer": {
+        "x": 400,
+        "y": 58,
+        "width": 480,
+        "height": 682,
+        "bottom": 740,
+        "right": 880
+      },
+      "nav": [],
+      "split": null,
+      "timeline": null,
+      "loadout": null,
+      "foot": null,
+      "wrapped": [],
+      "overflows": [],
+      "hudConflicts": [],
+      "glyphs": [],
+      "selectable": [],
+      "hud": {
+        "x": 400,
+        "y": 0,
+        "width": 480,
+        "height": 58,
+        "bottom": 58,
+        "right": 880
+      },
+      "bar": {
+        "x": 400,
+        "y": 740,
+        "width": 480,
+        "height": 60,
+        "bottom": 800,
+        "right": 880
+      }
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "view": "team",
+      "frame": {
+        "x": 400,
+        "y": 0,
+        "width": 480,
+        "height": 800,
+        "bottom": 800,
+        "right": 880
+      },
+      "horizontal": false,
+      "pageScroll": 61,
+      "layer": {
+        "x": 400,
+        "y": 58,
+        "width": 480,
+        "height": 682,
+        "bottom": 740,
+        "right": 880
+      },
+      "nav": [],
+      "split": null,
+      "timeline": null,
+      "loadout": null,
+      "foot": null,
+      "wrapped": [],
+      "overflows": [],
+      "hudConflicts": [],
+      "glyphs": [],
+      "selectable": [],
+      "hud": {
+        "x": 400,
+        "y": 0,
+        "width": 480,
+        "height": 58,
+        "bottom": 58,
+        "right": 880
+      },
+      "bar": {
+        "x": 400,
+        "y": 740,
+        "width": 480,
+        "height": 60,
+        "bottom": 800,
+        "right": 880
+      }
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "view": "store",
+      "frame": {
+        "x": 400,
+        "y": 0,
+        "width": 480,
+        "height": 800,
+        "bottom": 800,
+        "right": 880
+      },
+      "horizontal": false,
+      "pageScroll": 0,
+      "layer": {
+        "x": 400,
+        "y": 58,
+        "width": 480,
+        "height": 682,
+        "bottom": 740,
+        "right": 880
+      },
+      "nav": [],
+      "split": null,
+      "timeline": null,
+      "loadout": null,
+      "foot": null,
+      "wrapped": [],
+      "overflows": [],
+      "hudConflicts": [],
+      "glyphs": [],
+      "selectable": [],
+      "hud": {
+        "x": 400,
+        "y": 0,
+        "width": 480,
+        "height": 58,
+        "bottom": 58,
+        "right": 880
+      },
+      "bar": {
+        "x": 400,
+        "y": 740,
+        "width": 480,
+        "height": 60,
+        "bottom": 800,
+        "right": 880
+      }
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "view": "dungeon",
+      "frame": {
+        "x": 400,
+        "y": 0,
+        "width": 480,
+        "height": 800,
+        "bottom": 800,
+        "right": 880
+      },
+      "horizontal": false,
+      "pageScroll": 0,
+      "layer": {
+        "x": 400,
+        "y": 58,
+        "width": 480,
+        "height": 682,
+        "bottom": 740,
+        "right": 880
+      },
+      "nav": [],
+      "split": null,
+      "timeline": null,
+      "loadout": null,
+      "foot": null,
+      "wrapped": [],
+      "overflows": [],
+      "hudConflicts": [],
+      "glyphs": [],
+      "selectable": [],
+      "hud": {
+        "x": 400,
+        "y": 0,
+        "width": 480,
+        "height": 58,
+        "bottom": 58,
+        "right": 880
+      },
+      "bar": {
+        "x": 400,
+        "y": 740,
+        "width": 480,
+        "height": 60,
+        "bottom": 800,
+        "right": 880
+      }
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "view": "daily",
+      "frame": {
+        "x": 400,
+        "y": 0,
+        "width": 480,
+        "height": 800,
+        "bottom": 800,
+        "right": 880
+      },
+      "horizontal": false,
+      "pageScroll": 0,
+      "layer": {
+        "x": 400,
+        "y": 58,
+        "width": 480,
+        "height": 682,
+        "bottom": 740,
+        "right": 880
+      },
+      "nav": [],
+      "split": null,
+      "timeline": null,
+      "loadout": null,
+      "foot": null,
+      "wrapped": [],
+      "overflows": [],
+      "hudConflicts": [],
+      "glyphs": [],
+      "selectable": [],
+      "hud": {
+        "x": 400,
+        "y": 0,
+        "width": 480,
+        "height": 58,
+        "bottom": 58,
+        "right": 880
+      },
+      "bar": {
+        "x": 400,
+        "y": 740,
+        "width": 480,
+        "height": 60,
+        "bottom": 800,
+        "right": 880
+      }
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "view": "tower",
+      "frame": {
+        "x": 400,
+        "y": 0,
+        "width": 480,
+        "height": 800,
+        "bottom": 800,
+        "right": 880
+      },
+      "horizontal": false,
+      "pageScroll": 110,
+      "layer": {
+        "x": 400,
+        "y": 58,
+        "width": 480,
+        "height": 682,
+        "bottom": 740,
+        "right": 880
+      },
+      "nav": [],
+      "split": null,
+      "timeline": null,
+      "loadout": null,
+      "foot": null,
+      "wrapped": [],
+      "overflows": [],
+      "hudConflicts": [],
+      "glyphs": [],
+      "selectable": [],
+      "hud": {
+        "x": 400,
+        "y": 0,
+        "width": 480,
+        "height": 58,
+        "bottom": 58,
+        "right": 880
+      },
+      "bar": {
+        "x": 400,
+        "y": 740,
+        "width": 480,
+        "height": 60,
+        "bottom": 800,
+        "right": 880
+      }
+    }
+  ],
+  "screenshots": [
+    "docs/screenshots/task-056-polish-compact-stats-draft-360.png",
+    "docs/screenshots/task-056-polish-compact-timeline-360.png",
+    "docs/screenshots/task-056-polish-compact-home-360x640.png",
+    "docs/screenshots/task-056-polish-compact-buddy-360x640.png",
+    "docs/screenshots/task-056-polish-compact-stats-360x640.png",
+    "docs/screenshots/task-056-polish-compact-skills-360x640.png",
+    "docs/screenshots/task-056-polish-compact-backpack-360x640.png",
+    "docs/screenshots/task-056-polish-compact-team-360x640.png",
+    "docs/screenshots/task-056-polish-compact-store-360x640.png",
+    "docs/screenshots/task-056-polish-compact-dungeon-360x640.png",
+    "docs/screenshots/task-056-polish-compact-daily-360x640.png",
+    "docs/screenshots/task-056-polish-compact-tower-360x640.png",
+    "docs/screenshots/task-056-polish-compact-home-390x844.png",
+    "docs/screenshots/task-056-polish-compact-buddy-390x844.png",
+    "docs/screenshots/task-056-polish-compact-stats-390x844.png",
+    "docs/screenshots/task-056-polish-compact-skills-390x844.png",
+    "docs/screenshots/task-056-polish-compact-backpack-390x844.png",
+    "docs/screenshots/task-056-polish-compact-team-390x844.png",
+    "docs/screenshots/task-056-polish-compact-store-390x844.png",
+    "docs/screenshots/task-056-polish-compact-dungeon-390x844.png",
+    "docs/screenshots/task-056-polish-compact-daily-390x844.png",
+    "docs/screenshots/task-056-polish-compact-tower-390x844.png",
+    "docs/screenshots/task-056-polish-compact-home-1280x800.png",
+    "docs/screenshots/task-056-polish-compact-buddy-1280x800.png",
+    "docs/screenshots/task-056-polish-compact-stats-1280x800.png",
+    "docs/screenshots/task-056-polish-compact-skills-1280x800.png",
+    "docs/screenshots/task-056-polish-compact-skills-last-360.png",
+    "docs/screenshots/task-056-polish-compact-stats-expanded-360.png",
+    "docs/screenshots/task-056-polish-compact-battle-tools-360.png",
+    "docs/screenshots/task-056-polish-compact-battle-statistics-360.png",
+    "docs/screenshots/task-056-polish-compact-battle-timeline-360.png"
+  ],
+  "browser_errors": [],
+  "content_hash": "14ffbc7104d10ce55ceda325f66de80a5ef671740e7f96bb65236deebce646b6",
+  "fixture": "Isolated test-only Lv20 Class2 roster, worn gear, all affordable unlocked skills, funded wallet and Story 3-4; not earned progression",
+  "personal_save_accessed": false,
+  "credentials_logged": false
+}

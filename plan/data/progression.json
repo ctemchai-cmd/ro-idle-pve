@@ -1,0 +1,2161 @@
+{
+  "schema_version": 1,
+  "content_version": "progression-baseline-v1",
+  "cost_version": "progression-costs-v1",
+  "status": "M0 authored baseline; not measured runtime balance",
+  "author": "Codex",
+  "source_decisions": [
+    "D-003",
+    "D-007",
+    "D-019",
+    "D-022",
+    "D-024",
+    "D-028",
+    "D-034",
+    "D-035",
+    "D-037",
+    "D-038"
+  ],
+  "release": {
+    "id": "class2-v1",
+    "level_min": 1,
+    "level_cap": 70,
+    "enabled_job_stages": [
+      1,
+      2
+    ],
+    "future_job_stages": [
+      {
+        "stage": 3,
+        "kind": "hi_class",
+        "minimum_level": 70,
+        "enabled": false
+      },
+      {
+        "stage": 4,
+        "kind": "class3",
+        "minimum_level": 120,
+        "enabled": false
+      }
+    ],
+    "excluded_features": [
+      "awakening",
+      "artifact",
+      "pet",
+      "rune",
+      "progression_autoplay",
+      "build_search",
+      "simulation_dashboard"
+    ],
+    "story_content_count_owner": "TASK-011"
+  },
+  "resources": [
+    {
+      "id": "gold",
+      "purpose": "shared upgrades",
+      "first_source": "account_creation"
+    },
+    {
+      "id": "hero_exp",
+      "purpose": "manual level upgrade",
+      "first_source": "account_creation"
+    },
+    {
+      "id": "breakthrough_essence",
+      "purpose": "character level-cap gates",
+      "first_source": "farm_cleared_1-5",
+      "additional_source": "daily_resource_bosses"
+    },
+    {
+      "id": "crystal",
+      "purpose": "card gacha in v1",
+      "first_source": "story_first_clear_owned_by_TASK-010"
+    },
+    {
+      "id": "skill_manual",
+      "purpose": "skill upgrades",
+      "first_source": "account_creation",
+      "income_owner": "TASK-010"
+    }
+  ],
+  "initial_state": {
+    "wallet": {
+      "gold": 1000,
+      "hero_exp": 1600,
+      "breakthrough_essence": 0,
+      "crystal": 0,
+      "skill_manual": 80
+    },
+    "grant_id": "account_creation_v1",
+    "grant_once_per_account_save": true,
+    "main_id": "main",
+    "main_root_choice": [
+      "swordsman",
+      "acolyte",
+      "archer",
+      "mage",
+      "thief",
+      "merchant"
+    ],
+    "initial_level": 1,
+    "initial_primary_stats": {
+      "str": 1,
+      "agi": 1,
+      "vit": 1,
+      "int": 1,
+      "dex": 1,
+      "luk": 1
+    },
+    "initial_unspent_status_points": 0,
+    "initial_local_cap": 20,
+    "npc_roster": [
+      {
+        "character_id": "npc_swordsman",
+        "root_job_id": "swordsman",
+        "initial_job_id": "swordsman",
+        "initial_level": 1,
+        "unlocked_at": "account_creation"
+      },
+      {
+        "character_id": "npc_acolyte",
+        "root_job_id": "acolyte",
+        "initial_job_id": "acolyte",
+        "initial_level": 1,
+        "unlocked_at": "account_creation"
+      },
+      {
+        "character_id": "npc_archer",
+        "root_job_id": "archer",
+        "initial_job_id": "archer",
+        "initial_level": 1,
+        "unlocked_at": "account_creation"
+      },
+      {
+        "character_id": "npc_mage",
+        "root_job_id": "mage",
+        "initial_job_id": "mage",
+        "initial_level": 1,
+        "unlocked_at": "account_creation"
+      },
+      {
+        "character_id": "npc_thief",
+        "root_job_id": "thief",
+        "initial_job_id": "thief",
+        "initial_level": 1,
+        "unlocked_at": "account_creation"
+      },
+      {
+        "character_id": "npc_merchant",
+        "root_job_id": "merchant",
+        "initial_job_id": "merchant",
+        "initial_level": 1,
+        "unlocked_at": "account_creation"
+      }
+    ],
+    "initial_active_skill_grants": {
+      "count_per_class1": 2,
+      "skill_level": 1,
+      "refundable_cost": 0,
+      "definition_owner": "TASK-003–008"
+    },
+    "starter_gear": {
+      "mode": "none",
+      "grant_scope": "no equipment at account creation",
+      "regrant_on_class_switch": false,
+      "rule_source": "D-059 user request 2026-10-20: start with no equipment; gear comes from Story/farm drops and the training weapon purchase",
+      "previous_baseline": "TASK-009 common tier 1 six-piece set per character (replaced)"
+    },
+    "initial_story_stage": "1-1",
+    "initial_farm_stage": null
+  },
+  "party_rules": {
+    "main_count": 1,
+    "npc_count": 3,
+    "front_slots": 2,
+    "back_slots": 2,
+    "unique_npc_root": true,
+    "main_may_duplicate_npc_root": true,
+    "persistent_owner": "character_id",
+    "team_slot_fields": [
+      "character_id",
+      "position"
+    ],
+    "off_team_can_receive_manual_upgrade": true,
+    "auto_level": false
+  },
+  "class_tree": {
+    "swordsman": [
+      "knight",
+      "crusader"
+    ],
+    "acolyte": [
+      "priest",
+      "monk"
+    ],
+    "archer": [
+      "hunter",
+      "bard",
+      "dancer"
+    ],
+    "mage": [
+      "wizard",
+      "sage"
+    ],
+    "thief": [
+      "assassin",
+      "rogue"
+    ],
+    "merchant": [
+      "blacksmith",
+      "alchemist"
+    ]
+  },
+  "promotion": {
+    "class2_min_level": 20,
+    "requires_breakthrough_020": false,
+    "outside_battle_only": true,
+    "fee": {},
+    "preserves_character_level": true,
+    "npc_root_mutable": false,
+    "main_root_mutable": true,
+    "hi_class_enabled": false,
+    "class3_enabled": false
+  },
+  "progression": {
+    "spend_mode": "manual_selected_character",
+    "exp_distribution": "none",
+    "base_local_cap": 20,
+    "effective_cap_rule": "min(release.level_cap, highest_unlocked_local_cap)",
+    "level_cost_formula": {
+      "hero_exp": {
+        "linear": 50,
+        "quadratic": 5
+      },
+      "gold": {
+        "linear": 20,
+        "quadratic": 2
+      }
+    },
+    "level_rows": [
+      {
+        "level": 1,
+        "total_status_points": 0,
+        "leveling_cost_to_reach": {
+          "hero_exp": 0,
+          "gold": 0
+        },
+        "next_level_cost": {
+          "hero_exp": 55,
+          "gold": 22
+        }
+      },
+      {
+        "level": 2,
+        "total_status_points": 3,
+        "leveling_cost_to_reach": {
+          "hero_exp": 55,
+          "gold": 22
+        },
+        "next_level_cost": {
+          "hero_exp": 120,
+          "gold": 48
+        }
+      },
+      {
+        "level": 3,
+        "total_status_points": 6,
+        "leveling_cost_to_reach": {
+          "hero_exp": 175,
+          "gold": 70
+        },
+        "next_level_cost": {
+          "hero_exp": 195,
+          "gold": 78
+        }
+      },
+      {
+        "level": 4,
+        "total_status_points": 9,
+        "leveling_cost_to_reach": {
+          "hero_exp": 370,
+          "gold": 148
+        },
+        "next_level_cost": {
+          "hero_exp": 280,
+          "gold": 112
+        }
+      },
+      {
+        "level": 5,
+        "total_status_points": 13,
+        "leveling_cost_to_reach": {
+          "hero_exp": 650,
+          "gold": 260
+        },
+        "next_level_cost": {
+          "hero_exp": 375,
+          "gold": 150
+        }
+      },
+      {
+        "level": 6,
+        "total_status_points": 17,
+        "leveling_cost_to_reach": {
+          "hero_exp": 1025,
+          "gold": 410
+        },
+        "next_level_cost": {
+          "hero_exp": 480,
+          "gold": 192
+        }
+      },
+      {
+        "level": 7,
+        "total_status_points": 21,
+        "leveling_cost_to_reach": {
+          "hero_exp": 1505,
+          "gold": 602
+        },
+        "next_level_cost": {
+          "hero_exp": 595,
+          "gold": 238
+        }
+      },
+      {
+        "level": 8,
+        "total_status_points": 25,
+        "leveling_cost_to_reach": {
+          "hero_exp": 2100,
+          "gold": 840
+        },
+        "next_level_cost": {
+          "hero_exp": 720,
+          "gold": 288
+        }
+      },
+      {
+        "level": 9,
+        "total_status_points": 29,
+        "leveling_cost_to_reach": {
+          "hero_exp": 2820,
+          "gold": 1128
+        },
+        "next_level_cost": {
+          "hero_exp": 855,
+          "gold": 342
+        }
+      },
+      {
+        "level": 10,
+        "total_status_points": 34,
+        "leveling_cost_to_reach": {
+          "hero_exp": 3675,
+          "gold": 1470
+        },
+        "next_level_cost": {
+          "hero_exp": 1000,
+          "gold": 400
+        }
+      },
+      {
+        "level": 11,
+        "total_status_points": 39,
+        "leveling_cost_to_reach": {
+          "hero_exp": 4675,
+          "gold": 1870
+        },
+        "next_level_cost": {
+          "hero_exp": 1155,
+          "gold": 462
+        }
+      },
+      {
+        "level": 12,
+        "total_status_points": 44,
+        "leveling_cost_to_reach": {
+          "hero_exp": 5830,
+          "gold": 2332
+        },
+        "next_level_cost": {
+          "hero_exp": 1320,
+          "gold": 528
+        }
+      },
+      {
+        "level": 13,
+        "total_status_points": 49,
+        "leveling_cost_to_reach": {
+          "hero_exp": 7150,
+          "gold": 2860
+        },
+        "next_level_cost": {
+          "hero_exp": 1495,
+          "gold": 598
+        }
+      },
+      {
+        "level": 14,
+        "total_status_points": 54,
+        "leveling_cost_to_reach": {
+          "hero_exp": 8645,
+          "gold": 3458
+        },
+        "next_level_cost": {
+          "hero_exp": 1680,
+          "gold": 672
+        }
+      },
+      {
+        "level": 15,
+        "total_status_points": 60,
+        "leveling_cost_to_reach": {
+          "hero_exp": 10325,
+          "gold": 4130
+        },
+        "next_level_cost": {
+          "hero_exp": 1875,
+          "gold": 750
+        }
+      },
+      {
+        "level": 16,
+        "total_status_points": 66,
+        "leveling_cost_to_reach": {
+          "hero_exp": 12200,
+          "gold": 4880
+        },
+        "next_level_cost": {
+          "hero_exp": 2080,
+          "gold": 832
+        }
+      },
+      {
+        "level": 17,
+        "total_status_points": 72,
+        "leveling_cost_to_reach": {
+          "hero_exp": 14280,
+          "gold": 5712
+        },
+        "next_level_cost": {
+          "hero_exp": 2295,
+          "gold": 918
+        }
+      },
+      {
+        "level": 18,
+        "total_status_points": 78,
+        "leveling_cost_to_reach": {
+          "hero_exp": 16575,
+          "gold": 6630
+        },
+        "next_level_cost": {
+          "hero_exp": 2520,
+          "gold": 1008
+        }
+      },
+      {
+        "level": 19,
+        "total_status_points": 84,
+        "leveling_cost_to_reach": {
+          "hero_exp": 19095,
+          "gold": 7638
+        },
+        "next_level_cost": {
+          "hero_exp": 2755,
+          "gold": 1102
+        }
+      },
+      {
+        "level": 20,
+        "total_status_points": 91,
+        "leveling_cost_to_reach": {
+          "hero_exp": 21850,
+          "gold": 8740
+        },
+        "next_level_cost": {
+          "hero_exp": 3000,
+          "gold": 1200
+        }
+      },
+      {
+        "level": 21,
+        "total_status_points": 98,
+        "leveling_cost_to_reach": {
+          "hero_exp": 24850,
+          "gold": 9940
+        },
+        "next_level_cost": {
+          "hero_exp": 3255,
+          "gold": 1302
+        }
+      },
+      {
+        "level": 22,
+        "total_status_points": 105,
+        "leveling_cost_to_reach": {
+          "hero_exp": 28105,
+          "gold": 11242
+        },
+        "next_level_cost": {
+          "hero_exp": 3520,
+          "gold": 1408
+        }
+      },
+      {
+        "level": 23,
+        "total_status_points": 112,
+        "leveling_cost_to_reach": {
+          "hero_exp": 31625,
+          "gold": 12650
+        },
+        "next_level_cost": {
+          "hero_exp": 3795,
+          "gold": 1518
+        }
+      },
+      {
+        "level": 24,
+        "total_status_points": 119,
+        "leveling_cost_to_reach": {
+          "hero_exp": 35420,
+          "gold": 14168
+        },
+        "next_level_cost": {
+          "hero_exp": 4080,
+          "gold": 1632
+        }
+      },
+      {
+        "level": 25,
+        "total_status_points": 127,
+        "leveling_cost_to_reach": {
+          "hero_exp": 39500,
+          "gold": 15800
+        },
+        "next_level_cost": {
+          "hero_exp": 4375,
+          "gold": 1750
+        }
+      },
+      {
+        "level": 26,
+        "total_status_points": 135,
+        "leveling_cost_to_reach": {
+          "hero_exp": 43875,
+          "gold": 17550
+        },
+        "next_level_cost": {
+          "hero_exp": 4680,
+          "gold": 1872
+        }
+      },
+      {
+        "level": 27,
+        "total_status_points": 143,
+        "leveling_cost_to_reach": {
+          "hero_exp": 48555,
+          "gold": 19422
+        },
+        "next_level_cost": {
+          "hero_exp": 4995,
+          "gold": 1998
+        }
+      },
+      {
+        "level": 28,
+        "total_status_points": 151,
+        "leveling_cost_to_reach": {
+          "hero_exp": 53550,
+          "gold": 21420
+        },
+        "next_level_cost": {
+          "hero_exp": 5320,
+          "gold": 2128
+        }
+      },
+      {
+        "level": 29,
+        "total_status_points": 159,
+        "leveling_cost_to_reach": {
+          "hero_exp": 58870,
+          "gold": 23548
+        },
+        "next_level_cost": {
+          "hero_exp": 5655,
+          "gold": 2262
+        }
+      },
+      {
+        "level": 30,
+        "total_status_points": 168,
+        "leveling_cost_to_reach": {
+          "hero_exp": 64525,
+          "gold": 25810
+        },
+        "next_level_cost": {
+          "hero_exp": 6000,
+          "gold": 2400
+        }
+      },
+      {
+        "level": 31,
+        "total_status_points": 177,
+        "leveling_cost_to_reach": {
+          "hero_exp": 70525,
+          "gold": 28210
+        },
+        "next_level_cost": {
+          "hero_exp": 6355,
+          "gold": 2542
+        }
+      },
+      {
+        "level": 32,
+        "total_status_points": 186,
+        "leveling_cost_to_reach": {
+          "hero_exp": 76880,
+          "gold": 30752
+        },
+        "next_level_cost": {
+          "hero_exp": 6720,
+          "gold": 2688
+        }
+      },
+      {
+        "level": 33,
+        "total_status_points": 195,
+        "leveling_cost_to_reach": {
+          "hero_exp": 83600,
+          "gold": 33440
+        },
+        "next_level_cost": {
+          "hero_exp": 7095,
+          "gold": 2838
+        }
+      },
+      {
+        "level": 34,
+        "total_status_points": 204,
+        "leveling_cost_to_reach": {
+          "hero_exp": 90695,
+          "gold": 36278
+        },
+        "next_level_cost": {
+          "hero_exp": 7480,
+          "gold": 2992
+        }
+      },
+      {
+        "level": 35,
+        "total_status_points": 214,
+        "leveling_cost_to_reach": {
+          "hero_exp": 98175,
+          "gold": 39270
+        },
+        "next_level_cost": {
+          "hero_exp": 7875,
+          "gold": 3150
+        }
+      },
+      {
+        "level": 36,
+        "total_status_points": 224,
+        "leveling_cost_to_reach": {
+          "hero_exp": 106050,
+          "gold": 42420
+        },
+        "next_level_cost": {
+          "hero_exp": 8280,
+          "gold": 3312
+        }
+      },
+      {
+        "level": 37,
+        "total_status_points": 234,
+        "leveling_cost_to_reach": {
+          "hero_exp": 114330,
+          "gold": 45732
+        },
+        "next_level_cost": {
+          "hero_exp": 8695,
+          "gold": 3478
+        }
+      },
+      {
+        "level": 38,
+        "total_status_points": 244,
+        "leveling_cost_to_reach": {
+          "hero_exp": 123025,
+          "gold": 49210
+        },
+        "next_level_cost": {
+          "hero_exp": 9120,
+          "gold": 3648
+        }
+      },
+      {
+        "level": 39,
+        "total_status_points": 254,
+        "leveling_cost_to_reach": {
+          "hero_exp": 132145,
+          "gold": 52858
+        },
+        "next_level_cost": {
+          "hero_exp": 9555,
+          "gold": 3822
+        }
+      },
+      {
+        "level": 40,
+        "total_status_points": 265,
+        "leveling_cost_to_reach": {
+          "hero_exp": 141700,
+          "gold": 56680
+        },
+        "next_level_cost": {
+          "hero_exp": 10000,
+          "gold": 4000
+        }
+      },
+      {
+        "level": 41,
+        "total_status_points": 276,
+        "leveling_cost_to_reach": {
+          "hero_exp": 151700,
+          "gold": 60680
+        },
+        "next_level_cost": {
+          "hero_exp": 10455,
+          "gold": 4182
+        }
+      },
+      {
+        "level": 42,
+        "total_status_points": 287,
+        "leveling_cost_to_reach": {
+          "hero_exp": 162155,
+          "gold": 64862
+        },
+        "next_level_cost": {
+          "hero_exp": 10920,
+          "gold": 4368
+        }
+      },
+      {
+        "level": 43,
+        "total_status_points": 298,
+        "leveling_cost_to_reach": {
+          "hero_exp": 173075,
+          "gold": 69230
+        },
+        "next_level_cost": {
+          "hero_exp": 11395,
+          "gold": 4558
+        }
+      },
+      {
+        "level": 44,
+        "total_status_points": 309,
+        "leveling_cost_to_reach": {
+          "hero_exp": 184470,
+          "gold": 73788
+        },
+        "next_level_cost": {
+          "hero_exp": 11880,
+          "gold": 4752
+        }
+      },
+      {
+        "level": 45,
+        "total_status_points": 321,
+        "leveling_cost_to_reach": {
+          "hero_exp": 196350,
+          "gold": 78540
+        },
+        "next_level_cost": {
+          "hero_exp": 12375,
+          "gold": 4950
+        }
+      },
+      {
+        "level": 46,
+        "total_status_points": 333,
+        "leveling_cost_to_reach": {
+          "hero_exp": 208725,
+          "gold": 83490
+        },
+        "next_level_cost": {
+          "hero_exp": 12880,
+          "gold": 5152
+        }
+      },
+      {
+        "level": 47,
+        "total_status_points": 345,
+        "leveling_cost_to_reach": {
+          "hero_exp": 221605,
+          "gold": 88642
+        },
+        "next_level_cost": {
+          "hero_exp": 13395,
+          "gold": 5358
+        }
+      },
+      {
+        "level": 48,
+        "total_status_points": 357,
+        "leveling_cost_to_reach": {
+          "hero_exp": 235000,
+          "gold": 94000
+        },
+        "next_level_cost": {
+          "hero_exp": 13920,
+          "gold": 5568
+        }
+      },
+      {
+        "level": 49,
+        "total_status_points": 369,
+        "leveling_cost_to_reach": {
+          "hero_exp": 248920,
+          "gold": 99568
+        },
+        "next_level_cost": {
+          "hero_exp": 14455,
+          "gold": 5782
+        }
+      },
+      {
+        "level": 50,
+        "total_status_points": 382,
+        "leveling_cost_to_reach": {
+          "hero_exp": 263375,
+          "gold": 105350
+        },
+        "next_level_cost": {
+          "hero_exp": 15000,
+          "gold": 6000
+        }
+      },
+      {
+        "level": 51,
+        "total_status_points": 395,
+        "leveling_cost_to_reach": {
+          "hero_exp": 278375,
+          "gold": 111350
+        },
+        "next_level_cost": {
+          "hero_exp": 15555,
+          "gold": 6222
+        }
+      },
+      {
+        "level": 52,
+        "total_status_points": 408,
+        "leveling_cost_to_reach": {
+          "hero_exp": 293930,
+          "gold": 117572
+        },
+        "next_level_cost": {
+          "hero_exp": 16120,
+          "gold": 6448
+        }
+      },
+      {
+        "level": 53,
+        "total_status_points": 421,
+        "leveling_cost_to_reach": {
+          "hero_exp": 310050,
+          "gold": 124020
+        },
+        "next_level_cost": {
+          "hero_exp": 16695,
+          "gold": 6678
+        }
+      },
+      {
+        "level": 54,
+        "total_status_points": 434,
+        "leveling_cost_to_reach": {
+          "hero_exp": 326745,
+          "gold": 130698
+        },
+        "next_level_cost": {
+          "hero_exp": 17280,
+          "gold": 6912
+        }
+      },
+      {
+        "level": 55,
+        "total_status_points": 448,
+        "leveling_cost_to_reach": {
+          "hero_exp": 344025,
+          "gold": 137610
+        },
+        "next_level_cost": {
+          "hero_exp": 17875,
+          "gold": 7150
+        }
+      },
+      {
+        "level": 56,
+        "total_status_points": 462,
+        "leveling_cost_to_reach": {
+          "hero_exp": 361900,
+          "gold": 144760
+        },
+        "next_level_cost": {
+          "hero_exp": 18480,
+          "gold": 7392
+        }
+      },
+      {
+        "level": 57,
+        "total_status_points": 476,
+        "leveling_cost_to_reach": {
+          "hero_exp": 380380,
+          "gold": 152152
+        },
+        "next_level_cost": {
+          "hero_exp": 19095,
+          "gold": 7638
+        }
+      },
+      {
+        "level": 58,
+        "total_status_points": 490,
+        "leveling_cost_to_reach": {
+          "hero_exp": 399475,
+          "gold": 159790
+        },
+        "next_level_cost": {
+          "hero_exp": 19720,
+          "gold": 7888
+        }
+      },
+      {
+        "level": 59,
+        "total_status_points": 504,
+        "leveling_cost_to_reach": {
+          "hero_exp": 419195,
+          "gold": 167678
+        },
+        "next_level_cost": {
+          "hero_exp": 20355,
+          "gold": 8142
+        }
+      },
+      {
+        "level": 60,
+        "total_status_points": 519,
+        "leveling_cost_to_reach": {
+          "hero_exp": 439550,
+          "gold": 175820
+        },
+        "next_level_cost": {
+          "hero_exp": 21000,
+          "gold": 8400
+        }
+      },
+      {
+        "level": 61,
+        "total_status_points": 534,
+        "leveling_cost_to_reach": {
+          "hero_exp": 460550,
+          "gold": 184220
+        },
+        "next_level_cost": {
+          "hero_exp": 21655,
+          "gold": 8662
+        }
+      },
+      {
+        "level": 62,
+        "total_status_points": 549,
+        "leveling_cost_to_reach": {
+          "hero_exp": 482205,
+          "gold": 192882
+        },
+        "next_level_cost": {
+          "hero_exp": 22320,
+          "gold": 8928
+        }
+      },
+      {
+        "level": 63,
+        "total_status_points": 564,
+        "leveling_cost_to_reach": {
+          "hero_exp": 504525,
+          "gold": 201810
+        },
+        "next_level_cost": {
+          "hero_exp": 22995,
+          "gold": 9198
+        }
+      },
+      {
+        "level": 64,
+        "total_status_points": 579,
+        "leveling_cost_to_reach": {
+          "hero_exp": 527520,
+          "gold": 211008
+        },
+        "next_level_cost": {
+          "hero_exp": 23680,
+          "gold": 9472
+        }
+      },
+      {
+        "level": 65,
+        "total_status_points": 595,
+        "leveling_cost_to_reach": {
+          "hero_exp": 551200,
+          "gold": 220480
+        },
+        "next_level_cost": {
+          "hero_exp": 24375,
+          "gold": 9750
+        }
+      },
+      {
+        "level": 66,
+        "total_status_points": 611,
+        "leveling_cost_to_reach": {
+          "hero_exp": 575575,
+          "gold": 230230
+        },
+        "next_level_cost": {
+          "hero_exp": 25080,
+          "gold": 10032
+        }
+      },
+      {
+        "level": 67,
+        "total_status_points": 627,
+        "leveling_cost_to_reach": {
+          "hero_exp": 600655,
+          "gold": 240262
+        },
+        "next_level_cost": {
+          "hero_exp": 25795,
+          "gold": 10318
+        }
+      },
+      {
+        "level": 68,
+        "total_status_points": 643,
+        "leveling_cost_to_reach": {
+          "hero_exp": 626450,
+          "gold": 250580
+        },
+        "next_level_cost": {
+          "hero_exp": 26520,
+          "gold": 10608
+        }
+      },
+      {
+        "level": 69,
+        "total_status_points": 659,
+        "leveling_cost_to_reach": {
+          "hero_exp": 652970,
+          "gold": 261188
+        },
+        "next_level_cost": {
+          "hero_exp": 27255,
+          "gold": 10902
+        }
+      },
+      {
+        "level": 70,
+        "total_status_points": 676,
+        "leveling_cost_to_reach": {
+          "hero_exp": 680225,
+          "gold": 272090
+        },
+        "next_level_cost": null
+      }
+    ],
+    "breakthrough_gates": [
+      {
+        "id": "breakthrough_020",
+        "at_level": 20,
+        "requires_gate": null,
+        "unlocks_local_cap": 40,
+        "cost": {
+          "gold": 5000,
+          "breakthrough_essence": 20
+        }
+      },
+      {
+        "id": "breakthrough_040",
+        "at_level": 40,
+        "requires_gate": "breakthrough_020",
+        "unlocks_local_cap": 60,
+        "cost": {
+          "gold": 25000,
+          "breakthrough_essence": 100
+        }
+      },
+      {
+        "id": "breakthrough_060",
+        "at_level": 60,
+        "requires_gate": "breakthrough_040",
+        "unlocks_local_cap": 80,
+        "cost": {
+          "gold": 100000,
+          "breakthrough_essence": 400
+        }
+      }
+    ],
+    "breakthrough_070_exists": false,
+    "character_level_is_refundable": false
+  },
+  "status_allocation": {
+    "base": {
+      "str": 1,
+      "agi": 1,
+      "vit": 1,
+      "int": 1,
+      "dex": 1,
+      "luk": 1
+    },
+    "automatic_class_growth": false,
+    "automatic_point_spending": false,
+    "manual_value_max": 99,
+    "buff_magnitude_cap": null,
+    "increase_cost_rule": "1 + floor((current_value - 1)/10)",
+    "cost_by_new_value": [
+      {
+        "new_value": 2,
+        "point_cost": 1
+      },
+      {
+        "new_value": 3,
+        "point_cost": 1
+      },
+      {
+        "new_value": 4,
+        "point_cost": 1
+      },
+      {
+        "new_value": 5,
+        "point_cost": 1
+      },
+      {
+        "new_value": 6,
+        "point_cost": 1
+      },
+      {
+        "new_value": 7,
+        "point_cost": 1
+      },
+      {
+        "new_value": 8,
+        "point_cost": 1
+      },
+      {
+        "new_value": 9,
+        "point_cost": 1
+      },
+      {
+        "new_value": 10,
+        "point_cost": 1
+      },
+      {
+        "new_value": 11,
+        "point_cost": 1
+      },
+      {
+        "new_value": 12,
+        "point_cost": 2
+      },
+      {
+        "new_value": 13,
+        "point_cost": 2
+      },
+      {
+        "new_value": 14,
+        "point_cost": 2
+      },
+      {
+        "new_value": 15,
+        "point_cost": 2
+      },
+      {
+        "new_value": 16,
+        "point_cost": 2
+      },
+      {
+        "new_value": 17,
+        "point_cost": 2
+      },
+      {
+        "new_value": 18,
+        "point_cost": 2
+      },
+      {
+        "new_value": 19,
+        "point_cost": 2
+      },
+      {
+        "new_value": 20,
+        "point_cost": 2
+      },
+      {
+        "new_value": 21,
+        "point_cost": 2
+      },
+      {
+        "new_value": 22,
+        "point_cost": 3
+      },
+      {
+        "new_value": 23,
+        "point_cost": 3
+      },
+      {
+        "new_value": 24,
+        "point_cost": 3
+      },
+      {
+        "new_value": 25,
+        "point_cost": 3
+      },
+      {
+        "new_value": 26,
+        "point_cost": 3
+      },
+      {
+        "new_value": 27,
+        "point_cost": 3
+      },
+      {
+        "new_value": 28,
+        "point_cost": 3
+      },
+      {
+        "new_value": 29,
+        "point_cost": 3
+      },
+      {
+        "new_value": 30,
+        "point_cost": 3
+      },
+      {
+        "new_value": 31,
+        "point_cost": 3
+      },
+      {
+        "new_value": 32,
+        "point_cost": 4
+      },
+      {
+        "new_value": 33,
+        "point_cost": 4
+      },
+      {
+        "new_value": 34,
+        "point_cost": 4
+      },
+      {
+        "new_value": 35,
+        "point_cost": 4
+      },
+      {
+        "new_value": 36,
+        "point_cost": 4
+      },
+      {
+        "new_value": 37,
+        "point_cost": 4
+      },
+      {
+        "new_value": 38,
+        "point_cost": 4
+      },
+      {
+        "new_value": 39,
+        "point_cost": 4
+      },
+      {
+        "new_value": 40,
+        "point_cost": 4
+      },
+      {
+        "new_value": 41,
+        "point_cost": 4
+      },
+      {
+        "new_value": 42,
+        "point_cost": 5
+      },
+      {
+        "new_value": 43,
+        "point_cost": 5
+      },
+      {
+        "new_value": 44,
+        "point_cost": 5
+      },
+      {
+        "new_value": 45,
+        "point_cost": 5
+      },
+      {
+        "new_value": 46,
+        "point_cost": 5
+      },
+      {
+        "new_value": 47,
+        "point_cost": 5
+      },
+      {
+        "new_value": 48,
+        "point_cost": 5
+      },
+      {
+        "new_value": 49,
+        "point_cost": 5
+      },
+      {
+        "new_value": 50,
+        "point_cost": 5
+      },
+      {
+        "new_value": 51,
+        "point_cost": 5
+      },
+      {
+        "new_value": 52,
+        "point_cost": 6
+      },
+      {
+        "new_value": 53,
+        "point_cost": 6
+      },
+      {
+        "new_value": 54,
+        "point_cost": 6
+      },
+      {
+        "new_value": 55,
+        "point_cost": 6
+      },
+      {
+        "new_value": 56,
+        "point_cost": 6
+      },
+      {
+        "new_value": 57,
+        "point_cost": 6
+      },
+      {
+        "new_value": 58,
+        "point_cost": 6
+      },
+      {
+        "new_value": 59,
+        "point_cost": 6
+      },
+      {
+        "new_value": 60,
+        "point_cost": 6
+      },
+      {
+        "new_value": 61,
+        "point_cost": 6
+      },
+      {
+        "new_value": 62,
+        "point_cost": 7
+      },
+      {
+        "new_value": 63,
+        "point_cost": 7
+      },
+      {
+        "new_value": 64,
+        "point_cost": 7
+      },
+      {
+        "new_value": 65,
+        "point_cost": 7
+      },
+      {
+        "new_value": 66,
+        "point_cost": 7
+      },
+      {
+        "new_value": 67,
+        "point_cost": 7
+      },
+      {
+        "new_value": 68,
+        "point_cost": 7
+      },
+      {
+        "new_value": 69,
+        "point_cost": 7
+      },
+      {
+        "new_value": 70,
+        "point_cost": 7
+      },
+      {
+        "new_value": 71,
+        "point_cost": 7
+      },
+      {
+        "new_value": 72,
+        "point_cost": 8
+      },
+      {
+        "new_value": 73,
+        "point_cost": 8
+      },
+      {
+        "new_value": 74,
+        "point_cost": 8
+      },
+      {
+        "new_value": 75,
+        "point_cost": 8
+      },
+      {
+        "new_value": 76,
+        "point_cost": 8
+      },
+      {
+        "new_value": 77,
+        "point_cost": 8
+      },
+      {
+        "new_value": 78,
+        "point_cost": 8
+      },
+      {
+        "new_value": 79,
+        "point_cost": 8
+      },
+      {
+        "new_value": 80,
+        "point_cost": 8
+      },
+      {
+        "new_value": 81,
+        "point_cost": 8
+      },
+      {
+        "new_value": 82,
+        "point_cost": 9
+      },
+      {
+        "new_value": 83,
+        "point_cost": 9
+      },
+      {
+        "new_value": 84,
+        "point_cost": 9
+      },
+      {
+        "new_value": 85,
+        "point_cost": 9
+      },
+      {
+        "new_value": 86,
+        "point_cost": 9
+      },
+      {
+        "new_value": 87,
+        "point_cost": 9
+      },
+      {
+        "new_value": 88,
+        "point_cost": 9
+      },
+      {
+        "new_value": 89,
+        "point_cost": 9
+      },
+      {
+        "new_value": 90,
+        "point_cost": 9
+      },
+      {
+        "new_value": 91,
+        "point_cost": 9
+      },
+      {
+        "new_value": 92,
+        "point_cost": 10
+      },
+      {
+        "new_value": 93,
+        "point_cost": 10
+      },
+      {
+        "new_value": 94,
+        "point_cost": 10
+      },
+      {
+        "new_value": 95,
+        "point_cost": 10
+      },
+      {
+        "new_value": 96,
+        "point_cost": 10
+      },
+      {
+        "new_value": 97,
+        "point_cost": 10
+      },
+      {
+        "new_value": 98,
+        "point_cost": 10
+      },
+      {
+        "new_value": 99,
+        "point_cost": 10
+      }
+    ],
+    "respec_fee": {},
+    "outside_battle_only": true,
+    "points_per_level_rule": "3 + floor(new_level/5)",
+    "points_per_level_rule_source": "D-057 Ragnarok-style growth; numbers are an assistant baseline to tune in TASK-041",
+    "job_bonus_by_root": {
+      "swordsman": {
+        "str": 8,
+        "agi": 4,
+        "vit": 7,
+        "int": 0,
+        "dex": 3,
+        "luk": 2
+      },
+      "acolyte": {
+        "str": 2,
+        "agi": 2,
+        "vit": 5,
+        "int": 8,
+        "dex": 5,
+        "luk": 2
+      },
+      "archer": {
+        "str": 3,
+        "agi": 6,
+        "vit": 2,
+        "int": 1,
+        "dex": 9,
+        "luk": 3
+      },
+      "mage": {
+        "str": 0,
+        "agi": 2,
+        "vit": 2,
+        "int": 10,
+        "dex": 7,
+        "luk": 3
+      },
+      "thief": {
+        "str": 5,
+        "agi": 9,
+        "vit": 3,
+        "int": 0,
+        "dex": 4,
+        "luk": 3
+      },
+      "merchant": {
+        "str": 7,
+        "agi": 1,
+        "vit": 6,
+        "int": 1,
+        "dex": 5,
+        "luk": 4
+      }
+    },
+    "job_bonus_rule": "Fixed per Class 1 tree (kept after branching), added on top of allocated points like RO job bonus \"+N\"; never grows with level, costs no points and is not refunded by a status reset",
+    "job_bonus_rule_source": "D-061 user request 2026-10-20: different starting stats so party members do not cast in lockstep; values are an assistant baseline (24 points each) to tune in TASK-041"
+  },
+  "skill_cap_contract": {
+    "rule": "min(skill_definition_max, 1 + floor((character_level - 1)/5))",
+    "automatic_skill_upgrade": false,
+    "definition_owner": "TASK-003–008",
+    "future_awaken_cap_owner": "future_content"
+  },
+  "system_unlocks": [
+    {
+      "system_id": "roster",
+      "enabled_in_release": true,
+      "requires": {}
+    },
+    {
+      "system_id": "status_allocation",
+      "enabled_in_release": true,
+      "requires": {}
+    },
+    {
+      "system_id": "skills",
+      "enabled_in_release": true,
+      "requires": {}
+    },
+    {
+      "system_id": "inventory",
+      "enabled_in_release": true,
+      "requires": {}
+    },
+    {
+      "system_id": "respec",
+      "enabled_in_release": true,
+      "requires": {}
+    },
+    {
+      "system_id": "class1_switch",
+      "enabled_in_release": true,
+      "requires": {}
+    },
+    {
+      "system_id": "story",
+      "enabled_in_release": true,
+      "requires": {
+        "valid_party_size": 4
+      }
+    },
+    {
+      "system_id": "farm",
+      "enabled_in_release": true,
+      "requires": {
+        "story_cleared": "1-1"
+      }
+    },
+    {
+      "system_id": "offline_rewards",
+      "enabled_in_release": true,
+      "requires": {
+        "story_cleared": "1-1"
+      }
+    },
+    {
+      "system_id": "refine",
+      "enabled_in_release": true,
+      "requires": {
+        "story_cleared": "1-5"
+      }
+    },
+    {
+      "system_id": "daily_resource_bosses",
+      "enabled_in_release": true,
+      "requires": {
+        "story_cleared": "1-10"
+      }
+    },
+    {
+      "system_id": "enchant",
+      "enabled_in_release": true,
+      "requires": {
+        "story_cleared": "2-5"
+      }
+    },
+    {
+      "system_id": "cards",
+      "enabled_in_release": true,
+      "requires": {
+        "story_cleared": "2-10"
+      }
+    },
+    {
+      "system_id": "card_gacha",
+      "enabled_in_release": true,
+      "requires": {
+        "story_cleared": "2-10"
+      }
+    },
+    {
+      "system_id": "tower",
+      "enabled_in_release": true,
+      "requires": {
+        "story_cleared": "2-10"
+      }
+    },
+    {
+      "system_id": "class2_promotion",
+      "enabled_in_release": true,
+      "requires": {
+        "selected_character_level": 20,
+        "selected_character_job_stage": 1
+      }
+    },
+    {
+      "system_id": "hi_class",
+      "enabled_in_release": false,
+      "requires": {}
+    },
+    {
+      "system_id": "awakening",
+      "enabled_in_release": false,
+      "requires": {}
+    },
+    {
+      "system_id": "artifact",
+      "enabled_in_release": false,
+      "requires": {}
+    },
+    {
+      "system_id": "class3",
+      "enabled_in_release": false,
+      "requires": {}
+    },
+    {
+      "system_id": "pet",
+      "enabled_in_release": false,
+      "requires": {}
+    },
+    {
+      "system_id": "rune",
+      "enabled_in_release": false,
+      "requires": {}
+    }
+  ],
+  "refund_policy": {
+    "mode": "actual_paid_resource_vector",
+    "ledger_fields": [
+      "entry_id",
+      "character_id",
+      "feature_id",
+      "skill_id",
+      "quantity",
+      "cost_version",
+      "paid_resources",
+      "refund_state",
+      "refund_command_id"
+    ],
+    "starter_grants_refund": 0,
+    "restore_old_upgraded_build_after_refund": false,
+    "loadout_presets_store_only_configuration": true,
+    "versioned_repurchase_uses": "current_cost_version",
+    "atomic_fields": [
+      "wallet",
+      "refunded_ledger_entries",
+      "skills",
+      "primary_stats",
+      "unspent_points",
+      "job_id",
+      "equipment_assignments",
+      "revision",
+      "receipt"
+    ],
+    "preserve_fields": [
+      "character_id",
+      "level",
+      "completed_gate_ids",
+      "slot_progress"
+    ],
+    "invalid_weapon_policy": "unequip_same_instance_to_inventory",
+    "inventory_full_policy": "reject_whole_command_without_mutation",
+    "same_refund_request_replay": "receipt_only_no_new_credit",
+    "status_points": {
+      "owner": "character_id",
+      "destination": "unspent_status_points",
+      "restore_total_rule": "earned_status_points_for_level",
+      "global_wallet_credit": false,
+      "allocated_values_reset_to_base": true
+    }
+  },
+  "reference_profiles": {
+    "desktop": {
+      "cpu": "Apple M1",
+      "ram_gb": 8,
+      "viewport_css": [
+        1280,
+        720
+      ],
+      "dpr": 1,
+      "browsers": [
+        "Chrome stable at validation",
+        "Safari stable at validation"
+      ]
+    },
+    "mobile": {
+      "device": "Google Pixel 6a",
+      "ram_gb": 6,
+      "viewport_css": [
+        390,
+        844
+      ],
+      "landscape_css": [
+        844,
+        390
+      ],
+      "dpr": 2,
+      "browsers": [
+        "Chrome stable at validation"
+      ]
+    },
+    "network": {
+      "down_mbps": 10,
+      "rtt_ms": 100
+    },
+    "layout_min_width_css": 360,
+    "actual_hardware_and_browser_validation": "TASK-042; not performed by TASK-001",
+    "numeric_quality_budgets_owner": "TASK-013"
+  },
+  "reference_cases": {
+    "milestones": [
+      {
+        "level": 20,
+        "hero_exp": 21850,
+        "gold_leveling": 8740,
+        "status_points": 91
+      },
+      {
+        "level": 40,
+        "hero_exp": 141700,
+        "gold_leveling": 56680,
+        "status_points": 265
+      },
+      {
+        "level": 60,
+        "hero_exp": 439550,
+        "gold_leveling": 175820,
+        "status_points": 519
+      },
+      {
+        "level": 70,
+        "hero_exp": 680225,
+        "gold_leveling": 272090,
+        "status_points": 676
+      }
+    ],
+    "four_characters_at_level4": {
+      "cost": {
+        "hero_exp": 1480,
+        "gold": 592
+      },
+      "remaining_initial_wallet": {
+        "hero_exp": 120,
+        "gold": 408
+      }
+    },
+    "level70_single_stat": {
+      "value": 99,
+      "spent_points": 530,
+      "unspent_points": 146
+    },
+    "refund_version_cases": [
+      {
+        "id": "refund_cost_v1_to_v2_higher_price",
+        "initial_resources": {
+          "gold": 1000,
+          "skill_manual": 200
+        },
+        "cost_versions": {
+          "v1": {
+            "gold": 100,
+            "skill_manual": 20
+          },
+          "v2": {
+            "gold": 150,
+            "skill_manual": 30
+          }
+        },
+        "states": [
+          {
+            "event": "purchase_v1",
+            "active_investment_id": "entry_v1",
+            "wallet": {
+              "gold": 900,
+              "skill_manual": 180
+            },
+            "refundable_paid": {
+              "gold": 100,
+              "skill_manual": 20
+            }
+          },
+          {
+            "event": "refund_v1_after_v2_deploy",
+            "active_investment_id": null,
+            "wallet": {
+              "gold": 1000,
+              "skill_manual": 200
+            },
+            "refundable_paid": {
+              "gold": 0,
+              "skill_manual": 0
+            },
+            "refund_request_id": "refund_v1_once",
+            "returned": {
+              "gold": 100,
+              "skill_manual": 20
+            }
+          },
+          {
+            "event": "retry_same_refund",
+            "active_investment_id": null,
+            "wallet": {
+              "gold": 1000,
+              "skill_manual": 200
+            },
+            "refundable_paid": {
+              "gold": 0,
+              "skill_manual": 0
+            },
+            "refund_request_id": "refund_v1_once",
+            "returned": {
+              "gold": 0,
+              "skill_manual": 0
+            }
+          },
+          {
+            "event": "purchase_v2",
+            "active_investment_id": "entry_v2",
+            "wallet": {
+              "gold": 850,
+              "skill_manual": 170
+            },
+            "refundable_paid": {
+              "gold": 150,
+              "skill_manual": 30
+            }
+          },
+          {
+            "event": "refund_v2",
+            "active_investment_id": null,
+            "wallet": {
+              "gold": 1000,
+              "skill_manual": 200
+            },
+            "refundable_paid": {
+              "gold": 0,
+              "skill_manual": 0
+            },
+            "refund_request_id": "refund_v2_once",
+            "returned": {
+              "gold": 150,
+              "skill_manual": 30
+            }
+          }
+        ]
+      },
+      {
+        "id": "refund_cost_v1_to_v2_lower_price",
+        "initial_resources": {
+          "gold": 1000,
+          "skill_manual": 200
+        },
+        "cost_versions": {
+          "v1": {
+            "gold": 100,
+            "skill_manual": 20
+          },
+          "v2": {
+            "gold": 60,
+            "skill_manual": 12
+          }
+        },
+        "states": [
+          {
+            "event": "purchase_v1",
+            "active_investment_id": "entry_v1",
+            "wallet": {
+              "gold": 900,
+              "skill_manual": 180
+            },
+            "refundable_paid": {
+              "gold": 100,
+              "skill_manual": 20
+            }
+          },
+          {
+            "event": "refund_v1_after_v2_deploy",
+            "active_investment_id": null,
+            "wallet": {
+              "gold": 1000,
+              "skill_manual": 200
+            },
+            "refundable_paid": {
+              "gold": 0,
+              "skill_manual": 0
+            },
+            "refund_request_id": "refund_v1_once",
+            "returned": {
+              "gold": 100,
+              "skill_manual": 20
+            }
+          },
+          {
+            "event": "retry_same_refund",
+            "active_investment_id": null,
+            "wallet": {
+              "gold": 1000,
+              "skill_manual": 200
+            },
+            "refundable_paid": {
+              "gold": 0,
+              "skill_manual": 0
+            },
+            "refund_request_id": "refund_v1_once",
+            "returned": {
+              "gold": 0,
+              "skill_manual": 0
+            }
+          },
+          {
+            "event": "purchase_v2",
+            "active_investment_id": "entry_v2",
+            "wallet": {
+              "gold": 940,
+              "skill_manual": 188
+            },
+            "refundable_paid": {
+              "gold": 60,
+              "skill_manual": 12
+            }
+          },
+          {
+            "event": "refund_v2",
+            "active_investment_id": null,
+            "wallet": {
+              "gold": 1000,
+              "skill_manual": 200
+            },
+            "refundable_paid": {
+              "gold": 0,
+              "skill_manual": 0
+            },
+            "refund_request_id": "refund_v2_once",
+            "returned": {
+              "gold": 60,
+              "skill_manual": 12
+            }
+          }
+        ]
+      }
+    ],
+    "roster_identity_case": {
+      "id": "npc_off_team_identity",
+      "actor_before": {
+        "character_id": "npc_swordsman",
+        "root_job_id": "swordsman",
+        "job_id": "knight",
+        "level": 40,
+        "completed_gate_ids": [
+          "breakthrough_020"
+        ],
+        "primary_stats": {
+          "str": 21,
+          "agi": 1,
+          "vit": 31,
+          "int": 1,
+          "dex": 1,
+          "luk": 1
+        },
+        "unspent_status_points": 175,
+        "skill_levels": {
+          "fixture_skill_a": 4
+        },
+        "slot_progress": {
+          "weapon": {
+            "refine": 5,
+            "enchant_seed": "fixture_seed",
+            "card_instance_ids": [
+              "card_instance_1",
+              "card_instance_2"
+            ]
+          }
+        }
+      },
+      "actor_after_remove_and_readd": {
+        "character_id": "npc_swordsman",
+        "root_job_id": "swordsman",
+        "job_id": "knight",
+        "level": 40,
+        "completed_gate_ids": [
+          "breakthrough_020"
+        ],
+        "primary_stats": {
+          "str": 21,
+          "agi": 1,
+          "vit": 31,
+          "int": 1,
+          "dex": 1,
+          "luk": 1
+        },
+        "unspent_status_points": 175,
+        "skill_levels": {
+          "fixture_skill_a": 4
+        },
+        "slot_progress": {
+          "weapon": {
+            "refine": 5,
+            "enchant_seed": "fixture_seed",
+            "card_instance_ids": [
+              "card_instance_1",
+              "card_instance_2"
+            ]
+          }
+        }
+      },
+      "team_before": [
+        "main",
+        "npc_swordsman",
+        "npc_acolyte",
+        "npc_archer"
+      ],
+      "team_after_remove": [
+        "main",
+        "npc_mage",
+        "npc_acolyte",
+        "npc_archer"
+      ],
+      "team_after_readd": [
+        "main",
+        "npc_swordsman",
+        "npc_acolyte",
+        "npc_archer"
+      ],
+      "replacement_starts_with_own_level": 1,
+      "replacement_slot_progress": {
+        "weapon": {
+          "refine": 0,
+          "card_instance_ids": []
+        }
+      }
+    },
+    "job_switch_cases": [
+      {
+        "id": "main_class1_switch",
+        "character_id": "main",
+        "level_before": 40,
+        "level_after": 40,
+        "root_before": "swordsman",
+        "root_after": "mage",
+        "allowed": true
+      },
+      {
+        "id": "npc_cross_root_rejected",
+        "character_id": "npc_swordsman",
+        "root_before": "swordsman",
+        "root_after": "mage",
+        "allowed": false
+      },
+      {
+        "id": "class2_before_breakthrough",
+        "level": 20,
+        "completed_gate_ids": [],
+        "promotion_allowed": true,
+        "effective_level_cap_after_promotion": 20
+      },
+      {
+        "id": "hi_class_at70_closed",
+        "level": 70,
+        "target": "hi_class",
+        "allowed": false
+      },
+      {
+        "id": "inventory_full_switch",
+        "free_inventory_slots": 0,
+        "items_to_unequip": 1,
+        "allowed": false,
+        "state_change": false
+      }
+    ]
+  }
+}

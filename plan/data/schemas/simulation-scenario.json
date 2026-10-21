@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ro-idle.local/schemas/simulation-scenario.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "content_hash": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rules_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "seed": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4294967295
+    },
+    "mode": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "enum": [
+            "story",
+            "tower",
+            "daily"
+          ]
+        },
+        "ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "kind",
+        "ref"
+      ],
+      "additionalProperties": false
+    },
+    "team": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "actor_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "build_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "position": {
+            "enum": [
+              "front_1",
+              "front_2",
+              "back_1",
+              "back_2"
+            ]
+          },
+          "equipment_profile": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "actor_id",
+          "build_id",
+          "position",
+          "equipment_profile"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "budget_policy": {
+      "enum": [
+        "explicit_single_scenario",
+        "equal_spent_for_AB"
+      ]
+    },
+    "log_level": {
+      "enum": [
+        "summary",
+        "trace"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "schema_version",
+    "content_hash",
+    "rules_version",
+    "seed",
+    "mode",
+    "team",
+    "budget_policy",
+    "log_level"
+  ],
+  "additionalProperties": false
+}

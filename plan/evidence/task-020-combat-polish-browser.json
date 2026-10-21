@@ -1,0 +1,229 @@
+{
+  "task_id": "TASK-020",
+  "round": 5,
+  "date": "2026-10-20",
+  "passed": true,
+  "browser": "155.0.8059.80",
+  "checks": [
+    {
+      "case_id": "live_solo_boss_3s_and_frame_continuous_timeline",
+      "passed": true,
+      "result": {
+        "frames": 120,
+        "moving_frames": 120,
+        "moving_fraction": 1,
+        "p95_frame_ms": 16.700000000000728,
+        "max_frame_ms": 16.80000000000109,
+        "max_marker_step_px": 0.912261962890625,
+        "backwards": 0,
+        "actor_rows": 5,
+        "enemies": 1,
+        "base_skill_interval_ms": 3000,
+        "pause_exact": true
+      }
+    },
+    {
+      "case_id": "native_RO_numbers_crit_and_source_target_projectiles",
+      "passed": true,
+      "result": {
+        "arrows": [
+          {
+            "source": "npc_archer",
+            "target": "enemy_front",
+            "shape": "arrow"
+          },
+          {
+            "source": "npc_archer",
+            "target": "enemy_front",
+            "shape": "arrow"
+          },
+          {
+            "source": "npc_archer",
+            "target": "enemy_front",
+            "shape": "arrow"
+          }
+        ],
+        "sampled_frames": 123,
+        "focused_damage_only": true,
+        "magic_orbs": true,
+        "native_font": "effects.f8701ce52f9959aa",
+        "native_critical_background": "effects.849865cd65c81f33",
+        "actual_critical_seed": 1,
+        "actual_critical_ms": 7501,
+        "actual_critical_amount": 92
+      }
+    },
+    {
+      "case_id": "all_media_in_new_pack_decode_locally",
+      "passed": true,
+      "result": {
+        "images": 216,
+        "audio": 34,
+        "font": true,
+        "pack_hash": "b8fb1d7c74debd95b7abbad413d404b1b98ded01e6b319472861d7feeff7b29f",
+        "selected_ids": 251
+      }
+    },
+    {
+      "case_id": "FPS_forecast_projectile_focus_do_not_change_combat",
+      "passed": true,
+      "result": [
+        {
+          "encounter": "boss",
+          "fps": 0,
+          "frames": 0,
+          "projectiles": 0,
+          "damage": 0,
+          "end_ms": 20383,
+          "rng_draws": 172,
+          "exact_state_events_metrics": true
+        },
+        {
+          "encounter": "boss",
+          "fps": 30,
+          "frames": 554,
+          "projectiles": 289,
+          "damage": 637,
+          "end_ms": 20383,
+          "rng_draws": 172,
+          "exact_state_events_metrics": true
+        },
+        {
+          "encounter": "boss",
+          "fps": 60,
+          "frames": 1103,
+          "projectiles": 578,
+          "damage": 1261,
+          "end_ms": 20383,
+          "rng_draws": 172,
+          "exact_state_events_metrics": true
+        },
+        {
+          "encounter": "warded",
+          "fps": 0,
+          "frames": 0,
+          "projectiles": 0,
+          "damage": 0,
+          "end_ms": 20383,
+          "rng_draws": 172,
+          "exact_state_events_metrics": true
+        },
+        {
+          "encounter": "warded",
+          "fps": 30,
+          "frames": 554,
+          "projectiles": 289,
+          "damage": 637,
+          "end_ms": 20383,
+          "rng_draws": 172,
+          "exact_state_events_metrics": true
+        },
+        {
+          "encounter": "warded",
+          "fps": 60,
+          "frames": 1103,
+          "projectiles": 578,
+          "damage": 1261,
+          "end_ms": 20383,
+          "rng_draws": 172,
+          "exact_state_events_metrics": true
+        },
+        {
+          "encounter": "storm",
+          "fps": 0,
+          "frames": 0,
+          "projectiles": 0,
+          "damage": 0,
+          "end_ms": 22499,
+          "rng_draws": 196,
+          "exact_state_events_metrics": true
+        },
+        {
+          "encounter": "storm",
+          "fps": 30,
+          "frames": 617,
+          "projectiles": 321,
+          "damage": 703,
+          "end_ms": 22499,
+          "rng_draws": 196,
+          "exact_state_events_metrics": true
+        },
+        {
+          "encounter": "storm",
+          "fps": 60,
+          "frames": 1229,
+          "projectiles": 644,
+          "damage": 1402,
+          "end_ms": 22499,
+          "rng_draws": 196,
+          "exact_state_events_metrics": true
+        }
+      ]
+    },
+    {
+      "case_id": "focus_controls_rotation_projection_mobile_and_keyboard",
+      "passed": true,
+      "result": {
+        "focus_selection": true,
+        "zoom": true,
+        "samples": [
+          {
+            "viewport_width": 360,
+            "width": 306,
+            "total": 800,
+            "left": 40
+          },
+          {
+            "viewport_width": 390,
+            "width": 336,
+            "total": 800,
+            "left": 38
+          },
+          {
+            "viewport_width": 844,
+            "width": 750,
+            "total": 920,
+            "left": 40
+          },
+          {
+            "viewport_width": 1280,
+            "width": 1174,
+            "total": 1174,
+            "left": 0
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "external_requests": [],
+  "input_sha256": {
+    "src/ui/battle-app.tsx": "dc3f56e6615a60a9a97fd854019e288bbb7842dc7fa710f343acc9c5ef65002c",
+    "src/ui/skill-timeline.tsx": "bfc2fc885594bcb7e3961a0b670f8a5e333a100ecaf0cf75a3b36b52e916e819",
+    "src/ui/timeline.css": "b43dcd89b400e39135704c7df755b39f9a04783d714ece6bf074f00b884ac719",
+    "src/client/demo.ts": "b9404ade30481fe9d96f002e8244cb25fc5f972a47b9a2e2861240b36cc6714e",
+    "src/renderer/battle.ts": "1693512437781c468938d9906a444244b796f62c8d166084518cfcb9e165eb35",
+    "src/renderer/actor-animation.ts": "ea4bb01915d9db36ef55250568a8f4a82299f22334e041fb4da535d01d851915",
+    "src/renderer/projectiles.ts": "f36fa998726e5aa9b7c4ab6be48806455c17ac19e37d8eb532c4b3fda04bccb8",
+    "src/renderer/damage-numbers.ts": "dbcfc209bbb8a05ee597e3e806e847e4beb7af25022a1013bd35413aa7d3d5a7",
+    "src/renderer/combat-visuals.json": "d5b891d36bb1f37ec8b2516918f0e9a912ccb84ebc251bd0c811fce2f3148884",
+    "src/renderer/pack.ts": "4ace2571011f87e97e631d7af14f2af8f14c8050fc7b0b491ab5fa76b5a01b44",
+    "src/contracts/assets.ts": "4e1b76862489cf70b73fa5825643238d042edb02a2f7ca57ea43a7e34b9f196b",
+    "src/domain/math/index.ts": "8eaa3380fc04885aafb0328ffb05b5bd7dac97e4b0158e77a05bf37232f6b243",
+    "src/domain/combat/engine.ts": "bfacc0fe62d2e578564e5bb8ea08cbd9b35c2dad5aa0bf12ced3db06212c1b1e",
+    "src/domain/combat/model.ts": "4b49341aee45d8cf189cf3a87856a3427474b67a77ef9d8555fb6da1ef510979",
+    "src/simulation/index.ts": "6837f0a6a5d68a7cb055ad6c781c0cecaa8502878975b9b62f0d290b9a0861b5",
+    "scripts/game/runtime-assets.ts": "8ed0a38781f53d8294b6adea0ce20f402369742642efcea19619fa7ec72801ac",
+    "scripts/build_runtime_assets.py": "9bce8bfb2d80eca375b18b39e63653a68b8014320fb51af5c2f16eba85f00660",
+    "plan/data/schemas/battle-checkpoint.json": "06805a578917d71318687fd87518c96a57713fc584948e9c945308899326a128",
+    "runtime/ro/manifest.json": "32d6b65a65409411c8da3b3fdc477a34848b66a574553842c0f282fc37cc0d6f",
+    "src/generated/runtime-manifest.json": "e61b04fbdc54896cf96527a2da54bf53c92a31d6d1da4500546089f45919c995",
+    "scripts/test_combat_polish.cjs": "128ebbc59384fbc2508ff19123cd93f219f517ed0bbdda16fa37b0ecb991d5ec"
+  },
+  "limitations": [
+    "Frame-motion sample on local Chrome headless; no real-device/Safari qualification.",
+    "Native pixel sprite pose cadence is retained; continuous complete-rig motion and compositor timeline do not invent missing artwork frames.",
+    "Pacing3s is an explicit reproducible demo encounter profile; release balance tables remain subject to gameplay measurement.",
+    "Projectile impact is a visual delay only; engine computes hit/damage at its authoritative event timestamp."
+  ]
+}

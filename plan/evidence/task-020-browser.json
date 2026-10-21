@@ -1,0 +1,378 @@
+{
+  "task_id": "TASK-020",
+  "browser": "155.0.8059.80",
+  "passed": true,
+  "checks": [
+    {
+      "case_id": "actual_UI_parallel_cast_and_controls",
+      "acceptance": [
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "parallel_casts": true,
+        "pause": true,
+        "user_audio_toggle": true,
+        "reorder": true
+      }
+    },
+    {
+      "case_id": "boss_interrupt_flag",
+      "acceptance": [
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "warded_telegraph_visible": true
+      }
+    },
+    {
+      "case_id": "native_actor_poses_and_complete_flip",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "presets": 36,
+        "samples": 360,
+        "mirror_comparisons": 180,
+        "worst_pixel_difference_fraction": 0,
+        "used": [
+          {
+            "job": "swordsman",
+            "preset": "1-male",
+            "attack_index": 86
+          },
+          {
+            "job": "swordsman",
+            "preset": "1-female",
+            "attack_index": 86
+          },
+          {
+            "job": "acolyte",
+            "preset": "4-male",
+            "attack_index": 86
+          },
+          {
+            "job": "acolyte",
+            "preset": "4-female",
+            "attack_index": 86
+          },
+          {
+            "job": "archer",
+            "preset": "3-male",
+            "attack_index": 86
+          },
+          {
+            "job": "archer",
+            "preset": "3-female",
+            "attack_index": 86
+          },
+          {
+            "job": "mage",
+            "preset": "2-male",
+            "attack_index": 86
+          },
+          {
+            "job": "mage",
+            "preset": "2-female",
+            "attack_index": 86
+          },
+          {
+            "job": "thief",
+            "preset": "6-male",
+            "attack_index": 86
+          },
+          {
+            "job": "thief",
+            "preset": "6-female",
+            "attack_index": 86
+          },
+          {
+            "job": "merchant",
+            "preset": "5-male",
+            "attack_index": 86
+          },
+          {
+            "job": "merchant",
+            "preset": "5-female",
+            "attack_index": 86
+          },
+          {
+            "job": "knight",
+            "preset": "7-male",
+            "attack_index": 86
+          },
+          {
+            "job": "knight",
+            "preset": "7-female",
+            "attack_index": 86
+          },
+          {
+            "job": "crusader",
+            "preset": "14-male",
+            "attack_index": 86
+          },
+          {
+            "job": "crusader",
+            "preset": "14-female",
+            "attack_index": 86
+          },
+          {
+            "job": "priest",
+            "preset": "8-male",
+            "attack_index": 86
+          },
+          {
+            "job": "priest",
+            "preset": "8-female",
+            "attack_index": 86
+          },
+          {
+            "job": "monk",
+            "preset": "15-male",
+            "attack_index": 86
+          },
+          {
+            "job": "monk",
+            "preset": "15-female",
+            "attack_index": 86
+          },
+          {
+            "job": "hunter",
+            "preset": "11-male",
+            "attack_index": 94
+          },
+          {
+            "job": "hunter",
+            "preset": "11-female",
+            "attack_index": 94
+          },
+          {
+            "job": "bard",
+            "preset": "19-male",
+            "attack_index": 86
+          },
+          {
+            "job": "dancer",
+            "preset": "20-female",
+            "attack_index": 86
+          },
+          {
+            "job": "wizard",
+            "preset": "9-male",
+            "attack_index": 86
+          },
+          {
+            "job": "wizard",
+            "preset": "9-female",
+            "attack_index": 94
+          },
+          {
+            "job": "sage",
+            "preset": "16-male",
+            "attack_index": 94
+          },
+          {
+            "job": "sage",
+            "preset": "16-female",
+            "attack_index": 94
+          },
+          {
+            "job": "assassin",
+            "preset": "12-male",
+            "attack_index": 94
+          },
+          {
+            "job": "assassin",
+            "preset": "12-female",
+            "attack_index": 94
+          },
+          {
+            "job": "rogue",
+            "preset": "17-male",
+            "attack_index": 86
+          },
+          {
+            "job": "rogue",
+            "preset": "17-female",
+            "attack_index": 86
+          },
+          {
+            "job": "blacksmith",
+            "preset": "10-male",
+            "attack_index": 94
+          },
+          {
+            "job": "blacksmith",
+            "preset": "10-female",
+            "attack_index": 94
+          },
+          {
+            "job": "alchemist",
+            "preset": "18-male",
+            "attack_index": 94
+          },
+          {
+            "job": "alchemist",
+            "preset": "18-female",
+            "attack_index": 94
+          }
+        ],
+        "scope": "Automated pose350ms plus exact complete-actor mirror; not exhaustive animation/cosmetic manual review. Casting uses standby plus ring/bar."
+      }
+    },
+    {
+      "case_id": "render_30_60_off_and_pause_matches_headless",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": true,
+      "result": [
+        {
+          "encounter": "boss",
+          "seed": 2,
+          "render_fps": 30,
+          "frames": 1026,
+          "end_ms": 36133,
+          "rng_draws": 331,
+          "exact_checkpoint_events_metrics": true
+        },
+        {
+          "encounter": "boss",
+          "seed": 2,
+          "render_fps": 60,
+          "frames": 2048,
+          "end_ms": 36133,
+          "rng_draws": 331,
+          "exact_checkpoint_events_metrics": true
+        },
+        {
+          "encounter": "boss",
+          "seed": 2,
+          "render_fps": 0,
+          "frames": 0,
+          "end_ms": 36133,
+          "rng_draws": 331,
+          "exact_checkpoint_events_metrics": true
+        },
+        {
+          "encounter": "warded",
+          "seed": 2,
+          "render_fps": 30,
+          "frames": 1026,
+          "end_ms": 36133,
+          "rng_draws": 331,
+          "exact_checkpoint_events_metrics": true
+        },
+        {
+          "encounter": "warded",
+          "seed": 2,
+          "render_fps": 60,
+          "frames": 2048,
+          "end_ms": 36133,
+          "rng_draws": 331,
+          "exact_checkpoint_events_metrics": true
+        },
+        {
+          "encounter": "warded",
+          "seed": 2,
+          "render_fps": 0,
+          "frames": 0,
+          "end_ms": 36133,
+          "rng_draws": 331,
+          "exact_checkpoint_events_metrics": true
+        },
+        {
+          "encounter": "storm",
+          "seed": 2,
+          "render_fps": 30,
+          "frames": 1234,
+          "end_ms": 43097,
+          "rng_draws": 408,
+          "exact_checkpoint_events_metrics": true
+        },
+        {
+          "encounter": "storm",
+          "seed": 2,
+          "render_fps": 60,
+          "frames": 2466,
+          "end_ms": 43097,
+          "rng_draws": 408,
+          "exact_checkpoint_events_metrics": true
+        },
+        {
+          "encounter": "storm",
+          "seed": 2,
+          "render_fps": 0,
+          "frames": 0,
+          "end_ms": 43097,
+          "rng_draws": 408,
+          "exact_checkpoint_events_metrics": true
+        }
+      ]
+    },
+    {
+      "case_id": "native_StormGust_and_all_selected_media_decode",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "images": 214,
+        "audio": 34,
+        "font": true,
+        "native_storm_gust": true,
+        "at_ms": 3650,
+        "pack_hash": "47f97d9aaac2bf10ac3279e5634052b72a55a26fefe1048de0c537387332d307",
+        "original_source_requests": []
+      }
+    },
+    {
+      "case_id": "responsive_UI_and_keyboard",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": [
+        {
+          "width": 360,
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "overflow": false
+        },
+        {
+          "width": 844,
+          "overflow": false
+        },
+        {
+          "width": 1280,
+          "overflow": false
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "external_requests": [],
+  "runtime_requests": 688,
+  "input_sha256": {
+    "src/client/demo.ts": "21bed1367847b2db2ee7468b399eba8c8b03ab65b8c510b918beeaef4b708b18",
+    "src/contracts/presentation.ts": "7d5b332e24ebc7a3abadab79a7dca5931a9d48eb3fabac8281cc412f75f62cb0",
+    "src/renderer/pack.ts": "f83b379bdddc874ea4ded1d452a2ac4e96726406a9b795bbedc0788f5477f0d1",
+    "src/renderer/battle.ts": "aa8869068e0ad3e545fc7b4a49a2cd739c3289d2763a0aa1e1eca9ffafb1b7cc",
+    "src/renderer/native.mjs": "1ca6e1826aa84465de23c368e73fee8a4de886ea00ee075c77f7580167499559",
+    "src/ui/main.tsx": "d59e430a1fb6201056f6611d9816a71ce95d611cb6231b49abd23aa8192defb2",
+    "src/ui/style.css": "460b5d5cc689ebfb3ef692561c01e1a18ca8e3c006157b36556d15ec9f758543",
+    "scripts/test_battle_browser.cjs": "8967f63068cf28764d66c289dfd8ea68137db9d6e9832d7fa0e5bc086a6c6fd8",
+    "runtime/ro/manifest.json": "ce7c8897a8a240338f6be27509d4305a846be95f4db2a99d9b0a4d01dcc271d9",
+    "src/generated/runtime-manifest.json": "2ffebbd10d67ad8f8d39e0fa6584a8f938adac766eea2cdd13c7afd6cd625250"
+  },
+  "limitations": [
+    "Chrome headless local Vite; Safari/real mobile hardware/performance budgets remain TASK-042.",
+    "Pose/flip/decode checks are automated; screenshots have separate scoped visual review.",
+    "Disposable sandbox, no account/progression/save/reward/deployment verification."
+  ]
+}

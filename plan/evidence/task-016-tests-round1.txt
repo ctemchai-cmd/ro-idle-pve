@@ -1,0 +1,43 @@
+✔ M0 stat golden: base_level1 (777.245291ms)
+✔ M0 stat golden: base_level70_no_speed_growth (11.256334ms)
+✔ M0 stat golden: level20_manual_spread (12.63225ms)
+✔ M0 mitigation golden: armor_0 (266.629958ms)
+✔ M0 mitigation golden: armor_200 (0.208ms)
+✔ M0 mitigation golden: armor_400 (11.008708ms)
+✔ M0 mitigation golden: armor_800 (117.258125ms)
+✔ M0 mitigation golden: armor_1600 (0.390834ms)
+✔ M0 mitigation golden: break_and_penetration (0.108917ms)
+✔ M0 mitigation golden: over_100_percent_break_no_negative_defense (30.426709ms)
+✔ M0 mitigation golden: crit_uses_armor (5.186625ms)
+✔ M0 mitigation golden: guard_vulnerability_shield (41.742791ms)
+✔ M0 mitigation golden: ordered_full_pipeline (1.81525ms)
+✔ M0 mitigation golden: uncapped_guard_has_zero_damage_floor (0.156334ms)
+✔ M0 mitigation golden: shield_landed_not_hp_loss (75.68325ms)
+✔ M0 mitigation golden: overkill_separate (2.303959ms)
+✔ M0 mitigation golden: each_hit_rounds_once (0.157333ms)
+✔ M0 mitigation golden: armor_near_asymptotic_reduction (63.597084ms)
+✔ M0 mitigation golden: full_penetration (46.115167ms)
+✔ RNG matches independently calculated states, including seed0 (18.433417ms)
+✔ timers have1ms natural minimum, with uncapped speed and zero CT (17.365417ms)
+✔ negative bonuses remain negative and max resources floor after modifiers (123.407584ms)
+✔ parallel timelines match M0 independent start/resolve/next-start golden (128.700292ms)
+✔ SP spends once at start; insufficient SP skips then waits one SI (9.295916ms)
+✔ NA runs during SI/ACD, is paused by CT, and cast start wins ties (243.806125ms)
+✔ zero CT resolves immediately but suppresses same-time normal attack (81.146417ms)
+✔ same-time existing completions are locked before lethal damage (25.228291ms)
+✔ exact timeout cancels events at90s and fast-forward uses virtual time (299.763459ms)
+✔ one jump, repeated20Hz steps, and repeated seed have identical checkpoint/events (743.705958ms)
+✔ all empty slots stay normal-only with no skill timer; empty slots add no delay (103.953708ms)
+✔ diagnostic/budget failure never mutates input or returns partial proposal (16.896ms)
+✔ created and stepped checkpoints conform to M0 schema (58104.324417ms)
+✔ checkpoint during CT restores same future events/RNG/metrics (85897.294459ms)
+✔ guaranteed hit consumes RNG; ineligible crit does not (97.231625ms)
+✔ invalid duplicated logical skill slots reject before scheduling (44.360958ms)
+ℹ tests 35
+ℹ suites 0
+ℹ pass 35
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 184223.739084

@@ -1,0 +1,526 @@
+{
+  "schema_version": 1,
+  "root_job_id": "archer",
+  "presentations": [
+    {
+      "id": "visual_archer_double_strafe",
+      "icon_asset_id": "skills.95d0a77bf2b338b7",
+      "icon_meta_path": "assets/ro/library/skills/skill_sprite_icon/ac_double--95d0a77bf2b3.meta.json",
+      "visual": {
+        "type": "prepared_recipe",
+        "reference_skill_id": 46,
+        "recipe_path": "assets/ro/prepared/skill-recipes.json",
+        "target_binding": "each_effect_target"
+      },
+      "sound_meta_paths": [
+        "assets/ro/library/effects/sound/ef_hit2--e412a71c8dcc.meta.json"
+      ],
+      "provenance": {
+        "source_skill_id": 46,
+        "source_constant": "AC_DOUBLE",
+        "icon_basis": "source table and sidecar; no new visual review",
+        "vfx_basis": "authored prototype animation; not an exact reconstruction of the original RO skill"
+      }
+    },
+    {
+      "id": "visual_archer_concentration",
+      "icon_asset_id": "skills.edaab3b657294fb8",
+      "icon_meta_path": "assets/ro/library/skills/skill_sprite_icon/ac_concentration--edaab3b65729.meta.json",
+      "visual": {
+        "type": "prepared_recipe",
+        "reference_skill_id": 45,
+        "recipe_path": "assets/ro/prepared/skill-recipes.json",
+        "target_binding": "each_effect_target"
+      },
+      "sound_meta_paths": [
+        "assets/ro/library/effects/sound/ac_concentration--6eb363dc776d.meta.json"
+      ],
+      "provenance": {
+        "source_skill_id": 45,
+        "source_constant": "AC_CONCENTRATION",
+        "icon_basis": "source table and sidecar; no new visual review",
+        "vfx_basis": "authored prototype animation; not an exact reconstruction of the original RO skill"
+      }
+    },
+    {
+      "id": "visual_archer_arrow_shower",
+      "icon_asset_id": "skills.51593e835f62700a",
+      "icon_meta_path": "assets/ro/library/skills/skill_sprite_icon/ac_shower--51593e835f62.meta.json",
+      "visual": {
+        "type": "prepared_recipe",
+        "reference_skill_id": 46,
+        "recipe_path": "assets/ro/prepared/skill-recipes.json",
+        "target_binding": "each_effect_target"
+      },
+      "sound_meta_paths": [
+        "assets/ro/library/effects/sound/ef_hit2--e412a71c8dcc.meta.json"
+      ],
+      "provenance": {
+        "source_skill_id": 47,
+        "source_constant": "AC_SHOWER",
+        "icon_basis": "source table and sidecar; no new visual review",
+        "vfx_basis": "authored adaptation reusing prepared recipe; not exact original skill effect"
+      }
+    },
+    {
+      "id": "visual_archer_crippling_shot",
+      "icon_asset_id": "skills.48d2983efc15189f",
+      "icon_meta_path": "assets/ro/library/skills/skill_sprite_icon/ac_chargearrow--48d2983efc15.meta.json",
+      "visual": {
+        "type": "prepared_recipe",
+        "reference_skill_id": 46,
+        "recipe_path": "assets/ro/prepared/skill-recipes.json",
+        "target_binding": "each_effect_target"
+      },
+      "sound_meta_paths": [
+        "assets/ro/library/effects/sound/ef_hit2--e412a71c8dcc.meta.json"
+      ],
+      "provenance": {
+        "source_skill_id": 148,
+        "source_constant": "AC_CHARGEARROW",
+        "icon_basis": "source table and sidecar; no new visual review",
+        "vfx_basis": "authored adaptation reusing prepared recipe; not exact original skill effect"
+      }
+    },
+    {
+      "id": "visual_archer_vulture_eye",
+      "icon_asset_id": "skills.3a663070ed3960f2",
+      "icon_meta_path": "assets/ro/library/skills/skill_sprite_icon/ac_vulture--3a663070ed39.meta.json",
+      "visual": {
+        "type": "prepared_recipe",
+        "reference_skill_id": 34,
+        "recipe_path": "assets/ro/prepared/skill-recipes.json",
+        "target_binding": "each_effect_target"
+      },
+      "sound_meta_paths": [
+        "assets/ro/library/effects/sound/ef_blessing--960bda24baf5.meta.json"
+      ],
+      "provenance": {
+        "source_skill_id": 44,
+        "source_constant": "AC_VULTURE",
+        "icon_basis": "source table and sidecar; no new visual review",
+        "vfx_basis": "authored adaptation reusing prepared recipe; not exact original skill effect"
+      }
+    },
+    {
+      "id": "visual_hunter_blitz_beat",
+      "icon_asset_id": "skills.fd034f0f338199f7",
+      "icon_meta_path": "assets/ro/library/skills/skill_sprite_icon/ht_blitzbeat--fd034f0f3381.meta.json",
+      "visual": {
+        "type": "prepared_recipe",
+        "reference_skill_id": 5,
+        "recipe_path": "assets/ro/prepared/skill-recipes.json",
+        "target_binding": "each_effect_target"
+      },
+      "sound_meta_paths": [
+        "assets/ro/library/effects/sound/ef_hit2--e412a71c8dcc.meta.json"
+      ],
+      "provenance": {
+        "source_skill_id": 129,
+        "source_constant": "HT_BLITZBEAT",
+        "icon_basis": "source table and sidecar; no new visual review",
+        "vfx_basis": "authored adaptation reusing prepared recipe; not exact original skill effect"
+      }
+    },
+    {
+      "id": "visual_hunter_hunters_mark",
+      "icon_asset_id": "skills.6cc65b85ac22fdee",
+      "icon_meta_path": "assets/ro/library/skills/skill_sprite_icon/ht_detecting--6cc65b85ac22.meta.json",
+      "visual": {
+        "type": "prepared_recipe",
+        "reference_skill_id": 34,
+        "recipe_path": "assets/ro/prepared/skill-recipes.json",
+        "target_binding": "each_effect_target"
+      },
+      "sound_meta_paths": [
+        "assets/ro/library/effects/sound/ef_blessing--960bda24baf5.meta.json"
+      ],
+      "provenance": {
+        "source_skill_id": 130,
+        "source_constant": "HT_DETECTING",
+        "icon_basis": "source table and sidecar; no new visual review",
+        "vfx_basis": "authored adaptation reusing prepared recipe; not exact original skill effect"
+      }
+    },
+    {
+      "id": "visual_hunter_ankle_snare",
+      "icon_asset_id": "skills.9cfce65c4477f71f",
+      "icon_meta_path": "assets/ro/library/skills/skill_sprite_icon/ht_anklesnare--9cfce65c4477.meta.json",
+      "visual": {
+        "type": "prepared_recipe",
+        "reference_skill_id": 5,
+        "recipe_path": "assets/ro/prepared/skill-recipes.json",
+        "target_binding": "each_effect_target"
+      },
+      "sound_meta_paths": [
+        "assets/ro/library/effects/sound/ef_hit2--e412a71c8dcc.meta.json"
+      ],
+      "provenance": {
+        "source_skill_id": 117,
+        "source_constant": "HT_ANKLESNARE",
+        "icon_basis": "source table and sidecar; no new visual review",
+        "vfx_basis": "authored adaptation reusing prepared recipe; not exact original skill effect"
+      }
+    },
+    {
+      "id": "visual_hunter_claymore",
+      "icon_asset_id": "skills.72ee51dd4e209bfe",
+      "icon_meta_path": "assets/ro/library/skills/skill_sprite_icon/ht_claymoretrap--72ee51dd4e20.meta.json",
+      "visual": {
+        "type": "prepared_recipe",
+        "reference_skill_id": 5,
+        "recipe_path": "assets/ro/prepared/skill-recipes.json",
+        "target_binding": "each_effect_target"
+      },
+      "sound_meta_paths": [
+        "assets/ro/library/effects/sound/ef_hit2--e412a71c8dcc.meta.json"
+      ],
+      "provenance": {
+        "source_skill_id": 123,
+        "source_constant": "HT_CLAYMORETRAP",
+        "icon_basis": "source table and sidecar; no new visual review",
+        "vfx_basis": "authored adaptation reusing prepared recipe; not exact original skill effect"
+      }
+    },
+    {
+      "id": "visual_hunter_rapid_fire",
+      "icon_asset_id": "skills.95d0a77bf2b338b7",
+      "icon_meta_path": "assets/ro/library/skills/skill_sprite_icon/ac_double--95d0a77bf2b3.meta.json",
+      "visual": {
+        "type": "prepared_recipe",
+        "reference_skill_id": 46,
+        "recipe_path": "assets/ro/prepared/skill-recipes.json",
+        "target_binding": "each_effect_target"
+      },
+      "sound_meta_paths": [
+        "assets/ro/library/effects/sound/ef_hit2--e412a71c8dcc.meta.json"
+      ],
+      "provenance": {
+        "source_skill_id": 46,
+        "source_constant": "AC_DOUBLE",
+        "icon_basis": "source table and sidecar; no new visual review",
+        "vfx_basis": "authored prototype animation; not an exact reconstruction of the original RO skill"
+      }
+    },
+    {
+      "id": "visual_hunter_falcon",
+      "icon_asset_id": "skills.fd034f0f338199f7",
+      "icon_meta_path": "assets/ro/library/skills/skill_sprite_icon/ht_blitzbeat--fd034f0f3381.meta.json",
+      "visual": {
+        "type": "prepared_recipe",
+        "reference_skill_id": 34,
+        "recipe_path": "assets/ro/prepared/skill-recipes.json",
+        "target_binding": "each_effect_target"
+      },
+      "sound_meta_paths": [
+        "assets/ro/library/effects/sound/ef_blessing--960bda24baf5.meta.json"
+      ],
+      "provenance": {
+        "source_skill_id": 129,
+        "source_constant": "HT_BLITZBEAT",
+        "icon_basis": "source table and sidecar; no new visual review",
+        "vfx_basis": "authored adaptation reusing prepared recipe; not exact original skill effect"
+      }
+    },
+    {
+      "id": "visual_hunter_steel_crow",
+      "icon_asset_id": "skills.5b87750a31b6a473",
+      "icon_meta_path": "assets/ro/library/skills/skill_sprite_icon/ht_steelcrow--5b87750a31b6.meta.json",
+      "visual": {
+        "type": "prepared_recipe",
+        "reference_skill_id": 34,
+        "recipe_path": "assets/ro/prepared/skill-recipes.json",
+        "target_binding": "each_effect_target"
+      },
+      "sound_meta_paths": [
+        "assets/ro/library/effects/sound/ef_blessing--960bda24baf5.meta.json"
+      ],
+      "provenance": {
+        "source_skill_id": 128,
+        "source_constant": "HT_STEELCROW",
+        "icon_basis": "source table and sidecar; no new visual review",
+        "vfx_basis": "authored adaptation reusing prepared recipe; not exact original skill effect"
+      }
+    },
+    {
+      "id": "visual_bard_performance_strike",
+      "icon_asset_id": "skills.b35e8bcad31e4a0b",
+      "icon_meta_path": "assets/ro/library/skills/skill_sprite_icon/ba_musicalstrike--b35e8bcad31e.meta.json",
+      "visual": {
+        "type": "prepared_recipe",
+        "reference_skill_id": 46,
+        "recipe_path": "assets/ro/prepared/skill-recipes.json",
+        "target_binding": "each_effect_target"
+      },
+      "sound_meta_paths": [
+        "assets/ro/library/effects/sound/ef_hit2--e412a71c8dcc.meta.json"
+      ],
+      "provenance": {
+        "source_skill_id": 316,
+        "source_constant": "BA_MUSICALSTRIKE",
+        "icon_basis": "source table and sidecar; no new visual review",
+        "vfx_basis": "authored adaptation reusing prepared recipe; not exact original skill effect"
+      }
+    },
+    {
+      "id": "visual_bard_healing_song",
+      "icon_asset_id": "skills.abc2d6de21e48c23",
+      "icon_meta_path": "assets/ro/library/skills/skill_sprite_icon/ba_appleidun--abc2d6de21e4.meta.json",
+      "visual": {
+        "type": "prepared_recipe",
+        "reference_skill_id": 28,
+        "recipe_path": "assets/ro/prepared/skill-recipes.json",
+        "target_binding": "each_effect_target"
+      },
+      "sound_meta_paths": [
+        "assets/ro/library/effects/sound/_heal_effect--39cb41c771a7.meta.json"
+      ],
+      "provenance": {
+        "source_skill_id": 322,
+        "source_constant": "BA_APPLEIDUN",
+        "icon_basis": "source table and sidecar; no new visual review",
+        "vfx_basis": "authored adaptation reusing prepared recipe; not exact original skill effect"
+      }
+    },
+    {
+      "id": "visual_bard_battle_song",
+      "icon_asset_id": "skills.fea18fe9af4cb865",
+      "icon_meta_path": "assets/ro/library/skills/skill_sprite_icon/ba_whistle--fea18fe9af4c.meta.json",
+      "visual": {
+        "type": "prepared_recipe",
+        "reference_skill_id": 34,
+        "recipe_path": "assets/ro/prepared/skill-recipes.json",
+        "target_binding": "each_effect_target"
+      },
+      "sound_meta_paths": [
+        "assets/ro/library/effects/sound/ef_blessing--960bda24baf5.meta.json"
+      ],
+      "provenance": {
+        "source_skill_id": 319,
+        "source_constant": "BA_WHISTLE",
+        "icon_basis": "source table and sidecar; no new visual review",
+        "vfx_basis": "authored adaptation reusing prepared recipe; not exact original skill effect"
+      }
+    },
+    {
+      "id": "visual_bard_dissonance",
+      "icon_asset_id": "skills.aee599e1285cec21",
+      "icon_meta_path": "assets/ro/library/skills/skill_sprite_icon/ba_dissonance--aee599e1285c.meta.json",
+      "visual": {
+        "type": "prepared_recipe",
+        "reference_skill_id": 34,
+        "recipe_path": "assets/ro/prepared/skill-recipes.json",
+        "target_binding": "each_effect_target"
+      },
+      "sound_meta_paths": [
+        "assets/ro/library/effects/sound/ef_blessing--960bda24baf5.meta.json"
+      ],
+      "provenance": {
+        "source_skill_id": 317,
+        "source_constant": "BA_DISSONANCE",
+        "icon_basis": "source table and sidecar; no new visual review",
+        "vfx_basis": "authored adaptation reusing prepared recipe; not exact original skill effect"
+      }
+    },
+    {
+      "id": "visual_bard_encore",
+      "icon_asset_id": "skills.31f8974f05ee8991",
+      "icon_meta_path": "assets/ro/library/skills/skill_sprite_icon/ba_frostjoke--31f8974f05ee.meta.json",
+      "visual": {
+        "type": "prepared_recipe",
+        "reference_skill_id": 5,
+        "recipe_path": "assets/ro/prepared/skill-recipes.json",
+        "target_binding": "each_effect_target"
+      },
+      "sound_meta_paths": [
+        "assets/ro/library/effects/sound/ef_hit2--e412a71c8dcc.meta.json"
+      ],
+      "provenance": {
+        "source_skill_id": 318,
+        "source_constant": "BA_FROSTJOKE",
+        "icon_basis": "source table and sidecar; no new visual review",
+        "vfx_basis": "authored adaptation reusing prepared recipe; not exact original skill effect"
+      }
+    },
+    {
+      "id": "visual_bard_music_lesson",
+      "icon_asset_id": "skills.9ca059bebabdfb8a",
+      "icon_meta_path": "assets/ro/library/skills/skill_sprite_icon/ba_musicallesson--9ca059bebabd.meta.json",
+      "visual": {
+        "type": "prepared_recipe",
+        "reference_skill_id": 34,
+        "recipe_path": "assets/ro/prepared/skill-recipes.json",
+        "target_binding": "each_effect_target"
+      },
+      "sound_meta_paths": [
+        "assets/ro/library/effects/sound/ef_blessing--960bda24baf5.meta.json"
+      ],
+      "provenance": {
+        "source_skill_id": 315,
+        "source_constant": "BA_MUSICALLESSON",
+        "icon_basis": "source table and sidecar; no new visual review",
+        "vfx_basis": "authored adaptation reusing prepared recipe; not exact original skill effect"
+      }
+    },
+    {
+      "id": "visual_bard_breathing",
+      "icon_asset_id": "skills.edaab3b657294fb8",
+      "icon_meta_path": "assets/ro/library/skills/skill_sprite_icon/ac_concentration--edaab3b65729.meta.json",
+      "visual": {
+        "type": "prepared_recipe",
+        "reference_skill_id": 45,
+        "recipe_path": "assets/ro/prepared/skill-recipes.json",
+        "target_binding": "each_effect_target"
+      },
+      "sound_meta_paths": [
+        "assets/ro/library/effects/sound/ac_concentration--6eb363dc776d.meta.json"
+      ],
+      "provenance": {
+        "source_skill_id": 45,
+        "source_constant": "AC_CONCENTRATION",
+        "icon_basis": "source table and sidecar; no new visual review",
+        "vfx_basis": "authored prototype animation; not an exact reconstruction of the original RO skill"
+      }
+    },
+    {
+      "id": "visual_dancer_performance_strike",
+      "icon_asset_id": "skills.52a20ac7b4b072bd",
+      "icon_meta_path": "assets/ro/library/skills/skill_sprite_icon/dc_throwarrow--52a20ac7b4b0.meta.json",
+      "visual": {
+        "type": "prepared_recipe",
+        "reference_skill_id": 46,
+        "recipe_path": "assets/ro/prepared/skill-recipes.json",
+        "target_binding": "each_effect_target"
+      },
+      "sound_meta_paths": [
+        "assets/ro/library/effects/sound/ef_hit2--e412a71c8dcc.meta.json"
+      ],
+      "provenance": {
+        "source_skill_id": 324,
+        "source_constant": "DC_THROWARROW",
+        "icon_basis": "source table and sidecar; no new visual review",
+        "vfx_basis": "authored adaptation reusing prepared recipe; not exact original skill effect"
+      }
+    },
+    {
+      "id": "visual_dancer_healing_song",
+      "icon_asset_id": "skills.300f713dda4dfc41",
+      "icon_meta_path": "assets/ro/library/skills/skill_sprite_icon/dc_serviceforyou--300f713dda4d.meta.json",
+      "visual": {
+        "type": "prepared_recipe",
+        "reference_skill_id": 28,
+        "recipe_path": "assets/ro/prepared/skill-recipes.json",
+        "target_binding": "each_effect_target"
+      },
+      "sound_meta_paths": [
+        "assets/ro/library/effects/sound/_heal_effect--39cb41c771a7.meta.json"
+      ],
+      "provenance": {
+        "source_skill_id": 330,
+        "source_constant": "DC_SERVICEFORYOU",
+        "icon_basis": "source table and sidecar; no new visual review",
+        "vfx_basis": "authored adaptation reusing prepared recipe; not exact original skill effect"
+      }
+    },
+    {
+      "id": "visual_dancer_battle_song",
+      "icon_asset_id": "skills.8cece5268932faeb",
+      "icon_meta_path": "assets/ro/library/skills/skill_sprite_icon/dc_humming--8cece5268932.meta.json",
+      "visual": {
+        "type": "prepared_recipe",
+        "reference_skill_id": 34,
+        "recipe_path": "assets/ro/prepared/skill-recipes.json",
+        "target_binding": "each_effect_target"
+      },
+      "sound_meta_paths": [
+        "assets/ro/library/effects/sound/ef_blessing--960bda24baf5.meta.json"
+      ],
+      "provenance": {
+        "source_skill_id": 327,
+        "source_constant": "DC_HUMMING",
+        "icon_basis": "source table and sidecar; no new visual review",
+        "vfx_basis": "authored adaptation reusing prepared recipe; not exact original skill effect"
+      }
+    },
+    {
+      "id": "visual_dancer_dissonance",
+      "icon_asset_id": "skills.d2b81cbb303b6f60",
+      "icon_meta_path": "assets/ro/library/skills/skill_sprite_icon/dc_uglydance--d2b81cbb303b.meta.json",
+      "visual": {
+        "type": "prepared_recipe",
+        "reference_skill_id": 34,
+        "recipe_path": "assets/ro/prepared/skill-recipes.json",
+        "target_binding": "each_effect_target"
+      },
+      "sound_meta_paths": [
+        "assets/ro/library/effects/sound/ef_blessing--960bda24baf5.meta.json"
+      ],
+      "provenance": {
+        "source_skill_id": 325,
+        "source_constant": "DC_UGLYDANCE",
+        "icon_basis": "source table and sidecar; no new visual review",
+        "vfx_basis": "authored adaptation reusing prepared recipe; not exact original skill effect"
+      }
+    },
+    {
+      "id": "visual_dancer_encore",
+      "icon_asset_id": "skills.db2b25c448b95be1",
+      "icon_meta_path": "assets/ro/library/skills/skill_sprite_icon/dc_scream--db2b25c448b9.meta.json",
+      "visual": {
+        "type": "prepared_recipe",
+        "reference_skill_id": 5,
+        "recipe_path": "assets/ro/prepared/skill-recipes.json",
+        "target_binding": "each_effect_target"
+      },
+      "sound_meta_paths": [
+        "assets/ro/library/effects/sound/ef_hit2--e412a71c8dcc.meta.json"
+      ],
+      "provenance": {
+        "source_skill_id": 326,
+        "source_constant": "DC_SCREAM",
+        "icon_basis": "source table and sidecar; no new visual review",
+        "vfx_basis": "authored adaptation reusing prepared recipe; not exact original skill effect"
+      }
+    },
+    {
+      "id": "visual_dancer_music_lesson",
+      "icon_asset_id": "skills.bce8fe40d7e964a9",
+      "icon_meta_path": "assets/ro/library/skills/skill_sprite_icon/dc_dancinglesson--bce8fe40d7e9.meta.json",
+      "visual": {
+        "type": "prepared_recipe",
+        "reference_skill_id": 34,
+        "recipe_path": "assets/ro/prepared/skill-recipes.json",
+        "target_binding": "each_effect_target"
+      },
+      "sound_meta_paths": [
+        "assets/ro/library/effects/sound/ef_blessing--960bda24baf5.meta.json"
+      ],
+      "provenance": {
+        "source_skill_id": 323,
+        "source_constant": "DC_DANCINGLESSON",
+        "icon_basis": "source table and sidecar; no new visual review",
+        "vfx_basis": "authored adaptation reusing prepared recipe; not exact original skill effect"
+      }
+    },
+    {
+      "id": "visual_dancer_breathing",
+      "icon_asset_id": "skills.edaab3b657294fb8",
+      "icon_meta_path": "assets/ro/library/skills/skill_sprite_icon/ac_concentration--edaab3b65729.meta.json",
+      "visual": {
+        "type": "prepared_recipe",
+        "reference_skill_id": 45,
+        "recipe_path": "assets/ro/prepared/skill-recipes.json",
+        "target_binding": "each_effect_target"
+      },
+      "sound_meta_paths": [
+        "assets/ro/library/effects/sound/ac_concentration--6eb363dc776d.meta.json"
+      ],
+      "provenance": {
+        "source_skill_id": 45,
+        "source_constant": "AC_CONCENTRATION",
+        "icon_basis": "source table and sidecar; no new visual review",
+        "vfx_basis": "authored prototype animation; not an exact reconstruction of the original RO skill"
+      }
+    }
+  ]
+}

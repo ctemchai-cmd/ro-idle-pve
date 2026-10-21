@@ -1,0 +1,1769 @@
+{
+  "scope": "schema-only unmodified no-gear battle fixture, not the equipped initial account battle",
+  "checkpoint": {
+    "schema_version": 1,
+    "content_hash": "fixture_hash",
+    "rules_version": "combat-baseline-v1",
+    "rng_version": "lcg32-v1",
+    "initial_seed": 1,
+    "rng": {
+      "state": 1,
+      "draw_count": 0
+    },
+    "game_time_ms": 0,
+    "phase": 7,
+    "checkpoint_barrier": true,
+    "event_sequence": 15,
+    "mode": {
+      "kind": "story",
+      "ref": "1-1",
+      "time_limit_ms": 90000,
+      "ticket_day": null,
+      "daily_phase": null,
+      "daily_current_hp": null,
+      "reserved_phase_keys": []
+    },
+    "actors": [
+      {
+        "actor_id": "main",
+        "kind": "party",
+        "owner_actor_id": null,
+        "life_epoch": 0,
+        "build_hash": "fixture_no_gear",
+        "position": "back_1",
+        "team": "player",
+        "targetable": true,
+        "counts_for_terminal": true,
+        "stats": {
+          "str": 1,
+          "agi": 1,
+          "vit": 1,
+          "int": 1,
+          "dex": 1,
+          "luk": 1,
+          "physical_attack": 33,
+          "magical_attack": 33,
+          "max_hp": 220,
+          "max_sp": 64,
+          "physical_defense": 12,
+          "magical_defense": 12,
+          "attack_speed": 100,
+          "cast_speed": 100,
+          "hit_bonus": 0,
+          "evasion_bonus": 0,
+          "crit_chance_bonus": 0,
+          "crit_damage_bonus": 0,
+          "crit_resistance": 0,
+          "control_accuracy": 0,
+          "control_resistance": 0,
+          "outgoing_physical_bonus": 0,
+          "outgoing_magical_bonus": 0,
+          "outgoing_true_bonus": 0,
+          "damage_taken_bonus": 0,
+          "guard_percent": 0,
+          "armor_break_percent": 0,
+          "penetration_percent": 0,
+          "outgoing_healing_bonus": 0,
+          "healing_received_bonus": 0,
+          "sp_regen_percent": 0,
+          "hp_regen_percent": 0,
+          "flat_damage_reduction": 0,
+          "flat_penetration": 0,
+          "flat_sp_regen": 0,
+          "flat_hp_regen": 0
+        },
+        "hp": 220,
+        "sp": 64,
+        "spirit_spheres": 0,
+        "active_slots": [
+          "mage_fire_bolt",
+          "mage_cold_bolt",
+          null,
+          null
+        ],
+        "rotation_cursor": 0,
+        "action_phase": "skill_interval",
+        "phase_ready_at": 1500,
+        "normal_clock": {
+          "due_at": 1500,
+          "remaining_ms": 1500,
+          "paused_for_cast": false
+        },
+        "cast": null,
+        "statuses": [],
+        "shields": [],
+        "summon_expires_at": null,
+        "stat_blueprint": {
+          "kind": "character",
+          "level": 1,
+          "job_id": "mage",
+          "allocated_primary": {
+            "str": 1,
+            "agi": 1,
+            "vit": 1,
+            "int": 1,
+            "dex": 1,
+            "luk": 1
+          },
+          "derived_offsets": {
+            "physical_attack": 0,
+            "magical_attack": 0,
+            "max_hp": 0,
+            "max_sp": 0,
+            "physical_defense": 0,
+            "magical_defense": 0,
+            "attack_speed": 0,
+            "cast_speed": 0
+          },
+          "permanent_sources": [],
+          "weapon_element": "neutral"
+        },
+        "tags": [
+          "party",
+          "mage"
+        ],
+        "resolved_skills": {
+          "mage_fire_bolt": {
+            "level": 1,
+            "definition": {
+              "id": "mage_fire_bolt",
+              "name_key": "mage_fire_bolt",
+              "class_id": "mage",
+              "max_level": 10,
+              "unlock_level": 1,
+              "tags": [
+                "mage",
+                "fire_bolt"
+              ],
+              "level_parameters": {
+                "power": [
+                  0.4,
+                  0.433333,
+                  0.466667,
+                  0.5,
+                  0.533333,
+                  0.566667,
+                  0.6,
+                  0.633333,
+                  0.666667,
+                  0.7
+                ]
+              },
+              "presentation_id": "visual_mage_fire_bolt",
+              "kind": "active",
+              "cost": {
+                "sp": 18,
+                "spirit_spheres": 0
+              },
+              "timing": {
+                "cast_ms": 800,
+                "after_cast_ms": 650,
+                "interruptible": true
+              },
+              "selectors": {
+                "foe": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "front_first",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "foes": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friend": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "lowest_hp_percent",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friends": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                }
+              },
+              "start_effects": [],
+              "effects": [
+                {
+                  "id": "hit",
+                  "type": "damage",
+                  "target": "foe",
+                  "formula": {
+                    "id": "magical_power",
+                    "params": {
+                      "attack_ratio": 0.4,
+                      "flat_power": 0
+                    }
+                  },
+                  "damage_type": "magical",
+                  "element": "fire",
+                  "hit_rule": "always",
+                  "can_crit": false,
+                  "hits": 3,
+                  "armor_rule": "normal"
+                }
+              ]
+            }
+          },
+          "mage_cold_bolt": {
+            "level": 1,
+            "definition": {
+              "id": "mage_cold_bolt",
+              "name_key": "mage_cold_bolt",
+              "class_id": "mage",
+              "max_level": 10,
+              "unlock_level": 1,
+              "tags": [
+                "mage",
+                "cold_bolt"
+              ],
+              "level_parameters": {
+                "power": [
+                  0.35,
+                  0.383333,
+                  0.416667,
+                  0.45,
+                  0.483333,
+                  0.516667,
+                  0.55,
+                  0.583333,
+                  0.616667,
+                  0.65
+                ]
+              },
+              "presentation_id": "visual_mage_cold_bolt",
+              "kind": "active",
+              "cost": {
+                "sp": 18,
+                "spirit_spheres": 0
+              },
+              "timing": {
+                "cast_ms": 850,
+                "after_cast_ms": 650,
+                "interruptible": true
+              },
+              "selectors": {
+                "foe": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "front_first",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "foes": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friend": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "lowest_hp_percent",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friends": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                }
+              },
+              "start_effects": [],
+              "effects": [
+                {
+                  "id": "hit",
+                  "type": "damage",
+                  "target": "foe",
+                  "formula": {
+                    "id": "magical_power",
+                    "params": {
+                      "attack_ratio": 0.35,
+                      "flat_power": 0
+                    }
+                  },
+                  "damage_type": "magical",
+                  "element": "water",
+                  "hit_rule": "always",
+                  "can_crit": false,
+                  "hits": 3,
+                  "armor_rule": "normal"
+                }
+              ]
+            }
+          }
+        },
+        "phase_started_at": 0,
+        "phase_duration_ms": 1500,
+        "phase_speed_snapshot": 100,
+        "revivable": true,
+        "root_owner_actor_id": "main",
+        "action_policy": {
+          "kind": "rotation",
+          "normal_attack_enabled": true
+        }
+      },
+      {
+        "actor_id": "npc_swordsman",
+        "kind": "party",
+        "owner_actor_id": null,
+        "life_epoch": 0,
+        "build_hash": "fixture_no_gear",
+        "position": "front_1",
+        "team": "player",
+        "targetable": true,
+        "counts_for_terminal": true,
+        "stats": {
+          "str": 1,
+          "agi": 1,
+          "vit": 1,
+          "int": 1,
+          "dex": 1,
+          "luk": 1,
+          "physical_attack": 33,
+          "magical_attack": 33,
+          "max_hp": 220,
+          "max_sp": 64,
+          "physical_defense": 12,
+          "magical_defense": 12,
+          "attack_speed": 100,
+          "cast_speed": 100,
+          "hit_bonus": 0,
+          "evasion_bonus": 0,
+          "crit_chance_bonus": 0,
+          "crit_damage_bonus": 0,
+          "crit_resistance": 0,
+          "control_accuracy": 0,
+          "control_resistance": 0,
+          "outgoing_physical_bonus": 0,
+          "outgoing_magical_bonus": 0,
+          "outgoing_true_bonus": 0,
+          "damage_taken_bonus": 0,
+          "guard_percent": 0,
+          "armor_break_percent": 0,
+          "penetration_percent": 0,
+          "outgoing_healing_bonus": 0,
+          "healing_received_bonus": 0,
+          "sp_regen_percent": 0,
+          "hp_regen_percent": 0,
+          "flat_damage_reduction": 0,
+          "flat_penetration": 0,
+          "flat_sp_regen": 0,
+          "flat_hp_regen": 0
+        },
+        "hp": 220,
+        "sp": 64,
+        "spirit_spheres": 0,
+        "active_slots": [
+          "swordsman_bash",
+          "swordsman_provoke",
+          null,
+          null
+        ],
+        "rotation_cursor": 0,
+        "action_phase": "skill_interval",
+        "phase_ready_at": 1500,
+        "normal_clock": {
+          "due_at": 1500,
+          "remaining_ms": 1500,
+          "paused_for_cast": false
+        },
+        "cast": null,
+        "statuses": [],
+        "shields": [],
+        "summon_expires_at": null,
+        "stat_blueprint": {
+          "kind": "character",
+          "level": 1,
+          "job_id": "swordsman",
+          "allocated_primary": {
+            "str": 1,
+            "agi": 1,
+            "vit": 1,
+            "int": 1,
+            "dex": 1,
+            "luk": 1
+          },
+          "derived_offsets": {
+            "physical_attack": 0,
+            "magical_attack": 0,
+            "max_hp": 0,
+            "max_sp": 0,
+            "physical_defense": 0,
+            "magical_defense": 0,
+            "attack_speed": 0,
+            "cast_speed": 0
+          },
+          "permanent_sources": [],
+          "weapon_element": "neutral"
+        },
+        "tags": [
+          "party",
+          "swordsman"
+        ],
+        "resolved_skills": {
+          "swordsman_bash": {
+            "level": 1,
+            "definition": {
+              "id": "swordsman_bash",
+              "name_key": "swordsman_bash",
+              "class_id": "swordsman",
+              "max_level": 10,
+              "unlock_level": 1,
+              "tags": [
+                "swordsman",
+                "bash"
+              ],
+              "level_parameters": {
+                "power": [
+                  1.4,
+                  1.488889,
+                  1.577778,
+                  1.666667,
+                  1.755556,
+                  1.844444,
+                  1.933333,
+                  2.022222,
+                  2.111111,
+                  2.2
+                ]
+              },
+              "presentation_id": "visual_swordsman_bash",
+              "kind": "active",
+              "cost": {
+                "sp": 12,
+                "spirit_spheres": 0
+              },
+              "timing": {
+                "cast_ms": 0,
+                "after_cast_ms": 500,
+                "interruptible": true
+              },
+              "selectors": {
+                "foe": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "front_first",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "foes": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friend": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "lowest_hp_percent",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friends": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                }
+              },
+              "start_effects": [],
+              "effects": [
+                {
+                  "id": "hit",
+                  "type": "damage",
+                  "target": "foe",
+                  "formula": {
+                    "id": "physical_power",
+                    "params": {
+                      "attack_ratio": 1.4,
+                      "flat_power": 0
+                    }
+                  },
+                  "damage_type": "physical",
+                  "element": "weapon",
+                  "hit_rule": "physical_roll",
+                  "can_crit": true,
+                  "hits": 1,
+                  "armor_rule": "normal"
+                },
+                {
+                  "id": "stun",
+                  "type": "apply_status",
+                  "target": "foe",
+                  "status_id": "stun",
+                  "duration_ms": 1000,
+                  "params": {},
+                  "chance": 0.35,
+                  "when": {
+                    "type": "hit_landed",
+                    "effect_id": "hit",
+                    "scope": "same_target",
+                    "hit_index": "any"
+                  }
+                }
+              ]
+            }
+          },
+          "swordsman_provoke": {
+            "level": 1,
+            "definition": {
+              "id": "swordsman_provoke",
+              "name_key": "swordsman_provoke",
+              "class_id": "swordsman",
+              "max_level": 10,
+              "unlock_level": 1,
+              "tags": [
+                "swordsman",
+                "provoke"
+              ],
+              "level_parameters": {
+                "sp_cost": [
+                  19,
+                  18,
+                  17,
+                  16,
+                  15,
+                  14,
+                  13,
+                  12,
+                  11,
+                  10
+                ]
+              },
+              "presentation_id": "visual_swordsman_provoke",
+              "kind": "active",
+              "cost": {
+                "sp": 19,
+                "spirit_spheres": 0
+              },
+              "timing": {
+                "cast_ms": 0,
+                "after_cast_ms": 450,
+                "interruptible": true
+              },
+              "selectors": {
+                "foe": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "front_first",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "foes": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friend": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "lowest_hp_percent",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friends": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                }
+              },
+              "start_effects": [],
+              "effects": [
+                {
+                  "id": "provoke",
+                  "type": "apply_status",
+                  "target": "foes",
+                  "status_id": "provoke",
+                  "duration_ms": 4500,
+                  "params": {},
+                  "chance": 1
+                }
+              ]
+            }
+          }
+        },
+        "phase_started_at": 0,
+        "phase_duration_ms": 1500,
+        "phase_speed_snapshot": 100,
+        "revivable": true,
+        "root_owner_actor_id": "npc_swordsman",
+        "action_policy": {
+          "kind": "rotation",
+          "normal_attack_enabled": true
+        }
+      },
+      {
+        "actor_id": "npc_acolyte",
+        "kind": "party",
+        "owner_actor_id": null,
+        "life_epoch": 0,
+        "build_hash": "fixture_no_gear",
+        "position": "back_2",
+        "team": "player",
+        "targetable": true,
+        "counts_for_terminal": true,
+        "stats": {
+          "str": 1,
+          "agi": 1,
+          "vit": 1,
+          "int": 1,
+          "dex": 1,
+          "luk": 1,
+          "physical_attack": 33,
+          "magical_attack": 33,
+          "max_hp": 220,
+          "max_sp": 64,
+          "physical_defense": 12,
+          "magical_defense": 12,
+          "attack_speed": 100,
+          "cast_speed": 100,
+          "hit_bonus": 0,
+          "evasion_bonus": 0,
+          "crit_chance_bonus": 0,
+          "crit_damage_bonus": 0,
+          "crit_resistance": 0,
+          "control_accuracy": 0,
+          "control_resistance": 0,
+          "outgoing_physical_bonus": 0,
+          "outgoing_magical_bonus": 0,
+          "outgoing_true_bonus": 0,
+          "damage_taken_bonus": 0,
+          "guard_percent": 0,
+          "armor_break_percent": 0,
+          "penetration_percent": 0,
+          "outgoing_healing_bonus": 0,
+          "healing_received_bonus": 0,
+          "sp_regen_percent": 0,
+          "hp_regen_percent": 0,
+          "flat_damage_reduction": 0,
+          "flat_penetration": 0,
+          "flat_sp_regen": 0,
+          "flat_hp_regen": 0
+        },
+        "hp": 220,
+        "sp": 64,
+        "spirit_spheres": 0,
+        "active_slots": [
+          "acolyte_heal",
+          "acolyte_blessing",
+          null,
+          null
+        ],
+        "rotation_cursor": 0,
+        "action_phase": "skill_interval",
+        "phase_ready_at": 1500,
+        "normal_clock": {
+          "due_at": 1500,
+          "remaining_ms": 1500,
+          "paused_for_cast": false
+        },
+        "cast": null,
+        "statuses": [],
+        "shields": [],
+        "summon_expires_at": null,
+        "stat_blueprint": {
+          "kind": "character",
+          "level": 1,
+          "job_id": "acolyte",
+          "allocated_primary": {
+            "str": 1,
+            "agi": 1,
+            "vit": 1,
+            "int": 1,
+            "dex": 1,
+            "luk": 1
+          },
+          "derived_offsets": {
+            "physical_attack": 0,
+            "magical_attack": 0,
+            "max_hp": 0,
+            "max_sp": 0,
+            "physical_defense": 0,
+            "magical_defense": 0,
+            "attack_speed": 0,
+            "cast_speed": 0
+          },
+          "permanent_sources": [],
+          "weapon_element": "neutral"
+        },
+        "tags": [
+          "party",
+          "acolyte"
+        ],
+        "resolved_skills": {
+          "acolyte_heal": {
+            "level": 1,
+            "definition": {
+              "id": "acolyte_heal",
+              "name_key": "acolyte_heal",
+              "class_id": "acolyte",
+              "max_level": 10,
+              "unlock_level": 1,
+              "tags": [
+                "acolyte",
+                "heal"
+              ],
+              "level_parameters": {
+                "power": [
+                  1.2,
+                  1.311111,
+                  1.422222,
+                  1.533333,
+                  1.644444,
+                  1.755556,
+                  1.866667,
+                  1.977778,
+                  2.088889,
+                  2.2
+                ]
+              },
+              "presentation_id": "visual_acolyte_heal",
+              "kind": "active",
+              "cost": {
+                "sp": 18,
+                "spirit_spheres": 0
+              },
+              "timing": {
+                "cast_ms": 600,
+                "after_cast_ms": 700,
+                "interruptible": true
+              },
+              "selectors": {
+                "foe": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "front_first",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "foes": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friend": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "lowest_hp_percent",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friends": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                }
+              },
+              "start_effects": [],
+              "effects": [
+                {
+                  "id": "heal",
+                  "type": "heal",
+                  "target": "friend",
+                  "formula": {
+                    "id": "healing_power",
+                    "params": {
+                      "attack_ratio": 1.2,
+                      "flat_power": 0
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "acolyte_blessing": {
+            "level": 1,
+            "definition": {
+              "id": "acolyte_blessing",
+              "name_key": "acolyte_blessing",
+              "class_id": "acolyte",
+              "max_level": 10,
+              "unlock_level": 1,
+              "tags": [
+                "acolyte",
+                "blessing"
+              ],
+              "level_parameters": {
+                "ratio": [
+                  0.06,
+                  0.07,
+                  0.08,
+                  0.09,
+                  0.1,
+                  0.11,
+                  0.12,
+                  0.13,
+                  0.14,
+                  0.15
+                ]
+              },
+              "presentation_id": "visual_acolyte_blessing",
+              "kind": "active",
+              "cost": {
+                "sp": 24,
+                "spirit_spheres": 0
+              },
+              "timing": {
+                "cast_ms": 450,
+                "after_cast_ms": 800,
+                "interruptible": true
+              },
+              "selectors": {
+                "foe": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "front_first",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "foes": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friend": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "lowest_hp_percent",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friends": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                }
+              },
+              "start_effects": [],
+              "effects": [
+                {
+                  "id": "attack_up",
+                  "type": "apply_status",
+                  "target": "friends",
+                  "status_id": "attack_up",
+                  "duration_ms": 5000,
+                  "params": {
+                    "ratio": 0.06
+                  },
+                  "chance": 1
+                },
+                {
+                  "id": "magic_up",
+                  "type": "apply_status",
+                  "target": "friends",
+                  "status_id": "magic_up",
+                  "duration_ms": 5000,
+                  "params": {
+                    "ratio": 0.06
+                  },
+                  "chance": 1
+                }
+              ]
+            }
+          }
+        },
+        "phase_started_at": 0,
+        "phase_duration_ms": 1500,
+        "phase_speed_snapshot": 100,
+        "revivable": true,
+        "root_owner_actor_id": "npc_acolyte",
+        "action_policy": {
+          "kind": "rotation",
+          "normal_attack_enabled": true
+        }
+      },
+      {
+        "actor_id": "npc_archer",
+        "kind": "party",
+        "owner_actor_id": null,
+        "life_epoch": 0,
+        "build_hash": "fixture_no_gear",
+        "position": "front_2",
+        "team": "player",
+        "targetable": true,
+        "counts_for_terminal": true,
+        "stats": {
+          "str": 1,
+          "agi": 1,
+          "vit": 1,
+          "int": 1,
+          "dex": 1,
+          "luk": 1,
+          "physical_attack": 33,
+          "magical_attack": 33,
+          "max_hp": 220,
+          "max_sp": 64,
+          "physical_defense": 12,
+          "magical_defense": 12,
+          "attack_speed": 100,
+          "cast_speed": 100,
+          "hit_bonus": 0,
+          "evasion_bonus": 0,
+          "crit_chance_bonus": 0,
+          "crit_damage_bonus": 0,
+          "crit_resistance": 0,
+          "control_accuracy": 0,
+          "control_resistance": 0,
+          "outgoing_physical_bonus": 0,
+          "outgoing_magical_bonus": 0,
+          "outgoing_true_bonus": 0,
+          "damage_taken_bonus": 0,
+          "guard_percent": 0,
+          "armor_break_percent": 0,
+          "penetration_percent": 0,
+          "outgoing_healing_bonus": 0,
+          "healing_received_bonus": 0,
+          "sp_regen_percent": 0,
+          "hp_regen_percent": 0,
+          "flat_damage_reduction": 0,
+          "flat_penetration": 0,
+          "flat_sp_regen": 0,
+          "flat_hp_regen": 0
+        },
+        "hp": 220,
+        "sp": 64,
+        "spirit_spheres": 0,
+        "active_slots": [
+          "archer_double_strafe",
+          "archer_concentration",
+          null,
+          null
+        ],
+        "rotation_cursor": 0,
+        "action_phase": "skill_interval",
+        "phase_ready_at": 1500,
+        "normal_clock": {
+          "due_at": 1500,
+          "remaining_ms": 1500,
+          "paused_for_cast": false
+        },
+        "cast": null,
+        "statuses": [],
+        "shields": [],
+        "summon_expires_at": null,
+        "stat_blueprint": {
+          "kind": "character",
+          "level": 1,
+          "job_id": "archer",
+          "allocated_primary": {
+            "str": 1,
+            "agi": 1,
+            "vit": 1,
+            "int": 1,
+            "dex": 1,
+            "luk": 1
+          },
+          "derived_offsets": {
+            "physical_attack": 0,
+            "magical_attack": 0,
+            "max_hp": 0,
+            "max_sp": 0,
+            "physical_defense": 0,
+            "magical_defense": 0,
+            "attack_speed": 0,
+            "cast_speed": 0
+          },
+          "permanent_sources": [],
+          "weapon_element": "neutral"
+        },
+        "tags": [
+          "party",
+          "archer"
+        ],
+        "resolved_skills": {
+          "archer_double_strafe": {
+            "level": 1,
+            "definition": {
+              "id": "archer_double_strafe",
+              "name_key": "archer_double_strafe",
+              "class_id": "archer",
+              "max_level": 10,
+              "unlock_level": 1,
+              "tags": [
+                "archer",
+                "double_strafe"
+              ],
+              "level_parameters": {
+                "power": [
+                  0.7,
+                  0.744444,
+                  0.788889,
+                  0.833333,
+                  0.877778,
+                  0.922222,
+                  0.966667,
+                  1.011111,
+                  1.055556,
+                  1.1
+                ]
+              },
+              "presentation_id": "visual_archer_double_strafe",
+              "kind": "active",
+              "cost": {
+                "sp": 16,
+                "spirit_spheres": 0
+              },
+              "timing": {
+                "cast_ms": 0,
+                "after_cast_ms": 600,
+                "interruptible": true
+              },
+              "selectors": {
+                "foe": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "front_first",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "foes": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friend": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "lowest_hp_percent",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friends": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                }
+              },
+              "start_effects": [],
+              "effects": [
+                {
+                  "id": "hit",
+                  "type": "damage",
+                  "target": "foe",
+                  "formula": {
+                    "id": "physical_power",
+                    "params": {
+                      "attack_ratio": 0.7,
+                      "flat_power": 0
+                    }
+                  },
+                  "damage_type": "physical",
+                  "element": "weapon",
+                  "hit_rule": "physical_roll",
+                  "can_crit": true,
+                  "hits": 2,
+                  "armor_rule": "normal"
+                }
+              ]
+            }
+          },
+          "archer_concentration": {
+            "level": 1,
+            "definition": {
+              "id": "archer_concentration",
+              "name_key": "archer_concentration",
+              "class_id": "archer",
+              "max_level": 10,
+              "unlock_level": 1,
+              "tags": [
+                "archer",
+                "concentration"
+              ],
+              "level_parameters": {
+                "ratio": [
+                  0.08,
+                  0.093333,
+                  0.106667,
+                  0.12,
+                  0.133333,
+                  0.146667,
+                  0.16,
+                  0.173333,
+                  0.186667,
+                  0.2
+                ]
+              },
+              "presentation_id": "visual_archer_concentration",
+              "kind": "active",
+              "cost": {
+                "sp": 18,
+                "spirit_spheres": 0
+              },
+              "timing": {
+                "cast_ms": 200,
+                "after_cast_ms": 650,
+                "interruptible": true
+              },
+              "selectors": {
+                "foe": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "front_first",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "foes": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friend": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "lowest_hp_percent",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friends": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                }
+              },
+              "start_effects": [],
+              "effects": [
+                {
+                  "id": "crit_up",
+                  "type": "apply_status",
+                  "target": "self",
+                  "status_id": "crit_up",
+                  "duration_ms": 5000,
+                  "params": {
+                    "ratio": 0.08
+                  },
+                  "chance": 1
+                }
+              ]
+            }
+          }
+        },
+        "phase_started_at": 0,
+        "phase_duration_ms": 1500,
+        "phase_speed_snapshot": 100,
+        "revivable": true,
+        "root_owner_actor_id": "npc_archer",
+        "action_policy": {
+          "kind": "rotation",
+          "normal_attack_enabled": true
+        }
+      },
+      {
+        "actor_id": "enemy_front",
+        "kind": "enemy",
+        "owner_actor_id": null,
+        "life_epoch": 0,
+        "build_hash": "fixture_no_gear",
+        "position": "front_1",
+        "team": "enemy",
+        "targetable": true,
+        "counts_for_terminal": true,
+        "stats": {
+          "str": 1,
+          "agi": 1,
+          "vit": 1,
+          "int": 1,
+          "dex": 1,
+          "luk": 1,
+          "physical_attack": 8,
+          "magical_attack": 8,
+          "max_hp": 180,
+          "max_sp": 100,
+          "physical_defense": 0,
+          "magical_defense": 0,
+          "attack_speed": 100,
+          "cast_speed": 100,
+          "hit_bonus": 0,
+          "evasion_bonus": 0,
+          "crit_chance_bonus": 0,
+          "crit_damage_bonus": 0,
+          "crit_resistance": 0,
+          "control_accuracy": 0,
+          "control_resistance": 0,
+          "outgoing_physical_bonus": 0,
+          "outgoing_magical_bonus": 0,
+          "outgoing_true_bonus": 0,
+          "damage_taken_bonus": 0,
+          "guard_percent": 0,
+          "armor_break_percent": 0,
+          "penetration_percent": 0,
+          "outgoing_healing_bonus": 0,
+          "healing_received_bonus": 0,
+          "sp_regen_percent": 0,
+          "hp_regen_percent": 0,
+          "flat_damage_reduction": 0,
+          "flat_penetration": 0,
+          "flat_sp_regen": 0,
+          "flat_hp_regen": 0
+        },
+        "hp": 180,
+        "sp": 100,
+        "spirit_spheres": 0,
+        "active_slots": [
+          "enemy_bite",
+          null,
+          null,
+          null
+        ],
+        "rotation_cursor": 0,
+        "action_phase": "skill_interval",
+        "phase_ready_at": 1500,
+        "normal_clock": {
+          "due_at": 1500,
+          "remaining_ms": 1500,
+          "paused_for_cast": false
+        },
+        "cast": null,
+        "statuses": [],
+        "shields": [],
+        "summon_expires_at": null,
+        "stat_blueprint": {
+          "kind": "fixed",
+          "level": 1,
+          "job_id": null,
+          "allocated_primary": {
+            "str": 1,
+            "agi": 1,
+            "vit": 1,
+            "int": 1,
+            "dex": 1,
+            "luk": 1
+          },
+          "derived_offsets": {
+            "physical_attack": -25,
+            "magical_attack": -25,
+            "max_hp": -40,
+            "max_sp": 36,
+            "physical_defense": -12,
+            "magical_defense": -12,
+            "attack_speed": 0,
+            "cast_speed": 0
+          },
+          "permanent_sources": [],
+          "weapon_element": "neutral"
+        },
+        "tags": [
+          "enemy"
+        ],
+        "resolved_skills": {
+          "enemy_bite": {
+            "level": 1,
+            "definition": {
+              "id": "enemy_bite",
+              "name_key": "enemy_bite",
+              "class_id": "enemy",
+              "max_level": 1,
+              "unlock_level": 1,
+              "tags": [
+                "enemy"
+              ],
+              "level_parameters": {},
+              "kind": "active",
+              "cost": {
+                "sp": 0,
+                "spirit_spheres": 0
+              },
+              "timing": {
+                "cast_ms": 350,
+                "after_cast_ms": 700,
+                "interruptible": true
+              },
+              "selectors": {
+                "foe": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "front_first",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "foes": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "self_allies": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                }
+              },
+              "start_effects": [],
+              "effects": [
+                {
+                  "id": "hit",
+                  "type": "damage",
+                  "target": "foe",
+                  "formula": {
+                    "id": "physical_power",
+                    "params": {
+                      "attack_ratio": 0.8,
+                      "flat_power": 0
+                    }
+                  },
+                  "damage_type": "physical",
+                  "element": "neutral",
+                  "hit_rule": "physical_roll",
+                  "can_crit": false,
+                  "hits": 1,
+                  "armor_rule": "normal"
+                }
+              ]
+            }
+          }
+        },
+        "phase_started_at": 0,
+        "phase_duration_ms": 1500,
+        "phase_speed_snapshot": 100,
+        "revivable": false,
+        "root_owner_actor_id": "enemy_front",
+        "action_policy": {
+          "kind": "rotation",
+          "normal_attack_enabled": true
+        }
+      }
+    ],
+    "pending_events": [
+      {
+        "event_id": "event_10",
+        "sequence": 10,
+        "due_ms": 1000,
+        "kind": "resource_regen",
+        "actor_id": "main",
+        "life_epoch": 0,
+        "cast_token": null,
+        "source_instance_id": null
+      },
+      {
+        "event_id": "event_11",
+        "sequence": 11,
+        "due_ms": 1000,
+        "kind": "resource_regen",
+        "actor_id": "npc_swordsman",
+        "life_epoch": 0,
+        "cast_token": null,
+        "source_instance_id": null
+      },
+      {
+        "event_id": "event_12",
+        "sequence": 12,
+        "due_ms": 1000,
+        "kind": "resource_regen",
+        "actor_id": "npc_acolyte",
+        "life_epoch": 0,
+        "cast_token": null,
+        "source_instance_id": null
+      },
+      {
+        "event_id": "event_13",
+        "sequence": 13,
+        "due_ms": 1000,
+        "kind": "resource_regen",
+        "actor_id": "npc_archer",
+        "life_epoch": 0,
+        "cast_token": null,
+        "source_instance_id": null
+      },
+      {
+        "event_id": "event_14",
+        "sequence": 14,
+        "due_ms": 1000,
+        "kind": "resource_regen",
+        "actor_id": "enemy_front",
+        "life_epoch": 0,
+        "cast_token": null,
+        "source_instance_id": null
+      },
+      {
+        "event_id": "event_0",
+        "sequence": 0,
+        "due_ms": 1500,
+        "kind": "phase_ready",
+        "actor_id": "main",
+        "life_epoch": 0,
+        "cast_token": null,
+        "source_instance_id": null
+      },
+      {
+        "event_id": "event_1",
+        "sequence": 1,
+        "due_ms": 1500,
+        "kind": "normal_attack",
+        "actor_id": "main",
+        "life_epoch": 0,
+        "cast_token": null,
+        "source_instance_id": null
+      },
+      {
+        "event_id": "event_2",
+        "sequence": 2,
+        "due_ms": 1500,
+        "kind": "phase_ready",
+        "actor_id": "npc_swordsman",
+        "life_epoch": 0,
+        "cast_token": null,
+        "source_instance_id": null
+      },
+      {
+        "event_id": "event_3",
+        "sequence": 3,
+        "due_ms": 1500,
+        "kind": "normal_attack",
+        "actor_id": "npc_swordsman",
+        "life_epoch": 0,
+        "cast_token": null,
+        "source_instance_id": null
+      },
+      {
+        "event_id": "event_4",
+        "sequence": 4,
+        "due_ms": 1500,
+        "kind": "phase_ready",
+        "actor_id": "npc_acolyte",
+        "life_epoch": 0,
+        "cast_token": null,
+        "source_instance_id": null
+      },
+      {
+        "event_id": "event_5",
+        "sequence": 5,
+        "due_ms": 1500,
+        "kind": "normal_attack",
+        "actor_id": "npc_acolyte",
+        "life_epoch": 0,
+        "cast_token": null,
+        "source_instance_id": null
+      },
+      {
+        "event_id": "event_6",
+        "sequence": 6,
+        "due_ms": 1500,
+        "kind": "phase_ready",
+        "actor_id": "npc_archer",
+        "life_epoch": 0,
+        "cast_token": null,
+        "source_instance_id": null
+      },
+      {
+        "event_id": "event_7",
+        "sequence": 7,
+        "due_ms": 1500,
+        "kind": "normal_attack",
+        "actor_id": "npc_archer",
+        "life_epoch": 0,
+        "cast_token": null,
+        "source_instance_id": null
+      },
+      {
+        "event_id": "event_8",
+        "sequence": 8,
+        "due_ms": 1500,
+        "kind": "phase_ready",
+        "actor_id": "enemy_front",
+        "life_epoch": 0,
+        "cast_token": null,
+        "source_instance_id": null
+      },
+      {
+        "event_id": "event_9",
+        "sequence": 9,
+        "due_ms": 1500,
+        "kind": "normal_attack",
+        "actor_id": "enemy_front",
+        "life_epoch": 0,
+        "cast_token": null,
+        "source_instance_id": null
+      }
+    ],
+    "metrics": {
+      "team": {
+        "player": {
+          "raw_damage": 0,
+          "hp_damage": 0,
+          "absorbed": 0,
+          "overkill": 0,
+          "effective_heal": 0,
+          "overheal": 0,
+          "shield_created": 0,
+          "shield_absorbed": 0,
+          "sp_spent": 0,
+          "sp_skips": 0,
+          "sphere_skips": 0,
+          "casts_started": 0,
+          "casts_resolved": 0,
+          "casts_interrupted": 0,
+          "normal_attacks": 0,
+          "cc_applied": 0,
+          "cc_resisted": 0,
+          "alive_time_ms": 0,
+          "sp_restored": 0,
+          "sp_wasted": 0,
+          "sphere_gained": 0,
+          "sphere_wasted": 0,
+          "cc_blocked_actor_ms": 0,
+          "cc_instance_ms": 0,
+          "skill_interval_ms": 0,
+          "cast_time_ms": 0,
+          "after_cast_time_ms": 0,
+          "control_wait_ms": 0
+        },
+        "enemy": {
+          "raw_damage": 0,
+          "hp_damage": 0,
+          "absorbed": 0,
+          "overkill": 0,
+          "effective_heal": 0,
+          "overheal": 0,
+          "shield_created": 0,
+          "shield_absorbed": 0,
+          "sp_spent": 0,
+          "sp_skips": 0,
+          "sphere_skips": 0,
+          "casts_started": 0,
+          "casts_resolved": 0,
+          "casts_interrupted": 0,
+          "normal_attacks": 0,
+          "cc_applied": 0,
+          "cc_resisted": 0,
+          "alive_time_ms": 0,
+          "sp_restored": 0,
+          "sp_wasted": 0,
+          "sphere_gained": 0,
+          "sphere_wasted": 0,
+          "cc_blocked_actor_ms": 0,
+          "cc_instance_ms": 0,
+          "skill_interval_ms": 0,
+          "cast_time_ms": 0,
+          "after_cast_time_ms": 0,
+          "control_wait_ms": 0
+        }
+      },
+      "actors": {
+        "main": {
+          "raw_damage": 0,
+          "hp_damage": 0,
+          "absorbed": 0,
+          "overkill": 0,
+          "effective_heal": 0,
+          "overheal": 0,
+          "shield_created": 0,
+          "shield_absorbed": 0,
+          "sp_spent": 0,
+          "sp_skips": 0,
+          "sphere_skips": 0,
+          "casts_started": 0,
+          "casts_resolved": 0,
+          "casts_interrupted": 0,
+          "normal_attacks": 0,
+          "cc_applied": 0,
+          "cc_resisted": 0,
+          "alive_time_ms": 0,
+          "sp_restored": 0,
+          "sp_wasted": 0,
+          "sphere_gained": 0,
+          "sphere_wasted": 0,
+          "cc_blocked_actor_ms": 0,
+          "cc_instance_ms": 0,
+          "skill_interval_ms": 0,
+          "cast_time_ms": 0,
+          "after_cast_time_ms": 0,
+          "control_wait_ms": 0
+        },
+        "npc_swordsman": {
+          "raw_damage": 0,
+          "hp_damage": 0,
+          "absorbed": 0,
+          "overkill": 0,
+          "effective_heal": 0,
+          "overheal": 0,
+          "shield_created": 0,
+          "shield_absorbed": 0,
+          "sp_spent": 0,
+          "sp_skips": 0,
+          "sphere_skips": 0,
+          "casts_started": 0,
+          "casts_resolved": 0,
+          "casts_interrupted": 0,
+          "normal_attacks": 0,
+          "cc_applied": 0,
+          "cc_resisted": 0,
+          "alive_time_ms": 0,
+          "sp_restored": 0,
+          "sp_wasted": 0,
+          "sphere_gained": 0,
+          "sphere_wasted": 0,
+          "cc_blocked_actor_ms": 0,
+          "cc_instance_ms": 0,
+          "skill_interval_ms": 0,
+          "cast_time_ms": 0,
+          "after_cast_time_ms": 0,
+          "control_wait_ms": 0
+        },
+        "npc_acolyte": {
+          "raw_damage": 0,
+          "hp_damage": 0,
+          "absorbed": 0,
+          "overkill": 0,
+          "effective_heal": 0,
+          "overheal": 0,
+          "shield_created": 0,
+          "shield_absorbed": 0,
+          "sp_spent": 0,
+          "sp_skips": 0,
+          "sphere_skips": 0,
+          "casts_started": 0,
+          "casts_resolved": 0,
+          "casts_interrupted": 0,
+          "normal_attacks": 0,
+          "cc_applied": 0,
+          "cc_resisted": 0,
+          "alive_time_ms": 0,
+          "sp_restored": 0,
+          "sp_wasted": 0,
+          "sphere_gained": 0,
+          "sphere_wasted": 0,
+          "cc_blocked_actor_ms": 0,
+          "cc_instance_ms": 0,
+          "skill_interval_ms": 0,
+          "cast_time_ms": 0,
+          "after_cast_time_ms": 0,
+          "control_wait_ms": 0
+        },
+        "npc_archer": {
+          "raw_damage": 0,
+          "hp_damage": 0,
+          "absorbed": 0,
+          "overkill": 0,
+          "effective_heal": 0,
+          "overheal": 0,
+          "shield_created": 0,
+          "shield_absorbed": 0,
+          "sp_spent": 0,
+          "sp_skips": 0,
+          "sphere_skips": 0,
+          "casts_started": 0,
+          "casts_resolved": 0,
+          "casts_interrupted": 0,
+          "normal_attacks": 0,
+          "cc_applied": 0,
+          "cc_resisted": 0,
+          "alive_time_ms": 0,
+          "sp_restored": 0,
+          "sp_wasted": 0,
+          "sphere_gained": 0,
+          "sphere_wasted": 0,
+          "cc_blocked_actor_ms": 0,
+          "cc_instance_ms": 0,
+          "skill_interval_ms": 0,
+          "cast_time_ms": 0,
+          "after_cast_time_ms": 0,
+          "control_wait_ms": 0
+        },
+        "enemy_front": {
+          "raw_damage": 0,
+          "hp_damage": 0,
+          "absorbed": 0,
+          "overkill": 0,
+          "effective_heal": 0,
+          "overheal": 0,
+          "shield_created": 0,
+          "shield_absorbed": 0,
+          "sp_spent": 0,
+          "sp_skips": 0,
+          "sphere_skips": 0,
+          "casts_started": 0,
+          "casts_resolved": 0,
+          "casts_interrupted": 0,
+          "normal_attacks": 0,
+          "cc_applied": 0,
+          "cc_resisted": 0,
+          "alive_time_ms": 0,
+          "sp_restored": 0,
+          "sp_wasted": 0,
+          "sphere_gained": 0,
+          "sphere_wasted": 0,
+          "cc_blocked_actor_ms": 0,
+          "cc_instance_ms": 0,
+          "skill_interval_ms": 0,
+          "cast_time_ms": 0,
+          "after_cast_time_ms": 0,
+          "control_wait_ms": 0
+        }
+      },
+      "skills": {}
+    },
+    "terminal_result": null,
+    "trigger_activations": {}
+  }
+}

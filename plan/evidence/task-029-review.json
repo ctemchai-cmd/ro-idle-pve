@@ -1,0 +1,48 @@
+{
+ "task_id": "TASK-029",
+ "passed": true,
+ "round": 1,
+ "date": "2026-10-20",
+ "reviewer": "Claude self-check",
+ "content_hash": "5302fe90ea76945fe82ed837dd5c1885ff3bc76688b584f921cc148f93dd4bc4",
+ "rules_version": "combat-baseline-v1",
+ "checks": [
+  {
+   "acceptance": "AC-01",
+   "passed": true,
+   "result": "19 skills (15 Active, 4 Passive) match all 57 M0 golden cases (cost, effect order, raw power at ATK/MATK 100, status params/modifiers, hit_landed predicate). Every Active at every level 1-10 resolved in the 2v2 engine probe (seed 1, 60s) and produced every effect (damage, stun, provoke, guard/aspd/attack/defense/magic-defense up, counter stance, devotion) on allowed targets in program order; 'all' selectors reached every living target. Every Passive changed resolved stats in its modifier direction at levels 1-10 and Reflect procs returned reflect-origin damage to the attacker. Knight/Crusader skill pages list only root+own-branch skills, each with effect text, and every skill resolves a pack icon/recipe/sound."
+  },
+  {
+   "acceptance": "AC-02",
+   "passed": true,
+   "result": "Matched role encounter (seeds 1-5, hero at back_1 with three probe allies vs a probe boss, 60s, no gear): Knight striker DPS 668 vs counter-tank 200; tank draws 12 boss normal hits (striker 0) and deals 3356 counter damage, allies take 12992 vs 16319; Crusader guardian redirects 1064 damage, gives defense_up to all 4 and reflects 331, allies take 12421 vs holy striker 16368; holy striker DPS 596 with 15036 holy-skill damage vs guardian 93. Devotion Lv10 routes P100 as 30 transfer/70 hit; two 0.6 links route 50/50/0 in one pass; recipients take the already-mitigated share."
+  },
+  {
+   "acceptance": "AC-03",
+   "passed": true,
+   "result": "New pure catalogQueueTrace (src/domain/build/queue-trace.ts) of each of the 4 builds, compiled from a real account character validated by the server rules, equals the M0 queue_estimate exactly (SI/starts/resolve/ACD/cycle/fixed SP) and includes learned Passives (ATK/MaxHP higher than without them) but no temporary buffs. The full engine fight keeps the dry first cycle for 3 builds, while Knight striker's Two-Hand Quicken shortens the real intervals (pierce/bash/brandish start 2682/4476/5764 vs dry 2906/4924/6436)."
+  },
+  {
+   "acceptance": "AC-04",
+   "passed": true,
+   "result": "Story 6-20 seed 29 with main Knight counter-tank + Crusader guardian NPC: server battle.start_story/battle.advance commands (1s credit each, 89 confirmed checkpoints), the client SavedBattleSession advancing in uneven frames with a render view each frame, and runScenario on the captured initial checkpoint produce the identical final checkpoint and 1117 events (digest c77f329e), same outcome STORY_TIME_LIMIT. Runner metrics attribute casts/damage per owner:skill, including counter_stance proc and crusader_reflect reflect damage."
+  }
+ ],
+ "commands": [
+  "RO_TREE_EVIDENCE=plan/evidence/task-029-runtime.json node --import tsx --test tests/game/skills-swordsman.test.ts (9 pass)",
+  "npm run check (content 5302fe90…, boundaries, typecheck, 254 tests pass)"
+ ],
+ "measurements": "plan/evidence/task-029-runtime.json",
+ "limitations": [
+  "No new visuals were added: icons are per skill, but in-battle effects reuse shared family recipes (burst/buff) from TASK-003/020; skill-specific VFX polish is a presentation-only follow-up.",
+  "Role metrics are behaviour evidence with probe allies and a probe boss, not a balance verdict. With no gear at Lv70 both tank builds die inside 60s in that probe, and the 6-20 parity team (two Lv1 companions) times out; tuning belongs to TASK-041.",
+  "Visual review of each skill animation was not performed in this task."
+ ],
+ "source_sha256": {
+  "src/domain/build/queue-trace.ts": "135c1525d012c51481589c71bc3a8bc6f66f3d516f92df3a8777f876b2cac8f1",
+  "tests/game/class-skills.ts": "6f6194bc60dcb9fb0dc5fd797f3ffca925aba7755b5c9c41b50a6eca94758cd7",
+  "tests/game/skills-swordsman.test.ts": "baf3e2eca44ddffa790e7afd087f2cb05ff68bef1aada26e775b106d550d83f3",
+  "plan/evidence/task-029-runtime.json": "75d3f199d25945af43a6cfc74bd2c370fc0e1b5712aae5c48c4d33a6e6903dcc"
+ },
+ "credentials_logged": false
+}

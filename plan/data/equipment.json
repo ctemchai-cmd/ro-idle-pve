@@ -1,0 +1,5781 @@
+{
+  "schema_version": 1,
+  "content_version": "equipment-v1",
+  "definitions": [
+    {
+      "id": "equipment_sword_1",
+      "name_key": "equipment_sword_1",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "sword",
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 13
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_sword_1"
+    },
+    {
+      "id": "equipment_bow_1",
+      "name_key": "equipment_bow_1",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "bow",
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 13
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_bow_1"
+    },
+    {
+      "id": "equipment_staff_1",
+      "name_key": "equipment_staff_1",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "staff",
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 13
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_staff_1"
+    },
+    {
+      "id": "equipment_book_1",
+      "name_key": "equipment_book_1",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "book",
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 13
+        },
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 5
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_book_1"
+    },
+    {
+      "id": "equipment_knuckle_1",
+      "name_key": "equipment_knuckle_1",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "knuckle",
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 13
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_knuckle_1"
+    },
+    {
+      "id": "equipment_axe_1",
+      "name_key": "equipment_axe_1",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "axe",
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 13
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_axe_1"
+    },
+    {
+      "id": "equipment_mace_1",
+      "name_key": "equipment_mace_1",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "mace",
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 13
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_mace_1"
+    },
+    {
+      "id": "equipment_dagger_1",
+      "name_key": "equipment_dagger_1",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "dagger",
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 13
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_dagger_1"
+    },
+    {
+      "id": "equipment_whip_1",
+      "name_key": "equipment_whip_1",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "whip",
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 13
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_whip_1"
+    },
+    {
+      "id": "equipment_instrument_1",
+      "name_key": "equipment_instrument_1",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "instrument",
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 13
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_instrument_1"
+    },
+    {
+      "id": "equipment_head_1",
+      "name_key": "equipment_head_1",
+      "kind": "equipment",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 9
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_head_1"
+    },
+    {
+      "id": "equipment_armor_1",
+      "name_key": "equipment_armor_1",
+      "kind": "equipment",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 92
+        },
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 13
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_armor_1"
+    },
+    {
+      "id": "equipment_garment_1",
+      "name_key": "equipment_garment_1",
+      "kind": "equipment",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 9
+        },
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 9
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_garment_1"
+    },
+    {
+      "id": "equipment_shoes_1",
+      "name_key": "equipment_shoes_1",
+      "kind": "equipment",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 46
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_shoes_1"
+    },
+    {
+      "id": "equipment_accessory_1",
+      "name_key": "equipment_accessory_1",
+      "kind": "equipment",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 21
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_accessory_1"
+    },
+    {
+      "id": "equipment_sword_20",
+      "name_key": "equipment_sword_20",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "sword",
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 70
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_sword_20"
+    },
+    {
+      "id": "equipment_bow_20",
+      "name_key": "equipment_bow_20",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "bow",
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 70
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_bow_20"
+    },
+    {
+      "id": "equipment_staff_20",
+      "name_key": "equipment_staff_20",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "staff",
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 70
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_staff_20"
+    },
+    {
+      "id": "equipment_book_20",
+      "name_key": "equipment_book_20",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "book",
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 70
+        },
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 28
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_book_20"
+    },
+    {
+      "id": "equipment_knuckle_20",
+      "name_key": "equipment_knuckle_20",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "knuckle",
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 70
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_knuckle_20"
+    },
+    {
+      "id": "equipment_axe_20",
+      "name_key": "equipment_axe_20",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "axe",
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 70
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_axe_20"
+    },
+    {
+      "id": "equipment_mace_20",
+      "name_key": "equipment_mace_20",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "mace",
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 70
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_mace_20"
+    },
+    {
+      "id": "equipment_dagger_20",
+      "name_key": "equipment_dagger_20",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "dagger",
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 70
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_dagger_20"
+    },
+    {
+      "id": "equipment_whip_20",
+      "name_key": "equipment_whip_20",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "whip",
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 70
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_whip_20"
+    },
+    {
+      "id": "equipment_instrument_20",
+      "name_key": "equipment_instrument_20",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "instrument",
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 70
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_instrument_20"
+    },
+    {
+      "id": "equipment_head_20",
+      "name_key": "equipment_head_20",
+      "kind": "equipment",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 28
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_head_20"
+    },
+    {
+      "id": "equipment_armor_20",
+      "name_key": "equipment_armor_20",
+      "kind": "equipment",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 320
+        },
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 32
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_armor_20"
+    },
+    {
+      "id": "equipment_garment_20",
+      "name_key": "equipment_garment_20",
+      "kind": "equipment",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 28
+        },
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 28
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_garment_20"
+    },
+    {
+      "id": "equipment_shoes_20",
+      "name_key": "equipment_shoes_20",
+      "kind": "equipment",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 160
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_shoes_20"
+    },
+    {
+      "id": "equipment_accessory_20",
+      "name_key": "equipment_accessory_20",
+      "kind": "equipment",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 40
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_accessory_20"
+    },
+    {
+      "id": "equipment_sword_40",
+      "name_key": "equipment_sword_40",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "sword",
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 130
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_sword_40"
+    },
+    {
+      "id": "equipment_bow_40",
+      "name_key": "equipment_bow_40",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "bow",
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 130
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_bow_40"
+    },
+    {
+      "id": "equipment_staff_40",
+      "name_key": "equipment_staff_40",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "staff",
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 130
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_staff_40"
+    },
+    {
+      "id": "equipment_book_40",
+      "name_key": "equipment_book_40",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "book",
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 130
+        },
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 52
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_book_40"
+    },
+    {
+      "id": "equipment_knuckle_40",
+      "name_key": "equipment_knuckle_40",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "knuckle",
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 130
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_knuckle_40"
+    },
+    {
+      "id": "equipment_axe_40",
+      "name_key": "equipment_axe_40",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "axe",
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 130
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_axe_40"
+    },
+    {
+      "id": "equipment_mace_40",
+      "name_key": "equipment_mace_40",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "mace",
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 130
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_mace_40"
+    },
+    {
+      "id": "equipment_dagger_40",
+      "name_key": "equipment_dagger_40",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "dagger",
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 130
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_dagger_40"
+    },
+    {
+      "id": "equipment_whip_40",
+      "name_key": "equipment_whip_40",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "whip",
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 130
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_whip_40"
+    },
+    {
+      "id": "equipment_instrument_40",
+      "name_key": "equipment_instrument_40",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "instrument",
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 130
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_instrument_40"
+    },
+    {
+      "id": "equipment_head_40",
+      "name_key": "equipment_head_40",
+      "kind": "equipment",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 48
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_head_40"
+    },
+    {
+      "id": "equipment_armor_40",
+      "name_key": "equipment_armor_40",
+      "kind": "equipment",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 560
+        },
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 52
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_armor_40"
+    },
+    {
+      "id": "equipment_garment_40",
+      "name_key": "equipment_garment_40",
+      "kind": "equipment",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 48
+        },
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 48
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_garment_40"
+    },
+    {
+      "id": "equipment_shoes_40",
+      "name_key": "equipment_shoes_40",
+      "kind": "equipment",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 280
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_shoes_40"
+    },
+    {
+      "id": "equipment_accessory_40",
+      "name_key": "equipment_accessory_40",
+      "kind": "equipment",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 60
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_accessory_40"
+    },
+    {
+      "id": "equipment_sword_60",
+      "name_key": "equipment_sword_60",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "sword",
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 190
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_sword_60"
+    },
+    {
+      "id": "equipment_bow_60",
+      "name_key": "equipment_bow_60",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "bow",
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 190
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_bow_60"
+    },
+    {
+      "id": "equipment_staff_60",
+      "name_key": "equipment_staff_60",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "staff",
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 190
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_staff_60"
+    },
+    {
+      "id": "equipment_book_60",
+      "name_key": "equipment_book_60",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "book",
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 190
+        },
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 76
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_book_60"
+    },
+    {
+      "id": "equipment_knuckle_60",
+      "name_key": "equipment_knuckle_60",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "knuckle",
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 190
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_knuckle_60"
+    },
+    {
+      "id": "equipment_axe_60",
+      "name_key": "equipment_axe_60",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "axe",
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 190
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_axe_60"
+    },
+    {
+      "id": "equipment_mace_60",
+      "name_key": "equipment_mace_60",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "mace",
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 190
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_mace_60"
+    },
+    {
+      "id": "equipment_dagger_60",
+      "name_key": "equipment_dagger_60",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "dagger",
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 190
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_dagger_60"
+    },
+    {
+      "id": "equipment_whip_60",
+      "name_key": "equipment_whip_60",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "whip",
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 190
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_whip_60"
+    },
+    {
+      "id": "equipment_instrument_60",
+      "name_key": "equipment_instrument_60",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "instrument",
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 190
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_instrument_60"
+    },
+    {
+      "id": "equipment_head_60",
+      "name_key": "equipment_head_60",
+      "kind": "equipment",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 68
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_head_60"
+    },
+    {
+      "id": "equipment_armor_60",
+      "name_key": "equipment_armor_60",
+      "kind": "equipment",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 800
+        },
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 72
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_armor_60"
+    },
+    {
+      "id": "equipment_garment_60",
+      "name_key": "equipment_garment_60",
+      "kind": "equipment",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 68
+        },
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 68
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_garment_60"
+    },
+    {
+      "id": "equipment_shoes_60",
+      "name_key": "equipment_shoes_60",
+      "kind": "equipment",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 400
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_shoes_60"
+    },
+    {
+      "id": "equipment_accessory_60",
+      "name_key": "equipment_accessory_60",
+      "kind": "equipment",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 80
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_accessory_60"
+    },
+    {
+      "id": "equipment_sword_1_b",
+      "name_key": "equipment_sword_1_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "sword",
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 11
+        },
+        {
+          "id": "crit_chance_bonus",
+          "stat": "crit_chance_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.02
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_sword_1_b"
+    },
+    {
+      "id": "equipment_dagger_1_b",
+      "name_key": "equipment_dagger_1_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "dagger",
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 11
+        },
+        {
+          "id": "crit_damage_bonus",
+          "stat": "crit_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.08
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_dagger_1_b"
+    },
+    {
+      "id": "equipment_axe_1_b",
+      "name_key": "equipment_axe_1_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "axe",
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 12
+        },
+        {
+          "id": "armor_break_percent",
+          "stat": "armor_break_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.04
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_axe_1_b"
+    },
+    {
+      "id": "equipment_bow_1_b",
+      "name_key": "equipment_bow_1_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "bow",
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 12
+        },
+        {
+          "id": "hit_bonus",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.03
+        },
+        {
+          "id": "crit_chance_bonus",
+          "stat": "crit_chance_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.01
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_bow_1_b"
+    },
+    {
+      "id": "equipment_knuckle_1_b",
+      "name_key": "equipment_knuckle_1_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "knuckle",
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 11
+        },
+        {
+          "id": "outgoing_physical_bonus",
+          "stat": "outgoing_physical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.03
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_knuckle_1_b"
+    },
+    {
+      "id": "equipment_whip_1_b",
+      "name_key": "equipment_whip_1_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "whip",
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 12
+        },
+        {
+          "id": "control_accuracy",
+          "stat": "control_accuracy",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.04
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_whip_1_b"
+    },
+    {
+      "id": "equipment_instrument_1_b",
+      "name_key": "equipment_instrument_1_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "instrument",
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 11
+        },
+        {
+          "id": "outgoing_healing_bonus",
+          "stat": "outgoing_healing_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.04
+        },
+        {
+          "id": "sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.04
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_instrument_1_b"
+    },
+    {
+      "id": "equipment_staff_1_b",
+      "name_key": "equipment_staff_1_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "staff",
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 11
+        },
+        {
+          "id": "outgoing_magical_bonus",
+          "stat": "outgoing_magical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.03
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_staff_1_b"
+    },
+    {
+      "id": "equipment_mace_1_b",
+      "name_key": "equipment_mace_1_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "mace",
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 11
+        },
+        {
+          "id": "outgoing_healing_bonus",
+          "stat": "outgoing_healing_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.05
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_mace_1_b"
+    },
+    {
+      "id": "equipment_book_1_b",
+      "name_key": "equipment_book_1_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "book",
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 11
+        },
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 4
+        },
+        {
+          "id": "sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.08
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_book_1_b"
+    },
+    {
+      "id": "equipment_head_1_helm",
+      "name_key": "equipment_head_1_helm",
+      "kind": "equipment",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 6
+        },
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 23
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_head_1_helm"
+    },
+    {
+      "id": "equipment_head_1_circlet",
+      "name_key": "equipment_head_1_circlet",
+      "kind": "equipment",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 5
+        },
+        {
+          "id": "outgoing_magical_bonus",
+          "stat": "outgoing_magical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.02
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_head_1_circlet"
+    },
+    {
+      "id": "equipment_armor_1_robe",
+      "name_key": "equipment_armor_1_robe",
+      "kind": "equipment",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 64
+        },
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 12
+        },
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 10
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_armor_1_robe"
+    },
+    {
+      "id": "equipment_armor_1_suit",
+      "name_key": "equipment_armor_1_suit",
+      "kind": "equipment",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 69
+        },
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 8
+        },
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.02
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_armor_1_suit"
+    },
+    {
+      "id": "equipment_garment_1_cape",
+      "name_key": "equipment_garment_1_cape",
+      "kind": "equipment",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 5
+        },
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_garment_1_cape"
+    },
+    {
+      "id": "equipment_garment_1_manteau",
+      "name_key": "equipment_garment_1_manteau",
+      "kind": "equipment",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 5
+        },
+        {
+          "id": "control_resistance",
+          "stat": "control_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.04
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_garment_1_manteau"
+    },
+    {
+      "id": "equipment_shoes_1_boots",
+      "name_key": "equipment_shoes_1_boots",
+      "kind": "equipment",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 28
+        },
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 6
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_shoes_1_boots"
+    },
+    {
+      "id": "equipment_shoes_1_sandals",
+      "name_key": "equipment_shoes_1_sandals",
+      "kind": "equipment",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 23
+        },
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 13
+        },
+        {
+          "id": "sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.06
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_shoes_1_sandals"
+    },
+    {
+      "id": "equipment_accessory_1_power",
+      "name_key": "equipment_accessory_1_power",
+      "kind": "equipment",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 6
+        },
+        {
+          "id": "outgoing_physical_bonus",
+          "stat": "outgoing_physical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.03
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_accessory_1_power"
+    },
+    {
+      "id": "equipment_accessory_1_wisdom",
+      "name_key": "equipment_accessory_1_wisdom",
+      "kind": "equipment",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 6
+        },
+        {
+          "id": "outgoing_magical_bonus",
+          "stat": "outgoing_magical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.03
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_accessory_1_wisdom"
+    },
+    {
+      "id": "equipment_accessory_1_rosary",
+      "name_key": "equipment_accessory_1_rosary",
+      "kind": "equipment",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "crit_chance_bonus",
+          "stat": "crit_chance_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.015
+        },
+        {
+          "id": "hit_bonus",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.015
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_accessory_1_rosary"
+    },
+    {
+      "id": "equipment_sword_20_b",
+      "name_key": "equipment_sword_20_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "sword",
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 62
+        },
+        {
+          "id": "crit_chance_bonus",
+          "stat": "crit_chance_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.03
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_sword_20_b"
+    },
+    {
+      "id": "equipment_dagger_20_b",
+      "name_key": "equipment_dagger_20_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "dagger",
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 60
+        },
+        {
+          "id": "crit_damage_bonus",
+          "stat": "crit_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.12
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_dagger_20_b"
+    },
+    {
+      "id": "equipment_axe_20_b",
+      "name_key": "equipment_axe_20_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "axe",
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 63
+        },
+        {
+          "id": "armor_break_percent",
+          "stat": "armor_break_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.06
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_axe_20_b"
+    },
+    {
+      "id": "equipment_bow_20_b",
+      "name_key": "equipment_bow_20_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "bow",
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 63
+        },
+        {
+          "id": "hit_bonus",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.045
+        },
+        {
+          "id": "crit_chance_bonus",
+          "stat": "crit_chance_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.015
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_bow_20_b"
+    },
+    {
+      "id": "equipment_knuckle_20_b",
+      "name_key": "equipment_knuckle_20_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "knuckle",
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 62
+        },
+        {
+          "id": "outgoing_physical_bonus",
+          "stat": "outgoing_physical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.045
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_knuckle_20_b"
+    },
+    {
+      "id": "equipment_whip_20_b",
+      "name_key": "equipment_whip_20_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "whip",
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 63
+        },
+        {
+          "id": "control_accuracy",
+          "stat": "control_accuracy",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.06
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_whip_20_b"
+    },
+    {
+      "id": "equipment_instrument_20_b",
+      "name_key": "equipment_instrument_20_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "instrument",
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 60
+        },
+        {
+          "id": "outgoing_healing_bonus",
+          "stat": "outgoing_healing_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.06
+        },
+        {
+          "id": "sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.06
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_instrument_20_b"
+    },
+    {
+      "id": "equipment_staff_20_b",
+      "name_key": "equipment_staff_20_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "staff",
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 62
+        },
+        {
+          "id": "outgoing_magical_bonus",
+          "stat": "outgoing_magical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.045
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_staff_20_b"
+    },
+    {
+      "id": "equipment_mace_20_b",
+      "name_key": "equipment_mace_20_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "mace",
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 62
+        },
+        {
+          "id": "outgoing_healing_bonus",
+          "stat": "outgoing_healing_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.075
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_mace_20_b"
+    },
+    {
+      "id": "equipment_book_20_b",
+      "name_key": "equipment_book_20_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "book",
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 60
+        },
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 24
+        },
+        {
+          "id": "sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.12
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_book_20_b"
+    },
+    {
+      "id": "equipment_head_20_helm",
+      "name_key": "equipment_head_20_helm",
+      "kind": "equipment",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 20
+        },
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 80
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_head_20_helm"
+    },
+    {
+      "id": "equipment_head_20_circlet",
+      "name_key": "equipment_head_20_circlet",
+      "kind": "equipment",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 17
+        },
+        {
+          "id": "outgoing_magical_bonus",
+          "stat": "outgoing_magical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.03
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_head_20_circlet"
+    },
+    {
+      "id": "equipment_armor_20_robe",
+      "name_key": "equipment_armor_20_robe",
+      "kind": "equipment",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 224
+        },
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 29
+        },
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 20
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_armor_20_robe"
+    },
+    {
+      "id": "equipment_armor_20_suit",
+      "name_key": "equipment_armor_20_suit",
+      "kind": "equipment",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 240
+        },
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 19
+        },
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.03
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_armor_20_suit"
+    },
+    {
+      "id": "equipment_garment_20_cape",
+      "name_key": "equipment_garment_20_cape",
+      "kind": "equipment",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 17
+        },
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.0375
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_garment_20_cape"
+    },
+    {
+      "id": "equipment_garment_20_manteau",
+      "name_key": "equipment_garment_20_manteau",
+      "kind": "equipment",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 17
+        },
+        {
+          "id": "control_resistance",
+          "stat": "control_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.06
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_garment_20_manteau"
+    },
+    {
+      "id": "equipment_shoes_20_boots",
+      "name_key": "equipment_shoes_20_boots",
+      "kind": "equipment",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 96
+        },
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 16
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_shoes_20_boots"
+    },
+    {
+      "id": "equipment_shoes_20_sandals",
+      "name_key": "equipment_shoes_20_sandals",
+      "kind": "equipment",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 80
+        },
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 24
+        },
+        {
+          "id": "sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.09
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_shoes_20_sandals"
+    },
+    {
+      "id": "equipment_accessory_20_power",
+      "name_key": "equipment_accessory_20_power",
+      "kind": "equipment",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 12
+        },
+        {
+          "id": "outgoing_physical_bonus",
+          "stat": "outgoing_physical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.045
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_accessory_20_power"
+    },
+    {
+      "id": "equipment_accessory_20_wisdom",
+      "name_key": "equipment_accessory_20_wisdom",
+      "kind": "equipment",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 12
+        },
+        {
+          "id": "outgoing_magical_bonus",
+          "stat": "outgoing_magical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.045
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_accessory_20_wisdom"
+    },
+    {
+      "id": "equipment_accessory_20_rosary",
+      "name_key": "equipment_accessory_20_rosary",
+      "kind": "equipment",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "crit_chance_bonus",
+          "stat": "crit_chance_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.0225
+        },
+        {
+          "id": "hit_bonus",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.0225
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_accessory_20_rosary"
+    },
+    {
+      "id": "equipment_sword_40_b",
+      "name_key": "equipment_sword_40_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "sword",
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 114
+        },
+        {
+          "id": "crit_chance_bonus",
+          "stat": "crit_chance_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.04
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_sword_40_b"
+    },
+    {
+      "id": "equipment_dagger_40_b",
+      "name_key": "equipment_dagger_40_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "dagger",
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 110
+        },
+        {
+          "id": "crit_damage_bonus",
+          "stat": "crit_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.16
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_dagger_40_b"
+    },
+    {
+      "id": "equipment_axe_40_b",
+      "name_key": "equipment_axe_40_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "axe",
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 117
+        },
+        {
+          "id": "armor_break_percent",
+          "stat": "armor_break_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.08
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_axe_40_b"
+    },
+    {
+      "id": "equipment_bow_40_b",
+      "name_key": "equipment_bow_40_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "bow",
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 117
+        },
+        {
+          "id": "hit_bonus",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.06
+        },
+        {
+          "id": "crit_chance_bonus",
+          "stat": "crit_chance_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.02
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_bow_40_b"
+    },
+    {
+      "id": "equipment_knuckle_40_b",
+      "name_key": "equipment_knuckle_40_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "knuckle",
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 114
+        },
+        {
+          "id": "outgoing_physical_bonus",
+          "stat": "outgoing_physical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.06
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_knuckle_40_b"
+    },
+    {
+      "id": "equipment_whip_40_b",
+      "name_key": "equipment_whip_40_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "whip",
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 117
+        },
+        {
+          "id": "control_accuracy",
+          "stat": "control_accuracy",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.08
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_whip_40_b"
+    },
+    {
+      "id": "equipment_instrument_40_b",
+      "name_key": "equipment_instrument_40_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "instrument",
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 110
+        },
+        {
+          "id": "outgoing_healing_bonus",
+          "stat": "outgoing_healing_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.08
+        },
+        {
+          "id": "sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.08
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_instrument_40_b"
+    },
+    {
+      "id": "equipment_staff_40_b",
+      "name_key": "equipment_staff_40_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "staff",
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 114
+        },
+        {
+          "id": "outgoing_magical_bonus",
+          "stat": "outgoing_magical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.06
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_staff_40_b"
+    },
+    {
+      "id": "equipment_mace_40_b",
+      "name_key": "equipment_mace_40_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "mace",
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 114
+        },
+        {
+          "id": "outgoing_healing_bonus",
+          "stat": "outgoing_healing_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.1
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_mace_40_b"
+    },
+    {
+      "id": "equipment_book_40_b",
+      "name_key": "equipment_book_40_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "book",
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 110
+        },
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 44
+        },
+        {
+          "id": "sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.16
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_book_40_b"
+    },
+    {
+      "id": "equipment_head_40_helm",
+      "name_key": "equipment_head_40_helm",
+      "kind": "equipment",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 34
+        },
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 140
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_head_40_helm"
+    },
+    {
+      "id": "equipment_head_40_circlet",
+      "name_key": "equipment_head_40_circlet",
+      "kind": "equipment",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 29
+        },
+        {
+          "id": "outgoing_magical_bonus",
+          "stat": "outgoing_magical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.04
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_head_40_circlet"
+    },
+    {
+      "id": "equipment_armor_40_robe",
+      "name_key": "equipment_armor_40_robe",
+      "kind": "equipment",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 392
+        },
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 47
+        },
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 30
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_armor_40_robe"
+    },
+    {
+      "id": "equipment_armor_40_suit",
+      "name_key": "equipment_armor_40_suit",
+      "kind": "equipment",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 420
+        },
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 31
+        },
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.04
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_armor_40_suit"
+    },
+    {
+      "id": "equipment_garment_40_cape",
+      "name_key": "equipment_garment_40_cape",
+      "kind": "equipment",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 29
+        },
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.05
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_garment_40_cape"
+    },
+    {
+      "id": "equipment_garment_40_manteau",
+      "name_key": "equipment_garment_40_manteau",
+      "kind": "equipment",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 29
+        },
+        {
+          "id": "control_resistance",
+          "stat": "control_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.08
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_garment_40_manteau"
+    },
+    {
+      "id": "equipment_shoes_40_boots",
+      "name_key": "equipment_shoes_40_boots",
+      "kind": "equipment",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 168
+        },
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 26
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_shoes_40_boots"
+    },
+    {
+      "id": "equipment_shoes_40_sandals",
+      "name_key": "equipment_shoes_40_sandals",
+      "kind": "equipment",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 140
+        },
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 36
+        },
+        {
+          "id": "sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.12
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_shoes_40_sandals"
+    },
+    {
+      "id": "equipment_accessory_40_power",
+      "name_key": "equipment_accessory_40_power",
+      "kind": "equipment",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 18
+        },
+        {
+          "id": "outgoing_physical_bonus",
+          "stat": "outgoing_physical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.06
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_accessory_40_power"
+    },
+    {
+      "id": "equipment_accessory_40_wisdom",
+      "name_key": "equipment_accessory_40_wisdom",
+      "kind": "equipment",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 18
+        },
+        {
+          "id": "outgoing_magical_bonus",
+          "stat": "outgoing_magical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.06
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_accessory_40_wisdom"
+    },
+    {
+      "id": "equipment_accessory_40_rosary",
+      "name_key": "equipment_accessory_40_rosary",
+      "kind": "equipment",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "crit_chance_bonus",
+          "stat": "crit_chance_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.03
+        },
+        {
+          "id": "hit_bonus",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.03
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_accessory_40_rosary"
+    },
+    {
+      "id": "equipment_sword_60_b",
+      "name_key": "equipment_sword_60_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "sword",
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 167
+        },
+        {
+          "id": "crit_chance_bonus",
+          "stat": "crit_chance_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.05
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_sword_60_b"
+    },
+    {
+      "id": "equipment_dagger_60_b",
+      "name_key": "equipment_dagger_60_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "dagger",
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 162
+        },
+        {
+          "id": "crit_damage_bonus",
+          "stat": "crit_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.2
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_dagger_60_b"
+    },
+    {
+      "id": "equipment_axe_60_b",
+      "name_key": "equipment_axe_60_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "axe",
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 171
+        },
+        {
+          "id": "armor_break_percent",
+          "stat": "armor_break_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.1
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_axe_60_b"
+    },
+    {
+      "id": "equipment_bow_60_b",
+      "name_key": "equipment_bow_60_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "bow",
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 171
+        },
+        {
+          "id": "hit_bonus",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.075
+        },
+        {
+          "id": "crit_chance_bonus",
+          "stat": "crit_chance_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_bow_60_b"
+    },
+    {
+      "id": "equipment_knuckle_60_b",
+      "name_key": "equipment_knuckle_60_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "knuckle",
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 167
+        },
+        {
+          "id": "outgoing_physical_bonus",
+          "stat": "outgoing_physical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.075
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_knuckle_60_b"
+    },
+    {
+      "id": "equipment_whip_60_b",
+      "name_key": "equipment_whip_60_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "whip",
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 171
+        },
+        {
+          "id": "control_accuracy",
+          "stat": "control_accuracy",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.1
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_whip_60_b"
+    },
+    {
+      "id": "equipment_instrument_60_b",
+      "name_key": "equipment_instrument_60_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "instrument",
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 162
+        },
+        {
+          "id": "outgoing_healing_bonus",
+          "stat": "outgoing_healing_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.1
+        },
+        {
+          "id": "sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.1
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_instrument_60_b"
+    },
+    {
+      "id": "equipment_staff_60_b",
+      "name_key": "equipment_staff_60_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "staff",
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 167
+        },
+        {
+          "id": "outgoing_magical_bonus",
+          "stat": "outgoing_magical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.075
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_staff_60_b"
+    },
+    {
+      "id": "equipment_mace_60_b",
+      "name_key": "equipment_mace_60_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "mace",
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 167
+        },
+        {
+          "id": "outgoing_healing_bonus",
+          "stat": "outgoing_healing_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.125
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_mace_60_b"
+    },
+    {
+      "id": "equipment_book_60_b",
+      "name_key": "equipment_book_60_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "book",
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 162
+        },
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 65
+        },
+        {
+          "id": "sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.2
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_book_60_b"
+    },
+    {
+      "id": "equipment_head_60_helm",
+      "name_key": "equipment_head_60_helm",
+      "kind": "equipment",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 48
+        },
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 200
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_head_60_helm"
+    },
+    {
+      "id": "equipment_head_60_circlet",
+      "name_key": "equipment_head_60_circlet",
+      "kind": "equipment",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 41
+        },
+        {
+          "id": "outgoing_magical_bonus",
+          "stat": "outgoing_magical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.05
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_head_60_circlet"
+    },
+    {
+      "id": "equipment_armor_60_robe",
+      "name_key": "equipment_armor_60_robe",
+      "kind": "equipment",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 560
+        },
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 65
+        },
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 40
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_armor_60_robe"
+    },
+    {
+      "id": "equipment_armor_60_suit",
+      "name_key": "equipment_armor_60_suit",
+      "kind": "equipment",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 600
+        },
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 43
+        },
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.05
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_armor_60_suit"
+    },
+    {
+      "id": "equipment_garment_60_cape",
+      "name_key": "equipment_garment_60_cape",
+      "kind": "equipment",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 41
+        },
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.0625
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_garment_60_cape"
+    },
+    {
+      "id": "equipment_garment_60_manteau",
+      "name_key": "equipment_garment_60_manteau",
+      "kind": "equipment",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 41
+        },
+        {
+          "id": "control_resistance",
+          "stat": "control_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.1
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_garment_60_manteau"
+    },
+    {
+      "id": "equipment_shoes_60_boots",
+      "name_key": "equipment_shoes_60_boots",
+      "kind": "equipment",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 240
+        },
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 36
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_shoes_60_boots"
+    },
+    {
+      "id": "equipment_shoes_60_sandals",
+      "name_key": "equipment_shoes_60_sandals",
+      "kind": "equipment",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 200
+        },
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 48
+        },
+        {
+          "id": "sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.15
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_shoes_60_sandals"
+    },
+    {
+      "id": "equipment_accessory_60_power",
+      "name_key": "equipment_accessory_60_power",
+      "kind": "equipment",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 24
+        },
+        {
+          "id": "outgoing_physical_bonus",
+          "stat": "outgoing_physical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.075
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_accessory_60_power"
+    },
+    {
+      "id": "equipment_accessory_60_wisdom",
+      "name_key": "equipment_accessory_60_wisdom",
+      "kind": "equipment",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 24
+        },
+        {
+          "id": "outgoing_magical_bonus",
+          "stat": "outgoing_magical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.075
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_accessory_60_wisdom"
+    },
+    {
+      "id": "equipment_accessory_60_rosary",
+      "name_key": "equipment_accessory_60_rosary",
+      "kind": "equipment",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "crit_chance_bonus",
+          "stat": "crit_chance_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.0375
+        },
+        {
+          "id": "hit_bonus",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.0375
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_equipment_accessory_60_rosary"
+    }
+  ],
+  "presentations": [
+    {
+      "id": "visual_equipment_sword_1",
+      "icon_asset_id": "items.52f51a60efb111b7",
+      "meta_path": "assets/ro/library/items/item_icon/asset--52f51a60efb1.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_bow_1",
+      "icon_asset_id": "items.a36225de14d3b666",
+      "meta_path": "assets/ro/library/items/item_icon/asset--a36225de14d3.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_staff_1",
+      "icon_asset_id": "items.2aa2f8a358566060",
+      "meta_path": "assets/ro/library/items/item_icon/asset--2aa2f8a35856.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_book_1",
+      "icon_asset_id": "items.2e67de2491577ed3",
+      "meta_path": "assets/ro/library/items/item_icon/asset--2e67de249157.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_knuckle_1",
+      "icon_asset_id": "items.c2fd131ff9371d95",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c2fd131ff937.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_axe_1",
+      "icon_asset_id": "items.0ae9613d3f0f2e69",
+      "meta_path": "assets/ro/library/items/item_icon/asset--0ae9613d3f0f.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_mace_1",
+      "icon_asset_id": "items.fcc98ad46a6c81e1",
+      "meta_path": "assets/ro/library/items/item_icon/asset--fcc98ad46a6c.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_dagger_1",
+      "icon_asset_id": "items.61ce96f1e0182f4d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--61ce96f1e018.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_whip_1",
+      "icon_asset_id": "items.ac6f7a5b4ff25c33",
+      "meta_path": "assets/ro/library/items/item_icon/asset--ac6f7a5b4ff2.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_instrument_1",
+      "icon_asset_id": "items.891c9faa97b328ad",
+      "meta_path": "assets/ro/library/items/item_icon/asset--891c9faa97b3.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_head_1",
+      "icon_asset_id": "items.8f9b7e709a30619f",
+      "meta_path": "assets/ro/library/items/item_icon/asset--8f9b7e709a30.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_armor_1",
+      "icon_asset_id": "items.ef12615648165116",
+      "meta_path": "assets/ro/library/items/item_icon/asset--ef1261564816.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_garment_1",
+      "icon_asset_id": "items.0ad8751f8cd326b0",
+      "meta_path": "assets/ro/library/items/item_icon/asset--0ad8751f8cd3.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_shoes_1",
+      "icon_asset_id": "items.107e108191f23896",
+      "meta_path": "assets/ro/library/items/item_icon/asset--107e108191f2.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_accessory_1",
+      "icon_asset_id": "items.5cf5814c042efa28",
+      "meta_path": "assets/ro/library/items/item_icon/asset--5cf5814c042e.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_sword_20",
+      "icon_asset_id": "items.52f51a60efb111b7",
+      "meta_path": "assets/ro/library/items/item_icon/asset--52f51a60efb1.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_bow_20",
+      "icon_asset_id": "items.a36225de14d3b666",
+      "meta_path": "assets/ro/library/items/item_icon/asset--a36225de14d3.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_staff_20",
+      "icon_asset_id": "items.2aa2f8a358566060",
+      "meta_path": "assets/ro/library/items/item_icon/asset--2aa2f8a35856.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_book_20",
+      "icon_asset_id": "items.2e67de2491577ed3",
+      "meta_path": "assets/ro/library/items/item_icon/asset--2e67de249157.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_knuckle_20",
+      "icon_asset_id": "items.c2fd131ff9371d95",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c2fd131ff937.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_axe_20",
+      "icon_asset_id": "items.0ae9613d3f0f2e69",
+      "meta_path": "assets/ro/library/items/item_icon/asset--0ae9613d3f0f.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_mace_20",
+      "icon_asset_id": "items.fcc98ad46a6c81e1",
+      "meta_path": "assets/ro/library/items/item_icon/asset--fcc98ad46a6c.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_dagger_20",
+      "icon_asset_id": "items.61ce96f1e0182f4d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--61ce96f1e018.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_whip_20",
+      "icon_asset_id": "items.ac6f7a5b4ff25c33",
+      "meta_path": "assets/ro/library/items/item_icon/asset--ac6f7a5b4ff2.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_instrument_20",
+      "icon_asset_id": "items.891c9faa97b328ad",
+      "meta_path": "assets/ro/library/items/item_icon/asset--891c9faa97b3.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_head_20",
+      "icon_asset_id": "items.8f9b7e709a30619f",
+      "meta_path": "assets/ro/library/items/item_icon/asset--8f9b7e709a30.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_armor_20",
+      "icon_asset_id": "items.ef12615648165116",
+      "meta_path": "assets/ro/library/items/item_icon/asset--ef1261564816.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_garment_20",
+      "icon_asset_id": "items.0ad8751f8cd326b0",
+      "meta_path": "assets/ro/library/items/item_icon/asset--0ad8751f8cd3.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_shoes_20",
+      "icon_asset_id": "items.107e108191f23896",
+      "meta_path": "assets/ro/library/items/item_icon/asset--107e108191f2.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_accessory_20",
+      "icon_asset_id": "items.5cf5814c042efa28",
+      "meta_path": "assets/ro/library/items/item_icon/asset--5cf5814c042e.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_sword_40",
+      "icon_asset_id": "items.52f51a60efb111b7",
+      "meta_path": "assets/ro/library/items/item_icon/asset--52f51a60efb1.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_bow_40",
+      "icon_asset_id": "items.a36225de14d3b666",
+      "meta_path": "assets/ro/library/items/item_icon/asset--a36225de14d3.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_staff_40",
+      "icon_asset_id": "items.2aa2f8a358566060",
+      "meta_path": "assets/ro/library/items/item_icon/asset--2aa2f8a35856.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_book_40",
+      "icon_asset_id": "items.2e67de2491577ed3",
+      "meta_path": "assets/ro/library/items/item_icon/asset--2e67de249157.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_knuckle_40",
+      "icon_asset_id": "items.c2fd131ff9371d95",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c2fd131ff937.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_axe_40",
+      "icon_asset_id": "items.0ae9613d3f0f2e69",
+      "meta_path": "assets/ro/library/items/item_icon/asset--0ae9613d3f0f.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_mace_40",
+      "icon_asset_id": "items.fcc98ad46a6c81e1",
+      "meta_path": "assets/ro/library/items/item_icon/asset--fcc98ad46a6c.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_dagger_40",
+      "icon_asset_id": "items.61ce96f1e0182f4d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--61ce96f1e018.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_whip_40",
+      "icon_asset_id": "items.ac6f7a5b4ff25c33",
+      "meta_path": "assets/ro/library/items/item_icon/asset--ac6f7a5b4ff2.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_instrument_40",
+      "icon_asset_id": "items.891c9faa97b328ad",
+      "meta_path": "assets/ro/library/items/item_icon/asset--891c9faa97b3.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_head_40",
+      "icon_asset_id": "items.8f9b7e709a30619f",
+      "meta_path": "assets/ro/library/items/item_icon/asset--8f9b7e709a30.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_armor_40",
+      "icon_asset_id": "items.ef12615648165116",
+      "meta_path": "assets/ro/library/items/item_icon/asset--ef1261564816.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_garment_40",
+      "icon_asset_id": "items.0ad8751f8cd326b0",
+      "meta_path": "assets/ro/library/items/item_icon/asset--0ad8751f8cd3.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_shoes_40",
+      "icon_asset_id": "items.107e108191f23896",
+      "meta_path": "assets/ro/library/items/item_icon/asset--107e108191f2.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_accessory_40",
+      "icon_asset_id": "items.5cf5814c042efa28",
+      "meta_path": "assets/ro/library/items/item_icon/asset--5cf5814c042e.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_sword_60",
+      "icon_asset_id": "items.52f51a60efb111b7",
+      "meta_path": "assets/ro/library/items/item_icon/asset--52f51a60efb1.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_bow_60",
+      "icon_asset_id": "items.a36225de14d3b666",
+      "meta_path": "assets/ro/library/items/item_icon/asset--a36225de14d3.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_staff_60",
+      "icon_asset_id": "items.2aa2f8a358566060",
+      "meta_path": "assets/ro/library/items/item_icon/asset--2aa2f8a35856.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_book_60",
+      "icon_asset_id": "items.2e67de2491577ed3",
+      "meta_path": "assets/ro/library/items/item_icon/asset--2e67de249157.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_knuckle_60",
+      "icon_asset_id": "items.c2fd131ff9371d95",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c2fd131ff937.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_axe_60",
+      "icon_asset_id": "items.0ae9613d3f0f2e69",
+      "meta_path": "assets/ro/library/items/item_icon/asset--0ae9613d3f0f.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_mace_60",
+      "icon_asset_id": "items.fcc98ad46a6c81e1",
+      "meta_path": "assets/ro/library/items/item_icon/asset--fcc98ad46a6c.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_dagger_60",
+      "icon_asset_id": "items.61ce96f1e0182f4d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--61ce96f1e018.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_whip_60",
+      "icon_asset_id": "items.ac6f7a5b4ff25c33",
+      "meta_path": "assets/ro/library/items/item_icon/asset--ac6f7a5b4ff2.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_instrument_60",
+      "icon_asset_id": "items.891c9faa97b328ad",
+      "meta_path": "assets/ro/library/items/item_icon/asset--891c9faa97b3.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_head_60",
+      "icon_asset_id": "items.8f9b7e709a30619f",
+      "meta_path": "assets/ro/library/items/item_icon/asset--8f9b7e709a30.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_armor_60",
+      "icon_asset_id": "items.ef12615648165116",
+      "meta_path": "assets/ro/library/items/item_icon/asset--ef1261564816.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_garment_60",
+      "icon_asset_id": "items.0ad8751f8cd326b0",
+      "meta_path": "assets/ro/library/items/item_icon/asset--0ad8751f8cd3.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_shoes_60",
+      "icon_asset_id": "items.107e108191f23896",
+      "meta_path": "assets/ro/library/items/item_icon/asset--107e108191f2.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_accessory_60",
+      "icon_asset_id": "items.5cf5814c042efa28",
+      "meta_path": "assets/ro/library/items/item_icon/asset--5cf5814c042e.meta.json",
+      "basis": "source item ID mapping; inventory icon only, no animation review"
+    },
+    {
+      "id": "visual_equipment_sword_1_b",
+      "icon_asset_id": "items.8718756a49e6d04e",
+      "meta_path": "assets/ro/library/items/item_icon/asset--8718756a49e6.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_dagger_1_b",
+      "icon_asset_id": "items.1a884cb2ce7ab4a0",
+      "meta_path": "assets/ro/library/items/item_icon/asset--1a884cb2ce7a.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_axe_1_b",
+      "icon_asset_id": "items.276a23d314c6ef9a",
+      "meta_path": "assets/ro/library/items/item_icon/asset--276a23d314c6.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_bow_1_b",
+      "icon_asset_id": "items.007bc026f77eb685",
+      "meta_path": "assets/ro/library/items/item_icon/asset--007bc026f77e.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_knuckle_1_b",
+      "icon_asset_id": "items.0efdf0dda26a012d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--0efdf0dda26a.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_whip_1_b",
+      "icon_asset_id": "items.92535fc6c74d22e0",
+      "meta_path": "assets/ro/library/items/item_icon/asset--92535fc6c74d.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_instrument_1_b",
+      "icon_asset_id": "items.e71a2224ce4eb8e6",
+      "meta_path": "assets/ro/library/items/item_icon/asset--e71a2224ce4e.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_staff_1_b",
+      "icon_asset_id": "items.cf112c4f489df347",
+      "meta_path": "assets/ro/library/items/item_icon/asset--cf112c4f489d.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_mace_1_b",
+      "icon_asset_id": "items.f176d78a462e57e9",
+      "meta_path": "assets/ro/library/items/item_icon/asset--f176d78a462e.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_book_1_b",
+      "icon_asset_id": "items.517c7f5095d100f8",
+      "meta_path": "assets/ro/library/items/item_icon/asset--517c7f5095d1.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_head_1_helm",
+      "icon_asset_id": "items.e6c5af954d56158b",
+      "meta_path": "assets/ro/library/items/item_icon/asset--e6c5af954d56.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_head_1_circlet",
+      "icon_asset_id": "items.960452ab1ffe0b86",
+      "meta_path": "assets/ro/library/items/item_icon/asset--960452ab1ffe.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_armor_1_robe",
+      "icon_asset_id": "items.63bbcad5676c105a",
+      "meta_path": "assets/ro/library/items/item_icon/asset--63bbcad5676c.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_armor_1_suit",
+      "icon_asset_id": "items.d88f2ad6ca63e456",
+      "meta_path": "assets/ro/library/items/item_icon/asset--d88f2ad6ca63.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_garment_1_cape",
+      "icon_asset_id": "items.0ad8751f8cd326b0",
+      "meta_path": "assets/ro/library/items/item_icon/asset--0ad8751f8cd3.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_garment_1_manteau",
+      "icon_asset_id": "items.02026233d8a3b6f1",
+      "meta_path": "assets/ro/library/items/item_icon/asset--02026233d8a3.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_shoes_1_boots",
+      "icon_asset_id": "items.4713ff0df219d709",
+      "meta_path": "assets/ro/library/items/item_icon/asset--4713ff0df219.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_shoes_1_sandals",
+      "icon_asset_id": "items.107e108191f23896",
+      "meta_path": "assets/ro/library/items/item_icon/asset--107e108191f2.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_accessory_1_power",
+      "icon_asset_id": "items.5cf5814c042efa28",
+      "meta_path": "assets/ro/library/items/item_icon/asset--5cf5814c042e.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_accessory_1_wisdom",
+      "icon_asset_id": "items.6d65cb2789df5875",
+      "meta_path": "assets/ro/library/items/item_icon/asset--6d65cb2789df.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_accessory_1_rosary",
+      "icon_asset_id": "items.de5fde89a8ce9580",
+      "meta_path": "assets/ro/library/items/item_icon/asset--de5fde89a8ce.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_sword_20_b",
+      "icon_asset_id": "items.943116840dd9b044",
+      "meta_path": "assets/ro/library/items/item_icon/asset--943116840dd9.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_dagger_20_b",
+      "icon_asset_id": "items.6941e77ba5f48e86",
+      "meta_path": "assets/ro/library/items/item_icon/asset--6941e77ba5f4.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_axe_20_b",
+      "icon_asset_id": "items.dc6e6152bb3d8db5",
+      "meta_path": "assets/ro/library/items/item_icon/asset--dc6e6152bb3d.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_bow_20_b",
+      "icon_asset_id": "items.a5c3fdeb2d0d2281",
+      "meta_path": "assets/ro/library/items/item_icon/asset--a5c3fdeb2d0d.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_knuckle_20_b",
+      "icon_asset_id": "items.0a3fff171c984c5f",
+      "meta_path": "assets/ro/library/items/item_icon/asset--0a3fff171c98.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_whip_20_b",
+      "icon_asset_id": "items.4cea98009cdf12ed",
+      "meta_path": "assets/ro/library/items/item_icon/asset--4cea98009cdf.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_instrument_20_b",
+      "icon_asset_id": "items.9911b49aba2ca614",
+      "meta_path": "assets/ro/library/items/item_icon/asset--9911b49aba2c.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_staff_20_b",
+      "icon_asset_id": "items.19457df370638b95",
+      "meta_path": "assets/ro/library/items/item_icon/asset--19457df37063.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_mace_20_b",
+      "icon_asset_id": "items.51ba6d1896ec9e8b",
+      "meta_path": "assets/ro/library/items/item_icon/asset--51ba6d1896ec.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_book_20_b",
+      "icon_asset_id": "items.c73c9766c6ab0470",
+      "meta_path": "assets/ro/library/items/item_icon/asset--c73c9766c6ab.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_head_20_helm",
+      "icon_asset_id": "items.4ce654da288730c3",
+      "meta_path": "assets/ro/library/items/item_icon/asset--4ce654da2887.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_head_20_circlet",
+      "icon_asset_id": "items.54e36abd75cd01c6",
+      "meta_path": "assets/ro/library/items/item_icon/asset--54e36abd75cd.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_armor_20_robe",
+      "icon_asset_id": "items.d5868af73338dbb5",
+      "meta_path": "assets/ro/library/items/item_icon/asset--d5868af73338.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_armor_20_suit",
+      "icon_asset_id": "items.fe2ae638ae43dc9d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--fe2ae638ae43.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_garment_20_cape",
+      "icon_asset_id": "items.7e106e6a8b655be6",
+      "meta_path": "assets/ro/library/items/item_icon/asset--7e106e6a8b65.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_garment_20_manteau",
+      "icon_asset_id": "items.71891ef20e75a47e",
+      "meta_path": "assets/ro/library/items/item_icon/asset--71891ef20e75.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_shoes_20_boots",
+      "icon_asset_id": "items.f932313a77a36411",
+      "meta_path": "assets/ro/library/items/item_icon/asset--f932313a77a3.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_shoes_20_sandals",
+      "icon_asset_id": "items.ee85bb6d9409ca04",
+      "meta_path": "assets/ro/library/items/item_icon/asset--ee85bb6d9409.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_accessory_20_power",
+      "icon_asset_id": "items.a15d42097b3b97df",
+      "meta_path": "assets/ro/library/items/item_icon/asset--a15d42097b3b.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_accessory_20_wisdom",
+      "icon_asset_id": "items.9b8796002a90c109",
+      "meta_path": "assets/ro/library/items/item_icon/asset--9b8796002a90.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_accessory_20_rosary",
+      "icon_asset_id": "items.4efe66c407a4ff1e",
+      "meta_path": "assets/ro/library/items/item_icon/asset--4efe66c407a4.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_sword_40_b",
+      "icon_asset_id": "items.5bc0d9a6e2d8436f",
+      "meta_path": "assets/ro/library/items/item_icon/asset--5bc0d9a6e2d8.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_dagger_40_b",
+      "icon_asset_id": "items.87ae1f3f8d9dcee6",
+      "meta_path": "assets/ro/library/items/item_icon/asset--87ae1f3f8d9d.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_axe_40_b",
+      "icon_asset_id": "items.71ea84d8f7d42c85",
+      "meta_path": "assets/ro/library/items/item_icon/asset--71ea84d8f7d4.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_bow_40_b",
+      "icon_asset_id": "items.96d23e5726ddf3fd",
+      "meta_path": "assets/ro/library/items/item_icon/asset--96d23e5726dd.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_knuckle_40_b",
+      "icon_asset_id": "items.120213b007039c7f",
+      "meta_path": "assets/ro/library/items/item_icon/asset--120213b00703.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_whip_40_b",
+      "icon_asset_id": "items.01159beae4cb19b8",
+      "meta_path": "assets/ro/library/items/item_icon/asset--01159beae4cb.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_instrument_40_b",
+      "icon_asset_id": "items.29b96b5648b9419a",
+      "meta_path": "assets/ro/library/items/item_icon/asset--29b96b5648b9.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_staff_40_b",
+      "icon_asset_id": "items.d183110804563529",
+      "meta_path": "assets/ro/library/items/item_icon/asset--d18311080456.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_mace_40_b",
+      "icon_asset_id": "items.11ddc87284ea6fca",
+      "meta_path": "assets/ro/library/items/item_icon/asset--11ddc87284ea.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_book_40_b",
+      "icon_asset_id": "items.5a4b56b385282239",
+      "meta_path": "assets/ro/library/items/item_icon/asset--5a4b56b38528.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_head_40_helm",
+      "icon_asset_id": "items.2f571e4b894c55e1",
+      "meta_path": "assets/ro/library/items/item_icon/asset--2f571e4b894c.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_head_40_circlet",
+      "icon_asset_id": "items.a1db179b4d11bb3c",
+      "meta_path": "assets/ro/library/items/item_icon/asset--a1db179b4d11.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_armor_40_robe",
+      "icon_asset_id": "items.2987b9a3d5a02399",
+      "meta_path": "assets/ro/library/items/item_icon/asset--2987b9a3d5a0.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_armor_40_suit",
+      "icon_asset_id": "items.ee053c8f6374dd8a",
+      "meta_path": "assets/ro/library/items/item_icon/asset--ee053c8f6374.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_garment_40_cape",
+      "icon_asset_id": "items.fc05d6a4658a8f88",
+      "meta_path": "assets/ro/library/items/item_icon/asset--fc05d6a4658a.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_garment_40_manteau",
+      "icon_asset_id": "items.31e4a62a0850bb2e",
+      "meta_path": "assets/ro/library/items/item_icon/asset--31e4a62a0850.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_shoes_40_boots",
+      "icon_asset_id": "items.15076476d0e3e235",
+      "meta_path": "assets/ro/library/items/item_icon/asset--15076476d0e3.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_shoes_40_sandals",
+      "icon_asset_id": "items.4e9d67bc26c4dba1",
+      "meta_path": "assets/ro/library/items/item_icon/asset--4e9d67bc26c4.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_accessory_40_power",
+      "icon_asset_id": "items.0af4a882e2f5322d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--0af4a882e2f5.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_accessory_40_wisdom",
+      "icon_asset_id": "items.554298e6b0dcdbae",
+      "meta_path": "assets/ro/library/items/item_icon/asset--554298e6b0dc.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_accessory_40_rosary",
+      "icon_asset_id": "items.e716f30f8f21747b",
+      "meta_path": "assets/ro/library/items/item_icon/asset--e716f30f8f21.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_sword_60_b",
+      "icon_asset_id": "items.6958ebebd1d1b78b",
+      "meta_path": "assets/ro/library/items/item_icon/asset--6958ebebd1d1.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_dagger_60_b",
+      "icon_asset_id": "items.9776c6f0138f7630",
+      "meta_path": "assets/ro/library/items/item_icon/asset--9776c6f0138f.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_axe_60_b",
+      "icon_asset_id": "items.1a318906800d3497",
+      "meta_path": "assets/ro/library/items/item_icon/asset--1a318906800d.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_bow_60_b",
+      "icon_asset_id": "items.e1ce8ee9ea038991",
+      "meta_path": "assets/ro/library/items/item_icon/asset--e1ce8ee9ea03.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_knuckle_60_b",
+      "icon_asset_id": "items.503c43cdc79ad211",
+      "meta_path": "assets/ro/library/items/item_icon/asset--503c43cdc79a.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_whip_60_b",
+      "icon_asset_id": "items.2d3cfbfbe08f260e",
+      "meta_path": "assets/ro/library/items/item_icon/asset--2d3cfbfbe08f.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_instrument_60_b",
+      "icon_asset_id": "items.245344c0cb87b0f7",
+      "meta_path": "assets/ro/library/items/item_icon/asset--245344c0cb87.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_staff_60_b",
+      "icon_asset_id": "items.23cbae6357681495",
+      "meta_path": "assets/ro/library/items/item_icon/asset--23cbae635768.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_mace_60_b",
+      "icon_asset_id": "items.db13420f7e9d0bcb",
+      "meta_path": "assets/ro/library/items/item_icon/asset--db13420f7e9d.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_book_60_b",
+      "icon_asset_id": "items.810b5bbe0a525d2d",
+      "meta_path": "assets/ro/library/items/item_icon/asset--810b5bbe0a52.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_head_60_helm",
+      "icon_asset_id": "items.6a51d57f10f79a20",
+      "meta_path": "assets/ro/library/items/item_icon/asset--6a51d57f10f7.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_head_60_circlet",
+      "icon_asset_id": "items.e2c9448074e95c17",
+      "meta_path": "assets/ro/library/items/item_icon/asset--e2c9448074e9.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_armor_60_robe",
+      "icon_asset_id": "items.f956cfa8840f8854",
+      "meta_path": "assets/ro/library/items/item_icon/asset--f956cfa8840f.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_armor_60_suit",
+      "icon_asset_id": "items.648be7cfc355b2c1",
+      "meta_path": "assets/ro/library/items/item_icon/asset--648be7cfc355.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_garment_60_cape",
+      "icon_asset_id": "items.17641373a0344c68",
+      "meta_path": "assets/ro/library/items/item_icon/asset--17641373a034.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_garment_60_manteau",
+      "icon_asset_id": "items.46d4ff41f6b45413",
+      "meta_path": "assets/ro/library/items/item_icon/asset--46d4ff41f6b4.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_shoes_60_boots",
+      "icon_asset_id": "items.eae15b1660274ebd",
+      "meta_path": "assets/ro/library/items/item_icon/asset--eae15b166027.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_shoes_60_sandals",
+      "icon_asset_id": "items.ba4f02d1b505ee75",
+      "meta_path": "assets/ro/library/items/item_icon/asset--ba4f02d1b505.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_accessory_60_power",
+      "icon_asset_id": "items.978eccc0e9adb05f",
+      "meta_path": "assets/ro/library/items/item_icon/asset--978eccc0e9ad.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_accessory_60_wisdom",
+      "icon_asset_id": "items.1b8cfdfb46883d69",
+      "meta_path": "assets/ro/library/items/item_icon/asset--1b8cfdfb4688.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    },
+    {
+      "id": "visual_equipment_accessory_60_rosary",
+      "icon_asset_id": "items.5336be8178d589da",
+      "meta_path": "assets/ro/library/items/item_icon/asset--5336be8178d5.meta.json",
+      "basis": "D-068 variant: RO item ID icon mapping (inventory icon only); stats newly designed"
+    }
+  ],
+  "rarities": [
+    {
+      "id": "common",
+      "color": "white",
+      "power_multiplier": 1,
+      "rank": 0
+    },
+    {
+      "id": "uncommon",
+      "color": "green",
+      "power_multiplier": 1.12,
+      "rank": 1
+    },
+    {
+      "id": "rare",
+      "color": "blue",
+      "power_multiplier": 1.28,
+      "rank": 2
+    },
+    {
+      "id": "epic",
+      "color": "purple",
+      "power_multiplier": 1.5,
+      "rank": 3
+    },
+    {
+      "id": "legendary",
+      "color": "gold",
+      "power_multiplier": 1.8,
+      "rank": 4
+    },
+    {
+      "id": "immortal",
+      "color": "red",
+      "power_multiplier": 2.2,
+      "rank": 5
+    },
+    {
+      "id": "supreme",
+      "color": "rainbow_white",
+      "power_multiplier": 2.7,
+      "rank": 6
+    }
+  ],
+  "weapon_compatibility": {
+    "swordsman": "sword",
+    "knight": "sword",
+    "crusader": "sword",
+    "acolyte": "staff",
+    "priest": "staff",
+    "monk": "knuckle",
+    "archer": "bow",
+    "hunter": "bow",
+    "bard": "instrument",
+    "dancer": "whip",
+    "mage": "staff",
+    "wizard": "staff",
+    "sage": "book",
+    "thief": "dagger",
+    "assassin": "dagger",
+    "rogue": "dagger",
+    "merchant": "axe",
+    "blacksmith": "axe",
+    "alchemist": "mace"
+  },
+  "instance_fields": [
+    "instance_id",
+    "definition_id",
+    "rarity_id",
+    "locked",
+    "training"
+  ],
+  "inventory_capacity": 500,
+  "resolve_rule": "each base flat modifier multiplied by rarity multiplier then floor; add slot sources separately once; no random substats",
+  "fusion": {
+    "input_count": 3,
+    "must_match": [
+      "rarity_id",
+      "definition.tier_level",
+      "definition.slot",
+      "definition.weapon_type"
+    ],
+    "exclude": [
+      "equipped",
+      "locked",
+      "training"
+    ],
+    "output": "same definition/tier, next rarity; new instance ID",
+    "max_rarity": "supreme",
+    "fee": {},
+    "all_or_nothing": true
+  },
+  "tier_upgrade": {
+    "preserve": [
+      "instance_id",
+      "rarity_id",
+      "locked",
+      "character slot investments"
+    ],
+    "rows": [
+      {
+        "from": 1,
+        "to": 20,
+        "gold": 1000,
+        "refine_ore": 10
+      },
+      {
+        "from": 20,
+        "to": 40,
+        "gold": 5000,
+        "refine_ore": 40
+      },
+      {
+        "from": 40,
+        "to": 60,
+        "gold": 20000,
+        "refine_ore": 120
+      }
+    ],
+    "must_be_unequipped": false,
+    "must_meet_character_level_when_equipped": true,
+    "reject_training": true
+  },
+  "salvage": {
+    "only_unequipped_unlocked": true,
+    "gold_per_tier_unit": 10,
+    "refine_ore_by_rarity": [
+      1,
+      2,
+      4,
+      10,
+      25,
+      60,
+      150
+    ],
+    "tier_factor": "1+tier_level//20",
+    "training_yield": {}
+  },
+  "starter_grants": {
+    "scope": "none",
+    "six_slots": false,
+    "rule_source": "D-059 user request 2026-10-20: characters start with no equipment",
+    "acquisition": "Story/farm drops and the targeted training weapon purchase",
+    "root_switch": "no grant; equipment never re-granted",
+    "previous_baseline": "TASK-009 common tier 1 six-piece set per character creation (replaced)"
+  },
+  "future_tiers": {
+    "80": false,
+    "100": false
+  },
+  "targeted_weapon_purchase": {
+    "rarity": "common",
+    "enabled_tiers": [
+      1
+    ],
+    "cost_rows": [
+      {
+        "tier_level": 1,
+        "gold": 125
+      }
+    ],
+    "training": true,
+    "outside_battle_only": true,
+    "purpose": "cheap Class2 entry weapon only; cannot shortcut rarity/tier/ore progression",
+    "restrictions": [
+      "not_fusion_material",
+      "no_tier_upgrade",
+      "discard_zero_salvage_yield"
+    ]
+  },
+  "random_options": {
+    "rule_source": "D-062 user request 2026-10-20 (Rare 1 line, Epic 2 lines); other counts, pool and ranges are an assistant baseline to tune in TASK-041",
+    "lines_by_rarity": {
+      "common": 0,
+      "uncommon": 0,
+      "rare": 1,
+      "epic": 2,
+      "legendary": 3,
+      "immortal": 4,
+      "supreme": 5
+    },
+    "roll_scale": 1000,
+    "unique_stat_per_item": true,
+    "timing_neutral": true,
+    "tier_scale": {
+      "1": 1,
+      "20": 1.5,
+      "40": 2,
+      "60": 2.5
+    },
+    "value_rule": "value = (min + (max - min) * roll / roll_scale) * tier_scale[item tier], rounded to 4 decimals; tier up keeps rolls so values grow, fusion rolls fresh lines",
+    "pool": [
+      {
+        "id": "opt_atk",
+        "stat": "physical_attack",
+        "op": "add_percent",
+        "bucket": "derived",
+        "min": 0.01,
+        "max": 0.03,
+        "weight": 10
+      },
+      {
+        "id": "opt_matk",
+        "stat": "magical_attack",
+        "op": "add_percent",
+        "bucket": "derived",
+        "min": 0.01,
+        "max": 0.03,
+        "weight": 10
+      },
+      {
+        "id": "opt_hp",
+        "stat": "max_hp",
+        "op": "add_percent",
+        "bucket": "derived",
+        "min": 0.02,
+        "max": 0.05,
+        "weight": 10
+      },
+      {
+        "id": "opt_def",
+        "stat": "physical_defense",
+        "op": "add_percent",
+        "bucket": "derived",
+        "min": 0.02,
+        "max": 0.05,
+        "weight": 8
+      },
+      {
+        "id": "opt_mdef",
+        "stat": "magical_defense",
+        "op": "add_percent",
+        "bucket": "derived",
+        "min": 0.02,
+        "max": 0.05,
+        "weight": 8
+      },
+      {
+        "id": "opt_crit",
+        "stat": "crit_chance_bonus",
+        "op": "add_flat",
+        "bucket": "bonus",
+        "min": 0.005,
+        "max": 0.015,
+        "weight": 7
+      },
+      {
+        "id": "opt_crit_dmg",
+        "stat": "crit_damage_bonus",
+        "op": "add_flat",
+        "bucket": "bonus",
+        "min": 0.02,
+        "max": 0.06,
+        "weight": 6
+      },
+      {
+        "id": "opt_hit",
+        "stat": "hit_bonus",
+        "op": "add_flat",
+        "bucket": "bonus",
+        "min": 0.005,
+        "max": 0.015,
+        "weight": 6
+      },
+      {
+        "id": "opt_flee",
+        "stat": "evasion_bonus",
+        "op": "add_flat",
+        "bucket": "bonus",
+        "min": 0.005,
+        "max": 0.015,
+        "weight": 6
+      },
+      {
+        "id": "opt_heal",
+        "stat": "outgoing_healing_bonus",
+        "op": "add_flat",
+        "bucket": "bonus",
+        "min": 0.01,
+        "max": 0.04,
+        "weight": 5
+      },
+      {
+        "id": "opt_sp_regen",
+        "stat": "sp_regen_percent",
+        "op": "add_flat",
+        "bucket": "bonus",
+        "min": 0.02,
+        "max": 0.06,
+        "weight": 5
+      }
+    ]
+  },
+  "future_definitions": [
+    {
+      "id": "equipment_sword_80",
+      "name_key": "equipment_sword_80",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "sword",
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 250
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_bow_80",
+      "name_key": "equipment_bow_80",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "bow",
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 250
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_staff_80",
+      "name_key": "equipment_staff_80",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "staff",
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 250
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_book_80",
+      "name_key": "equipment_book_80",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "book",
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 250
+        },
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 100
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_knuckle_80",
+      "name_key": "equipment_knuckle_80",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "knuckle",
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 250
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_axe_80",
+      "name_key": "equipment_axe_80",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "axe",
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 250
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_mace_80",
+      "name_key": "equipment_mace_80",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "mace",
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 250
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_dagger_80",
+      "name_key": "equipment_dagger_80",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "dagger",
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 250
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_whip_80",
+      "name_key": "equipment_whip_80",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "whip",
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 250
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_instrument_80",
+      "name_key": "equipment_instrument_80",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "instrument",
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 250
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_head_80",
+      "name_key": "equipment_head_80",
+      "kind": "equipment",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 88
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_armor_80",
+      "name_key": "equipment_armor_80",
+      "kind": "equipment",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 1040
+        },
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 92
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_garment_80",
+      "name_key": "equipment_garment_80",
+      "kind": "equipment",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 88
+        },
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 88
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_shoes_80",
+      "name_key": "equipment_shoes_80",
+      "kind": "equipment",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 520
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_accessory_80",
+      "name_key": "equipment_accessory_80",
+      "kind": "equipment",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 100
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_sword_80_b",
+      "name_key": "equipment_sword_80_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "sword",
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 220
+        },
+        {
+          "id": "crit_chance_bonus",
+          "stat": "crit_chance_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.06
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_dagger_80_b",
+      "name_key": "equipment_dagger_80_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "dagger",
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 212
+        },
+        {
+          "id": "crit_damage_bonus",
+          "stat": "crit_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.24
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_axe_80_b",
+      "name_key": "equipment_axe_80_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "axe",
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 225
+        },
+        {
+          "id": "armor_break_percent",
+          "stat": "armor_break_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.12
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_bow_80_b",
+      "name_key": "equipment_bow_80_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "bow",
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 225
+        },
+        {
+          "id": "hit_bonus",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.09
+        },
+        {
+          "id": "crit_chance_bonus",
+          "stat": "crit_chance_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.03
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_knuckle_80_b",
+      "name_key": "equipment_knuckle_80_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "knuckle",
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 220
+        },
+        {
+          "id": "outgoing_physical_bonus",
+          "stat": "outgoing_physical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.09
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_whip_80_b",
+      "name_key": "equipment_whip_80_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "whip",
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 225
+        },
+        {
+          "id": "control_accuracy",
+          "stat": "control_accuracy",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.12
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_instrument_80_b",
+      "name_key": "equipment_instrument_80_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "instrument",
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 212
+        },
+        {
+          "id": "outgoing_healing_bonus",
+          "stat": "outgoing_healing_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.12
+        },
+        {
+          "id": "sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.12
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_staff_80_b",
+      "name_key": "equipment_staff_80_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "staff",
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 220
+        },
+        {
+          "id": "outgoing_magical_bonus",
+          "stat": "outgoing_magical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.09
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_mace_80_b",
+      "name_key": "equipment_mace_80_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "mace",
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 220
+        },
+        {
+          "id": "outgoing_healing_bonus",
+          "stat": "outgoing_healing_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.15
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_book_80_b",
+      "name_key": "equipment_book_80_b",
+      "kind": "equipment",
+      "slot": "weapon",
+      "weapon_type": "book",
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 212
+        },
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 85
+        },
+        {
+          "id": "sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.24
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_head_80_helm",
+      "name_key": "equipment_head_80_helm",
+      "kind": "equipment",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 62
+        },
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 260
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_head_80_circlet",
+      "name_key": "equipment_head_80_circlet",
+      "kind": "equipment",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 53
+        },
+        {
+          "id": "outgoing_magical_bonus",
+          "stat": "outgoing_magical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.06
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_armor_80_robe",
+      "name_key": "equipment_armor_80_robe",
+      "kind": "equipment",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 728
+        },
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 83
+        },
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 50
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_armor_80_suit",
+      "name_key": "equipment_armor_80_suit",
+      "kind": "equipment",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 780
+        },
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 55
+        },
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.06
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_garment_80_cape",
+      "name_key": "equipment_garment_80_cape",
+      "kind": "equipment",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 53
+        },
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.075
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_garment_80_manteau",
+      "name_key": "equipment_garment_80_manteau",
+      "kind": "equipment",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 53
+        },
+        {
+          "id": "control_resistance",
+          "stat": "control_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.12
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_shoes_80_boots",
+      "name_key": "equipment_shoes_80_boots",
+      "kind": "equipment",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 312
+        },
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 46
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_shoes_80_sandals",
+      "name_key": "equipment_shoes_80_sandals",
+      "kind": "equipment",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 260
+        },
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 60
+        },
+        {
+          "id": "sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.18
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_accessory_80_power",
+      "name_key": "equipment_accessory_80_power",
+      "kind": "equipment",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 30
+        },
+        {
+          "id": "outgoing_physical_bonus",
+          "stat": "outgoing_physical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.09
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_accessory_80_wisdom",
+      "name_key": "equipment_accessory_80_wisdom",
+      "kind": "equipment",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 30
+        },
+        {
+          "id": "outgoing_magical_bonus",
+          "stat": "outgoing_magical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.09
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "equipment_accessory_80_rosary",
+      "name_key": "equipment_accessory_80_rosary",
+      "kind": "equipment",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 80,
+      "required_level": 80,
+      "modifiers": [
+        {
+          "id": "crit_chance_bonus",
+          "stat": "crit_chance_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.045
+        },
+        {
+          "id": "hit_bonus",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.045
+        }
+      ],
+      "triggers": []
+    }
+  ]
+}

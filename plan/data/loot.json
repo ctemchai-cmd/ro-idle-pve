@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "content_version": "loot-v1",
+  "gear": {
+    "rarity_weights": {
+      "common": 660000,
+      "uncommon": 250000,
+      "rare": 70000,
+      "epic": 15000,
+      "legendary": 4000,
+      "immortal": 900,
+      "supreme": 100
+    },
+    "weight_total": 1000000,
+    "definition_choice": "uniform among the 36 definitions (20 weapons, 3 head/armor/garment/shoes, 4 accessories) of the stage tier; no class-specific armor",
+    "tier_by_chapter": {
+      "1": 1,
+      "2": 20,
+      "3": 20,
+      "4": 40,
+      "5": 40,
+      "6": 60,
+      "7": 60,
+      "8": 60
+    },
+    "rng": "two draws per drop: rarity then definition; persist loot cursor/state in server reward checkpoint; retry reuses result",
+    "full_inventory": "reserve fixed pending claim and advance reservation cursor atomically; pay wallet/items only when space permits; retries do not reroll"
+  },
+  "supreme_analysis": {
+    "common_copies_without_higher_drops": 729,
+    "mean_common_equivalent_per_drop": 3.0606,
+    "target_definition_probability": 0.027777777777777776,
+    "drop_interval_minutes": 5,
+    "equivalent_throughput_minutes": 42873.94628504214,
+    "interpretation": "common-equivalent throughput bound for one desired definition, not expected time or guaranteed pity; integer fusion and rare drops require distribution simulation later",
+    "preserve_tier_upgrade": true
+  }
+}

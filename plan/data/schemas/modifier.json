@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ro-idle.local/schemas/modifier.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "stat": {
+      "enum": [
+        "str",
+        "agi",
+        "vit",
+        "int",
+        "dex",
+        "luk",
+        "physical_attack",
+        "magical_attack",
+        "max_hp",
+        "max_sp",
+        "physical_defense",
+        "magical_defense",
+        "attack_speed",
+        "cast_speed",
+        "hit_bonus",
+        "evasion_bonus",
+        "crit_chance_bonus",
+        "crit_damage_bonus",
+        "crit_resistance",
+        "control_accuracy",
+        "control_resistance",
+        "outgoing_physical_bonus",
+        "outgoing_magical_bonus",
+        "outgoing_true_bonus",
+        "damage_taken_bonus",
+        "guard_percent",
+        "armor_break_percent",
+        "penetration_percent",
+        "outgoing_healing_bonus",
+        "healing_received_bonus",
+        "sp_regen_percent",
+        "hp_regen_percent",
+        "flat_damage_reduction",
+        "flat_penetration",
+        "flat_sp_regen",
+        "flat_hp_regen"
+      ]
+    },
+    "op": {
+      "enum": [
+        "add_flat",
+        "add_percent"
+      ]
+    },
+    "bucket": {
+      "enum": [
+        "primary",
+        "derived",
+        "bonus"
+      ]
+    },
+    "value": {
+      "oneOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "level_param": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]*$"
+            }
+          },
+          "required": [
+            "level_param"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "status_param": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]*$"
+            }
+          },
+          "required": [
+            "status_param"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "when": {
+      "$ref": "predicate.json"
+    }
+  },
+  "required": [
+    "id",
+    "stat",
+    "op",
+    "bucket",
+    "value"
+  ],
+  "additionalProperties": false
+}

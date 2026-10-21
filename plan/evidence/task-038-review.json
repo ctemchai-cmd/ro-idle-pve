@@ -1,0 +1,48 @@
+{
+ "task_id": "TASK-038",
+ "passed": true,
+ "round": 1,
+ "date": "2026-10-20",
+ "reviewer": "Claude self-check",
+ "content_hash": "ab45f2161932dad06f12935577f62c9f6e4278ae0d910bc87c5707db0540ca06",
+ "checks": [
+  {
+   "acceptance": "AC-01",
+   "passed": true,
+   "result": "1h/12h/20h of unpaid AFK at the chapter-1 rate pay 3600/43200/43200 gold (12h cap, excess discarded); Story/Tower progress is unchanged and nothing is paid before reward.claim."
+  },
+  {
+   "acceptance": "AC-02",
+   "passed": true,
+   "result": "farm.claim reserves once; a replay of the same interval returns NO_FARM_ELAPSED with state unchanged and a stale cursor is rejected without moving reserved_through back."
+  },
+  {
+   "acceptance": "AC-03",
+   "passed": true,
+   "result": "An online 30-minute reservation and a later 17.5h AFK window are disjoint; the AFK part alone is capped at 43200 and crossing Bangkok midnight does not reset the farm clock."
+  },
+  {
+   "acceptance": "AC-04",
+   "passed": true,
+   "result": "The pure reserveFarm with an injected clock equals the server farm.claim settlement exactly (pending claims and farm cursor); four 500ms reservations keep 2 gold at 3600/h through integer carries."
+  },
+  {
+   "acceptance": "AC-05",
+   "passed": true,
+   "result": "A content patch does not rewrite the stored rate snapshot; a farm stage change settles the old interval at the frozen rate first, and the same request id reproduces the same reservation. One TS calculator, no SQL formula."
+  }
+ ],
+ "commands": [
+  "node --import tsx --test tests/game/afk.test.ts (5 pass)",
+  "npm run check"
+ ],
+ "limitations": [
+  "The AFK report UI is the existing farm sheet/chest (TASK-048); no separate AFK screen was added."
+ ],
+ "source_sha256": {
+  "tests/game/afk.test.ts": "c56fdd4bf29196bb8397d00e8fcc48865b183e52fdc7f96608a649c6f19461d7",
+  "src/domain/rewards/farm.ts": "e1fa5b7d69a16d7137deed81cd922a4e80332aa8b35933814cb4765fd9845c0b",
+  "src/domain/account/commands.ts": "d412eadffadee8e908a4d746c1fbbd70036d288fad563f7977f89ad29f4ca3ae"
+ },
+ "credentials_logged": false
+}

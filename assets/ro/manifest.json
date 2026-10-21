@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "description": "Curated starter assets for a local, single-player Ragnarok-inspired idle prototype.",
+  "providers": {
+    "ragassets": {
+      "base_url": "https://assets.latam-tools.com.br",
+      "documentation_url": "https://github.com/adsonpleal/ragassets",
+      "client_variant": "Public renderer's LATAM client assets; exact Classic-era artwork not independently verified."
+    },
+    "divine_pride": {
+      "base_url": "https://static.divine-pride.net",
+      "documentation_url": "https://www.divine-pride.net/"
+    }
+  },
+  "canvas": {"width": 256, "height": 256, "origin_x": 128, "origin_y": 208},
+  "canvas_overrides": {
+    "monsters.poring.dead": {"width": 512, "height": 512, "origin_x": 256, "origin_y": 256},
+    "monsters.willow.dead": {"width": 1024, "height": 1024, "origin_x": 512, "origin_y": 512}
+  },
+  "direction": {"index": 6, "name": "east", "facing": "right", "opposite_facing": "left", "opposite_flip_x": true, "verification": "renderer_documentation"},
+  "appearance": {"gender": "male", "head": 1, "outfit": 0, "headdir": "straight"},
+  "animation_actions": {
+    "characters": {"idle": 0, "attack": 40, "hurt": 48, "dead": 64},
+    "monsters": {"idle": 0, "attack": 16, "hurt": 24, "dead": 32}
+  },
+  "characters": [
+    {"slug": "novice", "name": "Novice", "job_id": 0, "tags": ["starter", "novice"]},
+    {"slug": "swordsman", "name": "Swordsman", "job_id": 1, "tags": ["first_job", "melee"]},
+    {"slug": "mage", "name": "Mage", "job_id": 2, "tags": ["first_job", "caster"]},
+    {"slug": "archer", "name": "Archer", "job_id": 3, "tags": ["first_job", "ranged"]},
+    {"slug": "acolyte", "name": "Acolyte", "job_id": 4, "tags": ["first_job", "support"]}
+  ],
+  "monsters": [
+    {"slug": "poring", "name": "Poring", "job_id": 1002, "tags": ["starter", "slime", "pink"]},
+    {"slug": "fabre", "name": "Fabre", "job_id": 1007, "tags": ["starter", "insect", "green"]},
+    {"slug": "willow", "name": "Willow", "job_id": 1010, "tags": ["starter", "tree", "brown"]},
+    {"slug": "lunatic", "name": "Lunatic", "job_id": 1063, "tags": ["starter", "rabbit", "white"]}
+  ],
+  "icons": [
+    {"category": "items", "slug": "red-potion", "name": "Red Potion", "game_id": 501, "tags": ["consumable", "potion", "red"], "image_path": "/images/items/item/501.png"},
+    {"category": "items", "slug": "orange-potion", "name": "Orange Potion", "game_id": 502, "tags": ["consumable", "potion", "orange"], "image_path": "/images/items/item/502.png"},
+    {"category": "items", "slug": "apple", "name": "Apple", "game_id": 512, "tags": ["consumable", "food"], "image_path": "/images/items/item/512.png"},
+    {"category": "items", "slug": "knife", "name": "Knife", "game_id": 1201, "tags": ["equipment", "weapon", "dagger"], "image_path": "/images/items/item/1201.png"},
+    {"category": "skills", "slug": "bash", "name": "Bash", "game_id": 5, "tags": ["swordsman", "melee"], "image_path": "/images/skill/5.png"},
+    {"category": "skills", "slug": "fire-bolt", "name": "Fire Bolt", "game_id": 19, "tags": ["mage", "fire"], "image_path": "/images/skill/19.png"},
+    {"category": "skills", "slug": "heal", "name": "Heal", "game_id": 28, "tags": ["acolyte", "healing"], "image_path": "/images/skill/28.png"},
+    {"category": "skills", "slug": "double-strafe", "name": "Double Strafe", "game_id": 46, "tags": ["archer", "ranged"], "image_path": "/images/skill/46.png"}
+  ]
+}

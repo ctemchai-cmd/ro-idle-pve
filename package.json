@@ -1,0 +1,43 @@
+{
+  "name": "ro-idle-classic",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "content:generate": "node --import tsx scripts/game/generate-content.ts",
+    "content:check": "node --import tsx scripts/game/check-content.ts",
+    "boundaries": "node --import tsx scripts/game/check-boundaries.ts",
+    "dev": "npm run assets:check && npm run content:generate && vite --host 127.0.0.1",
+    "dev:api": "node --env-file-if-exists=.env.local --import tsx scripts/game/dev-api.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test tests/game/*.test.ts",
+    "build": "npm run env:check && npm run assets:check && npm run content:generate && npm run content:check && npm run boundaries && npm run typecheck && vite build && node --import tsx scripts/game/build-output.ts && npm run secrets:check",
+    "preview": "vite preview --host 127.0.0.1",
+    "check": "npm run content:generate && npm run content:check && npm run boundaries && npm run typecheck && npm test",
+    "assets:build": "python3 scripts/build_runtime_assets.py",
+    "assets:check": "python3 scripts/build_runtime_assets.py --check",
+    "simulate": "node --import tsx scripts/game/simulate.ts",
+    "env:check": "node --import tsx scripts/game/check-env.ts",
+    "secrets:check": "node --import tsx scripts/game/check-secrets.ts",
+    "dev:local": "python3 scripts/play_local.py"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "2.118.0",
+    "ajv": "8.20.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.2",
+    "json-schema-to-typescript": "16.0.0",
+    "tsx": "4.23.15",
+    "typescript": "6.0.3",
+    "vite": "8.3.4"
+  }
+}

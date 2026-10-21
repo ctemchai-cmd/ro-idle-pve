@@ -1,0 +1,45 @@
+{
+ "task_id": "TASK-032",
+ "passed": true,
+ "round": 1,
+ "date": "2026-10-20",
+ "reviewer": "Claude self-check",
+ "content_hash": "7b54253e170bb74c0a8933616f78c439e43791a43f76141bc8894272c5f8a00e",
+ "rules_version": "combat-baseline-v1",
+ "checks": [
+  {
+   "acceptance": "AC-01",
+   "passed": true,
+   "result": "19 skills match all 57 M0 golden cases (incl. Storm Gust tick times and per-tick freeze intent). Every Active at every level 1-10 resolved in the engine probe and produced every effect; Spell Breaker interrupted enemy casts (credited via cast_interrupt.action_id) and drained SP, Dispel removed enemy buffs. Every Passive changes stats or procs at levels 1-10. Wizard/Sage skill pages list only root+own-branch skills with effect text; all 19 resolve pack visuals."
+  },
+  {
+   "acceptance": "AC-02",
+   "passed": true,
+   "result": "Sage with Meteor + Auto-bolt: 18 normal attacks, none inside any of 11 cast windows; 8 Auto-bolt hits all from normal actions with exactly one proc per triggering hit (no recursion). Storm Gust: 14 frost-field instances tick at exactly +1000/2000/3000/4000 ms (never at the 5000 ms expiry), each tick rolls Freeze once per target (8 freezes on ['e_back', 'e_front'])."
+  },
+  {
+   "acceptance": "AC-03",
+   "passed": true,
+   "result": "catalogQueueTrace of all 4 builds equals the M0 queue_estimate incl. Sage Auto-bolt cast speed 164.64 / attack speed 150 / cycle 7344 ms. Full fights keep the dry first cycle (no self-timing buffs in this tree), while Quagmire's slow really lengthens the enemy's swing gap ([1999, 1999] vs base 1399 ms)."
+  },
+  {
+   "acceptance": "AC-04",
+   "passed": true,
+   "result": "Story 6-20 seed 32 with main Wizard controller + Sage NPC swapped into the Archer slot: server (62 confirmed checkpoints), client session with render views and runner give the identical final checkpoint, RNG and 647 events (digest db55e84a), outcome STORY_WON at 62210 ms; frost-field ticks keep the Storm Gust cast as source."
+  }
+ ],
+ "commands": [
+  "RO_TREE_EVIDENCE=plan/evidence/task-032-runtime.json node --import tsx --test tests/game/skills-mage.test.ts (9 pass)"
+ ],
+ "measurements": "plan/evidence/task-032-runtime.json",
+ "limitations": [
+  "No new visuals: icons per skill, in-battle effects reuse family recipes (Storm Gust keeps its native STR effect).",
+  "Behaviour evidence with probes, not a balance verdict (TASK-041)."
+ ],
+ "source_sha256": {
+  "tests/game/skills-mage.test.ts": "e1b0e5a5f0354faf6e94594d25a553f81753a3b896dd5b1bb30951c31b2f76c0",
+  "tests/game/class-skills.ts": "e9df73e218f1625fc18d62a83a8ef964316b4c7273bf92174e6a1feab588806b",
+  "plan/evidence/task-032-runtime.json": "5a1b72d1dbb05a3a331c8a22e4323925b701fae5913b14a27edef2efeb8963a9"
+ },
+ "credentials_logged": false
+}

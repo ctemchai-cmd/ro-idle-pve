@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "staged_file_count": 120289,
+  "bytes": 1131113586,
+  "text_files_scanned": 70886,
+  "prohibited_paths": [],
+  "files_over_100_mib": [],
+  "missing_required_inputs": [],
+  "credential_pattern_findings": [],
+  "reviewed_synthetic_test_fixtures": [
+    {
+      "path": "tests/game/auth.test.ts",
+      "line": 56,
+      "kind": "supabase-secret"
+    },
+    {
+      "path": "tests/game/auth.test.ts",
+      "line": 62,
+      "kind": "supabase-secret"
+    },
+    {
+      "path": "tests/game/auth.test.ts",
+      "line": 109,
+      "kind": "supabase-secret"
+    }
+  ],
+  "values_logged": false,
+  "scope": "Staged path inventory and current source text matching concrete credential patterns. Not a guarantee against every secret type; private .local files were never read."
+}

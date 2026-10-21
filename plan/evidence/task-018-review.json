@@ -1,0 +1,104 @@
+{
+  "task_id": "TASK-018",
+  "reviewer": "Codex self-review",
+  "review_round": 2,
+  "date": "2026-10-19",
+  "passed": true,
+  "content_hash": "3b6b91759016be898d4edbdf15c4c1522270359fcc73b0b6d9e3f7d678526233",
+  "input_sha256": {
+    "docs/SIMULATION.md": "2ea4004a0475ba4f1b9d7b204c484eb4cda824fca9d0d02daf1d33f12f77fd93",
+    "scripts/game/simulate.ts": "f3407a68a5a5c53c24ce5d89eee9375d7ceabdd40427670b6a736477d5c468bd",
+    "src/simulation/fixtures.ts": "a0122ed9f24450f1cafc4f17cd0411ffefa6dccfefdcdccaca65f1ebb3340660",
+    "src/simulation/index.ts": "8cca3107bc29a345113e11c3a882144e8c24493efc1a74c89097510f9a578be0",
+    "tests/game/simulation.test.ts": "6cadb2e3b5b0ea2a75f6060ccd44f6fe87a4fbd97839e281129dcfca196c791c"
+  },
+  "checks": [
+    {
+      "case_id": "pure_runner_shared_checkpoint",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": "Node-only runner consumes runtime checkpoint/content; no renderer/server/save imports;6controlledprobes,144total tests/typecheck/boundaries/build passed"
+    },
+    {
+      "case_id": "repeat_and_midcast_replay",
+      "acceptance": [
+        "AC-02",
+        "AC-05"
+      ],
+      "passed": true,
+      "result": "sameinput exactreport/events/RNG/checkpoint;1600ms-midcast future matchesuninterrupted;crossprocess seed7 JSON430885bytes exact SHA256;unsupported versions explicitlyfail"
+    },
+    {
+      "case_id": "metrics_sources_and_statuses",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": true,
+      "result": "team/actor/skill28metrics+DPS/effectiveHPS;overheal/shield/SP/interrupt/CCunion-instance;damagebyactor-skill-effect-origin;blueprint+status timeline includes observedResistance;summary/trace scopeexplicit"
+    },
+    {
+      "case_id": "matched_AB_and_uncertainty",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": "6encountersx2variantsx100matchedseeds=1200reports;equaldeclaredresource/opponent/freshstate checks;12groups/6paired reports;Wilsonwin95 andnormalapproxmean/paired95 withn/spread;JSON+CSV+gzindividualreports"
+    },
+    {
+      "case_id": "warm_100_fight_budget",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "content_hash": "3b6b91759016be898d4edbdf15c4c1522270359fcc73b0b6d9e3f7d678526233",
+        "fixture": "area",
+        "fights": 100,
+        "warmup": 10,
+        "virtual_ms_per_fight": 90000,
+        "measured_seconds": 2.6387313749999994,
+        "target_seconds": 5,
+        "passed": true,
+        "includes": "schema restore/shared engine/report aggregation/event fingerprint, summary logs; input generation/install excluded",
+        "machine": {
+          "platform": "darwin",
+          "release": "25.6.0",
+          "arch": "arm64",
+          "cpu": "Apple M1 Pro",
+          "logical_cpus": 8,
+          "node": "v24.1.0",
+          "total_memory_bytes": 17179869184
+        }
+      }
+    },
+    {
+      "case_id": "artifact_format",
+      "acceptance": [
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": "separate4sampleCLI checks compressedSHA/JSONroundtrip/CSV;full1200reports gzip preservedsemantically"
+    }
+  ],
+  "evidence": [
+    "task-018-checks-final.txt",
+    "task-018-build.txt",
+    "task-018-tests-round2.txt",
+    "task-018-batch.json",
+    "task-018-batch.csv",
+    "task-018-batch.reports.json.gz",
+    "task-018-benchmark.json",
+    "task-018-replay-processes.json",
+    "task-018-csv-artifact-check.txt"
+  ],
+  "limitations": [
+    "Fixtures use actualClass1skills plus labeledprobeabilities/highHP-SPoffsets;allforced90s,notreleasebalance/winrates.",
+    "Spent budgets are declaredcontrolledfixturevectors;realspendverifiedbuildadapter/classvalidation belongs to laterbuild/account/class/tasks041.",
+    "No browser renderer/cloud/production infrastructure created.",
+    "Metricscumulativefight;eventbreakdown/status timeline onlycheckpoint-to-end;FNV regressionfingerprint notauthentication.",
+    "Classsummon/copy/futureHi-class remainownertasks;noall126skillsbalanceclaim."
+  ]
+}

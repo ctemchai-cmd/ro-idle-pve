@@ -1,0 +1,26 @@
+{
+  "pack_hash": "47f97d9aaac2bf10ac3279e5634052b72a55a26fefe1048de0c537387332d307",
+  "checked": 499,
+  "expected": 499,
+  "bytes": 22174754,
+  "failed": [],
+  "denial_cases": [
+    {
+      "path": "/assets/ro/catalog.json",
+      "expected": 403,
+      "actual": 403
+    },
+    {
+      "path": "/ro/47f97d9aaac2bf10ac3279e5634052b72a55a26fefe1048de0c537387332d307/library/catalog.json",
+      "expected": 404,
+      "actual": 404
+    },
+    {
+      "path": "/ro/47f97d9aaac2bf10ac3279e5634052b72a55a26fefe1048de0c537387332d307/%2e%2e%2flibrary%2fcatalog.json",
+      "expected": 404,
+      "actual": 404
+    }
+  ],
+  "passed": true,
+  "scope": "HTTP byte/metadata integrity only; no image decode, animation or visual QA"
+}

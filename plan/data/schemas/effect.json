@@ -1,0 +1,749 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ro-idle.local/schemas/effect.json",
+  "oneOf": [
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "target": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "when": {
+          "$ref": "predicate.json"
+        },
+        "type": {
+          "const": "damage"
+        },
+        "formula": {
+          "$ref": "formula-call.json"
+        },
+        "damage_type": {
+          "enum": [
+            "physical",
+            "magical",
+            "true"
+          ]
+        },
+        "element": {
+          "enum": [
+            "neutral",
+            "water",
+            "earth",
+            "fire",
+            "wind",
+            "poison",
+            "holy",
+            "dark",
+            "ghost",
+            "undead",
+            "weapon"
+          ]
+        },
+        "hit_rule": {
+          "enum": [
+            "physical_roll",
+            "always"
+          ]
+        },
+        "can_crit": {
+          "type": "boolean"
+        },
+        "hits": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 32
+        },
+        "armor_rule": {
+          "enum": [
+            "normal",
+            "ignore"
+          ]
+        },
+        "as_reflect": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "target",
+        "type",
+        "formula",
+        "damage_type",
+        "element",
+        "hit_rule",
+        "can_crit",
+        "hits",
+        "armor_rule"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "target": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "when": {
+          "$ref": "predicate.json"
+        },
+        "type": {
+          "const": "heal"
+        },
+        "formula": {
+          "$ref": "formula-call.json"
+        }
+      },
+      "required": [
+        "id",
+        "target",
+        "type",
+        "formula"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "target": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "when": {
+          "$ref": "predicate.json"
+        },
+        "type": {
+          "const": "apply_status"
+        },
+        "status_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "duration_ms": {
+          "oneOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "object",
+              "properties": {
+                "level_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "level_param"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "status_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "status_param"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "params": {
+          "type": "object",
+          "additionalProperties": {
+            "oneOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "level_param": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]*$"
+                  }
+                },
+                "required": [
+                  "level_param"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "status_param": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]*$"
+                  }
+                },
+                "required": [
+                  "status_param"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "chance": {
+          "oneOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "object",
+              "properties": {
+                "level_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "level_param"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "status_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "status_param"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "target",
+        "type",
+        "status_id",
+        "duration_ms",
+        "params",
+        "chance"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "target": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "when": {
+          "$ref": "predicate.json"
+        },
+        "type": {
+          "const": "shield"
+        },
+        "formula": {
+          "$ref": "formula-call.json"
+        },
+        "duration_ms": {
+          "oneOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "object",
+              "properties": {
+                "level_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "level_param"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "status_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "status_param"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "dispelable": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "target",
+        "type",
+        "formula",
+        "duration_ms",
+        "dispelable"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "target": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "when": {
+          "$ref": "predicate.json"
+        },
+        "type": {
+          "const": "resource_change"
+        },
+        "resource": {
+          "enum": [
+            "sp",
+            "spirit_spheres"
+          ]
+        },
+        "amount": {
+          "oneOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "level_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "level_param"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "status_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "status_param"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "target",
+        "type",
+        "resource",
+        "amount"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "target": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "when": {
+          "$ref": "predicate.json"
+        },
+        "type": {
+          "const": "remove_status"
+        },
+        "polarity": {
+          "enum": [
+            "buff",
+            "debuff",
+            "any"
+          ]
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          }
+        },
+        "permission": {
+          "enum": [
+            "cleanse",
+            "dispel",
+            "consume_own"
+          ]
+        },
+        "max_instances": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        }
+      },
+      "required": [
+        "id",
+        "target",
+        "type",
+        "polarity",
+        "tags",
+        "permission",
+        "max_instances"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "target": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "when": {
+          "$ref": "predicate.json"
+        },
+        "type": {
+          "const": "interrupt"
+        }
+      },
+      "required": [
+        "id",
+        "target",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "target": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "when": {
+          "$ref": "predicate.json"
+        },
+        "type": {
+          "const": "summon"
+        },
+        "actor_definition_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "duration_ms": {
+          "oneOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "object",
+              "properties": {
+                "level_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "level_param"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "status_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "status_param"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "max_owned": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "at_limit": {
+          "enum": [
+            "replace_oldest",
+            "skip"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "target",
+        "type",
+        "actor_definition_id",
+        "duration_ms",
+        "max_owned",
+        "at_limit"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "target": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "when": {
+          "$ref": "predicate.json"
+        },
+        "type": {
+          "const": "revive"
+        },
+        "hp_ratio": {
+          "oneOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "object",
+              "properties": {
+                "level_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "level_param"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "status_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "status_param"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "sp_ratio": {
+          "oneOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "object",
+              "properties": {
+                "level_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "level_param"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "status_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "status_param"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "target",
+        "type",
+        "hp_ratio",
+        "sp_ratio"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "target": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "when": {
+          "$ref": "predicate.json"
+        },
+        "type": {
+          "const": "handler"
+        },
+        "handler_id": {
+          "const": "detonate_own_status"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "status_id": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]*$"
+            },
+            "power_per_instance": {
+              "oneOf": [
+                {
+                  "type": "number",
+                  "minimum": 0
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "level_param": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-z0-9_]*$"
+                    }
+                  },
+                  "required": [
+                    "level_param"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "status_param": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-z0-9_]*$"
+                    }
+                  },
+                  "required": [
+                    "status_param"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            },
+            "max_consumed": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            },
+            "damage_type": {
+              "enum": [
+                "physical",
+                "magical"
+              ]
+            },
+            "element": {
+              "enum": [
+                "neutral",
+                "water",
+                "earth",
+                "fire",
+                "wind",
+                "poison",
+                "holy",
+                "dark",
+                "ghost",
+                "undead",
+                "weapon"
+              ]
+            }
+          },
+          "required": [
+            "status_id",
+            "power_per_instance",
+            "max_consumed",
+            "damage_type",
+            "element"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "target",
+        "type",
+        "handler_id",
+        "params"
+      ],
+      "additionalProperties": false
+    }
+  ]
+}

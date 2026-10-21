@@ -1,0 +1,78 @@
+{
+  "task_id": "TASK-027",
+  "passed": true,
+  "round": 1,
+  "date": "2026-10-20",
+  "reviewer": "Codex self-review",
+  "typescript_tests": 227,
+  "build": "passed; same22.5MB pack, bundle warning TASK-042",
+  "content_hash": "a6854a7a9e29e7d77fc9dbd2c8313871c9b59ab2d70bc96b2e257cecc5a363bd",
+  "source_sha256": {
+    "src/domain/progression/slots.ts": "e623b257b8a8aca28faf099dcbaf32f2f3862bce0552c6a6389036b5c82105b0",
+    "src/domain/progression/ledger.ts": "1f54d409a0a0ff6a1444a42b56e75bcf5a4df70de7dd90ff0c7afbc1d1b006cc",
+    "src/domain/account/commands.ts": "a652ace62813958bcd1fdfd12d44115c3d4f01793a3da68decd589c619b600f2",
+    "src/domain/build/equipment.ts": "216452c1f2f4fe0036dcbd8f09217bad7fd995b11ab0fbef3f25f7dcc00f47a5",
+    "src/client/slots.ts": "1cf23fc6ad8574b5b1008474a3de2f211ef230ddadb3057a1ad985187fd8cdbc",
+    "src/client/roster.ts": "b051aa9260b4915b977ba1bb510684fd7b3f89b1f0bb23fbe078daf879a038b7",
+    "src/ui/slot-progress.tsx": "5e417ff6fe3d5f7646b8ee19ac73ea0d2948757e0c22471efc191cab0d9c3d27",
+    "src/ui/slots.css": "a03ecd0bb3d03f19d30b3a71049c3c5d96bc4ea94ac6bfe1df3f2744659e0eb7",
+    "src/ui/equipment-image.tsx": "dd0cb8e831d617f1d693dd9e548aaa6dcc247f956b0a0b87a854a0c5f24c6aa0",
+    "src/ui/character-equipment.tsx": "61d963233e578faa9629bb72d602ff69480507b328c5b70516820b1aa409e9a1",
+    "tests/game/slot-progression.test.ts": "144ae389aa72225451e8829ebc584e69c63180531ac952f6af029de1c4f52d2b",
+    "scripts/test_slots_live.cjs": "4efe567dd94a17a4e1117ccb0c0a857739d0e78bb7c73af8b27071d3cdbfb1c3",
+    "scripts/test_roster_live.cjs": "9216f39debc5fd8c605b5e7e084c4dd63992af2f5b711f7ea26426a2414e3702"
+  },
+  "checks": [
+    {
+      "acceptance": "AC-01",
+      "passed": true,
+      "result": "Pure and actual Chrome4→5/9→10 gates; card capacity1→2→3, Refine+10 exact77000gold/275ore, max11 schema reject and no debit."
+    },
+    {
+      "acceptance": "AC-02",
+      "passed": true,
+      "result": "Shared slot compiler preserves independent character+slot investments through gear/NPC/card transfer and empty slots; actual off-team transfer retains mainRefine10 and each owner."
+    },
+    {
+      "acceptance": "AC-03",
+      "passed": true,
+      "result": "Card duplicates add independently,1→5 total7500gold/300dust; salvage20/40/80 byrarity only, protected batches atomic. Actual lost-responseRefine/refund and sameUUID card replay pay/refund once; old-price100gold/2dust archived in receipt."
+    },
+    {
+      "acceptance": "AC-04",
+      "passed": true,
+      "result": "Shared Precision primaryDEX→Cast Speed→SI/CT/ACD preview matches actual battleDEX2/Cast101.5 with manualDEX1 unchanged; bounded active ledger, no new speed/buff cap and existing timing/phase tests stay passing."
+    }
+  ],
+  "evidence": [
+    "task-027-check.txt",
+    "task-027-build.txt",
+    "task-027-local-stack.json",
+    "task-027-slots-live-browser.json",
+    "task-027-slots-live-browser-preflight.json",
+    "task-027-equipment-live-browser.json",
+    "task-027-story-live-browser.json",
+    "task-027-story-api.json",
+    "task-027-roster-live-browser.json",
+    "task-027-skills-live-browser.json",
+    "task-027-save-live-browser.json"
+  ],
+  "visual_review": {
+    "files": [
+      "docs/screenshots/task-027-cards-390.png",
+      "docs/screenshots/task-027-cards-360.png"
+    ],
+    "scope": "Manual actualChrome390/360 card sockets, duplicate copies/owners, native local symbols and portrait spacing; preview/SQL parity asserted separately. No everycard/animation manual art review."
+  },
+  "contract_completion": [
+    "Implemented existing save-contracts active ledger compaction, actual version vectors and immutable refunded receipt history. Old roster browser assertion now verifies archived full row plus absence from save, not retained refunded JSON.",
+    "Preview works when wallet cannot afford upgrade by topping up only a disposable clone; durable commands still check actual funds.",
+    "Shared card modifier helper eliminates another potential formula copy between card detail and battle."
+  ],
+  "limitations": [
+    "Real isolated local services, no hosted Supabase/Vercel.",
+    "Material/card/old-price boundary fixtures are explicit signed server-owned test data, not gameplay-earned loot.",
+    "Gacha037/fusion-tier028/class-specific effects029–034/whole-game balance041 remain.",
+    "Frozen personal6173 still uses M2 pending deliberate safe refresh; test data never overwrote personal character choice."
+  ]
+}

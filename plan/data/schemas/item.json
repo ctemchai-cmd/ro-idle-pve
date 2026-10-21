@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ro-idle.local/schemas/item.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "name_key": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "kind": {
+      "enum": [
+        "equipment",
+        "card"
+      ]
+    },
+    "slot": {
+      "enum": [
+        "weapon",
+        "head",
+        "armor",
+        "garment",
+        "shoes",
+        "accessory"
+      ]
+    },
+    "weapon_type": {
+      "enum": [
+        "sword",
+        "bow",
+        "staff",
+        "book",
+        "knuckle",
+        "axe",
+        "mace",
+        "dagger",
+        "whip",
+        "instrument",
+        null
+      ]
+    },
+    "tier_level": {
+      "type": "integer",
+      "enum": [
+        1,
+        20,
+        40,
+        60
+      ]
+    },
+    "required_level": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 70
+    },
+    "modifiers": {
+      "type": "array",
+      "items": {
+        "$ref": "modifier.json"
+      }
+    },
+    "triggers": {
+      "type": "array",
+      "items": {
+        "$ref": "trigger.json"
+      }
+    },
+    "presentation_id": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "id",
+    "name_key",
+    "kind",
+    "slot",
+    "weapon_type",
+    "tier_level",
+    "required_level",
+    "modifiers",
+    "triggers"
+  ],
+  "additionalProperties": false
+}

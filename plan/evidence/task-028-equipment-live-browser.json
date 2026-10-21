@@ -1,0 +1,36 @@
+{
+  "task_id": "TASK-028",
+  "passed": true,
+  "actual_local_auth": true,
+  "checks": [
+    "Real owner UI six slots: Common60→Epic60 preview and saved battle PATK agree (+95), Refine10/Enchant2/GoldCard5 remain on main slot and reload unchanged; signed Lv60 fixture, no farming claim",
+    "Actual off-team Mage borrows Acolyte staff by UI; original slot empty, one canonical instance, originalRefine4 and replacementRefine2 remain independent",
+    "Locked item cannot be salvaged; protected batch atomic. Training restrictions visible; actual committed purchase response dropped then refresh recovers one instance and one125gold debit",
+    "Server-owned500-item fixture: UI purchase disabled, API reward rejected without changing fixed bundle. Unlock/salvage still enabled at capacity; freeing one space pays the original drop once",
+    "Actual390/360 Chrome inventory icons and comparison UI without horizontal overflow; off-team assignment survives reload; offline disables mutation and reconnect restores owner state"
+  ],
+  "errors": [],
+  "layouts": [
+    {
+      "viewport": 390,
+      "content": 390
+    },
+    {
+      "viewport": 360,
+      "content": 360
+    }
+  ],
+  "credentials_logged": false,
+  "source_sha256": {
+    "scripts/test_equipment_live.cjs": "da8bf751ce1c45e246d0324633852f974c6d9b5d0ed918639f32a623ef8003e1",
+    "src/domain/progression/equipment.ts": "0a4de8600d890f76efe732ad52aef333c30486375db092c2772561883a749efd",
+    "src/domain/build/equipment-definition.ts": "574383b4bc9baae04e488dcf4b78d9f4f87c64393128b7b06e5bc464f61e7fd5",
+    "src/domain/build/equipment.ts": "7fec1508c09511a3a342bed4f40a464db971e35345111d7d154ac2849d462795",
+    "src/domain/account/commands.ts": "8e64531d3a6512cb9e5dc54a2dc699bc76428039fe8cfbda2cbfc46b2e691a7e",
+    "src/client/equipment.ts": "eeca4407b4666d4e8eb81e191d0aa5b265708a5c2e5ec12edfad320309abe66b",
+    "src/client/skills.ts": "cb547c6e58de112ae572a8abc2e96cb593d419597b9fbfbb5fe1021ee231b01b",
+    "src/ui/character-equipment.tsx": "6f7a1760d01e4a8bcd985657dcf459fc6747ddd7cd2f95ce0fa216f0af3847f0",
+    "src/ui/equipment.css": "3d0e1acbf0712d5a14c07ee1cd856d6b582ce9d3aa1e9731b755cb39cc32022b"
+  },
+  "scope": "Real local Auth/API/SQL/Chrome owner commands. Explicit signed server-owned Lv60/Refine/Enchant/card and500-item boundary fixtures; not a claim that these resources were earned by play."
+}

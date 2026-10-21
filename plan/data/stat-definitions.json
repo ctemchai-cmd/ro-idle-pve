@@ -1,0 +1,437 @@
+{
+  "schema_version": 1,
+  "version": "composition-v1",
+  "combat_rules": "combat-baseline-v1",
+  "aggregation": "primary first; derived from resolved primary; (base+sum(add_flat))*(1+sum(add_percent)); bonus=sum(add_flat)",
+  "buff_stack_cap": null,
+  "buff_magnitude_cap": null,
+  "stats": [
+    {
+      "id": "str",
+      "group": "primary",
+      "unit": "points",
+      "allowed_ops": [
+        "add_flat",
+        "add_percent"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": 0,
+      "rounding": "none"
+    },
+    {
+      "id": "agi",
+      "group": "primary",
+      "unit": "points",
+      "allowed_ops": [
+        "add_flat",
+        "add_percent"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": 0,
+      "rounding": "none"
+    },
+    {
+      "id": "vit",
+      "group": "primary",
+      "unit": "points",
+      "allowed_ops": [
+        "add_flat",
+        "add_percent"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": 0,
+      "rounding": "none"
+    },
+    {
+      "id": "int",
+      "group": "primary",
+      "unit": "points",
+      "allowed_ops": [
+        "add_flat",
+        "add_percent"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": 0,
+      "rounding": "none"
+    },
+    {
+      "id": "dex",
+      "group": "primary",
+      "unit": "points",
+      "allowed_ops": [
+        "add_flat",
+        "add_percent"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": 0,
+      "rounding": "none"
+    },
+    {
+      "id": "luk",
+      "group": "primary",
+      "unit": "points",
+      "allowed_ops": [
+        "add_flat",
+        "add_percent"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": 0,
+      "rounding": "none"
+    },
+    {
+      "id": "physical_attack",
+      "group": "derived",
+      "unit": "points",
+      "allowed_ops": [
+        "add_flat",
+        "add_percent"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": 0,
+      "rounding": "none"
+    },
+    {
+      "id": "magical_attack",
+      "group": "derived",
+      "unit": "points",
+      "allowed_ops": [
+        "add_flat",
+        "add_percent"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": 0,
+      "rounding": "none"
+    },
+    {
+      "id": "max_hp",
+      "group": "derived",
+      "unit": "points",
+      "allowed_ops": [
+        "add_flat",
+        "add_percent"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": 1,
+      "rounding": "floor_after_modifiers"
+    },
+    {
+      "id": "max_sp",
+      "group": "derived",
+      "unit": "points",
+      "allowed_ops": [
+        "add_flat",
+        "add_percent"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": 0,
+      "rounding": "floor_after_modifiers"
+    },
+    {
+      "id": "physical_defense",
+      "group": "derived",
+      "unit": "points",
+      "allowed_ops": [
+        "add_flat",
+        "add_percent"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": 0,
+      "rounding": "none"
+    },
+    {
+      "id": "magical_defense",
+      "group": "derived",
+      "unit": "points",
+      "allowed_ops": [
+        "add_flat",
+        "add_percent"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": 0,
+      "rounding": "none"
+    },
+    {
+      "id": "attack_speed",
+      "group": "derived",
+      "unit": "points",
+      "allowed_ops": [
+        "add_flat",
+        "add_percent"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": 1,
+      "rounding": "none"
+    },
+    {
+      "id": "cast_speed",
+      "group": "derived",
+      "unit": "points",
+      "allowed_ops": [
+        "add_flat",
+        "add_percent"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": 1,
+      "rounding": "none"
+    },
+    {
+      "id": "hit_bonus",
+      "group": "bonus",
+      "unit": "ratio",
+      "allowed_ops": [
+        "add_flat"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": null,
+      "rounding": "none"
+    },
+    {
+      "id": "evasion_bonus",
+      "group": "bonus",
+      "unit": "ratio",
+      "allowed_ops": [
+        "add_flat"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": null,
+      "rounding": "none"
+    },
+    {
+      "id": "crit_chance_bonus",
+      "group": "bonus",
+      "unit": "ratio",
+      "allowed_ops": [
+        "add_flat"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": null,
+      "rounding": "none"
+    },
+    {
+      "id": "crit_damage_bonus",
+      "group": "bonus",
+      "unit": "ratio",
+      "allowed_ops": [
+        "add_flat"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": null,
+      "rounding": "none"
+    },
+    {
+      "id": "crit_resistance",
+      "group": "bonus",
+      "unit": "ratio",
+      "allowed_ops": [
+        "add_flat"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": null,
+      "rounding": "none"
+    },
+    {
+      "id": "control_accuracy",
+      "group": "bonus",
+      "unit": "ratio",
+      "allowed_ops": [
+        "add_flat"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": null,
+      "rounding": "none"
+    },
+    {
+      "id": "control_resistance",
+      "group": "bonus",
+      "unit": "ratio",
+      "allowed_ops": [
+        "add_flat"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": null,
+      "rounding": "none"
+    },
+    {
+      "id": "outgoing_physical_bonus",
+      "group": "bonus",
+      "unit": "ratio",
+      "allowed_ops": [
+        "add_flat"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": null,
+      "rounding": "none"
+    },
+    {
+      "id": "outgoing_magical_bonus",
+      "group": "bonus",
+      "unit": "ratio",
+      "allowed_ops": [
+        "add_flat"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": null,
+      "rounding": "none"
+    },
+    {
+      "id": "outgoing_true_bonus",
+      "group": "bonus",
+      "unit": "ratio",
+      "allowed_ops": [
+        "add_flat"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": null,
+      "rounding": "none"
+    },
+    {
+      "id": "damage_taken_bonus",
+      "group": "bonus",
+      "unit": "ratio",
+      "allowed_ops": [
+        "add_flat"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": null,
+      "rounding": "none"
+    },
+    {
+      "id": "guard_percent",
+      "group": "bonus",
+      "unit": "ratio",
+      "allowed_ops": [
+        "add_flat"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": null,
+      "rounding": "none"
+    },
+    {
+      "id": "armor_break_percent",
+      "group": "bonus",
+      "unit": "ratio",
+      "allowed_ops": [
+        "add_flat"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": null,
+      "rounding": "none"
+    },
+    {
+      "id": "penetration_percent",
+      "group": "bonus",
+      "unit": "ratio",
+      "allowed_ops": [
+        "add_flat"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": null,
+      "rounding": "none"
+    },
+    {
+      "id": "outgoing_healing_bonus",
+      "group": "bonus",
+      "unit": "ratio",
+      "allowed_ops": [
+        "add_flat"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": null,
+      "rounding": "none"
+    },
+    {
+      "id": "healing_received_bonus",
+      "group": "bonus",
+      "unit": "ratio",
+      "allowed_ops": [
+        "add_flat"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": null,
+      "rounding": "none"
+    },
+    {
+      "id": "sp_regen_percent",
+      "group": "bonus",
+      "unit": "ratio",
+      "allowed_ops": [
+        "add_flat"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": null,
+      "rounding": "none"
+    },
+    {
+      "id": "hp_regen_percent",
+      "group": "bonus",
+      "unit": "ratio",
+      "allowed_ops": [
+        "add_flat"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": null,
+      "rounding": "none"
+    },
+    {
+      "id": "flat_damage_reduction",
+      "group": "bonus",
+      "unit": "points",
+      "allowed_ops": [
+        "add_flat"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": null,
+      "rounding": "none"
+    },
+    {
+      "id": "flat_penetration",
+      "group": "bonus",
+      "unit": "points",
+      "allowed_ops": [
+        "add_flat"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": null,
+      "rounding": "none"
+    },
+    {
+      "id": "flat_sp_regen",
+      "group": "bonus",
+      "unit": "points",
+      "allowed_ops": [
+        "add_flat"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": null,
+      "rounding": "none"
+    },
+    {
+      "id": "flat_hp_regen",
+      "group": "bonus",
+      "unit": "points",
+      "allowed_ops": [
+        "add_flat"
+      ],
+      "aggregate_upper_bound": null,
+      "minimum": null,
+      "rounding": "none"
+    }
+  ],
+  "combat_resources": [
+    {
+      "id": "sp",
+      "unit": "integer",
+      "minimum": 0,
+      "maximum": "resolved_max_sp",
+      "initial": "full"
+    },
+    {
+      "id": "spirit_spheres",
+      "unit": "integer",
+      "minimum": 0,
+      "maximum": 5,
+      "initial": 0
+    }
+  ],
+  "resource_note": "spheres are an explicit Monk combat resource, not a cap on status instances; no wallet resources in combat effects"
+}

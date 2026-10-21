@@ -1,0 +1,21 @@
+{
+  "task_id": "TASK-024",
+  "passed": true,
+  "checks": [
+    "Actual Web Locks allow one writer and disable mutation in second tab",
+    "Actual committed response dropped; same pending UUID survives refresh; receipt looked up before canonical checkpoint; reward paid exactly once; backup contains no credentials",
+    "Real browser offline event pauses mutations; reconnect loads cloud then claims second fixed reward once",
+    "Closing writer releases lock; second tab explicitly reconnects and adopts latest revision3"
+  ],
+  "errors": [],
+  "actual_local_auth": true,
+  "source_sha256": {
+    "scripts/test_save_live.cjs": "7a9a47f8fc7ae044b759784852aaa91844e179a4291063fce60d80ba57fb7f76",
+    "src/client/save-controller.ts": "c3a0d0edbdb77bc7052fb4139b3cfcfd27c70c798bfe7c36628be80aef898fd0",
+    "src/client/save-browser.ts": "f2ddd7d5f8eedf91d16060df0740be3797eb2a20dc2d75d57d634bad37f92275",
+    "src/ui/save-panel.tsx": "305c678fa9bf2f6102e460cc2e6a973282900181c620ba71da63db0d2a8200f5",
+    "api/index.ts": "50a631b21c5e433d989758e7fd8f7f2e0373196bc7a2559f81a2979fa54b71b3",
+    "src/domain/account/commands.ts": "3cd7c5e4e8dd3d88088ff79085df24c07ae5f5089fd906830c17eb1f0af9da48"
+  },
+  "scope": "Fresh local Auth/PostgREST/PostgreSQL with actual Chrome HTTP response loss, Web Locks, refresh, offline/reconnect and signed server checkpoints. Fixed pending claims are seeded as server-owned test fixtures, not full AFK generation."
+}

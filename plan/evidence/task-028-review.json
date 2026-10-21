@@ -1,0 +1,72 @@
+{
+  "task_id": "TASK-028",
+  "passed": true,
+  "round": 1,
+  "date": "2026-10-20",
+  "reviewer": "Codex self-review",
+  "typescript_tests": 233,
+  "build": "passed; same22.5MB pack; bundle-size warning tracked TASK-042",
+  "content_hash": "65b82feb21f654bb17521bdc4417245c630d0cf6f0149f5877ab93b5ec3b9dc2",
+  "source_sha256": {
+    "src/domain/progression/gear-upgrades.ts": "fe4329e12457dee6b93f410d2225cf0457aeec909ebf5b045f7fe22a773fdb93",
+    "src/domain/build/equipment-definition.ts": "574383b4bc9baae04e488dcf4b78d9f4f87c64393128b7b06e5bc464f61e7fd5",
+    "src/domain/build/equipment.ts": "7fec1508c09511a3a342bed4f40a464db971e35345111d7d154ac2849d462795",
+    "src/domain/account/commands.ts": "8e64531d3a6512cb9e5dc54a2dc699bc76428039fe8cfbda2cbfc46b2e691a7e",
+    "src/client/gear-upgrades.ts": "90854646ed2a28ae220982460e5c8239d6196182ab1c5caa53c049b8eb0b8f3a",
+    "src/client/roster.ts": "ac83e6036c487efe2bf4612b704bca8341079386ad4886bfe0b10b1b2793b834",
+    "src/ui/gear-growth.tsx": "487f004b03277a46a470ece334cbe328be93ff43ffeb2b8d2cfd4eae0b0ca00f",
+    "src/ui/gear-growth.css": "9744c0efb85e931b296b3900f648cc9e2c439a7c24c2ef9bc3b1b63cb0049ce0",
+    "src/ui/character-equipment.tsx": "6f7a1760d01e4a8bcd985657dcf459fc6747ddd7cd2f95ce0fa216f0af3847f0",
+    "tests/game/gear-upgrades.test.ts": "de3cda21b81c6d7bbb3d305b19c8193db41f348e1d68fb2dfee9d1de9b929106",
+    "scripts/test_gear_growth_live.cjs": "0ce73c1f33d15236886dadc83b85feea33d15cbf5e30638fff3311764bc65f66"
+  },
+  "checks": [
+    {
+      "acceptance": "AC-01",
+      "passed": true,
+      "result": "All six rarity steps exact3→1, numeric floor14/16/19/23/28/35; mixed/duplicate/missing IDs/protected recipes reject atomically. Actual UI chooses qa_a/b/c and creates oneUncommon after response loss."
+    },
+    {
+      "acceptance": "AC-02",
+      "passed": true,
+      "result": "Tier1→20→40→60 costs26000gold/170ore and preserves ID/rarity/lock/owner/slot/card state. Actual lockedEpic1→20 base19→105/PATK+86 preview agrees with committed save after lost response."
+    },
+    {
+      "acceptance": "AC-03",
+      "passed": true,
+      "result": "Fusion excludes equipped/locked/training and rejectsSupreme; tier permits locked but requires wearerlevel and exact nexttier; training cannotupgrade. Actual500bag fusion frees2spaces, retains fixed pending reward and pays original instance once."
+    },
+    {
+      "acceptance": "AC-04",
+      "passed": true,
+      "result": "Shared resolvedEquipmentModifiers and reducer preview beforeconfirm; actual replayUUID for fusion/tier creates/consumes/debits once.390/360 Chrome and offline/reconnect pass; decreases highlighted inred."
+    }
+  ],
+  "evidence": [
+    "task-028-check.txt",
+    "task-028-build.txt",
+    "task-028-local-stack.json",
+    "task-028-growth-live-browser.json",
+    "task-028-growth-live-browser-preflight.json",
+    "task-028-equipment-live-browser.json",
+    "task-028-slots-live-browser.json",
+    "task-028-story-api.json",
+    "task-028-story-live-browser.json",
+    "task-028-roster-live-browser.json",
+    "task-028-skills-live-browser.json",
+    "task-028-save-live-browser.json"
+  ],
+  "visual_review": {
+    "files": [
+      "docs/screenshots/task-028-fusion-390.png",
+      "docs/screenshots/task-028-growth-360.png"
+    ],
+    "scope": "Manually inspected actual mobile recipe3icons/base13→14 and potential equipped-stat reduction; final360 red decrease styling reviewed after full regression. Not everyequipment asset visual review."
+  },
+  "limitations": [
+    "Signed synthetic Lv20/gear/slot/card/capacity fixtures in actual isolated local services; not items earned through play.",
+    "Rarity/tier baseline only; economy/pace/all-class balance remain TASK-041.",
+    "No hosted Supabase/Vercel deployment.",
+    "Personal frozen preview is separate and requires deliberate safe refresh; general migrations/recovery remain TASK-040."
+  ]
+}

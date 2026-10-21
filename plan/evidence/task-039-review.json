@@ -1,0 +1,51 @@
+{
+ "task_id": "TASK-039",
+ "passed": true,
+ "round": 1,
+ "date": "2026-10-20",
+ "reviewer": "Claude self-check",
+ "content_hash": "ab45f2161932dad06f12935577f62c9f6e4278ae0d910bc87c5707db0540ca06",
+ "checks": [
+  {
+   "acceptance": "AC-01",
+   "passed": true,
+   "result": "Live 390×844 on an isolated real stack: onboarding, farm, Story boss + claim, AFK claim, buy/equip a weapon, refine, level-up (+bulk to Lv.10), status allocation, skill upgrade and saved re-ordered queue, team swap, Tower floor 1, Daily treasury, Store buy/card pull/gear pull — all through the real API/DB. The first-play guide (guide.test) points to the next step only when it is really possible."
+  },
+  {
+   "acceptance": "AC-02",
+   "passed": true,
+   "result": "The result card has a per-member debrief from shared metrics: damage, heal, overheal, time of fall, interrupts taken and SP skips, with cause-based tips (debrief.test); no power score gates or appears on the card (live check)."
+  },
+  {
+   "acceptance": "AC-03",
+   "passed": true,
+   "result": "HUD values come from the confirmed server checkpoint (client prediction is rejected on mismatch, daily/tower tests). Offline: the HUD turns red with a reconnect alert, every shop button is disabled, a forced click writes no revision, and going online restores the ready save."
+  },
+  {
+   "acceptance": "AC-04",
+   "passed": true,
+   "result": "Music/effects sliders apply and persist (effects 35%), 360×740/1280×800 have no horizontal overflow, Tab reaches a game button with a 3px focus ring, the landscape phone shows the rotate prompt, and the Upgrade sheet shows Hi-class as a disabled “เร็วๆ นี้” chip."
+  }
+ ],
+ "commands": [
+  "node --import tsx --test tests/game/debrief.test.ts tests/game/guide.test.ts",
+  "npm run typecheck",
+  "RO_EVIDENCE_PREFIX=task-048 RO_LOCAL_TEST_FOCUS=shell python3 scripts/test_auth_stack.py (23 checks, 47 screenshots, 0 browser errors)"
+ ],
+ "limitations": [
+  "Screen-reader walkthroughs were not run; focus was checked with keyboard Tab only.",
+  "Music follows the active scene (farm stage, boss/dungeon chapter); menu pages overlay the field and keep its track. There is no separate menu-only track."
+ ],
+ "source_sha256": {
+  "src/client/guide.ts": "c102db47b6ba9104ec4660b043a165ee546badf0bf4e1178604d1d4c0caf55d0",
+  "src/client/story.ts": "1330a41bc8a290c1e0f615effd647324e064fcf2a8109a10d01b34e98206e87c",
+  "src/ui/game/field.tsx": "5be13857edbd6a83ce665aee8bb1c12b623a00caf8d45fc569561e47542e642a",
+  "src/ui/game/buddy.tsx": "0e214e85e593352fb513ec6b8433e2701bd140563a1013428ebdc2c7a60aabe3",
+  "src/ui/game/hud.tsx": "2eb51f7672603e375a5d02cdfba0d6435a480767933e7550ef4217899f86522c",
+  "src/ui/game/shell.tsx": "1c2eafbdc7e4befa64615b7c5cf2279565aa150099788fccda3d81c4c43dae3d",
+  "tests/game/debrief.test.ts": "afc40dfb7e4e634bcb5b5764a08a6b4a23c4054d76bad0f07e0837c5e646ed11",
+  "tests/game/guide.test.ts": "f9e82ca7a1ef6518724e2ce0b9c52ec935f7712e6c915882b8a6756eff96aa68",
+  "scripts/test_game_shell_live.cjs": "a2fc3328aeb3612e65751c8ff0c878b1e0527dc30dbb5c3514c83f83e6205f8c"
+ },
+ "credentials_logged": false
+}

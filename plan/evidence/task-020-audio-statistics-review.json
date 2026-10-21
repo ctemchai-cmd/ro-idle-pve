@@ -1,0 +1,323 @@
+{
+  "task_id": "TASK-020",
+  "round": 8,
+  "date": "2026-10-20",
+  "reviewer": "Codex self-review",
+  "passed": true,
+  "scope": "Native BGM/SFX mixer and separate persistent volumes, canonical per-actor DPS/Healing/Tank, and user-selected RO Blue palette with modern mobile UI. This is an incremental combat demo revision; recurring saves and release are separate tasks.",
+  "input_sha256": {
+    "src/renderer/audio.ts": "915e296aa7c108863f9f8ab2223a9287ae2d2d8121e1850c82fe3fbd1616f26c",
+    "src/renderer/audio-preferences.ts": "71c4e7d51127c8d3aac8cc06535b77d5795d9685d70a5ed61f75d216eacc1885",
+    "src/renderer/pack.ts": "a0d20b6156e2590104e53dc35b35a7b3f81470640e29bbc993881a1d467f7d75",
+    "src/renderer/battle.ts": "4e52db0660b9d0b63676685b3300bf75eaa9b468d5b4db7f0a2cad61297b4caa",
+    "src/contracts/audio.ts": "80a2ab54743f24c5e46270c0dc67d861e157b68970bc731392f1bbb730705cd7",
+    "src/contracts/combat-statistics.ts": "045879940cb7c98f43e35118611c52fb12a8619a430bffeeaef98a24ef2552d0",
+    "src/domain/combat/model.ts": "5f262bc967a4108daa1b6ebe7afcddd8f3ff9eb5e545c444fda55a2f17b0431a",
+    "src/domain/combat/effects.ts": "a987f66aecbbd2edc4263b0af2667e2708dda84901ce3824cba39a0390413f28",
+    "src/domain/combat/statistics.ts": "a58475a4585ff2b1ff787d78bb00b07fc6974e952e440104607053ef1fc6caae",
+    "src/domain/combat/engine.ts": "a7c3b59cfb74ecd43fa5c158e84e7b6b04d70b8fb45a17c9ac2b5aa0ae4d4d45",
+    "src/client/demo.ts": "95f5fa38622f86f8114699c1269892a16e956d7ec9a4e150fcb46f3b63e41a6d",
+    "src/ui/battle-app.tsx": "f5c2ff89d9c3e296caff2603465a35007ca735522c620e6c1c97db29b8dbd469",
+    "src/ui/battle-statistics.tsx": "eb98892be9ada1e270ad3892263181340b3fed3cf70ecc0d3f8dab1bfafd497b",
+    "src/ui/adventure.css": "183cbbabfc15dc735a43c1c42619d8b192420943ed6d0e0254f6c6d7f7612902",
+    "src/ui/modern-theme.css": "2a40227a3a8109391eb24a778bb518488fd4b43934be3f3dc711004b16ea08f5",
+    "src/ui/icon.tsx": "672e7a63fcd644a718f7e22b54187d3c9e5bbd796bebe4a126f318bce58af315",
+    "src/simulation/index.ts": "a652b007cb6acc484fb25306d963a1cc4677351ae3bbffa2302fa82aa9d8e282",
+    "plan/data/schemas/battle-checkpoint.json": "dad12610a8c646018162e625d3e07c0a5450b871e4581ac312756fc7d702b897",
+    "src/generated/runtime-manifest.json": "696a5b5262810f449b1657c0801b34f58a6c27b82c8b8ab3e2c0f9c8b88bfbc4",
+    "runtime/ro/manifest.json": "427e17705172e8c924e5aabcf27534b26a98d2f069a3b0ee7d07cae61ff47b47",
+    "scripts/test_audio_statistics.cjs": "265fe550e4e5631b2c9d2b1781b8f3ff9d0b7b1205b85aa4c23543407eed2930",
+    "preview/ui-themes/index.html": "116ab7a5d4aa7a01a4c508da169ed8906ff1735b7d30e60534b2f109a7898184",
+    "scripts/test_ui_themes.cjs": "15a72b8c753cca89fa8eae52b5f1e67701d61cd1e2dd402cff0aa827258caff8",
+    "tests/game/audio.test.ts": "a1cfc8f1b67cd28e6205ed7f5e7a95666aa4f2a3080fae7eae00fae590478f96",
+    "tests/game/combat-statistics.test.ts": "fb14f6cd69eb9f9f38d7a5591db3e95a43dfa038d87d8908f380787c4363d8bf",
+    "tests/game/assets.test.ts": "5b9c79b26c39e3342da0066b4eebcde161d8623a236453dc24843fdd20d5d131",
+    "plan/design/22-combat-audio-and-statistics.md": "0dce653b3e6209a4e19517edf32782c2cb5b5459a662fc319b10646e43d3e6c7",
+    "docs/BATTLE-DEMO.md": "8648a649f7f31733f342767d5bde16e16a91f48164c1639f2d07d5d2e20f4352"
+  },
+  "checks": [
+    {
+      "case_id": "native_rendering_and_final_RO_Blue_presentation",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "native_tests": 4,
+        "visual_scope": [
+          "390x844 final default battle screenshot",
+          "390x844 Healing sheet: selected tab, hierarchy, all4 rows and rates"
+        ],
+        "prior_pose_evidence": "task-020-mobile-spatial-review.json",
+        "scope_note": "Full historical multi-frame poses not resampled in this round; native tests rerun. No art/importer/media change."
+      }
+    },
+    {
+      "case_id": "canonical_statistics_and_mobile_panel_controls",
+      "acceptance": [
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "browser_report": "task-020-audio-statistics-browser.json",
+        "actor_stats": "All4 actors despite damage focus; rows, rates, totals, sorting and enemy switch match checkpoint. Terminal freezes and new fight resets.",
+        "viewports": [
+          [
+            360,
+            640
+          ],
+          [
+            390,
+            844
+          ],
+          [
+            1280,
+            900
+          ]
+        ],
+        "theme_report": "task-020-modern-themes-browser.json",
+        "themes": [
+          "light",
+          "dark",
+          "ro"
+        ],
+        "default_theme": "ro",
+        "panel_checks": "Statistics categories, Timeline entries, team, settings2sliders, no horizontal overflow. Secondary-text contrast samples exceed4.5, not an exhaustive accessibility audit."
+      }
+    },
+    {
+      "case_id": "same_shared_combat_metrics_and_virtual_clock",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "typescript_tests": 179,
+        "rate_authority": "src/domain/combat/statistics.ts metricRates used by headless and UI projection",
+        "independent_oracles": [
+          "20HP+30shield receiving100 => Tank50; provider support30; overkill50 excluded",
+          "heal10 on4missing => Healing4",
+          "Incoming counters survive checkpoint restore without event history",
+          "Irregular credited-time/reset regression and existing spatial/timeline/headless parity tests pass"
+        ],
+        "historical_render_parity": "Nine render30/60/off runs remain historical round6 proof; not rerun as nine browser runs in round8.",
+        "new_browser_check": "Actor row totals and rates directly match live shared checkpoint, independent of damage focus."
+      }
+    },
+    {
+      "case_id": "actual_local_audio_media_and_build",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "browser_checks": 5,
+        "images_decoded": 216,
+        "audio_decoded": 34,
+        "font_decoded": true,
+        "external_requests": [],
+        "browser_errors": [],
+        "audio_signal": {
+          "bgm": {
+            "enabled": true,
+            "music_url": "/ro/4cc4d9d4f4a8e58a432de095b9436470801b7799d1e26b903cb3208bed3ad032/prepared/music/12--644547aaeff0.mp3",
+            "music_playing": true,
+            "levels": {
+              "music": 0.12,
+              "effects": 0.2
+            },
+            "active_effects": 0,
+            "loop": true,
+            "current_time": 0.199785,
+            "ready_state": 4
+          },
+          "peak": 0.40549442172050476,
+          "nonzero_frames": 141,
+          "refs": [
+            "effects.f41b117982c1d825",
+            "effects.fead1024113dad8a",
+            "effects.698e0b8224acf64e",
+            "effects.dae7cc8907cf9b48",
+            "effects.8427d4033ee23c84",
+            "effects.e412a71c8dcc2ef2",
+            "library/effects/sound/ef_hit2--e412a71c8dcc.meta.json",
+            "effects.39cb41c771a7b822",
+            "effects.0e36be4550b89a52"
+          ],
+          "state": {
+            "enabled": true,
+            "music_url": "/ro/4cc4d9d4f4a8e58a432de095b9436470801b7799d1e26b903cb3208bed3ad032/prepared/music/12--644547aaeff0.mp3",
+            "music_playing": true,
+            "levels": {
+              "music": 0.12,
+              "effects": 0.2
+            },
+            "active_effects": 3
+          },
+          "scope": "Native audio playback state and WebAudio SFX waveform measured; no subjective listening review."
+        },
+        "volume_and_resume": {
+          "levels": {
+            "state": {
+              "enabled": true,
+              "music_url": "/ro/4cc4d9d4f4a8e58a432de095b9436470801b7799d1e26b903cb3208bed3ad032/prepared/music/12--644547aaeff0.mp3",
+              "music_playing": true,
+              "levels": {
+                "music": 0.35,
+                "effects": 0.47
+              },
+              "active_effects": 2
+            },
+            "music_volume": 0.35,
+            "sfx_gain": 0.4699999988079071
+          },
+          "switched": {
+            "old_paused": true,
+            "new_track": true,
+            "state": {
+              "enabled": true,
+              "music_url": "/ro/4cc4d9d4f4a8e58a432de095b9436470801b7799d1e26b903cb3208bed3ad032/prepared/music/03--4fb2ad3def69.mp3",
+              "music_playing": true,
+              "levels": {
+                "music": 0.35,
+                "effects": 0.47
+              },
+              "active_effects": 0
+            }
+          },
+          "visibility": {
+            "hidden": {
+              "enabled": true,
+              "music_url": "/ro/4cc4d9d4f4a8e58a432de095b9436470801b7799d1e26b903cb3208bed3ad032/prepared/music/03--4fb2ad3def69.mp3",
+              "music_playing": false,
+              "levels": {
+                "music": 0.35,
+                "effects": 0.47
+              },
+              "active_effects": 0
+            },
+            "resumed": {
+              "enabled": true,
+              "music_url": "/ro/4cc4d9d4f4a8e58a432de095b9436470801b7799d1e26b903cb3208bed3ad032/prepared/music/03--4fb2ad3def69.mp3",
+              "music_playing": true,
+              "levels": {
+                "music": 0.35,
+                "effects": 0.47
+              },
+              "active_effects": 0
+            }
+          },
+          "muted": {
+            "enabled": false,
+            "music_url": "/ro/4cc4d9d4f4a8e58a432de095b9436470801b7799d1e26b903cb3208bed3ad032/prepared/music/03--4fb2ad3def69.mp3",
+            "music_playing": false,
+            "levels": {
+              "music": 0.35,
+              "effects": 0.47
+            },
+            "active_effects": 0
+          },
+          "preferences_restored": true,
+          "explicit_first_unlock": true
+        },
+        "all_skill_sound_refs": 126,
+        "build": "passed assets/content/boundaries/typecheck/Vite/output/secrets checks",
+        "pack_hash": "4cc4d9d4f4a8e58a432de095b9436470801b7799d1e26b903cb3208bed3ad032",
+        "content_hash": "194f6bd6ac48fb291fcc92f4f948280debe42dd3efff10051f887324492993d9",
+        "pack_assets": 251,
+        "pack_files": 503,
+        "pack_bytes": 22449876,
+        "pack_changed_this_round": false
+      }
+    }
+  ],
+  "commands": [
+    {
+      "command": "npm run check",
+      "result": "179tests passed; content/boundaries/typecheck passed"
+    },
+    {
+      "command": "node --test tests/renderer.test.mjs",
+      "result": "4passed"
+    },
+    {
+      "command": "npm run build",
+      "result": "passed; publish_ready false; existing large-chunk warning retained for TASK-042"
+    },
+    {
+      "command": "node scripts/test_audio_statistics.cjs",
+      "result": "5passed"
+    },
+    {
+      "command": "node scripts/test_ui_themes.cjs",
+      "result": "3themes passed"
+    },
+    {
+      "command": "python3 plan/checks/composition.py --write-report",
+      "result": "104design checks passed after optional checkpoint fields"
+    },
+    {
+      "command": "python3 plan/checks/architecture.py",
+      "result": "25design checks passed after optional checkpoint fields"
+    }
+  ],
+  "evidence": [
+    "task-020-audio-statistics-browser.json",
+    "task-020-modern-themes-browser.json",
+    "task-020-audio-statistics-check.txt",
+    "task-020-audio-statistics-build.txt",
+    "task-020-audio-statistics-native.txt",
+    "task-020-audio-statistics-browser.txt",
+    "task-020-audio-statistics-themes.txt"
+  ],
+  "evidence_sha256": {
+    "task-020-audio-statistics-browser.json": "971bd84bf2e455dad70359100e6d5a516a894e5c1b4cb0f171fc2308867d0da7",
+    "task-020-modern-themes-browser.json": "e6a3a5d8e23afaf78de88b5285b7ece642bbe01f5dc9550920c1836a425ba14a",
+    "task-020-audio-statistics-check.txt": "49bd9c7b0784d11cf6d8ccb784528a7aba2868db32075e2f389156a16886dde8",
+    "task-020-audio-statistics-build.txt": "9785ccb84ce960deca844aa0ca696683f669e2e37ac4a73f31b6055eb99c58fb",
+    "task-020-audio-statistics-native.txt": "cf35c96ecc3199fb6e4181d60913a8638d4665e13417a4ef2ac6d2714ef2581a",
+    "task-020-audio-statistics-browser.txt": "5edcf0d7f0aba0fb3cd747dfb83d332c174437880e5076685f7506aeb52152de",
+    "task-020-audio-statistics-themes.txt": "d385f68ac583d7460fa151aa34cf51824919f9556a785065a47d8fa407939165"
+  },
+  "screenshots": {
+    "docs/screenshots/ro-blue-modern-battle.png": "b8fe868cfd4fc05e962c71bd72225fabad542ef33d676f20dacac9b50c79e8de",
+    "docs/screenshots/combat-statistics-damage.png": "aebc83400ae581089b3458dabb8df7b0b7c83e41e5e0104b12cfe7709ab4f0c1",
+    "docs/screenshots/combat-statistics-healing.png": "132deb011a462efb3781a45d2bce7f2d498650e4fb41d7458d41196fcb357542",
+    "docs/screenshots/combat-statistics-tank.png": "e112f1a91818bba4ee3023564c9c95074ba763ac34b80571f01718263b5543f0",
+    "docs/screenshots/combat-audio-settings.png": "a25a924677c99852e421d73cc6a29699e2965c6640f72557eaad77e51f4d092a",
+    "docs/screenshots/ui-themes-battle.png": "056dd336a95f39eea83789ecbb1b5dfd84aa1722ed27eb8716dcdd3013f806d2",
+    "docs/screenshots/ui-themes-statistics.png": "3dd6d6d7cea8da694cb805b5c095116a15e0d42a1a17b42dda3bdb8a74c945aa"
+  },
+  "visual_review": {
+    "reviewer": "Codex",
+    "method": "Directly opened final default battle and Healing sheet images; static composition/type/selection review only. Other screenshots retained as automated artifacts.",
+    "files": [
+      "docs/screenshots/ro-blue-modern-battle.png",
+      "docs/screenshots/combat-statistics-healing.png"
+    ],
+    "audio": "Objective playback/time/loop and WebAudio waveform measured; no subjective listening review."
+  },
+  "schema_revalidation": {
+    "added_optional_metrics": [
+      "damage_received",
+      "shield_damage_received"
+    ],
+    "design_reports": [
+      "task-013-review.json",
+      "task-047-review.json"
+    ],
+    "previous_reports": [
+      "task-013-before-combat-statistics.json",
+      "task-047-before-combat-statistics.json"
+    ],
+    "note": "Fresh counters init0; retained in new checkpoints. Old absent counters cannot recover prior damage from HP. Strict content/schema compatibility remains in place."
+  },
+  "limitations": [
+    "Chrome emulated viewports, not physical devices or Safari.",
+    "No subjective audio quality or MP3 loop-seam certification.",
+    "Contrast samples are not a full accessibility audit.",
+    "Nine browser render-parity runs belong to historical round6; current179tests include shared-engine virtual-time/checkpoint parity.",
+    "Large-chunk/performance budget work remains TASK-042.",
+    "TASK-022 durable saves and full progression remain incomplete; no hosted Supabase project or Vercel deployment."
+  ]
+}

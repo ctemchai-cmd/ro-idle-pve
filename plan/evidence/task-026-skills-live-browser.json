@@ -1,0 +1,22 @@
+{
+  "task_id": "TASK-026",
+  "passed": true,
+  "actual_local_auth": true,
+  "checks": [
+    "UI CT0/ACD0.5/SP12 and140→148.89% preview; committed upgrade response dropped, refresh pays50gold/10manual once; Lv10 cap2 rejectsLv3 without revision change",
+    "Free learned Passive persists without Active slot; learn Magnum Break and move it between slots by swapping, four ordered slots with one logical skill per slot",
+    "Off-team Mage resources manually levelled through command, Fire BoltLv2/reversed slots survive reload; main paidBashLv2/learnedPassive/three-slot rotation remain separate; no Awaken UI",
+    "Offline disables real upgrade, reconnect and360/390 icon/timing/detail layouts pass; actual Mage skill reset refunds exactly50gold/10manual and returns starterLv1"
+  ],
+  "errors": [],
+  "credentials_logged": false,
+  "source_sha256": {
+    "scripts/test_skills_live.cjs": "acb2f584393e89d7f4445e39dae473c668216311c249881373fb952b9c1f85eb",
+    "src/ui/character-skills.tsx": "45378e5130af44237c336522d13521672342676e1a7c74516013c08709bd0302",
+    "src/client/skills.ts": "cb547c6e58de112ae572a8abc2e96cb593d419597b9fbfbb5fe1021ee231b01b",
+    "src/domain/progression/skills.ts": "df99cdc925c68bd51e930b7bcbc180806e47644c0d304a1a98cea00ecd615285",
+    "src/domain/build/character.ts": "b8c801a52a586744768e897dd43be092051be082e18b57e62f466146295cb081",
+    "src/domain/combat/engine.ts": "cc478ebf7e80d7ffaafb44d26c7bdeded32165dddd041be8eabf14c15b07f6d1"
+  },
+  "scope": "Actual local Auth/SQL/API/Chrome skills; Lv10 starter testing fixture is server-owned, no Story/farm completion claim. Passive combat effect separately proven by shared engine tests."
+}

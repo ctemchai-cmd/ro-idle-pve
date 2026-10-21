@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "protocol_cases": [
+    {
+      "id": "commit_new",
+      "input": {
+        "expected_revision": 5,
+        "current_revision": 5,
+        "prior_receipt": false,
+        "hash_matches": true
+      },
+      "expected": "commit_revision6"
+    },
+    {
+      "id": "retry_lost_response",
+      "input": {
+        "expected_revision": 5,
+        "current_revision": 6,
+        "prior_receipt": true,
+        "hash_matches": true
+      },
+      "expected": "original_receipt_no_second_mutation"
+    },
+    {
+      "id": "reuse_id_changed_payload",
+      "input": {
+        "expected_revision": 5,
+        "current_revision": 6,
+        "prior_receipt": true,
+        "hash_matches": false
+      },
+      "expected": "IDEMPOTENCY_KEY_REUSE"
+    },
+    {
+      "id": "two_devices_revision_collision",
+      "input": {
+        "expected_revision": 5,
+        "current_revision": 6,
+        "prior_receipt": false,
+        "hash_matches": true
+      },
+      "expected": "REVISION_CONFLICT"
+    }
+  ],
+  "refund_case": {
+    "paid_old": 100,
+    "current_price": 150,
+    "initial_wallet": 200,
+    "first_refund_expected": 300,
+    "repeat_refund_expected": 300
+  },
+  "farm_reservation_case": {
+    "unreserved_seconds": 72000,
+    "cap_seconds": 43200,
+    "rate_per_hour": 60,
+    "expected_reward": 720,
+    "reserve_revision": 6,
+    "pending_status": "pending",
+    "inventory_full_wallet_change": 0,
+    "replay_reservation_extra_reward": 0
+  },
+  "battle_clock_cases": [
+    {
+      "id": "normal_ack",
+      "wall_gap_ms": 2000,
+      "requested_delta_ms": 2000,
+      "expected_credit_ms": 2000,
+      "aborted": false
+    },
+    {
+      "id": "slow_ack",
+      "wall_gap_ms": 10000,
+      "requested_delta_ms": 10000,
+      "expected_credit_ms": 5000,
+      "aborted": false
+    },
+    {
+      "id": "disconnected_past_lease",
+      "wall_gap_ms": 20000,
+      "requested_delta_ms": 20000,
+      "expected_credit_ms": 0,
+      "aborted": true
+    },
+    {
+      "id": "lease_deadline_inclusive",
+      "wall_gap_ms": 15000,
+      "requested_delta_ms": 15000,
+      "expected_credit_ms": 0,
+      "aborted": true
+    }
+  ],
+  "negative_schema_cases": [
+    "client_supplied_account_id",
+    "negative_wallet",
+    "duplicate_item_assignment",
+    "npc_root_changed",
+    "skill_slot_duplicate",
+    "two_rogue_copy_slots",
+    "card_capacity_exceeded",
+    "unknown_content_id",
+    "stale_backup_over_cloud"
+  ],
+  "version_cases": [
+    "same_versions_restore",
+    "content_patch_aborts_old_battle",
+    "rules_change_replay_incompatible",
+    "newer_schema_readonly",
+    "asset_patch_no_engine_hash_change"
+  ]
+}

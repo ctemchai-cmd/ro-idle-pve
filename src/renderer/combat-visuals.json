@@ -1,0 +1,430 @@
+{
+  "schema_version": 1,
+  "numbers": {
+    "meta": "library/effects/sprite_effect_atlas/asset--f8701ce52f99.meta.json",
+    "digit_frames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "critical_meta": "library/effects/sprite_effect_atlas/msg--849865cd65c8.meta.json",
+    "critical_frame": 2,
+    "basis": "RO Classic 숫자.spr digits and msg.spr source frame3 (critbg), packed frame2. Mappings cross-checked with roBrowserLegacy Damage.js and local visual review.",
+    "reference": "https://github.com/MrAntares/roBrowserLegacy/blob/master/src/Renderer/Effects/Damage.js"
+  },
+  "normal_attacks": {
+    "archer": {
+      "special_sfx": [
+        {
+          "kind": "projectile",
+          "shape": "arrow",
+          "travel_ms": 340,
+          "release_ms": 100,
+          "count": 1,
+          "stagger_ms": 0,
+          "arc_height": 12,
+          "color": "#ead49b"
+        }
+      ]
+    },
+    "mage": {
+      "special_sfx": [
+        {
+          "kind": "projectile",
+          "shape": "orb",
+          "travel_ms": 360,
+          "release_ms": 100,
+          "count": 1,
+          "stagger_ms": 0,
+          "arc_height": 18,
+          "color": "#b6e6ff"
+        }
+      ]
+    },
+    "wizard": {
+      "special_sfx": [
+        {
+          "kind": "projectile",
+          "shape": "orb",
+          "travel_ms": 360,
+          "release_ms": 100,
+          "count": 1,
+          "stagger_ms": 0,
+          "arc_height": 18,
+          "color": "#b6e6ff"
+        }
+      ]
+    },
+    "sage": {
+      "special_sfx": [
+        {
+          "kind": "projectile",
+          "shape": "orb",
+          "travel_ms": 360,
+          "release_ms": 100,
+          "count": 1,
+          "stagger_ms": 0,
+          "arc_height": 18,
+          "color": "#b6e6ff"
+        }
+      ]
+    }
+  },
+  "skills": {
+    "archer_double_strafe": {
+      "special_sfx": [
+        {
+          "kind": "projectile",
+          "shape": "arrow",
+          "travel_ms": 340,
+          "release_ms": 80,
+          "count": 2,
+          "stagger_ms": 65,
+          "arc_height": 12,
+          "color": "#f6d58b"
+        }
+      ]
+    },
+    "archer_arrow_shower": {
+      "special_sfx": []
+    },
+    "archer_crippling_shot": {
+      "special_sfx": [
+        {
+          "kind": "projectile",
+          "shape": "arrow",
+          "travel_ms": 360,
+          "release_ms": 80,
+          "count": 1,
+          "stagger_ms": 0,
+          "arc_height": 20,
+          "color": "#cbdca8"
+        }
+      ]
+    },
+    "mage_fire_bolt": {
+      "special_sfx": [
+        {
+          "kind": "projectile",
+          "shape": "spear",
+          "path": "sky",
+          "travel_ms": 300,
+          "release_ms": 60,
+          "count": 3,
+          "stagger_ms": 130,
+          "arc_height": 0,
+          "color": "#ff6a1f"
+        }
+      ]
+    },
+    "mage_cold_bolt": {
+      "special_sfx": [
+        {
+          "kind": "projectile",
+          "shape": "spear",
+          "path": "sky",
+          "travel_ms": 300,
+          "release_ms": 60,
+          "count": 3,
+          "stagger_ms": 130,
+          "arc_height": 0,
+          "color": "#7fd8ff"
+        }
+      ]
+    },
+    "mage_lightning_bolt": {
+      "special_sfx": []
+    },
+    "mage_soul_strike": {
+      "special_sfx": [
+        {
+          "kind": "projectile",
+          "shape": "bullet",
+          "travel_ms": 360,
+          "release_ms": 70,
+          "count": 2,
+          "stagger_ms": 70,
+          "arc_height": 25,
+          "color": "#cfc5ff"
+        }
+      ]
+    },
+    "wizard_jupitel": {
+      "special_sfx": [
+        {
+          "kind": "projectile",
+          "shape": "orb",
+          "travel_ms": 300,
+          "release_ms": 70,
+          "count": 3,
+          "stagger_ms": 70,
+          "arc_height": 0,
+          "color": "#c8b6ff"
+        }
+      ]
+    },
+    "rogue_copy_mage_fire_bolt": {
+      "special_sfx": [
+        {
+          "kind": "projectile",
+          "shape": "spear",
+          "path": "sky",
+          "travel_ms": 300,
+          "release_ms": 60,
+          "count": 3,
+          "stagger_ms": 130,
+          "arc_height": 0,
+          "color": "#ff6a1f"
+        }
+      ]
+    },
+    "wizard_meteor": {
+      "special_sfx": [
+        {
+          "kind": "projectile",
+          "shape": "orb",
+          "path": "sky",
+          "travel_ms": 420,
+          "release_ms": 80,
+          "count": 3,
+          "stagger_ms": 240,
+          "arc_height": 0,
+          "color": "#ff7a2e"
+        }
+      ]
+    }
+  },
+  "impacts": {
+    "visual_swordsman_bash": {
+      "meta": "library/effects/keyframe_effect_atlas/hit--21a32708b074.meta.json",
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 20
+    },
+    "visual_swordsman_magnum_break": {
+      "meta": "library/effects/keyframe_effect_atlas/firehit1--4a19f438bcb6.meta.json",
+      "scale": 0.7,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0
+    },
+    "visual_swordsman_provoke": {
+      "meta": "library/effects/keyframe_effect_atlas/provoke--13708f6fb033.meta.json",
+      "scale": 0.6,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0
+    },
+    "visual_thief_backstab": {
+      "meta": "library/effects/keyframe_effect_atlas/hit--21a32708b074.meta.json",
+      "scale": 0.7,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 20
+    },
+    "visual_monk_triple_attack": {
+      "meta": "library/effects/keyframe_effect_atlas/hit--21a32708b074.meta.json",
+      "scale": 0.6,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 110,
+      "lift": 20
+    },
+    "visual_mage_fire_bolt": {
+      "meta": "library/effects/keyframe_effect_atlas/firehit1--4a19f438bcb6.meta.json",
+      "scale": 0.55,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 10
+    },
+    "visual_mage_cold_bolt": {
+      "meta": "library/effects/keyframe_effect_atlas/freeze--f46dfd0d129d.meta.json",
+      "scale": 0.42,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0
+    },
+    "visual_mage_lightning_bolt": {
+      "meta": "library/effects/keyframe_effect_atlas/lightning--fcff45f78f47.meta.json",
+      "scale": 0.85,
+      "start_ms": 950,
+      "lead_ms": 300,
+      "stagger_ms": 220,
+      "lift": 0
+    },
+    "visual_wizard_jupitel": {
+      "meta": "library/effects/keyframe_effect_atlas/windhit1--7f21af6af2dd.meta.json",
+      "scale": 0.55,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 10
+    },
+    "visual_wizard_meteor": {
+      "meta": "library/effects/keyframe_effect_atlas/firehit1--4a19f438bcb6.meta.json",
+      "scale": 0.9,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0
+    },
+    "visual_wizard_heavens_drive": {
+      "meta": "library/effects/keyframe_effect_atlas/earthhit--367ca955bed5.meta.json",
+      "scale": 0.8,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0
+    },
+    "visual_acolyte_holy_light": {
+      "meta": "library/effects/keyframe_effect_atlas/holyhit--2386bcc47988.meta.json",
+      "scale": 0.6,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 10
+    },
+    "visual_archer_arrow_shower": {
+      "meta": "library/effects/keyframe_effect_atlas/arrowstorm--d2aa6744c4c7.meta.json",
+      "scale": 0.6,
+      "start_ms": 400,
+      "lead_ms": 400,
+      "stagger_ms": 0,
+      "lift": 0
+    },
+    "visual_archer_double_strafe": {
+      "meta": "library/effects/keyframe_effect_atlas/hit--21a32708b074.meta.json",
+      "scale": 0.55,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 20
+    },
+    "visual_archer_concentration": {
+      "meta": "library/effects/keyframe_effect_atlas/concentration--6ff559979ba2.meta.json",
+      "scale": 0.6,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0
+    },
+    "visual_merchant_mammonite": {
+      "meta": "library/effects/keyframe_effect_atlas/maemor--296323b360e0.meta.json",
+      "scale": 0.6,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0
+    },
+    "visual_merchant_cart_revolution": {
+      "meta": "library/effects/keyframe_effect_atlas/cartrevolution--9c5f0ab2e7ba.meta.json",
+      "scale": 0.6,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0
+    },
+    "visual_blacksmith_cart_crash": {
+      "meta": "library/effects/keyframe_effect_atlas/cartrevolution--9c5f0ab2e7ba.meta.json",
+      "scale": 0.6,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0
+    },
+    "visual_merchant_loud_voice": {
+      "meta": "library/effects/keyframe_effect_atlas/loud--564cc9489f39.meta.json",
+      "scale": 0.6,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0
+    },
+    "visual_knight_pierce": {
+      "meta": "library/effects/keyframe_effect_atlas/pierce--4b6786ce5550.meta.json",
+      "scale": 0.6,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0
+    },
+    "visual_knight_brandish": {
+      "meta": "library/effects/keyframe_effect_atlas/brandish--4df65d8f8fb1.meta.json",
+      "scale": 0.6,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0
+    },
+    "visual_crusader_holy_cross": {
+      "meta": "library/effects/keyframe_effect_atlas/holy_cross--7ff94dbbc6de.meta.json",
+      "scale": 0.7,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0
+    },
+    "visual_assassin_sonic_blow": {
+      "meta": "library/effects/keyframe_effect_atlas/sonicblow--8ff63a20bc32.meta.json",
+      "scale": 0.6,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0
+    },
+    "visual_blacksmith_hammer_fall": {
+      "meta": "library/effects/keyframe_effect_atlas/crashearth--24881554d209.meta.json",
+      "scale": 0.6,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0
+    },
+    "visual_priest_sanctuary": {
+      "meta": "library/effects/keyframe_effect_atlas/sanctuary--db20ff4546ed.meta.json",
+      "scale": 0.6,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0
+    },
+    "visual_sage_spell_breaker": {
+      "meta": "library/effects/keyframe_effect_atlas/spell--4452e4591d09.meta.json",
+      "scale": 0.6,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0
+    },
+    "visual_sage_fire_endow": {
+      "meta": "library/effects/keyframe_effect_atlas/enc_fire--3e179071887e.meta.json",
+      "scale": 0.6,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0
+    },
+    "visual_hunter_claymore": {
+      "meta": "library/effects/keyframe_effect_atlas/claymore--cf7d4cdafb1b.meta.json",
+      "scale": 0.6,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0
+    }
+  }
+}

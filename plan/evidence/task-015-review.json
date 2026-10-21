@@ -1,0 +1,161 @@
+{
+  "task_id": "TASK-015",
+  "reviewer": "Codex self-review",
+  "date": "2026-10-19",
+  "review_round": 1,
+  "passed": true,
+  "content_hash": "8fd8b5c536556cbedbf5c9a21c2718a20422885b8c0ccbe722d03a2e3c673eb8",
+  "input_sha256": {
+    "plan/data/cards.json": "37e7d239af19e905d6e591b9da73a4b7a03c21e401278c12936dabca81e9e4e3",
+    "plan/data/class-status-effects.json": "b7c72874eb47e2a2fc0bd917fb85c36161c05923cd1c96af2f26266df56bb831",
+    "plan/data/combat-rules.json": "dc58dc9ffb631c5820cd423762f744e9ccaa01534f98d943a861452503465541",
+    "plan/data/daily-bosses.json": "e1cefb6f56a9bbc3027ff24552949705155dfcdc60d99764457ef0c251c49027",
+    "plan/data/economy.json": "eb2ac49463f667c8f9f48201cf62a8029aab5a29b34a07fbc1ecf130d351c039",
+    "plan/data/effect-primitives.json": "d0da135a6b91756c77cdcc4e976e031b5c7134f25e12e4fa1e4ede989dbebcc6",
+    "plan/data/enemies.json": "b7b9650bcc661e67ad66c91abe05117f47c3f3999f507994165da2d48623991b",
+    "plan/data/equipment.json": "debc8276b62f0d64e31483fa33b030e49a2a9f8ced8023be5688dd80b3bbc967",
+    "plan/data/formula-registry.json": "ed2975ebe44959fe0010a0c8978a29ef2facb7dedc75fe503cda5ec6bc32918b",
+    "plan/data/gacha.json": "731c78ec971baa39e55ae3741dce3fbb7f11179c36ea698e10cecf0ffe8bc844",
+    "plan/data/loot.json": "2f4f553c1a0fb8fd77278f2658096f9b89929bb5bce02b5e0ad783638d6c1730",
+    "plan/data/progression.json": "cf1cd444420ce4b3ce78e05bb1bc548cd9da899d56f1b405315320db10ee9cda",
+    "plan/data/save-contracts.json": "18b8166e948f78adadebb04ea5975c757d5e34c62bd5eee1bbde496510747ec3",
+    "plan/data/simulation-contracts.json": "bfd81576dd6dacdbad8b4358092f8146e70ff8de7cfbe04bf9c19c9763fe494a",
+    "plan/data/skills/acolyte.json": "b8d7436693d07a53bf010f140650d05559503088bf92d0c6f46e04725956ad35",
+    "plan/data/skills/archer.json": "ec1ceb52e0c8fac7b47d4fba6d5329d80329470578093c6c5fc679baf25fc9be",
+    "plan/data/skills/mage.json": "3d85e7673a7880751aa383687764dbd8d84089e5669eae99994e0af231027fde",
+    "plan/data/skills/merchant.json": "b3e59f668b423659e9fcbcb486aa37ea69a469ca6062587302c2333ed2fd16e5",
+    "plan/data/skills/swordsman.json": "f255144bc94cf147fd3437033c5cf3da8b05cc9c6d6873ca2ded1f98c7f93e56",
+    "plan/data/skills/thief.json": "c966706b1fbebebec4e37dc1154d7e93612bb1d54eebb8f6c44decb6ddaf7b70",
+    "plan/data/slot-progress.json": "c121f79d4bb380db2a0d0c53dcf377bff27952e24c10ec3c4b15a6df07331eb4",
+    "plan/data/stages.json": "036bb2e9b7c1d23c29e501912daba90cfee531da07b5576b86a9ad02da2c1bc1",
+    "plan/data/stat-definitions.json": "810b43c0356247a24baf3b06bc194f801a7f7a951f2e75294c7c6b7f9b58ab01",
+    "plan/data/status-effects.json": "93c249bf5ffb84f44742f7ee462c28b76a5fd001daa71db081e75b61729763f3",
+    "plan/data/summon-actors.json": "907fb966e18dde786bdcaf54736a36a7fcfec49f02f6f5785c7c2070d21fb9f7",
+    "plan/data/tower.json": "11fe0f515b8995c17bd34d0b828f8ed08f1eba14688e8174e4beb795a9cbe8b5",
+    "plan/data/schemas/account-state.json": "0ebe7da4ca691ffdfb356e41fdf074429ffc38b4ec7387e7d71d5fe4be73d2fa",
+    "plan/data/schemas/battle-checkpoint.json": "f5413bc59bd24b418bb360c75cc01d18e92281a652b73e24ed225a37bd227c6b",
+    "plan/data/schemas/command.json": "16c0addc99bc0c1ac9a633d029e43ba1e4ae42f8233b13262fd96fb410ac2664",
+    "plan/data/schemas/common.json": "a1e6f0140cd31dc4fa361b1447331c0ea8daa667c965bbfc5497da86d38fd2bd",
+    "plan/data/schemas/effect.json": "b0da67c8b4f8a87a65b79a96757370d5c19951bfed6e5b794c04833cf8c7ea04",
+    "plan/data/schemas/formula-call.json": "5bcee1d3bbb36d98dc0cfd861e348c078fe3da3a3e56be31d89213e3b2297eb8",
+    "plan/data/schemas/item.json": "a363a64325f20e9d6df7b1a18c535565306132b50ca92b2877eb6b8e7145183b",
+    "plan/data/schemas/modifier.json": "d4e6ef2dd03a6afd905f4dc0c1ffcd9ee9aa6438f0563e2a2734f446c8016cc1",
+    "plan/data/schemas/patch.json": "cedfbd99b2d91cc477c8a19efa585b2a7371b7e4e729932b071c0efd790fe082",
+    "plan/data/schemas/predicate.json": "2b88514d771a533bf445987321d901676c836fa0f24bc12bf396a58d190691aa",
+    "plan/data/schemas/receipt.json": "a6fc43ddbc931426e321d31d5b31029acba606abf6449f984bc88a3bed17425a",
+    "plan/data/schemas/selector.json": "5accf16ed050f124350614af6a924cec716cad75bdcd0d089330dd3806ebd2b2",
+    "plan/data/schemas/simulation-scenario.json": "27db3d11711f2bf3f56188510319b8a68b9284565aded730ea84ccfebd4f71b7",
+    "plan/data/schemas/skill.json": "060f7cdfc4a8b3a5bfdbf8e3060b6c96863452fe6b136b32fcd7fdf6288cc708",
+    "plan/data/schemas/status.json": "d998199e6e2fb6f7a74f399a7a55bf0d4fe2489bf7615225de8107ab910cbc15",
+    "plan/data/schemas/trigger.json": "91d1dd01928ec0881c31e488484dc2649eb6715a07370601a847fd3dea36a0a5",
+    "plan/data/actor-presentations.json": "7a6116bcc754bb57f9792688d91c74761ad7f58ec1c451143cfdc5ded76dad7e",
+    "plan/data/presentations/acolyte.json": "3d512f907aeff730c61d69df0859130f79e53423526315a407cdb40f859c30bd",
+    "plan/data/presentations/archer.json": "dcbd033a16a9ff7a7f3c4a64fdd1047b014155beb8c77935115a7c0a94c2ebb4",
+    "plan/data/presentations/mage.json": "49b33ea0096644cc985f1b041a1804bfb7068983f5f7bf8e5782bc28d8350f75",
+    "plan/data/presentations/merchant.json": "36beee67f4f4615d5b315279719b8432a449ab66c748c58bd05337b4ff2d7b00",
+    "plan/data/presentations/swordsman.json": "a1947457259e510b2ed0dd89e38df0eff961c3ec9be22b0920d92c5a8f7d60eb",
+    "plan/data/presentations/thief.json": "8b6e19a9bd18fc23651a626e4b62cc6db1ff9e604b127a8ce0bcc3e52d2fccba",
+    "plan/data/strings.th.json": "f20aca876b878f9872da65f579ea9bcb2eb200346e0938c3c29eb20308a301bc",
+    "package-lock.json": "ad7cbf5b44834ca71ef06fb3c7378f62cea44a4ba361bf1313e96eb5547dbd0a",
+    "scripts/game/content-projection.ts": "9f2432856714a0df0fa418fd62d84b4dd0ecfd95f1cbd034a8beb75fc2342e18",
+    "scripts/game/generate-content.ts": "9622b4509dbe7a3ebb650a8df57818176a9ffc1d5ce7ae78256fd9db1e71a553",
+    "src/content/index.ts": "1fd5615fb4b468dbf0e30e9b8fd88e72664f545a0f106f4929e2331804cee014",
+    "src/content/loader.ts": "fece993a9927129513e1e039a04a35a1ad4898f1cb47d2225b8770d2fcc3c6d3",
+    "src/content/model.ts": "ed996bdc791f3ccae337fe96f20e19470d8e9a44b550057c6c3ae7ca118a4322",
+    "src/content/validation.ts": "a5fdcba9935ad5c02a0fa2945668d4378690e4baa6bc95e132a39ddd14017ee1",
+    "src/content/value.ts": "02800b82d60c9cbec6029c3e839ca855fb241efb5fc76a80cb124b64c7a54716",
+    "src/contracts/index.ts": "37a90f1bdd299fada2ecc6bd028072febfcb7d8a61d8596969d69864691eb51a",
+    "src/domain/account/index.ts": "71e9fad8c6e0c3a5a5a687dc80e12d546b216e9efaf2f7fdebfeb7f976590960",
+    "src/domain/build/index.ts": "d18be940dd777d6618e4385a1dba0cc910a9963ae58d1421271ae16d197ddcc0",
+    "src/domain/build/patches.ts": "b76005d2b8c043b78ae9b45b370ba89c4a7c5ff9fd0054eb09b6954d09618695",
+    "src/domain/combat/index.ts": "7b71507365993f18bef403d1686edf09b0adbfc66e11dc1d506fc7f38166e534",
+    "package.json": "f0d87651fd60807e8207bc917a9ec952459cb0c35cbcd5803e6e246033165a1a",
+    "tsconfig.json": "cc4b7f801da804013d548fb5ded6db5c9e1871afac4a94c772939f63edf25e86",
+    "vite.config.ts": "ed6ee2c7714c4773c7e50d8447773455eef59cba46895eee03b10051fe1a705b",
+    "api/index.ts": "b2bf4051b402aa2fedc03e4d3227d4cc7e475c4127d855f8c752759833778585",
+    "scripts/game/check-boundaries.ts": "2250cf22c9c687b05e40a20d4a3e50b73ce560b9fc8cc70dc683e0dd238f4120"
+  },
+  "checks": [
+    {
+      "case_id": "fresh_install_build_dev",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": "isolated /private/tmp/ro-idle-task015-clean: npm ci --offline, npm run check (51 tests), npm run build exit0; dev HTTP200 at localhost5174"
+    },
+    {
+      "case_id": "data_and_negative_fixtures",
+      "acceptance": [
+        "AC-02"
+      ],
+      "passed": true,
+      "result": "126player+8enemy skills,60equipment,18cards,27statuses;31M0invalidJSON+NaN/prototype/outcome/patch tests; origin paths"
+    },
+    {
+      "case_id": "node_import",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": true,
+      "result": "combat boundary import in Node without document; current boundary has types only, engine TASK-016"
+    },
+    {
+      "case_id": "selected_versioned_build",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": "3buildpayloads,189539gzip bytes; no image/audio/archive/full-library copies; source/rules/schema/implementation hash, assetpack pendingTASK-019"
+    },
+    {
+      "case_id": "boundaries_and_immutable",
+      "acceptance": [
+        "AC-05"
+      ],
+      "passed": true,
+      "result": "AST negative fixtures DOM/clock/random/fetch/UI-DB/reexport/dynamic/locale; frozen definitions mutation rejects; API health HTTP200 and cloud routes503"
+    }
+  ],
+  "http_checks": [
+    {
+      "url": "http://127.0.0.1:5174/",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/src/ui/main.tsx",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8787/api/health",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:5174/api/health",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8787/api/account",
+      "status": 503
+    }
+  ],
+  "logs": [
+    "task-015-checks.txt",
+    "task-015-build.txt",
+    "task-015-clean-check.txt",
+    "task-015-clean-build.txt"
+  ],
+  "resolved_findings": [
+    "Use node --import tsx rather than CLI IPC in restricted environment",
+    "TypeScript6 pinned for stable compiler AST API;Node24types match runtime",
+    "Dev API does not use watch; Vite excludes entire asset library",
+    "Single ASCII canonicalizer/projection avoids numeric-key hash mismatch",
+    "Inherited constructor is not a selector; prototype-binding regression rejected"
+  ],
+  "limitations": [
+    "Development status page and HTTP verification only; no browser visual QA",
+    "Combat boundary import is a foundation smoke check, not combat/simulator evidence",
+    "Memory repository tests do not prove Supabase RLS/atomic SQL",
+    "No runtime asset pack, auth, real saved game, remote infrastructure or deploy;Vite warns raw1.15MB chunk although gzip189539bytes"
+  ]
+}

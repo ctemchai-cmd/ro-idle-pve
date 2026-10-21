@@ -1,0 +1,42 @@
+
+> ro-idle-classic@0.1.0 build
+> npm run content:generate && npm run content:check && npm run boundaries && npm run typecheck && vite build && node --import tsx scripts/game/build-output.ts
+
+
+> ro-idle-classic@0.1.0 content:generate
+> node --import tsx scripts/game/generate-content.ts
+
+{"content_hash":"fcae274e97e3ee0ddd1683b3f2919f346e0bea13db4fdaa03a9d0d7a6edf66a4","documents":34,"schemas":16,"asset_payloads":0}
+
+> ro-idle-classic@0.1.0 content:check
+> node --import tsx scripts/game/check-content.ts
+
+{"content_hash":"fcae274e97e3ee0ddd1683b3f2919f346e0bea13db4fdaa03a9d0d7a6edf66a4","skills_including_enemy":134,"items":78,"statuses":27,"immutable":true}
+
+> ro-idle-classic@0.1.0 boundaries
+> node --import tsx scripts/game/check-boundaries.ts
+
+{
+  "passed": true,
+  "issues": []
+}
+
+> ro-idle-classic@0.1.0 typecheck
+> tsc --noEmit
+
+vite v8.3.4 building client environment for production...
+transforming...
+✓ 109 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                     0.54 kB │ gzip:   0.37 kB
+dist/assets/index-DRCCsW4q.css      1.06 kB │ gzip:   0.58 kB
+dist/assets/index-BJ9LJQpl.js   1,147.74 kB │ gzip: 190.94 kB
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 3.31s
+{"content_hash":"fcae274e97e3ee0ddd1683b3f2919f346e0bea13db4fdaa03a9d0d7a6edf66a4","files":3,"gzip_bytes":189978,"asset_pack":"TASK-019 pending","publish_ready":false}

@@ -1,0 +1,866 @@
+{
+ "task_id": "TASK-041",
+ "date": "2026-10-21",
+ "content_hash": "14ffbc7104d10ce55ceda325f66de80a5ef671740e7f96bb65236deebce646b6",
+ "method": "level-gated schedule journeys (25 simulated days, mage+swordsman/acolyte/archer and thief+merchant/acolyte/archer, bot saves gold for Breakthrough gates) → 14 calibrate rounds on the journey snapshots (10 seeds per team per stage) → D-074 heavy-cast variants measured once without retuning",
+ "pace": {
+  "mage": {
+   "team": [
+    "swordsman",
+    "acolyte",
+    "archer"
+   ],
+   "simulated_days": 8.62,
+   "chapter_end_hours": {
+    "1": 2,
+    "2": 8.48,
+    "3": 20.73,
+    "4": 42.19,
+    "5": 78.84,
+    "6": 115.9,
+    "7": 161.26,
+    "8": 206.89
+   },
+   "target_cumulative_hours": {
+    "1": 3,
+    "2": 12,
+    "3": 30,
+    "4": 60,
+    "5": 100,
+    "6": 145,
+    "7": 192,
+    "8": 240
+   }
+  },
+  "thief": {
+   "team": [
+    "merchant",
+    "acolyte",
+    "archer"
+   ],
+   "simulated_days": 8.03,
+   "chapter_end_hours": {
+    "1": 2,
+    "2": 8.15,
+    "3": 19.53,
+    "4": 41.29,
+    "5": 72.64,
+    "6": 113.21,
+    "7": 152.37,
+    "8": 192.73
+   },
+   "target_cumulative_hours": {
+    "1": 3,
+    "2": 12,
+    "3": 30,
+    "4": 60,
+    "5": 100,
+    "6": 145,
+    "7": 192,
+    "8": 240
+   }
+  }
+ },
+ "calibration_rounds": [
+  "round 1 (report before its own write): regular 9/104 mean 0.97 | finals 0/8 mean 0.83 | heavy 0/21 mean 0.89 interrupt-needed 1/21",
+  "round 2 (report before its own write): regular 47/104 mean 0.73 | finals 2/8 mean 0.75 | heavy 8/21 mean 0.76 interrupt-needed 2/21",
+  "round 3 (report before its own write): regular 46/104 mean 0.64 | finals 0/8 mean 0.75 | heavy 10/21 mean 0.67 interrupt-needed 8/21",
+  "round 4 (report before its own write): regular 48/104 mean 0.65 | finals 1/8 mean 0.78 | heavy 10/21 mean 0.67 interrupt-needed 8/21",
+  "round 5 (report before its own write): regular 50/104 mean 0.62 | finals 2/8 mean 0.70 | heavy 9/21 mean 0.66 interrupt-needed 7/21",
+  "round 6 (report before its own write): regular 48/104 mean 0.63 | finals 3/8 mean 0.70 | heavy 12/21 mean 0.68 interrupt-needed 7/21",
+  "round 7 (report before its own write): regular 50/104 mean 0.64 | finals 4/8 mean 0.67 | heavy 14/21 mean 0.68 interrupt-needed 7/21",
+  "round 8 (report before its own write): regular 49/104 mean 0.63 | finals 3/8 mean 0.62 | heavy 14/21 mean 0.68 interrupt-needed 8/21",
+  "after all rounds: regular 50/104 mean 0.64 | finals 3/8 mean 0.47 | heavy 15/21 mean 0.68 interrupt-needed 8/21",
+  "round 1: regular 98/104 mean 0.82 | finals 5/8 mean 0.59 | heavy 16/21 mean 0.78 interrupt-needed 9/21",
+  "round 2: regular 100/104 mean 0.82 | finals 5/8 mean 0.68 | heavy 17/21 mean 0.73 interrupt-needed 9/21",
+  "round 3: regular 101/104 mean 0.82 | finals 7/8 mean 0.64 | heavy 18/21 mean 0.74 interrupt-needed 10/21",
+  "round 4: regular 101/104 mean 0.82 | finals 8/8 mean 0.66 | heavy 19/21 mean 0.73 interrupt-needed 10/21",
+  "round 5: regular 101/104 mean 0.82 | finals 8/8 mean 0.66 | heavy 19/21 mean 0.74 interrupt-needed 10/21",
+  "round 6: regular 101/104 mean 0.82 | finals 8/8 mean 0.66 | heavy 19/21 mean 0.74 interrupt-needed 10/21",
+  "after all rounds: regular 101/104 mean 0.82 | finals 8/8 mean 0.66 | heavy 19/21 mean 0.75 interrupt-needed 10/21"
+ ],
+ "final_summary": "regular 101/104 in 0.7–0.9 (mean 0.82) · finals 8/8 in 0.55–0.8 (mean 0.67) · heavy 16/21 in band, 8/21 lose without interrupts (after D-074 variants; 19/21 and 10/21 before)",
+ "stages": [
+  {
+   "stage": "1-1",
+   "mean_win": 1.0,
+   "worst_team_win": 1.0,
+   "without_interrupts": null
+  },
+  {
+   "stage": "1-2",
+   "mean_win": 0.8,
+   "worst_team_win": 0.6,
+   "without_interrupts": null
+  },
+  {
+   "stage": "1-3",
+   "mean_win": 0.8,
+   "worst_team_win": 0.6,
+   "without_interrupts": null
+  },
+  {
+   "stage": "1-4",
+   "mean_win": 0.7,
+   "worst_team_win": 0.4,
+   "without_interrupts": null
+  },
+  {
+   "stage": "1-5",
+   "mean_win": 0.53,
+   "worst_team_win": 0.4666666666666667,
+   "without_interrupts": 0.25
+  },
+  {
+   "stage": "1-6",
+   "mean_win": 0.8,
+   "worst_team_win": 0.6,
+   "without_interrupts": null
+  },
+  {
+   "stage": "1-7",
+   "mean_win": 0.65,
+   "worst_team_win": 0.3,
+   "without_interrupts": null
+  },
+  {
+   "stage": "1-8",
+   "mean_win": 0.95,
+   "worst_team_win": 0.9,
+   "without_interrupts": null
+  },
+  {
+   "stage": "1-9",
+   "mean_win": 0.8,
+   "worst_team_win": 0.6,
+   "without_interrupts": null
+  },
+  {
+   "stage": "1-10",
+   "mean_win": 0.57,
+   "worst_team_win": 0.5,
+   "without_interrupts": 0.2833333333333333
+  },
+  {
+   "stage": "2-1",
+   "mean_win": 0.7,
+   "worst_team_win": 0.4,
+   "without_interrupts": null
+  },
+  {
+   "stage": "2-2",
+   "mean_win": 0.7,
+   "worst_team_win": 0.4,
+   "without_interrupts": null
+  },
+  {
+   "stage": "2-3",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "2-4",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "2-5",
+   "mean_win": 0.7,
+   "worst_team_win": 0.5,
+   "without_interrupts": 0.1
+  },
+  {
+   "stage": "2-6",
+   "mean_win": 0.75,
+   "worst_team_win": 0.5,
+   "without_interrupts": null
+  },
+  {
+   "stage": "2-7",
+   "mean_win": 0.8,
+   "worst_team_win": 0.6,
+   "without_interrupts": null
+  },
+  {
+   "stage": "2-8",
+   "mean_win": 0.7,
+   "worst_team_win": 0.4,
+   "without_interrupts": null
+  },
+  {
+   "stage": "2-9",
+   "mean_win": 0.7,
+   "worst_team_win": 0.4,
+   "without_interrupts": null
+  },
+  {
+   "stage": "2-10",
+   "mean_win": 0.67,
+   "worst_team_win": 0.6,
+   "without_interrupts": 0.25
+  },
+  {
+   "stage": "3-1",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "3-2",
+   "mean_win": 0.9,
+   "worst_team_win": 0.8,
+   "without_interrupts": null
+  },
+  {
+   "stage": "3-3",
+   "mean_win": 0.7,
+   "worst_team_win": 0.4,
+   "without_interrupts": null
+  },
+  {
+   "stage": "3-4",
+   "mean_win": 0.9,
+   "worst_team_win": 0.8,
+   "without_interrupts": null
+  },
+  {
+   "stage": "3-5",
+   "mean_win": 0.73,
+   "worst_team_win": 0.5333333333333333,
+   "without_interrupts": 0.5833333333333334
+  },
+  {
+   "stage": "3-6",
+   "mean_win": 0.7,
+   "worst_team_win": 0.4,
+   "without_interrupts": null
+  },
+  {
+   "stage": "3-7",
+   "mean_win": 0.7,
+   "worst_team_win": 0.4,
+   "without_interrupts": null
+  },
+  {
+   "stage": "3-8",
+   "mean_win": 0.9,
+   "worst_team_win": 0.8,
+   "without_interrupts": null
+  },
+  {
+   "stage": "3-9",
+   "mean_win": 0.7,
+   "worst_team_win": 0.4,
+   "without_interrupts": null
+  },
+  {
+   "stage": "3-10",
+   "mean_win": 0.58,
+   "worst_team_win": 0.4666666666666667,
+   "without_interrupts": 0.0
+  },
+  {
+   "stage": "4-1",
+   "mean_win": 0.75,
+   "worst_team_win": 0.5,
+   "without_interrupts": null
+  },
+  {
+   "stage": "4-2",
+   "mean_win": 0.75,
+   "worst_team_win": 0.5,
+   "without_interrupts": null
+  },
+  {
+   "stage": "4-3",
+   "mean_win": 0.9,
+   "worst_team_win": 0.8,
+   "without_interrupts": null
+  },
+  {
+   "stage": "4-4",
+   "mean_win": 0.75,
+   "worst_team_win": 0.5,
+   "without_interrupts": null
+  },
+  {
+   "stage": "4-5",
+   "mean_win": 0.45,
+   "worst_team_win": 0.43333333333333335,
+   "without_interrupts": 0.4
+  },
+  {
+   "stage": "4-6",
+   "mean_win": 0.8,
+   "worst_team_win": 0.6,
+   "without_interrupts": null
+  },
+  {
+   "stage": "4-7",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "4-8",
+   "mean_win": 0.8,
+   "worst_team_win": 0.6,
+   "without_interrupts": null
+  },
+  {
+   "stage": "4-9",
+   "mean_win": 0.75,
+   "worst_team_win": 0.5,
+   "without_interrupts": null
+  },
+  {
+   "stage": "4-10",
+   "mean_win": 0.7,
+   "worst_team_win": 0.5,
+   "without_interrupts": 0.26666666666666666
+  },
+  {
+   "stage": "4-11",
+   "mean_win": 0.9,
+   "worst_team_win": 0.8,
+   "without_interrupts": null
+  },
+  {
+   "stage": "4-12",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "4-13",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "4-14",
+   "mean_win": 0.8,
+   "worst_team_win": 0.6,
+   "without_interrupts": null
+  },
+  {
+   "stage": "4-15",
+   "mean_win": 0.68,
+   "worst_team_win": 0.5,
+   "without_interrupts": 0.23333333333333334
+  },
+  {
+   "stage": "4-16",
+   "mean_win": 0.8,
+   "worst_team_win": 0.6,
+   "without_interrupts": null
+  },
+  {
+   "stage": "4-17",
+   "mean_win": 0.7,
+   "worst_team_win": 0.4,
+   "without_interrupts": null
+  },
+  {
+   "stage": "4-18",
+   "mean_win": 0.8,
+   "worst_team_win": 0.6,
+   "without_interrupts": null
+  },
+  {
+   "stage": "4-19",
+   "mean_win": 0.8,
+   "worst_team_win": 0.6,
+   "without_interrupts": null
+  },
+  {
+   "stage": "4-20",
+   "mean_win": 0.7,
+   "worst_team_win": 0.6,
+   "without_interrupts": null
+  },
+  {
+   "stage": "5-1",
+   "mean_win": 0.75,
+   "worst_team_win": 0.5,
+   "without_interrupts": null
+  },
+  {
+   "stage": "5-2",
+   "mean_win": 0.9,
+   "worst_team_win": 0.8,
+   "without_interrupts": null
+  },
+  {
+   "stage": "5-3",
+   "mean_win": 0.9,
+   "worst_team_win": 0.8,
+   "without_interrupts": null
+  },
+  {
+   "stage": "5-4",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "5-5",
+   "mean_win": 0.77,
+   "worst_team_win": 0.7333333333333333,
+   "without_interrupts": 0.35
+  },
+  {
+   "stage": "5-6",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "5-7",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "5-8",
+   "mean_win": 0.75,
+   "worst_team_win": 0.5,
+   "without_interrupts": null
+  },
+  {
+   "stage": "5-9",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "5-10",
+   "mean_win": 0.68,
+   "worst_team_win": 0.6333333333333333,
+   "without_interrupts": 0.3333333333333333
+  },
+  {
+   "stage": "5-11",
+   "mean_win": 0.75,
+   "worst_team_win": 0.5,
+   "without_interrupts": null
+  },
+  {
+   "stage": "5-12",
+   "mean_win": 0.8,
+   "worst_team_win": 0.6,
+   "without_interrupts": null
+  },
+  {
+   "stage": "5-13",
+   "mean_win": 0.75,
+   "worst_team_win": 0.5,
+   "without_interrupts": null
+  },
+  {
+   "stage": "5-14",
+   "mean_win": 0.8,
+   "worst_team_win": 0.6,
+   "without_interrupts": null
+  },
+  {
+   "stage": "5-15",
+   "mean_win": 0.83,
+   "worst_team_win": 0.7666666666666667,
+   "without_interrupts": 0.25
+  },
+  {
+   "stage": "5-16",
+   "mean_win": 0.75,
+   "worst_team_win": 0.5,
+   "without_interrupts": null
+  },
+  {
+   "stage": "5-17",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "5-18",
+   "mean_win": 0.9,
+   "worst_team_win": 0.8,
+   "without_interrupts": null
+  },
+  {
+   "stage": "5-19",
+   "mean_win": 0.8,
+   "worst_team_win": 0.6,
+   "without_interrupts": null
+  },
+  {
+   "stage": "5-20",
+   "mean_win": 0.7,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "6-1",
+   "mean_win": 0.8,
+   "worst_team_win": 0.6,
+   "without_interrupts": null
+  },
+  {
+   "stage": "6-2",
+   "mean_win": 0.8,
+   "worst_team_win": 0.6,
+   "without_interrupts": null
+  },
+  {
+   "stage": "6-3",
+   "mean_win": 0.8,
+   "worst_team_win": 0.6,
+   "without_interrupts": null
+  },
+  {
+   "stage": "6-4",
+   "mean_win": 0.8,
+   "worst_team_win": 0.6,
+   "without_interrupts": null
+  },
+  {
+   "stage": "6-5",
+   "mean_win": 0.82,
+   "worst_team_win": 0.8,
+   "without_interrupts": 0.0
+  },
+  {
+   "stage": "6-6",
+   "mean_win": 0.9,
+   "worst_team_win": 0.8,
+   "without_interrupts": null
+  },
+  {
+   "stage": "6-7",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "6-8",
+   "mean_win": 0.9,
+   "worst_team_win": 0.8,
+   "without_interrupts": null
+  },
+  {
+   "stage": "6-9",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "6-10",
+   "mean_win": 0.87,
+   "worst_team_win": 0.8,
+   "without_interrupts": 0.1
+  },
+  {
+   "stage": "6-11",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "6-12",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "6-13",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "6-14",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "6-15",
+   "mean_win": 0.83,
+   "worst_team_win": 0.7333333333333333,
+   "without_interrupts": 0.38333333333333336
+  },
+  {
+   "stage": "6-16",
+   "mean_win": 0.9,
+   "worst_team_win": 0.8,
+   "without_interrupts": null
+  },
+  {
+   "stage": "6-17",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "6-18",
+   "mean_win": 0.7,
+   "worst_team_win": 0.4,
+   "without_interrupts": null
+  },
+  {
+   "stage": "6-19",
+   "mean_win": 0.8,
+   "worst_team_win": 0.6,
+   "without_interrupts": null
+  },
+  {
+   "stage": "6-20",
+   "mean_win": 0.8,
+   "worst_team_win": 0.8,
+   "without_interrupts": null
+  },
+  {
+   "stage": "7-1",
+   "mean_win": 0.9,
+   "worst_team_win": 0.8,
+   "without_interrupts": null
+  },
+  {
+   "stage": "7-2",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "7-3",
+   "mean_win": 0.9,
+   "worst_team_win": 0.8,
+   "without_interrupts": null
+  },
+  {
+   "stage": "7-4",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "7-5",
+   "mean_win": 0.85,
+   "worst_team_win": 0.8,
+   "without_interrupts": 0.1
+  },
+  {
+   "stage": "7-6",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "7-7",
+   "mean_win": 0.8,
+   "worst_team_win": 0.6,
+   "without_interrupts": null
+  },
+  {
+   "stage": "7-8",
+   "mean_win": 0.8,
+   "worst_team_win": 0.6,
+   "without_interrupts": null
+  },
+  {
+   "stage": "7-9",
+   "mean_win": 0.8,
+   "worst_team_win": 0.6,
+   "without_interrupts": null
+  },
+  {
+   "stage": "7-10",
+   "mean_win": 0.93,
+   "worst_team_win": 0.9333333333333333,
+   "without_interrupts": 0.5
+  },
+  {
+   "stage": "7-11",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "7-12",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "7-13",
+   "mean_win": 0.8,
+   "worst_team_win": 0.6,
+   "without_interrupts": null
+  },
+  {
+   "stage": "7-14",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "7-15",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7333333333333333,
+   "without_interrupts": 0.03333333333333333
+  },
+  {
+   "stage": "7-16",
+   "mean_win": 0.9,
+   "worst_team_win": 0.8,
+   "without_interrupts": null
+  },
+  {
+   "stage": "7-17",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "7-18",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "7-19",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "7-20",
+   "mean_win": 0.65,
+   "worst_team_win": 0.5,
+   "without_interrupts": null
+  },
+  {
+   "stage": "8-1",
+   "mean_win": 0.8,
+   "worst_team_win": 0.6,
+   "without_interrupts": null
+  },
+  {
+   "stage": "8-2",
+   "mean_win": 0.8,
+   "worst_team_win": 0.6,
+   "without_interrupts": null
+  },
+  {
+   "stage": "8-3",
+   "mean_win": 0.8,
+   "worst_team_win": 0.6,
+   "without_interrupts": null
+  },
+  {
+   "stage": "8-4",
+   "mean_win": 0.8,
+   "worst_team_win": 0.6,
+   "without_interrupts": null
+  },
+  {
+   "stage": "8-5",
+   "mean_win": 0.9,
+   "worst_team_win": 0.8333333333333334,
+   "without_interrupts": 0.38333333333333336
+  },
+  {
+   "stage": "8-6",
+   "mean_win": 0.9,
+   "worst_team_win": 0.8,
+   "without_interrupts": null
+  },
+  {
+   "stage": "8-7",
+   "mean_win": 0.8,
+   "worst_team_win": 0.6,
+   "without_interrupts": null
+  },
+  {
+   "stage": "8-8",
+   "mean_win": 0.7,
+   "worst_team_win": 0.4,
+   "without_interrupts": null
+  },
+  {
+   "stage": "8-9",
+   "mean_win": 0.8,
+   "worst_team_win": 0.6,
+   "without_interrupts": null
+  },
+  {
+   "stage": "8-10",
+   "mean_win": 0.73,
+   "worst_team_win": 0.7333333333333333,
+   "without_interrupts": 0.08333333333333333
+  },
+  {
+   "stage": "8-11",
+   "mean_win": 0.75,
+   "worst_team_win": 0.5,
+   "without_interrupts": null
+  },
+  {
+   "stage": "8-12",
+   "mean_win": 0.8,
+   "worst_team_win": 0.6,
+   "without_interrupts": null
+  },
+  {
+   "stage": "8-13",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "8-14",
+   "mean_win": 0.9,
+   "worst_team_win": 0.8,
+   "without_interrupts": null
+  },
+  {
+   "stage": "8-15",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7666666666666667,
+   "without_interrupts": 0.18333333333333332
+  },
+  {
+   "stage": "8-16",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "8-17",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "8-18",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "8-19",
+   "mean_win": 0.85,
+   "worst_team_win": 0.7,
+   "without_interrupts": null
+  },
+  {
+   "stage": "8-20",
+   "mean_win": 0.7,
+   "worst_team_win": 0.4,
+   "without_interrupts": null
+  }
+ ],
+ "limitations": "Win rates are for bot reference teams at the recommended level with full spending; 10 seeds per team gives roughly ±0.15 per stage. Pace is the bot’s optimal play (claims every 10 min, all dailies/tower); real players are expected slower."
+}

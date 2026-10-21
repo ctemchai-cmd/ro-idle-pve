@@ -1,0 +1,2267 @@
+[
+  {
+    "id": "unknown_stat",
+    "mutation": "unknown_stat",
+    "expected_error": "schema",
+    "kind": "item",
+    "definition": {
+      "id": "fixture_card",
+      "name_key": "fixture_card",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "attack",
+          "stat": "speed_unregistered",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 20
+        }
+      ],
+      "triggers": [
+        {
+          "id": "fixture_thorns",
+          "event": "damage_received",
+          "chance": 1,
+          "accepted_origins": [
+            "skill",
+            "normal"
+          ],
+          "limit_scope": "none",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {},
+          "effects": [
+            {
+              "id": "reflect",
+              "type": "damage",
+              "target": "event_source",
+              "formula": {
+                "id": "event_damage_power",
+                "params": {
+                  "ratio": 0.2
+                }
+              },
+              "damage_type": "physical",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal",
+              "as_reflect": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "unknown_formula",
+    "mutation": "unknown_formula",
+    "expected_error": "schema",
+    "kind": "skill",
+    "definition": {
+      "id": "fixture_bash",
+      "name_key": "fixture_bash",
+      "class_id": "swordsman",
+      "max_level": 2,
+      "unlock_level": 1,
+      "tags": [
+        "physical"
+      ],
+      "level_parameters": {
+        "power": [
+          2,
+          2.2
+        ]
+      },
+      "kind": "active",
+      "cost": {
+        "sp": 12,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 500,
+        "interruptible": true
+      },
+      "selectors": {
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "unregistered",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": 1000,
+          "params": {},
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "unknown_formula_param",
+    "mutation": "unknown_formula_param",
+    "expected_error": "schema",
+    "kind": "skill",
+    "definition": {
+      "id": "fixture_bash",
+      "name_key": "fixture_bash",
+      "class_id": "swordsman",
+      "max_level": 2,
+      "unlock_level": 1,
+      "tags": [
+        "physical"
+      ],
+      "level_parameters": {
+        "power": [
+          2,
+          2.2
+        ]
+      },
+      "kind": "active",
+      "cost": {
+        "sp": 12,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 500,
+        "interruptible": true
+      },
+      "selectors": {
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0,
+              "mystery": 1
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": 1000,
+          "params": {},
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "unknown_status",
+    "mutation": "unknown_status",
+    "expected_error": "unknown_status",
+    "kind": "skill",
+    "definition": {
+      "id": "fixture_bash",
+      "name_key": "fixture_bash",
+      "class_id": "swordsman",
+      "max_level": 2,
+      "unlock_level": 1,
+      "tags": [
+        "physical"
+      ],
+      "level_parameters": {
+        "power": [
+          2,
+          2.2
+        ]
+      },
+      "kind": "active",
+      "cost": {
+        "sp": 12,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 500,
+        "interruptible": true
+      },
+      "selectors": {
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "unregistered",
+          "duration_ms": 1000,
+          "params": {},
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "unknown_binding",
+    "mutation": "unknown_binding",
+    "expected_error": "unknown_binding",
+    "kind": "skill",
+    "definition": {
+      "id": "fixture_bash",
+      "name_key": "fixture_bash",
+      "class_id": "swordsman",
+      "max_level": 2,
+      "unlock_level": 1,
+      "tags": [
+        "physical"
+      ],
+      "level_parameters": {
+        "power": [
+          2,
+          2.2
+        ]
+      },
+      "kind": "active",
+      "cost": {
+        "sp": 12,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 500,
+        "interruptible": true
+      },
+      "selectors": {
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "unregistered",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": 1000,
+          "params": {},
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "outcome_other_target",
+    "mutation": "outcome_other_target",
+    "expected_error": "schema",
+    "kind": "skill",
+    "definition": {
+      "id": "fixture_bash",
+      "name_key": "fixture_bash",
+      "class_id": "swordsman",
+      "max_level": 2,
+      "unlock_level": 1,
+      "tags": [
+        "physical"
+      ],
+      "level_parameters": {
+        "power": [
+          2,
+          2.2
+        ]
+      },
+      "kind": "active",
+      "cost": {
+        "sp": 12,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 500,
+        "interruptible": true
+      },
+      "selectors": {
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": 1000,
+          "params": {},
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "any_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "outcome_forward_reference",
+    "mutation": "outcome_forward_reference",
+    "expected_error": "outcome_reference",
+    "kind": "skill",
+    "definition": {
+      "id": "fixture_bash",
+      "name_key": "fixture_bash",
+      "class_id": "swordsman",
+      "max_level": 2,
+      "unlock_level": 1,
+      "tags": [
+        "physical"
+      ],
+      "level_parameters": {
+        "power": [
+          2,
+          2.2
+        ]
+      },
+      "kind": "active",
+      "cost": {
+        "sp": 12,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 500,
+        "interruptible": true
+      },
+      "selectors": {
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": 1000,
+          "params": {},
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        },
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        }
+      ]
+    }
+  },
+  {
+    "id": "outcome_different_binding",
+    "mutation": "outcome_different_binding",
+    "expected_error": "outcome_scope",
+    "kind": "skill",
+    "definition": {
+      "id": "fixture_bash",
+      "name_key": "fixture_bash",
+      "class_id": "swordsman",
+      "max_level": 2,
+      "unlock_level": 1,
+      "tags": [
+        "physical"
+      ],
+      "level_parameters": {
+        "power": [
+          2,
+          2.2
+        ]
+      },
+      "kind": "active",
+      "cost": {
+        "sp": 12,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 500,
+        "interruptible": true
+      },
+      "selectors": {
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "stun",
+          "duration_ms": 1000,
+          "params": {},
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "unknown_status_param",
+    "mutation": "unknown_status_param",
+    "expected_error": "status_params",
+    "kind": "skill",
+    "definition": {
+      "id": "fixture_bash",
+      "name_key": "fixture_bash",
+      "class_id": "swordsman",
+      "max_level": 2,
+      "unlock_level": 1,
+      "tags": [
+        "physical"
+      ],
+      "level_parameters": {
+        "power": [
+          2,
+          2.2
+        ]
+      },
+      "kind": "active",
+      "cost": {
+        "sp": 12,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 500,
+        "interruptible": true
+      },
+      "selectors": {
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": 1000,
+          "params": {
+            "mystery": 1
+          },
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "undefined_level_param",
+    "mutation": "undefined_level_param",
+    "expected_error": "level_param",
+    "kind": "skill",
+    "definition": {
+      "id": "fixture_bash",
+      "name_key": "fixture_bash",
+      "class_id": "swordsman",
+      "max_level": 2,
+      "unlock_level": 1,
+      "tags": [
+        "physical"
+      ],
+      "level_parameters": {
+        "power": [
+          2,
+          2.2
+        ]
+      },
+      "kind": "active",
+      "cost": {
+        "sp": 12,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 500,
+        "interruptible": true
+      },
+      "selectors": {
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "unknown"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": 1000,
+          "params": {},
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "level_curve_length",
+    "mutation": "level_curve_length",
+    "expected_error": "level_curve",
+    "kind": "skill",
+    "definition": {
+      "id": "fixture_bash",
+      "name_key": "fixture_bash",
+      "class_id": "swordsman",
+      "max_level": 2,
+      "unlock_level": 1,
+      "tags": [
+        "physical"
+      ],
+      "level_parameters": {
+        "power": [
+          2
+        ]
+      },
+      "kind": "active",
+      "cost": {
+        "sp": 12,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 500,
+        "interruptible": true
+      },
+      "selectors": {
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": 1000,
+          "params": {},
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "invalid_modifier_bucket",
+    "mutation": "invalid_modifier_bucket",
+    "expected_error": "modifier_bucket",
+    "kind": "item",
+    "definition": {
+      "id": "fixture_card",
+      "name_key": "fixture_card",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 20
+        }
+      ],
+      "triggers": [
+        {
+          "id": "fixture_thorns",
+          "event": "damage_received",
+          "chance": 1,
+          "accepted_origins": [
+            "skill",
+            "normal"
+          ],
+          "limit_scope": "none",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {},
+          "effects": [
+            {
+              "id": "reflect",
+              "type": "damage",
+              "target": "event_source",
+              "formula": {
+                "id": "event_damage_power",
+                "params": {
+                  "ratio": 0.2
+                }
+              },
+              "damage_type": "physical",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal",
+              "as_reflect": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "ratio_as_add_percent",
+    "mutation": "ratio_as_add_percent",
+    "expected_error": "modifier_unit",
+    "kind": "item",
+    "definition": {
+      "id": "fixture_card",
+      "name_key": "fixture_card",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "attack",
+          "stat": "crit_chance_bonus",
+          "op": "add_percent",
+          "bucket": "bonus",
+          "value": 20
+        }
+      ],
+      "triggers": [
+        {
+          "id": "fixture_thorns",
+          "event": "damage_received",
+          "chance": 1,
+          "accepted_origins": [
+            "skill",
+            "normal"
+          ],
+          "limit_scope": "none",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {},
+          "effects": [
+            {
+              "id": "reflect",
+              "type": "damage",
+              "target": "event_source",
+              "formula": {
+                "id": "event_damage_power",
+                "params": {
+                  "ratio": 0.2
+                }
+              },
+              "damage_type": "physical",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal",
+              "as_reflect": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "buff_cap",
+    "mutation": "buff_cap",
+    "expected_error": "schema",
+    "kind": "status",
+    "definition": {
+      "id": "attack_up",
+      "polarity": "buff",
+      "tags": [
+        "stat_buff"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "ratio": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": 3,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": false,
+      "dispelable": true,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [
+        {
+          "id": "magnitude",
+          "stat": "physical_attack",
+          "bucket": "derived",
+          "op": "add_percent",
+          "value": {
+            "status_param": "ratio"
+          }
+        }
+      ],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null
+    }
+  },
+  {
+    "id": "chance_above_one",
+    "mutation": "chance_above_one",
+    "expected_error": "probability",
+    "kind": "skill",
+    "definition": {
+      "id": "fixture_bash",
+      "name_key": "fixture_bash",
+      "class_id": "swordsman",
+      "max_level": 2,
+      "unlock_level": 1,
+      "tags": [
+        "physical"
+      ],
+      "level_parameters": {
+        "power": [
+          2,
+          2.2
+        ]
+      },
+      "kind": "active",
+      "cost": {
+        "sp": 12,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 500,
+        "interruptible": true
+      },
+      "selectors": {
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": 1000,
+          "params": {},
+          "chance": 1.1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "event_formula_without_event",
+    "mutation": "event_formula_without_event",
+    "expected_error": "event_context",
+    "kind": "skill",
+    "definition": {
+      "id": "fixture_bash",
+      "name_key": "fixture_bash",
+      "class_id": "swordsman",
+      "max_level": 2,
+      "unlock_level": 1,
+      "tags": [
+        "physical"
+      ],
+      "level_parameters": {
+        "power": [
+          2,
+          2.2
+        ]
+      },
+      "kind": "active",
+      "cost": {
+        "sp": 12,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 500,
+        "interruptible": true
+      },
+      "selectors": {
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "event_damage_power",
+            "params": {
+              "ratio": 0.2
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": 1000,
+          "params": {},
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "status_param_in_skill",
+    "mutation": "status_param_in_skill",
+    "expected_error": "status_param_scope",
+    "kind": "skill",
+    "definition": {
+      "id": "fixture_bash",
+      "name_key": "fixture_bash",
+      "class_id": "swordsman",
+      "max_level": 2,
+      "unlock_level": 1,
+      "tags": [
+        "physical"
+      ],
+      "level_parameters": {
+        "power": [
+          2,
+          2.2
+        ]
+      },
+      "kind": "active",
+      "cost": {
+        "sp": 12,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 500,
+        "interruptible": true
+      },
+      "selectors": {
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "status_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": 1000,
+          "params": {},
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "dead_heal_binding",
+    "mutation": "dead_heal_binding",
+    "expected_error": "target_life",
+    "kind": "skill",
+    "definition": {
+      "id": "fixture_support",
+      "name_key": "fixture_support",
+      "class_id": "acolyte",
+      "max_level": 1,
+      "unlock_level": 1,
+      "tags": [
+        "physical"
+      ],
+      "level_parameters": {},
+      "kind": "active",
+      "cost": {
+        "sp": 12,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 500,
+        "interruptible": true
+      },
+      "selectors": {
+        "friends": {
+          "team": "allies",
+          "life": "dead",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "heal",
+          "type": "heal",
+          "target": "friends",
+          "formula": {
+            "id": "healing_power",
+            "params": {
+              "attack_ratio": 1,
+              "flat_power": 0
+            }
+          }
+        },
+        {
+          "id": "buff",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "attack_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.3
+          },
+          "chance": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "unknown_json_field",
+    "mutation": "unknown_json_field",
+    "expected_error": "schema",
+    "kind": "skill",
+    "definition": {
+      "id": "fixture_bash",
+      "name_key": "fixture_bash",
+      "class_id": "swordsman",
+      "max_level": 2,
+      "unlock_level": 1,
+      "tags": [
+        "physical"
+      ],
+      "level_parameters": {
+        "power": [
+          2,
+          2.2
+        ]
+      },
+      "kind": "active",
+      "cost": {
+        "sp": 12,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 500,
+        "interruptible": true
+      },
+      "selectors": {
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal",
+          "damage": "function(){}"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": 1000,
+          "params": {},
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "effect_id_duplicate",
+    "mutation": "effect_id_duplicate",
+    "expected_error": "duplicate_id",
+    "kind": "skill",
+    "definition": {
+      "id": "fixture_bash",
+      "name_key": "fixture_bash",
+      "class_id": "swordsman",
+      "max_level": 2,
+      "unlock_level": 1,
+      "tags": [
+        "physical"
+      ],
+      "level_parameters": {
+        "power": [
+          2,
+          2.2
+        ]
+      },
+      "kind": "active",
+      "cost": {
+        "sp": 12,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 500,
+        "interruptible": true
+      },
+      "selectors": {
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "hit",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": 1000,
+          "params": {},
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "source_sp_double_charge",
+    "mutation": "source_sp_double_charge",
+    "expected_error": "double_cost",
+    "kind": "skill",
+    "definition": {
+      "id": "fixture_bash",
+      "name_key": "fixture_bash",
+      "class_id": "swordsman",
+      "max_level": 2,
+      "unlock_level": 1,
+      "tags": [
+        "physical"
+      ],
+      "level_parameters": {
+        "power": [
+          2,
+          2.2
+        ]
+      },
+      "kind": "active",
+      "cost": {
+        "sp": 12,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 500,
+        "interruptible": true
+      },
+      "selectors": {
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [
+        {
+          "id": "spend",
+          "type": "resource_change",
+          "target": "self",
+          "resource": "sp",
+          "amount": -12
+        }
+      ],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": 1000,
+          "params": {},
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "patch_missing_anchor",
+    "mutation": "patch_missing_anchor",
+    "expected_error": "patch_anchor",
+    "kind": "patches",
+    "definition": {
+      "id": "fixture_bash",
+      "name_key": "fixture_bash",
+      "class_id": "swordsman",
+      "max_level": 2,
+      "unlock_level": 1,
+      "tags": [
+        "physical"
+      ],
+      "level_parameters": {
+        "power": [
+          2,
+          2.2
+        ]
+      },
+      "kind": "active",
+      "cost": {
+        "sp": 12,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 500,
+        "interruptible": true
+      },
+      "selectors": {
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": 2,
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": 1000,
+          "params": {},
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    },
+    "patches": [
+      {
+        "id": "awakening",
+        "skill_id": "fixture_bash",
+        "stage": "awaken",
+        "priority": 0,
+        "operation": "set_param",
+        "effect_id": "unknown",
+        "param": "formula.params.attack_ratio",
+        "value": 2.4
+      }
+    ]
+  },
+  {
+    "id": "patch_set_conflict",
+    "mutation": "patch_set_conflict",
+    "expected_error": "patch_conflict",
+    "kind": "patches",
+    "definition": {
+      "id": "fixture_bash",
+      "name_key": "fixture_bash",
+      "class_id": "swordsman",
+      "max_level": 2,
+      "unlock_level": 1,
+      "tags": [
+        "physical"
+      ],
+      "level_parameters": {
+        "power": [
+          2,
+          2.2
+        ]
+      },
+      "kind": "active",
+      "cost": {
+        "sp": 12,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 500,
+        "interruptible": true
+      },
+      "selectors": {
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": 2,
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": 1000,
+          "params": {},
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    },
+    "patches": [
+      {
+        "id": "awakening",
+        "skill_id": "fixture_bash",
+        "stage": "awaken",
+        "priority": 0,
+        "operation": "set_param",
+        "effect_id": "hit",
+        "param": "formula.params.attack_ratio",
+        "value": 2.4
+      },
+      {
+        "id": "conflicting_patch",
+        "skill_id": "fixture_bash",
+        "stage": "awaken",
+        "priority": 0,
+        "operation": "set_param",
+        "effect_id": "hit",
+        "param": "formula.params.attack_ratio",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "id": "unknown_actor_reference",
+    "mutation": "unknown_actor_reference",
+    "expected_error": "unknown_actor",
+    "kind": "skill",
+    "definition": {
+      "id": "fixture_plant",
+      "name_key": "fixture_plant",
+      "class_id": "acolyte",
+      "max_level": 1,
+      "unlock_level": 1,
+      "tags": [
+        "physical"
+      ],
+      "level_parameters": {},
+      "kind": "active",
+      "cost": {
+        "sp": 12,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 500,
+        "interruptible": true
+      },
+      "selectors": {
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "plant",
+          "type": "summon",
+          "target": "self",
+          "actor_definition_id": "fixture_sprout",
+          "duration_ms": 6000,
+          "max_owned": 2,
+          "at_limit": "replace_oldest"
+        }
+      ]
+    }
+  },
+  {
+    "id": "modifier_feedback_predicate",
+    "mutation": "modifier_feedback_predicate",
+    "expected_error": "modifier_predicate_cycle",
+    "kind": "item",
+    "definition": {
+      "id": "fixture_card",
+      "name_key": "fixture_card",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 20,
+          "when": {
+            "type": "hp_below",
+            "actor": "self",
+            "ratio": 0.5
+          }
+        }
+      ],
+      "triggers": [
+        {
+          "id": "fixture_thorns",
+          "event": "damage_received",
+          "chance": 1,
+          "accepted_origins": [
+            "skill",
+            "normal"
+          ],
+          "limit_scope": "none",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {},
+          "effects": [
+            {
+              "id": "reflect",
+              "type": "damage",
+              "target": "event_source",
+              "formula": {
+                "id": "event_damage_power",
+                "params": {
+                  "ratio": 0.2
+                }
+              },
+              "damage_type": "physical",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal",
+              "as_reflect": true
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "unsafe_number",
+    "mutation": "unsafe_number",
+    "expected_error": "unsafe_number",
+    "kind": "skill",
+    "definition": {
+      "id": "fixture_bash",
+      "name_key": "fixture_bash",
+      "class_id": "swordsman",
+      "max_level": 2,
+      "unlock_level": 1,
+      "tags": [
+        "physical"
+      ],
+      "level_parameters": {
+        "power": [
+          2,
+          2.2
+        ]
+      },
+      "kind": "active",
+      "cost": {
+        "sp": 12,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 500,
+        "interruptible": true
+      },
+      "selectors": {
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 1e+20
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": 1000,
+          "params": {},
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "status_remote_schema",
+    "mutation": "status_remote_schema",
+    "expected_error": "schema",
+    "kind": "status",
+    "definition": {
+      "id": "attack_up",
+      "polarity": "buff",
+      "tags": [
+        "stat_buff"
+      ],
+      "parameter_schema": {
+        "$ref": "https://invalid.example/schema.json"
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": false,
+      "dispelable": true,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [
+        {
+          "id": "magnitude",
+          "stat": "physical_attack",
+          "bucket": "derived",
+          "op": "add_percent",
+          "value": {
+            "status_param": "ratio"
+          }
+        }
+      ],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null
+    }
+  },
+  {
+    "id": "skill_as_reflect",
+    "mutation": "skill_as_reflect",
+    "expected_error": "reflection_context",
+    "kind": "skill",
+    "definition": {
+      "id": "fixture_bash",
+      "name_key": "fixture_bash",
+      "class_id": "swordsman",
+      "max_level": 2,
+      "unlock_level": 1,
+      "tags": [
+        "physical"
+      ],
+      "level_parameters": {
+        "power": [
+          2,
+          2.2
+        ]
+      },
+      "kind": "active",
+      "cost": {
+        "sp": 12,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 500,
+        "interruptible": true
+      },
+      "selectors": {
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal",
+          "as_reflect": true
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": 1000,
+          "params": {},
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "id": "battle_start_event_target",
+    "mutation": "battle_start_event_target",
+    "expected_error": "unknown_binding",
+    "kind": "skill",
+    "definition": {
+      "id": "fixture_autobolt",
+      "name_key": "fixture_autobolt",
+      "class_id": "swordsman",
+      "max_level": 1,
+      "unlock_level": 1,
+      "tags": [
+        "physical"
+      ],
+      "level_parameters": {},
+      "kind": "passive",
+      "modifiers": [],
+      "triggers": [
+        {
+          "id": "auto_bolt",
+          "event": "battle_start",
+          "chance": 1,
+          "accepted_origins": [
+            "normal"
+          ],
+          "limit_scope": "none",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {},
+          "effects": [
+            {
+              "id": "bolt",
+              "type": "damage",
+              "target": "event_target",
+              "formula": {
+                "id": "magical_power",
+                "params": {
+                  "attack_ratio": 0.5,
+                  "flat_power": 0
+                }
+              },
+              "damage_type": "magical",
+              "element": "fire",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "cast_event_ambiguous_target",
+    "mutation": "cast_event_ambiguous_target",
+    "expected_error": "unknown_binding",
+    "kind": "skill",
+    "definition": {
+      "id": "fixture_autobolt",
+      "name_key": "fixture_autobolt",
+      "class_id": "swordsman",
+      "max_level": 1,
+      "unlock_level": 1,
+      "tags": [
+        "physical"
+      ],
+      "level_parameters": {},
+      "kind": "passive",
+      "modifiers": [],
+      "triggers": [
+        {
+          "id": "auto_bolt",
+          "event": "cast_resolve",
+          "chance": 1,
+          "accepted_origins": [
+            "normal"
+          ],
+          "limit_scope": "none",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {},
+          "effects": [
+            {
+              "id": "bolt",
+              "type": "damage",
+              "target": "event_target",
+              "formula": {
+                "id": "magical_power",
+                "params": {
+                  "attack_ratio": 0.5,
+                  "flat_power": 0
+                }
+              },
+              "damage_type": "magical",
+              "element": "fire",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "live_source_after_death",
+    "mutation": "live_source_after_death",
+    "expected_error": "status_lifecycle",
+    "kind": "status",
+    "definition": {
+      "id": "poison",
+      "polarity": "debuff",
+      "tags": [
+        "dot",
+        "poison"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "power_ratio": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "power_ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": true,
+      "dispelable": false,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [],
+      "triggers": [],
+      "periodic": {
+        "interval_ms": 1000,
+        "tick_on_apply": false,
+        "offense": "live_source",
+        "mitigation": "live_target",
+        "effects": [
+          {
+            "id": "poison_tick",
+            "type": "damage",
+            "target": "self",
+            "formula": {
+              "id": "magical_power",
+              "params": {
+                "attack_ratio": {
+                  "status_param": "power_ratio"
+                },
+                "flat_power": 0
+              }
+            },
+            "damage_type": "magical",
+            "element": "poison",
+            "hit_rule": "always",
+            "can_crit": false,
+            "hits": 1,
+            "armor_rule": "normal"
+          }
+        ]
+      },
+      "weapon_element": null
+    }
+  }
+]

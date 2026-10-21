@@ -1,0 +1,905 @@
+{
+  "schema_version": 1,
+  "version": "composition-v1",
+  "statuses": [
+    {
+      "id": "attack_up",
+      "polarity": "buff",
+      "tags": [
+        "stat_buff"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "ratio": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": false,
+      "dispelable": true,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [
+        {
+          "id": "magnitude",
+          "stat": "physical_attack",
+          "bucket": "derived",
+          "op": "add_percent",
+          "value": {
+            "status_param": "ratio"
+          }
+        }
+      ],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null
+    },
+    {
+      "id": "magic_up",
+      "polarity": "buff",
+      "tags": [
+        "stat_buff"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "ratio": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": false,
+      "dispelable": true,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [
+        {
+          "id": "magnitude",
+          "stat": "magical_attack",
+          "bucket": "derived",
+          "op": "add_percent",
+          "value": {
+            "status_param": "ratio"
+          }
+        }
+      ],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null
+    },
+    {
+      "id": "aspd_up",
+      "polarity": "buff",
+      "tags": [
+        "stat_buff"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "ratio": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": false,
+      "dispelable": true,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [
+        {
+          "id": "magnitude",
+          "stat": "attack_speed",
+          "bucket": "derived",
+          "op": "add_percent",
+          "value": {
+            "status_param": "ratio"
+          }
+        }
+      ],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null
+    },
+    {
+      "id": "cast_speed_up",
+      "polarity": "buff",
+      "tags": [
+        "stat_buff"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "ratio": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": false,
+      "dispelable": true,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [
+        {
+          "id": "magnitude",
+          "stat": "cast_speed",
+          "bucket": "derived",
+          "op": "add_percent",
+          "value": {
+            "status_param": "ratio"
+          }
+        }
+      ],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null
+    },
+    {
+      "id": "defense_up",
+      "polarity": "buff",
+      "tags": [
+        "stat_buff"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "ratio": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": false,
+      "dispelable": true,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [
+        {
+          "id": "magnitude",
+          "stat": "physical_defense",
+          "bucket": "derived",
+          "op": "add_percent",
+          "value": {
+            "status_param": "ratio"
+          }
+        }
+      ],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null
+    },
+    {
+      "id": "magic_defense_up",
+      "polarity": "buff",
+      "tags": [
+        "stat_buff"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "ratio": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": false,
+      "dispelable": true,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [
+        {
+          "id": "magnitude",
+          "stat": "magical_defense",
+          "bucket": "derived",
+          "op": "add_percent",
+          "value": {
+            "status_param": "ratio"
+          }
+        }
+      ],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null
+    },
+    {
+      "id": "guard_up",
+      "polarity": "buff",
+      "tags": [
+        "stat_buff"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "ratio": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": false,
+      "dispelable": true,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [
+        {
+          "id": "magnitude",
+          "stat": "guard_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "status_param": "ratio"
+          }
+        }
+      ],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null
+    },
+    {
+      "id": "crit_up",
+      "polarity": "buff",
+      "tags": [
+        "stat_buff"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "ratio": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": false,
+      "dispelable": true,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [
+        {
+          "id": "magnitude",
+          "stat": "crit_chance_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "status_param": "ratio"
+          }
+        }
+      ],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null
+    },
+    {
+      "id": "mana_regen_up",
+      "polarity": "buff",
+      "tags": [
+        "stat_buff"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "ratio": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": false,
+      "dispelable": true,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [
+        {
+          "id": "magnitude",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "status_param": "ratio"
+          }
+        }
+      ],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null
+    },
+    {
+      "id": "cc_resistance_up",
+      "polarity": "buff",
+      "tags": [
+        "stat_buff"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "ratio": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": false,
+      "dispelable": false,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [
+        {
+          "id": "magnitude",
+          "stat": "control_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "status_param": "ratio"
+          }
+        }
+      ],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null
+    },
+    {
+      "id": "armor_break",
+      "polarity": "debuff",
+      "tags": [
+        "stat_debuff"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "ratio": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": true,
+      "dispelable": false,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [
+        {
+          "id": "magnitude",
+          "stat": "armor_break_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "status_param": "ratio"
+          }
+        }
+      ],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null
+    },
+    {
+      "id": "exposed",
+      "polarity": "debuff",
+      "tags": [
+        "stat_debuff"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "ratio": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": true,
+      "dispelable": false,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [
+        {
+          "id": "magnitude",
+          "stat": "damage_taken_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "status_param": "ratio"
+          }
+        }
+      ],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null
+    },
+    {
+      "id": "slow",
+      "polarity": "debuff",
+      "tags": [
+        "stat_debuff"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "ratio": {
+            "type": "number",
+            "minimum": -1,
+            "maximum": 0
+          }
+        },
+        "required": [
+          "ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": true,
+      "dispelable": false,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [
+        {
+          "id": "speed_loss",
+          "stat": "attack_speed",
+          "bucket": "derived",
+          "op": "add_percent",
+          "value": {
+            "status_param": "ratio"
+          }
+        }
+      ],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null
+    },
+    {
+      "id": "stun",
+      "polarity": "debuff",
+      "tags": [
+        "hard_cc"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [
+        "no_new_skill",
+        "no_normal_attack",
+        "interrupt_interruptible_cast"
+      ],
+      "cleanseable": true,
+      "dispelable": false,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null
+    },
+    {
+      "id": "freeze",
+      "polarity": "debuff",
+      "tags": [
+        "hard_cc"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [
+        "no_new_skill",
+        "no_normal_attack",
+        "interrupt_interruptible_cast"
+      ],
+      "cleanseable": true,
+      "dispelable": false,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": true,
+      "modifiers": [],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null
+    },
+    {
+      "id": "silence",
+      "polarity": "debuff",
+      "tags": [
+        "silence"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [
+        "no_new_skill",
+        "interrupt_interruptible_cast"
+      ],
+      "cleanseable": true,
+      "dispelable": false,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null
+    },
+    {
+      "id": "provoke",
+      "polarity": "debuff",
+      "tags": [
+        "target_override"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": true,
+      "dispelable": false,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null
+    },
+    {
+      "id": "poison",
+      "polarity": "debuff",
+      "tags": [
+        "dot",
+        "poison"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "power_ratio": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "power_ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": true,
+      "dispelable": false,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [],
+      "triggers": [],
+      "periodic": {
+        "interval_ms": 1000,
+        "tick_on_apply": false,
+        "offense": "application_snapshot",
+        "mitigation": "live_target",
+        "effects": [
+          {
+            "id": "poison_tick",
+            "type": "damage",
+            "target": "self",
+            "formula": {
+              "id": "magical_power",
+              "params": {
+                "attack_ratio": {
+                  "status_param": "power_ratio"
+                },
+                "flat_power": 0
+              }
+            },
+            "damage_type": "magical",
+            "element": "poison",
+            "hit_rule": "always",
+            "can_crit": false,
+            "hits": 1,
+            "armor_rule": "normal"
+          }
+        ]
+      },
+      "weapon_element": null
+    },
+    {
+      "id": "regeneration",
+      "polarity": "buff",
+      "tags": [
+        "hot"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "power_ratio": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "power_ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": false,
+      "dispelable": true,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [],
+      "triggers": [],
+      "periodic": {
+        "interval_ms": 1000,
+        "tick_on_apply": false,
+        "offense": "application_snapshot",
+        "mitigation": "live_target",
+        "effects": [
+          {
+            "id": "heal_tick",
+            "type": "heal",
+            "target": "self",
+            "formula": {
+              "id": "healing_power",
+              "params": {
+                "attack_ratio": {
+                  "status_param": "power_ratio"
+                },
+                "flat_power": 0
+              }
+            }
+          }
+        ]
+      },
+      "weapon_element": null
+    },
+    {
+      "id": "fire_endow",
+      "polarity": "buff",
+      "tags": [
+        "weapon_element"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": false,
+      "dispelable": true,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": "fire"
+    }
+  ],
+  "target_override_rule": "most recently applied living hostile provoke source wins, application_id breaks ties; self/all/random/dead selectors unaffected; after source death fall through to next valid instance",
+  "cc_restrictions": "union of active restrictions, not sum of durations; no global resistance or immunity",
+  "tick_interval": "[application,expiry); expiration phase precedes ticks; tick_on_apply explicit"
+}

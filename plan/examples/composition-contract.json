@@ -1,0 +1,146 @@
+{
+  "example_version": 1,
+  "purpose": "Design examples only; not runtime schemas, asset IDs or balance data",
+  "unresolved_policies": ["complete status lifecycle catalog"],
+  "buff_aggregation_contract": {
+    "decision_id": "D-037",
+    "cross_caster": "additive",
+    "max_stacks": null,
+    "aggregate_magnitude_cap": null,
+    "expiry": "per_contribution",
+    "same_caster_reapplication": "add_independent_instance",
+    "reapplication_decision_id": "D-038"
+  },
+  "buff_aggregation_cases": [
+    {
+      "id": "independent_source_expiry",
+      "contributions": [
+        {"status_instance_id": "a_cast_1_buff", "source_actor_id": "support_a", "value": 0.2, "applied_at_ms": 0, "expires_at_ms": 10000},
+        {"status_instance_id": "b_cast_1_buff", "source_actor_id": "support_b", "value": 0.3, "applied_at_ms": 5000, "expires_at_ms": 15000}
+      ],
+      "checks": [
+        {"at_ms": 4000, "expected_attack_percent": 0.2},
+        {"at_ms": 7000, "expected_attack_percent": 0.5},
+        {"at_ms": 10000, "expected_attack_percent": 0.3},
+        {"at_ms": 15000, "expected_attack_percent": 0.0}
+      ]
+    },
+    {
+      "id": "no_hidden_aggregate_cap",
+      "contributions": [
+        {"status_instance_id": "a_strong_buff", "source_actor_id": "support_a", "value": 1.2, "applied_at_ms": 0, "expires_at_ms": 10000},
+        {"status_instance_id": "b_strong_buff", "source_actor_id": "support_b", "value": 1.3, "applied_at_ms": 0, "expires_at_ms": 10000}
+      ],
+      "checks": [{"at_ms": 1000, "expected_attack_percent": 2.5, "base_attack": 100, "expected_attack_before_other_stages": 350}]
+    },
+    {
+      "id": "same_caster_independent_stacks",
+      "contributions": [
+        {"status_instance_id": "a_cast_1_buff", "source_actor_id": "support_a", "value": 0.2, "applied_at_ms": 0, "expires_at_ms": 10000},
+        {"status_instance_id": "a_cast_2_buff", "source_actor_id": "support_a", "value": 0.2, "applied_at_ms": 6000, "expires_at_ms": 16000}
+      ],
+      "checks": [
+        {"at_ms": 5000, "expected_attack_percent": 0.2},
+        {"at_ms": 7000, "expected_attack_percent": 0.4},
+        {"at_ms": 10000, "expected_attack_percent": 0.2},
+        {"at_ms": 16000, "expected_attack_percent": 0.0}
+      ]
+    }
+  ],
+  "formula_contracts": {
+    "physical_attack_example": {"params": {"atk_ratio": "nonnegative_ratio", "element": "element_id"}, "returns": "raw_physical_power"},
+    "healing_example": {"params": {"matk_ratio": "nonnegative_ratio"}, "returns": "raw_healing_power"}
+  },
+  "status_contracts": {
+    "stun_example": {"params": {"duration_ms": "positive_game_ms"}, "tags": ["debuff", "hard_cc"]},
+    "attack_up_example": {"params": {"attack_percent": "additive_ratio", "duration_ms": "positive_game_ms"}, "tags": ["buff"]},
+    "armor_break_example": {"params": {"defense_down_percent": "additive_ratio", "duration_ms": "positive_game_ms"}, "tags": ["debuff"]}
+  },
+  "skills": [
+    {
+      "id": "bash_example",
+      "logical_skill_id": "bash_example",
+      "tags": ["active", "physical"],
+      "targeting": {
+        "primary": {"team": "enemies", "select": "single_front", "resolve_at": "cast_resolve", "missing_target": "skip_effect"}
+      },
+      "cost": {"sp": 12},
+      "timing": {"cast_time_ms": 0, "after_cast_delay_ms": 700},
+      "effects": [
+        {
+          "id": "main_hit", "type": "damage", "target": "primary",
+          "formula_id": "physical_attack_example", "params": {"atk_ratio": 2.0, "element": "neutral"}
+        },
+        {
+          "id": "stun_on_hit", "type": "apply_status", "target": "primary",
+          "when": {"type": "hit_landed", "effect_id": "main_hit", "scope": "same_target"},
+          "chance": 0.25, "status_id": "stun_example", "params": {"duration_ms": 1000}
+        }
+      ]
+    },
+    {
+      "id": "heal_and_bless_example",
+      "logical_skill_id": "heal_and_bless_example",
+      "tags": ["active", "support"],
+      "targeting": {
+        "patient": {"team": "allies", "select": "lowest_hp_percent", "resolve_at": "cast_resolve", "missing_target": "skip_effect"},
+        "party": {"team": "allies", "select": "all_living", "resolve_at": "cast_resolve", "missing_target": "skip_effect"}
+      },
+      "cost": {"sp": 18},
+      "timing": {"cast_time_ms": 500, "after_cast_delay_ms": 800},
+      "effects": [
+        {
+          "id": "restore_hp", "type": "heal", "target": "patient",
+          "formula_id": "healing_example", "params": {"matk_ratio": 1.5}
+        },
+        {
+          "id": "party_blessing", "type": "apply_status", "target": "party",
+          "status_id": "attack_up_example", "params": {"attack_percent": 0.1, "duration_ms": 5000}
+        }
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "example_sword", "slot": "weapon", "weapon_type": "sword",
+      "modifiers": [{"id": "weapon_attack", "stat": "physical_attack", "op": "add_flat", "bucket": "flat_attack", "value": 40}],
+      "triggers": [
+        {
+          "id": "break_on_normal_hit", "event": "normal_attack_hit", "chance": 0.1,
+          "limit": {"scope": "root_action", "max_activations": 1},
+          "effects": [
+            {
+              "id": "apply_armor_break", "type": "apply_status", "target": "event_target",
+              "status_id": "armor_break_example", "params": {"defense_down_percent": 0.1, "duration_ms": 3000}
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "skill_patches": [
+    {
+      "id": "bash_awaken_example", "stage": "progression_variant", "skill_id": "bash_example",
+      "operations": [{"op": "set_param", "effect_id": "main_hit", "param": "atk_ratio", "value": 2.4}]
+    },
+    {
+      "id": "bash_artifact_example", "stage": "build_patch", "skill_id": "bash_example",
+      "operations": [{"op": "add_param", "effect_id": "main_hit", "param": "atk_ratio", "value": 0.2}]
+    }
+  ],
+  "per_target_outcome_case": {
+    "id": "area_hit_scope",
+    "effect_outcomes": [
+      {"effect_id": "main_hit", "target_id": "enemy_a", "hit_index": 0, "landed": true},
+      {"effect_id": "main_hit", "target_id": "enemy_b", "hit_index": 0, "landed": false}
+    ],
+    "predicate": {"type": "hit_landed", "effect_id": "main_hit", "scope": "same_target"},
+    "expected_eligible_targets_before_chance_and_resistance": ["enemy_a"]
+  },
+  "expected_design_cases": [
+    {"id": "base_unchanged", "skill_id": "bash_example", "patch_ids": [], "expected_atk_ratio": 2.0},
+    {"id": "awaken_only", "skill_id": "bash_example", "patch_ids": ["bash_awaken_example"], "expected_atk_ratio": 2.4},
+    {"id": "awaken_and_artifact", "skill_id": "bash_example", "patch_ids": ["bash_awaken_example", "bash_artifact_example"], "expected_atk_ratio": 2.6},
+    {"id": "other_character_base", "skill_id": "bash_example", "patch_ids": [], "expected_atk_ratio": 2.0}
+  ]
+}

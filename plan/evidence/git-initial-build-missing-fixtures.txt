@@ -1,0 +1,38 @@
+
+> ro-idle-classic@0.1.0 build
+> npm run env:check && npm run assets:check && npm run content:generate && npm run content:check && npm run boundaries && npm run typecheck && vite build && node --import tsx scripts/game/build-output.ts && npm run secrets:check
+
+
+> ro-idle-classic@0.1.0 env:check
+> node --import tsx scripts/game/check-env.ts
+
+{"public_auth_config":"unconfigured","privileged_values_logged":false}
+
+> ro-idle-classic@0.1.0 assets:check
+> python3 scripts/build_runtime_assets.py --check
+
+{"pack_hash": "f57a0773675ff37a1f16467f2606546404286a4ffb42da90766b7cab93970dae", "assets": 656, "files": 1197, "download_policy": "all files in pack are deployable; fetch initial profile then actors/icons/scenery/audio on demand", "first_battle_budget_bytes": 8388608, "initial_profile_raw_bytes": 1582917, "manifest_bytes": 506825, "media_and_sidecar_bytes": 26693726, "pack_budget_bytes": 28311552}
+
+> ro-idle-classic@0.1.0 content:generate
+> node --import tsx scripts/game/generate-content.ts
+
+{"content_hash":"14ffbc7104d10ce55ceda325f66de80a5ef671740e7f96bb65236deebce646b6","documents":34,"schemas":16,"asset_payloads":0}
+
+> ro-idle-classic@0.1.0 content:check
+> node --import tsx scripts/game/check-content.ts
+
+{"content_hash":"14ffbc7104d10ce55ceda325f66de80a5ef671740e7f96bb65236deebce646b6","skills_including_enemy":137,"items":204,"statuses":27,"immutable":true}
+
+> ro-idle-classic@0.1.0 boundaries
+> node --import tsx scripts/game/check-boundaries.ts
+
+{
+  "passed": true,
+  "issues": []
+}
+
+> ro-idle-classic@0.1.0 typecheck
+> tsc --noEmit
+
+scripts/game/compact-ui-fixture.ts(5,25): error TS2307: Cannot find module '../../tests/game/combat-fixtures.ts' or its corresponding type declarations.
+scripts/game/compact-ui-fixture.ts(6,33): error TS2307: Cannot find module '../../tests/game/gear-fixtures.ts' or its corresponding type declarations.

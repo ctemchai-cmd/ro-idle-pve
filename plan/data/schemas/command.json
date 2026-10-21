@@ -1,0 +1,2573 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ro-idle.local/schemas/command.json",
+  "oneOf": [
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "account.create"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "root_job_id": {
+              "enum": [
+                "swordsman",
+                "acolyte",
+                "archer",
+                "mage",
+                "thief",
+                "merchant"
+              ]
+            },
+            "gender": {
+              "enum": [
+                "male",
+                "female"
+              ]
+            }
+          },
+          "required": [
+            "root_job_id",
+            "gender"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "party.set"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "placements": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "character_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  },
+                  "position": {
+                    "enum": [
+                      "front_1",
+                      "front_2",
+                      "back_1",
+                      "back_2"
+                    ]
+                  }
+                },
+                "required": [
+                  "character_id",
+                  "position"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 4,
+              "maxItems": 4
+            }
+          },
+          "required": [
+            "placements"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "character.level_up"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "character_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "target_level": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 70
+            }
+          },
+          "required": [
+            "character_id",
+            "target_level"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "character.breakthrough"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "character_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "gate_level": {
+              "enum": [
+                20,
+                40,
+                60
+              ]
+            }
+          },
+          "required": [
+            "character_id",
+            "gate_level"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "character.change_job"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "character_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "job_id": {
+              "enum": [
+                "swordsman",
+                "knight",
+                "crusader",
+                "acolyte",
+                "priest",
+                "monk",
+                "archer",
+                "hunter",
+                "bard",
+                "dancer",
+                "mage",
+                "wizard",
+                "sage",
+                "thief",
+                "assassin",
+                "rogue",
+                "merchant",
+                "blacksmith",
+                "alchemist"
+              ]
+            }
+          },
+          "required": [
+            "character_id",
+            "job_id"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "character.allocate_status"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "character_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "allocation": {
+              "type": "object",
+              "properties": {
+                "str": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 99
+                },
+                "agi": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 99
+                },
+                "vit": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 99
+                },
+                "int": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 99
+                },
+                "dex": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 99
+                },
+                "luk": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 99
+                }
+              },
+              "required": [
+                "str",
+                "agi",
+                "vit",
+                "int",
+                "dex",
+                "luk"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "character_id",
+            "allocation"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "character.reset_build"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "character_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "features": {
+              "type": "array",
+              "items": {
+                "enum": [
+                  "stats",
+                  "skills"
+                ]
+              },
+              "minItems": 1,
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "character_id",
+            "features"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "skill.upgrade"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "character_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "skill_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "target_level": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10
+            }
+          },
+          "required": [
+            "character_id",
+            "skill_id",
+            "target_level"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "skill.set_loadout"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "character_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "skill_ids": {
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  }
+                ]
+              },
+              "minItems": 4,
+              "maxItems": 4
+            }
+          },
+          "required": [
+            "character_id",
+            "skill_ids"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "equipment.equip"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "character_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "slot": {
+              "enum": [
+                "weapon",
+                "head",
+                "armor",
+                "garment",
+                "shoes",
+                "accessory"
+              ]
+            },
+            "item_instance_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            }
+          },
+          "required": [
+            "character_id",
+            "slot",
+            "item_instance_id"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "equipment.unequip"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "character_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "slot": {
+              "enum": [
+                "weapon",
+                "head",
+                "armor",
+                "garment",
+                "shoes",
+                "accessory"
+              ]
+            }
+          },
+          "required": [
+            "character_id",
+            "slot"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "equipment.lock"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "item_instance_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "locked": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "item_instance_id",
+            "locked"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "equipment.salvage"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "instance_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "minItems": 1,
+              "uniqueItems": true,
+              "maxItems": 500
+            }
+          },
+          "required": [
+            "instance_ids"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "equipment.fuse"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "instance_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "minItems": 3,
+              "maxItems": 3,
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "instance_ids"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "equipment.tier_up"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "item_instance_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "target_tier": {
+              "enum": [
+                20,
+                40,
+                60
+              ]
+            }
+          },
+          "required": [
+            "item_instance_id",
+            "target_tier"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "equipment.purchase_weapon"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "character_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "weapon_type": {
+              "enum": [
+                "whip",
+                "book",
+                "axe",
+                "instrument",
+                "bow",
+                "staff",
+                "knuckle",
+                "mace",
+                "sword",
+                "dagger"
+              ]
+            },
+            "tier_level": {
+              "const": 1
+            }
+          },
+          "required": [
+            "character_id",
+            "weapon_type",
+            "tier_level"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "slot.refine"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "character_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "slot": {
+              "enum": [
+                "weapon",
+                "head",
+                "armor",
+                "garment",
+                "shoes",
+                "accessory"
+              ]
+            },
+            "target_level": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10
+            }
+          },
+          "required": [
+            "character_id",
+            "slot",
+            "target_level"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "slot.enchant"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "character_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "slot": {
+              "enum": [
+                "weapon",
+                "head",
+                "armor",
+                "garment",
+                "shoes",
+                "accessory"
+              ]
+            },
+            "line_id": {
+              "enum": [
+                "offense",
+                "vitality",
+                "precision"
+              ]
+            },
+            "target_level": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10
+            }
+          },
+          "required": [
+            "character_id",
+            "slot",
+            "line_id",
+            "target_level"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "slot.change_enchant"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "character_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "slot": {
+              "enum": [
+                "weapon",
+                "head",
+                "armor",
+                "garment",
+                "shoes",
+                "accessory"
+              ]
+            },
+            "line_id": {
+              "enum": [
+                "offense",
+                "vitality",
+                "precision"
+              ]
+            }
+          },
+          "required": [
+            "character_id",
+            "slot",
+            "line_id"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "card.assign"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "character_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "slot": {
+              "enum": [
+                "weapon",
+                "head",
+                "armor",
+                "garment",
+                "shoes",
+                "accessory"
+              ]
+            },
+            "card_slot": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2
+            },
+            "card_instance_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            }
+          },
+          "required": [
+            "character_id",
+            "slot",
+            "card_slot",
+            "card_instance_id"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "card.unassign"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "character_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "slot": {
+              "enum": [
+                "weapon",
+                "head",
+                "armor",
+                "garment",
+                "shoes",
+                "accessory"
+              ]
+            },
+            "card_slot": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2
+            }
+          },
+          "required": [
+            "character_id",
+            "slot",
+            "card_slot"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "card.upgrade"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "card_instance_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "target_level": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 5
+            }
+          },
+          "required": [
+            "card_instance_id",
+            "target_level"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "card.salvage"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "instance_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "minItems": 1,
+              "uniqueItems": true,
+              "maxItems": 500
+            }
+          },
+          "required": [
+            "instance_ids"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "farm.set_stage"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "stage_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            }
+          },
+          "required": [
+            "stage_id"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "farm.claim"
+        },
+        "params": {
+          "type": "object",
+          "properties": {},
+          "required": [],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "reward.claim"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "claim_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            }
+          },
+          "required": [
+            "claim_id"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "battle.start_story"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "stage_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            }
+          },
+          "required": [
+            "stage_id"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "battle.start_tower"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "floor": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "floor"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "battle.start_daily"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "boss_id": {
+              "enum": [
+                "treasury",
+                "forge",
+                "essence"
+              ]
+            }
+          },
+          "required": [
+            "boss_id"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "battle.advance"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "battle_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "requested_game_ms": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 90000
+            },
+            "speed": {
+              "enum": [
+                1,
+                2,
+                4
+              ]
+            }
+          },
+          "required": [
+            "battle_id",
+            "requested_game_ms"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "battle.retreat"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "battle_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            }
+          },
+          "required": [
+            "battle_id"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "daily.objective_claim"
+        },
+        "params": {
+          "type": "object",
+          "properties": {},
+          "required": [],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "gacha.pull"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "pool_id": {
+              "enum": [
+                "card_v1",
+                "equipment_v1"
+              ]
+            },
+            "count": {
+              "enum": [
+                1,
+                10
+              ]
+            }
+          },
+          "required": [
+            "pool_id",
+            "count"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "backup.restore_request"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "checkpoint_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "signature": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            }
+          },
+          "required": [
+            "checkpoint_id",
+            "signature"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "shop.buy"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "offer_id": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]*$",
+              "maxLength": 60
+            },
+            "quantity": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10
+            }
+          },
+          "required": [
+            "offer_id",
+            "quantity"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "save.migrate"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "from_revision": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            },
+            "from_content_hash": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "required": [
+            "from_revision",
+            "from_content_hash"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "account.reset"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "root_job_id": {
+              "enum": [
+                "swordsman",
+                "acolyte",
+                "archer",
+                "mage",
+                "thief",
+                "merchant"
+              ]
+            },
+            "gender": {
+              "enum": [
+                "male",
+                "female"
+              ]
+            },
+            "confirm": {
+              "const": "RESET"
+            }
+          },
+          "required": [
+            "root_job_id",
+            "gender",
+            "confirm"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    }
+  ]
+}

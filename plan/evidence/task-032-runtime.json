@@ -1,0 +1,535 @@
+{
+ "task_id": "TASK-032",
+ "content_hash": "7b54253e170bb74c0a8933616f78c439e43791a43f76141bc8894272c5f8a00e",
+ "rules_version": "combat-baseline-v1",
+ "golden_cases": 57,
+ "active_probe": {
+  "seed": 1,
+  "game_ms": 60000,
+  "resolves_per_level": {
+   "mage_fire_bolt": [
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25
+   ],
+   "mage_cold_bolt": [
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25,
+    25
+   ],
+   "mage_lightning_bolt": [
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24
+   ],
+   "mage_soul_strike": [
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27,
+    27
+   ],
+   "wizard_storm_gust": [
+    17,
+    17,
+    17,
+    17,
+    17,
+    17,
+    17,
+    17,
+    17,
+    17
+   ],
+   "wizard_jupitel": [
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23
+   ],
+   "wizard_meteor": [
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16,
+    16
+   ],
+   "wizard_quagmire": [
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21
+   ],
+   "wizard_heavens_drive": [
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20
+   ],
+   "sage_fire_endow": [
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23
+   ],
+   "sage_spell_breaker": [
+    29,
+    29,
+    29,
+    29,
+    29,
+    29,
+    29,
+    29,
+    29,
+    29
+   ],
+   "sage_dispel": [
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21,
+    21
+   ],
+   "sage_psychic_bolt": [
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24
+   ],
+   "sage_magic_barrier": [
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22
+   ]
+  }
+ },
+ "passive_probe": {
+  "mage_sp_recovery": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "wizard_amplified_magic": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "wizard_frost_control": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "sage_auto_bolt": [
+   6,
+   6,
+   6,
+   6,
+   6,
+   6,
+   6,
+   6,
+   6,
+   6
+  ],
+  "sage_wisdom": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ]
+ },
+ "auto_bolt": {
+  "casts": 11,
+  "normals": 18,
+  "bolts": 8,
+  "procs": 8
+ },
+ "storm_gust": {
+  "fields": 18,
+  "checked_field_instances": 14,
+  "freezes_applied": 8,
+  "freeze_targets": [
+   "e_back",
+   "e_front"
+  ]
+ },
+ "dry_trace": {
+  "wizard_artillery": {
+   "si_ms": 1352,
+   "cycle_ms": 10364,
+   "passive_changed_stats": [
+    "magical_attack",
+    "control_accuracy",
+    "flat_sp_regen"
+   ]
+  },
+  "wizard_controller": {
+   "si_ms": 1337,
+   "cycle_ms": 9905,
+   "passive_changed_stats": [
+    "magical_attack",
+    "control_accuracy",
+    "flat_sp_regen"
+   ]
+  },
+  "sage_auto_bolt": {
+   "si_ms": 1000,
+   "cycle_ms": 7344,
+   "passive_changed_stats": [
+    "cast_speed",
+    "flat_sp_regen"
+   ]
+  },
+  "sage_anti_magic": {
+   "si_ms": 1337,
+   "cycle_ms": 8666,
+   "passive_changed_stats": [
+    "cast_speed",
+    "flat_sp_regen"
+   ]
+  }
+ },
+ "real_fight_first_starts": {
+  "wizard_artillery": {
+   "real": [
+    {
+     "skill_id": "wizard_meteor",
+     "start_ms": 1352
+    },
+    {
+     "skill_id": "wizard_heavens_drive",
+     "start_ms": 4531
+    },
+    {
+     "skill_id": "wizard_jupitel",
+     "start_ms": 7212
+    },
+    {
+     "skill_id": "mage_fire_bolt",
+     "start_ms": 9561
+    }
+   ],
+   "dry": [
+    {
+     "skill_id": "wizard_meteor",
+     "start_ms": 1352
+    },
+    {
+     "skill_id": "wizard_heavens_drive",
+     "start_ms": 4531
+    },
+    {
+     "skill_id": "wizard_jupitel",
+     "start_ms": 7212
+    },
+    {
+     "skill_id": "mage_fire_bolt",
+     "start_ms": 9561
+    }
+   ]
+  },
+  "wizard_controller": {
+   "real": [
+    {
+     "skill_id": "wizard_quagmire",
+     "start_ms": 1337
+    },
+    {
+     "skill_id": "wizard_storm_gust",
+     "start_ms": 3814
+    },
+    {
+     "skill_id": "wizard_jupitel",
+     "start_ms": 6778
+    },
+    {
+     "skill_id": "mage_cold_bolt",
+     "start_ms": 9091
+    }
+   ],
+   "dry": [
+    {
+     "skill_id": "wizard_quagmire",
+     "start_ms": 1337
+    },
+    {
+     "skill_id": "wizard_storm_gust",
+     "start_ms": 3814
+    },
+    {
+     "skill_id": "wizard_jupitel",
+     "start_ms": 6778
+    },
+    {
+     "skill_id": "mage_cold_bolt",
+     "start_ms": 9091
+    }
+   ]
+  },
+  "quagmire_enemy_normal_gap": {
+   "base": 1399,
+   "during": [
+    1999,
+    1999
+   ]
+  },
+  "sage_auto_bolt": {
+   "real": [
+    {
+     "skill_id": "sage_fire_endow",
+     "start_ms": 1000
+    },
+    {
+     "skill_id": "sage_psychic_bolt",
+     "start_ms": 3034
+    },
+    {
+     "skill_id": "sage_spell_breaker",
+     "start_ms": 4976
+    },
+    {
+     "skill_id": "mage_soul_strike",
+     "start_ms": 6584
+    }
+   ],
+   "dry": [
+    {
+     "skill_id": "sage_fire_endow",
+     "start_ms": 1000
+    },
+    {
+     "skill_id": "sage_psychic_bolt",
+     "start_ms": 3034
+    },
+    {
+     "skill_id": "sage_spell_breaker",
+     "start_ms": 4976
+    },
+    {
+     "skill_id": "mage_soul_strike",
+     "start_ms": 6584
+    }
+   ]
+  },
+  "sage_anti_magic": {
+   "real": [
+    {
+     "skill_id": "sage_magic_barrier",
+     "start_ms": 1337
+    },
+    {
+     "skill_id": "sage_dispel",
+     "start_ms": 3650
+    },
+    {
+     "skill_id": "sage_spell_breaker",
+     "start_ms": 6011
+    },
+    {
+     "skill_id": "sage_fire_endow",
+     "start_ms": 7836
+    }
+   ],
+   "dry": [
+    {
+     "skill_id": "sage_magic_barrier",
+     "start_ms": 1337
+    },
+    {
+     "skill_id": "sage_dispel",
+     "start_ms": 3650
+    },
+    {
+     "skill_id": "sage_spell_breaker",
+     "start_ms": 6011
+    },
+    {
+     "skill_id": "sage_fire_endow",
+     "start_ms": 7836
+    }
+   ]
+  }
+ },
+ "parity": {
+  "stage": "6-20",
+  "seed": 32,
+  "team": [
+   {
+    "character_id": "main",
+    "position": "back_1"
+   },
+   {
+    "character_id": "npc_swordsman",
+    "position": "front_1"
+   },
+   {
+    "character_id": "npc_acolyte",
+    "position": "back_2"
+   },
+   {
+    "character_id": "npc_mage",
+    "position": "front_2"
+   }
+  ],
+  "outcome": "STORY_WON",
+  "end_ms": 62210,
+  "events": 647,
+  "server_confirmations": 62,
+  "event_digest": {
+   "algorithm": "fnv1a32-v1",
+   "value": "db55e84a"
+  },
+  "rng": {
+   "state": 1207063797,
+   "draw_count": 495
+  },
+  "tree_skill_metrics": {
+   "npc_mage:sage_fire_endow": {
+    "casts_resolved": 6,
+    "hp_damage": 0,
+    "casts_interrupted": 0
+   },
+   "main:wizard_quagmire": {
+    "casts_resolved": 4,
+    "hp_damage": 0,
+    "casts_interrupted": 0
+   },
+   "npc_mage:sage_auto_bolt": {
+    "casts_resolved": 0,
+    "hp_damage": 7852,
+    "casts_interrupted": 0
+   },
+   "npc_mage:sage_psychic_bolt": {
+    "casts_resolved": 6,
+    "hp_damage": 5520,
+    "casts_interrupted": 0
+   },
+   "main:wizard_storm_gust": {
+    "casts_resolved": 4,
+    "hp_damage": 3624,
+    "casts_interrupted": 0
+   },
+   "npc_mage:sage_spell_breaker": {
+    "casts_resolved": 5,
+    "hp_damage": 0,
+    "casts_interrupted": 0
+   },
+   "npc_mage:mage_soul_strike": {
+    "casts_resolved": 5,
+    "hp_damage": 2812,
+    "casts_interrupted": 0
+   },
+   "main:wizard_jupitel": {
+    "casts_resolved": 4,
+    "hp_damage": 3372,
+    "casts_interrupted": 0
+   },
+   "main:mage_cold_bolt": {
+    "casts_resolved": 3,
+    "hp_damage": 2217,
+    "casts_interrupted": 0
+   }
+  }
+ }
+}

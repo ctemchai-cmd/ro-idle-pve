@@ -1,0 +1,1180 @@
+{
+  "note": "Authored parts of plan/data/stages.json (TASK-011 baseline). Generated rows come from plan/generators/stages.py; D-057 changes only the per-chapter stage counts.",
+  "top": {
+    "schema_version": 1,
+    "content_version": "story-v1",
+    "rules": {
+      "start": "explicit boss button; prepare team outside battle",
+      "win": "all victory-counting enemies dead before time limit",
+      "lose": "all four party members dead or 90000ms timeout; main death alone does not lose",
+      "both_wipe": "player_loss",
+      "retry_cost": {},
+      "new_attempt": "fresh full party HP/SP, no previous transient buffs, new battle seed; unchanged build",
+      "first_clear_scope": "account+stage_id once",
+      "offline_boss_progress": false
+    },
+    "reference_teams": [
+      {
+        "id": "balanced_root_team",
+        "main": "mage",
+        "companions": [
+          "swordsman",
+          "acolyte",
+          "archer"
+        ],
+        "budget_policy": "equal level/manual points/paid skill resources/Common tier gear; no specific card required"
+      },
+      {
+        "id": "physical_control_team",
+        "main": "thief",
+        "companions": [
+          "merchant",
+          "acolyte",
+          "archer"
+        ],
+        "budget_policy": "same total resource budget, classes can branch only when level permits"
+      }
+    ],
+    "balance_reference_gear": "Common highest enabled tier <= actor level; Refine0 below20, Refine3 at20..39, Refine5 at40..70; Enchant0/no cards. Same paid skill/stat resource budgets across alternatives."
+  },
+  "chapters": {
+    "1": {
+      "background": {
+        "id": "prepared.backgrounds.7211769293e7d357",
+        "meta": "prepared/backgrounds/prt_fild08--7211769293e7.meta.json",
+        "name": "prt_fild08",
+        "map": "prt_fild08",
+        "stage": {
+          "floor_y": 590,
+          "left_x": 430,
+          "right_x": 840,
+          "status": "prototype_placement"
+        }
+      },
+      "music": {
+        "id": "prepared.music.644547aaeff082c5",
+        "meta": "prepared/music/12--644547aaeff0.meta.json",
+        "map": "prt_fild08"
+      }
+    },
+    "2": {
+      "background": {
+        "id": "prepared.backgrounds.e5296b1dcd3e9158",
+        "meta": "prepared/backgrounds/pay_fild01--e5296b1dcd3e.meta.json",
+        "name": "pay_fild01",
+        "map": "pay_fild01",
+        "stage": {
+          "floor_y": 535,
+          "left_x": 420,
+          "right_x": 620,
+          "status": "prototype_placement"
+        }
+      },
+      "music": {
+        "id": "prepared.music.4fb2ad3def690f6c",
+        "meta": "prepared/music/03--4fb2ad3def69.meta.json",
+        "map": "pay_fild01"
+      }
+    },
+    "3": {
+      "background": {
+        "id": "prepared.backgrounds.4b192b59fe71d3e0",
+        "meta": "prepared/backgrounds/moc_fild01--4b192b59fe71.meta.json",
+        "name": "moc_fild01",
+        "map": "moc_fild01",
+        "stage": {
+          "floor_y": 590,
+          "left_x": 430,
+          "right_x": 840,
+          "status": "prototype_placement"
+        }
+      },
+      "music": {
+        "id": "prepared.music.19783323a470bb31",
+        "meta": "prepared/music/24--19783323a470.meta.json",
+        "map": "moc_fild01"
+      }
+    },
+    "4": {
+      "background": {
+        "id": "prepared.backgrounds.fc8836134a43985a",
+        "meta": "prepared/backgrounds/gef_dun00--fc8836134a43.meta.json",
+        "name": "gef_dun00",
+        "map": "gef_dun00",
+        "stage": {
+          "floor_y": 560,
+          "left_x": 650,
+          "right_x": 930,
+          "status": "prototype_placement"
+        }
+      },
+      "music": {
+        "id": "prepared.music.4209a7965dcf6a17",
+        "meta": "prepared/music/21--4209a7965dcf.meta.json",
+        "map": "gef_dun00"
+      }
+    },
+    "5": {
+      "background": {
+        "id": "prepared.backgrounds.2a0379b71601ccf7",
+        "meta": "prepared/backgrounds/iz_dun01--2a0379b71601.meta.json",
+        "name": "iz_dun01",
+        "map": "iz_dun01",
+        "stage": {
+          "floor_y": 645,
+          "left_x": 480,
+          "right_x": 840,
+          "status": "prototype_placement"
+        }
+      },
+      "music": {
+        "id": "prepared.music.e55f6ea5c9ccd244",
+        "meta": "prepared/music/29--e55f6ea5c9cc.meta.json",
+        "map": "iz_dun01"
+      }
+    },
+    "6": {
+      "background": {
+        "id": "prepared.backgrounds.4b192b59fe71d3e0",
+        "meta": "prepared/backgrounds/moc_fild01--4b192b59fe71.meta.json",
+        "name": "moc_fild01",
+        "map": "moc_fild01",
+        "stage": {
+          "floor_y": 590,
+          "left_x": 430,
+          "right_x": 840,
+          "status": "prototype_placement"
+        }
+      },
+      "music": {
+        "id": "prepared.music.19783323a470bb31",
+        "meta": "prepared/music/24--19783323a470.meta.json",
+        "map": "moc_fild01"
+      }
+    },
+    "7": {
+      "background": {
+        "id": "prepared.backgrounds.fc8836134a43985a",
+        "meta": "prepared/backgrounds/gef_dun00--fc8836134a43.meta.json",
+        "name": "gef_dun00",
+        "map": "gef_dun00",
+        "stage": {
+          "floor_y": 560,
+          "left_x": 650,
+          "right_x": 930,
+          "status": "prototype_placement"
+        }
+      },
+      "music": {
+        "id": "prepared.music.4209a7965dcf6a17",
+        "meta": "prepared/music/21--4209a7965dcf.meta.json",
+        "map": "gef_dun00"
+      }
+    },
+    "8": {
+      "background": {
+        "id": "prepared.backgrounds.c42f91450f90090a",
+        "meta": "prepared/backgrounds/prontera--c42f91450f90.meta.json",
+        "name": "prontera",
+        "map": "prontera",
+        "stage": {
+          "floor_y": 650,
+          "left_x": 430,
+          "right_x": 840,
+          "status": "prototype_placement"
+        }
+      },
+      "music": {
+        "id": "prepared.music.dbceb39d9028a8af",
+        "meta": "prepared/music/210--dbceb39d9028.meta.json",
+        "map": "prontera"
+      }
+    }
+  },
+  "final_bosses": {
+    "1": {
+      "definition_id": "poring",
+      "element": "neutral",
+      "active_slots": [
+        "enemy_bite",
+        "enemy_quake",
+        null,
+        null
+      ],
+      "passives": [],
+      "mechanic": [
+        "enemy_bite",
+        "enemy_quake"
+      ],
+      "solutions": [
+        {
+          "strategy": "stun or burst before quake",
+          "example_skill_ids": [
+            "swordsman_bash"
+          ],
+          "examples_are_mandatory": false
+        },
+        {
+          "strategy": "heal and guard through damage",
+          "example_skill_ids": [
+            "acolyte_heal",
+            "swordsman_endure"
+          ],
+          "examples_are_mandatory": false
+        }
+      ]
+    },
+    "2": {
+      "definition_id": "wolf",
+      "element": "earth",
+      "active_slots": [
+        "enemy_bite",
+        "enemy_venom",
+        "enemy_quake",
+        null
+      ],
+      "passives": [],
+      "mechanic": [
+        "enemy_bite",
+        "enemy_venom",
+        "enemy_quake"
+      ],
+      "solutions": [
+        {
+          "strategy": "slow normal pressure",
+          "example_skill_ids": [
+            "archer_crippling_shot"
+          ],
+          "examples_are_mandatory": false
+        },
+        {
+          "strategy": "heal while increasing team damage",
+          "example_skill_ids": [
+            "acolyte_blessing",
+            "acolyte_heal"
+          ],
+          "examples_are_mandatory": false
+        }
+      ]
+    },
+    "3": {
+      "definition_id": "eddga",
+      "element": "fire",
+      "active_slots": [
+        "enemy_bite",
+        "enemy_firestorm",
+        null,
+        null
+      ],
+      "passives": [],
+      "mechanic": [
+        "enemy_bite",
+        "enemy_firestorm"
+      ],
+      "solutions": [
+        {
+          "strategy": "timed interruption",
+          "example_skill_ids": [
+            "sage_spell_breaker",
+            "swordsman_bash"
+          ],
+          "examples_are_mandatory": false
+        },
+        {
+          "strategy": "survive through personal guard and healing",
+          "example_skill_ids": [
+            "crusader_auto_guard",
+            "acolyte_heal"
+          ],
+          "examples_are_mandatory": false
+        }
+      ]
+    },
+    "4": {
+      "definition_id": "golem",
+      "element": "earth",
+      "active_slots": [
+        "enemy_guard",
+        "enemy_bite",
+        "enemy_quake",
+        null
+      ],
+      "passives": [
+        "enemy_adaptive_cc"
+      ],
+      "mechanic": [
+        "enemy_guard",
+        "enemy_bite",
+        "enemy_quake"
+      ],
+      "solutions": [
+        {
+          "strategy": "physical armor break",
+          "example_skill_ids": [
+            "rogue_strip_armor",
+            "hunter_hunters_mark"
+          ],
+          "examples_are_mandatory": false
+        },
+        {
+          "strategy": "magical damage or remove buffs",
+          "example_skill_ids": [
+            "mage_fire_bolt",
+            "sage_dispel"
+          ],
+          "examples_are_mandatory": false
+        }
+      ]
+    },
+    "5": {
+      "definition_id": "drake",
+      "element": "water",
+      "active_slots": [
+        "enemy_firestorm",
+        "enemy_bite",
+        null,
+        null
+      ],
+      "passives": [],
+      "mechanic": [
+        "enemy_firestorm",
+        "enemy_bite"
+      ],
+      "solutions": [
+        {
+          "strategy": "interrupt spell and SP drain",
+          "example_skill_ids": [
+            "sage_spell_breaker"
+          ],
+          "examples_are_mandatory": false
+        },
+        {
+          "strategy": "team shield and healing",
+          "example_skill_ids": [
+            "priest_kyrie",
+            "acolyte_heal"
+          ],
+          "examples_are_mandatory": false
+        }
+      ]
+    },
+    "6": {
+      "definition_id": "phreeoni",
+      "element": "earth",
+      "active_slots": [
+        "enemy_enrage",
+        "enemy_quake",
+        "enemy_bite",
+        null
+      ],
+      "passives": [],
+      "mechanic": [
+        "enemy_enrage",
+        "enemy_quake",
+        "enemy_bite"
+      ],
+      "solutions": [
+        {
+          "strategy": "dispel accumulated attack buffs",
+          "example_skill_ids": [
+            "sage_dispel"
+          ],
+          "examples_are_mandatory": false
+        },
+        {
+          "strategy": "tank/redirect and damage burst",
+          "example_skill_ids": [
+            "crusader_devotion",
+            "assassin_sonic_blow"
+          ],
+          "examples_are_mandatory": false
+        }
+      ]
+    },
+    "7": {
+      "definition_id": "osiris",
+      "element": "undead",
+      "active_slots": [
+        "enemy_silence",
+        "enemy_bite",
+        "enemy_firestorm",
+        null
+      ],
+      "passives": [],
+      "mechanic": [
+        "enemy_silence",
+        "enemy_bite",
+        "enemy_firestorm"
+      ],
+      "solutions": [
+        {
+          "strategy": "use normal/proc builds during silence",
+          "example_skill_ids": [
+            "sage_fire_endow",
+            "hunter_rapid_fire"
+          ],
+          "examples_are_mandatory": false
+        },
+        {
+          "strategy": "defensive recovery between silences",
+          "example_skill_ids": [
+            "crusader_defender",
+            "priest_sanctuary"
+          ],
+          "examples_are_mandatory": false
+        }
+      ]
+    },
+    "8": {
+      "definition_id": "baphomet",
+      "element": "dark",
+      "active_slots": [
+        "enemy_enrage",
+        "enemy_firestorm",
+        "enemy_quake",
+        null
+      ],
+      "passives": [
+        "enemy_adaptive_cc"
+      ],
+      "mechanic": [
+        "enemy_enrage",
+        "enemy_firestorm",
+        "enemy_quake"
+      ],
+      "solutions": [
+        {
+          "strategy": "chain CC with damage while accounting for optional reactive resistance",
+          "example_skill_ids": [
+            "rogue_intimidate",
+            "swordsman_bash"
+          ],
+          "examples_are_mandatory": false
+        },
+        {
+          "strategy": "high defense/heal plus burst with no CC dependency",
+          "example_skill_ids": [
+            "crusader_devotion",
+            "priest_kyrie",
+            "wizard_meteor"
+          ],
+          "examples_are_mandatory": false
+        }
+      ]
+    }
+  },
+  "regular_boss_by_chapter": {
+    "1": "poring",
+    "2": "wolf",
+    "3": "wolf",
+    "4": "ork_warrior",
+    "5": "ork_warrior",
+    "6": "ork_warrior",
+    "7": "ork_warrior",
+    "8": "ork_warrior"
+  },
+  "stage_1_1": {
+    "id": "1-1",
+    "chapter": 1,
+    "index": 1,
+    "unlock_after": null,
+    "recommended_party_level": 1,
+    "time_limit_ms": 90000,
+    "encounter": [
+      {
+        "actor_id": "enemy_front",
+        "definition_id": "poring",
+        "level": 1,
+        "position": "front_1",
+        "element": "neutral",
+        "resolved_base": {
+          "str": 1,
+          "agi": 1,
+          "vit": 1,
+          "int": 1,
+          "dex": 1,
+          "luk": 1,
+          "physical_attack": 8,
+          "magical_attack": 8,
+          "max_hp": 180,
+          "max_sp": 100,
+          "physical_defense": 0,
+          "magical_defense": 0,
+          "attack_speed": 100,
+          "cast_speed": 100
+        },
+        "active_slots": [
+          "enemy_bite",
+          null,
+          null,
+          null
+        ],
+        "passives": []
+      }
+    ],
+    "background": {
+      "id": "prepared.backgrounds.7211769293e7d357",
+      "meta": "prepared/backgrounds/prt_fild08--7211769293e7.meta.json",
+      "name": "prt_fild08",
+      "map": "prt_fild08",
+      "stage": {
+        "floor_y": 590,
+        "left_x": 430,
+        "right_x": 840,
+        "status": "prototype_placement"
+      }
+    },
+    "music": {
+      "id": "prepared.music.644547aaeff082c5",
+      "meta": "prepared/music/12--644547aaeff0.meta.json",
+      "map": "prt_fild08"
+    },
+    "first_clear_reward": {
+      "gold": 250,
+      "hero_exp": 400,
+      "skill_manual": 10,
+      "crystal": 20
+    },
+    "repeat_clear_reward": {},
+    "farm_rate_chapter": 1,
+    "mechanic": [
+      "basic pressure"
+    ],
+    "solutions": [],
+    "balance_target": {
+      "first_clear_seconds": [
+        1,
+        6
+      ],
+      "minimum_survivors": 1,
+      "reference_budget": "four characters at recommended level; Common enabled tier gear, skill cap for level, no rare card required; upgrades paid in TASK-010 budget",
+      "not_measured_yet": true,
+      "time_metric": "median_of_wins_across_500_matched_seeds",
+      "minimum_success_rate": 0.8
+    }
+  },
+  "adds": [
+    {
+      "actor_id": "enemy_add_0",
+      "definition_id": "fabre",
+      "position": "front_2",
+      "element": "neutral",
+      "active_slots": [
+        "enemy_venom",
+        null,
+        null,
+        null
+      ],
+      "passives": []
+    },
+    {
+      "actor_id": "enemy_add_1",
+      "definition_id": "lunatic",
+      "position": "back_1",
+      "element": "neutral",
+      "active_slots": [
+        "enemy_bite",
+        null,
+        null,
+        null
+      ],
+      "passives": []
+    }
+  ],
+  "balance_target": {
+    "first_clear_seconds": [
+      5,
+      35
+    ],
+    "minimum_survivors": 1,
+    "reference_budget": "four characters at recommended level; Common enabled tier gear, skill cap for level, no rare card required; upgrades paid in TASK-010 budget",
+    "not_measured_yet": true,
+    "time_metric": "median_of_wins_across_500_matched_seeds",
+    "minimum_success_rate": 0.8
+  },
+  "calibration": {
+    "1-1": {
+      "hp": 1.823,
+      "atk": 506.198
+    },
+    "1-2": {
+      "hp": 0.871,
+      "atk": 20.064
+    },
+    "1-3": {
+      "hp": 0.844,
+      "atk": 20.923
+    },
+    "1-4": {
+      "hp": 0.861,
+      "atk": 19.992
+    },
+    "1-5": {
+      "hp": 2.03,
+      "atk": 14.591,
+      "heavy_atk_scale": 0.81,
+      "matk": 2.266,
+      "cast_share": 0.25
+    },
+    "1-6": {
+      "hp": 0.88,
+      "atk": 16.231
+    },
+    "1-7": {
+      "hp": 0.976,
+      "atk": 16.136
+    },
+    "1-8": {
+      "hp": 0.909,
+      "atk": 15.263
+    },
+    "1-9": {
+      "hp": 1.032,
+      "atk": 13.392
+    },
+    "1-10": {
+      "hp": 1.568,
+      "atk": 10.848,
+      "heavy_atk_scale": 0.81,
+      "matk": 2.398,
+      "cast_share": 0.25
+    },
+    "2-1": {
+      "hp": 2.462,
+      "atk": 10.097
+    },
+    "2-2": {
+      "hp": 2.391,
+      "atk": 10.454
+    },
+    "2-3": {
+      "hp": 2.308,
+      "atk": 9.771
+    },
+    "2-4": {
+      "hp": 2.455,
+      "atk": 8.81
+    },
+    "2-5": {
+      "hp": 3.329,
+      "atk": 8.271,
+      "heavy_atk_scale": 1,
+      "matk": 2.857,
+      "cast_share": 0.3
+    },
+    "2-6": {
+      "hp": 2.236,
+      "atk": 7.765
+    },
+    "2-7": {
+      "hp": 2.379,
+      "atk": 7.448
+    },
+    "2-8": {
+      "hp": 2.289,
+      "atk": 7.424
+    },
+    "2-9": {
+      "hp": 2.34,
+      "atk": 6.892
+    },
+    "2-10": {
+      "hp": 2.235,
+      "atk": 6.892,
+      "heavy_atk_scale": 1,
+      "matk": 2.723,
+      "cast_share": 0.3
+    },
+    "3-1": {
+      "hp": 5.045,
+      "atk": 8.597
+    },
+    "3-2": {
+      "hp": 4.366,
+      "atk": 9.212
+    },
+    "3-3": {
+      "hp": 4.2,
+      "atk": 9.718
+    },
+    "3-4": {
+      "hp": 3.715,
+      "atk": 8.86
+    },
+    "3-5": {
+      "hp": 4.209,
+      "atk": 8.965,
+      "heavy_atk_scale": 1,
+      "matk": 6.757,
+      "cast_share": 0.5
+    },
+    "3-6": {
+      "hp": 3.996,
+      "atk": 9.071
+    },
+    "3-7": {
+      "hp": 3.593,
+      "atk": 8.738
+    },
+    "3-8": {
+      "hp": 3.657,
+      "atk": 8.218
+    },
+    "3-9": {
+      "hp": 3.456,
+      "atk": 8.255
+    },
+    "3-10": {
+      "hp": 2.992,
+      "atk": 8.255,
+      "heavy_atk_scale": 1,
+      "matk": 7.549,
+      "cast_share": 0.58
+    },
+    "4-1": {
+      "hp": 4.384,
+      "atk": 10.03
+    },
+    "4-2": {
+      "hp": 4.149,
+      "atk": 10.44
+    },
+    "4-3": {
+      "hp": 3.971,
+      "atk": 9.818
+    },
+    "4-4": {
+      "hp": 3.865,
+      "atk": 10.243
+    },
+    "4-5": {
+      "hp": 3.744,
+      "atk": 10.253,
+      "heavy_atk_scale": 1,
+      "matk": 7.811,
+      "cast_share": 0.54
+    },
+    "4-6": {
+      "hp": 3.456,
+      "atk": 10.264
+    },
+    "4-7": {
+      "hp": 3.527,
+      "atk": 9.819
+    },
+    "4-8": {
+      "hp": 3.586,
+      "atk": 9.239
+    },
+    "4-9": {
+      "hp": 3.34,
+      "atk": 9.324
+    },
+    "4-10": {
+      "hp": 3.565,
+      "atk": 9.517,
+      "heavy_atk_scale": 1,
+      "matk": 8.341,
+      "cast_share": 0.55
+    },
+    "4-11": {
+      "hp": 3.05,
+      "atk": 9.713
+    },
+    "4-12": {
+      "hp": 3.125,
+      "atk": 9.718
+    },
+    "4-13": {
+      "hp": 3.068,
+      "atk": 9.254
+    },
+    "4-14": {
+      "hp": 3.007,
+      "atk": 9.122
+    },
+    "4-15": {
+      "hp": 3.328,
+      "atk": 9.182,
+      "heavy_atk_scale": 1,
+      "matk": 7.481,
+      "cast_share": 0.49
+    },
+    "4-16": {
+      "hp": 2.877,
+      "atk": 9.242
+    },
+    "4-17": {
+      "hp": 2.85,
+      "atk": 9.632
+    },
+    "4-18": {
+      "hp": 2.789,
+      "atk": 9.106
+    },
+    "4-19": {
+      "hp": 2.761,
+      "atk": 9.145
+    },
+    "4-20": {
+      "hp": 2.119,
+      "atk": 10.641
+    },
+    "5-1": {
+      "hp": 3.033,
+      "atk": 11.007
+    },
+    "5-2": {
+      "hp": 3.15,
+      "atk": 9.894
+    },
+    "5-3": {
+      "hp": 2.973,
+      "atk": 9.445
+    },
+    "5-4": {
+      "hp": 3.035,
+      "atk": 9.853
+    },
+    "5-5": {
+      "hp": 3.075,
+      "atk": 9.601,
+      "heavy_atk_scale": 1,
+      "matk": 9.565,
+      "cast_share": 0.64
+    },
+    "5-6": {
+      "hp": 2.767,
+      "atk": 9.356
+    },
+    "5-7": {
+      "hp": 2.667,
+      "atk": 9.482
+    },
+    "5-8": {
+      "hp": 2.547,
+      "atk": 9.751
+    },
+    "5-9": {
+      "hp": 2.461,
+      "atk": 9.276
+    },
+    "5-10": {
+      "hp": 2.846,
+      "atk": 9.387,
+      "heavy_atk_scale": 1,
+      "matk": 9.091,
+      "cast_share": 0.55
+    },
+    "5-11": {
+      "hp": 2.454,
+      "atk": 9.5
+    },
+    "5-12": {
+      "hp": 2.632,
+      "atk": 11.644
+    },
+    "5-13": {
+      "hp": 2.556,
+      "atk": 12.256
+    },
+    "5-14": {
+      "hp": 2.615,
+      "atk": 12.579
+    },
+    "5-15": {
+      "hp": 2.899,
+      "atk": 12.792,
+      "heavy_atk_scale": 1,
+      "matk": 10.43,
+      "cast_share": 0.46
+    },
+    "5-16": {
+      "hp": 2.629,
+      "atk": 13.009
+    },
+    "5-17": {
+      "hp": 2.416,
+      "atk": 12.25
+    },
+    "5-18": {
+      "hp": 2.43,
+      "atk": 11.743
+    },
+    "5-19": {
+      "hp": 2.344,
+      "atk": 12.455
+    },
+    "5-20": {
+      "hp": 2.051,
+      "atk": 13.265
+    },
+    "6-1": {
+      "hp": 2.589,
+      "atk": 18.939
+    },
+    "6-2": {
+      "hp": 2.409,
+      "atk": 19.19
+    },
+    "6-3": {
+      "hp": 2.325,
+      "atk": 19.138
+    },
+    "6-4": {
+      "hp": 2.294,
+      "atk": 18.666
+    },
+    "6-5": {
+      "hp": 2.583,
+      "atk": 17.165,
+      "heavy_atk_scale": 1,
+      "matk": 13.988,
+      "cast_share": 0.62
+    },
+    "6-6": {
+      "hp": 2.113,
+      "atk": 15.785
+    },
+    "6-7": {
+      "hp": 2.072,
+      "atk": 15.826
+    },
+    "6-8": {
+      "hp": 2.122,
+      "atk": 14.914
+    },
+    "6-9": {
+      "hp": 2.104,
+      "atk": 14.766
+    },
+    "6-10": {
+      "hp": 2.138,
+      "atk": 14.957,
+      "heavy_atk_scale": 1,
+      "matk": 13.246,
+      "cast_share": 0.59
+    },
+    "6-11": {
+      "hp": 1.98,
+      "atk": 15.15
+    },
+    "6-12": {
+      "hp": 1.923,
+      "atk": 14.959
+    },
+    "6-13": {
+      "hp": 1.864,
+      "atk": 15.288
+    },
+    "6-14": {
+      "hp": 1.796,
+      "atk": 15.187
+    },
+    "6-15": {
+      "hp": 1.991,
+      "atk": 14.741,
+      "heavy_atk_scale": 1,
+      "matk": 11.631,
+      "cast_share": 0.52
+    },
+    "6-16": {
+      "hp": 1.783,
+      "atk": 14.308
+    },
+    "6-17": {
+      "hp": 1.724,
+      "atk": 15.798
+    },
+    "6-18": {
+      "hp": 1.846,
+      "atk": 14.567
+    },
+    "6-19": {
+      "hp": 1.855,
+      "atk": 13.801
+    },
+    "6-20": {
+      "hp": 1.529,
+      "atk": 15.577
+    },
+    "7-1": {
+      "hp": 1.911,
+      "atk": 15.355
+    },
+    "7-2": {
+      "hp": 1.843,
+      "atk": 15.29
+    },
+    "7-3": {
+      "hp": 1.741,
+      "atk": 15.494
+    },
+    "7-4": {
+      "hp": 1.592,
+      "atk": 18.742
+    },
+    "7-5": {
+      "hp": 1.62,
+      "atk": 17.728,
+      "heavy_atk_scale": 1,
+      "matk": 14.698,
+      "cast_share": 0.66
+    },
+    "7-6": {
+      "hp": 1.529,
+      "atk": 16.768
+    },
+    "7-7": {
+      "hp": 1.516,
+      "atk": 15.367
+    },
+    "7-8": {
+      "hp": 1.382,
+      "atk": 17.254
+    },
+    "7-9": {
+      "hp": 1.42,
+      "atk": 14.827
+    },
+    "7-10": {
+      "hp": 1.5,
+      "atk": 14.619,
+      "heavy_atk_scale": 1,
+      "matk": 13.306,
+      "cast_share": 0.6
+    },
+    "7-11": {
+      "hp": 1.399,
+      "atk": 14.414
+    },
+    "7-12": {
+      "hp": 1.338,
+      "atk": 15.105
+    },
+    "7-13": {
+      "hp": 1.31,
+      "atk": 15.252
+    },
+    "7-14": {
+      "hp": 1.266,
+      "atk": 15.146
+    },
+    "7-15": {
+      "hp": 1.343,
+      "atk": 16.448,
+      "heavy_atk_scale": 1.07,
+      "matk": 12.838,
+      "cast_share": 0.58
+    },
+    "7-16": {
+      "hp": 1.215,
+      "atk": 15.602
+    },
+    "7-17": {
+      "hp": 1.173,
+      "atk": 16.2
+    },
+    "7-18": {
+      "hp": 1.135,
+      "atk": 16.116
+    },
+    "7-19": {
+      "hp": 1.186,
+      "atk": 15.235
+    },
+    "7-20": {
+      "hp": 0.929,
+      "atk": 18.557
+    },
+    "8-1": {
+      "hp": 1.344,
+      "atk": 18.706
+    },
+    "8-2": {
+      "hp": 1.283,
+      "atk": 17.824
+    },
+    "8-3": {
+      "hp": 1.229,
+      "atk": 17.677
+    },
+    "8-4": {
+      "hp": 1.228,
+      "atk": 19.586
+    },
+    "8-5": {
+      "hp": 1.248,
+      "atk": 18.218,
+      "heavy_atk_scale": 1,
+      "matk": 15.391,
+      "cast_share": 0.7
+    },
+    "8-6": {
+      "hp": 1.136,
+      "atk": 16.945
+    },
+    "8-7": {
+      "hp": 1.149,
+      "atk": 15.931
+    },
+    "8-8": {
+      "hp": 1.147,
+      "atk": 17.98
+    },
+    "8-9": {
+      "hp": 1.072,
+      "atk": 15.868
+    },
+    "8-10": {
+      "hp": 1.081,
+      "atk": 16.046,
+      "heavy_atk_scale": 1,
+      "matk": 16.118,
+      "cast_share": 0.75
+    },
+    "8-11": {
+      "hp": 1.003,
+      "atk": 16.225
+    },
+    "8-12": {
+      "hp": 0.957,
+      "atk": 17.665
+    },
+    "8-13": {
+      "hp": 0.983,
+      "atk": 15.33
+    },
+    "8-14": {
+      "hp": 0.993,
+      "atk": 15.145
+    },
+    "8-15": {
+      "hp": 0.898,
+      "atk": 15.256,
+      "heavy_atk_scale": 1,
+      "matk": 15.984,
+      "cast_share": 0.74
+    },
+    "8-16": {
+      "hp": 0.938,
+      "atk": 15.368
+    },
+    "8-17": {
+      "hp": 0.926,
+      "atk": 15.571
+    },
+    "8-18": {
+      "hp": 0.891,
+      "atk": 15.114
+    },
+    "8-19": {
+      "hp": 0.865,
+      "atk": 15.818
+    },
+    "8-20": {
+      "hp": 0.724,
+      "atk": 16.898
+    }
+  }
+}

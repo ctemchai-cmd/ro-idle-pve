@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "browser": "155.0.8059.80",
+  "actual_supabase_auth": false,
+  "checks": [
+    "Actual app /auth safely reports missing configuration without fake login",
+    "Fixture UI: signin error/success, missing save does not create wallet,503 preserves session,401 returns signin",
+    "Fixture recovery form checks confirmation, calls password update, logout clears credentials; UI never renders token",
+    "360/390/1280 layouts have no horizontal overflow and preserve keyboard form order",
+    "Lazy route split preserves four-person battle and native Storm Gust encounter"
+  ],
+  "errors": [],
+  "external_requests": [],
+  "source_sha256": {
+    "scripts/test_auth_browser.cjs": "807287a06f44a994b38c72ed38f0126216e17d86cb5999b2d534bc239593b6e8",
+    "tests/browser/auth-harness.tsx": "23d4cb0344ce685bc251cb1f91a290eb40e428879403f2a6d83b0c57c36fb942",
+    "src/ui/main.tsx": "df93232995afc95e0860d1fd9223de37d69446ecbd4aa764fad09114d350de19",
+    "src/ui/auth-page.tsx": "a7d019017133b970af2caf31da969eda10f9ffc120fadcc749155ea4640c868f",
+    "src/ui/auth.css": "20771ffae4ab21963bd50862f18fb91a056d9988ff335105decc919be9008489",
+    "src/client/auth-controller.ts": "204a1c25fab641e0dad8c8c25c775c20f5c5b42281f4b8d2f63f741c123bbe48",
+    "src/client/account.ts": "7d9a3e7d05ae6ea728d1ebad014654ebe0ba32b3a2a6962c57a0c744f49fb83e"
+  },
+  "scope": "Real Chrome UI with explicitly fake Auth provider; actual unconfigured app and battle route regression. Not hosted Auth/email/JWT/RLS proof."
+}

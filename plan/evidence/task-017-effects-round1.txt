@@ -1,0 +1,56 @@
+✔ independent same-caster and NPC buffs reproduce 156/288/252/216/120 without refresh (5.076625ms)
+✔ buff magnitude and repeated applications have no hidden cap (18.624208ms)
+✔ removing one trait source and one status recomputes others instead of subtracting stats (0.749625ms)
+✔ AoE outcomes isolate A-hit/B-miss; a completely shielded hit still permits Stun (1.287333ms)
+✔ heal chooses lowest HP percent and still casts at full HP with all-overheal metrics (3.708625ms)
+✔ front ordering and latest living Provoke source; all/random selectors ignore it (0.729584ms)
+✔ locked dead target skips or reselects once; no automatic replacement mid-program (0.407625ms)
+✖ Stun before start leaves slot unspent and starts at recovery without restarting SI (3.245709ms)
+✔ interrupting CT consumes SP/slot exactly once and removes the old resolve token (1.503875ms)
+✔ same-time locked cast resolves even if another completion applies Stun (1.31675ms)
+✔ uninterruptible CT resolves under CC while Silence permits Normal Attack (1.206208ms)
+✔ ordinary chain CC has normal independent durations and union vs instance metrics (1.02175ms)
+✔ optional reactive boss trait adds independent Resistance after successful CC only (1.060792ms)
+✔ periodic expiry is exclusive; shield absorbs60 then HP loses20 across two ticks (0.824125ms)
+✔ Freeze survives fully absorbed damage and breaks only on positive HP loss (0.3855ms)
+✔ cleanse/dispel removes permitted individual instances in expiry then ID order (0.475958ms)
+✔ own-status detonation consumes only the acting source and uses the common damage pipeline (0.444625ms)
+✔ learned Passive applies automatically with all four Active slots empty (0.300209ms)
+✔ proc ancestry blocks A→B→A reentry while sibling hits and separate instances still proc (1.183708ms)
+✔ proc per-battle counter survives serialized restore and never resets on a later advance (179.150583ms)
+✔ battle_start entry trigger fires once even when the initial checkpoint is restored (1.588666ms)
+✔ weapon endow selection is latest active enum and reveals the previous value after expiry (0.426375ms)
+✔ a status whose source died persists or removes exactly as its catalog requires (0.464334ms)
+✔ resource gains clamp SP/spheres and expose restored vs wasted without touching wallets (0.281208ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 23
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1227.448333
+
+✖ failing tests:
+
+test at tests/game/effects.test.ts:1:7930
+✖ Stun before start leaves slot unspent and starts at recovery without restarting SI (3.245709ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 3000
+  
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/effects.test.ts:93:44)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 3000,
+    operator: 'strictEqual'
+  }

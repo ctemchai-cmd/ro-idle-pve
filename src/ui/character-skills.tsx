@@ -1,0 +1,33 @@
+import { Icon } from './icon.tsx';
+import { useEffect, useMemo, useState } from 'react';
+import type { AccountState } from '../contracts/index.ts';
+import type { BuildCommand, Character } from '../client/roster.ts';
+import { characterSkillOptions, type SkillOption } from '../client/skills.ts';
+import type { AssetPack } from '../renderer/pack.ts';
+import { locateSkillVisual } from '../renderer/asset-locator.ts';
+import './skills.css';
+const seconds=(ms:number)=>(ms/1000).toLocaleString('th-TH',{maximumFractionDigits:2})+'s';
+function SkillImage({skill,pack}:{skill:SkillOption;pack:AssetPack|null}){const[url,setUrl]=useState<string|null>(null);useEffect(()=>{let active=true;setUrl(null);if(pack){try{const visual=locateSkillVisual(pack.index,skill.id);void pack.iconUrl(visual.icon.id).then(next=>{if(active)setUrl(next);}).catch(()=>{});}catch{/* An explicit missing icon never changes skill rules. */}}return()=>{active=false;};},[pack,skill.id]);return url?<img src={url} alt=""/>:<span className="skill-placeholder" aria-hidden="true"><Icon name="sparkles" /></span>;}
+interface Props {actor:Character;state:AccountState;wallet:AccountState['wallet'];disabled:boolean;pack:AssetPack|null;submit:(type:BuildCommand['type'],params:unknown)=>Promise<void>}
+export function CharacterSkills({actor,state,wallet,disabled,pack,submit}:Props){
+ const options=useMemo(()=>characterSkillOptions(actor,state),[actor,state]),[draft,setDraft]=useState(actor.active_slots),[slot,setSlot]=useState(0),[selected,setSelected]=useState<string|null>(actor.active_slots[0]);
+ useEffect(()=>{setDraft(structuredClone(actor.active_slots));setSlot(0);setSelected(previous=>options.skills.some(s=>s.id===previous)?previous:actor.active_slots[0]);},[actor.character_id,actor.job_id,JSON.stringify(actor.active_slots)]);
+ const skill=options.skills.find(s=>s.id===selected)??options.skills[0]!,dirty=JSON.stringify(draft)!==JSON.stringify(actor.active_slots);
+ const canPay=skill.price&&Object.entries(skill.price).every(([k,v])=>wallet[k as keyof typeof wallet]>=v!);
+ function place(id:string|null){const next=structuredClone(draft);const existing=id?next.indexOf(id):-1;if(existing>=0&&existing!==slot)next[existing]=next[slot]??null;next[slot]=id;setDraft(next);}
+ return <details className="character-skills"><summary>สกิลและคิว 4 ช่อง <span>จัดลำดับ · อัปเกรด</span></summary><div className="skill-content">
+  <h3>คิวสกิล</h3><p className="skills-note">รอตาม ASPD ประมาณ {seconds(options.intervalMs)} ก่อนแต่ละท่า · ไม่มีคูลดาวน์แยก</p>
+  <div className="character-loadout" role="group" aria-label="ช่องสกิลเรียงลำดับ">{draft.map((id,index)=>{const current=options.skills.find(s=>s.id===id);return <button key={index} className={slot===index?'current':''} aria-label={`ช่องสกิล ${index+1}`} aria-pressed={slot===index} onClick={()=>{setSlot(index);if(id)setSelected(id);}}><small>{index+1}</small>{current?<SkillImage skill={current} pack={pack}/>:<span className="empty-skill">+</span>}<span>{current?.name??'ว่าง'}</span></button>;})}</div>
+  {dirty&&<div className="team-actions"><button className="roster-primary" disabled={disabled} onClick={()=>void submit('skill.set_loadout',{character_id:actor.character_id,skill_ids:draft})}>บันทึกคิวสกิล</button><button className="roster-link" disabled={disabled} onClick={()=>setDraft(structuredClone(actor.active_slots))}>คืนคิวเดิม</button></div>}
+  <button className="roster-link" disabled={disabled||draft[slot]===null} onClick={()=>place(null)}>เว้นช่อง {slot+1}</button>
+  <h3>Active <small>เลือกท่าที่เรียนแล้วใส่ช่อง {slot+1}</small></h3><div className="character-skill-list">{options.skills.filter(s=>s.kind==='active').map(s=><button key={s.id} aria-label={`รายละเอียด ${s.name}`} aria-pressed={skill.id===s.id} onClick={()=>setSelected(s.id)}><SkillImage skill={s} pack={pack}/><strong>{s.name}</strong><small>{s.locked?`ปลดที่ Lv.${s.unlock}`:s.level?`Lv.${s.level} / ${s.cap}`:'ยังไม่เรียน'}</small>{draft.includes(s.id)&&<i aria-label="อยู่ในคิว">●</i>}</button>)}</div>
+  <h3>Passive <small>เรียนแล้วทำงานอัตโนมัติ</small></h3><div className="character-skill-list">{options.skills.filter(s=>s.kind==='passive').map(s=><button key={s.id} aria-label={`รายละเอียด ${s.name}`} aria-pressed={skill.id===s.id} onClick={()=>setSelected(s.id)}><SkillImage skill={s} pack={pack}/><strong>{s.name}</strong><small>{s.locked?`ปลดที่ Lv.${s.unlock}`:s.level?`Lv.${s.level} / ${s.cap}`:'ยังไม่เรียน'}</small></button>)}</div>
+  <section className="skill-detail" aria-label="รายละเอียดสกิล"><div className="skill-detail-title"><SkillImage skill={skill} pack={pack}/><div><small>{skill.kind==='active'?'ACTIVE':'PASSIVE'}</small><h4>{skill.name}</h4><p>{skill.level?`Lv.${skill.level}`:'ยังไม่เรียน'} · เพดานตอนนี้ {skill.cap}</p><p>{skill.targetNote}</p></div></div>
+   {skill.kind==='active'&&<><div className="skill-time-values"><p>ร่าย CT<strong>{seconds(skill.castMs)}</strong>{skill.nextCastMs!==null&&skill.nextCastMs!==skill.castMs&&<small>→ {seconds(skill.nextCastMs)}</small>}</p><p>พัก ACD<strong>{seconds(skill.afterCastMs)}</strong>{skill.nextAfterCastMs!==null&&skill.nextAfterCastMs!==skill.afterCastMs&&<small>→ {seconds(skill.nextAfterCastMs)}</small>}</p><p>SP<strong>{skill.sp}</strong>{skill.nextSp!==null&&skill.nextSp!==skill.sp&&<small>→ {skill.nextSp}</small>}</p></div><p className="skills-note">เวลาจาก Status, Passive และอุปกรณ์ปัจจุบัน ก่อนบัฟในไฟต์</p></>}
+   <div className="skill-effects">{skill.effects.map((text,i)=><p key={i}>{text}{skill.nextEffects[i]&&skill.nextEffects[i]!==text&&<span>→ {skill.nextEffects[i]}</span>}</p>)}</div>
+   {skill.locked?<p className="skills-note">ต้องเป็น Lv.{skill.unlock} เพื่อเรียนท่านี้</p>:skill.price?<><p className="skill-upgrade-price">{skill.level?`อัปเป็น Lv.${skill.level+1}`:'เรียน Lv.1'} · {Object.values(skill.price).some(v=>v)?`ทอง ${(skill.price.gold??0).toLocaleString()} · คู่มือ ${skill.price.skill_manual??0}`:'ฟรี'}<small>มีคู่มือ {wallet.skill_manual.toLocaleString()}</small></p><button className="roster-primary" disabled={disabled||!canPay} onClick={()=>void submit('skill.upgrade',{character_id:actor.character_id,skill_id:skill.id,target_level:skill.level+1})}>{skill.level?'อัปเกรดสกิล':'เรียนสกิล'}</button></>:<p className="skills-note">{skill.level>=skill.max?'สกิลระดับสูงสุดแล้ว':'อัปเลเวลตัวละครเพื่อเพิ่มเพดานสกิล'}</p>}
+   {skill.kind==='active'&&skill.level>0&&<button className="roster-outline" disabled={disabled||draft[slot]===skill.id} onClick={()=>place(skill.id)}>ใส่ช่อง {slot+1}</button>}
+   {skill.kind==='passive'&&skill.level>0&&<p className="skills-note">ทำงานอัตโนมัติ · ไม่ใช้ช่อง Active</p>}
+  </section>
+ </div></details>;
+}

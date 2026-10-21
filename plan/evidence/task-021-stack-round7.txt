@@ -1,0 +1,45 @@
+{
+  "task_id": "TASK-021",
+  "passed": true,
+  "self_hosted_local": true,
+  "hosted_supabase_tested": false,
+  "components": [
+    {
+      "tool": "auth",
+      "version": "2.197.0",
+      "archive": "auth-v2.197.0-darwin-arm64.tar.gz",
+      "url": "https://github.com/supabase/auth/releases/download/v2.197.0/auth-v2.197.0-darwin-arm64.tar.gz",
+      "sha256": "3fb7998e7061e2c14f3f9555b1d94d447358c965395728e0d81eac82e0e5868b",
+      "executable": "auth"
+    },
+    {
+      "tool": "postgrest",
+      "version": "16.4",
+      "archive": "postgrest-v16.4-macos-aarch64.tar.xz",
+      "url": "https://github.com/PostgREST/postgrest/releases/download/v16.4/postgrest-v16.4-macos-aarch64.tar.xz",
+      "sha256": "5720fbde4a19ade9fb189791615c84beb9f0e58201b1b6d17fe3b698faf60776",
+      "executable": "postgrest"
+    },
+    {
+      "tool": "mailpit",
+      "version": "1.31.6",
+      "archive": "mailpit-darwin-arm64.tar.gz",
+      "url": "https://github.com/axllent/mailpit/releases/download/v1.31.6/mailpit-darwin-arm64.tar.gz",
+      "sha256": "1411270aa8fd7f4fb0cc358318754d7bb7c2c30bfd70572dd12d05a53e956373",
+      "executable": "mailpit"
+    }
+  ],
+  "checks": [
+    "Fresh PostgreSQL, upstream Auth migrations, game migration and matching marker; real Auth/PostgREST/mail sink on loopback",
+    "Real SDK Auth/JWT/PostgREST/RLS/API tests passed",
+    "Browser password login, missing-save read, SMTP-captured recovery with PKCE redirect and logout passed"
+  ],
+  "credentials_logged": false,
+  "cleanup": "Owned services stopped and private DB/mail/credentials directory removed at exit",
+  "source_sha256": {
+    "scripts/test_auth_stack.py": "3336d41c8bdf737927caaadcdd35da41a80c131ddb75c8a59f9b65707b82e350",
+    "scripts/game/test-supabase.ts": "28c501e121feeaba00ad68f63b75df1a8fe78e26095ab8f3f1c7d4ce72ae4701",
+    "scripts/game/local-supabase-gateway.ts": "446f62999bfa36d3587d69b6fa2f66d07c6933103d1f6ffd90d344eccbf2fc9e",
+    "supabase/migrations/202610190001_game_storage.sql": "e6a3f899c85fcc38458aa62626493ea2806f8878fdf9c4d7d0a413cd5c4bfce1"
+  }
+}

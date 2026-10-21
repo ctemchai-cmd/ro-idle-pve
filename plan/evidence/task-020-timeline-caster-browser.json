@@ -1,0 +1,221 @@
+{
+  "task_id": "TASK-020",
+  "round": 7,
+  "date": "2026-10-20",
+  "passed": true,
+  "checks": [
+    {
+      "case_id": "compact_labels_leave_more_visible_time_at_all_viewports",
+      "passed": true,
+      "result": {
+        "sizes": [
+          {
+            "width": 360,
+            "height": 640,
+            "labels": [
+              {
+                "text": "คุณ\nSwordsman",
+                "title": "นักดาบของคุณ",
+                "width": 68
+              },
+              {
+                "text": "ลูเมน\nAcolyte",
+                "title": "ลูเมน · Acolyte",
+                "width": 68
+              },
+              {
+                "text": "อารี\nArcher",
+                "title": "อารี · Archer",
+                "width": 68
+              },
+              {
+                "text": "เรน\nMage",
+                "title": "เรน · Mage",
+                "width": 68
+              },
+              {
+                "text": "poring\nบอส",
+                "title": "บอส · poring",
+                "width": 68
+              }
+            ],
+            "trackLeft": 95,
+            "nowLeft": 95,
+            "visibleTimeWidth": 248,
+            "overflow": false
+          },
+          {
+            "width": 390,
+            "height": 844,
+            "labels": [
+              {
+                "text": "คุณ\nSwordsman",
+                "title": "นักดาบของคุณ",
+                "width": 68
+              },
+              {
+                "text": "ลูเมน\nAcolyte",
+                "title": "ลูเมน · Acolyte",
+                "width": 68
+              },
+              {
+                "text": "อารี\nArcher",
+                "title": "อารี · Archer",
+                "width": 68
+              },
+              {
+                "text": "เรน\nMage",
+                "title": "เรน · Mage",
+                "width": 68
+              },
+              {
+                "text": "poring\nบอส",
+                "title": "บอส · poring",
+                "width": 68
+              }
+            ],
+            "trackLeft": 95,
+            "nowLeft": 95,
+            "visibleTimeWidth": 278,
+            "overflow": false
+          },
+          {
+            "width": 1280,
+            "height": 900,
+            "labels": [
+              {
+                "text": "คุณ\nSwordsman",
+                "title": "นักดาบของคุณ",
+                "width": 68
+              },
+              {
+                "text": "ลูเมน\nAcolyte",
+                "title": "ลูเมน · Acolyte",
+                "width": 68
+              },
+              {
+                "text": "อารี\nArcher",
+                "title": "อารี · Archer",
+                "width": 68
+              },
+              {
+                "text": "เรน\nMage",
+                "title": "เรน · Mage",
+                "width": 68
+              },
+              {
+                "text": "poring\nบอส",
+                "title": "บอส · poring",
+                "width": 68
+              }
+            ],
+            "trackLeft": 495,
+            "nowLeft": 495,
+            "visibleTimeWidth": 368,
+            "overflow": false
+          }
+        ],
+        "moving_frames_out_of29": 29,
+        "zoom_pause": true
+      }
+    },
+    {
+      "case_id": "actual_normal_attacks_launch_caster_orbs_before_any_skill",
+      "passed": true,
+      "result": {
+        "samples": [
+          {
+            "job": "mage",
+            "normal_attack_at_ms": 1550,
+            "target": "enemy_front",
+            "source_world": [
+              242.135001,
+              560.849599
+            ],
+            "target_world": [
+              424.148236,
+              380.82965
+            ],
+            "shots": [
+              {
+                "source": "npc_mage",
+                "target": "enemy_front",
+                "shape": "orb"
+              }
+            ],
+            "gameplay_class_fixture": "mage; job presentation varied to cover mage/wizard/sage default missile configuration"
+          },
+          {
+            "job": "wizard",
+            "normal_attack_at_ms": 1550,
+            "target": "enemy_front",
+            "source_world": [
+              242.135001,
+              560.849599
+            ],
+            "target_world": [
+              424.148236,
+              380.82965
+            ],
+            "shots": [
+              {
+                "source": "npc_mage",
+                "target": "enemy_front",
+                "shape": "orb"
+              }
+            ],
+            "gameplay_class_fixture": "mage; job presentation varied to cover mage/wizard/sage default missile configuration"
+          },
+          {
+            "job": "sage",
+            "normal_attack_at_ms": 1550,
+            "target": "enemy_front",
+            "source_world": [
+              242.135001,
+              560.849599
+            ],
+            "target_world": [
+              424.148236,
+              380.82965
+            ],
+            "shots": [
+              {
+                "source": "npc_mage",
+                "target": "enemy_front",
+                "shape": "orb"
+              }
+            ],
+            "gameplay_class_fixture": "mage; job presentation varied to cover mage/wizard/sage default missile configuration"
+          }
+        ],
+        "normal_only": true,
+        "exact_state_events_metrics": true,
+        "pack_hash": "4cc4d9d4f4a8e58a432de095b9436470801b7799d1e26b903cb3208bed3ad032"
+      }
+    },
+    {
+      "case_id": "rebuilt_pack_media_decodes_locally_without_errors",
+      "passed": true,
+      "result": {
+        "images": 216,
+        "audio": 34,
+        "font": true,
+        "pack_hash": "4cc4d9d4f4a8e58a432de095b9436470801b7799d1e26b903cb3208bed3ad032",
+        "selected_ids": 251
+      }
+    }
+  ],
+  "errors": [],
+  "external_requests": [],
+  "input_sha256": {
+    "src/ui/skill-timeline.tsx": "c8cd3e0a48a05598e9396117177d9eacc2206719f77f142bc19b931f98aed48f",
+    "src/ui/timeline.css": "4f4f3952ee1502ed23906bcfcdd10a9cea08682cc8359fcf1e1a8a6217b9a97e",
+    "src/renderer/combat-visuals.json": "fe44504222f1a5ad621f092772c32f6b43361cb901c65dd709a37ec6f5f78daf",
+    "src/renderer/battle.ts": "5d05d175785ef1e0393d56a92f1e42e794d622bb2fdf686b1139af2d39db6afd",
+    "src/renderer/projectiles.ts": "e3d7303ee5fb527607d9e523ee3b41dda870eb504baf245b6ee0fdb52dd8cc5e",
+    "runtime/ro/manifest.json": "427e17705172e8c924e5aabcf27534b26a98d2f069a3b0ee7d07cae61ff47b47",
+    "src/generated/runtime-manifest.json": "bef804d7b6eb1e5f6919aef64b1d61d3922a46e62fcacad85593d8d362b995e4",
+    "scripts/test_timeline_caster_polish.cjs": "657d4486cfe12b3bdb02a08899bfa810411d97bd5f83bd9992e52edaa1547b5c"
+  },
+  "scope": "Targeted Chrome viewport/normal missile regression. Caster job appearances vary on same real mage combat input to isolate presentation. No claim of complete Wizard/Sage class gameplay validation."
+}

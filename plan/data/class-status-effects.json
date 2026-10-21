@@ -1,0 +1,431 @@
+{
+  "schema_version": 1,
+  "version": "class-composition-v1",
+  "base_catalog": "status-effects.json",
+  "statuses": [
+    {
+      "id": "counter_stance",
+      "polarity": "buff",
+      "tags": [
+        "counter"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "ratio": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": false,
+      "dispelable": true,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [],
+      "triggers": [
+        {
+          "id": "counter",
+          "event": "damage_received",
+          "chance": 1,
+          "accepted_origins": [
+            "normal",
+            "skill"
+          ],
+          "limit_scope": "none",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {},
+          "effects": [
+            {
+              "id": "counter_hit",
+              "type": "damage",
+              "target": "event_source",
+              "formula": {
+                "id": "physical_power",
+                "params": {
+                  "attack_ratio": {
+                    "status_param": "ratio"
+                  },
+                  "flat_power": 0
+                }
+              },
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
+            }
+          ]
+        }
+      ],
+      "periodic": null,
+      "weapon_element": null
+    },
+    {
+      "id": "devotion",
+      "polarity": "buff",
+      "tags": [
+        "redirect"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "ratio": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        },
+        "required": [
+          "ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": false,
+      "dispelable": true,
+      "source_death": "remove",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null,
+      "damage_redirect": {
+        "ratio": {
+          "status_param": "ratio"
+        },
+        "recipient": "source_actor"
+      }
+    },
+    {
+      "id": "attack_down",
+      "polarity": "debuff",
+      "tags": [
+        "stat_debuff"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "ratio": {
+            "type": "number",
+            "minimum": -1,
+            "maximum": 0
+          }
+        },
+        "required": [
+          "ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": true,
+      "dispelable": false,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [
+        {
+          "id": "magnitude",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "status_param": "ratio"
+          }
+        }
+      ],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null
+    },
+    {
+      "id": "accuracy_down",
+      "polarity": "debuff",
+      "tags": [
+        "stat_debuff"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "ratio": {
+            "type": "number",
+            "minimum": -1,
+            "maximum": 0
+          }
+        },
+        "required": [
+          "ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": true,
+      "dispelable": false,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [
+        {
+          "id": "magnitude",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "status_param": "ratio"
+          }
+        }
+      ],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null
+    },
+    {
+      "id": "venom",
+      "polarity": "debuff",
+      "tags": [
+        "dot",
+        "poison"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "power_ratio": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "power_ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": true,
+      "dispelable": false,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [],
+      "triggers": [],
+      "periodic": {
+        "interval_ms": 1000,
+        "tick_on_apply": false,
+        "offense": "application_snapshot",
+        "mitigation": "live_target",
+        "effects": [
+          {
+            "id": "tick_hit",
+            "type": "damage",
+            "target": "self",
+            "formula": {
+              "id": "physical_power",
+              "params": {
+                "attack_ratio": {
+                  "status_param": "power_ratio"
+                },
+                "flat_power": 0
+              }
+            },
+            "damage_type": "physical",
+            "element": "poison",
+            "hit_rule": "always",
+            "can_crit": false,
+            "hits": 1,
+            "armor_rule": "normal"
+          }
+        ]
+      },
+      "weapon_element": null
+    },
+    {
+      "id": "chemical_burn",
+      "polarity": "debuff",
+      "tags": [
+        "dot",
+        "chemical"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "power_ratio": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "power_ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": true,
+      "dispelable": false,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [],
+      "triggers": [],
+      "periodic": {
+        "interval_ms": 1000,
+        "tick_on_apply": false,
+        "offense": "application_snapshot",
+        "mitigation": "live_target",
+        "effects": [
+          {
+            "id": "tick_hit",
+            "type": "damage",
+            "target": "self",
+            "formula": {
+              "id": "magical_power",
+              "params": {
+                "attack_ratio": {
+                  "status_param": "power_ratio"
+                },
+                "flat_power": 0
+              }
+            },
+            "damage_type": "magical",
+            "element": "fire",
+            "hit_rule": "always",
+            "can_crit": false,
+            "hits": 1,
+            "armor_rule": "normal"
+          }
+        ]
+      },
+      "weapon_element": null
+    },
+    {
+      "id": "frost_field",
+      "polarity": "debuff",
+      "tags": [
+        "dot",
+        "field"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "power_ratio": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "power_ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": true,
+      "dispelable": false,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [],
+      "triggers": [],
+      "periodic": {
+        "interval_ms": 1000,
+        "tick_on_apply": false,
+        "offense": "application_snapshot",
+        "mitigation": "live_target",
+        "effects": [
+          {
+            "id": "tick_hit",
+            "type": "damage",
+            "target": "self",
+            "formula": {
+              "id": "magical_power",
+              "params": {
+                "attack_ratio": {
+                  "status_param": "power_ratio"
+                },
+                "flat_power": 0
+              }
+            },
+            "damage_type": "magical",
+            "element": "water",
+            "hit_rule": "always",
+            "can_crit": false,
+            "hits": 1,
+            "armor_rule": "normal"
+          },
+          {
+            "id": "freeze",
+            "type": "apply_status",
+            "target": "self",
+            "status_id": "freeze",
+            "duration_ms": 800,
+            "params": {},
+            "chance": 0.12,
+            "when": {
+              "type": "hit_landed",
+              "effect_id": "tick_hit",
+              "scope": "same_target",
+              "hit_index": "any"
+            }
+          }
+        ]
+      },
+      "weapon_element": null
+    }
+  ],
+  "status": "Class content extensions authored in TASK-003–008; additive policies unchanged."
+}

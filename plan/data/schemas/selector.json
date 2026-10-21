@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ro-idle.local/schemas/selector.json",
+  "type": "object",
+  "properties": {
+    "team": {
+      "enum": [
+        "allies",
+        "enemies"
+      ]
+    },
+    "life": {
+      "enum": [
+        "living",
+        "dead"
+      ]
+    },
+    "select": {
+      "enum": [
+        "front_first",
+        "lowest_hp_percent",
+        "all",
+        "random_n",
+        "nearest"
+      ]
+    },
+    "count": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "phase": {
+      "enum": [
+        "cast_start",
+        "cast_resolve",
+        "event"
+      ]
+    },
+    "missing": {
+      "enum": [
+        "skip",
+        "reselect_once"
+      ]
+    }
+  },
+  "required": [
+    "team",
+    "life",
+    "select",
+    "count",
+    "phase",
+    "missing"
+  ],
+  "additionalProperties": false
+}

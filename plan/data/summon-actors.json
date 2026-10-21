@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "actors": [
+    {
+      "id": "hell_plant",
+      "kind": "summon",
+      "owner_required": true,
+      "source_skill_id": "alchemist_hell_plant",
+      "lifetime_source": "summon effect duration_ms",
+      "level": "inherit owner",
+      "primary_stats": "snapshot owner at summon cast start",
+      "derived_scale": 0.35,
+      "targetable": false,
+      "counts_for_party_defeat": false,
+      "counts_for_enemy_victory": false,
+      "normal_attack": false,
+      "action": {
+        "interval_ms": 1000,
+        "tick_on_spawn": false,
+        "effects": [
+          {
+            "id": "hit",
+            "type": "damage",
+            "target": "foe",
+            "formula": {
+              "id": "magical_power",
+              "params": {
+                "attack_ratio": 0.4,
+                "flat_power": 0
+              }
+            },
+            "damage_type": "magical",
+            "element": "poison",
+            "hit_rule": "always",
+            "can_crit": false,
+            "hits": 1,
+            "armor_rule": "normal"
+          }
+        ],
+        "selectors": {
+          "foe": {
+            "team": "enemies",
+            "life": "living",
+            "select": "front_first",
+            "count": null,
+            "phase": "event",
+            "missing": "skip"
+          }
+        },
+        "origin": "periodic"
+      },
+      "source_death": "remove",
+      "battle_end": "remove",
+      "resource_cost": {},
+      "presentation": {
+        "type": "prepared_recipe",
+        "skill_id": 52,
+        "label": "plant placeholder visual; same local effect family, not a native plant actor"
+      }
+    },
+    {
+      "id": "healing_plant",
+      "kind": "summon",
+      "owner_required": true,
+      "source_skill_id": "alchemist_bio_cannibalize",
+      "lifetime_source": "summon effect duration_ms",
+      "level": "inherit owner",
+      "primary_stats": "snapshot owner at summon cast start",
+      "derived_scale": 0.35,
+      "targetable": false,
+      "counts_for_party_defeat": false,
+      "counts_for_enemy_victory": false,
+      "normal_attack": false,
+      "action": {
+        "interval_ms": 1000,
+        "tick_on_spawn": false,
+        "effects": [
+          {
+            "id": "heal",
+            "type": "heal",
+            "target": "friend",
+            "formula": {
+              "id": "healing_power",
+              "params": {
+                "attack_ratio": 0.18,
+                "flat_power": 0
+              }
+            }
+          }
+        ],
+        "selectors": {
+          "friend": {
+            "team": "allies",
+            "life": "living",
+            "select": "lowest_hp_percent",
+            "count": null,
+            "phase": "event",
+            "missing": "skip"
+          }
+        },
+        "origin": "periodic"
+      },
+      "source_death": "remove",
+      "battle_end": "remove",
+      "resource_cost": {},
+      "presentation": {
+        "type": "prepared_recipe",
+        "skill_id": 54,
+        "label": "plant placeholder visual; same local effect family, not a native plant actor"
+      }
+    }
+  ]
+}

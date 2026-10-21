@@ -1,0 +1,180 @@
+{
+  "task_id": "TASK-012",
+  "reviewer": "Codex self-review",
+  "review_round": 1,
+  "review_date": "2026-10-19",
+  "scope": "M0 wireframe/manual flow review and state/layout/timing arithmetic; no browser implementation",
+  "input_sha256": {
+    "plan/data/ui-flows.json": "0b1956a099c73227c718ae49dfc2e64290901d4eb2f6e1c33d253dad909236dd",
+    "plan/design/10-ui-and-player-flows.md": "10115d3fa5448ef3910e0fb64a9613b576b668412d76711085a08404cd2a6715",
+    "plan/checks/ui.py": "2f6e928147940c5f76463cc21e78f616f4e12db1c52a697947b6ab4ee2fc4eb7"
+  },
+  "checks": [
+    {
+      "case_id": "offline_cannot_claim",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "state": "disconnected",
+        "action": "farm.claim",
+        "allowed": false
+      }
+    },
+    {
+      "case_id": "pending_no_double_gacha",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "state": "command_pending",
+        "action": "gacha.pull",
+        "allowed": false
+      }
+    },
+    {
+      "case_id": "ready_can_upgrade",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "state": "ready",
+        "action": "skill.upgrade",
+        "allowed": true
+      }
+    },
+    {
+      "case_id": "expired_cannot_spend",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "state": "session_expired",
+        "action": "slot.refine",
+        "allowed": false
+      }
+    },
+    {
+      "case_id": "conflict_cannot_overwrite",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "state": "revision_conflict",
+        "action": "party.set",
+        "allowed": false
+      }
+    },
+    {
+      "case_id": "offline_can_mute",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "state": "disconnected",
+        "action": "settings.local",
+        "allowed": true
+      }
+    },
+    {
+      "case_id": "inventory_full_can_free_space",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "state": "inventory_full",
+        "action": "equipment.salvage",
+        "allowed": true
+      }
+    },
+    {
+      "case_id": "small_screen_wireframe",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "minimum_width": 360,
+        "four_slots_required_width": 232,
+        "remaining_width": 128,
+        "body_text_px": 14,
+        "scope": "wireframe arithmetic; browser/Thai text tests are TASK-039/042"
+      }
+    },
+    {
+      "case_id": "preview_matches_timing_baseline",
+      "acceptance": [
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "SI_before_ms": 1500,
+        "SI_after_ms": 1200,
+        "CT_before_ms": 1000,
+        "CT_after_ms": 800,
+        "during_phase": "new speed starts next phase; active cast keeps snapshot"
+      }
+    },
+    {
+      "case_id": "system_action_and_manual_flow_review",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "screen_groups": 12,
+        "durable_action_ids": 37,
+        "manual_flow_cases": 7,
+        "review": "read all screen/exit/action rows and network/tutor wireframes; command details delivered in TASK-013"
+      }
+    }
+  ],
+  "passed": true,
+  "manual_reviewed_cases": [
+    {
+      "id": "team_unique_roots",
+      "input": "mainMage + NPCSword/NPCSword/NPCAco",
+      "expected": "reject duplicate NPC root; main duplicate allowed with a different NPC selection"
+    },
+    {
+      "id": "insufficient_upgrade",
+      "input": "level upgrade wallet short",
+      "expected": "show missing resources; wallet and level unchanged"
+    },
+    {
+      "id": "response_lost",
+      "input": "gacha command committed, response lost",
+      "expected": "lookup/retry same request ID; display same instances once"
+    },
+    {
+      "id": "daily_midnight",
+      "input": "battle ticket19 finishes day20",
+      "expected": "show old ticket day; do not overwrite new-day attempts"
+    },
+    {
+      "id": "inventory_reward_pending",
+      "input": "inventory full at clear",
+      "expected": "pending fixed claim, open inventory then replay same claim"
+    },
+    {
+      "id": "tutorial_skip",
+      "input": "skip first Status tutorial",
+      "expected": "no required point spending, party stays valid"
+    },
+    {
+      "id": "recovery_old_backup",
+      "input": "local revision4 cloud revision8",
+      "expected": "cloud wins; backup readable/exportable; no currency merge"
+    }
+  ]
+}

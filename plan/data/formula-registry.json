@@ -1,0 +1,494 @@
+{
+  "schema_version": 1,
+  "version": "composition-v1",
+  "formulas": [
+    {
+      "id": "physical_power",
+      "version": 1,
+      "params_schema": {
+        "type": "object",
+        "properties": {
+          "attack_ratio": {
+            "oneOf": [
+              {
+                "type": "number",
+                "minimum": 0
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "level_param": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]*$"
+                  }
+                },
+                "required": [
+                  "level_param"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "status_param": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]*$"
+                  }
+                },
+                "required": [
+                  "status_param"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "flat_power": {
+            "oneOf": [
+              {
+                "type": "number",
+                "minimum": 0
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "level_param": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]*$"
+                  }
+                },
+                "required": [
+                  "level_param"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "status_param": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]*$"
+                  }
+                },
+                "required": [
+                  "status_param"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "required": [
+          "attack_ratio",
+          "flat_power"
+        ],
+        "additionalProperties": false
+      },
+      "expression": "caster_snapshot.physical_attack*attack_ratio+flat_power",
+      "returns": "raw_damage",
+      "pure": true,
+      "uses_rng": false,
+      "event_context_required": false
+    },
+    {
+      "id": "magical_power",
+      "version": 1,
+      "params_schema": {
+        "type": "object",
+        "properties": {
+          "attack_ratio": {
+            "oneOf": [
+              {
+                "type": "number",
+                "minimum": 0
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "level_param": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]*$"
+                  }
+                },
+                "required": [
+                  "level_param"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "status_param": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]*$"
+                  }
+                },
+                "required": [
+                  "status_param"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "flat_power": {
+            "oneOf": [
+              {
+                "type": "number",
+                "minimum": 0
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "level_param": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]*$"
+                  }
+                },
+                "required": [
+                  "level_param"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "status_param": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]*$"
+                  }
+                },
+                "required": [
+                  "status_param"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "required": [
+          "attack_ratio",
+          "flat_power"
+        ],
+        "additionalProperties": false
+      },
+      "expression": "caster_snapshot.magical_attack*attack_ratio+flat_power",
+      "returns": "raw_damage",
+      "pure": true,
+      "uses_rng": false,
+      "event_context_required": false
+    },
+    {
+      "id": "healing_power",
+      "version": 1,
+      "params_schema": {
+        "type": "object",
+        "properties": {
+          "attack_ratio": {
+            "oneOf": [
+              {
+                "type": "number",
+                "minimum": 0
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "level_param": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]*$"
+                  }
+                },
+                "required": [
+                  "level_param"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "status_param": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]*$"
+                  }
+                },
+                "required": [
+                  "status_param"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "flat_power": {
+            "oneOf": [
+              {
+                "type": "number",
+                "minimum": 0
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "level_param": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]*$"
+                  }
+                },
+                "required": [
+                  "level_param"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "status_param": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]*$"
+                  }
+                },
+                "required": [
+                  "status_param"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "required": [
+          "attack_ratio",
+          "flat_power"
+        ],
+        "additionalProperties": false
+      },
+      "expression": "caster_snapshot.magical_attack*attack_ratio+flat_power",
+      "returns": "raw_heal",
+      "pure": true,
+      "uses_rng": false,
+      "event_context_required": false
+    },
+    {
+      "id": "flat_power",
+      "version": 1,
+      "params_schema": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "oneOf": [
+              {
+                "type": "number",
+                "minimum": 0
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "level_param": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]*$"
+                  }
+                },
+                "required": [
+                  "level_param"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "status_param": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]*$"
+                  }
+                },
+                "required": [
+                  "status_param"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "required": [
+          "amount"
+        ],
+        "additionalProperties": false
+      },
+      "expression": "amount",
+      "returns": "raw_amount",
+      "pure": true,
+      "uses_rng": false,
+      "event_context_required": false
+    },
+    {
+      "id": "sp_burst_power",
+      "version": 1,
+      "params_schema": {
+        "type": "object",
+        "properties": {
+          "attack_ratio": {
+            "oneOf": [
+              {
+                "type": "number",
+                "minimum": 0
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "level_param": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]*$"
+                  }
+                },
+                "required": [
+                  "level_param"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "status_param": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]*$"
+                  }
+                },
+                "required": [
+                  "status_param"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "sp_ratio": {
+            "oneOf": [
+              {
+                "type": "number",
+                "minimum": 0
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "level_param": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]*$"
+                  }
+                },
+                "required": [
+                  "level_param"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "status_param": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]*$"
+                  }
+                },
+                "required": [
+                  "status_param"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "flat_power": {
+            "oneOf": [
+              {
+                "type": "number",
+                "minimum": 0
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "level_param": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]*$"
+                  }
+                },
+                "required": [
+                  "level_param"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "status_param": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]*$"
+                  }
+                },
+                "required": [
+                  "status_param"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "required": [
+          "attack_ratio",
+          "sp_ratio",
+          "flat_power"
+        ],
+        "additionalProperties": false
+      },
+      "expression": "caster_snapshot.physical_attack*attack_ratio+pre_cost.sp*sp_ratio+flat_power",
+      "returns": "raw_damage",
+      "pure": true,
+      "uses_rng": false,
+      "event_context_required": false
+    },
+    {
+      "id": "event_damage_power",
+      "version": 1,
+      "params_schema": {
+        "type": "object",
+        "properties": {
+          "ratio": {
+            "oneOf": [
+              {
+                "type": "number",
+                "minimum": 0
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "level_param": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]*$"
+                  }
+                },
+                "required": [
+                  "level_param"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "status_param": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_]*$"
+                  }
+                },
+                "required": [
+                  "status_param"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "required": [
+          "ratio"
+        ],
+        "additionalProperties": false
+      },
+      "expression": "event.hp_damage*ratio",
+      "returns": "raw_damage",
+      "pure": true,
+      "uses_rng": false,
+      "event_context_required": true
+    }
+  ],
+  "contract": "formulas return nonnegative finite raw power; all mitigation, healing bonuses, shields, HP/SP changes belong to core; no eval of expression strings"
+}

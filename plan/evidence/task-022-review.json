@@ -1,0 +1,91 @@
+{
+  "task_id": "TASK-022",
+  "date": "2026-10-20",
+  "round": 1,
+  "reviewer": "Codex self-review",
+  "passed": true,
+  "typescript_tests": 195,
+  "build": "passed; existing bundle-size warning remains TASK-042",
+  "source_sha256": {
+    "src/domain/account/commands.ts": "997a0c3badc555d10bc965e754f6719ca18a7638e466bfd42ca63dd6be31e9b3",
+    "src/domain/rewards/farm.ts": "36225b3755c70227f5b35e50dcd2648034ee01a7373aabb540852fbc0671365a",
+    "src/content/random.ts": "bf038017301cacbe7352afb632515cd56f5cc8ff5463e90405eabc225a4f8ae7",
+    "src/client/save-controller.ts": "f9832314c70e76cc85ae592b35f70cc7ad7766338a77dafacbfa69d8e8d9cf60",
+    "src/client/save-browser.ts": "f2ddd7d5f8eedf91d16060df0740be3797eb2a20dc2d75d57d634bad37f92275",
+    "src/ui/save-panel.tsx": "305c678fa9bf2f6102e460cc2e6a973282900181c620ba71da63db0d2a8200f5",
+    "api/index.ts": "50a631b21c5e433d989758e7fd8f7f2e0373196bc7a2559f81a2979fa54b71b3",
+    "src/server/persistence/supabase.ts": "183d8bdcdbe2af692bc9cbb18b8495a09906bb96a6b1c438bab8fd7111014f79",
+    "src/contracts/save.ts": "969ed082028b7223675664df3745854a6fa576f04bd620f3d2bbf9b6f5583c7b",
+    "supabase/migrations/202610200004_command_commits.sql": "51a84e17c7348ca3271ec4f15a68e6a372ee8acf16204924dea2a800054dd0a9",
+    "tests/game/recurring-save.test.ts": "fa9ad21d49d1239e3ea9d46c544ecbee200d661b790e5e04d2833b66b7c58520",
+    "tests/game/farm-reservation.test.ts": "01c50c9cdf4d56e5365fe3323da461fddb81fc1cdf63627e8691399bd0e52c2e",
+    "scripts/test_save_live.cjs": "c8c910c4cfae8b08c3f2710d1415af07ee17d350da1641db00ce88e520b83796",
+    "scripts/game/test-supabase.ts": "a80248dde898ccc0835aef5b8bb9c70ef51a7b773d96a244ca086f9a7817d84e"
+  },
+  "checks": [
+    {
+      "acceptance": "AC-01",
+      "passed": true,
+      "result": "Signed complete owner checkpoint preserves main+six NPCs/team/42 items/slots/wallet/progress/version; schema and state/hash validation.",
+      "evidence": [
+        "task-022-supabase-local.json",
+        "task-022-check.txt"
+      ]
+    },
+    {
+      "acceptance": "AC-02",
+      "passed": true,
+      "result": "Actual HTTP concurrent CAS, stale409, exact replay and changed-hash409; rejected receipt immutable; failed SQL history insert rolls back.",
+      "evidence": [
+        "task-022-supabase-local.json"
+      ]
+    },
+    {
+      "acceptance": "AC-03",
+      "passed": true,
+      "result": "Actual Chrome response abort after committed200, refresh receipt lookup, Web Locks two tabs and lock transfer, offline events; stale checkpoint refused by controller.",
+      "evidence": [
+        "task-022-save-live-browser.json",
+        "task-022-check.txt"
+      ]
+    },
+    {
+      "acceptance": "AC-04",
+      "passed": true,
+      "result": "Actual frozen12h reservation+144gear/288draws/carry/cursor; retry replays; payout once; next interval only unpaid time. Pure split/whole and rate-change tests.",
+      "evidence": [
+        "task-022-supabase-local.json",
+        "task-022-check.txt"
+      ]
+    },
+    {
+      "acceptance": "AC-05",
+      "passed": true,
+      "result": "Server command-only boundary/RLS; owner/HMAC/hash checks; no raw state writes. DB-time battle checkpoint/lease/retreat atomic and no visual kill income.",
+      "evidence": [
+        "task-022-supabase-local.json",
+        "task-022-save-live-browser.json"
+      ]
+    }
+  ],
+  "evidence": [
+    "task-022-check.txt",
+    "task-022-build.txt",
+    "task-022-local-stack.json",
+    "task-022-supabase-local.json",
+    "task-022-live-browser.json",
+    "task-022-save-live-browser.json"
+  ],
+  "visual_review": {
+    "path": "docs/screenshots/save-reconnect-local.png",
+    "scope": "390x844 actual save-ready revision3, seven roster; masked generated email; no overflow. Not full gameplay UI."
+  },
+  "limitations": [
+    "Local real upstream services, not hosted Supabase/Vercel.",
+    "Pending rewards/farm rate/active battle fixtures are server-owned test inputs; full mode/start/result/build/AFK UX remains TASK-025/035/036/038.",
+    "Terminal checkpoint retained for future mode settlement; no invented mode rewards.",
+    "Content compatibility fails closed; production migration/version refunds remain TASK-040.",
+    "Chrome emulation, not physical mobile or Safari.",
+    "Supabase-local report carries a stale TASK-021 limitations template saying account.create only; its explicit new recurring/farm/battle checks are authoritative for this run."
+  ]
+}

@@ -1,0 +1,260 @@
+{
+  "task_id": "TASK-020",
+  "round": 7,
+  "date": "2026-10-20",
+  "reviewer": "Codex self-review",
+  "passed": true,
+  "scope": "Targeted refinements after approved round6 appearance. Shorten Timeline actor names/column and add caster normal-attack orb configuration; no combat rule changes.",
+  "input_sha256": {
+    "src/ui/skill-timeline.tsx": "c8cd3e0a48a05598e9396117177d9eacc2206719f77f142bc19b931f98aed48f",
+    "src/ui/timeline.css": "4f4f3952ee1502ed23906bcfcdd10a9cea08682cc8359fcf1e1a8a6217b9a97e",
+    "src/renderer/combat-visuals.json": "fe44504222f1a5ad621f092772c32f6b43361cb901c65dd709a37ec6f5f78daf",
+    "src/renderer/battle.ts": "5d05d175785ef1e0393d56a92f1e42e794d622bb2fdf686b1139af2d39db6afd",
+    "src/renderer/projectiles.ts": "e3d7303ee5fb527607d9e523ee3b41dda870eb504baf245b6ee0fdb52dd8cc5e",
+    "runtime/ro/manifest.json": "427e17705172e8c924e5aabcf27534b26a98d2f069a3b0ee7d07cae61ff47b47",
+    "src/generated/runtime-manifest.json": "bef804d7b6eb1e5f6919aef64b1d61d3922a46e62fcacad85593d8d362b995e4",
+    "scripts/test_timeline_caster_polish.cjs": "657d4486cfe12b3bdb02a08899bfa810411d97bd5f83bd9992e52edaa1547b5c",
+    "docs/BATTLE-DEMO.md": "c43cc6c2293b920174d8da03451d978b902226150ff4f7b72a6d586e78ddbf5b",
+    "plan/design/21-spatial-combat-and-mobile.md": "12e6800b22350a95bcd48e4a9e662169411d678897187762be1d2396d0a99923"
+  },
+  "checks": [
+    {
+      "case_id": "caster_normal_missile_visible",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "samples": [
+          {
+            "job": "mage",
+            "normal_attack_at_ms": 1550,
+            "target": "enemy_front",
+            "source_world": [
+              242.135001,
+              560.849599
+            ],
+            "target_world": [
+              424.148236,
+              380.82965
+            ],
+            "shots": [
+              {
+                "source": "npc_mage",
+                "target": "enemy_front",
+                "shape": "orb"
+              }
+            ],
+            "gameplay_class_fixture": "mage; job presentation varied to cover mage/wizard/sage default missile configuration"
+          },
+          {
+            "job": "wizard",
+            "normal_attack_at_ms": 1550,
+            "target": "enemy_front",
+            "source_world": [
+              242.135001,
+              560.849599
+            ],
+            "target_world": [
+              424.148236,
+              380.82965
+            ],
+            "shots": [
+              {
+                "source": "npc_mage",
+                "target": "enemy_front",
+                "shape": "orb"
+              }
+            ],
+            "gameplay_class_fixture": "mage; job presentation varied to cover mage/wizard/sage default missile configuration"
+          },
+          {
+            "job": "sage",
+            "normal_attack_at_ms": 1550,
+            "target": "enemy_front",
+            "source_world": [
+              242.135001,
+              560.849599
+            ],
+            "target_world": [
+              424.148236,
+              380.82965
+            ],
+            "shots": [
+              {
+                "source": "npc_mage",
+                "target": "enemy_front",
+                "shape": "orb"
+              }
+            ],
+            "gameplay_class_fixture": "mage; job presentation varied to cover mage/wizard/sage default missile configuration"
+          }
+        ],
+        "normal_only": true,
+        "exact_state_events_metrics": true,
+        "pack_hash": "4cc4d9d4f4a8e58a432de095b9436470801b7799d1e26b903cb3208bed3ad032"
+      }
+    },
+    {
+      "case_id": "compact_timeline_names_and_aligned_time_axis",
+      "acceptance": [
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "sizes": [
+          {
+            "width": 360,
+            "height": 640,
+            "labels": [
+              {
+                "text": "คุณ\nSwordsman",
+                "title": "นักดาบของคุณ",
+                "width": 68
+              },
+              {
+                "text": "ลูเมน\nAcolyte",
+                "title": "ลูเมน · Acolyte",
+                "width": 68
+              },
+              {
+                "text": "อารี\nArcher",
+                "title": "อารี · Archer",
+                "width": 68
+              },
+              {
+                "text": "เรน\nMage",
+                "title": "เรน · Mage",
+                "width": 68
+              },
+              {
+                "text": "poring\nบอส",
+                "title": "บอส · poring",
+                "width": 68
+              }
+            ],
+            "trackLeft": 95,
+            "nowLeft": 95,
+            "visibleTimeWidth": 248,
+            "overflow": false
+          },
+          {
+            "width": 390,
+            "height": 844,
+            "labels": [
+              {
+                "text": "คุณ\nSwordsman",
+                "title": "นักดาบของคุณ",
+                "width": 68
+              },
+              {
+                "text": "ลูเมน\nAcolyte",
+                "title": "ลูเมน · Acolyte",
+                "width": 68
+              },
+              {
+                "text": "อารี\nArcher",
+                "title": "อารี · Archer",
+                "width": 68
+              },
+              {
+                "text": "เรน\nMage",
+                "title": "เรน · Mage",
+                "width": 68
+              },
+              {
+                "text": "poring\nบอส",
+                "title": "บอส · poring",
+                "width": 68
+              }
+            ],
+            "trackLeft": 95,
+            "nowLeft": 95,
+            "visibleTimeWidth": 278,
+            "overflow": false
+          },
+          {
+            "width": 1280,
+            "height": 900,
+            "labels": [
+              {
+                "text": "คุณ\nSwordsman",
+                "title": "นักดาบของคุณ",
+                "width": 68
+              },
+              {
+                "text": "ลูเมน\nAcolyte",
+                "title": "ลูเมน · Acolyte",
+                "width": 68
+              },
+              {
+                "text": "อารี\nArcher",
+                "title": "อารี · Archer",
+                "width": 68
+              },
+              {
+                "text": "เรน\nMage",
+                "title": "เรน · Mage",
+                "width": 68
+              },
+              {
+                "text": "poring\nบอส",
+                "title": "บอส · poring",
+                "width": 68
+              }
+            ],
+            "trackLeft": 495,
+            "nowLeft": 495,
+            "visibleTimeWidth": 368,
+            "overflow": false
+          }
+        ],
+        "moving_frames_out_of29": 29,
+        "zoom_pause": true
+      }
+    },
+    {
+      "case_id": "presentation_changes_preserve_core",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": true,
+      "result": "170 TS tests pass. Browser real mage input drawn with Mage/Wizard/Sage presentation has exact full checkpoint, ordered events and metrics equal to a run without rendering. Earlier full9 render-rate/physics parity runs remain round6 historical evidence; not claimed rerun here."
+    },
+    {
+      "case_id": "rebuilt_pack_local_media_and_build",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "images": 216,
+        "audio": 34,
+        "font": true,
+        "pack_hash": "4cc4d9d4f4a8e58a432de095b9436470801b7799d1e26b903cb3208bed3ad032",
+        "selected_ids": 251
+      },
+      "additional": "Build/assets/content/type/boundaries/secrets pass.251IDs/503files retained; combat_visuals configuration changes pack hash. No source image/sidecar/importer changed and no asset library scans/downloads required."
+    }
+  ],
+  "evidence": [
+    "task-020-timeline-caster-browser.json",
+    "task-020-timeline-caster-check.txt",
+    "task-020-timeline-caster-build.txt",
+    "task-020-timeline-caster-browser.txt"
+  ],
+  "visual_review": {
+    "status": "reviewed",
+    "scope": "390x844 Timeline labels/class captions, aligned now marker, actual Mage normal orb before any skill. Sage/Wizard job presentation configuration tested on same real Mage gameplay input; this is not full class-specific gameplay validation.",
+    "screenshots": {
+      "docs/screenshots/timeline-compact-labels.png": "2d406c9c18df700334f7d12f701994978e3514dd1d8df0acccb2f854ffcd298e",
+      "docs/screenshots/mage-normal-projectile.png": "d435aee60b6e53654b7d643da2fa8c99efb3d7ed6393eec367f48bb36d1c786a"
+    }
+  },
+  "limitations": [
+    "Chrome viewport emulation; not a physical phone/Safari test.",
+    "Normal orb uses existing procedural projectile renderer; no new native artwork or changed damage type/formulas.",
+    "Full walking/native pose/performance and other UI regression remain previous round6 proof; round7 checks only changed behavior.",
+    "Supabase saves/progression remain TASK-022 work, not delivered by this refinement."
+  ]
+}

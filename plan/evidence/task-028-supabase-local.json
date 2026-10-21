@@ -1,0 +1,34 @@
+{
+  "task_id": "TASK-028",
+  "passed": true,
+  "actual_supabase_auth": true,
+  "self_hosted_local": true,
+  "checks": [
+    "Two throwaway identities sign in with email/password against real Auth",
+    "Verified-UID account.create writes canonical seven-character/42-item state, signed history and receipt atomically; concurrent/repeated requests grant once; forged owner/wallet and raw privileged RPC rejected",
+    "Actual JWT/PostgREST RLS: both owners read own four tables/RPC; other owners hidden; direct raw writes and privileged RPC denied",
+    "Anonymous/invalid JWT API denied; caller-supplied account ID cannot redirect own save read",
+    "Real session refresh/logout and one-use provider recovery token changes password; old password fails, new password signs in"
+  ],
+  "failure": null,
+  "cleanup_errors": [],
+  "source_sha256": {
+    "scripts/game/test-supabase.ts": "3b328ac41cb889f9101502a7e1e1248bff627b765bafa24bb4c11937ee341738",
+    "supabase/migrations/202610190001_game_storage.sql": "2e1f7249e325dbf28394bced7e6a38669c1ab120889e5e1770a78fa6b57d0583",
+    "supabase/migrations/202610190002_account_creation.sql": "4b6442e786e6b39c0f4d3f39537d7f1f9c136f57fb530eac50bf1df29b1d0f1e",
+    "supabase/migrations/202610190003_save_context.sql": "e9340dafda79a7473124b6390815a912d5487280fe286ca5ee8dce6a7fb75675",
+    "supabase/migrations/202610200004_command_commits.sql": "51a84e17c7348ca3271ec4f15a68e6a372ee8acf16204924dea2a800054dd0a9",
+    "src/domain/account/commands.ts": "8e64531d3a6512cb9e5dc54a2dc699bc76428039fe8cfbda2cbfc46b2e691a7e",
+    "src/domain/account/creation.ts": "d3820a585cd6ad51c0cfeb0fd7d07cf6c9d9eafb9cedfb2a47d5c7c4d9d4683e",
+    "src/domain/account/initialize.ts": "f82fc4fabf989d292a40e97fb13decec38c9de62cb9ef78943b4054486e9f5e6",
+    "src/server/persistence/supabase.ts": "183d8bdcdbe2af692bc9cbb18b8495a09906bb96a6b1c438bab8fd7111014f79",
+    "src/server/auth/index.ts": "c291652d29b8c4de1b76f0e1a9b2673e4c7307f7d7c7c3035b8d6137b46e8615",
+    "api/index.ts": "775b91071d4547c923da172f09c2893f4307060fdaacd7a29c116c24afd5d4b0"
+  },
+  "limitations": [
+    "No SMTP/browser redirect delivery test in this script; recovery uses admin-generated token, never sends email.",
+    "Recurring command/farm/battle protocol uses server-owned fixtures in TASK-022/023 runs; completed mode factories/settlement remain TASK-025/035/036.",
+    "Browser session-expiry behavior has separate UI tests."
+  ],
+  "credentials_logged": false
+}

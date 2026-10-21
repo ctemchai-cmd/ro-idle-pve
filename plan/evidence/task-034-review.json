@@ -1,0 +1,49 @@
+{
+ "task_id": "TASK-034",
+ "passed": true,
+ "round": 1,
+ "date": "2026-10-20",
+ "reviewer": "Claude self-check",
+ "content_hash": "4a7901023a240045d17c8aaa7e74d77f2e85f76c8afae3e66ac2d2881bccef90",
+ "rules_version": "combat-baseline-v1",
+ "checks": [
+  {
+   "acceptance": "AC-01",
+   "passed": true,
+   "result": "19 skills match all 57 M0 golden cases (incl. summon actor id, max_owned, 6500 ms life). Every Active at every level 1-10 resolved in the engine probe and produced every effect; the new summon factory spawns Hell/Healing Plants that act. Skills cost SP only, never wallet gold. Every Passive changes stats at levels 1-10. Blacksmith/Alchemist skill pages list only root+own-branch skills with effect text; all 19 resolve pack visuals."
+  },
+  {
+   "acceptance": "AC-02",
+   "passed": true,
+   "result": "Engine summon factory (owner-bound, untargetable, periodic 1000 ms, exclusive 6500 ms expiry, replace_oldest, owner_death/battle_end removal, swept from checkpoints, fixed spatial point in arenas): 31 Hell Plants never exceed 2 alive, 4 expired after exactly 6500 ms with ticks +1000..+6000, 25 replaced with no tick after replacement; 1560 plant damage credited once to the owner's skill row and never to plant rows. Healing Plant keeps 1 alive and heals the wounded ally; owner death despawns 2 live plants at once with no later action. Blacksmith Adrenaline raises ally attack speed 107.25→134.0625 and Weapon Perfection physical attack 631→782.44 with magic unchanged (640)."
+  },
+  {
+   "acceptance": "AC-03",
+   "passed": true,
+   "result": "catalogQueueTrace of all 4 builds equals the M0 queue_estimate. Real fights keep the dry first cycle except Adrenaline hasting the weaponsmith; summoned plants stay within max_owned and the party never counts more than its real members (no fifth party slot)."
+  },
+  {
+   "acceptance": "AC-04",
+   "passed": true,
+   "result": "Story 6-20 seed 34 with main Alchemist gardener + Blacksmith NPC swapped into the Archer slot: server (79 confirmed checkpoints incl. live plants), client session with render views and runner give the identical final checkpoint/RNG and 989 events (digest b561cb9b), outcome STORY_WON at 79023 ms; 12 summons, 68 plant actions, exactly one action per plant tick, despawns {'expired': 10, 'replaced': 0, 'owner_dead': 0, 'battle_end': 2}."
+  }
+ ],
+ "commands": [
+  "RO_TREE_EVIDENCE=plan/evidence/task-034-runtime.json node --import tsx --test tests/game/skills-merchant.test.ts (10 pass)"
+ ],
+ "measurements": "plan/evidence/task-034-runtime.json",
+ "limitations": [
+  "Plants are drawn as an authored procedural sprout beside the owner (no native plant actor art); no manual animation review.",
+  "Behaviour evidence with probes, not a balance verdict (TASK-041)."
+ ],
+ "source_sha256": {
+  "tests/game/skills-merchant.test.ts": "6c93aa2d8bf42d0fd8f54e5c47146a690f43ab516f3f75cf98e80554c9e85b13",
+  "tests/game/class-skills.ts": "363fd239ccad0b5500c2a07951128d7f21bb428cd9acfbd051ba069fd91954aa",
+  "plan/evidence/task-034-runtime.json": "7c37a76ed68b76b4d3408c7fccfd1f38b524145564ceb7a5fe1ed69e859487a2",
+  "src/domain/combat/engine.ts": "a7f92012984486e5e396a4d47a747fbfab215a11f27567bed4e9afcba2c53dff",
+  "src/domain/combat/checkpoint.ts": "261151d5ef31a278edbcf7bb44b146fb2209873c00d29fd02e3966285b4ad2a4",
+  "src/domain/combat/spatial.ts": "05188b346445f35088918324e16bb878508328740f92ff65d4ac856ee9927232",
+  "src/renderer/battle.ts": "2839a4e77236a1624c4f3c1fe192a39492ed41f6f483c1b9fb49f9c763de7445"
+ },
+ "credentials_logged": false
+}

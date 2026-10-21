@@ -1,0 +1,25 @@
+{
+  "task_id": "TASK-056",
+  "passed": true,
+  "checks": [
+    {
+      "url": "http://127.0.0.1:6173/play",
+      "signed_out_shell_loaded": true,
+      "public_bundle_files_match_snapshot": 15,
+      "compact_css_and_character_navigation_present": true,
+      "secure_context": true,
+      "personal_login_used": false
+    },
+    {
+      "url": "http://192.168.1.101:6173/play",
+      "signed_out_shell_loaded": true,
+      "public_bundle_files_match_snapshot": 15,
+      "compact_css_and_character_navigation_present": true,
+      "secure_context": false,
+      "personal_login_used": false
+    }
+  ],
+  "browser_errors": [],
+  "personal_save_accessed": false,
+  "credentials_logged": false
+}

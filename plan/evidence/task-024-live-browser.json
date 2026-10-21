@@ -1,0 +1,22 @@
+{
+  "task_id": "TASK-024",
+  "passed": true,
+  "actual_supabase_auth": true,
+  "self_hosted_local": true,
+  "smtp_sink_only": true,
+  "browser": "155.0.8059.80",
+  "checks": [
+    "Actual SDK email/password login persists through reload; verified API returns no wallet for missing account",
+    "Actual reset request arrives at loopback SMTP sink; one-use email verification redirects with PKCE into recovery form and password update succeeds",
+    "Old password rejected; new password signs in; logout persists across reload"
+  ],
+  "errors": [],
+  "external_requests": [],
+  "source_sha256": {
+    "scripts/test_auth_live.cjs": "214a81b1753ca17f4484ae793e1af581353c7865da6f185567a6eb58f31f6e7c",
+    "src/client/supabase-auth.ts": "7541df8dca31f24a662e58ec01305a6f3d23f641deea34aed00479a844959093",
+    "src/client/auth-controller.ts": "204a1c25fab641e0dad8c8c25c775c20f5c5b42281f4b8d2f63f741c123bbe48",
+    "src/ui/auth-page.tsx": "96cf186b4ce4575db96daf515a5f3c28278d4f179c325387f5a54a8d355f477d"
+  },
+  "scope": "Real local Auth/PostgREST/PostgreSQL/SMTP + app UI, no hosted project/production credentials/external mail delivery or game command writes."
+}

@@ -1,0 +1,25 @@
+__pycache__/
+*.py[cod]
+.venv/
+.DS_Store
+*.part
+assets/ro/_source_archives/
+assets/ro/library/.work/
+node_modules/
+dist/
+src/generated/
+.env
+.env.*
+!.env.example
+.vercel/
+# runtime/ro is a checked-in deployment artifact. Rebuild with npm run assets:build.
+
+# Private local database, credentials and frozen game preview
+.local/
+*.log
+*.dump
+*.sql.gz
+*.sqlite
+*.sqlite3
+.aws/
+.ssh/

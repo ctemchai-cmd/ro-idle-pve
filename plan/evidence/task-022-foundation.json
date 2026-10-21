@@ -1,0 +1,30 @@
+{
+  "task_id": "TASK-022",
+  "scope": "Foundation only: DB UTC owner-scoped snapshot, initialization regression, canonical intent fingerprint and pure battle-time credit; not complete save/reconnect implementation",
+  "foundation_checks_passed": true,
+  "task_complete": false,
+  "acceptance_criteria_passed": [],
+  "content_hash": "890d51a681f9b43d762f4ddf7f586782836e5c0fd916b4b21722287e89a2758e",
+  "tests_passed": 171,
+  "evidence": [
+    "plan/evidence/task-022-checks-foundation.txt",
+    "plan/evidence/task-022-build-foundation.txt",
+    "plan/evidence/task-022-local-stack.json",
+    "plan/evidence/task-022-supabase-local.json",
+    "plan/evidence/task-022-live-browser.json"
+  ],
+  "input_sha256": {
+    "src/domain/account/protocol.ts": "a61f96fedee92d87b809e0662128f4f11fa9f8cc4e3e5f18967dc0b4c642f8d2",
+    "src/server/persistence/supabase.ts": "e61fb257e0290f86171b07a7857e56b9d50af03909f5cc2ae7536735e4d012cc",
+    "src/contracts/save.ts": "68fe113e5fd7b8205d5173cc5a3f9e92e594b608271bb8c610adf4635c671705",
+    "api/index.ts": "56f9802177575b96fa50eee33ad43d91dd947e41d4807312deb3eda80538b418",
+    "supabase/migrations/202610190003_save_context.sql": "e9340dafda79a7473124b6390815a912d5487280fe286ca5ee8dce6a7fb75675",
+    "tests/game/save-protocol.test.ts": "7a54ae5fb27e46e4a7c25da3a8b477a03829868348c8cf732bfe664c2d3c7709"
+  },
+  "remaining": [
+    "Generic atomic CAS commands and immutable rejected receipts",
+    "Signed local backup, one writer and reconnect/conflict/session state machine",
+    "Authorized battle checkpoints and unreserved AFK interval ownership",
+    "Fault-injection/browser/API latency evidence for all5AC"
+  ]
+}

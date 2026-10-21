@@ -1,0 +1,145 @@
+{
+  "task_id": "TASK-016",
+  "reviewer": "Codex self-review",
+  "review_round": 3,
+  "date": "2026-10-19",
+  "passed": true,
+  "content_hash": "fcae274e97e3ee0ddd1683b3f2919f346e0bea13db4fdaa03a9d0d7a6edf66a4",
+  "input_sha256": {
+    "plan/data/cards.json": "37e7d239af19e905d6e591b9da73a4b7a03c21e401278c12936dabca81e9e4e3",
+    "plan/data/class-status-effects.json": "b7c72874eb47e2a2fc0bd917fb85c36161c05923cd1c96af2f26266df56bb831",
+    "plan/data/combat-rules.json": "dc58dc9ffb631c5820cd423762f744e9ccaa01534f98d943a861452503465541",
+    "plan/data/daily-bosses.json": "e1cefb6f56a9bbc3027ff24552949705155dfcdc60d99764457ef0c251c49027",
+    "plan/data/economy.json": "eb2ac49463f667c8f9f48201cf62a8029aab5a29b34a07fbc1ecf130d351c039",
+    "plan/data/effect-primitives.json": "d0da135a6b91756c77cdcc4e976e031b5c7134f25e12e4fa1e4ede989dbebcc6",
+    "plan/data/enemies.json": "b7b9650bcc661e67ad66c91abe05117f47c3f3999f507994165da2d48623991b",
+    "plan/data/equipment.json": "debc8276b62f0d64e31483fa33b030e49a2a9f8ced8023be5688dd80b3bbc967",
+    "plan/data/formula-registry.json": "ed2975ebe44959fe0010a0c8978a29ef2facb7dedc75fe503cda5ec6bc32918b",
+    "plan/data/gacha.json": "731c78ec971baa39e55ae3741dce3fbb7f11179c36ea698e10cecf0ffe8bc844",
+    "plan/data/loot.json": "2f4f553c1a0fb8fd77278f2658096f9b89929bb5bce02b5e0ad783638d6c1730",
+    "plan/data/progression.json": "cf1cd444420ce4b3ce78e05bb1bc548cd9da899d56f1b405315320db10ee9cda",
+    "plan/data/save-contracts.json": "18b8166e948f78adadebb04ea5975c757d5e34c62bd5eee1bbde496510747ec3",
+    "plan/data/simulation-contracts.json": "bfd81576dd6dacdbad8b4358092f8146e70ff8de7cfbe04bf9c19c9763fe494a",
+    "plan/data/skills/acolyte.json": "b8d7436693d07a53bf010f140650d05559503088bf92d0c6f46e04725956ad35",
+    "plan/data/skills/archer.json": "ec1ceb52e0c8fac7b47d4fba6d5329d80329470578093c6c5fc679baf25fc9be",
+    "plan/data/skills/mage.json": "3d85e7673a7880751aa383687764dbd8d84089e5669eae99994e0af231027fde",
+    "plan/data/skills/merchant.json": "b3e59f668b423659e9fcbcb486aa37ea69a469ca6062587302c2333ed2fd16e5",
+    "plan/data/skills/swordsman.json": "f255144bc94cf147fd3437033c5cf3da8b05cc9c6d6873ca2ded1f98c7f93e56",
+    "plan/data/skills/thief.json": "c966706b1fbebebec4e37dc1154d7e93612bb1d54eebb8f6c44decb6ddaf7b70",
+    "plan/data/slot-progress.json": "c121f79d4bb380db2a0d0c53dcf377bff27952e24c10ec3c4b15a6df07331eb4",
+    "plan/data/stages.json": "036bb2e9b7c1d23c29e501912daba90cfee531da07b5576b86a9ad02da2c1bc1",
+    "plan/data/stat-definitions.json": "810b43c0356247a24baf3b06bc194f801a7f7a951f2e75294c7c6b7f9b58ab01",
+    "plan/data/status-effects.json": "93c249bf5ffb84f44742f7ee462c28b76a5fd001daa71db081e75b61729763f3",
+    "plan/data/summon-actors.json": "907fb966e18dde786bdcaf54736a36a7fcfec49f02f6f5785c7c2070d21fb9f7",
+    "plan/data/tower.json": "11fe0f515b8995c17bd34d0b828f8ed08f1eba14688e8174e4beb795a9cbe8b5",
+    "plan/data/schemas/account-state.json": "0ebe7da4ca691ffdfb356e41fdf074429ffc38b4ec7387e7d71d5fe4be73d2fa",
+    "plan/data/schemas/battle-checkpoint.json": "f5413bc59bd24b418bb360c75cc01d18e92281a652b73e24ed225a37bd227c6b",
+    "plan/data/schemas/command.json": "16c0addc99bc0c1ac9a633d029e43ba1e4ae42f8233b13262fd96fb410ac2664",
+    "plan/data/schemas/common.json": "a1e6f0140cd31dc4fa361b1447331c0ea8daa667c965bbfc5497da86d38fd2bd",
+    "plan/data/schemas/effect.json": "b0da67c8b4f8a87a65b79a96757370d5c19951bfed6e5b794c04833cf8c7ea04",
+    "plan/data/schemas/formula-call.json": "5bcee1d3bbb36d98dc0cfd861e348c078fe3da3a3e56be31d89213e3b2297eb8",
+    "plan/data/schemas/item.json": "a363a64325f20e9d6df7b1a18c535565306132b50ca92b2877eb6b8e7145183b",
+    "plan/data/schemas/modifier.json": "d4e6ef2dd03a6afd905f4dc0c1ffcd9ee9aa6438f0563e2a2734f446c8016cc1",
+    "plan/data/schemas/patch.json": "cedfbd99b2d91cc477c8a19efa585b2a7371b7e4e729932b071c0efd790fe082",
+    "plan/data/schemas/predicate.json": "2b88514d771a533bf445987321d901676c836fa0f24bc12bf396a58d190691aa",
+    "plan/data/schemas/receipt.json": "a6fc43ddbc931426e321d31d5b31029acba606abf6449f984bc88a3bed17425a",
+    "plan/data/schemas/selector.json": "5accf16ed050f124350614af6a924cec716cad75bdcd0d089330dd3806ebd2b2",
+    "plan/data/schemas/simulation-scenario.json": "27db3d11711f2bf3f56188510319b8a68b9284565aded730ea84ccfebd4f71b7",
+    "plan/data/schemas/skill.json": "060f7cdfc4a8b3a5bfdbf8e3060b6c96863452fe6b136b32fcd7fdf6288cc708",
+    "plan/data/schemas/status.json": "d998199e6e2fb6f7a74f399a7a55bf0d4fe2489bf7615225de8107ab910cbc15",
+    "plan/data/schemas/trigger.json": "91d1dd01928ec0881c31e488484dc2649eb6715a07370601a847fd3dea36a0a5",
+    "plan/data/actor-presentations.json": "7a6116bcc754bb57f9792688d91c74761ad7f58ec1c451143cfdc5ded76dad7e",
+    "plan/data/presentations/acolyte.json": "3d512f907aeff730c61d69df0859130f79e53423526315a407cdb40f859c30bd",
+    "plan/data/presentations/archer.json": "dcbd033a16a9ff7a7f3c4a64fdd1047b014155beb8c77935115a7c0a94c2ebb4",
+    "plan/data/presentations/mage.json": "49b33ea0096644cc985f1b041a1804bfb7068983f5f7bf8e5782bc28d8350f75",
+    "plan/data/presentations/merchant.json": "36beee67f4f4615d5b315279719b8432a449ab66c748c58bd05337b4ff2d7b00",
+    "plan/data/presentations/swordsman.json": "a1947457259e510b2ed0dd89e38df0eff961c3ec9be22b0920d92c5a8f7d60eb",
+    "plan/data/presentations/thief.json": "8b6e19a9bd18fc23651a626e4b62cc6db1ff9e604b127a8ce0bcc3e52d2fccba",
+    "plan/data/strings.th.json": "f20aca876b878f9872da65f579ea9bcb2eb200346e0938c3c29eb20308a301bc",
+    "package-lock.json": "ad7cbf5b44834ca71ef06fb3c7378f62cea44a4ba361bf1313e96eb5547dbd0a",
+    "scripts/game/content-projection.ts": "9f2432856714a0df0fa418fd62d84b4dd0ecfd95f1cbd034a8beb75fc2342e18",
+    "scripts/game/generate-content.ts": "9622b4509dbe7a3ebb650a8df57818176a9ffc1d5ce7ae78256fd9db1e71a553",
+    "src/content/index.ts": "1fd5615fb4b468dbf0e30e9b8fd88e72664f545a0f106f4929e2331804cee014",
+    "src/content/loader.ts": "fece993a9927129513e1e039a04a35a1ad4898f1cb47d2225b8770d2fcc3c6d3",
+    "src/content/model.ts": "ed996bdc791f3ccae337fe96f20e19470d8e9a44b550057c6c3ae7ca118a4322",
+    "src/content/validation.ts": "cc14c4f921f91cb2d53cc2b31ec90a334f3cc66d9a845550dc710ac6ff25fbd2",
+    "src/content/value.ts": "02800b82d60c9cbec6029c3e839ca855fb241efb5fc76a80cb124b64c7a54716",
+    "src/contracts/index.ts": "40793bc5bd0c16a4a531a4f213fe20fcf63ab6e1edccff4b19e1a3b47cd5fd14",
+    "src/domain/account/index.ts": "71e9fad8c6e0c3a5a5a687dc80e12d546b216e9efaf2f7fdebfeb7f976590960",
+    "src/domain/build/index.ts": "4186f3f75fd69f49afe43970008bf70f171776c483ba9f1e2cfb6f8ee67ba928",
+    "src/domain/build/patches.ts": "b76005d2b8c043b78ae9b45b370ba89c4a7c5ff9fd0054eb09b6954d09618695",
+    "src/domain/build/resolve-skill.ts": "57f509576889f0249553a17a4437d7e5988fc488a9935225d2c9db049c88313c",
+    "src/domain/combat/checkpoint.ts": "48f28f40825b6b2ea4ed7a141ff89e495a2c5f2dae327d1cb8adf647a8006e6f",
+    "src/domain/combat/engine.ts": "6a062a40b4ad2166aa4e95826192115706e30c5382ab3a32a025bc568b4484dc",
+    "src/domain/combat/index.ts": "0402bdaa38aa141a29efe417b9cad588b20f8be2f7ea944da8affe71a6fc8291",
+    "src/domain/combat/model.ts": "fa8269f1e8565193bda95c95e2676e05b96df12fde1966d599fd1a82e1bafb58",
+    "src/domain/combat/rng.ts": "fa5fbb2a862a6e23122eb17cba6ba945e6ef540406438172340aa3f230c4d330",
+    "src/domain/combat/scheduler.ts": "33f2fcfd49365ccd05473f7f9615b5aafa8e452ba68e4ef9f9487884c46cc8b0",
+    "src/domain/combat/state.ts": "792ec4ad429aba35832221ea964e7631515560823873a13fc4cd8649992dadbf",
+    "src/domain/math/index.ts": "8f121344cd556002d4777c43eb22946ad952f60f2c6f6d0de3eb352ddb1e3033"
+  },
+  "checks": [
+    {
+      "case_id": "concurrent_cast_golden",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "evidence": "parallel timeline test:starts1500/1500,resolves2500/2000,nextstarts4500/4000"
+    },
+    {
+      "case_id": "rotation_and_normal_clock",
+      "acceptance": [
+        "AC-02"
+      ],
+      "passed": true,
+      "evidence": "NA2501/4001 with CT1500..2500;zeroCTresolve1500 NA1501;SPskip1500 nextslot3000;empty slots no extra SI"
+    },
+    {
+      "case_id": "spend_and_same_time_barriers",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": true,
+      "evidence": "SP spent once at start;both lethal locked casts emit2500 then player defeat;Stunprecast gate;timeout90s before its events"
+    },
+    {
+      "case_id": "determinism_virtual_clock_restore",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "evidence": "seed0 repeat,one jump vs200steps50ms exactcheckpoint/event equality;checkpointmidCT restore;90s virtual fight assertion<5000ms;bounded diagnostics preserve input"
+    }
+  ],
+  "validation": {
+    "full_suite_tests": 93,
+    "foundation_tests": 51,
+    "combat_math_timeline_tests": 42,
+    "typecheck": "pass",
+    "boundaries": "pass",
+    "build": "pass",
+    "schema_checkpoints": "pass"
+  },
+  "logs": [
+    "task-016-tests-round1.txt",
+    "task-016-checks-round2.txt",
+    "task-016-checks-round3.txt",
+    "task-016-build.txt"
+  ],
+  "resolved_findings": [
+    "Invalid checkpoint test uses unknown JSON for illegalphase3, preserving valid phase7 type",
+    "Bonus minima null remain signed; HP/SP floor after modifiers",
+    "Guaranteed hit consumes RNG, ineligiblecrit doesnot",
+    "Zero ACD doesnot leave a current-timestamp event at the checkpoint barrier",
+    "Clone mutable state while sharing frozen skill/blueprint programs",
+    "Compile schemas on demand/cache checkpoint validator per immutablecontent"
+  ],
+  "limitations": [
+    "Basic damage/rotation/RNG/math/checkpoint only;genericstatus/heal/proc/periodic and actualcast interruption implementation are TASK-017",
+    "Input Stun fixture isolates existing-status action gating; it doesnot prove the future apply-status handler",
+    "Named speed-change tests inject resolved stats to isolate timer snapshots;fullbuff integration remains TASK-017",
+    "No user-facing combat demo/runner/dashboard/cloudsave yet;TASK-018/019/020 follow",
+    "Current host contention makes schema compile/typecheck wall times variable; TASK-018 owns warm batchperformance measurement"
+  ]
+}

@@ -1,0 +1,1053 @@
+{
+  "schema_version": 1,
+  "rules_version": "combat-baseline-v1",
+  "purpose": "M0 independent arithmetic and timeline reference traces, not engine execution",
+  "derived_cases": [
+    {
+      "id": "base_level1",
+      "level": 1,
+      "primary": {
+        "str": 1,
+        "agi": 1,
+        "vit": 1,
+        "int": 1,
+        "dex": 1,
+        "luk": 1
+      },
+      "expected": {
+        "physical_attack": 33,
+        "magical_attack": 33,
+        "max_hp": 220,
+        "max_sp": 64,
+        "physical_defense": 12,
+        "magical_defense": 12,
+        "attack_speed": 100,
+        "cast_speed": 100
+      }
+    },
+    {
+      "id": "base_level70_no_speed_growth",
+      "level": 70,
+      "primary": {
+        "str": 1,
+        "agi": 1,
+        "vit": 1,
+        "int": 1,
+        "dex": 1,
+        "luk": 1
+      },
+      "expected": {
+        "physical_attack": 309,
+        "magical_attack": 309,
+        "max_hp": 1945,
+        "max_sp": 271,
+        "physical_defense": 150,
+        "magical_defense": 150,
+        "attack_speed": 100,
+        "cast_speed": 100
+      }
+    },
+    {
+      "id": "level20_manual_spread",
+      "level": 20,
+      "primary": {
+        "str": 21,
+        "agi": 11,
+        "vit": 21,
+        "int": 1,
+        "dex": 11,
+        "luk": 1
+      },
+      "expected": {
+        "physical_attack": 169,
+        "magical_attack": 109,
+        "max_hp": 1195,
+        "max_sp": 121,
+        "physical_defense": 90,
+        "magical_defense": 50,
+        "attack_speed": 112.5,
+        "cast_speed": 115
+      }
+    }
+  ],
+  "damage_cases": [
+    {
+      "id": "armor_0",
+      "input": {
+        "raw": 200,
+        "defense": 0
+      },
+      "expected": {
+        "before_shield": 200
+      }
+    },
+    {
+      "id": "armor_200",
+      "input": {
+        "raw": 200,
+        "defense": 200
+      },
+      "expected": {
+        "before_shield": 140
+      }
+    },
+    {
+      "id": "armor_400",
+      "input": {
+        "raw": 200,
+        "defense": 400
+      },
+      "expected": {
+        "before_shield": 110
+      }
+    },
+    {
+      "id": "armor_800",
+      "input": {
+        "raw": 200,
+        "defense": 800
+      },
+      "expected": {
+        "before_shield": 80
+      }
+    },
+    {
+      "id": "armor_1600",
+      "input": {
+        "raw": 200,
+        "defense": 1600
+      },
+      "expected": {
+        "before_shield": 56
+      }
+    },
+    {
+      "id": "break_and_penetration",
+      "input": {
+        "raw": 200,
+        "defense": 400,
+        "armor_break": 0.25,
+        "penetration_percent": 0.5,
+        "flat_penetration": 50
+      },
+      "expected": {
+        "effective_defense": 100,
+        "before_shield": 164
+      }
+    },
+    {
+      "id": "over_100_percent_break_no_negative_defense",
+      "input": {
+        "raw": 200,
+        "defense": 400,
+        "armor_break": 1.2
+      },
+      "expected": {
+        "effective_defense": 0,
+        "before_shield": 200
+      }
+    },
+    {
+      "id": "crit_uses_armor",
+      "input": {
+        "raw": 200,
+        "defense": 400,
+        "is_crit": true,
+        "crit_multiplier": 1.5
+      },
+      "expected": {
+        "before_shield": 165
+      }
+    },
+    {
+      "id": "guard_vulnerability_shield",
+      "input": {
+        "raw": 200,
+        "defense": 400,
+        "guard": 0.2,
+        "vulnerability": 0.1,
+        "shield": 30,
+        "hp": 500
+      },
+      "expected": {
+        "before_shield": 96,
+        "absorbed": 30,
+        "hp_loss": 66,
+        "hp_after": 434
+      }
+    },
+    {
+      "id": "ordered_full_pipeline",
+      "input": {
+        "raw": 260,
+        "outgoing_bonus": 0.3,
+        "element_multiplier": 1.25,
+        "is_crit": true,
+        "crit_multiplier": 1.5,
+        "defense": 400,
+        "flat_reduction": 10,
+        "guard": 0.2,
+        "vulnerability": 0.1,
+        "shield": 50,
+        "hp": 1000
+      },
+      "expected": {
+        "before_shield": 297,
+        "absorbed": 50,
+        "hp_loss": 247,
+        "hp_after": 753
+      }
+    },
+    {
+      "id": "uncapped_guard_has_zero_damage_floor",
+      "input": {
+        "raw": 200,
+        "defense": 400,
+        "guard": 1.2
+      },
+      "expected": {
+        "before_shield": 0
+      }
+    },
+    {
+      "id": "shield_landed_not_hp_loss",
+      "input": {
+        "raw": 200,
+        "defense": 0,
+        "shield": 300,
+        "hp": 500
+      },
+      "expected": {
+        "before_shield": 200,
+        "absorbed": 200,
+        "hp_loss": 0,
+        "hp_after": 500
+      }
+    },
+    {
+      "id": "overkill_separate",
+      "input": {
+        "raw": 200,
+        "defense": 0,
+        "hp": 50
+      },
+      "expected": {
+        "before_shield": 200,
+        "absorbed": 0,
+        "hp_loss": 50,
+        "hp_after": 0,
+        "overkill": 150
+      }
+    },
+    {
+      "id": "each_hit_rounds_once",
+      "input": {
+        "raw": 41,
+        "defense": 400,
+        "hits": 3,
+        "shield": 20,
+        "hp": 500
+      },
+      "expected": {
+        "before_shield_per_hit": 22,
+        "total_before_shield": 66,
+        "total_hp_loss": 46
+      }
+    },
+    {
+      "id": "armor_near_asymptotic_reduction",
+      "input": {
+        "raw": 200,
+        "defense": 1000000
+      },
+      "expected": {
+        "before_shield": 20
+      }
+    },
+    {
+      "id": "full_penetration",
+      "input": {
+        "raw": 200,
+        "defense": 400,
+        "penetration_percent": 1
+      },
+      "expected": {
+        "effective_defense": 0,
+        "before_shield": 200
+      }
+    }
+  ],
+  "crit_factor_cases": [
+    {
+      "id": "zero_crit",
+      "probability": 0,
+      "multiplier": 1.5,
+      "expected_factor": 1
+    },
+    {
+      "id": "mid_crit",
+      "probability": 0.3,
+      "multiplier": 1.5,
+      "expected_factor": 1.15
+    },
+    {
+      "id": "max_crit",
+      "probability": 1,
+      "multiplier": 1.5,
+      "expected_factor": 1.5
+    },
+    {
+      "id": "over_one_probability_is_not_extra_hit",
+      "probability": 1.5,
+      "multiplier": 2,
+      "expected_factor": 2
+    }
+  ],
+  "timeline_cases": [
+    {
+      "id": "parallel_casts",
+      "kind": "parallel",
+      "input": {
+        "si_ms": 1500,
+        "cast_a_ms": 1000,
+        "cast_b_ms": 500,
+        "acd_ms": 500
+      },
+      "expected": {
+        "start_a_ms": 1500,
+        "start_b_ms": 1500,
+        "resolve_a_ms": 2500,
+        "resolve_b_ms": 2000,
+        "next_start_a_ms": 4500,
+        "next_start_b_ms": 4000
+      },
+      "rule_refs": [
+        "concurrent_clocks",
+        "CT_then_ACD_then_SI"
+      ]
+    },
+    {
+      "id": "insufficient_sp",
+      "kind": "sp_skip",
+      "input": {
+        "at_ms": 1500,
+        "sp": 11,
+        "cost": 12,
+        "si_ms": 1500
+      },
+      "expected": {
+        "cast_started": false,
+        "sp_after": 11,
+        "next_slot_ready_ms": 3000
+      },
+      "rule_refs": [
+        "skip_not_hold",
+        "no_sp_charge_before_cast"
+      ]
+    },
+    {
+      "id": "stun_before_cast",
+      "kind": "action_gate",
+      "input": {
+        "ready_ms": 1500,
+        "restriction_ends_ms": 3000
+      },
+      "expected": {
+        "start_ms": 3000,
+        "slot_consumed_before_start": false
+      },
+      "rule_refs": [
+        "SI_advances_during_CC",
+        "no_restart_SI"
+      ]
+    },
+    {
+      "id": "interrupt_and_cc",
+      "kind": "interrupted",
+      "input": {
+        "start_ms": 1500,
+        "ct_ms": 1000,
+        "interrupt_ms": 1800,
+        "acd_ms": 500,
+        "si_ms": 1500,
+        "cc_ends_ms": 5000,
+        "sp_before": 64,
+        "sp_cost": 12
+      },
+      "expected": {
+        "old_resolve_ms": 2500,
+        "old_event_valid": false,
+        "acd_end_ms": 2300,
+        "next_ready_ms": 3800,
+        "next_start_ms": 5000,
+        "sp_after": 52,
+        "used_slots": 1
+      },
+      "rule_refs": [
+        "cast_token_cancel",
+        "no_refund",
+        "ACD_SI_advance_during_CC"
+      ]
+    },
+    {
+      "id": "stun_reapplication_before_cast",
+      "kind": "action_gate",
+      "input": {
+        "ready_ms": 1500,
+        "restriction_ends_ms": 4000
+      },
+      "expected": {
+        "start_ms": 4000,
+        "slot_consumed_before_start": false
+      },
+      "rule_refs": [
+        "no_extra_slot_consumed_by_CC"
+      ]
+    },
+    {
+      "id": "zero_cast_time",
+      "kind": "instant",
+      "input": {
+        "ready_ms": 1500,
+        "acd_ms": 500,
+        "si_ms": 1500
+      },
+      "expected": {
+        "start_ms": 1500,
+        "resolve_ms": 1500,
+        "normal_earliest_ms": 1501,
+        "next_start_ms": 3500
+      },
+      "rule_refs": [
+        "cast_start_wins_NA",
+        "no_skill_cooldown"
+      ]
+    },
+    {
+      "id": "same_time_completion_batch",
+      "kind": "completion_batch",
+      "input": {
+        "both_resolve_at_ms": 2500,
+        "actor_a_lethal_to_b": true,
+        "actor_b_lethal_to_a": true
+      },
+      "expected": {
+        "actor_a_cast_emits": true,
+        "actor_b_cast_emits": true,
+        "result": "player_loss_both_wipe"
+      },
+      "rule_refs": [
+        "lock_completions_before_other_completion_damage",
+        "simultaneous_wipe_loss"
+      ]
+    },
+    {
+      "id": "target_dies_retarget",
+      "kind": "target",
+      "input": {
+        "original_alive_at_resolve": false,
+        "binding": "resolve_selector",
+        "another_eligible_alive": true
+      },
+      "expected": {
+        "retargeted": true,
+        "sp_refunded": false
+      },
+      "rule_refs": [
+        "selector_resolves_once_at_completion"
+      ]
+    },
+    {
+      "id": "locked_target_dies",
+      "kind": "target",
+      "input": {
+        "original_alive_at_resolve": false,
+        "binding": "locked",
+        "another_eligible_alive": true
+      },
+      "expected": {
+        "retargeted": false,
+        "sp_refunded": false
+      },
+      "rule_refs": [
+        "locked_binding_not_retargeted"
+      ]
+    },
+    {
+      "id": "speed_buff_during_si",
+      "kind": "speed_si",
+      "input": {
+        "initial_aspd": 100,
+        "buffed_aspd": 200,
+        "buff_at_ms": 500,
+        "initial_si_start_ms": 0,
+        "ct_ms": 0,
+        "acd_ms": 500
+      },
+      "expected": {
+        "first_cast_ms": 1500,
+        "next_cast_ms": 2750
+      },
+      "rule_refs": [
+        "phase_speed_snapshot",
+        "buff_applies_next_interval"
+      ]
+    },
+    {
+      "id": "cast_speed_during_ct",
+      "kind": "speed_ct",
+      "input": {
+        "cast_start_ms": 1500,
+        "base_ct_ms": 1000,
+        "initial_cast_speed": 100,
+        "new_cast_speed": 200,
+        "buff_at_ms": 1800,
+        "base_acd_ms": 500
+      },
+      "expected": {
+        "resolve_ms": 2500,
+        "acd_end_ms": 2750
+      },
+      "rule_refs": [
+        "CT_snapshot_preserved",
+        "ACD_snapshots_on_entry"
+      ]
+    },
+    {
+      "id": "normal_clock_pauses_during_ct",
+      "kind": "normal_pause",
+      "input": {
+        "cast_start_ms": 2000,
+        "ct_ms": 1000,
+        "normal_due_without_pause_ms": 3000
+      },
+      "expected": {
+        "normal_due_after_pause_ms": 4000
+      },
+      "rule_refs": [
+        "normal_stops_in_CT",
+        "remaining_time_preserved"
+      ]
+    },
+    {
+      "id": "all_slots_empty",
+      "kind": "empty_slots",
+      "input": {
+        "slots": [
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "expected": {
+        "mode": "normal_only",
+        "skill_timer_events": 0,
+        "max_slots_scanned": 4
+      },
+      "rule_refs": [
+        "no_zero_time_skip_loop"
+      ]
+    },
+    {
+      "id": "empty_slots_between_skills",
+      "kind": "empty_slots",
+      "input": {
+        "slots": [
+          "a",
+          null,
+          "b",
+          null
+        ]
+      },
+      "expected": {
+        "mode": "rotation",
+        "next_after_a": "b",
+        "extra_SI_for_empty": 0,
+        "max_slots_scanned": 4
+      },
+      "rule_refs": [
+        "skip_empty_before_SI"
+      ]
+    },
+    {
+      "id": "silence_ready_gate",
+      "kind": "silence",
+      "input": {
+        "ready_ms": 1500,
+        "silence_end_ms": 4000,
+        "normal_interval_ms": 1500
+      },
+      "expected": {
+        "skill_start_ms": 4000,
+        "normal_hit_times_before_skill_ms": [
+          1500,
+          3000
+        ],
+        "slot_consumed_before_start": false
+      },
+      "rule_refs": [
+        "silence_only_blocks_skills"
+      ]
+    },
+    {
+      "id": "death_mid_cast",
+      "kind": "death_cast",
+      "input": {
+        "cast_start_ms": 1500,
+        "death_ms": 2000,
+        "resolve_ms": 2500,
+        "sp_before": 64,
+        "sp_cost": 12
+      },
+      "expected": {
+        "cast_resolves": false,
+        "sp_after": 52,
+        "sp_refunded": false
+      },
+      "rule_refs": [
+        "death_invalidates_nonlocked_casts"
+      ]
+    },
+    {
+      "id": "full_hp_heal_still_casts",
+      "kind": "full_heal",
+      "input": {
+        "ready_ms": 1500,
+        "sp_before": 64,
+        "sp_cost": 12,
+        "raw_heal": 100,
+        "hp": 500,
+        "max_hp": 500
+      },
+      "expected": {
+        "cast_started": true,
+        "sp_after": 52,
+        "effective_heal": 0,
+        "overheal": 100
+      },
+      "rule_refs": [
+        "always_cast_when_usable",
+        "heal_not_AI_hold"
+      ]
+    },
+    {
+      "id": "timeout_at_exact_limit",
+      "kind": "timeout",
+      "input": {
+        "event_at_ms": 90000,
+        "limit_ms": 90000
+      },
+      "expected": {
+        "event_processed": false,
+        "result": "timeout"
+      },
+      "rule_refs": [
+        "timeout_boundary_before_same_timestamp_events"
+      ]
+    },
+    {
+      "id": "uninterruptible_under_stun",
+      "kind": "uninterruptible",
+      "input": {
+        "cast_start_ms": 1500,
+        "ct_ms": 1000,
+        "stun_at_ms": 2000,
+        "stun_end_ms": 5000,
+        "acd_ms": 500,
+        "si_ms": 1500
+      },
+      "expected": {
+        "cast_resolves_at_ms": 2500,
+        "next_ready_ms": 4500,
+        "next_start_ms": 5000
+      },
+      "rule_refs": [
+        "uninterruptible_cast_continues",
+        "new_actions_wait_for_CC"
+      ]
+    },
+    {
+      "id": "chain_cc_normal_duration",
+      "kind": "cc_union",
+      "input": {
+        "applications": [
+          {
+            "at_ms": 1000,
+            "duration_ms": 2000
+          },
+          {
+            "at_ms": 2500,
+            "duration_ms": 2000
+          }
+        ]
+      },
+      "expected": {
+        "blocked_from_ms": 1000,
+        "blocked_until_ms": 4500,
+        "immunity_window_ms": 0
+      },
+      "rule_refs": [
+        "independent_duration_CC_union",
+        "no_global_diminishing_returns"
+      ]
+    },
+    {
+      "id": "cc_resistance_only_next_attempt",
+      "kind": "cc_chance",
+      "input": {
+        "base_chance": 1,
+        "target_resistance": 0.2,
+        "base_duration_ms": 1000
+      },
+      "expected": {
+        "apply_chance": 0.8,
+        "duration_if_applied_ms": 1000
+      },
+      "rule_refs": [
+        "resistance_reduces_chance_not_duration"
+      ]
+    },
+    {
+      "id": "sp_regen_during_cast_or_cc",
+      "kind": "sp_regen",
+      "input": {
+        "max_sp": 64,
+        "int": 1,
+        "current_sp": 60,
+        "cc": true,
+        "casting": true
+      },
+      "expected": {
+        "gain": 3,
+        "sp_after": 63
+      },
+      "rule_refs": [
+        "regen_not_paused_by_cast_or_CC"
+      ]
+    },
+    {
+      "id": "max_resource_change_does_not_heal",
+      "kind": "max_resource",
+      "input": {
+        "current": 120,
+        "old_max": 150,
+        "new_max": 200
+      },
+      "expected": {
+        "current_after": 120
+      },
+      "rule_refs": [
+        "keep_absolute_current_resource"
+      ]
+    },
+    {
+      "id": "max_resource_loss_clamps",
+      "kind": "max_resource",
+      "input": {
+        "current": 120,
+        "old_max": 150,
+        "new_max": 80
+      },
+      "expected": {
+        "current_after": 80
+      },
+      "rule_refs": [
+        "new_max_clamps_current_without_refund"
+      ]
+    },
+    {
+      "id": "periodic_expiry_exclusive",
+      "kind": "periodic",
+      "input": {
+        "applied_at_ms": 0,
+        "duration_ms": 3000,
+        "tick_ms": 1000,
+        "tick_on_apply": false,
+        "amount_per_tick": 20
+      },
+      "expected": {
+        "tick_times_ms": [
+          1000,
+          2000
+        ],
+        "total_amount": 40
+      },
+      "rule_refs": [
+        "expire_before_tick_at_same_time"
+      ]
+    },
+    {
+      "id": "periodic_immediate_first_pulse",
+      "kind": "periodic",
+      "input": {
+        "applied_at_ms": 0,
+        "duration_ms": 3000,
+        "tick_ms": 1000,
+        "tick_on_apply": true,
+        "amount_per_tick": 20
+      },
+      "expected": {
+        "tick_times_ms": [
+          0,
+          1000,
+          2000
+        ],
+        "total_amount": 60
+      },
+      "rule_refs": [
+        "explicit_tick_on_apply",
+        "expiry_exclusive"
+      ]
+    },
+    {
+      "id": "area_effect_scope",
+      "kind": "outcome_scope",
+      "input": {
+        "hit_outcomes": {
+          "enemy_a": true,
+          "enemy_b": false
+        },
+        "when": "hit_landed_same_target"
+      },
+      "expected": {
+        "eligible_for_stun": [
+          "enemy_a"
+        ]
+      },
+      "rule_refs": [
+        "per_target_outcome_binding"
+      ]
+    },
+    {
+      "id": "normal_damage_no_implicit_interrupt",
+      "kind": "normal_no_interrupt",
+      "input": {
+        "damage_received": 100,
+        "explicit_interrupt": false
+      },
+      "expected": {
+        "cast_cancelled": false
+      },
+      "rule_refs": [
+        "only_explicit_interrupt_or_interrupting_CC"
+      ]
+    },
+    {
+      "id": "periodic_death_before_same_time_cast_lock",
+      "kind": "periodic_death_cast",
+      "input": {
+        "death_tick_ms": 2500,
+        "cast_resolve_ms": 2500
+      },
+      "expected": {
+        "cast_completes": false,
+        "refund_sp": false
+      },
+      "rule_refs": [
+        "periodic_and_death_barrier_before_cast_completion_lock"
+      ]
+    },
+    {
+      "id": "negative_sp_regen_modifier_no_resource_drain",
+      "kind": "sp_regen",
+      "input": {
+        "max_sp": 64,
+        "int": 1,
+        "current_sp": 60,
+        "sp_regen_percent": -2
+      },
+      "expected": {
+        "gain": 0,
+        "sp_after": 60
+      },
+      "rule_refs": [
+        "regen_lower_bound_zero_not_SP_drain"
+      ]
+    },
+    {
+      "id": "stacked_sp_regen_not_aggregate_capped",
+      "kind": "sp_regen",
+      "input": {
+        "max_sp": 100,
+        "int": 1,
+        "current_sp": 10,
+        "sp_regen_percent": 2
+      },
+      "expected": {
+        "gain": 12,
+        "sp_after": 22
+      },
+      "rule_refs": [
+        "additive_buffs_no_cap",
+        "resource_max_is_not_buff_cap"
+      ]
+    }
+  ],
+  "sensitivity": {
+    "metric": "analytical unrounded no-mitigation burst upper bound; no proc, no gear, no SP stalls and no CT/NA suppression overhead",
+    "target": {
+      "agi": 1,
+      "luk": 1,
+      "defense": 0
+    },
+    "budget_source": "progression.json level_rows total_status_points (D-057: Lv20=91, Lv70=676); rows spend the largest single-stat value that fits",
+    "rows": [
+      {
+        "id": "budget_20_str",
+        "level": 20,
+        "primary": {
+          "str": 38,
+          "agi": 1,
+          "vit": 1,
+          "int": 1,
+          "dex": 1,
+          "luk": 1
+        },
+        "spent_status_points": 88,
+        "per_skill_sp": 12,
+        "skill_count": 4,
+        "per_skill_ct_ms": 0,
+        "per_skill_acd_ms": 500,
+        "per_skill_atk_ratio": 2,
+        "expected_attack": 198,
+        "expected_si_ms": 1500,
+        "expected_cycle_ms": 8000,
+        "expected_sp_per_second": 6.0,
+        "expected_unrounded_burst_dps": 321.3375
+      },
+      {
+        "id": "budget_20_agi",
+        "level": 20,
+        "primary": {
+          "str": 1,
+          "agi": 38,
+          "vit": 1,
+          "int": 1,
+          "dex": 1,
+          "luk": 1
+        },
+        "spent_status_points": 88,
+        "per_skill_sp": 12,
+        "skill_count": 4,
+        "per_skill_ct_ms": 0,
+        "per_skill_acd_ms": 500,
+        "per_skill_atk_ratio": 2,
+        "expected_attack": 109,
+        "expected_si_ms": 1095,
+        "expected_cycle_ms": 6380,
+        "expected_sp_per_second": 7.523510971786834,
+        "expected_unrounded_burst_dps": 230.01970698959357
+      },
+      {
+        "id": "budget_20_luk",
+        "level": 20,
+        "primary": {
+          "str": 1,
+          "agi": 1,
+          "vit": 1,
+          "int": 1,
+          "dex": 1,
+          "luk": 38
+        },
+        "spent_status_points": 88,
+        "per_skill_sp": 12,
+        "skill_count": 4,
+        "per_skill_ct_ms": 0,
+        "per_skill_acd_ms": 500,
+        "per_skill_atk_ratio": 2,
+        "expected_attack": 109,
+        "expected_si_ms": 1500,
+        "expected_cycle_ms": 8000,
+        "expected_sp_per_second": 6.0,
+        "expected_unrounded_burst_dps": 225.4867958
+      },
+      {
+        "id": "budget_70_str",
+        "level": 70,
+        "primary": {
+          "str": 99,
+          "agi": 1,
+          "vit": 1,
+          "int": 1,
+          "dex": 1,
+          "luk": 1
+        },
+        "spent_status_points": 530,
+        "per_skill_sp": 12,
+        "skill_count": 4,
+        "per_skill_ct_ms": 0,
+        "per_skill_acd_ms": 500,
+        "per_skill_atk_ratio": 2,
+        "expected_attack": 550,
+        "expected_si_ms": 1500,
+        "expected_cycle_ms": 8000,
+        "expected_sp_per_second": 6.0,
+        "expected_unrounded_burst_dps": 892.6041666666666
+      },
+      {
+        "id": "budget_70_agi",
+        "level": 70,
+        "primary": {
+          "str": 1,
+          "agi": 99,
+          "vit": 1,
+          "int": 1,
+          "dex": 1,
+          "luk": 1
+        },
+        "spent_status_points": 530,
+        "per_skill_sp": 12,
+        "skill_count": 4,
+        "per_skill_ct_ms": 0,
+        "per_skill_acd_ms": 500,
+        "per_skill_atk_ratio": 2,
+        "expected_attack": 309,
+        "expected_si_ms": 758,
+        "expected_cycle_ms": 5032,
+        "expected_sp_per_second": 9.538950715421304,
+        "expected_unrounded_burst_dps": 875.3113503655758
+      },
+      {
+        "id": "budget_70_luk",
+        "level": 70,
+        "primary": {
+          "str": 1,
+          "agi": 1,
+          "vit": 1,
+          "int": 1,
+          "dex": 1,
+          "luk": 99
+        },
+        "spent_status_points": 530,
+        "per_skill_sp": 12,
+        "skill_count": 4,
+        "per_skill_ct_ms": 0,
+        "per_skill_acd_ms": 500,
+        "per_skill_atk_ratio": 2,
+        "expected_attack": 309,
+        "expected_si_ms": 1500,
+        "expected_cycle_ms": 8000,
+        "expected_sp_per_second": 6.0,
+        "expected_unrounded_burst_dps": 986.1014
+      }
+    ],
+    "interpretation": [
+      "STR favored early with little equipment; free respec supports progression changes",
+      "AGI raises both normal rate and skill SP demand; do not compare damage_per_hit_only",
+      "LUK applies only to eligible attacks and respects target crit resistance; no free armor ignore",
+      "these cases establish sensitivity, not final balanced builds; M4 must compare actual equal-total-investment content"
+    ]
+  },
+  "rng_case": {
+    "seed": 1,
+    "expected_first_states": [
+      1015568748,
+      1586005467,
+      2165703038,
+      3027450565,
+      217083232
+    ]
+  },
+  "hp_regen_default": 0
+}

@@ -1,0 +1,50 @@
+{
+  "task_id": "TASK-025",
+  "passed": true,
+  "actual_local_auth": true,
+  "checks": [
+    "Actual email login→Mage/female creation→saved four-person preview; newaccount has no farm access and cannot challenge locked1-2",
+    "Real battle defeats oneboss; terminal response lost after SQL commit; refresh looks up same UUID, clears once and unlocks1-2 without offline battle. First clear pays250gold/400EXP/20crystal once",
+    "From actual farm interval reserve+claim→manualLv2/INT2→repeat boss; second win grants no firstclear/kill-based wallet income; saved build used for new fight",
+    "Refresh during live1-2 reconciles and retreats; no offline victory/reward/stage unlock; free retry remains available",
+    "Actual reused native renderer, four focus actors, BGM/SFX toggle and engine Timeline;360/390 portrait layouts with no horizontal overflow"
+  ],
+  "errors": [],
+  "layouts": [
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "caption_bottom": 770.5,
+      "nav_top": 780
+    },
+    {
+      "viewport": {
+        "width": 360,
+        "height": 844
+      },
+      "caption_bottom": 770.5,
+      "nav_top": 780
+    },
+    {
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "caption_bottom": 569.5,
+      "nav_top": 576
+    }
+  ],
+  "credentials_logged": false,
+  "source_sha256": {
+    "scripts/test_story_live.cjs": "de790af350718a1ba89e7c7f1a27c50dc3463f317d3673ff78d9b13b7cdc9def",
+    "src/ui/story-page.tsx": "e339a8f0e6bcf66154dc530f3e1d8d0b09108e376d844452fe92f21b30b5bac2",
+    "src/ui/story-fight.tsx": "b6bfbad03ae81d3b875bd8c46850585cf3894dd705649184bc14303ef1025d7f",
+    "src/ui/story.css": "362eec9f5ed2a4bc2d3d7ec3fc7669c4a8cc8c55c6f4e48def5bc0d78da576b0",
+    "src/client/story.ts": "5658fbf550c8d9958170bff0cb44186cca82eb7b98b18bb191102eb903d55779",
+    "src/domain/account/commands.ts": "c61f00e199f8753eb54851f97fc0e98d12250fa860bffefa18546b6d371d6596",
+    "src/ui/account-session.ts": "fe2f06698240f30bf62d8d71c9b728012cf1338dea8c0e40e1036a3070900acf"
+  },
+  "scope": "Fresh real local Auth/API/SQL/Chrome account; no seeded game rewards/levels/battle checkpoints in this browser walkthrough. Main-fall/defeat90s/late SQL use separate explicitly server-owned API fixtures."
+}

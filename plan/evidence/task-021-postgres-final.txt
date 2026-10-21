@@ -1,0 +1,16 @@
+{
+  "task_id": "TASK-021",
+  "scope": "Fresh plain PostgreSQL migrations/grants/RLS with Auth UID fixture. No Supabase Auth/JWT/PostgREST/email verification.",
+  "supabase_auth_tested": false,
+  "input_sha256": {
+    "supabase/tests/bootstrap_local_postgres.sql": "cf6127d751fab8adfe93d2b7ad5d1e488f88a488e1fe66055692c6e7361ac4f4",
+    "supabase/migrations/202610190001_game_storage.sql": "2e1f7249e325dbf28394bced7e6a38669c1ab120889e5e1770a78fa6b57d0583",
+    "supabase/migrations/202610190002_account_creation.sql": "4b6442e786e6b39c0f4d3f39537d7f1f9c136f57fb530eac50bf1df29b1d0f1e",
+    "supabase/tests/storage_ownership.sql": "9bf8953606cbf383ee27b90678281089c1930f45f926198c05e85114b0706837",
+    "scripts/test_storage_postgres.py": "7906e26c98fed4457acbca1f8b55c2d6db8e4aca1c3c9e512f9253665dd256f1"
+  },
+  "passed": true,
+  "postgres_version": "postgres (PostgreSQL) 16.14 (Homebrew)",
+  "assertions": "two UID reads own four tables/RPC, other owner hidden, raw owner insert/update/delete denied, anonymous table/RPC denied, privileged RPC denied, service storage update allowed, receipt update/delete/truncate denied, environment relabel denied to authenticated/service, matching environment passes and wrong environment rejects",
+  "final_output": "BEGIN\nINSERT 0 2\nINSERT 0 2\nINSERT 0 2\nINSERT 0 2\nINSERT 0 2\nINSERT 0 1\nSET\nSET\nDO\nSET\nDO\nSET\nSET\nDO\nSET\nDO\nROLLBACK\n                                     result                                      \n---------------------------------------------------------------------------------\n SQL ownership/grants/RPC/environment tests passed; Supabase Auth still untested\n(1 row)"
+}

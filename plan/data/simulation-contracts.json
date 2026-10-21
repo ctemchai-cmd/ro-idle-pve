@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "equipment_profiles": [
+    {
+      "id": "common60_refine5_no_cards",
+      "all_slots_tier": 60,
+      "all_slots_rarity": "common",
+      "all_slots_refine": 5,
+      "all_slots_enchant": {
+        "line_id": null,
+        "level": 0
+      },
+      "cards": [],
+      "weapon_selection": "job compatibility from equipment.json"
+    }
+  ],
+  "AB_policy": {
+    "seeds": "identical ordered seed set in both variants",
+    "encounters": [
+      "physical_front_pressure",
+      "magical_area",
+      "armored",
+      "sustained_dot",
+      "control_resistance"
+    ],
+    "budget": "compare actual spent resource vectors, allocated stat-point cost, gear profile and skill levels; mismatch rejects BUDGET_MISMATCH, never silently adds AGI/DEX or free skill levels",
+    "reports": [
+      "team",
+      "actor",
+      "skill"
+    ],
+    "aggregate": [
+      "win_rate",
+      "fight_time_p50_p90",
+      "damage_dps",
+      "effective_heal_hps",
+      "overheal",
+      "shield_absorbed",
+      "SP_spend_restore_skips",
+      "interrupts",
+      "CC_union_blocked_time",
+      "buff_instance_time_and_stacks"
+    ],
+    "rng_and_rules": "same core, clock, handlers and source attribution as runtime"
+  },
+  "metric_units": {
+    "cc_blocked_actor_ms": "union of blocked restrictions per target actor, team sum of actor-ms; skill rows zero",
+    "cc_instance_ms": "sum active control instance time by source skill, may overlap; do not confuse with target union uptime",
+    "sp_restored": "actual clamped gain",
+    "sp_wasted": "restoration above MaxSP",
+    "control_wait_ms": "time ready at action gate but restricted; may overlap the separate CC metric"
+  },
+  "level_benchmarks": [
+    {
+      "level": 10,
+      "allocated_values": [
+        15,
+        10,
+        5,
+        4,
+        1,
+        1
+      ],
+      "gear_tier": 1,
+      "refine": 0,
+      "skill_cap": 2,
+      "spent_status_points": 34,
+      "unspent_status_points": 11
+    },
+    {
+      "level": 20,
+      "allocated_values": [
+        25,
+        20,
+        10,
+        10,
+        1,
+        1
+      ],
+      "gear_tier": 20,
+      "refine": 3,
+      "skill_cap": 4,
+      "spent_status_points": 88,
+      "unspent_status_points": 7
+    },
+    {
+      "level": 40,
+      "allocated_values": [
+        40,
+        30,
+        15,
+        10,
+        1,
+        1
+      ],
+      "gear_tier": 40,
+      "refine": 5,
+      "skill_cap": 8,
+      "spent_status_points": 180,
+      "unspent_status_points": 15
+    },
+    {
+      "level": 70,
+      "allocated_values": [
+        50,
+        30,
+        20,
+        20,
+        1,
+        1
+      ],
+      "gear_tier": 60,
+      "refine": 5,
+      "skill_cap": 10,
+      "spent_status_points": 258,
+      "unspent_status_points": 87
+    }
+  ],
+  "role_stat_orders": {
+    "physical": [
+      "str",
+      "agi",
+      "dex",
+      "vit",
+      "int",
+      "luk"
+    ],
+    "magical": [
+      "int",
+      "dex",
+      "vit",
+      "agi",
+      "str",
+      "luk"
+    ],
+    "tank": [
+      "vit",
+      "str",
+      "dex",
+      "int",
+      "agi",
+      "luk"
+    ],
+    "support": [
+      "int",
+      "dex",
+      "vit",
+      "luk",
+      "str",
+      "agi"
+    ],
+    "critical": [
+      "str",
+      "luk",
+      "agi",
+      "dex",
+      "vit",
+      "int"
+    ]
+  },
+  "skill_bank_policy": "Explicit test setup, never gameplay auto-learning: learn every unlocked root+selected-branch skill at cap. Rogue copy selected at cap replaces one unused ordinary branch Active at level1 so paid Class2 bank size stays equal. At levels before branch unlock test root classes only; queues choose four available unlocked Actives explicitly, no AI hold."
+}

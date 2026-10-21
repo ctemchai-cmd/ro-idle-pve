@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "date": "2026-10-20",
+  "url": "http://127.0.0.1:6173/auth",
+  "source_sha256": {
+    "scripts/play_local.py": "4271919718956c1423090b99a0b5b02d04abf46690f858a1d826e7749e55a04c",
+    "scripts/game/local-supabase-gateway.ts": "6fe36b7731a59f194ec751b6b868bb9920030cd80a1fae40230fe30a47910575",
+    "vite.config.ts": "d02fafed98163600da0d05b6426a77a44a0e4b790d3e62db9a83630eeb3a283a"
+  },
+  "checks": [
+    "Actual frozen build Chrome login and saved four-person Story preview on loopback",
+    "Separate probe retained revision2/gold978/heroEXP1545/mainLv2 after clean service stop/start",
+    "Separate probe retained same values after stop, move persistent data into project .local/play and restart",
+    "Static server rejects env/source/traversal and symlink escaping its frozen public directory; anonymous save401",
+    "Original Vite5173 denies .local/play/private.json403; frozen6173 private path404",
+    "Probe removed; personal local player has no initialized game save, leaving main choice to user"
+  ],
+  "evidence": [
+    "local-play-m2-smoke.json",
+    "local-play-restart.txt",
+    "local-play-project-storage.txt"
+  ],
+  "screenshot": "docs/screenshots/local-play-ready.png",
+  "storage": ".local/play/pg",
+  "snapshot_content_hash": "0316f5953832df19c1e85047ee77a148d46fab03cdc04131fa869e750596f969",
+  "credentials_logged": false,
+  "limitations": [
+    "Local self-hosted upstream services only; no Supabase cloud or Vercel",
+    "Frozen M2 preview is intentionally separate from development source; save-version migration remains TASK-040",
+    "Verified binaries are cached in /private/tmp; recover using prepare_auth_test_tools.py if cache cleared; player data remains in project .local/play"
+  ]
+}

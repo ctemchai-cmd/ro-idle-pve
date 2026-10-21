@@ -1,0 +1,60 @@
+
+> ro-idle-classic@0.1.0 build
+> npm run env:check && npm run assets:check && npm run content:generate && npm run content:check && npm run boundaries && npm run typecheck && vite build && node --import tsx scripts/game/build-output.ts && npm run secrets:check
+
+
+> ro-idle-classic@0.1.0 env:check
+> node --import tsx scripts/game/check-env.ts
+
+{"public_auth_config":"unconfigured","privileged_values_logged":false}
+
+> ro-idle-classic@0.1.0 assets:check
+> python3 scripts/build_runtime_assets.py --check
+
+{"pack_hash": "b8fb1d7c74debd95b7abbad413d404b1b98ded01e6b319472861d7feeff7b29f", "assets": 251, "files": 503, "download_policy": "all files in pack are deployable; fetch initial profile then actors/icons/scenery/audio on demand", "first_battle_budget_bytes": 8388608, "initial_profile_raw_bytes": 1333448, "manifest_bytes": 263482, "media_and_sidecar_bytes": 22185933, "pack_budget_bytes": 26214400}
+
+> ro-idle-classic@0.1.0 content:generate
+> node --import tsx scripts/game/generate-content.ts
+
+{"content_hash":"53faba40d772ad26c3787830d917aa2c0e71a15fb3208ccb4490a2b0d1d71f72","documents":34,"schemas":16,"asset_payloads":0}
+
+> ro-idle-classic@0.1.0 content:check
+> node --import tsx scripts/game/check-content.ts
+
+{"content_hash":"53faba40d772ad26c3787830d917aa2c0e71a15fb3208ccb4490a2b0d1d71f72","skills_including_enemy":134,"items":78,"statuses":27,"immutable":true}
+
+> ro-idle-classic@0.1.0 boundaries
+> node --import tsx scripts/game/check-boundaries.ts
+
+{
+  "passed": true,
+  "issues": []
+}
+
+> ro-idle-classic@0.1.0 typecheck
+> tsc --noEmit
+
+vite v8.3.4 building client environment for production...
+transforming...
+✓ 184 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                          0.80 kB │ gzip:   0.54 kB
+dist/assets/battle-app-CgBVgQkE.css     17.39 kB │ gzip:   4.60 kB
+dist/assets/index-DwApzWMl.css          20.21 kB │ gzip:   5.12 kB
+dist/assets/index-CSCoVKOE.js          222.29 kB │ gzip:  69.84 kB
+dist/assets/auth-page-w1O8j-Le.js      228.51 kB │ gzip:  59.33 kB
+dist/assets/battle-app-PTW4LJ-L.js   1,024.94 kB │ gzip: 151.58 kB
+
+✓ built in 235ms
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+{"content_hash":"53faba40d772ad26c3787830d917aa2c0e71a15fb3208ccb4490a2b0d1d71f72","files":510,"gzip_bytes":288061,"asset_pack_hash":"b8fb1d7c74debd95b7abbad413d404b1b98ded01e6b319472861d7feeff7b29f","asset_pack_bytes":22449415,"publish_ready":false}
+
+> ro-idle-classic@0.1.0 secrets:check
+> node --import tsx scripts/game/check-secrets.ts
+
+{"passed":true,"text_files_scanned":71,"values_logged":false,"scope":"Browser build and application/SQL source; known private environment values, private-key blocks, sb_secret keys and legacy service_role JWTs. Not a general secret detector."}

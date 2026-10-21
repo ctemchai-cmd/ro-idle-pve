@@ -1,0 +1,256 @@
+{
+  "task_id": "TASK-020",
+  "round": 11,
+  "date": "2026-10-20",
+  "passed": true,
+  "reviewer": "Codex self-review",
+  "scope": "Softer unboxed party focus; native ACT attack-event contact timing for damage numbers/projectile release/hurt/death/sound. Gameplay rules and pack unchanged.",
+  "input_sha256": {
+    "src/ui/modern-theme.css": "febdb22e64022747e6e8814037add3e491e244a0d08a852245b0de94c5629d80",
+    "src/renderer/impact-timing.ts": "e5a8b0fdde8ddda94cc3c9a483ddb4f70ccc824bd7bbe902f97374f49fcb39dc",
+    "src/renderer/battle.ts": "afaf185b14f690d4a833f8216633ccc7a593836112d32d05e678cf1998156a01",
+    "src/renderer/native.d.mts": "b277d3759a54f7b6d5e543f129135b5c852e0f0720fcfc2971c69b682653d069",
+    "scripts/test_focus_impact.cjs": "6c3231d9fc3060e5118e1811fba73550ea98449063e0ae7bd66f7354f0a07fa3",
+    "tests/game/impact-timing.test.ts": "41e348afae80c86962472666974a6717a85d1f734fbd251e0c84a728fdf931d2"
+  },
+  "checks": [
+    {
+      "case_id": "ACT_contact_frames_and_visual_review",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "native_tests": 4,
+        "typescript_tests": 184,
+        "marker_basis": "First attack/hit-named ACT event; sword/rod/mace500ms, bow100ms for tested presets. Unmarked clips use middle frame; mapping is a presentation interpretation, not gameplay hit math.",
+        "visual_files": [
+          "docs/screenshots/focus-soft-390.png",
+          "docs/screenshots/impact-windup.png",
+          "docs/screenshots/impact-contact.png"
+        ]
+      }
+    },
+    {
+      "case_id": "focus_mobile_and_impact_alignment",
+      "acceptance": [
+        "AC-02"
+      ],
+      "passed": true,
+      "result": [
+        {
+          "case_id": "soft_focus_four_actors_mobile_clicks_and_hitboxes",
+          "passed": true,
+          "result": [
+            {
+              "width": 390,
+              "height": 844,
+              "controls": [
+                {
+                  "border": "0px",
+                  "shadow": "none",
+                  "pressed": "false",
+                  "width": 86.25,
+                  "height": 70,
+                  "label": "คุณ Lv.10"
+                },
+                {
+                  "border": "0px",
+                  "shadow": "none",
+                  "pressed": "false",
+                  "width": 86.25,
+                  "height": 70,
+                  "label": "ลูเมน Lv.10"
+                },
+                {
+                  "border": "0px",
+                  "shadow": "none",
+                  "pressed": "false",
+                  "width": 86.25,
+                  "height": 70,
+                  "label": "อารี Lv.10"
+                },
+                {
+                  "border": "0px",
+                  "shadow": "none",
+                  "pressed": "true",
+                  "width": 86.25,
+                  "height": 70,
+                  "label": "เรน Lv.10"
+                }
+              ]
+            },
+            {
+              "width": 360,
+              "height": 640,
+              "controls": [
+                {
+                  "border": "0px",
+                  "shadow": "none",
+                  "pressed": "false",
+                  "width": 78.75,
+                  "height": 67.75,
+                  "label": "คุณ Lv.10"
+                },
+                {
+                  "border": "0px",
+                  "shadow": "none",
+                  "pressed": "false",
+                  "width": 78.75,
+                  "height": 67.75,
+                  "label": "ลูเมน Lv.10"
+                },
+                {
+                  "border": "0px",
+                  "shadow": "none",
+                  "pressed": "false",
+                  "width": 78.75,
+                  "height": 67.75,
+                  "label": "อารี Lv.10"
+                },
+                {
+                  "border": "0px",
+                  "shadow": "none",
+                  "pressed": "true",
+                  "width": 78.75,
+                  "height": 67.75,
+                  "label": "เรน Lv.10"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "case_id": "native_contact_and_projectile_arrival_gate_numbers",
+          "passed": true,
+          "result": [
+            {
+              "actor": "main",
+              "contact_ms": 500,
+              "impact_delay_ms": 500,
+              "event_at": 1364,
+              "amount": 88,
+              "samples": [
+                {
+                  "offset": 0,
+                  "visible": false,
+                  "projectiles": 0
+                },
+                {
+                  "offset": 499,
+                  "visible": false,
+                  "projectiles": 0
+                },
+                {
+                  "offset": 500,
+                  "visible": true,
+                  "projectiles": 0
+                }
+              ],
+              "reduced_motion_visible": true,
+              "checkpoint_unchanged": true
+            },
+            {
+              "actor": "npc_archer",
+              "contact_ms": 100,
+              "impact_delay_ms": 440,
+              "event_at": 1225,
+              "amount": 77,
+              "samples": [
+                {
+                  "offset": 0,
+                  "visible": false,
+                  "projectiles": 0
+                },
+                {
+                  "offset": 439,
+                  "visible": false,
+                  "projectiles": 1
+                },
+                {
+                  "offset": 440,
+                  "visible": true,
+                  "projectiles": 1
+                }
+              ],
+              "reduced_motion_visible": true,
+              "checkpoint_unchanged": true
+            },
+            {
+              "actor": "npc_mage",
+              "contact_ms": 500,
+              "impact_delay_ms": 860,
+              "event_at": 1550,
+              "amount": 77,
+              "samples": [
+                {
+                  "offset": 0,
+                  "visible": false,
+                  "projectiles": 0
+                },
+                {
+                  "offset": 859,
+                  "visible": false,
+                  "projectiles": 1
+                },
+                {
+                  "offset": 860,
+                  "visible": true,
+                  "projectiles": 1
+                }
+              ],
+              "reduced_motion_visible": true,
+              "checkpoint_unchanged": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "presentation_does_not_mutate_combat",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "typescript_tests": 184,
+        "browser_checkpoint_unchanged": true,
+        "reduced_motion": "Immediate readable numbers with animations disabled.",
+        "note": "Engine results/time/RNG remain authoritative. Renderer defers only visual numbers/reactions/projectiles/audio. Revive removes pending old-life death reactions. Full9browserparity runs remain historical round6."
+      }
+    },
+    {
+      "case_id": "unchanged_local_pack_and_build",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "build": "assets/content/boundaries/typecheck/Vite/output/secrets passed",
+        "pack_hash": "91e45df5356ce566448b08111b32b8a933f8a1f057faae475526f599599b1a48",
+        "pack_changed": false,
+        "retained_decode_proof": "task-020-timeline-cast-browser.json",
+        "note": "216images/35audio/font decoded in round10. No media changes or new asset downloads."
+      }
+    }
+  ],
+  "evidence": [
+    "task-020-focus-impact-browser.json",
+    "task-020-focus-impact-check.txt",
+    "task-020-focus-impact-build.txt",
+    "task-020-focus-impact-browser.txt",
+    "task-020-focus-impact-native.txt"
+  ],
+  "screenshots": {
+    "docs/screenshots/focus-soft-390.png": "56234dc6104ec0572c7ed2724585b56d9823a2aa398d2fcf6ae81441345e91ee",
+    "docs/screenshots/focus-soft-360.png": "2edf94b90a8ed00c39f655a8840f94ff1058ff83890b8e6961b4d76bc456b6e1",
+    "docs/screenshots/impact-windup.png": "e25f26bc27b5be0fc55f6b8968e0e230cb29fd2a871e1aaa82933bf252a164eb",
+    "docs/screenshots/impact-contact.png": "e290bd631a8a58ae30aaaf604aca32003048ce3a7aecae3d3c21ae668b714a5d"
+  },
+  "limitations": [
+    "Chrome viewport emulation; not physical phones/Safari.",
+    "ACT event used as an authored contact/release convention; not manual contact verification for every class/cosmetic.",
+    "HUD HP and statistics remain authoritative; visual hurt/death may trail them until impact.",
+    "No combat damage/SP/queue formulas changed. TASK-022 saves remain separate work."
+  ]
+}

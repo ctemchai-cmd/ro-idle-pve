@@ -1,0 +1,158 @@
+{
+  "task_id": "TASK-048",
+  "passed_self_check": true,
+  "user_visual_acceptance": "pending (AC-08)",
+  "round": 4,
+  "date": "2026-10-20",
+  "reviewer": "Claude self-check",
+  "commands": [
+    "npm run typecheck",
+    "npm run boundaries",
+    "npm run content:check",
+    "npm test (237 pass, 0 fail; +4 farm-scene)",
+    "node --test tests/renderer.test.mjs (4 pass)",
+    "python3 -m unittest tests.test_runtime_assets (8 pass)",
+    "npm run assets:build && npm run assets:check",
+    "npm run build (passed; existing >500kB content chunk warning tracked by TASK-042)",
+    "RO_EVIDENCE_PREFIX=task-048 RO_LOCAL_TEST_FOCUS=shell python3 scripts/test_auth_stack.py (passed, final run after last source edit)",
+    "python3 scripts/play_local.py --refresh-compatible-snapshot (personal 6173) + read-only Chrome smoke"
+  ],
+  "content_hash": "65b82feb21f654bb17521bdc4417245c630d0cf6f0149f5877ab93b5ec3b9dc2",
+  "content_hash_unchanged": true,
+  "runtime_asset_pack_hash": "72cac0a73783da0e345c17acecc1ae213ae60a069682dfa817884d4f61a55cc8",
+  "pack": {
+    "assets": 479,
+    "files": 845,
+    "media_and_sidecar_bytes": 24112553,
+    "budget_bytes": 26214400
+  },
+  "checks": [
+    {
+      "acceptance": "AC-01..AC-06,AC-09..AC-12",
+      "passed": true,
+      "result": "Onboarding cards create Mage/female through the real account.create command"
+    },
+    {
+      "acceptance": "AC-01..AC-06,AC-09..AC-12",
+      "passed": true,
+      "result": "Home shows compact HUD (<=80px), farm waves cycling fight→walk on the shared engine, challenge button bottom-right above a 5-item bar with Store/Crafting locked"
+    },
+    {
+      "acceptance": "AC-01..AC-06,AC-09..AC-12",
+      "passed": true,
+      "result": "Retreat button stayed visible in 12 samples across boss-clock commits; statistics sheet is styled"
+    },
+    {
+      "acceptance": "AC-01..AC-06,AC-09..AC-12",
+      "passed": true,
+      "result": "Challenge button starts real Story 1-1; boss HUD/party strip render; result card claims the first-clear reward once and returns to farm"
+    },
+    {
+      "acceptance": "AC-01..AC-06,AC-09..AC-12",
+      "passed": true,
+      "result": "AFK \"รับทั้งหมด\" reserved the latest farm window and collected all 2+ waiting claims (boss-win settlement and story reward included)"
+    },
+    {
+      "acceptance": "AC-01..AC-06,AC-09..AC-12",
+      "passed": true,
+      "result": "Settings has music/effects sliders that apply and persist (effects 35%)"
+    },
+    {
+      "acceptance": "AC-01..AC-06,AC-09..AC-12",
+      "passed": true,
+      "result": "Character Upgrade sheet levels the main character with the shown cost"
+    },
+    {
+      "acceptance": "AC-01..AC-06,AC-09..AC-12",
+      "passed": true,
+      "result": "Stats page previews base/additional stat changes and allocates INT"
+    },
+    {
+      "acceptance": "AC-01..AC-06,AC-09..AC-12",
+      "passed": true,
+      "result": "Backpack grid marks worn gear with [E]; item sheet, team formation and tab-toggle back to home work"
+    },
+    {
+      "acceptance": "AC-01..AC-06,AC-09..AC-12",
+      "passed": true,
+      "result": "Portrait only (D-052): a 844×390 touch phone sees the rotate prompt with the game hidden; 390×844 touch phone and desktop do not"
+    },
+    {
+      "acceptance": "AC-01..AC-06,AC-09..AC-12",
+      "passed": true,
+      "result": "360×740 and 1280×800 render without horizontal overflow; locked Store shows a toast; deep link ?v=buddy opens the character page"
+    },
+    {
+      "acceptance": "AC-07",
+      "passed": true,
+      "result": "Personal 6173 refreshed with --refresh-compatible-snapshot: content_hash/migrations/api/src/server/gateway identical; pg_dump backup and archived old snapshot; revision 79 unchanged after read-only login smoke (0 commands, 0 browser errors); HUD shows gold1,839/EXP3,023/Crystal60, farm1-3, AFK with 2 pending rewards."
+    }
+  ],
+  "screenshots": [
+    "docs/screenshots/task-048-onboarding-390.png",
+    "docs/screenshots/task-048-home-fight-390.png",
+    "docs/screenshots/task-048-home-walk-390.png",
+    "docs/screenshots/task-048-boss-intro-390.png",
+    "docs/screenshots/task-048-boss-fight-390.png",
+    "docs/screenshots/task-048-boss-statistics-390.png",
+    "docs/screenshots/task-048-boss-result-390.png",
+    "docs/screenshots/task-048-afk-sheet-390.png",
+    "docs/screenshots/task-048-settings-volume-390.png",
+    "docs/screenshots/task-048-stage-sheet-390.png",
+    "docs/screenshots/task-048-buddy-390.png",
+    "docs/screenshots/task-048-slot-sheet-390.png",
+    "docs/screenshots/task-048-slot-upgrade-390.png",
+    "docs/screenshots/task-048-slot-change-390.png",
+    "docs/screenshots/task-048-character-upgrade-390.png",
+    "docs/screenshots/task-048-stats-390.png",
+    "docs/screenshots/task-048-stats-draft-390.png",
+    "docs/screenshots/task-048-skills-390.png",
+    "docs/screenshots/task-048-backpack-390.png",
+    "docs/screenshots/task-048-item-sheet-390.png",
+    "docs/screenshots/task-048-team-390.png",
+    "docs/screenshots/task-048-home-360.png",
+    "docs/screenshots/task-048-home-1280.png",
+    "docs/screenshots/task-048-team-1280.png",
+    "docs/screenshots/task-048-buddy-360.png",
+    "docs/screenshots/task-048-rotate-844x390.png"
+  ],
+  "browser_errors": 0,
+  "limitations": [
+    "Refine purchase path not exercised live (fresh account has no ore); button cost/disabled state verified.",
+    "Farm ambient waves are presentation only and are not balance evidence.",
+    "Old TASK-022..028 live browser scripts target the replaced UI; their API/SQL evidence remains valid.",
+    "Monster skins: metadata status exported, no per-frame manual review of all 48 animations.",
+    "Portrait only by D-052; landscape phones show a rotate prompt (verified 844x390 touch context), no landscape layout. Large text not checked."
+  ],
+  "source_sha256": {
+    "src/ui/game/shell.tsx": "63ea90e7fe3389d3b13c5ca67fe612d1bb6ac08387d0c56afba01ecc8bf8f2f0",
+    "src/ui/game/hud.tsx": "2eb51f7672603e375a5d02cdfba0d6435a480767933e7550ef4217899f86522c",
+    "src/ui/game/nav.tsx": "7cfb349ae956d78fa266dc2d8386143c0aaf00b1e4cff64d072a65035ced4c86",
+    "src/ui/game/field.tsx": "d79dae7123b04504c0dc5d9eda03b5bedf731f205b02e80272126cba5bd9ba92",
+    "src/ui/game/buddy.tsx": "e8472869091d4170d93ea405dd02ed7eb89997a378304e643a7f81e023c386d8",
+    "src/ui/game/skills.tsx": "73d01c2ccc19f2b48279d3e48f979b0645f8d12a8e5ba048b7633a82b874aadc",
+    "src/ui/game/stats.tsx": "820514846c12b3e1d0f3cc4a4cec64d40ce5aa198103f2006a81bcc15a23ed89",
+    "src/ui/game/backpack.tsx": "318a03829865e9acf74c4ba65206a365f45edb989232f9157b08dad681648e02",
+    "src/ui/game/team.tsx": "9b3a78b1abee2019cb70dd730a13b5dca5ce019b328719514c592ff819a26dbb",
+    "src/ui/game/onboarding.tsx": "1056d649167c6a9c2dd8bf014ec322b77eef3fc2ace0abd35473183c7375e39e",
+    "src/ui/game/kit.tsx": "0f730f3e9912947d0af1658b5771d3ecfda79071d8d7e2365f53e9ce7fd22e1c",
+    "src/ui/game/game.css": "83b5c7510c73e5291a65fdcf1876916f616a422c08d5fa050a567a548950fbbf",
+    "src/ui/main.tsx": "c9569f97247b15808442ddbdeb1d8c4b4e0bca3efdcb23d49377e3b4037e9824",
+    "src/client/farm-scene.ts": "d0ff5c551139ea51e69058665e05b72a40952a96a1125cd1ea12884a0c203a57",
+    "src/client/story.ts": "8dfc4aac7c591fa7a964f511ba79e76d44f7997a6e6b7dd1373fb8f8713a5933",
+    "src/client/equipment.ts": "def79b2513a23c8f9dd2b502c90a2b6f42ed24a9c24925fc9f2b8dd49ceb2a60",
+    "src/renderer/battle.ts": "565988719c35c976a07aaab1922bef21392268ff08222d06c7afdc8aa1b4f86c",
+    "src/renderer/pack.ts": "9ea19be3e9da1dd1c567213a1e0a93d26632e5c4bb35ed501e9544627b5c0f8b",
+    "src/renderer/shell.ts": "2e9779355d79cb5fffd0be4b005bdf0975de9947b63f299fca0feea9dbef97cf",
+    "src/renderer/shell-visuals.json": "e2dc801b8fbda3800c6ac85c95755e3a96693f44c176a94424b94573a8f6b0ac",
+    "scripts/build_runtime_assets.py": "33c3710ea37dfd7efb7e3e4e4851950935208671eb0735ddb58b9be14c2e2daf",
+    "scripts/play_local.py": "70aaa5d8efa468b4e87b050a941abcd871718e511c959471241f9f7197cbfd75",
+    "scripts/test_auth_stack.py": "82dc5fc0040a39a3a6817c16695dcfb37ec039d49b528b733d51a14e31c54326",
+    "scripts/test_game_shell_live.cjs": "64179adb6919f5c9e738ab420c06f0775fb77fbecbff07ba336b5842e9745ea2",
+    "tests/game/farm-scene.test.ts": "13377162d22e0b922d678495daa2d7d8f923885a0d1e07f2ae175e5e9fa7cf5b",
+    "src/ui/game/class-icon.tsx": "993070e30dca65744889870ef6c153ae2967adfb1de11117094d4d9a9320c2e3",
+    "src/renderer/native.d.mts": "04ac9b33227a9d863643b137571b28c4c78273e68a1b1824658881bf6762982b"
+  },
+  "credentials_logged": false,
+  "notes": "Live walkthrough run after wardrobe visuals; the final avatar/team-dock footY crop tweak (2 numbers) was checked by typecheck/build only."
+}

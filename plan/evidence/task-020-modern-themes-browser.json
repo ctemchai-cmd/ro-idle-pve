@@ -1,0 +1,40 @@
+{
+  "task_id": "TASK-020",
+  "date": "2026-10-20",
+  "passed": true,
+  "samples": [
+    {
+      "theme": "light",
+      "sheet": "rgb(255, 255, 255)",
+      "secondary": "rgb(100, 116, 139)",
+      "secondary_contrast": 4.758842787868666,
+      "icons": 8,
+      "overflow": false
+    },
+    {
+      "theme": "dark",
+      "sheet": "rgb(28, 43, 65)",
+      "secondary": "rgb(143, 162, 189)",
+      "secondary_contrast": 5.485707629026843,
+      "icons": 8,
+      "overflow": false
+    },
+    {
+      "theme": "ro",
+      "sheet": "rgb(255, 255, 255)",
+      "secondary": "rgb(97, 114, 139)",
+      "secondary_contrast": 4.897366433010626,
+      "icons": 8,
+      "overflow": false
+    }
+  ],
+  "errors": [],
+  "input_sha256": {
+    "src/ui/modern-theme.css": "2a40227a3a8109391eb24a778bb518488fd4b43934be3f3dc711004b16ea08f5",
+    "src/ui/icon.tsx": "672e7a63fcd644a718f7e22b54187d3c9e5bbd796bebe4a126f318bce58af315",
+    "src/ui/battle-app.tsx": "f5c2ff89d9c3e296caff2603465a35007ca735522c620e6c1c97db29b8dbd469",
+    "preview/ui-themes/index.html": "116ab7a5d4aa7a01a4c508da169ed8906ff1735b7d30e60534b2f109a7898184",
+    "scripts/test_ui_themes.cjs": "15a72b8c753cca89fa8eae52b5f1e67701d61cd1e2dd402cff0aa827258caff8"
+  },
+  "scope": "Modern theme comparison; user selected03 with RO white/gray/blue palette and modern style. Default is RO Blue, without classic bevel/gradient window chrome. Chrome desktop containing360px mobile iframes; no real-device certification."
+}

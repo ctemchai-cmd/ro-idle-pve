@@ -1,0 +1,152 @@
+{
+  "task_id": "TASK-020",
+  "reviewer": "Codex self-review",
+  "review_round": 5,
+  "date": "2026-10-20",
+  "passed": true,
+  "scope": "User-requested combat presentation/pacing revision after round4. Historical reviews retained. This does not complete cloud-save TASK-022 or release balancing.",
+  "content_hash": "c13aa0114729ddc3fb0da0949dca9c7c6a95fcb5e74e02f619012b0833f27abd",
+  "implementation_hash": "c15649bc43c9ec7dc2e6a0e69c706d090037bef1e3245bf1cadb7e2180c40c07",
+  "schema_hash": "d825d606156c6fd165e162a3cd0fac9771f5be3ae68c38a0433fbf7b59afe829",
+  "asset_pack_hash": "b8fb1d7c74debd95b7abbad413d404b1b98ded01e6b319472861d7feeff7b29f",
+  "input_sha256": {
+    "src/ui/battle-app.tsx": "dc3f56e6615a60a9a97fd854019e288bbb7842dc7fa710f343acc9c5ef65002c",
+    "src/ui/skill-timeline.tsx": "bfc2fc885594bcb7e3961a0b670f8a5e333a100ecaf0cf75a3b36b52e916e819",
+    "src/ui/timeline.css": "b43dcd89b400e39135704c7df755b39f9a04783d714ece6bf074f00b884ac719",
+    "src/client/demo.ts": "b9404ade30481fe9d96f002e8244cb25fc5f972a47b9a2e2861240b36cc6714e",
+    "src/renderer/battle.ts": "1693512437781c468938d9906a444244b796f62c8d166084518cfcb9e165eb35",
+    "src/renderer/actor-animation.ts": "ea4bb01915d9db36ef55250568a8f4a82299f22334e041fb4da535d01d851915",
+    "src/renderer/projectiles.ts": "f36fa998726e5aa9b7c4ab6be48806455c17ac19e37d8eb532c4b3fda04bccb8",
+    "src/renderer/damage-numbers.ts": "dbcfc209bbb8a05ee597e3e806e847e4beb7af25022a1013bd35413aa7d3d5a7",
+    "src/renderer/combat-visuals.json": "d5b891d36bb1f37ec8b2516918f0e9a912ccb84ebc251bd0c811fce2f3148884",
+    "src/renderer/pack.ts": "4ace2571011f87e97e631d7af14f2af8f14c8050fc7b0b491ab5fa76b5a01b44",
+    "src/contracts/assets.ts": "4e1b76862489cf70b73fa5825643238d042edb02a2f7ca57ea43a7e34b9f196b",
+    "src/domain/math/index.ts": "8eaa3380fc04885aafb0328ffb05b5bd7dac97e4b0158e77a05bf37232f6b243",
+    "src/domain/combat/engine.ts": "bfacc0fe62d2e578564e5bb8ea08cbd9b35c2dad5aa0bf12ced3db06212c1b1e",
+    "src/domain/combat/model.ts": "4b49341aee45d8cf189cf3a87856a3427474b67a77ef9d8555fb6da1ef510979",
+    "src/simulation/index.ts": "6837f0a6a5d68a7cb055ad6c781c0cecaa8502878975b9b62f0d290b9a0861b5",
+    "scripts/game/runtime-assets.ts": "8ed0a38781f53d8294b6adea0ce20f402369742642efcea19619fa7ec72801ac",
+    "scripts/build_runtime_assets.py": "9bce8bfb2d80eca375b18b39e63653a68b8014320fb51af5c2f16eba85f00660",
+    "plan/data/schemas/battle-checkpoint.json": "06805a578917d71318687fd87518c96a57713fc584948e9c945308899326a128",
+    "runtime/ro/manifest.json": "32d6b65a65409411c8da3b3fdc477a34848b66a574553842c0f282fc37cc0d6f",
+    "src/generated/runtime-manifest.json": "e61b04fbdc54896cf96527a2da54bf53c92a31d6d1da4500546089f45919c995",
+    "scripts/test_combat_polish.cjs": "128ebbc59384fbc2508ff19123cd93f219f517ed0bbdda16fa37b0ecb991d5ec",
+    "tests/game/combat-presentation.test.ts": "0341ef7c3659b3be06bfba3728505fb22f4fe6d30f34d51b879287f665c16d43",
+    "tests/game/timeline.test.ts": "f7a4ab54f9181bd8fdd6b6747009a84910a31e3f6c105984dc3251c9bb9cc14f",
+    "tests/game/animation.test.ts": "b4da817826252d2cee9400706c06987bed66601896697ea890dd4aab4135b886",
+    "tests/game/demo.test.ts": "c35b02d33882f238faeb5a76dfe8fd59376924bb0b367936f6dff4f680d58a53",
+    "tests/game/simulation.test.ts": "9f91a5a9eccb85ca044e56ec6f0d3cbbb2453ce39e8c5eb59839620314202ca1",
+    "tests/renderer.test.mjs": "d788b5a60de77e4c00b41d2a585906b8e48b3cd93918ed312f5a62551575755b",
+    "docs/BATTLE-DEMO.md": "68015d32ef86e1ce823cc8cf44e20aa4d79d897fab7f677d36a4b8b2260a99dd",
+    "plan/design/20-combat-presentation.md": "32cc337ae83aaca17804bf7d579cea86649c859d8c7b7c071c88bbc9f99deaa1"
+  },
+  "checks": [
+    {
+      "case_id": "native_actor_rig_and_readable_RO_damage",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": "4native tests cover36presets/idle anchors/one-shots/STR reference;ActorAnimation tests continuous complete-rig motion and disabled/death states. Native Classic숫자.spr digits +msg.spr sourceframe3critbg, packedframe2; scoped visual review of real main crit(seed1,7501ms,92damage), arrows and party rigs. Native artwork pose count is retained."
+    },
+    {
+      "case_id": "smooth_timeline_focus_projectiles_and_solo_boss",
+      "acceptance": [
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "frames": 120,
+        "moving_frames": 120,
+        "moving_fraction": 1,
+        "p95_frame_ms": 16.700000000000728,
+        "max_frame_ms": 16.80000000000109,
+        "max_marker_step_px": 0.912261962890625,
+        "backwards": 0,
+        "actor_rows": 5,
+        "enemies": 1,
+        "base_skill_interval_ms": 3000,
+        "pause_exact": true
+      },
+      "additional": "ActualUI5rows/solo boss,3sfirst skill,100%moving frames across120samples,pauseexact;focused outgoing damage only over actual target;arrow/orb source-target sample123frames;zoom/keyboard/mobile360/390/844/1280. Cast bars moved above player heads and critical numbers below boss telegraph."
+    },
+    {
+      "case_id": "pure_engine_and_explicit_timing_profile",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": true,
+      "result": "164TStests pass;browser3encountersxrenderoff/30/60 withforecast/focus/projectiles/drawpause:exactfullstate/events/RNG/metrics=headless. Optionaltimingprofile persisted/restored;demoSI3000/NA1500,ASPD125=>2400/1200ms;legacyomitted1500/1500 andinvalidprofile/ABmismatchguards tested. Separate no-SP fixture verifies skipped timeline slots despite slower demo no longer starving naturally."
+    },
+    {
+      "case_id": "new_local_pack_and_build",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "images": 216,
+        "audio": 34,
+        "font": true,
+        "pack_hash": "b8fb1d7c74debd95b7abbad413d404b1b98ded01e6b319472861d7feeff7b29f",
+        "selected_ids": 251
+      },
+      "additional": "251IDs/503files;216images/34audio/fontdecode;0external/HTTP/runtimeerrors;assetscheck/build/typecheck/content/boundaries/secrets pass;29Python importer/pack tests andoriginalasset44+60460checks pass;devpack allowlist refreshes onmanifestmtime."
+    }
+  ],
+  "evidence": [
+    "task-020-combat-polish-browser.json",
+    "task-020-combat-polish-check.txt",
+    "task-020-combat-polish-build.txt",
+    "task-020-combat-polish-native.txt",
+    "task-020-combat-polish-python.txt",
+    "task-020-combat-polish-assets.txt",
+    "task-020-combat-polish-composition.txt",
+    "task-020-combat-polish-architecture.txt",
+    "task-020-combat-polish-browser.txt"
+  ],
+  "schema_revalidation": {
+    "date": "2026-10-20",
+    "added": "optional battle-checkpoint.timing with closed integerbaseintervals",
+    "composition_checks": 104,
+    "architecture_checks": 25,
+    "passed": true,
+    "historical_reports": [
+      "task-013-before-timing-profile.json",
+      "task-047-before-timing-profile.json"
+    ]
+  },
+  "visual_review": {
+    "status": "reviewed",
+    "scope": "Stored native digit0–9/crit gallery, real engine main critical, source-target arrows, desktopTimeline,390pxmobile. Four primary male party actors observed in these scenes; not exhaustive manual review of every job/cosmetic.",
+    "screenshots": {
+      "docs/screenshots/combat-polish-numbers.png": "fe12331f573bffb1a244602872361940b64287cfd2246cfa99a942713d745af7",
+      "docs/screenshots/combat-polish-critical.png": "a82bb0238ae76140ef044189b158fc1531296910b999d4eda53c5aa2d93fa3fe",
+      "docs/screenshots/combat-polish-arrows.png": "012fb6e43337bb459d39a1e310446be0833ba6c067c9e10889d86f3e22f576d6",
+      "docs/screenshots/combat-polish-timeline.png": "e9a11dc89ed05c8feddd3fa17ed91d52c8e9365b6e9048de6bf799e100c62f46",
+      "docs/screenshots/combat-polish-mobile.png": "cbda3fc2bbe7fafd4d9728b6a3a7f49f4691c84ed2695fda79e5e56d014141ca"
+    }
+  },
+  "findings_resolved": [
+    "Round4 Timeline repositioned every100ms;static geometry now moves with onecompositor transform perrow eachRAF fromsharedpresentationclock. Memoizedrows avoidrebuildingallmarkers onHUDupdates;pausefreezesitexactly.",
+    "Actor motion interpolates the complete rig between native sprite poses;head and attachments are not independently displaced. Existing synchronizedACTframes remain.",
+    "Native RO Classic digits andcritbackdrop replacegenericfont/yellowtext. Outgoingdamage/miss is filtered atpresentation byfocusedsource;allengineeventsandmetrics remain.",
+    "Typed bounded special_sfx supportsarrow/bullet/orb,count,stagger,release,traveltime,arc,color. Real event recipients determine destinations;visualimpactdelaydoesnotretimeauthoritativedamage.",
+    "Boss/warded/storm demoscenes selectonlyboss;fieldretains3monsters. FutureStoryfactory adoptiontrackedinTASK-025 andD-041.",
+    "Pacingexperimentstoredascheckpointinput(SI3000,NA1500),notslowerwallclockorhiddenstatpenalty. DefaultM0benchmarkremains1500withnoautomaticclassspeedgrowth."
+  ],
+  "limitations": [
+    "Frame-motion sample on local Chrome headless; no real-device/Safari qualification.",
+    "Native pixel sprite pose cadence is retained; continuous complete-rig motion and compositor timeline do not invent missing artwork frames.",
+    "Pacing3s is an explicit reproducible demo encounter profile; release balance tables remain subject to gameplay measurement.",
+    "Projectile impact is a visual delay only; engine computes hit/damage at its authoritative event timestamp.",
+    "No hosted Supabase/Vercel, durable progression or full release content rebalance proof.",
+    "The newpack is verified inlocalChrome andstaticbuild;historical production error-recovery evidence is retained,not rerun inthisrevision."
+  ],
+  "references": [
+    {
+      "url": "https://github.com/MrAntares/roBrowserLegacy/blob/master/src/Renderer/Effects/Damage.js",
+      "scope": "Native Classic sprite paths andcritbg sourceframe3 mapping;not IdleAdventure equations."
+    }
+  ]
+}

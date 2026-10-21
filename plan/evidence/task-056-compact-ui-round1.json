@@ -1,0 +1,171 @@
+{
+  "passed": false,
+  "stage": "MOBILE_LAYOUT_AUDIT",
+  "error": "PRIMARY_PAGE_SCROLL_360_stats:52",
+  "checks": [
+    "Stats and Skill arrows traverse all seven characters in team-first order, wrap both ways, retain the page, show the correct job/index and send no account command",
+    "Unconfirmed Status draft is discarded on switching; allocating INT after switching commits only to the selected NPC through real API/SQL; back returns to that character",
+    "Skill-picking mode is cleared on switching; skill upgrade and immediate slot placement target the selected NPC and persist in SQL",
+    "Draft Timeline opens in a closable sheet with all four party members; the compact skill page remains usable"
+  ],
+  "audit": [
+    {
+      "width": 360,
+      "height": 640,
+      "view": "home",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 640,
+        "bottom": 640,
+        "right": 360
+      },
+      "horizontal": false,
+      "pageScroll": 0,
+      "layer": null,
+      "nav": [],
+      "loadout": null,
+      "foot": null,
+      "wrapped": [],
+      "overflows": [],
+      "hud": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 58,
+        "bottom": 58,
+        "right": 360
+      },
+      "bar": {
+        "x": 0,
+        "y": 580,
+        "width": 360,
+        "height": 60,
+        "bottom": 640,
+        "right": 360
+      }
+    },
+    {
+      "width": 360,
+      "height": 640,
+      "view": "buddy",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 640,
+        "bottom": 640,
+        "right": 360
+      },
+      "horizontal": false,
+      "pageScroll": 0,
+      "layer": {
+        "x": 0,
+        "y": 58,
+        "width": 360,
+        "height": 522,
+        "bottom": 580,
+        "right": 360
+      },
+      "nav": [],
+      "loadout": null,
+      "foot": null,
+      "wrapped": [],
+      "overflows": [],
+      "hud": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 58,
+        "bottom": 58,
+        "right": 360
+      },
+      "bar": {
+        "x": 0,
+        "y": 580,
+        "width": 360,
+        "height": 60,
+        "bottom": 640,
+        "right": 360
+      }
+    },
+    {
+      "width": 360,
+      "height": 640,
+      "view": "stats",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 640,
+        "bottom": 640,
+        "right": 360
+      },
+      "horizontal": false,
+      "pageScroll": 52,
+      "layer": {
+        "x": 0,
+        "y": 58,
+        "width": 360,
+        "height": 522,
+        "bottom": 580,
+        "right": 360
+      },
+      "nav": [
+        {
+          "x": 244,
+          "y": 64,
+          "width": 40,
+          "height": 40,
+          "bottom": 104,
+          "right": 284
+        },
+        {
+          "x": 310,
+          "y": 64,
+          "width": 40,
+          "height": 40,
+          "bottom": 104,
+          "right": 350
+        }
+      ],
+      "loadout": null,
+      "foot": {
+        "x": 10,
+        "y": 528,
+        "width": 340,
+        "height": 52,
+        "bottom": 580,
+        "right": 350
+      },
+      "wrapped": [],
+      "overflows": [],
+      "hud": {
+        "x": 0,
+        "y": 0,
+        "width": 360,
+        "height": 58,
+        "bottom": 58,
+        "right": 360
+      },
+      "bar": {
+        "x": 0,
+        "y": 580,
+        "width": 360,
+        "height": 60,
+        "bottom": 640,
+        "right": 360
+      }
+    }
+  ],
+  "screenshots": [
+    "docs/screenshots/task-056-compact-stats-draft-360.png",
+    "docs/screenshots/task-056-compact-timeline-360.png",
+    "docs/screenshots/task-056-compact-home-360x640.png",
+    "docs/screenshots/task-056-compact-buddy-360x640.png",
+    "docs/screenshots/task-056-compact-failure-mobile_layout_audit.png"
+  ],
+  "browser_errors": [],
+  "personal_save_accessed": false
+}

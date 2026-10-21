@@ -1,0 +1,113 @@
+{
+ "task": "TASK-054",
+ "base": "http://127.0.0.1:5179",
+ "passed": true,
+ "checks": [
+  {
+   "name": "shouts_bolts_impacts_numbers_incoming",
+   "passed": true,
+   "detail": {
+    "casts": 12,
+    "cast_skills": [
+     "archer_double_strafe",
+     "swordsman_bash",
+     "mage_fire_bolt",
+     "acolyte_heal",
+     "enemy_cataclysm",
+     "archer_concentration",
+     "swordsman_provoke",
+     "mage_cold_bolt",
+     "acolyte_blessing",
+     "archer_arrow_shower",
+     "mage_lightning_bolt",
+     "enemy_bite"
+    ],
+    "shouts_ms": {
+     "npc_archer:archer_double_strafe": 1500,
+     "main:swordsman_bash": 1500,
+     "npc_mage:mage_fire_bolt": 1600,
+     "npc_acolyte:acolyte_heal": 1525,
+     "enemy_front:enemy_cataclysm": 5000,
+     "npc_archer:archer_concentration": 1500,
+     "main:swordsman_provoke": 1050,
+     "npc_mage:mage_cold_bolt": 1650,
+     "npc_acolyte:acolyte_blessing": 1500,
+     "npc_archer:archer_arrow_shower": 1500,
+     "npc_mage:mage_lightning_bolt": 1625,
+     "enemy_front:enemy_bite": 1175
+    },
+    "impacts": {
+     "hit--21a32708b074.meta.json": 43,
+     "firehit1--4a19f438bcb6.meta.json": 54,
+     "concentration--6ff559979ba2.meta.json": 34,
+     "provoke--13708f6fb033.meta.json": 50,
+     "freeze--f46dfd0d129d.meta.json": 121,
+     "arrowstorm--d2aa6744c4c7.meta.json": 60,
+     "lightning--fcff45f78f47.meta.json": 60
+    },
+    "shapes": [
+     "arrow",
+     "orb",
+     "spear"
+    ],
+    "incoming_frames": 278,
+    "outgoing_frames": 409,
+    "saved": [
+     "numbers",
+     "bash",
+     "spear",
+     "lightning"
+    ],
+    "instant": [
+     "archer_double_strafe",
+     "swordsman_bash",
+     "swordsman_provoke"
+    ]
+   }
+  },
+  {
+   "name": "bow_arrow_leaves_on_release_frame_not_draw",
+   "passed": true,
+   "detail": {
+    "normal_attacks": 9,
+    "first_visible_after_swing_ms": [
+     705,
+     700,
+     705,
+     700,
+     701,
+     706,
+     703,
+     708
+    ],
+    "expected_release_ms": [
+     700,
+     700,
+     700,
+     700,
+     700,
+     700,
+     700,
+     700
+    ]
+   }
+  },
+  {
+   "name": "monk_fist_pose_cycle",
+   "passed": true,
+   "detail": {
+    "monk_normal_attacks": 5,
+    "poses": [
+     "attack",
+     "attack2",
+     "attack3",
+     "attack",
+     "attack2"
+    ],
+    "weapon": "library/weapons/weapon_overlay_atlas/_-_--978e9b8e2185.meta.json"
+   }
+  }
+ ],
+ "errors": [],
+ "generated_at": "2026-10-20T16:42:59.424Z"
+}

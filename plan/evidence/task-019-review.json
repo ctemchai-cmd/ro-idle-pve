@@ -1,0 +1,69 @@
+{
+  "task_id": "TASK-019",
+  "reviewer": "Codex self-review",
+  "review_round": 1,
+  "date": "2026-10-19",
+  "passed": true,
+  "pack_hash": "47f97d9aaac2bf10ac3279e5634052b72a55a26fefe1048de0c537387332d307",
+  "content_hash": "b47390643d41afd5ba3eec8b3198bfca320a3311d3a22297c68422a0d143a69b",
+  "input_sha256": {
+    "scripts/build_runtime_assets.py": "aef2f9a1f5e664d9e38eb5297167b3656cb964aabd9f6a0bc60505e1c157ad6c",
+    "scripts/game/runtime-assets.ts": "3a879c3939cf7b5a08e919cfa96ec429d31c6a0887e2792614cc3b04bf277223",
+    "scripts/game/generate-content.ts": "5787c13a24d7671d614950f64dc8dcfb7839dfdf92067ce47dd6a2a596d4bb0b",
+    "scripts/game/build-output.ts": "1b0ac43d4cd3b695f1e7491c2c7123cc5457ada5c1b29c7cd0e35a4d72ce6bd5",
+    "src/contracts/assets.ts": "7ede0f499483909fe95771edab084d29d943188e2f2c195808c1a09877bc141b",
+    "src/renderer/asset-locator.ts": "4eb88da001c29eb26ccdebb6a08b43c63a3c035bc9c813d48cae1ca0c913b726",
+    "vite.config.ts": "5e68fe371d7cd0943d36f436713c43ee34d6b43cd7cb4a7e6bf1811a4113aa6f",
+    "runtime/ro/manifest.json": "ce7c8897a8a240338f6be27509d4305a846be95f4db2a99d9b0a4d01dcc271d9"
+  },
+  "checks": [
+    {
+      "case_id": "complete_selected_closure",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": "126skills/19jobs/36presets/249assetIDs/499files;3locator tests allIDs +8packtests;499HTTPchecks matchSHA"
+    },
+    {
+      "case_id": "exclude_unresolved_or_unselected",
+      "acceptance": [
+        "AC-02"
+      ],
+      "passed": true,
+      "result": "reject missingdependencies/corruptmedia/unsafeorarchive paths;originalassetsHTTP403;44starter/60460librarysourcechecks passed,known9unresolvedSTR excluded"
+    },
+    {
+      "case_id": "upload_build_download_sizes",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": true,
+      "result": "22,434,695byte pack inclmanifest;1,582,210byte firstprofile+manifest;190091byte bootstrapgzip;sourceuploadwhitelist estimate separate;otherclasses/genders/audio/scenery lazy"
+    },
+    {
+      "case_id": "repeatable_and_invalid_refs",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": "same selection repeats packhash;balance-only edits leaveassetselection unchanged;unknownpresentation/newrefs/missingoutput fail;native source +font/audio/recipe changes checked when originals available"
+    }
+  ],
+  "evidence": [
+    "task-019-pack-tests.txt",
+    "task-019-locator-tests.txt",
+    "task-019-http.json",
+    "task-019-size-report.json",
+    "task-019-build.txt",
+    "task-019-source-starter.txt",
+    "task-019-source-library.txt"
+  ],
+  "limitations": [
+    "HTTP byte checks are not image decoding or visual/animation QA",
+    "Sourceupload is an explicit whitelist estimate, not an actual Vercel deployment",
+    "Firstprofile is four Class1 male defaults onfirstStory withaudiooff,not everypossible initialparty",
+    "CSSpanels+nativeicons;card genericart plus18distinct symbols;19authored/native recipefamilies serve126skills",
+    "Whole-game combat UI/cloudsave/runner remain unfinished;publish_ready=false"
+  ]
+}

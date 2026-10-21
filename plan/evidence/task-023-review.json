@@ -1,0 +1,69 @@
+{
+  "task_id": "TASK-023",
+  "passed": true,
+  "date": "2026-10-20",
+  "reviewer": "Codex self-review",
+  "round": 1,
+  "typescript_tests": 201,
+  "build": "passed; size warning remains TASK-042",
+  "source_sha256": {
+    "src/domain/progression/characters.ts": "3e8a7abb05925194fd71d2ccad67d44ac9a281b84afaa5577e690b6699eae8e7",
+    "src/domain/progression/initialize.ts": "952c1855249b2a6ecde6fa9220ed210533e47f71979f8fab2f890071ac2a870e",
+    "src/domain/account/commands.ts": "50b0846d77f08bf29118f72938f726dc8b817f996be7cef6778e95b6e015bb6d",
+    "src/client/roster.ts": "89d33b69cb4b7e774d2b4138c4fa70db2c82dc2e70aaed8c815ed19e57da76f4",
+    "src/client/save-controller.ts": "c3a0d0edbdb77bc7052fb4139b3cfcfd27c70c798bfe7c36628be80aef898fd0",
+    "src/ui/roster-page.tsx": "44c34e4886d79cd554a18f0b2a5d586288e1490e0a364c791564beab511af199",
+    "src/ui/roster.css": "69988b0f29559eeb6aea7b05432d03322c727d1e1e71b1044eff84c495f6af65",
+    "src/ui/icon.tsx": "7f3f058b6ac4b149fb1479a2daaa1581a14710bfa1872eebf32af5bd6ef0e836",
+    "src/ui/main.tsx": "38c1fc7c2da43e16b5ae1fd5a85504629f9c98101c5fb8978b7c2adebd65a708",
+    "tests/game/roster-progression.test.ts": "d689c9f4032beebb7079f81734d5b7cfa8e0af503fa03700d546b69df83d413b",
+    "tests/game/recurring-save.test.ts": "7329318fa18171e2757b33a2d039086dd2fb0aaac31a9d8077905f9ab49ee681",
+    "scripts/test_roster_live.cjs": "89b5a1826857fcd217e4c92aaf993fb9fa0d2a241abe4126320ba0467c920f2f",
+    "plan/data/module-contracts.json": "239aadf96711842b47fa7d86f0c35b347ad563ed3b36edeef21e9b6d183b8dc3"
+  },
+  "checks": [
+    {
+      "acceptance": "AC-01",
+      "passed": true,
+      "result": "Pure invalid Knight+Crusader NPC-origin case/main duplication and actual four-position team swaps; identity validation."
+    },
+    {
+      "acceptance": "AC-02",
+      "passed": true,
+      "result": "Real off-team MageLv2/AGI2, two party replacements and reload: retained progression, MerchantLv1, no automatic EXP distribution."
+    },
+    {
+      "acceptance": "AC-03",
+      "passed": true,
+      "result": "Pure exact costs to70/gates20-40-60/manual345points/no auto primary growth; actual Breakthrough20 independent from Dancer promotion; schema rejects71."
+    },
+    {
+      "acceptance": "AC-04",
+      "passed": true,
+      "result": "Actual old-price100gold/20manual refund + exact request replay; preserved weapon instance/slot refine+4/enchant2, full-inventory and battle-locked atomic rejection tests."
+    }
+  ],
+  "evidence": [
+    "task-023-check.txt",
+    "task-023-build.txt",
+    "task-023-local-stack.json",
+    "task-023-supabase-local.json",
+    "task-023-save-live-browser.json",
+    "task-023-roster-live-browser.json"
+  ],
+  "visual_review": {
+    "files": [
+      "docs/screenshots/roster-390.png",
+      "docs/screenshots/roster-360.png",
+      "docs/screenshots/roster-detail-360.png"
+    ],
+    "scope": "Actual mobile roster/team native bodies+heads/weapon removal, point controls>=44px, 360/390 no overflow; detail screenshot manually viewed. Not all classes/physical devices."
+  },
+  "limitations": [
+    "Only isolated real local services; no hosted Supabase/Vercel.",
+    "Lv20/old-price fixture is signed server-owned test data, not completed Story income.",
+    "Unconfigured /roster is explicitly an in-memory sandbox with initial resources; / battle remains separate until TASK-025.",
+    "Skill purchase/loadout UI remains TASK-024; equipment controls TASK-026.",
+    "Client imports pure progression for shared previews; UI domain/content/account imports remain prohibited."
+  ]
+}

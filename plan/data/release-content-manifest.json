@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "phase": "M0 authored data/contracts only",
+  "content_version": "class2-v1.0.0",
+  "rules_version": "combat-baseline-v1",
+  "engine_data_hash": "2b94b840cf93ff36329b93f7e77a163be3b1f51ff91136c177ac508bc51b867a",
+  "schema_hash": "8b3774b57cea17610616ae2b930476ef910b14c754bfae6263d9278147c11b33",
+  "presentation_selection_hash": "9ba3c12f1cada6f77415826c491e3e78e4a9bc7892e46b918ebebc7f7df681d9",
+  "implementation_hash": null,
+  "runtime_asset_pack_hash": null,
+  "runtime_requirement": "TASK-015/019 must add implementation/asset hashes and refuse publish without them; M0 hash is not proof of replay/runtime correctness",
+  "input_sha256": {
+    "plan/data/cards.json": "4f830e21c36968e1c38f03773f9d32d338c1a09099e47d1f205ffd618b8fac87",
+    "plan/data/class-status-effects.json": "b7c72874eb47e2a2fc0bd917fb85c36161c05923cd1c96af2f26266df56bb831",
+    "plan/data/combat-rules.json": "a24fce13fa08faf72b4a7317cb58d03eb8279861f78a674d84ec88bc065f6e07",
+    "plan/data/daily-bosses.json": "ddbc7e322e472b42bfd883784cb66b34004fa6d9bdb863a62901a00275932507",
+    "plan/data/economy.json": "34dc728a675a4169821613f36061efb6c0123ce4bd2fcf25f41ab812d6e66ddb",
+    "plan/data/effect-primitives.json": "d0da135a6b91756c77cdcc4e976e031b5c7134f25e12e4fa1e4ede989dbebcc6",
+    "plan/data/enemies.json": "b6d86c5f9071beee06eaba13b9023cd0496c4addbab52c380a9a33f5dd303c60",
+    "plan/data/equipment.json": "115f1a363682d08ff26cd1ed1054e7fb4f020eed4287ff489a93e986e4e0b701",
+    "plan/data/formula-registry.json": "ed2975ebe44959fe0010a0c8978a29ef2facb7dedc75fe503cda5ec6bc32918b",
+    "plan/data/gacha.json": "e6f037cbaba098b7d4e928012c9248b36b495527b8c38f157f29508c62f8e950",
+    "plan/data/loot.json": "e4989dbc0990f53ac47065d2e164d47defb6553444a3ad3abca5a57b81cd80d0",
+    "plan/data/progression.json": "623fd84f9a31d7caa3e5af10cb5a9996c5709eecada1bf000e6bf1e0c27f992f",
+    "plan/data/save-contracts.json": "33365c1292ca084bb57689a176b9428836e36e23ac40b7091a75e0f911831773",
+    "plan/data/simulation-contracts.json": "bfd81576dd6dacdbad8b4358092f8146e70ff8de7cfbe04bf9c19c9763fe494a",
+    "plan/data/skills/acolyte.json": "71f65ec8e54fd6fec34de56e5db6d9bd9491682daba3e17bb4aeea66e54d9c21",
+    "plan/data/skills/archer.json": "b21f60e6a5b939dd66a1e7c40dfbee8dd53f0b5061aa756cbef652246ce67b16",
+    "plan/data/skills/mage.json": "b0b743774bed0a3bb8de6ba4dc6758fa9c90985d56c0b8590f50a689ad66e84f",
+    "plan/data/skills/merchant.json": "7325e6e313800f9b4854fe53a76ba48b596c057ae6f78bd560f3afe1ae91c2b2",
+    "plan/data/skills/swordsman.json": "dca893423b26ec03c16efae54bc3665d80e2c404f76b0a67705c6322ae7f4982",
+    "plan/data/skills/thief.json": "6bb46fba568a520f74edd58217b229061b6ab517e3697a45e70fde108c7f07e0",
+    "plan/data/slot-progress.json": "d1f23febc0cc12c2413a1c300123e719a10c1e53c8bb1fe8d60bca4a7f04fde4",
+    "plan/data/stages.json": "a536d9e8b59b416a880b67b2eadb377e0a00297599bc5b1cde22c28ff57298f7",
+    "plan/data/stat-definitions.json": "810b43c0356247a24baf3b06bc194f801a7f7a951f2e75294c7c6b7f9b58ab01",
+    "plan/data/status-effects.json": "1538ab70f5976c8cb7cfa8b773f8dd3e445fb03d225d6d2361122ade17cc532e",
+    "plan/data/summon-actors.json": "907fb966e18dde786bdcaf54736a36a7fcfec49f02f6f5785c7c2070d21fb9f7",
+    "plan/data/tower.json": "23a3526e466bc522c9ebf97fdd267c658e364aad3bfbcfc3f35c2a32441de9bf",
+    "plan/data/schemas/account-state.json": "e3d6e078106fbfefef32dd382d3f5875dfa56aed718e2ed28f8930ec97d12d10",
+    "plan/data/schemas/battle-checkpoint.json": "dad12610a8c646018162e625d3e07c0a5450b871e4581ac312756fc7d702b897",
+    "plan/data/schemas/command.json": "e3eea361bcf2706125a1998e84f2852a54f1b7299e90718779c60c6de506bf33",
+    "plan/data/schemas/common.json": "a1e6f0140cd31dc4fa361b1447331c0ea8daa667c965bbfc5497da86d38fd2bd",
+    "plan/data/schemas/effect.json": "b0da67c8b4f8a87a65b79a96757370d5c19951bfed6e5b794c04833cf8c7ea04",
+    "plan/data/schemas/formula-call.json": "5bcee1d3bbb36d98dc0cfd861e348c078fe3da3a3e56be31d89213e3b2297eb8",
+    "plan/data/schemas/item.json": "a363a64325f20e9d6df7b1a18c535565306132b50ca92b2877eb6b8e7145183b",
+    "plan/data/schemas/modifier.json": "d4e6ef2dd03a6afd905f4dc0c1ffcd9ee9aa6438f0563e2a2734f446c8016cc1",
+    "plan/data/schemas/patch.json": "cedfbd99b2d91cc477c8a19efa585b2a7371b7e4e729932b071c0efd790fe082",
+    "plan/data/schemas/predicate.json": "2b88514d771a533bf445987321d901676c836fa0f24bc12bf396a58d190691aa",
+    "plan/data/schemas/receipt.json": "a6fc43ddbc931426e321d31d5b31029acba606abf6449f984bc88a3bed17425a",
+    "plan/data/schemas/selector.json": "c0593a4f50b3baaa11c87ef229900d5c6ae93036cf7848ced1f31341501946bc",
+    "plan/data/schemas/simulation-scenario.json": "27db3d11711f2bf3f56188510319b8a68b9284565aded730ea84ccfebd4f71b7",
+    "plan/data/schemas/skill.json": "060f7cdfc4a8b3a5bfdbf8e3060b6c96863452fe6b136b32fcd7fdf6288cc708",
+    "plan/data/schemas/status.json": "d998199e6e2fb6f7a74f399a7a55bf0d4fe2489bf7615225de8107ab910cbc15",
+    "plan/data/schemas/trigger.json": "91d1dd01928ec0881c31e488484dc2649eb6715a07370601a847fd3dea36a0a5",
+    "plan/data/actor-presentations.json": "bdc6a065b02e2a6d65a087de584c37b6fcc9a0bb95e8fc06907b6abd671f3668",
+    "plan/data/presentations/acolyte.json": "3d512f907aeff730c61d69df0859130f79e53423526315a407cdb40f859c30bd",
+    "plan/data/presentations/archer.json": "dcbd033a16a9ff7a7f3c4a64fdd1047b014155beb8c77935115a7c0a94c2ebb4",
+    "plan/data/presentations/mage.json": "49b33ea0096644cc985f1b041a1804bfb7068983f5f7bf8e5782bc28d8350f75",
+    "plan/data/presentations/merchant.json": "36beee67f4f4615d5b315279719b8432a449ab66c748c58bd05337b4ff2d7b00",
+    "plan/data/presentations/swordsman.json": "a1947457259e510b2ed0dd89e38df0eff961c3ec9be22b0920d92c5a8f7d60eb",
+    "plan/data/presentations/thief.json": "8b6e19a9bd18fc23651a626e4b62cc6db1ff9e604b127a8ce0bcc3e52d2fccba",
+    "plan/data/strings.th.json": "6459674ec3a0fc0407345297fba501122a4598214a28fe30083d7c7bc3ab0246"
+  },
+  "reference_builds": [
+    {
+      "source": "plan/data/skills/acolyte.json",
+      "build_ids": [
+        "priest_healer",
+        "priest_buffer",
+        "monk_finisher",
+        "monk_steel_tank"
+      ]
+    },
+    {
+      "source": "plan/data/skills/archer.json",
+      "build_ids": [
+        "bard_support",
+        "bard_disruptor",
+        "dancer_support",
+        "dancer_disruptor",
+        "hunter_sniper",
+        "hunter_trapper"
+      ]
+    },
+    {
+      "source": "plan/data/skills/mage.json",
+      "build_ids": [
+        "wizard_artillery",
+        "wizard_controller",
+        "sage_auto_bolt",
+        "sage_anti_magic"
+      ]
+    },
+    {
+      "source": "plan/data/skills/merchant.json",
+      "build_ids": [
+        "blacksmith_hammer",
+        "blacksmith_weaponsmith",
+        "alchemist_chemist",
+        "alchemist_gardener"
+      ]
+    },
+    {
+      "source": "plan/data/skills/swordsman.json",
+      "build_ids": [
+        "knight_striker",
+        "knight_counter_tank",
+        "crusader_guardian",
+        "crusader_holy_striker"
+      ]
+    },
+    {
+      "source": "plan/data/skills/thief.json",
+      "build_ids": [
+        "assassin_critical",
+        "assassin_venom",
+        "rogue_stripper",
+        "rogue_support_copy"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1840 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ro-idle.local/schemas/account-state.json",
+  "type": "object",
+  "properties": {
+    "wallet": {
+      "type": "object",
+      "properties": {
+        "gold": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "hero_exp": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "skill_manual": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "refine_ore": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "breakthrough_essence": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "enchant_dust": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "card_dust": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "crystal": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "gold",
+        "hero_exp",
+        "skill_manual",
+        "refine_ore",
+        "breakthrough_essence",
+        "enchant_dust",
+        "card_dust",
+        "crystal"
+      ],
+      "additionalProperties": false
+    },
+    "roster": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "character_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "kind": {
+            "enum": [
+              "main",
+              "npc"
+            ]
+          },
+          "root_job_id": {
+            "enum": [
+              "swordsman",
+              "acolyte",
+              "archer",
+              "mage",
+              "thief",
+              "merchant"
+            ]
+          },
+          "job_id": {
+            "enum": [
+              "swordsman",
+              "knight",
+              "crusader",
+              "acolyte",
+              "priest",
+              "monk",
+              "archer",
+              "hunter",
+              "bard",
+              "dancer",
+              "mage",
+              "wizard",
+              "sage",
+              "thief",
+              "assassin",
+              "rogue",
+              "merchant",
+              "blacksmith",
+              "alchemist"
+            ]
+          },
+          "gender": {
+            "enum": [
+              "male",
+              "female"
+            ]
+          },
+          "level": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 70
+          },
+          "local_cap": {
+            "enum": [
+              20,
+              40,
+              60,
+              80
+            ]
+          },
+          "completed_gate_ids": {
+            "type": "array",
+            "items": {
+              "enum": [
+                20,
+                40,
+                60
+              ]
+            },
+            "uniqueItems": true
+          },
+          "primary_stats": {
+            "type": "object",
+            "properties": {
+              "str": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 99
+              },
+              "agi": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 99
+              },
+              "vit": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 99
+              },
+              "int": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 99
+              },
+              "dex": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 99
+              },
+              "luk": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 99
+              }
+            },
+            "required": [
+              "str",
+              "agi",
+              "vit",
+              "int",
+              "dex",
+              "luk"
+            ],
+            "additionalProperties": false
+          },
+          "unspent_status_points": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "skill_levels": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10
+            }
+          },
+          "active_slots": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120
+                }
+              ]
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          "equipment": {
+            "type": "object",
+            "properties": {
+              "weapon": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  }
+                ]
+              },
+              "head": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  }
+                ]
+              },
+              "armor": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  }
+                ]
+              },
+              "garment": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  }
+                ]
+              },
+              "shoes": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  }
+                ]
+              },
+              "accessory": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  }
+                ]
+              }
+            },
+            "required": [
+              "weapon",
+              "head",
+              "armor",
+              "garment",
+              "shoes",
+              "accessory"
+            ],
+            "additionalProperties": false
+          },
+          "slot_progress": {
+            "type": "object",
+            "properties": {
+              "weapon": {
+                "type": "object",
+                "properties": {
+                  "refine": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 10
+                  },
+                  "refine_failures": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1000
+                  },
+                  "enchant": {
+                    "type": "object",
+                    "properties": {
+                      "line_id": {
+                        "oneOf": [
+                          {
+                            "type": "null"
+                          },
+                          {
+                            "enum": [
+                              "offense",
+                              "vitality",
+                              "precision"
+                            ]
+                          }
+                        ]
+                      },
+                      "level": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 10
+                      }
+                    },
+                    "required": [
+                      "line_id",
+                      "level"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "cards": {
+                    "type": "array",
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "null"
+                        },
+                        {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 120
+                        }
+                      ]
+                    },
+                    "minItems": 3,
+                    "maxItems": 3
+                  }
+                },
+                "required": [
+                  "refine",
+                  "refine_failures",
+                  "enchant",
+                  "cards"
+                ],
+                "additionalProperties": false
+              },
+              "head": {
+                "type": "object",
+                "properties": {
+                  "refine": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 10
+                  },
+                  "refine_failures": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1000
+                  },
+                  "enchant": {
+                    "type": "object",
+                    "properties": {
+                      "line_id": {
+                        "oneOf": [
+                          {
+                            "type": "null"
+                          },
+                          {
+                            "enum": [
+                              "offense",
+                              "vitality",
+                              "precision"
+                            ]
+                          }
+                        ]
+                      },
+                      "level": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 10
+                      }
+                    },
+                    "required": [
+                      "line_id",
+                      "level"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "cards": {
+                    "type": "array",
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "null"
+                        },
+                        {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 120
+                        }
+                      ]
+                    },
+                    "minItems": 3,
+                    "maxItems": 3
+                  }
+                },
+                "required": [
+                  "refine",
+                  "refine_failures",
+                  "enchant",
+                  "cards"
+                ],
+                "additionalProperties": false
+              },
+              "armor": {
+                "type": "object",
+                "properties": {
+                  "refine": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 10
+                  },
+                  "refine_failures": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1000
+                  },
+                  "enchant": {
+                    "type": "object",
+                    "properties": {
+                      "line_id": {
+                        "oneOf": [
+                          {
+                            "type": "null"
+                          },
+                          {
+                            "enum": [
+                              "offense",
+                              "vitality",
+                              "precision"
+                            ]
+                          }
+                        ]
+                      },
+                      "level": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 10
+                      }
+                    },
+                    "required": [
+                      "line_id",
+                      "level"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "cards": {
+                    "type": "array",
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "null"
+                        },
+                        {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 120
+                        }
+                      ]
+                    },
+                    "minItems": 3,
+                    "maxItems": 3
+                  }
+                },
+                "required": [
+                  "refine",
+                  "refine_failures",
+                  "enchant",
+                  "cards"
+                ],
+                "additionalProperties": false
+              },
+              "garment": {
+                "type": "object",
+                "properties": {
+                  "refine": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 10
+                  },
+                  "refine_failures": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1000
+                  },
+                  "enchant": {
+                    "type": "object",
+                    "properties": {
+                      "line_id": {
+                        "oneOf": [
+                          {
+                            "type": "null"
+                          },
+                          {
+                            "enum": [
+                              "offense",
+                              "vitality",
+                              "precision"
+                            ]
+                          }
+                        ]
+                      },
+                      "level": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 10
+                      }
+                    },
+                    "required": [
+                      "line_id",
+                      "level"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "cards": {
+                    "type": "array",
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "null"
+                        },
+                        {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 120
+                        }
+                      ]
+                    },
+                    "minItems": 3,
+                    "maxItems": 3
+                  }
+                },
+                "required": [
+                  "refine",
+                  "refine_failures",
+                  "enchant",
+                  "cards"
+                ],
+                "additionalProperties": false
+              },
+              "shoes": {
+                "type": "object",
+                "properties": {
+                  "refine": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 10
+                  },
+                  "refine_failures": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1000
+                  },
+                  "enchant": {
+                    "type": "object",
+                    "properties": {
+                      "line_id": {
+                        "oneOf": [
+                          {
+                            "type": "null"
+                          },
+                          {
+                            "enum": [
+                              "offense",
+                              "vitality",
+                              "precision"
+                            ]
+                          }
+                        ]
+                      },
+                      "level": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 10
+                      }
+                    },
+                    "required": [
+                      "line_id",
+                      "level"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "cards": {
+                    "type": "array",
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "null"
+                        },
+                        {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 120
+                        }
+                      ]
+                    },
+                    "minItems": 3,
+                    "maxItems": 3
+                  }
+                },
+                "required": [
+                  "refine",
+                  "refine_failures",
+                  "enchant",
+                  "cards"
+                ],
+                "additionalProperties": false
+              },
+              "accessory": {
+                "type": "object",
+                "properties": {
+                  "refine": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 10
+                  },
+                  "refine_failures": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1000
+                  },
+                  "enchant": {
+                    "type": "object",
+                    "properties": {
+                      "line_id": {
+                        "oneOf": [
+                          {
+                            "type": "null"
+                          },
+                          {
+                            "enum": [
+                              "offense",
+                              "vitality",
+                              "precision"
+                            ]
+                          }
+                        ]
+                      },
+                      "level": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 10
+                      }
+                    },
+                    "required": [
+                      "line_id",
+                      "level"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "cards": {
+                    "type": "array",
+                    "items": {
+                      "oneOf": [
+                        {
+                          "type": "null"
+                        },
+                        {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 120
+                        }
+                      ]
+                    },
+                    "minItems": 3,
+                    "maxItems": 3
+                  }
+                },
+                "required": [
+                  "refine",
+                  "refine_failures",
+                  "enchant",
+                  "cards"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "weapon",
+              "head",
+              "armor",
+              "garment",
+              "shoes",
+              "accessory"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "character_id",
+          "kind",
+          "root_job_id",
+          "job_id",
+          "gender",
+          "level",
+          "local_cap",
+          "completed_gate_ids",
+          "primary_stats",
+          "unspent_status_points",
+          "skill_levels",
+          "active_slots",
+          "equipment",
+          "slot_progress"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 7,
+      "maxItems": 7
+    },
+    "inventory": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "instance_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "definition_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "locked": {
+                "type": "boolean"
+              },
+              "kind": {
+                "const": "equipment"
+              },
+              "rarity_id": {
+                "enum": [
+                  "common",
+                  "uncommon",
+                  "rare",
+                  "epic",
+                  "legendary",
+                  "immortal",
+                  "supreme"
+                ]
+              },
+              "training": {
+                "type": "boolean"
+              },
+              "options": {
+                "type": "array",
+                "maxItems": 5,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-z0-9_]*$"
+                    },
+                    "roll": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "roll"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "instance_id",
+              "definition_id",
+              "locked",
+              "kind",
+              "rarity_id",
+              "training",
+              "options"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "instance_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "definition_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "locked": {
+                "type": "boolean"
+              },
+              "kind": {
+                "const": "card"
+              },
+              "rarity_id": {
+                "enum": [
+                  "bronze",
+                  "silver",
+                  "gold"
+                ]
+              },
+              "level": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              }
+            },
+            "required": [
+              "instance_id",
+              "definition_id",
+              "locked",
+              "kind",
+              "rarity_id",
+              "level"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "maxItems": 500
+    },
+    "team": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "character_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "position": {
+            "enum": [
+              "front_1",
+              "front_2",
+              "back_1",
+              "back_2"
+            ]
+          }
+        },
+        "required": [
+          "character_id",
+          "position"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "story": {
+      "type": "object",
+      "properties": {
+        "cleared_stage_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "uniqueItems": true
+        },
+        "selected_farm_stage": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            }
+          ]
+        }
+      },
+      "required": [
+        "cleared_stage_ids",
+        "selected_farm_stage"
+      ],
+      "additionalProperties": false
+    },
+    "tower": {
+      "type": "object",
+      "properties": {
+        "highest_cleared_floor": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "highest_cleared_floor"
+      ],
+      "additionalProperties": false
+    },
+    "daily_records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "boss_id": {
+            "enum": [
+              "treasury",
+              "forge",
+              "essence"
+            ]
+          },
+          "ticket_day": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "attempts_used": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          },
+          "phase": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "current_hp": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "rewarded_phases": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            },
+            "uniqueItems": true
+          },
+          "chapter_snapshot": {
+            "type": "integer",
+            "minimum": 2,
+            "maximum": 8
+          }
+        },
+        "required": [
+          "boss_id",
+          "ticket_day",
+          "attempts_used",
+          "phase",
+          "current_hp",
+          "rewarded_phases",
+          "chapter_snapshot"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 6
+    },
+    "gacha": {
+      "type": "object",
+      "properties": {
+        "card_v1": {
+          "type": "object",
+          "properties": {
+            "gold_misses": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 29
+            },
+            "bronze_streak": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9
+            }
+          },
+          "required": [
+            "gold_misses",
+            "bronze_streak"
+          ],
+          "additionalProperties": false
+        },
+        "equipment_v1": {
+          "type": "object",
+          "properties": {
+            "legendary_misses": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 49
+            },
+            "rare_streak": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9
+            }
+          },
+          "required": [
+            "legendary_misses",
+            "rare_streak"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "card_v1",
+        "equipment_v1"
+      ],
+      "additionalProperties": false
+    },
+    "farm": {
+      "type": "object",
+      "properties": {
+        "reserved_through": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "rate_snapshot": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "chapter": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 8
+                },
+                "stage_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120
+                },
+                "content_version": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120
+                },
+                "rules_version": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120
+                },
+                "per_hour": {
+                  "type": "object",
+                  "properties": {
+                    "gold": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "hero_exp": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "skill_manual": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "refine_ore": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "breakthrough_essence": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "enchant_dust": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "card_dust": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "crystal": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    }
+                  },
+                  "required": [
+                    "gold",
+                    "hero_exp",
+                    "skill_manual",
+                    "refine_ore",
+                    "breakthrough_essence",
+                    "enchant_dust",
+                    "card_dust",
+                    "crystal"
+                  ],
+                  "additionalProperties": false
+                },
+                "gear_tier": {
+                  "enum": [
+                    1,
+                    20,
+                    40,
+                    60
+                  ]
+                },
+                "rarity_weights": {
+                  "type": "object",
+                  "properties": {
+                    "common": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "uncommon": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "rare": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "epic": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "legendary": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "immortal": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "supreme": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    }
+                  },
+                  "required": [
+                    "common",
+                    "uncommon",
+                    "rare",
+                    "epic",
+                    "legendary",
+                    "immortal",
+                    "supreme"
+                  ],
+                  "additionalProperties": false
+                },
+                "definition_pool": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  },
+                  "minItems": 15,
+                  "maxItems": 36
+                }
+              },
+              "required": [
+                "chapter",
+                "stage_id",
+                "content_version",
+                "rules_version",
+                "per_hour",
+                "gear_tier",
+                "rarity_weights",
+                "definition_pool"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "remainders": {
+          "type": "object",
+          "properties": {
+            "gold": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 3599999
+            },
+            "hero_exp": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 3599999
+            },
+            "skill_manual": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 3599999
+            },
+            "refine_ore": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 3599999
+            },
+            "breakthrough_essence": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 3599999
+            },
+            "enchant_dust": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 3599999
+            },
+            "card_dust": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 3599999
+            },
+            "crystal": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 3599999
+            }
+          },
+          "required": [
+            "gold",
+            "hero_exp",
+            "skill_manual",
+            "refine_ore",
+            "breakthrough_essence",
+            "enchant_dust",
+            "card_dust",
+            "crystal"
+          ],
+          "additionalProperties": false
+        },
+        "loot_rng": {
+          "type": "object",
+          "properties": {
+            "state": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 4294967295
+            },
+            "draw_count": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "state",
+            "draw_count"
+          ],
+          "additionalProperties": false
+        },
+        "drop_carry_ms": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 299999
+        }
+      },
+      "required": [
+        "reserved_through",
+        "rate_snapshot",
+        "remainders",
+        "drop_carry_ms",
+        "loot_rng"
+      ],
+      "additionalProperties": false
+    },
+    "pending_rewards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "claim_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "kind": {
+            "enum": [
+              "farm",
+              "story",
+              "tower",
+              "daily"
+            ]
+          },
+          "resource_vector": {
+            "type": "object",
+            "properties": {
+              "gold": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "hero_exp": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "skill_manual": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "refine_ore": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "breakthrough_essence": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "enchant_dust": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "card_dust": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "crystal": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              }
+            },
+            "required": [
+              "gold",
+              "hero_exp",
+              "skill_manual",
+              "refine_ore",
+              "breakthrough_essence",
+              "enchant_dust",
+              "card_dust",
+              "crystal"
+            ],
+            "additionalProperties": false
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "instance_id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 120
+                    },
+                    "definition_id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 120
+                    },
+                    "locked": {
+                      "type": "boolean"
+                    },
+                    "kind": {
+                      "const": "equipment"
+                    },
+                    "rarity_id": {
+                      "enum": [
+                        "common",
+                        "uncommon",
+                        "rare",
+                        "epic",
+                        "legendary",
+                        "immortal",
+                        "supreme"
+                      ]
+                    },
+                    "training": {
+                      "type": "boolean"
+                    },
+                    "options": {
+                      "type": "array",
+                      "maxItems": 5,
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "pattern": "^[a-z][a-z0-9_]*$"
+                          },
+                          "roll": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 1000
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "roll"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "instance_id",
+                    "definition_id",
+                    "locked",
+                    "kind",
+                    "rarity_id",
+                    "training",
+                    "options"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "instance_id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 120
+                    },
+                    "definition_id": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 120
+                    },
+                    "locked": {
+                      "type": "boolean"
+                    },
+                    "kind": {
+                      "const": "card"
+                    },
+                    "rarity_id": {
+                      "enum": [
+                        "bronze",
+                        "silver",
+                        "gold"
+                      ]
+                    },
+                    "level": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 5
+                    }
+                  },
+                  "required": [
+                    "instance_id",
+                    "definition_id",
+                    "locked",
+                    "kind",
+                    "rarity_id",
+                    "level"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            },
+            "maxItems": 500
+          },
+          "content_version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "reserved_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "source_keys": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "minItems": 1
+          },
+          "status": {
+            "const": "pending"
+          }
+        },
+        "required": [
+          "claim_id",
+          "kind",
+          "resource_vector",
+          "items",
+          "content_version",
+          "reserved_at",
+          "source_keys",
+          "status"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 32
+    },
+    "paid_ledger": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "entry_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "character_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "feature_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "skill_id": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              }
+            ]
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "cost_version": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "paid_resources": {
+            "type": "object",
+            "properties": {
+              "gold": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "hero_exp": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "skill_manual": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "refine_ore": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "breakthrough_essence": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "enchant_dust": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "card_dust": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "crystal": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              }
+            },
+            "required": [
+              "gold",
+              "hero_exp",
+              "skill_manual",
+              "refine_ore",
+              "breakthrough_essence",
+              "enchant_dust",
+              "card_dust",
+              "crystal"
+            ],
+            "additionalProperties": false
+          },
+          "refund_state": {
+            "enum": [
+              "active",
+              "refunded"
+            ]
+          },
+          "refund_command_id": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              }
+            ]
+          },
+          "cost_versions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "entry_id",
+          "character_id",
+          "feature_id",
+          "skill_id",
+          "quantity",
+          "cost_version",
+          "paid_resources",
+          "refund_state",
+          "refund_command_id",
+          "cost_versions"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "active_battle": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "battle_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "mode": {
+              "enum": [
+                "story",
+                "tower",
+                "daily"
+              ]
+            },
+            "mode_ref": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "ticket_day": {
+              "oneOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120
+                }
+              ]
+            },
+            "started_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "last_ack_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "lease_expires_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "content_version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "rules_version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "content_hash": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "required": [
+            "battle_id",
+            "mode",
+            "mode_ref",
+            "ticket_day",
+            "started_at",
+            "last_ack_at",
+            "lease_expires_at",
+            "content_version",
+            "rules_version",
+            "content_hash"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "daily_objectives": {
+      "type": "object",
+      "properties": {
+        "day": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "farm_claimed": {
+          "type": "boolean"
+        },
+        "battle_finished": {
+          "type": "boolean"
+        },
+        "claimed": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "day",
+        "farm_claimed",
+        "battle_finished",
+        "claimed"
+      ],
+      "additionalProperties": false
+    },
+    "starter_grant_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "shop": {
+      "type": "object",
+      "properties": {
+        "day": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            }
+          ]
+        },
+        "purchases": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          }
+        }
+      },
+      "required": [
+        "day",
+        "purchases"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "wallet",
+    "roster",
+    "inventory",
+    "team",
+    "story",
+    "tower",
+    "daily_records",
+    "gacha",
+    "farm",
+    "pending_rewards",
+    "paid_ledger",
+    "active_battle",
+    "daily_objectives",
+    "starter_grant_id",
+    "shop"
+  ],
+  "additionalProperties": false
+}

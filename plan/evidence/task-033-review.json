@@ -1,0 +1,46 @@
+{
+ "task_id": "TASK-033",
+ "passed": true,
+ "round": 1,
+ "date": "2026-10-20",
+ "reviewer": "Claude self-check",
+ "content_hash": "4a7901023a240045d17c8aaa7e74d77f2e85f76c8afae3e66ac2d2881bccef90",
+ "rules_version": "combat-baseline-v1",
+ "checks": [
+  {
+   "acceptance": "AC-01",
+   "passed": true,
+   "result": "24 skills (incl. 5 Rogue copies) match all 72 M0 golden cases incl. Detonate consumed/remaining counts. Every Active at every level 1-10 resolved in the engine probe and produced every effect. Every Passive changes stats or procs at levels 1-10 (Double Attack from normal hits). Assassin/Rogue skill pages list only root+own-branch skills; Detonate now shows a real description instead of the generic text. All 24 resolve pack visuals."
+  },
+  {
+   "acceptance": "AC-02",
+   "passed": true,
+   "result": "Each Rogue copy equals its whitelisted source program at every level (effects/timing identical, SP = ceil(source×1.25)); no copy of a copy exists; a loadout with two copies is rejected with EXCLUSIVE_SKILL_GROUP. Detonate (5 hits) deals raw = own venom stacks × 120 at Lv10, removes only the caster's venom and leaves the ally's (5 detonations checked with ≥2 own + ≥1 ally stacks); the same caster stacks independent venom instances."
+  },
+  {
+   "acceptance": "AC-03",
+   "passed": true,
+   "result": "catalogQueueTrace of all 4 builds equals the M0 queue_estimate. Real fights keep the dry first cycle except Quick Step hasting the critical Assassin; Rogue builds put armor break/attack down/exposed on the shared target."
+  },
+  {
+   "acceptance": "AC-04",
+   "passed": true,
+   "result": "Story 6-20 seed 33 with main Assassin venom + Rogue NPC swapped into the Archer slot: server (50 confirmed checkpoints), client session with render views and runner give the identical final checkpoint and 602 events (digest 9b4b0daa), outcome STORY_WON; 28 venom ticks keep the Assassin cast as source."
+  }
+ ],
+ "commands": [
+  "RO_TREE_EVIDENCE=plan/evidence/task-033-runtime.json node --import tsx --test tests/game/skills-thief.test.ts (9 pass)"
+ ],
+ "measurements": "plan/evidence/task-033-runtime.json",
+ "limitations": [
+  "No new visuals: icons per skill, in-battle effects reuse family recipes.",
+  "Behaviour evidence with probes, not a balance verdict (TASK-041)."
+ ],
+ "source_sha256": {
+  "tests/game/skills-thief.test.ts": "3f8df4dbe8f5cf9274b7f8e1b10a2b97d0fb6aaa6552ce2f6f7c9720a540783b",
+  "tests/game/class-skills.ts": "a53709341b097a7916798e040c272b1170bc1316538dcada9f97462c74f03536",
+  "plan/evidence/task-033-runtime.json": "cafa3efffe9d1e36b65645ebc443e9b3d03b8b1f776f0c1af2480dc9da7b3507",
+  "src/client/skills.ts": "767c8cdd4489daf9efff47237a93e9ed5b3f2c81036beed68a50c57d996ab9e8"
+ },
+ "credentials_logged": false
+}

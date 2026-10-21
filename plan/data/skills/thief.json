@@ -1,0 +1,3934 @@
+{
+  "schema_version": 1,
+  "content_version": "thief-class2-v1",
+  "authoring_status": "M0 baseline for this game; not verified RO Idle equations or measured balance",
+  "root_job_id": "thief",
+  "inheritance": "Class2 learns root and selected branch only; inactive branch investments are refunded/reset per paid ledger",
+  "skill_cap": "min(definition.max_level,1+floor((character_level-1)/5))",
+  "learn_policy": "Unlock does not auto-learn or auto-upgrade; user calls skill.upgrade target_level1 to learn for free. Only two root starter actives are granted; learned Passives then apply automatically.",
+  "skills": [
+    {
+      "id": "thief_envenom",
+      "name_key": "thief_envenom",
+      "class_id": "thief",
+      "max_level": 10,
+      "unlock_level": 1,
+      "tags": [
+        "thief",
+        "envenom"
+      ],
+      "level_parameters": {
+        "power": [
+          1.0,
+          1.066667,
+          1.133333,
+          1.2,
+          1.266667,
+          1.333333,
+          1.4,
+          1.466667,
+          1.533333,
+          1.6
+        ],
+        "poison": [
+          0.2,
+          0.222222,
+          0.244444,
+          0.266667,
+          0.288889,
+          0.311111,
+          0.333333,
+          0.355556,
+          0.377778,
+          0.4
+        ]
+      },
+      "presentation_id": "visual_thief_envenom",
+      "kind": "active",
+      "cost": {
+        "sp": 18,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 150,
+        "after_cast_ms": 650,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "venom",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "venom",
+          "duration_ms": 5000,
+          "params": {
+            "power_ratio": {
+              "level_param": "poison"
+            }
+          },
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    },
+    {
+      "id": "thief_quick_step",
+      "name_key": "thief_quick_step",
+      "class_id": "thief",
+      "max_level": 10,
+      "unlock_level": 1,
+      "tags": [
+        "thief",
+        "quick_step"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.1,
+          0.113333,
+          0.126667,
+          0.14,
+          0.153333,
+          0.166667,
+          0.18,
+          0.193333,
+          0.206667,
+          0.22
+        ]
+      },
+      "presentation_id": "visual_thief_quick_step",
+      "kind": "active",
+      "cost": {
+        "sp": 18,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 600,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "aspd_up",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "aspd_up",
+          "duration_ms": 4500,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "thief_sand_attack",
+      "name_key": "thief_sand_attack",
+      "class_id": "thief",
+      "max_level": 10,
+      "unlock_level": 5,
+      "tags": [
+        "thief",
+        "sand_attack"
+      ],
+      "level_parameters": {
+        "power": [
+          0.8,
+          0.855556,
+          0.911111,
+          0.966667,
+          1.022222,
+          1.077778,
+          1.133333,
+          1.188889,
+          1.244444,
+          1.3
+        ],
+        "blind": [
+          -0.05,
+          -0.057778,
+          -0.065556,
+          -0.073333,
+          -0.081111,
+          -0.088889,
+          -0.096667,
+          -0.104444,
+          -0.112222,
+          -0.12
+        ]
+      },
+      "presentation_id": "visual_thief_sand_attack",
+      "kind": "active",
+      "cost": {
+        "sp": 20,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 250,
+        "after_cast_ms": 750,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "accuracy_down",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "accuracy_down",
+          "duration_ms": 4500,
+          "params": {
+            "ratio": {
+              "level_param": "blind"
+            }
+          },
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "stun",
+          "duration_ms": 1000,
+          "params": {},
+          "chance": 0.5,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    },
+    {
+      "id": "thief_backstab",
+      "name_key": "thief_backstab",
+      "class_id": "thief",
+      "max_level": 10,
+      "unlock_level": 10,
+      "tags": [
+        "thief",
+        "backstab"
+      ],
+      "level_parameters": {
+        "power": [
+          1.5,
+          1.611111,
+          1.722222,
+          1.833333,
+          1.944444,
+          2.055556,
+          2.166667,
+          2.277778,
+          2.388889,
+          2.5
+        ]
+      },
+      "presentation_id": "visual_thief_backstab",
+      "kind": "active",
+      "cost": {
+        "sp": 24,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 350,
+        "after_cast_ms": 850,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "thief_double_attack",
+      "name_key": "thief_double_attack",
+      "class_id": "thief",
+      "max_level": 10,
+      "unlock_level": 10,
+      "tags": [
+        "thief",
+        "double_attack"
+      ],
+      "level_parameters": {
+        "power": [
+          0.35,
+          0.388889,
+          0.427778,
+          0.466667,
+          0.505556,
+          0.544444,
+          0.583333,
+          0.622222,
+          0.661111,
+          0.7
+        ]
+      },
+      "presentation_id": "visual_thief_double_attack",
+      "kind": "passive",
+      "modifiers": [],
+      "triggers": [
+        {
+          "id": "double_hit",
+          "event": "normal_attack_hit",
+          "chance": 0.25,
+          "accepted_origins": [
+            "normal"
+          ],
+          "limit_scope": "none",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {},
+          "effects": [
+            {
+              "id": "extra_hit",
+              "type": "damage",
+              "target": "event_target",
+              "formula": {
+                "id": "physical_power",
+                "params": {
+                  "attack_ratio": {
+                    "level_param": "power"
+                  },
+                  "flat_power": 0
+                }
+              },
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "assassin_sonic_blow",
+      "name_key": "assassin_sonic_blow",
+      "class_id": "assassin",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "assassin",
+        "sonic_blow"
+      ],
+      "level_parameters": {
+        "power": [
+          0.55,
+          0.588889,
+          0.627778,
+          0.666667,
+          0.705556,
+          0.744444,
+          0.783333,
+          0.822222,
+          0.861111,
+          0.9
+        ]
+      },
+      "presentation_id": "visual_assassin_sonic_blow",
+      "kind": "active",
+      "cost": {
+        "sp": 34,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 500,
+        "after_cast_ms": 1000,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 4,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "assassin_enchant_poison",
+      "name_key": "assassin_enchant_poison",
+      "class_id": "assassin",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "assassin",
+        "enchant_poison"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.12,
+          0.134444,
+          0.148889,
+          0.163333,
+          0.177778,
+          0.192222,
+          0.206667,
+          0.221111,
+          0.235556,
+          0.25
+        ]
+      },
+      "presentation_id": "visual_assassin_enchant_poison",
+      "kind": "active",
+      "cost": {
+        "sp": 28,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 400,
+        "after_cast_ms": 850,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "attack_up",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "attack_up",
+          "duration_ms": 5500,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "assassin_venom_dust",
+      "name_key": "assassin_venom_dust",
+      "class_id": "assassin",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "assassin",
+        "venom_dust"
+      ],
+      "level_parameters": {
+        "power": [
+          0.25,
+          0.277778,
+          0.305556,
+          0.333333,
+          0.361111,
+          0.388889,
+          0.416667,
+          0.444444,
+          0.472222,
+          0.5
+        ]
+      },
+      "presentation_id": "visual_assassin_venom_dust",
+      "kind": "active",
+      "cost": {
+        "sp": 38,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 650,
+        "after_cast_ms": 1100,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "venom",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "venom",
+          "duration_ms": 6000,
+          "params": {
+            "power_ratio": {
+              "level_param": "power"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "assassin_detonate",
+      "name_key": "assassin_detonate",
+      "class_id": "assassin",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "assassin",
+        "detonate"
+      ],
+      "level_parameters": {
+        "power": [
+          60.0,
+          66.666667,
+          73.333333,
+          80.0,
+          86.666667,
+          93.333333,
+          100.0,
+          106.666667,
+          113.333333,
+          120.0
+        ]
+      },
+      "presentation_id": "visual_assassin_detonate",
+      "kind": "active",
+      "cost": {
+        "sp": 34,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 750,
+        "after_cast_ms": 1200,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "detonate",
+          "type": "handler",
+          "target": "foe",
+          "handler_id": "detonate_own_status",
+          "params": {
+            "status_id": "venom",
+            "power_per_instance": {
+              "level_param": "power"
+            },
+            "max_consumed": null,
+            "damage_type": "physical",
+            "element": "poison"
+          }
+        }
+      ]
+    },
+    {
+      "id": "assassin_grimtooth",
+      "name_key": "assassin_grimtooth",
+      "class_id": "assassin",
+      "max_level": 10,
+      "unlock_level": 40,
+      "tags": [
+        "assassin",
+        "grimtooth"
+      ],
+      "level_parameters": {
+        "power": [
+          1.2,
+          1.288889,
+          1.377778,
+          1.466667,
+          1.555556,
+          1.644444,
+          1.733333,
+          1.822222,
+          1.911111,
+          2.0
+        ]
+      },
+      "presentation_id": "visual_assassin_grimtooth",
+      "kind": "active",
+      "cost": {
+        "sp": 36,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 500,
+        "after_cast_ms": 1000,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "assassin_katar_mastery",
+      "name_key": "assassin_katar_mastery",
+      "class_id": "assassin",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "assassin",
+        "katar_mastery"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.05,
+          0.061111,
+          0.072222,
+          0.083333,
+          0.094444,
+          0.105556,
+          0.116667,
+          0.127778,
+          0.138889,
+          0.15
+        ]
+      },
+      "presentation_id": "visual_assassin_katar_mastery",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "crit_chance_bonus",
+          "stat": "crit_chance_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "ratio"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "assassin_poison_edge",
+      "name_key": "assassin_poison_edge",
+      "class_id": "assassin",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "assassin",
+        "poison_edge"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.04,
+          0.048889,
+          0.057778,
+          0.066667,
+          0.075556,
+          0.084444,
+          0.093333,
+          0.102222,
+          0.111111,
+          0.12
+        ]
+      },
+      "presentation_id": "visual_assassin_poison_edge",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "outgoing_physical_bonus",
+          "stat": "outgoing_physical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "ratio"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "rogue_strip_armor",
+      "name_key": "rogue_strip_armor",
+      "class_id": "rogue",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "rogue",
+        "strip_armor"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.18,
+          0.198889,
+          0.217778,
+          0.236667,
+          0.255556,
+          0.274444,
+          0.293333,
+          0.312222,
+          0.331111,
+          0.35
+        ]
+      },
+      "presentation_id": "visual_rogue_strip_armor",
+      "kind": "active",
+      "cost": {
+        "sp": 28,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 450,
+        "after_cast_ms": 900,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "armor_break",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "armor_break",
+          "duration_ms": 5500,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "rogue_strip_weapon",
+      "name_key": "rogue_strip_weapon",
+      "class_id": "rogue",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "rogue",
+        "strip_weapon"
+      ],
+      "level_parameters": {
+        "ratio": [
+          -0.1,
+          -0.113333,
+          -0.126667,
+          -0.14,
+          -0.153333,
+          -0.166667,
+          -0.18,
+          -0.193333,
+          -0.206667,
+          -0.22
+        ]
+      },
+      "presentation_id": "visual_rogue_strip_weapon",
+      "kind": "active",
+      "cost": {
+        "sp": 30,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 500,
+        "after_cast_ms": 950,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "attack_down",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "attack_down",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "rogue_expose",
+      "name_key": "rogue_expose",
+      "class_id": "rogue",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "rogue",
+        "expose"
+      ],
+      "level_parameters": {
+        "power": [
+          1.0,
+          1.066667,
+          1.133333,
+          1.2,
+          1.266667,
+          1.333333,
+          1.4,
+          1.466667,
+          1.533333,
+          1.6
+        ],
+        "ratio": [
+          0.1,
+          0.114444,
+          0.128889,
+          0.143333,
+          0.157778,
+          0.172222,
+          0.186667,
+          0.201111,
+          0.215556,
+          0.23
+        ]
+      },
+      "presentation_id": "visual_rogue_expose",
+      "kind": "active",
+      "cost": {
+        "sp": 32,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 500,
+        "after_cast_ms": 1000,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "exposed",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "exposed",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    },
+    {
+      "id": "rogue_intimidate",
+      "name_key": "rogue_intimidate",
+      "class_id": "rogue",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "rogue",
+        "intimidate"
+      ],
+      "level_parameters": {
+        "sp_cost": [
+          45,
+          44,
+          43,
+          42,
+          41,
+          40,
+          39,
+          38,
+          37,
+          36
+        ]
+      },
+      "presentation_id": "visual_rogue_intimidate",
+      "kind": "active",
+      "cost": {
+        "sp": {
+          "level_param": "sp_cost"
+        },
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 400,
+        "after_cast_ms": 1050,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "stun",
+          "duration_ms": 1400,
+          "params": {},
+          "chance": 0.85
+        }
+      ]
+    },
+    {
+      "id": "rogue_raid",
+      "name_key": "rogue_raid",
+      "class_id": "rogue",
+      "max_level": 10,
+      "unlock_level": 40,
+      "tags": [
+        "rogue",
+        "raid"
+      ],
+      "level_parameters": {
+        "power": [
+          1.0,
+          1.077778,
+          1.155556,
+          1.233333,
+          1.311111,
+          1.388889,
+          1.466667,
+          1.544444,
+          1.622222,
+          1.7
+        ],
+        "blind": [
+          -0.04,
+          -0.046667,
+          -0.053333,
+          -0.06,
+          -0.066667,
+          -0.073333,
+          -0.08,
+          -0.086667,
+          -0.093333,
+          -0.1
+        ]
+      },
+      "presentation_id": "visual_rogue_raid",
+      "kind": "active",
+      "cost": {
+        "sp": 40,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 650,
+        "after_cast_ms": 1100,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "accuracy_down",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "accuracy_down",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": {
+              "level_param": "blind"
+            }
+          },
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    },
+    {
+      "id": "rogue_dodge",
+      "name_key": "rogue_dodge",
+      "class_id": "rogue",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "rogue",
+        "dodge"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.03,
+          0.037778,
+          0.045556,
+          0.053333,
+          0.061111,
+          0.068889,
+          0.076667,
+          0.084444,
+          0.092222,
+          0.1
+        ]
+      },
+      "presentation_id": "visual_rogue_dodge",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "ratio"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "rogue_dirty_tricks",
+      "name_key": "rogue_dirty_tricks",
+      "class_id": "rogue",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "rogue",
+        "dirty_tricks"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.03,
+          0.037778,
+          0.045556,
+          0.053333,
+          0.061111,
+          0.068889,
+          0.076667,
+          0.084444,
+          0.092222,
+          0.1
+        ]
+      },
+      "presentation_id": "visual_rogue_dirty_tricks",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "control_accuracy",
+          "stat": "control_accuracy",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "ratio"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    {
+      "id": "rogue_copy_swordsman_bash",
+      "name_key": "rogue_copy_swordsman_bash",
+      "class_id": "rogue",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "rogue",
+        "copy"
+      ],
+      "level_parameters": {
+        "power": [
+          1.4,
+          1.488889,
+          1.577778,
+          1.666667,
+          1.755556,
+          1.844444,
+          1.933333,
+          2.022222,
+          2.111111,
+          2.2
+        ]
+      },
+      "presentation_id": "visual_swordsman_bash",
+      "kind": "active",
+      "cost": {
+        "sp": 15,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 500,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "stun",
+          "duration_ms": 1000,
+          "params": {},
+          "chance": 0.6,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    },
+    {
+      "id": "rogue_copy_acolyte_heal",
+      "name_key": "rogue_copy_acolyte_heal",
+      "class_id": "rogue",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "rogue",
+        "copy"
+      ],
+      "level_parameters": {
+        "power": [
+          1.2,
+          1.311111,
+          1.422222,
+          1.533333,
+          1.644444,
+          1.755556,
+          1.866667,
+          1.977778,
+          2.088889,
+          2.2
+        ]
+      },
+      "presentation_id": "visual_acolyte_heal",
+      "kind": "active",
+      "cost": {
+        "sp": 23,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 600,
+        "after_cast_ms": 700,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "heal",
+          "type": "heal",
+          "target": "friend",
+          "formula": {
+            "id": "healing_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "rogue_copy_archer_double_strafe",
+      "name_key": "rogue_copy_archer_double_strafe",
+      "class_id": "rogue",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "rogue",
+        "copy"
+      ],
+      "level_parameters": {
+        "power": [
+          0.7,
+          0.744444,
+          0.788889,
+          0.833333,
+          0.877778,
+          0.922222,
+          0.966667,
+          1.011111,
+          1.055556,
+          1.1
+        ]
+      },
+      "presentation_id": "visual_archer_double_strafe",
+      "kind": "active",
+      "cost": {
+        "sp": 20,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 600,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 2,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "rogue_copy_mage_fire_bolt",
+      "name_key": "rogue_copy_mage_fire_bolt",
+      "class_id": "rogue",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "rogue",
+        "copy"
+      ],
+      "level_parameters": {
+        "power": [
+          0.4,
+          0.433333,
+          0.466667,
+          0.5,
+          0.533333,
+          0.566667,
+          0.6,
+          0.633333,
+          0.666667,
+          0.7
+        ]
+      },
+      "presentation_id": "visual_mage_fire_bolt",
+      "kind": "active",
+      "cost": {
+        "sp": 23,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 800,
+        "after_cast_ms": 650,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "fire",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 3,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "rogue_copy_merchant_cart_revolution",
+      "name_key": "rogue_copy_merchant_cart_revolution",
+      "class_id": "rogue",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "rogue",
+        "copy"
+      ],
+      "level_parameters": {
+        "power": [
+          0.8,
+          0.866667,
+          0.933333,
+          1.0,
+          1.066667,
+          1.133333,
+          1.2,
+          1.266667,
+          1.333333,
+          1.4
+        ]
+      },
+      "presentation_id": "visual_merchant_cart_revolution",
+      "kind": "active",
+      "cost": {
+        "sp": 30,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 400,
+        "after_cast_ms": 900,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": 1000,
+          "params": {},
+          "chance": 0.4,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    }
+  ],
+  "upgrades": {
+    "thief_envenom": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 50,
+          "skill_manual": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 150,
+          "skill_manual": 30
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 250,
+          "skill_manual": 50
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 350,
+          "skill_manual": 70
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 450,
+          "skill_manual": 90
+        }
+      ]
+    },
+    "thief_quick_step": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 50,
+          "skill_manual": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 150,
+          "skill_manual": 30
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 250,
+          "skill_manual": 50
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 350,
+          "skill_manual": 70
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 450,
+          "skill_manual": 90
+        }
+      ]
+    },
+    "thief_sand_attack": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 50,
+          "skill_manual": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 150,
+          "skill_manual": 30
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 250,
+          "skill_manual": 50
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 350,
+          "skill_manual": 70
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 450,
+          "skill_manual": 90
+        }
+      ]
+    },
+    "thief_backstab": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 50,
+          "skill_manual": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 150,
+          "skill_manual": 30
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 250,
+          "skill_manual": 50
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 350,
+          "skill_manual": 70
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 450,
+          "skill_manual": 90
+        }
+      ]
+    },
+    "thief_double_attack": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 50,
+          "skill_manual": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 150,
+          "skill_manual": 30
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 250,
+          "skill_manual": 50
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 350,
+          "skill_manual": 70
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 450,
+          "skill_manual": 90
+        }
+      ]
+    },
+    "assassin_sonic_blow": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "assassin_enchant_poison": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "assassin_venom_dust": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "assassin_detonate": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "assassin_grimtooth": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "assassin_katar_mastery": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "assassin_poison_edge": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "rogue_strip_armor": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "rogue_strip_weapon": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "rogue_expose": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "rogue_intimidate": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "rogue_raid": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "rogue_dodge": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "rogue_dirty_tricks": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "rogue_copy_swordsman_bash": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "rogue_copy_acolyte_heal": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "rogue_copy_archer_double_strafe": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "rogue_copy_mage_fire_bolt": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    },
+    "rogue_copy_merchant_cart_revolution": {
+      "learn_level_one_cost": {},
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 100,
+          "skill_manual": 20
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 200,
+          "skill_manual": 40
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 300,
+          "skill_manual": 60
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 400,
+          "skill_manual": 80
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 500,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 600,
+          "skill_manual": 120
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 700,
+          "skill_manual": 140
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 800,
+          "skill_manual": 160
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 900,
+          "skill_manual": 180
+        }
+      ]
+    }
+  },
+  "builds": [
+    {
+      "id": "assassin_critical",
+      "job_id": "assassin",
+      "level": 70,
+      "role": "personal multi-hit burst",
+      "primary_stats": {
+        "str": 45,
+        "agi": 35,
+        "vit": 1,
+        "int": 1,
+        "dex": 1,
+        "luk": 35
+      },
+      "spent_status_points": 272,
+      "unspent_status_points": 404,
+      "active_slots": [
+        "thief_quick_step",
+        "assassin_enchant_poison",
+        "assassin_sonic_blow",
+        "thief_backstab"
+      ],
+      "skill_levels": {
+        "thief_envenom": 1,
+        "thief_quick_step": 10,
+        "thief_sand_attack": 1,
+        "thief_backstab": 10,
+        "thief_double_attack": 10,
+        "assassin_sonic_blow": 10,
+        "assassin_enchant_poison": 10,
+        "assassin_venom_dust": 1,
+        "assassin_detonate": 1,
+        "assassin_grimtooth": 1,
+        "assassin_katar_mastery": 10,
+        "assassin_poison_edge": 10
+      },
+      "automatic_passives": [
+        "thief_double_attack",
+        "assassin_katar_mastery",
+        "assassin_poison_edge"
+      ],
+      "paid_upgrade_budget": {
+        "gold": 24750,
+        "skill_manual": 4950
+      },
+      "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+      "queue_estimate": {
+        "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+        "si_ms": 1042,
+        "cycle_ms": 8464,
+        "starts": [
+          {
+            "skill_id": "thief_quick_step",
+            "start_ms": 1042,
+            "resolve_ms": 1042,
+            "acd_end_ms": 1609
+          },
+          {
+            "skill_id": "assassin_enchant_poison",
+            "start_ms": 2651,
+            "resolve_ms": 3029,
+            "acd_end_ms": 3831
+          },
+          {
+            "skill_id": "assassin_sonic_blow",
+            "start_ms": 4873,
+            "resolve_ms": 5345,
+            "acd_end_ms": 6289
+          },
+          {
+            "skill_id": "thief_backstab",
+            "start_ms": 7331,
+            "resolve_ms": 7662,
+            "acd_end_ms": 8464
+          }
+        ],
+        "fixed_sp_per_cycle": 104,
+        "job_bonus": "D-061 job bonus included in primary stats"
+      }
+    },
+    {
+      "id": "assassin_venom",
+      "job_id": "assassin",
+      "level": 70,
+      "role": "own poison application and detonation",
+      "primary_stats": {
+        "str": 55,
+        "agi": 25,
+        "vit": 1,
+        "int": 1,
+        "dex": 35,
+        "luk": 1
+      },
+      "spent_status_points": 292,
+      "unspent_status_points": 384,
+      "active_slots": [
+        "thief_envenom",
+        "assassin_venom_dust",
+        "assassin_detonate",
+        "assassin_sonic_blow"
+      ],
+      "skill_levels": {
+        "thief_envenom": 10,
+        "thief_quick_step": 1,
+        "thief_sand_attack": 1,
+        "thief_backstab": 1,
+        "thief_double_attack": 10,
+        "assassin_sonic_blow": 10,
+        "assassin_enchant_poison": 1,
+        "assassin_venom_dust": 10,
+        "assassin_detonate": 10,
+        "assassin_grimtooth": 1,
+        "assassin_katar_mastery": 10,
+        "assassin_poison_edge": 10
+      },
+      "automatic_passives": [
+        "thief_double_attack",
+        "assassin_katar_mastery",
+        "assassin_poison_edge"
+      ],
+      "paid_upgrade_budget": {
+        "gold": 27000,
+        "skill_manual": 5400
+      },
+      "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+      "queue_estimate": {
+        "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+        "si_ms": 1053,
+        "cycle_ms": 8038,
+        "starts": [
+          {
+            "skill_id": "thief_envenom",
+            "start_ms": 1053,
+            "resolve_ms": 1149,
+            "acd_end_ms": 1564
+          },
+          {
+            "skill_id": "assassin_venom_dust",
+            "start_ms": 2617,
+            "resolve_ms": 3032,
+            "acd_end_ms": 3733
+          },
+          {
+            "skill_id": "assassin_detonate",
+            "start_ms": 4786,
+            "resolve_ms": 5264,
+            "acd_end_ms": 6029
+          },
+          {
+            "skill_id": "assassin_sonic_blow",
+            "start_ms": 7082,
+            "resolve_ms": 7401,
+            "acd_end_ms": 8038
+          }
+        ],
+        "fixed_sp_per_cycle": 124,
+        "job_bonus": "D-061 job bonus included in primary stats"
+      }
+    },
+    {
+      "id": "rogue_stripper",
+      "job_id": "rogue",
+      "level": 70,
+      "role": "weaken enemies for entire team",
+      "primary_stats": {
+        "str": 30,
+        "agi": 1,
+        "vit": 40,
+        "int": 1,
+        "dex": 50,
+        "luk": 1
+      },
+      "spent_status_points": 298,
+      "unspent_status_points": 378,
+      "active_slots": [
+        "rogue_strip_armor",
+        "rogue_strip_weapon",
+        "rogue_expose",
+        "rogue_intimidate"
+      ],
+      "skill_levels": {
+        "thief_envenom": 1,
+        "thief_quick_step": 1,
+        "thief_sand_attack": 1,
+        "thief_backstab": 1,
+        "thief_double_attack": 10,
+        "rogue_strip_armor": 10,
+        "rogue_strip_weapon": 10,
+        "rogue_expose": 10,
+        "rogue_intimidate": 10,
+        "rogue_raid": 1,
+        "rogue_dodge": 10,
+        "rogue_dirty_tricks": 10,
+        "rogue_copy_swordsman_bash": 1,
+        "rogue_copy_acolyte_heal": 1,
+        "rogue_copy_archer_double_strafe": 1,
+        "rogue_copy_mage_fire_bolt": 1,
+        "rogue_copy_merchant_cart_revolution": 1
+      },
+      "automatic_passives": [
+        "thief_double_attack",
+        "rogue_dodge",
+        "rogue_dirty_tricks"
+      ],
+      "paid_upgrade_budget": {
+        "gold": 29250,
+        "skill_manual": 5850
+      },
+      "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+      "queue_estimate": {
+        "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+        "si_ms": 1227,
+        "cycle_ms": 8115,
+        "starts": [
+          {
+            "skill_id": "rogue_strip_armor",
+            "start_ms": 1227,
+            "resolve_ms": 1478,
+            "acd_end_ms": 1980
+          },
+          {
+            "skill_id": "rogue_strip_weapon",
+            "start_ms": 3207,
+            "resolve_ms": 3486,
+            "acd_end_ms": 4016
+          },
+          {
+            "skill_id": "rogue_expose",
+            "start_ms": 5243,
+            "resolve_ms": 5522,
+            "acd_end_ms": 6080
+          },
+          {
+            "skill_id": "rogue_intimidate",
+            "start_ms": 7307,
+            "resolve_ms": 7530,
+            "acd_end_ms": 8115
+          }
+        ],
+        "fixed_sp_per_cycle": 126,
+        "job_bonus": "D-061 job bonus included in primary stats"
+      }
+    },
+    {
+      "id": "rogue_support_copy",
+      "job_id": "rogue",
+      "level": 70,
+      "role": "team debuffs and one copied heal",
+      "primary_stats": {
+        "str": 1,
+        "agi": 1,
+        "vit": 25,
+        "int": 45,
+        "dex": 45,
+        "luk": 1
+      },
+      "spent_status_points": 282,
+      "unspent_status_points": 394,
+      "active_slots": [
+        "rogue_strip_armor",
+        "rogue_expose",
+        "rogue_copy_acolyte_heal",
+        "rogue_intimidate"
+      ],
+      "skill_levels": {
+        "thief_envenom": 1,
+        "thief_quick_step": 1,
+        "thief_sand_attack": 1,
+        "thief_backstab": 1,
+        "thief_double_attack": 10,
+        "rogue_strip_armor": 10,
+        "rogue_strip_weapon": 1,
+        "rogue_expose": 10,
+        "rogue_intimidate": 10,
+        "rogue_raid": 1,
+        "rogue_dodge": 10,
+        "rogue_dirty_tricks": 10,
+        "rogue_copy_swordsman_bash": 1,
+        "rogue_copy_acolyte_heal": 10,
+        "rogue_copy_archer_double_strafe": 1,
+        "rogue_copy_mage_fire_bolt": 1,
+        "rogue_copy_merchant_cart_revolution": 1
+      },
+      "automatic_passives": [
+        "thief_double_attack",
+        "rogue_dodge",
+        "rogue_dirty_tricks"
+      ],
+      "paid_upgrade_budget": {
+        "gold": 29250,
+        "skill_manual": 5850
+      },
+      "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+      "queue_estimate": {
+        "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+        "si_ms": 1240,
+        "cycle_ms": 8023,
+        "starts": [
+          {
+            "skill_id": "rogue_strip_armor",
+            "start_ms": 1240,
+            "resolve_ms": 1486,
+            "acd_end_ms": 1978
+          },
+          {
+            "skill_id": "rogue_expose",
+            "start_ms": 3218,
+            "resolve_ms": 3492,
+            "acd_end_ms": 4039
+          },
+          {
+            "skill_id": "rogue_copy_acolyte_heal",
+            "start_ms": 5279,
+            "resolve_ms": 5607,
+            "acd_end_ms": 5990
+          },
+          {
+            "skill_id": "rogue_intimidate",
+            "start_ms": 7230,
+            "resolve_ms": 7449,
+            "acd_end_ms": 8023
+          }
+        ],
+        "fixed_sp_per_cycle": 119,
+        "job_bonus": "D-061 job bonus included in primary stats"
+      }
+    }
+  ],
+  "notes": {
+    "thief_envenom": "",
+    "thief_quick_step": "",
+    "thief_sand_attack": "",
+    "thief_backstab": "",
+    "thief_double_attack": "",
+    "assassin_sonic_blow": "",
+    "assassin_enchant_poison": "",
+    "assassin_venom_dust": "",
+    "assassin_detonate": "",
+    "assassin_grimtooth": "",
+    "assassin_katar_mastery": "",
+    "assassin_poison_edge": "",
+    "rogue_strip_armor": "",
+    "rogue_strip_weapon": "",
+    "rogue_expose": "",
+    "rogue_intimidate": "",
+    "rogue_raid": "",
+    "rogue_dodge": "",
+    "rogue_dirty_tricks": "",
+    "rogue_copy_swordsman_bash": "Consumes one of four slots. At most one copy-group skill; cannot copy passives/summons/reflection/other copies.",
+    "rogue_copy_acolyte_heal": "Consumes one of four slots. At most one copy-group skill; cannot copy passives/summons/reflection/other copies.",
+    "rogue_copy_archer_double_strafe": "Consumes one of four slots. At most one copy-group skill; cannot copy passives/summons/reflection/other copies.",
+    "rogue_copy_mage_fire_bolt": "Consumes one of four slots. At most one copy-group skill; cannot copy passives/summons/reflection/other copies.",
+    "rogue_copy_merchant_cart_revolution": "Consumes one of four slots. At most one copy-group skill; cannot copy passives/summons/reflection/other copies."
+  },
+  "future_awaken": "stable skill/effect IDs; no hi-class definitions required by these builds",
+  "copy_whitelist": [
+    {
+      "skill_id": "rogue_copy_swordsman_bash",
+      "source_skill_id": "swordsman_bash",
+      "source_root": "swordsman",
+      "exclusive_group": "rogue_copy",
+      "sp_multiplier": 1.25,
+      "rule": "materialized immutable effect copy; source level cap still enforced"
+    },
+    {
+      "skill_id": "rogue_copy_acolyte_heal",
+      "source_skill_id": "acolyte_heal",
+      "source_root": "acolyte",
+      "exclusive_group": "rogue_copy",
+      "sp_multiplier": 1.25,
+      "rule": "materialized immutable effect copy; source level cap still enforced"
+    },
+    {
+      "skill_id": "rogue_copy_archer_double_strafe",
+      "source_skill_id": "archer_double_strafe",
+      "source_root": "archer",
+      "exclusive_group": "rogue_copy",
+      "sp_multiplier": 1.25,
+      "rule": "materialized immutable effect copy; source level cap still enforced"
+    },
+    {
+      "skill_id": "rogue_copy_mage_fire_bolt",
+      "source_skill_id": "mage_fire_bolt",
+      "source_root": "mage",
+      "exclusive_group": "rogue_copy",
+      "sp_multiplier": 1.25,
+      "rule": "materialized immutable effect copy; source level cap still enforced"
+    },
+    {
+      "skill_id": "rogue_copy_merchant_cart_revolution",
+      "source_skill_id": "merchant_cart_revolution",
+      "source_root": "merchant",
+      "exclusive_group": "rogue_copy",
+      "sp_multiplier": 1.25,
+      "rule": "materialized immutable effect copy; source level cap still enforced"
+    }
+  ],
+  "generated_skill_ids": [
+    "rogue_copy_swordsman_bash",
+    "rogue_copy_acolyte_heal",
+    "rogue_copy_archer_double_strafe",
+    "rogue_copy_mage_fire_bolt",
+    "rogue_copy_merchant_cart_revolution"
+  ]
+}

@@ -1,0 +1,309 @@
+{
+  "schema_version": 1,
+  "owner_key": [
+    "character_id",
+    "equipment_slot"
+  ],
+  "not_owned_by": [
+    "item_instance",
+    "party_position"
+  ],
+  "requires_equipped_item_for_battle_effect": true,
+  "refine": {
+    "max": 10,
+    "success_chance_by_target": {
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "4": 1,
+      "5": 0.8,
+      "6": 0.65,
+      "7": 0.5,
+      "8": 0.4,
+      "9": 0.3,
+      "10": 0.2
+    },
+    "failure": {
+      "consumes": "the step cost only",
+      "level_change": 0,
+      "breaks_item": false
+    },
+    "pity": {
+      "bonus_per_failure": 0.1,
+      "cap": 1,
+      "resets_on_success": true,
+      "counter": "slot_progress[slot].refine_failures"
+    },
+    "steps_per_command": 1,
+    "roll": {
+      "source": "server-injected per-command seed (never client supplied)",
+      "rule": "success when roll < min(cap, chance + bonus_per_failure * failures)"
+    },
+    "rule_source": "D-057; chances/pity are an assistant baseline to tune in TASK-041",
+    "per_step_modifiers": {
+      "weapon": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 8
+        },
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 8
+        }
+      ],
+      "head": [
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 4
+        }
+      ],
+      "armor": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 40
+        }
+      ],
+      "garment": [
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 4
+        }
+      ],
+      "shoes": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 30
+        }
+      ],
+      "accessory": [
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 4
+        }
+      ]
+    },
+    "upgrade_rows": [
+      {
+        "from": 0,
+        "to": 1,
+        "gold": 200,
+        "refine_ore": 5
+      },
+      {
+        "from": 1,
+        "to": 2,
+        "gold": 800,
+        "refine_ore": 10
+      },
+      {
+        "from": 2,
+        "to": 3,
+        "gold": 1800,
+        "refine_ore": 15
+      },
+      {
+        "from": 3,
+        "to": 4,
+        "gold": 3200,
+        "refine_ore": 20
+      },
+      {
+        "from": 4,
+        "to": 5,
+        "gold": 5000,
+        "refine_ore": 25
+      },
+      {
+        "from": 5,
+        "to": 6,
+        "gold": 7200,
+        "refine_ore": 30
+      },
+      {
+        "from": 6,
+        "to": 7,
+        "gold": 9800,
+        "refine_ore": 35
+      },
+      {
+        "from": 7,
+        "to": 8,
+        "gold": 12800,
+        "refine_ore": 40
+      },
+      {
+        "from": 8,
+        "to": 9,
+        "gold": 16200,
+        "refine_ore": 45
+      },
+      {
+        "from": 9,
+        "to": 10,
+        "gold": 20000,
+        "refine_ore": 50
+      }
+    ]
+  },
+  "enchant": {
+    "max": 10,
+    "selected_line_count": 1,
+    "lines": {
+      "offense": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 5
+        },
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 5
+        }
+      ],
+      "vitality": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 30
+        }
+      ],
+      "precision": [
+        {
+          "id": "dex",
+          "stat": "dex",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 1
+        }
+      ]
+    },
+    "upgrade_rows": [
+      {
+        "from": 0,
+        "to": 1,
+        "gold": 300,
+        "enchant_dust": 3
+      },
+      {
+        "from": 1,
+        "to": 2,
+        "gold": 1200,
+        "enchant_dust": 6
+      },
+      {
+        "from": 2,
+        "to": 3,
+        "gold": 2700,
+        "enchant_dust": 9
+      },
+      {
+        "from": 3,
+        "to": 4,
+        "gold": 4800,
+        "enchant_dust": 12
+      },
+      {
+        "from": 4,
+        "to": 5,
+        "gold": 7500,
+        "enchant_dust": 15
+      },
+      {
+        "from": 5,
+        "to": 6,
+        "gold": 10800,
+        "enchant_dust": 18
+      },
+      {
+        "from": 6,
+        "to": 7,
+        "gold": 14700,
+        "enchant_dust": 21
+      },
+      {
+        "from": 7,
+        "to": 8,
+        "gold": 19200,
+        "enchant_dust": 24
+      },
+      {
+        "from": 8,
+        "to": 9,
+        "gold": 24300,
+        "enchant_dust": 27
+      },
+      {
+        "from": 9,
+        "to": 10,
+        "gold": 30000,
+        "enchant_dust": 30
+      }
+    ],
+    "switch_line": "out of battle; refund actual paid line ledger, reset to zero and purchase desired line at current prices",
+    "random_reroll": false
+  },
+  "cards": {
+    "capacity_by_refine": [
+      {
+        "minimum_refine": 0,
+        "slots": 1
+      },
+      {
+        "minimum_refine": 5,
+        "slots": 2
+      },
+      {
+        "minimum_refine": 10,
+        "slots": 3
+      }
+    ],
+    "switch": "free outside battle; same instance cannot be assigned twice; progress stays on character slot; item swap does not detach cards",
+    "same_definition_duplicates": "allowed if distinct instances; modifiers additive, no hidden cap"
+  },
+  "slot_move_cases": [
+    {
+      "operation": "change equipment instance",
+      "preserve": [
+        "refine",
+        "enchant",
+        "card assignments"
+      ]
+    },
+    {
+      "operation": "replace NPC in team position",
+      "preserve": "old NPC keeps all slot state; replacement uses its own"
+    },
+    {
+      "operation": "unequip weapon after class switch",
+      "preserve": "slot investment dormant until compatible weapon equipped"
+    }
+  ]
+}

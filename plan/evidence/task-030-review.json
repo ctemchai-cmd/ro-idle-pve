@@ -1,0 +1,52 @@
+{
+ "task_id": "TASK-030",
+ "passed": true,
+ "round": 1,
+ "date": "2026-10-20",
+ "reviewer": "Claude self-check",
+ "content_hash": "28af9b8367687adf4db841368b541ec1afb756120ffa899f3e92647ee7494aec",
+ "rules_version": "combat-baseline-v1",
+ "checks": [
+  {
+   "acceptance": "AC-01",
+   "passed": true,
+   "result": "19 skills (14 Active, 5 Passive) match all 57 M0 golden cases incl. Sanctuary tick times/raw tick power, Kyrie shield power, Resurrection HP/SP and Asura all-current SP. Every Active at every level 1-10 resolved in the engine probe (seed 1, 60s; dead ally for Resurrection, 5 starting spheres for sphere skills) and produced every effect (heal, buffs, HoT ticks with parent cast, shield, revive, sphere gain, Asura/Finger/Triple damage, Steel Body guard/provoke/slow) on allowed targets in program order. Every Passive changes stats or procs at levels 1-10 (Spirit Combo grants spheres on normal hits). Priest/Monk skill pages list only root+own-branch skills with effect text; all 19 resolve pack icon/recipe/sound."
+  },
+  {
+   "acceptance": "AC-02",
+   "passed": true,
+   "result": "Heal Lv10 on a full-HP party still cast 9 times in queue order, spent 162 SP, effective 0 / overheal 12672. Monk finisher: spheres stay within 0..5 at every 500ms sample, every Asura start leaves 0 SP and 0 spheres (spent [407, 60, 48, 60]), 5 sphere(s) wasted at cap; a Stun resolving at 3686ms (inside the 3523–4379ms Asura cast) interrupts Asura (attributed to the stunner), 407 SP stays spent, no damage, no refund. Steel Body Lv10: guard 0→0.4, attack speed 106→74.2 (−30%), and the boss switches its normal attacks from the front ally to the Monk."
+  },
+  {
+   "acceptance": "AC-03",
+   "passed": true,
+   "result": "catalogQueueTrace of all 4 builds (compiled from validated account characters, no early locked skill) equals the M0 queue_estimate; learned Passives change the trace stats. Full engine fights keep the dry first cycle for both Priest builds, while Asura spends the live SP pool (407 then 60/48) and Spirit Combo refills spheres for the finisher, and Steel Body's slow delays the steel-tank's next start."
+  },
+  {
+   "acceptance": "AC-04",
+   "passed": true,
+   "result": "Story 6-20 seed 30 with main Priest healer + Monk finisher NPC: server commands (89 confirmed checkpoints), client session with a render view per frame, and runner give the identical final checkpoint and 945 events (digest 4804b1e3), outcome STORY_TIME_LIMIT. Heal/overheal/shield/SP/sphere metrics are per owner:skill; Sanctuary heal ticks carry effect heal_tick and the parent cast token; Kyrie shields are attributed to their cast."
+  }
+ ],
+ "engine_changes": [
+  "Effect events (heal, shield, resource_change, status_applied/resisted/removed, revive) now carry action_id, source_instance_id and effect_id; cast_start carries its cast token and cast_interrupt names the interrupter's action (D-060). Combat rules and numbers are unchanged."
+ ],
+ "commands": [
+  "RO_TREE_EVIDENCE=plan/evidence/task-030-runtime.json node --import tsx --test tests/game/skills-acolyte.test.ts (10 pass)",
+  "npm run check (content 7b54253e…, 265 tests pass)"
+ ],
+ "measurements": "plan/evidence/task-030-runtime.json",
+ "limitations": [
+  "No new visuals: icons per skill, in-battle effects reuse family recipes (heal/buff/burst).",
+  "Role/encounter numbers are behaviour evidence with probes, not a balance verdict; the 6-20 parity team (two Lv1 companions, no gear) times out. Tuning is TASK-041.",
+  "Visual review of each skill animation was not performed."
+ ],
+ "source_sha256": {
+  "tests/game/skills-acolyte.test.ts": "c4655e4ea969fabb193dec4b9d8e8802648af3228f0db1c002091e2a6318da44",
+  "tests/game/class-skills.ts": "6dd7cb1536465e6d6b5250d20a5da48f0d2403e295b4d093d5a5effdfdacad62",
+  "src/domain/combat/effects.ts": "4255849d42fc00eed6493ec7825742fb747c53d48cb6a6ad3b8a0445dc020636",
+  "src/domain/combat/engine.ts": "886f9d20a8fd1f83e1d890603fe6b6ca09fda92b7fdb98c1a38637e445faaae8",
+  "plan/evidence/task-030-runtime.json": "d03f20cdef822eccf0632c107f80e2eeae9838bb6bc8c0abe10b8870e0310116"
+ },
+ "credentials_logged": false
+}

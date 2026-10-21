@@ -1,0 +1,49 @@
+{
+ "task_id": "TASK-036",
+ "passed": true,
+ "round": 1,
+ "date": "2026-10-20",
+ "reviewer": "Claude self-check",
+ "content_hash": "ab45f2161932dad06f12935577f62c9f6e4278ae0d910bc87c5707db0540ca06",
+ "checks": [
+  {
+   "acceptance": "AC-01",
+   "passed": true,
+   "result": "Three bosses × three attempts per Bangkok day; each attempt is spent at start with no refund on retreat, the boss enters with the HP left from earlier attempts, the party starts full, the limit is 60 s and the 4th start returns DAILY_NO_ATTEMPTS."
+  },
+  {
+   "acceptance": "AC-02",
+   "passed": true,
+   "result": "One timed attempt that empties several bars gives one chest per bar (claim keys boss+day+phase); each next bar is stronger, the clock is not reset and the result is not a victory; server settlement equals the runner with the shared mode policy."
+  },
+  {
+   "acceptance": "AC-03",
+   "passed": true,
+   "result": "An attempt started 23:59:45 Bangkok and finished after midnight writes only its ticket day; old-day chests stay claimable and the new day starts with phase 1 and 0 rewarded bars."
+  },
+  {
+   "acceptance": "AC-04",
+   "passed": true,
+   "result": "A second start is BATTLE_ALREADY_ACTIVE; advance/retreat after settlement are ACTIVE_BATTLE_MISMATCH with records/chests unchanged; there is no HP/phase rollback, and the client SavedBattleSession confirms every server checkpoint. Live: a treasury attempt through the real API/DB reserved 1 attempt and kept phase/HP/chest."
+  }
+ ],
+ "commands": [
+  "node --import tsx --test tests/game/daily.test.ts (4 pass)",
+  "npm run check (327 pass)",
+  "RO_EVIDENCE_PREFIX=task-048 RO_LOCAL_TEST_FOCUS=shell python3 scripts/test_auth_stack.py (19 checks, 0 browser errors)"
+ ],
+ "limitations": [
+  "Multi-tab exclusivity relies on the TASK-022 Web Locks/CAS evidence; it was not re-run per daily mode.",
+  "Daily chest sizes and boss growth are baselines; TASK-041 tunes them."
+ ],
+ "source_sha256": {
+  "tests/game/daily.test.ts": "b99f1e483ba17a669fccc4e80c5e8a1f0c6c4d292d455d908d880479ab7bf8d9",
+  "src/domain/modes/daily.ts": "72ce43cb0757db66ef0adffef8ba87bf0beb6bb874dc27a0139375258006e0cd",
+  "src/domain/account/commands.ts": "d412eadffadee8e908a4d746c1fbbd70036d288fad563f7977f89ad29f4ca3ae",
+  "src/client/story.ts": "1330a41bc8a290c1e0f615effd647324e064fcf2a8109a10d01b34e98206e87c",
+  "src/ui/game/daily.tsx": "c63fddc372d22a7d2239e286a5d19321ab7b0fb1a9e6fdda9b2ca53c86d550a8",
+  "src/ui/game/field.tsx": "5be13857edbd6a83ce665aee8bb1c12b623a00caf8d45fc569561e47542e642a",
+  "scripts/test_game_shell_live.cjs": "70d0ed6d0f6b1b281580e52b2587de1f4e85aa92748ded5e184fe5035cb03f77"
+ },
+ "credentials_logged": false
+}

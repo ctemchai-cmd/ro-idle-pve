@@ -1,0 +1,45 @@
+{
+ "task_id": "TASK-031",
+ "passed": true,
+ "round": 1,
+ "date": "2026-10-20",
+ "reviewer": "Claude self-check",
+ "content_hash": "7b54253e170bb74c0a8933616f78c439e43791a43f76141bc8894272c5f8a00e",
+ "rules_version": "combat-baseline-v1",
+ "checks": [
+  {
+   "acceptance": "AC-01",
+   "passed": true,
+   "result": "26 skills (incl. 7 Bard + 7 Dancer) match all 78 M0 golden cases. Every Active at every level 1-10 resolved in the engine probe and produced every effect (arrows, Crippling slow on hit, Hunter's Mark exposed, Ankle Snare/Encore stun, Claymore/Blitz AoE, songs incl. heal ticks, Dissonance armor break + SP drain). Every Passive changes stats or procs at levels 1-10; Falcon hit 5 times only from normal-attack actions (origin proc) while Double Strafe hit 44 times without triggering it. Hunter/Bard/Dancer skill pages list only root+own-branch skills with effect text; all 26 resolve pack visuals."
+  },
+  {
+   "acceptance": "AC-02",
+   "passed": true,
+   "result": "Bard or Dancer is the same npc_archer (roster stays 7, one Archer NPC, validated): Bard male with instrument overlay weapons.ceeaaa199e788467, Dancer female with whip overlay weapons.1a059fe122821dc7; 70 Bard/Dancer resolved definitions (7 pairs × 10 levels) are identical apart from identity/presentation. Battle Song recast at [1963, 4452, 6759, 9066, 11241] ms adds independent aspd_up stacks (up to 3 active), each with its own 5500 ms expiry, and each expires separately."
+  },
+  {
+   "acceptance": "AC-03",
+   "passed": true,
+   "result": "catalogQueueTrace of all 6 builds equals the M0 queue_estimate; learned Passives change trace stats. Full fights keep the dry first cycle for Hunters/disruptors, while the support singers' Battle Song hastens their own next starts (e.g. Bard support 3671/5946/8310 vs dry 3935/6474/9102)."
+  },
+  {
+   "acceptance": "AC-04",
+   "passed": true,
+   "result": "Story 6-20 seed 31 with main Hunter trapper + Bard support NPC: server commands (78 confirmed checkpoints), client session with render views, and runner give the identical final checkpoint and 910 events (digest a023441c), outcome STORY_WON at 78460 ms. Falcon damage is booked under main:hunter_falcon (proc, 3563 HP), Healing Song ticks keep the Bard cast as source."
+  }
+ ],
+ "commands": [
+  "RO_TREE_EVIDENCE=plan/evidence/task-031-runtime.json node --import tsx --test tests/game/skills-archer.test.ts (9 pass)"
+ ],
+ "measurements": "plan/evidence/task-031-runtime.json",
+ "limitations": [
+  "No new visuals: icons per skill, in-battle effects reuse family recipes; Bard/Dancer body/weapon presets were checked by metadata, not by a new manual animation review.",
+  "Behaviour evidence with probes, not a balance verdict (TASK-041)."
+ ],
+ "source_sha256": {
+  "tests/game/skills-archer.test.ts": "017f4ff81eef2b0fc03e0dca0d2fe9fb0125bef74f0672cec0240a7b13d99564",
+  "tests/game/class-skills.ts": "19154e2c634eb55187c3fb054bb9d8e73b1a55ab961034883bba73feb4fa333e",
+  "plan/evidence/task-031-runtime.json": "c9a30ee274f719c20efd2b02d4a5c13d0987d80f6cb442385a7534558086fcdf"
+ },
+ "credentials_logged": false
+}
