@@ -1,0 +1,11 @@
+.pwa-install{width:100%;color:#3e6090;font-size:13px;line-height:1.65}
+.pwa-install-button{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:42px;padding:10px 16px;border:1px solid #bcd0eb;border-radius:14px;background:#f4f8ff;color:#315a99;font:inherit;font-weight:600;cursor:pointer;list-style:none;text-align:center;box-sizing:border-box}
+.pwa-install-button::-webkit-details-marker{display:none}
+.pwa-install .ui-icon{width:18px;height:18px;flex:none;vertical-align:middle}
+.pwa-install p{margin:10px 4px 0;text-align:center}
+.pwa-install p .ui-icon{margin:0 2px}
+.auth-layout>.pwa-install{max-width:400px;justify-self:center}
+.app-shell:has(.auth-layout){padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px);min-height:100dvh}
+.auth-emblem>.ui-icon{display:block;width:44px;height:44px;margin:auto}
+.app-shell:has(.auth-layout) .brand-mark>.ui-icon{width:40px;height:40px;vertical-align:middle}
+@media(display-mode:standalone){.pwa-install{display:none}}

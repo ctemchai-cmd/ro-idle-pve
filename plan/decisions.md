@@ -108,6 +108,7 @@
 | D-083 | 21 ต.ค.2026 ผู้ใช้ขอลดการบันทึกเซฟระหว่างสู้ ผู้ช่วยเลือกรอบ periodic battle.advance 4วินาทีแทน1วินาที (ตัวเลขเป็น implementation baseline) ภาพยังใช้ shared prediction ทุก frame; คำสั่งใช้ทรัพยากร/รับรางวัลยังทันที และยืนยันเวลาที่ความเร็วเดิมก่อนเปลี่ยน1×/2×/4× | TASK-059; ไม่เปลี่ยน DB credit5000ms/lease15000ms/content hash หรือกติกา offline |
 | D-084 | 21 ต.ค.2026 ผู้ใช้ถามทำไมไม่เซฟเฉพาะตอนสู้จบ ต่อจากคำขอลดเซฟ: เปลี่ยนruntimeเป็นบันทึกstartและfinish/retreatเท่านั้น ไม่มีperiodicackหรือspeedchange write; serverreplayseed/buildที่เก็บด้วยsharedengineก่อนsettle ตัวกันเวลาใช้DBticket180sและelapsedขั้นต่ำตาม4×(assistant implementation baseline) ไม่รับผลเงิน/ดาเมจจากclient | TASK-060 แทนD-083; legacyadvanceคงเฉพาะdiagnostic ผู้ช่วยสื่อสารว่าrefresh/offlineก่อนจบretreatและdailyattemptยังเสีย |
 | D-085 | 21 ต.ค.2026 ผู้ใช้รายงานresetแล้วตัวละครLv1แต่ดันรายวันยังเก่า ขอresetดันด้วย และแก้เป้าหมายล่าสุดเป็นVercel: account.resetต้องล้างdaily_recordsของเกมใหม่ แก้legacycarryoverผ่านbacked-upmigrationเฉพาะเกมที่ยังไม่unlockdaily ไม่ล้างเกมที่unlockแล้วหรือprogressอื่น | TASK-061 แก้ข้อยกเว้นdailyในD-064; restore/shop/objectiveguardเดิม ไม่แก้DB6173 ไม่เพิ่มปุ่มresetdailyไม่จำกัด |
+| D-086 | 21 ต.ค.2026 ผู้ใช้ขอ PWA: ติดตั้งบนมือถือที่รองรับ เปิดไอคอนเข้า/play แบบstandaloneแนวตั้ง มีปุ่มติดตั้งและคำแนะนำiOS ใช้Supabaseและonline-primaryเดิม | TASK-062; assistantเลือกcacheเฉพาะหน้าoffline+4icons≤128KiB ไม่cacheเกม/API/Auth/เซฟ ไม่reloadกลางไฟต์ และไม่เปลี่ยนcontenthash |
 
 ## คำถามหลักที่ส่งให้ผู้ใช้แล้ว
 

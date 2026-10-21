@@ -8117,6 +8117,94 @@
       "execution_evidence": [
         "plan/evidence/task-061-review.json"
       ]
+    },
+    {
+      "id": "T062-AC-01",
+      "task_id": "TASK-062",
+      "acceptance_id": "AC-01",
+      "criterion": "manifestถูกต้อง start_url/play, standalone, portrait, icons192/512/maskableและApple180; Chromeอ่านmanifest/workerได้ ไม่มีinstallabilityerrorที่เกิดจากartifact",
+      "input_setup": "Production dist, fresh normal Chrome profile and ephemeral loopback server; synthetic API/prompt/storage fixtures; hosted smoke signed out only",
+      "input_refs": [
+        "plan/review/tasks_062.md",
+        "scripts/test_pwa_browser.cjs",
+        "pwa/manifest.webmanifest",
+        "pwa/sw.js"
+      ],
+      "parameters": {
+        "precache_cap_bytes": 131072,
+        "content_hash": "768e12a49bf339711d44f501c3710374adbcd10d9eb74d6a2e6f9b8aa79330af"
+      },
+      "expected": "manifestถูกต้อง start_url/play, standalone, portrait, icons192/512/maskableและApple180; Chromeอ่านmanifest/workerได้ ไม่มีinstallabilityerrorที่เกิดจากartifact",
+      "verification": "Production build; Chrome CDP/installability/CacheStorage/offline/update and mobile UX; hosted manifest/headers/login without owner writes",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T062-AC-02",
+      "task_id": "TASK-062",
+      "acceptance_id": "AC-02",
+      "criterion": "offline navigationได้หน้ารอเชื่อมต่อ; onlineAPIยังผ่านnetworkและไม่cacheแม้GET/privateheader; authcallbackไม่ถูกเก็บ; SWupdateไม่auto reloadและไม่แตะlocalStorage/เซฟ",
+      "input_setup": "Production dist, fresh normal Chrome profile and ephemeral loopback server; synthetic API/prompt/storage fixtures; hosted smoke signed out only",
+      "input_refs": [
+        "plan/review/tasks_062.md",
+        "scripts/test_pwa_browser.cjs",
+        "pwa/manifest.webmanifest",
+        "pwa/sw.js"
+      ],
+      "parameters": {
+        "precache_cap_bytes": 131072,
+        "content_hash": "768e12a49bf339711d44f501c3710374adbcd10d9eb74d6a2e6f9b8aa79330af"
+      },
+      "expected": "offline navigationได้หน้ารอเชื่อมต่อ; onlineAPIยังผ่านnetworkและไม่cacheแม้GET/privateheader; authcallbackไม่ถูกเก็บ; SWupdateไม่auto reloadและไม่แตะlocalStorage/เซฟ",
+      "verification": "Production build; Chrome CDP/installability/CacheStorage/offline/update and mobile UX; hosted manifest/headers/login without owner writes",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T062-AC-03",
+      "task_id": "TASK-062",
+      "acceptance_id": "AC-03",
+      "criterion": "installbuttonใช้usergestureกับdeferredpromptครั้งเดียว; iOS/manualguideใช้งานได้; standaloneไม่โชว์ปุ่มซ้ำ; safe-areaมือถือไม่ล้น",
+      "input_setup": "Production dist, fresh normal Chrome profile and ephemeral loopback server; synthetic API/prompt/storage fixtures; hosted smoke signed out only",
+      "input_refs": [
+        "plan/review/tasks_062.md",
+        "scripts/test_pwa_browser.cjs",
+        "pwa/manifest.webmanifest",
+        "pwa/sw.js"
+      ],
+      "parameters": {
+        "precache_cap_bytes": 131072,
+        "content_hash": "768e12a49bf339711d44f501c3710374adbcd10d9eb74d6a2e6f9b8aa79330af"
+      },
+      "expected": "installbuttonใช้usergestureกับdeferredpromptครั้งเดียว; iOS/manualguideใช้งานได้; standaloneไม่โชว์ปุ่มซ้ำ; safe-areaมือถือไม่ล้น",
+      "verification": "Production build; Chrome CDP/installability/CacheStorage/offline/update and mobile UX; hosted manifest/headers/login without owner writes",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T062-AC-04",
+      "task_id": "TASK-062",
+      "acceptance_id": "AC-04",
+      "criterion": "build/type/boundaries/secretguardผ่าน contenthash768e12a4เดิม; Vercelmanifest/worker/icons/headersจริงผ่านโดยไม่มีownercloudwrite/6173restart",
+      "input_setup": "Production dist, fresh normal Chrome profile and ephemeral loopback server; synthetic API/prompt/storage fixtures; hosted smoke signed out only",
+      "input_refs": [
+        "plan/review/tasks_062.md",
+        "scripts/test_pwa_browser.cjs",
+        "pwa/manifest.webmanifest",
+        "pwa/sw.js"
+      ],
+      "parameters": {
+        "precache_cap_bytes": 131072,
+        "content_hash": "768e12a49bf339711d44f501c3710374adbcd10d9eb74d6a2e6f9b8aa79330af"
+      },
+      "expected": "build/type/boundaries/secretguardผ่าน contenthash768e12a4เดิม; Vercelmanifest/worker/icons/headersจริงผ่านโดยไม่มีownercloudwrite/6173restart",
+      "verification": "Production build; Chrome CDP/installability/CacheStorage/offline/update and mobile UX; hosted manifest/headers/login without owner writes",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
     }
   ]
 }

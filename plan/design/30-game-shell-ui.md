@@ -86,3 +86,9 @@ Pack หลังเปลี่ยน: 319 assets / 638 files / 23.07MB + manif
 - ขนาด/ตำแหน่ง sprite ปรับด้วยตาที่ 390×844, 360×740 และกรอบแนวตั้งบน 1280×800; แนวนอนไม่รองรับโดยตั้งใจ (D-052) ตรวจเฉพาะว่าขึ้นข้อความให้หมุนเครื่อง ยังไม่ได้ตรวจขนาดอักษรใหญ่
 
 D-078/D-080: ข้อความ UI เกมไม่ select ด้วยกดย้ำ/ลาก (ช่องกรอกแก้ไขได้), CSPD, ไม่มีคำแนะนำหน้าแรก, ลูกศร SVG กึ่งกลาง แถบควบคุมไฟต์เป็นแถวเดียวใน boss card ใต้ HP/ร่าย ใช้ outline SVG ใน `src/ui/icon.tsx` แทน Emoji พร้อม native RO icons เดิม
+
+## PWA (D-086 / TASK-062)
+
+ติดตั้งผ่านหน้าล็อกอิน/ตั้งค่า เปิด/playเป็นstandalone portrait มีmanifest/192–512icons/maskable/Apple180 และviewport-fit=cover โดยgame safe-areaเดิมกับauthpaddingรับnotch ปุ่มใช้nativepromptจากusergestureครั้งเดียว ถ้าไม่รองรับหรือปฏิเสธแสดงวิธีผ่านbrowsermenu; iOSแนะนำSafari→แชร์→เพิ่มหน้าจอโฮม ซ่อนเมื่อเปิดเป็นแอป
+
+Online-primaryเดิม Service workercacheเฉพาะoffline page+4icons ไม่cacheHTML/JS/เกม/API/Auth/checkpoint ไม่แตะlocalStorageหรือsave และไม่skipWaiting/reloadหน้าที่กำลังเล่น Newworkerรอปิดclientเก่า BuildPWAแยกversionจากcontenthash ลงทะเบียนเฉพาะproduction+securecontext ดู [คู่มือติดตั้ง/ขอบเขตแคช](../../docs/PWA.md)

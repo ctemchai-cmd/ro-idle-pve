@@ -1,0 +1,115 @@
+{
+  "task_id": "TASK-062",
+  "date": "2026-10-21",
+  "passed": false,
+  "checks": [
+    {
+      "case_id": "manifest_installability_icons_and_scope",
+      "passed": true,
+      "result": {
+        "manifest": {
+          "id": "/",
+          "start_url": "/play",
+          "display": "standalone",
+          "orientation": "portrait"
+        },
+        "installability_errors": [],
+        "icons": [
+          {
+            "src": "/pwa/icon-192.png",
+            "width": 192,
+            "height": 192
+          },
+          {
+            "src": "/pwa/icon-512.png",
+            "width": 512,
+            "height": 512
+          },
+          {
+            "src": "/pwa/icon-maskable-512.png",
+            "width": 512,
+            "height": 512
+          },
+          {
+            "src": "/pwa/apple-touch-icon.png",
+            "width": 180,
+            "height": 180
+          }
+        ],
+        "registration": {
+          "scope": "/",
+          "active": "activated",
+          "updateViaCache": "none"
+        }
+      }
+    },
+    {
+      "case_id": "private_requests_network_only_and_no_game_precache",
+      "passed": true,
+      "result": {
+        "calls": [
+          {
+            "fixture": true,
+            "call": 1,
+            "method": "GET"
+          },
+          {
+            "fixture": true,
+            "call": 2,
+            "method": "GET"
+          },
+          {
+            "fixture": true,
+            "call": 3,
+            "method": "POST"
+          },
+          {
+            "fixture": true,
+            "call": 4,
+            "method": "GET"
+          }
+        ],
+        "caches": {
+          "ro-idle-pwa-1f4fab875162b998": [
+            "/offline.html",
+            "/pwa/apple-touch-icon.png",
+            "/pwa/icon-192.png",
+            "/pwa/icon-512.png",
+            "/pwa/icon-maskable-512.png"
+          ]
+        },
+        "game_content_cached": false,
+        "api_auth_callback_cached": false
+      }
+    },
+    {
+      "case_id": "offline_fallback_reconnect_and_http_error_passthrough",
+      "passed": true,
+      "result": {
+        "offline_page": true,
+        "offline_icon": true,
+        "reconnect_navigation": true,
+        "local_state_preserved": true,
+        "http_503_passthrough": true
+      }
+    }
+  ],
+  "errors": [],
+  "failure": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('status').filter({ hasText: 'ยังติดตั้งไม่สำเร็จ' }) to be visible\u001b[22m\n\n    at /Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/test_pwa_browser.cjs:88:159\n    at async check (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/test_pwa_browser.cjs:22:48)\n    at async /Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/test_pwa_browser.cjs:79:3",
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "inputs_sha256": {
+    "pwa/sw.js": "1789f423644ed003d86dec6ef78ea5c49a404548c1dfa6c32a3520bbf5b07b1a",
+    "pwa/manifest.webmanifest": "46a606a433c5ed93f723be75c085975834477dad3b0acf6e1f481e3d214a68b6",
+    "pwa/offline.html": "eb7ab4ef7f1aa19e02faf8bbff08a2c75bc0cac67fd1b1ab91646d39b014a149",
+    "src/client/pwa.ts": "8e7a7178d45e476ba43d3a129201130dfd1ed859b6a8bd28a16aefd38cb41ae1",
+    "src/ui/pwa-install.tsx": "cf97d248ff6ff9b29f263b9a5924ca58609656435c9c0a3612eedb0b9fd9ec2b",
+    "src/ui/pwa.css": "1de20c2e87edb5e866e5b05c3cb862a44865d7df6355f3f11c06ef9c7b61a200",
+    "scripts/game/pwa-artifacts.ts": "3f43b7bae857385d027f31d89da4084b48680df2204b2a4854906a257187a0a8",
+    "scripts/test_pwa_browser.cjs": "2fafdff6298df1b51bd5414bc58e4ed0d17bbf85956432f4e0714bc4e04761ec",
+    "dist/index.html": "df85954d269b23251ecb4e7d522ee89ae975efc5ae34d61041cbc27fa21f3334",
+    "dist/sw.js": "b2eb448d07d0f74d78333197779c805d136f9210f3800d34be2c56c18830a60a",
+    "dist/manifest.webmanifest": "46a606a433c5ed93f723be75c085975834477dad3b0acf6e1f481e3d214a68b6"
+  },
+  "content_hash": "768e12a49bf339711d44f501c3710374adbcd10d9eb74d6a2e6f9b8aa79330af"
+}

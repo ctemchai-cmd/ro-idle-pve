@@ -113,3 +113,7 @@ TASK-060/061 ไม่ต้องเพิ่ม SQL migration: ใช้6ไ�
 ระหว่างสู้ไม่มีwriteหรือheartbeat; เริ่มเก็บticket/snapshotแล้วจบส่งbattle.finishให้serverจำลองผลซ้ำ Speed1×/2×/4×เป็นpresentationclockในclient ไม่เปลี่ยนผลหรือAFKrate ส่วนmanualretreatยังสรุปdailyHPตามเวลาที่เล่นจริงภายใต้DBguard
 
 การย้ายเซฟ6173เป็นงานแยก ไฟล์transferที่เคยเตรียมผูกrevision/hashปลายทางเดิม หากเล่นหรือmigratecloudแล้วต้องตรวจmetadataและexportsourceล่าสุดก่อนcutover ห้ามรันไฟล์เก่าโดยข้ามguard
+
+## PWA (TASK-062)
+
+ใช้build/SQL/envเดิม ไม่ต้องเพิ่มkeyหรือmigration ไฟล์PWAอยู่ในdistและheadersในvercel.json เปิด/playจากไอคอน standalone แนวตั้ง ดู [วิธีติดตั้งและขอบเขตแคช](PWA.md) Workerไม่cacheเกม/API/เซฟและไม่reloadกลางไฟต์ Contenthash768e12a4…คงเดิมในรุ่นPWAนี้

@@ -1,0 +1,168 @@
+{
+  "task_id": "TASK-062",
+  "date": "2026-10-21",
+  "passed": true,
+  "checks": [
+    {
+      "case_id": "manifest_installability_icons_and_scope",
+      "passed": true,
+      "result": {
+        "manifest": {
+          "id": "/",
+          "start_url": "/play",
+          "display": "standalone",
+          "orientation": "portrait"
+        },
+        "installability_errors": [],
+        "icons": [
+          {
+            "src": "/pwa/icon-192.png",
+            "width": 192,
+            "height": 192
+          },
+          {
+            "src": "/pwa/icon-512.png",
+            "width": 512,
+            "height": 512
+          },
+          {
+            "src": "/pwa/icon-maskable-512.png",
+            "width": 512,
+            "height": 512
+          },
+          {
+            "src": "/pwa/apple-touch-icon.png",
+            "width": 180,
+            "height": 180
+          }
+        ],
+        "registration": {
+          "scope": "/",
+          "active": "activated",
+          "updateViaCache": "none"
+        }
+      }
+    },
+    {
+      "case_id": "private_requests_network_only_and_no_game_precache",
+      "passed": true,
+      "result": {
+        "calls": [
+          {
+            "fixture": true,
+            "call": 1,
+            "method": "GET"
+          },
+          {
+            "fixture": true,
+            "call": 2,
+            "method": "GET"
+          },
+          {
+            "fixture": true,
+            "call": 3,
+            "method": "POST"
+          },
+          {
+            "fixture": true,
+            "call": 4,
+            "method": "GET"
+          }
+        ],
+        "caches": {
+          "ro-idle-pwa-ad809f1e578ed04d": [
+            "/offline.html",
+            "/pwa/apple-touch-icon.png",
+            "/pwa/icon-192.png",
+            "/pwa/icon-512.png",
+            "/pwa/icon-maskable-512.png"
+          ]
+        },
+        "game_content_cached": false,
+        "api_auth_callback_cached": false
+      }
+    },
+    {
+      "case_id": "offline_fallback_reconnect_and_http_error_passthrough",
+      "passed": true,
+      "result": {
+        "offline_page": true,
+        "offline_icon": true,
+        "reconnect_navigation": true,
+        "local_state_preserved": true,
+        "http_503_passthrough": true
+      }
+    },
+    {
+      "case_id": "native_prompt_click_once_dismiss_accept_and_failure",
+      "passed": true,
+      "result": {
+        "dismissed_once": true,
+        "failed_guide": true,
+        "accepted_hides_install": true,
+        "active_user_gesture": true,
+        "scope": "Synthetic browser lifecycle event exercises actual production UI; CDP installability checked separately. Does not claim an OS app was installed."
+      }
+    },
+    {
+      "case_id": "waiting_update_no_reload_cache_cleanup_keeps_unrelated_state",
+      "passed": true,
+      "result": {
+        "no_reload": true,
+        "old_cache_retained_while_running": true,
+        "caches_after_activation": {
+          "other-app-fixture": [
+            "/unrelated-fixture"
+          ],
+          "ro-idle-pwa-fixture-next-version": [
+            "/offline.html",
+            "/pwa/icon-192.png",
+            "/pwa/icon-512.png",
+            "/pwa/icon-maskable-512.png",
+            "/pwa/apple-touch-icon.png"
+          ]
+        },
+        "unrelated_storage_preserved": true
+      }
+    },
+    {
+      "case_id": "ios_install_guide_standalone_and_portrait_mobile_layouts",
+      "passed": true,
+      "result": {
+        "ios_guide": true,
+        "standalone_hides_install": true,
+        "viewport_fit_cover": true,
+        "layouts": [
+          {
+            "width": 320,
+            "height": 568,
+            "overflow": false
+          },
+          {
+            "width": 390,
+            "height": 844,
+            "overflow": false
+          }
+        ],
+        "scope": "Chrome mobile UA/layout emulation; not physical Safari/notch or actual iOS installation."
+      }
+    }
+  ],
+  "errors": [],
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "inputs_sha256": {
+    "pwa/sw.js": "1789f423644ed003d86dec6ef78ea5c49a404548c1dfa6c32a3520bbf5b07b1a",
+    "pwa/manifest.webmanifest": "46a606a433c5ed93f723be75c085975834477dad3b0acf6e1f481e3d214a68b6",
+    "pwa/offline.html": "eb7ab4ef7f1aa19e02faf8bbff08a2c75bc0cac67fd1b1ab91646d39b014a149",
+    "src/client/pwa.ts": "8e7a7178d45e476ba43d3a129201130dfd1ed859b6a8bd28a16aefd38cb41ae1",
+    "src/ui/pwa-install.tsx": "3abff6940b2454a7018b589c2c3ec53ef8b985fa38ff4711b57aad78a885a09f",
+    "src/ui/pwa.css": "1de20c2e87edb5e866e5b05c3cb862a44865d7df6355f3f11c06ef9c7b61a200",
+    "scripts/game/pwa-artifacts.ts": "3f43b7bae857385d027f31d89da4084b48680df2204b2a4854906a257187a0a8",
+    "scripts/test_pwa_browser.cjs": "2fafdff6298df1b51bd5414bc58e4ed0d17bbf85956432f4e0714bc4e04761ec",
+    "dist/index.html": "4243f3ab0187f2525c21c6b00e9b21814a9b2f4898601c0652392c31f4143c54",
+    "dist/sw.js": "b7d0988c82c62bd88f30fd32be6763b78440ed679ceaf1431676b50277822f66",
+    "dist/manifest.webmanifest": "46a606a433c5ed93f723be75c085975834477dad3b0acf6e1f481e3d214a68b6"
+  },
+  "content_hash": "768e12a49bf339711d44f501c3710374adbcd10d9eb74d6a2e6f9b8aa79330af"
+}

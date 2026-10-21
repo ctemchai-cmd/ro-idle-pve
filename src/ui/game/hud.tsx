@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { SaveController, SaveSnapshot } from '../../client/save-controller.ts';
 import { BackupSheet } from './backup.tsx';
+import { InstallApp } from '../pwa-install.tsx';
 import type { GameContext } from './shell.tsx';
 import { Icon } from '../icon.tsx';
 import { readAudioLevels, saveAudioLevels } from '../../renderer/audio-preferences.ts';
@@ -42,6 +43,7 @@ export function TopHud({ context, save, controller, sound, toggleSound, reconnec
     </Sheet>}
     {sheet === 'settings' && <Sheet title="ตั้งค่าและเซฟ" onClose={() => setSheet(null)}>
       <div className="settings-list">
+        <InstallApp />
         <div className="settings-row"><span>สถานะเซฟ</span><b className={`save-text ${tone}`}>{statusText[save.status] ?? save.status}{save.checkpoint ? ` · #${save.checkpoint.save.revision}` : ''}</b></div>
         <button className="btn" disabled={save.status === 'loading' || save.status === 'saving' || !navigator.onLine} onClick={reconnect}>เชื่อมต่อเซฟใหม่</button>
         <div className="settings-row"><span>เสียงและเพลง</span><button className="btn small" onClick={toggleSound}>{sound ? 'ปิดเสียง' : 'เปิดเสียง'}</button></div>

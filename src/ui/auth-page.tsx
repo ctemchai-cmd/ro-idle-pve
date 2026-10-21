@@ -1,4 +1,5 @@
 import { Icon } from './icon.tsx';
+import { InstallApp } from './pwa-install.tsx';
 import { useEffect, useRef, useState } from 'react';
 import type { FormEvent, ReactNode } from 'react';
 import type { AuthController } from '../client/auth-controller.ts';
@@ -10,7 +11,7 @@ import type { AuthResult } from '../contracts/auth.ts';
 import { SavePanel } from './save-panel.tsx';
 
 function AuthShell({ children }: { children: ReactNode }) {
-  return <div className="app-shell"><header className="topbar"><a className="brand" href="/play"><span className="brand-mark"><Icon name="sparkles" /></span><span><strong>RO<span>Idle Classic</span></strong><small>YOUR LITTLE ADVENTURE</small></span></a><a className="sound-button" href="/play">กลับเกม</a></header><main className="auth-layout"><div className="auth-intro"><p className="eyebrow">A PLACE FOR YOUR ADVENTURE</p><h1>การเดินทางของคุณ</h1><p>เข้าสู่บัญชีส่วนตัวเพื่อเชื่อมต่อเซฟของคุณ</p></div>{children}<p className="auth-footnote">เซฟการผจญภัยผูกกับบัญชีของคุณ</p></main></div>;
+  return <div className="app-shell"><header className="topbar"><a className="brand" href="/play"><span className="brand-mark"><Icon name="sparkles" /></span><span><strong>RO<span>Idle Classic</span></strong><small>YOUR LITTLE ADVENTURE</small></span></a><a className="sound-button" href="/play">กลับเกม</a></header><main className="auth-layout"><div className="auth-intro"><p className="eyebrow">A PLACE FOR YOUR ADVENTURE</p><h1>การเดินทางของคุณ</h1><p>เข้าสู่บัญชีส่วนตัวเพื่อเชื่อมต่อเซฟของคุณ</p></div>{children}<InstallApp /><p className="auth-footnote">เซฟการผจญภัยผูกกับบัญชีของคุณ</p></main></div>;
 }
 
 export function AuthExperience({ auth, readAccount, savePanel, returnToPlay }: { auth: AuthController; readAccount: (signal?: AbortSignal) => Promise<AuthResult<AccountSummary>>; savePanel?: ReactNode; returnToPlay?: string }) {

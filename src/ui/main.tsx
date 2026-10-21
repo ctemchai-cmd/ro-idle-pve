@@ -3,6 +3,9 @@ import { createRoot } from 'react-dom/client';
 import './style.css';
 import './auth.css';
 import { readPublicAuthConfig } from '../client/auth-config.ts';
+import { startPwa } from '../client/pwa.ts';
+
+startPwa(import.meta.env.PROD);
 
 const BattleApp = lazy(() => import('./battle-app.tsx'));
 const AuthPage = lazy(() => import('./auth-page.tsx'));
