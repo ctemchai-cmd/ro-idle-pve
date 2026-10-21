@@ -1,6 +1,6 @@
 # ภาพรวมแผนและความคืบหน้า
 
-อัปเดต: 21 ตุลาคม 2026 · ระยะปัจจุบัน: **51/64 งานผ่าน done; TASK-041 บาลานซ์, TASK-058 ย้ายเซฟ และ TASK-064 แสดงอัปเกรดทันที/ลดDBรอบอยู่ inprogress; TASK-062 PWAขึ้นVercelและผ่านhostedแล้ว; TASK-063 ทุกmutationลด3→1requestsขึ้นVercelผ่านแล้ว; TASK-060 เซฟเริ่ม/จบและ TASK-061 resetดันขึ้นVercelแล้ว; TASK-048/054/055/056/057 อยู่ review รอผู้ใช้ตรวจภาพ**
+อัปเดต: 21 ตุลาคม 2026 · ระยะปัจจุบัน: **51/64 งานผ่าน done; TASK-041 บาลานซ์, TASK-058 ย้ายเซฟ และ TASK-064 อัปเกรดทันทีขึ้นVercelแล้ว/รอติดตั้งSQL007อยู่ inprogress; TASK-062 PWAขึ้นVercelและผ่านhostedแล้ว; TASK-063 ทุกmutationลด3→1requestsขึ้นVercelผ่านแล้ว; TASK-060 เซฟเริ่ม/จบและ TASK-061 resetดันขึ้นVercelแล้ว; TASK-048/054/055/056/057 อยู่ review รอผู้ใช้ตรวจภาพ**
 
 เกมเว็บเล่นคนเดียวอ้างอิง Ragnarok Idle Adventure Plus จัดทีม main + NPC 3 คน คิว Active ตัวละสี่ช่อง ทำงานพร้อมกัน ฟาร์มทรัพยากรแล้วกดท้าบอส ใช้ Supabase เซฟหลักด้วยอีเมล/รหัสผ่าน ออนไลน์เป็นหลักพร้อมเซฟสำรองในเครื่อง และ deploy เว็บบน Vercel
 
@@ -14,7 +14,7 @@ Source ทั้งโปรเจกต์เผยแพร่ที่ [ctemc
 
 [TASK-060/061](done/tasks_060.md) ผ่านและขึ้นVercelที่5215676f8: ไม่มีเซฟระหว่างไฟต์/เปลี่ยนspeed, finishครั้งเดียว; resetล้างดันและmigrationซ่อมcarry-overในเกมที่dailyยังlocked Tests45ข้อ + isolatedChromeสองชุด + build/hostedsmokeผ่าน [หลักฐาน](evidence/task-060-061-hosted.json) Contenthash768e12a4… เจ้าของกดสำรองแล้วอัปเดตเซฟจึงซ่อมstateจริง ไม่แตะ6173
 
-[TASK-064](inprogress/tasks_064.md) กำลังปรับตามผู้ใช้: แสดงผลอัปเลเวล/สกิล/อุปกรณ์ทันทีขณะเซฟตามหลัง พร้อมคืนค่าถ้าเชื่อมต่อขาด; optionalSQL007ลดDBHTTP5→2รอบ ยังคงpendingUUID/confirmedbackupเดิม ไม่เพิ่มระบบกันโกง รอactualUI/DBproofและdeploy
+[TASK-064](inprogress/tasks_064.md) Source65541f2abขึ้นVercelแล้ว: แสดงผลอัปเลเวล/สกิล/อุปกรณ์ทันทีขณะเซฟตามหลัง พร้อมคืนค่าถ้าเชื่อมต่อขาด; actualmobileUI/heldrequest/CPU4×และDB2RPCผ่านจริงในfreshstack, 20targetedchecks/build/readiness8/hosted3ผ่าน ไม่แตะ6173 ยังsingle-flight ไม่กดรัว ยังรอผู้ใช้ติดตั้งoptionalSQL007+cloud2RPCproofจึงdoneได้ ดู [หลักฐาน](evidence/task-064-review.json)
 
 [TASK-063](done/tasks_063.md) ขึ้นVercelที่e39c7d071แล้ว: ทุกmutationใช้lazysharedrulesหลังAuthและรับreceipt+verifiedcheckpointในPOSTเดียวแทน3requests มีlegacyfallback/UUIDreconcileเดิม Server-Timing/regionsin1 ตรวจ37TS+Chrome8กลุ่ม/build/readiness8/hosted3ผ่าน ไม่เปลี่ยนcontenthash/SQL/6173 [หลักฐาน](evidence/task-063-review.json) ตัวเลขlatencybenchmarkเป็นcontrolledfixtureไม่ใช่เครื่องผู้ใช้
 

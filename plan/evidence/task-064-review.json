@@ -3,7 +3,7 @@
   "date": "2026-10-21",
   "passed": false,
   "implementation_verified": true,
-  "reason": "Cloud optional SQL007 installation and authenticated2RPC timing pending; deployment/public smoke pending.",
+  "reason": "Source deployed and public smoke passed; user installation of optional SQL007 and authenticated cloud2RPC timing still pending.",
   "targeted_tests": 20,
   "browser_groups": 6,
   "actual_ui_click_to_level_ms": 400,
@@ -17,10 +17,10 @@
     "Failed/lost reply removes preview and resolves exact pending UUID without double spend",
     "Real SQL007 read+commit returns actualDB checkpoint with2RPC",
     "Actualmobile UI clicks before held request release; save/reload retains11",
-    "Build/type/boundaries/secrets and readiness8pass"
+    "Build/type/boundaries/secrets and readiness8pass",
+    "Vercel success and actual hosted health/content/region, immediate-display bundle, login/PWA public checks pass"
   ],
   "pending": [
-    "Hosted source deployment and public proof",
     "User installs supabase/migrations/202610210007_command_roundtrips.sql",
     "Authenticated hosted Server-Timing confirmsdb_read1+db_commit1"
   ],
@@ -30,7 +30,8 @@
     "plan/evidence/task-064-readiness.txt",
     "plan/evidence/task-064-local-stack.json",
     "plan/evidence/task-064-save-latency-live.json",
-    "plan/evidence/task-064-level-immediate.png"
+    "plan/evidence/task-064-level-immediate.png",
+    "plan/evidence/task-064-hosted.json"
   ],
   "limitations": [
     "Single-flight: next mutation is still disabled until the current save confirms",
@@ -39,5 +40,7 @@
     "First historical protocol benchmark failed with no paired samples retained; logging only added, unchanged product and strict assertion passed on rerun"
   ],
   "owner_cloud_writes": false,
-  "personal_preview_restarted": false
+  "personal_preview_restarted": false,
+  "source_commit": "65541f2ab9086583da15c46cd43724ac048e8565",
+  "hosted_public_verified": true
 }

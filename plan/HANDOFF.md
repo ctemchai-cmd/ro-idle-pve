@@ -2,6 +2,19 @@
 
 ไฟล์นี้บันทึกงานที่ agent ตัวหนึ่งทำแล้ว เพื่อให้ตัวถัดไป (Codex/Claude) ทำต่อได้ทันที อ่านคู่กับ [overview](overview.md) และ [AGENTS.md](../AGENTS.md) ล่าสุดอยู่บนสุด
 
+
+## 21 ต.ค. 2026 · Codex — TASK-064 แสดงอัปเกรดก่อนเซิร์ฟเวอร์ตอบ + optional2DBRPC
+
+- ผู้ใช้ยังรอ2sหลังTASK063และย้ำว่าเกมส่วนตัวไม่ต้องเน้นทดสอบกันโกง จึงทำD-088: ใช้sharedpure progression reducersแสดงผลlevel/status/skills/equip/cards/enchant/tier/teamทันทีใน `SaveSnapshot.preview` ไม่เขียนpreviewลงconfirmedcheckpoint/backup ไม่เดากาชา/Refine/Fusion/boss; clearเมื่อsuccess/failure/offline/reconnect ยังเป็นsingle-flight **ปุ่มถัดไปยังdisabledจนsaveconfirm** อย่าอ้างว่ากดรัวได้หรือserver2sหายแล้ว
+- `save-preview.ts`คำนวณบนcloneจากreducersเดิม BrowserPorts optionalpreview/Controller persistpendingUUIDก่อนnetworkแล้วpublishpreview; shellใช้previewเป็นdisplayและคืนfalse+toastถ้าสุดท้ายไม่ready แก้oldsuccessข้อความที่เคยผ่านแม้transportfailed ไม่มีdomain/content/schema/rules/packเปลี่ยน Content768e12a4…เดิม ไม่ต้องmigrateเซฟ
+- DBpathเดิม5HTTP(+Auth1): assert_env→receiptGET→loadcontext→commit→loadcontextอีกครั้ง เพิ่มSQL007สองservice-onlysecurity-invokerwrappersอ่านreceipt/contextภายใต้ownerlock และcommitผ่านRPCเดิม+คืนDBcontextในtransactionเดียวกัน เหลือ2DBRPC(+Auth1) กฎ/สูตรยังNode ไม่cacheowner/Authdecision MissingfunctionPGRST202เฉพาะชื่อนั้นfallbacklegacyพร้อมnegativecache10s; network/constraintไม่fallbackwriteซ้ำ ไม่ต้องเพิ่มenv
+- Request-localAsyncLocalStoragetimingในpersistence/timing.tsเพิ่มdb_read/db_commit/db_context/db_environment/db_receipt/rules_init/verify_state/calculate/verify_reply ลงServer-Timing ไม่มีUID/token/payload Scopeordinarycommands: creation/maintenance/recoveryยังoldpath ไม่ใช้public401ยืนยันownerlatency
+- **Source65541f2ab pushและVercelsuccessแล้ว** (a39dd05f7+SQLfollowup) actualhosted3กลุ่มผ่าน(health200/contentเดิม/regionSG/newpreviewbundle/login/PWA ไม่มีmutation); docs/DEPLOYMENT.mdมีไฟล์SQL007ให้userรัน ไม่มีDBadminconnectionในsession **ยังไม่ได้ติดตั้งcloudSQL007/ไม่มีownercloudwrite** UIpreviewทำงานได้ก่อนSQL ใช้fallbackoldserverDBpath
+- ตรวจ20targeted TS checks + freshAuth/PostgREST/Postgres/Chrome6กลุ่มผ่าน: actualordinarymutations2DBRPC; response loss/receipt-reconcile/legacyfallback; actualmobilegameUIกดLv10→11ก่อนปล่อยheldrequest CPU4x **400msรวมPlaywrightclick overhead** ปล่อยแล้วDB11/reloadยัง11 ภาพtask-064-level-immediate.png ไม่ใช่ownerphonebenchmark Build/type/boundaries/secrets/readiness8ผ่าน ไม่ทดสอบซ้ำทั้งระบบหรือเพิ่มanti-cheatใหม่
+- Failurehistory: initialbuildtiming.tsอยู่src/serverrootซึ่งไม่มีmoduleowner ย้ายเข้าพาธpersistenceแล้วbuildผ่าน Round1historical3HTTPbenchmarkstrictassertfailedโดยไม่มีpairedsamples เพิ่มloggingเฉพาะharness/รันunchangedproductใหม่แล้วผ่านstrictassertเดิม เก็บround1evidenceแยก ไม่อ้างrootcause Codebuildlogtrailingwhitespaceแก้ในSQLfollowupcommitแล้ว
+- **ห้ามแตะ6173/5173หรืออ่านprivate login/save** งานนี้ไม่restart ไม่ownerwrite SQL007เพิ่มmigrationทำให้frozenpreviewcompatiblecheckต่าง จึงอย่าrefreshโดยพลการ
+- ขั้นต่อไป: publicsmokeผ่านแล้วที่task-064-hosted.json (harnessรองรับprefixไม่ทับ063); ให้userจบไฟต์แล้วreloadรับbundleใหม่ และรันSQL007ในSupabaseSQL Editorเองเพราะsessionไม่มีDBadminconnection; หลังติดตั้งรอ≤10sให้negativecacheหมด ต้องดูauthenticatedcommandServer-Timingdb_read1/db_commit1จึงปิดAC04/doneได้ TASK064ยังinprogress/51of64doneจนmanualcloudproof ไม่ใช้health/Authgateแทน
+
 ## 21 ต.ค. 2026 · Codex — TASK-063 ลดเวลารอบันทึกทุก mutation ขึ้น Vercel แล้ว
 
 - ผู้ใช้มือถือผ่านVercel/DBSingaporeรู้สึกทุกการบันทึกรอ1–2s (ย้ำไม่ใช่เฉพาะlevel) ตรวจpublicheadersยืนยันAPI **sin1::sin1** จริง พบsharedSaveControllerส่งPOST→GETreceiptซ้ำ→GETcheckpointทุกครั้ง (รวมAuth/DBroundtrips) ไม่ได้สรุปว่าregionผิด

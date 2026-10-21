@@ -50,4 +50,6 @@ Targetedtests + freshPostgres/Auth/Chrome; productionอ่านpublicroutesเ
 - FreshAuth/PostgREST/Postgres+Chrome6กลุ่มผ่าน; DBRPC2รอบจริงในlevel/skill/loadout/equipment/team; actualmobileUIอัปLv.10→11ก่อนปล่อยrequestที่holdไว้ **400msรวมPlaywrightclick overhead ขณะCPU4×** เซฟและreloadยัง11 ไม่ใช่ตัวเลขเครื่องผู้ใช้
 - Build/type/boundaries/secrets/contenthash768e12a4เดิมผ่าน; readiness8ผ่าน ไม่มี6173restart/ownercloudwrite
 - Round1historical3HTTPbenchmarkfail ไม่ได้เก็บpairedtimingsครบ จึงเพิ่มdiagnosticเฉพาะharnessและรันใหม่โดยไม่เปลี่ยนproduct; round2ผ่านstrictassertเดิม เก็บfailureแยก ไม่อ้างrootcause
-- ก่อนdoneยังต้องdeploy/publicsmoke/SQL007ติดตั้งจริงและcloud2RPCproof; UIpreviewใช้ได้แม้SQLยังไม่ติดตั้ง
+- Source65541f2abdeployแล้วและpublicsmoke3กลุ่มผ่าน ก่อนdoneยังต้องSQL007ติดตั้งจริงและcloud2RPCproof; UIpreviewใช้ได้แม้SQLยังไม่ติดตั้ง
+
+รับbundleใหม่: จบไฟต์แล้วreloadเว็บ/PWA ไม่มีauto-reloadกลางไฟต์ แสดงผลทันทีทำงานก่อนSQL007 แต่การลดเวลาบันทึกจริงต้องให้ผู้ใช้รันSQL007เอง
