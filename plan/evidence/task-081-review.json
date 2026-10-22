@@ -1,0 +1,55 @@
+{
+  "task_id": "TASK-081",
+  "date": "2026-10-22",
+  "passed": true,
+  "implementation_verified": true,
+  "acceptance": {
+    "AC-01": "passed",
+    "AC-02": "passed",
+    "AC-03": "passed",
+    "AC-04": "passed"
+  },
+  "source_commit": "517daa0305f2b591ffdc8a6c267d68017f45e4e7",
+  "deployment_url": "https://vercel.com/chanon2/ro-idle-pve/Cm78SLSRNFyyN5ftWCphD2rXhTE9",
+  "content_hash": "7b2a026768c31cf63c7e50510a26e7be840cdcc4010ac6cfb27cf078d8707e91",
+  "asset_pack_hash": "c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2",
+  "checks": {
+    "combined_focused_ts": 30,
+    "actual_disposable_mobile_groups": 3,
+    "actual_auth_api_groups": 5,
+    "hosted_public_groups": 3,
+    "all_stage_profiles": 130,
+    "build_type_boundaries_secrets_m0": true
+  },
+  "evidence": [
+    "plan/evidence/task-080-082-targeted.txt",
+    "plan/evidence/task-082-build.txt",
+    "plan/evidence/task-082-hosted.json",
+    "plan/evidence/task-082-github-deployment.json",
+    "plan/evidence/task-082-readiness.txt",
+    "plan/evidence/task-081-drop-math.json",
+    "plan/evidence/task-081-codegen.txt",
+    "plan/evidence/task-081-m0.txt",
+    "plan/evidence/task-080-081-ui-live.json",
+    "plan/evidence/task-080-local-stack.json",
+    "plan/evidence/task-080-local-api.txt"
+  ],
+  "verified_behavior": "Only farm-card version/chance/descriptive notes changed:1–2% per300000ms gives1.44–2.88 expected cards/12h, not a guarantee. Quality/grade/pool/tier/gacha/cardpower/gear/resources unchanged. Static diff, all130 profiles and actual frozen20%12h claim→new1% persisted/reload→stage8-20 2% passed. Existing owned/pending cards remain unchanged; pure split/cap/fullbag/legacy no-card and actual UUID receipt replay preserve rewards/RNG. Old accrued v1 interval can still award many cards once before v2 takes over.",
+  "retained_failures": [
+    "Retained first boundary fixture that multiplied a floating quotient back across epsilon; test now uses the next actual32-bit RNG quantum above threshold, probability algorithm unchanged.",
+    "Old test wrongly guaranteed a card in one seeded12h window; now verifies enabled v2 profile and fixed gear reservation, with separate deterministic successful draw.",
+    "Hosted filename assumption fixed as described in TASK080; no product or reward change."
+  ],
+  "visual_and_test_scope": "Actual isolated Auth/API/SQL/mobile320/390 card UI and isolated Vite/native Canvas/Chrome finisher checks. Public production health/new bundle checksums/login/PWA verified signed out; no physical Android benchmark or owner save access. Combined30 TS includes22 card/migration and8 finisher checks, plus11 existing native contact checks.",
+  "gameplay_data_changed": true,
+  "new_sql_env_assets": false,
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "balance_simulation": false,
+  "pending": [],
+  "source_sha256": {
+    "plan/data/loot.json": "3485bbc1129187ec01dd6a70cc0fb2562431a9fa98c6624315693c1f9eeada64",
+    "tests/game/ro-cards.test.ts": "5913945d3ffb6ad40603abe3dac0832a49ce9fc5b88c2305533c08d1cd3f727c",
+    "scripts/test_card_frames_live.cjs": "44999b186ec088d4150acced49578253d40e28d3d11873e758318f3a0411c388"
+  }
+}

@@ -68,14 +68,14 @@ const assert=(ok,message)=>{if(!ok)throw new Error(message);};let browser,profil
   assert(styles.includes('.bag-cell.card .item-icon')&&/translate(?:X)?\(-50%\)/.test(styles)&&styles.includes('.card-thumb{overflow:hidden}'),'CARD_CORNERS_NOT_DEPLOYED');
  }
  if(['task-080','task-081','task-082'].includes(prefix)){
-  // Select the current emitted chunks by their content, then verify actual public bytes.
+  // Production public Auth settings change emitted filenames; use its manifest, not local env.
   const emitted=manifest.build_files.filter(row=>/^dist\/assets\/.*\.(?:js|css)$/.test(row.path));
-  const load=async(needle,extension)=>{
-   const row=emitted.find(row=>row.path.endsWith(extension)&&fs.existsSync(path.join(root,row.path))&&fs.readFileSync(path.join(root,row.path),'utf8').includes(needle));assert(row,'NO_NEW_CHUNK_'+needle);
-   const response=await fetch(base+'/'+row.path.replace(/^dist\//,'')),bytes=Buffer.from(await response.arrayBuffer());assert(response.ok&&createHash('sha256').update(bytes).digest('hex')===createHash('sha256').update(fs.readFileSync(path.join(root,row.path))).digest('hex'),'PUBLIC_CHUNK_MISMATCH_'+needle);
+  const load=async(needle,pattern)=>{
+   const row=emitted.find(row=>pattern.test(row.path));assert(row,'NO_NEW_CHUNK_'+needle);
+   const response=await fetch(base+'/'+row.path.replace(/^dist\//,'')),bytes=Buffer.from(await response.arrayBuffer());assert(response.ok&&createHash('sha256').update(bytes).digest('hex')===row.sha256,'PUBLIC_CHUNK_MISMATCH_'+needle);assert(bytes.toString('utf8').includes(needle),'OLD_PUBLIC_CHUNK_'+needle);
    return{path:row.path,text:bytes.toString('utf8'),sha256:createHash('sha256').update(bytes).digest('hex')};
   };
-  const [cards,styles,data,renderer]=await Promise.all([load('gear-card-slots','.js'),load('.socket-card-art','.css'),load('card_farm_v2','.js'),load('ASURA STRIKE','.js')]);
+  const [cards,styles,data,renderer]=await Promise.all([load('gear-card-slots',/\/shell-.*\.js$/),load('.socket-card-art',/\/shell-.*\.css$/),load('card_farm_v2',/\/item-options-.*\.js$/),load('ASURA STRIKE',/\/skill-timeline-.*\.js$/)]);
   assert(['gear-card-slots','data-card-quality','gear-card-slot'].every(s=>cards.text.includes(s)),'EQUIPPED_CARD_FRAMES_NOT_DEPLOYED');
   assert(['.card-art','.socket-card-art','.quality-bronze','object-fit:cover'].every(s=>styles.text.includes(s)),'FULL_MASKED_CARD_ART_NOT_DEPLOYED');
   const normalized=data.text.replaceAll('\\"','"');assert(normalized.includes('"chance_start":10000')&&normalized.includes('"chance_end":20000'),'RARE_FARM_CARD_RATES_NOT_DEPLOYED');

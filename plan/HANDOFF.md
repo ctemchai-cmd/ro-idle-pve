@@ -4,6 +4,18 @@
 
 
 
+## 22 ต.ค.2026 · Codex — TASK-080/081/082 done ขึ้น Vercel แล้ว
+
+- **SOURCE 517daa0305f2b591ffdc8a6c267d68017f45e4e7 push/VercelSUCCESS** https://vercel.com/chanon2/ro-idle-pve/Cm78SLSRNFyyN5ftWCphD2rXhTE9 actualpublichealth200/content7b2a0267…/regionSG/checkpoint401/newUI-CSS-data-rendererSHA/login/PWA3groupsผ่าน task-082-hosted.json task-082-github-deployment.json. 080081082ย้ายdoneทุกACแล้ว Board68/82done,inprogress4เดิม(041/058/064/067),review5,todo5,M4done28/37 ไม่ปิดงานรอowner
+- 080ภาพcardใหญ่เต็มroundedcovermask+mini cardframesBronze/Silver/Gold/emptyตามactualslotowner/refinecapacity. ActualfreshAuth/API5/SQL/mobile320/390สามgroupsผ่านพร้อมoldfrozenrewardclaim/replay/reload/stage8-20→2%. รูปcard/bag/picker320ดูจริงแล้ว ไม่มีreadonlysave
+- 081 versioncard_farm_v2 chance1–2%/5min expected1.44–2.88/12hตามuserasync ไม่guarantee ไม่เปลี่ยนquality/grade/pool/gear/gacha/cardstats/owned/pending. Migrationเดิมเก็บoldv1profileและclaimครั้งแรกยังsettleold20–40%ได้ จากนั้นv2 เริ่มเวลาถัดไป ไม่retroactiveลดของ contentใหม่7b2a026768c31cf63c7e50510a26e7be840cdcc4010ac6cfb27cf078d8707e91 ผู้ใช้จบไฟต์/reloadและbackup/migrateตามflowเดิม ไม่มีSQL/envใหม่
+- 082 Asura+bigattacks15profiles/8styles/6roots renderer-only actualdamage/shieldabsorb+action_id+visualImpactMsเดิม ขัด/miss/normal/proc/healไม่ขึ้น onebanner/action. Wall750–1000msอ่าน×4 impact420ms/shake≤5intrinsicpx180ms HUD/titleนิ่ง/reducedmotionstatic Farmimpactยังมีแต่ซ่อนbanner/shake NoMath.random/enginechange/newpack AuthoredROadaptationไม่claimexactnativeAsura (local271procedural/missingsound/runtimeเดิมBash)
+- Final30focusedTS080081082+11nativecontact/animation/M0/build/type/boundaries/content/secretsผ่าน. FinisheractualisolatedVite/nativeChrome3groups/10ท่าครบ6roots/8styles:contactfirstnumber/reducedmotion/quietfarm, actualAsuracheckpoint/events/RNGidentical×1/2/4และrealinterruptnobanner; Asura320/390/Meteor/GrandCross/SonicBlowเปิดภาพดูจริง ไม่ใช่ownerphonebenchmarkหรือnewbalancebatch
+- Retainfailures: hostround1ใช้localunconfiguredfilenameเทียบproductionconfiguredผิด จึงแก้harnessอ่านactualproductionmanifestfilename+SHA+requiredmarkersแล้วdeploymentเดิมผ่าน ไม่เปลี่ยนproduct; buildround1readonlytestfixtureแก้immutableactorsmap; browserround1viewportmetaหาย nativecanvasถูกแต่มือถือย่อผิด เก็บround1report/screensแล้วfinalเพิ่มviewportassertผ่าน ดูreview080081082 ไม่ซ่อนfail
+- Packc7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2 /30,640,189Bคงเดิม ไม่ownerwrite/6173restart/privateenv/SQL/assetsใหม่ src/generatedยังignoredbuildregenerate Design33และ31ล่าสุดcanonical Userproposalใบธาตุยังไม่approvedimplementation ไม่ทำแทรก
+- Finaldocsclosureจะcommit/pushตามหลัง sourceที่ตรวจแล้วเท่านั้น ไม่มีproductเปลี่ยนจากpublicproof ทำreadiness8หลังย้ายdoneก่อนจบ
+
+
 ## 22 ต.ค.2026 · Codex — TASK-082 localผ่าน รอ public deploy proof
 
 - Sourcecard/rate080081อยู่4af3865c6แล้ว ยังไม่doneรอpublicรวมกับ082. ภาพcardmask/ownerframesและactualoldv1claim→v2สามกลุ่มผ่านตามsectionถัดไป คงcontent7b2a0267…/packc7e45b…

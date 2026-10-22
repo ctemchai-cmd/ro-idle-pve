@@ -1,0 +1,44 @@
+{
+  "task_id": "TASK-082",
+  "date": "2026-10-22",
+  "source_commit": "517daa0305f2b591ffdc8a6c267d68017f45e4e7",
+  "origin": "https://ro-idle-pve.vercel.app",
+  "passed": false,
+  "checks": [
+    {
+      "case_id": "hosted_region_timing_auth_gate_content",
+      "passed": true,
+      "samples": [
+        {
+          "route": "/api/health",
+          "status": 200,
+          "elapsed_ms": 1041,
+          "api_region": "sin1",
+          "vercel_id": "sin1::sin1::mrcrx-1792646100759-d122e06eaa13",
+          "server_timing": "total;dur=8.0"
+        },
+        {
+          "route": "/api/checkpoint",
+          "status": 401,
+          "elapsed_ms": 357,
+          "api_region": "sin1",
+          "vercel_id": "sin1::sin1::2xghm-1792646101615-3c0da4af7ce7",
+          "server_timing": "auth;dur=0.3, total;dur=5.4"
+        },
+        {
+          "route": "/api/health",
+          "status": 200,
+          "elapsed_ms": 451,
+          "api_region": "sin1",
+          "vercel_id": "sin1::sin1::w9kbc-1792646102092-b93e27ab0c1e",
+          "server_timing": "total;dur=0.3"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "failure": "Error: NO_NEW_CHUNK_gear-card-slots\n    at assert (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/test_save_latency_hosted.cjs:7:42)\n    at load (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/test_save_latency_hosted.cjs:74:170)\n    at /Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/test_save_latency_hosted.cjs:78:57\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)",
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "scope": "Signed-out actual production health/401 gate/new shared-save bundle/login/PWA only. No owner command latency or owner save access; actual mutations/failures tested on isolated stack. TASK064 optional SQL007 installation and cloud2RPC timing are not verified here."
+}

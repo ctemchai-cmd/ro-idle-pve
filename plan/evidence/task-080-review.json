@@ -1,0 +1,56 @@
+{
+  "task_id": "TASK-080",
+  "date": "2026-10-22",
+  "passed": true,
+  "implementation_verified": true,
+  "acceptance": {
+    "AC-01": "passed",
+    "AC-02": "passed",
+    "AC-03": "passed",
+    "AC-04": "passed"
+  },
+  "source_commit": "517daa0305f2b591ffdc8a6c267d68017f45e4e7",
+  "deployment_url": "https://vercel.com/chanon2/ro-idle-pve/Cm78SLSRNFyyN5ftWCphD2rXhTE9",
+  "content_hash": "7b2a026768c31cf63c7e50510a26e7be840cdcc4010ac6cfb27cf078d8707e91",
+  "asset_pack_hash": "c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2",
+  "checks": {
+    "combined_focused_ts": 30,
+    "actual_disposable_mobile_groups": 3,
+    "actual_auth_api_groups": 5,
+    "hosted_public_groups": 3,
+    "build_type_boundaries_secrets": true
+  },
+  "evidence": [
+    "plan/evidence/task-080-082-targeted.txt",
+    "plan/evidence/task-082-build.txt",
+    "plan/evidence/task-082-hosted.json",
+    "plan/evidence/task-082-github-deployment.json",
+    "plan/evidence/task-082-readiness.txt",
+    "plan/evidence/task-080-081-ui-live.json",
+    "plan/evidence/task-080-local-stack.json",
+    "plan/evidence/task-080-local-api.txt",
+    "plan/evidence/task-080-full-cards-320.png",
+    "plan/evidence/task-080-gear-frames-320.png",
+    "plan/evidence/task-080-full-picker-320.png"
+  ],
+  "verified_behavior": "Native card art fills rounded cover masks in bag/picker/socket at320/390px; portrait detail remains3:4. E/lock/grade/level stay visible. Small Bronze/Silver/Gold/empty frames project actual character slot ownership and unlocked1/2/3 sockets. Free gear has no attached card progression; moving gear retains each character slot investment. Actual mobile geometry, real image review and zero inspection mutations passed.",
+  "retained_failures": [
+    "Retained round1 JSONB key-order comparison fixture failure; replaced string serialization comparison with strict deep equality.",
+    "Retained round2 automation stable-click timeout on intentionally animated AFK chest; actual touchscreen tap used without changing product.",
+    "Hosted round1 wrongly expected local-unconfigured and production-configured bundles to have identical filenames; corrected harness to production manifest filenames/SHA and required markers. Same product deployment passed."
+  ],
+  "visual_and_test_scope": "Actual isolated Auth/API/SQL/mobile320/390 card UI and isolated Vite/native Canvas/Chrome finisher checks. Public production health/new bundle checksums/login/PWA verified signed out; no physical Android benchmark or owner save access. Combined30 TS includes22 card/migration and8 finisher checks, plus11 existing native contact checks.",
+  "gameplay_data_changed": false,
+  "new_sql_env_assets": false,
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "balance_simulation": false,
+  "pending": [],
+  "source_sha256": {
+    "src/client/slots.ts": "0b673a3dc4aa2181f926163d8912f43f1431e5f7d37a70d2db5e070d78fde3cf",
+    "src/ui/game/equipment-cards.tsx": "92d4c53851919597e4686230348b7524bf0727af2f26e3e94e40910a7ddc9c7d",
+    "src/ui/game/game.css": "033035e142a3f9406be8a8b09426735085e678a59944ba9ce7e0be06efbe9625",
+    "tests/game/card-equipment-icons.test.ts": "6397ceeeda0fab79e40fdf5aa9256bbba59228a71f1b0da8630c7bde015ed4d7",
+    "scripts/test_card_frames_live.cjs": "44999b186ec088d4150acced49578253d40e28d3d11873e758318f3a0411c388"
+  }
+}

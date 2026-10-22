@@ -1,0 +1,63 @@
+{
+  "task_id": "TASK-082",
+  "date": "2026-10-22",
+  "passed": true,
+  "implementation_verified": true,
+  "acceptance": {
+    "AC-01": "passed",
+    "AC-02": "passed",
+    "AC-03": "passed",
+    "AC-04": "passed",
+    "AC-05": "passed"
+  },
+  "source_commit": "517daa0305f2b591ffdc8a6c267d68017f45e4e7",
+  "deployment_url": "https://vercel.com/chanon2/ro-idle-pve/Cm78SLSRNFyyN5ftWCphD2rXhTE9",
+  "content_hash": "7b2a026768c31cf63c7e50510a26e7be840cdcc4010ac6cfb27cf078d8707e91",
+  "asset_pack_hash": "c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2",
+  "checks": {
+    "combined_focused_ts": 30,
+    "finisher_specific_ts": 8,
+    "existing_contact_animation_tests": 11,
+    "profiles": 15,
+    "roots": 6,
+    "styles": 8,
+    "actual_native_skills_rendered": 10,
+    "actual_browser_groups": 3,
+    "hosted_public_groups": 3,
+    "build_type_boundaries_secrets": true
+  },
+  "evidence": [
+    "plan/evidence/task-080-082-targeted.txt",
+    "plan/evidence/task-082-build.txt",
+    "plan/evidence/task-082-hosted.json",
+    "plan/evidence/task-082-github-deployment.json",
+    "plan/evidence/task-082-readiness.txt",
+    "plan/evidence/task-082-browser.json",
+    "plan/evidence/task-082-contact-regression.txt",
+    "plan/evidence/task-082-asura-mobile-320.png",
+    "plan/evidence/task-082-asura-mobile-390.png",
+    "plan/evidence/task-082-monk_asura-390.png",
+    "plan/evidence/task-082-wizard_meteor-390.png",
+    "plan/evidence/task-082-crusader_grand_cross-390.png"
+  ],
+  "verified_behavior": "RO-inspired authored Asura light-fist/radial shock and outlined caption plus15 profiles across6 roots/8 styles. Successful HP/shield impact only, same visualImpactMs as native numbers/projectiles, one cue per action, no cast-interrupt/miss/normal/proc/heal finisher. Ten actual native rigs passed contact/reduced motion/quiet farm; shared Asura checkpoints/events/RNG identical at1/2/4 and real interrupted cast has no finisher. Bounded420ms wall impact,750–1000ms caption and180ms subtle≤5intrinsic-pixel shake keep high-speed presentation readable without changing engine time. Farm retains world impact without banner/shake. Inspected actual320/390 Asura and native Meteor/GrandCross/SonicBlow images; no new media. This is an authored adaptation, not exact native RO Asura reconstruction.",
+  "retained_failures": [
+    "Retained first frozen-fixture mutation failure; fixture now builds immutable actor copies. First full build caught readonly fixture assignment after cloning; fixed test with immutable map, readonly contract retained.",
+    "Retained round1 report/native images; its mobile screenshots lacked viewport meta and were wrongly scaled. Final harness adds viewport meta, checks innerWidth, and real320/390 screenshots pass.",
+    "Retained hosted round1 local-vs-production filename assumption; corrected only public test to deployment manifest hashes/required new content, same517daa product passed."
+  ],
+  "visual_and_test_scope": "Actual isolated Auth/API/SQL/mobile320/390 card UI and isolated Vite/native Canvas/Chrome finisher checks. Public production health/new bundle checksums/login/PWA verified signed out; no physical Android benchmark or owner save access. Combined30 TS includes22 card/migration and8 finisher checks, plus11 existing native contact checks.",
+  "gameplay_data_changed": false,
+  "new_sql_env_assets": false,
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "balance_simulation": false,
+  "pending": [],
+  "source_sha256": {
+    "src/renderer/finishers.ts": "07f44616b88c834123f837284d59a9a17ef381435853792e2d8cbbe06beda16d",
+    "src/renderer/battle.ts": "be8441505869beb77c8d072832db4a72f75faff6e31fd36424e3fc4492cf863c",
+    "src/ui/game/field.tsx": "ecc673f870a46796fe263d077866bc426d59afa67a71b39958520347b6198ea2",
+    "tests/game/finishers.test.ts": "12da7377cf84c47c7c2d7cfbc1845988855805cb7ca908f74aeb84e775db1098",
+    "scripts/test_finishers.cjs": "99c246c467465ef6446869a48bdc8d4981c8f48b6950649dedef42926c9ec58b"
+  }
+}
