@@ -529,9 +529,9 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 
 | `T106-AC-02` [TASK-106](done/tasks_106.md) | usermapping/importer/mobile/build/hosted | realmobile320/390 skill/loadout/timeline/spherebadgeโหลดใหม่/ไม่ล้น/ไม่มีwriteหรือerror; build/M0/assets/publicผ่านพร้อมภาพ | [ผ่าน implementation](evidence/task-106-review.json) |
 
-| `T107-AC-01` [TASK-107](inprogress/tasks_107.md) | userfile/sharedengine/mobile/public | AC-01ตามdesign36/tasks107 | ยังไม่ตรวจ |
-| `T107-AC-02` [TASK-107](inprogress/tasks_107.md) | userfile/sharedengine/mobile/public | AC-02ตามdesign36/tasks107 | ยังไม่ตรวจ |
-| `T107-AC-03` [TASK-107](inprogress/tasks_107.md) | userfile/sharedengine/mobile/public | AC-03ตามdesign36/tasks107 | ยังไม่ตรวจ |
-| `T107-AC-04` [TASK-107](inprogress/tasks_107.md) | userfile/sharedengine/mobile/public | AC-04ตามdesign36/tasks107 | ยังไม่ตรวจ |
-| `T107-AC-05` [TASK-107](inprogress/tasks_107.md) | userfile/sharedengine/mobile/public | AC-05ตามdesign36/tasks107 | ยังไม่ตรวจ |
-| `T107-AC-06` [TASK-107](inprogress/tasks_107.md) | userfile/sharedengine/mobile/public | AC-06ตามdesign36/tasks107 | ยังไม่ตรวจ |
+| `T107-AC-01` [TASK-107](done/tasks_107.md) | userfile/sharedengine/mobile/public | AC-01ตามdesign36/tasks107 | [ผ่าน implementation](evidence/task-107-review.json) |
+| `T107-AC-02` [TASK-107](done/tasks_107.md) | userfile/sharedengine/mobile/public | AC-02ตามdesign36/tasks107 | [ผ่าน implementation](evidence/task-107-review.json) |
+| `T107-AC-03` [TASK-107](done/tasks_107.md) | userfile/sharedengine/mobile/public | AC-03ตามdesign36/tasks107 | [ผ่าน implementation](evidence/task-107-review.json) |
+| `T107-AC-04` [TASK-107](done/tasks_107.md) | userfile/sharedengine/mobile/public | AC-04ตามdesign36/tasks107 | [ผ่าน implementation](evidence/task-107-review.json) |
+| `T107-AC-05` [TASK-107](done/tasks_107.md) | userfile/sharedengine/mobile/public | AC-05ตามdesign36/tasks107 | [ผ่าน implementation](evidence/task-107-review.json) |
+| `T107-AC-06` [TASK-107](done/tasks_107.md) | userfile/sharedengine/mobile/public | AC-06ตามdesign36/tasks107 | [ผ่าน implementation](evidence/task-107-review.json) |

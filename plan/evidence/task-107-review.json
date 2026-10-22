@@ -1,8 +1,8 @@
 {
   "task_id": "TASK-107",
-  "passed": false,
+  "passed": true,
   "local_passed": true,
-  "hosted_pending": true,
+  "hosted_pending": false,
   "checks": {
     "focused_TS_tests": 95,
     "class_suite_unique_tests_passed": 56,
@@ -34,10 +34,21 @@
     "task-107-local-stack.json",
     "task-107-native-effects.json",
     "task-107-native-tests.txt",
-    "task-107-build.txt"
+    "task-107-build.txt",
+    "task-107-hosted.json",
+    "task-107-local-public-bundles.json",
+    "task-107-github-deployment.json",
+    "task-107-staging-index-audit.json"
   ],
   "content_hash": "8ed177d871f364bc954f1c80f54691608c387fe4761097716716e85c3176d154",
   "pack_hash": "052337cf66db4d6686ecfb6e99bd9c41caa102c7084bf30209f5cba2d5089fb4",
   "scope": "No renewed balance calibration/batch, ownercloudwrite/privateenvread/6173restart; fixed targeted rules and UI evidence, not a physicalAndroid or whole-game balance claim.",
-  "review_date": "2026-10-23"
+  "review_date": "2026-10-23",
+  "source_commit": "6a9d989d5b9695db4e82cda95c63e01c6d163af3",
+  "vercel": "https://vercel.com/chanon2/ro-idle-pve/D6aGhBUMQrjSUTVaUPKeU5r11t9g",
+  "hosted_groups": 4,
+  "verified_public_media": 151,
+  "local_cloud_application_code_equal": true,
+  "reviewer": "Codex self-review against six pre-authored AC; appearance ready for user review",
+  "cloud_build_note": "VITE_VERCEL_*publicenv causes shell/import hash differences; exact application code equality verified after AST-scoped publicenv/chunkhash substitution. CSS/media/content exact. No keys logged."
 }

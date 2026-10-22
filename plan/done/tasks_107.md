@@ -23,12 +23,12 @@ TASK-029–034,TASK-037,TASK-040,TASK-083,TASK-106(done)
 
 ## เกณฑ์ตรวจรับ
 
-- [ ] AC-01:126skills/12resourcesตรงexplicit/inheritedmapping;sourceunchanged/metadata/SHA/pathguard/reviewจริง;ไม่ใช้รูปอื่นแทนjobicons
-- [ ] AC-02:major single70%/AoE50%Fingerทุกlevelตามdesign;Fingers/Asura/SP/spherecostเดิม;ทุกclassnoteมีผลตามไฟล์และidempotentgenerator
-- [ ] AC-03:SpellBreakerเฉพาะsuccessfulinterrupt,guaranteed/bonuscritไม่leak,Dispel1→4/CT→0,CC/duration/plant/HoTทำงานจริงและ1×/2×/4×เท่ากัน
-- [ ] AC-04:126stableIDs/oldlevels/slots/ledger/items/walletไม่สูญหายในการbackedupmigration;descriptionทุกnote/ทุกlevelตรงresolvedeffectsไม่มีstaleชื่อหรือผลเก่า
-- [ ] AC-05:actualmobile320/390ครบ19jobs/skills/loadout/Timeline/resources/scrolls;purpleexceptions/nativeAxeและgachareveal/skip/reducedmotionไม่ล้น/noerrors/noextraHTTPwrites/pity-costเดิม
-- [ ] AC-06:requiredassets/M0/readiness/build/focusedchecks/publicVercelตรงSHAผ่าน เก็บภาพและผลจริงก่อนdone
+- [x] AC-01:126skills/12resourcesตรงexplicit/inheritedmapping;sourceunchanged/metadata/SHA/pathguard/reviewจริง;ไม่ใช้รูปอื่นแทนjobicons
+- [x] AC-02:major single70%/AoE50%Fingerทุกlevelตามdesign;Fingers/Asura/SP/spherecostเดิม;ทุกclassnoteมีผลตามไฟล์และidempotentgenerator
+- [x] AC-03:SpellBreakerเฉพาะsuccessfulinterrupt,guaranteed/bonuscritไม่leak,Dispel1→4/CT→0,CC/duration/plant/HoTทำงานจริงและ1×/2×/4×เท่ากัน
+- [x] AC-04:126stableIDs/oldlevels/slots/ledger/items/walletไม่สูญหายในการbackedupmigration;descriptionทุกnote/ทุกlevelตรงresolvedeffectsไม่มีstaleชื่อหรือผลเก่า
+- [x] AC-05:actualmobile320/390ครบ19jobs/skills/loadout/Timeline/resources/scrolls;purpleexceptions/nativeAxeและgachareveal/skip/reducedmotionไม่ล้น/noerrors/noextraHTTPwrites/pity-costเดิม
+- [x] AC-06:requiredassets/M0/readiness/build/focusedchecks/publicVercelตรงSHAผ่าน เก็บภาพและผลจริงก่อนdone
 
 ## วิธีตรวจและหลักฐาน
 
@@ -43,3 +43,5 @@ Use task-107-*source audit/per-note coverage/arithmetic/typedengine fixtures/mig
 เริ่ม23ต.ค.2026. อีก7inheritedคือDancerEncore/BreathingและRoguecopy5ใช้ภาพของsource skill.
 
 Localreview23ต.ค.:95focusedTS+56uniqueclasstests(all378goldens/per-level;onefailedparityfixturecorrected3-10)/37Python/M0/readiness8/build/assets260-60460-6926ผ่าน. Actual38mobilejobcases+realgacha10/singlepull, native11attacks/1x2x4/interruptผ่าน. [หลักฐาน](../evidence/task-107-review.json). ยังรอpublicreleaseproofก่อนdone.
+
+Finalreview23ต.ค.:6ACผ่าน PublicVercel4groups/151mediaSHA/content/API200SIN1/checkpoint401/login0writesผ่าน. Source`6a9d989d5b9695db4e82cda95c63e01c6d163af3`. CSSตรงlocalทุกbyte; JSapplicationcodeตรงหลังแยกเฉพาะpublicVercelenv/chunkfilenamehash. NoSQL/envใหม่;ผู้ใช้จบไฟต์reloadและใช้backup/migrateflowเดิม ไม่ได้แก้ownerเซฟโดยตรง.
