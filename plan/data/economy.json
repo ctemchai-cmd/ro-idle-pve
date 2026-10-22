@@ -398,6 +398,50 @@
           "crystal": 10
         },
         "daily_limit": 1
+      },
+      {
+        "id": "fire_scroll",
+        "price": {
+          "gold": 50
+        },
+        "grant": {},
+        "consumable_grant": {
+          "fire_scroll": 1
+        },
+        "daily_limit": 99
+      },
+      {
+        "id": "water_scroll",
+        "price": {
+          "gold": 50
+        },
+        "grant": {},
+        "consumable_grant": {
+          "water_scroll": 1
+        },
+        "daily_limit": 99
+      },
+      {
+        "id": "earth_scroll",
+        "price": {
+          "gold": 50
+        },
+        "grant": {},
+        "consumable_grant": {
+          "earth_scroll": 1
+        },
+        "daily_limit": 99
+      },
+      {
+        "id": "wind_scroll",
+        "price": {
+          "gold": 50
+        },
+        "grant": {},
+        "consumable_grant": {
+          "wind_scroll": 1
+        },
+        "daily_limit": 99
       }
     ],
     "pace_note": "D-069: each daily offer is a 5–15 % top-up of the D-069 farm income, never a substitute for it"
@@ -574,5 +618,35 @@
     },
     "generator": "plan/generators/economy_pace.py",
     "gold_income_multiplier": 3
-  }
+  },
+  "element_scrolls": [
+    {
+      "id": "fire_scroll",
+      "name": "ใบธาตุไฟ",
+      "element": "fire",
+      "duration": "next_battle",
+      "description": "ตีปกติและสกิลธาตุตามอาวุธเป็นธาตุไฟ · หนึ่งไฟต์ถัดไป"
+    },
+    {
+      "id": "water_scroll",
+      "name": "ใบธาตุน้ำ",
+      "element": "water",
+      "duration": "next_battle",
+      "description": "ตีปกติและสกิลธาตุตามอาวุธเป็นธาตุน้ำ · หนึ่งไฟต์ถัดไป"
+    },
+    {
+      "id": "earth_scroll",
+      "name": "ใบธาตุดิน",
+      "element": "earth",
+      "duration": "next_battle",
+      "description": "ตีปกติและสกิลธาตุตามอาวุธเป็นธาตุดิน · หนึ่งไฟต์ถัดไป"
+    },
+    {
+      "id": "wind_scroll",
+      "name": "ใบธาตุลม",
+      "element": "wind",
+      "duration": "next_battle",
+      "description": "ตีปกติและสกิลธาตุตามอาวุธเป็นธาตุลม · หนึ่งไฟต์ถัดไป"
+    }
+  ]
 }

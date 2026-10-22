@@ -1,3 +1,5 @@
+import { preparedScroll, validateSupplies } from '../build/consumables.ts';
+import { grantConsumables, prepareConsumable, consumePreparedForTeam } from '../progression/consumables.ts';
 import type { AccountState, Command, Receipt } from '../../contracts/index.ts';
 import type { BattleWrite, StoredBattle } from '../../contracts/save.ts';
 import type { Json } from '../../content/value.ts';
@@ -35,9 +37,9 @@ export interface CommandTime {
 export interface CommandProposal { state: AccountState; receipt: Receipt; battle_write: BattleWrite }
 /** Server-owned account command reducers. Mode/upgrade handlers extend this boundary. */
 export class AccountCommandRules extends AccountCreationRules {
-  buildInputs(state:AccountState){return Object.fromEntries(state.roster.map(actor=>[actor.character_id,{actor,items:boundItemInstances(actor,state)}]));}
+  buildInputs(state:AccountState){return Object.fromEntries(state.roster.map(actor=>{const prepared=preparedScroll(state,actor.character_id,this.content);return[actor.character_id,{actor,items:boundItemInstances(actor,state),...(prepared?{prepared_scroll:prepared.id}:{})}];}));}
   get leaseMs() { return Number((this.content.documents['save-contracts.json']!.battle_protocol as unknown as { lease_ms: number }).lease_ms); }
-  supports(type: Command['type']) { return ['farm.claim', 'reward.claim', 'battle.advance', 'battle.finish', 'battle.retreat', 'party.set', 'character.level_up', 'character.breakthrough', 'character.allocate_status', 'character.reset_build', 'character.change_job', 'skill.upgrade', 'skill.set_loadout', 'battle.start_story', 'farm.set_stage', 'equipment.equip', 'equipment.unequip', 'equipment.lock', 'equipment.salvage', 'equipment.purchase_weapon', 'slot.refine', 'slot.enchant', 'slot.change_enchant', 'card.assign', 'card.unassign', 'card.upgrade', 'card.salvage', 'equipment.fuse', 'equipment.tier_up', 'battle.start_tower', 'battle.start_daily', 'gacha.pull', 'shop.buy', 'daily.objective_claim'].includes(type); }
+  supports(type: Command['type']) { return ['farm.claim', 'reward.claim', 'battle.advance', 'battle.finish', 'battle.retreat', 'party.set', 'character.level_up', 'character.breakthrough', 'character.allocate_status', 'character.reset_build', 'character.change_job', 'skill.upgrade', 'skill.set_loadout', 'battle.start_story', 'farm.set_stage', 'equipment.equip', 'equipment.unequip', 'equipment.lock', 'equipment.salvage', 'equipment.purchase_weapon', 'slot.refine', 'slot.enchant', 'slot.change_enchant', 'card.assign', 'card.unassign', 'card.upgrade', 'card.salvage', 'equipment.fuse', 'equipment.tier_up', 'battle.start_tower', 'battle.start_daily', 'gacha.pull', 'consumable.prepare', 'shop.buy', 'daily.objective_claim'].includes(type); }
   /** TASK-040 (D-064): maintenance proposals. The API proves integrity/ownership and supplies time, ids and seed. */
   migrateSave(stored: unknown): { state: AccountState; changes: string[] } { const migrated = migrateAccountState(stored, this.content); return { state: this.validateAccount(migrated.state), changes: migrated.changes }; }
   restoreSave(restored: unknown, current: AccountState | null, nowMs: number): AccountState { return this.validateAccount(guardRestore(this.validateAccount(restored), current, bangkokDay(nowMs), bangkokDay(nowMs - 86400000))); }
@@ -62,6 +64,7 @@ export class AccountCommandRules extends AccountCreationRules {
     if (s.roster.some(a => Object.values(a.equipment).some(id => id !== null && !itemIds.includes(id)))) throw new Error('INVALID_EQUIPMENT_REFERENCE');
     validateProgression(s, this.content);
     validateInventory(s, this.content);
+    validateSupplies(s, this.content);
     for (const actor of s.roster) validateCharacterSkills(actor, this.content);
     return s;
   }
@@ -113,6 +116,7 @@ export class AccountCommandRules extends AccountCreationRules {
         const compiled = Object.fromEntries(state.team.map(p => [p.character_id, compileCharacterSkills(state.roster.find(a => a.character_id === p.character_id)!, this.content)]));
         const initial = createBattle(storyInput(stage!, storyBoss(stage!), storyParty(state,this.content,compiled,time.build_hashes), this.content), this.content, time.battle_seed);
         if (!initial.ok) reject('BATTLE_BUILD_UNAVAILABLE');
+        consumePreparedForTeam(state);
         state.active_battle = { battle_id: time.battle_id, mode:'story', mode_ref:stage!.id, ticket_day:null, started_at:time.server_at, last_ack_at:time.server_at, lease_expires_at:time.new_lease_at, ...this.versions };
         battleWrite = { kind:'upsert', battle:{ account_id:time.account_id, battle_id:time.battle_id, payload:initial.ok?serializeBattle(initial.value):null, content_hash:this.versions.content_hash, last_ack_at:time.server_at, lease_expires_at:time.new_lease_at } }; code='STORY_STARTED';
       } else if (command.type === 'battle.start_tower') {
@@ -123,6 +127,7 @@ export class AccountCommandRules extends AccountCreationRules {
         const compiled = Object.fromEntries(state.team.map(p => [p.character_id, compileCharacterSkills(state.roster.find(a => a.character_id === p.character_id)!, this.content)]));
         const initial = createBattle(storyInput(towerStageRef(floor, this.content), towerBoss(floor, this.content), storyParty(state,this.content,compiled,time.build_hashes), this.content, { kind: 'tower' }), this.content, time.battle_seed);
         if (!initial.ok) reject('BATTLE_BUILD_UNAVAILABLE');
+        consumePreparedForTeam(state);
         state.active_battle = { battle_id: time.battle_id, mode:'tower', mode_ref:String(floor), ticket_day:null, started_at:time.server_at, last_ack_at:time.server_at, lease_expires_at:time.new_lease_at, ...this.versions };
         battleWrite = { kind:'upsert', battle:{ account_id:time.account_id, battle_id:time.battle_id, payload:initial.ok?serializeBattle(initial.value):null, content_hash:this.versions.content_hash, last_ack_at:time.server_at, lease_expires_at:time.new_lease_at } }; code='TOWER_STARTED';
       } else if (command.type === 'battle.start_daily') {
@@ -140,6 +145,7 @@ export class AccountCommandRules extends AccountCreationRules {
         const initial = createBattle(storyInput({ id: dailyRef(id, record.chapter_snapshot), time_limit_ms: boss.time_limit_ms }, dailyBossActor(id, record.phase, record.chapter_snapshot, this.content), storyParty(state,this.content,compiled,time.build_hashes), this.content,
           { kind: 'daily', ticket_day: day, daily_phase: record.phase, daily_current_hp: record.current_hp, reserved_phase_keys: [] }), this.content, time.battle_seed);
         if (!initial.ok) reject('BATTLE_BUILD_UNAVAILABLE');
+        consumePreparedForTeam(state);
         // Partial damage carries over: the boss enters with the HP left from earlier attempts today.
         const payload = initial.ok ? serializeBattle(initial.value) : null; if (payload) payload.actors.find(actor => actor.actor_id === 'enemy_front')!.hp = record.current_hp;
         state.active_battle = { battle_id: time.battle_id, mode:'daily', mode_ref:id, ticket_day:day, started_at:time.server_at, last_ack_at:time.server_at, lease_expires_at:time.new_lease_at, ...this.versions };
@@ -154,8 +160,10 @@ export class AccountCommandRules extends AccountCreationRules {
         const rng = { state: time.battle_seed >>> 0, draw_count: 0 }, draw = () => nextRandom(rng), prefix = `gacha_${command.request_id}`;
         state.inventory.push(...(pool === 'card_v1' ? pullCards(state, count, draw, prefix, this.content) : pullGear(state, count, draw, prefix, this.content)));
         code = 'GACHA_PULLED';
+      } else if (command.type === 'consumable.prepare') {
+        prepareConsumable(state, command.params.character_id, command.params.definition_id, this.content); code='CONSUMABLE_PREPARED';
       } else if (command.type === 'shop.buy') {
-        const shop = this.content.documents['economy.json']!.shop as unknown as { offers: { id: string; price: Partial<AccountState['wallet']>; grant: Partial<AccountState['wallet']>; daily_limit: number }[] };
+        const shop = this.content.documents['economy.json']!.shop as unknown as { offers: { id: string; price: Partial<AccountState['wallet']>; grant: Partial<AccountState['wallet']>; consumable_grant?: Record<string,number>; daily_limit: number }[] };
         const offer = shop.offers.find(row => row.id === command.params.offer_id); if (!offer) reject('SHOP_OFFER_UNKNOWN');
         const day = bangkokDay(time.now_ms), quantity = command.params.quantity;
         if (state.shop.day !== day) state.shop = { day, purchases: {} }; // daily limits reset with the server Bangkok day
@@ -163,6 +171,7 @@ export class AccountCommandRules extends AccountCreationRules {
         for (const [key, amount] of Object.entries(offer!.price) as [keyof AccountState['wallet'], number][]) if (state.wallet[key] < amount * quantity) reject('INSUFFICIENT_RESOURCES');
         for (const [key, amount] of Object.entries(offer!.price) as [keyof AccountState['wallet'], number][]) state.wallet[key] -= amount * quantity;
         for (const [key, amount] of Object.entries(offer!.grant) as [keyof AccountState['wallet'], number][]) { const total = state.wallet[key] + amount * quantity; if (!Number.isSafeInteger(total)) reject('RESOURCE_OVERFLOW'); state.wallet[key] = total; }
+        grantConsumables(state, offer!.consumable_grant ?? {}, quantity, this.content);
         state.shop.purchases[offer!.id] = bought + quantity; code = 'SHOP_PURCHASED';
       } else if (command.type === 'farm.set_stage') {
         state = reserveCurrent(state, `farm_${command.request_id}`); selectFarm(state, command.params.stage_id); code='FARM_STAGE_SELECTED';

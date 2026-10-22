@@ -40,3 +40,5 @@
 - [32 น้ำหนักสกิล การ์ด และอุปกรณ์](32-build-impact.md) — โบนัส skill/normal, cost-awarecoefficientsและrolemodifiers; authoredtrialbaselineของTASK077ไม่ใช่whole-gamebalanceproof
 
 - [33 เอฟเฟกต์ท่าโจมตีใหญ่](33-big-skill-presentation.md) — Asura/ท่าใหญ่ 15 ท่า, actual hit/contact, title/shake, reduced motion และนาฬิกาภาพที่แยกจาก engine (TASK-082)
+
+- [ใบธาตุไฟต์ถัดไป](33-element-scrolls.md) — D-123 / TASK-094

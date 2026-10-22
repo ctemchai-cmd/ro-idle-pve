@@ -1,0 +1,22 @@
+
+> ro-idle-classic@0.1.0 build
+> npm run env:check && npm run assets:check:runtime && npm run content:generate && npm run content:check && npm run boundaries && npm run typecheck && vite build && node --import tsx scripts/game/build-output.ts && npm run secrets:check
+
+
+> ro-idle-classic@0.1.0 env:check
+> node --import tsx scripts/game/check-env.ts
+
+{"public_auth_config":"unconfigured","privileged_values_logged":false}
+
+> ro-idle-classic@0.1.0 assets:check:runtime
+> python3 scripts/build_runtime_assets.py --check --artifact-only
+
+Traceback (most recent call last):
+  File "/Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/build_runtime_assets.py", line 291, in <module>
+    main()
+  File "/Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/build_runtime_assets.py", line 287, in main
+    index = verify(artifact_only=args.artifact_only) if args.check else build()
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/build_runtime_assets.py", line 248, in verify
+    raise ValueError('Asset selection changed; rebuild pack locally')
+ValueError: Asset selection changed; rebuild pack locally

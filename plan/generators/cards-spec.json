@@ -2464,7 +2464,7 @@
       "ro_item_id": 4054,
       "monster_id": 1096,
       "monster_name": "Angeling",
-      "grade": "mini",
+      "grade": "mvp",
       "source_slot": "armor",
       "slot": "armor",
       "tier": 40,
@@ -2482,9 +2482,11 @@
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
       "adaptation": "จุดเด่นอ้างอิง RO; normalize ตัวเลขกับ quality/level ของเกม idle",
       "defense_element": "holy",
-      "rarity_id": "epic",
+      "rarity_id": "legendary",
       "source_level": 20,
-      "strength_class": "mini"
+      "strength_class": "mvp",
+      "classification_reference": "https://roglobal.com/news/347",
+      "classification_basis": "Ragnarok Origin MVP grouping; overrides pre-re PC Mini classification for this game."
     },
     {
       "id": "card_ghostring",
@@ -2520,7 +2522,7 @@
       "ro_item_id": 4174,
       "monster_id": 1582,
       "monster_name": "Deviling",
-      "grade": "mini",
+      "grade": "mvp",
       "source_slot": "garment",
       "slot": "garment",
       "tier": 60,
@@ -2600,9 +2602,353 @@
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4174&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
       "adaptation": "จุดเด่นอ้างอิง RO; normalize ตัวเลขกับ quality/level ของเกม idle",
-      "rarity_id": "epic",
+      "rarity_id": "legendary",
       "source_level": 31,
-      "strength_class": "mini"
+      "strength_class": "mvp",
+      "classification_reference": "https://roglobal.com/news/347",
+      "classification_basis": "Ragnarok Origin MVP grouping; overrides pre-re PC Mini classification for this game."
+    },
+    {
+      "id": "card_angeling_puppet",
+      "name": "การ์ดแองเจลิง Puppet I",
+      "ro_item_id": 4054,
+      "monster_id": 1096,
+      "monster_name": "Angeling",
+      "grade": "mvp",
+      "source_slot": "armor",
+      "slot": "head",
+      "tier": 40,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "value": 0.04,
+          "op": "add_percent",
+          "bucket": "derived"
+        },
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "value": 0.03,
+          "op": "add_percent",
+          "bucket": "derived"
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://roglobal.com/news/347",
+      "reference_database": "https://rooccompanion.com/card/card-angeling-puppet-i/",
+      "adaptation": "Puppet guard/HP role mapped to max HP and MDEF; does not change armor element. Values and slot mapping are authored for this idle game, not exact Origin formulas.",
+      "rarity_id": "rare",
+      "source_level": 20,
+      "strength_class": "mvp",
+      "classification_reference": "https://roglobal.com/news/347",
+      "classification_basis": "Ragnarok Origin MVP grouping; overrides pre-re PC Mini classification for this game.",
+      "variant": "puppet",
+      "parent_card_id": "card_angeling",
+      "art_basis": "Reuse original native RO illustration with a presentation-only pale treatment, not a claim of authentic Origin Puppet artwork."
+    },
+    {
+      "id": "card_deviling_puppet",
+      "name": "การ์ดเดวิลิง Puppet I",
+      "ro_item_id": 4174,
+      "monster_id": 1582,
+      "monster_name": "Deviling",
+      "grade": "mvp",
+      "source_slot": "garment",
+      "slot": "garment",
+      "tier": 40,
+      "modifiers": [
+        {
+          "id": "outgoing_physical_bonus",
+          "stat": "outgoing_physical_bonus",
+          "value": 0.02,
+          "op": "add_flat",
+          "bucket": "bonus"
+        },
+        {
+          "id": "outgoing_magical_bonus",
+          "stat": "outgoing_magical_bonus",
+          "value": 0.02,
+          "op": "add_flat",
+          "bucket": "bonus"
+        },
+        {
+          "id": "guard_percent",
+          "stat": "guard_percent",
+          "value": 0.01,
+          "op": "add_flat",
+          "bucket": "bonus"
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://roglobal.com/news/347",
+      "reference_database": "https://rooccompanion.com/card/card-deviling-puppet-i/",
+      "adaptation": "Origin PvE offense/defense theme adapted to existing percentage stats; no neutral armor or real Deviling weaknesses. Values and slot mapping are authored for this idle game, not exact Origin formulas.",
+      "rarity_id": "rare",
+      "source_level": 31,
+      "strength_class": "mvp",
+      "classification_reference": "https://roglobal.com/news/347",
+      "classification_basis": "Ragnarok Origin MVP grouping; overrides pre-re PC Mini classification for this game.",
+      "variant": "puppet",
+      "parent_card_id": "card_deviling",
+      "art_basis": "Reuse original native RO illustration with a presentation-only pale treatment, not a claim of authentic Origin Puppet artwork."
+    },
+    {
+      "id": "card_golden_thief_bug_puppet",
+      "name": "การ์ดโกลเดนทีฟบัก Puppet I",
+      "ro_item_id": 4128,
+      "monster_id": 1086,
+      "monster_name": "Golden Thief Bug",
+      "grade": "mvp",
+      "source_slot": "shield",
+      "slot": "garment",
+      "tier": 40,
+      "modifiers": [
+        {
+          "id": "magical_guard_percent",
+          "stat": "magical_guard_percent",
+          "value": 0.03,
+          "op": "add_flat",
+          "bucket": "bonus"
+        },
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "value": 0.02,
+          "op": "add_percent",
+          "bucket": "derived"
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://roglobal.com/news/347",
+      "reference_database": "https://rooccompanion.com/card/card-golden-thief-bug-puppet-i/",
+      "adaptation": "Origin magic-reduction/backwear theme mapped to garment; no real-card SP penalty or magic immunity. Values and slot mapping are authored for this idle game, not exact Origin formulas.",
+      "rarity_id": "rare",
+      "source_level": 64,
+      "strength_class": "mvp",
+      "variant": "puppet",
+      "parent_card_id": "card_golden_thief_bug",
+      "art_basis": "Reuse original native RO illustration with a presentation-only pale treatment, not a claim of authentic Origin Puppet artwork."
+    },
+    {
+      "id": "card_eddga_puppet",
+      "name": "การ์ดเอ็ดกา Puppet I",
+      "ro_item_id": 4123,
+      "monster_id": 1115,
+      "monster_name": "Eddga",
+      "grade": "mvp",
+      "source_slot": "shoes",
+      "slot": "accessory",
+      "tier": 40,
+      "modifiers": [],
+      "triggers": [
+        {
+          "id": "matched_bonus",
+          "event": "damage_dealt",
+          "chance": 1,
+          "accepted_origins": [
+            "normal",
+            "skill"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {
+            "foes": {
+              "team": "enemies",
+              "life": "living",
+              "select": "all",
+              "count": null,
+              "phase": "event",
+              "missing": "skip"
+            }
+          },
+          "effects": [
+            {
+              "id": "bonus_hit",
+              "type": "damage",
+              "target": "event_target",
+              "formula": {
+                "id": "event_damage_power",
+                "params": {
+                  "ratio": 0.03
+                }
+              },
+              "damage_type": "true",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "ignore"
+            }
+          ],
+          "when": {
+            "type": "has_tag",
+            "actor": "event_target",
+            "tag": "size_large"
+          },
+          "accepted_damage_types": [
+            "physical",
+            "magical"
+          ]
+        }
+      ],
+      "reference_url": "https://roglobal.com/news/347",
+      "reference_database": "https://rooccompanion.com/card/card-eddga-puppet-i/",
+      "adaptation": "Origin large-target damage theme; mapped facewear to accessory. Shared event damage bonus on physical/magical hits. Values and slot mapping are authored for this idle game, not exact Origin formulas.",
+      "rarity_id": "rare",
+      "source_level": 65,
+      "strength_class": "mvp",
+      "variant": "puppet",
+      "parent_card_id": "card_eddga",
+      "art_basis": "Reuse original native RO illustration with a presentation-only pale treatment, not a claim of authentic Origin Puppet artwork."
+    },
+    {
+      "id": "card_moonlight_flower_puppet",
+      "name": "การ์ดมูนไลท์ฟลาวเวอร์ Puppet I",
+      "ro_item_id": 4131,
+      "monster_id": 1150,
+      "monster_name": "Moonlight Flower",
+      "grade": "mvp",
+      "source_slot": "shoes",
+      "slot": "accessory",
+      "tier": 40,
+      "modifiers": [],
+      "triggers": [
+        {
+          "id": "matched_bonus",
+          "event": "damage_dealt",
+          "chance": 1,
+          "accepted_origins": [
+            "normal",
+            "skill"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {
+            "foes": {
+              "team": "enemies",
+              "life": "living",
+              "select": "all",
+              "count": null,
+              "phase": "event",
+              "missing": "skip"
+            }
+          },
+          "effects": [
+            {
+              "id": "bonus_hit",
+              "type": "damage",
+              "target": "event_target",
+              "formula": {
+                "id": "event_damage_power",
+                "params": {
+                  "ratio": 0.03
+                }
+              },
+              "damage_type": "true",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "ignore"
+            }
+          ],
+          "when": {
+            "type": "has_tag",
+            "actor": "event_target",
+            "tag": "size_small"
+          },
+          "accepted_damage_types": [
+            "physical",
+            "magical"
+          ]
+        }
+      ],
+      "reference_url": "https://roglobal.com/news/347",
+      "reference_database": "https://rooccompanion.com/card/card-moonlight-flower-puppet-i/",
+      "adaptation": "Origin small-target damage theme; mapped facewear to accessory. Does not give real-card movement speed. Values and slot mapping are authored for this idle game, not exact Origin formulas.",
+      "rarity_id": "rare",
+      "source_level": 67,
+      "strength_class": "mvp",
+      "variant": "puppet",
+      "parent_card_id": "card_moonlight_flower",
+      "art_basis": "Reuse original native RO illustration with a presentation-only pale treatment, not a claim of authentic Origin Puppet artwork."
+    },
+    {
+      "id": "card_baphomet_puppet",
+      "name": "การ์ดบาโฟเมท Puppet I",
+      "ro_item_id": 4147,
+      "monster_id": 1039,
+      "monster_name": "Baphomet",
+      "grade": "mvp",
+      "source_slot": "weapon",
+      "slot": "armor",
+      "tier": 40,
+      "modifiers": [
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "value": 0.04,
+          "op": "add_percent",
+          "bucket": "derived"
+        },
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "value": 0.03,
+          "op": "add_percent",
+          "bucket": "derived"
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://roglobal.com/news/347",
+      "reference_database": "https://rooccompanion.com/card/card-baphomet-puppet-i/",
+      "adaptation": "Origin PDEF/costume theme mapped to armor; PvP-only stats omitted in this single-player game, no splash attack. Values and slot mapping are authored for this idle game, not exact Origin formulas.",
+      "rarity_id": "rare",
+      "source_level": 81,
+      "strength_class": "mvp",
+      "variant": "puppet",
+      "parent_card_id": "card_baphomet",
+      "art_basis": "Reuse original native RO illustration with a presentation-only pale treatment, not a claim of authentic Origin Puppet artwork."
+    },
+    {
+      "id": "card_doppelganger_puppet",
+      "name": "การ์ดดอปเปิลแกงเกอร์ Puppet I",
+      "ro_item_id": 4142,
+      "monster_id": 1046,
+      "monster_name": "Doppelganger",
+      "grade": "mvp",
+      "source_slot": "weapon",
+      "slot": "head",
+      "tier": 40,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "value": 0.02,
+          "op": "add_percent",
+          "bucket": "derived"
+        },
+        {
+          "id": "crit_resistance",
+          "stat": "crit_resistance",
+          "value": 0.02,
+          "op": "add_flat",
+          "bucket": "bonus"
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://roglobal.com/news/347",
+      "reference_database": "https://rooccompanion.com/card/card-doppelganger-puppet-i/",
+      "adaptation": "Origin defensive mouthwear theme mapped to head; current prototype uses HP/critical defense instead of a new size-conditional incoming formula. No real-card ASPD bonus. Values and slot mapping are authored for this idle game, not exact Origin formulas.",
+      "rarity_id": "rare",
+      "source_level": 72,
+      "strength_class": "mvp",
+      "variant": "puppet",
+      "parent_card_id": "card_doppelganger",
+      "art_basis": "Reuse original native RO illustration with a presentation-only pale treatment, not a claim of authentic Origin Puppet artwork."
     }
   ],
   "monster_traits": {
@@ -2671,6 +3017,16 @@
     "future_only": [
       "immortal",
       "supreme"
-    ]
+    ],
+    "variant_rules": {
+      "puppet": {
+        "rarity_id": "rare",
+        "basis": "D-122: separate Puppet I definition, blue/pale portrait, distinct supporting effects; retains source MVP identity without Legendary full-boss power."
+      }
+    },
+    "classification_overrides": {
+      "card_angeling": "mvp",
+      "card_deviling": "mvp"
+    }
   }
 }

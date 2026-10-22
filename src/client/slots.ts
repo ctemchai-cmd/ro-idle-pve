@@ -38,7 +38,7 @@ function cardEffects(item:CardItem):string[]{
  for(const trigger of resolvedCardTriggers(item,content)){
   const event=trigger.event==='normal_attack_hit'?'โจมตีปกติโดน':trigger.event==='damage_received'?'รับดาเมจ':trigger.event==='damage_dealt'?'ทำดาเมจ':'เข้าเงื่อนไข';
   const kind=trigger.accepted_damage_types?.map(t=>t==='physical'?'กายภาพ':t==='magical'?'เวท':'จริง').join('/');
-  const tag=trigger.when?.type==='has_tag'?trigger.when.tag:null,condition=tag?({race_demihuman:'กึ่งมนุษย์',race_undead:'อันเดด',size_large:'ขนาดใหญ่',boss:'บอส',element_water:'ธาตุน้ำ',element_earth:'ธาตุดิน'}as Record<string,string>)[tag]??tag:null;
+  const tag=trigger.when?.type==='has_tag'?trigger.when.tag:null,condition=tag?({race_demihuman:'กึ่งมนุษย์',race_undead:'อันเดด',size_large:'ขนาดใหญ่',size_medium:'ขนาดกลาง',size_small:'ขนาดเล็ก',boss:'บอส',element_water:'ธาตุน้ำ',element_earth:'ธาตุดิน'}as Record<string,string>)[tag]??tag:null;
   const chance=typeof trigger.chance==='number'?`${(Math.min(1,trigger.chance)*100).toLocaleString('th-TH',{maximumFractionDigits:2})}%`:'';
   result.push(`เมื่อ${event}${kind?' '+kind:''}${condition?' · เป้า'+condition:''} · โอกาส ${chance}: ${effectDescriptions(structuredClone(trigger.effects)as Effect[]).join(' / ')}`);
  }

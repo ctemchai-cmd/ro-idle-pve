@@ -19,6 +19,21 @@ const assert=(ok,message)=>{if(!ok)throw new Error(message);};let browser,profil
  assert(assetResponse.ok&&assetResponse.headers.get('cache-control')==='no-store'&&assetManifest.pack_hash===manifest.runtime_asset_pack_hash,'MUTABLE_ASSET_MANIFEST_CACHE_OR_VERSION');
  const row=manifest.build_files.find(r=>/^dist\/assets\/account-session-.*\.js$/.test(r.path));assert(row,'NO_SAVE_BUNDLE');
  const bundle=await(await fetch(base+'/'+row.path.replace(/^dist\//,''))).text();assert(bundle.includes('sendWithCheckpoint')&&bundle.includes('x-ro-checkpoint'),'OLD_SAVE_PROTOCOL_DEPLOYED');
+ if(['task-093','task-094'].includes(prefix)){
+  const chunks={};
+  for(const name of ['item-options','shell','element-badge','account-session']){
+   const file=manifest.build_files.find(r=>new RegExp('^dist/assets/'+name+'-.*\\.js$').test(r.path));assert(file,'NO_'+name+'_BUNDLE');
+   const response=await fetch(base+'/'+file.path.replace(/^dist\//,'')),source=await response.text();assert(response.ok&&createHash('sha256').update(source).digest('hex')===file.sha256,'PUBLIC_CARD_SCROLL_SHA_'+name);chunks[name]={path:file.path,sha256:file.sha256,source};
+  }
+  const cards=JSON.parse(fs.readFileSync(path.join(root,'plan/data/cards.json'),'utf8')),economy=JSON.parse(fs.readFileSync(path.join(root,'plan/data/economy.json'),'utf8')),data=chunks['item-options'].source.replaceAll('\\"','"');
+  assert(data.includes('"origins":'+JSON.stringify(cards.origins))&&Object.keys(cards.origins).length===73,'CARD_73_ORIGINS_NOT_DEPLOYED');
+  assert(cards.origins.card_angeling.grade==='mvp'&&cards.origins.card_angeling.rarity_id==='legendary'&&Object.values(cards.origins).filter(o=>o.variant==='puppet').length===7,'MVP_PUPPET_CATALOG');
+  assert(data.includes('"element_scrolls":'+JSON.stringify(economy.element_scrolls)),'FOUR_ELEMENT_SCROLLS_NOT_DEPLOYED');
+  const shell=chunks.shell.source,badge=chunks['element-badge'].source;
+  assert(['เตรียมใบธาตุ','consumable.prepare','ยกเลิก / คืนใบ','store-mark','PUPPET','puppet-art'].every(t=>shell.includes(t)),'SCROLL_OR_PUPPET_UI_NOT_DEPLOYED');
+  assert((shell+badge).includes('element-symbol')&&badge.includes('weaponElement'),'ELEMENT_GLYPHS_NOT_DEPLOYED');
+  currentProof={tasks:['TASK-093','TASK-094'],cards:73,puppet:7,angeling_mvp_legendary:true,deviling_mvp_legendary:true,scroll_elements:economy.element_scrolls.map(r=>r.element),duration:'next_battle',store_colored:true,element_glyphs:true,bundles:Object.values(chunks).map(({source,...r})=>r)};
+ }
  if(['task-091','task-092'].includes(prefix)){
   const chunks={};
   for(const name of ['item-options','element-badge','skill-timeline']){

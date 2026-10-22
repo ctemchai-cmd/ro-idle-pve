@@ -1,3 +1,4 @@
+import { CardIcon } from './card-art.tsx';
 import { Icon } from '../icon.tsx';
 import { useMemo, useState } from 'react';
 import type { CombatStats, Modifier } from '../../contracts/index.ts';
@@ -77,11 +78,11 @@ function UpgradeSheet({ context, actor, slot, close }: { context: GameContext; a
     </section>}
     {tab === 'card' && <section className="upgrade-pane card-upgrade-pane">
       <div className="socket-row" role="group" aria-label="ช่องการ์ด">{progress.cards.map((id, index) => { const source = cards.find(c => c.item.instance_id === id); return <button key={index} className={`socket ${socket === index ? 'on' : ''}`} disabled={index >= capacity} aria-pressed={socket === index} onClick={() => { setSocket(index); setCardId(id); }}>
-        {source ? <span className={`card-art socket-card-art rarity-${source.item.rarity_id}`}><ItemIcon id={source.iconId} pack={pack} /></span> : <span>{index >= capacity ? <Icon name="lock" /> : '+'}</span>}<small>{index >= capacity ? `ปลด +${index === 1 ? 5 : 10}` : source ? source.name : `ช่อง ${index + 1}`}</small>
+        {source ? <span className={`card-art socket-card-art rarity-${source.item.rarity_id}`}><CardIcon card={source} pack={pack} /></span> : <span>{index >= capacity ? <Icon name="lock" /> : '+'}</span>}<small>{index >= capacity ? `ปลด +${index === 1 ? 5 : 10}` : source ? source.name : `ช่อง ${index + 1}`}</small>
       </button>; })}</div>
       {progress.cards[socket] && <button className="btn small ghost" disabled={locked} onClick={() => void submit('card.unassign', { ...params, card_slot: socket })}>ถอดการ์ดช่อง {socket + 1}</button>}
       {cards.length ? <div className="card-list">{cards.map(c => <button key={c.item.instance_id} data-card-equipped={!!c.owner} className={`list-row card-pick-row ${c.owner ? 'equipped' : ''} ${cardId === c.item.instance_id ? 'on' : ''}`} onClick={() => setCardId(c.item.instance_id)}>
-        <span className={`icon-frame card-thumb rarity-${c.item.rarity_id}`}><ItemIcon id={c.iconId} pack={pack} /></span><span className="row-main"><b>{c.name} <CardGrade grade={c.origin?.grade} rarity={c.item.rarity_id} /></b><small>{rarityLabels[c.item.rarity_id]} · Lv.{c.item.level}</small><span className="card-pick-description">{[...c.modifiers.map(modifierText),...c.effects].join(' · ')}</span>{c.owner&&<em className="card-worn-label"><Icon name="check" />ใส่อยู่ · {friendNames[c.owner.character_id]}</em>}</span>
+        <span className={`icon-frame card-thumb rarity-${c.item.rarity_id}`}><CardIcon card={c} pack={pack} /></span><span className="row-main"><b>{c.name} <CardGrade grade={c.origin?.grade} rarity={c.item.rarity_id} variant={c.origin?.variant} /></b><small>{rarityLabels[c.item.rarity_id]} · Lv.{c.item.level}</small><span className="card-pick-description">{[...c.modifiers.map(modifierText),...c.effects].join(' · ')}</span>{c.owner&&<em className="card-worn-label"><Icon name="check" />ใส่อยู่ · {friendNames[c.owner.character_id]}</em>}</span>
       </button>)}</div> : <p className="hint">ยังไม่มีการ์ดสำหรับช่องนี้ · หาได้จากฟาร์ม AFK และกาชาการ์ด</p>}
       <footer className="card-selection-footer" aria-label="ยืนยันใส่การ์ด">
         {card ? <><b className="card-selected-name">{card.name}<span>{rarityLabels[card.item.rarity_id]} · Lv.{card.item.level}</span></b>

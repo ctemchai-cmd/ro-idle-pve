@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "content_version": "cards-ro-v3",
+  "content_version": "cards-ro-v4",
   "definitions": [
     {
       "id": "card_weapon_1",
@@ -2340,6 +2340,274 @@
       ],
       "triggers": [],
       "presentation_id": "visual_card_deviling"
+    },
+    {
+      "id": "card_angeling_puppet",
+      "name_key": "card_angeling_puppet",
+      "kind": "card",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "value": 0.04,
+          "op": "add_percent",
+          "bucket": "derived"
+        },
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "value": 0.03,
+          "op": "add_percent",
+          "bucket": "derived"
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_angeling_puppet"
+    },
+    {
+      "id": "card_deviling_puppet",
+      "name_key": "card_deviling_puppet",
+      "kind": "card",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "outgoing_physical_bonus",
+          "stat": "outgoing_physical_bonus",
+          "value": 0.035,
+          "op": "add_flat",
+          "bucket": "bonus"
+        },
+        {
+          "id": "outgoing_magical_bonus",
+          "stat": "outgoing_magical_bonus",
+          "value": 0.035,
+          "op": "add_flat",
+          "bucket": "bonus"
+        },
+        {
+          "id": "guard_percent",
+          "stat": "guard_percent",
+          "value": 0.01,
+          "op": "add_flat",
+          "bucket": "bonus"
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_deviling_puppet"
+    },
+    {
+      "id": "card_golden_thief_bug_puppet",
+      "name_key": "card_golden_thief_bug_puppet",
+      "kind": "card",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "magical_guard_percent",
+          "stat": "magical_guard_percent",
+          "value": 0.03,
+          "op": "add_flat",
+          "bucket": "bonus"
+        },
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "value": 0.02,
+          "op": "add_percent",
+          "bucket": "derived"
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_golden_thief_bug_puppet"
+    },
+    {
+      "id": "card_eddga_puppet",
+      "name_key": "card_eddga_puppet",
+      "kind": "card",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [],
+      "triggers": [
+        {
+          "id": "matched_bonus",
+          "event": "damage_dealt",
+          "chance": 1,
+          "accepted_origins": [
+            "normal",
+            "skill"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {
+            "foes": {
+              "team": "enemies",
+              "life": "living",
+              "select": "all",
+              "count": null,
+              "phase": "event",
+              "missing": "skip"
+            }
+          },
+          "effects": [
+            {
+              "id": "bonus_hit",
+              "type": "damage",
+              "target": "event_target",
+              "formula": {
+                "id": "event_damage_power",
+                "params": {
+                  "ratio": 0.0525
+                }
+              },
+              "damage_type": "true",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "ignore"
+            }
+          ],
+          "when": {
+            "type": "has_tag",
+            "actor": "event_target",
+            "tag": "size_large"
+          },
+          "accepted_damage_types": [
+            "physical",
+            "magical"
+          ]
+        }
+      ],
+      "presentation_id": "visual_card_eddga_puppet"
+    },
+    {
+      "id": "card_moonlight_flower_puppet",
+      "name_key": "card_moonlight_flower_puppet",
+      "kind": "card",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [],
+      "triggers": [
+        {
+          "id": "matched_bonus",
+          "event": "damage_dealt",
+          "chance": 1,
+          "accepted_origins": [
+            "normal",
+            "skill"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {
+            "foes": {
+              "team": "enemies",
+              "life": "living",
+              "select": "all",
+              "count": null,
+              "phase": "event",
+              "missing": "skip"
+            }
+          },
+          "effects": [
+            {
+              "id": "bonus_hit",
+              "type": "damage",
+              "target": "event_target",
+              "formula": {
+                "id": "event_damage_power",
+                "params": {
+                  "ratio": 0.0525
+                }
+              },
+              "damage_type": "true",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "ignore"
+            }
+          ],
+          "when": {
+            "type": "has_tag",
+            "actor": "event_target",
+            "tag": "size_small"
+          },
+          "accepted_damage_types": [
+            "physical",
+            "magical"
+          ]
+        }
+      ],
+      "presentation_id": "visual_card_moonlight_flower_puppet"
+    },
+    {
+      "id": "card_baphomet_puppet",
+      "name_key": "card_baphomet_puppet",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "value": 0.04,
+          "op": "add_percent",
+          "bucket": "derived"
+        },
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "value": 0.03,
+          "op": "add_percent",
+          "bucket": "derived"
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_baphomet_puppet"
+    },
+    {
+      "id": "card_doppelganger_puppet",
+      "name_key": "card_doppelganger_puppet",
+      "kind": "card",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "value": 0.02,
+          "op": "add_percent",
+          "bucket": "derived"
+        },
+        {
+          "id": "crit_resistance",
+          "stat": "crit_resistance",
+          "value": 0.02,
+          "op": "add_flat",
+          "bucket": "bonus"
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_doppelganger_puppet"
     }
   ],
   "presentations": [
@@ -3134,6 +3402,90 @@
       "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
       "card_face_style": "native_ro_card",
       "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_angeling_puppet",
+      "icon_asset_id": "items.card-4054",
+      "meta_path": "assets/ro/items/card-4054.meta.json",
+      "illustration_asset_id": "items.card-4054",
+      "illustration_meta_path": "assets/ro/items/card-4054.meta.json",
+      "symbol_asset_id": "items.card-4054",
+      "symbol_meta_path": "assets/ro/items/card-4054.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_deviling_puppet",
+      "icon_asset_id": "items.card-4174",
+      "meta_path": "assets/ro/items/card-4174.meta.json",
+      "illustration_asset_id": "items.card-4174",
+      "illustration_meta_path": "assets/ro/items/card-4174.meta.json",
+      "symbol_asset_id": "items.card-4174",
+      "symbol_meta_path": "assets/ro/items/card-4174.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_golden_thief_bug_puppet",
+      "icon_asset_id": "items.card-4128",
+      "meta_path": "assets/ro/items/card-4128.meta.json",
+      "illustration_asset_id": "items.card-4128",
+      "illustration_meta_path": "assets/ro/items/card-4128.meta.json",
+      "symbol_asset_id": "items.card-4128",
+      "symbol_meta_path": "assets/ro/items/card-4128.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_eddga_puppet",
+      "icon_asset_id": "items.card-4123",
+      "meta_path": "assets/ro/items/card-4123.meta.json",
+      "illustration_asset_id": "items.card-4123",
+      "illustration_meta_path": "assets/ro/items/card-4123.meta.json",
+      "symbol_asset_id": "items.card-4123",
+      "symbol_meta_path": "assets/ro/items/card-4123.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_moonlight_flower_puppet",
+      "icon_asset_id": "items.card-4131",
+      "meta_path": "assets/ro/items/card-4131.meta.json",
+      "illustration_asset_id": "items.card-4131",
+      "illustration_meta_path": "assets/ro/items/card-4131.meta.json",
+      "symbol_asset_id": "items.card-4131",
+      "symbol_meta_path": "assets/ro/items/card-4131.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_baphomet_puppet",
+      "icon_asset_id": "items.card-4147",
+      "meta_path": "assets/ro/items/card-4147.meta.json",
+      "illustration_asset_id": "items.card-4147",
+      "illustration_meta_path": "assets/ro/items/card-4147.meta.json",
+      "symbol_asset_id": "items.card-4147",
+      "symbol_meta_path": "assets/ro/items/card-4147.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_doppelganger_puppet",
+      "icon_asset_id": "items.card-4142",
+      "meta_path": "assets/ro/items/card-4142.meta.json",
+      "illustration_asset_id": "items.card-4142",
+      "illustration_meta_path": "assets/ro/items/card-4142.meta.json",
+      "symbol_asset_id": "items.card-4142",
+      "symbol_meta_path": "assets/ro/items/card-4142.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
     }
   ],
   "level_multipliers": [
@@ -3225,7 +3577,7 @@
   "gacha_duplicates": "always distinct card instances so several characters can equip copies; user may consume only unequipped unlocked instances into card_dust for upgrades",
   "resolve_rule": "Fixed monster rarity multiplier × instance level. Migrated legacy_quality retains its old power/salvage floor if stronger, never multiplies again.",
   "free_remove_outside_battle": true,
-  "catalog_basis": "D-099 RO identities; D-109 fixed monster strength rarity",
+  "catalog_basis": "D-099 RO identities; D-109 fixed rarity; D-122 Origin boss overrides and distinct Puppet variants",
   "origins": {
     "card_weapon_1": {
       "ro_item_id": 4029,
@@ -3861,11 +4213,11 @@
       "ro_item_id": 4054,
       "monster_id": 1096,
       "monster_name": "Angeling",
-      "grade": "mini",
+      "grade": "mvp",
       "source_slot": "armor",
-      "rarity_id": "epic",
+      "rarity_id": "legendary",
       "source_level": 20,
-      "strength_class": "mini"
+      "strength_class": "mvp"
     },
     "card_ghostring": {
       "ro_item_id": 4047,
@@ -3881,11 +4233,95 @@
       "ro_item_id": 4174,
       "monster_id": 1582,
       "monster_name": "Deviling",
-      "grade": "mini",
+      "grade": "mvp",
       "source_slot": "garment",
-      "rarity_id": "epic",
+      "rarity_id": "legendary",
       "source_level": 31,
-      "strength_class": "mini"
+      "strength_class": "mvp"
+    },
+    "card_angeling_puppet": {
+      "ro_item_id": 4054,
+      "monster_id": 1096,
+      "monster_name": "Angeling",
+      "grade": "mvp",
+      "source_slot": "armor",
+      "rarity_id": "rare",
+      "source_level": 20,
+      "strength_class": "mvp",
+      "variant": "puppet",
+      "parent_card_id": "card_angeling"
+    },
+    "card_deviling_puppet": {
+      "ro_item_id": 4174,
+      "monster_id": 1582,
+      "monster_name": "Deviling",
+      "grade": "mvp",
+      "source_slot": "garment",
+      "rarity_id": "rare",
+      "source_level": 31,
+      "strength_class": "mvp",
+      "variant": "puppet",
+      "parent_card_id": "card_deviling"
+    },
+    "card_golden_thief_bug_puppet": {
+      "ro_item_id": 4128,
+      "monster_id": 1086,
+      "monster_name": "Golden Thief Bug",
+      "grade": "mvp",
+      "source_slot": "shield",
+      "rarity_id": "rare",
+      "source_level": 64,
+      "strength_class": "mvp",
+      "variant": "puppet",
+      "parent_card_id": "card_golden_thief_bug"
+    },
+    "card_eddga_puppet": {
+      "ro_item_id": 4123,
+      "monster_id": 1115,
+      "monster_name": "Eddga",
+      "grade": "mvp",
+      "source_slot": "shoes",
+      "rarity_id": "rare",
+      "source_level": 65,
+      "strength_class": "mvp",
+      "variant": "puppet",
+      "parent_card_id": "card_eddga"
+    },
+    "card_moonlight_flower_puppet": {
+      "ro_item_id": 4131,
+      "monster_id": 1150,
+      "monster_name": "Moonlight Flower",
+      "grade": "mvp",
+      "source_slot": "shoes",
+      "rarity_id": "rare",
+      "source_level": 67,
+      "strength_class": "mvp",
+      "variant": "puppet",
+      "parent_card_id": "card_moonlight_flower"
+    },
+    "card_baphomet_puppet": {
+      "ro_item_id": 4147,
+      "monster_id": 1039,
+      "monster_name": "Baphomet",
+      "grade": "mvp",
+      "source_slot": "weapon",
+      "rarity_id": "rare",
+      "source_level": 81,
+      "strength_class": "mvp",
+      "variant": "puppet",
+      "parent_card_id": "card_baphomet"
+    },
+    "card_doppelganger_puppet": {
+      "ro_item_id": 4142,
+      "monster_id": 1046,
+      "monster_name": "Doppelganger",
+      "grade": "mvp",
+      "source_slot": "weapon",
+      "rarity_id": "rare",
+      "source_level": 72,
+      "strength_class": "mvp",
+      "variant": "puppet",
+      "parent_card_id": "card_doppelganger"
     }
   },
   "monster_traits": {
@@ -3968,6 +4404,16 @@
     "future_only": [
       "immortal",
       "supreme"
-    ]
+    ],
+    "variant_rules": {
+      "puppet": {
+        "rarity_id": "rare",
+        "basis": "D-122: separate Puppet I definition, blue/pale portrait, distinct supporting effects; retains source MVP identity without Legendary full-boss power."
+      }
+    },
+    "classification_overrides": {
+      "card_angeling": "mvp",
+      "card_deviling": "mvp"
+    }
   }
 }

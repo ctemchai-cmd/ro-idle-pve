@@ -1,15 +1,16 @@
+import { CardIcon } from './card-art.tsx';
 import type { GameContext } from './shell.tsx';
 import { cardView, salvageCardsQuote } from '../../client/slots.ts';
 import { rarityLabels, slotLabels, type EquipmentSlot } from '../../client/equipment.ts';
 import { CardGrade } from './card-grade.tsx';
 import { modifierText } from './buddy.tsx';
-import { CostChips, ItemIcon, Sheet, canPay, friendNames, resourceNames, type Wallet } from './kit.tsx';
+import { CostChips, Sheet, canPay, friendNames, resourceNames, type Wallet } from './kit.tsx';
 const quoteText=(q:Partial<Wallet>)=>Object.entries(q).filter(([,n])=>n).map(([k,n])=>`${resourceNames[k as keyof Wallet]} ${n!.toLocaleString()}`).join(' · ');
 
 export function CardSheet({ context, card, close }: { context: GameContext; card: ReturnType<typeof cardView>; close: () => void }) {
   const { state, pack, submit, locked } = context, owned = state.inventory.some(item => item.instance_id === card.item.instance_id);
   return <Sheet title={card.name} onClose={close}>
-    <div className="card-identity"><span className={`card-portrait rarity-${card.item.rarity_id}`}><ItemIcon id={card.iconId} pack={pack} /></span><div><CardGrade grade={card.origin?.grade} rarity={card.item.rarity_id} /><b>ระดับ {rarityLabels[card.item.rarity_id]}</b><small>ช่อง{slotLabels[card.definition.slot as EquipmentSlot]} · Lv.{card.item.level}</small><small>{card.owner ? `ใส่อยู่ · ${friendNames[card.owner.character_id]}` : 'ยังไม่ได้ใส่'}</small>{card.item.legacy_quality&&<small className="legacy-card-bonus">รักษาพลังและมูลค่าย่อยจากการ์ดเดิม</small>}</div></div>
+    <div className="card-identity"><span className={`card-portrait rarity-${card.item.rarity_id}`}><CardIcon card={card} pack={pack} /></span><div><CardGrade grade={card.origin?.grade} rarity={card.item.rarity_id} variant={card.origin?.variant} /><b>ระดับ {rarityLabels[card.item.rarity_id]}</b><small>ช่อง{slotLabels[card.definition.slot as EquipmentSlot]} · Lv.{card.item.level}</small><small>{card.owner ? `ใส่อยู่ · ${friendNames[card.owner.character_id]}` : 'ยังไม่ได้ใส่'}</small>{card.item.legacy_quality&&<small className="legacy-card-bonus">รักษาพลังและมูลค่าย่อยจากการ์ดเดิม</small>}</div></div>
     <ul className="card-effects">{card.modifiers.map((m,i)=><li key={i}>{modifierText(m)}</li>)}{card.effects.map((text,i)=><li key={`effect-${i}`}>{text}</li>)}</ul>
     {card.nextEffects&&<details className="card-next"><summary>หลังอัป Lv.{card.item.level+1}</summary><ul className="card-effects">{card.nextModifiers?.map((m,i)=><li key={i}>{modifierText(m)}</li>)}{card.nextEffects.map((text,i)=><li key={`effect-${i}`}>{text}</li>)}</ul></details>}
     <p className="hint">ใส่การ์ดได้จากหน้าตัวละคร › ช่องอุปกรณ์ › อัปเกรด › การ์ด</p>

@@ -1,0 +1,99 @@
+✔ action bonuses join the existing outgoing bucket; legacy defaults, mitigation, crit and element stay shared (2.428666ms)
+✔ skill identity follows active, passive and periodic programs; normal origin takes precedence (1.358834ms)
+✔ event-damage card proc receives already boosted hit once, without a second skill multiplier (1.21725ms)
+✔ damage bonuses cannot multiply healing, shielding, CC duration or SP regeneration (1.514ms)
+✔ ATK detonation consumes own poison only and shares outgoing math once (1.08325ms)
+✔ summon snapshots bonus ratios once without duplicating primary milestones or inheriting later buffs (3.158083ms)
+✔ all 126 skill definitions match 378 authored numeric goldens without running encounters (90.99975ms)
+✔ fractional gear roles survive rarity rounding; options and cards stay separate from item rarity (1.374167ms)
+✔ flat monster cards also provide proportional growth for late-game ATK, HP and SP (0.131792ms)
+✖ content migration preserves investments, instances, old rolls, slot progress, cursor and pending rewards (11.832333ms)
+✔ gear card frames use only unlocked sockets, show empty slots and preserve state (2.5635ms)
+✔ frames disclose Bronze/Silver/Gold from actual card instances, separately from monster grade (1.17ms)
+✔ moving equipment leaves cards with each character slot; unowned gear has no attached cards (1.221792ms)
+✔ new card statistics display percentage units and SP-cost improvements have the correct color (19.793166ms)
+✔ D109 fixed monster catalog uses five item rarities; Mini/MVP overrides source level and Elite is not MVP (1.208792ms)
+✔ all73 ×3 legacy qualities ×5 levels retain the old power floor once, with a strict increasing current rarity curve (6.533125ms)
+✔ migration retains219 owned cards, pending payloads, assignments, levels, locks, wallet and ledger, without input mutation (201.243958ms)
+✔ legacy power is a floor rather than an extra multiplier; penalties and proc power keep one scale (0.317041ms)
+✔ fixed farm rarity retains the existing three-draw hit budget, old quality floor and missed-roll budget (0.705666ms)
+✔ all130 current stage profiles keep1–2% and source gates, and later chapters improve average rarity without raising card quantity (30.302459ms)
+✔ legacy frozen/new fixed profiles consume identical RNG and gear drops; reserve split and12h cap remain deterministic (5.806166ms)
+✔ gacha preserves29/9 counter progress, chooses matching fixed monsters, and never creates future rarities (1.186834ms)
+✔ Add Card sorts free cards first, then actual owner, rarity and level without mutating saved order (15.947208ms)
+✔ T037 AC-01: D109 fixed monster cards use all66 identities at50/25/20/2/3 for 100/1000 crystal, with no pet/artifact outcomes (3.132458ms)
+✔ T037 AC-02: a pull debits crystal, adds cards and moves pity atomically; 99 crystal changes nothing (192.59875ms)
+✔ T037 AC-03: the same server seed reproduces the same cards; duplicates are distinct fixed-rarity instances with rarity salvage unless worn/locked (4.944791ms)
+✔ T037 AC-04: a worst-case Common sequence hits Rare at pull10/20 and Legendary at pull30, then counters reset (1.339917ms)
+✔ T052 AC-01: every creation path gives Rare 1 / Epic 2 / Legendary 3 / Immortal 4 / Supreme 5 lines (D-068) within range, deterministic per seed (4.299375ms)
+✔ T052 AC-02: option lines enter the shared stat pipeline exactly once and the pool has no timing stats (1.093792ms)
+✔ T052 AC-03: tier-up keeps the rolled lines and scales their values; old saves get stable lines from migration (1.946709ms)
+✔ T051 AC-01: shop offers debit and grant exactly, refuse over-limit/insufficient buys whole, and reset limits on the next Bangkok day (3.336084ms)
+✔ T051 AC-02: equipment gacha costs 150/1500 crystal from the server seed, with epic pity on the 10th and legendary pity on the 50th (3.810917ms)
+✔ T051 AC-03: gacha gear uses the player's tier and works with equip/fuse/tier-up/salvage like any drop (5.898334ms)
+✔ D-068: the gear gacha banner states the rolled option lines from content (Immortal 4, Supreme 5), not a stale literal (250.988459ms)
+✔ D-068 regression (found by the 25-day journey, 21 Oct 2026): a Supreme item with 5 option lines is a valid save in the inventory and in a pending reward (4.555125ms)
+✔ 73 RO definitions with66 native portraits preserve all 60 legacy IDs, correct slots, exact art IDs and distinct source grades (10.905125ms)
+✔ quality/level improve benefits, reduce penalties, scale proc power once and pure control chance only (0.448042ms)
+✔ Raydric/Deviling reduce neutral damage and retain weaknesses; true damage bypasses new resistance (5.8915ms)
+✔ armor element and GTB magic-only guard/SP cost use shared stats; physical hits stay unchanged (14.720833ms)
+✔ Marc/Marduk/Deviruchi resist only their status; hard CC still interrupts Phen (3.397416ms)
+✔ Maya reflects magical only; normalized proc cannot recursively reflect itself (1.418125ms)
+✔ Moonlight changes motion only, with identical virtual-time integration across frame chunks (7.352291ms)
+✔ Osiris improves the existing revive recovery without adding a revive or replaying its old cast (6.904917ms)
+✔ every authored card proc resolves actual effects with target tags and no formula/status errors (10.536292ms)
+✔ Hydra target bonus requires a physical hit against the matching race; its own proc cannot retrigger (3.091209ms)
+✔ farm profile improves stage chance/quality, gates Mini/MVP, retains earlier cards and favors current tiers (51.8245ms)
+✔ D-107 rare farm has1.44–2.88 expected cards per12h, true boundary chances and unchanged quality/grade rules (76.034333ms)
+✔ D-107 frozen v1 accrual/owned/pending cards survive migration; claim settles old rate once then installs v2 (543.365917ms)
+✔ seeded farm split/cap/retry produces same fixed cards/gear and RNG without kill or speed input (4.295084ms)
+✔ legacy snapshot settles before enabling cards; full bag never consumes or rerolls pending rewards (795.196542ms)
+✔ slot correction migration returns incompatible cards to bag and preserves exact instance/quality/level/lock (175.784583ms)
+✔ D-058 migration fills new fields, rebalances status budgets and drops dangling stages, then passes the server validator (95.854208ms)
+✔ D-058 migration refunds status investments that exceed the new budget instead of keeping unfunded stats (1.137125ms)
+✔ D-058 migration SQL appends one signed revision per outdated save and skips current saves (806.711542ms)
+ℹ tests 54
+ℹ suites 0
+ℹ pass 53
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3546.567875
+
+✖ failing tests:
+
+test at tests/game/build-impact.test.ts:1:10210
+✖ content migration preserves investments, instances, old rolls, slot progress, cursor and pending rewards (11.832333ms)
+  AssertionError [ERR_ASSERTION]: inventory
+  + actual - expected
+  ... Skipped lines
+
+    [
+      {
+        definition_id: 'equipment_sword_1',
+        instance_id: 'qa_equipment_sword_1',
+        kind: 'equipment',
+  ...
+        kind: 'card',
+  +     legacy_quality: 'silver',
+        level: 3,
+        locked: true,
+  +     rarity_id: 'uncommon'
+  -     rarity_id: 'silver'
+      }
+    ]
+
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/build-impact.test.ts:130:132)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ { instance_id: 'qa_equipment_sword_1', definition_id: 'equipment_sword_1', kind: 'equipment', rarity_id: 'rare', locked: false, training: false, options: [Array] }, { instance_id: 'qa_card', definition_id: 'card_weapon_1', kind: 'card', level: 3, rarity_id: 'uncommon', locked: true, legacy_quality: 'silver' } ],
+    expected: [ { instance_id: 'qa_equipment_sword_1', definition_id: 'equipment_sword_1', kind: 'equipment', rarity_id: 'rare', locked: false, training: false, options: [Array] }, { instance_id: 'qa_card', definition_id: 'card_weapon_1', kind: 'card', level: 3, rarity_id: 'silver', locked: true } ],
+    operator: 'deepStrictEqual'
+  }

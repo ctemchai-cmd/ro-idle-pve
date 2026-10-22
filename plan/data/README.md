@@ -16,3 +16,5 @@
 ตรวจซ้ำด้วยPython scriptsใน `../checks/` และ `node plan/checks/build_manifest.mjs` จากrootโปรเจกต์ `readiness.py` ตรวจgateM0/refs/traceability ต้องไม่ใช้รายงานM0แทนRLS/API/replay/performance/browsertestsของงานพัฒนา
 
 D-120/TASK-091: `combat-rules.json.element_chart` ใช้ROO Global10×10จากภาพใน [คู่มือ](https://roo-global.gitbook.io/guide/game-wiki/element) โดยgenerator `plan/generators/element_chart.py --check` ตรวจครบ100คู่; provenanceอยู่element_chart_reference/ภาพหลักฐานtask091 ไม่ใช้ตารางPCระดับ1–4หรือเปลี่ยนธาตุสกิล/การ์ดตามROOทั้งหมด. ค่าในruntimeเป็นตัวคูณรวม เช่น175%=1.75 ไม่ใช่โบนัส175%.
+
+TASK-093/094: cards.jsonมี73definitions(66nativeportraits+7Puppetvariants), OriginAngeling/DevilingMVPoverride; economy.jsonเพิ่ม4element_scrolls/50goldและshopgrants, account-state optionalbattle_supplies และcommand consumable.prepare. ดูdesign31และ33. ค่าราคา/พลังPuppetเป็นauthoredbaseline; frozenv3mapnormalizeโดยไม่รีโรลpool/chance/RNG.

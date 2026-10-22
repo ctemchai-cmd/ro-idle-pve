@@ -1,3 +1,4 @@
+import { CardIcon } from './card-art.tsx';
 import { Icon } from '../icon.tsx';
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import type { ActorRenderView, BattleRenderView } from '../../contracts/presentation.ts';
@@ -20,7 +21,6 @@ import { cardOrigin, cardView, farmCardRarityOdds } from '../../client/slots.ts'
 import { rarityLabels } from '../../client/equipment.ts';
 import { CardGrade } from './card-grade.tsx';
 import { CardSheet } from './card-sheet.tsx';
-import { ItemIcon } from './kit.tsx';
 import { actorElements } from '../../client/elements.ts';
 import { ElementBadge } from '../element-badge.tsx';
 
@@ -219,13 +219,13 @@ function FarmSheet({ context, close }: { context: GameContext; close: () => void
       <div className="rate-chips">{rates.map(([k, n]) => <span key={k} title={`${resourceNames[k]} ต่อชั่วโมง`}><ResIcon pack={pack} k={k} />{compact(n)}<small>/ชม.</small></span>)}</div></div>
       : <p className="hint">ผ่านด่าน 1-1 เพื่อเริ่มฟาร์มอัตโนมัติ</p>}
     {snapshot?.card_drops?<div className="farm-card-rates"><b>การ์ด {(snapshot.card_drops.chance_per_million/10000).toLocaleString('th-TH',{maximumFractionDigits:2})}% / รอบ 5 นาที</b>
-      <span>{['normal','mini','mvp'].filter(grade=>snapshot.card_drops!.definition_pool.some(id=>cardOrigin(id)?.grade===grade)).map(grade=><CardGrade key={grade} grade={grade} />)}</span>
+      <span>{['normal','mini','mvp'].filter(grade=>snapshot.card_drops!.definition_pool.some(id=>cardOrigin(id)?.grade===grade&&!cardOrigin(id)?.variant)).map(grade=><CardGrade key={grade} grade={grade} />)}{snapshot.card_drops!.definition_pool.some(id=>cardOrigin(id)?.variant==='puppet')&&<CardGrade grade="mvp" variant="puppet" />}</span>
       <small>ระดับตามมอนสเตอร์: {farmCardRarityOdds(snapshot.card_drops).map(r=>`${rarityLabels[r.rarity]} ${r.percent.toLocaleString('th-TH',{maximumFractionDigits:2})}%`).join(' · ')}</small>
     </div>:snapshot?<p className="hint">รับของที่สะสมไว้รอบนี้ก่อน แล้วจะเริ่มสะสมการ์ดจากฟาร์ม</p>:null}
     {(waiting.length > 0 || items > 0) && <div className="waiting-box"><small>รอรับ {state.pending_rewards.length} รายการ{snapshot && elapsed >= 1000 ? ' + ช่วงฟาร์มล่าสุด' : ''}</small>
       <p className="reward-line">{waiting.map(([k, n]) => <span key={k}><ResIcon pack={pack} k={k} />{compact(n)}</span>)}{items ? <span><Icon name="gift" /> {items} ชิ้น</span> : null}</p></div>}
     <button className="btn primary wide big" disabled={locked || claiming || !ready} onClick={() => void collectAll()}>{claiming ? 'กำลังรับ…' : 'รับทั้งหมด'}</button>
-    {foundCards.length>0&&<section className="farm-card-finds" aria-label="การ์ดที่ได้รับ"><b>การ์ดที่พบ · {foundCards.length} ใบ</b><div>{foundCards.slice(0,12).map(c=><button key={c.item.instance_id} title={c.name} aria-label={`ดู${c.name}`} onClick={()=>setOpenCardId(c.item.instance_id)} data-card-definition={c.definition.id}><span className={`card-find-art rarity-${c.item.rarity_id}`} data-card-rarity={c.item.rarity_id}><ItemIcon id={c.iconId} pack={pack} /></span><CardGrade grade={c.origin?.grade} rarity={c.item.rarity_id} /><small>{c.name}</small></button>)}</div>{foundCards.length>12&&<small>และอีก {foundCards.length-12} ใบในกระเป๋า</small>}</section>}
+    {foundCards.length>0&&<section className="farm-card-finds" aria-label="การ์ดที่ได้รับ"><b>การ์ดที่พบ · {foundCards.length} ใบ</b><div>{foundCards.slice(0,12).map(c=><button key={c.item.instance_id} title={c.name} aria-label={`ดู${c.name}`} onClick={()=>setOpenCardId(c.item.instance_id)} data-card-definition={c.definition.id}><span className={`card-find-art rarity-${c.item.rarity_id}`} data-card-rarity={c.item.rarity_id}><CardIcon card={c} pack={pack} /></span><CardGrade grade={c.origin?.grade} rarity={c.item.rarity_id} variant={c.origin?.variant} /><small>{c.name}</small></button>)}</div>{foundCards.length>12&&<small>และอีก {foundCards.length-12} ใบในกระเป๋า</small>}</section>}
     <p className="hint center-text">สะสมตามเวลาจริงสูงสุด 12 ชั่วโมง · ของดรอปสุ่มตอนกดรับ</p>
     {openCard&&<CardSheet context={context} card={openCard} close={()=>setOpenCardId(null)}/>}
   </Sheet>;

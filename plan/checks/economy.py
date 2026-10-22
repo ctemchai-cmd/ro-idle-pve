@@ -37,7 +37,7 @@ def supreme():
  return {'common_equivalent_per_drop':eq,'desired_definition_throughput_days':minutes/1440,'warning':'not expected stopping time; drops/fusion variance waits for runner'}
 check('729_and_higher_rarity_supply',['AC-03'],supreme)
 def pool():
- assert sum(g['quality_weights'].values())==g['weight_total'];assert len(g['definition_weights'])==66;assert all(g['definition_weights'][cid]=={'normal':1000,'mini':100,'mvp':10}[load('cards.json')['origins'][cid]['grade']] for cid in g['definitions']);assert set(g['definitions'])=={c['id'] for c in load('cards.json')['definitions']};assert g['disabled_pools']==['pet','artifact'];return {'quality_total':1000000,'definitions':66,'ten_pull_cost':1000}
+ assert sum(g['quality_weights'].values())==g['weight_total'];assert len(g['definition_weights'])==73;assert all(g['definition_weights'][cid]==(1000 if load('cards.json')['origins'][cid].get('variant')=='puppet' else {'normal':1000,'mini':100,'mvp':10}[load('cards.json')['origins'][cid]['grade']]) for cid in g['definitions']);assert set(g['definitions'])=={c['id'] for c in load('cards.json')['definitions']};assert g['disabled_pools']==['pet','artifact'];return {'quality_total':1000000,'definitions':73,'ten_pull_cost':1000}
 check('gacha_pool_rates',['AC-04'],pool)
 def quality(draw,misses,bronzes):
  if misses>=29:return 'legendary'

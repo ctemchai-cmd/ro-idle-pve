@@ -8,7 +8,9 @@ if(process.env.RO_SUPABASE_LOCAL_STACK!=='1')throw new Error('ISOLATED_STACK_REQ
 const state=JSON.parse(await new Promise<string>(resolve=>{let s='';process.stdin.on('data',c=>s+=c);process.stdin.on('end',()=>resolve(s));}))as AccountState;
 const loaded=loadValidatedContent();if(!loaded.ok)throw new Error('CONTENT');const content=loaded.value,origins=cardOrigins(content);
 for(const slot of ['weapon','head','armor','garment','shoes','accessory']as const){const id='qa_main_'+slot;state.inventory.push({instance_id:id,kind:'equipment',definition_id:'equipment_'+(slot==='weapon'?'sword':slot)+'_1',rarity_id:'common',locked:slot==='weapon',training:false,options:[]});state.roster[0]!.equipment[slot]=id;}
+delete state.battle_supplies;
 let i=0;for(const id of Object.keys(origins))state.inventory.push({instance_id:'qa_'+id,definition_id:id,kind:'card',rarity_id:(['bronze','silver','gold']as const)[i++%3]!,level:1,locked:id==='card_armor_1'});
+for(const id of ['card_angeling','card_deviling']){const item=state.inventory.find(i=>i.definition_id===id);if(item?.kind==='card')item.rarity_id='epic';}
 for(let n=0;n<85;n++)state.inventory.push({instance_id:'qa_free_'+n,definition_id:'card_hydra',kind:'card',rarity_id:'gold',level:1,locked:false});
 const main=state.roster[0]!;main.slot_progress.weapon.refine=10;main.slot_progress.weapon.enchant={line_id:'offense',level:7};main.slot_progress.weapon.cards=['qa_card_weapon_1','qa_card_hydra','qa_card_baphomet'];main.slot_progress.head.refine=5;main.slot_progress.head.enchant={line_id:'vitality',level:3};
 state.inventory.push({instance_id:'qa_npc_weapon',kind:'equipment',definition_id:'equipment_sword_1',rarity_id:'rare',locked:false,training:false,options:[]},{instance_id:'qa_free_weapon',kind:'equipment',definition_id:'equipment_sword_1_b',rarity_id:'rare',locked:false,training:false,options:[]});

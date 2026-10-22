@@ -1,6 +1,4 @@
-.element-badge { --element-ink: #50647c; --element-bg: #eef2f7; display: inline-flex; align-items: center; gap: 4px; max-width: 100%; padding: 2px 6px; border-radius: 6px; background: var(--element-bg); color: var(--element-ink); font-size: 10px; font-weight: 650; line-height: 1.5; white-space: nowrap; vertical-align: middle; }
-.element-badge > i { width: 5px; height: 5px; flex: 0 0 5px; background: currentColor; border-radius: 50%; }
-.element-badge > .ui-icon { width: 12px; height: 12px; flex: 0 0 12px; }
+.element-badge { --element-ink: #50647c; --element-bg: #eef2f7; display: inline-flex; align-items: center; gap: 4px; max-width: 100%; padding: 0; border-radius: 6px; background: transparent; color: var(--element-ink); font-size: 10px; font-weight: 650; line-height: 1.5; white-space: nowrap; vertical-align: middle; }
 .element-water { --element-ink: #236eb2; --element-bg: #e7f3ff; }
 .element-earth { --element-ink: #82602e; --element-bg: #f5eddd; }
 .element-fire { --element-ink: #b64228; --element-bg: #ffebe4; }
@@ -14,3 +12,6 @@
 .skill-elements { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; margin: 7px 0; }
 .skill-elements > small { font-size: 10px; color: #687b92; }
 .enemy-element { margin-bottom: 4px; }
+
+.element-symbol { display: inline-grid; place-items: center; flex: 0 0 22px; width: 22px; height: 22px; border-radius: 7px; color: var(--element-ink); background: var(--element-bg); }
+.element-symbol svg { width: 16px; height: 16px; }

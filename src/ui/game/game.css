@@ -742,3 +742,28 @@ dialog.sheet.card-upgrade-sheet { height: 92dvh; }
 .gacha-card { border: 2px solid var(--rc); }
 .card-find-art { display: grid; place-items: center; width: 100%; aspect-ratio: 3 / 4; overflow: hidden; border: 2px solid var(--rc); border-radius: 8px; background: #fff; }
 .farm-card-finds .card-find-art .item-icon { width: 100%; height: 100%; max-height: none; object-fit: cover; }
+
+/* D-122: pale Puppet artwork, with normal contrast on labels and rarity borders. */
+.puppet-art { filter: saturate(.28) brightness(1.12) contrast(.9); }
+.card-grade.puppet { background: #e8f0fa; color: #426b9d; letter-spacing: .03em; }
+
+/* D-123: colored store and compact element scroll preparation. */
+.store-mark { display: block; width: 40px; height: 40px; flex-shrink: 0; filter: drop-shadow(0 2px 2px #24486c20); }
+.nav-item.active .store-mark { transform: translateY(-3px); }
+.shop-grant > .element-symbol { width: 36px; height: 36px; flex-basis: 36px; border-radius: 11px; }
+.shop-grant > .element-symbol svg { width: 25px; height: 25px; }
+.scroll-preparation { display: grid; gap: 10px; margin-top: 14px; padding: 12px; border-radius: 14px; background: #eef3fa; }
+.scroll-preparation header { display: grid; gap: 3px; }
+.scroll-preparation small { font-size: 10px; color: #5e738e; }
+.scroll-character { display: flex; align-items: center; gap: 9px; font-size: 11px; }
+.scroll-character select { min-width: 0; flex: 1; font: inherit; padding: 7px; border: 1px solid #c8d7ea; border-radius: 8px; background: #fff; color: #233b5b; }
+.scroll-choices { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 7px; }
+.scroll-choice { display: flex; align-items: center; gap: 8px; padding: 8px; border: 1px solid transparent; border-radius: 10px; color: var(--element-ink); background: #fff; text-align: left; }
+.scroll-choice > span:last-child { display: grid; min-width: 0; gap: 2px; font-size: 11px; }
+.scroll-choice[aria-pressed=true] { border-color: var(--element-ink); background: var(--element-bg); }
+.scroll-choice:disabled { opacity: .5; }
+.scroll-choice[aria-pressed=true]:disabled { opacity: 1; }
+.scroll-prepared { display: flex; align-items: center; gap: 6px; font-size: 11px; }
+.scroll-prepared > span:nth-child(2) { flex: 1; }
+.scroll-prepared .btn { white-space: nowrap; }
+.shop-offer .btn .cost-chip:not(.short) { color: #25456b; background: #f4f8ff; }

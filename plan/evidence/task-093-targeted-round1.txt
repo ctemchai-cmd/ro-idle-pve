@@ -1,0 +1,261 @@
+✔ action bonuses join the existing outgoing bucket; legacy defaults, mitigation, crit and element stay shared (2.65925ms)
+✔ skill identity follows active, passive and periodic programs; normal origin takes precedence (1.430208ms)
+✔ event-damage card proc receives already boosted hit once, without a second skill multiplier (6.003792ms)
+✔ damage bonuses cannot multiply healing, shielding, CC duration or SP regeneration (1.800125ms)
+✔ ATK detonation consumes own poison only and shares outgoing math once (1.10375ms)
+✔ summon snapshots bonus ratios once without duplicating primary milestones or inheriting later buffs (3.32ms)
+✔ all 126 skill definitions match 378 authored numeric goldens without running encounters (117.044458ms)
+✔ fractional gear roles survive rarity rounding; options and cards stay separate from item rarity (1.403792ms)
+✔ flat monster cards also provide proportional growth for late-game ATK, HP and SP (0.135833ms)
+✖ content migration preserves investments, instances, old rolls, slot progress, cursor and pending rewards (6.902708ms)
+✔ gear card frames use only unlocked sockets, show empty slots and preserve state (2.576875ms)
+✔ frames disclose Bronze/Silver/Gold from actual card instances, separately from monster grade (1.51925ms)
+✔ moving equipment leaves cards with each character slot; unowned gear has no attached cards (8.573417ms)
+✔ new card statistics display percentage units and SP-cost improvements have the correct color (43.969208ms)
+✖ D109 fixed monster catalog uses five item rarities; Mini/MVP overrides source level and Elite is not MVP (3.045791ms)
+✔ all73 ×3 legacy qualities ×5 levels retain the old power floor once, with a strict increasing current rarity curve (3.884583ms)
+✖ migration retains219 owned cards, pending payloads, assignments, levels, locks, wallet and ledger, without input mutation (2.071333ms)
+✔ legacy power is a floor rather than an extra multiplier; penalties and proc power keep one scale (0.304875ms)
+✔ fixed farm rarity retains the existing three-draw hit budget, old quality floor and missed-roll budget (0.680416ms)
+✔ all130 current stage profiles keep1–2% and source gates, and later chapters improve average rarity without raising card quantity (32.623083ms)
+✔ legacy frozen/new fixed profiles consume identical RNG and gear drops; reserve split and12h cap remain deterministic (6.838666ms)
+✔ gacha preserves29/9 counter progress, chooses matching fixed monsters, and never creates future rarities (1.138208ms)
+✔ Add Card sorts free cards first, then actual owner, rarity and level without mutating saved order (20.119042ms)
+✖ T037 AC-01: D109 fixed monster cards use all66 identities at50/25/20/2/3 for 100/1000 crystal, with no pet/artifact outcomes (11.281834ms)
+✔ T037 AC-02: a pull debits crystal, adds cards and moves pity atomically; 99 crystal changes nothing (174.721459ms)
+✔ T037 AC-03: the same server seed reproduces the same cards; duplicates are distinct fixed-rarity instances with rarity salvage unless worn/locked (11.390083ms)
+✔ T037 AC-04: a worst-case Common sequence hits Rare at pull10/20 and Legendary at pull30, then counters reset (1.323334ms)
+✔ T052 AC-01: every creation path gives Rare 1 / Epic 2 / Legendary 3 / Immortal 4 / Supreme 5 lines (D-068) within range, deterministic per seed (4.32075ms)
+✔ T052 AC-02: option lines enter the shared stat pipeline exactly once and the pool has no timing stats (2.917666ms)
+✔ T052 AC-03: tier-up keeps the rolled lines and scales their values; old saves get stable lines from migration (2.591083ms)
+✔ T051 AC-01: shop offers debit and grant exactly, refuse over-limit/insufficient buys whole, and reset limits on the next Bangkok day (3.352125ms)
+✔ T051 AC-02: equipment gacha costs 150/1500 crystal from the server seed, with epic pity on the 10th and legendary pity on the 50th (2.740208ms)
+✔ T051 AC-03: gacha gear uses the player's tier and works with equip/fuse/tier-up/salvage like any drop (5.528958ms)
+✔ D-068: the gear gacha banner states the rolled option lines from content (Immortal 4, Supreme 5), not a stale literal (287.860459ms)
+✔ D-068 regression (found by the 25-day journey, 21 Oct 2026): a Supreme item with 5 option lines is a valid save in the inventory and in a pending reward (5.487583ms)
+✖ 73 RO definitions with66 native portraits preserve all 60 legacy IDs, correct slots, exact art IDs and distinct source grades (3.35075ms)
+✔ quality/level improve benefits, reduce penalties, scale proc power once and pure control chance only (1.055792ms)
+✔ Raydric/Deviling reduce neutral damage and retain weaknesses; true damage bypasses new resistance (10.656583ms)
+✔ armor element and GTB magic-only guard/SP cost use shared stats; physical hits stay unchanged (4.516917ms)
+✔ Marc/Marduk/Deviruchi resist only their status; hard CC still interrupts Phen (2.279542ms)
+✔ Maya reflects magical only; normalized proc cannot recursively reflect itself (9.88175ms)
+✔ Moonlight changes motion only, with identical virtual-time integration across frame chunks (5.662917ms)
+✔ Osiris improves the existing revive recovery without adding a revive or replaying its old cast (2.357834ms)
+✖ every authored card proc resolves actual effects with target tags and no formula/status errors (23.848417ms)
+✔ Hydra target bonus requires a physical hit against the matching race; its own proc cannot retrigger (12.523875ms)
+✖ farm profile improves stage chance/quality, gates Mini/MVP, retains earlier cards and favors current tiers (187.074042ms)
+✖ D-107 rare farm has1.44–2.88 expected cards per12h, true boundary chances and unchanged quality/grade rules (69.862917ms)
+✖ D-107 frozen v1 accrual/owned/pending cards survive migration; claim settles old rate once then installs v2 (2.853625ms)
+✔ seeded farm split/cap/retry produces same fixed cards/gear and RNG without kill or speed input (10.5565ms)
+✔ legacy snapshot settles before enabling cards; full bag never consumes or rerolls pending rewards (1337.825959ms)
+✔ slot correction migration returns incompatible cards to bag and preserves exact instance/quality/level/lock (183.010459ms)
+✔ D-058 migration fills new fields, rebalances status budgets and drops dangling stages, then passes the server validator (108.322041ms)
+✔ D-058 migration refunds status investments that exceed the new budget instead of keeping unfunded stats (1.220292ms)
+✔ D-058 migration SQL appends one signed revision per outdated save and skips current saves (905.766083ms)
+ℹ tests 54
+ℹ suites 0
+ℹ pass 45
+ℹ fail 9
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3322.540875
+
+✖ failing tests:
+
+test at tests/game/build-impact.test.ts:1:10210
+✖ content migration preserves investments, instances, old rolls, slot progress, cursor and pending rewards (6.902708ms)
+  AssertionError [ERR_ASSERTION]: inventory
+  + actual - expected
+  ... Skipped lines
+
+    [
+      {
+        definition_id: 'equipment_sword_1',
+        instance_id: 'qa_equipment_sword_1',
+        kind: 'equipment',
+  ...
+        kind: 'card',
+  +     legacy_quality: 'silver',
+        level: 3,
+        locked: true,
+  +     rarity_id: 'uncommon'
+  -     rarity_id: 'silver'
+      }
+    ]
+
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/build-impact.test.ts:130:132)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ { instance_id: 'qa_equipment_sword_1', definition_id: 'equipment_sword_1', kind: 'equipment', rarity_id: 'rare', locked: false, training: false, options: [Array] }, { instance_id: 'qa_card', definition_id: 'card_weapon_1', kind: 'card', level: 3, rarity_id: 'uncommon', locked: true, legacy_quality: 'silver' } ],
+    expected: [ { instance_id: 'qa_equipment_sword_1', definition_id: 'equipment_sword_1', kind: 'equipment', rarity_id: 'rare', locked: false, training: false, options: [Array] }, { instance_id: 'qa_card', definition_id: 'card_weapon_1', kind: 'card', level: 3, rarity_id: 'silver', locked: true } ],
+    operator: 'deepStrictEqual'
+  }
+
+test at tests/game/card-rarity.test.ts:1:1432
+✖ D109 fixed monster catalog uses five item rarities; Mini/MVP overrides source level and Elite is not MVP (3.045791ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  66 !== 73
+
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/card-rarity.test.ts:21:110)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.start (node:internal/test_runner/test:959:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:332:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 66,
+    expected: 73,
+    operator: 'strictEqual'
+  }
+
+test at tests/game/card-rarity.test.ts:1:3256
+✖ migration retains219 owned cards, pending payloads, assignments, levels, locks, wallet and ledger, without input mutation (2.071333ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  198 !== 219
+
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/card-rarity.test.ts:36:131)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 198,
+    expected: 219,
+    operator: 'strictEqual'
+  }
+
+test at tests/game/gacha-shop.test.ts:1:1963
+✖ T037 AC-01: D109 fixed monster cards use all66 identities at50/25/20/2/3 for 100/1000 crystal, with no pet/artifact outcomes (11.281834ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  66 !== 73
+
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/gacha-shop.test.ts:33:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.start (node:internal/test_runner/test:959:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:332:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 66,
+    expected: 73,
+    operator: 'strictEqual'
+  }
+
+test at tests/game/ro-cards.test.ts:1:4059
+✖ 73 RO definitions with66 native portraits preserve all 60 legacy IDs, correct slots, exact art IDs and distinct source grades (3.35075ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  66 !== 73
+
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/ro-cards.test.ts:35:105)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.start (node:internal/test_runner/test:959:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:332:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 66,
+    expected: 73,
+    operator: 'strictEqual'
+  }
+
+test at tests/game/ro-cards.test.ts:1:10763
+✖ every authored card proc resolves actual effects with target tags and no formula/status errors (23.848417ms)
+  Error: INVALID_ITEM_DEFINITION
+      at itemDefinition (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/src/domain/build/equipment-definition.ts:21:52)
+      at resolvedCardModifiers (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/src/domain/build/equipment.ts:22:25)
+      at withCard (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/ro-cards.test.ts:28:339)
+      at pipeline (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/ro-cards.test.ts:30:89)
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/ro-cards.test.ts:80:11)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+
+test at tests/game/ro-cards.test.ts:1:12099
+✖ farm profile improves stage chance/quality, gates Mini/MVP, retains earlier cards and favors current tiers (187.074042ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  66 !== 73
+
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/ro-cards.test.ts:93:282)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 66,
+    expected: 73,
+    operator: 'strictEqual'
+  }
+
+test at tests/game/ro-cards.test.ts:1:13444
+✖ D-107 rare farm has1.44–2.88 expected cards per12h, true boundary chances and unchanged quality/grade rules (69.862917ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'epic'
+  - 'legendary'
+
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/ro-cards.test.ts:100:275)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'epic',
+    expected: 'legendary',
+    operator: 'strictEqual'
+  }
+
+test at tests/game/ro-cards.test.ts:1:14384
+✖ D-107 frozen v1 accrual/owned/pending cards survive migration; claim settles old rate once then installs v2 (2.853625ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+
+    [
+      {
+        definition_id: 'card_angeling',
+        instance_id: 'test_card_angeling',
+        kind: 'card',
+  ...
+        locked: true,
+  +     rarity_id: 'epic'
+  -     rarity_id: 'legendary'
+      }
+    ]
+
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/ro-cards.test.ts:106:100)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { instance_id: 'test_card_angeling', definition_id: 'card_angeling', kind: 'card', level: 4, rarity_id: 'epic', locked: true, legacy_quality: 'gold' } ],
+    expected: [ { instance_id: 'test_card_angeling', definition_id: 'card_angeling', kind: 'card', level: 4, rarity_id: 'legendary', locked: true, legacy_quality: 'gold' } ],
+    operator: 'deepStrictEqual'
+  }

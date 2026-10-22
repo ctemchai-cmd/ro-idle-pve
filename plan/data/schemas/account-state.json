@@ -1937,6 +1937,32 @@
         "purchases"
       ],
       "additionalProperties": false
+    },
+    "battle_supplies": {
+      "type": "object",
+      "properties": {
+        "stock": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          }
+        },
+        "queued": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          }
+        }
+      },
+      "required": [
+        "stock",
+        "queued"
+      ],
+      "additionalProperties": false
     }
   },
   "required": [

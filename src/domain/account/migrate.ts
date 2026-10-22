@@ -5,7 +5,7 @@ import { storyStage, storyFarmSnapshot } from '../modes/story.ts';
 import { legacyOptionSeed, rollItemOptions } from '../build/item-options.ts';
 import { nextRandom } from '../../content/random.ts';
 import { dailyUnlocked } from '../modes/daily.ts';
-import { migrateCardRarity } from '../build/card-rarity.ts';
+import { cardRarity, migrateCardRarity } from '../build/card-rarity.ts';
 
 export interface SaveMigration { state: AccountState; changes: string[] }
 const canonicalPool = (pool: readonly string[]) => [...pool].sort().join(',');
@@ -17,12 +17,24 @@ const canonicalPool = (pool: readonly string[]) => [...pool].sort().join(',');
  */
 export function migrateAccountState(input: unknown, content: ValidatedContent): SaveMigration {
   const state = structuredClone(input) as AccountState, changes: string[] = [], data = progressionData(content);
+  if (!state.battle_supplies) { state.battle_supplies = { stock: {}, queued: {} }; changes.push('battle_supplies initialized'); }
   for(const items of [state.inventory,...state.pending_rewards.map(claim=>claim.items)])for(let index=0;index<items.length;index++){
     const item=items[index]!;if(item.kind!=='card')continue;
     const normalized=migrateCardRarity(item,content);if(normalized.rarity_id!==item.rarity_id){items[index]=normalized;changes.push(`${item.instance_id}: fixed monster rarity ${item.rarity_id} -> ${normalized.rarity_id} (prior power retained)`);}
   }
   for (const actor of state.roster) for (const [slot, progress] of Object.entries(actor.slot_progress) as [string, { refine_failures?: number }][]) {
     if (progress.refine_failures === undefined) { progress.refine_failures = 0; changes.push(`${actor.character_id}.${slot}.refine_failures=0`); }
+  }
+  // Fixed-rarity snapshots keep their earned pool/chance/RNG, while corrected monster
+  // classifications must match the new catalog before the first unpaid AFK claim.
+  const frozenCards = state.farm.rate_snapshot?.card_drops;
+  if (frozenCards?.definition_rarities) for (const id of frozenCards.definition_pool) {
+    if (content.items[id]?.kind !== 'card') continue;
+    const rarity = cardRarity(id, content);
+    if (frozenCards.definition_rarities[id] !== rarity) {
+      frozenCards.definition_rarities[id] = rarity;
+      changes.push(`${id}: frozen card rarity updated to ${rarity}, pool/chance unchanged`);
+    }
   }
   // D-062: equipment created before random options gets its lines now, from a stable per-instance seed (never re-rolled later).
   for (const item of state.inventory) if (item.kind === 'equipment' && (item as { options?: unknown }).options === undefined) {

@@ -80,3 +80,15 @@ Oldfrozenv1/v2profileไม่เขียนทับในmigration: settlecha
 cardInventoryเรียงยังไม่สวมก่อน ตามrarity/level แล้วสวมอยู่ท้ายพร้อมชื่อเจ้าของจริง sharedEquipmentProgressอ่านเฉพาะowner.slot_progressแสดง+refine/levelตามD-112ในป้ายเล็กบนgeariconsทุกหน้า (เช่น+5สีฟ้า/5สีม่วง ไม่มีR/Eนำหน้า) ไม่เอาRefine/Enchantไปติดitemหรือcardinstance ของว่างไม่มีbadgeสมมติ
 
 Add Cardวางiconซ้าย/ชื่อระดับ+descriptionย่อด้านขวา รายการเลื่อนภายในsheetเฉพาะlist ปุ่มใส่/ย้ายและชื่อใบที่เลือกอยู่footerคงที่ ส่วนรายละเอียดเต็ม/เปรียบเทียบ/อัป/ย่อยพับได้และเลื่อนแยก ไม่เพิ่มconfirmationรอบใหม่หรือcommandตอนเปิด/เลื่อน และmemoizeprojectionตามstate/slotเพื่อไม่resolveทุกใบซ้ำตอนแตะเลือก
+
+## D-122 / TASK-093: Origin MVP กับ Puppet I
+
+Angeling/Deviling overrideจากPCMiniเป็นOriginMVP/Legendary โดยรักษาID/ช่อง/ฐานeffectsเดิม. Catalog73ชนิดประกอบด้วยใบจริง66ชนิด(49Normal/4Mini/13MVP) และ7Puppet I. ภาพจริงยัง66รูป; Puppetใช้ภาพparentกับCSSสีจาง ไม่อ้างเป็นartworkOriginจริง.
+
+`origins.variant=puppet` และ `parent_card_id` แยกจากgrade=mvp: rarityRareของPuppet Iไม่ถูกตีเป็นLegendaryตามgrade และป้ายPUPPETต่างจากMVP. เพิ่มรุ่นในอนาคตได้โดยเพิ่มdefinitionกับmetadata ไม่แก้engineหรือคัดลอกกลไกcard.
+
+Puppetเจ็ดชื่ออยู่ในofficialROO27/12patch (https://roglobal.com/news/347). แนวเอฟเฟกต์อ้างอิงธีมOrigin/OriginClassic แต่ค่าพลัง/ช่องเป็นadaptationของเกมนี้: Angeling HP+MDEFไม่มีHolyarmor, Devilingoffense+guardไม่ใช่ต้านNeutralจริง, GTBmagicguard+SPไม่มีcostpenalty, EddgaLarge/MoonlightSmallใช้sharedmatchedbonusprocทั้งphysical/magical, BaphometDEF+SPไม่มีsplash/PvP, DoppelgangerHP+critresistไม่มีASPD. ตัวคูณกลางD103และrarity/levelทำงานหนึ่งครั้ง. ไม่อ้างduplicateลดเปอร์เซ็นต์Holyarmor.
+
+ฟาร์มPuppetใช้variantgateบท3+Tier40(ตามtierจริงเริ่มบท4) weight100 เทียบNormal1000/Mini200/fullMVP10. FullMVPยังบท6. cardhitยัง1–2%ต่อ5นาทีเฉลี่ย1.44–2.88ใบ/12h. กาชาPuppetเข้ากลุ่มRareweight1000(เทียบElite) ไม่เพิ่มโอกาสRarity/ราคา/pity. TowerเลือกตามTierเดิม. Frozenprofilesยังจ่ายpoolเดิมครั้งแรก; owned/pendingAngeling/Devilingย้ายทองโดยไม่ล้างlevel/lock/assignment/ledger.
+
+D-122เพิ่มเติม: Frozenv3.definition_raritiesของAngeling/DevilingเดิมยังEpic ต้องnormalizeเฉพาะraritymapก่อนclaim มิฉะนั้นstrictfarmvalidatorปฏิเสธINVALID_CARD_FARM_RARITY. Migrationคงpool/chance/weights/quantization/RNG/cursorทั้งหมด ไม่เพิ่มPuppetย้อนเวลา และให้claimติดตั้งnewpoolสำหรับอนาคตตามเดิม.

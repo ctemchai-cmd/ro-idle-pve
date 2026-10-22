@@ -1,3 +1,4 @@
+import { migrateCardRarity } from '../../src/domain/build/card-rarity.ts';
 // Focused D-103 formula/source checks, not a balance simulation or calibration run.
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -127,7 +128,7 @@ test('content migration preserves investments, instances, old rolls, slot progre
   const equipped = s.roster.find(r => r.character_id === a.character_id)!; equipped.equipment.weapon = item.instance_id; equipped.slot_progress.weapon.cards[0] = 'qa_card';
   assert.ok(s.paid_ledger.length > 0 && s.pending_rewards[0]!.items.length > 0);
   const before = structuredClone(s), migrated = migrateAccountState(s, content).state;
-  for (const key of ['wallet', 'paid_ledger', 'inventory', 'roster', 'pending_rewards', 'gacha', 'daily_records'] as const) assert.deepEqual(migrated[key], before[key], key);
+  for (const key of ['wallet', 'paid_ledger', 'inventory', 'roster', 'pending_rewards', 'gacha', 'daily_records'] as const) assert.deepEqual(migrated[key], key === 'inventory' ? before.inventory.map(item => item.kind === 'card' ? migrateCardRarity(item, content) : item) : before[key], key);
   assert.equal(migrated.farm.reserved_through, before.farm.reserved_through); assert.deepEqual(s, before, 'migration must not mutate input');
   for (const key of ['loot_rng', 'remainders', 'drop_carry_ms'] as const) assert.deepEqual(migrated.farm[key], before.farm[key], key);
   assert.doesNotThrow(() => new AccountCommandRules().validateAccount(migrated));

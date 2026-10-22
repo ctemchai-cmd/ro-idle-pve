@@ -67,7 +67,7 @@ def content_refs():
   for value in c.walk(data):
    if isinstance(value,(int,float)) and not isinstance(value,bool):assert math.isfinite(value) and abs(value)<=9007199254740991,(file,value)
  golden=load(D/'skill-program-cases.json')['cases'];assert len(golden)==378 and {r['skill_id'] for r in golden}=={s['id'] for s in skilldefs}
- return {'skills':126,'builds':26,'equipment':144,'cards':66,'golden_raw_intents':378,'notes':'golden fixtures not executed TS battles; manifest implementation not built'}
+ return {'skills':126,'builds':26,'equipment':144,'cards':73,'golden_raw_intents':378,'notes':'golden fixtures not executed TS battles; manifest implementation not built'}
 check('complete_content_refs_names_versions',['AC-02','AC-03'],content_refs)
 def actor_assets():
  jobs=load(D/'actor-presentations.json')['jobs'];expected={x for root,bs in load(D/'progression.json')['class_tree'].items() for x in [root,*bs]};assert {j['job_id'] for j in jobs}==expected

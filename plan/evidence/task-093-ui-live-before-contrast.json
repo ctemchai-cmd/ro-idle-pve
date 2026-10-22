@@ -1,0 +1,127 @@
+{
+  "task_id": "TASK-093",
+  "passed": true,
+  "error": null,
+  "errors": [],
+  "checks": [
+    "Real old-content signed-save migration previews without writing, backs up exact old signature/state, preserves all fixture cards/assignments/locks/levels/investments/pity and retains the frozen old AFK profile",
+    "All five actual card borders match item palette at320/390, card masks fill their frames, rarity filters and Elite/Mini/MVP labels reflect fixed monster identity",
+    "Long Add Card list sorts four worn cards last with owner badges; real descriptions sit beside art and action stays visible while list/details scroll at320/390; Refine/Enchant badges stay apart from slots/locks and free gear has none; zero inspection writes",
+    "Actual single card.assign moves the same Elite/Rare instance from NPC to main without moving Refine/Enchant; upgrade and reload retain level2 and blue frame",
+    "Actual preserved Legendary pity creates an MVP with gold frame at100 crystal; old20% AFK settles once to fixed monster cards with prior floors, future v3 1% persists/reloads and UUID replay pays nothing twice",
+    "Puppet7 blue/pale cards and real Angeling gold/MVP at320/390; distinct effects/labels, card detail/picker/socket shared art, actual assign and reload preserve the same instance",
+    "Actual50gold buy/UUID replay/prepare/cancel/refund/reload/main+bench selection, colored store/element SVG at320/390; actual Story start stores Fire weapon, consumes main only and start replay consumes nothing twice"
+  ],
+  "measurements": [
+    {
+      "viewport_width": 390,
+      "rarity": "common",
+      "border": "rgb(152, 163, 179)",
+      "width": 51,
+      "mask": 51,
+      "fit": "cover",
+      "clip": "hidden"
+    },
+    {
+      "viewport_width": 390,
+      "rarity": "uncommon",
+      "border": "rgb(63, 174, 90)",
+      "width": 51,
+      "mask": 51,
+      "fit": "cover",
+      "clip": "hidden"
+    },
+    {
+      "viewport_width": 390,
+      "rarity": "rare",
+      "border": "rgb(59, 130, 246)",
+      "width": 51,
+      "mask": 51,
+      "fit": "cover",
+      "clip": "hidden"
+    },
+    {
+      "viewport_width": 390,
+      "rarity": "epic",
+      "border": "rgb(155, 92, 246)",
+      "width": 51,
+      "mask": 51,
+      "fit": "cover",
+      "clip": "hidden"
+    },
+    {
+      "viewport_width": 390,
+      "rarity": "legendary",
+      "border": "rgb(243, 156, 18)",
+      "width": 51,
+      "mask": 51,
+      "fit": "cover",
+      "clip": "hidden"
+    },
+    {
+      "viewport_width": 320,
+      "rarity": "common",
+      "border": "rgb(152, 163, 179)",
+      "width": 39,
+      "mask": 39,
+      "fit": "cover",
+      "clip": "hidden"
+    },
+    {
+      "viewport_width": 320,
+      "rarity": "uncommon",
+      "border": "rgb(63, 174, 90)",
+      "width": 39,
+      "mask": 39,
+      "fit": "cover",
+      "clip": "hidden"
+    },
+    {
+      "viewport_width": 320,
+      "rarity": "rare",
+      "border": "rgb(59, 130, 246)",
+      "width": 39,
+      "mask": 39,
+      "fit": "cover",
+      "clip": "hidden"
+    },
+    {
+      "viewport_width": 320,
+      "rarity": "epic",
+      "border": "rgb(155, 92, 246)",
+      "width": 39,
+      "mask": 39,
+      "fit": "cover",
+      "clip": "hidden"
+    },
+    {
+      "viewport_width": 320,
+      "rarity": "legendary",
+      "border": "rgb(243, 156, 18)",
+      "width": 39,
+      "mask": 39,
+      "fit": "cover",
+      "clip": "hidden"
+    }
+  ],
+  "commands": [
+    "account.create",
+    "save.migrate",
+    "card.assign",
+    "card.upgrade",
+    "gacha.pull",
+    "farm.claim",
+    "reward.claim",
+    "card.assign",
+    "shop.buy",
+    "consumable.prepare",
+    "consumable.prepare",
+    "consumable.prepare",
+    "shop.buy",
+    "consumable.prepare"
+  ],
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "balance_simulation": false,
+  "scope": "Disposable actual signed migration/Auth/API/Postgres/PostgREST and mobile320/390 Chrome emulation; not owner account or physical Android benchmark."
+}

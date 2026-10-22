@@ -6,9 +6,9 @@
   "scope": "M0 schema, metadata refs, ownership contract, hand arithmetic and invalid fusion cases; not game inventory execution",
   "input_sha256": {
     "plan/data/equipment.json": "62a62263ad5f8437fd77c97420014f1d51a111d8035d69529dee5bb2612ce57f",
-    "plan/data/cards.json": "6e95062cf23453d2b9e477d7387565dce3a8c28393a5615dc7b5978ede1df873",
+    "plan/data/cards.json": "8eeef82143917c5f6111c6d32b0108f2e05015fb248d8e9788b6bd9e9cb5295b",
     "plan/data/slot-progress.json": "d1f23febc0cc12c2413a1c300123e719a10c1e53c8bb1fe8d60bca4a7f04fde4",
-    "plan/checks/equipment.py": "2b748cc73b08554a474502eebe1afcdeb8223d79a5692b623f161ce7613f94a0"
+    "plan/checks/equipment.py": "7444ebc1c56125bca7a9b05fdb0b0311f33ce831f5ecd2b4ca684a6ccf42e1d5"
   },
   "checks": [
     {
@@ -2742,6 +2742,97 @@
       }
     },
     {
+      "case_id": "card_angeling_puppet",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.card-4054",
+        "tier": 40
+      }
+    },
+    {
+      "case_id": "card_deviling_puppet",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.card-4174",
+        "tier": 40
+      }
+    },
+    {
+      "case_id": "card_golden_thief_bug_puppet",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.card-4128",
+        "tier": 40
+      }
+    },
+    {
+      "case_id": "card_eddga_puppet",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.card-4123",
+        "tier": 40
+      }
+    },
+    {
+      "case_id": "card_moonlight_flower_puppet",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.card-4131",
+        "tier": 40
+      }
+    },
+    {
+      "case_id": "card_baphomet_puppet",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.card-4147",
+        "tier": 40
+      }
+    },
+    {
+      "case_id": "card_doppelganger_puppet",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.card-4142",
+        "tier": 40
+      }
+    },
+    {
       "case_id": "coverage_and_rarity",
       "acceptance": [
         "AC-01",
@@ -2820,11 +2911,11 @@
       ],
       "passed": true,
       "result": {
-        "definitions": 66,
+        "definitions": 73,
         "source_grades": {
           "normal": 49,
-          "mini": 6,
-          "mvp": 11
+          "mini": 4,
+          "mvp": 20
         },
         "card_instance_level_max": 5,
         "max_upgrade_dust": 300,

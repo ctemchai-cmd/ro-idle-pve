@@ -16,5 +16,7 @@ def build(previous):
         definitions.append(definition)
         presentations.append({'id': f'visual_{cid}', 'icon_asset_id': art, 'meta_path': meta, 'illustration_asset_id': art, 'illustration_meta_path': meta, 'symbol_asset_id': art, 'symbol_meta_path': meta, 'basis': 'Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution', 'card_face_style': 'native_ro_card', 'illustration_basis': 'Card-specific illustration; ragassets client export'})
         origins[cid] = {k: row[k] for k in ['ro_item_id', 'monster_id', 'monster_name', 'grade', 'source_slot', 'rarity_id', 'source_level', 'strength_class']}
+        for key in ['variant', 'parent_card_id']:
+            if key in row: origins[cid][key] = row[key]
         names[cid] = row['name']
-    return {**previous, 'content_version': 'cards-ro-v3', 'catalog_basis': 'D-099 RO identities; D-109 fixed monster strength rarity', 'definitions': definitions, 'presentations': presentations, 'origins': origins, 'monster_traits': spec['monster_traits'], 'rarity_policy': spec['rarity_policy']}, names
+    return {**previous, 'content_version': 'cards-ro-v4', 'catalog_basis': 'D-099 RO identities; D-109 fixed rarity; D-122 Origin boss overrides and distinct Puppet variants', 'definitions': definitions, 'presentations': presentations, 'origins': origins, 'monster_traits': spec['monster_traits'], 'rarity_policy': spec['rarity_policy']}, names

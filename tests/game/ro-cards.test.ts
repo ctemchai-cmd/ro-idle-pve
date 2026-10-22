@@ -31,10 +31,10 @@ function pipeline(id?:string,overrides:Modifier[]=[]){const state=checkpoint(bat
 const damage=(type:'physical'|'magical'|'true'='physical',element='neutral'):Effect=>({id:'hit',type:'damage',target:'target',formula:{id:'flat_power',params:{amount:1000}},damage_type:type,element:element as 'neutral',hit_rule:'always',can_crit:false,hits:1,armor_rule:'normal'});
 function incoming(f:ReturnType<typeof pipeline>,effect:Effect){const c=f.p.context(f.state.actors[1]!,'test','skill','root');c.selected={target:[f.state.actors[0]!]};f.p.program([effect],c);f.p.drain();return f.state.actors[0]!.stats.max_hp-f.state.actors[0]!.hp;}
 
-test('66 native RO cards preserve all 60 legacy IDs, correct slots, exact art IDs and distinct source grades',()=>{
- const origins=cardOrigins(content),defs=Object.values(content.items).filter(i=>i.kind==='card');assert.equal(defs.length,66);assert.equal(new Set(spec.cards.map((c:{ro_item_id:number})=>c.ro_item_id)).size,66);
+test('73 RO definitions with66 native portraits preserve all 60 legacy IDs, correct slots, exact art IDs and distinct source grades',()=>{
+ const origins=cardOrigins(content),defs=Object.values(content.items).filter(i=>i.kind==='card');assert.equal(defs.length,73);assert.equal(new Set(spec.cards.map((c:{ro_item_id:number})=>c.ro_item_id)).size,66);
  const legacy=JSON.parse(readFileSync('plan/evidence/task-073-legacy-ids.json','utf8')) as string[];assert.equal(legacy.length,60);assert.ok(legacy.every(id=>content.items[id]?.kind==='card'));
- assert.deepEqual(Object.values(origins).reduce((r,o)=>(r[o.grade]++,r),{normal:0,mini:0,mvp:0}),{normal:49,mini:6,mvp:11});
+ assert.deepEqual(Object.values(origins).reduce((r,o)=>(r[o.grade]++,r),{normal:0,mini:0,mvp:0}),{normal:49,mini:4,mvp:20});
  for(const row of spec.cards){const d=content.items[row.id]!;assert.equal(d.slot,row.slot);assert.equal(origins[row.id]!.ro_item_id,row.ro_item_id);const meta=JSON.parse(readFileSync(`assets/ro/items/card-${row.ro_item_id}.meta.json`,'utf8'));assert.equal(meta.id,`items.card-${row.ro_item_id}`);assert.equal(meta.kind,'card_illustration');assert.equal(meta.file.width,300);assert.equal(meta.file.height,400);}
  for(const[id,slot]of Object.entries({card_zerom:'accessory',card_andre:'weapon',card_lunatic:'weapon',card_raydric:'garment',card_sohee:'shoes',card_maya:'armor'}))assert.equal(content.items[id]!.slot,slot);
  assert.equal(origins.card_abysmal_knight!.grade,'normal');assert.equal(origins.card_garm!.monster_name,'Hatii');
@@ -77,7 +77,7 @@ test('Osiris improves the existing revive recovery without adding a revive or re
 });
 test('every authored card proc resolves actual effects with target tags and no formula/status errors',()=>{
  for(const row of spec.cards.filter((r:{triggers:unknown[]})=>r.triggers.length)){
-  const f=pipeline(row.id),a=f.state.actors[0]!,b=f.state.actors[1]!;b.tags=['race_demihuman','race_undead','element_water','element_earth','size_large','boss'];
+  const f=pipeline(row.id),a=f.state.actors[0]!,b=f.state.actors[1]!;b.tags=['race_demihuman','race_undead','element_water','element_earth','size_large','size_small','boss'];
   for(const source of a.stat_blueprint.permanent_sources)for(const t of source.triggers)t.chance=1;
   const c=f.p.context(row.triggers[0].event==='damage_received'?b:a,'hit',row.triggers[0].event==='normal_attack_hit'?'normal':'skill','root');c.damage_type=row.id==='card_maya'?'magical':'physical';
   f.p.event(row.triggers[0].event,a,c,row.triggers[0].event==='damage_received'?a:b,1000);f.p.drain();
@@ -89,21 +89,21 @@ test('Hydra target bonus requires a physical hit against the matching race; its 
 });
 test('farm profile improves stage chance/quality, gates Mini/MVP, retains earlier cards and favors current tiers',()=>{
  const stages=storyStages(content),origins=cardOrigins(content);let chance=0;
- for(let i=0;i<stages.length;i++){const s=farming(stages[i]!.id),p=s.farm.rate_snapshot!.card_drops!;assert.ok(p.chance_per_million>=chance);chance=p.chance_per_million;assert.equal(Object.keys(p.definition_rarities!).length,p.definition_pool.length);assert.ok(p.definition_pool.every(id=>origins[id]!.grade==='normal'||stages[i]!.chapter>=(origins[id]!.grade==='mini'?2:6)));}
- const first=farming().farm.rate_snapshot!.card_drops!,last=farming(stages.at(-1)!.id).farm.rate_snapshot!.card_drops!;assert.equal(first.chance_per_million,10000);assert.equal(last.chance_per_million,20000);assert.equal(last.definition_rarities!.card_baphomet,'legendary');assert.equal(last.definition_pool.length,66);assert.ok(last.definition_pool.some(id=>origins[id]!.grade==='mvp'));assert.throws(()=>farmCardProfile(1,1,-1,130,content));
+ for(let i=0;i<stages.length;i++){const s=farming(stages[i]!.id),p=s.farm.rate_snapshot!.card_drops!;assert.ok(p.chance_per_million>=chance);chance=p.chance_per_million;assert.equal(Object.keys(p.definition_rarities!).length,p.definition_pool.length);assert.ok(p.definition_pool.every(id=>origins[id]!.grade==='normal'||stages[i]!.chapter>=(origins[id]!.variant==='puppet'?3:origins[id]!.grade==='mini'?2:6)));}
+ const first=farming().farm.rate_snapshot!.card_drops!,last=farming(stages.at(-1)!.id).farm.rate_snapshot!.card_drops!;assert.equal(first.chance_per_million,10000);assert.equal(last.chance_per_million,20000);assert.equal(last.definition_rarities!.card_baphomet,'legendary');assert.equal(last.definition_pool.length,73);assert.ok(last.definition_pool.some(id=>origins[id]!.grade==='mvp'));assert.throws(()=>farmCardProfile(1,1,-1,130,content));
  assert.equal(weightedChoice(['a','b'],{a:9,b:1},.8999),'a');assert.equal(weightedChoice(['a','b'],{a:9,b:1},.9),'b');assert.throws(()=>weightedChoice(['a'],{a:1},1));
  let draws=0;assert.equal(farmCardDrop(first,()=>{draws++;return .9;},content),null);assert.equal(draws,1);assert.ok(farmCardDrop(first,()=>0,content));
 });
 test('D-107 rare farm has1.44–2.88 expected cards per12h, true boundary chances and unchanged quality/grade rules',()=>{
  const stages=storyStages(content),interval=Number((content.documents['save-contracts.json']!.farm as unknown as {quantization:{drop_interval_ms:number}}).quantization.drop_interval_ms);assert.equal(interval,300000);
  for(const stage of stages){const p=farming(stage.id).farm.rate_snapshot!.card_drops!,expected=43200000/interval*p.chance_per_million/1e6;assert.ok(expected>=1.44&&expected<=2.88);assert.equal(p.version,'card_farm_v3');assert.ok(farmCardDrop(p,()=>0,content));assert.equal(farmCardDrop(p,()=>p.chance_per_million/1e6+1/4294967296,content),null);}
- const first=farming('1-1').farm.rate_snapshot!.card_drops!,last=farming('8-20').farm.rate_snapshot!.card_drops!;assert.equal(first.quality_weights,undefined);assert.equal(last.quality_weights,undefined);assert.equal(first.definition_rarities!.card_armor_1,'common');assert.equal(last.definition_rarities!.card_angeling,'epic');
+ const first=farming('1-1').farm.rate_snapshot!.card_drops!,last=farming('8-20').farm.rate_snapshot!.card_drops!;assert.equal(first.quality_weights,undefined);assert.equal(last.quality_weights,undefined);assert.equal(first.definition_rarities!.card_armor_1,'common');assert.equal(last.definition_rarities!.card_angeling,'legendary');
 });
 test('D-107 frozen v1 accrual/owned/pending cards survive migration; claim settles old rate once then installs v2',()=>{
  const original=farming(),old=original.farm.rate_snapshot!.card_drops!;old.version='card_farm_v1';old.chance_per_million=200000;delete old.definition_rarities;old.quality_weights={bronze:850000,silver:140000,gold:10000};
  original.inventory.push({...card('card_angeling',4,'gold'),locked:true});
  original.pending_rewards.push({claim_id:'already_reserved',kind:'farm',resource_vector:Object.fromEntries(Object.keys(original.wallet).map(k=>[k,0])) as AccountState['wallet'],items:[card('card_weapon_1',3,'silver')],content_version:content.manifest.content_version,reserved_at:time,source_keys:['old-earned'],status:'pending'});
- const input=structuredClone(original),migrated=migrateAccountState(original,content).state;assert.deepEqual(migrated.inventory,input.inventory.map(i=>({...i,rarity_id:'epic',legacy_quality:'gold'})));assert.deepEqual(migrated.pending_rewards,input.pending_rewards.map(p=>({...p,items:p.items.map(i=>({...i,rarity_id:'uncommon',legacy_quality:'silver'}))})));assert.deepEqual(migrated.farm.rate_snapshot!.card_drops,old);
+ const input=structuredClone(original),migrated=migrateAccountState(original,content).state;assert.deepEqual(migrated.inventory,input.inventory.map(i=>({...i,rarity_id:'legendary',legacy_quality:'gold'})));assert.deepEqual(migrated.pending_rewards,input.pending_rewards.map(p=>({...p,items:p.items.map(i=>({...i,rarity_id:'uncommon',legacy_quality:'silver'}))})));assert.deepEqual(migrated.farm.rate_snapshot!.card_drops,old);
  const end=base+12*3600000,expected=reserveFarm(migrated,base,end,new Date(end).toISOString(),'farm_22222222-2222-4222-8222-222222222222',content),actual=command(migrated,'farm.claim',{},end);
  assert.equal(actual.receipt.outcome,'committed');assert.deepEqual(actual.state.pending_rewards,expected.pending_rewards);assert.deepEqual(actual.state.farm.loot_rng,expected.farm.loot_rng);assert.deepEqual(actual.state.inventory,migrated.inventory);assert.equal(actual.state.farm.rate_snapshot!.card_drops!.version,'card_farm_v3');assert.equal(actual.state.farm.rate_snapshot!.card_drops!.chance_per_million,10000);assert.equal(actual.state.farm.reserved_through,new Date(end).toISOString());
  assert.deepEqual(original,input);
@@ -122,4 +122,31 @@ test('legacy snapshot settles before enabling cards; full bag never consumes or 
 test('slot correction migration returns incompatible cards to bag and preserves exact instance/quality/level/lock',()=>{
  const state=account(),main=state.roster[0]!,zerom={...card('card_zerom',5,'gold'),locked:true},wolf=card('card_weapon_1',3,'silver');state.inventory.push(zerom,wolf);main.slot_progress.shoes.cards[0]=zerom.instance_id;main.slot_progress.weapon.cards[0]=wolf.instance_id;
  const {state:after,changes}=migrateAccountState(state,content);assert.equal(after.roster[0]!.slot_progress.shoes.cards[0],null);assert.equal(after.roster[0]!.slot_progress.weapon.cards[0],wolf.instance_id);assert.deepEqual(after.inventory,[{...zerom,rarity_id:'uncommon',legacy_quality:'gold'},{...wolf,rarity_id:'uncommon',legacy_quality:'silver'}]);assert.ok(changes.some(c=>c.includes('RO slot corrected')));new AccountCommandRules().validateAccount(after);assert.deepEqual(migrateAccountState(after,content).state,after);
+});
+
+test('D122 separate Puppet definitions reuse parent art while full Angeling/Deviling become Legendary MVP',()=>{
+ const origins=cardOrigins(content),puppets=Object.entries(origins).filter(([,o])=>o.variant==='puppet');assert.equal(puppets.length,7);
+ for(const id of ['card_angeling','card_deviling']){assert.equal(origins[id]!.grade,'mvp');assert.equal(origins[id]!.rarity_id,'legendary');}
+ for(const[id,o]of puppets){const parent=content.items[o.parent_card_id!]!;assert.ok(parent&&id!==parent.id);assert.equal(o.grade,'mvp');assert.equal(o.rarity_id,'rare');assert.equal(o.ro_item_id,origins[o.parent_card_id!]!.ro_item_id);assert.equal(content.items[id]!.defense_element,undefined);assert.notDeepEqual(content.items[id]!.modifiers,parent.modifiers);}
+ assert.equal(origins.card_ghostring!.grade,'mini');assert.equal(origins.card_mastering!.grade,'mini');
+ const p=farming('4-1').farm.rate_snapshot!.card_drops!;assert.equal(p.definition_pool.filter(id=>origins[id]!.variant==='puppet').length,7);assert.ok(!p.definition_pool.some(id=>origins[id]!.grade==='mvp'&&!origins[id]!.variant));assert.equal(p.definition_weights.card_angeling_puppet,10000);
+});
+test('D122 Puppet size bonuses match only their target size for physical/magical damage and never recursively trigger',()=>{
+ for(const[id,size]of [['card_eddga_puppet','large'],['card_moonlight_flower_puppet','small']]as const)for(const type of ['physical','magical']as const)for(const match of [true,false]){
+  const f=pipeline(id),a=f.state.actors[0]!,b=f.state.actors[1]!;b.tags=['size_'+(match?size:'medium')];const c=f.p.context(a,'test','skill','root');c.selected={target:[b]};f.p.program([damage(type)],c);f.p.drain();
+  assert.equal(f.events.filter((e:unknown)=>(e as{type:string}).type==='proc').length,match?1:0);assert.equal(f.events.filter((e:unknown)=>(e as{type:string}).type==='damage').length,match?2:1);
+ }
+ assert.equal(content.items.card_angeling!.defense_element,'holy');assert.equal(content.items.card_angeling_puppet!.defense_element,undefined);
+});
+test('D122 migration upgrades owned and reserved old Mini Angeling/Deviling without replacing instances or investments',()=>{
+ const s=account();for(const id of ['card_angeling','card_deviling'])s.inventory.push({...card(id,4,'epic'),locked:true});
+ const before=structuredClone(s),m=migrateAccountState(s,content).state;for(const item of m.inventory){const old=before.inventory.find(i=>i.instance_id===item.instance_id)!;assert.deepEqual(item,{...old,rarity_id:'legendary'});}assert.deepEqual(s,before);assert.deepEqual(m.wallet,s.wallet);assert.deepEqual(m.paid_ledger,s.paid_ledger);
+});
+test('D122 frozen v3 Mini-rarity map migrates before AFK without changing pool/chance/weights/RNG/cursor or adding Puppet retroactively',()=>{
+ const s=farming('8-20'),profile=s.farm.rate_snapshot!.card_drops!;profile.definition_pool=['card_angeling','card_deviling'];profile.definition_weights={card_angeling:1,card_deviling:1};profile.definition_rarities={card_angeling:'epic',card_deviling:'epic'};profile.chance_per_million=1000000;
+ assert.throws(()=>farmCardDrop(profile,()=>0,content),/INVALID_CARD_FARM_RARITY/);
+ const before=structuredClone(s),next=migrateAccountState(s,content).state,frozen=next.farm.rate_snapshot!.card_drops!;
+ assert.deepEqual(frozen,{...before.farm.rate_snapshot!.card_drops,definition_rarities:{card_angeling:'legendary',card_deviling:'legendary'}});assert.deepEqual(next.farm.loot_rng,s.farm.loot_rng);assert.equal(next.farm.reserved_through,s.farm.reserved_through);assert.deepEqual(next.pending_rewards,s.pending_rewards);
+ for(const roll of [0,.75]){let draws=0;const dropped:ReturnType<typeof farmCardDrop>=farmCardDrop(frozen,()=>[0,roll,0][draws++]!,content);assert.ok(dropped);assert.equal(dropped.definition_id,roll===0?'card_angeling':'card_deviling');assert.equal(dropped.rarity_id,'legendary');assert.equal(draws,3);}
+ assert.deepEqual(s,before);assert.deepEqual(migrateAccountState(next,content).state,next);
 });

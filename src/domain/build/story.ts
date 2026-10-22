@@ -4,6 +4,7 @@ import type { BattleInput, ActorInput } from '../../contracts/battle-input.ts';
 import { resolveStats } from '../math/index.ts';
 import { resolveSkill } from './resolve-skill.ts';
 import { characterBlueprint } from './character.ts';
+import { preparedScroll } from './consumables.ts';
 
 const positions={front_1:{x:220,y:340},front_2:{x:105,y:490},back_1:{x:200,y:580},back_2:{x:100,y:680}};
 export { equippedSources as equippedBaseSources } from './equipment.ts';
@@ -11,7 +12,7 @@ import { equippedSources } from './equipment.ts';
 /** Mode-independent party compiler; caller supplies validated learned skills and hashes. */
 export function storyParty(state:AccountState,content:ValidatedContent,skills:Record<string,Pick<BattleActor,'active_slots'|'resolved_skills'>>,hashes:Record<string,string>):ActorInput[]{
  const compatibility=content.documents['equipment.json']!.weapon_compatibility as Readonly<Record<string,string>>;
- return state.team.map(p=>{const character=state.roster.find(a=>a.character_id===p.character_id)!;const weapon=compatibility[character.job_id];return{actor_id:character.character_id,kind:'party',team:'player',position:p.position,stat_blueprint:characterBlueprint(character,content,equippedSources(character,state,content)),...skills[character.character_id]!,build_hash:hashes[character.character_id]!,normal_attack_enabled:true,tags:[],spatial:{...positions[p.position],move_speed:120,radius:18,normal_range:weapon==='bow'?285:['staff','book'].includes(weapon!)?260:['instrument','whip'].includes(weapon!)?235:76}};});
+ return state.team.map(p=>{const character=state.roster.find(a=>a.character_id===p.character_id)!;const weapon=compatibility[character.job_id];return{actor_id:character.character_id,kind:'party',team:'player',position:p.position,stat_blueprint:{...characterBlueprint(character,content,equippedSources(character,state,content)),weapon_element:preparedScroll(state,character.character_id,content)?.element??'neutral'},...skills[character.character_id]!,build_hash:hashes[character.character_id]!,normal_attack_enabled:true,tags:[],spatial:{...positions[p.position],move_speed:120,radius:18,normal_range:weapon==='bow'?285:['staff','book'].includes(weapon!)?260:['instrument','whip'].includes(weapon!)?235:76}};});
 }
 export function fixedEnemyBlueprint(level:number,base:CombatStats,element:string,content:ValidatedContent):StatBlueprint{
  const bp:StatBlueprint={kind:'fixed',level,job_id:null,allocated_primary:{str:base.str,agi:base.agi,vit:base.vit,int:base.int,dex:base.dex,luk:base.luk},derived_offsets:{physical_attack:0,magical_attack:0,max_hp:0,max_sp:0,physical_defense:0,magical_defense:0,attack_speed:0,cast_speed:0},permanent_sources:[],weapon_element:element as StatBlueprint['weapon_element']};

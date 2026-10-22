@@ -1,3 +1,4 @@
+import { CardIcon } from './card-art.tsx';
 import { Icon } from '../icon.tsx';
 import { useMemo, useState } from 'react';
 import { VirtualGrid } from './virtual-grid.tsx';
@@ -76,7 +77,7 @@ export function BackpackPage({ context }: { context: GameContext }) {
         <ItemIcon id={g.iconId} pack={pack} />{g.owner && <><i className="e-badge" title={`สวมโดย ${friendNames[g.owner.character_id]}`}>E</i><EquipmentCards state={state} characterId={g.owner.character_id} slot={g.owner.slot} /><EquipmentProgress state={state} characterId={g.owner.character_id} slot={g.owner.slot} /></>}{g.item.locked && <i className="lock-mark"><Icon name="lock" /></i>}<small>Lv{g.definition.tier_level}</small>{picked && <i className="check"><Icon name="check" /></i>}
       </button>; }
       const c = row.c; return <button key={c.item.instance_id} className={`bag-cell card rarity-${c.item.rarity_id} ${bulk ? 'dim' : ''}`} data-card-grade={c.origin?.grade} data-card-rarity={c.item.rarity_id} aria-label={`${c.name} ${rarityLabels[c.item.rarity_id]} การ์ด`} onClick={() => { if (!bulk) setOpen(c.item.instance_id); }}>
-        <span className="card-art"><ItemIcon id={c.iconId} pack={pack} /></span>{c.origin?.grade!=='normal'||c.item.rarity_id==='rare'?<CardGrade grade={c.origin?.grade} rarity={c.item.rarity_id} />:null}{c.owner && <i className="e-badge">E</i>}{c.item.locked && <i className="lock-mark"><Icon name="lock" /></i>}<small>C{c.item.level}</small>
+        <span className="card-art"><CardIcon card={c} pack={pack} /></span>{c.origin?.grade!=='normal'||c.item.rarity_id==='rare'?<CardGrade grade={c.origin?.grade} rarity={c.item.rarity_id} variant={c.origin?.variant} />:null}{c.owner && <i className="e-badge">E</i>}{c.item.locked && <i className="lock-mark"><Icon name="lock" /></i>}<small>C{c.item.level}</small>
       </button>;
     }} />
     {!shownGear.length && !shownCards.length && <p className="hint center">ยังไม่มีของในหมวดนี้ · ได้จากฟาร์มอัตโนมัติและรางวัลผ่านด่าน</p>}
