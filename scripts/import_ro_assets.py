@@ -95,8 +95,11 @@ def entries_from_manifest(manifest):
             "id": f'{icon["category"]}.{icon["slug"]}',
             "name": icon["name"], "category": icon["category"],
             "kind": icon.get("kind", "icon"), "game_id": icon["game_id"],
-            "path": f'{icon["category"]}/{icon["slug"]}.png',
-            "tags": ["ragnarok_online", "icon", icon["slug"], *icon["tags"]],
+            "path": f'{icon["category"]}/{icon["slug"]}.{icon.get("extension", "png")}',
+            "game_name": icon.get("game_name", "Ragnarok Online"),
+            "request_headers": provider.get("request_headers"),
+            "local_source": icon.get("source_path") if provider.get("kind") == "local" else None,
+            "tags": [icon.get("game_tag", "ragnarok_online"), "icon", icon["slug"], *icon["tags"]],
             "state": None, "direction": None, "appearance": None, "anchor": None,
             "source": {
                 "provider": provider_name,
@@ -104,6 +107,8 @@ def entries_from_manifest(manifest):
                 "download_url": provider["base_url"] + icon["image_path"],
             },
         })
+    if any(Path(entry["path"]).suffix not in (".png", ".webp") for entry in entries):
+        raise ValueError("Only PNG/WebP asset paths are supported")
     ids = [entry["id"] for entry in entries]
     paths = [entry["path"] for entry in entries]
     if len(set(ids)) != len(ids) or len(set(paths)) != len(paths):
@@ -115,15 +120,15 @@ def entries_from_manifest(manifest):
     return entries
 
 
-def download(url):
+def download(url, headers=None):
     for attempt in range(3):
         try:
-            with urlopen(Request(url, headers={"User-Agent": USER_AGENT}), timeout=40) as response:
+            with urlopen(Request(url, headers={"User-Agent": USER_AGENT, **(headers or {})}), timeout=40) as response:
                 payload = response.read(MAX_BYTES + 1)
                 if len(payload) > MAX_BYTES:
                     raise ValueError("Image exceeds the 16 MiB limit")
-                if not payload.startswith(b"\x89PNG\r\n\x1a\n"):
-                    raise ValueError("Response is not a PNG/APNG image")
+                if not (payload.startswith(b"\x89PNG\r\n\x1a\n") or (payload[:4] == b"RIFF" and payload[8:12] == b"WEBP")):
+                    raise ValueError("Response is not a PNG/APNG/WebP image")
                 return payload, {
                     "resolved_url": response.geturl(), "retrieved_at": timestamp(),
                     "content_type": response.headers.get("Content-Type"),
@@ -203,6 +208,15 @@ def sidecar_path(path):
     return path.with_suffix(".meta.json")
 
 
+def local_payload(entry):
+    source = (ROOT / entry["local_source"]).resolve()
+    if not source.is_relative_to((ROOT / "assets/modern").resolve()):
+        raise ValueError("Local icon source must remain inside assets/modern")
+    if source.stat().st_size > MAX_BYTES:
+        raise ValueError("Image exceeds the 16 MiB limit")
+    return source.read_bytes()
+
+
 def read_cached(entry):
     meta_path = sidecar_path(ASSET_ROOT / entry["path"])
     if not meta_path.is_file():
@@ -231,6 +245,8 @@ def read_cached(entry):
             if rect is not None and not (0 <= rect[0] <= rect[2] <= width
                                          and 0 <= rect[1] <= rect[3] <= height):
                 raise ValueError(f"Frame {field} is out of bounds")
+    if entry.get("local_source") and metadata["source"].get("input_sha256") != sha256(local_payload(entry)):
+        raise ValueError("Local icon source changed; explicitly re-import it")
     return metadata
 
 
@@ -241,16 +257,20 @@ def import_one(entry, refresh=False):
         return read_cached(entry), "cached"
     if sidecar_path(path).exists():
         old = json.loads(sidecar_path(path).read_text())
-    payload, transport = download(entry["source"]["download_url"])
+    if entry.get("local_source"):
+        payload = local_payload(entry)
+        transport = {"local_path": entry["local_source"], "input_sha256": sha256(payload), "imported_at": timestamp()}
+    else:
+        payload, transport = download(entry["source"]["download_url"], **({"headers": entry["request_headers"]} if entry.get("request_headers") else {}))
     facts = inspect_image(payload, entry.get("expected_canvas"))
     digest = sha256(payload)
     review = {"status": "pending", "notes": []}
     if old and old.get("file", {}).get("sha256") == digest:
         review = old.get("visual_review", review)
     metadata = {
-        "schema_version": 1, "id": entry["id"], "name": entry["name"],
+        "schema_version": 1, "status": "downloaded", "id": entry["id"], "name": entry["name"],
         "category": entry["category"], "kind": entry["kind"],
-        "game": {"name": "Ragnarok Online", "entity_id": entry["game_id"]},
+        "game": {"name": entry.get("game_name", "Ragnarok Online"), "entity_id": entry["game_id"]},
         "tags": entry["tags"],
         "source": {**entry["source"], **transport},
         "file": {"path": entry["path"], "bytes": len(payload), "sha256": digest, **facts},
@@ -265,7 +285,7 @@ def import_one(entry, refresh=False):
         "appearance": entry["appearance"],
         "usage": {"browser_img_ready": True, "phaser_atlas_ready": False,
                   "note": "APNG timing is embedded; create a frame atlas before Phaser Sprite use."
-                          if facts["format"] == "APNG" else "Single static PNG."},
+                          if facts["format"] == "APNG" else "Single static image."},
         "visual_review": review,
         "annotations": old.get("annotations", {}) if old else {},
     }

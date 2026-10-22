@@ -5,6 +5,13 @@
 
 
 
+## 23 ต.ค.2026 · Codex — TASK-101 correction + TASK-106 modern icons localผ่าน รอdeploy
+
+- Userปฏิเสธclass skillart/Upgrade; D135/136ใช้19actualROOriginClass profession emblemsจากexplicitROOCDB id/name/iconcatalogและnativeSM_MOVINGRECOVERY(+). Catalogเป็นcommunityextraction ไม่อ้างofficialpublisher. EXP/4convertersเดิม. Old101review archivedr1 ไม่ถือuserapproved.
+- D137userส่งassets/modern/suggestion-migrate.txt12icons; นำเข้าexactbytes128px/sidecars/sourceSHAผ่านscripts/import_modern_skill_icons.py. Meditationคือacolyte_meditationร่วมMonk. เปลี่ยนpresentation icon refs12เท่านั้น VFX/audio/formulas/enginecontenthashเดิมb6ee95e… มีsmoothingเฉพาะmodern. ห้ามstageassets/modernทั้งคลัง เอาเฉพาะ12sourcefiles+suggestion.
+- Local37Python/M0/readiness8/build/sourcechecks141/60460/6926ผ่าน. ActualfreshAuth/Postgres/API/mobile320/3905groupsผ่าน รวม12SkillPage/4slots/Timeline/exact19jobcomponentsและrealsharedengine5spherebadge. Inspectscreenshotsแล้ว. ไม่ownerwrite/privateenv/6173restart/balancebatch. Failedr1 stage1-1ตายก่อน3sจึงfixsyntheticfixturepreview4-1 ไม่แก้gameplay; r2ViteCommonJScreateRootimportแก้testharness เก็บfailedreports/images.
+- Pack2f20252945672bce0089ebb54fac2ee732383851c497f560293687488a94bf6f 749IDs/1383files/30814110B/initial1593497B. Pending sourcecommit/push/Vercel/public37iconSHA+API/authgate/loginproof (scripts/test_job_emblems_hosted.cjs). Tasks101/106ยังinprogress; closureหลังactualpublicpass Boardควร92/106done/M4done52/61 ไม่ปิด4oldinprogress/5review.
+
 ## 23 ต.ค.2026 · Codex — TASK-101–105 done ขึ้นVercelแล้ว
 
 - Userต่อเนื่อง: ขอnativeROUpgrade/EXP/อาชีพ/ใบธาตุ; ตัดhow-to; AsuraATKเดิมแต่SPขอ1000–2000%/สนใจ4เท่า; Blessingโตตามlvแต่แก้20sเป็น10smax; Refineหินเพิ่ม; C1/CnเอาCออก. D130–134/design35.

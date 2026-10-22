@@ -125,3 +125,7 @@ python3 -m unittest discover -s tests -v
 ค่าสเตตัส สูตรสกิล damage/cooldown และบาลานซ์ของเกมใหม่ต้องอยู่ในข้อมูลเกมแยกต่างหาก
 
 แหล่งข้อมูล: [Gravity kRO client ZIP](https://rofull.gnjoy.com/Ragnarok_240610.zip), [ragx](https://github.com/joaopedrosgs/ragx), [ragassets](https://github.com/adsonpleal/ragassets), [Divine Pride](https://www.divine-pride.net/), [roBrowserLegacy skill constants](https://github.com/MrAntares/roBrowserLegacy/blob/master/src/DB/Skills/SkillConst.js)
+
+## Selected modern skill icons (23 October 2026)
+
+The12 explicit mappings in `assets/modern/suggestion-migrate.txt` are user-provided128px art. `scripts/import_modern_skill_icons.py` copies only those payloads into the curated library with source path/SHA/dimensions/sidecars; original modern files remain untouched. `--check` rejects changed sources/mappings. These are presentation replacements, not claims of native RO artwork. Game formulas, sounds and effects remain the existing definitions. New or changed images retain pending visual review until inspected.

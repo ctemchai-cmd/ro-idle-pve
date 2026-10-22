@@ -1,0 +1,129 @@
+test_cached_run_never_fetches_or_decodes_image (test_asset_importer.AssetImporterTests.test_cached_run_never_fetches_or_decodes_image) ... ok
+test_cached_webp_survives_deleted_original_png (test_asset_importer.AssetImporterTests.test_cached_webp_survives_deleted_original_png) ... ok
+test_card_portrait_uses_its_declared_provider_and_retains_legacy_default (test_asset_importer.AssetImporterTests.test_card_portrait_uses_its_declared_provider_and_retains_legacy_default) ... ok
+test_checksum_detects_modified_cached_image (test_asset_importer.AssetImporterTests.test_checksum_detects_modified_cached_image) ... ok
+test_invalid_refresh_preserves_existing_image_and_metadata (test_asset_importer.AssetImporterTests.test_invalid_refresh_preserves_existing_image_and_metadata) ... ok
+test_refresh_preserves_annotations_but_resets_review_when_image_changes (test_asset_importer.AssetImporterTests.test_refresh_preserves_annotations_but_resets_review_when_image_changes) ... ok
+test_webp_job_emblem_keeps_declared_game_identity_source_and_bytes (test_asset_importer.AssetImporterTests.test_webp_job_emblem_keeps_declared_game_identity_source_and_bytes) ... ok
+test_ambiguous_effect_texture_is_not_substituted (test_bulk_asset_importer.BulkAssetTests.test_ambiguous_effect_texture_is_not_substituted) ... ok
+test_body_head_and_weapon_are_distinct_categories (test_bulk_asset_importer.BulkAssetTests.test_body_head_and_weapon_are_distinct_categories) ... ok
+test_east_actions_remap_only_their_referenced_frames (test_bulk_asset_importer.BulkAssetTests.test_east_actions_remap_only_their_referenced_frames) ... ok
+test_special_str_numbers_remain_valid_browser_json (test_bulk_asset_importer.BulkAssetTests.test_special_str_numbers_remain_valid_browser_json) ... ok
+test_actor_weapon_action_has_layers_on_both_parts (test_preparation_pack.PreparationPackTests.test_actor_weapon_action_has_layers_on_both_parts) ... ok
+test_every_prepared_skill_has_icon_sound_and_rendering_choice (test_preparation_pack.PreparationPackTests.test_every_prepared_skill_has_icon_sound_and_rendering_choice) ... ok
+test_selected_references_are_local_complete_assets (test_preparation_pack.PreparationPackTests.test_selected_references_are_local_complete_assets) ... ok
+test_corrupted_media_blocks_selection (test_runtime_assets.RuntimeAssetsTests.test_corrupted_media_blocks_selection) ... ok
+test_declared_ids_cannot_conflict (test_runtime_assets.RuntimeAssetsTests.test_declared_ids_cannot_conflict) ... ok
+test_deployment_check_allows_empty_or_partial_source_directories (test_runtime_assets.RuntimeAssetsTests.test_deployment_check_allows_empty_or_partial_source_directories) ... 
+  test_deployment_check_allows_empty_or_partial_source_directories (test_runtime_assets.RuntimeAssetsTests.test_deployment_check_allows_empty_or_partial_source_directories) (source='empty') ... ERROR
+  test_deployment_check_allows_empty_or_partial_source_directories (test_runtime_assets.RuntimeAssetsTests.test_deployment_check_allows_empty_or_partial_source_directories) (source='partial') ... ERROR
+test_deployment_check_allows_empty_or_partial_source_directories (test_runtime_assets.RuntimeAssetsTests.test_deployment_check_allows_empty_or_partial_source_directories) ... FAIL
+test_deployment_check_rejects_changed_missing_or_extra_runtime_payload (test_runtime_assets.RuntimeAssetsTests.test_deployment_check_rejects_changed_missing_or_extra_runtime_payload) ... FAIL
+test_deployment_check_still_requires_manifest_fingerprint (test_runtime_assets.RuntimeAssetsTests.test_deployment_check_still_requires_manifest_fingerprint) ... FAIL
+test_deployment_check_still_requires_matching_selection (test_runtime_assets.RuntimeAssetsTests.test_deployment_check_still_requires_matching_selection) ... ok
+test_missing_or_extra_output_is_detected (test_runtime_assets.RuntimeAssetsTests.test_missing_or_extra_output_is_detected) ... FAIL
+test_missing_texture_blocks_selection (test_runtime_assets.RuntimeAssetsTests.test_missing_texture_blocks_selection) ... ok
+test_paths_cannot_escape_asset_root (test_runtime_assets.RuntimeAssetsTests.test_paths_cannot_escape_asset_root) ... ok
+test_reviewed_static_starter_card_is_supported_without_claiming_native_export (test_runtime_assets.RuntimeAssetsTests.test_reviewed_static_starter_card_is_supported_without_claiming_native_export) ... ok
+test_selected_pack_is_repeatable_and_under_budget (test_runtime_assets.RuntimeAssetsTests.test_selected_pack_is_repeatable_and_under_budget) ... ERROR
+test_selection_ignores_balance_numbers_and_tracks_asset_refs (test_runtime_assets.RuntimeAssetsTests.test_selection_ignores_balance_numbers_and_tracks_asset_refs) ... ok
+test_shared_media_uses_file_path_not_sidecar_basename (test_runtime_assets.RuntimeAssetsTests.test_shared_media_uses_file_path_not_sidecar_basename) ... ok
+test_ambiguous_basename_does_not_guess (test_skill_asset_index.SkillAssetIndexTests.test_ambiguous_basename_does_not_guess) ... ok
+test_skill_alias_points_to_the_same_skill_id (test_skill_asset_index.SkillAssetIndexTests.test_skill_alias_points_to_the_same_skill_id) ... ok
+test_stormgust_uses_exact_source_not_similar_filename (test_skill_asset_index.SkillAssetIndexTests.test_stormgust_uses_exact_source_not_similar_filename) ... ok
+test_cleanup_refuses_image_still_used_by_catalog (test_storage_optimization.StorageOptimizationTests.test_cleanup_refuses_image_still_used_by_catalog) ... ok
+test_compact_keeps_animation_and_annotations_while_sharing_image (test_storage_optimization.StorageOptimizationTests.test_compact_keeps_animation_and_annotations_while_sharing_image) ... ok
+test_duplicates_with_incorrect_content_are_rejected (test_storage_optimization.StorageOptimizationTests.test_duplicates_with_incorrect_content_are_rejected) ... ok
+test_changed_animation_delay_is_rejected (test_web_optimization.WebOptimizationTests.test_changed_animation_delay_is_rejected) ... ok
+test_cleanup_keeps_original_when_replacement_was_modified (test_web_optimization.WebOptimizationTests.test_cleanup_keeps_original_when_replacement_was_modified) ... ok
+test_lossless_roundtrip_keeps_invisible_rgb_and_alpha (test_web_optimization.WebOptimizationTests.test_lossless_roundtrip_keeps_invisible_rgb_and_alpha) ... ok
+
+======================================================================
+ERROR: test_deployment_check_allows_empty_or_partial_source_directories (test_runtime_assets.RuntimeAssetsTests.test_deployment_check_allows_empty_or_partial_source_directories) (source='empty')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/test_runtime_assets.py", line 114, in test_deployment_check_allows_empty_or_partial_source_directories
+    self.assertEqual(pack.verify(artifact_only=True, ro_root=source)['pack_hash'], expected)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/build_runtime_assets.py", line 248, in verify
+    raise ValueError('Asset selection changed; rebuild pack locally')
+ValueError: Asset selection changed; rebuild pack locally
+
+======================================================================
+ERROR: test_deployment_check_allows_empty_or_partial_source_directories (test_runtime_assets.RuntimeAssetsTests.test_deployment_check_allows_empty_or_partial_source_directories) (source='partial')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/test_runtime_assets.py", line 114, in test_deployment_check_allows_empty_or_partial_source_directories
+    self.assertEqual(pack.verify(artifact_only=True, ro_root=source)['pack_hash'], expected)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/build_runtime_assets.py", line 248, in verify
+    raise ValueError('Asset selection changed; rebuild pack locally')
+ValueError: Asset selection changed; rebuild pack locally
+
+======================================================================
+ERROR: test_selected_pack_is_repeatable_and_under_budget (test_runtime_assets.RuntimeAssetsTests.test_selected_pack_is_repeatable_and_under_budget)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/test_runtime_assets.py", line 84, in test_selected_pack_is_repeatable_and_under_budget
+    first = pack.verify()
+            ^^^^^^^^^^^^^
+  File "/Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/build_runtime_assets.py", line 248, in verify
+    raise ValueError('Asset selection changed; rebuild pack locally')
+ValueError: Asset selection changed; rebuild pack locally
+
+======================================================================
+FAIL: test_deployment_check_allows_empty_or_partial_source_directories (test_runtime_assets.RuntimeAssetsTests.test_deployment_check_allows_empty_or_partial_source_directories)
+----------------------------------------------------------------------
+ValueError: Asset selection changed; rebuild pack locally
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/test_runtime_assets.py", line 118, in test_deployment_check_allows_empty_or_partial_source_directories
+    with self.assertRaisesRegex(ValueError, 'Selected local source changed'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Selected local source changed" does not match "Asset selection changed; rebuild pack locally"
+
+======================================================================
+FAIL: test_deployment_check_rejects_changed_missing_or_extra_runtime_payload (test_runtime_assets.RuntimeAssetsTests.test_deployment_check_rejects_changed_missing_or_extra_runtime_payload)
+----------------------------------------------------------------------
+ValueError: Asset selection changed; rebuild pack locally
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/test_runtime_assets.py", line 129, in test_deployment_check_rejects_changed_missing_or_extra_runtime_payload
+    with self.assertRaisesRegex(ValueError, 'Pack payload changed'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "Pack payload changed" does not match "Asset selection changed; rebuild pack locally"
+
+======================================================================
+FAIL: test_deployment_check_still_requires_manifest_fingerprint (test_runtime_assets.RuntimeAssetsTests.test_deployment_check_still_requires_manifest_fingerprint)
+----------------------------------------------------------------------
+ValueError: Asset selection changed; rebuild pack locally
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/test_runtime_assets.py", line 158, in test_deployment_check_still_requires_manifest_fingerprint
+    with self.assertRaisesRegex(ValueError, 'manifest fingerprint mismatch'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "manifest fingerprint mismatch" does not match "Asset selection changed; rebuild pack locally"
+
+======================================================================
+FAIL: test_missing_or_extra_output_is_detected (test_runtime_assets.RuntimeAssetsTests.test_missing_or_extra_output_is_detected)
+----------------------------------------------------------------------
+ValueError: Asset selection changed; rebuild pack locally
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/test_runtime_assets.py", line 100, in test_missing_or_extra_output_is_detected
+    with self.assertRaisesRegex(ValueError, 'missing or unexpected'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "missing or unexpected" does not match "Asset selection changed; rebuild pack locally"
+
+----------------------------------------------------------------------
+Ran 36 tests in 6.313s
+
+FAILED (failures=4, errors=3)

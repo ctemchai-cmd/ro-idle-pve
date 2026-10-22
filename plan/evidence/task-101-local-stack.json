@@ -1,6 +1,6 @@
 {
   "task_id": "TASK-101",
-  "test_focus": "native_icons",
+  "test_focus": "job_emblems",
   "passed": true,
   "self_hosted_local": true,
   "hosted_supabase_tested": false,
@@ -33,12 +33,12 @@
   "checks": [
     "Fresh PostgreSQL, upstream Auth migrations, game migration and matching marker; real Auth/PostgREST/mail sink on loopback",
     "Real SDK Auth/JWT/PostgREST/RLS/API tests passed",
-    "Actual native icons/copy/skill growth/Refine cost mobile/API/SQL passed"
+    "Actual Origin professionemblems19/Upgradeplus/mobile/AuthAPI passed"
   ],
   "credentials_logged": false,
   "cleanup": "Owned services stopped and private DB/mail/credentials directory removed at exit",
   "source_sha256": {
-    "scripts/test_auth_stack.py": "bca981dfc1bff5da57b2733860a28de3ed02d8a5d931a29ce96ce5c9fbec709c",
+    "scripts/test_auth_stack.py": "a60cb0bcd70daf03df90c4cfbdb086191bfe24b41abf7ebcc0d001238190001b",
     "scripts/game/test-supabase.ts": "ed309e8d55541369482c67982991070d5127cb626e1db85d6eaac865a2fdcf5f",
     "scripts/game/local-supabase-gateway.ts": "5b2fa538f50e5ef23344d2ef1fc60edaffe1291240b88f5b07ed7c60b98c7399",
     "supabase/migrations/202610190001_game_storage.sql": "2e1f7249e325dbf28394bced7e6a38669c1ab120889e5e1770a78fa6b57d0583",

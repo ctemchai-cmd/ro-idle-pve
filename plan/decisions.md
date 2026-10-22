@@ -258,3 +258,9 @@ D-117 runtime finding: valid same-user TOKEN_REFRESHED ระหว่าง SDK
 | D-133 | 22ต.ค.2026 Blessingdurationโตตามเลเวล ผู้ใช้แก้20sเป็นสูงสุด10s; assistanttable5500→10000ms | TASK-104 |
 
 | D-134 | 22ต.ค.2026 Refineใช้หินเพิ่มตามขั้น assistant8×target(+60%) แทน5×target; gold/chance/pityคงเดิม | TASK-105 |
+
+| D-135 | 23ต.ค.2026 ผู้ใช้ปฏิเสธUpgradeและskillartแทนjobicons; ถ้าไม่มีให้หาเพิ่ม ห้ามเอาภาพอื่นแทน | Reopen TASK-101; เลือกactualOrigin UI_Common_Profession_Icon ตามcatalog19; Upgradependingclarification |
+
+| D-136 | 23ต.ค.2026 ผู้ใช้ให้หาIconสกิลที่มีเครื่องหมาย+สำหรับUpgrade | ใช้SM_MOVINGRECOVERY/native24pxมี+กลางหัวใจ; ไม่ใช่jobiconและไม่เพิ่มสกิล/ผลgameplay |
+
+| D-137 | 23ต.ค.2026 ผู้ใช้ให้ลองSkilliconsตามassets/modern/suggestion-migrate.txt | TASK106เลือก12ภาพตามmappingเดิม Meditationใช้sharedacolyte_meditation; presentationonly ไม่มีเปลี่ยนVFX/audio/formulas |

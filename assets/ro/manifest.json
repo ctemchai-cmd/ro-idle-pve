@@ -10,6 +10,20 @@
     "divine_pride": {
       "base_url": "https://static.divine-pride.net",
       "documentation_url": "https://www.divine-pride.net/"
+    },
+    "roocdb": {
+      "base_url": "https://roocdb.com",
+      "documentation_url": "https://roocdb.com/en/classes",
+      "client_variant": "Ragnarok Origin Classic profession emblems, community-extracted UI assets; not skill icons",
+      "request_headers": {
+        "User-Agent": "Mozilla/5.0",
+        "Referer": "https://roocdb.com/en/classes"
+      }
+    },
+    "local_modern": {
+      "kind": "local",
+      "base_url": "local:///",
+      "documentation_url": "assets/modern/suggestion-migrate.txt"
     }
   },
   "canvas": {
@@ -1230,6 +1244,576 @@
       "kind": "card_illustration",
       "image_path": "/illust/card/4174.png",
       "page_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4174&itemSeq=5"
+    },
+    {
+      "slug": "job-swordsman",
+      "name": "Swordsman job emblem",
+      "game_id": 2000,
+      "game_name": "Ragnarok Origin Classic",
+      "game_tag": "ragnarok_origin",
+      "category": "ui",
+      "tags": [
+        "class",
+        "job_emblem",
+        "swordsman"
+      ],
+      "provider": "roocdb",
+      "kind": "job_emblem",
+      "extension": "webp",
+      "image_path": "/professions/UI_Common_Profession_Icon_01.webp",
+      "page_url": "https://roocdb.com/en/classes/2000"
+    },
+    {
+      "slug": "job-knight",
+      "name": "Knight job emblem",
+      "game_id": 2101,
+      "game_name": "Ragnarok Origin Classic",
+      "game_tag": "ragnarok_origin",
+      "category": "ui",
+      "tags": [
+        "class",
+        "job_emblem",
+        "knight"
+      ],
+      "provider": "roocdb",
+      "kind": "job_emblem",
+      "extension": "webp",
+      "image_path": "/professions/UI_Common_Profession_Icon_08.webp",
+      "page_url": "https://roocdb.com/en/classes/2101"
+    },
+    {
+      "slug": "job-crusader",
+      "name": "Crusader job emblem",
+      "game_id": 2201,
+      "game_name": "Ragnarok Origin Classic",
+      "game_tag": "ragnarok_origin",
+      "category": "ui",
+      "tags": [
+        "class",
+        "job_emblem",
+        "crusader"
+      ],
+      "provider": "roocdb",
+      "kind": "job_emblem",
+      "extension": "webp",
+      "image_path": "/professions/UI_Common_Profession_Icon_22.webp",
+      "page_url": "https://roocdb.com/en/classes/2201"
+    },
+    {
+      "slug": "job-acolyte",
+      "name": "Acolyte job emblem",
+      "game_id": 3000,
+      "game_name": "Ragnarok Origin Classic",
+      "game_tag": "ragnarok_origin",
+      "category": "ui",
+      "tags": [
+        "class",
+        "job_emblem",
+        "acolyte"
+      ],
+      "provider": "roocdb",
+      "kind": "job_emblem",
+      "extension": "webp",
+      "image_path": "/professions/UI_Common_Profession_Icon_04.webp",
+      "page_url": "https://roocdb.com/en/classes/3000"
+    },
+    {
+      "slug": "job-priest",
+      "name": "Priest job emblem",
+      "game_id": 3101,
+      "game_name": "Ragnarok Origin Classic",
+      "game_tag": "ragnarok_origin",
+      "category": "ui",
+      "tags": [
+        "class",
+        "job_emblem",
+        "priest"
+      ],
+      "provider": "roocdb",
+      "kind": "job_emblem",
+      "extension": "webp",
+      "image_path": "/professions/UI_Common_Profession_Icon_11.webp",
+      "page_url": "https://roocdb.com/en/classes/3101"
+    },
+    {
+      "slug": "job-monk",
+      "name": "Monk job emblem",
+      "game_id": 3201,
+      "game_name": "Ragnarok Origin Classic",
+      "game_tag": "ragnarok_origin",
+      "category": "ui",
+      "tags": [
+        "class",
+        "job_emblem",
+        "monk"
+      ],
+      "provider": "roocdb",
+      "kind": "job_emblem",
+      "extension": "webp",
+      "image_path": "/professions/UI_Common_Profession_Icon_20.webp",
+      "page_url": "https://roocdb.com/en/classes/3201"
+    },
+    {
+      "slug": "job-mage",
+      "name": "Mage job emblem",
+      "game_id": 4000,
+      "game_name": "Ragnarok Origin Classic",
+      "game_tag": "ragnarok_origin",
+      "category": "ui",
+      "tags": [
+        "class",
+        "job_emblem",
+        "mage"
+      ],
+      "provider": "roocdb",
+      "kind": "job_emblem",
+      "extension": "webp",
+      "image_path": "/professions/UI_Common_Profession_Icon_02.webp",
+      "page_url": "https://roocdb.com/en/classes/4000"
+    },
+    {
+      "slug": "job-wizard",
+      "name": "Wizard job emblem",
+      "game_id": 4101,
+      "game_name": "Ragnarok Origin Classic",
+      "game_tag": "ragnarok_origin",
+      "category": "ui",
+      "tags": [
+        "class",
+        "job_emblem",
+        "wizard"
+      ],
+      "provider": "roocdb",
+      "kind": "job_emblem",
+      "extension": "webp",
+      "image_path": "/professions/UI_Common_Profession_Icon_09.webp",
+      "page_url": "https://roocdb.com/en/classes/4101"
+    },
+    {
+      "slug": "job-sage",
+      "name": "Sage job emblem",
+      "game_id": 4201,
+      "game_name": "Ragnarok Origin Classic",
+      "game_tag": "ragnarok_origin",
+      "category": "ui",
+      "tags": [
+        "class",
+        "job_emblem",
+        "sage"
+      ],
+      "provider": "roocdb",
+      "kind": "job_emblem",
+      "extension": "webp",
+      "image_path": "/professions/UI_Common_Profession_Icon_30.webp",
+      "page_url": "https://roocdb.com/en/classes/4201"
+    },
+    {
+      "slug": "job-thief",
+      "name": "Thief job emblem",
+      "game_id": 5000,
+      "game_name": "Ragnarok Origin Classic",
+      "game_tag": "ragnarok_origin",
+      "category": "ui",
+      "tags": [
+        "class",
+        "job_emblem",
+        "thief"
+      ],
+      "provider": "roocdb",
+      "kind": "job_emblem",
+      "extension": "webp",
+      "image_path": "/professions/UI_Common_Profession_Icon_03.webp",
+      "page_url": "https://roocdb.com/en/classes/5000"
+    },
+    {
+      "slug": "job-assassin",
+      "name": "Assassin job emblem",
+      "game_id": 5101,
+      "game_name": "Ragnarok Origin Classic",
+      "game_tag": "ragnarok_origin",
+      "category": "ui",
+      "tags": [
+        "class",
+        "job_emblem",
+        "assassin"
+      ],
+      "provider": "roocdb",
+      "kind": "job_emblem",
+      "extension": "webp",
+      "image_path": "/professions/UI_Common_Profession_Icon_10.webp",
+      "page_url": "https://roocdb.com/en/classes/5101"
+    },
+    {
+      "slug": "job-rogue",
+      "name": "Rogue job emblem",
+      "game_id": 5201,
+      "game_name": "Ragnarok Origin Classic",
+      "game_tag": "ragnarok_origin",
+      "category": "ui",
+      "tags": [
+        "class",
+        "job_emblem",
+        "rogue"
+      ],
+      "provider": "roocdb",
+      "kind": "job_emblem",
+      "extension": "webp",
+      "image_path": "/professions/UI_Common_Profession_Icon_32.webp",
+      "page_url": "https://roocdb.com/en/classes/5201"
+    },
+    {
+      "slug": "job-merchant",
+      "name": "Merchant job emblem",
+      "game_id": 6000,
+      "game_name": "Ragnarok Origin Classic",
+      "game_tag": "ragnarok_origin",
+      "category": "ui",
+      "tags": [
+        "class",
+        "job_emblem",
+        "merchant"
+      ],
+      "provider": "roocdb",
+      "kind": "job_emblem",
+      "extension": "webp",
+      "image_path": "/professions/UI_Common_Profession_Icon_06.webp",
+      "page_url": "https://roocdb.com/en/classes/6000"
+    },
+    {
+      "slug": "job-blacksmith",
+      "name": "Blacksmith job emblem",
+      "game_id": 6101,
+      "game_name": "Ragnarok Origin Classic",
+      "game_tag": "ragnarok_origin",
+      "category": "ui",
+      "tags": [
+        "class",
+        "job_emblem",
+        "blacksmith"
+      ],
+      "provider": "roocdb",
+      "kind": "job_emblem",
+      "extension": "webp",
+      "image_path": "/professions/UI_Common_Profession_Icon_13.webp",
+      "page_url": "https://roocdb.com/en/classes/6101"
+    },
+    {
+      "slug": "job-alchemist",
+      "name": "Alchemist job emblem",
+      "game_id": 6201,
+      "game_name": "Ragnarok Origin Classic",
+      "game_tag": "ragnarok_origin",
+      "category": "ui",
+      "tags": [
+        "class",
+        "job_emblem",
+        "alchemist"
+      ],
+      "provider": "roocdb",
+      "kind": "job_emblem",
+      "extension": "webp",
+      "image_path": "/professions/UI_Common_Profession_Icon_24.webp",
+      "page_url": "https://roocdb.com/en/classes/6201"
+    },
+    {
+      "slug": "job-archer",
+      "name": "Archer job emblem",
+      "game_id": 7000,
+      "game_name": "Ragnarok Origin Classic",
+      "game_tag": "ragnarok_origin",
+      "category": "ui",
+      "tags": [
+        "class",
+        "job_emblem",
+        "archer"
+      ],
+      "provider": "roocdb",
+      "kind": "job_emblem",
+      "extension": "webp",
+      "image_path": "/professions/UI_Common_Profession_Icon_05.webp",
+      "page_url": "https://roocdb.com/en/classes/7000"
+    },
+    {
+      "slug": "job-hunter",
+      "name": "Hunter job emblem",
+      "game_id": 7101,
+      "game_name": "Ragnarok Origin Classic",
+      "game_tag": "ragnarok_origin",
+      "category": "ui",
+      "tags": [
+        "class",
+        "job_emblem",
+        "hunter"
+      ],
+      "provider": "roocdb",
+      "kind": "job_emblem",
+      "extension": "webp",
+      "image_path": "/professions/UI_Common_Profession_Icon_12.webp",
+      "page_url": "https://roocdb.com/en/classes/7101"
+    },
+    {
+      "slug": "job-bard",
+      "name": "Bard job emblem",
+      "game_id": 7201,
+      "game_name": "Ragnarok Origin Classic",
+      "game_tag": "ragnarok_origin",
+      "category": "ui",
+      "tags": [
+        "class",
+        "job_emblem",
+        "bard"
+      ],
+      "provider": "roocdb",
+      "kind": "job_emblem",
+      "extension": "webp",
+      "image_path": "/professions/UI_Common_Profession_Icon_26.webp",
+      "page_url": "https://roocdb.com/en/classes/7201"
+    },
+    {
+      "slug": "job-dancer",
+      "name": "Dancer job emblem",
+      "game_id": 7211,
+      "game_name": "Ragnarok Origin Classic",
+      "game_tag": "ragnarok_origin",
+      "category": "ui",
+      "tags": [
+        "class",
+        "job_emblem",
+        "dancer"
+      ],
+      "provider": "roocdb",
+      "kind": "job_emblem",
+      "extension": "webp",
+      "image_path": "/professions/UI_Common_Profession_Icon_28.webp",
+      "page_url": "https://roocdb.com/en/classes/7211"
+    },
+    {
+      "slug": "modern-acolyte_heal",
+      "name": "Heal modern icon",
+      "game_id": "acolyte_heal",
+      "game_name": "User-provided RO Idle presentation",
+      "game_tag": "user_provided_modern",
+      "category": "skills",
+      "kind": "skill_icon",
+      "extension": "webp",
+      "provider": "local_modern",
+      "tags": [
+        "modern",
+        "user_selected",
+        "acolyte_heal"
+      ],
+      "source_path": "assets/modern/skill/priest/4.webp",
+      "image_path": "assets/modern/skill/priest/4.webp",
+      "page_url": "assets/modern/suggestion-migrate.txt"
+    },
+    {
+      "slug": "modern-acolyte_blessing",
+      "name": "Blessing modern icon",
+      "game_id": "acolyte_blessing",
+      "game_name": "User-provided RO Idle presentation",
+      "game_tag": "user_provided_modern",
+      "category": "skills",
+      "kind": "skill_icon",
+      "extension": "webp",
+      "provider": "local_modern",
+      "tags": [
+        "modern",
+        "user_selected",
+        "acolyte_blessing"
+      ],
+      "source_path": "assets/modern/skill/priest/26.webp",
+      "image_path": "assets/modern/skill/priest/26.webp",
+      "page_url": "assets/modern/suggestion-migrate.txt"
+    },
+    {
+      "slug": "modern-acolyte_holy_light",
+      "name": "Holy Light modern icon",
+      "game_id": "acolyte_holy_light",
+      "game_name": "User-provided RO Idle presentation",
+      "game_tag": "user_provided_modern",
+      "category": "skills",
+      "kind": "skill_icon",
+      "extension": "webp",
+      "provider": "local_modern",
+      "tags": [
+        "modern",
+        "user_selected",
+        "acolyte_holy_light"
+      ],
+      "source_path": "assets/modern/skill/priest/49.webp",
+      "image_path": "assets/modern/skill/priest/49.webp",
+      "page_url": "assets/modern/suggestion-migrate.txt"
+    },
+    {
+      "slug": "modern-acolyte_increase_agi",
+      "name": "Increase Agi modern icon",
+      "game_id": "acolyte_increase_agi",
+      "game_name": "User-provided RO Idle presentation",
+      "game_tag": "user_provided_modern",
+      "category": "skills",
+      "kind": "skill_icon",
+      "extension": "webp",
+      "provider": "local_modern",
+      "tags": [
+        "modern",
+        "user_selected",
+        "acolyte_increase_agi"
+      ],
+      "source_path": "assets/modern/skill/priest/45.webp",
+      "image_path": "assets/modern/skill/priest/45.webp",
+      "page_url": "assets/modern/suggestion-migrate.txt"
+    },
+    {
+      "slug": "modern-monk_call_spirits",
+      "name": "Call Spirit modern icon",
+      "game_id": "monk_call_spirits",
+      "game_name": "User-provided RO Idle presentation",
+      "game_tag": "user_provided_modern",
+      "category": "skills",
+      "kind": "skill_icon",
+      "extension": "webp",
+      "provider": "local_modern",
+      "tags": [
+        "modern",
+        "user_selected",
+        "monk_call_spirits"
+      ],
+      "source_path": "assets/modern/skill/monk/9.webp",
+      "image_path": "assets/modern/skill/monk/9.webp",
+      "page_url": "assets/modern/suggestion-migrate.txt"
+    },
+    {
+      "slug": "modern-monk_triple_attack",
+      "name": "Triple Attack modern icon",
+      "game_id": "monk_triple_attack",
+      "game_name": "User-provided RO Idle presentation",
+      "game_tag": "user_provided_modern",
+      "category": "skills",
+      "kind": "skill_icon",
+      "extension": "webp",
+      "provider": "local_modern",
+      "tags": [
+        "modern",
+        "user_selected",
+        "monk_triple_attack"
+      ],
+      "source_path": "assets/modern/skill/monk/38.webp",
+      "image_path": "assets/modern/skill/monk/38.webp",
+      "page_url": "assets/modern/suggestion-migrate.txt"
+    },
+    {
+      "slug": "modern-monk_finger_offensive",
+      "name": "Finger Off modern icon",
+      "game_id": "monk_finger_offensive",
+      "game_name": "User-provided RO Idle presentation",
+      "game_tag": "user_provided_modern",
+      "category": "skills",
+      "kind": "skill_icon",
+      "extension": "webp",
+      "provider": "local_modern",
+      "tags": [
+        "modern",
+        "user_selected",
+        "monk_finger_offensive"
+      ],
+      "source_path": "assets/modern/skill/monk/42.webp",
+      "image_path": "assets/modern/skill/monk/42.webp",
+      "page_url": "assets/modern/suggestion-migrate.txt"
+    },
+    {
+      "slug": "modern-monk_asura",
+      "name": "Asura modern icon",
+      "game_id": "monk_asura",
+      "game_name": "User-provided RO Idle presentation",
+      "game_tag": "user_provided_modern",
+      "category": "skills",
+      "kind": "skill_icon",
+      "extension": "webp",
+      "provider": "local_modern",
+      "tags": [
+        "modern",
+        "user_selected",
+        "monk_asura"
+      ],
+      "source_path": "assets/modern/skill/monk/12.webp",
+      "image_path": "assets/modern/skill/monk/12.webp",
+      "page_url": "assets/modern/suggestion-migrate.txt"
+    },
+    {
+      "slug": "modern-monk_steel_body",
+      "name": "Steel Body modern icon",
+      "game_id": "monk_steel_body",
+      "game_name": "User-provided RO Idle presentation",
+      "game_tag": "user_provided_modern",
+      "category": "skills",
+      "kind": "skill_icon",
+      "extension": "webp",
+      "provider": "local_modern",
+      "tags": [
+        "modern",
+        "user_selected",
+        "monk_steel_body"
+      ],
+      "source_path": "assets/modern/skill/monk/32.webp",
+      "image_path": "assets/modern/skill/monk/32.webp",
+      "page_url": "assets/modern/suggestion-migrate.txt"
+    },
+    {
+      "slug": "modern-acolyte_meditation",
+      "name": "Meditation modern icon",
+      "game_id": "acolyte_meditation",
+      "game_name": "User-provided RO Idle presentation",
+      "game_tag": "user_provided_modern",
+      "category": "skills",
+      "kind": "skill_icon",
+      "extension": "webp",
+      "provider": "local_modern",
+      "tags": [
+        "modern",
+        "user_selected",
+        "acolyte_meditation"
+      ],
+      "source_path": "assets/modern/skill/monk/11.webp",
+      "image_path": "assets/modern/skill/monk/11.webp",
+      "page_url": "assets/modern/suggestion-migrate.txt"
+    },
+    {
+      "slug": "modern-monk_iron_fist",
+      "name": "Iron Fist modern icon",
+      "game_id": "monk_iron_fist",
+      "game_name": "User-provided RO Idle presentation",
+      "game_tag": "user_provided_modern",
+      "category": "skills",
+      "kind": "skill_icon",
+      "extension": "webp",
+      "provider": "local_modern",
+      "tags": [
+        "modern",
+        "user_selected",
+        "monk_iron_fist"
+      ],
+      "source_path": "assets/modern/skill/monk/14.webp",
+      "image_path": "assets/modern/skill/monk/14.webp",
+      "page_url": "assets/modern/suggestion-migrate.txt"
+    },
+    {
+      "slug": "modern-monk_spirit_combo",
+      "name": "Spirit Combo modern icon",
+      "game_id": "monk_spirit_combo",
+      "game_name": "User-provided RO Idle presentation",
+      "game_tag": "user_provided_modern",
+      "category": "skills",
+      "kind": "skill_icon",
+      "extension": "webp",
+      "provider": "local_modern",
+      "tags": [
+        "modern",
+        "user_selected",
+        "monk_spirit_combo"
+      ],
+      "source_path": "assets/modern/skill/monk/16.webp",
+      "image_path": "assets/modern/skill/monk/16.webp",
+      "page_url": "assets/modern/suggestion-migrate.txt"
     }
   ]
 }

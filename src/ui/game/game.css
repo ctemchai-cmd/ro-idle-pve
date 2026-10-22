@@ -353,7 +353,7 @@ dialog.sheet::backdrop { background: rgba(10, 22, 50, .45); backdrop-filter: blu
 .action-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 8px 10px; }
 .action-btn { position: relative; display: grid; justify-items: center; gap: 2px; padding: 5px 4px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, .9); background: linear-gradient(#ffffff, #e3eeff); box-shadow: 0 3px 0 #b8cdf0, var(--shadow); font-weight: 800; font-size: 14px; }
 .action-btn img { width: 28px; height: 28px; } .action-btn .dot { top: 4px; right: 12px; min-width: 12px; height: 12px; }
-.action-btn .upgrade-icon { width: 32px; height: 32px; object-fit: contain; image-rendering: pixelated; }
+.action-btn .upgrade-icon { width: 28px; height: 28px; object-fit: contain; image-rendering: pixelated; }
 .slot-bonus { color: var(--blue-2); font-variant-numeric: tabular-nums; }
 /* All seven characters fit the portrait width (4 + 3), never a clipped side-scroll strip. */
 .roster-strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; padding: 4px 10px 6px; }
@@ -465,10 +465,10 @@ dialog.sheet::backdrop { background: rgba(10, 22, 50, .45); backdrop-filter: blu
 .bench-card b, .bench-card small { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .bench-card em { font-style: normal; font-size: 11px; font-weight: 700; color: var(--green); }
 .bench-card:not(.in) em { color: var(--ink-3); }
 
-/* Native RO skill art representing jobs (D-130). */
+/* Actual RO Origin profession emblems (D-135). */
 .class-icon { flex: none; display: inline-grid; place-items: center; vertical-align: middle; border-radius: 3px; background: transparent; }
-.class-icon img { display: block; width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated; }
-.class-icon.second { outline: 1px solid #e9c260; outline-offset: 1px; }
+.class-icon img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.class-icon.second { outline: none; }
 .tree-swordsman { --tc1: #f87171; --tc2: #c2262d; } .tree-acolyte { --tc1: #4ade80; --tc2: #15803d; } .tree-archer { --tc1: #fde047; --tc2: #ca8a04; }
 .tree-mage { --tc1: #60a5fa; --tc2: #1d4ed8; } .tree-thief { --tc1: #c084fc; --tc2: #7e22ce; } .tree-merchant { --tc1: #fdba74; --tc2: #c2410c; }
 .hud-name .class-icon { align-self: center; }
@@ -776,3 +776,6 @@ dialog.sheet.card-upgrade-sheet { height: 92dvh; }
 .scroll-icon img { display: block; width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated; }
 .shop-grant > .scroll-icon { width: 40px; height: 40px; flex-basis: 40px; }
 .scroll-prepared > .scroll-icon { width: 28px; height: 28px; }
+
+/* User-selected128px modern skill art uses smooth downsampling, independently of native pixel sprites. */
+.game-root img[src*="/skills/modern-"] { image-rendering: auto; }

@@ -11883,22 +11883,21 @@
       "id": "T101-AC-01",
       "task_id": "TASK-101",
       "acceptance_id": "AC-01",
-      "criterion": "Native Upgrade/EXP/4ใบธาตุ/19อาชีพโหลดได้ ใช้frame cropถูกต้องและมีชื่อเข้าถึง ไม่มีcustomjobSVG",
-      "input_setup": "Fixed disposable fixtures and mobile320/390; before HEAD arithmetic audit",
+      "criterion": "Upgradeใช้ROskilliconที่มี+ตามD-136; 19jobemblemsตรงOriginprofessioncatalog ไม่มีskill/item/customglyphแทนอาชีพ; nativeEXP/scrollเดิมโหลดได้",
+      "input_setup": "ROOrigin id/name/icon catalog +19downloaded56pxpayloads; SM_MOVINGRECOVERY24px plus inspected; realBuddyPage320/390",
       "input_refs": [
-        "plan/data/skills/acolyte.json",
-        "plan/data/slot-progress.json"
+        "assets/ro/manifest.json",
+        "src/renderer/shell-visuals.json",
+        "plan/evidence/task-101-r2-class-source.json"
       ],
       "parameters": {
         "environment": "isolated, never owner account"
       },
-      "expected": "Native Upgrade/EXP/4ใบธาตุ/19อาชีพโหลดได้ ใช้frame cropถูกต้องและมีชื่อเข้าถึง ไม่มีcustomjobSVG",
+      "expected": "Upgradeใช้ROskilliconที่มี+ตามD-136; 19jobemblemsตรงOriginprofessioncatalog ไม่มีskill/item/customglyphแทนอาชีพ; nativeEXP/scrollเดิมโหลดได้",
       "verification": "Focused rules/static audit, actual Chrome and public SHA",
       "existing_oracle_case_ids": [],
-      "status": "passed_implementation",
-      "execution_evidence": [
-        "plan/evidence/task-101-review.json"
-      ]
+      "status": "not_run_implementation",
+      "execution_evidence": []
     },
     {
       "id": "T101-AC-02",
@@ -11916,10 +11915,8 @@
       "expected": "มือถือ320/390ไม่ล้นและpublicVercelส่งmapping/media/bundleตรงchecksum",
       "verification": "Focused rules/static audit, actual Chrome and public SHA",
       "existing_oracle_case_ids": [],
-      "status": "passed_implementation",
-      "execution_evidence": [
-        "plan/evidence/task-101-review.json"
-      ]
+      "status": "not_run_implementation",
+      "execution_evidence": []
     },
     {
       "id": "T102-AC-01",
@@ -12088,6 +12085,44 @@
       "execution_evidence": [
         "plan/evidence/task-105-review.json"
       ]
+    },
+    {
+      "id": "T106-AC-01",
+      "task_id": "TASK-106",
+      "acceptance_id": "AC-01",
+      "criterion": "12iconsตรงexplicitmapping/exactsourcebytes128px; gameplay/VFX/audio/contenthashเดิม; localpathescapeและsourcechangeถูกปฏิเสธ",
+      "input_setup": "User suggestion12selected128pximages; actualMonk/Acolyte UI320/390",
+      "input_refs": [
+        "assets/modern/suggestion-migrate.txt",
+        "plan/data/presentations/acolyte.json"
+      ],
+      "parameters": {
+        "environment": "isolated only"
+      },
+      "expected": "12iconsตรงexplicitmapping/exactsourcebytes128px; gameplay/VFX/audio/contenthashเดิม; localpathescapeและsourcechangeถูกปฏิเสธ",
+      "verification": "Sourceaudit/importer/M0/build/realChrome/publicSHA",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T106-AC-02",
+      "task_id": "TASK-106",
+      "acceptance_id": "AC-02",
+      "criterion": "realmobile320/390 skill/loadout/timeline/spherebadgeโหลดใหม่/ไม่ล้น/ไม่มีwriteหรือerror; build/M0/assets/publicผ่านพร้อมภาพ",
+      "input_setup": "User suggestion12selected128pximages; actualMonk/Acolyte UI320/390",
+      "input_refs": [
+        "assets/modern/suggestion-migrate.txt",
+        "plan/data/presentations/acolyte.json"
+      ],
+      "parameters": {
+        "environment": "isolated only"
+      },
+      "expected": "realmobile320/390 skill/loadout/timeline/spherebadgeโหลดใหม่/ไม่ล้น/ไม่มีwriteหรือerror; build/M0/assets/publicผ่านพร้อมภาพ",
+      "verification": "Sourceaudit/importer/M0/build/realChrome/publicSHA",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
     }
   ]
 }
