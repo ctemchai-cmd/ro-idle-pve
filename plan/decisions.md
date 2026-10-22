@@ -138,6 +138,11 @@
 
 | D-105 | 22 ต.ค.2026 ผู้ใช้ขอภาพการ์ดพอดีกรอบมน ถามแหล่งเปลี่ยนธาตุและความต่างCallSpirit/Provoke Lv.1–5 และต้องแจ้งผลที่เปลี่ยนในคำอธิบายสกิล | TASK-079 ปรับภาพcard UI และแสดงdelta/ตารางเลเวลจากresolveddefinitions; FireEndowเป็นweaponendowเดียวในcontentปัจจุบัน EnchantPoisonมีATKup; สองท่าที่ถามลดSPอย่างเดียว ไม่เพิ่มลูก/ระยะเวลาโดยพลการ ไม่เปลี่ยนbalance/content/save |
 
+| D-106 | 22 ต.ค.2026 ผู้ใช้ขอภาพการ์ดใหญ่เต็มช่องแล้วmaskขอบมน และกรอบการ์ดบนiconอุปกรณ์ สีเมื่อใส่การ์ด | TASK-080 ใช้cover+maskและmini socketframesตามquality/capacity/ownerของslotจริง คงequipmentrarityและcard-slotownership |
+| D-107 | 22 ต.ค.2026 ผู้ใช้เลือกการ์ดจากฟาร์มแรร์มากเฉลี่ย1–3ใบ/12h | TASK-081 farmchance1–2%ทุก5min แทน20–40% versionv2 expected1.44–2.88/12h คงquality/pools/gacha/ของที่มีและreservedrewards; oldfrozenintervalsettleครั้งเดียวก่อนv2 ไม่balancebatch |
+
+| D-108 | 22 ต.ค.2026 ผู้ใช้ขอAsuraให้อารมณ์ROพร้อมข้อความ/จอสั่นเบาและท่าโจมตีใหญ่อาชีพอื่นให้สวยขึ้น | TASK-082 ใช้authoredpresentationprofile/nativeเดิมและactualhit/contact ไม่แก้สูตร/คิว/เวลาengine มีtitleอ่านได้ที่speedสูงและreducedmotion ห้ามอ้างexactnativeAsuraเมื่อmappingยังเป็นBashrecipe |
+
 ## คำถามหลักที่ส่งให้ผู้ใช้แล้ว
 
 | ID | ประเด็น | สถานะ |

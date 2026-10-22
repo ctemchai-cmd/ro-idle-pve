@@ -1,0 +1,125 @@
+{
+  "task_ids": [
+    "TASK-080",
+    "TASK-081"
+  ],
+  "passed": false,
+  "error": "FROZEN_FARM:locator.click: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'รางวัลฟาร์มอัตโนมัติ', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button class=\"afk-chest has-reward\" aria-label=\"รางวัลฟาร์มอัตโนมัติ\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not stable\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not stable\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    37 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not stable\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at /Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/test_card_frames_live.cjs:52:411",
+  "errors": [],
+  "checks": [
+    "Native card art covers rounded masks at320/390; E/lock/grade/level retained; full portrait available in detail",
+    "Actual equipped slot frames reflect Bronze/Silver/Gold, empty1/2/3 and NPC ownership; no read-only save or Refine overlap"
+  ],
+  "measurements": [
+    {
+      "width": 390,
+      "bag": [
+        {
+          "cell": 56.65625,
+          "mask": 52.65625,
+          "image": 52.65625,
+          "height": 52.65625,
+          "fit": "cover",
+          "clip": "hidden",
+          "radius": "10px 10px 14px 14px"
+        },
+        {
+          "cell": 56.671875,
+          "mask": 52.671875,
+          "image": 52.671875,
+          "height": 52.671875,
+          "fit": "cover",
+          "clip": "hidden",
+          "radius": "10px 10px 14px 14px"
+        },
+        {
+          "cell": 56.671875,
+          "mask": 52.671875,
+          "image": 52.671875,
+          "height": 52.671875,
+          "fit": "cover",
+          "clip": "hidden",
+          "radius": "10px 10px 14px 14px"
+        },
+        {
+          "cell": 56.65625,
+          "mask": 52.65625,
+          "image": 52.65625,
+          "height": 52.65625,
+          "fit": "cover",
+          "clip": "hidden",
+          "radius": "10px 10px 14px 14px"
+        },
+        {
+          "cell": 56.671875,
+          "mask": 52.671875,
+          "image": 52.671875,
+          "height": 52.671875,
+          "fit": "cover",
+          "clip": "hidden",
+          "radius": "10px 10px 14px 14px"
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "bag": [
+        {
+          "cell": 45,
+          "mask": 41,
+          "image": 41,
+          "height": 41,
+          "fit": "cover",
+          "clip": "hidden",
+          "radius": "10px 10px 14px 14px"
+        },
+        {
+          "cell": 45,
+          "mask": 41,
+          "image": 41,
+          "height": 41,
+          "fit": "cover",
+          "clip": "hidden",
+          "radius": "10px 10px 14px 14px"
+        },
+        {
+          "cell": 45,
+          "mask": 41,
+          "image": 41,
+          "height": 41,
+          "fit": "cover",
+          "clip": "hidden",
+          "radius": "10px 10px 14px 14px"
+        },
+        {
+          "cell": 45,
+          "mask": 41,
+          "image": 41,
+          "height": 41,
+          "fit": "cover",
+          "clip": "hidden",
+          "radius": "10px 10px 14px 14px"
+        },
+        {
+          "cell": 45,
+          "mask": 41,
+          "image": 41,
+          "height": 41,
+          "fit": "cover",
+          "clip": "hidden",
+          "radius": "10px 10px 14px 14px"
+        }
+      ]
+    }
+  ],
+  "commands": [
+    "account.create",
+    "farm.claim",
+    "reward.claim",
+    "farm.set_stage"
+  ],
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "balance_simulation": false,
+  "scope": "Disposable actual Auth/API/Postgres/PostgREST; Chrome mobile320/390 emulation, not physical Android or owner account."
+}

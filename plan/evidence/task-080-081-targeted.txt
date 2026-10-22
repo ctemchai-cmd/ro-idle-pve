@@ -1,0 +1,30 @@
+✔ gear card frames use only unlocked sockets, show empty slots and preserve state (4.14825ms)
+✔ frames disclose Bronze/Silver/Gold from actual card instances, separately from monster grade (1.817584ms)
+✔ moving equipment leaves cards with each character slot; unowned gear has no attached cards (1.706666ms)
+✔ 66 native RO cards preserve all 60 legacy IDs, correct slots, exact art IDs and distinct source grades (48.343625ms)
+✔ quality/level improve benefits, reduce penalties, scale proc power once and pure control chance only (0.552583ms)
+✔ Raydric/Deviling reduce neutral damage and retain weaknesses; true damage bypasses new resistance (23.66825ms)
+✔ armor element and GTB magic-only guard/SP cost use shared stats; physical hits stay unchanged (20.782542ms)
+✔ Marc/Marduk/Deviruchi resist only their status; hard CC still interrupts Phen (4.31475ms)
+✔ Maya reflects magical only; normalized proc cannot recursively reflect itself (1.192ms)
+✔ Moonlight changes motion only, with identical virtual-time integration across frame chunks (2.896167ms)
+✔ Osiris improves the existing revive recovery without adding a revive or replaying its old cast (1.851833ms)
+✔ every authored card proc resolves actual effects with target tags and no formula/status errors (9.523875ms)
+✔ Hydra target bonus requires a physical hit against the matching race; its own proc cannot retrigger (6.687958ms)
+✔ farm profile improves stage chance/quality, gates Mini/MVP, retains earlier cards and favors current tiers (50.629208ms)
+✔ D-107 rare farm has1.44–2.88 expected cards per12h, true boundary chances and unchanged quality/grade rules (29.654125ms)
+✔ D-107 frozen v1 accrual/owned/pending cards survive migration; claim settles old rate once then installs v2 (533.878541ms)
+✔ seeded farm split/cap/retry produces same fixed cards/gear and RNG without kill or speed input (4.381333ms)
+✔ legacy snapshot settles before enabling cards; full bag never consumes or rerolls pending rewards (1221.373458ms)
+✔ slot correction migration returns incompatible cards to bag and preserves exact instance/quality/level/lock (198.741833ms)
+✔ D-058 migration fills new fields, rebalances status budgets and drops dangling stages, then passes the server validator (114.802792ms)
+✔ D-058 migration refunds status investments that exceed the new budget instead of keeping unfunded stats (1.273875ms)
+✔ D-058 migration SQL appends one signed revision per outdated save and skips current saves (1288.098209ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4290.1085

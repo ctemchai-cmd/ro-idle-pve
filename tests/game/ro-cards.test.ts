@@ -90,9 +90,23 @@ test('Hydra target bonus requires a physical hit against the matching race; its 
 test('farm profile improves stage chance/quality, gates Mini/MVP, retains earlier cards and favors current tiers',()=>{
  const stages=storyStages(content),origins=cardOrigins(content);let chance=0,gold=0;
  for(let i=0;i<stages.length;i++){const s=farming(stages[i]!.id),p=s.farm.rate_snapshot!.card_drops!;assert.ok(p.chance_per_million>=chance&&p.quality_weights.gold>=gold);chance=p.chance_per_million;gold=p.quality_weights.gold;assert.equal(Object.values(p.quality_weights).reduce((a,b)=>a+b),1000000);assert.ok(p.definition_pool.every(id=>origins[id]!.grade==='normal'||stages[i]!.chapter>=(origins[id]!.grade==='mini'?2:6)));}
- const first=farming().farm.rate_snapshot!.card_drops!,last=farming(stages.at(-1)!.id).farm.rate_snapshot!.card_drops!;assert.equal(first.chance_per_million,200000);assert.equal(last.chance_per_million,400000);assert.equal(last.quality_weights.gold,350000);assert.equal(last.definition_pool.length,66);assert.ok(last.definition_pool.some(id=>origins[id]!.grade==='mvp'));assert.throws(()=>farmCardProfile(1,1,-1,130,content));
+ const first=farming().farm.rate_snapshot!.card_drops!,last=farming(stages.at(-1)!.id).farm.rate_snapshot!.card_drops!;assert.equal(first.chance_per_million,10000);assert.equal(last.chance_per_million,20000);assert.equal(last.quality_weights.gold,350000);assert.equal(last.definition_pool.length,66);assert.ok(last.definition_pool.some(id=>origins[id]!.grade==='mvp'));assert.throws(()=>farmCardProfile(1,1,-1,130,content));
  assert.equal(weightedChoice(['a','b'],{a:9,b:1},.8999),'a');assert.equal(weightedChoice(['a','b'],{a:9,b:1},.9),'b');assert.throws(()=>weightedChoice(['a'],{a:1},1));
  let draws=0;assert.equal(farmCardDrop(first,()=>{draws++;return .9;}),null);assert.equal(draws,1);assert.ok(farmCardDrop(first,()=>0));
+});
+test('D-107 rare farm has1.44–2.88 expected cards per12h, true boundary chances and unchanged quality/grade rules',()=>{
+ const stages=storyStages(content),interval=Number((content.documents['save-contracts.json']!.farm as unknown as {quantization:{drop_interval_ms:number}}).quantization.drop_interval_ms);assert.equal(interval,300000);
+ for(const stage of stages){const p=farming(stage.id).farm.rate_snapshot!.card_drops!,expected=43200000/interval*p.chance_per_million/1e6;assert.ok(expected>=1.44&&expected<=2.88);assert.equal(p.version,'card_farm_v2');assert.ok(farmCardDrop(p,()=>0));assert.equal(farmCardDrop(p,()=>p.chance_per_million/1e6+1/4294967296),null);}
+ const first=farming('1-1').farm.rate_snapshot!.card_drops!,last=farming('8-20').farm.rate_snapshot!.card_drops!;assert.deepEqual(first.quality_weights,{bronze:850000,silver:140000,gold:10000});assert.deepEqual(last.quality_weights,{bronze:150000,silver:500000,gold:350000});
+});
+test('D-107 frozen v1 accrual/owned/pending cards survive migration; claim settles old rate once then installs v2',()=>{
+ const original=farming(),old=original.farm.rate_snapshot!.card_drops!;old.version='card_farm_v1';old.chance_per_million=200000;
+ original.inventory.push({...card('card_angeling',4,'gold'),locked:true});
+ original.pending_rewards.push({claim_id:'already_reserved',kind:'farm',resource_vector:Object.fromEntries(Object.keys(original.wallet).map(k=>[k,0])) as AccountState['wallet'],items:[card('card_weapon_1',3,'silver')],content_version:content.manifest.content_version,reserved_at:time,source_keys:['old-earned'],status:'pending'});
+ const input=structuredClone(original),migrated=migrateAccountState(original,content).state;assert.deepEqual(migrated.inventory,input.inventory);assert.deepEqual(migrated.pending_rewards,input.pending_rewards);assert.deepEqual(migrated.farm.rate_snapshot!.card_drops,old);
+ const end=base+12*3600000,expected=reserveFarm(migrated,base,end,new Date(end).toISOString(),'farm_22222222-2222-4222-8222-222222222222',content),actual=command(migrated,'farm.claim',{},end);
+ assert.equal(actual.receipt.outcome,'committed');assert.deepEqual(actual.state.pending_rewards,expected.pending_rewards);assert.deepEqual(actual.state.farm.loot_rng,expected.farm.loot_rng);assert.deepEqual(actual.state.inventory,input.inventory);assert.equal(actual.state.farm.rate_snapshot!.card_drops!.version,'card_farm_v2');assert.equal(actual.state.farm.rate_snapshot!.card_drops!.chance_per_million,10000);assert.equal(actual.state.farm.reserved_through,new Date(end).toISOString());
+ assert.deepEqual(original,input);
 });
 test('seeded farm split/cap/retry produces same fixed cards/gear and RNG without kill or speed input',()=>{
  const s=farming('8-20'),end=base+12*3600000,whole=reserveFarm(s,base,end,new Date(end).toISOString(),'whole',content),a=reserveFarm(s,base,base+333333,new Date(base+333333).toISOString(),'one',content),split=reserveFarm(a,base+333333,end,new Date(end).toISOString(),'two',content);
@@ -102,7 +116,7 @@ test('seeded farm split/cap/retry produces same fixed cards/gear and RNG without
 test('legacy snapshot settles before enabling cards; full bag never consumes or rerolls pending rewards',()=>{
  const s=farming();delete s.farm.rate_snapshot!.card_drops;const {state: migrated}=migrateAccountState(s,content);assert.equal(migrated.farm.rate_snapshot!.card_drops,undefined);const outdated=structuredClone(s);outdated.farm.rate_snapshot!.content_version='old';assert.equal(migrateAccountState(outdated,content).state.farm.rate_snapshot!.card_drops,undefined);
  const first=command(migrated,'farm.claim',{},base+3600000);assert.equal(first.receipt.outcome,'committed');assert.ok(first.state.pending_rewards.every(p=>p.items.every(i=>i.kind!=='card')));assert.ok(first.state.farm.rate_snapshot!.card_drops);
- const second=command(first.state,'farm.claim',{},base+13*3600000);assert.ok(second.state.pending_rewards.at(-1)!.items.some(i=>i.kind==='card'));
+ const second=command(first.state,'farm.claim',{},base+13*3600000);assert.equal(second.state.farm.rate_snapshot!.card_drops!.version,'card_farm_v2');assert.ok(second.state.pending_rewards.at(-1)!.items.some(i=>i.kind==='equipment')); // A rare card is possible, never guaranteed by one seeded12h window.
  const pending=structuredClone(second.state.pending_rewards);while(second.state.inventory.length<500)second.state.inventory.push({...card('card_armor_1'),instance_id:'fill_'+second.state.inventory.length});const before=structuredClone(second.state),full=command(second.state,'reward.claim',{claim_id:pending.at(-1)!.claim_id});assert.equal(full.receipt.result.code,'INVENTORY_FULL');assert.deepEqual(full.state,before);assert.deepEqual(full.state.pending_rewards,pending);
 });
 test('slot correction migration returns incompatible cards to bag and preserves exact instance/quality/level/lock',()=>{

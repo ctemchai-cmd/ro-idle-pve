@@ -98,6 +98,7 @@ img { image-rendering: pixelated; }
 
 /* Rarity frames */
 [class*='rarity-'] { --rc: var(--r-common); }
+.rarity-bronze { --rc: #b5794b; } .rarity-silver { --rc: #8ba3c0; } .rarity-gold { --rc: #dfa62e; }
 .rarity-uncommon { --rc: var(--r-uncommon); } .rarity-rare { --rc: var(--r-rare); } .rarity-epic { --rc: var(--r-epic); } .rarity-legendary { --rc: var(--r-legendary); } .rarity-immortal { --rc: var(--r-immortal); } .rarity-supreme { --rc: var(--r-supreme); } .rarity-none { --rc: #c3cee3; }
 .icon-frame { position: relative; flex: none; width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; border: 2px solid var(--rc); background: radial-gradient(circle at 50% 35%, #fff, color-mix(in srgb, var(--rc) 22%, #fff)); }
 .icon-frame.big { width: 56px; height: 56px; border-radius: 14px; }
@@ -666,10 +667,25 @@ dialog.sheet .timeline-now { border-color: color-mix(in srgb, var(--accent) 55%,
 .card-identity small { color: var(--ink-2); }
 .card-portrait { display: block; flex: 0 0 116px; max-width: 42%; border-radius: 7px; overflow: hidden; box-shadow: 0 4px 14px #23345b24; }
 .card-portrait .item-icon { display: block; width: 100%; height: auto; max-height: none; object-fit: contain; image-rendering: auto; }
-.bag-cell.card .item-icon { position: absolute; top: 4px; left: 50%; transform: translateX(-50%); width: auto; height: calc(100% - 8px); max-width: calc(100% - 8px); min-width: 0; min-height: 0; object-fit: contain; border-radius: 6px; image-rendering: auto; }
+.card-art { display: block; position: relative; overflow: hidden; border-radius: inherit; }
+.card-art .item-icon, .card-thumb .item-icon { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; min-width: 0; min-height: 0; object-fit: cover; object-position: center; image-rendering: auto; border-radius: 0; }
+.bag-cell.card > .card-art { position: absolute; inset: 0; border-radius: inherit; }
+.bag-cell.card > .card-grade, .bag-cell.card > .e-badge, .bag-cell.card > .lock-mark, .bag-cell.card > small { z-index: 1; }
 .bag-cell.card > .card-grade { position: absolute; right: 2px; top: 2px; font-size: 8px; }
+.bag-cell.card > small { padding: 0 2px; border-radius: 3px; background: #ffffffe6; }
 .card-thumb { overflow: hidden; }
-.card-thumb .item-icon { width: auto; height: 38px; max-width: 100%; object-fit: contain; border-radius: 5px; image-rendering: auto; }
+.socket > .socket-card-art { width: 44px; height: 44px; border-radius: 7px; border: 1px solid var(--rc); }
+/* Miniature card frames describe the owner's slot; gear rarity stays on the outer frame. */
+.gear-card-slots { position: absolute; left: 3px; bottom: 3px; display: flex; gap: 2px; padding: 2px; border-radius: 4px; background: #fffffff0; box-shadow: 0 1px 3px #1c335b38; pointer-events: none; }
+.gear-card-slot { display: block; position: relative; width: 7px; height: 10px; border-radius: 2px; border: 1px solid #a6b7cc; background: #edf2f8; }
+.gear-card-slot.empty { border-style: dashed; }
+.gear-card-slot.filled { border-color: var(--card-color); background: var(--card-color); box-shadow: inset 0 0 0 1px #ffffff70; }
+.gear-card-slot.filled::after { content: ''; position: absolute; left: 1px; right: 1px; top: 3px; height: 2px; border-top: 1px solid #ffffffe0; }
+.quality-bronze { --card-color: #b5794b; } .quality-silver { --card-color: #8ba3c0; } .quality-gold { --card-color: #dfa62e; }
+.gear-tile .gear-card-slots { left: 50%; transform: translateX(-50%); }
+.gear-tile .refine-badge { top: 2px; bottom: auto; min-width: 20px; padding: 1px 4px; font-size: 11px; }
+.bag-cell .gear-card-slots { left: 2px; bottom: 2px; flex-direction: column; gap: 1px; padding: 1px; }
+.bag-cell .gear-card-slot { width: 6px; height: 8px; }
 .card-effects { display: grid; gap: 6px; margin: 9px 0; padding-left: 17px; font-size: 12px; color: var(--ink-2); }
 .card-effects li::marker { color: #6b91d2; }
 .farm-card-rates { display: grid; gap: 5px; margin: 10px 0; font-size: 12px; }

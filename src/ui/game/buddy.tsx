@@ -8,6 +8,7 @@ import type { GameContext } from './shell.tsx';
 import { ClassIcon } from './class-icon.tsx';
 import { orderedCharacters } from './character-nav.tsx';
 import { CardGrade } from './card-grade.tsx';
+import { EquipmentCards } from './equipment-cards.tsx';
 import { ActorCanvas, CostChips, Diff, ItemIcon, PageHeader, Sheet, canPay, friendNames, iconUrl, jobNames, lookOf, reasonText, resourceNames, seconds, statLabels, type Wallet } from './kit.tsx';
 
 const leftSlots: EquipmentSlot[] = ['weapon', 'armor', 'accessory'], rightSlots: EquipmentSlot[] = ['head', 'garment', 'shoes'];
@@ -28,11 +29,12 @@ export function StatChanges({ before, after }: { before: { stats: CombatStats; i
   return <div className="stat-changes" aria-label="ค่าก่อนและหลัง">{keys.length ? keys.map(k => <p key={k}><span>{statLabels[k] ?? k}</span><Diff before={(before.stats[k] ?? 0)} after={(after.stats[k] ?? 0)} keyName={k} /></p>) : <p><span>ค่าต่อสู้</span><span className="diff-same">เท่าเดิม</span></p>}
     {before.intervalMs !== after.intervalMs && <p><span>รอคิวสกิล</span><span className="diff"><s>{seconds(before.intervalMs)}</s> → <b className={after.intervalMs < before.intervalMs ? 'up' : 'down'}>{seconds(after.intervalMs)}</b></span></p>}</div>;
 }
-function GearTile({ row, slot, progress, pack, onClick }: { row: ItemRow | undefined; slot: EquipmentSlot; progress: Character['slot_progress'][EquipmentSlot]; pack: GameContext['pack']; onClick: () => void }) {
+function GearTile({ row, slot, progress, pack, state, characterId, onClick }: { row: ItemRow | undefined; slot: EquipmentSlot; progress: Character['slot_progress'][EquipmentSlot]; pack: GameContext['pack']; state:GameContext['state']; characterId:string; onClick: () => void }) {
   return <button className={`gear-tile rarity-${row?.item.rarity_id ?? 'none'}`} aria-label={`ช่อง ${slotLabels[slot]}${row ? ` · ${row.name}` : ' · ว่าง'}`} onClick={onClick}>
     {row ? <ItemIcon id={row.iconId} pack={pack} /> : <span className="gear-empty">{slotLabels[slot]}</span>}
     {progress.refine > 0 && <b className="refine-badge">+{progress.refine}</b>}
     {row && <small className="tier-badge">Lv{row.definition.tier_level}</small>}
+    <EquipmentCards state={state} characterId={characterId} slot={slot} />
   </button>;
 }
 
@@ -74,7 +76,7 @@ function UpgradeSheet({ context, actor, slot, close }: { context: GameContext; a
     </section>}
     {tab === 'card' && <section className="upgrade-pane">
       <div className="socket-row" role="group" aria-label="ช่องการ์ด">{progress.cards.map((id, index) => { const source = cards.find(c => c.item.instance_id === id); return <button key={index} className={`socket ${socket === index ? 'on' : ''}`} disabled={index >= capacity} aria-pressed={socket === index} onClick={() => { setSocket(index); setCardId(id); }}>
-        {source ? <ItemIcon id={source.iconId} pack={pack} /> : <span>{index >= capacity ? <Icon name="lock" /> : '+'}</span>}<small>{index >= capacity ? `ปลด +${index === 1 ? 5 : 10}` : source ? source.name : `ช่อง ${index + 1}`}</small>
+        {source ? <span className={`card-art socket-card-art rarity-${source.item.rarity_id}`}><ItemIcon id={source.iconId} pack={pack} /></span> : <span>{index >= capacity ? <Icon name="lock" /> : '+'}</span>}<small>{index >= capacity ? `ปลด +${index === 1 ? 5 : 10}` : source ? source.name : `ช่อง ${index + 1}`}</small>
       </button>; })}</div>
       {progress.cards[socket] && <button className="btn small ghost" disabled={locked} onClick={() => void submit('card.unassign', { ...params, card_slot: socket })}>ถอดการ์ดช่อง {socket + 1}</button>}
       {cards.length ? <div className="card-list">{cards.map(c => <button key={c.item.instance_id} className={`list-row ${cardId === c.item.instance_id ? 'on' : ''}`} onClick={() => setCardId(c.item.instance_id)}>
@@ -102,7 +104,7 @@ function ChangeSheet({ context, actor, slot, close }: { context: GameContext; ac
       if (open && !r.reason && !mine && !state.active_battle) preview = equipmentPreview(state, actor.character_id, slot, r.item.instance_id);
       return <div key={r.item.instance_id} className={`list-item ${open ? 'open' : ''} ${r.reason ? 'dim' : ''}`}>
         <button className="list-row" aria-expanded={open} onClick={() => setPicked(open ? null : r.item.instance_id)}>
-          <span className={`icon-frame rarity-${r.item.rarity_id}`}><ItemIcon id={r.iconId} pack={pack} />{(mine || r.owner) && <i className="e-badge">E</i>}</span>
+          <span className={`icon-frame rarity-${r.item.rarity_id}`}><ItemIcon id={r.iconId} pack={pack} />{(mine || r.owner) && <i className="e-badge">E</i>}{r.owner && <EquipmentCards state={state} characterId={r.owner.character_id} slot={r.owner.slot} />}</span>
           <span className="row-main"><b>{r.name}</b><small>{rarityLabels[r.item.rarity_id]} · Lv.{r.definition.required_level}{r.item.training ? ' · ฝึกหัด' : ''}{r.item.locked && <> · <Icon name="lock" /> ล็อก</>}</small><small className="mods">{mods.slice(0, 2).map(modifierText).join(' · ')}</small></span>
           <span className="row-side">{mine ? <em className="tag on">สวมอยู่</em> : r.owner ? <em className="tag">{friendNames[r.owner.character_id]}</em> : r.reason ? <em className="tag warn">{fit[r.reason] ?? r.reason}</em> : null}</span>
         </button>
@@ -118,7 +120,7 @@ function SlotSheet({ context, actor, slot, close, open }: { context: GameContext
   const { state, pack } = context, row = inventoryView(state, actor.character_id).find(r => r.item.instance_id === actor.equipment[slot]), progress = actor.slot_progress[slot];
   return <Sheet title={slotLabels[slot]} onClose={close}>
     <div className="slot-summary">
-      <span className={`icon-frame big rarity-${row?.item.rarity_id ?? 'none'}`}>{row ? <ItemIcon id={row.iconId} pack={pack} /> : <span className="gear-empty">ว่าง</span>}</span>
+      <span className={`icon-frame big rarity-${row?.item.rarity_id ?? 'none'}`}>{row ? <ItemIcon id={row.iconId} pack={pack} /> : <span className="gear-empty">ว่าง</span>}<EquipmentCards state={state} characterId={actor.character_id} slot={slot} /></span>
       <div><b>{row?.name ?? 'ยังไม่ได้สวม'}</b>{row && <small>{rarityLabels[row.item.rarity_id]} · Lv.{row.definition.required_level}</small>}{row && <small className="mods">{itemModifiers(row.item).map(modifierText).join(' · ')}</small>}{row && <OptionLines item={row.item} />}</div>
     </div>
     <ul className="slot-facts"><li><span>Refine</span><b>+{progress.refine}</b></li><li><span>Enchant</span><b>{progress.enchant.line_id ? `${enchantLines[progress.enchant.line_id as keyof typeof enchantLines]?.split(' ·')[0]} Lv.${progress.enchant.level}` : '—'}</b></li><li><span>การ์ด</span><b>{progress.cards.filter(Boolean).length} / {socketCapacity(progress.refine)}</b></li></ul>
@@ -165,7 +167,7 @@ export function BuddyPage({ context }: { context: GameContext }) {
   const { state, pack, characterId, go } = context, actor = state.roster.find(a => a.character_id === characterId)!, items = useMemo(() => inventoryView(state, actor.character_id), [state, actor.character_id]);
   const [slot, setSlot] = useState<EquipmentSlot | null>(null), [sheet, setSheet] = useState<'slot' | 'upgrade' | 'change' | 'character' | null>(null);
   const inTeam = state.team.some(p => p.character_id === actor.character_id), row = (s: EquipmentSlot) => items.find(i => i.item.instance_id === actor.equipment[s]);
-  const tile = (s: EquipmentSlot) => <GearTile key={s} row={row(s)} slot={s} progress={actor.slot_progress[s]} pack={pack} onClick={() => { setSlot(s); setSheet('slot'); }} />;
+  const tile = (s: EquipmentSlot) => <GearTile key={s} row={row(s)} slot={s} progress={actor.slot_progress[s]} pack={pack} state={state} characterId={actor.character_id} onClick={() => { setSlot(s); setSheet('slot'); }} />;
   const statsIcon = iconUrl(pack, 'ui_icons', 'stats'), skillIcon = iconUrl(pack, 'ui_icons', 'skill');
   return <div className="page buddy-page">
     <PageHeader title={<>{friendNames[actor.character_id]} <span className="title-class"><ClassIcon job={actor.job_id} size={20} /><em>{jobNames[actor.job_id]}</em></span></>} sub={`Lv.${actor.level} / ${effectiveLevelCap(actor, data)} · ${inTeam ? 'อยู่ในทีม' : 'พักอยู่ในค่าย'}${actor.unspent_status_points ? ` · แต้มเหลือ ${actor.unspent_status_points}` : ''}`} onBack={() => go('home')} />

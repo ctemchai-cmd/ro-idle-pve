@@ -9920,6 +9920,287 @@
         "plan/evidence/task-079-github-deployment.json",
         "plan/evidence/task-079-readiness.txt"
       ]
+    },
+    {
+      "id": "T080-AC-01",
+      "task_id": "TASK-080",
+      "acceptance_id": "AC-01",
+      "criterion": "Bag/picker/socketภาพใหญ่เต็มmaskขอบมนด้วยcover รายละเอียดการ์ดยังเห็นเต็มใบ; E/lock/grade/levelกดและอ่านได้ที่320/390px ตรวจภาพจริง",
+      "input_setup": "Actual disposable mobile320/390 with Gold/Silver/Bronze/empty/Refine0/5/10 slots; all130 farmprofiles and frozen old12h interval with existing pending/owned cards; signed-out Vercel",
+      "input_refs": [
+        "plan/inprogress/tasks_080.md",
+        "src/client/slots.ts",
+        "src/ui/game/equipment-cards.tsx",
+        "plan/data/loot.json"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false,
+        "balance_simulation": false
+      },
+      "expected": "Bag/picker/socketภาพใหญ่เต็มmaskขอบมนด้วยcover รายละเอียดการ์ดยังเห็นเต็มใบ; E/lock/grade/levelกดและอ่านได้ที่320/390px ตรวจภาพจริง",
+      "verification": "Focused projection/farm fixedfixture checks and static expected count; actual localmobile/Auth/SQL/build and hosteddata checks",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T080-AC-02",
+      "task_id": "TASK-080",
+      "acceptance_id": "AC-02",
+      "criterion": "Iconอุปกรณ์Buddy/slot summary/bag/equipment pickerแสดงempty/filledBronze-Silver-Goldตรงowner+slotและcapacity1/2/3ตามRefine; เปลี่ยนของไม่ย้ายcardprogressไปกับitem",
+      "input_setup": "Actual disposable mobile320/390 with Gold/Silver/Bronze/empty/Refine0/5/10 slots; all130 farmprofiles and frozen old12h interval with existing pending/owned cards; signed-out Vercel",
+      "input_refs": [
+        "plan/inprogress/tasks_080.md",
+        "src/client/slots.ts",
+        "src/ui/game/equipment-cards.tsx",
+        "plan/data/loot.json"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false,
+        "balance_simulation": false
+      },
+      "expected": "Iconอุปกรณ์Buddy/slot summary/bag/equipment pickerแสดงempty/filledBronze-Silver-Goldตรงowner+slotและcapacity1/2/3ตามRefine; เปลี่ยนของไม่ย้ายcardprogressไปกับitem",
+      "verification": "Focused projection/farm fixedfixture checks and static expected count; actual localmobile/Auth/SQL/build and hosteddata checks",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T080-AC-03",
+      "task_id": "TASK-080",
+      "acceptance_id": "AC-03",
+      "criterion": "Projection/UIไม่มีsaveเพิ่มหรือแก้state/สูตร/SQL/env/assets; ไม่เพิ่มAPIสำหรับดูรูปหรือกรอบ และไม่ทำระบบใบธาตุที่ยังเป็นข้อเสนอ",
+      "input_setup": "Actual disposable mobile320/390 with Gold/Silver/Bronze/empty/Refine0/5/10 slots; all130 farmprofiles and frozen old12h interval with existing pending/owned cards; signed-out Vercel",
+      "input_refs": [
+        "plan/inprogress/tasks_080.md",
+        "src/client/slots.ts",
+        "src/ui/game/equipment-cards.tsx",
+        "plan/data/loot.json"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false,
+        "balance_simulation": false
+      },
+      "expected": "Projection/UIไม่มีsaveเพิ่มหรือแก้state/สูตร/SQL/env/assets; ไม่เพิ่มAPIสำหรับดูรูปหรือกรอบ และไม่ทำระบบใบธาตุที่ยังเป็นข้อเสนอ",
+      "verification": "Focused projection/farm fixedfixture checks and static expected count; actual localmobile/Auth/SQL/build and hosteddata checks",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T080-AC-04",
+      "task_id": "TASK-080",
+      "acceptance_id": "AC-04",
+      "criterion": "Focusedownershipchecks/build/type/boundaries/secrets/readinessและactualdisposablemobile/hostedผ่าน พร้อมpushและตรวจnewbundlesก่อนdone",
+      "input_setup": "Actual disposable mobile320/390 with Gold/Silver/Bronze/empty/Refine0/5/10 slots; all130 farmprofiles and frozen old12h interval with existing pending/owned cards; signed-out Vercel",
+      "input_refs": [
+        "plan/inprogress/tasks_080.md",
+        "src/client/slots.ts",
+        "src/ui/game/equipment-cards.tsx",
+        "plan/data/loot.json"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false,
+        "balance_simulation": false
+      },
+      "expected": "Focusedownershipchecks/build/type/boundaries/secrets/readinessและactualdisposablemobile/hostedผ่าน พร้อมpushและตรวจnewbundlesก่อนdone",
+      "verification": "Focused projection/farm fixedfixture checks and static expected count; actual localmobile/Auth/SQL/build and hosteddata checks",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T081-AC-01",
+      "task_id": "TASK-081",
+      "acceptance_id": "AC-01",
+      "criterion": "ทุก130ด่านchance1–2%ทุก300000msเพิ่มตามordinal; staticexpectation12h144rolls=1.44–2.88ใบ ไม่มีpity/guaranteeหรือkill/speedinput",
+      "input_setup": "Actual disposable mobile320/390 with Gold/Silver/Bronze/empty/Refine0/5/10 slots; all130 farmprofiles and frozen old12h interval with existing pending/owned cards; signed-out Vercel",
+      "input_refs": [
+        "plan/inprogress/tasks_081.md",
+        "src/client/slots.ts",
+        "src/ui/game/equipment-cards.tsx",
+        "plan/data/loot.json"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false,
+        "balance_simulation": false
+      },
+      "expected": "ทุก130ด่านchance1–2%ทุก300000msเพิ่มตามordinal; staticexpectation12h144rolls=1.44–2.88ใบ ไม่มีpity/guaranteeหรือkill/speedinput",
+      "verification": "Focused projection/farm fixedfixture checks and static expected count; actual localmobile/Auth/SQL/build and hosteddata checks",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T081-AC-02",
+      "task_id": "TASK-081",
+      "acceptance_id": "AC-02",
+      "criterion": "เปลี่ยนเฉพาะfarmchance/version/documentation ไม่แตะquality/grade/tierweights/cardpower/gacha/gear/resource/dropinterval; owned/pendingitemsเดิมคงbytevalues",
+      "input_setup": "Actual disposable mobile320/390 with Gold/Silver/Bronze/empty/Refine0/5/10 slots; all130 farmprofiles and frozen old12h interval with existing pending/owned cards; signed-out Vercel",
+      "input_refs": [
+        "plan/inprogress/tasks_081.md",
+        "src/client/slots.ts",
+        "src/ui/game/equipment-cards.tsx",
+        "plan/data/loot.json"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false,
+        "balance_simulation": false
+      },
+      "expected": "เปลี่ยนเฉพาะfarmchance/version/documentation ไม่แตะquality/grade/tierweights/cardpower/gacha/gear/resource/dropinterval; owned/pendingitemsเดิมคงbytevalues",
+      "verification": "Focused projection/farm fixedfixture checks and static expected count; actual localmobile/Auth/SQL/build and hosteddata checks",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T081-AC-03",
+      "task_id": "TASK-081",
+      "acceptance_id": "AC-03",
+      "criterion": "Oldfrozenv1intervalใช้profileเดิมจนreserveครั้งเดียว แล้วfarm.claimติดตั้งv2; retry/split/fullbag/12hcapไม่reroll/จ่ายซ้ำ และoldno-cardไม่retroactive",
+      "input_setup": "Actual disposable mobile320/390 with Gold/Silver/Bronze/empty/Refine0/5/10 slots; all130 farmprofiles and frozen old12h interval with existing pending/owned cards; signed-out Vercel",
+      "input_refs": [
+        "plan/inprogress/tasks_081.md",
+        "src/client/slots.ts",
+        "src/ui/game/equipment-cards.tsx",
+        "plan/data/loot.json"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false,
+        "balance_simulation": false
+      },
+      "expected": "Oldfrozenv1intervalใช้profileเดิมจนreserveครั้งเดียว แล้วfarm.claimติดตั้งv2; retry/split/fullbag/12hcapไม่reroll/จ่ายซ้ำ และoldno-cardไม่retroactive",
+      "verification": "Focused projection/farm fixedfixture checks and static expected count; actual localmobile/Auth/SQL/build and hosteddata checks",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T081-AC-04",
+      "task_id": "TASK-081",
+      "acceptance_id": "AC-04",
+      "criterion": "Focusedfarm/migrationchecks/M0/build/type/boundaries/secretsและactualmobilefarmrates/hostednewdataผ่าน ไม่มีownerwrite/6173restart/SQL/env/newassetsหรือbalancebatchใหม่",
+      "input_setup": "Actual disposable mobile320/390 with Gold/Silver/Bronze/empty/Refine0/5/10 slots; all130 farmprofiles and frozen old12h interval with existing pending/owned cards; signed-out Vercel",
+      "input_refs": [
+        "plan/inprogress/tasks_081.md",
+        "src/client/slots.ts",
+        "src/ui/game/equipment-cards.tsx",
+        "plan/data/loot.json"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false,
+        "balance_simulation": false
+      },
+      "expected": "Focusedfarm/migrationchecks/M0/build/type/boundaries/secretsและactualmobilefarmrates/hostednewdataผ่าน ไม่มีownerwrite/6173restart/SQL/env/newassetsหรือbalancebatchใหม่",
+      "verification": "Focused projection/farm fixedfixture checks and static expected count; actual localmobile/Auth/SQL/build and hosteddata checks",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T082-AC-01",
+      "task_id": "TASK-082",
+      "acceptance_id": "AC-01",
+      "criterion": "Asuraมีหมัดแสง/วงแรงกระแทก/ข้อความท่าใหญ่และworldshakeสั้นตรงvisualcontactจริง; ท่าใหญ่ที่เลือกจาก6ต้นอาชีพมีลักษณะเฉพาะตามhit/เวท/ฟัน/ศักดิ์สิทธิ์/ระเบิด โดยไม่อ้างexactROreconstruction",
+      "input_setup": "Actual Asura/native actors/numbers/impact-timing plus authored heavy attack IDs; fixed successful/missed/interrupted/multihit/AoE events and mobile320/390 Chrome with1×/2×/4× and reducedmotion",
+      "input_refs": [
+        "plan/inprogress/tasks_082.md",
+        "src/renderer/battle.ts",
+        "assets/ro/library/skill-assets/271.json"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false,
+        "balance_simulation": false
+      },
+      "expected": "Asuraมีหมัดแสง/วงแรงกระแทก/ข้อความท่าใหญ่และworldshakeสั้นตรงvisualcontactจริง; ท่าใหญ่ที่เลือกจาก6ต้นอาชีพมีลักษณะเฉพาะตามhit/เวท/ฟัน/ศักดิ์สิทธิ์/ระเบิด โดยไม่อ้างexactROreconstruction",
+      "verification": "Focused deterministic presentation checks and actual Chrome realpack screenshots; state/RNG parity/build/hosted",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T082-AC-02",
+      "task_id": "TASK-082",
+      "acceptance_id": "AC-02",
+      "criterion": "Triggerเฉพาะactualsuccessfuldamageและcast/actionที่ถูกต้อง ไม่เกิดจากcaststartที่ถูกขัด/normal/proc/heal/miss และAoE/multihitไม่spambanner; contactตรงnumbers/projectilesที่1×/2×/4×ไม่มีstate/RNG/eventchange",
+      "input_setup": "Actual Asura/native actors/numbers/impact-timing plus authored heavy attack IDs; fixed successful/missed/interrupted/multihit/AoE events and mobile320/390 Chrome with1×/2×/4× and reducedmotion",
+      "input_refs": [
+        "plan/inprogress/tasks_082.md",
+        "src/renderer/battle.ts",
+        "assets/ro/library/skill-assets/271.json"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false,
+        "balance_simulation": false
+      },
+      "expected": "Triggerเฉพาะactualsuccessfuldamageและcast/actionที่ถูกต้อง ไม่เกิดจากcaststartที่ถูกขัด/normal/proc/heal/miss และAoE/multihitไม่spambanner; contactตรงnumbers/projectilesที่1×/2×/4×ไม่มีstate/RNG/eventchange",
+      "verification": "Focused deterministic presentation checks and actual Chrome realpack screenshots; state/RNG parity/build/hosted",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T082-AC-03",
+      "task_id": "TASK-082",
+      "acceptance_id": "AC-03",
+      "criterion": "ข้อความอ่านได้เมื่อเร่งspeedด้วยเวลาภาพแยกจากgameclock; reducedmotionหยุดshake/พุ่ง/flash HUDไม่ขยับ คิวและparticlesbounded/mobile320/390ไม่ล้น ไม่ใช้globalrandomหรือโหลดassetเพิ่ม",
+      "input_setup": "Actual Asura/native actors/numbers/impact-timing plus authored heavy attack IDs; fixed successful/missed/interrupted/multihit/AoE events and mobile320/390 Chrome with1×/2×/4× and reducedmotion",
+      "input_refs": [
+        "plan/inprogress/tasks_082.md",
+        "src/renderer/battle.ts",
+        "assets/ro/library/skill-assets/271.json"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false,
+        "balance_simulation": false
+      },
+      "expected": "ข้อความอ่านได้เมื่อเร่งspeedด้วยเวลาภาพแยกจากgameclock; reducedmotionหยุดshake/พุ่ง/flash HUDไม่ขยับ คิวและparticlesbounded/mobile320/390ไม่ล้น ไม่ใช้globalrandomหรือโหลดassetเพิ่ม",
+      "verification": "Focused deterministic presentation checks and actual Chrome realpack screenshots; state/RNG parity/build/hosted",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T082-AC-04",
+      "task_id": "TASK-082",
+      "acceptance_id": "AC-04",
+      "criterion": "Purepresentationchecks/type/boundaries/build/secretsผ่าน actualChromeทดสอบrealpack/contact/nohit/interrupt/multihit/reducedmotion+หลายท่าและตรวจภาพจริง ภาพไม่เพิ่มAPI/saveหรือเปลี่ยนrules/content/packจากTASK081",
+      "input_setup": "Actual Asura/native actors/numbers/impact-timing plus authored heavy attack IDs; fixed successful/missed/interrupted/multihit/AoE events and mobile320/390 Chrome with1×/2×/4× and reducedmotion",
+      "input_refs": [
+        "plan/inprogress/tasks_082.md",
+        "src/renderer/battle.ts",
+        "assets/ro/library/skill-assets/271.json"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false,
+        "balance_simulation": false
+      },
+      "expected": "Purepresentationchecks/type/boundaries/build/secretsผ่าน actualChromeทดสอบrealpack/contact/nohit/interrupt/multihit/reducedmotion+หลายท่าและตรวจภาพจริง ภาพไม่เพิ่มAPI/saveหรือเปลี่ยนrules/content/packจากTASK081",
+      "verification": "Focused deterministic presentation checks and actual Chrome realpack screenshots; state/RNG parity/build/hosted",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T082-AC-05",
+      "task_id": "TASK-082",
+      "acceptance_id": "AC-05",
+      "criterion": "Push/deploy/publicnewpresentationbundle/API/hash/login/PWAผ่านก่อนdone ไม่มีownerwrite/6173restart/SQL/envหรือbalancebatchใหม่",
+      "input_setup": "Actual Asura/native actors/numbers/impact-timing plus authored heavy attack IDs; fixed successful/missed/interrupted/multihit/AoE events and mobile320/390 Chrome with1×/2×/4× and reducedmotion",
+      "input_refs": [
+        "plan/inprogress/tasks_082.md",
+        "src/renderer/battle.ts",
+        "assets/ro/library/skill-assets/271.json"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false,
+        "balance_simulation": false
+      },
+      "expected": "Push/deploy/publicnewpresentationbundle/API/hash/login/PWAผ่านก่อนdone ไม่มีownerwrite/6173restart/SQL/envหรือbalancebatchใหม่",
+      "verification": "Focused deterministic presentation checks and actual Chrome realpack screenshots; state/RNG parity/build/hosted",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
     }
   ]
 }

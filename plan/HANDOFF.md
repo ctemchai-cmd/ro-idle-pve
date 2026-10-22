@@ -4,6 +4,17 @@
 
 
 
+## 22 ต.ค.2026 · Codex — TASK-080/081 localผ่าน + TASK-082 กำลังทำ
+
+- ผู้ใช้ต่อจาก079ขอcardimageใหญ่เต็มช่องแล้วmaskขอบมน และmini cardframesบนgearicon. D106/T080แก้cover+mask bag/picker/socketและnativefullportraitdetailเดิม, qualityBronze/Silver/Gold/emptyframeอ่านactualowner+slot+capacity1/2/3 ไม่ใส่cardsให้freeitem; sharedhelperclient/slots/equipment-cards UIในBuddy/slot/bag/picker Refinepillย้ายบนไม่ทับแถวcard
+- ผู้ใช้ตอบasyncเลือกรางวัลการ์ดแรร์1–3/12h: D107/T081loot.cards versionv2 chance_start10000/end20000แทน200000/400000 ทุก5min expected1.44–2.88/12h ไม่guarantee ไม่แตะquality/grade/pool/gear/gacha/cardpower. Puremigration/commandsเดิมคงoldfrozenv1ช่วงค้างจนclaimreserveครั้งเดียวแล้วinstallv2 ของเดิม/pendingไม่ลด ไม่ต้องSQLใหม่
+- 22focusedTS+M0/build/type/boundaries/secretsผ่าน actualfreshAuth/API5/SQL/mobile320/390三groupsผ่าน finaltask-080-081-ui-live.json,ภาพfull-cards/gear-frames/full-picker320เปิดดูแล้ว. Nativepicturesfillmaskดี มีE/lock/gradeไม่clip. Full12h actualclaim/replay/reload/farmstage8-20→2%ผ่าน Existingownedpayloadคงเดิม
+- เก็บfails: targetedround1floatthresholdคูณกลับใกล้epsilonที่ไม่ใช่actualRNGdraw+oldtestguaranteecardเมื่อเรทใหม่อาจ0 แก้testใช้RNGquantumและassertenabledprofileแทนguarantee. Browserround1JSON.stringifykeyorderPostgresต่าง แก้deepEqual; round2chesthasrewardinfinitebounceทำPlaywrightstableclickwaittimeout แก้realpointertap ไม่แก้productหลอกให้ผ่าน
+- **Contentใหม่7b2a026768c31cf63c7e50510a26e7be840cdcc4010ac6cfb27cf078d8707e91**; packc7e45b…เดิม; noowner/6173/env/SQL/assets/newbalancebatch. ยังต้องpush/deploy/hostedแล้วmove080081done Sourceก่อนงานa1f6c154f. Userproposalใบธาตุ30minยังแค่คุย ไม่ทำในscopeนี้
+- Latest userเพิ่มAsuraสวยแบบRO/jitterเล็ก/textและbigattacksอาชีพอื่น D108/T082 **กำลังทำ**. อ่านrendererแล้ว Asuraปัจจุบันvisual_monk_asura reusepreparedBash5. Native271metaอธิบายlens1streaks/proceduralhit266แต่soundmappingmissing ไม่อ้างcompleteROeffect. วางแผนrenderer-onlyboundedfinisherprofiles+actualpositivehit/visualImpactMs, one/action despiteAoE/multihit, nointerrupt/miss/normal/proc, canvasworldshakeเล็กHUDคงและtextwall-readable×4 มีreducedmotion ไม่แก้engine/pack/data/hash7bหรือsave ต้องทำproduct/QAต่อก่อนdone
+- BrowserAuthstackหยุดและcleanupแล้ว แก้product/codegenต่อได้ อย่ารันstackพร้อมแก้product. Board65/82done,inprogress7(เดิม4+080081082),review5,todo5,M4done25/37. taskfiles/matrix/decisionsสร้างครบแล้ว
+
+
 ## 22 ต.ค.2026 · Codex — TASK-079 done ภาพการ์ดและคำอธิบายสกิลขึ้นVercelแล้ว
 
 - D-105 userขอcardpictureไม่ชนขอบมน/อธิบายผลเปลี่ยนและLv1–5ของCallSpirit/Provoke. bagคง3:4 boundedheight+radiusบนขอบภาพจริง E/grade/lockไม่clip; socket30px; picker38pxแก้percentheightขยายภาพ

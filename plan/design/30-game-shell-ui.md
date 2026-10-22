@@ -107,3 +107,7 @@ D-095 / TASK-070: หน้าผล Story/Tower/Daily เปิด **Timeline �
 ภาพการ์ดคง3:4ในbag/socket/picker ใส่radiusบนขอบรูปจริงด้วย ให้ภาพอยู่ภายในcell ไม่clipทั้งcellเพราะE badgeอยู่นอกขอบเล็กน้อย รองรับ320/390px
 
 Passiveที่procต้องแสดงevent+chanceจากtriggerด้วย เช่นSpiritCombo15%→35% ไม่ใช้ข้อความเมื่อเข้าเงื่อนไขลอยๆแทนโอกาสที่เปลี่ยนตามเลเวล Regressionทุกadjacentlevelของ126skillsต้องมีdeltaเมื่อresolveddefinitionเปลี่ยน
+
+## D-106 / TASK-080 — ภาพการ์ดเต็มช่องและmini socketframes
+
+แทนlayoutการ์ดsmallcontainของ079ตามfeedback: bag/picker/socketใช้coverในmaskขอบมน ขยายให้เต็มพื้นที่โดยไม่บิดสัดส่วน และกดดูartเต็ม3:4ในรายละเอียดได้ badgeอยู่นอกmaskภาพ EquipmentCardsแสดงเฉพาะslotที่สวมgearอยู่และเฉพาะcapacityที่เปิดแล้ว emptyเทา filledใช้qualityBronze/Silver/Gold ขอบใหญ่ยังเป็นrarityอุปกรณ์ อ่านจากownercharacter+slot ไม่ผูกกับiteminstance; unequippedcandidateไม่แสดงการ์ดของตัวที่กำลังเลือก การเปิดดูไม่save

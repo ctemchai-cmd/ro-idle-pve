@@ -11,6 +11,7 @@ import { OptionLines, StatChanges, modifierText } from './buddy.tsx';
 import { ClassIcon } from './class-icon.tsx';
 import { CardGrade } from './card-grade.tsx';
 import { CardSheet } from './card-sheet.tsx';
+import { EquipmentCards } from './equipment-cards.tsx';
 
 type Filter = 'all' | EquipmentSlot | 'card';
 type Gear = ReturnType<typeof inventoryView>[number];
@@ -25,7 +26,7 @@ function GearSheet({ context, row, close }: { context: GameContext; row: Gear; c
   const growth = useMemo(() => gearGrowthOptions(state, row.owner?.character_id ?? 'main', id), [state, id, row.owner?.character_id]);
   const fits = useMemo(() => state.roster.map(a => ({ actor: a, reason: inventoryView(state, a.character_id).find(r => r.item.instance_id === id)?.reason ?? null })), [state, id]);
   return <Sheet title={row.name} onClose={close}>
-    <div className="slot-summary"><span className={`icon-frame big rarity-${row.item.rarity_id}`}><ItemIcon id={row.iconId} pack={pack} /></span>
+    <div className="slot-summary"><span className={`icon-frame big rarity-${row.item.rarity_id}`}><ItemIcon id={row.iconId} pack={pack} />{row.owner && <EquipmentCards state={state} characterId={row.owner.character_id} slot={row.owner.slot} />}</span>
       <div><b>{rarityLabels[row.item.rarity_id]} · {slotLabels[row.slot]} · Lv.{row.definition.required_level}</b><small className="mods">{itemModifiers(row.item).map(modifierText).join(' · ')}</small><OptionLines item={row.item} /><small>{row.owner ? `สวมโดย ${friendNames[row.owner.character_id]}` : 'ยังไม่มีคนสวม'}{row.item.locked && <> · <Icon name="lock" /> ล็อก</>}{row.item.training ? ' · อาวุธฝึกหัด' : ''}</small></div></div>
     <div className="action-grid">
       <button className={`btn ${mode === 'equip' ? 'primary' : ''}`} onClick={() => setMode(mode === 'equip' ? null : 'equip')}>สวมให้…</button>
@@ -70,10 +71,10 @@ export function BackpackPage({ context }: { context: GameContext }) {
     <VirtualGrid items={[...shownGear.map(g => ({ kind: 'gear' as const, g })), ...shownCards.map(c => ({ kind: 'card' as const, c })), ...Array.from({ length: Math.max(0, 20 - shownGear.length - shownCards.length) }, (_, i) => ({ kind: 'empty' as const, i }))]} renderItem={row => {
       if (row.kind === 'empty') return <span key={`empty${row.i}`} className="bag-cell empty" aria-hidden="true" />;
       if (row.kind === 'gear') { const g = row.g, selectable = !g.owner && !g.item.locked, picked = bulk?.includes(g.item.instance_id); return <button key={g.item.instance_id} data-id={g.item.instance_id} className={`bag-cell rarity-${g.item.rarity_id} ${picked ? 'picked' : ''} ${bulk && !selectable ? 'dim' : ''}`} aria-label={`${g.name} ${rarityLabels[g.item.rarity_id]}${g.owner ? ' สวมอยู่' : ''}`} onClick={() => tap(g.item.instance_id, selectable)}>
-        <ItemIcon id={g.iconId} pack={pack} />{g.owner && <i className="e-badge" title={`สวมโดย ${friendNames[g.owner.character_id]}`}>E</i>}{g.item.locked && <i className="lock-mark"><Icon name="lock" /></i>}<small>Lv{g.definition.tier_level}</small>{picked && <i className="check"><Icon name="check" /></i>}
+        <ItemIcon id={g.iconId} pack={pack} />{g.owner && <><i className="e-badge" title={`สวมโดย ${friendNames[g.owner.character_id]}`}>E</i><EquipmentCards state={state} characterId={g.owner.character_id} slot={g.owner.slot} /></>}{g.item.locked && <i className="lock-mark"><Icon name="lock" /></i>}<small>Lv{g.definition.tier_level}</small>{picked && <i className="check"><Icon name="check" /></i>}
       </button>; }
       const c = row.c; return <button key={c.item.instance_id} className={`bag-cell card rarity-${c.item.rarity_id} ${bulk ? 'dim' : ''}`} data-card-grade={c.origin?.grade} aria-label={`${c.name} การ์ด`} onClick={() => { if (!bulk) setOpen(c.item.instance_id); }}>
-        <ItemIcon id={c.iconId} pack={pack} />{c.origin?.grade!=='normal'&&<CardGrade grade={c.origin?.grade} />}{c.owner && <i className="e-badge">E</i>}{c.item.locked && <i className="lock-mark"><Icon name="lock" /></i>}<small>C{c.item.level}</small>
+        <span className="card-art"><ItemIcon id={c.iconId} pack={pack} /></span>{c.origin?.grade!=='normal'&&<CardGrade grade={c.origin?.grade} />}{c.owner && <i className="e-badge">E</i>}{c.item.locked && <i className="lock-mark"><Icon name="lock" /></i>}<small>C{c.item.level}</small>
       </button>;
     }} />
     {!shownGear.length && !shownCards.length && <p className="hint center">ยังไม่มีของในหมวดนี้ · ได้จากฟาร์มอัตโนมัติและรางวัลผ่านด่าน</p>}

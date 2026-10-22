@@ -13,6 +13,15 @@ export const statHigherIsBetter=(id:string)=>(content.documents['stat-definition
 export const cardStatUnits=Object.fromEntries((content.documents['stat-definitions.json']!.stats as unknown as{id:string;unit:string}[]).map(s=>[s.id,s.unit]));
 export const slotsData=slotData(content),cardsData=cardData(content);
 export const socketCapacity=(refine:number)=>cardCapacity(refine,content);
+/** Cards belong to a character's equipment slot, never to the item being previewed. */
+export function equippedCardSlots(state:AccountState,characterId:string,slot:EquipmentSlot){
+ const actor=state.roster.find(a=>a.character_id===characterId);
+ if(!actor?.equipment[slot])return [];
+ return actor.slot_progress[slot].cards.slice(0,socketCapacity(actor.slot_progress[slot].refine)).map((id,index)=>{
+  const card=id?state.inventory.find(item=>item.instance_id===id&&item.kind==='card'):null;
+  return{index,quality:card?.rarity_id??null,name:card?labels[itemDefinition(card,content).name_key]??card.definition_id:null};
+ });
+}
 export function slotUpgradeQuote(current:number,target:number,kind:'refine'|'enchant'){return upgradeQuote(current,target,slotsData[kind].max,slotsData[kind].upgrade_rows);}
 export const refundEnchant=(state:AccountState,id:string,slot:EquipmentSlot)=>enchantRefund(state,id,slot);
 export function slotChangePreview(state:AccountState,id:string,type:SlotCommand['type'],params:unknown){const next=structuredClone(state),intent={type,params,request_id:'preview'}as SlotCommand;

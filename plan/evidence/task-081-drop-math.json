@@ -1,0 +1,37 @@
+{
+  "task_id": "TASK-081",
+  "passed": true,
+  "before_chance_per_million": [
+    200000,
+    400000
+  ],
+  "after_chance_per_million": [
+    10000,
+    20000
+  ],
+  "roll_interval_ms": 300000,
+  "rolls_per_12h": 144,
+  "old_expected_12h": [
+    28.8,
+    57.6
+  ],
+  "new_expected_12h": [
+    1.44,
+    2.88
+  ],
+  "independent_rolls_not_guaranteed": true,
+  "unchanged": [
+    "quality_weights",
+    "grade_weights",
+    "tier_weights",
+    "all_gear_loot",
+    "cardstats/art/ids",
+    "gacha",
+    "owned_and_reserved_cards"
+  ],
+  "old_frozen_profile": "Existing saved v1 profile and pending rewards preserved; farm.claim reserves old interval once then installs v2 for subsequent accrual. Existing signed-save migration flow still applies to content hash.",
+  "content_hash": "7b2a026768c31cf63c7e50510a26e7be840cdcc4010ac6cfb27cf078d8707e91",
+  "runtime_pack_hash": "c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2",
+  "balance_simulation": false,
+  "owner_cloud_writes": false
+}

@@ -1,0 +1,77 @@
+✔ gear card frames use only unlocked sockets, show empty slots and preserve state (10.396792ms)
+✔ frames disclose Bronze/Silver/Gold from actual card instances, separately from monster grade (9.104375ms)
+✔ moving equipment leaves cards with each character slot; unowned gear has no attached cards (1.99175ms)
+✔ 66 native RO cards preserve all 60 legacy IDs, correct slots, exact art IDs and distinct source grades (110.836375ms)
+✔ quality/level improve benefits, reduce penalties, scale proc power once and pure control chance only (0.530583ms)
+✔ Raydric/Deviling reduce neutral damage and retain weaknesses; true damage bypasses new resistance (10.059375ms)
+✔ armor element and GTB magic-only guard/SP cost use shared stats; physical hits stay unchanged (6.801583ms)
+✔ Marc/Marduk/Deviruchi resist only their status; hard CC still interrupts Phen (108.375208ms)
+✔ Maya reflects magical only; normalized proc cannot recursively reflect itself (4.161875ms)
+✔ Moonlight changes motion only, with identical virtual-time integration across frame chunks (6.356875ms)
+✔ Osiris improves the existing revive recovery without adding a revive or replaying its old cast (2.826084ms)
+✔ every authored card proc resolves actual effects with target tags and no formula/status errors (90.230041ms)
+✔ Hydra target bonus requires a physical hit against the matching race; its own proc cannot retrigger (3.945375ms)
+✔ farm profile improves stage chance/quality, gates Mini/MVP, retains earlier cards and favors current tiers (94.347458ms)
+✖ D-107 rare farm has1.44–2.88 expected cards per12h, true boundary chances and unchanged quality/grade rules (53.955541ms)
+✔ D-107 frozen v1 accrual/owned/pending cards survive migration; claim settles old rate once then installs v2 (2540.882209ms)
+✔ seeded farm split/cap/retry produces same fixed cards/gear and RNG without kill or speed input (5.541333ms)
+✖ legacy snapshot settles before enabling cards; full bag never consumes or rerolls pending rewards (4589.901833ms)
+✔ slot correction migration returns incompatible cards to bag and preserves exact instance/quality/level/lock (1396.598292ms)
+✔ D-058 migration fills new fields, rebalances status budgets and drops dangling stages, then passes the server validator (196.0315ms)
+✔ D-058 migration refunds status investments that exceed the new budget instead of keeping unfunded stats (32.013667ms)
+✔ D-058 migration SQL appends one signed revision per outdated save and skips current saves (5621.691166ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 20
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14072.96575
+
+✖ failing tests:
+
+test at tests/game/ro-cards.test.ts:1:13393
+✖ D-107 rare farm has1.44–2.88 expected cards per12h, true boundary chances and unchanged quality/grade rules (53.955541ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + {
+  +   definition_id: 'card_abysmal_knight',
+  +   rarity_id: 'bronze'
+  + }
+  - null
+  
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/ro-cards.test.ts:99:260)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { definition_id: 'card_abysmal_knight', rarity_id: 'bronze' },
+    expected: null,
+    operator: 'strictEqual'
+  }
+
+test at tests/game/ro-cards.test.ts:1:16881
+✖ legacy snapshot settles before enabling cards; full bag never consumes or rerolls pending rewards (4589.901833ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    reserveFarm(s,base,end,new Date(end).toISOString(),'whole',content)
+  
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/ro-cards.test.ts:119:75)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '=='
+  }
