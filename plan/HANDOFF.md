@@ -4,15 +4,16 @@
 
 
 
-## 22 ต.ค.2026 · Codex — TASK-075 แก้ภาพไม่ขึ้นจากstablemanifestHTTPcache กำลังpush
+## 22 ต.ค.2026 · Codex — TASK-075 done ภาพหลังอัปเดตโหลดได้แล้วบนproduction
 
+- **SOURCE `67c5d03f1e2b6225745f497c1f34b0917e318bdb` push/VercelSUCCESS** https://vercel.com/chanon2/ro-idle-pve/BjqEsnUr9ud5APPFSgwe8PEQJvJ1 Actualhosted2groupsผ่าน มีheader/ภาพจริง/coldwarmPWAstartupและ0ownerwrites บันทึกภาพhostedและตรวจพิกเซลจริงแล้ว
 - Userรายงานยังเตรียมภาพไม่ได้หลัง073/074 deploy พบrootcauseactualproduction `/ro/manifest.json` และqueryตอบCache-Control public1yrimmutable ทั้งที่configมีno-store กฎ `/ro/:hash/:path*` จับmanifestเป็นhashแล้วทับ ทำให้oldf57 cachedแต่newbundleต้องc7จึงAssetPack.openreject เห็นhealth/newfilesถูกไม่ได้พิสูจน์warmstartup งานเก่าหลักฐานcoldผ่านจริงแต่ขาดHTTPcachecoverage
 - Patch2จุดเท่านั้น: src/renderer/pack.ts jsonhelperรับoptionalRequestInit; openfetchstablemanifestcache:no-storeเพื่อข้ามresponseที่เครื่องผู้ใช้มีอยู่แล้ว; vercel.jsonimmutablepatternเฉพาะ/ro/:hash([a-f0-9]{64})/:path* ไม่เปลี่ยนmedia/metadata caching/expectedpackchecks ไม่ล้างstorage/Auth/เซฟ ไม่ownerwrite/6173restart/Sim ไม่มีSQL/env/pack/data/rules/schemahashchange contentยัง4e440839… packc7e45b…
 - RealisolatedVite/mobileChromepersistentprofile3กลุ่มผ่าน scripts/test_asset_cache_rollover.cjs: primeactualoldf57immutableจากgit7167980af, serverสลับc7แต่defaultfetchยังoldโดยservercountไม่เพิ่ม, actualfixedAssetPack.openได้c7และdecodePoring300x400/mismatchยังreject, actualdemo2bootsมีscenery/4actorportraitsครบ sentinelcookie/localStorageคงและ0mutation รูปเปิดดูแล้ว ไม่มีAuth/ownerdata
 - Headerpatternผ่านinstalledVercelbuilderpath-to-regexp4กรณี ฟอร์มregexsupportedofficialdoc; focusedAssetPack4/build/type/boundaries/secretsผ่าน SourceHTMLpackhash/contentยังเดิม เลยไม่ต้องmigrateเซฟสำหรับ075เอง
-- Task075review AC02ผ่าน AC01/03ยังรอactualproduction Header+queryต้องno-store hashedcard/metadataimmutable/SHAเดิม Publicnewharness scripts/test_asset_cache_hosted.cjs ต้องหลังpushVercelReady จากนั้นclosecase/matrix/overviewdoneและdocscommitpush Userauthorizedpushเดิมไม่ถามใหม่
-- Board60/75done,inprogress4(041/058/064/067),review6(5old+075),todo5,M4done20of30 รอsourcecommitpush main. ห้ามปิดownerpending4เดิม 073/074source00e74417d doneแล้วdocsbf6462769
-- Evidence task075-before-headers/cache-browser/header-matching/targeted/build +officialVercelheaders/MDNfetchcache referenced in task docs. Actualhostedยังไม่รัน อย่าอ้างว่าownerมือถือfixedแล้วก่อนdeploy
+- Task075doneทุกACผ่าน actualproductionstablemanifest/queryno-store/hashedPoringWebP-metaimmutableSHAเดิม +cold/warmmobilepublicdemoมี4nonblankactorportraits/sceneryใต้SW, mediareuseHTTPcacheแต่manifestfresh, storagecookieคงและ0mutations Sourceด้านบน เกม/content4e440839…/packc7e45b…ไม่เปลี่ยน ไม่มีSQL/env/migrationเพิ่มจาก075 Userปิดเปิด/reloadครั้งเดียวห้ามให้clearstorage/Auth/เซฟ
+- Board61/75done,inprogress4(041/058/064/067),review5(oldvisual),todo5,M4done21of30 Docscloseตามsource ห้ามปิดownerpending4เดิม 073/074done source00e74417d/docsbf6462769
+- sourcebeforeheaders/cache-browser/header-matching/targeted/build/hosted/gh/review/readinessในtask075evidence ทั้งหมดpassed ไม่มีbalance/calibrationrunner ไม่owner/6173/keys ActualphysicalAndroid/owneraccountไม่ได้เข้า แต่sharedloaderactualHTTPcacheและhostedimagesตรวจจริงแล้ว
 
 ## 22 ต.ค. 2026 · Codex — TASK-073/074 done และขึ้นVercelแล้ว
 

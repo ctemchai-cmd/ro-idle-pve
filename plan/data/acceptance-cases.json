@@ -9304,7 +9304,7 @@
       "criterion": "`/ro/manifest.json` และqueryvariantsบนproductionเป็นno-store; hashedmedia/metadataยังimmutableและexactbytesเดิม Headerpatternไม่ครอบstablemanifest",
       "input_setup": "Old native pack manifest served immutable in a fresh realChromeHTTPcache, then switch to currentpack; compiledVercelroute matching and publichosted cold/warm startup",
       "input_refs": [
-        "plan/review/tasks_075.md",
+        "plan/done/tasks_075.md",
         "src/renderer/pack.ts",
         "vercel.json"
       ],
@@ -9315,7 +9315,14 @@
       "expected": "`/ro/manifest.json` และqueryvariantsบนproductionเป็นno-store; hashedmedia/metadataยังimmutableและexactbytesเดิม Headerpatternไม่ครอบstablemanifest",
       "verification": "RealChrome cache rollover and production headers/native-image startup; build and focused AssetPack regression",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation"
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-075-review.json",
+        "plan/evidence/task-075-before-headers.json",
+        "plan/evidence/task-075-cache-browser.json",
+        "plan/evidence/task-075-header-matching.json",
+        "plan/evidence/task-075-hosted.json"
+      ]
     },
     {
       "id": "T075-AC-02",
@@ -9324,7 +9331,7 @@
       "criterion": "Chromeที่มีoldmanifestfreshimmutableอยู่ในHTTPcacheยังโหลดexpectedcurrentpack/scene/nativecardได้โดยไม่clearcache/storage และreloadอีกครั้งได้; wrongpackhashยังreject ไม่มีgameplay/content/schema/packhashเปลี่ยน",
       "input_setup": "Old native pack manifest served immutable in a fresh realChromeHTTPcache, then switch to currentpack; compiledVercelroute matching and publichosted cold/warm startup",
       "input_refs": [
-        "plan/review/tasks_075.md",
+        "plan/done/tasks_075.md",
         "src/renderer/pack.ts",
         "vercel.json"
       ],
@@ -9335,7 +9342,14 @@
       "expected": "Chromeที่มีoldmanifestfreshimmutableอยู่ในHTTPcacheยังโหลดexpectedcurrentpack/scene/nativecardได้โดยไม่clearcache/storage และreloadอีกครั้งได้; wrongpackhashยังreject ไม่มีgameplay/content/schema/packhashเปลี่ยน",
       "verification": "RealChrome cache rollover and production headers/native-image startup; build and focused AssetPack regression",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation"
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-075-review.json",
+        "plan/evidence/task-075-before-headers.json",
+        "plan/evidence/task-075-cache-browser.json",
+        "plan/evidence/task-075-header-matching.json",
+        "plan/evidence/task-075-hosted.json"
+      ]
     },
     {
       "id": "T075-AC-03",
@@ -9344,7 +9358,7 @@
       "criterion": "build/type/boundaries/secrets/targetedchecksและactualhostedmobileassets startupผ่าน พร้อมบันทึกrootcause/ข้อจำกัด ไม่เขียนownerเซฟ/ไม่restart6173",
       "input_setup": "Old native pack manifest served immutable in a fresh realChromeHTTPcache, then switch to currentpack; compiledVercelroute matching and publichosted cold/warm startup",
       "input_refs": [
-        "plan/review/tasks_075.md",
+        "plan/done/tasks_075.md",
         "src/renderer/pack.ts",
         "vercel.json"
       ],
@@ -9355,7 +9369,14 @@
       "expected": "build/type/boundaries/secrets/targetedchecksและactualhostedmobileassets startupผ่าน พร้อมบันทึกrootcause/ข้อจำกัด ไม่เขียนownerเซฟ/ไม่restart6173",
       "verification": "RealChrome cache rollover and production headers/native-image startup; build and focused AssetPack regression",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation"
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-075-review.json",
+        "plan/evidence/task-075-before-headers.json",
+        "plan/evidence/task-075-cache-browser.json",
+        "plan/evidence/task-075-header-matching.json",
+        "plan/evidence/task-075-hosted.json"
+      ]
     }
   ]
 }

@@ -1,0 +1,48 @@
+{
+  "task_id": "TASK-075",
+  "date": "2026-10-22",
+  "passed": true,
+  "implementation_verified": true,
+  "source_commit": "67c5d03f1e2b6225745f497c1f34b0917e318bdb",
+  "deployment_url": "https://vercel.com/chanon2/ro-idle-pve/BjqEsnUr9ud5APPFSgwe8PEQJvJ1",
+  "content_hash": "4e44083962ef36aa61ab5e80cd86e1e3ed088ebb0d136744cb8ca2160655ca57",
+  "asset_pack_hash": "c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2",
+  "gameplay_change": false,
+  "schema_change": false,
+  "checks": {
+    "asset_pack_unit": 4,
+    "real_chrome_cache_rollover_groups": 3,
+    "header_pattern_cases": 4,
+    "actual_hosted_groups": 2,
+    "build_type_boundaries_secrets": true
+  },
+  "acceptance": {
+    "AC-01": "passed",
+    "AC-02": "passed",
+    "AC-03": "passed"
+  },
+  "root_cause": "Unrestricted /ro/:hash/:path* immutable header also matched /ro/manifest.json and overrode no-store. Old browser HTTP cache then mismatched the new bundle expected pack.",
+  "fix": [
+    "Restrict immutable header to64hexhashdirectories",
+    "Bypass historical cached stable manifest with fetch cache:no-store, keep hashedpayload caching and expectedpack checks"
+  ],
+  "evidence": [
+    "plan/evidence/task-075-before-headers.json",
+    "plan/evidence/task-075-cache-browser.json",
+    "plan/evidence/task-075-header-matching.json",
+    "plan/evidence/task-075-targeted.txt",
+    "plan/evidence/task-075-build.txt",
+    "plan/evidence/task-075-hosted.json",
+    "plan/evidence/task-075-github-deployment.json"
+  ],
+  "owner_cloud_writes": false,
+  "storage_cleared": false,
+  "personal_preview_restarted": false,
+  "balance_simulation": false,
+  "pending": [],
+  "limitations": [
+    "Actual production verification is signed-out shared AssetPack/demo/PWA startup; owner account and physical Android hardware not accessed",
+    "A page already open on the old bundle must reload or close/open once to run the fixed loader"
+  ],
+  "visual_scope": "Local recovered-mobile screenshot inspected in full. Hosted tests verify native portraits have nontransparent pixels and capture390x844 evidence; no new artwork or visual layout is changed."
+}

@@ -1,0 +1,1369 @@
+{
+  "task_id": "TASK-075",
+  "passed": true,
+  "error": null,
+  "checks": [
+    "Stable manifest and query variants are no-store; hashed native card media/metadata remain immutable and byte-identical; combat/content hash unchanged",
+    "Actual production cold/warm mobile demo loads scene and four nonblank native portraits under the PWA worker; manifest refetches while immutable media reuse HTTP cache; storage retained and zero mutating requests"
+  ],
+  "headers": [
+    {
+      "path": "/ro/manifest.json",
+      "cache_control": "no-store",
+      "pack_hash": "c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2"
+    },
+    {
+      "path": "/ro/manifest.json?cache_probe=075",
+      "cache_control": "no-store",
+      "pack_hash": "c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2"
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/items/card-4001.webp",
+      "cache_control": "public, max-age=31536000, immutable",
+      "sha256": "7bd56ae4022f615b86e00aed6c89a37ef44357f07ef54e3747d4fdd4d0fdafd1"
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/items/card-4001.meta.json",
+      "cache_control": "public, max-age=31536000, immutable",
+      "sha256": "ed2e2df62e885ea0b2d69e32341366e25e8b06f342af41774a213af8260b8764"
+    }
+  ],
+  "errors": [],
+  "mutations": [],
+  "responses": [
+    {
+      "request_id": "61184.34",
+      "path": "/ro/manifest.json",
+      "status": 200,
+      "cache_control": "no-store",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.35",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/sprite_effect_atlas/asset--f8701ce52f99.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.36",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/sprite_effect_atlas/asset--f8701ce52f99.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.37",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/sprite_effect_atlas/msg--849865cd65c8.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.38",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/sprite_effect_atlas/msg--849865cd65c8.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.39",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/prepared/fonts/noto-sans-thai--5ce299dd8abf.woff2",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.40",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/prepared/backgrounds/prt_fild08--7211769293e7.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.41",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/prepared/backgrounds/prt_fild08--7211769293e7.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.43",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/head_atlas/2_--ea04d8c97c75.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.45",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/body_atlas/_--f9ccfe02a920.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.42",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/body_atlas/_--1ff3d61baecc.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.47",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/weapons/weapon_overlay_atlas/_-_--9b2f530ccfee.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.49",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/head_atlas/15_--5c0a8147d06d.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.53",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/weapons/weapon_overlay_atlas/_-_--851c7948a515.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.46",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/head_atlas/13_--42b940d39a61.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.52",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/head_atlas/9_--18bee032e28b.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.51",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/body_atlas/_--fa7cfc5c07e4.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.44",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/weapons/weapon_overlay_atlas/_-_--7357c7b3458f.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.54",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/monsters/monster_atlas/poring--bdec5d1f77db.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.50",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/weapons/weapon_overlay_atlas/_-_--f7d576f8e2df.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.48",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/body_atlas/_--e4b85e09afc9.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.55",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/head_atlas/2_--ea04d8c97c75.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.59",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/head_atlas/15_--5c0a8147d06d.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.58",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/weapons/weapon_overlay_atlas/_-_--9b2f530ccfee.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.60",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/weapons/weapon_overlay_atlas/_-_--851c7948a515.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.64",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/weapons/weapon_overlay_atlas/_-_--7357c7b3458f.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.62",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/head_atlas/9_--18bee032e28b.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.67",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/body_atlas/_--e4b85e09afc9.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.61",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/head_atlas/13_--42b940d39a61.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.57",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/body_atlas/_--1ff3d61baecc.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.65",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/monsters/monster_atlas/poring--bdec5d1f77db.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.66",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/weapons/weapon_overlay_atlas/_-_--237b647de55d.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.63",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/body_atlas/_--fa7cfc5c07e4.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.56",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/body_atlas/_--f9ccfe02a920.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.82",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mg_coldbolt--5c46d34975b0.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.79",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ac_shower--51593e835f62.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.68",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/sm_bash--ea72634c4122.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.75",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/al_holylight--e3b80b042754.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.78",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ac_concentration--edaab3b65729.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.71",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/sm_magnum--343931336a56.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.69",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/sm_bash--ea72634c4122.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.72",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/sm_endure--19905fdf19f3.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.70",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/sm_provoke--c6b3ae56c7c8.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.73",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/al_heal--52575fac5ecd.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.81",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mg_firebolt--133883e2ee55.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.84",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mg_soulstrike--21673dad1b86.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.80",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ac_chargearrow--48d2983efc15.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.74",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/al_blessing--f7e2f6ead534.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.77",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ac_double--95d0a77bf2b3.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.76",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/al_incagi--66a03d4ce0b0.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.83",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mg_lightningbolt--af831f956a6a.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.85",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mg_coldbolt--5c46d34975b0.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.87",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ms_bash--e0cb54651ab9.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.94",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mg_firebolt--133883e2ee55.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.91",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/sm_endure--19905fdf19f3.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.88",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/al_holylight--e3b80b042754.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.98",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ac_double--95d0a77bf2b3.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.86",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ac_shower--51593e835f62.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.92",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mer_provoke--1fae8a89a288.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.99",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/al_incagi--66a03d4ce0b0.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.89",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ac_concentration--edaab3b65729.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.95",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mg_soulstrike--21673dad1b86.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.90",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ms_magnum--37290639e65f.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.93",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/al_heal--52575fac5ecd.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.100",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mg_lightningbolt--af831f956a6a.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.97",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/al_blessing--f7e2f6ead534.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.96",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ac_chargearrow--48d2983efc15.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.102",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/hit--21a32708b074.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.103",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/firehit1--4a19f438bcb6.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.104",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/holyhit--2386bcc47988.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.101",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/freeze--f46dfd0d129d.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.107",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/concentration--6ff559979ba2.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.105",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/arrowstorm--d2aa6744c4c7.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.106",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/provoke--13708f6fb033.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.108",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/lightning--fcff45f78f47.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.109",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/hit--21a32708b074.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.111",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/holyhit--2386bcc47988.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.112",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/freeze--f46dfd0d129d.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.115",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/proboc--2433cc71915b.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.114",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/arrowstorm--d2aa6744c4c7.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.110",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/firehit--0fa6d3de36ae.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.113",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/ac_concentration--bcb14fdeb38a.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.116",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/lightning--fcff45f78f47.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.135",
+      "path": "/ro/manifest.json",
+      "status": 200,
+      "cache_control": "no-store",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.136",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/sprite_effect_atlas/asset--f8701ce52f99.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.137",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/sprite_effect_atlas/asset--f8701ce52f99.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.138",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/sprite_effect_atlas/msg--849865cd65c8.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.139",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/sprite_effect_atlas/msg--849865cd65c8.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.140",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/prepared/fonts/noto-sans-thai--5ce299dd8abf.woff2",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": false,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.141",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/prepared/backgrounds/prt_fild08--7211769293e7.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.142",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/prepared/backgrounds/prt_fild08--7211769293e7.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.143",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/body_atlas/_--1ff3d61baecc.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.144",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/head_atlas/2_--ea04d8c97c75.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.145",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/weapons/weapon_overlay_atlas/_-_--7357c7b3458f.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.146",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/body_atlas/_--f9ccfe02a920.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.147",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/head_atlas/13_--42b940d39a61.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.148",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/weapons/weapon_overlay_atlas/_-_--9b2f530ccfee.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.149",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/body_atlas/_--e4b85e09afc9.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.150",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/head_atlas/15_--5c0a8147d06d.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.151",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/weapons/weapon_overlay_atlas/_-_--f7d576f8e2df.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.152",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/body_atlas/_--fa7cfc5c07e4.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.156",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/body_atlas/_--1ff3d61baecc.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.153",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/head_atlas/9_--18bee032e28b.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.154",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/weapons/weapon_overlay_atlas/_-_--851c7948a515.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.155",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/monsters/monster_atlas/poring--bdec5d1f77db.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.157",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/head_atlas/2_--ea04d8c97c75.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.158",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/weapons/weapon_overlay_atlas/_-_--7357c7b3458f.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.159",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/body_atlas/_--f9ccfe02a920.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.160",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/head_atlas/13_--42b940d39a61.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.161",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/weapons/weapon_overlay_atlas/_-_--9b2f530ccfee.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.162",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/body_atlas/_--e4b85e09afc9.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.163",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/head_atlas/15_--5c0a8147d06d.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.164",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/weapons/weapon_overlay_atlas/_-_--237b647de55d.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.165",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/body_atlas/_--fa7cfc5c07e4.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.166",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/head_atlas/9_--18bee032e28b.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.167",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/weapons/weapon_overlay_atlas/_-_--851c7948a515.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.168",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/monsters/monster_atlas/poring--bdec5d1f77db.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.169",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/sm_bash--ea72634c4122.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.170",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/sm_bash--ea72634c4122.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.171",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/sm_provoke--c6b3ae56c7c8.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.172",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/sm_magnum--343931336a56.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.173",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/sm_endure--19905fdf19f3.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.174",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/al_heal--52575fac5ecd.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.175",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/al_blessing--f7e2f6ead534.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.176",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/al_holylight--e3b80b042754.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.177",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/al_incagi--66a03d4ce0b0.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.178",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ac_double--95d0a77bf2b3.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.179",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ac_concentration--edaab3b65729.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.180",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ac_shower--51593e835f62.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.181",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ac_chargearrow--48d2983efc15.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.182",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mg_firebolt--133883e2ee55.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.183",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mg_coldbolt--5c46d34975b0.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.184",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mg_lightningbolt--af831f956a6a.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.185",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mg_soulstrike--21673dad1b86.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.186",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ms_bash--e0cb54651ab9.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.187",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mer_provoke--1fae8a89a288.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.188",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ms_magnum--37290639e65f.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.189",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/sm_endure--19905fdf19f3.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.190",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/al_heal--52575fac5ecd.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.192",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/al_holylight--e3b80b042754.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.191",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/al_blessing--f7e2f6ead534.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.193",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/al_incagi--66a03d4ce0b0.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.194",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ac_double--95d0a77bf2b3.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.195",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ac_concentration--edaab3b65729.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.196",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ac_shower--51593e835f62.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.197",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ac_chargearrow--48d2983efc15.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.198",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mg_firebolt--133883e2ee55.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.199",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mg_coldbolt--5c46d34975b0.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.200",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mg_lightningbolt--af831f956a6a.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.201",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mg_soulstrike--21673dad1b86.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.202",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/hit--21a32708b074.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.203",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/provoke--13708f6fb033.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.204",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/firehit1--4a19f438bcb6.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.205",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/holyhit--2386bcc47988.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.206",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/concentration--6ff559979ba2.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.207",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/arrowstorm--d2aa6744c4c7.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.208",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/freeze--f46dfd0d129d.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.209",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/lightning--fcff45f78f47.meta.json",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.210",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/hit--21a32708b074.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.211",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/proboc--2433cc71915b.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.212",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/firehit--0fa6d3de36ae.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.213",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/holyhit--2386bcc47988.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.214",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/ac_concentration--bcb14fdeb38a.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.215",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/arrowstorm--d2aa6744c4c7.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.216",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/freeze--f46dfd0d129d.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    },
+    {
+      "request_id": "61184.217",
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/lightning--fcff45f78f47.webp",
+      "status": 200,
+      "cache_control": "public, max-age=31536000, immutable",
+      "fromDiskCache": true,
+      "fromServiceWorker": false
+    }
+  ],
+  "content_hash": "4e44083962ef36aa61ab5e80cd86e1e3ed088ebb0d136744cb8ca2160655ca57",
+  "asset_pack_hash": "c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2",
+  "source_commit": "67c5d03f1e2b6225745f497c1f34b0917e318bdb",
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "scope": "Actual signed-out production/PWA/HTTP-cache/native-media startup. Owner account and physical Android hardware not accessed."
+}
