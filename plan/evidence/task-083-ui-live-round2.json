@@ -1,0 +1,110 @@
+{
+  "task_id": "TASK-083",
+  "passed": false,
+  "error": "LONG_ADD_CARD:Error: BAG_LOCK_BADGE_OVERLAP\n    at check (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/test_card_rarity_live.cjs:6:33)\n    at /Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/test_card_rarity_live.cjs:41:200",
+  "errors": [],
+  "checks": [
+    "Real old-content signed-save migration previews without writing, backs up exact old signature/state, preserves all151 cards/assignments/locks/levels/investments/pity and retains the frozen old AFK profile",
+    "All five actual card borders match item palette at320/390, card masks fill their frames, rarity filters and Elite/Mini/MVP labels reflect fixed monster identity"
+  ],
+  "measurements": [
+    {
+      "viewport_width": 390,
+      "rarity": "common",
+      "border": "rgb(152, 163, 179)",
+      "width": 51,
+      "mask": 51,
+      "fit": "cover",
+      "clip": "hidden"
+    },
+    {
+      "viewport_width": 390,
+      "rarity": "uncommon",
+      "border": "rgb(63, 174, 90)",
+      "width": 51,
+      "mask": 51,
+      "fit": "cover",
+      "clip": "hidden"
+    },
+    {
+      "viewport_width": 390,
+      "rarity": "rare",
+      "border": "rgb(59, 130, 246)",
+      "width": 51,
+      "mask": 51,
+      "fit": "cover",
+      "clip": "hidden"
+    },
+    {
+      "viewport_width": 390,
+      "rarity": "epic",
+      "border": "rgb(155, 92, 246)",
+      "width": 51,
+      "mask": 51,
+      "fit": "cover",
+      "clip": "hidden"
+    },
+    {
+      "viewport_width": 390,
+      "rarity": "legendary",
+      "border": "rgb(243, 156, 18)",
+      "width": 51,
+      "mask": 51,
+      "fit": "cover",
+      "clip": "hidden"
+    },
+    {
+      "viewport_width": 320,
+      "rarity": "common",
+      "border": "rgb(152, 163, 179)",
+      "width": 39,
+      "mask": 39,
+      "fit": "cover",
+      "clip": "hidden"
+    },
+    {
+      "viewport_width": 320,
+      "rarity": "uncommon",
+      "border": "rgb(63, 174, 90)",
+      "width": 39,
+      "mask": 39,
+      "fit": "cover",
+      "clip": "hidden"
+    },
+    {
+      "viewport_width": 320,
+      "rarity": "rare",
+      "border": "rgb(59, 130, 246)",
+      "width": 39,
+      "mask": 39,
+      "fit": "cover",
+      "clip": "hidden"
+    },
+    {
+      "viewport_width": 320,
+      "rarity": "epic",
+      "border": "rgb(155, 92, 246)",
+      "width": 39,
+      "mask": 39,
+      "fit": "cover",
+      "clip": "hidden"
+    },
+    {
+      "viewport_width": 320,
+      "rarity": "legendary",
+      "border": "rgb(243, 156, 18)",
+      "width": 39,
+      "mask": 39,
+      "fit": "cover",
+      "clip": "hidden"
+    }
+  ],
+  "commands": [
+    "account.create",
+    "save.migrate"
+  ],
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "balance_simulation": false,
+  "scope": "Disposable actual signed migration/Auth/API/Postgres/PostgREST and mobile320/390 Chrome emulation; not owner account or physical Android benchmark."
+}

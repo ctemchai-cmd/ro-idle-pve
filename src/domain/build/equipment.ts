@@ -2,6 +2,7 @@ import type { AccountState, Modifier, StatBlueprint, Trigger } from '../../contr
 import type { ValidatedContent } from '../../content/model.ts';
 import { equipmentFit, equipmentRules, equipmentSlots, itemDefinition, type EquipmentSlot } from './equipment-definition.ts';
 import { optionModifiers } from './item-options.ts';
+import { cardRarityPower } from './card-rarity.ts';
 type Source=StatBlueprint['permanent_sources'][number];
 interface SlotRules {refine:{per_step_modifiers:Record<EquipmentSlot,Modifier[]>};enchant:{lines:Record<string,Modifier[]>}}
 export function resolvedEquipmentModifiers(item:Extract<AccountState['inventory'][number],{kind:'equipment'}>,content:ValidatedContent):Modifier[]{
@@ -12,7 +13,7 @@ export function resolvedEquipmentModifiers(item:Extract<AccountState['inventory'
 }
 export function cardPowerMultiplier(card:Extract<AccountState['inventory'][number],{kind:'card'}>,content:ValidatedContent):number{
  const rules=content.documents['cards.json'] as unknown as{level_multipliers:number[];rarities:{id:string;multiplier:number}[]};
- const quality=rules.rarities.find(r=>r.id===card.rarity_id)?.multiplier,level=rules.level_multipliers[card.level-1];
+ const quality=cardRarityPower(card,content),level=rules.level_multipliers[card.level-1];
  if(quality===undefined||level===undefined)throw new Error('INVALID_CARD_PROGRESSION');
  return quality*level;
 }

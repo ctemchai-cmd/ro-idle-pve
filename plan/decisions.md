@@ -189,6 +189,10 @@ Q-001–Q-022 ตอบแล้ว โดย Q-017/Q-022 ยืนยัน add
 
 รอบคุย D-030–D-032 มี [โมดูลและสถานะ](design/12-effects-and-composition.md) กับ [สมการดาเมจ/คริ/เกราะ](design/13-damage-crit-and-defense.md) เป็นข้อเสนอ เพิ่ม TASK-047 หลัง TASK-002 ก่อน TASK-003–009 โดยผ่าน gate TASK-014 เช่นเดิม ยังไม่ย้ายงานใดออกจาก todo
 
+| D-109 | 22 ต.ค.2026 ผู้ใช้ขอขอบช่องการ์ดตามItem และยืนยัน7raritiesมีผลต่อพลัง/ดรอป จากนั้นแก้ให้มอนอ่อนสีเทา/เก่งเขียว/Eliteฟ้า/Miniม่วง/MVPทอง สูงสุดLegendaryตอนนี้ | TASK-083 ใช้fixedrarityต่อmonsteridentity Common/Uncommon/Rare/Epic/Legendary ไม่สุ่มหลายqualityให้การ์ดชนิดเดียวกัน แทนคำตอบเรื่องrandomqualityก่อนหน้าด้วยคำแก้ล่าสุด Immortal/Supremefutureปิด คงrarecardchance1–2%และlegacyinvestmentfloor |
+
+| D-110/D-111 | 22 ต.ค.2026 ผู้ใช้ขอAdd Cardเรียงสวมท้าย/ป้ายสวมชัด, เลขRefine/Enchantไม่รก และคำอธิบายข้างรูป/ปุ่มใส่ไม่ต้องเลื่อนหาท้ายรายการ | TASK-083เพิ่มowner-sortedlist/inlineeffects/fixedfooterและcompactslotprogress badges คงassignmentcommandหนึ่งครั้ง/ไม่เพิ่มAPIตอนดู/เลื่อน |
+
 ## แบบทางเทคนิคที่ปรับในรอบ D-036
 
 ใช้ [extension contracts](design/14-extension-contracts.md) และ [ตัวอย่างประกอบ](examples/composition-contract.json) เป็นฐานออกแบบ ไม่ใช่ user-confirmed schema หรือผลทดสอบ engine:

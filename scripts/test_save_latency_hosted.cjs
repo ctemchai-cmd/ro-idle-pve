@@ -82,6 +82,16 @@ const assert=(ok,message)=>{if(!ok)throw new Error(message);};let browser,profil
   assert(['ASURA STRIKE','showFinisherTitles','staleGameMs','monk_asura','crusader_grand_cross','wizard_meteor','assassin_sonic_blow'].every(s=>renderer.text.includes(s)),'BIG_SKILL_PRESENTATION_NOT_DEPLOYED');
   cardFinisherProof={tasks:['TASK-080','TASK-081','TASK-082'],art_mask_and_owned_socket_frames:true,farm_version:'card_farm_v2',chance_per_million:[10000,20000],big_skills:15,exact_public_bundle_hashes:[cards,styles,data,renderer].map(({path,sha256})=>({path,sha256}))};
  }
+ if(prefix==='task-083'){
+  const patterns=[/\/shell-.*\.js$/,/\/shell-.*\.css$/,/\/item-options-.*\.js$/],rows=patterns.map(p=>manifest.build_files.find(r=>p.test(r.path)));assert(rows.every(Boolean),'NO_FIXED_CARD_BUNDLES');
+  const parts=await Promise.all(rows.map(async row=>{const response=await fetch(base+'/'+row.path.replace(/^dist\//,'')),bytes=Buffer.from(await response.arrayBuffer());assert(response.ok&&createHash('sha256').update(bytes).digest('hex')===row.sha256,'FIXED_CARD_PUBLIC_CHECKSUM');return bytes.toString('utf8');}));
+  const[ui,css,raw]=parts,data=raw.replaceAll('\\"','"');
+  assert(['card-selection-footer','card-pick-description','card-worn-label','equipment-progress','ใส่อยู่ ·','Legendary ใน'].every(s=>ui.includes(s)),'ADD_CARD_UX_NOT_DEPLOYED');
+  assert(['.quality-common','.quality-uncommon','.quality-rare','.quality-epic','.quality-legendary','.card-upgrade-sheet','.equipment-progress'].every(s=>css.includes(s)),'FIXED_CARD_COLORS_NOT_DEPLOYED');
+  assert(['card_farm_v3','card_rarity_v3','"release_max":"legendary"','"future_only":["immortal","supreme"]','"strength_class":"elite"','"strength_class":"mini"','"strength_class":"mvp"','"rarity_is_equipment_rarity":true','legacy_quality'].every(s=>data.includes(s)),'FIXED_MONSTER_RARITY_NOT_DEPLOYED');
+  assert(data.includes('"chance_start":10000')&&data.includes('"chance_end":20000'),'RARE_CARD_QUANTITY_CHANGED');
+  cardFinisherProof={tasks:['TASK-083'],fixed_monster_rarity:true,current_max:'legendary',item_palette:true,free_first_owner_badges:true,inline_descriptions_and_pinned_action:true,slot_refine_enchant:true,legacy_floor:true,farm_version:'card_farm_v3',chance_per_million:[10000,20000],exact_public_bundle_hashes:rows.map(({path,sha256})=>({path,sha256}))};
+ }
  if(['task-077','task-078'].includes(prefix)){
   const definitions=manifest.build_files.find(r=>/^dist\/assets\/item-options-.*\.js$/.test(r.path));assert(definitions,'NO_BUILD_IMPACT_DATA');
   const actual=await(await fetch(base+'/'+definitions.path.replace(/^dist\//,''))).text();

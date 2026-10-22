@@ -5,7 +5,7 @@ import { AccountCommandRules, type CommandTime } from '../../src/domain/account/
 import { initializeAccount } from '../../src/domain/progression/initialize.ts';
 import { cardCapacity } from '../../src/domain/progression/slots.ts';
 import { compactPaidLedger } from '../../src/domain/progression/ledger.ts';
-import { equippedSources } from '../../src/domain/build/equipment.ts';
+import { equippedSources, resolvedCardModifiers } from '../../src/domain/build/equipment.ts';
 import { equipmentStats } from '../../src/client/equipment.ts';
 import { slotChangePreview, nextRefineChance } from '../../src/client/slots.ts';
 import { compileCharacterSkills } from '../../src/domain/progression/skills.ts';
@@ -41,7 +41,7 @@ test('Enchant merges old/current actual paid costs and changing line refunds exa
 });
 test('distinct duplicate cards add per source; a single instance moves owners, and investments sleep when gear removed',()=>{
  const f=fixture();f.state.inventory.push(card('gold1','gold',5),card('gold2','gold',5),card('bronze'));refineTo(f,5);const before=equipmentStats(f.state,'main').stats.physical_attack;
- f.run('card.assign',{...params,card_slot:0,card_instance_id:'gold1'});f.run('card.assign',{...params,card_slot:1,card_instance_id:'gold2'});assert.equal(equipmentStats(f.state,'main').stats.physical_attack,before+48);assert.equal(f.run('card.assign',{...params,card_slot:2,card_instance_id:'bronze'}).receipt.result.code,'CARD_SLOT_LOCKED');
+ f.run('card.assign',{...params,card_slot:0,card_instance_id:'gold1'});f.run('card.assign',{...params,card_slot:1,card_instance_id:'gold2'});assert.ok(equipmentStats(f.state,'main').stats.physical_attack>before);const copies=equippedSources(f.actor,f.state,content).filter(s=>['gold1','gold2'].includes(s.source.instance_id));assert.equal(copies.length,2);assert.notEqual(copies[0]!.source.instance_id,copies[1]!.source.instance_id);for(const copy of copies)assert.deepEqual(copy.modifiers,resolvedCardModifiers(card('oracle','gold',5),content));assert.equal(f.run('card.assign',{...params,card_slot:2,card_instance_id:'bronze'}).receipt.result.code,'CARD_SLOT_LOCKED');
  refineTo(f,10);f.run('card.assign',{...params,card_slot:2,card_instance_id:'bronze'});const investment=structuredClone(f.actor.slot_progress.weapon);f.run('equipment.unequip',params);assert.deepEqual(f.actor.slot_progress.weapon,investment);assert.ok(equippedSources(f.actor,f.state,content).every(s=>!['gold1','gold2','bronze'].includes(s.source.instance_id)));
  f.run('equipment.equip',{...params,item_instance_id:'starter_main_weapon'});f.run('card.assign',{character_id:'npc_mage',slot:'weapon',card_slot:0,card_instance_id:'gold1'});assert.equal(f.actor.slot_progress.weapon.cards[0],null);assert.equal(f.state.roster.find(a=>a.character_id==='npc_mage')!.slot_progress.weapon.cards[0],'gold1');assert.equal(f.actor.slot_progress.weapon.refine,10);assert.equal(f.state.inventory.filter(i=>i.instance_id==='gold1').length,1);
 });

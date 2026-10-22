@@ -48,5 +48,10 @@ export function cardView(item:CardItem,state:AccountState){
  const presentations=content.documents['cards.json']!.presentations as unknown as{id:string;symbol_asset_id:string}[];
  const definition=itemDefinition(item,content);return{item,definition,name:labels[definition.name_key]??definition.id,owner:assignedOwner(state,item.instance_id),iconId:presentations.find(p=>p.id===definition.presentation_id)?.symbol_asset_id??null,origin:cardOrigin(item.definition_id),effects:cardEffects(item),nextEffects:item.level<5?cardEffects({...item,level:item.level+1}):null,modifiers:resolvedCardModifiers(item,content),nextModifiers:item.level<5?resolvedCardModifiers({...item,level:item.level+1},content):null,price:item.level<5?upgradeQuote(item.level,item.level+1,5,cardsData.level_cost_rows):null};
 }
-export function cardInventory(state:AccountState,slot:EquipmentSlot){return state.inventory.filter((i):i is CardItem=>i.kind==='card').filter(i=>itemDefinition(i,content).slot===slot).map(item=>cardView(item,state));}
+export function cardInventory(state:AccountState,slot:EquipmentSlot){return state.inventory.filter((i):i is CardItem=>i.kind==='card').filter(i=>itemDefinition(i,content).slot===slot).map(item=>cardView(item,state)).sort((a,b)=>Number(!!a.owner)-Number(!!b.owner)||rarityOrder(b.item.rarity_id)-rarityOrder(a.item.rarity_id)||b.item.level-a.item.level||a.name.localeCompare(b.name,'th'));}
+const rarityOrder=(id:string)=>['common','uncommon','rare','epic','legendary','immortal','supreme'].indexOf(id);
+export function farmCardRarityOdds(profile:NonNullable<NonNullable<AccountState['farm']['rate_snapshot']>['card_drops']>){
+ const weights:Record<string,number>={};for(const id of profile.definition_pool){const rarity=profile.definition_rarities?.[id]??cardOrigins(content)[id]?.rarity_id;if(rarity)weights[rarity]=(weights[rarity]??0)+(profile.definition_weights[id]??0);}
+ const total=Object.values(weights).reduce((a,b)=>a+b,0);return Object.entries(weights).sort(([a],[b])=>rarityOrder(a)-rarityOrder(b)).map(([rarity,weight])=>({rarity,percent:weight/total*100}));
+}
 export const salvageCardsQuote=(items:readonly InventoryItem[])=>cardSalvageQuote(items,content);

@@ -36,21 +36,11 @@
     "preserve_tier_upgrade": true
   },
   "cards": {
-    "version": "card_farm_v2",
+    "version": "card_farm_v3",
     "roll_interval": "One independent card chance per existing five-minute gear interval; D-107: 1–2% per roll, expected1.44–2.88 cards per12h; no guarantee per claim",
     "chance_start": 10000,
     "chance_end": 20000,
     "weight_total": 1000000,
-    "quality_start": {
-      "bronze": 850000,
-      "silver": 140000,
-      "gold": 10000
-    },
-    "quality_end": {
-      "bronze": 150000,
-      "silver": 500000,
-      "gold": 350000
-    },
     "grade_unlock_chapter": {
       "normal": 1,
       "mini": 2,
@@ -81,7 +71,7 @@
         "60": 100
       }
     },
-    "quality_and_grade": "Bronze/Silver/Gold is enhancement quality; Normal/Mini/MVP is source monster class, shown separately.",
-    "legacy": "Snapshots without card_drops earn no retroactive cards; first farm claim settles that old interval then installs the new profile for subsequent accrual."
+    "quality_and_grade": "D-109: fixed Common weak / Uncommon strong / Rare Elite / Epic Mini / Legendary MVP; no per-copy quality roll, Immortal/Supreme disabled. chance1–2% unchanged.",
+    "legacy": "Preserve frozen v1/v2 chance/pool/quality roll for old accrual, normalize resulting monster rarity and keep legacy quality floor. New v3 profiles freeze per-definition rarities."
   }
 }

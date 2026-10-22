@@ -1,0 +1,14 @@
+{"equipment": 144, "future": 36, "cards": 66, "written": true}
+
+> ro-idle-classic@0.1.0 content:generate
+> node --import tsx scripts/game/generate-content.ts
+
+/Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/game/generate-content.ts:18
+  if (hash(bytes) !== m0.input_sha256[file]) throw new Error(`M0 manifest stale at ${file}; re-review changed authored data first`);
+                                                   ^
+
+
+Error: M0 manifest stale at plan/data/cards.json; re-review changed authored data first
+    at <anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/game/generate-content.ts:18:52)
+
+Node.js v24.1.0

@@ -11,6 +11,7 @@ import { towerBoss, towerCanChallenge, towerRow, towerStageRef } from '../modes/
 import { bangkokDay, dailyBoss, dailyBossActor, dailyChest, dailyRecord, dailyRef, dailyUnlocked, modePolicy, parseDailyRef, type DailyBossId } from '../modes/daily.ts';
 import type { BattleCheckpoint } from '../../contracts/index.ts';
 import { gachaCardDefinition } from '../rewards/cards.ts';
+import { cardRarity } from '../build/card-rarity.ts';
 import { gachaGearTier, pullCards, pullCost, pullGear } from '../rewards/gacha.ts';
 import { boundItemInstances } from '../build/equipment-definition.ts';
 import { applyGearUpgrade, type GearUpgradeCommand } from '../progression/gear-upgrades.ts';
@@ -263,7 +264,7 @@ export class AccountCommandRules extends AccountCreationRules {
               const row=towerRow(floor,this.content),limit=Number((this.content.documents['save-contracts.json']!.farm as unknown as {queue_limit:number}).queue_limit);
               if(state.pending_rewards.length>=limit)reject('PENDING_REWARDS_FULL');
               const items:AccountState['inventory']=[],rng={state:(time.battle_seed??floor)>>>0,draw_count:0};
-              for(let n=0;n<row.bronze_card_count;n++)items.push({instance_id:`tower_${floor}_card_${n}`,definition_id:gachaCardDefinition(nextRandom(rng),this.content,gachaGearTier(state,this.content)),kind:'card',rarity_id:'bronze',locked:false,level:1});
+              for(let n=0;n<row.bronze_card_count;n++){const definition_id=gachaCardDefinition(nextRandom(rng),this.content,gachaGearTier(state,this.content));items.push({instance_id:`tower_${floor}_card_${n}`,definition_id,kind:'card',rarity_id:cardRarity(definition_id,this.content),locked:false,level:1});}
               state.tower.highest_cleared_floor=floor;
               state.pending_rewards.push({claim_id:`tower_${floor}`,kind:'tower',resource_vector:{...Object.fromEntries(Object.keys(state.wallet).map(k=>[k,0])),gold:row.gold,crystal:row.crystal}as AccountState['wallet'],items,content_version:this.versions.content_version,reserved_at:time.server_at,source_keys:[`tower:${floor}`,`battle:${pointer!.battle_id}`],status:'pending'});
             }

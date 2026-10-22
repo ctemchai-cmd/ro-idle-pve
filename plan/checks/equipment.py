@@ -59,7 +59,7 @@ def values():
  return {'common_sword60_plus_refine10_gold_card5':294,'epic_sword60_base':285,'refine10_gold':77000,'refine10_ore':275,'enchant10_gold':115500,'formula':'add source modifiers once through central buckets'}
 check('numeric_progression_examples',['AC-01','AC-04'],values)
 def cardrules():
- assert len(cards['definitions'])==66 and cards['level_multipliers']==[1,1.25,1.5,1.75,2];assert not cards['rarity_is_equipment_rarity'];assert [r['id'] for r in cards['rarities']]==['bronze','silver','gold']
+ assert len(cards['definitions'])==66 and cards['level_multipliers']==[1,1.25,1.5,1.75,2];assert cards['rarity_is_equipment_rarity'];assert [r['id'] for r in cards['rarities']]==['common','uncommon','rare','epic','legendary','immortal','supreme'];assert all(o['rarity_id']=={'mini':'epic','mvp':'legendary'}.get(o['grade'], 'common' if o['source_level']<=20 else 'uncommon' if o['source_level']<=45 else 'rare') for o in cards['origins'].values());assert [r['id'] for r in cards['rarities'] if r['enabled']]==['common','uncommon','rare','epic','legendary']
  assert sum(r['card_dust'] for r in cards['level_cost_rows'])==300
  return {'definitions':66,'source_grades':{'normal':49,'mini':6,'mvp':11},'card_instance_level_max':5,'max_upgrade_dust':300,'unequipped_duplicate_bronze_yield':20,'same_card_copies':'distinct instances, additive sources'}
 check('card_rarity_duplicates_and_levels',['AC-04'],cardrules)

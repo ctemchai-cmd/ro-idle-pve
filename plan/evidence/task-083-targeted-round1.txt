@@ -1,0 +1,77 @@
+✔ gear card frames use only unlocked sockets, show empty slots and preserve state (2.8665ms)
+✔ frames disclose Bronze/Silver/Gold from actual card instances, separately from monster grade (8.5245ms)
+✔ moving equipment leaves cards with each character slot; unowned gear has no attached cards (6.467625ms)
+✔ subsecond farm reservations preserve integer carry and pay no wallet before reward claim (6.345542ms)
+✔ latest12h cap, frozen rate/definition snapshot and rarity-before-definition RNG are replayable (2.454583ms)
+✔ full pending queue/clock regression rejects before any cursor, RNG or reward mutation (1.184708ms)
+✔ rate switch keeps the old reserved bundle fixed and continues from only the unpaid interval (0.418875ms)
+✔ T037 AC-01: the card pool is all 66 RO cards (D-099) drawn from the player's tier at 50/25/20/2/3 for 100/1000 crystal, with no pet/artifact outcomes (7.254833ms)
+✔ T037 AC-02: a pull debits crystal, adds cards and moves pity atomically; 99 crystal changes nothing (209.597708ms)
+✔ T037 AC-03: the same server seed reproduces the same cards; duplicates are distinct instances that salvage for 20/40/80 dust unless worn/locked (9.883834ms)
+✔ T037 AC-04: a worst-case bronze sequence hits silver at pull 10 and 20 and gold at pull 30, then counters reset (1.247209ms)
+✔ T052 AC-01: every creation path gives Rare 1 / Epic 2 / Legendary 3 / Immortal 4 / Supreme 5 lines (D-068) within range, deterministic per seed (4.2475ms)
+✔ T052 AC-02: option lines enter the shared stat pipeline exactly once and the pool has no timing stats (1.094208ms)
+✔ T052 AC-03: tier-up keeps the rolled lines and scales their values; old saves get stable lines from migration (8.693333ms)
+✔ T051 AC-01: shop offers debit and grant exactly, refuse over-limit/insufficient buys whole, and reset limits on the next Bangkok day (17.006792ms)
+✔ T051 AC-02: equipment gacha costs 150/1500 crystal from the server seed, with epic pity on the 10th and legendary pity on the 50th (6.455459ms)
+✔ T051 AC-03: gacha gear uses the player's tier and works with equip/fuse/tier-up/salvage like any drop (5.627542ms)
+✔ D-068: the gear gacha banner states the rolled option lines from content (Immortal 4, Supreme 5), not a stale literal (520.15425ms)
+✔ D-068 regression (found by the 25-day journey, 21 Oct 2026): a Supreme item with 5 option lines is a valid save in the inventory and in a pending reward (5.585709ms)
+✔ 66 native RO cards preserve all 60 legacy IDs, correct slots, exact art IDs and distinct source grades (16.703625ms)
+✔ quality/level improve benefits, reduce penalties, scale proc power once and pure control chance only (0.886ms)
+✔ Raydric/Deviling reduce neutral damage and retain weaknesses; true damage bypasses new resistance (8.431708ms)
+✔ armor element and GTB magic-only guard/SP cost use shared stats; physical hits stay unchanged (35.278708ms)
+✔ Marc/Marduk/Deviruchi resist only their status; hard CC still interrupts Phen (6.525667ms)
+✔ Maya reflects magical only; normalized proc cannot recursively reflect itself (1.161083ms)
+✔ Moonlight changes motion only, with identical virtual-time integration across frame chunks (11.1595ms)
+✔ Osiris improves the existing revive recovery without adding a revive or replaying its old cast (1.390333ms)
+✔ every authored card proc resolves actual effects with target tags and no formula/status errors (5.85775ms)
+✔ Hydra target bonus requires a physical hit against the matching race; its own proc cannot retrigger (1.23225ms)
+✔ farm profile improves stage chance/quality, gates Mini/MVP, retains earlier cards and favors current tiers (58.556958ms)
+✔ D-107 rare farm has1.44–2.88 expected cards per12h, true boundary chances and unchanged quality/grade rules (52.932209ms)
+✔ D-107 frozen v1 accrual/owned/pending cards survive migration; claim settles old rate once then installs v2 (672.632334ms)
+✔ seeded farm split/cap/retry produces same fixed cards/gear and RNG without kill or speed input (8.212ms)
+✔ legacy snapshot settles before enabling cards; full bag never consumes or rerolls pending rewards (1725.076834ms)
+✔ slot correction migration returns incompatible cards to bag and preserves exact instance/quality/level/lock (222.267958ms)
+✔ D-058 migration fills new fields, rebalances status budgets and drops dangling stages, then passes the server validator (86.537458ms)
+✔ D-058 migration refunds status investments that exceed the new budget instead of keeping unfunded stats (1.825792ms)
+✔ D-058 migration SQL appends one signed revision per outdated save and skips current saves (1556.376291ms)
+✔ Refine4→5 and9→10 open exact sockets, costs total77000gold/275ore when every step succeeds; max11/duplicate target do not debit (653.2625ms)
+✔ Enchant merges old/current actual paid costs and changing line refunds exact2800gold/11dust once into immutable receipt, not current4200 price (463.059584ms)
+✖ distinct duplicate cards add per source; a single instance moves owners, and investments sleep when gear removed (277.220375ms)
+✔ card level1→5 charges7500gold/300dust once; salvage yields rarity dust only and protected batches reject before mutation (240.655125ms)
+✔ Precision affects preview/engine DEX and CT/ACD through shared primary pipeline; poor-wallet preview works without mutation (234.366209ms)
+✔ repeated level/enchant/reset operations keep only bounded active scopes and archive exact refund evidence without growing save history (265.701958ms)
+✔ equipped-card payload changes build fingerprints, unassigned rewards do not; all slot/card mutations reject while a battle is active (210.98625ms)
+✔ D-057 Refine: +1..+4 always succeed, later steps roll a server seed; failure spends only the step cost, keeps the level and adds pity (231.245958ms)
+✔ D-057 Refine pity reaches the cap so +9→+10 (20%) is guaranteed after 8 failures; unseeded rolls are refused (533.665834ms)
+ℹ tests 47
+ℹ suites 0
+ℹ pass 46
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7303.341208
+
+✖ failing tests:
+
+test at tests/game/slot-progression.test.ts:1:5574
+✖ distinct duplicate cards add per source; a single instance moves owners, and investments sleep when gear removed (277.220375ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  235.52 !== 128
+  
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/slot-progression.test.ts:44:149)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 235.52,
+    expected: 128,
+    operator: 'strictEqual'
+  }

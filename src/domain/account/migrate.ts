@@ -5,6 +5,7 @@ import { storyStage, storyFarmSnapshot } from '../modes/story.ts';
 import { legacyOptionSeed, rollItemOptions } from '../build/item-options.ts';
 import { nextRandom } from '../../content/random.ts';
 import { dailyUnlocked } from '../modes/daily.ts';
+import { migrateCardRarity } from '../build/card-rarity.ts';
 
 export interface SaveMigration { state: AccountState; changes: string[] }
 const canonicalPool = (pool: readonly string[]) => [...pool].sort().join(',');
@@ -16,6 +17,10 @@ const canonicalPool = (pool: readonly string[]) => [...pool].sort().join(',');
  */
 export function migrateAccountState(input: unknown, content: ValidatedContent): SaveMigration {
   const state = structuredClone(input) as AccountState, changes: string[] = [], data = progressionData(content);
+  for(const items of [state.inventory,...state.pending_rewards.map(claim=>claim.items)])for(let index=0;index<items.length;index++){
+    const item=items[index]!;if(item.kind!=='card')continue;
+    const normalized=migrateCardRarity(item,content);if(normalized.rarity_id!==item.rarity_id){items[index]=normalized;changes.push(`${item.instance_id}: fixed monster rarity ${item.rarity_id} -> ${normalized.rarity_id} (prior power retained)`);}
+  }
   for (const actor of state.roster) for (const [slot, progress] of Object.entries(actor.slot_progress) as [string, { refine_failures?: number }][]) {
     if (progress.refine_failures === undefined) { progress.refine_failures = 0; changes.push(`${actor.character_id}.${slot}.refine_failures=0`); }
   }

@@ -23,7 +23,7 @@ ROOT = Path(__file__).resolve().parents[1]
 RUN_TAG = os.environ.get("RO_EVIDENCE_PREFIX", "task-021")
 if not re.fullmatch(r"task-[0-9]{3}",RUN_TAG): raise SystemExit("INVALID_EVIDENCE_PREFIX")
 FOCUS = os.environ.get("RO_LOCAL_TEST_FOCUS", "all")
-if FOCUS not in ("all", "auth", "navigation", "daily_terminal", "statuses", "history", "healing", "cards", "elements", "impact", "skill_descriptions", "card_frames", "equipment", "slots", "growth", "shell", "compact", "cadence", "settlement", "daily_reset", "save_latency"): raise SystemExit("INVALID_TEST_FOCUS")
+if FOCUS not in ("all", "auth", "navigation", "daily_terminal", "statuses", "history", "healing", "cards", "elements", "impact", "skill_descriptions", "card_frames", "card_rarity", "equipment", "slots", "growth", "shell", "compact", "cadence", "settlement", "daily_reset", "save_latency"): raise SystemExit("INVALID_TEST_FOCUS")
 TOOLS = Path(os.environ.get("RO_AUTH_TOOLS", "/private/tmp/ro-idle-auth-tools"))
 PG = Path(os.environ.get("RO_PG_BIN") or subprocess.check_output(["pg_config", "--bindir"], text=True).strip())
 NODE = os.environ.get("RO_NODE", "node")
@@ -105,6 +105,10 @@ with tempfile.TemporaryDirectory(prefix="ro-auth21-", dir="/private/tmp") as fol
             report["checks"].append("Real Story failure/main-death/90s/terminal-lease SQL boundary tests passed")
         start("vite",[NODE,ROOT/"node_modules/vite/bin/vite.js","--host","127.0.0.1","--port",str(ui_port),"--strictPort"],cwd=ROOT)
         wait_url(ui+"/auth")
+        if FOCUS == "card_rarity":
+            result = run([NODE,ROOT/"scripts/test_card_rarity_live.cjs"],environment)
+            (ROOT/("plan/evidence/"+RUN_TAG+"-card-rarity-ui.txt")).write_text(result)
+            report["checks"].append("Actual fixed monster rarity/signed migration/long Add Card UI/progress badges/assignment/pity/frozen farm passed")
         if FOCUS == "card_frames":
             result = run([NODE,ROOT/"scripts/test_card_frames_live.cjs"],environment)
             (ROOT/("plan/evidence/"+RUN_TAG+"-card-frames-ui.txt")).write_text(result)

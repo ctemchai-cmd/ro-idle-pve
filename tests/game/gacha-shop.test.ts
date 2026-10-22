@@ -28,15 +28,15 @@ function fixture(mutate: (state: AccountState) => void = () => {}, startIso = '2
 }
 
 // --- TASK-037 card gacha -------------------------------------------------------------------------------
-test('T037 AC-01: the card pool is all 66 RO cards (D-099) drawn from the player\'s tier at 75/22/3 for 100/1000 crystal, with no pet/artifact outcomes', () => {
+test('T037 AC-01: D109 fixed monster cards use all66 identities at50/25/20/2/3 for 100/1000 crystal, with no pet/artifact outcomes', () => {
   const pool = content.documents['gacha.json'] as unknown as { definitions: string[]; quality_weights: Record<string, number>; disabled_pools: string[] };
-  assert.equal(pool.definitions.length, 66); assert.deepEqual(pool.quality_weights, { bronze: 750000, silver: 220000, gold: 30000 });
+  assert.equal(pool.definitions.length, 66); assert.deepEqual(pool.quality_weights, {common:500000,uncommon:250000,rare:200000,epic:20000,legendary:30000,immortal:0,supreme:0});
   assert.deepEqual(pullCost('card_v1', 1, content), { crystal: 100 }); assert.deepEqual(pullCost('card_v1', 10, content), { crystal: 1000 });
-  const tierOf = (id: string) => (content.items[id] as unknown as { tier_level: number }).tier_level, draws = () => { let n = 0; return () => (n++ * 0.137) % 1; };
+  const draws = () => { let n = 0; return () => (n++ * 0.137) % 1; };
   const early = fixture().state, items = pullCards(early, 10, draws(), 'probe', content);
-  assert.ok(items.every(item => item.kind === 'card' && pool.definitions.includes(item.definition_id) && tierOf(item.definition_id) === 1), 'chapter 1 pulls tier-1 cards');
+  assert.ok(items.every(item => item.kind === 'card' && pool.definitions.includes(item.definition_id) ), 'all cards come from the fixed-monster catalog');
   const late = fixture(s => { s.story.cleared_stage_ids = storyStages(content).filter(st => st.chapter <= 5).map(st => st.id); }).state, lateItems = pullCards(late, 10, draws(), 'late', content);
-  assert.ok(lateItems.every(item => tierOf(item.definition_id) === 40), 'chapter 5 cleared pulls tier-40 cards'); assert.deepEqual(pool.disabled_pools, ['pet', 'artifact']);
+  assert.deepEqual(lateItems.map(i=>[i.definition_id,i.rarity_id]),items.map(i=>[i.definition_id,i.rarity_id]),'card gacha uses all66 identities; equipment tier remains gear-only'); assert.deepEqual(pool.disabled_pools, ['pet', 'artifact']);
 });
 
 test('T037 AC-02: a pull debits crystal, adds cards and moves pity atomically; 99 crystal changes nothing', () => {
@@ -48,21 +48,21 @@ test('T037 AC-02: a pull debits crystal, adds cards and moves pity atomically; 9
   const counters = f.state.gacha.card_v1; assert.ok(counters.gold_misses <= 29 && counters.bronze_streak <= 9);
 });
 
-test('T037 AC-03: the same server seed reproduces the same cards; duplicates are distinct instances that salvage for 20/40/80 dust unless worn/locked', () => {
+test('T037 AC-03: the same server seed reproduces the same cards; duplicates are distinct fixed-rarity instances with rarity salvage unless worn/locked', () => {
   const a = fixture(s => { s.wallet.crystal = 1000; }), b = fixture(s => { s.wallet.crystal = 1000; });
   a.run('gacha.pull', { pool_id: 'card_v1', count: 10 }, 7); b.run('gacha.pull', { pool_id: 'card_v1', count: 10 }, 7);
   assert.deepEqual(a.state.inventory, b.state.inventory); assert.deepEqual(a.state.gacha, b.state.gacha);
   const cards = a.state.inventory.filter(item => item.kind === 'card'); assert.equal(new Set(cards.map(card => card.instance_id)).size, 10);
-  const dust = { bronze: 20, silver: 40, gold: 80 } as Record<string, number>, target = cards[0]!, wallet = a.state.wallet.card_dust;
+  const dust = { common:20,uncommon:40,rare:80,epic:120,legendary:200,immortal:300,supreme:400 } as Record<string, number>, target = cards[0]!, wallet = a.state.wallet.card_dust;
   assert.equal(a.run('card.salvage', { instance_ids: [target.instance_id] }).result.code, 'CARDS_SALVAGED'); assert.equal(a.state.wallet.card_dust, wallet + dust[target.rarity_id]!);
   const locked = cards[1]!; a.run('equipment.lock', { item_instance_id: locked.instance_id, locked: true });
   assert.equal(a.run('card.salvage', { instance_ids: [locked.instance_id] }).result.code, 'ITEM_LOCKED');
 });
 
-test('T037 AC-04: a worst-case bronze sequence hits silver at pull 10 and 20 and gold at pull 30, then counters reset', () => {
+test('T037 AC-04: a worst-case Common sequence hits Rare at pull10/20 and Legendary at pull30, then counters reset', () => {
   const state = fixture().state, worst = () => 0, qualities = pullCards(state, 10, worst, 'a', content).concat(pullCards(state, 10, worst, 'b', content), pullCards(state, 10, worst, 'c', content)).map(item => item.rarity_id);
-  assert.equal(qualities[9], 'silver'); assert.equal(qualities[19], 'silver'); assert.equal(qualities[29], 'gold');
-  assert.ok(qualities.filter((_, i) => ![9, 19, 29].includes(i)).every(q => q === 'bronze'));
+  assert.equal(qualities[9], 'rare'); assert.equal(qualities[19], 'rare'); assert.equal(qualities[29], 'legendary');
+  assert.ok(qualities.filter((_, i) => ![9, 19, 29].includes(i)).every(q => q === 'common'));
   assert.deepEqual(state.gacha.card_v1, { gold_misses: 0, bronze_streak: 0 });
   assert.doesNotThrow(() => rules.validateAccount(structuredClone(state)));
 });

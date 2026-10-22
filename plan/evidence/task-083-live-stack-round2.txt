@@ -1,0 +1,61 @@
+{
+  "task_id": "TASK-083",
+  "test_focus": "card_rarity",
+  "passed": false,
+  "self_hosted_local": true,
+  "hosted_supabase_tested": false,
+  "components": [
+    {
+      "tool": "auth",
+      "version": "2.197.0",
+      "archive": "auth-v2.197.0-darwin-arm64.tar.gz",
+      "url": "https://github.com/supabase/auth/releases/download/v2.197.0/auth-v2.197.0-darwin-arm64.tar.gz",
+      "sha256": "3fb7998e7061e2c14f3f9555b1d94d447358c965395728e0d81eac82e0e5868b",
+      "executable": "auth"
+    },
+    {
+      "tool": "postgrest",
+      "version": "16.4",
+      "archive": "postgrest-v16.4-macos-aarch64.tar.xz",
+      "url": "https://github.com/PostgREST/postgrest/releases/download/v16.4/postgrest-v16.4-macos-aarch64.tar.xz",
+      "sha256": "5720fbde4a19ade9fb189791615c84beb9f0e58201b1b6d17fe3b698faf60776",
+      "executable": "postgrest"
+    },
+    {
+      "tool": "mailpit",
+      "version": "1.31.6",
+      "archive": "mailpit-darwin-arm64.tar.gz",
+      "url": "https://github.com/axllent/mailpit/releases/download/v1.31.6/mailpit-darwin-arm64.tar.gz",
+      "sha256": "1411270aa8fd7f4fb0cc358318754d7bb7c2c30bfd70572dd12d05a53e956373",
+      "executable": "mailpit"
+    }
+  ],
+  "checks": [
+    "Fresh PostgreSQL, upstream Auth migrations, game migration and matching marker; real Auth/PostgREST/mail sink on loopback",
+    "Real SDK Auth/JWT/PostgREST/RLS/API tests passed"
+  ],
+  "credentials_logged": false,
+  "error": "LOCAL_COMMAND_FAILED:node:{\"passed\":false,\"error\":\"LONG_ADD_CARD:Error: BAG_LOCK_BADGE_OVERLAP\\n    at check ([redacted-long-value] Idle [redacted-long-value]:6:33)\\n    at [redacted-long-value] Idle [redacted-long-value]:41:200\",\"checks\":[\"Real old-content signed-save migration previews without writing, backs up exact old signature/state, preserves all151 [redacted-long-value] and retains the frozen old AFK profile\",\"All five actual card borders match item palette at320/390, card masks fill their frames, rarity filters and Elite/Mini/MVP labels reflect fixed monster identity\"]}",
+  "diagnostics": {
+    "mailpit.log": [],
+    "auth.log": [
+      "{\"component\":\"api\",\"duration\":81800917,\"error\":\"400: Invalid login credentials\",\"error_code\":\"invalid_credentials\",\"grant_type\":\"password\",\"level\":\"warning\",\"method\":\"POST\",\"msg\":\"request completed\",\"path\":\"/token\",\"referer\":\"http://127.0.0.1:64845\",\"remote_addr\":\"127.0.0.1\",\"request_id\":\"[redacted-long-value]\",\"status\":400,\"time\":\"2026-10-22T14:33:18+07:00\"}"
+    ],
+    "rest.log": [],
+    "gateway.log": [],
+    "vite.log": []
+  },
+  "cleanup": "Owned services stopped and private DB/mail/credentials directory removed at exit",
+  "source_sha256": {
+    "scripts/test_auth_stack.py": "35801351d84226699a69ed73ac72b66e821f08fbd4ad303f01f6664da45af41a",
+    "scripts/game/test-supabase.ts": "ed309e8d55541369482c67982991070d5127cb626e1db85d6eaac865a2fdcf5f",
+    "scripts/game/local-supabase-gateway.ts": "5b2fa538f50e5ef23344d2ef1fc60edaffe1291240b88f5b07ed7c60b98c7399",
+    "supabase/migrations/202610190001_game_storage.sql": "2e1f7249e325dbf28394bced7e6a38669c1ab120889e5e1770a78fa6b57d0583",
+    "supabase/migrations/202610190002_account_creation.sql": "4b6442e786e6b39c0f4d3f39537d7f1f9c136f57fb530eac50bf1df29b1d0f1e",
+    "supabase/migrations/202610190003_save_context.sql": "e9340dafda79a7473124b6390815a912d5487280fe286ca5ee8dce6a7fb75675",
+    "supabase/migrations/202610200004_command_commits.sql": "51a84e17c7348ca3271ec4f15a68e6a372ee8acf16204924dea2a800054dd0a9",
+    "supabase/migrations/202610200005_story_settlement.sql": "1b56f23529b53e1a3c9861ec11fca81609012fa8e0057fd2d39ba3380ac2b7d8",
+    "supabase/migrations/202610200006_save_backups.sql": "ab1adf2d41f90eb6c2ac27a7be2084868d925bd4d7133927463ad48c0ea1a2ee",
+    "supabase/migrations/202610210007_command_roundtrips.sql": "31b54d2f502901a3eeff24953555c8be489e7a4de3734f64de3eac1032f9c41b"
+  }
+}

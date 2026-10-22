@@ -2,12 +2,13 @@ import type { AccountState } from '../../contracts/index.ts';
 import type { ValidatedContent } from '../../content/model.ts';
 import { rollItemOptions } from '../build/item-options.ts';
 import { gachaCardDefinition } from './cards.ts';
+import { CARD_RARITIES } from '../build/card-rarity.ts';
+import type { CardRarity } from '../../content/card-catalog.ts';
 
 type Item = AccountState['inventory'][number];
 type Wallet = AccountState['wallet'];
-type CardQuality = Extract<Item, { kind: 'card' }>['rarity_id'];
 type GearRarity = Extract<Item, { kind: 'equipment' }>['rarity_id'];
-interface CardPool { cost_per_pull: Partial<Wallet>; multi_pull_count: number; multi_pull_cost: Partial<Wallet>; quality_weights: Record<CardQuality, number>; pity: { gold_after_misses: number; silver_or_better_after_bronzes: number } }
+interface CardPool { cost_per_pull: Partial<Wallet>; multi_pull_count: number; multi_pull_cost: Partial<Wallet>; quality_weights: Record<CardRarity, number>; pity: { gold_after_misses: number; silver_or_better_after_bronzes: number } }
 interface GearPool { cost_per_pull: Partial<Wallet>; multi_pull_count: number; multi_pull_cost: Partial<Wallet>; rarity_weights: Partial<Record<GearRarity, number>>; pity: { legendary_or_better_after_misses: number; epic_or_better_after_rares: number } }
 export type PoolId = 'card_v1' | 'equipment_v1';
 const cardPool = (content: ValidatedContent) => content.documents['gacha.json'] as unknown as CardPool;
@@ -23,16 +24,17 @@ function weighted<K extends string>(roll: number, weights: Partial<Record<K, num
   for (const key of keys) { target -= weights[key] ?? 0; if (target < 0) return key; }
   return keys[keys.length - 1]!;
 }
-/** Card gacha (TASK-037): sequential pulls, gold pity then silver-or-better pity; forced pity still consumes its quality draw. */
+/** D-109: fixed-monster rarity; existing counter names preserve Legendary/Rare+ pity progress. */
 export function pullCards(state: AccountState, count: 1 | 10, draw: () => number, idPrefix: string, content: ValidatedContent): Item[] {
   const pool = cardPool(content), counters = state.gacha.card_v1, items: Item[] = [], tier = gachaGearTier(state, content);
   for (let n = 0; n < count; n++) {
     const roll = draw();
-    const quality: CardQuality = counters.gold_misses >= pool.pity.gold_after_misses ? 'gold' : counters.bronze_streak >= pool.pity.silver_or_better_after_bronzes ? weighted(roll, pool.quality_weights, ['silver', 'gold']) : weighted(roll, pool.quality_weights, ['bronze', 'silver', 'gold']);
-    if (quality === 'gold') { counters.gold_misses = 0; counters.bronze_streak = 0; }
-    else if (quality === 'silver') { counters.gold_misses++; counters.bronze_streak = 0; }
+    const enabled=CARD_RARITIES.filter(r=>pool.quality_weights[r]>0),keys=counters.gold_misses>=pool.pity.gold_after_misses?enabled.filter(r=>CARD_RARITIES.indexOf(r)>=4):counters.bronze_streak>=pool.pity.silver_or_better_after_bronzes?enabled.filter(r=>CARD_RARITIES.indexOf(r)>=2):enabled;
+    const quality=weighted(roll,pool.quality_weights,keys);
+    if (CARD_RARITIES.indexOf(quality)>=4) { counters.gold_misses = 0; counters.bronze_streak = 0; }
+    else if (CARD_RARITIES.indexOf(quality)>=2) { counters.gold_misses++; counters.bronze_streak = 0; }
     else { counters.gold_misses++; counters.bronze_streak++; }
-    items.push({ instance_id: `${idPrefix}_${n}`, definition_id: gachaCardDefinition(draw(), content, tier), kind: 'card', rarity_id: quality, locked: false, level: 1 });
+    items.push({ instance_id: `${idPrefix}_${n}`, definition_id: gachaCardDefinition(draw(), content, tier,quality), kind: 'card', rarity_id: quality, locked: false, level: 1 });
   }
   return items;
 }

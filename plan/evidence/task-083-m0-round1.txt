@@ -1,0 +1,39 @@
+ok   python3 plan/checks/progression.py --write-report
+ok   python3 plan/checks/combat.py --write-report
+ok   python3 plan/checks/classes.py
+ok   python3 plan/checks/equipment.py
+FAIL python3 plan/checks/economy.py
+{
+  "checks": 12,
+  "passed": false,
+  "failures": [
+    {
+      "case_id": "pity_boundary_sequence",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": false,
+      "error": ""
+    }
+  ]
+}
+ok   python3 plan/checks/levels.py
+ok   python3 plan/checks/ui.py --write-report
+ok   python3 plan/checks/architecture.py --write-report
+ok   python3 plan/checks/composition.py --write-report
+ok   manifest
+FAIL python3 plan/checks/readiness.py
+{
+  "checks": 8,
+  "passed": false,
+  "failures": [
+    {
+      "case_id": "all_M0_prerequisites_and_fresh_evidence",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": false,
+      "error": "10"
+    }
+  ]
+}

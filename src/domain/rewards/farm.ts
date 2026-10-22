@@ -33,8 +33,8 @@ export function reserveFarm(input: AccountState, fromMs: number, nowMs: number, 
     // D-062: option lines are rolled from the same server loot RNG, right after the item's own draws.
     items.push({ instance_id: `${claimId}_gear_${index}`, definition_id: definitionId, kind: 'equipment', rarity_id: rarity, locked: false, training: false, options: rollItemOptions(rarity, () => nextRandom(farm.loot_rng), content) });
     if (snapshot.card_drops) {
-      const card = farmCardDrop(snapshot.card_drops, () => nextRandom(farm.loot_rng));
-      if (card) items.push({ instance_id: `${claimId}_card_${index}`, definition_id: card.definition_id, kind: 'card', rarity_id: card.rarity_id, level: 1, locked: false });
+      const card = farmCardDrop(snapshot.card_drops, () => nextRandom(farm.loot_rng),content);
+      if (card) items.push({ instance_id: `${claimId}_card_${index}`, ...card, kind: 'card', level: 1, locked: false });
     }
   }
   farm.reserved_through = nowIso;

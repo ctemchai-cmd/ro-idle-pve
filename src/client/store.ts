@@ -22,7 +22,7 @@ export function storeView(state: AccountState, nowMs: number) {
   const day = bangkokDay(nowMs), shop = content.documents['economy.json']!.shop as unknown as { offers: { id: string; price: Partial<Wallet>; grant: Partial<Wallet>; daily_limit: number }[] };
   const bought = (id: string) => state.shop.day === day ? state.shop.purchases[id] ?? 0 : 0;
   const gacha = content.documents['gacha.json'] as unknown as { quality_weights: Record<string, number>; weight_total: number; pity: { gold_after_misses: number; silver_or_better_after_bronzes: number }; equipment_pool: { rarity_weights: Record<string, number>; weight_total: number; pity: { legendary_or_better_after_misses: number; epic_or_better_after_rares: number } } };
-  const odds = (weights: Record<string, number>, total: number) => Object.entries(weights).map(([id, weight]) => ({ id, percent: Math.round(weight / total * 10000) / 100 }));
+  const odds = (weights: Record<string, number>, total: number) => Object.entries(weights).filter(([,weight])=>weight>0).map(([id, weight]) => ({ id, percent: Math.round(weight / total * 10000) / 100 }));
   return {
     day,
     offers: shop.offers.map(offer => ({ ...offer, name: offerNames[offer.id] ?? offer.id, left: Math.max(0, offer.daily_limit - bought(offer.id)) })),

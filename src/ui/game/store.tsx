@@ -25,7 +25,7 @@ export function StorePage({ context }: { context: GameContext }) {
     </article>)}</div>}
     {section !== 'shop' && (() => { const card = section === 'cards', data = card ? view.cards : view.gear, pool = card ? 'card_v1' : 'equipment_v1';
       return <section className="gacha-box">
-        <div className={`gacha-banner ${card ? 'cards' : 'gear'}`}><b>{card ? `การ์ด RO · Tier ${view.gear.tier}` : `อุปกรณ์ Tier ${view.gear.tier}`}</b><small>{card ? `การันตี Silver+ ใน ${view.cards.silver_in} · Gold ใน ${view.cards.gold_in}` : `การันตี Epic+ ใน ${view.gear.epic_in} · Legendary+ ใน ${view.gear.legendary_in}`}</small></div>
+        <div className={`gacha-banner ${card ? 'cards' : 'gear'}`}><b>{card ? 'การ์ด RO · ระดับตามมอนสเตอร์' : `อุปกรณ์ Tier ${view.gear.tier}`}</b><small>{card ? `การันตี Rare+ ใน ${view.cards.silver_in} · Legendary ใน ${view.cards.gold_in}` : `การันตี Epic+ ใน ${view.gear.epic_in} · Legendary+ ใน ${view.gear.legendary_in}`}</small></div>
         <ul className="gacha-odds">{data.odds.map(row => <li key={row.id} className={`rarity-${row.id}`}><span>{rarityLabels[row.id] ?? row.id}</span><b>{row.percent}%</b></li>)}</ul>
         {!card && <p className="hint">ได้ของ Tier ตามบทที่ผ่านล่าสุด · Rare+ มี Option สุ่ม ({optionLineSummary()} แถว)</p>}
         <div className="row two">
@@ -33,7 +33,7 @@ export function StorePage({ context }: { context: GameContext }) {
           <button className="btn primary" disabled={locked || !canPay(state.wallet, data.cost10) || state.inventory.length + 10 > 500} onClick={() => void pull(pool, 10)}>สุ่ม 10 <CostChips pack={pack} cost={data.cost10} wallet={state.wallet} /></button>
         </div>
         {results.length > 0 && <div className="gacha-results" aria-label="ผลการสุ่ม">{results.map((row, i) => <div key={row.item.instance_id} className={`gacha-card rarity-${row.item.rarity_id}`} style={{ animationDelay: `${i * 70}ms` }}>
-          {row.item.kind==='card'?<button className="card-reveal" aria-label={`ดู${row.name}`} onClick={()=>setOpenCardId(row.item.instance_id)}><ItemIcon id={row.iconId} pack={pack} /><b>{row.name}</b></button>:<span className={`icon-frame rarity-${row.item.rarity_id}`}><ItemIcon id={row.iconId} pack={pack} /></span>}<small>{rarityLabels[row.item.rarity_id]}</small>{row.item.kind==='card'&&<CardGrade grade={row.origin?.grade} />}<em>{slotLabels[row.slot as EquipmentSlot]}{row.lines ? ` · ${row.lines} Option` : ''}</em>
+          {row.item.kind==='card'?<button className="card-reveal" aria-label={`ดู${row.name}`} onClick={()=>setOpenCardId(row.item.instance_id)}><ItemIcon id={row.iconId} pack={pack} /><b>{row.name}</b></button>:<span className={`icon-frame rarity-${row.item.rarity_id}`}><ItemIcon id={row.iconId} pack={pack} /></span>}<small>{rarityLabels[row.item.rarity_id]}</small>{row.item.kind==='card'&&<CardGrade grade={row.origin?.grade} rarity={row.item.rarity_id} />}<em>{slotLabels[row.slot as EquipmentSlot]}{row.lines ? ` · ${row.lines} Option` : ''}</em>
         </div>)}</div>}
       </section>; })()}
     <p className="hint">Crystal ได้จากหอคอย ดันเจี้ยน และร้านค้า · ไม่มีการซื้อด้วยเงินจริง</p>

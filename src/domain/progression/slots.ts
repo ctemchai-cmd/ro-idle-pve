@@ -2,6 +2,7 @@ import type { AccountState, Command } from '../../contracts/index.ts';
 import type { ValidatedContent } from '../../content/model.ts';
 import { assignedOwner, itemDefinition, type EquipmentSlot, type InventoryItem } from './equipment.ts';
 import { ProgressionRejection } from './rejection.ts';
+import { cardRarityDust } from '../build/card-rarity.ts';
 type Wallet=AccountState['wallet'];
 export type SlotCommand=Extract<Command,{type:'slot.refine'|'slot.enchant'|'slot.change_enchant'|'card.assign'|'card.unassign'|'card.upgrade'|'card.salvage'}>;
 export interface SlotData {refine:{max:number;success_chance_by_target:Record<string,number>;pity:{bonus_per_failure:number;cap:number};upgrade_rows:{from:number;to:number;gold:number;refine_ore:number}[]};enchant:{max:number;lines:Record<string,unknown>;upgrade_rows:{from:number;to:number;gold:number;enchant_dust:number}[]};cards:{capacity_by_refine:{minimum_refine:number;slots:number}[]}}
@@ -24,7 +25,7 @@ export function enchantRefund(state:AccountState,id:string,slot:EquipmentSlot):P
  const result:Partial<Wallet>={};for(const row of state.paid_ledger)if(row.character_id===id&&row.feature_id===`enchant_${slot}`&&row.refund_state==='active')for(const key of Object.keys(row.paid_resources)as(keyof Wallet)[])result[key]=(result[key]??0)+row.paid_resources[key];return result;
 }
 export function cardSalvageQuote(items:readonly InventoryItem[],content:ValidatedContent):Partial<Wallet>{
- let dust=0;for(const item of items){if(item.kind!=='card')reject('CARD_REQUIRED');const row=cardData(content).rarities.find(r=>r.id===item.rarity_id);if(!row)throw new Error('INVALID_CARD_RARITY');dust+=row.salvage_card_dust;}return{card_dust:dust};
+ let dust=0;for(const item of items){if(item.kind!=='card')reject('CARD_REQUIRED');dust+=cardRarityDust(item,content);}return{card_dust:dust};
 }
 /** `roll` is a server-injected uniform [0,1) value; previews pass 0 to show the success outcome. */
 export function applySlotCommand(state:AccountState,command:SlotCommand,content:ValidatedContent,roll:number|null=null):string{

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "content_version": "cards-ro-v1",
+  "content_version": "cards-ro-v3",
   "definitions": [
     {
       "id": "card_weapon_1",
@@ -3145,22 +3145,56 @@
   ],
   "rarities": [
     {
-      "id": "bronze",
+      "id": "common",
       "multiplier": 1,
-      "salvage_card_dust": 20
+      "salvage_card_dust": 20,
+      "rank": 0,
+      "enabled": true
     },
     {
-      "id": "silver",
+      "id": "uncommon",
       "multiplier": 1.25,
-      "salvage_card_dust": 40
+      "salvage_card_dust": 40,
+      "rank": 1,
+      "enabled": true
     },
     {
-      "id": "gold",
+      "id": "rare",
       "multiplier": 1.5,
-      "salvage_card_dust": 80
+      "salvage_card_dust": 80,
+      "rank": 2,
+      "enabled": true
+    },
+    {
+      "id": "epic",
+      "multiplier": 1.65,
+      "salvage_card_dust": 120,
+      "rank": 3,
+      "enabled": true
+    },
+    {
+      "id": "legendary",
+      "multiplier": 1.8,
+      "salvage_card_dust": 200,
+      "rank": 4,
+      "enabled": true
+    },
+    {
+      "id": "immortal",
+      "multiplier": 2.1,
+      "salvage_card_dust": 300,
+      "rank": 5,
+      "enabled": false
+    },
+    {
+      "id": "supreme",
+      "multiplier": 2.5,
+      "salvage_card_dust": 400,
+      "rank": 6,
+      "enabled": false
     }
   ],
-  "rarity_is_equipment_rarity": false,
+  "rarity_is_equipment_rarity": true,
   "level_cost_rows": [
     {
       "from": 1,
@@ -3189,471 +3223,669 @@
   ],
   "progression_owner": "card_instance_id; assigned to character equipment slot; not shared globally per definition",
   "gacha_duplicates": "always distinct card instances so several characters can equip copies; user may consume only unequipped unlocked instances into card_dust for upgrades",
-  "resolve_rule": "base modifier * level multiplier * card rarity multiplier, retain fractional ratio/points until central rounding",
+  "resolve_rule": "Fixed monster rarity multiplier × instance level. Migrated legacy_quality retains its old power/salvage floor if stronger, never multiplies again.",
   "free_remove_outside_battle": true,
-  "catalog_basis": "D-099 verified RO identities with normalized idle effects",
+  "catalog_basis": "D-099 RO identities; D-109 fixed monster strength rarity",
   "origins": {
     "card_weapon_1": {
       "ro_item_id": 4029,
       "monster_id": 1013,
       "monster_name": "Wolf",
       "grade": "normal",
-      "source_slot": "weapon"
+      "source_slot": "weapon",
+      "rarity_id": "uncommon",
+      "source_level": 25,
+      "strength_class": "strong"
     },
     "card_weapon_2": {
       "ro_item_id": 4055,
       "monster_id": 1141,
       "monster_name": "Marina",
       "grade": "normal",
-      "source_slot": "weapon"
+      "source_slot": "weapon",
+      "rarity_id": "uncommon",
+      "source_level": 21,
+      "strength_class": "strong"
     },
     "card_weapon_3": {
       "ro_item_id": 4086,
       "monster_id": 1028,
       "monster_name": "Soldier Skeleton",
       "grade": "normal",
-      "source_slot": "weapon"
+      "source_slot": "weapon",
+      "rarity_id": "uncommon",
+      "source_level": 29,
+      "strength_class": "strong"
     },
     "card_head_1": {
       "ro_item_id": 4010,
       "monster_id": 1010,
       "monster_name": "Willow",
       "grade": "normal",
-      "source_slot": "head"
+      "source_slot": "head",
+      "rarity_id": "common",
+      "source_level": 4,
+      "strength_class": "weak"
     },
     "card_head_2": {
       "ro_item_id": 4052,
       "monster_id": 1033,
       "monster_name": "Elder Willow",
       "grade": "normal",
-      "source_slot": "head"
+      "source_slot": "head",
+      "rarity_id": "common",
+      "source_level": 20,
+      "strength_class": "weak"
     },
     "card_head_3": {
       "ro_item_id": 4269,
       "monster_id": 1374,
       "monster_name": "Incubus",
       "grade": "normal",
-      "source_slot": "head"
+      "source_slot": "head",
+      "rarity_id": "rare",
+      "source_level": 75,
+      "strength_class": "elite"
     },
     "card_armor_1": {
       "ro_item_id": 4001,
       "monster_id": 1002,
       "monster_name": "Poring",
       "grade": "normal",
-      "source_slot": "armor"
+      "source_slot": "armor",
+      "rarity_id": "common",
+      "source_level": 1,
+      "strength_class": "weak"
     },
     "card_armor_2": {
       "ro_item_id": 4008,
       "monster_id": 1049,
       "monster_name": "Picky",
       "grade": "normal",
-      "source_slot": "armor"
+      "source_slot": "armor",
+      "rarity_id": "common",
+      "source_level": 3,
+      "strength_class": "weak"
     },
     "card_armor_3": {
       "ro_item_id": 4023,
       "monster_id": 1107,
       "monster_name": "Baby Desert Wolf",
       "grade": "normal",
-      "source_slot": "armor"
+      "source_slot": "armor",
+      "rarity_id": "common",
+      "source_level": 9,
+      "strength_class": "weak"
     },
     "card_garment_1": {
       "ro_item_id": 4102,
       "monster_id": 1179,
       "monster_name": "Whisper",
       "grade": "normal",
-      "source_slot": "garment"
+      "source_slot": "garment",
+      "rarity_id": "uncommon",
+      "source_level": 34,
+      "strength_class": "strong"
     },
     "card_garment_2": {
       "ro_item_id": 4015,
       "monster_id": 1009,
       "monster_name": "Condor",
       "grade": "normal",
-      "source_slot": "garment"
+      "source_slot": "garment",
+      "rarity_id": "common",
+      "source_level": 5,
+      "strength_class": "weak"
     },
     "card_garment_3": {
       "ro_item_id": 4056,
       "monster_id": 1114,
       "monster_name": "Dustiness",
       "grade": "normal",
-      "source_slot": "garment"
+      "source_slot": "garment",
+      "rarity_id": "uncommon",
+      "source_level": 21,
+      "strength_class": "strong"
     },
     "card_shoes_1": {
       "ro_item_id": 4038,
       "monster_id": 1015,
       "monster_name": "Zombie",
       "grade": "normal",
-      "source_slot": "shoes"
+      "source_slot": "shoes",
+      "rarity_id": "common",
+      "source_level": 15,
+      "strength_class": "weak"
     },
     "card_shoes_2": {
       "ro_item_id": 4186,
       "monster_id": 1254,
       "monster_name": "Raggler",
       "grade": "normal",
-      "source_slot": "shoes"
+      "source_slot": "shoes",
+      "rarity_id": "uncommon",
+      "source_level": 21,
+      "strength_class": "strong"
     },
     "card_shoes_3": {
       "ro_item_id": 4097,
       "monster_id": 1146,
       "monster_name": "Matyr",
       "grade": "normal",
-      "source_slot": "shoes"
+      "source_slot": "shoes",
+      "rarity_id": "uncommon",
+      "source_level": 31,
+      "strength_class": "strong"
     },
     "card_accessory_1": {
       "ro_item_id": 4028,
       "monster_id": 1175,
       "monster_name": "Tarou",
       "grade": "normal",
-      "source_slot": "accessory"
+      "source_slot": "accessory",
+      "rarity_id": "common",
+      "source_level": 11,
+      "strength_class": "weak"
     },
     "card_accessory_2": {
       "ro_item_id": 4034,
       "monster_id": 1024,
       "monster_name": "Wormtail",
       "grade": "normal",
-      "source_slot": "accessory"
+      "source_slot": "accessory",
+      "rarity_id": "common",
+      "source_level": 14,
+      "strength_class": "weak"
     },
     "card_accessory_3": {
       "ro_item_id": 4051,
       "monster_id": 1057,
       "monster_name": "Yoyo",
       "grade": "normal",
-      "source_slot": "accessory"
+      "source_slot": "accessory",
+      "rarity_id": "uncommon",
+      "source_level": 21,
+      "strength_class": "strong"
     },
     "card_fabre": {
       "ro_item_id": 4002,
       "monster_id": 1007,
       "monster_name": "Fabre",
       "grade": "normal",
-      "source_slot": "weapon"
+      "source_slot": "weapon",
+      "rarity_id": "common",
+      "source_level": 2,
+      "strength_class": "weak"
     },
     "card_lunatic": {
       "ro_item_id": 4006,
       "monster_id": 1063,
       "monster_name": "Lunatic",
       "grade": "normal",
-      "source_slot": "weapon"
+      "source_slot": "weapon",
+      "rarity_id": "common",
+      "source_level": 3,
+      "strength_class": "weak"
     },
     "card_pupa": {
       "ro_item_id": 4003,
       "monster_id": 1008,
       "monster_name": "Pupa",
       "grade": "normal",
-      "source_slot": "armor"
+      "source_slot": "armor",
+      "rarity_id": "common",
+      "source_level": 2,
+      "strength_class": "weak"
     },
     "card_spore": {
       "ro_item_id": 4022,
       "monster_id": 1014,
       "monster_name": "Spore",
       "grade": "normal",
-      "source_slot": "accessory"
+      "source_slot": "accessory",
+      "rarity_id": "common",
+      "source_level": 16,
+      "strength_class": "weak"
     },
     "card_chonchon": {
       "ro_item_id": 4009,
       "monster_id": 1011,
       "monster_name": "Chonchon",
       "grade": "normal",
-      "source_slot": "shoes"
+      "source_slot": "shoes",
+      "rarity_id": "common",
+      "source_level": 4,
+      "strength_class": "weak"
     },
     "card_rocker": {
       "ro_item_id": 4021,
       "monster_id": 1052,
       "monster_name": "Rocker",
       "grade": "normal",
-      "source_slot": "armor"
+      "source_slot": "armor",
+      "rarity_id": "common",
+      "source_level": 9,
+      "strength_class": "weak"
     },
     "card_hydra": {
       "ro_item_id": 4035,
       "monster_id": 1068,
       "monster_name": "Hydra",
       "grade": "normal",
-      "source_slot": "weapon"
+      "source_slot": "weapon",
+      "rarity_id": "common",
+      "source_level": 14,
+      "strength_class": "weak"
     },
     "card_drainliar": {
       "ro_item_id": 4069,
       "monster_id": 1111,
       "monster_name": "Drainliar",
       "grade": "normal",
-      "source_slot": "weapon"
+      "source_slot": "weapon",
+      "rarity_id": "uncommon",
+      "source_level": 24,
+      "strength_class": "strong"
     },
     "card_marc": {
       "ro_item_id": 4105,
       "monster_id": 1045,
       "monster_name": "Marc",
       "grade": "normal",
-      "source_slot": "armor"
+      "source_slot": "armor",
+      "rarity_id": "uncommon",
+      "source_level": 36,
+      "strength_class": "strong"
     },
     "card_kukre": {
       "ro_item_id": 4027,
       "monster_id": 1070,
       "monster_name": "Kukre",
       "grade": "normal",
-      "source_slot": "accessory"
+      "source_slot": "accessory",
+      "rarity_id": "common",
+      "source_level": 11,
+      "strength_class": "weak"
     },
     "card_thara_frog": {
       "ro_item_id": 4058,
       "monster_id": 1034,
       "monster_name": "Thara Frog",
       "grade": "normal",
-      "source_slot": "shield"
+      "source_slot": "shield",
+      "rarity_id": "uncommon",
+      "source_level": 22,
+      "strength_class": "strong"
     },
     "card_pecopeco": {
       "ro_item_id": 4031,
       "monster_id": 1019,
       "monster_name": "Peco Peco",
       "grade": "normal",
-      "source_slot": "armor"
+      "source_slot": "armor",
+      "rarity_id": "common",
+      "source_level": 19,
+      "strength_class": "weak"
     },
     "card_mantis": {
       "ro_item_id": 4079,
       "monster_id": 1139,
       "monster_name": "Mantis",
       "grade": "normal",
-      "source_slot": "accessory"
+      "source_slot": "accessory",
+      "rarity_id": "uncommon",
+      "source_level": 26,
+      "strength_class": "strong"
     },
     "card_dokebi": {
       "ro_item_id": 4098,
       "monster_id": 1110,
       "monster_name": "Dokebi",
       "grade": "normal",
-      "source_slot": "armor"
+      "source_slot": "armor",
+      "rarity_id": "uncommon",
+      "source_level": 33,
+      "strength_class": "strong"
     },
     "card_zerom": {
       "ro_item_id": 4064,
       "monster_id": 1178,
       "monster_name": "Zerom",
       "grade": "normal",
-      "source_slot": "accessory"
+      "source_slot": "accessory",
+      "rarity_id": "uncommon",
+      "source_level": 23,
+      "strength_class": "strong"
     },
     "card_andre": {
       "ro_item_id": 4043,
       "monster_id": 1095,
       "monster_name": "Andre",
       "grade": "normal",
-      "source_slot": "weapon"
+      "source_slot": "weapon",
+      "rarity_id": "common",
+      "source_level": 17,
+      "strength_class": "weak"
     },
     "card_savage": {
       "ro_item_id": 4078,
       "monster_id": 1166,
       "monster_name": "Savage",
       "grade": "normal",
-      "source_slot": "armor"
+      "source_slot": "armor",
+      "rarity_id": "uncommon",
+      "source_level": 26,
+      "strength_class": "strong"
     },
     "card_smokie": {
       "ro_item_id": 4044,
       "monster_id": 1056,
       "monster_name": "Smokie",
       "grade": "normal",
-      "source_slot": "accessory"
+      "source_slot": "accessory",
+      "rarity_id": "common",
+      "source_level": 18,
+      "strength_class": "weak"
     },
     "card_minorous": {
       "ro_item_id": 4126,
       "monster_id": 1149,
       "monster_name": "Minorous",
       "grade": "normal",
-      "source_slot": "weapon"
+      "source_slot": "weapon",
+      "rarity_id": "rare",
+      "source_level": 52,
+      "strength_class": "elite"
     },
     "card_wraith": {
       "ro_item_id": 4190,
       "monster_id": 1192,
       "monster_name": "Wraith",
       "grade": "normal",
-      "source_slot": "accessory"
+      "source_slot": "accessory",
+      "rarity_id": "rare",
+      "source_level": 53,
+      "strength_class": "elite"
     },
     "card_deviruchi": {
       "ro_item_id": 4122,
       "monster_id": 1109,
       "monster_name": "Deviruchi",
       "grade": "normal",
-      "source_slot": "head"
+      "source_slot": "head",
+      "rarity_id": "rare",
+      "source_level": 46,
+      "strength_class": "elite"
     },
     "card_marduk": {
       "ro_item_id": 4112,
       "monster_id": 1140,
       "monster_name": "Marduk",
       "grade": "normal",
-      "source_slot": "head"
+      "source_slot": "head",
+      "rarity_id": "uncommon",
+      "source_level": 40,
+      "strength_class": "strong"
     },
     "card_raydric": {
       "ro_item_id": 4133,
       "monster_id": 1163,
       "monster_name": "Raydric",
       "grade": "normal",
-      "source_slot": "garment"
+      "source_slot": "garment",
+      "rarity_id": "rare",
+      "source_level": 52,
+      "strength_class": "elite"
     },
     "card_evil_druid": {
       "ro_item_id": 4141,
       "monster_id": 1117,
       "monster_name": "Evil Druid",
       "grade": "normal",
-      "source_slot": "armor"
+      "source_slot": "armor",
+      "rarity_id": "rare",
+      "source_level": 58,
+      "strength_class": "elite"
     },
     "card_isis": {
       "ro_item_id": 4116,
       "monster_id": 1029,
       "monster_name": "Isis",
       "grade": "normal",
-      "source_slot": "garment"
+      "source_slot": "garment",
+      "rarity_id": "rare",
+      "source_level": 47,
+      "strength_class": "elite"
     },
     "card_sohee": {
       "ro_item_id": 4100,
       "monster_id": 1170,
       "monster_name": "Sohee",
       "grade": "normal",
-      "source_slot": "shoes"
+      "source_slot": "shoes",
+      "rarity_id": "uncommon",
+      "source_level": 33,
+      "strength_class": "strong"
     },
     "card_verit": {
       "ro_item_id": 4107,
       "monster_id": 1032,
       "monster_name": "Verit",
       "grade": "normal",
-      "source_slot": "shoes"
+      "source_slot": "shoes",
+      "rarity_id": "uncommon",
+      "source_level": 38,
+      "strength_class": "strong"
     },
     "card_kaho": {
       "ro_item_id": 4065,
       "monster_id": 1072,
       "monster_name": "Kaho",
       "grade": "normal",
-      "source_slot": "weapon"
+      "source_slot": "weapon",
+      "rarity_id": "rare",
+      "source_level": 60,
+      "strength_class": "elite"
     },
     "card_phen": {
       "ro_item_id": 4077,
       "monster_id": 1158,
       "monster_name": "Phen",
       "grade": "normal",
-      "source_slot": "accessory"
+      "source_slot": "accessory",
+      "rarity_id": "uncommon",
+      "source_level": 26,
+      "strength_class": "strong"
     },
     "card_hode": {
       "ro_item_id": 4081,
       "monster_id": 1127,
       "monster_name": "Hode",
       "grade": "normal",
-      "source_slot": "garment"
+      "source_slot": "garment",
+      "rarity_id": "uncommon",
+      "source_level": 26,
+      "strength_class": "strong"
     },
     "card_doppelganger": {
       "ro_item_id": 4142,
       "monster_id": 1046,
       "monster_name": "Doppelganger",
       "grade": "mvp",
-      "source_slot": "weapon"
+      "source_slot": "weapon",
+      "rarity_id": "legendary",
+      "source_level": 72,
+      "strength_class": "mvp"
     },
     "card_dark_lord": {
       "ro_item_id": 4168,
       "monster_id": 1272,
       "monster_name": "Dark Lord",
       "grade": "mvp",
-      "source_slot": "shoes"
+      "source_slot": "shoes",
+      "rarity_id": "legendary",
+      "source_level": 80,
+      "strength_class": "mvp"
     },
     "card_abysmal_knight": {
       "ro_item_id": 4140,
       "monster_id": 1219,
       "monster_name": "Abysmal Knight",
       "grade": "normal",
-      "source_slot": "weapon"
+      "source_slot": "weapon",
+      "rarity_id": "rare",
+      "source_level": 79,
+      "strength_class": "elite"
     },
     "card_osiris": {
       "ro_item_id": 4144,
       "monster_id": 1038,
       "monster_name": "Osiris",
       "grade": "mvp",
-      "source_slot": "accessory"
+      "source_slot": "accessory",
+      "rarity_id": "legendary",
+      "source_level": 78,
+      "strength_class": "mvp"
     },
     "card_maya": {
       "ro_item_id": 4146,
       "monster_id": 1147,
       "monster_name": "Maya",
       "grade": "mvp",
-      "source_slot": "shield"
+      "source_slot": "shield",
+      "rarity_id": "legendary",
+      "source_level": 81,
+      "strength_class": "mvp"
     },
     "card_golden_thief_bug": {
       "ro_item_id": 4128,
       "monster_id": 1086,
       "monster_name": "Golden Thief Bug",
       "grade": "mvp",
-      "source_slot": "shield"
+      "source_slot": "shield",
+      "rarity_id": "legendary",
+      "source_level": 64,
+      "strength_class": "mvp"
     },
     "card_turtle_general": {
       "ro_item_id": 4305,
       "monster_id": 1312,
       "monster_name": "Turtle General",
       "grade": "mvp",
-      "source_slot": "weapon"
+      "source_slot": "weapon",
+      "rarity_id": "legendary",
+      "source_level": 97,
+      "strength_class": "mvp"
     },
     "card_stormy_knight": {
       "ro_item_id": 4318,
       "monster_id": 1251,
       "monster_name": "Stormy Knight",
       "grade": "mvp",
-      "source_slot": "weapon"
+      "source_slot": "weapon",
+      "rarity_id": "legendary",
+      "source_level": 77,
+      "strength_class": "mvp"
     },
     "card_garm": {
       "ro_item_id": 4324,
       "monster_id": 1252,
       "monster_name": "Hatii",
       "grade": "mvp",
-      "source_slot": "armor"
+      "source_slot": "armor",
+      "rarity_id": "legendary",
+      "source_level": 73,
+      "strength_class": "mvp"
     },
     "card_moonlight_flower": {
       "ro_item_id": 4131,
       "monster_id": 1150,
       "monster_name": "Moonlight Flower",
       "grade": "mvp",
-      "source_slot": "shoes"
+      "source_slot": "shoes",
+      "rarity_id": "legendary",
+      "source_level": 67,
+      "strength_class": "mvp"
     },
     "card_eddga": {
       "ro_item_id": 4123,
       "monster_id": 1115,
       "monster_name": "Eddga",
       "grade": "mvp",
-      "source_slot": "shoes"
+      "source_slot": "shoes",
+      "rarity_id": "legendary",
+      "source_level": 65,
+      "strength_class": "mvp"
     },
     "card_baphomet": {
       "ro_item_id": 4147,
       "monster_id": 1039,
       "monster_name": "Baphomet",
       "grade": "mvp",
-      "source_slot": "weapon"
+      "source_slot": "weapon",
+      "rarity_id": "legendary",
+      "source_level": 81,
+      "strength_class": "mvp"
     },
     "card_mastering": {
       "ro_item_id": 4197,
       "monster_id": 1090,
       "monster_name": "Mastering",
       "grade": "mini",
-      "source_slot": "garment"
+      "source_slot": "garment",
+      "rarity_id": "epic",
+      "source_level": 2,
+      "strength_class": "mini"
     },
     "card_vagabond_wolf": {
       "ro_item_id": 4183,
       "monster_id": 1092,
       "monster_name": "Vagabond Wolf",
       "grade": "mini",
-      "source_slot": "garment"
+      "source_slot": "garment",
+      "rarity_id": "epic",
+      "source_level": 24,
+      "strength_class": "mini"
     },
     "card_dragon_fly": {
       "ro_item_id": 4179,
       "monster_id": 1091,
       "monster_name": "Dragon Fly",
       "grade": "mini",
-      "source_slot": "garment"
+      "source_slot": "garment",
+      "rarity_id": "epic",
+      "source_level": 8,
+      "strength_class": "mini"
     },
     "card_angeling": {
       "ro_item_id": 4054,
       "monster_id": 1096,
       "monster_name": "Angeling",
       "grade": "mini",
-      "source_slot": "armor"
+      "source_slot": "armor",
+      "rarity_id": "epic",
+      "source_level": 20,
+      "strength_class": "mini"
     },
     "card_ghostring": {
       "ro_item_id": 4047,
       "monster_id": 1120,
       "monster_name": "Ghostring",
       "grade": "mini",
-      "source_slot": "armor"
+      "source_slot": "armor",
+      "rarity_id": "epic",
+      "source_level": 18,
+      "strength_class": "mini"
     },
     "card_deviling": {
       "ro_item_id": 4174,
       "monster_id": 1582,
       "monster_name": "Deviling",
       "grade": "mini",
-      "source_slot": "garment"
+      "source_slot": "garment",
+      "rarity_id": "epic",
+      "source_level": 31,
+      "strength_class": "mini"
     }
   },
   "monster_traits": {
@@ -3712,5 +3944,30 @@
       "race": "demon",
       "size": "large"
     }
+  },
+  "legacy_qualities": {
+    "bronze": {
+      "multiplier": 1,
+      "salvage_card_dust": 20
+    },
+    "silver": {
+      "multiplier": 1.25,
+      "salvage_card_dust": 40
+    },
+    "gold": {
+      "multiplier": 1.5,
+      "salvage_card_dust": 80
+    }
+  },
+  "rarity_policy": {
+    "version": "card_rarity_v3",
+    "basis": "D-109 user: weak gray/strong green/Elite blue/Mini purple/MVP gold. Fixed by monster identity, not rolled per copy. Normal strength cutoffs <=20/<=45/>45 use rAthena pre-re source levels; these color tiers are authored for this game.",
+    "source": "https://raw.githubusercontent.com/rathena/rathena/master/db/pre-re/mob_db.yml",
+    "source_sha256": "4f045e32eb176c695cb11e94a68013867a437072aef0cee7438313826dc54e12",
+    "release_max": "legendary",
+    "future_only": [
+      "immortal",
+      "supreme"
+    ]
   }
 }

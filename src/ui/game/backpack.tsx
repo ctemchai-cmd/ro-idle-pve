@@ -12,6 +12,7 @@ import { ClassIcon } from './class-icon.tsx';
 import { CardGrade } from './card-grade.tsx';
 import { CardSheet } from './card-sheet.tsx';
 import { EquipmentCards } from './equipment-cards.tsx';
+import { EquipmentProgress } from './equipment-progress.tsx';
 
 type Filter = 'all' | EquipmentSlot | 'card';
 type Gear = ReturnType<typeof inventoryView>[number];
@@ -26,7 +27,7 @@ function GearSheet({ context, row, close }: { context: GameContext; row: Gear; c
   const growth = useMemo(() => gearGrowthOptions(state, row.owner?.character_id ?? 'main', id), [state, id, row.owner?.character_id]);
   const fits = useMemo(() => state.roster.map(a => ({ actor: a, reason: inventoryView(state, a.character_id).find(r => r.item.instance_id === id)?.reason ?? null })), [state, id]);
   return <Sheet title={row.name} onClose={close}>
-    <div className="slot-summary"><span className={`icon-frame big rarity-${row.item.rarity_id}`}><ItemIcon id={row.iconId} pack={pack} />{row.owner && <EquipmentCards state={state} characterId={row.owner.character_id} slot={row.owner.slot} />}</span>
+    <div className="slot-summary"><span className={`icon-frame big rarity-${row.item.rarity_id}`}><ItemIcon id={row.iconId} pack={pack} />{row.owner && <><EquipmentCards state={state} characterId={row.owner.character_id} slot={row.owner.slot} /><EquipmentProgress state={state} characterId={row.owner.character_id} slot={row.owner.slot} /></>}</span>
       <div><b>{rarityLabels[row.item.rarity_id]} · {slotLabels[row.slot]} · Lv.{row.definition.required_level}</b><small className="mods">{itemModifiers(row.item).map(modifierText).join(' · ')}</small><OptionLines item={row.item} /><small>{row.owner ? `สวมโดย ${friendNames[row.owner.character_id]}` : 'ยังไม่มีคนสวม'}{row.item.locked && <> · <Icon name="lock" /> ล็อก</>}{row.item.training ? ' · อาวุธฝึกหัด' : ''}</small></div></div>
     <div className="action-grid">
       <button className={`btn ${mode === 'equip' ? 'primary' : ''}`} onClick={() => setMode(mode === 'equip' ? null : 'equip')}>สวมให้…</button>
@@ -52,29 +53,30 @@ export function BackpackPage({ context }: { context: GameContext }) {
   const [rarities, setRarities] = useState<string[]>([]), [levels, setLevels] = useState<number[]>([]);
   const gear = useMemo(() => inventoryView(state, 'main').sort((a, b) => b.definition.required_level - a.definition.required_level || (rarityRank[b.item.rarity_id] ?? 0) - (rarityRank[a.item.rarity_id] ?? 0)), [state]);
   const cards = useMemo(() => equipmentSlots.flatMap(s => cardInventory(state, s)).sort((a, b) => (rarityRank[b.item.rarity_id] ?? 0) - (rarityRank[a.item.rarity_id] ?? 0) || b.item.level - a.item.level), [state]);
-  const narrowed = rarities.length > 0 || levels.length > 0, matches = (g: (typeof gear)[number]) => (!rarities.length || rarities.includes(g.item.rarity_id)) && (!levels.length || levels.includes(g.definition.tier_level));
-  const slotGear = filter === 'card' ? [] : gear.filter(g => filter === 'all' || g.slot === filter), shownGear = slotGear.filter(matches), shownCards = (filter === 'all' && !narrowed) || filter === 'card' ? cards : [];
-  const presentRarities = [...new Set(slotGear.map(g => g.item.rarity_id))].sort((a, b) => (rarityRank[a] ?? 0) - (rarityRank[b] ?? 0)), presentLevels = [...new Set(slotGear.map(g => g.definition.tier_level))].sort((a, b) => a - b);
+  const narrowed = rarities.length > 0 || levels.length > 0, matches = (g: {item:{rarity_id:string};definition:{tier_level:number}}) => (!rarities.length || rarities.includes(g.item.rarity_id)) && (!levels.length || levels.includes(g.definition.tier_level));
+  const slotGear = filter === 'card' ? [] : gear.filter(g => filter === 'all' || g.slot === filter), shownGear = slotGear.filter(matches), shownCards = filter === 'card' || (filter === 'all'&&!levels.length) ? cards.filter(c=>!rarities.length||rarities.includes(c.item.rarity_id)) : [];
+  const filterItems=[...slotGear,...(filter==='card'||filter==='all'?cards:[])];
+  const presentRarities = [...new Set(filterItems.map(g => g.item.rarity_id))].sort((a, b) => (rarityRank[a] ?? 0) - (rarityRank[b] ?? 0)), presentLevels = [...new Set(slotGear.map(g => g.definition.tier_level))].sort((a, b) => a - b);
   const toggle = <T,>(list: T[], value: T) => list.includes(value) ? list.filter(x => x !== value) : [...list, value];
   const free = shownGear.filter(g => !g.owner && !g.item.locked), bulkItems = state.inventory.filter(i => bulk?.includes(i.instance_id)), openGear = gear.find(g => g.item.instance_id === open), openCard = cards.find(c => c.item.instance_id === open);
   const tap = (id: string, selectable: boolean) => { if (!bulk) { setOpen(id); return; } if (selectable) setBulk(bulk.includes(id) ? bulk.filter(x => x !== id) : [...bulk, id]); };
   const filters: [Filter, string][] = [['all', 'ทั้งหมด'], ...equipmentSlots.map(s => [s, slotLabels[s]] as [Filter, string]), ['card', 'การ์ด']];
   return <div className="page backpack-page">
     <PageHeader title="กระเป๋า" sub={`${state.inventory.length} / ${equipmentData.inventory_capacity} ช่อง${state.inventory.length >= equipmentData.inventory_capacity ? ' · เต็ม' : ''}`} onBack={() => go('home')} right={<button className={`btn small ${bulk ? 'primary' : 'ghost'}`} onClick={() => setBulk(bulk ? null : [])}>{bulk ? 'เสร็จ' : 'ย่อยหลายชิ้น'}</button>} />
-    <div className="filter-row" role="tablist">{filters.map(([id, label]) => <button key={id} role="tab" aria-selected={filter === id} className={`chip ${filter === id ? 'on' : ''}`} onClick={() => setFilter(id)}>{label}</button>)}</div>
-    {filter !== 'card' && slotGear.length > 0 && <div className="filter-row sub" role="group" aria-label="กรองตาม Rarity และ Level">
+    <div className="filter-row" role="tablist">{filters.map(([id, label]) => <button key={id} role="tab" aria-selected={filter === id} className={`chip ${filter === id ? 'on' : ''}`} onClick={() => {setFilter(id);if(id==='card')setLevels([]);}}>{label}</button>)}</div>
+    {filterItems.length > 0 && <div className="filter-row sub" role="group" aria-label="กรองตาม Rarity และ Level">
       {presentRarities.map(r => <button key={r} aria-pressed={rarities.includes(r)} className={`chip small rarity-chip rarity-${r} ${rarities.includes(r) ? 'on' : ''}`} onClick={() => setRarities(toggle(rarities, r))}>{rarityLabels[r] ?? r}</button>)}
-      <span className="filter-gap" aria-hidden="true" />
-      {presentLevels.map(l => <button key={l} aria-pressed={levels.includes(l)} className={`chip small ${levels.includes(l) ? 'on' : ''}`} onClick={() => setLevels(toggle(levels, l))}>Lv{l}</button>)}
+      {filter!=='card'&&<span className="filter-gap" aria-hidden="true" />}
+      {(filter==='card'?[]:presentLevels).map(l => <button key={l} aria-pressed={levels.includes(l)} className={`chip small ${levels.includes(l) ? 'on' : ''}`} onClick={() => setLevels(toggle(levels, l))}>Lv{l}</button>)}
       {narrowed && <button className="chip small ghost" onClick={() => { setRarities([]); setLevels([]); }}>ล้างตัวกรอง</button>}
     </div>}
     <VirtualGrid items={[...shownGear.map(g => ({ kind: 'gear' as const, g })), ...shownCards.map(c => ({ kind: 'card' as const, c })), ...Array.from({ length: Math.max(0, 20 - shownGear.length - shownCards.length) }, (_, i) => ({ kind: 'empty' as const, i }))]} renderItem={row => {
       if (row.kind === 'empty') return <span key={`empty${row.i}`} className="bag-cell empty" aria-hidden="true" />;
       if (row.kind === 'gear') { const g = row.g, selectable = !g.owner && !g.item.locked, picked = bulk?.includes(g.item.instance_id); return <button key={g.item.instance_id} data-id={g.item.instance_id} className={`bag-cell rarity-${g.item.rarity_id} ${picked ? 'picked' : ''} ${bulk && !selectable ? 'dim' : ''}`} aria-label={`${g.name} ${rarityLabels[g.item.rarity_id]}${g.owner ? ' สวมอยู่' : ''}`} onClick={() => tap(g.item.instance_id, selectable)}>
-        <ItemIcon id={g.iconId} pack={pack} />{g.owner && <><i className="e-badge" title={`สวมโดย ${friendNames[g.owner.character_id]}`}>E</i><EquipmentCards state={state} characterId={g.owner.character_id} slot={g.owner.slot} /></>}{g.item.locked && <i className="lock-mark"><Icon name="lock" /></i>}<small>Lv{g.definition.tier_level}</small>{picked && <i className="check"><Icon name="check" /></i>}
+        <ItemIcon id={g.iconId} pack={pack} />{g.owner && <><i className="e-badge" title={`สวมโดย ${friendNames[g.owner.character_id]}`}>E</i><EquipmentCards state={state} characterId={g.owner.character_id} slot={g.owner.slot} /><EquipmentProgress state={state} characterId={g.owner.character_id} slot={g.owner.slot} /></>}{g.item.locked && <i className="lock-mark"><Icon name="lock" /></i>}<small>Lv{g.definition.tier_level}</small>{picked && <i className="check"><Icon name="check" /></i>}
       </button>; }
-      const c = row.c; return <button key={c.item.instance_id} className={`bag-cell card rarity-${c.item.rarity_id} ${bulk ? 'dim' : ''}`} data-card-grade={c.origin?.grade} aria-label={`${c.name} การ์ด`} onClick={() => { if (!bulk) setOpen(c.item.instance_id); }}>
-        <span className="card-art"><ItemIcon id={c.iconId} pack={pack} /></span>{c.origin?.grade!=='normal'&&<CardGrade grade={c.origin?.grade} />}{c.owner && <i className="e-badge">E</i>}{c.item.locked && <i className="lock-mark"><Icon name="lock" /></i>}<small>C{c.item.level}</small>
+      const c = row.c; return <button key={c.item.instance_id} className={`bag-cell card rarity-${c.item.rarity_id} ${bulk ? 'dim' : ''}`} data-card-grade={c.origin?.grade} data-card-rarity={c.item.rarity_id} aria-label={`${c.name} ${rarityLabels[c.item.rarity_id]} การ์ด`} onClick={() => { if (!bulk) setOpen(c.item.instance_id); }}>
+        <span className="card-art"><ItemIcon id={c.iconId} pack={pack} /></span>{c.origin?.grade!=='normal'||c.item.rarity_id==='rare'?<CardGrade grade={c.origin?.grade} rarity={c.item.rarity_id} />:null}{c.owner && <i className="e-badge">E</i>}{c.item.locked && <i className="lock-mark"><Icon name="lock" /></i>}<small>C{c.item.level}</small>
       </button>;
     }} />
     {!shownGear.length && !shownCards.length && <p className="hint center">ยังไม่มีของในหมวดนี้ · ได้จากฟาร์มอัตโนมัติและรางวัลผ่านด่าน</p>}

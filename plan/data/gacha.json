@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "content_version": "gacha-v1",
+  "content_version": "gacha-v3",
   "pool_id": "card_v1",
   "cost_per_pull": {
     "crystal": 100
@@ -10,9 +10,13 @@
     "crystal": 1000
   },
   "quality_weights": {
-    "bronze": 750000,
-    "silver": 220000,
-    "gold": 30000
+    "common": 500000,
+    "uncommon": 250000,
+    "rare": 200000,
+    "epic": 20000,
+    "legendary": 30000,
+    "immortal": 0,
+    "supreme": 0
   },
   "weight_total": 1000000,
   "definitions": [
@@ -155,13 +159,13 @@
     "gold_after_misses": 29,
     "silver_or_better_after_bronzes": 9,
     "order": [
-      "gold guarantee",
-      "silver-or-better conditional 22:3 weights",
-      "normal 75:22:3"
+      "Legendary MVP guarantee",
+      "Rare+ conditional on20:2:3 weights",
+      "Common50/Uncommon25/Rare20/Epic2/Legendary3"
     ],
-    "on_gold": "reset both counters",
-    "on_silver": "reset bronze counter, increment gold misses",
-    "on_bronze": "increment both counters",
+    "on_gold": "Legendary or better: reset both legacy-named counters",
+    "on_silver": "Rare or Epic: reset low-rarity streak, increment Legendary misses",
+    "on_bronze": "Common/Uncommon: increment both counters",
     "state_scope": "account_id+pool_id",
     "multi_pull": "resolve ten sequential single pulls in same atomic command"
   },
@@ -207,5 +211,5 @@
     "rng": "server command seed; per pull: rarity draw, definition draw, then two draws per option line",
     "rule_source": "D-063 user request 2026-10-20; prices, rates and pity are an assistant baseline to tune in TASK-041"
   },
-  "definition_choice": "D-099: weighted Normal1000/Mini100/MVP10 among the current gear tier; card quality and pity unchanged"
+  "definition_choice": "D-109: choose rarity then a matching fixed-monster card among all66 definitions, independent of equipment tier. Farm/Tower retain chapter/tier pools. MVP alwaysLegendary, Mini alwaysEpic."
 }
