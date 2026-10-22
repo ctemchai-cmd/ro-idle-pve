@@ -109,15 +109,16 @@ test('T029 AC-02: Knight striker/counter-tank and Crusader guardian/holy-striker
   assert.ok(guardian.reflect > 0 && holy.reflect > 0, `reflect ${guardian.reflect}/${holy.reflect}`);
 });
 
-test('T029 AC-02: Devotion routes P100 as 30/70 (Lv10) and 0.6+0.6 as 50/50/0 once, without re-mitigating or chaining', () => {
+test('T029 AC-02: Devotion routes P100 as 52/48 (Lv10) and 0.6+0.6 as 50/50/0 once, without re-mitigating or chaining', () => {
   const hit = (amount: number): Effect => ({ id: 'hit', type: 'damage', target: 'foe', formula: { id: 'flat_power', params: { amount } }, damage_type: 'true', element: 'neutral', hit_rule: 'always', can_crit: false, hits: 1, armor_rule: 'ignore' });
   const devotion = resolved('crusader_devotion', 10);
   const enemySkill = (amount: number) => ({ level: 1, definition: { ...structuredClone(resolved('swordsman_bash', 1).definition), id: 'probe_hit', class_id: 'enemy', cost: { sp: 0, spirit_spheres: 0 }, timing: { cast_ms: 3000, after_cast_ms: 0, interruptible: false }, effects: [hit(amount)] } as SkillDefinition });
-  // Lv10 ratio .3: front ally takes 70, the crusader 30 (transfer), the crusader's own hits never route.
+  // D-104 raised Lv10's .3 redirect ratio to .525; P100 floors the transfer to 52.
+  // The crusader's own hits never route. The explicit .6+.6 fixture below remains unchanged.
   const single = run([probe('p_ally', 'player', 'front_1'), probe('p_crusader', 'player', 'back_1', [devotion], false, 'crusader'), probe('e_hitter', 'enemy', 'front_1', [enemySkill(100)])], 9000);
   const first = single.events.filter(event => event.type === 'damage' && event.skill_id === 'probe_hit').slice(0, 2);
-  assert.deepEqual(first.map(event => [event.target_id, event.amount, event.origin]), [['p_crusader', 30, 'transfer'], ['p_ally', 70, 'skill']]);
-  assert.equal(first[0]!.mitigated, 30); assert.equal(first[1]!.mitigated, 70);
+  assert.deepEqual(first.map(event => [event.target_id, event.amount, event.origin]), [['p_crusader', 52, 'transfer'], ['p_ally', 48, 'skill']]);
+  assert.equal(first[0]!.mitigated, 52); assert.equal(first[1]!.mitigated, 48);
   // Two crusaders each linking .6 to one ally: 50/50/0, one routing pass even though the crusaders link each other.
   const status = (ratio: number) => ({ level: 1, definition: { ...structuredClone(devotion.definition), id: `devotion_link_${ratio * 10}`, cost: { sp: 0, spirit_spheres: 0 }, effects: [{ id: 'devotion', type: 'apply_status', target: 'friends', status_id: 'devotion', duration_ms: 60000, params: { ratio }, chance: 1 }] } as SkillDefinition });
   const pair = run([probe('p_ally', 'player', 'front_1'), probe('p_cru_a', 'player', 'back_1', [status(.6)]), probe('p_cru_b', 'player', 'back_2', [status(.6)]), probe('e_hitter', 'enemy', 'front_1', [enemySkill(100)])], 9000);

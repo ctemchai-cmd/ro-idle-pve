@@ -12,6 +12,17 @@ import { resolveSkill } from '../../src/domain/build/resolve-skill.ts';
 import { actor, battle, checkpoint, content, skill, step } from './combat-fixtures.ts';
 
 const definition = (id: string) => structuredClone(resolveSkill(id, 1, content).definition) as SkillDefinition;
+test('ROO Global screenshot goldens use total damage percentages, including asymmetric and same-element penalties', () => {
+  const rows = elementMatchups();
+  for (const [attack, armor, total] of [
+    ['fire','earth',175],['fire','fire',25],['fire','water',80],['fire','undead',150],
+    ['water','fire',175],['water','wind',90],['earth','water',100],['earth','fire',80],
+    ['wind','water',175],['wind','earth',80],['neutral','ghost',70],['ghost','neutral',70],
+    ['ghost','ghost',150],['ghost','undead',125],['holy','undead',175],['holy','dark',150],
+    ['holy','holy',25],['poison','holy',50],['poison','water',125],['dark','undead',25],
+    ['undead','dark',25],['undead','holy',125],
+  ] as const) assert.equal(rows.find(r=>r.attack===attack)!.targets.find(c=>c.armor===armor)!.multiplier, total/100, `${attack} → ${armor}`);
+});
 test('direct, weapon, mixed, periodic, passive, summoned and handler skill elements use their actual programs', () => {
   const expected = {
     mage_fire_bolt: ['fire'], mage_cold_bolt: ['water'], mage_lightning_bolt: ['wind'], mage_soul_strike: ['ghost'],

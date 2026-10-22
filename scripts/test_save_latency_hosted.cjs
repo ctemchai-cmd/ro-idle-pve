@@ -19,6 +19,19 @@ const assert=(ok,message)=>{if(!ok)throw new Error(message);};let browser,profil
  assert(assetResponse.ok&&assetResponse.headers.get('cache-control')==='no-store'&&assetManifest.pack_hash===manifest.runtime_asset_pack_hash,'MUTABLE_ASSET_MANIFEST_CACHE_OR_VERSION');
  const row=manifest.build_files.find(r=>/^dist\/assets\/account-session-.*\.js$/.test(r.path));assert(row,'NO_SAVE_BUNDLE');
  const bundle=await(await fetch(base+'/'+row.path.replace(/^dist\//,''))).text();assert(bundle.includes('sendWithCheckpoint')&&bundle.includes('x-ro-checkpoint'),'OLD_SAVE_PROTOCOL_DEPLOYED');
+ if(['task-091','task-092'].includes(prefix)){
+  const chunks={};
+  for(const name of ['item-options','element-badge','skill-timeline']){
+   const file=manifest.build_files.find(r=>new RegExp('^dist/assets/'+name+'-.*\\.js$').test(r.path));assert(file,'NO_'+name+'_BUNDLE');
+   const response=await fetch(base+'/'+file.path.replace(/^dist\//,'')),source=await response.text();assert(response.ok&&createHash('sha256').update(source).digest('hex')===file.sha256,'PUBLIC_ROO_SHA_'+name);chunks[name]={path:file.path,sha256:file.sha256,source};
+  }
+  const rules=JSON.parse(fs.readFileSync(path.join(root,'plan/data/combat-rules.json'),'utf8')),data=chunks['item-options'].source.replaceAll('\\"','"');
+  assert(data.includes('"element_chart":'+JSON.stringify(rules.element_chart))&&data.includes('ragnarok_origin_global_v1'),'ROO_100PAIR_CHART_NOT_DEPLOYED');
+  assert(chunks['element-badge'].source.includes('อิง Ragnarok Origin'),'ROO_TABLE_LABEL_NOT_DEPLOYED');
+  const renderer=chunks['skill-timeline'].source,title=renderer.match(/drawTitle\([^)]*\)\{[\s\S]{0,900}?\.translate\([^,]+\/2,[^*),]+\*([A-Za-z_$][\w$]*)\)/);assert(title,'NO_FINISHER_TITLE_POSITION');
+  const variable=title[1].replace(/[.*+?^${}()|[\]\\]/g,'\\$&');assert(new RegExp('(?:[,;]|(?:let|const|var)\\s+)'+variable+'=0?\\.4[,;]').test(renderer),'LOWER_FINISHER_TITLE_NOT_DEPLOYED');
+  currentProof={tasks:['TASK-091','TASK-092'],roo_chart_all100_pairs:true,source:'ROO Global in-game screenshot',total_damage_percent:true,finisher_title_height_ratio:.4,bundles:Object.values(chunks).map(({source,...r})=>r)};
+ }
  if(prefix==='task-090'){
   assert(createHash('sha256').update(bundle).digest('hex')===row.sha256,'PUBLIC_SAVE_SHA');
   assert(['rejectedForUpdate','versionRejected','hasWriter','SAVE_MIGRATION_REQUIRED','CONTENT_VERSION_MISMATCH'].every(s=>bundle.includes(s)),'MIGRATION_PENDING_PROTOCOL_NOT_DEPLOYED');

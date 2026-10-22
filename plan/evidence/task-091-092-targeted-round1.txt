@@ -1,0 +1,169 @@
+✔ ROO Global screenshot goldens use total damage percentages, including asymmetric and same-element penalties (9.813208ms)
+✔ direct, weapon, mixed, periodic, passive, summoned and handler skill elements use their actual programs (189.773375ms)
+✔ all126 player skill descriptions remain read-only and nested status cycles terminate (111.946125ms)
+✔ displayed armor element agrees with actual damage priority for every element and latest source (86.140125ms)
+✔ Fire Endow changes only live weapon display and expires; fixed skill/armor remain separate (16.1395ms)
+✔ badges disclose elements as text, distinguish armor/weapon, and do not invent a Holy heal (142.462291ms)
+✔ M0 stat golden: base_level1 (5.198792ms)
+✔ M0 stat golden: base_level70_no_speed_growth (0.2725ms)
+✔ M0 stat golden: level20_manual_spread (0.176833ms)
+✔ M0 mitigation golden: armor_0 (0.12325ms)
+✔ M0 mitigation golden: armor_200 (0.0555ms)
+✔ M0 mitigation golden: armor_400 (0.0395ms)
+✔ M0 mitigation golden: armor_800 (0.040292ms)
+✔ M0 mitigation golden: armor_1600 (0.141167ms)
+✔ M0 mitigation golden: break_and_penetration (0.091917ms)
+✔ M0 mitigation golden: over_100_percent_break_no_negative_defense (0.1135ms)
+✔ M0 mitigation golden: crit_uses_armor (1.762667ms)
+✔ M0 mitigation golden: guard_vulnerability_shield (0.256709ms)
+✔ M0 mitigation golden: ordered_full_pipeline (0.430584ms)
+✔ M0 mitigation golden: uncapped_guard_has_zero_damage_floor (0.658042ms)
+✔ M0 mitigation golden: shield_landed_not_hp_loss (0.168208ms)
+✔ M0 mitigation golden: overkill_separate (0.416ms)
+✔ M0 mitigation golden: each_hit_rounds_once (7.393958ms)
+✔ M0 mitigation golden: armor_near_asymptotic_reduction (0.272542ms)
+✔ M0 mitigation golden: full_penetration (0.059542ms)
+✔ RNG matches independently calculated states, including seed0 (2.498666ms)
+✔ timers have1ms natural minimum, with uncapped speed and zero CT (0.142209ms)
+✔ negative bonuses remain negative and max resources floor after modifiers (0.242333ms)
+✔ a committed boss-start receipt releases the pending gate even when the next checkpoint requires migration (11642.485375ms)
+✔ absent old/current-version intents refused by the version gate are archived before migration and never replayed on new rules (20766.501333ms)
+✔ uncertain receipt/network failures keep the original intent; retry can settle it before migration (4493.893958ms)
+✔ a version refusal on a live write transitions to the migration preview instead of keeping saving/pending locked (5746.938625ms)
+✔ a migration preview older than the recovered receipt cannot discard its pending revision barrier (4971.492458ms)
+✔ a storage failure cannot silently drop a version-refused pending intent or strand saving (8146.980833ms)
+✔ a checkpoint version validation error after a possible commit is not mistaken for a server refusal (11325.60975ms)
+✔ T040 AC-01: export → reset → restore brings back the same characters, NPCs, items and slot progress (6441.116292ms)
+✔ T040 AC-02: an older signed save is previewed then migrated with a backup; unsupported or broken saves are never changed (10168.88175ms)
+✔ T040 AC-03 + D-085: new game clears daily dungeons; restore guards AFK/shop/daily counters and restores once (11338.72875ms)
+✔ T040 AC-03/04: a quarantined save is recovered only from its signed tip; a healthy save refuses recovery (643.58525ms)
+✔ T040 AC-04: the client only sends maintenance writes the server asked for, and shows nothing until the receipt (0.675709ms)
+✔ D-085: migrating an already-reset locked game clears only carried daily progress, with backup; unlocked games retain it (986.416584ms)
+✔ T040 AC-05: compatibility matrix — current/older/newer/unknown/cost-version fixtures migrate, reject or refund exactly (674.931166ms)
+✔ 21Oct daily clock incident refunds one Essence attempt with signed backup; retries cannot refund twice (221.572375ms)
+✔ daily clock repair without an affected historical retreat does not change quota or create a backup (192.33725ms)
+✔ D-058 migration fills new fields, rebalances status budgets and drops dangling stages, then passes the server validator (637.5545ms)
+✔ D-058 migration refunds status investments that exceed the new budget instead of keeping unfunded stats (3.767125ms)
+✔ D-058 migration SQL appends one signed revision per outdated save and skips current saves (23726.96425ms)
+✔ T030 AC-01: all 19 tree skills match the 57 M0 golden cases (heal/shield/periodic ticks/revive/sphere costs/triggers) (79.518459ms)
+✔ T030 AC-01: every Active executes every effect at every level 1-10 (heal, buffs, HoT ticks, shield, revive, spheres, Asura) (32219.87325ms)
+✔ T030 AC-01: every Passive changes stats or procs at every level 1-10 (Spirit Combo grants spheres on normal hits) (4813.207625ms)
+✔ T030 AC-01: Priest/Monk skill pages offer only learnable root+branch skills, each with effect text and a pack visual (8406.217083ms)
+✔ T030 AC-02: Heal still casts on a full-HP party in queue order, spends SP and books everything as overheal (104.20575ms)
+✔ T030 AC-02: Monk spheres never exceed 5, Asura spends all current SP + 5 spheres, and an interrupted Asura refunds nothing (10011.212708ms)
+✔ T030 AC-02: Steel Body Lv10 trades 30% attack speed for 70% guard (D-104) and pulls enemies onto the Monk (24054.559083ms)
+✔ T030 AC-03: dry catalog trace of all four builds reproduces the M0 queue estimate (permanent Passives only) (12317.103ms)
+✔ T030 AC-03: the full fight uses real effects - Asura spends the live SP pool, Spirit Combo refills spheres, Steel Body slow stretches the dry rotation (8889.293166ms)
+✔ T030 AC-04: same seed/build gives identical state/events/heal-SP-sphere metrics in server, client session and runner; ticks keep their parent cast (4643.365542ms)
+✔ T031 AC-01: all 26 tree skills (Bard and Dancer pairs included) match the 78 M0 golden cases (72.766292ms)
+✔ T031 AC-01: every Active executes every effect at every level 1-10 (arrows, traps, songs, Dissonance SP drain, Encore stun) (44190.144292ms)
+✔ T031 AC-01: every Passive changes stats or procs at every level 1-10; Falcon procs only from normal attacks (661.498416ms)
+✔ T031 AC-01: Hunter/Bard/Dancer skill pages offer only learnable root+branch skills, each with effect text and a pack visual (7718.420708ms)
+✔ T031 AC-02: Bard or Dancer is the same Archer companion (no second NPC), with its own look/weapon and identical gameplay values (6483.718959ms)
+✔ T031 AC-02: a repeated song adds an independent stack per cast with its own expiry (no refresh), and each expires separately (117.885709ms)
+✔ T031 AC-03: dry catalog trace of all six builds reproduces the M0 queue estimate (permanent Passives only) (30855.308208ms)
+✔ T031 AC-03: the full fight uses real effects - Battle Song speeds up the singer and Concentration does not change timing (13779.373959ms)
+✔ T031 AC-04: same seed/build gives identical state/events/metrics in server, client session and runner with Falcon/song sources intact (2432.59025ms)
+✔ T032 AC-01: all 19 tree skills match the 57 M0 golden cases (bolts, Storm Gust field ticks, Quagmire, Dispel, Spell Breaker, endow, Auto-bolt) (89.456083ms)
+✔ T032 AC-01: every Active executes every effect at every level 1-10 (Spell Breaker interrupts and drains, Dispel removes enemy buffs) (38229.362958ms)
+✔ T032 AC-01: every Passive changes stats or procs at every level 1-10 (775.327792ms)
+✔ T032 AC-01: Wizard/Sage skill pages offer only learnable root+branch skills, each with effect text and a pack visual (6837.203791ms)
+✔ T032 AC-02: Sage normal attacks never happen during a cast; Auto-bolt procs only from normal hits and never chains (120.140459ms)
+✔ T032 AC-02: Storm Gust frost field ticks at +1000..+4000 ms (never at its 5000 ms expiry) and rolls Freeze per target per tick (177.530208ms)
+✔ T032 AC-03: dry catalog trace of all four builds reproduces the M0 queue estimate (Sage Auto-bolt cast speed 179.2, cycle 6978 ms after the D-061 job bonus) (29567.535292ms)
+✔ T032 AC-03: the full fight follows the dry first cycle (no self-timing buffs in this tree) while Quagmire slows the enemy for real (14748.647708ms)
+✔ T032 AC-04: same seed/build gives identical HP/status/RNG/metrics in server, client session and runner; field ticks keep their parent cast (13517.584833ms)
+✔ T034 AC-01: all 19 tree skills match the 57 M0 golden cases (summon actor/limit/duration included) (118.609584ms)
+✔ T034 AC-01: every Active executes every effect at every level 1-10, summoned plants act, and no battle touches the wallet (36004.979875ms)
+✔ T034 AC-01: every Passive changes stats at every level 1-10 (289.13575ms)
+✔ T034 AC-01: Blacksmith/Alchemist skill pages offer only learnable root+branch skills, each with effect text and a pack visual (9067.489417ms)
+✔ T034 AC-02: Hell Plant keeps at most 2 alive, lives 6500 ms with ticks at +1000..+6000, the oldest is replaced, and damage is credited to the owner once (228.8875ms)
+✔ T034 AC-02: Healing Plant keeps 1 alive and heals the lowest-HP ally; owner death removes every plant immediately (34.004083ms)
+✔ T034 AC-02: Blacksmith buffs raise physical attack / attack speed of the party and leave magic untouched (6462.3005ms)
+✔ T034 AC-03: dry catalog trace of all four builds reproduces the M0 queue estimate (permanent Passives only) (26891.853416ms)
+✔ T034 AC-03: real fights follow the dry first cycle where no self-haste exists, plants stay bounded and never become a fifth party member (12438.134042ms)
+✔ T034 AC-04: same seed/build gives identical state/RNG/source metrics in server, client session and runner; plants act once per tick (7443.332208ms)
+✔ T029 AC-01: all 19 tree skills match the 57 M0 golden cases (cost, order, raw power, status params/modifiers, predicates) (269.207709ms)
+✔ T029 AC-01: every Active executes every effect at every level 1-10, on allowed targets, in program order (29498.134291ms)
+✔ T029 AC-01: every Passive changes stats or procs at every level 1-10 (Reflect returns damage to the attacker) (458.398625ms)
+✔ T029 AC-01: Knight/Crusader skill pages offer only learnable root+branch skills, each with effect text and a pack visual (9216.261541ms)
+✔ T029 AC-03: dry catalog trace of all four builds reproduces the M0 queue estimate with permanent Passives and no temporary buffs (26719.351792ms)
+✔ T029 AC-03: the full fight uses real effects - Two-Hand Quicken shortens the next interval, other builds keep the dry first cycle (11999.897417ms)
+✔ T029 AC-02: Knight striker/counter-tank and Crusader guardian/holy-striker show their distinct roles in one matched encounter (9633.269125ms)
+✖ T029 AC-02: Devotion routes P100 as 30/70 (Lv10) and 0.6+0.6 as 50/50/0 once, without re-mitigating or chaining (5.412125ms)
+✔ T029 AC-04: same seed/build gives identical state, events and metrics in server commands, client session (with render views) and runner (1555.855166ms)
+✔ T033 AC-01: all 24 tree skills (incl. 5 Rogue copies) match the 72 M0 golden cases (89.572833ms)
+✔ T033 AC-01: every Active executes every effect at every level 1-10 (venom, accuracy down, strips, expose, intimidate, detonate, copies) (31836.238375ms)
+✔ T033 AC-01: every Passive changes stats or procs at every level 1-10 (Double Attack only from normal hits) (187.79625ms)
+✔ T033 AC-01: Assassin/Rogue skill pages offer only learnable root+branch skills, each with effect text and a pack visual (10614.637708ms)
+✔ T033 AC-02: each Rogue copy is the whitelisted source program (SP ×1.25) at every level; one copy per loadout, no copy of a copy (51.055875ms)
+✖ T033 AC-02: Detonate consumes only the caster's own venom stacks (2 own → raw 2×power) and leaves an ally's venom (97.015875ms)
+✔ T033 AC-03: dry catalog trace of all four builds reproduces the M0 queue estimate (permanent Passives only) (11627.621959ms)
+✔ T033 AC-03: real fights - Quick Step hastes the critical Assassin; Rogue strips/expose debuff the target for the team; venom is personal (6096.486ms)
+✔ T033 AC-04: same seed/build gives identical results in server, client session and runner with own-source venom metrics (4874.740708ms)
+ℹ tests 103
+ℹ suites 0
+ℹ pass 101
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 113203.323916
+
+✖ failing tests:
+
+test at tests/game/skills-swordsman.test.ts:1:9011
+✖ T029 AC-02: Devotion routes P100 as 30/70 (Lv10) and 0.6+0.6 as 50/50/0 once, without re-mitigating or chaining (5.412125ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    [
+      [
+        'p_crusader',
+  +     52,
+  -     30,
+        'transfer'
+      ],
+      [
+        'p_ally',
+  +     48,
+  -     70,
+        'skill'
+      ]
+    ]
+
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/skills-swordsman.test.ts:119:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ [ 'p_crusader', 52, 'transfer' ], [ 'p_ally', 48, 'skill' ] ],
+    expected: [ [ 'p_crusader', 30, 'transfer' ], [ 'p_ally', 70, 'skill' ] ],
+    operator: 'deepStrictEqual'
+  }
+
+test at tests/game/skills-thief.test.ts:1:5260
+✖ T033 AC-02: Detonate consumes only the caster's own venom stacks (2 own → raw 2×power) and leaves an ally's venom (97.015875ms)
+  AssertionError [ERR_ASSERTION]: raw = own stacks 2 × 120
+  + actual - expected
+
+  + 2650.2000000000003
+  - 240
+
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/skills-thief.test.ts:85:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2650.2000000000003,
+    expected: 240,
+    operator: 'strictEqual'
+  }

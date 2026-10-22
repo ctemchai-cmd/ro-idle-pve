@@ -69,7 +69,7 @@ test('T033 AC-02: each Rogue copy is the whitelisted source program (SP ×1.25) 
   evidence.copies = whitelist.map(row => ({ copy: row.skill_id, source: row.source_skill_id, sp: (content.skills[row.skill_id] as unknown as Active).cost.sp }));
 });
 
-test('T033 AC-02: Detonate consumes only the caster\'s own venom stacks (2 own → raw 2×power) and leaves an ally\'s venom', () => {
+test('T033 AC-02: Detonate consumes only the caster\'s own venom stacks (210% ATK each at Lv10) and leaves an ally\'s venom', () => {
   const assassin = probe('p_sin', 'player', 'front_1', [resolved('assassin_venom_dust', 10), resolved('thief_envenom', 10), resolved('assassin_detonate', 10)], false, 'assassin');
   const ally = probe('p_npc', 'player', 'back_1', [resolved('assassin_venom_dust', 1)], false, 'assassin');
   const { events, initial } = run([assassin, ally, probe('e_boss', 'enemy', 'front_1')], 40000);
@@ -82,7 +82,10 @@ test('T033 AC-02: Detonate consumes only the caster\'s own venom stacks (2 own �
     const own = (actor: typeof before) => actor.statuses.filter(row => row.status_id === 'venom' && row.source.origin_actor_id === 'p_sin').length, other = (actor: typeof before) => actor.statuses.filter(row => row.status_id === 'venom' && row.source.origin_actor_id === 'p_npc').length;
     // A venom expiring or another tick at the same ms is excluded by only checking strict before/after counts on the detonation timestamp.
     if (events.some(event => event.at_ms === hit.at_ms && event.type === 'status_expired')) continue;
-    assert.equal(hit.raw, own(before) * 120, `raw = own stacks ${own(before)} × 120`);
+    // D-103 replaced the old flat 120 with 210% ATK per stack at Lv10.
+    // These probe skills do not change ATK; raw damage precedes the elemental matchup.
+    const attack = initial.actors.find(actor => actor.actor_id === 'p_sin')!.stats.physical_attack;
+    assert.equal(hit.raw, own(before) * (2.1 * attack), `raw = own stacks ${own(before)} × 210% ATK`);
     assert.equal(own(after), 0, 'own venom consumed'); assert.equal(other(after), other(before), 'ally venom untouched');
     if (own(before) >= 2 && other(before) >= 1) checked++;
   }

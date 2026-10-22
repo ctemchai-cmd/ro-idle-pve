@@ -23,6 +23,8 @@ export const FINISHER_PROFILES: Readonly<Record<string, Profile>> = {
 interface Cue { key: string; skill: string; source: string; target: string; at: number; profile: Profile; started?: number }
 export interface FinisherFrame { skill: string; source: string; target: string; at_ms: number; age_ms: number; title: boolean }
 export const FINISHER_LIMITS = { pending: 12, active: 3, seen: 1024, staleGameMs: 1600, impactMs: 420, shakeMs: 180 } as const;
+/** Below the upper HUD, closer to the combatants on a portrait battlefield. */
+export const FINISHER_TITLE_Y = .4;
 
 /** Both clocks are injected. Wall time only keeps the overlay readable at1×/2×/4×. */
 export class FinisherEffects {
@@ -91,7 +93,7 @@ export class FinisherEffects {
     const cue=this.active[0];if(!cue)return;
     const age=wallMs-cue.started!,text=cue.profile.title??(labels[cue.skill]??cue.skill).toUpperCase(),name=actors.find(a=>a.actor_id===cue.source)?.name.split(' · ')[0]??'';
     const alpha=Math.min(1,(cue.profile.hold-age)/180),scale=motion?1+Math.max(0,1-age/130)*.07:1;
-    ctx.save();ctx.translate(width/2,height*.25);ctx.scale(scale,scale);ctx.globalAlpha=alpha;ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.save();ctx.translate(width/2,height*FINISHER_TITLE_Y);ctx.scale(scale,scale);ctx.globalAlpha=alpha;ctx.textAlign='center';ctx.textBaseline='middle';
     const max=width*.86;ctx.font='900 42px ROThai, sans-serif';const measured=ctx.measureText(text).width;if(measured>max)ctx.font=`900 ${42*max/measured}px ROThai, sans-serif`;
     const w=Math.min(max+32,ctx.measureText(text).width+50);const shade=ctx.createLinearGradient(-w/2,0,w/2,0);shade.addColorStop(0,'#12243d00');shade.addColorStop(.25,'#12243dbb');shade.addColorStop(.75,'#12243dbb');shade.addColorStop(1,'#12243d00');ctx.fillStyle=shade;ctx.fillRect(-w/2,-29,w,70);
     ctx.lineJoin='round';ctx.lineWidth=7;ctx.strokeStyle='#192637';ctx.strokeText(text,0,0);ctx.lineWidth=1.5;ctx.strokeStyle='#fff8e4';ctx.fillStyle=cue.profile.color;ctx.fillText(text,0,0);ctx.strokeText(text,0,0);

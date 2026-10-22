@@ -231,3 +231,6 @@ TASK-001/002/047 ผ่าน Codex self-review แบบแล้ว: [progress
 D-117 runtime finding: valid same-user TOKEN_REFRESHED ระหว่าง SDK getSession ต้องใช้ session ใหม่ ไม่คืน null จน SaveController signed_out ค้าง; เก็บ valid token ภายใน AuthController (ไม่ใส่ UI snapshot) และหลีกเลี่ยง SDK session lock ทุกคลิก คง expiry/explicit logout/401 และ server JWT verification.
 
 | D-119 | 22 ต.ค.2026 ผู้ใช้ยืนยันสู้บอสค้างแล้วติดหน้าอัปเดตเซฟ กดmigrationได้WRITER_NOT_READYและขอreadonlyaccountcheck | TASK-090แก้pending-receipt/version-refusal deadlockก่อนmigration เก็บexactUUIDที่versiongateปฏิเสธในlocalbackup; ไม่ล้างunknown/networkpending ปุ่มmaintenanceตรวจรายการก่อน ไม่มีdirectownerwriteหรือprivateenvread (auto-reviewปฏิเสธ จึงขอsanitizedSQL) |
+
+| D-120 | 22 ต.ค.2026 ผู้ใช้ให้ตารางธาตุอิงRagnarok Origin และยืนยันหมายถึงตาราง | TASK-091ใช้100คู่จากภาพในคู่มือROO Global อัตรารวมเช่น175/25/70%ร่วมengine/UI ไม่มีelementlevels/สูตรROOหรือธาตุสกิลอื่นเพิ่ม |
+| D-121 | 22 ต.ค.2026 ผู้ใช้แจ้งข้อความท่าใหญ่สูงเกินไป | TASK-092เลื่อนsharedbannerจาก25%ลง40%height คงnativeeffects/contact/ชื่อ/ขนาด/เวลา/จอสั่นเดิม |

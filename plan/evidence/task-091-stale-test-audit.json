@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "preexisting_rules_unchanged": {
+    "plan/data/skills/swordsman.json": true,
+    "plan/data/skills/thief.json": true,
+    "src/domain/combat/effects.ts": true
+  },
+  "neutral_neutral_before": 1,
+  "neutral_neutral_after": 1.0,
+  "reason": "Devotion Lv10 .525 was committed in TASK078; Detonate Lv10 210%ATK in TASK077. The two old test expectations predated those changes. Raw damage is calculated before the elemental lookup. Only test oracles corrected; explicit .6+.6 routing fixture and stack ownership assertions unchanged.",
+  "retained_failure": "task-091-092-targeted-round1.txt"
+}

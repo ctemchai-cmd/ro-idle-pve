@@ -25,7 +25,7 @@ export function ElementGuide({ onClose, attack: initialAttack = 'fire', armor: i
         <table className="element-matrix"><caption>ตัวคูณธาตุโจมตีต่อเกราะเป้าหมาย</caption><thead><tr><th scope="col">โจมตี ↓<br />เกราะ →</th>{elements.map(e => <th key={e} scope="col" className={e === armor ? 'chosen' : ''}>{elementName(e)}</th>)}</tr></thead><tbody>{rows.map(row => <tr key={row.attack}><th scope="row" className={row.attack === attack ? 'chosen' : ''}>{elementName(row.attack)}</th>{row.targets.map(cell => <td key={cell.armor} className={cell.multiplier > 1 ? 'strong' : cell.multiplier < 1 ? 'weak' : 'normal'}><button type="button" aria-label={`${elementName(row.attack)}โจมตีเกราะ${elementName(cell.armor)} ${percent(cell.multiplier)}`} aria-pressed={row.attack === attack && cell.armor === armor} onClick={() => { setAttack(row.attack); setArmor(cell.armor); }}>{percent(cell.multiplier)}</button></td>)}</tr>)}</tbody></table>
       </div>
       <p className="element-guide-legend"><span className="strong">มากกว่า 100% · ได้เปรียบ</span><span className="normal">100% · ปกติ</span><span className="weak">ต่ำกว่า 100% · เสียเปรียบ</span></p>
-      <p className="element-guide-note">ค่าปัจจุบันของเกม ก่อนคิดเกราะ/ต้านธาตุ/บัฟ<br />“ตามอาวุธ” ใช้ธาตุอาวุธขณะโจมตี</p>
+      <p className="element-guide-note">อิง Ragnarok Origin · ก่อนคิดเกราะ/ต้านธาตุ/บัฟ<br />“ตามอาวุธ” ใช้ธาตุอาวุธขณะโจมตี</p>
     </div>
   </dialog>, document.body);
 }

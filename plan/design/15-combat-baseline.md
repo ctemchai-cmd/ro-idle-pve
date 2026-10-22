@@ -76,7 +76,7 @@ beforeShield = floor(afterArmor × max(0,1−guardPercent)
                        × max(0,1+damageTakenBonus) + 1e−9)
 ```
 
-เวทใช้ MATK/MDEF ธาตุอ่าน matrix10×10ใน JSON เป็นแบบลดรูปสำหรับเกมนี้ ไม่มี element level เพิ่ม อัตราวงน้ำ→ไฟ→ดิน→ลม→น้ำคือ1.25 และทิศกลับ0.75; Holy/Dark/Undead/Ghost ดูค่ารายคู่ในข้อมูล ไม่ฝังเงื่อนไขชื่อสกิลใน engine
+เวทใช้ MATK/MDEF ธาตุอ่าน matrix10×10ใน JSON ชุดเดียวกับUI ตาม D-120/TASK-091 ใช้ตาราง Ragnarok Origin จากภาพในคู่มือ ROO Global ไม่มี element level เพิ่ม วงน้ำ→ไฟ→ดิน→ลม→น้ำคือ1.75, ธาตุเดียวกันสี่ธาตุพื้นฐานเหลือ0.25 และทิศกลับอ่านรายคู่ (ไฟ→น้ำ0.80 แต่น้ำ→ลม0.90) Holy/Dark/Undead/Ghostดูค่ารายคู่ในข้อมูล ไม่ฝังเงื่อนไขชื่อสกิลในengine; อัตรา1.25/0.75เดิมเป็นประวัติ ถูกแทนที่ด้วยตารางนี้แล้ว
 
 Guardรวมแบบบวกไม่มี cap เช่น1.20ยังคงเป็น120%ใน sources แต่ damage multiplierมี lower bound0ตามนิยาม ไม่ปล่อยให้ติดลบแล้วกลายเป็น heal ARMOR curveกับขอบเขต probabilityเป็นกติกาของสมการ ไม่ใช่การจำกัดจำนวน/ผลรวมบัฟ
 
