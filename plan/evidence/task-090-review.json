@@ -1,0 +1,76 @@
+{
+  "task_id": "TASK-090",
+  "date": "2026-10-22",
+  "passed": true,
+  "status": "passed_implementation",
+  "source_commit": "9d1899e9aa40bf1568d8746701654661dfc51bae",
+  "content_hash": "f887835108ee3473c39bc6fb3ec0e80d5f0f49c91733e88b6ca561c1dfa736d3",
+  "asset_pack_hash": "c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2",
+  "focused_tests": 56,
+  "local_ui_groups": 4,
+  "checks": [
+    {
+      "acceptance_id": "AC-01",
+      "criterion": "pendingที่มีreceiptยืนยันแล้วถูกปลดเมื่อmigrationpreviewrevisionถึงreceipt; no-receiptคำสั่งที่APIตอบ409CONTENT_VERSION_MISMATCHเก็บUUID/paramsเดิมในlocalbackupแล้วไม่replayข้ามรุ่น สามารถกดbackup+migrateสำเร็จหนึ่งครั้งพร้อมsignedbackupเดิมครบ",
+      "passed": true,
+      "local_validation": "passed",
+      "production_validation": "passed",
+      "evidence": [
+        "plan/evidence/task-090-targeted.txt",
+        "plan/evidence/task-090-build.txt",
+        "plan/evidence/task-090-ui-live.json",
+        "plan/evidence/task-090-local-stack.json",
+        "plan/evidence/task-090-local-api.txt",
+        "plan/evidence/task-090-hosted.json",
+        "plan/evidence/task-090-github-deployment.json"
+      ]
+    },
+    {
+      "acceptance_id": "AC-02",
+      "criterion": "unknown/network/timeout/401/5xx/stalepreview/storagefailureไม่ล้างpendingหรือหักของซ้ำ; maintenanceแสดงตรวจผลรายการค้างหรือwriterแทนWRITER_NOT_READYรัว และmigratereplyloss/retryใช้UUIDเดิม ไม่สร้างmigration/backupsซ้ำ",
+      "passed": true,
+      "local_validation": "passed",
+      "production_validation": "passed",
+      "evidence": [
+        "plan/evidence/task-090-targeted.txt",
+        "plan/evidence/task-090-build.txt",
+        "plan/evidence/task-090-ui-live.json",
+        "plan/evidence/task-090-local-stack.json",
+        "plan/evidence/task-090-local-api.txt",
+        "plan/evidence/task-090-hosted.json",
+        "plan/evidence/task-090-github-deployment.json"
+      ]
+    },
+    {
+      "acceptance_id": "AC-03",
+      "criterion": "Focused controller/API/backup/build/type/boundaries/secretsและactualdisposableAuth/API/SQL/mobile320/390 plusVercelpublicproofผ่าน คงwallet/roster/items/paidledger/dailyquotaตามmigrationเดิม ไม่มีownercloudwrite/privateenvread/6173restart/SQL/env/content/packเปลี่ยน",
+      "passed": true,
+      "local_validation": "passed",
+      "production_validation": "passed",
+      "evidence": [
+        "plan/evidence/task-090-targeted.txt",
+        "plan/evidence/task-090-build.txt",
+        "plan/evidence/task-090-ui-live.json",
+        "plan/evidence/task-090-local-stack.json",
+        "plan/evidence/task-090-local-api.txt",
+        "plan/evidence/task-090-hosted.json",
+        "plan/evidence/task-090-github-deployment.json"
+      ]
+    }
+  ],
+  "owner_evidence": {
+    "source": "User supplied sanitized SQL, not direct account access",
+    "content_hash": "fd66a55fb5f141aa5fe34038784c0a8e976f4123c0842cd438447cb7f0ec640b",
+    "active_battle": true,
+    "revision": "not supplied",
+    "evidence": "plan/evidence/task-090-owner-state.json"
+  },
+  "owner_cloud_writes": false,
+  "private_env_read": false,
+  "personal_preview_restarted": false,
+  "sql_or_env_changes": false,
+  "scope": "Actual disposable Auth/API/Postgres and desktop Chrome emulating320/390; signed metadata rollover simulates a deployment, not physical Android or owner migration. Current owner must load patch then explicitly inspect/migrate through normal UI.",
+  "approval_review": "Direct private env access rejected; no bypass. User ran sanitized read-only SQL instead.",
+  "public_groups": 3,
+  "deployment": "https://vercel.com/chanon2/ro-idle-pve/JB8QDVBsg9zMLu55U2PmTf47Xf6L"
+}

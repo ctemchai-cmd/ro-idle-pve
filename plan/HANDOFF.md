@@ -4,6 +4,16 @@
 
 
 
+## 22 ต.ค.2026 · Codex — TASK-090 done แก้กดบอส/รายการค้างขวางอัปเดตเซฟ ขึ้นVercelแล้ว
+
+- **SOURCE9d1899e9aa40bf1568d8746701654661dfc51bae push/VercelSUCCESS** https://vercel.com/chanon2/ro-idle-pve/JB8QDVBsg9zMLu55U2PmTf47Xf6L actualpublicsave+maintenancebundleSHA/markers/newAPI200/SIN1/hash/checkpoint401/loginPWA5publiccachefiles0mutations3groupsผ่านfirsttry task090-hosted /github-deployment. Review3ACdone Board76/90,inprogress4เก่า041058064067/review5/todo5 M4done36/45
+- Userบอกกดบอสค้าง→ชี้ชัดMaintenancePanelกดbackup+migrateได้WRITER_NOT_READY ขอcheckaccount. Auto-reviewปฏิเสธprivateenvsecretkeyread ห้ามbypass; ใช้user-runSQLแทน ยืนยันoldfd66a55f…/inbattletrue revisionไม่ส่ง. ไม่อ้างdirectaccountinspectionหรือownerอัปเดตสำเร็จ ไม่มีownercloudwrite/privateenvread/6173restart
+- Rootpendingมีreceiptแล้วแต่checkpointกลายเป็นmigrationpreviewจึงไม่clear/maintainreject; no-receipt APIdefiniteversionrefusalก็ค้างgate. Knownreceipt+previewrevision>=max(receipt/priorcheckpoint)จึงปลด; **HTTP409bodycodeCONTENT_VERSION_MISMATCHเท่านั้น** archiveexactcommandในlocalSaveBackup.rejectedForUpdateก่อนปลด/checkpoint. Clientcheckpointvalidationcodeเดียวกันไม่ใช่refusal; unknownnetwork/timeout/401/5xx/stalerevision/storagefailureคงpending ไม่replayoldintentบนnewrules
+- MaintenancePanelตรวจpending/hasWriter: มีactionตรวจผลรายการค้างหรือบอกปิดแท็บอื่นก่อน แทนWRITERรัว; waitingdisable/rejectedreceiptcode. คงbackup-before-write/CAS/HMAC/receipt/dailyquota/pacing/gold; migrationสิ้นสุดactivebattleตามเดิม NoSQL/serverrules/accountstate schemas/content/packchange
+- **56focused+finalbuild/type/boundaries/secrets/readiness8ผ่าน** actualfreshAuth/API5+mobile320/390/SQL4groupsผ่าน: clickbossจริงcommit+lostresponse/oldfd66signedactive→stale-previewpreservesUUID/inspectunlocks; migratehold15s→singleUUID/1exactsignedbackup/progresspreserved; 404oldintent+409→archive/no-replay/reloadpersist; **clickbossเมื่อcloudversionเปลี่ยน→actionablemigration→newbossstart/retreatสำเร็จ**. เปิดpending390/version-refused320ดูจริง ไม่physicalAndroidและmetadata-rolledfixtureไม่ใช่เล่นowner
+- Contentยังf887835108ee3473c39bc6fb3ec0e80d5f0f49c91733e88b6ca561c1dfa736d3 /packc7e45b…/30640189B ไม่มีbalancebatch/assets/envใหม่. Userรีโหลดรับแพตช์แล้วตรวจผลรายการค้างถ้าขึ้น→สำรองแล้วอัปเดตเซฟเอง ไม่ต้องล้างเกม/รันSQLเพิ่ม ไม่อ้างคืนdailyattempt/นำownerเซฟมาแก้
+- Docsclosurecommitตามsourceที่ตรวจแล้ว ตรวจreadinessหลังmoveก่อนจบ ไม่ปิดoldpending4/review5. คำขอล่าสุดแก้ทั้งจังหวะclickbossจริงและmaintenanceไม่ใช่แค่เปลี่ยนปุ่ม. Privateenvrejectionถูกแจ้งcommentary+saferuserSQLแล้ว FinalระบุหลักฐานบัญชีมาจากSQLที่ผู้ใช้ส่ง
+
 ## 22 ต.ค.2026 · Codex — TASK-090 localผ่าน รอdeploy / pendingขวางmigrationหลังเริ่มบอส
 
 - Userยืนยันกดบอสค้างแล้วจริงๆเป็นMaintenancePanelปุ่มสำรองอัปเดตได้WRITER_NOT_READY. ขอcheckaccount: auto-reviewปฏิเสธเปิดprivateenvservicekey ห้ามworkaround ได้ใช้user-runSQLแทน **oldcontentfd66a55f…/inbattletrue**, revisionไม่ส่ง. task090-owner-state.json; ไม่อ้างdirectcloudinspection ไม่privateenvread/ownerwrite

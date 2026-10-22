@@ -26,10 +26,12 @@ Milestone: M4 · D-119
 
 ## เกณฑ์ตรวจรับ
 
-- [ ] AC-01: pendingที่มีreceiptยืนยันแล้วถูกปลดเมื่อmigrationpreviewrevisionถึงreceipt; no-receiptคำสั่งที่APIตอบ409CONTENT_VERSION_MISMATCHเก็บUUID/paramsเดิมในlocalbackupแล้วไม่replayข้ามรุ่น สามารถกดbackup+migrateสำเร็จหนึ่งครั้งพร้อมsignedbackupเดิมครบ
-- [ ] AC-02: unknown/network/timeout/401/5xx/stalepreview/storagefailureไม่ล้างpendingหรือหักของซ้ำ; maintenanceแสดงตรวจผลรายการค้างหรือwriterแทนWRITER_NOT_READYรัว และmigratereplyloss/retryใช้UUIDเดิม ไม่สร้างmigration/backupsซ้ำ
-- [ ] AC-03: Focused controller/API/backup/build/type/boundaries/secretsและactualdisposableAuth/API/SQL/mobile320/390 plusVercelpublicproofผ่าน คงwallet/roster/items/paidledger/dailyquotaตามmigrationเดิม ไม่มีownercloudwrite/privateenvread/6173restart/SQL/env/content/packเปลี่ยน
+- [x] AC-01: pendingที่มีreceiptยืนยันแล้วถูกปลดเมื่อmigrationpreviewrevisionถึงreceipt; no-receiptคำสั่งที่APIตอบ409CONTENT_VERSION_MISMATCHเก็บUUID/paramsเดิมในlocalbackupแล้วไม่replayข้ามรุ่น สามารถกดbackup+migrateสำเร็จหนึ่งครั้งพร้อมsignedbackupเดิมครบ
+- [x] AC-02: unknown/network/timeout/401/5xx/stalepreview/storagefailureไม่ล้างpendingหรือหักของซ้ำ; maintenanceแสดงตรวจผลรายการค้างหรือwriterแทนWRITER_NOT_READYรัว และmigratereplyloss/retryใช้UUIDเดิม ไม่สร้างmigration/backupsซ้ำ
+- [x] AC-03: Focused controller/API/backup/build/type/boundaries/secretsและactualdisposableAuth/API/SQL/mobile320/390 plusVercelpublicproofผ่าน คงwallet/roster/items/paidledger/dailyquotaตามmigrationเดิม ไม่มีownercloudwrite/privateenvread/6173restart/SQL/env/content/packเปลี่ยน
 
 ## วิธีตรวจและหลักฐาน
 
 Existing save-backup/recurring-save/auth/save-roundtrips + task090 actual isolated signed old save with pending fixture. ScopeactualowneraccountยังรอsanitizedSQLจากผู้ใช้ ไม่อ้างตรวจบัญชีสำเร็จจากfixture.
+
+Reviewผ่าน3/3AC · 22 ต.ค.2026 · source`9d1899e9aa40bf1568d8746701654661dfc51bae` VercelSUCCESS · [หลักฐาน](../evidence/task-090-review.json)

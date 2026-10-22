@@ -11168,7 +11168,7 @@
       "criterion": "pendingที่มีreceiptยืนยันแล้วถูกปลดเมื่อmigrationpreviewrevisionถึงreceipt; no-receiptคำสั่งที่APIตอบ409CONTENT_VERSION_MISMATCHเก็บUUID/paramsเดิมในlocalbackupแล้วไม่replayข้ามรุ่น สามารถกดbackup+migrateสำเร็จหนึ่งครั้งพร้อมsignedbackupเดิมครบ",
       "input_setup": "Old signed save with pending boss start: receipt present/404/version refusal/network/storage/late revision and real migration reply loss",
       "input_refs": [
-        "plan/inprogress/tasks_090.md",
+        "plan/done/tasks_090.md",
         "src/client/save-controller.ts",
         "src/client/save-browser.ts",
         "src/ui/game/backup.tsx",
@@ -11181,8 +11181,13 @@
       "expected": "pendingที่มีreceiptยืนยันแล้วถูกปลดเมื่อmigrationpreviewrevisionถึงreceipt; no-receiptคำสั่งที่APIตอบ409CONTENT_VERSION_MISMATCHเก็บUUID/paramsเดิมในlocalbackupแล้วไม่replayข้ามรุ่น สามารถกดbackup+migrateสำเร็จหนึ่งครั้งพร้อมsignedbackupเดิมครบ",
       "verification": "Focused tests + actual disposable Auth/API/SQL/mobile + final build and signed-out hosted checks",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation",
-      "execution_evidence": []
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-090-review.json",
+        "plan/evidence/task-090-targeted.txt",
+        "plan/evidence/task-090-ui-live.json",
+        "plan/evidence/task-090-hosted.json"
+      ]
     },
     {
       "id": "T090-AC-02",
@@ -11191,7 +11196,7 @@
       "criterion": "unknown/network/timeout/401/5xx/stalepreview/storagefailureไม่ล้างpendingหรือหักของซ้ำ; maintenanceแสดงตรวจผลรายการค้างหรือwriterแทนWRITER_NOT_READYรัว และmigratereplyloss/retryใช้UUIDเดิม ไม่สร้างmigration/backupsซ้ำ",
       "input_setup": "Old signed save with pending boss start: receipt present/404/version refusal/network/storage/late revision and real migration reply loss",
       "input_refs": [
-        "plan/inprogress/tasks_090.md",
+        "plan/done/tasks_090.md",
         "src/client/save-controller.ts",
         "src/client/save-browser.ts",
         "src/ui/game/backup.tsx",
@@ -11204,8 +11209,13 @@
       "expected": "unknown/network/timeout/401/5xx/stalepreview/storagefailureไม่ล้างpendingหรือหักของซ้ำ; maintenanceแสดงตรวจผลรายการค้างหรือwriterแทนWRITER_NOT_READYรัว และmigratereplyloss/retryใช้UUIDเดิม ไม่สร้างmigration/backupsซ้ำ",
       "verification": "Focused tests + actual disposable Auth/API/SQL/mobile + final build and signed-out hosted checks",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation",
-      "execution_evidence": []
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-090-review.json",
+        "plan/evidence/task-090-targeted.txt",
+        "plan/evidence/task-090-ui-live.json",
+        "plan/evidence/task-090-hosted.json"
+      ]
     },
     {
       "id": "T090-AC-03",
@@ -11214,7 +11224,7 @@
       "criterion": "Focused controller/API/backup/build/type/boundaries/secretsและactualdisposableAuth/API/SQL/mobile320/390 plusVercelpublicproofผ่าน คงwallet/roster/items/paidledger/dailyquotaตามmigrationเดิม ไม่มีownercloudwrite/privateenvread/6173restart/SQL/env/content/packเปลี่ยน",
       "input_setup": "Old signed save with pending boss start: receipt present/404/version refusal/network/storage/late revision and real migration reply loss",
       "input_refs": [
-        "plan/inprogress/tasks_090.md",
+        "plan/done/tasks_090.md",
         "src/client/save-controller.ts",
         "src/client/save-browser.ts",
         "src/ui/game/backup.tsx",
@@ -11227,8 +11237,13 @@
       "expected": "Focused controller/API/backup/build/type/boundaries/secretsและactualdisposableAuth/API/SQL/mobile320/390 plusVercelpublicproofผ่าน คงwallet/roster/items/paidledger/dailyquotaตามmigrationเดิม ไม่มีownercloudwrite/privateenvread/6173restart/SQL/env/content/packเปลี่ยน",
       "verification": "Focused tests + actual disposable Auth/API/SQL/mobile + final build and signed-out hosted checks",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation",
-      "execution_evidence": []
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-090-review.json",
+        "plan/evidence/task-090-targeted.txt",
+        "plan/evidence/task-090-ui-live.json",
+        "plan/evidence/task-090-hosted.json"
+      ]
     }
   ]
 }
