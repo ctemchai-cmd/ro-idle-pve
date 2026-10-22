@@ -242,3 +242,5 @@ D-117 runtime finding: valid same-user TOKEN_REFRESHED ระหว่าง SDK
 | D-124 | 22 ต.ค.2026 ผู้ใช้ให้ร้านค้าใช้ไอคอนเดิม แค่เปลี่ยนจากเทาเป็นสีปกติ | TASK-095 คืน native ถุงเงิน bank_1 แทน bank_3/StoreSVG คงขนาดและพฤติกรรมเมนูเดิม |
 
 | D-125 | 22 ต.ค.2026 ผู้ใช้ให้ช่องสวมใส่ขึ้นสีแดง และยืนยันว่าเลเวลไอเท็มสูงกว่าก่อน ถ้าเท่ากันจึงดู rarity ที่สูงกว่า | TASK-096 จุดแดงเล็กและป้ายในรายการเปลี่ยน กรองอาชีพ/เลเวล/ยังไม่มีคนสวม ใช้ tier→rarity โดยไม่คำนวณ stats/ออปชัน/ค่าพัฒนาช่อง |
+
+| D-126 | 22 ต.ค.2026 ผู้ใช้ถามเลขเหลืองสะสมที่ยังไม่มี และย้ำเฉพาะสกิลMultiHit เช่นFinger Monk/Bolt | TASK-097 เพิ่มnativeyellow runningtotalต่อcast/target เฉพาะdirectmulti-hitของตัวโฟกัส normal/single/periodic/proc/reflectไม่รวม; visualcontact/fallback90msเฉพาะภาพ ไม่มีengine/savechange |

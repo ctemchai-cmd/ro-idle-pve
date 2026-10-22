@@ -4,6 +4,16 @@
 
 
 
+## 22 ต.ค.2026 · Codex — TASK-097 เลขเหลือง Multi Hit รอ deploy
+
+- ผู้ใช้ถามเลขเหลืองที่ยังไม่มี (ก่อนหน้าแค่research) แล้วย้ำเฉพาะMultiHit เช่นFingerMonk (D-126). เพิ่มrenderer/multi-hit-numbers.ts keyed(actor,skill,action_id,target), directorigin skillเท่านั้นและ>=2damageeventsต่อเป้า ไม่รวมnormal/single/AoEหนึ่งhitต่อเป้า/periodic/proc/reflect/heal. ใช้amountจริง/sequence-dedupe ไม่บวกต่อdraw โฟกัสตามselected/newcastแทนยอดเก่า ไม่ปนsource/target. max128groups/hold1000+fade400battlems
+- Nativebitmapfontเดิมkindtotalสีเหลืองผ่านcachedRGBA tint ไม่มีcritbg. White/red/healเดิมคงไว้. ฟอนต์เหลืองเด้งเมื่อlasthitเปลี่ยนและอยู่y−255/clamp40เหนือwhiteflight; reducedmotionใช้rawengineat/nojump. งานภาพเท่านั้น **ไม่ขยายcontract/engine/save/math**
+- BattleRendererใช้samevisualcontactทั้งwhite+total. Projectile/native staggerเดิมคง; directmultihitไม่มีspacing(เช่นFinger)ใช้fallback90ms ต่อhitเฉพาะภาพ/reactions/deathvisual. NativeSTRที่มีทั้งชุดในclipไม่เพิ่มburstซ้อนหลายcopy. ไม่เลื่อนHP/SP/CC/สูตรหรือRNGจริง
+- **19focused/build/type/boundaries/secrets/readiness8ผ่าน** ActualisolatednativeChrome4groups scripts/test_multi_hit_numbers.cjs: authoredBolt3=23→46→69,Finger5=49→98→147→196→245,Double2=40→80ตามvisualimpact; controlled100→200→300/goldpixels549/alpha-maskidentical/focus/expiry/reducedmotion; actualengine1x2x4 events+RNG+checkpointsเท่ากัน/interruptไม่มีtotal/Bashsingle+normalไม่มีtotal/mobile320/390/0HTTPwrites/0errors. Drawmedian.3ms/max.5ms ไม่physicalAndroid/balancebatch/ownerAuthproof
+- เปิดภาพ320และFingerจริง พบinitialyellowซ้อนwhiteจึงย้ายband/addactualcoordinateassertionแล้วผ่าน. HarnessrestoreMage spriteก่อนcapturecontrolled/mobileหลังหลายjob; เก็บround1/before-spacingreports ไม่เปลี่ยนoracleกลบfailure. Noassets/privateenv/6173restart/ownercloudwrite
+- Contentเดิม38859826ae9f3bb1b3c622609f8e3f7c046fa7e9bc182a4db8bdc27b84a7cde2 pack96dec12ee20f2dc6865dda45131c27c96a0527fc757e8d4eaefd91dbec9d5912 ไม่ต้องSQL/env/migration. Board82/97doneinprogress5รวม097/review5/todo5 M4done42/52
+- Nextsourcepush→VercelSUCCESS→RO_EVIDENCE_PREFIX=task-097/RO_EXPECT_CONTENT_HASH=38859826ae9f3bb1b3c622609f8e3f7c046fa7e9bc182a4db8bdc27b84a7cde2/RO_DEPLOY_COMMIT=<sha> node scripts/test_save_latency_hosted.cjs ตรวจpublicskill-timelinechunkSHA/multiHitNumbers/pack/API/loginPWA. แล้วreview3AC/movedone/board83/97M4done43/52/readiness/docsclosurepush
+
 ## 22 ต.ค.2026 · Codex — TASK-096 done จุดแดงอุปกรณ์ตาม level/rarity ขึ้น Vercel แล้ว
 
 - ผู้ใช้ขอช่องสวมขึ้นแดงเมื่อมีของดีกว่า แล้วแก้เกณฑ์ชัดเจน **เลเวลไอเท็มสูงกว่าก่อน ถ้าเท่ากันค่อยrarityสูงกว่า** (D-125). Final equipmentUpgradeHints เป็นlinearMapmemo ไม่เรียกstatpreview/clone/save/API. กรองอาชีพ/requiredlevel/unowned ของล็อกใส่ได้ ช่องว่างเตือนเมื่อมีของใส่ได้ ซ่อนเมื่อactivebattle. คืนidชิ้นสูงสุดของช่องไว้จัดแถวบนสุดและป้ายดีกว่าในChangeSheet. จุดแดง8pxเหนือขวากรอบไม่ทับเลข/การ์ด สีrarityเดิม. Previewค่าจริงในรายการยังใช้ของเดิม ไม่สวมอัตโนมัติ

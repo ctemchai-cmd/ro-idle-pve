@@ -1,0 +1,27 @@
+✔ demo bosses are solo, field retains monsters;3s skill and1.5s normal bases scale with each actor ASPD (214.611458ms)
+✔ explicit timing survives checkpoint restore and rejects invalid tuning; baseline remains replayable (133.937541ms)
+✔ projectiles travel continuously from the shooter to the actual target with deterministic staggering (0.42275ms)
+✔ focus filters by outgoing source, never hides or changes actual damage events (0.0865ms)
+✔ special_sfx validates shapes, bounds, logical skill IDs and native glyph/frame mappings (2.334458ms)
+✔ ACT attack event sets contact/release: sword500ms, bow700ms (release pose, not the draw sound), rod500ms, rod500ms (24.089125ms)
+✔ projectiles wait for the native release pose, retain travel/stagger, and never mutate pack definitions (1.360542ms)
+✔ fast attack speed plays the swing faster so the release still lands inside it; slow attacks keep the native clip (1.087625ms)
+✔ monk fists cycle 3 native poses; weapon jobs keep the one attack their overlay draws; skills keep the preset swing (44.483958ms)
+✔ one cast shows100→200→300 at the actual visual contacts, without counting a frame twice (1.359084ms)
+✔ single-hit skills, normal attacks, periodic damage, procs and healing have no yellow total (0.133125ms)
+✔ totals separate targets and casters; a new cast replaces the old counter without inheriting its sum (0.2165ms)
+✔ a single-hit area attack never becomes multi-hit by adding up different victims (0.127542ms)
+✔ replayed events are deduplicated and fully absorbed hits add zero, with no artificial damage (0.073917ms)
+✔ final sum holds then fades; reduced motion uses engine times and still shows the correct total (0.081042ms)
+✔ multi-hit ordinals preserve hit indices and only identify direct hits of one skill on one target (0.101667ms)
+✔ impacts are native STR effects shipped in the pack, keyed by presentation so copies share them (41.174166ms)
+✔ fire/cold bolts fall from the sky onto the target; Lightning Bolt and Arrow Shower use their native strike instead of fake projectiles (0.78475ms)
+✔ damage numbers arc up then fall to one side while shrinking, faster than the old 1.1 s rise (0.206917ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2504.086834

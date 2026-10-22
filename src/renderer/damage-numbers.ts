@@ -1,7 +1,7 @@
 import type { NativeAsset } from './native.mjs';
 
 /** `incoming` is damage a party member takes (red, as RO shows it on your own characters). */
-export type NumberKind = 'damage' | 'heal' | 'incoming';
+export type NumberKind = 'damage' | 'heal' | 'incoming' | 'total';
 /** RO-style flight: the number pops large, arcs up and falls back to one side while it shrinks; presentation only. */
 export const NUMBER_FLIGHT_MS = 800;
 export function numberFlight(elapsed: number, side: number): { dx: number; dy: number; size: number; alpha: number } {
@@ -25,6 +25,7 @@ export class DamageNumbers {
     if (critical) { const pixels = context.getImageData(0, 0, canvas.width, canvas.height); for (let i = 0; i < pixels.data.length; i += 4) { pixels.data[i + 1] = pixels.data[i + 1]! * .95; pixels.data[i + 2] = pixels.data[i + 2]! * .18; } context.putImageData(pixels, 0, 0); }
     if (heal) { const pixels = context.getImageData(0, 0, canvas.width, canvas.height); for (let i = 0; i < pixels.data.length; i += 4) { pixels.data[i] = pixels.data[i]! * .48; pixels.data[i + 2] = pixels.data[i + 2]! * .42; } context.putImageData(pixels, 0, 0); }
     if (kind === 'incoming') { const pixels = context.getImageData(0, 0, canvas.width, canvas.height); for (let i = 0; i < pixels.data.length; i += 4) { pixels.data[i + 1] = pixels.data[i + 1]! * .28; pixels.data[i + 2] = pixels.data[i + 2]! * .24; } context.putImageData(pixels, 0, 0); }
+    if (kind === 'total') { const pixels = context.getImageData(0, 0, canvas.width, canvas.height); for (let i = 0; i < pixels.data.length; i += 4) { pixels.data[i + 1] = pixels.data[i + 1]! * .88; pixels.data[i + 2] = pixels.data[i + 2]! * .1; } context.putImageData(pixels, 0, 0); }
     this.cache.set(key, canvas); if (this.cache.size > 256) this.cache.delete(this.cache.keys().next().value!);
     return canvas;
   }

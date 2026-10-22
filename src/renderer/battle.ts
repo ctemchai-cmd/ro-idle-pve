@@ -10,6 +10,7 @@ import { drawSpiritSpheres } from './spirit-spheres.ts';
 import { drawHealingAura } from './healing-aura.ts';
 import { locateSkillVisual } from './asset-locator.ts';
 import { FinisherEffects, type FinisherFrame } from './finishers.ts';
+import { MultiHitNumbers, multiHitOrdinals, MULTI_HIT_FALLBACK_MS, type MultiHitFrame } from './multi-hit-numbers.ts';
 
 interface Cue { event: BattlePresentationEvent; duration: number; delay: number; targets: readonly string[] }
 /** Length of one pass through a native STR effect. */
@@ -28,7 +29,8 @@ export class BattleRenderer {
   private readonly numbers: DamageNumbers | null;
   private readonly animation: ActorAnimation;
   private readonly finishers = new FinisherEffects();
-  frameStats = { finishers: [] as FinisherFrame[], camera: [0,0] as readonly [number,number], healing_auras: [] as string[], damage: [] as { source: string; target: string; amount: number; critical: boolean; sequence: number; at_ms: number }[], incoming: [] as { source: string; target: string; amount: number; sequence: number }[], projectiles: [] as { source: string; target: string; shape: string }[], shouts: [] as { actor: string; skill: string }[], impacts: [] as { target: string; meta: string }[] };
+  private readonly multiHitNumbers = new MultiHitNumbers();
+  frameStats = { totals: [] as MultiHitFrame[], finishers: [] as FinisherFrame[], camera: [0,0] as readonly [number,number], healing_auras: [] as string[], damage: [] as { source: string; target: string; amount: number; critical: boolean; sequence: number; at_ms: number }[], incoming: [] as { source: string; target: string; amount: number; sequence: number }[], projectiles: [] as { source: string; target: string; shape: string }[], shouts: [] as { actor: string; skill: string }[], impacts: [] as { target: string; meta: string }[] };
   private frameTime = 0;
   private statusImages = new Map<string, HTMLImageElement | null>();
   /** Hide ambient-farm status icons without changing the shared combat state. */
@@ -61,6 +63,12 @@ export class BattleRenderer {
   }
   accept(events: readonly BattlePresentationEvent[]): void {
     const launches = new Map<string, { specs: readonly ProjectileSpec[]; contact: number; damaging: boolean; impact: ImpactEffect | null }>();
+    const ordinals = multiHitOrdinals(events);
+    const delayFor = (event: BattlePresentationEvent, launch: { specs: readonly ProjectileSpec[]; contact: number; damaging: boolean; impact: ImpactEffect | null } | undefined): number => {
+      const base = launch?.damaging ? visualImpactMs(launch.specs, launch.contact, event.hit_index ?? 0, launch.impact) : 0;
+      const fallback = !launch?.specs.some(spec => spec.stagger_ms > 0) && !launch?.impact?.stagger_ms;
+      return base + (fallback ? (ordinals.get(event.sequence) ?? 0) * MULTI_HIT_FALLBACK_MS : 0);
+    };
     const key = (event: BattlePresentationEvent) => `${event.at_ms}:${event.actor_id}:${event.skill_id ?? 'normal_attack'}`;
     for (const event of events) if (event.type === 'normal_attack' || event.type === 'cast_resolve') {
       const job = this.scene.actors.find(actor => actor.actor_id === event.actor_id)?.job_id;
@@ -69,14 +77,15 @@ export class BattleRenderer {
       const specs = alignProjectiles(configured, contact);
       const damaging = events.some(row => key(row) === key(event) && ['damage', 'miss'].includes(row.type));
       const impact = event.type === 'cast_resolve' ? this.pack.impacts.get(event.skill_id ?? '') ?? null : null;
-      launches.set(key(event), { specs, contact, damaging, impact: impact?.config ?? null });
+      const launch = { specs, contact, damaging, impact: impact?.config ?? null };
+      launches.set(key(event), launch);
       if (impact) {
         // One native burst per (target, hit); targets reached only by heals/statuses get one at the resolve.
         const reached = new Map<string, number>();
         for (const row of events) if (key(row) === key(event) && row.target_id && ['damage', 'miss', 'heal', 'status_applied'].includes(row.type)) {
           // Hits that land together (no projectile, no stagger) share one burst instead of stacking additive copies.
           const hit = (row.type === 'damage' || row.type === 'miss') && (specs.length || impact.config.stagger_ms) ? row.hit_index ?? 0 : 0, id = `${row.target_id}:${hit}`;
-          if (!reached.has(id)) reached.set(id, event.at_ms + (damaging ? visualImpactMs(specs, contact, hit, impact.config) : contact));
+          if (!reached.has(id)) reached.set(id, event.at_ms + (damaging ? delayFor(row, launch) : contact));
         }
         if (!reached.size) reached.set(`${event.actor_id}:0`, event.at_ms + contact);
         for (const [id, at] of reached) this.impacts.push({ target_id: id.slice(0, id.lastIndexOf(':')), at, config: impact.config, asset: impact.asset });
@@ -90,7 +99,8 @@ export class BattleRenderer {
         this.reactions = this.reactions.filter(cue => cue.event.actor_id !== event.actor_id || cue.event.type !== 'death').filter(cue => cue.event.target_id !== event.actor_id || cue.event.type !== 'damage');
       }
       const launch = launches.get(key(event));
-      const delay = launch?.damaging ? visualImpactMs(launch.specs, launch.contact, event.hit_index ?? 0, launch.impact) : 0;
+      const delay = delayFor(event, launch);
+      this.multiHitNumbers.queue(event, event.at_ms + delay);
       if (this.showFinishers) this.finishers.queue(event,event.at_ms+(this.motion?delay:0));
       if (event.type === 'damage' && event.target_id && (event.amount ?? 0) > 0) this.incomingImpact.set(event.target_id, Math.max(this.incomingImpact.get(event.target_id) ?? 0, event.at_ms + delay));
       if (event.type === 'death') this.deathAt.set(event.actor_id, Math.max(event.at_ms, this.incomingImpact.get(event.actor_id) ?? 0));
@@ -152,7 +162,7 @@ export class BattleRenderer {
     const camera=this.showFinishers&&this.showFinisherTitles?this.finishers.shake(wallMs,this.motion):[0,0] as const;
     context.save(); context.translate((width - worldWidth * zoom) / 2+camera[0], (height - worldHeight * zoom) / 2+camera[1]); context.scale(zoom, zoom);
     this.drawnLayers = 0;
-    this.frameStats = { finishers: [], camera, damage: [], incoming: [], projectiles: [], shouts: [], impacts: [], healing_auras: [] };
+    this.frameStats = { totals: [], finishers: [], camera, damage: [], incoming: [], projectiles: [], shouts: [], impacts: [], healing_auras: [] };
     const appearances = this.scene.actors;
     this.lastView = view;
     for (const actor of view.actors.filter(row => row.summon_of)) this.drawSummon(context, actor, presentationMs);
@@ -228,6 +238,15 @@ export class BattleRenderer {
       if (event.type === 'status_applied' && event.detail?.startsWith('stun:')) { text = 'STUN'; color = '#e7c9ff'; }
       if (!text) continue;
       context.save(); context.globalAlpha = Math.max(0, 1 - elapsed / cue.duration); context.font = 'bold 20px ROThai, sans-serif'; context.textAlign = 'center'; context.lineWidth = 4; context.strokeStyle = '#26352f'; const yy = y - (event.type === 'cast_interrupt' || event.type === 'status_applied' ? 135 : 100 + event.sequence % 3 * 18) - (this.motion ? elapsed / 24 : 0); context.strokeText(text, x + (event.sequence % 3 - 1) * 20, yy); context.fillStyle = color; context.fillText(text, x + (event.sequence % 3 - 1) * 20, yy); context.restore();
+    }
+    this.frameStats.totals = this.multiHitNumbers.frames(presentationMs, this.selected, this.motion);
+    for (const total of this.frameStats.totals) {
+      const target = view.actors.find(actor => actor.actor_id === total.target); if (!target) continue;
+      const [x, y] = this.point(target), pop = this.motion ? Math.sin(Math.PI * Math.min(1, total.age_ms / 160)) * 8 : 0;
+      context.save(); context.globalAlpha = total.alpha;
+      // A separate band above the white numbers' upward flight keeps the running total readable.
+      this.numbers?.draw(context, total.amount, false, x, Math.max(40, y - 255) - pop, this.motion ? total.age_ms : 140, 'total', 1.08);
+      context.restore();
     }
     for (const actor of view.actors) { if (actor.summon_of) continue; const [x, y] = this.point(actor); this.label(context, actor, x, y, presentationMs); }
     context.restore();

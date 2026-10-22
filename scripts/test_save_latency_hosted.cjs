@@ -19,6 +19,14 @@ const assert=(ok,message)=>{if(!ok)throw new Error(message);};let browser,profil
  assert(assetResponse.ok&&assetResponse.headers.get('cache-control')==='no-store'&&assetManifest.pack_hash===manifest.runtime_asset_pack_hash,'MUTABLE_ASSET_MANIFEST_CACHE_OR_VERSION');
  const row=manifest.build_files.find(r=>/^dist\/assets\/account-session-.*\.js$/.test(r.path));assert(row,'NO_SAVE_BUNDLE');
  const bundle=await(await fetch(base+'/'+row.path.replace(/^dist\//,''))).text();assert(bundle.includes('sendWithCheckpoint')&&bundle.includes('x-ro-checkpoint'),'OLD_SAVE_PROTOCOL_DEPLOYED');
+ if(prefix==='task-097'){
+  const file=manifest.build_files.find(r=>/^dist\/assets\/skill-timeline-.*\.js$/.test(r.path));assert(file,'NO_RENDERER_BUNDLE');
+  const source=await(await fetch(base+'/'+file.path.replace(/^dist\//,''))).text();
+  assert(createHash('sha256').update(source).digest('hex')===file.sha256,'YELLOW_TOTAL_RENDERER_SHA');
+  assert(['multiHitNumbers','impact_ms','totals','normal_attack'].every(s=>source.includes(s)),'YELLOW_MULTI_HIT_NOT_DEPLOYED');
+  currentProof={task:'TASK-097',yellow_multi_hit_renderer:true,public_renderer_sha256:file.sha256,pack_unchanged:assetManifest.pack_hash===JSON.parse(fs.readFileSync(path.join(root,'runtime/ro/manifest.json'),'utf8')).pack_hash};
+  assert(currentProof.pack_unchanged,'UNEXPECTED_ASSET_PACK_CHANGE');
+ }
  if(prefix==='task-096'){
   const file=manifest.build_files.find(r=>/^dist\/assets\/shell-.*\.js$/.test(r.path));assert(file,'NO_SHELL_BUNDLE');
   const source=await(await fetch(base+'/'+file.path.replace(/^dist\//,''))).text();
