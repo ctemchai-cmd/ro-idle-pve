@@ -4,12 +4,14 @@
 
 
 
-## 22 ต.ค.2026 · Codex — TASK-076 ธาตุสกิล/เกราะเป้าหมาย localผ่าน รอdeploy
+## 22 ต.ค.2026 · Codex — TASK-076 done ธาตุสกิล/เกราะเป้าหมายขึ้นVercelแล้ว
+
+- 22 ตุลาคม 2026: ผู้ใช้สังเกตสถิติว่า damage ส่วนมากมาจากตีปกติ ตรวจcode/dataแบบstaticพบ runtime SI3000ms vs normal1500ms (ทั้งคู่ลดตามASPD), ตีได้ในSI/ACDและหยุดตอนCT; normal100%ATK/critได้ ขณะที่ BashLv1=140%→max220%, DoubleStrafeLv1=70%×2→max110%×2. ข้อมูลนี้อธิบายโอกาสnormalครองสัดส่วน โดยเฉพาะสกิลต่ำ/หลายช่องบัฟฮีล แต่ยังไม่ได้อ่านownerbuild/logหรือยืนยันว่าสัดส่วนทุกสายเหมือนกัน จุดตรวจถัดไปคือความคุ้มค่าสกิลโจมตีเทียบCT/SP/ช่องและแยกสายnormal/skill ห้ามเพิ่มตัวคูณทุกท่ารวมกันหรืออ้างwholebalanceจากตัวอย่าง ไม่ได้เปลี่ยนสมดุล/รันsimulationในรอบTASK076
 
 - ผู้ใช้ขอแสดงธาตุสกิลและเกราะธาตุเป้าหมาย D-102. เพิ่มclient/elements graphอ่านeffect/status periodic+triggers/passive/summon/handlerพร้อมcycleguard ใช้จริงทั้งป้ายและeffectdescription แยกEnvenomhitweapon/DoTpoison ไม่เดาจากชื่อ ไม่Holyheal. Main/legacy skilldetailsและpublicdemoมีbadge
 - BossHUDอ่านarmorจากstate sourceslast→tag→Neutral; focusอ่านarmor+weaponผ่านdomainweaponElementจริง ไม่มีDOMstatcalculation. Sourcecardต้องมีarmorสวมจึงactiveตามเดิม FireEndowไม่เปลี่ยนarmor/fixedspell. ไม่แก้domain/contracts/data/hashpack ไม่เพิ่มAPI/save/SQL/env/balance/6173restartหรืออ่านprivatekeys
 - Localtargeted33/build/type/boundaries/secretsผ่าน content4e440839…/packc7e45b…เดิม. ActualdisposableAuth/PostgREST/Postgres/mobileChrome3groupsผ่าน 9skilldetail/3modes/AngelingHoly/EndowFire/focuschange/320–390px/onlystart-retreatcommands รูปbattle/envenom320ดูจริงแล้ว Publicdemolocal2groupsและbadgecomponentsใช้ร่วม ไม่มีowneraccount
-- Task076inprogress AC01–03checked AC04รอpush/actualVercel +publicsmoke; board61/76done,inprogress5/oldpending4ไม่ปิด เก็บround1VIT100เกินcap,round2card dormantemptyarmor เป็นfixturefailไม่productfail แก้fixtureแล้วผ่าน อย่ารันbalance/calibration,อย่าแตะ6173/env/saveowner
+- **Sourcee50bd79cbbb43d3d6ed157038c78757ea287a455 push/VercelSUCCESS** https://vercel.com/chanon2/ro-idle-pve/5L5nnV574EGzdb4jAPhbXqDT98Ce actualhostedAPI/login/PWA3groups+sharedmobileelementdemo2groupsผ่านและภาพhosted320ดูเต็มจริง newUIbundlesตรง/0mutations. Task076doneทุกACผ่าน; board62/76done,inprogress4/oldpending4ไม่ปิด เก็บround1VIT100เกินcap,round2card dormantemptyarmor เป็นfixturefailไม่productfail แก้fixtureแล้วผ่าน อย่ารันbalance/calibration,อย่าแตะ6173/env/saveowner
 
 ## 22 ต.ค.2026 · Codex — TASK-075 done ภาพหลังอัปเดตโหลดได้แล้วบนproduction
 

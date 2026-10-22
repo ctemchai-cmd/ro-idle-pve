@@ -1,13 +1,13 @@
 {
   "task_id": "TASK-076",
   "date": "2026-10-22",
-  "passed": false,
+  "passed": true,
   "implementation_verified": true,
   "acceptance": {
     "AC-01": "passed",
     "AC-02": "passed",
     "AC-03": "passed",
-    "AC-04": "pending_hosted"
+    "AC-04": "passed"
   },
   "content_hash": "4e44083962ef36aa61ab5e80cd86e1e3ed088ebb0d136744cb8ca2160655ca57",
   "asset_pack_hash": "c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2",
@@ -21,7 +21,9 @@
     "local_auth_mobile_groups": 3,
     "public_local_demo_groups": 2,
     "readiness_checks": 8,
-    "build_type_boundaries_secrets": true
+    "build_type_boundaries_secrets": true,
+    "actual_hosted_api_login_pwa_groups": 3,
+    "actual_hosted_element_demo_groups": 2
   },
   "evidence": [
     "plan/evidence/task-076-targeted.txt",
@@ -29,17 +31,20 @@
     "plan/evidence/task-076-local-stack.json",
     "plan/evidence/task-076-local-demo.json",
     "plan/evidence/task-076-build.txt",
-    "plan/evidence/task-076-readiness.txt"
+    "plan/evidence/task-076-readiness.txt",
+    "plan/evidence/task-076-hosted.json",
+    "plan/evidence/task-076-public-elements.json",
+    "plan/evidence/task-076-github-deployment.json"
   ],
-  "visual_scope": "Inspected full 320px actual game battle with active Fire Endow and Angeling Holy armor, full Envenom skill details, and public shared demo after real native scene pixels rendered; 390px also captured and layout asserted. Not physical Android hardware.",
+  "visual_scope": "Inspected full 320px actual game battle with active Fire Endow and Angeling Holy armor, full Envenom skill details, and public shared demo after real native scene pixels rendered; 390px also captured and layout asserted. Not physical Android hardware. Actual hosted320px native scene and shared element badges screenshot inspected in full.",
   "owner_cloud_writes": false,
   "personal_preview_restarted": false,
   "balance_simulation": false,
-  "pending": [
-    "Push and verify actual hosted public API/login/PWA/shared element demo and served UI bundles"
-  ],
+  "pending": [],
   "retained_failures": [
     "round1 fixture VIT100 exceeded manual stat cap",
     "round2 fixture put card in empty dormant armor slot; corrected fixture equips armor first. No gameplay changes to make tests pass."
-  ]
+  ],
+  "source_commit": "e50bd79cbbb43d3d6ed157038c78757ea287a455",
+  "deployment_url": "https://vercel.com/chanon2/ro-idle-pve/5L5nnV574EGzdb4jAPhbXqDT98Ce"
 }

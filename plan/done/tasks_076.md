@@ -22,7 +22,7 @@ Milestone: M4 · อ้างอิง D-102
 - [x] AC-01: ป้าย/คำอธิบายตรง authored skill effects ทั้ง126ท่า รวม Fire/Cold Bolt, Storm Gust, Envenom, Falcon, Auto Bolt, Hell Plant, Detonate, Heal/Healing Song; หลายธาตุแยกชัดและ graph มี cycle ไม่วนไม่จบ
 - [x] AC-02: เกราะบอสตรง checkpoint ทุกโหมดและ priority card/source ล่าสุด→enemy tag→Neutral; Fire Endow เปลี่ยนธาตุอาวุธแต่ไม่เปลี่ยนเกราะหรือ fixed spell; projection ไม่แก้ state/RNG/timing/damage
 - [x] AC-03: UI จริงบน mobile Chrome320/390px อ่านธาตุสกิล/บอสได้ ไม่ล้น ไม่ต้องบันทึกเมื่อเปิดดู และไม่มี browser error; ตรวจภาพจริง
-- [ ] AC-04: build/type/boundaries/secrets ผ่าน content/packhashเดิม; push/deploy และ public smoke ผ่าน ไม่มี SQL/env/migration/owner-write/6173restart/balance simulation
+- [x] AC-04: build/type/boundaries/secrets ผ่าน content/packhashเดิม; push/deploy และ public smoke ผ่าน ไม่มี SQL/env/migration/owner-write/6173restart/balance simulation
 
 ## วิธีตรวจและหลักฐาน
 
@@ -36,7 +36,7 @@ Focused element presentation tests และ disposable isolated real Auth/Postg
 
 - 22ต.ค.2026: รับคำขอแสดงธาตุสกิลและเกราะเป้าหมาย เริ่ม implementation
 
-- Local review: targeted33ผ่าน (5element+100damagepairchecks/all126definitions และ28regressions), build/type/boundaries/secretsผ่าน content/packเดิม; actual isolatedAuth/PostgREST/Postgres/mobileChrome3กลุ่มผ่าน 9skilldetails +Story/Tower/Daily +Angeling/HolyและliveFireEndow. ตรวจภาพ320/390แล้ว ไม่ล้น/0inspectioncommands. Publicshared demo local2กลุ่มผ่าน; รอactualdeploy AC04
+- Local review: targeted33ผ่าน (5element+100damagepairchecks/all126definitions และ28regressions), build/type/boundaries/secretsผ่าน content/packเดิม; actual isolatedAuth/PostgREST/Postgres/mobileChrome3กลุ่มผ่าน 9skilldetails +Story/Tower/Daily +Angeling/HolyและliveFireEndow. ตรวจภาพ320/390แล้ว ไม่ล้น/0inspectioncommands. Publicshared demo local2กลุ่มผ่าน; actualdeploy AC04ผ่านแล้ว
 - Failed fixture roundsเก็บไว้: round1ใช้VIT100เกินmanualcap; round2ใส่การ์ดในarmorว่างจึงยังไม่activeตามกติกาเดิม แก้เฉพาะtestfixtureเป็นVIT60และสวมarmorก่อน สุดท้ายผ่าน ไม่เปลี่ยนกติกาเพื่อให้เทสต์ผ่าน
 
 | เกณฑ์ | วิธีตรวจ | ผลจริง |
@@ -44,4 +44,6 @@ Focused element presentation tests และ disposable isolated real Auth/Postg
 | AC-01 | authored126skills/indirect-effect graph/cycle guard + actualskillUI | ผ่าน targetedและui-live |
 | AC-02 | 100damagepairs/sourcepriority + activeAngeling/Endow/focus/Story-Tower-Daily | ผ่าน targetedและui-live |
 | AC-03 | actualChrome320/390, view-only command trace, full screenshots | ผ่าน3groups; ภาพตรวจแล้ว |
-| AC-04 | build/readiness/actualproduction | build/readinessผ่าน รอhosted |
+| AC-04 | build/readiness/actualproduction | build/readinessผ่าน hosted5groupsผ่าน |
+
+- Final review22ต.ค.2026: source`e50bd79cbbb43d3d6ed157038c78757ea287a455` VercelSUCCESS, actualpublicAPI/login/PWA3กลุ่ม +mobileelementdemo2กลุ่มผ่าน newUIbundlesตรงและภาพnativeไม่ว่าง อ่านป้ายFireBolt/ColdBolt/Bashตามจริง ไม่มีmutatingrequests. ทุกACผ่าน [review](../evidence/task-076-review.json). ไม่ต้องSQL/env/migrateเซฟเพราะcontent/packเดิม ผู้ตรวจCodex self-review

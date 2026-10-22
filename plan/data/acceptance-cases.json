@@ -9385,7 +9385,7 @@
       "criterion": "ป้าย/คำอธิบายตรง authored skill effects ทั้ง126ท่า รวม Fire/Cold Bolt, Storm Gust, Envenom, Falcon, Auto Bolt, Hell Plant, Detonate, Heal/Healing Song; หลายธาตุแยกชัดและ graph มี cycle ไม่วนไม่จบ",
       "input_setup": "126 authored skills plus cyclic status fixture;100element attack/armor pairs; disposable signed Lv40 Sage/Wizard/Assassin/Alchemist roster with equipped Angeling armor and live Fire Endow; real mobile Chrome320/390px and public deployment",
       "input_refs": [
-        "plan/inprogress/tasks_076.md",
+        "plan/done/tasks_076.md",
         "src/client/elements.ts",
         "tests/game/element-presentation.test.ts",
         "scripts/test_elements_ui_live.cjs"
@@ -9398,11 +9398,13 @@
       "expected": "ป้าย/คำอธิบายตรง authored skill effects ทั้ง126ท่า รวม Fire/Cold Bolt, Storm Gust, Envenom, Falcon, Auto Bolt, Hell Plant, Detonate, Heal/Healing Song; หลายธาตุแยกชัดและ graph มี cycle ไม่วนไม่จบ",
       "verification": "Focused element/rule parity and presentation regressions; actual isolated Auth/Postgres/mobile UI; build and read-only actual hosted bundles/PWA/demo",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation",
+      "status": "passed_implementation",
       "execution_evidence": [
+        "plan/evidence/task-076-review.json",
         "plan/evidence/task-076-targeted.txt",
         "plan/evidence/task-076-ui-live.json",
-        "plan/evidence/task-076-build.txt"
+        "plan/evidence/task-076-hosted.json",
+        "plan/evidence/task-076-public-elements.json"
       ]
     },
     {
@@ -9412,7 +9414,7 @@
       "criterion": "เกราะบอสตรง checkpoint ทุกโหมดและ priority card/source ล่าสุด→enemy tag→Neutral; Fire Endow เปลี่ยนธาตุอาวุธแต่ไม่เปลี่ยนเกราะหรือ fixed spell; projection ไม่แก้ state/RNG/timing/damage",
       "input_setup": "126 authored skills plus cyclic status fixture;100element attack/armor pairs; disposable signed Lv40 Sage/Wizard/Assassin/Alchemist roster with equipped Angeling armor and live Fire Endow; real mobile Chrome320/390px and public deployment",
       "input_refs": [
-        "plan/inprogress/tasks_076.md",
+        "plan/done/tasks_076.md",
         "src/client/elements.ts",
         "tests/game/element-presentation.test.ts",
         "scripts/test_elements_ui_live.cjs"
@@ -9425,11 +9427,13 @@
       "expected": "เกราะบอสตรง checkpoint ทุกโหมดและ priority card/source ล่าสุด→enemy tag→Neutral; Fire Endow เปลี่ยนธาตุอาวุธแต่ไม่เปลี่ยนเกราะหรือ fixed spell; projection ไม่แก้ state/RNG/timing/damage",
       "verification": "Focused element/rule parity and presentation regressions; actual isolated Auth/Postgres/mobile UI; build and read-only actual hosted bundles/PWA/demo",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation",
+      "status": "passed_implementation",
       "execution_evidence": [
+        "plan/evidence/task-076-review.json",
         "plan/evidence/task-076-targeted.txt",
         "plan/evidence/task-076-ui-live.json",
-        "plan/evidence/task-076-build.txt"
+        "plan/evidence/task-076-hosted.json",
+        "plan/evidence/task-076-public-elements.json"
       ]
     },
     {
@@ -9439,7 +9443,7 @@
       "criterion": "UI จริงบน mobile Chrome320/390px อ่านธาตุสกิล/บอสได้ ไม่ล้น ไม่ต้องบันทึกเมื่อเปิดดู และไม่มี browser error; ตรวจภาพจริง",
       "input_setup": "126 authored skills plus cyclic status fixture;100element attack/armor pairs; disposable signed Lv40 Sage/Wizard/Assassin/Alchemist roster with equipped Angeling armor and live Fire Endow; real mobile Chrome320/390px and public deployment",
       "input_refs": [
-        "plan/inprogress/tasks_076.md",
+        "plan/done/tasks_076.md",
         "src/client/elements.ts",
         "tests/game/element-presentation.test.ts",
         "scripts/test_elements_ui_live.cjs"
@@ -9452,11 +9456,13 @@
       "expected": "UI จริงบน mobile Chrome320/390px อ่านธาตุสกิล/บอสได้ ไม่ล้น ไม่ต้องบันทึกเมื่อเปิดดู และไม่มี browser error; ตรวจภาพจริง",
       "verification": "Focused element/rule parity and presentation regressions; actual isolated Auth/Postgres/mobile UI; build and read-only actual hosted bundles/PWA/demo",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation",
+      "status": "passed_implementation",
       "execution_evidence": [
+        "plan/evidence/task-076-review.json",
         "plan/evidence/task-076-targeted.txt",
         "plan/evidence/task-076-ui-live.json",
-        "plan/evidence/task-076-build.txt"
+        "plan/evidence/task-076-hosted.json",
+        "plan/evidence/task-076-public-elements.json"
       ]
     },
     {
@@ -9466,7 +9472,7 @@
       "criterion": "build/type/boundaries/secrets ผ่าน content/packhashเดิม; push/deploy และ public smoke ผ่าน ไม่มี SQL/env/migration/owner-write/6173restart/balance simulation",
       "input_setup": "126 authored skills plus cyclic status fixture;100element attack/armor pairs; disposable signed Lv40 Sage/Wizard/Assassin/Alchemist roster with equipped Angeling armor and live Fire Endow; real mobile Chrome320/390px and public deployment",
       "input_refs": [
-        "plan/inprogress/tasks_076.md",
+        "plan/done/tasks_076.md",
         "src/client/elements.ts",
         "tests/game/element-presentation.test.ts",
         "scripts/test_elements_ui_live.cjs"
@@ -9479,11 +9485,13 @@
       "expected": "build/type/boundaries/secrets ผ่าน content/packhashเดิม; push/deploy และ public smoke ผ่าน ไม่มี SQL/env/migration/owner-write/6173restart/balance simulation",
       "verification": "Focused element/rule parity and presentation regressions; actual isolated Auth/Postgres/mobile UI; build and read-only actual hosted bundles/PWA/demo",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation",
+      "status": "passed_implementation",
       "execution_evidence": [
+        "plan/evidence/task-076-review.json",
         "plan/evidence/task-076-targeted.txt",
         "plan/evidence/task-076-ui-live.json",
-        "plan/evidence/task-076-build.txt"
+        "plan/evidence/task-076-hosted.json",
+        "plan/evidence/task-076-public-elements.json"
       ]
     }
   ]
