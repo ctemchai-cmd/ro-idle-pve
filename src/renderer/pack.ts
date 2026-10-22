@@ -7,7 +7,7 @@ import { wardrobeRefs, type WardrobeTiers } from './shell.ts';
 import { validateCombatVisuals } from './projectiles.ts';
 import { presetSwing } from './actor-animation.ts';
 
-async function json<T>(url: string): Promise<T> { const response = await fetch(url); if (!response.ok) throw new Error(`ASSET_HTTP_${response.status}:${url}`); return response.json() as Promise<T>; }
+async function json<T>(url: string, init?: RequestInit): Promise<T> { const response = await fetch(url, init); if (!response.ok) throw new Error(`ASSET_HTTP_${response.status}:${url}`); return response.json() as Promise<T>; }
 export class AssetPack {
   readonly errors: string[] = [];
   readonly actors = new Map<string, ActorParts>();
@@ -31,7 +31,9 @@ export class AssetPack {
   setAudioHidden(hidden: boolean) { return this.audioMixer.setHidden(hidden); }
   private constructor(readonly index: RuntimeAssetIndex) { this.audioMixer = new BattleAudio(ref => locateAsset(this.index, ref).mediaUrl); }
   static async open(expectedPackHash?: string | null): Promise<AssetPack> {
-    const index = await json<RuntimeAssetIndex>('/ro/manifest.json');
+    // This stable URL changes between releases. Bypass even a previously cached
+    // immutable response; hashed media and sidecars retain their normal cache.
+    const index = await json<RuntimeAssetIndex>('/ro/manifest.json', { cache: 'no-store' });
     if (index.schema_version !== 1 || !/^[a-f0-9]{64}$/.test(index.pack_hash) || index.base_url !== `/ro/${index.pack_hash}/`) throw new Error('INVALID_RUNTIME_ASSET_MANIFEST');
     validateCombatVisuals(index.combat_visuals, Object.keys(index.skills), Object.values(index.skills).map(skill => skill.presentation_id));
     if (expectedPackHash !== undefined && expectedPackHash !== index.pack_hash) throw new Error('INCOMPATIBLE_RUNTIME_ASSET_PACK');

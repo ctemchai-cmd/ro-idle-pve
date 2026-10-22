@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "matcher": "path-to-regexp from installed official @vercel/node@24.0.3 builder dependencies; production behavior verified separately after deployment",
+  "cases": [
+    {
+      "path": "/ro/manifest.json",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
+    },
+    {
+      "path": "/ro/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/items/card-4001.webp",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "path": "/ro/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/items/card-4001.meta.json",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "path": "/ro/not-a-pack/anything.json",
+      "headers": []
+    }
+  ]
+}

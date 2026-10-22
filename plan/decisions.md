@@ -131,6 +131,7 @@
 
 | D-099 | 22 ต.ค.2026 ผู้ใช้ขอการ์ดอิงROจริงเป็นMonster/Mini/MVPและดรอปฟาร์มด่านหลังดีกว่า | TASK-073 คง60IDsเดิมแก้ชื่อ/ภาพ/ช่อง/จุดเด่นอ้างอิงและเพิ่มMini6; snapshotcarddropใช้seededreserveเดิม/5min ไม่ผูกkill; preserveoldcardinstances/migrateassignment; authoredrates/normalizationแยกจากROreference Rawpack32MiBสำหรับcardartlazyโดยinitial≤8MiB |
 | D-100 | 22 ต.ค.2026 ผู้ใช้ขอOptionเรียงบรรทัดมีสีและหน้าสวมอาวุธเฉพาะอาชีพ | TASK-074 ใช้sharedOptionLines label/valueหนึ่งบรรทัดและfilterweapon_compatibilityในChangeSheet ไม่เปลี่ยนค่าหรือกติกาสวมใส่และไม่กรองกระเป๋ารวม |
+| D-101 | 22 ต.ค.2026 ผู้ใช้รายงานยังเตรียมภาพไม่ได้หลังอัปเดต | TASK-075 จำกัดimmutableheaderเฉพาะhashhex64ตัวและfetchstablemanifestด้วยno-store ข้ามoldHTTPcache ไม่clearstorage/Auth/เซฟ คงexpectedpackcheckและmediaimmutable เกม/content/packhashเดิม |
 
 ## คำถามหลักที่ส่งให้ผู้ใช้แล้ว
 

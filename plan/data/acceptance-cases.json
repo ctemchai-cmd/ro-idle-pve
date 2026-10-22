@@ -9296,6 +9296,66 @@
         "plan/evidence/task-073-build.txt",
         "plan/evidence/task-073-hosted.json"
       ]
+    },
+    {
+      "id": "T075-AC-01",
+      "task_id": "TASK-075",
+      "acceptance_id": "AC-01",
+      "criterion": "`/ro/manifest.json` และqueryvariantsบนproductionเป็นno-store; hashedmedia/metadataยังimmutableและexactbytesเดิม Headerpatternไม่ครอบstablemanifest",
+      "input_setup": "Old native pack manifest served immutable in a fresh realChromeHTTPcache, then switch to currentpack; compiledVercelroute matching and publichosted cold/warm startup",
+      "input_refs": [
+        "plan/review/tasks_075.md",
+        "src/renderer/pack.ts",
+        "vercel.json"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false,
+        "gameplay_change": false
+      },
+      "expected": "`/ro/manifest.json` และqueryvariantsบนproductionเป็นno-store; hashedmedia/metadataยังimmutableและexactbytesเดิม Headerpatternไม่ครอบstablemanifest",
+      "verification": "RealChrome cache rollover and production headers/native-image startup; build and focused AssetPack regression",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation"
+    },
+    {
+      "id": "T075-AC-02",
+      "task_id": "TASK-075",
+      "acceptance_id": "AC-02",
+      "criterion": "Chromeที่มีoldmanifestfreshimmutableอยู่ในHTTPcacheยังโหลดexpectedcurrentpack/scene/nativecardได้โดยไม่clearcache/storage และreloadอีกครั้งได้; wrongpackhashยังreject ไม่มีgameplay/content/schema/packhashเปลี่ยน",
+      "input_setup": "Old native pack manifest served immutable in a fresh realChromeHTTPcache, then switch to currentpack; compiledVercelroute matching and publichosted cold/warm startup",
+      "input_refs": [
+        "plan/review/tasks_075.md",
+        "src/renderer/pack.ts",
+        "vercel.json"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false,
+        "gameplay_change": false
+      },
+      "expected": "Chromeที่มีoldmanifestfreshimmutableอยู่ในHTTPcacheยังโหลดexpectedcurrentpack/scene/nativecardได้โดยไม่clearcache/storage และreloadอีกครั้งได้; wrongpackhashยังreject ไม่มีgameplay/content/schema/packhashเปลี่ยน",
+      "verification": "RealChrome cache rollover and production headers/native-image startup; build and focused AssetPack regression",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation"
+    },
+    {
+      "id": "T075-AC-03",
+      "task_id": "TASK-075",
+      "acceptance_id": "AC-03",
+      "criterion": "build/type/boundaries/secrets/targetedchecksและactualhostedmobileassets startupผ่าน พร้อมบันทึกrootcause/ข้อจำกัด ไม่เขียนownerเซฟ/ไม่restart6173",
+      "input_setup": "Old native pack manifest served immutable in a fresh realChromeHTTPcache, then switch to currentpack; compiledVercelroute matching and publichosted cold/warm startup",
+      "input_refs": [
+        "plan/review/tasks_075.md",
+        "src/renderer/pack.ts",
+        "vercel.json"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false,
+        "gameplay_change": false
+      },
+      "expected": "build/type/boundaries/secrets/targetedchecksและactualhostedmobileassets startupผ่าน พร้อมบันทึกrootcause/ข้อจำกัด ไม่เขียนownerเซฟ/ไม่restart6173",
+      "verification": "RealChrome cache rollover and production headers/native-image startup; build and focused AssetPack regression",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation"
     }
   ]
 }

@@ -15,6 +15,8 @@ const assert=(ok,message)=>{if(!ok)throw new Error(message);};let browser,profil
  }
  checks.push({case_id:'hosted_region_timing_auth_gate_content',passed:true,samples});
  const r=await fetch(base+'/content-version.json',{cache:'no-store'}),manifest=await r.json();
+ const assetResponse=await fetch(base+'/ro/manifest.json',{cache:'no-store'}),assetManifest=await assetResponse.json();
+ assert(assetResponse.ok&&assetResponse.headers.get('cache-control')==='no-store'&&assetManifest.pack_hash===manifest.runtime_asset_pack_hash,'MUTABLE_ASSET_MANIFEST_CACHE_OR_VERSION');
  const row=manifest.build_files.find(r=>/^dist\/assets\/account-session-.*\.js$/.test(r.path));assert(row,'NO_SAVE_BUNDLE');
  const bundle=await(await fetch(base+'/'+row.path.replace(/^dist\//,''))).text();assert(bundle.includes('sendWithCheckpoint')&&bundle.includes('x-ro-checkpoint'),'OLD_SAVE_PROTOCOL_DEPLOYED');
  if(prefix==='task-064')assert(bundle.includes('preview:')&&bundle.includes('character.level_up'),'IMMEDIATE_DISPLAY_NOT_DEPLOYED');

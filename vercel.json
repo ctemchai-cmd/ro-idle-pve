@@ -33,7 +33,7 @@
       "headers": [{ "key": "Cache-Control", "value": "no-store" }]
     },
     {
-      "source": "/ro/:hash/:path*",
+      "source": "/ro/:hash([a-f0-9]{64})/:path*",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
     },
     {

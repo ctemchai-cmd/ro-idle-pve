@@ -1,0 +1,887 @@
+{
+  "task_id": "TASK-075",
+  "passed": true,
+  "error": null,
+  "checks": [
+    "Actual immutable old manifest stays fresh in Chromium HTTP cache after server switches to the new pack; default fetch reproduces the hash mismatch",
+    "Actual AssetPack.open bypasses the old response, decodes current Poring card and still rejects an incompatible expected hash",
+    "Real shared-engine demo renders four attached actor portraits and scenery after two page navigations with old HTTP cache still present; local storage/cookie sentinels intact and no mutating requests"
+  ],
+  "errors": [],
+  "mutations": [],
+  "manifest_requests": 5,
+  "response_headers": [
+    "public,max-age=31536000,immutable",
+    "no-store",
+    "no-store",
+    "no-store",
+    "no-store"
+  ],
+  "old_pack": "f57a0773675ff37a1f16467f2606546404286a4ffb42da90766b7cab93970dae",
+  "current_pack": "c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2",
+  "responses": [
+    {
+      "path": "/ro/manifest.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/manifest.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/manifest.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/items/card-4001.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/items/card-4001.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/manifest.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/manifest.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/sprite_effect_atlas/asset--f8701ce52f99.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/sprite_effect_atlas/asset--f8701ce52f99.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/sprite_effect_atlas/msg--849865cd65c8.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/sprite_effect_atlas/msg--849865cd65c8.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/prepared/fonts/noto-sans-thai--5ce299dd8abf.woff2",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/prepared/backgrounds/prt_fild08--7211769293e7.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/prepared/backgrounds/prt_fild08--7211769293e7.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/body_atlas/_--1ff3d61baecc.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/weapons/weapon_overlay_atlas/_-_--7357c7b3458f.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/head_atlas/2_--ea04d8c97c75.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/body_atlas/_--f9ccfe02a920.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/head_atlas/13_--42b940d39a61.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/weapons/weapon_overlay_atlas/_-_--9b2f530ccfee.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/body_atlas/_--e4b85e09afc9.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/head_atlas/15_--5c0a8147d06d.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/weapons/weapon_overlay_atlas/_-_--f7d576f8e2df.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/body_atlas/_--fa7cfc5c07e4.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/head_atlas/9_--18bee032e28b.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/weapons/weapon_overlay_atlas/_-_--851c7948a515.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/body_atlas/_--1ff3d61baecc.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/head_atlas/2_--ea04d8c97c75.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/monsters/monster_atlas/poring--bdec5d1f77db.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/body_atlas/_--f9ccfe02a920.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/weapons/weapon_overlay_atlas/_-_--7357c7b3458f.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/head_atlas/13_--42b940d39a61.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/weapons/weapon_overlay_atlas/_-_--9b2f530ccfee.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/weapons/weapon_overlay_atlas/_-_--237b647de55d.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/body_atlas/_--e4b85e09afc9.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/head_atlas/15_--5c0a8147d06d.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/body_atlas/_--fa7cfc5c07e4.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/head_atlas/9_--18bee032e28b.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/monsters/monster_atlas/poring--bdec5d1f77db.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/weapons/weapon_overlay_atlas/_-_--851c7948a515.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/sm_bash--ea72634c4122.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/sm_provoke--c6b3ae56c7c8.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/sm_bash--ea72634c4122.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/sm_magnum--343931336a56.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/sm_endure--19905fdf19f3.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/al_heal--52575fac5ecd.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/al_blessing--f7e2f6ead534.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/al_holylight--e3b80b042754.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ac_double--95d0a77bf2b3.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ac_concentration--edaab3b65729.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/al_incagi--66a03d4ce0b0.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ac_shower--51593e835f62.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ac_chargearrow--48d2983efc15.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mg_lightningbolt--af831f956a6a.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mg_firebolt--133883e2ee55.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mg_coldbolt--5c46d34975b0.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mg_soulstrike--21673dad1b86.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mer_provoke--1fae8a89a288.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ms_bash--e0cb54651ab9.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ms_magnum--37290639e65f.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/sm_endure--19905fdf19f3.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/al_heal--52575fac5ecd.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/al_blessing--f7e2f6ead534.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/al_holylight--e3b80b042754.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ac_double--95d0a77bf2b3.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ac_shower--51593e835f62.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/al_incagi--66a03d4ce0b0.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ac_concentration--edaab3b65729.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mg_firebolt--133883e2ee55.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ac_chargearrow--48d2983efc15.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mg_lightningbolt--af831f956a6a.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mg_coldbolt--5c46d34975b0.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mg_soulstrike--21673dad1b86.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/provoke--13708f6fb033.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/hit--21a32708b074.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/firehit1--4a19f438bcb6.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/holyhit--2386bcc47988.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/arrowstorm--d2aa6744c4c7.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/concentration--6ff559979ba2.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/lightning--fcff45f78f47.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/freeze--f46dfd0d129d.meta.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/proboc--2433cc71915b.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/hit--21a32708b074.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/arrowstorm--d2aa6744c4c7.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/firehit--0fa6d3de36ae.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/holyhit--2386bcc47988.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/ac_concentration--bcb14fdeb38a.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/lightning--fcff45f78f47.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/freeze--f46dfd0d129d.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/manifest.json",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/sprite_effect_atlas/asset--f8701ce52f99.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/sprite_effect_atlas/asset--f8701ce52f99.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/sprite_effect_atlas/msg--849865cd65c8.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/sprite_effect_atlas/msg--849865cd65c8.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/prepared/fonts/noto-sans-thai--5ce299dd8abf.woff2",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/prepared/backgrounds/prt_fild08--7211769293e7.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/prepared/backgrounds/prt_fild08--7211769293e7.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/body_atlas/_--1ff3d61baecc.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/head_atlas/2_--ea04d8c97c75.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/body_atlas/_--f9ccfe02a920.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/weapons/weapon_overlay_atlas/_-_--7357c7b3458f.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/head_atlas/13_--42b940d39a61.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/weapons/weapon_overlay_atlas/_-_--9b2f530ccfee.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/body_atlas/_--e4b85e09afc9.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/head_atlas/15_--5c0a8147d06d.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/weapons/weapon_overlay_atlas/_-_--f7d576f8e2df.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/body_atlas/_--1ff3d61baecc.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/body_atlas/_--fa7cfc5c07e4.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/head_atlas/2_--ea04d8c97c75.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/body_atlas/_--f9ccfe02a920.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/head_atlas/9_--18bee032e28b.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/weapons/weapon_overlay_atlas/_-_--7357c7b3458f.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/head_atlas/13_--42b940d39a61.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/weapons/weapon_overlay_atlas/_-_--9b2f530ccfee.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/body_atlas/_--e4b85e09afc9.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/head_atlas/15_--5c0a8147d06d.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/weapons/weapon_overlay_atlas/_-_--851c7948a515.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/weapons/weapon_overlay_atlas/_-_--237b647de55d.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/monsters/monster_atlas/poring--bdec5d1f77db.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/body_atlas/_--fa7cfc5c07e4.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/characters/head_atlas/9_--18bee032e28b.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/weapons/weapon_overlay_atlas/_-_--851c7948a515.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/monsters/monster_atlas/poring--bdec5d1f77db.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/sm_bash--ea72634c4122.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/sm_bash--ea72634c4122.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/sm_provoke--c6b3ae56c7c8.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/sm_magnum--343931336a56.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/sm_endure--19905fdf19f3.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/al_heal--52575fac5ecd.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/al_blessing--f7e2f6ead534.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/al_holylight--e3b80b042754.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/al_incagi--66a03d4ce0b0.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ac_double--95d0a77bf2b3.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ac_concentration--edaab3b65729.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ac_shower--51593e835f62.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ac_chargearrow--48d2983efc15.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mg_firebolt--133883e2ee55.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mg_coldbolt--5c46d34975b0.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mg_lightningbolt--af831f956a6a.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mg_soulstrike--21673dad1b86.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ms_bash--e0cb54651ab9.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mer_provoke--1fae8a89a288.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ms_magnum--37290639e65f.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/sm_endure--19905fdf19f3.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/al_heal--52575fac5ecd.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/al_blessing--f7e2f6ead534.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/al_holylight--e3b80b042754.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/al_incagi--66a03d4ce0b0.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ac_double--95d0a77bf2b3.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ac_concentration--edaab3b65729.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ac_shower--51593e835f62.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/ac_chargearrow--48d2983efc15.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mg_firebolt--133883e2ee55.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mg_coldbolt--5c46d34975b0.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mg_lightningbolt--af831f956a6a.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/skills/skill_sprite_icon/mg_soulstrike--21673dad1b86.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/hit--21a32708b074.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/provoke--13708f6fb033.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/firehit1--4a19f438bcb6.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/holyhit--2386bcc47988.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/concentration--6ff559979ba2.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/arrowstorm--d2aa6744c4c7.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/freeze--f46dfd0d129d.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/lightning--fcff45f78f47.meta.json",
+      "status": 200,
+      "fromDiskCache": true
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/hit--21a32708b074.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/proboc--2433cc71915b.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/firehit--0fa6d3de36ae.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/holyhit--2386bcc47988.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/ac_concentration--bcb14fdeb38a.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/arrowstorm--d2aa6744c4c7.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/freeze--f46dfd0d129d.webp",
+      "status": 200,
+      "fromDiskCache": false
+    },
+    {
+      "path": "/ro/c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2/library/effects/keyframe_effect_atlas/lightning--fcff45f78f47.webp",
+      "status": 200,
+      "fromDiskCache": false
+    }
+  ],
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "scope": "Fresh isolated Vite + persistent mobile Chrome profile, real old pack manifest and real HTTP cache. No storage.clear, Auth, API commands or balance runner."
+}
