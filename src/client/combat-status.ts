@@ -3,6 +3,7 @@ import type { ActorRenderView, StatusRenderGroup, StatusRenderInstance } from '.
 import type { BattleState } from '../domain/combat/index.ts';
 import { heldResourceModifiers } from '../domain/combat/resources.ts';
 import { statusNames, statNames } from './status-labels.ts';
+import { elementName, type Element } from './elements.ts';
 
 const loaded = loadValidatedContent(); if (!loaded.ok) throw new Error('CONTENT_UNAVAILABLE');
 const content = loaded.value, labels = content.documents['strings.th.json']!.strings as unknown as Record<string, string>;
@@ -35,7 +36,7 @@ export function battleStatusViews(state: BattleState): Record<string, Details> {
       if (definition.restrictions.includes('no_normal_attack')) parts.push('หยุดการโจมตีและใช้สกิล');
       else if (definition.restrictions.includes('no_new_skill')) parts.push('ใช้สกิลไม่ได้');
       if (status.status_id === 'provoke') parts.push('บังคับโจมตีผู้ยั่วยุ');
-      if (definition.weapon_element) parts.push(`เสริมธาตุ ${definition.weapon_element === 'fire' ? 'ไฟ' : definition.weapon_element}`);
+      if (definition.weapon_element) parts.push(`เสริมธาตุ ${elementName(definition.weapon_element as Element)}`);
       const name = statusNames[status.status_id] ?? status.status_id;
       add(status.source.definition_id, definition.polarity, { instance_id: status.instance_id, status_id: status.status_id, name, source_actor_id: status.source.owner_actor_id, applied_at: status.applied_at, expires_at: status.expires_at, description: parts.join(' · ') || name });
     }

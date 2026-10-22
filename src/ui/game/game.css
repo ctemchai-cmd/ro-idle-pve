@@ -190,6 +190,11 @@ img { image-rendering: pixelated; }
 .boss-tools .chip-btn:active:not(:disabled) { background: rgba(255, 255, 255, .22); }
 .boss-tools .chip-btn:disabled { opacity: .55; }
 .boss-name strong { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.boss-name > .element-badge { flex-shrink: 0; opacity: 1; font-size: 10px; }
+.boss-name > .element-badge span { opacity: 1; font-size: inherit; }
+.focus-elements { display: flex; align-items: center; gap: 6px; padding-bottom: 4px; }
+.focus-elements .weapon-element { display: inline-flex; align-items: center; gap: 4px; color: #fff; font-size: 10px; text-shadow: 0 1px 2px #18324c; }
+.focus-elements .element-badge { text-shadow: none; }
 .chip-btn { min-height: 34px; padding: 0 12px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, .7); background: rgba(255, 255, 255, .88); font-size: 13px; font-weight: 700; box-shadow: var(--shadow); }
 .chip-btn.danger { color: var(--red); }
 .chip-btn.speed.on { color: #fff; background: var(--blue, #3d7bd9); border-color: transparent; }

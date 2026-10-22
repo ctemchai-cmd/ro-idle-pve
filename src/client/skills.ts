@@ -8,13 +8,14 @@ import { equippedSources } from '../domain/build/equipment.ts';
 import { previewCharacterStats } from '../domain/build/character.ts';
 import { castDurationMs, skillIntervalMs } from '../domain/math/index.ts';
 import { fixedSpCost } from '../domain/math/combat-modifiers.ts';
+import { effectDamageElements, elementName } from './elements.ts';
 const loaded=loadValidatedContent();if(!loaded.ok)throw new Error('CONTENT_UNAVAILABLE');const content=loaded.value;
 type Character=AccountState['roster'][number];
 const labels=content.documents['strings.th.json']!.strings as unknown as Record<string,string>;
 const statUnits=Object.fromEntries((content.documents['stat-definitions.json']!.stats as unknown as {id:string;unit:string}[]).map(s=>[s.id,s.unit]));
 const number=(n:unknown)=>Number(n).toLocaleString('th-TH',{maximumFractionDigits:2}),percent=(n:unknown)=>number(Number(n)*100)+'%';
 function summaries(definition:SkillDefinition):string[]{
- if(definition.kind==='passive')return [...definition.modifiers.map(m=>`${statNames[m.stat]??m.stat} ${Number(m.value)>=0?'+':''}${m.op==='add_percent'||statUnits[m.stat]==='ratio'?percent(m.value):number(m.value)}${m.when?' เมื่อเข้าเงื่อนไข':''}`),...definition.triggers.map(()=> 'ทำงานอัตโนมัติเมื่อเข้าเงื่อนไข')];
+ if(definition.kind==='passive')return [...definition.modifiers.map(m=>`${statNames[m.stat]??m.stat} ${Number(m.value)>=0?'+':''}${m.op==='add_percent'||statUnits[m.stat]==='ratio'?percent(m.value):number(m.value)}${m.when?' เมื่อเข้าเงื่อนไข':''}`),...definition.triggers.flatMap(trigger=>effectDescriptions(trigger.effects).map(text=>'เมื่อเข้าเงื่อนไข · '+text))];
  return effectDescriptions(definition.effects);
 }
 /** Shared effect text for authored skills and card procs; no second formula authority. */
@@ -39,6 +40,9 @@ export function effectDescriptions(effects: readonly Effect[]): string[] {
   else if(effect.type==='handler'&&effect.handler_id==='detonate_own_status')text=`ระเบิด${statusNames[String(effect.params.status_id)]??effect.params.status_id}ของตัวเอง ${number(effect.params.power_per_instance)} ต่อชั้น`;
   else text='กลไกเฉพาะอาชีพ';
   if(effect.type==='damage'&&Number(effect.hits)>1)text+=` × ${number(effect.hits)} ครั้ง`;
+  const elements=effectDamageElements([effect]);
+  if(elements.length)text+=' · '+(effect.type==='damage'||effect.type==='handler'?'':'ดาเมจ')+elements.map(e=>e==='weapon'?elementName(e):'ธาตุ'+elementName(e)).join(' / ');
+  if(effect.type==='apply_status'){const element=content.statuses[effect.status_id]?.weapon_element;if(typeof element==='string')text+=' · เสริมธาตุอาวุธเป็น'+elementName(element as Parameters<typeof elementName>[0]);}
   return text+('when'in effect&&effect.when?' เมื่อเข้าเงื่อนไข':'');
  });
 }

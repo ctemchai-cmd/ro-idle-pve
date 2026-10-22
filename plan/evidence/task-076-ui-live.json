@@ -1,0 +1,95 @@
+{
+  "task_id": "TASK-076",
+  "passed": true,
+  "error": null,
+  "errors": [],
+  "checks": [
+    "Real skill detail shows fixed/weapon/mixed/DoT/passive/summon/handler elements, no Holy Heal; 320/390px fit and no inspection save",
+    "Actual live Fire Endow turns weapon Fire while Angeling armor stays Holy; changing focused character updates armor",
+    "Actual Story/Tower/Daily boss armor labels match checkpoint source/tag values, fit320/390px, and no battle.advance/render-driven saves"
+  ],
+  "measurements": {
+    "skills": [
+      {
+        "name": "Fire Bolt",
+        "elements": [
+          "fire"
+        ]
+      },
+      {
+        "name": "Cold Bolt",
+        "elements": [
+          "water"
+        ]
+      },
+      {
+        "name": "Auto Bolt",
+        "elements": [
+          "fire"
+        ]
+      },
+      {
+        "name": "Storm Gust",
+        "elements": [
+          "water"
+        ]
+      },
+      {
+        "name": "Envenom",
+        "elements": [
+          "weapon",
+          "poison"
+        ]
+      },
+      {
+        "name": "Detonate",
+        "elements": [
+          "poison"
+        ]
+      },
+      {
+        "name": "Hell Plant",
+        "elements": [
+          "poison"
+        ]
+      },
+      {
+        "name": "Falcon",
+        "elements": [
+          "neutral"
+        ]
+      },
+      {
+        "name": "Heal",
+        "elements": []
+      }
+    ],
+    "battles": [
+      {
+        "mode": "daily",
+        "armor": "neutral"
+      },
+      {
+        "mode": "story",
+        "armor": "neutral"
+      },
+      {
+        "mode": "tower",
+        "armor": "neutral"
+      }
+    ]
+  },
+  "commands": [
+    "account.create",
+    "battle.start_daily",
+    "battle.retreat",
+    "battle.start_story",
+    "battle.retreat",
+    "battle.start_tower",
+    "battle.retreat"
+  ],
+  "owner_cloud_writes": false,
+  "balance_simulation": false,
+  "personal_preview_restarted": false,
+  "scope": "Disposable signed Lv40 test roster and Angeling card, actual isolated Auth/API/SQL/mobile Chrome. Not owner account or physical Android."
+}

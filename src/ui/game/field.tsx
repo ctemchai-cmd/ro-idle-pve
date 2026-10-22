@@ -20,6 +20,8 @@ import { cardOrigin, cardView } from '../../client/slots.ts';
 import { CardGrade } from './card-grade.tsx';
 import { CardSheet } from './card-sheet.tsx';
 import { ItemIcon } from './kit.tsx';
+import { actorElements } from '../../client/elements.ts';
+import { ElementBadge } from '../element-badge.tsx';
 
 const FARM_CAP_MS = 12 * 3600 * 1000;
 /** Boss look per stage (D-056): pooled mini-boss skins, except the chapter-final stage keeps its authored boss. */
@@ -126,10 +128,11 @@ function BossField({ context, app, running, checkpoint, outcome, retreat, statsR
   useEffect(() => { if (!outcome || !renderer.current) return; try { renderer.current.accept(app.session.advanceTo(app.session.state.mode.time_limit_ms)); setView(app.session.view()); } catch { setError('ยังแสดงผลไฟต์ไม่ได้ กรุณาเชื่อมต่อใหม่'); } }, [outcome, app]);
   useEffect(() => { if (renderer.current) renderer.current.selected = selected; }, [selected]);
   const party = view.actors.filter(a => a.team === 'player' && !a.summon_of), boss = view.actors.find(a => a.team === 'enemy' && !a.summon_of), focused = party.find(a => a.actor_id === selected) ?? party[0], label = (id: string) => app.session.scene.skill_labels[id] ?? id;
+  const bossActor = app.session.state.actors.find(a => a.actor_id === boss?.actor_id), focusActor = app.session.state.actors.find(a => a.actor_id === focused?.actor_id);
   return <section className="field-arena boss" aria-label="ไฟต์บอส" data-battle-id={app.id} data-game-ms={view.game_time_ms} data-terminal={view.terminal?.kind ?? ''}>
     <canvas ref={canvas} width={720} height={1100} aria-label="ทีมต่อสู้กับบอส" />
     <div className="boss-hud"><div className="boss-bar">
-      <div className="boss-name"><strong>{boss?.name.replace('บอส · ', '')}</strong><span>{modeTag(app.session)}</span><time>{(view.game_time_ms / 1000).toFixed(1)}<small>/{view.time_limit_ms / 1000}s</small></time></div>
+      <div className="boss-name"><strong title={boss?.name}>{boss?.name.replace('บอส · ', '')}</strong>{bossActor && <ElementBadge element={actorElements(bossActor).armor} armor />}<span>{modeTag(app.session)}</span><time>{(view.game_time_ms / 1000).toFixed(1)}<small>/{view.time_limit_ms / 1000}s</small></time></div>
       <div className="bar hp"><i style={{ width: `${boss ? boss.hp / boss.max_hp * 100 : 0}%` }} /><span>{full(Math.max(0, boss?.hp ?? 0))} / {full(boss?.max_hp ?? 0)}</span></div>
     <div className="boss-tools">
       <button className="chip-btn" onClick={() => setPanel('statistics')}><Icon name="chart" /><span>สถิติ</span></button>
@@ -153,7 +156,7 @@ function BossField({ context, app, running, checkpoint, outcome, retreat, statsR
       <span className="bar hp thin"><i style={{ width: `${a.hp / a.max_hp * 100}%` }} /></span><span className="bar sp thin"><i style={{ width: `${a.sp / a.max_sp * 100}%` }} /></span>
       <StatusSignals actor={a} pack={pack} />
     </button>)}</div>
-    {focused && <div className="focus-status-panel"><CombatStatusStrip key={focused.actor_id} actor={focused} actors={view.actors} pack={pack} now={view.game_time_ms} focus /></div>}
+    {focused && <div className="focus-status-panel">{focusActor && <div className="focus-elements" aria-label={`ธาตุของ ${focused.name}`}><ElementBadge element={actorElements(focusActor).armor} armor /><span className="weapon-element">อาวุธ · <ElementBadge element={actorElements(focusActor).weapon} /></span></div>}<CombatStatusStrip key={focused.actor_id} actor={focused} actors={view.actors} pack={pack} now={view.game_time_ms} focus /></div>}
     {panel && <Sheet title={panel === 'history' ? 'Timeline ย้อนหลัง' : panel === 'timeline' ? 'Timeline สกิล' : 'สถิติการต่อสู้'} onClose={() => setPanel(null)} className="tall">{panel === 'history' ? <BattleHistory session={app.session} pack={pack!} /> : panel === 'timeline' ? <SkillTimeline session={app.session} pack={pack!} view={view} clock={clock} /> : <BattleStatistics report={app.session.statistics()} actors={view.actors} labels={app.session.scene.skill_labels} />}</Sheet>}
   </section>;
 }

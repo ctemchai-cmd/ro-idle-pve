@@ -1,0 +1,45 @@
+{
+  "task_id": "TASK-076",
+  "date": "2026-10-22",
+  "passed": false,
+  "implementation_verified": true,
+  "acceptance": {
+    "AC-01": "passed",
+    "AC-02": "passed",
+    "AC-03": "passed",
+    "AC-04": "pending_hosted"
+  },
+  "content_hash": "4e44083962ef36aa61ab5e80cd86e1e3ed088ebb0d136744cb8ca2160655ca57",
+  "asset_pack_hash": "c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2",
+  "gameplay_change": false,
+  "schema_change": false,
+  "checks": {
+    "targeted_tests": 33,
+    "new_element_tests": 5,
+    "element_attack_armor_pairs": 100,
+    "player_definitions": 126,
+    "local_auth_mobile_groups": 3,
+    "public_local_demo_groups": 2,
+    "readiness_checks": 8,
+    "build_type_boundaries_secrets": true
+  },
+  "evidence": [
+    "plan/evidence/task-076-targeted.txt",
+    "plan/evidence/task-076-ui-live.json",
+    "plan/evidence/task-076-local-stack.json",
+    "plan/evidence/task-076-local-demo.json",
+    "plan/evidence/task-076-build.txt",
+    "plan/evidence/task-076-readiness.txt"
+  ],
+  "visual_scope": "Inspected full 320px actual game battle with active Fire Endow and Angeling Holy armor, full Envenom skill details, and public shared demo after real native scene pixels rendered; 390px also captured and layout asserted. Not physical Android hardware.",
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "balance_simulation": false,
+  "pending": [
+    "Push and verify actual hosted public API/login/PWA/shared element demo and served UI bundles"
+  ],
+  "retained_failures": [
+    "round1 fixture VIT100 exceeded manual stat cap",
+    "round2 fixture put card in empty dormant armor slot; corrected fixture equips armor first. No gameplay changes to make tests pass."
+  ]
+}

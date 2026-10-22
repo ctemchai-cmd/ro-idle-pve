@@ -54,6 +54,12 @@ const assert=(ok,message)=>{if(!ok)throw new Error(message);};let browser,profil
   assert(pack.pack_hash===local.pack_hash&&Object.keys(pack.assets).filter(id=>id.startsWith('items.card-')).length===66,'NATIVE_CARD_PACK_NOT_DEPLOYED');
   const artifact=pack.files.find(f=>f.path==='items/card-4001.webp'),image=await fetch(base+pack.base_url+artifact.path);assert(image.ok&&createHash('sha256').update(Buffer.from(await image.arrayBuffer())).digest('hex')===artifact.sha256,'ACTUAL_PORING_CARD_BYTES_MISMATCH');
  }
+ if(prefix==='task-076'){
+  const shell=manifest.build_files.find(r=>/^dist\/assets\/shell-.*\.js$/.test(r.path)),elements=manifest.build_files.find(r=>/^dist\/assets\/element-badge-.*\.js$/.test(r.path));assert(shell&&elements,'NO_ELEMENT_BUNDLES');
+  const [ui,badges]=await Promise.all([shell,elements].map(async row=>(await fetch(base+'/'+row.path.replace(/^dist\//,''))).text()));
+  assert(['focus-elements','boss-name','weapon-element'].every(s=>ui.includes(s)),'TARGET_ARMOR_UI_NOT_DEPLOYED');
+  assert(['ธาตุสกิล','เกราะธาตุ','ไม่มีธาตุโจมตี','ตามอาวุธ'].every(s=>badges.includes(s)),'SKILL_ELEMENT_UI_NOT_DEPLOYED');
+ }
  checks.push({case_id:'hosted_shared_save_bundle',passed:true,path:row.path,sha256:createHash('sha256').update(bundle).digest('hex'),combined_reply:true});
  profile=fs.mkdtempSync(path.join(os.tmpdir(),'ro-save-hosted-'));const context=await chromium.launchPersistentContext(profile,{headless:true,executablePath:process.env.RO_CHROME_PATH||'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',viewport:{width:390,height:844}});browser=context.browser();
  context.on('request',r=>{if(!['GET','HEAD','OPTIONS'].includes(r.method()))mutations.push({method:r.method(),path:new URL(r.url()).pathname});});

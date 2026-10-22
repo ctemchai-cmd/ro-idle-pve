@@ -6,6 +6,7 @@ import { resolvedCardModifiers, resolvedCardTriggers } from '../domain/build/equ
 import { cardOrigins } from '../content/card-catalog.ts';
 import { effectDescriptions } from './skills.ts';
 import { equipmentStats } from './equipment.ts';
+import { elementNames as elements } from './elements.ts';
 const loaded=loadValidatedContent();if(!loaded.ok)throw new Error('CONTENT_UNAVAILABLE');const content=loaded.value;
 const labels=content.documents['strings.th.json']!.strings as unknown as Record<string,string>;
 export const statHigherIsBetter=(id:string)=>(content.documents['stat-definitions.json']!.stats as unknown as {id:string;higher_is_better?:boolean}[]).find(s=>s.id===id)?.higher_is_better!==false;
@@ -23,7 +24,6 @@ export function slotChangePreview(state:AccountState,id:string,type:SlotCommand[
 export const nextRefineChance=(progress:{refine:number;refine_failures:number})=>refineChance(progress,content);
 type CardItem = Extract<InventoryItem,{kind:'card'}>;
 export const cardOrigin = (id:string) => cardOrigins(content)[id] ?? null;
-const elements:Record<string,string>={neutral:'ไร้ธาตุ',water:'น้ำ',earth:'ดิน',fire:'ไฟ',wind:'ลม',poison:'พิษ',holy:'ศักดิ์สิทธิ์',dark:'ความมืด',ghost:'วิญญาณ',undead:'อันเดด'};
 function cardEffects(item:CardItem):string[]{
  const definition=itemDefinition(item,content),result=definition.defense_element?[`เปลี่ยนธาตุเกราะเป็น${elements[definition.defense_element]??definition.defense_element}`]:[];
  for(const trigger of resolvedCardTriggers(item,content)){
