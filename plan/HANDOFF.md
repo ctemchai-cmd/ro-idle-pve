@@ -4,6 +4,18 @@
 
 
 
+## 22 ต.ค.2026 · Codex — TASK-084/085 done ขึ้นVercelแล้ว
+
+- **SOURCE e2323a28367c5ebc3636bb7e0f379dd725c24e39 push/VercelSUCCESS** https://vercel.com/chanon2/ro-idle-pve/ABK9Nud7EM3ACMubW6ZrdPEK9mdA actualpublicsourceUI/helper/dataSHA/APIhealth200/hashfd66a55f…/Singapore/checkpoint401/login/PWA3groupsผ่าน task084-hosted.json +task084085-github-deployment. ทั้ง0844AC/0853ACผ่าน/movedone Board71/85done,inprogress4เก่า041058064067/review5/todo5 M4done31/40
+- User D112ป้าย+5สีฟ้า/5สีม่วงไม่มีR/Eทุกsharedgearicon คงgreenEเจ้าของ/accessibility. D113CallSpiritจำนวน1/2/3/4/5/5/5/5/5/5 และATKต่อลูก1/1/1/1/1/1.2/1.4/1.6/1.8/2% คงmax5/stackadditive/ใช้บอลก่อนsnapshot/ขัดไม่คืน/SP27→18/CT400/ACD700/ต้นทุนและlearnedlevelsเดิม
+- Generictypedvalue_from_skill resource referenceอ่านactor.resolved_skillsเองแม้ถอดactive; noCall=base1%สำหรับPassiveballs. Helperเดียวrecompute/projection/Call+Combo descriptions/tables; UIแสดงdecimals1.2/3.6 ไม่roundinteger. Loaderปฏิเสธunknownskill/curve/unsupportedcondition. ไม่มีMonkIDในengineหรือschema/SQLใหม่
+- User D114floor21/teamLv30ง่าย: newHP600+100f+8f²+2f³ ATKceil((20+4f+f²)/2) floor21=24750/273 floor30=64800/520 floor1=710/13. plan/generators/tower.py100rows=runtime101+ finiteguard ยังinfinite ไม่มีreset/frontier/reward/CC/DEF/speed/cycleเปลี่ยน ไม่อ้างmeasuredteam balance; เป็นtrialbaseline
+- **40focusedTS/M0/generator/finalbuild/type/boundaries/secrets/readiness8ผ่าน** actualChrome3groups320/390 sharedBuddy/SkillsPage1/5/6/10/tentable/nativeCallSpiritstatus3.6%total1.2%each/0APIcommands +Reactrender5partialzeroowner cases. เปิดbadges320/Call320/status390ภาพจริงแล้ว (ไม่physicalAndroid). task084085-targeted/build,task085-growth/generator/M0,task084-browser/data-diff/render
+- Retainfirsttypecheckreadonly/old069030oraclespre077078 corrected1.75/initialbrowserwrongfistID→knuckle. Hostedround1newdata/UI/APIผ่านแต่PWAcontrollerwaittimeout เก็บround1แล้วretryfreshprofileด้วย**unchangedstrictchecks** ผ่าน3groupsทั้งหมด NoPWAproductchanges ไม่ปิดcriteriaเพื่อหลอกผ่าน
+- **Content fd66a55fb5f141aa5fe34038784c0a8e976f4123c0842cd438447cb7f0ec640b /packc7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2 /30640189B unchanged**. Ownerจบไฟต์แล้วreload/backup+contentmigrationflowเดิม ไม่มีownercloudwrite/6173restart/newSQL/env/assets/newbalancebatch ไม่ได้รีเซ็ตTowerหรือskilllevels/paidledger. Finaldocsclosurepushตามsourceที่ตรวจแล้ว ไม่มีproductเพิ่ม
+- งานเก่า041/058/064/067และreview5ยังคงสถานะรอหลักฐานเดิม ไม่ปิดหรือเปลี่ยนcriteria. Userใบธาตุยังproposalไม่ทำแทรก
+
+
 ## 22 ต.ค.2026 · Codex — TASK-084/085 localผ่าน รอdeploy
 
 - User D112เอาR/Eนำหน้าป้ายออก sharedEquipmentProgressเป็น+5สีฟ้า/5สีม่วงทุกหน้า accessibleRefine/Enchantคง ไม่ลบgreenEเจ้าของ. D113CallSpiritLv1–5เสก1–5ลูก/ATK1%ต่อลูก Lv6–10คง5ลูกและ1.2/1.4/1.6/1.8/2%; สูงสุดถือ5/additiveATK/ใช้บอลก่อนsnapshot/ขัดไม่คืนเดิม skillrank/SP27→18/CT400/ACD700/ราคา/paidledgerเดิม

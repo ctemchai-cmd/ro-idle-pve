@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "refine": 5,
+      "enchant": 5,
+      "equipped": true,
+      "visible": "+55",
+      "passed": true
+    },
+    {
+      "refine": 0,
+      "enchant": 5,
+      "equipped": true,
+      "visible": "5",
+      "passed": true
+    },
+    {
+      "refine": 5,
+      "enchant": 0,
+      "equipped": true,
+      "visible": "+5",
+      "passed": true
+    },
+    {
+      "refine": 0,
+      "enchant": 0,
+      "equipped": true,
+      "visible": "",
+      "passed": true
+    },
+    {
+      "refine": 5,
+      "enchant": 5,
+      "equipped": false,
+      "visible": "",
+      "passed": true
+    }
+  ],
+  "scope": "Actual shared React render; no state or API writes."
+}

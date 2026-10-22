@@ -10629,7 +10629,7 @@
       "criterion": "ป้าย Refine แสดง +5 และ Enchant แสดง 5 ไม่มี R/E นำหน้าทุกจุดที่ใช้ EquipmentProgress; สีฟ้า/ม่วงและคำอธิบายสำหรับ accessibility คงอยู่ ของที่ไม่สวมและระดับศูนย์ไม่มีป้ายสมมติ",
       "input_setup": "Shared badge with equipped/empty/zero progress; Call Spirit1–10, separate learned ranks,0–5held spheres, cast spend/interruption; isolated fixtures and signed-out production",
       "input_refs": [
-        "plan/inprogress/tasks_084.md",
+        "plan/done/tasks_084.md",
         "src/ui/game/equipment-progress.tsx",
         "plan/data/skills/acolyte.json",
         "plan/data/stat-definitions.json"
@@ -10641,8 +10641,18 @@
       "expected": "ป้าย Refine แสดง +5 และ Enchant แสดง 5 ไม่มี R/E นำหน้าทุกจุดที่ใช้ EquipmentProgress; สีฟ้า/ม่วงและคำอธิบายสำหรับ accessibility คงอยู่ ของที่ไม่สวมและระดับศูนย์ไม่มีป้ายสมมติ",
       "verification": "Shared React render; focused deterministic rule/description tests; M0/build and read-only public new bundle/data/API/login/PWA",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation",
-      "execution_evidence": []
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-084-085-targeted.txt",
+        "plan/evidence/task-084-085-build.txt",
+        "plan/evidence/task-085-m0.txt",
+        "plan/evidence/task-084-085-github-deployment.json",
+        "plan/evidence/task-084-hosted.json",
+        "plan/evidence/task-084-085-readiness.txt",
+        "plan/evidence/task-084-browser.json",
+        "plan/evidence/task-084-badge-render.json",
+        "plan/evidence/task-084-data-diff.json"
+      ]
     },
     {
       "id": "T084-AC-02",
@@ -10651,7 +10661,7 @@
       "criterion": "Call Spirit Lv.1–5 เพิ่มบอล 1–5 ลูกต่อครั้ง; Lv.6–10 เพิ่ม 5 ลูกและ ATK ต่อลูก 1.2/1.4/1.6/1.8/2% โดยสูงสุด 5 ลูก โบนัสอยู่ใน additive ATK bucket เดิมและคิดเฉพาะลูกที่เหลือหลังหักตอนเริ่มร่าย ไม่คืนเมื่อขัด",
       "input_setup": "Shared badge with equipped/empty/zero progress; Call Spirit1–10, separate learned ranks,0–5held spheres, cast spend/interruption; isolated fixtures and signed-out production",
       "input_refs": [
-        "plan/inprogress/tasks_084.md",
+        "plan/done/tasks_084.md",
         "src/ui/game/equipment-progress.tsx",
         "plan/data/skills/acolyte.json",
         "plan/data/stat-definitions.json"
@@ -10663,8 +10673,18 @@
       "expected": "Call Spirit Lv.1–5 เพิ่มบอล 1–5 ลูกต่อครั้ง; Lv.6–10 เพิ่ม 5 ลูกและ ATK ต่อลูก 1.2/1.4/1.6/1.8/2% โดยสูงสุด 5 ลูก โบนัสอยู่ใน additive ATK bucket เดิมและคิดเฉพาะลูกที่เหลือหลังหักตอนเริ่มร่าย ไม่คืนเมื่อขัด",
       "verification": "Shared React render; focused deterministic rule/description tests; M0/build and read-only public new bundle/data/API/login/PWA",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation",
-      "execution_evidence": []
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-084-085-targeted.txt",
+        "plan/evidence/task-084-085-build.txt",
+        "plan/evidence/task-085-m0.txt",
+        "plan/evidence/task-084-085-github-deployment.json",
+        "plan/evidence/task-084-hosted.json",
+        "plan/evidence/task-084-085-readiness.txt",
+        "plan/evidence/task-084-browser.json",
+        "plan/evidence/task-084-badge-render.json",
+        "plan/evidence/task-084-data-diff.json"
+      ]
     },
     {
       "id": "T084-AC-03",
@@ -10673,7 +10693,7 @@
       "criterion": "โบนัสอิงเลเวลที่ตัวนั้นเรียน ไม่ยืมจากเพื่อน; คำอธิบาย/ตารางเลเวล/ไอคอนบัฟแสดงจำนวนและเปอร์เซ็นต์ตรง shared resource calculation รวมไม่มี Call Spirit ที่เรียนยังใช้พื้นฐาน1%จากบอล Passive",
       "input_setup": "Shared badge with equipped/empty/zero progress; Call Spirit1–10, separate learned ranks,0–5held spheres, cast spend/interruption; isolated fixtures and signed-out production",
       "input_refs": [
-        "plan/inprogress/tasks_084.md",
+        "plan/done/tasks_084.md",
         "src/ui/game/equipment-progress.tsx",
         "plan/data/skills/acolyte.json",
         "plan/data/stat-definitions.json"
@@ -10685,8 +10705,18 @@
       "expected": "โบนัสอิงเลเวลที่ตัวนั้นเรียน ไม่ยืมจากเพื่อน; คำอธิบาย/ตารางเลเวล/ไอคอนบัฟแสดงจำนวนและเปอร์เซ็นต์ตรง shared resource calculation รวมไม่มี Call Spirit ที่เรียนยังใช้พื้นฐาน1%จากบอล Passive",
       "verification": "Shared React render; focused deterministic rule/description tests; M0/build and read-only public new bundle/data/API/login/PWA",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation",
-      "execution_evidence": []
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-084-085-targeted.txt",
+        "plan/evidence/task-084-085-build.txt",
+        "plan/evidence/task-085-m0.txt",
+        "plan/evidence/task-084-085-github-deployment.json",
+        "plan/evidence/task-084-hosted.json",
+        "plan/evidence/task-084-085-readiness.txt",
+        "plan/evidence/task-084-browser.json",
+        "plan/evidence/task-084-badge-render.json",
+        "plan/evidence/task-084-data-diff.json"
+      ]
     },
     {
       "id": "T084-AC-04",
@@ -10695,7 +10725,7 @@
       "criterion": "Focused rule/description checks, M0/content/type/boundaries/build/secrets และ public Vercel source/UI/data/API/login/PWA ผ่านก่อน done; เก็บ skill levels/ค่าใช้จ่าย/paid ledger เดิมและใช้ backup/migration flow เดิม ไม่มี SQL/env/assets ใหม่หรือ balance batch",
       "input_setup": "Shared badge with equipped/empty/zero progress; Call Spirit1–10, separate learned ranks,0–5held spheres, cast spend/interruption; isolated fixtures and signed-out production",
       "input_refs": [
-        "plan/inprogress/tasks_084.md",
+        "plan/done/tasks_084.md",
         "src/ui/game/equipment-progress.tsx",
         "plan/data/skills/acolyte.json",
         "plan/data/stat-definitions.json"
@@ -10707,8 +10737,18 @@
       "expected": "Focused rule/description checks, M0/content/type/boundaries/build/secrets และ public Vercel source/UI/data/API/login/PWA ผ่านก่อน done; เก็บ skill levels/ค่าใช้จ่าย/paid ledger เดิมและใช้ backup/migration flow เดิม ไม่มี SQL/env/assets ใหม่หรือ balance batch",
       "verification": "Shared React render; focused deterministic rule/description tests; M0/build and read-only public new bundle/data/API/login/PWA",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation",
-      "execution_evidence": []
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-084-085-targeted.txt",
+        "plan/evidence/task-084-085-build.txt",
+        "plan/evidence/task-085-m0.txt",
+        "plan/evidence/task-084-085-github-deployment.json",
+        "plan/evidence/task-084-hosted.json",
+        "plan/evidence/task-084-085-readiness.txt",
+        "plan/evidence/task-084-browser.json",
+        "plan/evidence/task-084-badge-render.json",
+        "plan/evidence/task-084-data-diff.json"
+      ]
     },
     {
       "id": "T085-AC-01",
@@ -10717,7 +10757,7 @@
       "criterion": "ใช้เส้นHP cubic และATK quadraticเดียวกันทุกชั้น รวม100→101 ชั้น21HP24,750/ATK273แทน6,228/52 ชั้น1ยังใกล้เดิม; floor_rows100แถวตรงgenerator runtime เกินsafeintegerปฏิเสธชัดเจน ไม่มีเกมจบที่100",
       "input_setup": "Currentfloor21/teamLv30 reported by owner; fixednumericfloors1/10/21/30/50/100/101/1000 and existingfirstclear/replay/reload fixtures",
       "input_refs": [
-        "plan/inprogress/tasks_085.md",
+        "plan/done/tasks_085.md",
         "plan/data/tower.json",
         "src/domain/modes/tower.ts",
         "tests/game/tower.test.ts"
@@ -10729,8 +10769,17 @@
       "expected": "ใช้เส้นHP cubic และATK quadraticเดียวกันทุกชั้น รวม100→101 ชั้น21HP24,750/ATK273แทน6,228/52 ชั้น1ยังใกล้เดิม; floor_rows100แถวตรงgenerator runtime เกินsafeintegerปฏิเสธชัดเจน ไม่มีเกมจบที่100",
       "verification": "Independentnumeric/source diff,generator equality,focusedTower rules/M0/build,read-onlyproduction",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation",
-      "execution_evidence": []
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-084-085-targeted.txt",
+        "plan/evidence/task-084-085-build.txt",
+        "plan/evidence/task-085-m0.txt",
+        "plan/evidence/task-084-085-github-deployment.json",
+        "plan/evidence/task-084-hosted.json",
+        "plan/evidence/task-084-085-readiness.txt",
+        "plan/evidence/task-085-generator.txt",
+        "plan/evidence/task-085-growth.json"
+      ]
     },
     {
       "id": "T085-AC-02",
@@ -10739,7 +10788,7 @@
       "criterion": "เก็บhighest_cleared_floor/first-clear receipts/pending rewards/รางวัล/40s/unlock2-10/CC/skill cycle/ASPD/CSPD/DEFเดิม ไม่รีเซ็ตชั้นหรือเพิ่มรางวัลย้อนหลัง บอสlevel capไม่หยุดnumeric scaling",
       "input_setup": "Currentfloor21/teamLv30 reported by owner; fixednumericfloors1/10/21/30/50/100/101/1000 and existingfirstclear/replay/reload fixtures",
       "input_refs": [
-        "plan/inprogress/tasks_085.md",
+        "plan/done/tasks_085.md",
         "plan/data/tower.json",
         "src/domain/modes/tower.ts",
         "tests/game/tower.test.ts"
@@ -10751,8 +10800,17 @@
       "expected": "เก็บhighest_cleared_floor/first-clear receipts/pending rewards/รางวัล/40s/unlock2-10/CC/skill cycle/ASPD/CSPD/DEFเดิม ไม่รีเซ็ตชั้นหรือเพิ่มรางวัลย้อนหลัง บอสlevel capไม่หยุดnumeric scaling",
       "verification": "Independentnumeric/source diff,generator equality,focusedTower rules/M0/build,read-onlyproduction",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation",
-      "execution_evidence": []
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-084-085-targeted.txt",
+        "plan/evidence/task-084-085-build.txt",
+        "plan/evidence/task-085-m0.txt",
+        "plan/evidence/task-084-085-github-deployment.json",
+        "plan/evidence/task-084-hosted.json",
+        "plan/evidence/task-084-085-readiness.txt",
+        "plan/evidence/task-085-generator.txt",
+        "plan/evidence/task-085-growth.json"
+      ]
     },
     {
       "id": "T085-AC-03",
@@ -10761,7 +10819,7 @@
       "criterion": "Numeric growth/source diff และ focusedTower progression/replay/migration checks/M0/build ผ่าน พร้อม Vercelpublicnewtowerdata/API/hash/login/PWA ไม่อ้างwhole-game balanceหรือผลเล่นทีมจริงของผู้ใช้ ไม่มีSQL/env/ownerwrite/balancebatchใหม่",
       "input_setup": "Currentfloor21/teamLv30 reported by owner; fixednumericfloors1/10/21/30/50/100/101/1000 and existingfirstclear/replay/reload fixtures",
       "input_refs": [
-        "plan/inprogress/tasks_085.md",
+        "plan/done/tasks_085.md",
         "plan/data/tower.json",
         "src/domain/modes/tower.ts",
         "tests/game/tower.test.ts"
@@ -10773,8 +10831,17 @@
       "expected": "Numeric growth/source diff และ focusedTower progression/replay/migration checks/M0/build ผ่าน พร้อม Vercelpublicnewtowerdata/API/hash/login/PWA ไม่อ้างwhole-game balanceหรือผลเล่นทีมจริงของผู้ใช้ ไม่มีSQL/env/ownerwrite/balancebatchใหม่",
       "verification": "Independentnumeric/source diff,generator equality,focusedTower rules/M0/build,read-onlyproduction",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation",
-      "execution_evidence": []
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-084-085-targeted.txt",
+        "plan/evidence/task-084-085-build.txt",
+        "plan/evidence/task-085-m0.txt",
+        "plan/evidence/task-084-085-github-deployment.json",
+        "plan/evidence/task-084-hosted.json",
+        "plan/evidence/task-084-085-readiness.txt",
+        "plan/evidence/task-085-generator.txt",
+        "plan/evidence/task-085-growth.json"
+      ]
     }
   ]
 }

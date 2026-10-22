@@ -1,0 +1,57 @@
+{
+  "task_id": "TASK-085",
+  "date": "2026-10-22",
+  "passed": true,
+  "implementation_verified": true,
+  "acceptance": {
+    "AC-01": "passed",
+    "AC-02": "passed",
+    "AC-03": "passed"
+  },
+  "source_commit": "e2323a28367c5ebc3636bb7e0f379dd725c24e39",
+  "deployment_url": "https://vercel.com/chanon2/ro-idle-pve/ABK9Nud7EM3ACMubW6ZrdPEK9mdA",
+  "content_hash": "fd66a55fb5f141aa5fe34038784c0a8e976f4123c0842cd438447cb7f0ec640b",
+  "asset_pack_hash": "c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2",
+  "checks": {
+    "focused_ts": 40,
+    "m0_type_build_boundaries_secrets": true,
+    "hosted_groups": 3,
+    "readiness_checks": 8,
+    "generated_rows": 100
+  },
+  "verified_behavior": {
+    "AC-01": "100authoredrows match polynomial; explicit floors1/10/20/21/22/30/50/100/101/1000 match independent expected values. Floor21HP24750/ATK273, nextATK+23 rather than+2. Higher safe floors work and unsafe intermediate values reject instead of wrapping.",
+    "AC-02": "Source diff limits Tower changes to content_version/HP/ATK curves+theirrows; rewards/defense/cycles/speed/CC/unlock40s remain. Existing firstclear/replay/loss/nextday/reload tests pass with preserved frontier and exactly-once rewards. No owner reset or new schema/migration/SQL.",
+    "AC-03": "40focusedTS and arithmetic growth/source diff/generator/M0/build pass. Vercelpublic tower-v2 polynomial in hashednewdefinitions/APIcontent/login/PWA verified in shared084 hosted proof. Anchor is userfloor21/teamLv30, not a measured team-specific balance verdict; no calibration/simulation batch."
+  },
+  "evidence": [
+    "plan/evidence/task-084-085-targeted.txt",
+    "plan/evidence/task-084-085-build.txt",
+    "plan/evidence/task-085-m0.txt",
+    "plan/evidence/task-084-085-github-deployment.json",
+    "plan/evidence/task-084-hosted.json",
+    "plan/evidence/task-084-085-readiness.txt",
+    "plan/evidence/task-085-generator.txt",
+    "plan/evidence/task-085-growth.json"
+  ],
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "new_sql_env_assets": false,
+  "balance_simulation": false,
+  "pending": [],
+  "limitations": [
+    "Fixed rule/fixture proof and Chrome mobile emulation, not owner Android or a whole-game balance verdict.",
+    "Hosted checks signed out; owner save/paidledger/frontier not read or edited. Existing backup/content migration flow remains required."
+  ],
+  "retained_failures": [
+    "Initial typecheck caught mutable/readonly helper input and synthetic incomplete source fixture; corrected types/fixtures without weakening readonly.",
+    "Initial focused run exposed pre077/078 hardcoded olddamage/guard/text expectations. Updated independent baselines by existing factor1.75; no other authored skill effects changed.",
+    "Browser round1 used nonexistent equipment_fist_1 fixture; replaced with existing equipment_knuckle_1, same original UI assertions passed.",
+    "Hosted round1 newdata/UI/API all passed but initial PWA controller wait timed out. Retained report and reran unchanged strict checks in freshprofile; all3groups passed. No PWA product code changed."
+  ],
+  "source_sha256": {
+    "src/domain/modes/tower.ts": "20786caec78550132d3810fe8d126658e25bdc885cbaa69d36a911d49b79dcc5",
+    "plan/generators/tower.py": "ae4a0337be6a9db095d1683d7476cd4e0a20a9dab6d993507eb10c9b2746fcf4",
+    "plan/data/tower.json": "c5b03b0755b41234db7e49034659fc746c631831f94888629d74354f34b3db74"
+  }
+}
