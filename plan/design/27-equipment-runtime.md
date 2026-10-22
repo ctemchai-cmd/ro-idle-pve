@@ -44,3 +44,7 @@ TASK-026 รวม compiler ของ slot investments เพื่อรัก�
 Unit cases เทียบ preview กับ actual battle snapshot,304/95 hand example,19job weapon map,500instances/pending bundle/atomic batch และ offline build lock Real Auth/API/SQL/Chrome flow ใช้ signed server-owned Lv60/slot/card/500-item fixtures แยกจากเซฟส่วนตัว เพื่อไปถึงขอบเขตโดยไม่อ้างว่าเล่นสะสมทรัพยากรจริง ผลตรวจเก็บกับ task โดย sourcehash; ไม่อ้างว่าผ่านก่อนจบ review
 
 เว็บส่วนตัว6173ยังเก็บ snapshot M2 ตาม [Local play](../../docs/LOCAL-PLAY.md) การแก้ development source ไม่สลับเวอร์ชันของเซฟนั้นอัตโนมัติ
+
+## แจ้งอุปกรณ์ที่ดีกว่า (D-125 / TASK-096)
+
+ผู้ใช้ยืนยันลำดับเลเวลไอเท็มสูงกว่าก่อน ถ้าเท่ากันจึงดู rarity ที่สูงกว่า. หน้า Buddy แสดงจุดแดงเมื่อมีของที่ใส่ได้ตามอาชีพ/เลเวลและยังไม่มีคนสวมที่เข้าเกณฑ์นี้; ช่องว่างเตือนเมื่อมีของที่ใส่ได้. ออปชัน/Refine/Enchant/การ์ดไม่ใช้ตัดสินจุดแดง ผู้เล่นยังดูค่าก่อนและหลังในรายการได้ตามเดิม. ของล็อกยังใส่ได้ ไม่ดึงของตัวอื่นมาเตือน และซ่อนขณะ active battle. ตรวจแบบ linear/Map และ memo ตาม state/character โดยไม่เรียก stat preview หรือคัดลอกเซฟ. รายการเปลี่ยนวางชิ้นที่แนะนำบนสุดพร้อมป้ายดีกว่า สี rarity/เลขพัฒนาช่องคงเดิม ไม่มี API หรือ save write จากคำเตือน

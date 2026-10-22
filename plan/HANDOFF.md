@@ -4,6 +4,14 @@
 
 
 
+## 22 ต.ค.2026 · Codex — TASK-096 จุดแดงของสวม รอ deploy
+
+- ผู้ใช้ขอจุดแดงบนช่องสวมเมื่อมีของที่ดีกว่า และระหว่างทำงานยืนยันเกณฑ์ **เลเวลไอเท็มสูงกว่าก่อน/ถ้าเท่ากันค่อยrarityสูงกว่า** (D-125). FinalequipmentUpgradeHintsเป็นlinearMapmemo ไม่มีstatpreview/clone/save/API กรองอาชีพ/requiredlevel/unowned ของล็อกยังใส่ได้ ช่องว่างเตือนเมื่อมีของใส่ได้ ซ่อนเมื่อactivebattle. คืนidชิ้นสูงสุดของช่องไว้จัดบนสุด/ป้ายแดงดีกว่าในChangeSheet. จุดแดง8pxเหนือขวากรอบ ไม่ทับRefine/Enchant/การ์ด สีrarityเดิม
+- Final13focused + build/type/boundaries/secrets/readiness8 ผ่าน ActualBuddyPage/CSS/AssetPack320/390+explicitmemoryequip+switchactor/500itemsCPU4x **3groupsผ่าน** hints1.9–4.3ms เปิดภาพslots/list320ดูแล้ว ไม่physicalAndroid/ownerAuthproof. ไม่restart6173/อ่านprivateenv/ownercloudwrite
+- เก็บtrialreports: statcomparisonround1fixtureSPผิด/typeoptionalผิดแก้แล้ว, browserround1dotทับprogressแก้ย้าย/ลด8px; round2/3ต้นแบบstatcomparisonช้า500ms/185ms, mathtrial88msและ200strictstatparity แต่**การทดลองdomain/math/buildถูกถอดทั้งหมด** หลังผู้ใช้ยืนยันใช้level/rarity. Finaldomainfilesbyte-identicalHEAD ไม่มีformulaหรือruleschange และไม่มีstatcomparison/previewtemplateเหลือในhint. อย่าเอาtrialartifactไปอ้างfinalscope
+- Contentยัง38859826ae9f3bb1b3c622609f8e3f7c046fa7e9bc182a4db8bdc27b84a7cde2 pack96dec12ee20f2dc6865dda45131c27c96a0527fc757e8d4eaefd91dbec9d5912. ไม่ต้องSQL/env/migration. Board81/96doneinprogress5รวม096/review5/todo5 M4done41/51
+- Next sourcepush→VercelSUCCESS→RO_EVIDENCE_PREFIX=task-096/RO_EXPECT_CONTENT_HASH=38859826ae9f3bb1b3c622609f8e3f7c046fa7e9bc182a4db8bdc27b84a7cde2/RO_DEPLOY_COMMIT=<sha> node scripts/test_save_latency_hosted.cjs แล้วreview3AC/movedone/updateboard82/96M4done42/51/readiness/docsclosurepush
+
 ## 22 ต.ค.2026 · Codex — TASK-095 done คืนไอคอนร้านค้าเดิมสีปกติ ขึ้น Vercel แล้ว
 
 - ผู้ใช้ต้องการ icon เดิม แค่เทา→สีปกติ (D-124). อ่านsidecar/เปิด bank_1สีทองและ bank_3เทาแล้ว ใช้ nativeถุงเงิน bank_1 คืน img ใน BottomBar ลบ StoreIconSVG/CSS. ไม่เปลี่ยนใบธาตุ/ร้านค้า/สูตร/เซฟ/ownercloud/6173

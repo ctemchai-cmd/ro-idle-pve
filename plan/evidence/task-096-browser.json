@@ -1,0 +1,45 @@
+{
+  "task_id": "TASK-096",
+  "passed": true,
+  "checks": [
+    {
+      "case": "real_BuddyPage_320",
+      "badge": {
+        "color": "rgb(231, 67, 84)",
+        "width": 8,
+        "overlap": 0
+      },
+      "slot_progress_preserved": true,
+      "recommendation_first": true,
+      "explicit_equip_clears_hint": true,
+      "character_switch_rechecks": true
+    },
+    {
+      "case": "real_BuddyPage_390",
+      "badge": {
+        "color": "rgb(231, 67, 84)",
+        "width": 8,
+        "overlap": 0
+      },
+      "slot_progress_preserved": true,
+      "recommendation_first": true,
+      "explicit_equip_clears_hint": true,
+      "character_switch_rechecks": true
+    },
+    {
+      "case": "500_items_CPU4x",
+      "count": 500,
+      "samples_ms": [
+        4.299999952316284,
+        2.3999998569488525,
+        4.200000047683716,
+        2.200000047683716,
+        1.9000000953674316
+      ],
+      "unique_rolls": true
+    }
+  ],
+  "errors": [],
+  "writes": [],
+  "scope": "Real BuddyPage/native media, final user-confirmed level-then-rarity hints and explicit in-memory equip reducer; Chrome320/390/CPU4x, no Auth/owner save"
+}

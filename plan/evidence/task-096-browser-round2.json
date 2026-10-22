@@ -1,0 +1,45 @@
+{
+  "task_id": "TASK-096",
+  "passed": true,
+  "checks": [
+    {
+      "case": "real_BuddyPage_320",
+      "badge": {
+        "color": "rgb(231, 67, 84)",
+        "width": 8,
+        "overlap": 0
+      },
+      "slot_progress_preserved": true,
+      "recommendation_first": true,
+      "explicit_equip_clears_hint": true,
+      "character_switch_rechecks": true
+    },
+    {
+      "case": "real_BuddyPage_390",
+      "badge": {
+        "color": "rgb(231, 67, 84)",
+        "width": 8,
+        "overlap": 0
+      },
+      "slot_progress_preserved": true,
+      "recommendation_first": true,
+      "explicit_equip_clears_hint": true,
+      "character_switch_rechecks": true
+    },
+    {
+      "case": "500_items_CPU4x",
+      "count": 500,
+      "samples_ms": [
+        497.7999999523163,
+        595.3999998569489,
+        469.89999985694885,
+        520.3000001907349,
+        393.89999985694885
+      ],
+      "unique_rolls": true
+    }
+  ],
+  "errors": [],
+  "writes": [],
+  "scope": "Real BuddyPage/AssetPack/preview compiler and explicit in-memory equipment reducer in isolated Chrome320/390+CPU4x; no Auth, persistence or owner save"
+}

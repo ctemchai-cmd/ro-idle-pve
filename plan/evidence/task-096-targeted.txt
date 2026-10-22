@@ -1,0 +1,21 @@
+✔ six slots/job and level restrictions, moving one canonical item across main/off-team owner preserves both slot investments (288.474667ms)
+✔ all19 jobs use authored weapon compatibility; all equipment rarity/type definitions fit shared compiler without implicit stat growth (196.340167ms)
+✔ rarity affects only item base; Refine/Enchant/card sources remain on each owner, sleep when empty, and preview exactly matches battle snapshot (268.521042ms)
+✔ 500-item bag keeps pending reward fixed; equip/unlock/salvage still work and protected batch rejects atomically (287.870208ms)
+✔ training weapon costs125 once per command, is a distinct unequipped instance, discard yields zero and cannot buy incompatible type (223.569958ms)
+✔ semantic validation rejects duplicate owners/definitions/card slots and all equipment commands lock during live battle (193.130625ms)
+✔ equipment precision enters primary DEX once and skill CT/ACD preview shares that exact cast speed (153.196583ms)
+✔ a usable improvement marks its slot and stops marking it after equipping; empty slots can be filled (3.081542ms)
+✔ wrong job, required level, equal gear and items equipped by another character never create hints (1.50675ms)
+✔ a lower item level never triggers a hint even at Supreme rarity (1.050291ms)
+✔ same level compares rarity only, regardless of options or slot investment, without changing the save (2.251583ms)
+✔ a higher item level outranks rarity and is suggested before lower-level items (1.190667ms)
+✔ a full 500-item bag with duplicates stays deterministic and a locked bag item remains wearable (2.245375ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2887.523792

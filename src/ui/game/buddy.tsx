@@ -3,7 +3,7 @@ import { Icon } from '../icon.tsx';
 import { useMemo, useState } from 'react';
 import type { CombatStats, Modifier } from '../../contracts/index.ts';
 import { effectiveLevelCap, levelQuote, rosterData as data, type Character, type RootJob } from '../../client/roster.ts';
-import { equipmentData, equipmentPreview, inventoryView, itemModifiers, itemOptions, rarityLabels, rarityRank, slotLabels, weaponLabels, type EquipmentSlot } from '../../client/equipment.ts';
+import { equipmentData, equipmentPreview, equipmentUpgradeHints, inventoryView, itemModifiers, itemOptions, rarityLabels, rarityRank, slotLabels, weaponLabels, type EquipmentSlot } from '../../client/equipment.ts';
 import { cardInventory, cardStatUnits, nextRefineChance, refundEnchant, salvageCardsQuote, slotChangePreview, slotUpgradeQuote, socketCapacity } from '../../client/slots.ts';
 import type { GameContext } from './shell.tsx';
 import { ClassIcon } from './class-icon.tsx';
@@ -31,12 +31,13 @@ export function StatChanges({ before, after }: { before: { stats: CombatStats; i
   return <div className="stat-changes" aria-label="ค่าก่อนและหลัง">{keys.length ? keys.map(k => <p key={k}><span>{statLabels[k] ?? k}</span><Diff before={(before.stats[k] ?? 0)} after={(after.stats[k] ?? 0)} keyName={k} /></p>) : <p><span>ค่าต่อสู้</span><span className="diff-same">เท่าเดิม</span></p>}
     {before.intervalMs !== after.intervalMs && <p><span>รอคิวสกิล</span><span className="diff"><s>{seconds(before.intervalMs)}</s> → <b className={after.intervalMs < before.intervalMs ? 'up' : 'down'}>{seconds(after.intervalMs)}</b></span></p>}</div>;
 }
-function GearTile({ row, slot, pack, state, characterId, onClick }: { row: ItemRow | undefined; slot: EquipmentSlot; pack: GameContext['pack']; state:GameContext['state']; characterId:string; onClick: () => void }) {
-  return <button className={`gear-tile rarity-${row?.item.rarity_id ?? 'none'}`} aria-label={`ช่อง ${slotLabels[slot]}${row ? ` · ${row.name}` : ' · ว่าง'}`} onClick={onClick}>
+function GearTile({ row, slot, pack, state, characterId, upgradeId, onClick }: { row: ItemRow | undefined; slot: EquipmentSlot; pack: GameContext['pack']; state:GameContext['state']; characterId:string; upgradeId?:string; onClick: () => void }) {
+  return <button className={`gear-tile rarity-${row?.item.rarity_id ?? 'none'}`} aria-label={`ช่อง ${slotLabels[slot]}${row ? ` · ${row.name}` : ' · ว่าง'}${upgradeId ? ' · มีของที่ดีกว่า' : ''}`} onClick={onClick}>
     {row ? <ItemIcon id={row.iconId} pack={pack} /> : <span className="gear-empty">{slotLabels[slot]}</span>}
     <EquipmentProgress state={state} characterId={characterId} slot={slot} />
     {row && <small className="tier-badge">Lv{row.definition.tier_level}</small>}
     <EquipmentCards state={state} characterId={characterId} slot={slot} />
+    {upgradeId && <span className="gear-upgrade-alert" aria-hidden="true" title="มีของที่ดีกว่า" />}
   </button>;
 }
 
@@ -100,20 +101,20 @@ function UpgradeSheet({ context, actor, slot, close }: { context: GameContext; a
   </Sheet>;
 }
 
-function ChangeSheet({ context, actor, slot, close }: { context: GameContext; actor: Character; slot: EquipmentSlot; close: () => void }) {
+function ChangeSheet({ context, actor, slot, upgradeId, close }: { context: GameContext; actor: Character; slot: EquipmentSlot; upgradeId?:string; close: () => void }) {
   const { state, pack, submit, locked } = context, [picked, setPicked] = useState<string | null>(null);
-  const rows = useMemo(() => inventoryView(state, actor.character_id).filter(r => r.slot === slot && (slot !== 'weapon' || r.definition.weapon_type === equipmentData.weapon_compatibility[actor.job_id])).sort((a, b) => b.definition.required_level - a.definition.required_level || (rarityRank[b.item.rarity_id] ?? 0) - (rarityRank[a.item.rarity_id] ?? 0) || Number(!!a.reason) - Number(!!b.reason)), [state, actor.character_id, actor.job_id, slot]);
+  const rows = useMemo(() => inventoryView(state, actor.character_id).filter(r => r.slot === slot && (slot !== 'weapon' || r.definition.weapon_type === equipmentData.weapon_compatibility[actor.job_id])).sort((a, b) => Number(b.item.instance_id === upgradeId) - Number(a.item.instance_id === upgradeId) || b.definition.required_level - a.definition.required_level || (rarityRank[b.item.rarity_id] ?? 0) - (rarityRank[a.item.rarity_id] ?? 0) || Number(!!a.reason) - Number(!!b.reason)), [state, actor.character_id, actor.job_id, slot, upgradeId]);
   const current = actor.equipment[slot], price = equipmentData.targeted_weapon_purchase.cost_rows.find(r => r.tier_level === 1)!.gold, weapon = equipmentData.weapon_compatibility[actor.job_id]!;
   const fit: Record<string, string> = { ITEM_LEVEL_REQUIRED: 'เลเวลยังไม่ถึง', WEAPON_INCOMPATIBLE: 'อาชีพนี้ใช้ไม่ได้', ITEM_SLOT_MISMATCH: 'ชนิดช่องไม่ตรง' };
   return <Sheet title={`เปลี่ยน${slotLabels[slot]} · ${friendNames[actor.character_id]}`} onClose={close} className="tall">
-    <p className="hint">เรียงตามเลเวลและ rarity · ค่าพัฒนาช่อง (Refine/Enchant/การ์ด) อยู่กับช่องเดิม ไม่หายเมื่อเปลี่ยนของ</p>
+    <p className="hint">{upgradeId ? 'ของที่ดีกว่าอยู่บนสุด · ' : 'เรียงตามเลเวลและ rarity · '}ค่าพัฒนาช่อง (Refine/Enchant/การ์ด) อยู่กับช่องเดิม ไม่หายเมื่อเปลี่ยนของ</p>
     <div className="item-list">{rows.map(r => { const mine = current === r.item.instance_id, open = picked === r.item.instance_id, mods = itemModifiers(r.item); let preview: ReturnType<typeof equipmentPreview> | null = null;
       if (open && !r.reason && !mine && !state.active_battle) preview = equipmentPreview(state, actor.character_id, slot, r.item.instance_id);
       return <div key={r.item.instance_id} className={`list-item ${open ? 'open' : ''} ${r.reason ? 'dim' : ''}`}>
         <button className="list-row" aria-expanded={open} onClick={() => setPicked(open ? null : r.item.instance_id)}>
           <span className={`icon-frame rarity-${r.item.rarity_id}`}><ItemIcon id={r.iconId} pack={pack} />{(mine || r.owner) && <i className="e-badge">E</i>}{r.owner && <><EquipmentCards state={state} characterId={r.owner.character_id} slot={r.owner.slot} /><EquipmentProgress state={state} characterId={r.owner.character_id} slot={r.owner.slot} /></>}</span>
           <span className="row-main"><b>{r.name}</b><small>{rarityLabels[r.item.rarity_id]} · Lv.{r.definition.required_level}{r.item.training ? ' · ฝึกหัด' : ''}{r.item.locked && <> · <Icon name="lock" /> ล็อก</>}</small><small className="mods">{mods.slice(0, 2).map(modifierText).join(' · ')}</small></span>
-          <span className="row-side">{mine ? <em className="tag on">สวมอยู่</em> : r.owner ? <em className="tag">{friendNames[r.owner.character_id]}</em> : r.reason ? <em className="tag warn">{fit[r.reason] ?? r.reason}</em> : null}</span>
+          <span className="row-side">{r.item.instance_id === upgradeId ? <em className="tag gear-upgrade-tag"><Icon name="upgrade" /> ดีกว่า</em> : mine ? <em className="tag on">สวมอยู่</em> : r.owner ? <em className="tag">{friendNames[r.owner.character_id]}</em> : r.reason ? <em className="tag warn">{fit[r.reason] ?? r.reason}</em> : null}</span>
         </button>
         {open && <div className="list-detail"><OptionLines item={r.item} />{r.reason ? <p className="hint warn">{fit[r.reason] ?? reasonText[r.reason] ?? r.reason}</p> : mine ? <div className="row"><p className="hint">กำลังสวมอยู่</p><button className="btn small ghost" disabled={locked} onClick={() => void submit('equipment.unequip', { character_id: actor.character_id, slot })}>ถอดออก</button></div>
           : <>{preview && <StatChanges before={preview.before} after={preview.after} />}{r.owner && <p className="hint">ย้ายจาก {friendNames[r.owner.character_id]} · ช่องของเขาจะว่าง</p>}<button className="btn primary wide" disabled={locked} onClick={() => void submit('equipment.equip', { character_id: actor.character_id, slot, item_instance_id: r.item.instance_id }).then(ok => { if (ok) close(); })}>{r.owner ? 'ย้ายมาสวม' : 'สวมใส่'}</button></>}</div>}
@@ -172,9 +173,10 @@ export function RosterStrip({ context }: { context: GameContext }) {
 
 export function BuddyPage({ context }: { context: GameContext }) {
   const { state, pack, characterId, go } = context, actor = state.roster.find(a => a.character_id === characterId)!, items = useMemo(() => inventoryView(state, actor.character_id), [state, actor.character_id]);
+  const upgrades = useMemo(() => equipmentUpgradeHints(state, actor.character_id, items), [state, actor.character_id, items]);
   const [slot, setSlot] = useState<EquipmentSlot | null>(null), [sheet, setSheet] = useState<'slot' | 'upgrade' | 'change' | 'character' | null>(null);
   const inTeam = state.team.some(p => p.character_id === actor.character_id), row = (s: EquipmentSlot) => items.find(i => i.item.instance_id === actor.equipment[s]);
-  const tile = (s: EquipmentSlot) => <GearTile key={s} row={row(s)} slot={s} pack={pack} state={state} characterId={actor.character_id} onClick={() => { setSlot(s); setSheet('slot'); }} />;
+  const tile = (s: EquipmentSlot) => <GearTile key={s} row={row(s)} slot={s} pack={pack} state={state} characterId={actor.character_id} upgradeId={upgrades[s]} onClick={() => { setSlot(s); setSheet('slot'); }} />;
   const statsIcon = iconUrl(pack, 'ui_icons', 'stats'), skillIcon = iconUrl(pack, 'ui_icons', 'skill');
   return <div className="page buddy-page">
     <PageHeader title={<>{friendNames[actor.character_id]} <span className="title-class"><ClassIcon job={actor.job_id} size={20} /><em>{jobNames[actor.job_id]}</em></span></>} sub={`Lv.${actor.level} / ${effectiveLevelCap(actor, data)} · ${inTeam ? 'อยู่ในทีม' : 'พักอยู่ในค่าย'}${actor.unspent_status_points ? ` · แต้มเหลือ ${actor.unspent_status_points}` : ''}`} onBack={() => go('home')} />
@@ -191,7 +193,7 @@ export function BuddyPage({ context }: { context: GameContext }) {
     <RosterStrip context={context} />
     {sheet === 'slot' && slot && <SlotSheet context={context} actor={actor} slot={slot} close={() => setSheet(null)} open={s => setSheet(s)} />}
     {sheet === 'upgrade' && slot && <UpgradeSheet context={context} actor={actor} slot={slot} close={() => setSheet(null)} />}
-    {sheet === 'change' && slot && <ChangeSheet context={context} actor={actor} slot={slot} close={() => setSheet(null)} />}
+    {sheet === 'change' && slot && <ChangeSheet context={context} actor={actor} slot={slot} upgradeId={upgrades[slot]} close={() => setSheet(null)} />}
     {sheet === 'character' && <CharacterUpgradeSheet context={context} actor={actor} close={() => setSheet(null)} />}
   </div>;
 }

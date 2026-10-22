@@ -1,0 +1,33 @@
+✔ a usable improvement marks its slot and stops marking it after equipping; empty slots can be filled (6.105667ms)
+✔ wrong job, required level, equal gear and items equipped by another character never create hints (2.016667ms)
+✔ rarity alone is insufficient: a Supreme low-tier weapon with lower ATK is not an upgrade (2.984ms)
+✔ actual random options count; an HP-versus-ATK trade-off and an identical copy do not trigger hints (2.987167ms)
+✖ negative SP costs are improvements and the preview preserves slot investment and the entire save (30.556125ms)
+✔ a full 500-item bag with duplicates stays deterministic and a locked bag item remains wearable (2.730041ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1248.740292
+
+✖ failing tests:
+
+test at tests/game/equipment-upgrade-hints.test.ts:1:2820
+✖ negative SP costs are improvements and the preview preserves slot investment and the entire save (30.556125ms)
+  AssertionError [ERR_ASSERTION]: false == true
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/equipment-upgrade-hints.test.ts:39:102)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '=='
+  }

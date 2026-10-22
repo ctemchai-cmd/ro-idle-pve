@@ -494,3 +494,7 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 
 | `T095-AC-01` [TASK-095](done/tasks_095.md) | Native icon/mobile/build/hosted | BottomBar ใช้ภาพถุงเงิน native bank_1 สีปกติทั้ง inactive/active; แตะเปิดร้านได้ ขนาดไม่ล้นมือถือ 320/390px และไม่มี browser error | [ผ่าน implementation](evidence/task-095-review.json) |
 | `T095-AC-02` [TASK-095](done/tasks_095.md) | Native icon/mobile/build/hosted | runtime pack/build ผ่านและเว็บ Vercel ส่ง mapping/ภาพสีตรง checksum; content hash กติกาเกมไม่เปลี่ยน | [ผ่าน implementation](evidence/task-095-review.json) |
+
+| `T096-AC-01` [TASK-096](inprogress/tasks_096.md) | Level/rarity/fit/mobile/build/hosted | ของที่ใส่ได้/ยังไม่มีคนสวม เตือนเมื่อเลเวลไอเท็มสูงกว่า หรือเลเวลเท่ากันแต่ rarity สูงกว่า; ช่องว่างเตือนเมื่อมีของใส่ได้ ของเท่ากัน/เลเวลต่ำกว่าแม้ Supreme/ผิดอาชีพ/เลเวลไม่ถึง/ของเพื่อนไม่เตือน ออปชัน/ค่าพัฒนาช่องไม่เกี่ยวกับเกณฑ์และเซฟไม่ถูกแก้ | ยังไม่ตรวจ |
+| `T096-AC-02` [TASK-096](inprogress/tasks_096.md) | Level/rarity/fit/mobile/build/hosted | จุดแดงเล็กที่ช่องถูกต้องบนมือถือ320/390 ไม่บัง rarity/Refine/Enchant/การ์ด; เปิดรายการแล้วของที่แนะนำอยู่บนสุดพร้อมป้าย สวมแล้ว/สลับตัวละครแล้วคำเตือนอัปเดต ไม่มี network write จากการแสดงคำเตือน และตรวจ500item/CPU4xเพื่อกัน UI หน่วง | ยังไม่ตรวจ |
+| `T096-AC-03` [TASK-096](inprogress/tasks_096.md) | Level/rarity/fit/mobile/build/hosted | targeted rules/build/type/boundaries/secrets/readiness และ public Vercel bundle/หน้า login ผ่าน content hash/pack เดิม ไม่มี SQL หรือเซฟ migration เพิ่ม | ยังไม่ตรวจ |
