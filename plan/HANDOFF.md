@@ -4,14 +4,13 @@
 
 
 
-## 22 ต.ค.2026 · Codex — TASK-079 localผ่าน รอpush/hosted
+## 22 ต.ค.2026 · Codex — TASK-079 done ภาพการ์ดและคำอธิบายสกิลขึ้นVercelแล้ว
 
-- D-105 ผู้ใช้ขอภาพการ์ดไม่ทับขอบมนและคำอธิบายสกิลที่บอกผล/ต่างเลเวล แก้ bag native3:4 boundedheight+actualradius, socket30px/nativeaspect, picker38pxไม่ใช้percentheightที่ขยายภาพเกินกล่อง; E/lock/gradeไม่clip
-- client/skills summariesรวมstart_effects/ballcost/all-SPminimum/DoTcoeff/chance/expiry/revive/summon พร้อมProvoke/weaponendowscope. SkillGrowth resolveเฉพาะselectedทุกเลเวลจากshared resolver+currentSPmodifier/CSPD แสดงnextdeltaรวมACDทันที+collapsedleveltable แยกSP-only; max/cap previewไม่เปลี่ยนmutationgate คิว4ช่องล่างเหมือนเดิม ใช้ทั้งmain/legacy
-- Static current126skillsมีweapon-inherit29; statusFireEndowอย่างเดียว allalliesFire6500ms+MATKup5500ms EnchantPoisonมีATKupไม่endow. CallSpiritทุกLv5ลูก/1%ATKต่อลูกเหลือ SP27→18; Provoke4500ms SP19→10. ห้ามตีความว่าอ้างROจริง/เปลี่ยนbalanceใน079
-- 20focused/readiness8/buildผ่าน actualfreshAuth/API5+SQL/mobile320/3904groupsผ่าน zeroinspectionwrite/savehash-revisionเหมือนเดิม รูปcards/picker/Provoke320เปิดดูจริงแล้ว เก็บround1test0skillentry/v=bagผิดและround2pickerpercentheightfailไว้ ไม่ปกปิดfailure รูปfinalfullnativeportraitถูกแล้ว ไม่มีowner/6173/env/SQL/newassets/balancebatch contentebaeef7… packc7e45b…เดิม
-- Source4852ขึ้นVercelSUCCESSและpublic3groupsผ่านแล้ว; auditเสริมพบSpiritCombochanceไม่ได้แสดง จึงเพิ่มtrigger event/chanceทุกPassiveและtestทุกadjacentlevel126ท่าที่definitionเปลี่ยนต้องมีvisible delta20focusedผ่าน รอfollowupsourcepush/publicnewmarker เมื่อตีปกติโดน
-- ขั้นต่อไป: pushmain/checkVercel actualpublichealth/hash/login/PWA/newdescription+CSS markersด้วยRO_EVIDENCE_PREFIX=task-079 RO_EXPECT_CONTENT_HASH=ebaeef7fb6af50760c358e7f2ff2da7da9fd471ff0b8c8e187ffbdc3ea5911a5 แล้วreview/move079done/updatecounts. Harnesssharedchunksชื่อgear-upgrades ไม่ใช่shell และCSSminifiertranslate(-50%) ไม่ใช่translateX
+- D-105 userขอcardpictureไม่ชนขอบมน/อธิบายผลเปลี่ยนและLv1–5ของCallSpirit/Provoke. bagคง3:4 boundedheight+radiusบนขอบภาพจริง E/grade/lockไม่clip; socket30px; picker38pxแก้percentheightขยายภาพ
+- client/skillsรวมstart_effects/ballcost/all-SPminimum/DoTcoeff/chance/expiry/revive/summon พร้อมProvoke/endowscope; Passiveแสดงevent/chance. SkillGrowth resolveเฉพาะselectedทุกlevelด้วยsharedSP/CSPD/resolver แสดงnextdeltaรวมACDทันที+collapsedtable; cap/maxpreviewไม่ข้ามcommandgate สี่slotอยู่ล่างเหมือนเดิม
+- Current126skills/weapon-inherit29 มีFireEndowเท่านั้นที่endowweapon(allalliesFire6.5s+MATKup5.5s) EnchantPoisonเป็นATKupไม่endow. CallSpirit5ลูก/ATK1%ต่อบอลที่เหลือทุกlevel SP27→18; Provoke4500msทุกlevelSP19→10 ตัวเลขคือเกมเราปัจจุบัน ไม่อ้างROจริงหรือเพิ่มbalance079
+- 20focused รวมทุกadjacentlevel126skillsที่definitionเปลี่ยนต้องมีvisible delta/build/type/boundaries/secrets/readiness8ผ่าน actualfreshAuth/API5/SQL/mobile320/390สี่กลุ่มzeroinspectionwrite รูปcard/picker/Provoke320+CallSpirit390/Endow320เปิดดูจริงแล้ว เก็บround1fixturefail/round2realpickerfail และsource4852hostedproofไว้ หลัง4852พบSpiritCombochanceที่ตกหล่นจึงfollowupcf867เฉพาะtext+coverage ไม่รันbalancebatch ไม่แตะowner/6173/env/SQL/assets contentebaeef7…/packc7e45b…เดิม
+- **FinalSOURCE cf86794d5373526c1cdf24d247d0f7859675a34c push/VercelSUCCESS** https://vercel.com/chanon2/ro-idle-pve/FppZtBDkFSgW2QCKXFghrvicxd3x publicAPI/newUI/CSS/Passivechance/login/PWA3groupsผ่าน0mutation TASK079doneทุกAC. Actualmobile4groupsที่4852ยังเป็นlayout/cardเดียวกัน; Passivefollowupตรวจ20focused+hostedbundle ไม่อ้างphysicalAndroid/owneraccount Board65/79done,inprogress4(041/058/064/067)เดิม,review5,todo5,M4done25/34 ไม่มีmigrationใหม่สำหรับUI079
 
 
 ## 22 ต.ค.2026 · Codex — TASK-078 done ฮีล/แทงก์/ซัพพอร์ตตามคำตอบผู้ใช้ ขึ้นVercelแล้ว
