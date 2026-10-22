@@ -6,12 +6,15 @@
   "assumptions": [
     "ATK=100, MATK=100, pre-costSP=200 are independent normalization units, not an actual character build",
     "One target; all hits land; no crit/armor/buffs; all DoT/summon ticks land; no death/CC/SP skip",
-    "Detonate compares2 own poison instances; actual rotation may leave fewer and timing matters",
+    "Detonate compares2 own poison instances at referenceATK100; actual rotation may leave fewer and timing matters",
+    "Counter/passive totals assume one successful triggering event; their activation chances remain unchanged and are not discounted into DPS",
     "Skill/normal clocks shareASPD but CT/ACD shareCSPD; report uses100ratings without proposing timing changes"
   ],
   "invariants": {
     "skill_timing_cost_selectors_start": 126,
     "economy_files_unchanged": 5,
+    "encounter_files_unchanged": 3,
+    "shared_damage_policy_skills": 52,
     "card_identity_art_slot_tier_quality_level_costs_unchanged": true,
     "gear_cost_rarity_tier_fusion_unchanged": true
   },

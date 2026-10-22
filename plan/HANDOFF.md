@@ -4,13 +4,14 @@
 
 
 
-## 22 ต.ค.2026 · Codex — TASK-077 สัดส่วนพลังร่วมทุกอาชีพ/การ์ด ผ่านlocalแล้วรอdeploy
+## 22 ต.ค.2026 · Codex — TASK-077 done สัดส่วนพลังร่วมทุกอาชีพ/การ์ด ขึ้นVercelแล้ว
 
 - ผู้ใช้ขอสกิล/การ์ด/ไอเทมมีผลต่อไฟต์มากขึ้นและชี้แจงให้scaleทุกอาชีพ/การ์ดไปทางเดียวกัน ยอมรับด่านเดิมง่ายขึ้น จึงแทนdraftcurveรายท่าด้วยD-103sharedpowerpolicy1.75 (assistanttrialvalue). ข้อเสนอเก่าที่บอกห้ามบัฟทุกท่ารวมในบันทึก076ถูกแทนโดยคำชี้แจงล่าสุดนี้ ไม่เพิ่มบอส/ด่านชดเชย ไม่renewedbalance simulation/calibration
 - 52damageprogramsทุกต้นอาชีพ/Passive/DoT/counter/copy+HellPlantเพิ่มpower1.75; Detonateflat→ATK105–210%/ownstackโดยreferenceATK100×factorเดียวกัน. Carddamageprocทุกใบใช้factorเดียวกัน; flatATK/MATK/HP/SP/DEFcardคงflat+เพิ่ม%จากsharedreference ไม่แก้66ROIDs/art/slots/quality/level/cost/control/resistance/penalties. ด่าน/Tower/Daily/เศรษฐกิจเดิมไม่เปลี่ยน
 - Gear144+future36ใช้role/tiercurveร่วม: skill/normal/heal/tank/SP; เพิ่มoptionskill/normal สองชนิด ไม่rerollของเก่า. Newoptionaldefault0stats skill_damage_bonus/normal_damage_bonusบวกoutgoingเดิม ไม่multiplicativeทุกsource; cardprocไม่รับskillbonusซ้ำ. พบและแก้rarityfloorratio→0ให้ratioเก็บ6digits integerเดิมคงfloor. Summon snapshotbonusจากownerครั้งเดียว หักbaselineprimarymilestonesไม่คูณAGI/LUKซ้ำ; power_scaleเฉพาะATK/MATK
 - Focused67TSรวม378numericgoldens/static106rows/M0/build/type/boundaries/content/secretsผ่าน; actualfreshAuth/Postgres/PostgREST/mobile320/3903groups+API5ผ่าน. ตรวจภาพBash245%, skill→normalpreview17%→0/0→19.2%, nativeWolfGold5+24ATK/+42%จริงแล้ว. เก็บharnessfailround1–4และfixturemathfails ไม่แก้productเพื่อให้ผ่าน ไม่มีownerwrite/6173restart/keys/newSQL/env/media; content7345a9e… packc7e45b…เดิม
-- Task077ยังinprogress รอpushmain/VercelReady→ RO_EVIDENCE_PREFIX=task-077 RO_EXPECT_CONTENT_HASH=<runtimehash> RO_DEPLOY_COMMIT=<source> node scripts/test_save_latency_hosted.cjs→ปิดAC/ย้ายdoneและอัปเดตboard. ไม่อ่านowneraccount. เกมมีcontenthashใหม่ จบไฟต์/reloadแล้วผู้ใช้ใช้backup/migrateเดิม ไม่มีSQL/envใหม่
+- **SOURCE6538f4d3832f08a7397bcc3a35101a59a220fcca push/VercelSUCCESS** https://vercel.com/chanon2/ro-idle-pve/Ay8Ef8S77afq4QCHH2bFZG1vCGYz actualhostedAPI/new7345data/login/PWA3groupsผ่าน0mutations TASK077doneทุกAC. Board63/77done,inprogress4(041/058/064/067)เดิม,review5,todo5,M4done23/32. Hostedround1harnessหาunquotedpower_scaleในescapedJSONผิด แก้เฉพาะharnessnormalizequotesแล้วdeploymentเดิมผ่าน ไม่อ่านowneraccount/ไม่SQL/envใหม่ ผู้ใช้จบไฟต์/reloadแล้วใช้backup/migrateเดิม
+
 
 ## 22 ต.ค.2026 · Codex — TASK-076 done ธาตุสกิล/เกราะเป้าหมายขึ้นVercelแล้ว
 

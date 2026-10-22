@@ -59,16 +59,18 @@ Q-001–Q-022 ตอบแล้ว: บัฟบวกกันไม่มี�
 
 [TASK-076](done/tasks_076.md) แสดงธาตุสกิลและเกราะธาตุบอส/ตัวโฟกัสแล้ว source`e50bd79cb` ขึ้นVercelSUCCESS: อ่านจากโปรแกรมจริงรวมDoT/Passive/summon/handler แยกweapon/fixedและarmor/card/endowไม่สับสน 33targeted +actualmobile3 +publicdemo2 +hosted5groupsผ่าน ไม่มีสูตร/SQL/env/content/packเปลี่ยน ดู [หลักฐาน](evidence/task-076-review.json)
 
+[TASK-077](done/tasks_077.md) เพิ่มน้ำหนักบิลด์ตามD-103แล้ว source`6538f4d38` ขึ้นVercelSUCCESS: สกิลโจมตีทุกอาชีพ/Passive/DoT/summonและcarddamageprocใช้factorกลาง1.75, การ์ดflatมี%โตตามบิลด์ อุปกรณ์แยกskill/normal/heal/tank/SPและแก้ratioหายจากrarityfloor. คงด่าน/บอส/ต้นทุน/คิว/CCเดิม 67focusedTS/378goldens/static106rows/build/M0+actualmobile3/hosted3groupsผ่าน ไม่มีbalancebatch/ownerwrite/SQL/envใหม่ จบไฟต์/reloadแล้วใช้backup/migrateเดิม ดู [หลักฐาน](evidence/task-077-review.json)
+
 ## กระดานงาน
 
 | สถานะ | จำนวนไฟล์ tasks_*.md | งานปัจจุบัน |
 | --- | ---: | --- |
 | todo | 5 | ออกแบบ/พัฒนา/ตรวจรับตามรายการด้านล่าง |
-| inprogress | 5 | TASK-077 น้ำหนักบิลด์ skill/card/gear; TASK-041 บาลานซ์; TASK-058 ย้ายเซฟ; TASK-064 cloud timing; TASK-067 รอผู้ใช้คืนสิทธิ์แก่นพลัง |
+| inprogress | 4 | TASK-041 บาลานซ์; TASK-058 ย้ายเซฟ; TASK-064 cloud timing; TASK-067 รอผู้ใช้คืนสิทธิ์แก่นพลัง |
 | review | 5 | [TASK-048](review/tasks_048.md) game shell /play รอผู้ใช้ตรวจหน้าตา (AC-08), [TASK-054](review/tasks_054.md) ภาพการต่อสู้ตรง RO รอผู้ใช้ตรวจ (AC-06), [TASK-055](review/tasks_055.md) คำขอระหว่างลองเล่น รอผู้ใช้ (AC-06), [TASK-056](review/tasks_056.md) UI D-076–078/080 อัปเดตแล้วรอผู้ใช้ตรวจภาพ (AC-06), [TASK-057](review/tasks_057.md) ทรงผม D-079 อัปเดตแล้วรอผู้ใช้ตรวจ (AC-05) |
-| done | 62 | ผ่าน review ตามหลักฐานในแต่ละงาน |
+| done | 63 | ผ่าน review ตามหลักฐานในแต่ละงาน |
 
-Progress ของกระดาน: **62/77 งานผ่าน done** ไม่รวมงานเตรียม assets ที่ทำก่อนเริ่มใช้กระดาน ตำแหน่งไฟล์เป็นสถานะจริง ID คงเดิม เมื่อย้ายไฟล์ให้อัปเดตจำนวนและลิงก์ในเอกสารนี้
+Progress ของกระดาน: **63/77 งานผ่าน done** ไม่รวมงานเตรียม assets ที่ทำก่อนเริ่มใช้กระดาน ตำแหน่งไฟล์เป็นสถานะจริง ID คงเดิม เมื่อย้ายไฟล์ให้อัปเดตจำนวนและลิงก์ในเอกสารนี้
 
 TASK-001–014 และ TASK-047 อยู่doneครบM0 TASK-015–028ผ่านแล้ว รอบภาพล่าสุด [TASK-020รอบ11](evidence/task-020-focus-impact-review.json) ผ่าน184TStests+4native/build/Chrome: focusนุ่มไร้กรอบและdamage numbersตรงnative ACTcontact/ลูกธนู-ลูกเวทย์กระทบ ภาพไม่เปลี่ยนผลcombat Runtimepack252IDs/505files/35audioรวม22.5MB
 
@@ -122,7 +124,7 @@ TASK-001–014 และ TASK-047 อยู่doneครบM0 TASK-015–028ผ�
 | M1 | แกนต่อสู้และ headless simulation | 4 | 4 |
 | M2 | วงจรเกม ภาพ และ cloud save | 7 | 7 |
 | M3 | อุปกรณ์และสกิลครบทุกสาย + game shell (TASK-048) + กติกา D-057 (TASK-049) + ย้ายเซฟ (TASK-050) + ร้านค้า/กาชาอุปกรณ์ (TASK-051) + Option สุ่ม (TASK-052) + ไอเทม/การ์ดหลากหลาย (TASK-053) + ภาพการต่อสู้ตรง RO (TASK-054) + คำขอระหว่างลองเล่น (TASK-055) | 19 | 14 |
-| M4 | โหมด บาลานซ์ ตรวจรับ และ deploy รวมย้ายเซฟcloud (058), เซฟ/รีเซ็ตดัน (059–061) PWA (062) และลดเวลาบันทึก (063) | 32 | 22 |
+| M4 | โหมด บาลานซ์ ตรวจรับ และ deploy รวมย้ายเซฟcloud (058), เซฟ/รีเซ็ตดัน (059–061) PWA (062) และลดเวลาบันทึก (063) | 32 | 23 |
 
 TASK-001–013 และ TASK-047 ออกแบบข้อมูล/สูตร/โมดูลสถานะ/สกิลครบหกสาย/อุปกรณ์/เศรษฐกิจ/ด่าน/UX/สถาปัตยกรรม (ลำดับแกนคือ TASK-001 → 002 → 047 → ข้อมูลสกิล/ไอเทม) จากนั้น TASK-014 ตรวจรวมทั้งหมดก่อนเริ่มเขียนเกมตามความต้องการออกแบบก่อน coding งานพัฒนา TASK-015–046 มี gate นี้ใน dependency
 
@@ -251,4 +253,4 @@ Hi-class/Awaken/Artifact เป็น M5 ถัดจากรุ่นแรก
 
 | [TASK-076](done/tasks_076.md) | M4 | แสดงธาตุสกิลและเกราะธาตุเป้าหมาย (D-102) | TASK-024, TASK-025, TASK-073 |
 
-| [TASK-077](inprogress/tasks_077.md) | M4 | สกิล การ์ด และอุปกรณ์กำหนดบิลด์ได้ชัดขึ้น (D-103) | TASK-017, TASK-026, TASK-027, TASK-073, TASK-076 |
+| [TASK-077](done/tasks_077.md) | M4 | สกิล การ์ด และอุปกรณ์กำหนดบิลด์ได้ชัดขึ้น (D-103) | TASK-017, TASK-026, TASK-027, TASK-073, TASK-076 |

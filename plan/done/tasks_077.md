@@ -21,11 +21,11 @@ Milestone: M4 · อ้างอิง D-103
 
 ## เกณฑ์ตรวจรับ
 
-- [ ] AC-01: สกิลโจมตีทุกอาชีพรวมPassive/DoT/copy/summonและdamage procการ์ดใช้สัดส่วนพลังกลางเดียวกัน มีตารางก่อน/หลังตามCT/SP/hit/เป้า; utility/heal072/คิว/CC/stackและด่านเดิมคงไว้
-- [ ] AC-02: skill/normalโบนัสเลือกชนิดการโจมตีถูกและรวม additiveกับoutgoingเดิมครั้งเดียว; periodic/passive/summonรับค่าตามsnapshot; item/cardprocไม่รับ skillbonusซ้ำ; default0เก่าไม่เปลี่ยนdamage/crit/เกราะ/ธาตุ/regen และhealไม่ถูกคูณ
-- [ ] AC-03: gear variantและoptions/cardเลือกเสริมคนละบิลด์ได้จริงผ่านsharedsources; stat preview/คำอธิบายมีชื่อไทย/หน่วย%; retainIDs/tiers/rarity/rolls/slotprogressและ66ROcardidentity มีตัวอย่างflat+%scaledlateและcountercard/weakness
-- [ ] AC-04: existing migrationรักษาwallet/paidledger/inventoryIDs/rarity/levels/options/slot/cards/pendingrewards/farmcursorครบ; ไม่แก้owner,ไม่SQL/env/newassets ไม่เปลี่ยนต้นทุน/ฟาร์ม/กาชา และไม่รันbalance/calibration
-- [ ] AC-05: focused tests/M0/content/schema/boundaries/type/build/secretsผ่าน; actualmobile320/390 skill/gear/cardแสดงผลที่ตรงengine/ไม่มีread-onlysave และpublichostednewbundles/hash/Auth/PWAผ่าน พร้อมระบุว่าเป็นtrialbaselineไม่ใช่whole-gamebalanceproof
+- [x] AC-01: สกิลโจมตีทุกอาชีพรวมPassive/DoT/copy/summonและdamage procการ์ดใช้สัดส่วนพลังกลางเดียวกัน มีตารางก่อน/หลังตามCT/SP/hit/เป้า; utility/heal072/คิว/CC/stackและด่านเดิมคงไว้
+- [x] AC-02: skill/normalโบนัสเลือกชนิดการโจมตีถูกและรวม additiveกับoutgoingเดิมครั้งเดียว; periodic/passive/summonรับค่าตามsnapshot; item/cardprocไม่รับ skillbonusซ้ำ; default0เก่าไม่เปลี่ยนdamage/crit/เกราะ/ธาตุ/regen และhealไม่ถูกคูณ
+- [x] AC-03: gear variantและoptions/cardเลือกเสริมคนละบิลด์ได้จริงผ่านsharedsources; stat preview/คำอธิบายมีชื่อไทย/หน่วย%; retainIDs/tiers/rarity/rolls/slotprogressและ66ROcardidentity มีตัวอย่างflat+%scaledlateและcountercard/weakness
+- [x] AC-04: existing migrationรักษาwallet/paidledger/inventoryIDs/rarity/levels/options/slot/cards/pendingrewards/farmcursorครบ; ไม่แก้owner,ไม่SQL/env/newassets ไม่เปลี่ยนต้นทุน/ฟาร์ม/กาชา และไม่รันbalance/calibration
+- [x] AC-05: focused tests/M0/content/schema/boundaries/type/build/secretsผ่าน; actualmobile320/390 skill/gear/cardแสดงผลที่ตรงengine/ไม่มีread-onlysave และpublichostednewbundles/hash/Auth/PWAผ่าน พร้อมระบุว่าเป็นtrialbaselineไม่ใช่whole-gamebalanceproof
 
 ## วิธีตรวจและหลักฐาน
 
@@ -42,3 +42,5 @@ Static power/opportunity-cost tables เป็นการคำนวณ ไม
 - ผู้ใช้ชี้แจงให้scaleสกิลทุกอาชีพ/การ์ดไปทางเดียวกันและยอมรับด่านเดิมง่ายขึ้น: จึงแทนdraftcurveรายท่าด้วยpolicyกลาง ไม่เพิ่มHP/ATKบอสเพื่อชดเชย; อุปกรณ์ทุกชนิดใช้role/tiercurveเดียวกันตามประเภทstat
 
 - Local review: sharedcurve52skills/static106rows/126timing-cost invariants/378goldens/67focusedTS/M0/buildผ่าน และactualAuth/SQL/mobile3groups/API5ผ่าน ตรวจภาพจริงแล้ว; owner/cloud/6173ไม่แตะ ยังรอactualdeployจึงยังไม่ติ๊กdone
+
+- Final review: source6538f4d3832f08a7397bcc3a35101a59a220fcca ขึ้นVercelSUCCESS; actualhostedAPI/newdata/login/PWA3groupsผ่าน,0mutation. [Review](../evidence/task-077-review.json) ทุกACผ่านแล้ว ไม่มีbalancebatchใหม่ การเล่นจริงยังเป็นtrialbaselineให้ผู้ใช้ลอง

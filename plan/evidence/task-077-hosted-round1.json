@@ -1,0 +1,44 @@
+{
+  "task_id": "TASK-077",
+  "date": "2026-10-22",
+  "source_commit": "6538f4d3832f08a7397bcc3a35101a59a220fcca",
+  "origin": "https://ro-idle-pve.vercel.app",
+  "passed": false,
+  "checks": [
+    {
+      "case_id": "hosted_region_timing_auth_gate_content",
+      "passed": true,
+      "samples": [
+        {
+          "route": "/api/health",
+          "status": 200,
+          "elapsed_ms": 859,
+          "api_region": "sin1",
+          "vercel_id": "sin1::sin1::fzd8d-1792638621600-a8bbeabd9ee4",
+          "server_timing": "total;dur=3.3"
+        },
+        {
+          "route": "/api/checkpoint",
+          "status": 401,
+          "elapsed_ms": 68,
+          "api_region": "sin1",
+          "vercel_id": "sin1::sin1::fzd8d-1792638622319-dc85024b7a94",
+          "server_timing": "auth;dur=0.3, total;dur=5.6"
+        },
+        {
+          "route": "/api/health",
+          "status": 200,
+          "elapsed_ms": 151,
+          "api_region": "sin1",
+          "vercel_id": "sin1::sin1::7hgj4-1792638622471-b28724a756af",
+          "server_timing": "total;dur=0.3"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "failure": "Error: SHARED_BUILD_POWER_NOT_DEPLOYED\n    at assert (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/test_save_latency_hosted.cjs:7:42)\n    at /Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/test_save_latency_hosted.cjs:66:3\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)",
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "scope": "Signed-out actual production health/401 gate/new shared-save bundle/login/PWA only. No owner command latency or owner save access; actual mutations/failures tested on isolated stack. TASK064 optional SQL007 installation and cloud2RPC timing are not verified here."
+}

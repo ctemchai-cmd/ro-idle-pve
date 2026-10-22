@@ -1,0 +1,65 @@
+{
+  "task_id": "TASK-077",
+  "date": "2026-10-22",
+  "source_commit": "6538f4d3832f08a7397bcc3a35101a59a220fcca",
+  "origin": "https://ro-idle-pve.vercel.app",
+  "passed": true,
+  "checks": [
+    {
+      "case_id": "hosted_region_timing_auth_gate_content",
+      "passed": true,
+      "samples": [
+        {
+          "route": "/api/health",
+          "status": 200,
+          "elapsed_ms": 221,
+          "api_region": "sin1",
+          "vercel_id": "sin1::sin1::nn5n2-1792638677977-e1d893605e10",
+          "server_timing": "total;dur=3.2"
+        },
+        {
+          "route": "/api/checkpoint",
+          "status": 401,
+          "elapsed_ms": 90,
+          "api_region": "sin1",
+          "vercel_id": "sin1::sin1::mdkmb-1792638678091-b983207b82ca",
+          "server_timing": "auth;dur=0.2, total;dur=5.4"
+        },
+        {
+          "route": "/api/health",
+          "status": 200,
+          "elapsed_ms": 180,
+          "api_region": "sin1",
+          "vercel_id": "sin1::sin1::mdkmb-1792638678254-d5c20b94524f",
+          "server_timing": "total;dur=0.3"
+        }
+      ]
+    },
+    {
+      "case_id": "hosted_shared_save_bundle",
+      "passed": true,
+      "path": "dist/assets/account-session-C_6uGrJm.js",
+      "sha256": "bd93d0ef34feb84633d2fac669969b071c61cde02d5a461b5aa57a90289ee419",
+      "combined_reply": true
+    },
+    {
+      "case_id": "hosted_login_pwa_no_private_cache",
+      "passed": true,
+      "login_visible": true,
+      "cache": {
+        "ro-idle-pwa-aebeb30d6bd57540": [
+          "/offline.html",
+          "/pwa/icon-192.png",
+          "/pwa/icon-512.png",
+          "/pwa/icon-maskable-512.png",
+          "/pwa/apple-touch-icon.png"
+        ]
+      },
+      "mutations": []
+    }
+  ],
+  "errors": [],
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "scope": "Signed-out actual production health/401 gate/new shared-save bundle/login/PWA only. No owner command latency or owner save access; actual mutations/failures tested on isolated stack. TASK064 optional SQL007 installation and cloud2RPC timing are not verified here."
+}
