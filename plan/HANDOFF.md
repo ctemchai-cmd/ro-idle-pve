@@ -4,6 +4,19 @@
 
 
 
+## 22 ต.ค.2026 · Codex — TASK-083 done fixed monster rarity/Add Card ขึ้นVercelแล้ว
+
+- **SOURCE 641a7813ca24ea69eb43193f9a6cf2472daec02f push/VercelSUCCESS** https://vercel.com/chanon2/ro-idle-pve/7TFNKYsQGR76CTBqB4T2eYJ3UGRp actualpublichealth200/content0b7d1db6…/regionSG/checkpoint401/newUI-data-CSS manifestSHA/login/PWA3groupsผ่าน task083-hosted/github-deployment.json Task0837ACdone Board69/83done,inprogress4เดิม(041/058/064/067),review5,todo5 M4done29/38
+- Userคำแก้ล่าสุดแทนrandomqualityต่อcopy: 20Common weakgray/20Uncommon stronggreen/9RareEliteblue/6EpicMinipurple/11LegendaryMVPgold fixedmonsteridentity ใช้rAthena pre-re sourceLevel/Class/MvpExp verified; Normalcutoffs<=20/<=45/>45เป็นgamebaseline ไม่claimROทุกภาคมีสีตรงนี้ AbysmalKnightNormalEliteไม่MVP FutureImmortal/Supremeenabledfalse
+- Sharedcard-rarityในdomain/buildเป็นauthorityของfixedrarity/power/salvage/migration; legacy_qualityfloor=max(newmult,old1/1.25/1.5)ก่อนlevelและmaxdust ไม่double ไม่loss IDs/level/lock/slots/ledger/pity/oldpending. Benefits/penalties/procผ่านsharedpipelineเดิม Currentpower1/1.25/1.5/1.65/1.8 Data-diffยืนยันbasecardeffects/art/66IDs/costs/equipment unchanged
+- Farmv3freeze perdefinitionrarity คงchance1–2%/5min(1.44–2.88expected/12h)และ3drawhit/1drawmissทำgearRNGไม่เปลี่ยน Oldv1/v2คงchance/pool/qualityก่อนclaimแรกพร้อมfloorแล้วติดตั้งv3. Towerfixedrarityตามdefinition. กาชาall66เลือก50/25/20/2/3matchingrarityแทนgearTier ราคา100/1000/10Rare+/30Legendarypityใช้oldcounter namesคงprogress Future0%ไม่show UI
+- AddCardfreeก่อน/wornท้ายownerbadgesเขียว+nativeart/inlineeffectdescription/pinnedassign-movefooter รายการกับdetailscrollแยก ไม่เพิ่มconfirm/networkตอนดู. CompactR+10/E7ทั่วgeariconsตามactualslotowner (bagย่อ+10/E7) ไม่ทับlock/cardframes (bagmini horizontal5px) Freegearไม่มีprogress. CardSheet/5rarityfilters/socket/farmfinds/gacharevealใช้itempalette bordersครบ
+- 63focusedTS/9new tests/990legacy powercases/M0/generator/build/type/boundaries/secrets/readiness8ผ่าน ActualAuth/API5+Chrome5groups: realsignedoldcontentbackup/migration151cards/pity/frozen, colors320/390, 85+longlist/4worn/owner/description/footer/0readonlywrites, actualNPCElite→main+Lv2/reload/R10E7คง, actual100crystalMVPpity/old20%farm→v3 1%/replay/reload. เปิดfinalAddCard320/390/gear/moved/MVPgacha/farmfinds320ดูจริง ไม่physicalAndroid/wholebalanceproof
+- เก็บfailscodegenstaleM0/oldGoldoracle/oldflat+48slotassert/round1wrongVagabondgarmentfixture/round2actualbaglockoverlap+fix. Firstfunctionalsuccesscapturedgachamidanimation/พบfarm-revealยังไม่มีบางrarityborder จึงเพิ่มborderจริงและรอdecode/animationแล้วfinal5groupsผ่าน ไม่แก้expectedหลอกผ่าน ดูtask083-review.json
+- **Content0b7d1db6bfecff6e0ab6406ad14bdad96b63e54d4d7e269e9d886c724f73931a /packc7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2 /30,640,189B** ไม่มีnewSQL/env/assets/ownerwrite/6173restart/newbalancebatch ผู้ใช้reloadหลังจบไฟต์และbackup/migrateตามflowเดิม ไม่มีdirectcloudrepair CardOldrateจ่ายได้claimแรก Userใบธาตุยังproposalไม่ทำ
+- Finaldocsclosureจะpushตามหลังsourceที่ตรวจแล้ว ไม่มีproductเปลี่ยน. Readinessหลังmoveก่อนจบ อย่าปิดoldownerpending/reviewงานอื่น
+
+
 ## 22 ต.ค.2026 · Codex — TASK-083 final localผ่าน พร้อมpush/deploy
 
 - FinalactualAuth/API5+Chrome5groupsผ่านทั้งหมด task083-ui-live.json /local-stack.json (scopecontrolledmobile320/390 ไม่ใช่ownerphone), รวมsignedmigration/exactbackup151cards, colors/filters/allframes, longAddCard/4wornท้าย/inlineeffect/pinnedaction/zeroinspectionwrites, actualNPCElitecardassign+upgrade/reload/slotR10-E7คง, actual100crystalMVPpityและfrozen20%→v3 1%/retry/reload

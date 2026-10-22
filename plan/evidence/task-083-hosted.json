@@ -1,0 +1,96 @@
+{
+  "task_id": "TASK-083",
+  "date": "2026-10-22",
+  "source_commit": "641a7813ca24ea69eb43193f9a6cf2472daec02f",
+  "origin": "https://ro-idle-pve.vercel.app",
+  "passed": true,
+  "checks": [
+    {
+      "case_id": "hosted_region_timing_auth_gate_content",
+      "passed": true,
+      "samples": [
+        {
+          "route": "/api/health",
+          "status": 200,
+          "elapsed_ms": 814,
+          "api_region": "sin1",
+          "vercel_id": "sin1::sin1::vqbjh-1792655590801-e91183edc60d",
+          "server_timing": "total;dur=7.5"
+        },
+        {
+          "route": "/api/checkpoint",
+          "status": 401,
+          "elapsed_ms": 326,
+          "api_region": "sin1",
+          "vercel_id": "sin1::sin1::9qtjg-1792655591428-85218a686c0c",
+          "server_timing": "auth;dur=0.3, total;dur=5.7"
+        },
+        {
+          "route": "/api/health",
+          "status": 200,
+          "elapsed_ms": 316,
+          "api_region": "sin1",
+          "vercel_id": "sin1::sin1::zvxx7-1792655591854-ee3778251a89",
+          "server_timing": "total;dur=0.3"
+        }
+      ]
+    },
+    {
+      "case_id": "hosted_shared_save_bundle",
+      "passed": true,
+      "path": "dist/assets/account-session-q8LDrKdM.js",
+      "sha256": "d027d56c921b8afcc3e9d1c0872efd8c2b5e442922557c8d37809d4d3ec6bed9",
+      "combined_reply": true,
+      "card_finisher_proof": {
+        "tasks": [
+          "TASK-083"
+        ],
+        "fixed_monster_rarity": true,
+        "current_max": "legendary",
+        "item_palette": true,
+        "free_first_owner_badges": true,
+        "inline_descriptions_and_pinned_action": true,
+        "slot_refine_enchant": true,
+        "legacy_floor": true,
+        "farm_version": "card_farm_v3",
+        "chance_per_million": [
+          10000,
+          20000
+        ],
+        "exact_public_bundle_hashes": [
+          {
+            "path": "dist/assets/shell-D5-saHqA.js",
+            "sha256": "5da2cd45cf20211522cdaa48b32dbbf63d6b01a39086e748e0c3836f5677e11a"
+          },
+          {
+            "path": "dist/assets/shell-BoLzzgsC.css",
+            "sha256": "1904ea45d819f79427a3afc9fa0cac0214656c9d76abef617bcbf5bfa24aa505"
+          },
+          {
+            "path": "dist/assets/item-options-BQBv7cHw.js",
+            "sha256": "3c94f1e6fb7e674cb6e3151a8825f9ea0422e722e0501382f8766348a0bdf33e"
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "hosted_login_pwa_no_private_cache",
+      "passed": true,
+      "login_visible": true,
+      "cache": {
+        "ro-idle-pwa-33858147f4744904": [
+          "/offline.html",
+          "/pwa/icon-192.png",
+          "/pwa/icon-512.png",
+          "/pwa/icon-maskable-512.png",
+          "/pwa/apple-touch-icon.png"
+        ]
+      },
+      "mutations": []
+    }
+  ],
+  "errors": [],
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "scope": "Signed-out actual production health/401 gate/new shared-save bundle/login/PWA only. No owner command latency or owner save access; actual mutations/failures tested on isolated stack. TASK064 optional SQL007 installation and cloud2RPC timing are not verified here."
+}

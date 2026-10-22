@@ -1,0 +1,107 @@
+{
+  "task_id": "TASK-083",
+  "date": "2026-10-22",
+  "passed": true,
+  "implementation_verified": true,
+  "acceptance": {
+    "AC-01": "passed",
+    "AC-02": "passed",
+    "AC-03": "passed",
+    "AC-04": "passed",
+    "AC-05": "passed",
+    "AC-06": "passed",
+    "AC-07": "passed"
+  },
+  "source_commit": "641a7813ca24ea69eb43193f9a6cf2472daec02f",
+  "deployment_url": "https://vercel.com/chanon2/ro-idle-pve/7TFNKYsQGR76CTBqB4T2eYJ3UGRp",
+  "content_hash": "0b7d1db6bfecff6e0ab6406ad14bdad96b63e54d4d7e269e9d886c724f73931a",
+  "asset_pack_hash": "c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2",
+  "checks": {
+    "focused_ts": 63,
+    "new_rarity_tests": 9,
+    "legacy_power_fixtures": 990,
+    "auth_api_groups": 5,
+    "actual_mobile_groups": 5,
+    "hosted_groups": 3,
+    "readiness_checks": 8,
+    "m0_build_type_boundaries_secrets_generator": true
+  },
+  "classification": {
+    "common": 20,
+    "uncommon": 20,
+    "rare": 9,
+    "epic": 6,
+    "legendary": 11,
+    "future_disabled": [
+      "immortal",
+      "supreme"
+    ],
+    "normal_level_cutoffs": [
+      20,
+      45
+    ],
+    "strength_cutoffs_and_color_mapping": "Authored game adaptation using verified rAthena pre-re levels; not a claim that every RO version uses these card colors."
+  },
+  "verified_behavior": {
+    "AC-01": "Fixed rarity per monster: Common weak gray/Uncommon strong green/Rare Elite blue/Mini Epic purple/MVP Legendary gold. All66 source Class/MvpExp verified; AbysmalKnight is Elite/Normal, not MVP. Future two levels disabled.",
+    "AC-02": "All66×3oldqualities×5levels preserve prior power floor once, benefits/penalties/procs use existing shared pipeline. Pure198 owned+pending idempotent migration and real signed151card migration retain IDs/levels/locks/assignments/ledger/pity, exact prior signed backup stored. New cards have no legacy quality bonus.",
+    "AC-03": "Farm1–2%/5min/12hcap retained; frozen v1/v2 chance/pool/third quality draw and power floor preserved before first claim; v3 fixed definition rarities then apply. Current/old gear RNG equal, split/cap/fullbag/replay deterministic. Actual gacha100 crystal guaranteed MVP from preserved29miss counter; Rare+10/Legendary30 and Tower fixed rarity tested.",
+    "AC-04": "Real320/390 Chrome tests all five border colors, full masks, filters, Elite/Mini/MVP labels, socket/gear/portrait/farm/gacha frames. Completed gacha animation/native decode captured, farm finds inspected.",
+    "AC-05": "63 targeted TS plus M0/build/type/boundaries/secrets/generator and real Auth/API5+Chrome5 groups passed. No renewed balance simulation.",
+    "AC-06": "Source pushed and actual Vercel success; publichealth/newcontent/regionSG/401gate/newUI-data-CSS manifestSHA/login/PWA three groups passed with zero owner mutations.",
+    "AC-07": "85+ free cards precede four worn cards; ownership badges and inline descriptions clear. List scroll and details expansion keep assign/move action visible320/390; actual one-command NPC Elite→main move/upgrade/reload retains slotR10/E7. Refine/Enchant badges do not overlap slot/lock markers, and unowned gear has none."
+  },
+  "evidence": [
+    "plan/evidence/task-083-source-classification.json",
+    "plan/evidence/task-083-data-diff.json",
+    "plan/evidence/task-083-targeted.txt",
+    "plan/evidence/task-083-typecheck.txt",
+    "plan/evidence/task-083-generator-check.txt",
+    "plan/evidence/task-083-m0.txt",
+    "plan/evidence/task-083-build.txt",
+    "plan/evidence/task-083-ui-live.json",
+    "plan/evidence/task-083-local-stack.json",
+    "plan/evidence/task-083-local-api.txt",
+    "plan/evidence/task-083-hosted.json",
+    "plan/evidence/task-083-github-deployment.json",
+    "plan/evidence/task-083-readiness.txt"
+  ],
+  "visual_scope": "Inspected actual native AddCard320/390/footer/details/owner markers, gear badges/reload320, completed MVP gacha320 and farm finds320. Desktop Chrome mobile emulation, not a physical Android benchmark. Actual cloud checks were signed out; owner saves untouched.",
+  "retained_failures": [
+    "Codegen initially refused stale M0 manifest; updated design checks and regenerated only after review. M0 first run retained an obsolete Gold string in the pity oracle; corrected to Legendary, rules not weakened.",
+    "First47-targeted run exposed a pre077 flat-only +48 ATK assertion; current percent card power made it stale. Replaced it with exact two independent source modifier checks and added990 numeric legacy/current scale checks.",
+    "Browser round1 fixture put the RO VagabondWolf garment card in a weapon socket. Migration correctly returned it; fixture changed to valid AbysmalKnight weapon card without loosening slot rules.",
+    "Browser round2 found actual R+10 bag badge overlapping lock; compact bag hides R prefix, keeps +10/E7, and separates lock/card/level badges. Final tests pass original no-overlap condition.",
+    "After first five-group pass, manual review found gacha capture mid-animation and missing non-Legendary reveal/farm borders. Added actual rarity borders and animation/decode wait; final five groups and screenshots passed."
+  ],
+  "gameplay_data_changed": true,
+  "new_sql_env_assets": false,
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "balance_simulation": false,
+  "pending": [],
+  "limitations": [
+    "Feature validation is not a whole-game balance verdict or completion of pending release/performance/owner-confirmation tasks.",
+    "Gacha card pool now chooses matching fixed-rarity identities from all66, independent of gear tier; farm/Tower keep their chapter/tier pools.",
+    "Existing card upgrade level and effective prior power/salvage floors survive migration. Old unpaid farm interval can still pay its former rate once."
+  ],
+  "source_sha256": {
+    "plan/generators/cards-spec.json": "a579446ea29c934c86c86ecbc8aae420240c342760c892c895fea5bcd3b9b831",
+    "plan/generators/card_catalog.py": "324ae7626817473ff7dca5b87bd09fb837a659c8f0d5237987ba923c449775bd",
+    "plan/data/cards.json": "6e95062cf23453d2b9e477d7387565dce3a8c28393a5615dc7b5978ede1df873",
+    "plan/data/loot.json": "c944ce0bf90ae3b89fd75ea8ba60fbabe85ac259a998dad89a1cf0d6254740d2",
+    "plan/data/gacha.json": "ccbb0fca5dd883b67fa377887e9bcc9253f62939d16aedb5976e99deff3da805",
+    "plan/data/schemas/account-state.json": "a7fd906521dc8461d9544b3c3442272c9522d04062e545583c370b16fbebd222",
+    "src/domain/build/card-rarity.ts": "c9238478aa1ebf062d3d99d6a117ea0296f66e734ae93ebd67bc02db199f7498",
+    "src/domain/account/migrate.ts": "197124c75a4f5598e97541e240527c6cd84db822285eb75fa1e40b397d24de0a",
+    "src/domain/modes/farm-card-profile.ts": "4df2fe390ad8daaefe5702036967823e3df878dacd6e5e03e00c7596a1fb1701",
+    "src/domain/rewards/card-drops.ts": "52ebdc50883da3867817c01b104bf1613c4556e1465bad20bba632047f623c52",
+    "src/domain/rewards/gacha.ts": "e7f52d901832379f381aa43c0af1ce06289f2f4d6084f0e6c9f2e37b76656302",
+    "src/client/slots.ts": "9b2100a85dc383535c64ebaba93da5e7fa65ede5e6d86f282056de7865b4dc97",
+    "src/ui/game/buddy.tsx": "b8b9829d958feca53b8a0ee0747eeada98b4a30adc8b289e4314b1fa809ef3ed",
+    "src/ui/game/equipment-progress.tsx": "5f1a3b783c880c3edb12d9faacf7baf808eaea5052d480129472816beea1c8eb",
+    "src/ui/game/game.css": "31b8378f13205166676ea21dc06590fd79dcc15d12168639c8571537bdf57ad3",
+    "scripts/test_card_rarity_live.cjs": "c3d873a47c52a4ad9b1c2abb0e3ffb414dfd580205b2a94124af54b90a6f1dbe",
+    "tests/game/card-rarity.test.ts": "00772084ba567b8b769551b9bdfb61c95f21c095d3fcd9e306c4995941c50d68"
+  }
+}
