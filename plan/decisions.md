@@ -238,3 +238,5 @@ D-117 runtime finding: valid same-user TOKEN_REFRESHED ระหว่าง SDK
 | D-122 | 22 ต.ค.2026 ผู้ใช้ทักAngelingMVPและขอPuppetภาพจาง ยืนยันeffectsรุ่นรองต่างจากใบจริงแบบOrigin | TASK-093แก้Angeling/Devilingเป็นMVPทอง เพิ่ม7Puppet I Rare/variantแยก/sourceMVP ใช้nativeportraitเดิมสีจางและeffectsadapted ไม่เพิ่มอัตราcarddropรวม/ระบบกิลด์/album/PvP/ดาว |
 
 | D-123 | 22 ต.ค.2026 ผู้ใช้ขอใบธาตุในร้านค้า มีผลเฉพาะท่าตามอาวุธ/ไอคอนร้านค้าสีและป้ายธาตุสวยขึ้น | TASK-094ใช้sharedweapon_element ไม่เปลี่ยนfixedskills; ผู้ใช้ยืนยันdurationหนึ่งไฟต์ถัดไปStory/Tower/Daily stock/queueแยกจากwallet/inventory เปลี่ยนก่อนสู้คืนใบเดิม |
+
+| D-124 | 22 ต.ค.2026 ผู้ใช้ให้ร้านค้าใช้ไอคอนเดิม แค่เปลี่ยนจากเทาเป็นสีปกติ | TASK-095 คืน native ถุงเงิน bank_1 แทน bank_3/StoreSVG คงขนาดและพฤติกรรมเมนูเดิม |

@@ -4,6 +4,13 @@
 
 
 
+## 22 ต.ค.2026 · Codex — TASK-095 คืนภาพถุงเงินร้านค้าเดิม รอ deploy
+
+- ผู้ใช้แก้ความต้องการให้ใช้ icon เดิม แค่สีปกติ (D-124). อ่านsidecar/เปิดภาพจริง bank_1สีทองกับ bank_3เทา ยืนยันภาพถุงเงินเดียวกัน. คืน native img ใน BottomBar/map bank_1 ลบ StoreIconSVG/CSS. ไม่เปลี่ยนร้าน/ใบธาตุ/กติกาเกม/ownerเซฟ/6173
+- Build/type/boundaries/secrets/runtime-source/runtime-artifact/readiness8 ผ่าน ActualBottomBar/CSS/AssetPack Chrome320/390 nativecolor30px inactive/active/click/nooverflow/errors/writes ผ่าน เปิดภาพ320ดูแล้ว. เก็บround1ที่ตรวจ390ก่อนReact/transitionresetจบไว้ และรอtransitionก่อนอ่านจึงผ่าน ไม่แก้productเพิ่ม
+- Contentยัง38859826ae9f3bb1b3c622609f8e3f7c046fa7e9bc182a4db8bdc27b84a7cde2; pack96dec12ee20f2dc6865dda45131c27c96a0527fc757e8d4eaefd91dbec9d5912 รวม30640791B/720IDs/1325files เพิ่ม602B. สลับassetเดียวเท่านั้น ที่เหลือmedia byte-identical
+- Board80/95done/inprogress5รวม095/review5/todo5 M4done40/50. หลังpushรอVercelSUCCESSแล้ว publichosted prefixtask-095 ตรวจ nativebank_1mapping+SHAและSVGremoved/API/loginPWA ไม่loginowner. Review/move095done/updateboard81/95 M4done41/50 แล้วclosurepush
+
 ## 22 ต.ค.2026 · Codex — TASK-093/094 done ขึ้น Vercel แล้ว
 
 - ผู้ใช้ทักAngelingMVP/ขอPuppetภาพจางและยืนยันeffectsรุ่นรองต่างจากใบจริง จากนั้นขอใบธาตุในร้านค้า/ไอคอนร้านค้าสี/ป้ายธาตุสกิลสวยขึ้น และยืนยันหนึ่งไฟต์Story/Tower/Dailyถัดไป. D-122/123, TASK093/094ผ่าน4ACeachและย้ายdoneแล้ว; board80/94 done, inprogress4เก่า/review5/todo5 M4done40/49.

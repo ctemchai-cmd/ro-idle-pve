@@ -19,6 +19,17 @@ const assert=(ok,message)=>{if(!ok)throw new Error(message);};let browser,profil
  assert(assetResponse.ok&&assetResponse.headers.get('cache-control')==='no-store'&&assetManifest.pack_hash===manifest.runtime_asset_pack_hash,'MUTABLE_ASSET_MANIFEST_CACHE_OR_VERSION');
  const row=manifest.build_files.find(r=>/^dist\/assets\/account-session-.*\.js$/.test(r.path));assert(row,'NO_SAVE_BUNDLE');
  const bundle=await(await fetch(base+'/'+row.path.replace(/^dist\//,''))).text();assert(bundle.includes('sendWithCheckpoint')&&bundle.includes('x-ro-checkpoint'),'OLD_SAVE_PROTOCOL_DEPLOYED');
+ if(prefix==='task-095'){
+  const selected=assetManifest.shell.ui_icons.nav_store;
+  assert(selected.asset_id==='prepared.ui.98ceb840a1cad8c7'&&selected.source_name==='bank_1','ORIGINAL_COLORED_STORE_NOT_DEPLOYED');
+  const asset=assetManifest.assets[selected.asset_id],file=assetManifest.files.find(r=>r.path===asset.media_path);
+  const media=await fetch(base+assetManifest.base_url+asset.media_path),bytes=Buffer.from(await media.arrayBuffer());
+  assert(media.ok&&createHash('sha256').update(bytes).digest('hex')===file.sha256&&file.sha256==='5aa1fe3564113f8862b63dbdefd171d14dfe5cb1c9323d7c8925b27b6a971f71','NATIVE_STORE_IMAGE_SHA');
+  const shellRow=manifest.build_files.find(r=>/^dist\/assets\/shell-.*\.js$/.test(r.path));assert(shellRow,'NO_SHELL_BUNDLE');
+  const shell=await(await fetch(base+'/'+shellRow.path.replace(/^dist\//,''))).text();
+  assert(createHash('sha256').update(shell).digest('hex')===shellRow.sha256&&shell.includes('nav_store')&&!shell.includes('store-mark'),'OLD_VECTOR_STORE_DEPLOYED');
+  currentProof={task:'TASK-095',native_icon:'bank_1',media_sha256:file.sha256,original_art_colored:true,svg_store_removed:true,shell_sha256:shellRow.sha256};
+ }
  if(['task-093','task-094'].includes(prefix)){
   const chunks={};
   for(const name of ['item-options','shell','element-badge','account-session']){
