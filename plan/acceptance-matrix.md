@@ -510,8 +510,8 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T100-AC-01` [TASK-100](done/tasks_100.md) | rules/API/migration/mobile/build/hosted | 12hcap/quantization/splitclaim; frozenoldrateรักษา; gearครึ่งcardเดิม; UI320/390ราคา/rates/icon/ข้อความTowerถูกต้อง | [ผ่าน implementation](evidence/task-100-review.json) |
 | `T100-AC-02` [TASK-100](done/tasks_100.md) | rules/API/migration/mobile/build/hosted | build/type/boundaries/secrets/readinessผ่าน; actualisolatedChrome+publicVercelตรวจcode/artifactที่ปล่อยจริง | [ผ่าน implementation](evidence/task-100-review.json) |
 
-| `T101-AC-01` [TASK-101](inprogress/tasks_101.md) | fixedrules/mobile/build/hosted | Native Upgrade/EXP/4ใบธาตุ/19อาชีพโหลดได้ ใช้frame cropถูกต้องและมีชื่อเข้าถึง ไม่มีcustomjobSVG | [ผ่าน implementation](evidence/task-101-review.json) |
-| `T101-AC-02` [TASK-101](inprogress/tasks_101.md) | fixedrules/mobile/build/hosted | มือถือ320/390ไม่ล้นและpublicVercelส่งmapping/media/bundleตรงchecksum | [ผ่าน implementation](evidence/task-101-review.json) |
+| `T101-AC-01` [TASK-101](done/tasks_101.md) | fixedrules/mobile/build/hosted | Upgradeมี+ตามผู้ใช้/EXP/4ใบธาตุเดิม/19actualOriginjobemblemsตรงcatalog ไม่ใช้skill/item/customfallback | [ผ่าน implementation](evidence/task-101-review.json) |
+| `T101-AC-02` [TASK-101](done/tasks_101.md) | fixedrules/mobile/build/hosted | มือถือ320/390ไม่ล้นและpublicVercelส่งmapping/media/bundleตรงchecksum | [ผ่าน implementation](evidence/task-101-review.json) |
 
 | `T102-AC-01` [TASK-102](done/tasks_102.md) | fixedrules/mobile/build/hosted | ตัดhow-toและคำแนะนำซ้ำในทุกหน้า คงค่าจริง ราคา เงื่อนไขและคำเตือน; cardlevelแสดงเลขล้วน | [ผ่าน implementation](evidence/task-102-review.json) |
 | `T102-AC-02` [TASK-102](done/tasks_102.md) | fixedrules/mobile/build/hosted | เลือกสกิล/ใส่ช่อง สวมของและupgradeยังทำงานบนมือถือ ไม่มีoverflow/error | [ผ่าน implementation](evidence/task-102-review.json) |
@@ -525,6 +525,6 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T105-AC-01` [TASK-105](done/tasks_105.md) | fixedrules/mobile/build/hosted | Refineใช้8×target oreแทน5×target รวม440oreถึง+10; gold77000/chance/pity/modifiers/cardgatesไม่เปลี่ยน | [ผ่าน implementation](evidence/task-105-review.json) |
 | `T105-AC-02` [TASK-105](done/tasks_105.md) | fixedrules/mobile/build/hosted | success/failureจ่ายstepcostใหม่ครั้งเดียว insufficientfundsไม่เปลี่ยนstate; oldprogress/paidledgerไม่reprice; UI/build/deployผ่าน | [ผ่าน implementation](evidence/task-105-review.json) |
 
-| `T106-AC-01` [TASK-106](inprogress/tasks_106.md) | usermapping/importer/mobile/build/hosted | 12iconsตรงexplicitmapping/exactsourcebytes128px; gameplay/VFX/audio/contenthashเดิม; localpathescapeและsourcechangeถูกปฏิเสธ | ยังไม่ตรวจ |
+| `T106-AC-01` [TASK-106](done/tasks_106.md) | usermapping/importer/mobile/build/hosted | 12iconsตรงexplicitmapping/exactsourcebytes128px; gameplay/VFX/audio/contenthashเดิม; localpathescapeและsourcechangeถูกปฏิเสธ | [ผ่าน implementation](evidence/task-106-review.json) |
 
-| `T106-AC-02` [TASK-106](inprogress/tasks_106.md) | usermapping/importer/mobile/build/hosted | realmobile320/390 skill/loadout/timeline/spherebadgeโหลดใหม่/ไม่ล้น/ไม่มีwriteหรือerror; build/M0/assets/publicผ่านพร้อมภาพ | ยังไม่ตรวจ |
+| `T106-AC-02` [TASK-106](done/tasks_106.md) | usermapping/importer/mobile/build/hosted | realmobile320/390 skill/loadout/timeline/spherebadgeโหลดใหม่/ไม่ล้น/ไม่มีwriteหรือerror; build/M0/assets/publicผ่านพร้อมภาพ | [ผ่าน implementation](evidence/task-106-review.json) |

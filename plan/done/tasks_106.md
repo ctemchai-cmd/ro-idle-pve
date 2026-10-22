@@ -22,8 +22,8 @@ Acolyte4+Monk8ตามรายการ. Meditationคือacolyte_meditation
 
 ## เกณฑ์ตรวจรับ
 
-- [ ] AC-01: ทั้ง12iconsตรงsourceที่ผู้ใช้ระบุและSHA/pixels/dimensions128pxเดิม; ไม่โหลดแอสเซตmodernทั้งคลัง; skilldefinitions/VFX/audio/status/formulas/enginecontenthashเดิม; Localpathescape/sourcechangeถูกปฏิเสธ
-- [ ] AC-02: actualมือถือ320/390หน้าสกิล/สี่ช่อง/Timeline/CallSpiritbadgeโหลดภาพใหม่ครบ ไม่มีoverflow/JSerror/inspectionwrite; build/assets/M0/readiness/publicVercelผ่าน พร้อมภาพให้ผู้ใช้ดู
+- [x] AC-01: ทั้ง12iconsตรงsourceที่ผู้ใช้ระบุและSHA/pixels/dimensions128pxเดิม; ไม่โหลดแอสเซตmodernทั้งคลัง; skilldefinitions/VFX/audio/status/formulas/enginecontenthashเดิม; Localpathescape/sourcechangeถูกปฏิเสธ
+- [x] AC-02: actualมือถือ320/390หน้าสกิล/สี่ช่อง/Timeline/CallSpiritbadgeโหลดภาพใหม่ครบ ไม่มีoverflow/JSerror/inspectionwrite; build/assets/M0/readiness/publicVercelผ่าน พร้อมภาพให้ผู้ใช้ดู
 
 ## วิธีตรวจและหลักฐาน
 
@@ -36,3 +36,7 @@ Staticbeforeaudit+sourcehashchecks, importerunittest, realChromeactualcomponents
 ## บันทึกการทำงานและ review
 
 เริ่ม23ต.ค.2026ตามคำขอทดลองภาพ. Nativeclass/Upgradeแก้ในTASK101แยกscope
+
+## Final review23ต.ค.2026
+
+ActualChrome320/390/freshAuth-API-Postgres5groups,37Pythonassettests/M0/build/readiness8ผ่าน. PublicVercel3groupsตรวจ37iconpayloadSHA/bundles/pack/API200SIN1/anonymous401/login0writesผ่าน. Source`2d8ef07d16773ddb0a53874511d5a3d35c67521d`. [ผลตรวจ](../evidence/task-106-review.json). ภาพทดลองให้ผู้ใช้ดู ไม่อ้างว่าผู้ใช้อนุมัติหน้าตาแล้ว. ไม่มีSQL/env/content/save migrationใหม่.

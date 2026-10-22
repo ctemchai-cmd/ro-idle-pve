@@ -1,8 +1,8 @@
 {
   "task_id": "TASK-101",
-  "passed": false,
+  "passed": true,
   "local_passed": true,
-  "hosted_pending": true,
+  "hosted_pending": false,
   "review_date": "2026-10-23",
   "checks": {
     "mobile_widths": [
@@ -22,8 +22,16 @@
     "task-106-source-audit.json",
     "task-106-native-tests.txt",
     "task-106-build.txt",
-    "task-106-m0.txt"
+    "task-106-m0.txt",
+    "task-106-hosted.json",
+    "task-106-github-deployment.json",
+    "task-106-readiness.txt"
   ],
-  "scope": "Actual isolated Chrome320/390 and fresh Auth/Postgres/API. No owner save writes, private env reads,6173restart or balance batch. Awaiting deployed artifact proof, not user visual acceptance.",
-  "correction": "Prior technical pass preserved in task-101-r1-review.json; user rejected skill-art class replacements. Now19 exact Origin profession emblems; Upgrade SM_MOVINGRECOVERY plus per explicit user request; EXP/converters unchanged."
+  "scope": "Actual isolated Chrome320/390 and fresh Auth/Postgres/API. No owner save writes, private env reads,6173restart or balance batch. Deployed artifact proof passed; no claim of user visual acceptance.",
+  "correction": "Prior technical pass preserved in task-101-r1-review.json; user rejected skill-art class replacements. Now19 exact Origin profession emblems; Upgrade SM_MOVINGRECOVERY plus per explicit user request; EXP/converters unchanged.",
+  "source_commit": "2d8ef07d16773ddb0a53874511d5a3d35c67521d",
+  "hosted_groups": 3,
+  "verified_hosted_icon_media": 37,
+  "vercel": "https://vercel.com/chanon2/ro-idle-pve/ATiQbukZfXCv6ziG2ACEbr5XpFk7",
+  "reviewer": "Codex self-review against pre-authored acceptance criteria; user may review the trial appearance"
 }

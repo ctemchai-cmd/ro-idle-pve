@@ -22,8 +22,8 @@ TASK-019, TASK-048, TASK-095, TASK-100 (done)
 
 ## เกณฑ์ตรวจรับ
 
-- [ ] AC-01: Nativeplus skilliconสำหรับUpgradeตามD-136/EXP/4ใบธาตุ/actualOriginprofessionemblems19โหลดได้และmappingตรงcatalog ไม่มีskill/item/customglyphfallbackสำหรับjobicons
-- [ ] AC-02: มือถือ320/390ไม่ล้นและpublicVercelส่งmapping/media/bundleตรงchecksum
+- [x] AC-01: Nativeplus skilliconสำหรับUpgradeตามD-136/EXP/4ใบธาตุ/actualOriginprofessionemblems19โหลดได้และmappingตรงcatalog ไม่มีskill/item/customglyphfallbackสำหรับjobicons
+- [x] AC-02: มือถือ320/390ไม่ล้นและpublicVercelส่งmapping/media/bundleตรงchecksum
 
 ## วิธีตรวจและหลักฐาน
 
@@ -47,3 +47,7 @@ Focused fixtures/static audit, isolatedChrome320/390 และpublicartifact SHA
 ผู้ใช้ปฏิเสธUpgrade lv_up_offและการนำskillartแทนอาชีพ. D-130selectionถูกยกเลิกสำหรับ2ส่วนนี้. รอบแก้ต้องใช้jobemblemจริงพร้อมcatalogmappingครบ19 ห้ามskill/item/customglyphfallback. Upgradeรอคำตอบtext-onlyหรือactualgameicon; sourceยังไม่พบที่ตรง. Preserveoldtechnicalpassเป็นประวัติ ไม่เท่ากับvisualacceptance.
 
 D-136คำตอบล่าสุด: Upgradeให้หาskilliconที่มี+ได้ จึงใช้SM_MOVINGRECOVERY24px ตรวจภาพแล้ว; ปิดคำถามtext-only. Class19ใช้Origin UI_Common_Profession_Iconตามcatalogโดยตรง.
+
+## Final review23ต.ค.2026
+
+ActualChrome320/390/freshAuth-API-Postgres5groups,37Pythonassettests/M0/build/readiness8ผ่าน. PublicVercel3groupsตรวจ37iconpayloadSHA/bundles/pack/API200SIN1/anonymous401/login0writesผ่าน. Source`2d8ef07d16773ddb0a53874511d5a3d35c67521d`. [ผลตรวจ](../evidence/task-101-review.json). ภาพทดลองให้ผู้ใช้ดู ไม่อ้างว่าผู้ใช้อนุมัติหน้าตาแล้ว. ไม่มีSQL/env/content/save migrationใหม่.

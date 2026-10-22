@@ -5,6 +5,14 @@
 
 
 
+## 23 ต.ค.2026 · Codex — TASK-101 correction + TASK-106 done ขึ้นVercelแล้ว
+
+- SOURCE`2d8ef07d16773ddb0a53874511d5a3d35c67521d` VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/ATiQbukZfXCv6ziG2ACEbr5XpFk7. Actualpublic3groupsผ่านAPI200SIN1/contentเดิม/checkpoint401/JSsha/37iconmediaSHA/pack/login0writes. NoSQL/env/save migrationใหม่. ภาพให้ดูtask106-modern-skills390/320และicons-preview ไม่อ้างuserอนุมัติappearanceแล้ว.
+- 12modernmappingexactจากsuggestionรวมacolyte_meditation ใช้SkillPage/4slots/Timeline/real5spherebadge128px smoothing. คัดเฉพาะ12source images+suggestionเข้าgit; assets/modernที่เหลือเป็นuseruntrackedคงไว้. 19actualOriginprofessionemblemsจากROOCDBcommunitycatalogแทนrejectedskillart; UpgradeSM_MOVINGRECOVERY+ผู้ใช้ขอ. NativeEXP/convertersเดิม. SeeD135–137/design35.
+- 37Pythonassettests/M0/readiness8/build/sourcechecks141/60460/6926ผ่าน. ActualfreshAuth/API/Postgres/mobileChrome320/3905groupsผ่าน. Noownercloudwrite/privateenvread/6173restart/balancebatch. Engineb6ee95e152d7bc8f82ae7b42558d58e7192334b04c6f1f5bda83c523b0f53d9c pack2f20252945672bce0089ebb54fac2ee732383851c497f560293687488a94bf6f/749IDs1383files30814110B initial1593497B. VFX/audio/skill/effects/formulasเดิม.
+- Failedproofsเก็บr1previewboss1-1ตายก่อนskill→syntheticfixture4-1; r2VitecreateRootCommonJSimportแก้harness; publicr1incorrectJSmarkerเพราะjobrefsอยู่manifest ไม่bundle→localbuiltSHAaudit/keepactual19manifestidentity+37mediahashchecks. ไม่มีproductแก้เพื่อผ่านchecker. Old101userrejectedreviewarchivedr1.
+- Review101/106ผ่าน2ACeach→done Board92/106done,inprogress4old041058064067,review5,todo5 M4done52/61. Finaldocsclosurecommitตามsource; ไม่ปิดoldpending. ต้องรันreadinessหลังmoveก่อนpushdocs.
+
 ## 23 ต.ค.2026 · Codex — TASK-101 correction + TASK-106 modern icons localผ่าน รอdeploy
 
 - Userปฏิเสธclass skillart/Upgrade; D135/136ใช้19actualROOriginClass profession emblemsจากexplicitROOCDB id/name/iconcatalogและnativeSM_MOVINGRECOVERY(+). Catalogเป็นcommunityextraction ไม่อ้างofficialpublisher. EXP/4convertersเดิม. Old101review archivedr1 ไม่ถือuserapproved.
