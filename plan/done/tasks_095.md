@@ -19,7 +19,7 @@ Milestone: M4 · D-124 · ประเภท: ปรับ UI
 ## เกณฑ์ตรวจรับ
 
 - [x] AC-01: BottomBar ใช้ภาพถุงเงิน native bank_1 สีปกติทั้ง inactive/active; แตะเปิดร้านได้ ขนาดไม่ล้นมือถือ 320/390px และไม่มี browser error
-- [ ] AC-02: runtime pack/build ผ่านและเว็บ Vercel ส่ง mapping/ภาพสีตรง checksum; content hash กติกาเกมไม่เปลี่ยน
+- [x] AC-02: runtime pack/build ผ่านและเว็บ Vercel ส่ง mapping/ภาพสีตรง checksum; content hash กติกาเกมไม่เปลี่ยน
 
 ## วิธีตรวจและหลักฐาน
 
@@ -35,4 +35,5 @@ AC-01: isolated Chrome เปิด component/CSS/AssetPack จริง ตร�
 
 - Chrome320/390 ผ่าน รูป native36px แสดง30px ไม่มี grayscale ทั้ง inactive/active และแตะเลือก store ได้; build/runtime/readiness8 ผ่าน content hash เดิม
 - Browserรอบแรกอ่านขนาดก่อน active transition จากรอบ320จบที่390 จึงรอ render/transition แล้วตรวจซ้ำผ่านทั้งคู่ เก็บรายงานรอบแรกไว้ ไม่เปลี่ยน product code หรือเกณฑ์
-- รอ public Vercel proof ก่อน AC-02/done
+- Public Vercel proof 3กลุ่มผ่าน: native bank_1/matching SHA, shellไม่มี StoreSVG, content hashเดิม/API/login/PWA; source`7dceccafe2638c61a2e93b332483f7d56400bfaa` VercelSUCCESS
+- Reviewผ่าน2/2AC · 22 ต.ค.2026 · [หลักฐาน](../evidence/task-095-review.json)

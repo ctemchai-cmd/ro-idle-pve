@@ -1,0 +1,41 @@
+{
+  "task_id": "TASK-095",
+  "passed": true,
+  "reviewer": "Codex self-review",
+  "review_date": "2026-10-22",
+  "source_commit": "7dceccafe2638c61a2e93b332483f7d56400bfaa",
+  "acceptance": [
+    {
+      "id": "AC-01",
+      "passed": true,
+      "evidence": [
+        "plan/evidence/task-095-browser.json",
+        "plan/evidence/task-095-native-store-320.png",
+        "plan/evidence/task-095-native-store-390.png"
+      ],
+      "result": "Native gold bank_1 original art,30px, inactive/active no grayscale; real BottomBar callback selects store at320/390, no overflow/errors/writes. Screenshot320 visually reviewed."
+    },
+    {
+      "id": "AC-02",
+      "passed": true,
+      "evidence": [
+        "plan/evidence/task-095-build.txt",
+        "plan/evidence/task-095-readiness.txt",
+        "plan/evidence/task-095-hosted.json",
+        "plan/evidence/task-095-github-deployment.json"
+      ],
+      "result": "Build/runtime8checks passed; actual Vercel bank_1 image SHA matches local file, shell uses nav_store and removed storefront SVG; game content hash unchanged."
+    }
+  ],
+  "content_hash": "38859826ae9f3bb1b3c622609f8e3f7c046fa7e9bc182a4db8bdc27b84a7cde2",
+  "asset_pack_hash": "96dec12ee20f2dc6865dda45131c27c96a0527fc757e8d4eaefd91dbec9d5912",
+  "asset_pack_bytes": 30640791,
+  "limitations": [
+    "Chrome emulated mobile dimensions, not physical Android",
+    "Public hosted proof signed-out; no owner account/SQL mutations",
+    "No combat/Auth suite or balance simulation rerun for this small reversible presentation correction"
+  ],
+  "retained_findings": [
+    "Browserround1 read390 size before React/reset transition settled. Wait for inactive render and150ms transition; both widths then passed with unchanged product code."
+  ]
+}

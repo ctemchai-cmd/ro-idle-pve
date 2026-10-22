@@ -11574,7 +11574,7 @@
       "criterion": "BottomBar ใช้ภาพถุงเงิน native bank_1 สีปกติทั้ง inactive/active; แตะเปิดร้านได้ ขนาดไม่ล้นมือถือ 320/390px และไม่มี browser error",
       "input_setup": "Actual BottomBar, native bank_1, runtime AssetPack at320/390, active and inactive store",
       "input_refs": [
-        "plan/inprogress/tasks_095.md",
+        "plan/done/tasks_095.md",
         "src/renderer/shell-visuals.json"
       ],
       "parameters": {
@@ -11583,8 +11583,10 @@
       "expected": "BottomBar ใช้ภาพถุงเงิน native bank_1 สีปกติทั้ง inactive/active; แตะเปิดร้านได้ ขนาดไม่ล้นมือถือ 320/390px และไม่มี browser error",
       "verification": "Actual Chrome component click/image/filter/mobile plus build and public Vercel checksums",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation",
-      "execution_evidence": []
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-095-review.json"
+      ]
     },
     {
       "id": "T095-AC-02",
@@ -11593,7 +11595,7 @@
       "criterion": "runtime pack/build ผ่านและเว็บ Vercel ส่ง mapping/ภาพสีตรง checksum; content hash กติกาเกมไม่เปลี่ยน",
       "input_setup": "Actual BottomBar, native bank_1, runtime AssetPack at320/390, active and inactive store",
       "input_refs": [
-        "plan/inprogress/tasks_095.md",
+        "plan/done/tasks_095.md",
         "src/renderer/shell-visuals.json"
       ],
       "parameters": {
@@ -11602,8 +11604,10 @@
       "expected": "runtime pack/build ผ่านและเว็บ Vercel ส่ง mapping/ภาพสีตรง checksum; content hash กติกาเกมไม่เปลี่ยน",
       "verification": "Actual Chrome component click/image/filter/mobile plus build and public Vercel checksums",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation",
-      "execution_evidence": []
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-095-review.json"
+      ]
     }
   ]
 }

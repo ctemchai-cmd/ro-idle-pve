@@ -1,0 +1,73 @@
+{
+  "task_id": "TASK-095",
+  "date": "2026-10-22",
+  "source_commit": "7dceccafe",
+  "origin": "https://ro-idle-pve.vercel.app",
+  "passed": true,
+  "checks": [
+    {
+      "case_id": "hosted_region_timing_auth_gate_content",
+      "passed": true,
+      "samples": [
+        {
+          "route": "/api/health",
+          "status": 200,
+          "elapsed_ms": 804,
+          "api_region": "sin1",
+          "vercel_id": "sin1::sin1::ktdwg-1792670157121-da001c2ee9b6",
+          "server_timing": "total;dur=3.2"
+        },
+        {
+          "route": "/api/checkpoint",
+          "status": 401,
+          "elapsed_ms": 778,
+          "api_region": "sin1",
+          "vercel_id": "sin1::sin1::zjl66-1792670157750-23226ebabcdc",
+          "server_timing": "auth;dur=0.3, total;dur=5.8"
+        },
+        {
+          "route": "/api/health",
+          "status": 200,
+          "elapsed_ms": 161,
+          "api_region": "sin1",
+          "vercel_id": "sin1::sin1::lh2sk-1792670158620-e93ff149b808",
+          "server_timing": "total;dur=0.4"
+        }
+      ]
+    },
+    {
+      "case_id": "hosted_shared_save_bundle",
+      "passed": true,
+      "path": "dist/assets/account-session-CCUeUYG7.js",
+      "sha256": "42b61fce44371606318942b336e08e893362fd70ba1093555cfef9086ae7b556",
+      "combined_reply": true,
+      "current_proof": {
+        "task": "TASK-095",
+        "native_icon": "bank_1",
+        "media_sha256": "5aa1fe3564113f8862b63dbdefd171d14dfe5cb1c9323d7c8925b27b6a971f71",
+        "original_art_colored": true,
+        "svg_store_removed": true,
+        "shell_sha256": "6a963286fccf71d72355b5d35c3aa86351063cdc5013fc35faf559eeac0558a0"
+      }
+    },
+    {
+      "case_id": "hosted_login_pwa_no_private_cache",
+      "passed": true,
+      "login_visible": true,
+      "cache": {
+        "ro-idle-pwa-3cf00899189715b0": [
+          "/offline.html",
+          "/pwa/icon-192.png",
+          "/pwa/icon-512.png",
+          "/pwa/icon-maskable-512.png",
+          "/pwa/apple-touch-icon.png"
+        ]
+      },
+      "mutations": []
+    }
+  ],
+  "errors": [],
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "scope": "Signed-out actual production health/401 gate/new shared-save bundle/login/PWA only. No owner command latency or owner save access; actual mutations/failures tested on isolated stack. TASK064 optional SQL007 installation and cloud2RPC timing are not verified here."
+}
