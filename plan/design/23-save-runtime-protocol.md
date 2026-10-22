@@ -85,3 +85,6 @@ An original receipt remains definitive when `/api/checkpoint` responds with a mi
 If the API returns an explicit HTTP409 body `{code:"CONTENT_VERSION_MISMATCH"}` for an uncommitted command, retain its complete UUID/type/params/envelope as optional `rejectedForUpdate` in the local `SaveBackup` before clearing `pending`. This is a local audit record, never a command to replay under the updated rules. A client-side checkpoint validation error with the same code is not proof of refusal. Unknown network/timeout/401/5xx outcomes and stale migration previews keep the exact pending command.
 
 Maintenance UI offers “ตรวจผลรายการค้าง” while intent/writer ownership is unresolved. It must not create another migration UUID at that gate. Backup-before-write, revision CAS, server receipts, signed history, migration battle termination and the account-state/SQL schemas are unchanged.
+
+
+22ต.ค.2026 D-127–129: กติกา reward batch / Refineflat+percent / Enchantรายslot / CrystalAFKและgearchance ใช้ [design34](34-reward-slot-economy-tuning.md) และcanonicaldataล่าสุดเหนือค่าตัวอย่างเก่า

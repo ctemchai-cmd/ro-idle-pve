@@ -26,12 +26,16 @@ export function reserveFarm(input: AccountState, fromMs: number, nowMs: number, 
   const dropElapsed = elapsed + farm.drop_carry_ms, drops = Math.floor(dropElapsed / rules.quantization.drop_interval_ms), items: AccountState['inventory'] = [];
   farm.drop_carry_ms = dropElapsed % rules.quantization.drop_interval_ms;
   for (let index = 0; index < drops; index++) {
+    // Legacy snapshots consume no chance draw, preserving their exact unpaid RNG sequence.
+    const gearChance=snapshot.gear_chance_per_million;
+    if (gearChance === undefined || nextRandom(farm.loot_rng) * 1000000 < gearChance) {
     nextRandom(farm.loot_rng); const pick = BigInt(farm.loot_rng.state) * weightTotal / 4294967296n;
     let cumulative = 0n, rarity: typeof kinds[number] = 'common';
     for (const kind of kinds) { cumulative += BigInt(snapshot.rarity_weights[kind]); if (pick < cumulative) { rarity = kind; break; } }
     const definitionId = snapshot.definition_pool[Math.floor(nextRandom(farm.loot_rng) * snapshot.definition_pool.length)]!;
     // D-062: option lines are rolled from the same server loot RNG, right after the item's own draws.
     items.push({ instance_id: `${claimId}_gear_${index}`, definition_id: definitionId, kind: 'equipment', rarity_id: rarity, locked: false, training: false, options: rollItemOptions(rarity, () => nextRandom(farm.loot_rng), content) });
+    }
     if (snapshot.card_drops) {
       const card = farmCardDrop(snapshot.card_drops, () => nextRandom(farm.loot_rng),content);
       if (card) items.push({ instance_id: `${claimId}_card_${index}`, ...card, kind: 'card', level: 1, locked: false });

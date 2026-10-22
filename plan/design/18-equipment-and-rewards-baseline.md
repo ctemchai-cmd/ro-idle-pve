@@ -60,3 +60,6 @@ Common→Supremeต้อง729ชิ้นชนิดเดียวหาก�
 ทุกpullใช้quality drawหนึ่งและdefinition drawหนึ่ง แม้guaranteeก็ consume qualitydrawเพื่อreplayตรงกัน Countersผูกบัญชี/pool, Goldresetทั้งคู่, SilverresetBronzeและเพิ่มGoldmiss การ์ดซ้ำได้instanceใหม่ ไม่แอบย่อยของที่อยากใส่หลายคน Crystalมาจากfirst-clear20/ด่าน, Towerfirst-clearตามข้อมูล และdailyobjective100/วันหลัง2-10ที่ไม่บังคับชนะเมื่อทีมติดด่าน ไม่มีเงินจริง/Pet/Artifactpoolในรุ่นแรก
 
 `python3 plan/checks/economy.py` ตรวจresourceflow/งบ6จุด/เศษAFK/729-equivalent/odds/pity boundaries กฎด่าน/บอสเป็นTASK-011 การตรวจค่าเฉลี่ยไม่แทนการวัดprogressionหลายวันด้วยengineในอนาคต
+
+
+22ต.ค.2026 D-127–129: กติกา reward batch / Refineflat+percent / Enchantรายslot / CrystalAFKและgearchance ใช้ [design34](34-reward-slot-economy-tuning.md) และcanonicaldataล่าสุดเหนือค่าตัวอย่างเก่า

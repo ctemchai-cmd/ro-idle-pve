@@ -1,0 +1,101 @@
+✔ subsecond farm reservations preserve integer carry and pay no wallet before reward claim (8.077541ms)
+✔ latest12h cap, frozen rate/definition snapshot and rarity-before-definition RNG are replayable (6.059917ms)
+✔ full pending queue/clock regression rejects before any cursor, RNG or reward mutation (1.720542ms)
+✔ rate switch keeps the old reserved bundle fixed and continues from only the unpaid interval (0.453042ms)
+✔ browser transport cannot POST after an aborted token wait, or accept a body that finishes after abort (702.339167ms)
+✔ level appears before the server replies; only the confirmed checkpoint is backed up, then the cloud replaces the preview (547.534209ms)
+✔ failed save removes the display preview; reconnect resolves the original request without double spending (418.606875ms)
+✔ display preview never mutates input, guesses random upgrades or applies unavailable levels (281.601041ms)
+✔ recurring receipt replay precedes revision, fixed claim pays once and rejected receipts stay immutable (367.486458ms)
+✔ verified signed state and schema reject changed wallet, foreign history, raw client snapshots and content mismatch (308.896333ms)
+✔ battle advance credits only DB time, persists checkpoint and replay adds no time; expiry rejects and retreat preserves wallet (482.669416ms)
+✔ a never-ending command reply times out, aborts and reconciles its original receipt once (326.117708ms)
+✔ timeout before commit retries the exact UUID, and failed recovery leaves an actionable pending backup (535.804042ms)
+✔ visibility reconnect during an active write does not invalidate the successful reply or start a duplicate (558.871667ms)
+✔ a hung checkpoint is bounded and disconnect/dispose cancel outstanding I/O without clearing pending intent (295.543125ms)
+✔ response-loss refresh reconciles the same receipt before cloud load without delta replay or another payment (309.139917ms)
+✔ offline and second-tab readers cannot submit; writer conflicts reload cloud without repeating an intent (322.287333ms)
+✔ refresh with an active boss reconciles then retreats instead of simulating offline combat (324.876958ms)
+✔ an older checkpoint response cannot downgrade a committed receipt or replace the newer wallet backup (307.002625ms)
+✔ account creation persists a pending UUID without a checkpoint and refresh recovers its original receipt once (408.653458ms)
+✔ confirmed legacy replies skip the redundant receipt GET; a combined verified checkpoint skips both GETs (610.18425ms)
+✔ combined replies reject foreign/stale checkpoints and preserve the committed pending intent for reconciliation (619.588625ms)
+✔ terminal-only start + finish writes twice; a lost finish response reconciles the original receipt without replaying rewards (450.236542ms)
+✖ D-127 ten fixed reward bundles pay in one commit, including original-UUID response-loss replay (354.213459ms)
+✔ batch claims validate full selection/capacity/duplicates/overflow before changing wallet or rewards (183.086667ms)
+✔ farm collect reserves and pays every pending bundle in one proposal, even a full32-claim queue; full inventory rolls back reservation too (14.3475ms)
+✔ all18 Enchant presets differ and all6 slots compile their own definition, with server/preview parity and exact historical refunds (61.166583ms)
+✖ Refine uses additive percentages once for all6 slots at+0/1/5/10 on low and high stats; swapping gear retains investment (4.749ms)
+✔ AFK40Crystal/h caps at480 per12h, fractional claims preserve carry; frozen legacy earns no retroactiveCrystal then switches to40/h (3.95975ms)
+✔ gear50% roll stays independent of card attempts, legacy100% draw order retained, all scrolls5000gold and Tower milestones unchanged (6.249125ms)
+✔ a committed boss-start receipt releases the pending gate even when the next checkpoint requires migration (433.253458ms)
+✔ absent old/current-version intents refused by the version gate are archived before migration and never replayed on new rules (658.184292ms)
+✔ uncertain receipt/network failures keep the original intent; retry can settle it before migration (215.033917ms)
+✔ a version refusal on a live write transitions to the migration preview instead of keeping saving/pending locked (245.75025ms)
+✔ a migration preview older than the recovered receipt cannot discard its pending revision barrier (204.767583ms)
+✔ a storage failure cannot silently drop a version-refused pending intent or strand saving (178.119375ms)
+✔ a checkpoint version validation error after a possible commit is not mistaken for a server refusal (170.514917ms)
+✔ T040 AC-01: export → reset → restore brings back the same characters, NPCs, items and slot progress (223.46475ms)
+✔ T040 AC-02: an older signed save is previewed then migrated with a backup; unsupported or broken saves are never changed (695.412417ms)
+✔ T040 AC-03 + D-085: new game clears daily dungeons; restore guards AFK/shop/daily counters and restores once (1089.28925ms)
+✔ T040 AC-03/04: a quarantined save is recovered only from its signed tip; a healthy save refuses recovery (219.100333ms)
+✔ T040 AC-04: the client only sends maintenance writes the server asked for, and shows nothing until the receipt (0.540292ms)
+✔ D-085: migrating an already-reset locked game clears only carried daily progress, with backup; unlocked games retain it (383.596833ms)
+✔ T040 AC-05: compatibility matrix — current/older/newer/unknown/cost-version fixtures migrate, reject or refund exactly (393.819375ms)
+✔ 21Oct daily clock incident refunds one Essence attempt with signed backup; retries cannot refund twice (201.147084ms)
+✔ daily clock repair without an affected historical retreat does not change quota or create a backup (198.759041ms)
+✔ Refine4→5 and9→10 open exact sockets, costs total77000gold/275ore when every step succeeds; max11/duplicate target do not debit (443.123375ms)
+✔ Enchant merges old/current actual paid costs and changing line refunds exact2800gold/11dust once into immutable receipt, not current4200 price (254.25275ms)
+✔ distinct duplicate cards add per source; a single instance moves owners, and investments sleep when gear removed (222.611209ms)
+✔ card level1→5 charges7500gold/300dust once; salvage yields rarity dust only and protected batches reject before mutation (224.199042ms)
+✔ Precision affects preview/engine DEX and CT/ACD through shared primary pipeline; poor-wallet preview works without mutation (203.279ms)
+✔ repeated level/enchant/reset operations keep only bounded active scopes and archive exact refund evidence without growing save history (271.114042ms)
+✔ equipped-card payload changes build fingerprints, unassigned rewards do not; all slot/card mutations reject while a battle is active (201.539417ms)
+✔ D-057 Refine: +1..+4 always succeed, later steps roll a server seed; failure spends only the step cost, keeps the level and adds pity (201.896125ms)
+✔ D-057 Refine pity reaches the cap so +9→+10 (20%) is guaranteed after 8 failures; unseeded rolls are refused (472.803208ms)
+ℹ tests 55
+ℹ suites 0
+ℹ pass 53
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10307.066167
+
+✖ failing tests:
+
+test at tests/game/recurring-save.test.ts:1:21663
+✖ D-127 ten fixed reward bundles pay in one commit, including original-UUID response-loss replay (354.213459ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  2000 !== 11000
+
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/recurring-save.test.ts:195:174)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 2000,
+    expected: 11000,
+    operator: 'strictEqual'
+  }
+
+test at tests/game/reward-slot-economy.test.ts:1:6685
+✖ Refine uses additive percentages once for all6 slots at+0/1/5/10 on low and high stats; swapping gear retains investment (4.749ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  49.44 !== 49
+
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/reward-slot-economy.test.ts:48:268)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 49.44,
+    expected: 49,
+    operator: 'strictEqual'
+  }

@@ -55,6 +55,20 @@
           "op": "add_flat",
           "bucket": "derived",
           "value": 8
+        },
+        {
+          "id": "physical_attack_percent",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.03
+        },
+        {
+          "id": "magical_attack_percent",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.03
         }
       ],
       "head": [
@@ -64,6 +78,13 @@
           "op": "add_flat",
           "bucket": "derived",
           "value": 4
+        },
+        {
+          "id": "magical_defense_percent",
+          "stat": "magical_defense",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.04
         }
       ],
       "armor": [
@@ -73,6 +94,13 @@
           "op": "add_flat",
           "bucket": "derived",
           "value": 40
+        },
+        {
+          "id": "max_hp_percent",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.03
         }
       ],
       "garment": [
@@ -82,6 +110,13 @@
           "op": "add_flat",
           "bucket": "derived",
           "value": 4
+        },
+        {
+          "id": "physical_defense_percent",
+          "stat": "physical_defense",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.04
         }
       ],
       "shoes": [
@@ -91,6 +126,13 @@
           "op": "add_flat",
           "bucket": "derived",
           "value": 30
+        },
+        {
+          "id": "max_hp_percent",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.02
         }
       ],
       "accessory": [
@@ -100,6 +142,13 @@
           "op": "add_flat",
           "bucket": "derived",
           "value": 4
+        },
+        {
+          "id": "max_sp_percent",
+          "stat": "max_sp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.03
         }
       ]
     },
@@ -164,47 +213,12 @@
         "gold": 20000,
         "refine_ore": 50
       }
-    ]
+    ],
+    "power_basis": "D-128: existing flat per step plus additive percent in the same stat bucket; never compound per step; prices/chances/card gates unchanged"
   },
   "enchant": {
     "max": 10,
     "selected_line_count": 1,
-    "lines": {
-      "offense": [
-        {
-          "id": "physical_attack",
-          "stat": "physical_attack",
-          "op": "add_flat",
-          "bucket": "derived",
-          "value": 5
-        },
-        {
-          "id": "magical_attack",
-          "stat": "magical_attack",
-          "op": "add_flat",
-          "bucket": "derived",
-          "value": 5
-        }
-      ],
-      "vitality": [
-        {
-          "id": "max_hp",
-          "stat": "max_hp",
-          "op": "add_flat",
-          "bucket": "derived",
-          "value": 30
-        }
-      ],
-      "precision": [
-        {
-          "id": "dex",
-          "stat": "dex",
-          "op": "add_flat",
-          "bucket": "primary",
-          "value": 1
-        }
-      ]
-    },
     "upgrade_rows": [
       {
         "from": 0,
@@ -268,7 +282,322 @@
       }
     ],
     "switch_line": "out of battle; refund actual paid line ledger, reset to zero and purchase desired line at current prices",
-    "random_reroll": false
+    "random_reroll": false,
+    "slot_lines": {
+      "weapon": {
+        "offense": {
+          "label": "พลังโจมตี",
+          "modifiers": [
+            {
+              "id": "physical_attack_percent",
+              "stat": "physical_attack",
+              "op": "add_percent",
+              "bucket": "derived",
+              "value": 0.015
+            },
+            {
+              "id": "magical_attack_percent",
+              "stat": "magical_attack",
+              "op": "add_percent",
+              "bucket": "derived",
+              "value": 0.015
+            }
+          ]
+        },
+        "vitality": {
+          "label": "บุกอย่างทนทาน",
+          "modifiers": [
+            {
+              "id": "max_hp_percent",
+              "stat": "max_hp",
+              "op": "add_percent",
+              "bucket": "derived",
+              "value": 0.01
+            },
+            {
+              "id": "physical_defense_percent",
+              "stat": "physical_defense",
+              "op": "add_percent",
+              "bucket": "derived",
+              "value": 0.01
+            }
+          ]
+        },
+        "precision": {
+          "label": "แม่นยำ",
+          "modifiers": [
+            {
+              "id": "dex",
+              "stat": "dex",
+              "op": "add_flat",
+              "bucket": "primary",
+              "value": 1
+            },
+            {
+              "id": "hit_bonus",
+              "stat": "hit_bonus",
+              "op": "add_flat",
+              "bucket": "bonus",
+              "value": 0.003
+            }
+          ]
+        }
+      },
+      "head": {
+        "offense": {
+          "label": "เวทเข้มข้น",
+          "modifiers": [
+            {
+              "id": "magical_attack_percent",
+              "stat": "magical_attack",
+              "op": "add_percent",
+              "bucket": "derived",
+              "value": 0.01
+            },
+            {
+              "id": "sp_regen_percent",
+              "stat": "sp_regen_percent",
+              "op": "add_flat",
+              "bucket": "bonus",
+              "value": 0.01
+            }
+          ]
+        },
+        "vitality": {
+          "label": "จิตแน่วแน่",
+          "modifiers": [
+            {
+              "id": "magical_defense_percent",
+              "stat": "magical_defense",
+              "op": "add_percent",
+              "bucket": "derived",
+              "value": 0.02
+            },
+            {
+              "id": "max_sp_percent",
+              "stat": "max_sp",
+              "op": "add_percent",
+              "bucket": "derived",
+              "value": 0.01
+            }
+          ]
+        },
+        "precision": {
+          "label": "ต้านควบคุม",
+          "modifiers": [
+            {
+              "id": "control_resistance",
+              "stat": "control_resistance",
+              "op": "add_flat",
+              "bucket": "bonus",
+              "value": 0.005
+            }
+          ]
+        }
+      },
+      "armor": {
+        "offense": {
+          "label": "เกราะตอบโต้",
+          "modifiers": [
+            {
+              "id": "physical_attack_percent",
+              "stat": "physical_attack",
+              "op": "add_percent",
+              "bucket": "derived",
+              "value": 0.01
+            },
+            {
+              "id": "physical_defense_percent",
+              "stat": "physical_defense",
+              "op": "add_percent",
+              "bucket": "derived",
+              "value": 0.01
+            }
+          ]
+        },
+        "vitality": {
+          "label": "พลังชีวิต",
+          "modifiers": [
+            {
+              "id": "max_hp_percent",
+              "stat": "max_hp",
+              "op": "add_percent",
+              "bucket": "derived",
+              "value": 0.02
+            }
+          ]
+        },
+        "precision": {
+          "label": "ต้านวิกฤต",
+          "modifiers": [
+            {
+              "id": "crit_resistance",
+              "stat": "crit_resistance",
+              "op": "add_flat",
+              "bucket": "bonus",
+              "value": 0.005
+            },
+            {
+              "id": "physical_defense_percent",
+              "stat": "physical_defense",
+              "op": "add_percent",
+              "bucket": "derived",
+              "value": 0.01
+            }
+          ]
+        }
+      },
+      "garment": {
+        "offense": {
+          "label": "เจาะเกราะ",
+          "modifiers": [
+            {
+              "id": "penetration_percent",
+              "stat": "penetration_percent",
+              "op": "add_flat",
+              "bucket": "bonus",
+              "value": 0.005
+            }
+          ]
+        },
+        "vitality": {
+          "label": "เสริมเกราะ",
+          "modifiers": [
+            {
+              "id": "physical_defense_percent",
+              "stat": "physical_defense",
+              "op": "add_percent",
+              "bucket": "derived",
+              "value": 0.02
+            },
+            {
+              "id": "magical_defense_percent",
+              "stat": "magical_defense",
+              "op": "add_percent",
+              "bucket": "derived",
+              "value": 0.01
+            }
+          ]
+        },
+        "precision": {
+          "label": "หลบหลีก",
+          "modifiers": [
+            {
+              "id": "evasion_bonus",
+              "stat": "evasion_bonus",
+              "op": "add_flat",
+              "bucket": "bonus",
+              "value": 0.005
+            }
+          ]
+        }
+      },
+      "shoes": {
+        "offense": {
+          "label": "โจมตีต่อเนื่อง",
+          "modifiers": [
+            {
+              "id": "normal_damage_bonus",
+              "stat": "normal_damage_bonus",
+              "op": "add_flat",
+              "bucket": "bonus",
+              "value": 0.01
+            }
+          ]
+        },
+        "vitality": {
+          "label": "ฟื้นกำลัง",
+          "modifiers": [
+            {
+              "id": "max_hp_percent",
+              "stat": "max_hp",
+              "op": "add_percent",
+              "bucket": "derived",
+              "value": 0.01
+            },
+            {
+              "id": "healing_received_bonus",
+              "stat": "healing_received_bonus",
+              "op": "add_flat",
+              "bucket": "bonus",
+              "value": 0.01
+            }
+          ]
+        },
+        "precision": {
+          "label": "มั่นคง",
+          "modifiers": [
+            {
+              "id": "control_resistance",
+              "stat": "control_resistance",
+              "op": "add_flat",
+              "bucket": "bonus",
+              "value": 0.003
+            },
+            {
+              "id": "crit_resistance",
+              "stat": "crit_resistance",
+              "op": "add_flat",
+              "bucket": "bonus",
+              "value": 0.003
+            }
+          ]
+        }
+      },
+      "accessory": {
+        "offense": {
+          "label": "พลังสกิล",
+          "modifiers": [
+            {
+              "id": "skill_damage_bonus",
+              "stat": "skill_damage_bonus",
+              "op": "add_flat",
+              "bucket": "bonus",
+              "value": 0.01
+            }
+          ]
+        },
+        "vitality": {
+          "label": "นักเยียวยา",
+          "modifiers": [
+            {
+              "id": "outgoing_healing_bonus",
+              "stat": "outgoing_healing_bonus",
+              "op": "add_flat",
+              "bucket": "bonus",
+              "value": 0.015
+            },
+            {
+              "id": "max_sp_percent",
+              "stat": "max_sp",
+              "op": "add_percent",
+              "bucket": "derived",
+              "value": 0.01
+            }
+          ]
+        },
+        "precision": {
+          "label": "วิกฤต",
+          "modifiers": [
+            {
+              "id": "crit_chance_bonus",
+              "stat": "crit_chance_bonus",
+              "op": "add_flat",
+              "bucket": "bonus",
+              "value": 0.003
+            },
+            {
+              "id": "crit_damage_bonus",
+              "stat": "crit_damage_bonus",
+              "op": "add_flat",
+              "bucket": "bonus",
+              "value": 0.01
+            }
+          ]
+        }
+      }
+    },
+    "power_basis": "D-128: slot-specific presets; stable offense/vitality/precision IDs retain levels and actual-paid ledger; labels/modifiers from one shared table"
   },
   "cards": {
     "capacity_by_refine": [

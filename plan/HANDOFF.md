@@ -4,6 +4,16 @@
 
 
 
+## 22 ต.ค.2026 · Codex — TASK-098–100 local ผ่าน รอVercel
+
+- Userต่อเนื่อง: yellowสูง→y−240; multiple10boxesควรรับรวม; Enchantแต่ละslotต่าง/Refineแรงขึ้นถาม% ; Upgradeiconธีม, scrollแพง, AFKCrystal4–5pullsยืนยัน12h, gearลดครึ่ง, ถามTowerCrystal. D127–129/design34.
+- Batchreward.claim รองรับclaim_idเดิมหรือclaim_ids1–32 unique. shared progression/claim-rewards.tsตรวจwholebatchก่อนapply wallet/items/pending; farm.claim collect_rewards:trueจ่ายoldpending→reservefrozen→จ่ายnewบนcloneในหนึ่งCAS/receipt/revision rollbackทั้งก้อนเมื่อfull/overflow. Daily/FarmเอาHTTPloopออก. 10boxes+1hAFK actualAuth/API/SQL/Chrome=1POST/1revision/Crystal40ผ่าน.
+- Enchant18slotpresets/stableoffense-vitality-precisionIDs/ledgerlevelsเดิม, build/slot-definition.ts authorityร่วมcompiler/server/UI. strictloaderตรวจ6slots/3lines/modifier schema+bucket/unit. Refineflatเดิม+percent: weapon3%,head4%,armor3%,garment4%,shoes2%,accessory3%ต่อขั้น; บวกในstatbucketไม่คูณทบ. max/chance/pity/cost/cards5/10เดิม. WeaponPrecisionยังDEX+1/level อื่นแยก ไม่autogrowprimary.
+- AFK40Crystal/hทุกบท=480/12h (24hรับสองครั้ง960 ไม่ใช่4–5/24h) โบนัสTower/dailyเพิ่มต่างหาก. Towerเดิม10ทุก5floor/firstclear เพิ่มnote. scroll5000gold/ใบ99limitเดิม/ownedstockไม่หัก. Newfrozenoptionalgear_chance_per_million500000ทอย5min cardทอยทุกครั้งแม้gearไม่ตก คง1–2%. Legacyundefined=100%+ไม่กินchancedraw; migrationไม่เติมnewrateย้อนหลัง firstclaimsettleoldแล้วswitchprofileใหม่. Upgradeblue/goldSVG/Storecopyแหล่งCrystal.
+- 153focusedผ่าน +38contentvalidationrerunเพิ่ม1negative=M0/build/type/boundaries/secrets/readiness8ผ่าน. ActualfreshlocalAuth/Postgres/HTTP/mobile320/3904groupsผ่านfinalcopy. Nativeyellow4groupsผ่านsameactualengine1x2x4/interrupt ไม่มีbalancebatch/ownerwrite/privateenvread/6173restart/assetschange.
+- Auto-reviewเคยปฏิเสธrewriteหลายtestoraclesเพราะกลบregressions. ทำread-onlyHEADaudit+handmathก่อน conditionalassertionsแล้วapprovedผ่าน: HEADitems217/status28/gold6330เป็นstaletestsเดิม; ใหม่flat294/percent.75/raritydelta166.25/tier465.5; DEXfixtureย้ายไปweaponตามnewpreset;144droporacleเก็บกับexplicitlegacy100%. task099-oracle-audit. คงrollback/replay/engineparitychecks ไม่weakening. Firstbuildboundaryhelperย้ายrewards→progressionตามchecker, bonusstatbucketแก้เป็นbonusตามstrictloader; ไม่ผ่อนchecker.
+- Content5cab041209a07d51a05e992b99eaab12f96c8aa2e73e54ca9755a941c4554536; packเดิม96dec12…/30640791B ไม่มีSQL/env/newmedia. Userจบไฟต์reload/backupmigrateตามflowเดิม; ไม่อ้างownerทำแล้ว. Source/hostedproofรอเติมก่อนdone. Board83/100 done,7inprogress,5review,5todo; M4done43/55.
+
 ## 22 ต.ค.2026 · Codex — TASK-097 done เลขเหลืองเฉพาะ Multi Hit ขึ้น Vercel แล้ว
 
 - ผู้ใช้ถามเลขเหลืองที่ยังไม่มี(รอบก่อนเป็นresearch) และย้ำเฉพาะMultiHit เช่นFingerMonk (D-126). เพิ่มrenderer/multi-hit-numbers.ts keyed(actor,skill,action_id,target), directorigin=skillและ>=2actualdamageeventsต่อเป้า. ไม่รวมnormal/single/single-hitAoE/periodic/proc/reflect/heal. ใช้amountจริง/sequence-dedupe ไม่บวกต่อdraw โฟกัสตามselected/newcastแทนยอดเก่าต่อเป้า ไม่ปนsource/target. max128groups hold1000+fade400battlems ถ้ารับจริงแค่หนึ่งhitไม่ขึ้นcounter

@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import type { CombatStats, Modifier } from '../../contracts/index.ts';
 import { effectiveLevelCap, levelQuote, rosterData as data, type Character, type RootJob } from '../../client/roster.ts';
 import { equipmentData, equipmentPreview, equipmentUpgradeHints, inventoryView, itemModifiers, itemOptions, rarityLabels, rarityRank, slotLabels, weaponLabels, type EquipmentSlot } from '../../client/equipment.ts';
-import { cardInventory, cardStatUnits, nextRefineChance, refundEnchant, salvageCardsQuote, slotChangePreview, slotUpgradeQuote, socketCapacity } from '../../client/slots.ts';
+import { cardInventory, cardStatUnits, slotEnchantLines, refineModifiers, nextRefineChance, refundEnchant, salvageCardsQuote, slotChangePreview, slotUpgradeQuote, socketCapacity } from '../../client/slots.ts';
 import type { GameContext } from './shell.tsx';
 import { ClassIcon } from './class-icon.tsx';
 import { orderedCharacters } from './character-nav.tsx';
@@ -15,7 +15,6 @@ import { ActorCanvas, CostChips, Diff, ItemIcon, PageHeader, Sheet, canPay, frie
 
 const leftSlots: EquipmentSlot[] = ['weapon', 'armor', 'accessory'], rightSlots: EquipmentSlot[] = ['head', 'garment', 'shoes'];
 const roots = Object.keys(data.class_tree) as RootJob[];
-const enchantLines = { offense: 'Offense · ATK/MATK', vitality: 'Vitality · HP', precision: 'Precision · DEX' } as const;
 type ItemRow = ReturnType<typeof inventoryView>[number];
 /** D-062 option lines in their own colour so players can tell rolled lines from the base item stats. */
 export function OptionLines({ item }: { item: Parameters<typeof itemOptions>[0] }) {
@@ -42,7 +41,7 @@ function GearTile({ row, slot, pack, state, characterId, upgradeId, onClick }: {
 }
 
 function UpgradeSheet({ context, actor, slot, close }: { context: GameContext; actor: Character; slot: EquipmentSlot; close: () => void }) {
-  const { state, pack, submit, locked } = context, progress = actor.slot_progress[slot], params = { character_id: actor.character_id, slot };
+  const { state, pack, submit, locked } = context, progress = actor.slot_progress[slot], enchantLines = slotEnchantLines(slot), params = { character_id: actor.character_id, slot };
   const [fx, setFx] = useState<{ ok: boolean; text: string; key: number } | null>(null);
   async function refineNow() {
     const target = progress.refine + 1;
@@ -66,13 +65,15 @@ function UpgradeSheet({ context, actor, slot, close }: { context: GameContext; a
       <div className="level-jump"><b>+{progress.refine}</b><span>→</span><b className="next">{refine ? `+${progress.refine + 1}` : 'MAX'}</b></div>
       {refine && <div className="refine-chance"><b>{Math.round(nextRefineChance(progress) * 100)}%</b><span>โอกาสสำเร็จ{progress.refine_failures ? ` · รวมโอกาสสะสมจากพลาด ${progress.refine_failures} ครั้ง` : ''}</span></div>}
       <p className="hint">+1 ถึง +4 สำเร็จแน่นอน · พลาดเสียแค่วัตถุดิบ ระดับไม่ลด และโอกาสครั้งถัดไปเพิ่ม 10% · การ์ดช่องที่ 2 เปิดที่ +5 ช่องที่ 3 ที่ +10</p>
+      <p className="hint slot-bonus" aria-label="ผล Refine ต่อขั้น">ต่อ +1 · {refineModifiers(slot).map(modifierText).join(' · ')}</p>
       {refine ? <><CostChips cost={refine} wallet={state.wallet} pack={pack} />{refinePreview && <StatChanges before={refinePreview.before} after={refinePreview.after} />}
         <button className="btn primary wide" disabled={locked || !canPay(state.wallet, refine)} onClick={() => void refineNow()}>Refine +{progress.refine + 1}</button></> : <p className="hint">Refine สูงสุดแล้ว</p>}
     </section>}
     {tab === 'enchant' && <section className="upgrade-pane">
-      <div className="chip-row" role="radiogroup" aria-label="สาย Enchant">{(Object.keys(enchantLines) as (keyof typeof enchantLines)[]).map(id => <button key={id} role="radio" aria-checked={line === id} className={`chip ${line === id ? 'on' : ''}`} onClick={() => { setLine(id); setConfirmLine(false); }}>{enchantLines[id]}</button>)}</div>
+      <div className="chip-row" role="radiogroup" aria-label="สาย Enchant">{(Object.keys(enchantLines) as (keyof typeof enchantLines)[]).map(id => <button key={id} role="radio" aria-checked={line === id} className={`chip ${line === id ? 'on' : ''}`} onClick={() => { setLine(id); setConfirmLine(false); }}>{enchantLines[id]!.label}</button>)}</div>
+      <p className="hint slot-bonus" aria-label="ผล Enchant ต่อระดับ">ต่อระดับ · {enchantLines[line]!.modifiers.map(modifierText).join(' · ')}</p>
       {changeLine ? <><p className="hint warn">เปลี่ยนสายแล้วเริ่ม Lv.0 · คืนเฉพาะที่จ่ายจริง</p><CostChips cost={refundEnchant(state, actor.character_id, slot)} wallet={state.wallet} pack={pack} />
-        {confirmLine ? <div className="row"><button className="btn primary" disabled={locked} onClick={() => void submit('slot.change_enchant', { ...params, line_id: line })}>ยืนยันเปลี่ยนสาย</button><button className="btn ghost" onClick={() => setConfirmLine(false)}>ยกเลิก</button></div> : <button className="btn wide" disabled={locked} onClick={() => setConfirmLine(true)}>เปลี่ยนเป็นสาย {enchantLines[line]}</button>}</>
+        {confirmLine ? <div className="row"><button className="btn primary" disabled={locked} onClick={() => void submit('slot.change_enchant', { ...params, line_id: line })}>ยืนยันเปลี่ยนสาย</button><button className="btn ghost" onClick={() => setConfirmLine(false)}>ยกเลิก</button></div> : <button className="btn wide" disabled={locked} onClick={() => setConfirmLine(true)}>เปลี่ยนเป็นสาย {enchantLines[line]!.label}</button>}</>
         : <><div className="level-jump"><b>Lv.{progress.enchant.level}</b><span>→</span><b className="next">{enchant ? `Lv.${progress.enchant.level + 1}` : 'MAX'}</b></div>
           {enchant ? <><CostChips cost={enchant} wallet={state.wallet} pack={pack} />{enchantPreview && <StatChanges before={enchantPreview.before} after={enchantPreview.after} />}
             <button className="btn primary wide" disabled={locked || !canPay(state.wallet, enchant)} onClick={() => void submit('slot.enchant', { ...params, line_id: line, target_level: progress.enchant.level + 1 })}>Enchant Lv.{progress.enchant.level + 1}</button></> : <p className="hint">Enchant สูงสุดแล้ว</p>}</>}
@@ -131,7 +132,7 @@ function SlotSheet({ context, actor, slot, close, open }: { context: GameContext
       <span className={`icon-frame big rarity-${row?.item.rarity_id ?? 'none'}`}>{row ? <ItemIcon id={row.iconId} pack={pack} /> : <span className="gear-empty">ว่าง</span>}<EquipmentCards state={state} characterId={actor.character_id} slot={slot} /><EquipmentProgress state={state} characterId={actor.character_id} slot={slot} /></span>
       <div><b>{row?.name ?? 'ยังไม่ได้สวม'}</b>{row && <small>{rarityLabels[row.item.rarity_id]} · Lv.{row.definition.required_level}</small>}{row && <small className="mods">{itemModifiers(row.item).map(modifierText).join(' · ')}</small>}{row && <OptionLines item={row.item} />}</div>
     </div>
-    <ul className="slot-facts"><li><span>Refine</span><b>+{progress.refine}</b></li><li><span>Enchant</span><b>{progress.enchant.line_id ? `${enchantLines[progress.enchant.line_id as keyof typeof enchantLines]?.split(' ·')[0]} Lv.${progress.enchant.level}` : '—'}</b></li><li><span>การ์ด</span><b>{progress.cards.filter(Boolean).length} / {socketCapacity(progress.refine)}</b></li></ul>
+    <ul className="slot-facts"><li><span>Refine</span><b>+{progress.refine}</b></li><li><span>Enchant</span><b>{progress.enchant.line_id ? `${slotEnchantLines(slot)[progress.enchant.line_id]?.label??progress.enchant.line_id} Lv.${progress.enchant.level}` : '—'}</b></li><li><span>การ์ด</span><b>{progress.cards.filter(Boolean).length} / {socketCapacity(progress.refine)}</b></li></ul>
     <div className="row two"><button className="btn primary" onClick={() => open('upgrade')}><Icon name="upgrade" /> อัปเกรด</button><button className="btn" onClick={() => open('change')}>⇄ เปลี่ยน</button></div>
   </Sheet>;
 }
@@ -188,7 +189,7 @@ export function BuddyPage({ context }: { context: GameContext }) {
     <div className="action-row">
       <button className="action-btn" onClick={() => go('stats', actor.character_id)}>{statsIcon ? <img src={statsIcon} alt="" /> : <Icon name="chart" />}<span>Stats</span>{actor.unspent_status_points > 0 && <i className="dot" />}</button>
       <button className="action-btn" onClick={() => go('skills', actor.character_id)}>{skillIcon ? <img src={skillIcon} alt="" /> : <Icon name="book" />}<span>Skill</span></button>
-      <button className="action-btn" onClick={() => setSheet('character')}><span className="up-glyph"><Icon name="upgrade" /></span><span>Upgrade</span></button>
+      <button className="action-btn" onClick={() => setSheet('character')}><svg className="upgrade-emblem" viewBox="0 0 32 32" aria-hidden="true"><path d="M6 5h20v15l-10 8L6 20Z" fill="#e8f2ff" stroke="#5a84bc" strokeWidth="1.5"/><path d="m10 19 6-5 6 5M10 13l6-5 6 5" fill="none" stroke="#3472bd" strokeWidth="2.7" strokeLinecap="round" strokeLinejoin="round"/><path d="m24 3 1 3 3 1-3 1-1 3-1-3-3-1 3-1Z" fill="#e9b653" stroke="#b98123" strokeWidth=".6"/></svg><span>Upgrade</span></button>
     </div>
     <RosterStrip context={context} />
     {sheet === 'slot' && slot && <SlotSheet context={context} actor={actor} slot={slot} close={() => setSheet(null)} open={s => setSheet(s)} />}

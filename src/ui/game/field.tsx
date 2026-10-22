@@ -205,11 +205,11 @@ function FarmSheet({ context, close }: { context: GameContext; close: () => void
   async function collectAll() {
     if (claiming) return; setClaiming(true);
     try {
-      if (snapshot && elapsed >= 1000 && !await submit('farm.claim', {})) return;
-      const cardIds=(context.latest()?.pending_rewards??[]).flatMap(c=>c.items).filter(i=>i.kind==='card').map(i=>i.instance_id);
-      let collected = 0;
-      for (const claim of context.latest()?.pending_rewards ?? []) { if (!await submit('reward.claim', { claim_id: claim.claim_id })) break; collected++; }
-      if (collected) { const taken=cardIds.filter(id=>context.latest()?.inventory.some(item=>item.instance_id===id)); setCollectedCardIds(ids=>[...new Set([...ids,...taken])]); toast(`รับรางวัลแล้ว ${collected} รายการ${taken.length?` · การ์ด ${taken.length} ใบ`:''}`); }
+      const pending=context.latest()?.pending_rewards??[],cardIds=pending.flatMap(c=>c.items).filter(i=>i.kind==='card').map(i=>i.instance_id);
+      const ok=snapshot&&elapsed>=1000
+        ?await submit('farm.claim',{collect_rewards:true})
+        :pending.length>0&&await submit('reward.claim',{claim_ids:pending.map(c=>c.claim_id)});
+      if(ok){const taken=(context.latest()?.inventory??[]).filter(i=>i.kind==='card'&&(cardIds.includes(i.instance_id)||!state.inventory.some(old=>old.instance_id===i.instance_id))).map(i=>i.instance_id);setCollectedCardIds(ids=>[...new Set([...ids,...taken])]);toast(`รับรางวัลทั้งหมดแล้ว${taken.length?` · การ์ด ${taken.length} ใบ`:''}`);}
     } finally { setClaiming(false); }
   }
   const rates = snapshot ? (Object.entries(snapshot.per_hour) as [keyof Wallet, number][]).filter(([, n]) => n > 0) : [];
@@ -244,7 +244,7 @@ function Debrief({ session }: { session: SavedBattleSession }) {
 }
 function DailyResult({ context, outcome, close, challenge, stats, timeline, session }: { context: GameContext; outcome: Outcome; close: () => void; challenge: (target: ChallengeTarget) => void; stats: () => void; timeline: () => void; session?: SavedBattleSession }) {
   const { state, pack, locked, go } = context, claims = state.pending_rewards.filter(c => c.kind === 'daily' && c.source_keys.includes(`battle:${outcome.id}`)), card = dailyView(state, Date.now()).bosses.find(b => b.id === outcome.stage);
-  async function claimAll() { for (const claim of claims) if (!await context.submitWhenReady('reward.claim', { claim_id: claim.claim_id })) break; }
+  async function claimAll() { if(claims.length) await context.submitWhenReady('reward.claim', { claim_ids: claims.map(c=>c.claim_id) }); }
   const total: Partial<Record<keyof Wallet, number>> = {}; for (const claim of claims) for (const [k, n] of Object.entries(claim.resource_vector) as [keyof Wallet, number][]) total[k] = (total[k] ?? 0) + n;
   return <div className="result-layer" role="dialog" aria-label="ผลดันเจี้ยนรายวัน"><div className={`result-card ${claims.length ? 'win' : 'lose'}`}>
     <h2>{claims.length ? `ทำลายได้ ${claims.length} หลอด!` : outcome.code === 'DAILY_DEFEATED' ? 'ทีมพ่ายแพ้' : 'หมดเวลา'}</h2>

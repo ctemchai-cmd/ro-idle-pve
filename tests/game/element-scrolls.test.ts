@@ -10,15 +10,15 @@ import { weaponElement } from '../../src/domain/combat/status.ts';
 import { actor, battle, checkpoint, content, skill, step } from './combat-fixtures.ts';
 const at='2026-10-22T00:00:00.000Z',now=Date.parse(at);
 function fixture(){
- const rules=new AccountCommandRules();let state=initializeAccount(content,{root_job_id:'swordsman',gender:'male'},at,'2026-10-22',7),seq=0;state.wallet.gold=10000;
+ const rules=new AccountCommandRules();let state=initializeAccount(content,{root_job_id:'swordsman',gender:'male'},at,'2026-10-22',7),seq=0;state.wallet.gold=100000;
  return{get state(){return state;},rules,run(type:string,params:unknown){seq++;const command=rules.parse({type,params,request_id:`11111111-1111-4111-8111-${String(seq).padStart(12,'0')}`,expected_revision:seq,schema_version:1,...rules.versions});
   const time:CommandTime={account_id:'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa',battle_id:`22222222-2222-4222-8222-${String(seq).padStart(12,'0')}`,battle_seed:7,build_hashes:Object.fromEntries(state.roster.map(a=>[a.character_id,'b'.repeat(64)])),server_at:at,now_ms:now,new_lease_at:new Date(now+15000).toISOString(),last_ack_ms:0,lease_expires_ms:0,started_ms:now,farm_from_ms:now,stored_last_ack_ms:0,stored_lease_ms:0};
   const result=rules.decide(command,state,null,time,'c'.repeat(64));state=result.state;return result;
  }};
 }
-test('D123 four scrolls buy at50gold each; prepare/replace/cancel preserves the reserved item and daily reset does not clear stock',()=>{
+test('D123 four scrolls buy at5000gold each; prepare/replace/cancel preserves the reserved item and daily reset does not clear stock',()=>{
  const f=fixture();assert.deepEqual(elementScrolls(content).map(r=>r.element),['fire','water','earth','wind']);
- assert.equal(f.run('shop.buy',{offer_id:'fire_scroll',quantity:3}).receipt.result.code,'SHOP_PURCHASED');assert.equal(f.state.wallet.gold,9850);assert.equal(f.state.battle_supplies!.stock.fire_scroll,3);
+ assert.equal(f.run('shop.buy',{offer_id:'fire_scroll',quantity:3}).receipt.result.code,'SHOP_PURCHASED');assert.equal(f.state.wallet.gold,85000);assert.equal(f.state.battle_supplies!.stock.fire_scroll,3);
  f.run('shop.buy',{offer_id:'water_scroll',quantity:1});assert.equal(f.run('consumable.prepare',{character_id:'main',definition_id:'fire_scroll'}).receipt.outcome,'committed');assert.equal(f.state.battle_supplies!.stock.fire_scroll,2);
  assert.equal(f.run('consumable.prepare',{character_id:'main',definition_id:'water_scroll'}).receipt.outcome,'committed');assert.equal(f.state.battle_supplies!.stock.fire_scroll,3);assert.equal(f.state.battle_supplies!.stock.water_scroll,0);assert.equal(preparedScroll(f.state,'main',content)!.element,'water');
  f.run('consumable.prepare',{character_id:'main',definition_id:null});assert.equal(f.state.battle_supplies!.stock.water_scroll,1);assert.equal(preparedScroll(f.state,'main',content),null);

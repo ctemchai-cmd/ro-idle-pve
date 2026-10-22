@@ -1,3 +1,4 @@
+import { enchantLinesFor, slotModifiers } from '../domain/build/slot-definition.ts';
 import type { AccountState, Effect } from '../contracts/index.ts';
 import { loadValidatedContent } from '../content/index.ts';
 import { applySlotCommand, slotData, cardData, cardCapacity, upgradeQuote, enchantRefund, cardSalvageQuote, refineChance, type SlotCommand } from '../domain/progression/slots.ts';
@@ -12,6 +13,8 @@ const labels=content.documents['strings.th.json']!.strings as unknown as Record<
 export const statHigherIsBetter=(id:string)=>(content.documents['stat-definitions.json']!.stats as unknown as {id:string;higher_is_better?:boolean}[]).find(s=>s.id===id)?.higher_is_better!==false;
 export const cardStatUnits=Object.fromEntries((content.documents['stat-definitions.json']!.stats as unknown as{id:string;unit:string}[]).map(s=>[s.id,s.unit]));
 export const slotsData=slotData(content),cardsData=cardData(content);
+export const slotEnchantLines=(slot:EquipmentSlot)=>enchantLinesFor(slot,content);
+export const refineModifiers=(slot:EquipmentSlot)=>slotModifiers(content).refine.per_step_modifiers[slot];
 export const socketCapacity=(refine:number)=>cardCapacity(refine,content);
 /** Cards belong to a character's equipment slot, never to the item being previewed. */
 export function equippedCardSlots(state:AccountState,characterId:string,slot:EquipmentSlot){

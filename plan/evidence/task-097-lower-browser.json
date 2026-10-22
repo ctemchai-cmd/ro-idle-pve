@@ -1,0 +1,122 @@
+{
+  "task_id": "TASK-097",
+  "passed": true,
+  "checks": [
+    "Actual authored Bolt/Finger/DoubleStrafe: native white hits and yellow running sums share each visual contact; focus/fade/reduced motion/checkpoint immutability pass",
+    "Controlled100→200→300 uses native bitmap glyphs; yellow pixels verified and alpha mask matches white digits",
+    "Actual shared engine1×/2×/4× events/RNG/checkpoints match; actual interrupted Bolt and single-hit Bash/normal attacks never show a yellow total",
+    "Native mobile320/390 totals, prefers-reduced-motion and bounded frame work verified; no HTTP mutations"
+  ],
+  "measurements": [
+    {
+      "skill": "mage_fire_bolt",
+      "hit_count": 3,
+      "samples": [
+        {
+          "at_ms": 4600,
+          "amount": 23,
+          "hits": 1
+        },
+        {
+          "at_ms": 4730,
+          "amount": 46,
+          "hits": 2
+        },
+        {
+          "at_ms": 4860,
+          "amount": 69,
+          "hits": 3
+        }
+      ],
+      "final_total": 69,
+      "focus_filtered": true,
+      "fade_and_reduced_motion": true,
+      "checkpoint_unchanged": true,
+      "yellow_above_hit_numbers": true
+    },
+    {
+      "skill": "monk_finger_offensive",
+      "hit_count": 5,
+      "samples": [
+        {
+          "at_ms": 4400,
+          "amount": 49,
+          "hits": 1
+        },
+        {
+          "at_ms": 4490,
+          "amount": 98,
+          "hits": 2
+        },
+        {
+          "at_ms": 4580,
+          "amount": 147,
+          "hits": 3
+        },
+        {
+          "at_ms": 4670,
+          "amount": 196,
+          "hits": 4
+        },
+        {
+          "at_ms": 4760,
+          "amount": 245,
+          "hits": 5
+        }
+      ],
+      "final_total": 245,
+      "focus_filtered": true,
+      "fade_and_reduced_motion": true,
+      "checkpoint_unchanged": true,
+      "yellow_above_hit_numbers": true
+    },
+    {
+      "skill": "archer_double_strafe",
+      "hit_count": 2,
+      "samples": [
+        {
+          "at_ms": 4040,
+          "amount": 40,
+          "hits": 1
+        },
+        {
+          "at_ms": 4105,
+          "amount": 80,
+          "hits": 2
+        }
+      ],
+      "final_total": 80,
+      "focus_filtered": true,
+      "fade_and_reduced_motion": true,
+      "checkpoint_unchanged": true,
+      "yellow_above_hit_numbers": true
+    },
+    {
+      "values": [
+        100,
+        200,
+        300
+      ],
+      "native_alpha_mask_identical": true,
+      "gold_pixels": 549,
+      "white_pixels": 549
+    },
+    {
+      "speeds": [
+        1,
+        2,
+        4
+      ],
+      "same_events_rng_checkpoints": true,
+      "real_interrupt_no_total": true,
+      "real_bash_and_normals_no_total": true
+    },
+    {
+      "median_ms": 0.39999985694885254,
+      "max_ms": 0.9000000953674316
+    }
+  ],
+  "errors": [],
+  "mutations": [],
+  "scope": "Actual native Canvas and fixed shared-engine fixtures in isolated desktop Chrome emulating320/390; not physical Android, owner account or balance simulation"
+}

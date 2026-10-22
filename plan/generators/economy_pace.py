@@ -88,7 +88,9 @@ def main():
   economy, loot = load('economy.json'), load('loot.json')
   skills_by_root = {root: load(f'skills/{root}.json') for root in REFERENCE_BUILDS}
   new_rates, factors, plan = rates(load('progression.json'), load('stages.json')['stages'], load('slot-progress.json'), skills_by_root)
-  for row in new_rates: row['per_hour']['gold'] *= GOLD_INCOME_MULTIPLIER
+  for row in new_rates:
+    row['per_hour']['gold'] *= GOLD_INCOME_MULTIPLIER
+    row['per_hour']['crystal'] = economy['farm'].get('crystal_per_hour', 0)  # D-129, fixed all chapters
   economy['rates'] = new_rates
   for cp in economy['checkpoints']:  # same independent budgets, minutes at the D-069 rates; windows ±40 % around them
     per = new_rates[cp['chapter'] - 1]['per_hour']; minutes = max(q / per[k] * 60 for k, q in cp['cost'].items())

@@ -109,7 +109,8 @@ test('D-107 frozen v1 accrual/owned/pending cards survive migration; claim settl
  assert.deepEqual(original,input);
 });
 test('seeded farm split/cap/retry produces same fixed cards/gear and RNG without kill or speed input',()=>{
- const s=farming('8-20'),end=base+12*3600000,whole=reserveFarm(s,base,end,new Date(end).toISOString(),'whole',content),a=reserveFarm(s,base,base+333333,new Date(base+333333).toISOString(),'one',content),split=reserveFarm(a,base+333333,end,new Date(end).toISOString(),'two',content);
+ const s=farming('8-20');delete s.farm.rate_snapshot!.gear_chance_per_million; // Original100% frozen-snapshot regression; new50%covered separately.
+ const end=base+12*3600000,whole=reserveFarm(s,base,end,new Date(end).toISOString(),'whole',content),a=reserveFarm(s,base,base+333333,new Date(base+333333).toISOString(),'one',content),split=reserveFarm(a,base+333333,end,new Date(end).toISOString(),'two',content);
  const items=(state:AccountState)=>state.pending_rewards.flatMap(p=>p.items).map(({instance_id,...i})=>i);assert.deepEqual(items(whole),items(split));assert.deepEqual(whole.farm.loot_rng,split.farm.loot_rng);assert.deepEqual(whole.farm.remainders,split.farm.remainders);assert.ok(items(whole).some(i=>i.kind==='card'));assert.equal(items(whole).filter(i=>i.kind==='equipment').length,144);
  const cap=reserveFarm(s,base,base+20*3600000,new Date(base+20*3600000).toISOString(),'whole',content);assert.deepEqual(items(cap),items(whole));assert.deepEqual(whole,reserveFarm(s,base,end,new Date(end).toISOString(),'whole',content));assert.deepEqual(whole.wallet,s.wallet);
 });

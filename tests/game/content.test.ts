@@ -19,8 +19,8 @@ const location = { source: 'negative fixture', definition_id: 'fixture_bash', pa
 test('all release catalogs load, are immutable, and expose gameplay counts', () => {
   const result = loadValidatedContent(); assert.ok(result.ok);
   assert.equal(Object.keys(result.value.skills).length, 137); // + enemy_cataclysm (D-067), enemy_doom, enemy_twin_hex (D-074)
-  assert.equal(Object.keys(result.value.items).length, 204); // D-068: 144 equipment + 60 cards
-  assert.equal(Object.keys(result.value.statuses).length, 27);
+  assert.equal(Object.keys(result.value.items).length, 217); // D-122: 144 equipment + 73 cards
+  assert.equal(Object.keys(result.value.statuses).length, 28);
   assert.throws(() => { (result.value.skills['swordsman_bash'] as unknown as ObjectValue).id = 'corrupted'; }, TypeError);
   assert.equal((raw.documents['skills/swordsman.json']!.skills as unknown as ObjectValue[])[0]!.id, 'swordsman_bash');
 });
@@ -77,4 +77,13 @@ test('variants use stable IDs and preserve other actors/shared base', () => {
   const effects = result.value.effects as unknown as ObjectValue[];
   assert.equal(((effects[0]!.formula as unknown as ObjectValue).params as unknown as ObjectValue).attack_ratio, 2.6);
   assert.equal(effects.length, 3);
+});
+
+test('slot catalogs reject missing presets and invalid modifier units/buckets before gameplay builds',()=>{
+ for(const kind of ['missing','bucket','unit']as const){const changed=structuredClone(raw),slots=changed.documents['slot-progress.json'] as unknown as{enchant:{slot_lines:Record<string,Record<string,{modifiers:{bucket:string;op:string}[]}>>}};
+  if(kind==='missing')delete slots.enchant.slot_lines.weapon!.offense;
+  else if(kind==='bucket')slots.enchant.slot_lines.weapon!.precision!.modifiers[1]!.bucket='derived';
+  else slots.enchant.slot_lines.weapon!.precision!.modifiers[1]!.op='add_percent';
+  const result=validateContent(changed);assert.equal(result.ok,false);if(!result.ok)assert.ok(result.errors.some(e=>e.source==='slot-progress.json'&&e.code==={missing:'enchant_lines',bucket:'modifier_bucket',unit:'modifier_unit'}[kind]));
+ }
 });

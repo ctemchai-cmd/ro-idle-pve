@@ -245,7 +245,7 @@ export class BattleRenderer {
       const [x, y] = this.point(target), pop = this.motion ? Math.sin(Math.PI * Math.min(1, total.age_ms / 160)) * 8 : 0;
       context.save(); context.globalAlpha = total.alpha;
       // A separate band above the white numbers' upward flight keeps the running total readable.
-      this.numbers?.draw(context, total.amount, false, x, Math.max(40, y - 255) - pop, this.motion ? total.age_ms : 140, 'total', 1.08);
+      this.numbers?.draw(context, total.amount, false, x, Math.max(40, y - 240) - pop, this.motion ? total.age_ms : 140, 'total', 1.08);
       context.restore();
     }
     for (const actor of view.actors) { if (actor.summon_of) continue; const [x, y] = this.point(actor); this.label(context, actor, x, y, presentationMs); }

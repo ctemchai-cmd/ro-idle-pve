@@ -353,7 +353,8 @@ dialog.sheet::backdrop { background: rgba(10, 22, 50, .45); backdrop-filter: blu
 .action-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 8px 10px; }
 .action-btn { position: relative; display: grid; justify-items: center; gap: 2px; padding: 5px 4px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, .9); background: linear-gradient(#ffffff, #e3eeff); box-shadow: 0 3px 0 #b8cdf0, var(--shadow); font-weight: 800; font-size: 14px; }
 .action-btn img { width: 28px; height: 28px; } .action-btn .dot { top: 4px; right: 12px; min-width: 12px; height: 12px; }
-.up-glyph { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-size: 20px; background: linear-gradient(#5be38f, #1ea35a); box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .15); }
+.upgrade-emblem { display: block; width: 32px; height: 32px; filter: drop-shadow(0 1px 1px #31598624); }
+.slot-bonus { color: var(--blue-2); font-variant-numeric: tabular-nums; }
 /* All seven characters fit the portrait width (4 + 3), never a clipped side-scroll strip. */
 .roster-strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; padding: 4px 10px 6px; }
 .roster-card { position: relative; min-width: 0; width: auto; height: 72px; padding: 0; border-radius: 12px; border: 2px solid #fff; background: linear-gradient(#f8fbff, #d7e6ff); overflow: hidden; box-shadow: var(--shadow); }
@@ -768,3 +769,5 @@ dialog.sheet.card-upgrade-sheet { height: 92dvh; }
 .scroll-prepared > span:nth-child(2) { flex: 1; }
 .scroll-prepared .btn { white-space: nowrap; }
 .shop-offer .btn .cost-chip:not(.short) { color: #25456b; background: #f4f8ff; }
+
+.tower-crystal-note { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }

@@ -1792,7 +1792,11 @@
         },
         "params": {
           "type": "object",
-          "properties": {},
+          "properties": {
+            "collect_rewards": {
+              "type": "boolean"
+            }
+          },
           "required": [],
           "additionalProperties": false
         },
@@ -1842,18 +1846,42 @@
           "const": "reward.claim"
         },
         "params": {
-          "type": "object",
-          "properties": {
-            "claim_id": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 120
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "claim_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120
+                }
+              },
+              "required": [
+                "claim_id"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "claim_ids": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120
+                  },
+                  "minItems": 1,
+                  "maxItems": 32,
+                  "uniqueItems": true
+                }
+              },
+              "required": [
+                "claim_ids"
+              ],
+              "additionalProperties": false
             }
-          },
-          "required": [
-            "claim_id"
-          ],
-          "additionalProperties": false
+          ]
         },
         "content_hash": {
           "type": "string",

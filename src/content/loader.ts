@@ -54,6 +54,25 @@ export function validateContent(raw: unknown): Result<ValidatedContent> {
   for (const row of rows) attempt(row.location, () => validator.definition(row.kind, row.value, row.location));
   attempt({ source: 'stat-definitions.json', path: '/combat_resources' }, () => validator.resourceModifiers(list(bundle.documents['stat-definitions.json']!.combat_resources), skills, { source: 'stat-definitions.json', path: '/combat_resources' }));
   const docAt = (file: string) => ({ source: file, path: '' });
+  attempt(docAt('slot-progress.json'), () => {
+    const slots = bundle.documents['slot-progress.json']!, refine = object(object(slots.refine).per_step_modifiers), enchant = object(object(slots.enchant).slot_lines);
+    const names = ['weapon', 'head', 'armor', 'garment', 'shoes', 'accessory'];
+    demand(canonical(Object.keys(refine).sort()) === canonical(names.slice().sort()) && canonical(Object.keys(enchant).sort()) === canonical(names.slice().sort()), 'slot_catalog', docAt('slot-progress.json'));
+    const validate = (values: Json[], path: string) => {
+      const at = { source: 'slot-progress.json', path };
+      values.forEach((m, i) => { validator.shape('modifier', m, { ...at, path: `${path}/${i}` }); demand(typeof object(m).value === 'number' && !object(m).when, 'slot_modifier_value', at); });
+      validator.modifiers(values, at);
+    };
+    for (const slot of names) {
+      validate(list(refine[slot]), `/refine/per_step_modifiers/${slot}`);
+      const lines = object(enchant[slot]);
+      demand(canonical(Object.keys(lines).sort()) === canonical(['offense', 'precision', 'vitality']), 'enchant_lines', docAt('slot-progress.json'));
+      for (const [id, entry] of Object.entries(lines)) {
+        const row = object(entry); demand(typeof row.label === 'string' && row.label.length > 0, 'enchant_label', docAt('slot-progress.json'));
+        validate(list(row.modifiers), `/enchant/slot_lines/${slot}/${id}/modifiers`);
+      }
+    }
+  });
   for (const [file, doc] of Object.entries(bundle.documents)) attempt(docAt(file), () => {
     demand(file.endsWith('.json') && !file.includes('..') && !file.startsWith('/'), 'document_path', docAt(file));
     demand(FIXED.some(name => `${name}.json` === file) || CLASS_ROOTS.some(name => `skills/${name}.json` === file) || ['strings.th.json', 'actor-presentations.json'].includes(file) || /^presentations\/[a-z]+\.json$/.test(file), 'unknown_document', docAt(file));

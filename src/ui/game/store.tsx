@@ -45,7 +45,7 @@ export function StorePage({ context }: { context: GameContext }) {
           {row.item.kind==='card'?<button className="card-reveal" aria-label={`ดู${row.name}`} onClick={()=>setOpenCardId(row.item.instance_id)}><CardIcon card={row} pack={pack} /><b>{row.name}</b></button>:<span className={`icon-frame rarity-${row.item.rarity_id}`}><ItemIcon id={row.iconId} pack={pack} /></span>}<small>{rarityLabels[row.item.rarity_id]}</small>{row.item.kind==='card'&&<CardGrade grade={row.origin?.grade} rarity={row.item.rarity_id} variant={row.origin?.variant} />}<em>{slotLabels[row.slot as EquipmentSlot]}{row.lines ? ` · ${row.lines} Option` : ''}</em>
         </div>)}</div>}
       </section>; })()}
-    <p className="hint">Crystal ได้จากหอคอย ดันเจี้ยน และร้านค้า · ไม่มีการซื้อด้วยเงินจริง</p>
+    <p className="hint">Crystal จาก AFK 40/ชม. (480/12 ชม.) · หอคอยทุก 5 ชั้น · ผ่านด่านและภารกิจรายวัน</p>
     {openCard?.kind==='card'&&<CardSheet context={context} card={cardView(openCard,state)} close={()=>setOpenCardId(null)}/>}
   </div>;
 }

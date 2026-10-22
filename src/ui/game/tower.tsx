@@ -36,6 +36,7 @@ export function TowerPage({ context }: { context: GameContext }) {
       <span className="tower-num">{floor.floor}</span><span className="tower-name">{name(floor.boss)}<small>HP {compact(floor.row.hp)} · ATK {full(floor.row.attack)}</small></span>
       {floor.cleared ? <button className="btn small ghost" disabled={locked} onClick={() => challenge({ kind: 'tower', floor: floor.floor })}>ท้าซ้ำ</button> : floor.available ? <em className="tag on">ชั้นถัดไป</em> : <em className="tag"><Icon name="lock" /></em>}
     </li>)}</ol>
+    <p className="hint tower-crystal-note"><ResIcon pack={pack} k="crystal" /> Crystal 10 ทุก 5 ชั้น · ครั้งถัดไปชั้น {Math.ceil((highest+1)/5)*5} · ได้เฉพาะผ่านครั้งแรก</p>
     <p className="hint">ชนะชั้นใหม่ได้รางวัลครั้งเดียว ท้าซ้ำชั้นที่ผ่านแล้วไม่ได้ของ · แพ้หรือหมดเวลาไม่เสียอะไร</p>
   </div>;
 }

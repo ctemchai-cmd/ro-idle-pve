@@ -42,3 +42,5 @@
 - [33 เอฟเฟกต์ท่าโจมตีใหญ่](33-big-skill-presentation.md) — Asura/ท่าใหญ่ 15 ท่า, actual hit/contact, title/shake, reduced motion และนาฬิกาภาพที่แยกจาก engine (TASK-082)
 
 - [ใบธาตุไฟต์ถัดไป](33-element-scrolls.md) — D-123 / TASK-094
+
+- [34 รับรางวัล/Refine/Enchant/เศรษฐกิจ](34-reward-slot-economy-tuning.md) — D-127–129, TASK-098–100

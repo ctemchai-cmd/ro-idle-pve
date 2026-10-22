@@ -1,0 +1,278 @@
+✔ T038 AC-01: returning after 1h/12h/20h pays 1h/12h/12h of the chapter-1 gold rate; nothing unlocks (8.406167ms)
+✔ T038 AC-02: a repeated or stale claim cannot pay the same interval twice and never moves the cursor back (449.34675ms)
+✖ T038 AC-03: online and AFK intervals are disjoint and a Bangkok day roll does not reset the farm clock (3.808375ms)
+✔ T038 AC-04: the pure calculator runs with an injected clock and equals server settlement; four 500ms claims lose no carry (12.01725ms)
+✔ T038 AC-05: a balance patch or stage change mid-interval keeps the frozen snapshot until reservation; a retry with the same request id is identical (170.556917ms)
+✔ action bonuses join the existing outgoing bucket; legacy defaults, mitigation, crit and element stay shared (3.463417ms)
+✔ skill identity follows active, passive and periodic programs; normal origin takes precedence (1.787167ms)
+✔ event-damage card proc receives already boosted hit once, without a second skill multiplier (1.257375ms)
+✔ damage bonuses cannot multiply healing, shielding, CC duration or SP regeneration (1.575166ms)
+✔ ATK detonation consumes own poison only and shares outgoing math once (1.114042ms)
+✔ summon snapshots bonus ratios once without duplicating primary milestones or inheriting later buffs (16.277292ms)
+✔ all 126 skill definitions match 378 authored numeric goldens without running encounters (222.632291ms)
+✔ fractional gear roles survive rarity rounding; options and cards stay separate from item rarity (1.416042ms)
+✔ flat monster cards also provide proportional growth for late-game ATK, HP and SP (0.13175ms)
+✔ content migration preserves investments, instances, old rolls, slot progress, cursor and pending rewards (2536.692ms)
+✖ all release catalogs load, are immutable, and expose gameplay counts (1530.578958ms)
+✔ reject reviewed input: unknown_stat (379.466875ms)
+✔ reject reviewed input: unknown_formula (9.00375ms)
+✔ reject reviewed input: unknown_formula_param (0.545792ms)
+✔ reject reviewed input: unknown_status (1.080708ms)
+✔ reject reviewed input: unknown_binding (9.753792ms)
+✔ reject reviewed input: outcome_other_target (2.632375ms)
+✔ reject reviewed input: outcome_forward_reference (1.815667ms)
+✔ reject reviewed input: outcome_different_binding (1.00025ms)
+✔ reject reviewed input: unknown_status_param (1.538917ms)
+✔ reject reviewed input: undefined_level_param (0.442875ms)
+✔ reject reviewed input: level_curve_length (0.298875ms)
+✔ reject reviewed input: invalid_modifier_bucket (0.462666ms)
+✔ reject reviewed input: ratio_as_add_percent (0.820333ms)
+✔ reject reviewed input: buff_cap (5.0905ms)
+✔ reject reviewed input: chance_above_one (0.85025ms)
+✔ reject reviewed input: event_formula_without_event (0.33425ms)
+✔ reject reviewed input: status_param_in_skill (1.039125ms)
+✔ reject reviewed input: dead_heal_binding (0.343833ms)
+✔ reject reviewed input: unknown_json_field (1.00125ms)
+✔ reject reviewed input: effect_id_duplicate (0.345083ms)
+✔ reject reviewed input: source_sp_double_charge (2.809458ms)
+✔ reject reviewed input: patch_missing_anchor (445.935208ms)
+✔ reject reviewed input: patch_set_conflict (228.059417ms)
+✔ reject reviewed input: unknown_actor_reference (0.398458ms)
+✔ reject reviewed input: modifier_feedback_predicate (0.248334ms)
+✔ reject reviewed input: unsafe_number (0.134125ms)
+✔ reject reviewed input: status_remote_schema (0.102959ms)
+✔ reject reviewed input: skill_as_reflect (0.367083ms)
+✔ reject reviewed input: battle_start_event_target (0.23825ms)
+✔ reject reviewed input: cast_event_ambiguous_target (0.234584ms)
+✔ reject reviewed input: live_source_after_death (0.1995ms)
+✔ reject NaN before schema or formula evaluation (0.169625ms)
+✔ prototype properties cannot masquerade as target bindings (0.42875ms)
+✔ field errors identify originating definition/effect and JSON pointer (0.362834ms)
+✔ loader reports duplicate definitions and invalid document versions (3227.039416ms)
+✔ variants use stable IDs and preserve other actors/shared base (339.845125ms)
+✔ D123 four scrolls buy at5000gold each; prepare/replace/cancel preserves the reserved item and daily reset does not clear stock (1819.362792ms)
+✔ D123 empty/unknown/same/overflow requests reject atomically and do not lose a previously reserved scroll (3274.350125ms)
+✔ D123 each successful Story/Tower/Daily start consumes only the participating reservation, and failed starts preserve all scrolls (6433.132958ms)
+✔ D123 weapon normal/skill hits inherit the element, fixed skills do not; endow statuses still override and1×/2×/4× keep identical events/RNG (283.086584ms)
+✔ D123 old saves gain an empty supply pouch once; queued/stock/paid resources persist and migration is idempotent (2964.155667ms)
+✔ six slots/job and level restrictions, moving one canonical item across main/off-team owner preserves both slot investments (1957.572459ms)
+✔ all19 jobs use authored weapon compatibility; all equipment rarity/type definitions fit shared compiler without implicit stat growth (2704.535458ms)
+✖ rarity affects only item base; Refine/Enchant/card sources remain on each owner, sleep when empty, and preview exactly matches battle snapshot (1580.69825ms)
+✔ 500-item bag keeps pending reward fixed; equip/unlock/salvage still work and protected batch rejects atomically (2716.768125ms)
+✔ training weapon costs125 once per command, is a distinct unequipped instance, discard yields zero and cannot buy incompatible type (3809.317625ms)
+✔ semantic validation rejects duplicate owners/definitions/card slots and all equipment commands lock during live battle (967.523584ms)
+✖ equipment precision enters primary DEX once and skill CT/ACD preview shares that exact cast speed (504.705041ms)
+✔ subsecond farm reservations preserve integer carry and pay no wallet before reward claim (26.246208ms)
+✔ latest12h cap, frozen rate/definition snapshot and rarity-before-definition RNG are replayable (34.780875ms)
+✔ full pending queue/clock regression rejects before any cursor, RNG or reward mutation (4.150875ms)
+✔ rate switch keeps the old reserved bundle fixed and continues from only the unpaid interval (0.518ms)
+✔ all six rarity fusions consume exactly3/create1 with authored floor14/16/19/23/28/35 and no fee or slot mutation (15130.190833ms)
+✔ wrong tier/type, duplicate/missing IDs, equipped/locked/training and Supreme reject without losing any item or resources (4644.532458ms)
+✖ Tier1→20→40→60 preserves exact ID/rarity/lock/refine/enchant/cards and costs26000gold/170ore, equipment sources increase only base (291.756833ms)
+✔ equipped level gate/training/jump/downward tier fail; unequipped upgrade is allowed but cannot bypass equip requirement (245.838917ms)
+✔ 500-item bag may fuse to free two spaces, leaves pending fixed reward untouched, then pays the exact original instance once (235.974708ms)
+✔ poor-wallet preview does not mutate account; actual insufficient funds and active-battle upgrades do not change build fingerprint (225.647084ms)
+✔ browser transport cannot POST after an aborted token wait, or accept a body that finishes after abort (4384.467834ms)
+✔ level appears before the server replies; only the confirmed checkpoint is backed up, then the cloud replaces the preview (3499.33575ms)
+✔ failed save removes the display preview; reconnect resolves the original request without double spending (4290.879583ms)
+✔ display preview never mutates input, guesses random upgrades or applies unavailable levels (822.280041ms)
+✔ recurring receipt replay precedes revision, fixed claim pays once and rejected receipts stay immutable (614.184667ms)
+✔ verified signed state and schema reject changed wallet, foreign history, raw client snapshots and content mismatch (1293.388875ms)
+✔ battle advance credits only DB time, persists checkpoint and replay adds no time; expiry rejects and retreat preserves wallet (1236.75725ms)
+✔ a never-ending command reply times out, aborts and reconciles its original receipt once (742.234459ms)
+✔ timeout before commit retries the exact UUID, and failed recovery leaves an actionable pending backup (510.599083ms)
+✔ visibility reconnect during an active write does not invalidate the successful reply or start a duplicate (403.340042ms)
+✔ a hung checkpoint is bounded and disconnect/dispose cancel outstanding I/O without clearing pending intent (416.264375ms)
+✔ response-loss refresh reconciles the same receipt before cloud load without delta replay or another payment (348.670417ms)
+✔ offline and second-tab readers cannot submit; writer conflicts reload cloud without repeating an intent (329.644708ms)
+✔ refresh with an active boss reconciles then retreats instead of simulating offline combat (326.633666ms)
+✔ an older checkpoint response cannot downgrade a committed receipt or replace the newer wallet backup (329.261875ms)
+✔ account creation persists a pending UUID without a checkpoint and refresh recovers its original receipt once (437.629708ms)
+✔ confirmed legacy replies skip the redundant receipt GET; a combined verified checkpoint skips both GETs (630.654208ms)
+✔ combined replies reject foreign/stale checkpoints and preserve the committed pending intent for reconciliation (969.306125ms)
+✔ terminal-only start + finish writes twice; a lost finish response reconciles the original receipt without replaying rewards (522.783ms)
+✔ D-127 ten fixed reward bundles pay in one commit, including original-UUID response-loss replay (355.926959ms)
+✔ batch claims validate full selection/capacity/duplicates/overflow before changing wallet or rewards (1282.15275ms)
+✔ farm collect reserves and pays every pending bundle in one proposal, even a full32-claim queue; full inventory rolls back reservation too (103.551334ms)
+✔ all18 Enchant presets differ and all6 slots compile their own definition, with server/preview parity and exact historical refunds (629.355458ms)
+✔ Refine uses additive percentages once for all6 slots at+0/1/5/10 on low and high stats; swapping gear retains investment (899.062375ms)
+✔ AFK40Crystal/h caps at480 per12h, fractional claims preserve carry; frozen legacy earns no retroactiveCrystal then switches to40/h (50.599ms)
+✔ gear50% roll stays independent of card attempts, legacy100% draw order retained, all scrolls5000gold and Tower milestones unchanged (213.517541ms)
+✔ 73 RO definitions with66 native portraits preserve all 60 legacy IDs, correct slots, exact art IDs and distinct source grades (177.510833ms)
+✔ quality/level improve benefits, reduce penalties, scale proc power once and pure control chance only (8.889917ms)
+✔ Raydric/Deviling reduce neutral damage and retain weaknesses; true damage bypasses new resistance (54.3465ms)
+✔ armor element and GTB magic-only guard/SP cost use shared stats; physical hits stay unchanged (35.256125ms)
+✔ Marc/Marduk/Deviruchi resist only their status; hard CC still interrupts Phen (24.269459ms)
+✔ Maya reflects magical only; normalized proc cannot recursively reflect itself (10.085292ms)
+✔ Moonlight changes motion only, with identical virtual-time integration across frame chunks (21.963333ms)
+✔ Osiris improves the existing revive recovery without adding a revive or replaying its old cast (22.335ms)
+✔ every authored card proc resolves actual effects with target tags and no formula/status errors (34.770041ms)
+✔ Hydra target bonus requires a physical hit against the matching race; its own proc cannot retrigger (11.953291ms)
+✔ farm profile improves stage chance/quality, gates Mini/MVP, retains earlier cards and favors current tiers (271.058584ms)
+✔ D-107 rare farm has1.44–2.88 expected cards per12h, true boundary chances and unchanged quality/grade rules (106.123417ms)
+✔ D-107 frozen v1 accrual/owned/pending cards survive migration; claim settles old rate once then installs v2 (1693.034958ms)
+✖ seeded farm split/cap/retry produces same fixed cards/gear and RNG without kill or speed input (48.676791ms)
+✔ legacy snapshot settles before enabling cards; full bag never consumes or rerolls pending rewards (7046.409208ms)
+✔ slot correction migration returns incompatible cards to bag and preserves exact instance/quality/level/lock (674.437666ms)
+✔ D122 separate Puppet definitions reuse parent art while full Angeling/Deviling become Legendary MVP (0.739166ms)
+✔ D122 Puppet size bonuses match only their target size for physical/magical damage and never recursively trigger (4.873959ms)
+✔ D122 migration upgrades owned and reserved old Mini Angeling/Deviling without replacing instances or investments (0.614583ms)
+✔ D122 frozen v3 Mini-rarity map migrates before AFK without changing pool/chance/weights/RNG/cursor or adding Puppet retroactively (3.667625ms)
+✔ a committed boss-start receipt releases the pending gate even when the next checkpoint requires migration (2508.427833ms)
+✔ absent old/current-version intents refused by the version gate are archived before migration and never replayed on new rules (4862.901625ms)
+✔ uncertain receipt/network failures keep the original intent; retry can settle it before migration (878.189416ms)
+✔ a version refusal on a live write transitions to the migration preview instead of keeping saving/pending locked (398.92ms)
+✔ a migration preview older than the recovered receipt cannot discard its pending revision barrier (1179.206666ms)
+✔ a storage failure cannot silently drop a version-refused pending intent or strand saving (822.2055ms)
+✔ a checkpoint version validation error after a possible commit is not mistaken for a server refusal (357.447041ms)
+✔ T040 AC-01: export → reset → restore brings back the same characters, NPCs, items and slot progress (492.095542ms)
+✔ T040 AC-02: an older signed save is previewed then migrated with a backup; unsupported or broken saves are never changed (849.677125ms)
+✔ T040 AC-03 + D-085: new game clears daily dungeons; restore guards AFK/shop/daily counters and restores once (975.46175ms)
+✔ T040 AC-03/04: a quarantined save is recovered only from its signed tip; a healthy save refuses recovery (235.982042ms)
+✔ T040 AC-04: the client only sends maintenance writes the server asked for, and shows nothing until the receipt (0.543125ms)
+✔ D-085: migrating an already-reset locked game clears only carried daily progress, with backup; unlocked games retain it (397.348ms)
+✔ T040 AC-05: compatibility matrix — current/older/newer/unknown/cost-version fixtures migrate, reject or refund exactly (404.172334ms)
+✔ 21Oct daily clock incident refunds one Essence attempt with signed backup; retries cannot refund twice (205.844042ms)
+✔ daily clock repair without an affected historical retreat does not change quota or create a backup (197.489042ms)
+✔ Refine4→5 and9→10 open exact sockets, costs total77000gold/275ore when every step succeeds; max11/duplicate target do not debit (1170.054041ms)
+✔ Enchant merges old/current actual paid costs and changing line refunds exact2800gold/11dust once into immutable receipt, not current4200 price (552.712875ms)
+✔ distinct duplicate cards add per source; a single instance moves owners, and investments sleep when gear removed (463.296875ms)
+✔ card level1→5 charges7500gold/300dust once; salvage yields rarity dust only and protected batches reject before mutation (333.697125ms)
+✔ Precision affects preview/engine DEX and CT/ACD through shared primary pipeline; poor-wallet preview works without mutation (233.199833ms)
+✔ repeated level/enchant/reset operations keep only bounded active scopes and archive exact refund evidence without growing save history (305.996959ms)
+✔ equipped-card payload changes build fingerprints, unassigned rewards do not; all slot/card mutations reject while a battle is active (230.580125ms)
+✔ D-057 Refine: +1..+4 always succeed, later steps roll a server seed; failure spends only the step cost, keeps the level and adds pity (231.48525ms)
+✔ D-057 Refine pity reaches the cap so +9→+10 (20%) is guaranteed after 8 failures; unseeded rolls are refused (548.659667ms)
+✔ T035 AC-01: floors 1/100/101/1000 come from one generator (HP 710/2090600/…/2008100600), load valid refs and start a real battle (15.429208ms)
+✔ D-114: floor21 is24750HP/273ATK, following floors grow faster, with original defense/rewards/speed (0.226125ms)
+✔ T035 AC-02: the frontier floor pays its first clear once; replays, losses and locked floors pay nothing (1461.508167ms)
+✔ T035 AC-03: the Tower never resets across the Bangkok day and survives a reload; the team stays as saved (62.379667ms)
+✔ T035 AC-04: generated floors stay finite and safe until the generator itself refuses with TOWER_FLOOR_OVERFLOW (1.275666ms)
+✔ T035 AC-01: the client battle session builds a Tower scene (floor title, template boss look) from the server checkpoint (1776.6655ms)
+✔ D-071: battle.advance speed 4 credits four times the wall interval through the real command path; the schema refuses speed 3 (25.931167ms)
+✔ T053 AC-02: a Tower card chest gives a card of the player's tier (chapter 2 cleared → tier 20; chapter 4 → tier 40) (116.397709ms)
+ℹ tests 153
+ℹ suites 0
+ℹ pass 147
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 30984.605833
+
+✖ failing tests:
+
+test at tests/game/afk.test.ts:1:3126
+✖ T038 AC-03: online and AFK intervals are disjoint and a Bangkok day roll does not reset the farm clock (3.808375ms)
+  AssertionError [ERR_ASSERTION]: no double pay across the split
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/afk.test.ts:45:78)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '=='
+  }
+
+test at tests/game/content.test.ts:1:907
+✖ all release catalogs load, are immutable, and expose gameplay counts (1530.578958ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  217 !== 204
+
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/content.test.ts:22:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.start (node:internal/test_runner/test:959:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:332:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 217,
+    expected: 204,
+    operator: 'strictEqual'
+  }
+
+test at tests/game/equipment-progression.test.ts:1:4498
+✖ rarity affects only item base; Refine/Enchant/card sources remain on each owner, sleep when empty, and preview exactly matches battle snapshot (1580.69825ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  294 !== 304
+
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/equipment-progression.test.ts:43:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 294,
+    expected: 304,
+    operator: 'strictEqual'
+  }
+
+test at tests/game/equipment-progression.test.ts:1:11809
+✖ equipment precision enters primary DEX once and skill CT/ACD preview shares that exact cast speed (504.705041ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  8 !== 18
+
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/equipment-progression.test.ts:73:301)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 8,
+    expected: 18,
+    operator: 'strictEqual'
+  }
+
+test at tests/game/gear-upgrades.test.ts:1:3910
+✖ Tier1→20→40→60 preserves exact ID/rarity/lock/refine/enchant/cards and costs26000gold/170ore, equipment sources increase only base (291.756833ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  465.5 !== 266
+
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/gear-upgrades.test.ts:38:419)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 465.5,
+    expected: 266,
+    operator: 'strictEqual'
+  }
+
+test at tests/game/ro-cards.test.ts:1:16221
+✖ seeded farm split/cap/retry produces same fixed cards/gear and RNG without kill or speed input (48.676791ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  71 !== 144
+
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/ro-cards.test.ts:113:327)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 71,
+    expected: 144,
+    operator: 'strictEqual'
+  }

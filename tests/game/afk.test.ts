@@ -42,7 +42,7 @@ test('T038 AC-03: online and AFK intervals are disjoint and a Bangkok day roll d
   const state = farming(), online = reserveFarm(state, base, base + 30 * 60000, new Date(base + 30 * 60000).toISOString(), 'online', content);
   const afk = reserveFarm(online, base + 30 * 60000, base + 18 * hour, new Date(base + 18 * hour).toISOString(), 'afk', content); // crosses 00:00 Bangkok (17:00Z)
   const whole = reserveFarm(farming(), base, base + 18 * hour, new Date(base + 18 * hour).toISOString(), 'whole', content);
-  assert.equal(gold(online) + (gold(afk) - gold(online)), gold(afk)); assert.ok(gold(afk) <= gold(whole) + 1800, 'no double pay across the split');
+  assert.equal(gold(online) + (gold(afk) - gold(online)), gold(afk)); assert.equal(gold(afk), gold(whole) + RATE / 2, 'exact30min online plus capped12h AFK');
   assert.equal(afk.farm.reserved_through, new Date(base + 18 * hour).toISOString());
   assert.equal(gold(afk) - gold(online), 12 * RATE, 'the AFK window itself is capped at 12h');
 });

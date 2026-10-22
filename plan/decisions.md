@@ -244,3 +244,7 @@ D-117 runtime finding: valid same-user TOKEN_REFRESHED ระหว่าง SDK
 | D-125 | 22 ต.ค.2026 ผู้ใช้ให้ช่องสวมใส่ขึ้นสีแดง และยืนยันว่าเลเวลไอเท็มสูงกว่าก่อน ถ้าเท่ากันจึงดู rarity ที่สูงกว่า | TASK-096 จุดแดงเล็กและป้ายในรายการเปลี่ยน กรองอาชีพ/เลเวล/ยังไม่มีคนสวม ใช้ tier→rarity โดยไม่คำนวณ stats/ออปชัน/ค่าพัฒนาช่อง |
 
 | D-126 | 22 ต.ค.2026 ผู้ใช้ถามเลขเหลืองสะสมที่ยังไม่มี และย้ำเฉพาะสกิลMultiHit เช่นFinger Monk/Bolt | TASK-097 เพิ่มnativeyellow runningtotalต่อcast/target เฉพาะdirectmulti-hitของตัวโฟกัส normal/single/periodic/proc/reflectไม่รวม; visualcontact/fallback90msเฉพาะภาพ ไม่มีengine/savechange |
+
+| D-127 | 22 ต.ค.2026 ผู้ใช้ขอเลขเหลืองต่ำลงและรับหลายกล่องพร้อมกัน | TASK-097 follow-up y−240; TASK-098 batch reward.claim และfarm reserve+pay atomicในคำสั่งเดียว คงsingleclaimเดิม |
+| D-128 | 22 ต.ค.2026 ผู้ใช้ขอEnchantต่างกันแต่ละช่อง/ตีบวกเห็นผล และถามใช้% | TASK-099 ใช้flatเดิม+percentบวกสะสมในบัคเก็ตกลาง; Enchantรายslot18ชุดโดยคงlineids/ทุน/ระดับ ตัวเลขassistantbaseline ไม่อ้างสมดุลทั้งเกม |
+| D-129 | 22 ต.ค.2026 ผู้ใช้ขอUpgradeiconเข้าธีม/ใบธาตุแพงขึ้น/CrystalAFKพอ4–5ใบและยืนยัน12h/gearลดครึ่ง | TASK-100 AFK40Crystal/h=480/12hทุกบท; Tower10ทุก5ชั้นเดิม/firstclear; scroll5000gold; gear50%ต่อ5minแยกจากcardroll Legacyunpaid snapshotรักษาค่า |

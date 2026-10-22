@@ -10,7 +10,8 @@
         "skill_manual": 57,
         "refine_ore": 1,
         "breakthrough_essence": 1,
-        "enchant_dust": 0
+        "enchant_dust": 0,
+        "crystal": 40
       }
     },
     {
@@ -21,7 +22,8 @@
         "skill_manual": 57,
         "refine_ore": 13,
         "breakthrough_essence": 9,
-        "enchant_dust": 1
+        "enchant_dust": 1,
+        "crystal": 40
       }
     },
     {
@@ -32,7 +34,8 @@
         "skill_manual": 137,
         "refine_ore": 34,
         "breakthrough_essence": 9,
-        "enchant_dust": 4
+        "enchant_dust": 4,
+        "crystal": 40
       }
     },
     {
@@ -43,7 +46,8 @@
         "skill_manual": 137,
         "refine_ore": 34,
         "breakthrough_essence": 9,
-        "enchant_dust": 5
+        "enchant_dust": 5,
+        "crystal": 40
       }
     },
     {
@@ -54,7 +58,8 @@
         "skill_manual": 204,
         "refine_ore": 34,
         "breakthrough_essence": 9,
-        "enchant_dust": 6
+        "enchant_dust": 6,
+        "crystal": 40
       }
     },
     {
@@ -65,7 +70,8 @@
         "skill_manual": 204,
         "refine_ore": 34,
         "breakthrough_essence": 9,
-        "enchant_dust": 6
+        "enchant_dust": 6,
+        "crystal": 40
       }
     },
     {
@@ -76,7 +82,8 @@
         "skill_manual": 204,
         "refine_ore": 34,
         "breakthrough_essence": 17,
-        "enchant_dust": 6
+        "enchant_dust": 6,
+        "crystal": 40
       }
     },
     {
@@ -87,7 +94,8 @@
         "skill_manual": 204,
         "refine_ore": 34,
         "breakthrough_essence": 17,
-        "enchant_dust": 6
+        "enchant_dust": 6,
+        "crystal": 40
       }
     }
   ],
@@ -103,10 +111,13 @@
       "breakthrough_essence": "clear 1-5",
       "enchant_dust": "clear 2-5"
     },
-    "crystal_from_farm": false,
+    "crystal_from_farm": true,
     "during_other_modes": "farm accrues continuously at selected cleared stage during Story/Tower/daily; mode reward is additional; never also grant kill-based farm currency",
     "AFK_does_not_unlock_stages": true,
-    "equipment_drop_interval_ms": 300000
+    "equipment_drop_interval_ms": 300000,
+    "crystal_per_hour": 40,
+    "equipment_chance_per_million": 500000,
+    "crystal_pacing": "D-129: 480 Crystal per12h=4.8 card pulls at100; same rate all chapters, first-clear/daily extra. Full24h claiming twice yields960."
   },
   "resources": [
     {
@@ -200,7 +211,8 @@
       "sources": [
         "story_first_clear",
         "tower_first_clear",
-        "daily_objective"
+        "daily_objective",
+        "farm"
       ],
       "sinks": [
         "card_gacha"
@@ -402,7 +414,7 @@
       {
         "id": "fire_scroll",
         "price": {
-          "gold": 50
+          "gold": 5000
         },
         "grant": {},
         "consumable_grant": {
@@ -413,7 +425,7 @@
       {
         "id": "water_scroll",
         "price": {
-          "gold": 50
+          "gold": 5000
         },
         "grant": {},
         "consumable_grant": {
@@ -424,7 +436,7 @@
       {
         "id": "earth_scroll",
         "price": {
-          "gold": 50
+          "gold": 5000
         },
         "grant": {},
         "consumable_grant": {
@@ -435,7 +447,7 @@
       {
         "id": "wind_scroll",
         "price": {
-          "gold": 50
+          "gold": 5000
         },
         "grant": {},
         "consumable_grant": {

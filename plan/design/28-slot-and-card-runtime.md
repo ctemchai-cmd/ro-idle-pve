@@ -42,3 +42,6 @@ UIเป็นdetailsในช่องอุปกรณ์ที่เลื�
 Unit casesเพิ่ม7กรณี ครอบคลุมcapacity/ต้นทุน/old-price refund/card duplicates/ownership/empty-slot/poor-wallet preview/engine parity/bounded ledger/build fingerprints และcombat mutation lock ชุดAuth/API/SQL/Chromeเฉพาะผ่านก่อนรันregressionรวม ผลสุดท้ายและsourcehashอยู่กับTASK-027หลังreview
 
 Fixturesสำหรับวัตถุดิบ/การ์ด/ราคาเก่าเป็น signed server-ownedในฐานชั่วคราว ไม่ใช่การอ้างว่าเล่นฟาร์มหรือสุ่มได้แล้ว Gachaเป็นTASK-037; rarity/tierเป็นTASK-028; การวัดบาลานซ์/paceทุกโหมดเป็นTASK-041
+
+
+22ต.ค.2026 D-127–129: กติกา reward batch / Refineflat+percent / Enchantรายslot / CrystalAFKและgearchance ใช้ [design34](34-reward-slot-economy-tuning.md) และcanonicaldataล่าสุดเหนือค่าตัวอย่างเก่า

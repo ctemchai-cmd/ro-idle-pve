@@ -43,3 +43,5 @@ AC-01 ใช้purecasesของMultiHitNumbers/ordinals; AC-02 ใช้native
 - Content/packเดิม ไม่มีengine/contracts/save/asset payloadเปลี่ยน PublicVercel3กลุ่มผ่าน: rendererJS SHA/markers/pack/content/API/login/PWA/0writes
 
 Reviewผ่าน3/3AC · 22 ต.ค.2026 · source`bb33151f208db27f40553f3b4d306e59880f9ced` VercelSUCCESS · [หลักฐาน](../evidence/task-097-review.json)
+
+22ต.ค.follow-up: ผู้ใช้ขอเลขต่ำลงเล็กน้อย จึงลดband255→240 ขยับลง15worldpx คงwhitegap≥45/nativecontact/speed/CC/focus; nativeChrome4groupsผ่าน task-097-lower-browser.json เปิดภาพFingerดูแล้ว ไม่เขียนทับหลักฐาน097เดิม. รวมdeployพร้อมTASK098–100.

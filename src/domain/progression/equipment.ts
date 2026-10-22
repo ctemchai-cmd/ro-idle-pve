@@ -1,3 +1,4 @@
+import { enchantLinesFor } from '../build/slot-definition.ts';
 import type { AccountState, Command } from '../../contracts/index.ts';
 import type { ValidatedContent } from '../../content/model.ts';
 import { ProgressionRejection } from './rejection.ts';
@@ -72,7 +73,7 @@ export function validateInventory(state:AccountState,content:ValidatedContent):v
   const id=actor.equipment[slot];
   if(id){const item=state.inventory.find(i=>i.instance_id===id);if(!item||equipmentFit(actor,slot,item,content))throw new Error('INVALID_EQUIPPED_ITEM');if(assigned.has(id))throw new Error('DUPLICATE_ITEM_ASSIGNMENT');assigned.add(id);}
   const progress=actor.slot_progress[slot],capacity=capacities.filter(row=>row.minimum_refine<=progress.refine).at(-1)!.slots;
-  if(progress.enchant.level>0&&!progress.enchant.line_id)throw new Error('INVALID_ENCHANT_LINE');
+  if((progress.enchant.level>0&&!progress.enchant.line_id)||(progress.enchant.line_id&&!enchantLinesFor(slot,content)[progress.enchant.line_id]))throw new Error('INVALID_ENCHANT_LINE');
   progress.cards.forEach((cardId,index)=>{if(!cardId)return;const card=state.inventory.find(i=>i.instance_id===cardId);if(index>=capacity||!card||card.kind!=='card'||itemDefinition(card,content).slot!==slot)throw new Error('INVALID_CARD_ASSIGNMENT');if(assigned.has(cardId))throw new Error('DUPLICATE_ITEM_ASSIGNMENT');assigned.add(cardId);});
  }
 }

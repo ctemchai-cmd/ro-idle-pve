@@ -2,10 +2,11 @@ import type { AccountState, Command } from '../../contracts/index.ts';
 import type { ValidatedContent } from '../../content/model.ts';
 import { assignedOwner, itemDefinition, type EquipmentSlot, type InventoryItem } from './equipment.ts';
 import { ProgressionRejection } from './rejection.ts';
+import { enchantLinesFor, type EnchantLine } from '../build/slot-definition.ts';
 import { cardRarityDust } from '../build/card-rarity.ts';
 type Wallet=AccountState['wallet'];
 export type SlotCommand=Extract<Command,{type:'slot.refine'|'slot.enchant'|'slot.change_enchant'|'card.assign'|'card.unassign'|'card.upgrade'|'card.salvage'}>;
-export interface SlotData {refine:{max:number;success_chance_by_target:Record<string,number>;pity:{bonus_per_failure:number;cap:number};upgrade_rows:{from:number;to:number;gold:number;refine_ore:number}[]};enchant:{max:number;lines:Record<string,unknown>;upgrade_rows:{from:number;to:number;gold:number;enchant_dust:number}[]};cards:{capacity_by_refine:{minimum_refine:number;slots:number}[]}}
+export interface SlotData {refine:{max:number;success_chance_by_target:Record<string,number>;pity:{bonus_per_failure:number;cap:number};upgrade_rows:{from:number;to:number;gold:number;refine_ore:number}[]};enchant:{max:number;slot_lines:Record<EquipmentSlot,Record<string,EnchantLine>>;upgrade_rows:{from:number;to:number;gold:number;enchant_dust:number}[]};cards:{capacity_by_refine:{minimum_refine:number;slots:number}[]}}
 interface CardData{level_cost_rows:{from:number;to:number;gold:number;card_dust:number}[];rarities:{id:string;salvage_card_dust:number}[]}
 export const slotData=(content:ValidatedContent)=>content.documents['slot-progress.json'] as unknown as SlotData;
 export const cardData=(content:ValidatedContent)=>content.documents['cards.json'] as unknown as CardData;
@@ -52,13 +53,13 @@ export function applySlotCommand(state:AccountState,command:SlotCommand,content:
   progress.refine=command.params.target_level;progress.refine_failures=0;return'SLOT_REFINED';
  }
  if(command.type==='slot.enchant'){
-  if(progress.enchant.line_id&&progress.enchant.line_id!==command.params.line_id)reject('ENCHANT_LINE_CONFLICT');if(!slots.enchant.lines[command.params.line_id])reject('INVALID_ENCHANT_LINE');
+  if(progress.enchant.line_id&&progress.enchant.line_id!==command.params.line_id)reject('ENCHANT_LINE_CONFLICT');if(!enchantLinesFor(slot,content)[command.params.line_id])reject('INVALID_ENCHANT_LINE');
   const current=progress.enchant.level,cost=upgradeQuote(current,command.params.target_level,slots.enchant.max,slots.enchant.upgrade_rows);pay(cost);
   const version=content.manifest.content_version;state.paid_ledger.push({entry_id:`investment_${command.request_id}`,character_id:actor.character_id,feature_id:`enchant_${slot}`,skill_id:command.params.line_id,quantity:command.params.target_level-current,cost_version:version,cost_versions:[version],paid_resources:{...Object.fromEntries(Object.keys(state.wallet).map(k=>[k,0])),...cost}as Wallet,refund_state:'active',refund_command_id:null});
   progress.enchant={line_id:command.params.line_id,level:command.params.target_level};return'SLOT_ENCHANTED';
  }
  if(command.type==='slot.change_enchant'){
-  if(progress.enchant.line_id===command.params.line_id)reject('ENCHANT_LINE_UNCHANGED');if(!slots.enchant.lines[command.params.line_id])reject('INVALID_ENCHANT_LINE');
+  if(progress.enchant.line_id===command.params.line_id)reject('ENCHANT_LINE_UNCHANGED');if(!enchantLinesFor(slot,content)[command.params.line_id])reject('INVALID_ENCHANT_LINE');
   const refund=enchantRefund(state,actor.character_id,slot);for(const key of Object.keys(refund)as(keyof Wallet)[])if(!Number.isSafeInteger(state.wallet[key]+refund[key]!))reject('RESOURCE_OVERFLOW');for(const key of Object.keys(refund)as(keyof Wallet)[])state.wallet[key]+=refund[key]!;
   for(const row of state.paid_ledger)if(row.character_id===actor.character_id&&row.feature_id===`enchant_${slot}`&&row.refund_state==='active'){row.refund_state='refunded';row.refund_command_id=command.request_id;}
   progress.enchant={line_id:command.params.line_id,level:0};return'ENCHANT_LINE_CHANGED';

@@ -1,3 +1,4 @@
+import { claimRewards } from '../progression/claim-rewards.ts';
 import { preparedScroll, validateSupplies } from '../build/consumables.ts';
 import { grantConsumables, prepareConsumable, consumePreparedForTeam } from '../progression/consumables.ts';
 import type { AccountState, Command, Receipt } from '../../contracts/index.ts';
@@ -178,22 +179,16 @@ export class AccountCommandRules extends AccountCreationRules {
       } else if (command.type === 'farm.claim') {
         try {
           // Settle the frozen old profile first; new card rules apply only to subsequent unpaid time.
+          if (command.params.collect_rewards && state.pending_rewards.length) claimRewards(state, state.pending_rewards.map(c => c.claim_id), this.content);
           state = reserveFarm(state, time.farm_from_ms, time.now_ms, time.server_at, `farm_${command.request_id}`, this.content);
           const stage = storyStage(state.farm.rate_snapshot!.stage_id, this.content);
           if (stage) state.farm.rate_snapshot = storyFarmSnapshot(stage, state, this.content);
-          state.daily_objectives.farm_claimed = true; code = 'FARM_RESERVED';
+          if (command.params.collect_rewards && state.pending_rewards.length) claimRewards(state, state.pending_rewards.map(c => c.claim_id), this.content);
+          state.daily_objectives.farm_claimed = true; code = command.params.collect_rewards ? 'FARM_COLLECTED' : 'FARM_RESERVED';
         }
         catch (error) { if (error instanceof Error && /^[A-Z_]+$/.test(error.message)) reject(error.message); else throw error; }
       } else if (command.type === 'reward.claim') {
-        const claim = state.pending_rewards.find(c => c.claim_id === command.params.claim_id);
-        if (!claim) reject('CLAIM_NOT_FOUND');
-        if (state.inventory.length + claim!.items.length > Number(this.content.documents['equipment.json']!.inventory_capacity)) reject('INVENTORY_FULL');
-        if (claim!.items.some(i => state.inventory.some(current => current.instance_id === i.instance_id))) reject('DUPLICATE_REWARD_INSTANCE');
-        for (const resource of Object.keys(state.wallet) as (keyof AccountState['wallet'])[]) {
-          const total = state.wallet[resource] + claim!.resource_vector[resource];
-          if (!Number.isSafeInteger(total)) reject('RESOURCE_OVERFLOW'); state.wallet[resource] = total;
-        }
-        state.inventory.push(...claim!.items); state.pending_rewards = state.pending_rewards.filter(c => c !== claim); if (claim!.kind === 'farm') state.daily_objectives.farm_claimed = true; code = 'REWARD_CLAIMED';
+        claimRewards(state, 'claim_ids' in command.params ? command.params.claim_ids : [command.params.claim_id], this.content); code = 'REWARD_CLAIMED';
       } else if (command.type === 'battle.retreat' || command.type === 'battle.advance' || command.type === 'battle.finish') {
         const pointer = state.active_battle;
         if (!pointer || pointer.battle_id !== command.params.battle_id) reject('ACTIVE_BATTLE_MISMATCH');

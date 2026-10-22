@@ -187,3 +187,11 @@ test('terminal-only start + finish writes twice; a lost finish response reconcil
  assert.deepEqual((await f.server.command(identity, finish)).body, { receipt: f.receipts.get(finish.request_id)!.receipt }); assert.equal(f.writes, 2);
  assert.equal((f.context.save!.state as AccountState).pending_rewards.filter(c => c.kind === 'story').length, 1); b.dispose();
 });
+
+test('D-127 ten fixed reward bundles pay in one commit, including original-UUID response-loss replay', async()=>{
+ const f=fixture(),s=f.context.save!.state as AccountState,template=structuredClone(s.pending_rewards[0]!);
+ s.pending_rewards=Array.from({length:10},(_,i)=>({...structuredClone(template),claim_id:'batch_'+i}));f.reseal();
+ const c=f.command(undefined,'reward.claim',{claim_ids:s.pending_rewards.map(p=>p.claim_id)}),before=s.wallet.gold;
+ const first=await f.server.command(identity,c);assert.equal(first.status,200);assert.equal((first.body as any).receipt.outcome,'committed');assert.equal(f.writes,1);assert.equal((f.context.save!.state as AccountState).wallet.gold,before+10*template.resource_vector.gold);assert.equal((f.context.save!.state as AccountState).pending_rewards.length,0);
+ assert.deepEqual(await f.server.command(identity,c),first);assert.equal(f.writes,1);assert.equal(f.context.save!.revision,2);
+});
