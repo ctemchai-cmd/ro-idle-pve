@@ -48,6 +48,12 @@ test('upgrade summary includes ACD as well as CT, SP and effect changes; all-cur
   const asura = option('monk_asura'); assert.match(asura.effects.join(' '), /ใช้ SP ทั้งหมด.*อย่างน้อย.*ใช้ Spirit Sphere/);
   assert.ok(skillLevelComparison(asura).rows.every(r => r.sp === null));
 });
+test('Passive proc chance is explicit and SpiritCombo15→35% upgrades produce a real visible delta', () => {
+  const comparison = skillLevelComparison(option('monk_spirit_combo'));
+  assert.match(comparison.rows[0]!.effects.join(' '), /เมื่อตีปกติโดน.*โอกาส 15%/);
+  assert.match(comparison.rows[9]!.effects.join(' '), /โอกาส 35%/);
+  assert.match(skillUpgradeChanges(comparison.rows[0]!, comparison.rows[1]!).join(' '), /15%.*→.*17.22%/);
+});
 test('all126 skill level previews use exact shared resolved data and never mutate content or emit NaN', () => {
   const before = JSON.stringify(content.skills); let count = 0;
   for (const source of Object.values(content.skills).filter(s => s.class_id !== 'enemy')) {
@@ -56,6 +62,7 @@ test('all126 skill level previews use exact shared resolved data and never mutat
       assert.deepEqual(row.definition, resolveSkill(s.id, row.level, content).definition);
       assert.ok(!row.effects.join(' ').includes('NaN'), s.id);
       if (row.definition.kind === 'active' && typeof row.definition.cost.sp === 'number') assert.equal(row.sp, fixedSpCost(row.definition.cost.sp, { sp_cost_percent: s.previewSpPercent }));
+      if (row.level > 1 && JSON.stringify(row.definition) !== JSON.stringify(comparison.rows[row.level - 2]!.definition)) assert.ok(skillUpgradeChanges(comparison.rows[row.level - 2]!, row).length > 0, `${s.id} Lv.${row.level} changed silently`);
     }
   }
   assert.equal(count, 126); assert.equal(JSON.stringify(content.skills), before);

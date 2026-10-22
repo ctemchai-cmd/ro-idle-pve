@@ -63,7 +63,7 @@ const assert=(ok,message)=>{if(!ok)throw new Error(message);};let browser,profil
  if(prefix==='task-079'){
   const shell=manifest.build_files.find(r=>/^dist\/assets\/shell-.*\.js$/.test(r.path)),growth=manifest.build_files.find(r=>/^dist\/assets\/(?:skill-growth|gear-upgrades)-.*\.js$/.test(r.path));assert(shell,'NO_GAME_SHELL_BUNDLE');
   const sources=await Promise.all([shell,...(growth?[growth]:[])].map(async row=>(await fetch(base+'/'+row.path.replace(/^dist\//,''))).text()));
-  const actual=sources.join('\n');assert(['skill-upgrade-diff','skill-levels','ลด SP อย่างเดียว','เปลี่ยนจากตอนนี้'].every(s=>actual.includes(s)),'SKILL_LEVEL_DESCRIPTION_NOT_DEPLOYED');
+  const actual=sources.join('\n');assert(['skill-upgrade-diff','skill-levels','ลด SP อย่างเดียว','เปลี่ยนจากตอนนี้','เมื่อตีปกติโดน'].every(s=>actual.includes(s)),'SKILL_LEVEL_DESCRIPTION_NOT_DEPLOYED');
   const css=manifest.build_files.filter(r=>/^dist\/assets\/.*\.css$/.test(r.path));const styles=(await Promise.all(css.map(async row=>(await fetch(base+'/'+row.path.replace(/^dist\//,''))).text()))).join('\n');
   assert(styles.includes('.bag-cell.card .item-icon')&&/translate(?:X)?\(-50%\)/.test(styles)&&styles.includes('.card-thumb{overflow:hidden}'),'CARD_CORNERS_NOT_DEPLOYED');
  }

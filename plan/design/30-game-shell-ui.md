@@ -105,3 +105,5 @@ D-095 / TASK-070: หน้าผล Story/Tower/Daily เปิด **Timeline �
 ตอนนี้ Fire Endow เป็น weapon-endow เดียว: allies ทั้งทีม Fire6.5s และ MATKup5.5s สกิลที่ตามอาวุธเปลี่ยนด้วย สกิลธาตุตายตัว/เกราะแยกกัน Enchant Poison มี ATKup ไม่มี poison-endow. Call Spirits เสก5/ถือได้5/ATK1%ต่อลูกที่เหลือหลังจ่าย; Lv1–10 ลดSP27→18. Provoke ใช้4.5sเดิมทุกเลเวล บังคับ normal+single selectorsที่รองรับไปหาผู้ยั่วยุที่มีชีวิต ไม่บังคับ all/random_n; SP19→10 ตัวเลขคือcontentปัจจุบัน ไม่ใช่กฎROต้นฉบับหรือการเพิ่มbalanceในงาน079
 
 ภาพการ์ดคง3:4ในbag/socket/picker ใส่radiusบนขอบรูปจริงด้วย ให้ภาพอยู่ภายในcell ไม่clipทั้งcellเพราะE badgeอยู่นอกขอบเล็กน้อย รองรับ320/390px
+
+Passiveที่procต้องแสดงevent+chanceจากtriggerด้วย เช่นSpiritCombo15%→35% ไม่ใช้ข้อความเมื่อเข้าเงื่อนไขลอยๆแทนโอกาสที่เปลี่ยนตามเลเวล Regressionทุกadjacentlevelของ126skillsต้องมีdeltaเมื่อresolveddefinitionเปลี่ยน
