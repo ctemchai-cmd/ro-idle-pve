@@ -31,6 +31,17 @@ def build():
     if spec.get('baseline_support_power'):
         for sid in ['alchemist_hell_plant', 'alchemist_bio_cannibalize']:
             next(e for e in skills[sid]['effects'] if e['type'] == 'summon')['power_scale'] = spec['power_multiplier']
+    # D-132: multiply only Asura's rounded SP curve once, after the immutable baseline.
+    for sid, adjustments in spec.get('skill_power_adjustments', {}).items():
+        for key, factor in adjustments.items():
+            skills[sid]['level_parameters'][key] = [round(v * factor, 6) for v in skills[sid]['level_parameters'][key]]
+    # D-133: both Blessing modifiers share a level-scaled lifetime, capped at 10 seconds.
+    for sid, values in spec.get('skill_duration_curves', {}).items():
+        skill = skills[sid]
+        if len(values) != skill['max_level']: raise ValueError((sid, 'duration curve'))
+        skill['level_parameters']['duration'] = values
+        for effect in skill['effects']:
+            if effect['type'] == 'apply_status': effect['duration_ms'] = {'level_param': 'duration'}
     for doc in docs.values():
         for copy in doc.get('copy_whitelist', []):
             source, target = skills[copy['source_skill_id']], skills[copy['skill_id']]

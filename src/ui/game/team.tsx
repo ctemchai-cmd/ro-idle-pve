@@ -18,7 +18,7 @@ export function TeamPage({ context }: { context: GameContext }) {
   }
   const pad = (p: Placement['position']) => { const a = member(p); return <button key={p} className={`formation-pad ${p.startsWith('front') ? 'front' : 'back'}`} aria-label={`ตำแหน่ง ${positionNames[p]} · ${friendNames[a.character_id]}`} disabled={locked} onClick={() => setEditing(p)}>
     <small className="pad-label">{positionNames[p]}</small><span className="pad-stage"><ActorCanvas pack={pack} look={lookOf(a, state)} width={96} height={112} scale={1.3} footY={104} /></span>
-    <span className="pad-name"><ClassIcon job={a.job_id} size={18} /><b>{friendNames[a.character_id]}</b></span><span className="pad-meta">{jobNames[a.job_id]} · Lv.{a.level}</span>
+    <span className="pad-name"><ClassIcon pack={pack} job={a.job_id} size={18} /><b>{friendNames[a.character_id]}</b></span><span className="pad-meta">{jobNames[a.job_id]} · Lv.{a.level}</span>
   </button>; };
   const editingMember = editing ? team.find(p => p.position === editing)!.character_id : null;
   return <div className="page team-page">
@@ -27,16 +27,16 @@ export function TeamPage({ context }: { context: GameContext }) {
       <div className="formation-head"><span>แนวหลัง</span><span>แนวหน้า <em>ศัตรูอยู่ทางขวา ›</em></span></div>
       <div className="formation-grid">{pad('back_1')}{pad('front_1')}{pad('back_2')}{pad('front_2')}</div>
     </section>
-    <p className={`hint ${duplicate ? 'warn' : ''}`}>{duplicate ? 'เพื่อนในทีมซ้ำสาย Class 1 · เลือกคนละสายก่อนบันทึก' : 'เพื่อน 3 คนต้องมาจากคนละสาย Class 1 (ซ้ำสายกับตัวหลักได้) · แนวหน้าเดินเข้าตีก่อน'}</p>
+    {duplicate && <p className="hint warn">เพื่อนในทีมซ้ำสาย Class 1</p>}
     {changed && <div className="row sticky-actions"><button className="btn ghost" onClick={() => setTeam(structuredClone(state.team))}>คืนค่า</button><button className="btn primary" disabled={locked || duplicate} onClick={() => void submit('party.set', { placements: team })}>บันทึกทีม</button></div>}
     <section className="bench"><h2>ตัวละครทั้งหมด</h2><div className="bench-grid">{state.roster.map(a => { const at = team.find(p => p.character_id === a.character_id); return <button key={a.character_id} className={`bench-card ${at ? 'in' : ''}`} onClick={() => go('buddy', a.character_id)}>
-      <ActorCanvas pack={pack} look={lookOf(a, state)} width={64} height={72} scale={1.4} footY={118} /><span><b className="pad-name"><ClassIcon job={a.job_id} size={16} />{friendNames[a.character_id]}</b><small>{jobNames[a.job_id]} · Lv.{a.level}</small><em>{at ? positionNames[at.position] : 'พักอยู่'}</em></span>
+      <ActorCanvas pack={pack} look={lookOf(a, state)} width={64} height={72} scale={1.4} footY={118} /><span><b className="pad-name"><ClassIcon pack={pack} job={a.job_id} size={16} />{friendNames[a.character_id]}</b><small>{jobNames[a.job_id]} · Lv.{a.level}</small><em>{at ? positionNames[at.position] : 'พักอยู่'}</em></span>
     </button>; })}</div></section>
     {editing && <Sheet title={`เลือกสมาชิก · ${positionNames[editing]}`} onClose={() => setEditing(null)}>
       <div className="pick-list">{state.roster.map(a => { const at = team.find(p => p.character_id === a.character_id), blocked = editingMember === 'main' && !at; return <button key={a.character_id} className={`list-row ${a.character_id === editingMember ? 'on' : ''}`} disabled={blocked} onClick={() => choose(a.character_id)}>
-        <ActorCanvas pack={pack} look={lookOf(a, state)} width={48} height={52} scale={1.1} footY={94} /><ClassIcon job={a.job_id} size={24} /><span className="row-main"><b>{friendNames[a.character_id]} · {jobNames[a.job_id]}</b><small>Lv.{a.level} · สาย {jobNames[a.root_job_id]}{at ? ` · ${positionNames[at.position]}` : ''}</small></span>
+        <ActorCanvas pack={pack} look={lookOf(a, state)} width={48} height={52} scale={1.1} footY={94} /><ClassIcon pack={pack} job={a.job_id} size={24} /><span className="row-main"><b>{friendNames[a.character_id]} · {jobNames[a.job_id]}</b><small>Lv.{a.level} · สาย {jobNames[a.root_job_id]}{at ? ` · ${positionNames[at.position]}` : ''}</small></span>
       </button>; })}</div>
-      <p className="hint">{editingMember === 'main' ? 'ตัวหลักสลับตำแหน่งกับสมาชิกในทีมได้เท่านั้น' : 'เลือกคนในทีมเพื่อสลับตำแหน่ง หรือเลือกคนนอกทีมเพื่อเปลี่ยนตัว'}</p>
+      {editingMember === 'main' && <p className="hint">ตัวหลักต้องอยู่ในทีม</p>}
     </Sheet>}
   </div>;
 }

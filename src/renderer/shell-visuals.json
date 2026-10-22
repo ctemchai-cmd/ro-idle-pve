@@ -76,6 +76,11 @@
       "asset_id": "prepared.ui.6edf66b03bba342e",
       "meta_path": "assets/ro/prepared/ui/map_2--6edf66b03bba.meta.json",
       "source_name": "map_2"
+    },
+    "upgrade": {
+      "asset_id": "prepared.ui.962ae773d620b1fd",
+      "meta_path": "assets/ro/prepared/ui/lv_up_off--962ae773d620.meta.json",
+      "source_name": "lv_up_off"
     }
   },
   "resource_icons": {
@@ -113,6 +118,11 @@
       "asset_id": "items.6ae4c86309d996db",
       "meta_path": "assets/ro/library/items/item_icon/asset--6ae4c86309d9.meta.json",
       "source_name": "물에젖은카드앨범"
+    },
+    "hero_exp": {
+      "asset_id": "items.742e490c08394921",
+      "meta_path": "assets/ro/library/items/item_icon/asset--742e490c0839.meta.json",
+      "source_name": "전투교범"
     }
   },
   "feature_icons": {
@@ -125,6 +135,26 @@
       "asset_id": "items.41c2d4baffebd8a4",
       "meta_path": "assets/ro/library/items/item_icon/asset--41c2d4baffeb.meta.json",
       "source_name": "모루"
+    },
+    "scroll_fire": {
+      "asset_id": "items.ab17f0f8d513e86f",
+      "meta_path": "assets/ro/library/items/item_icon/_--ab17f0f8d513.meta.json",
+      "source_name": "엘리멘탈_화"
+    },
+    "scroll_water": {
+      "asset_id": "items.4f49d3911d2da259",
+      "meta_path": "assets/ro/library/items/item_icon/_--4f49d3911d2d.meta.json",
+      "source_name": "엘리멘탈_수"
+    },
+    "scroll_earth": {
+      "asset_id": "items.cf63ef9758d3882a",
+      "meta_path": "assets/ro/library/items/item_icon/_--cf63ef9758d3.meta.json",
+      "source_name": "엘리멘탈_지"
+    },
+    "scroll_wind": {
+      "asset_id": "items.f7efe5dda3f82022",
+      "meta_path": "assets/ro/library/items/item_icon/_--f7efe5dda3f8.meta.json",
+      "source_name": "엘리멘탈_풍"
     }
   },
   "farm": {
@@ -1411,5 +1441,122 @@
         }
       ]
     }
-  }
+  },
+  "class_icons": {
+    "swordsman": {
+      "asset_id": "skills.2f201fc199638467",
+      "meta_path": "assets/ro/library/skills/skill_sprite_icon/sm_sword--2f201fc19963.meta.json",
+      "source_name": "sm_sword",
+      "source_skill_id": "swordsman_sword_mastery"
+    },
+    "knight": {
+      "asset_id": "skills.644328416e892cd8",
+      "meta_path": "assets/ro/library/skills/skill_sprite_icon/kn_pierce--644328416e89.meta.json",
+      "source_name": "kn_pierce",
+      "source_skill_id": "knight_pierce"
+    },
+    "crusader": {
+      "asset_id": "skills.3f31fa75aafc1a67",
+      "meta_path": "assets/ro/library/skills/skill_sprite_icon/cr_devotion--3f31fa75aafc.meta.json",
+      "source_name": "cr_devotion",
+      "source_skill_id": "crusader_devotion"
+    },
+    "acolyte": {
+      "asset_id": "skills.52575fac5ecd0561",
+      "meta_path": "assets/ro/library/skills/skill_sprite_icon/al_heal--52575fac5ecd.meta.json",
+      "source_name": "al_heal",
+      "source_skill_id": "acolyte_heal"
+    },
+    "priest": {
+      "asset_id": "skills.34d4ad4d5141aaf3",
+      "meta_path": "assets/ro/library/skills/skill_sprite_icon/pr_magnificat--34d4ad4d5141.meta.json",
+      "source_name": "pr_magnificat",
+      "source_skill_id": "priest_magnificat"
+    },
+    "monk": {
+      "asset_id": "skills.2ce9eebd27704bd7",
+      "meta_path": "assets/ro/library/skills/skill_sprite_icon/mo_callspirits--2ce9eebd2770.meta.json",
+      "source_name": "mo_callspirits",
+      "source_skill_id": "monk_call_spirits"
+    },
+    "archer": {
+      "asset_id": "skills.95d0a77bf2b338b7",
+      "meta_path": "assets/ro/library/skills/skill_sprite_icon/ac_double--95d0a77bf2b3.meta.json",
+      "source_name": "ac_double",
+      "source_skill_id": "archer_double_strafe"
+    },
+    "hunter": {
+      "asset_id": "skills.fd034f0f338199f7",
+      "meta_path": "assets/ro/library/skills/skill_sprite_icon/ht_blitzbeat--fd034f0f3381.meta.json",
+      "source_name": "ht_blitzbeat",
+      "source_skill_id": "hunter_blitz_beat"
+    },
+    "bard": {
+      "asset_id": "skills.9ca059bebabdfb8a",
+      "meta_path": "assets/ro/library/skills/skill_sprite_icon/ba_musicallesson--9ca059bebabd.meta.json",
+      "source_name": "ba_musicallesson",
+      "source_skill_id": "bard_music_lesson"
+    },
+    "dancer": {
+      "asset_id": "skills.bce8fe40d7e964a9",
+      "meta_path": "assets/ro/library/skills/skill_sprite_icon/dc_dancinglesson--bce8fe40d7e9.meta.json",
+      "source_name": "dc_dancinglesson",
+      "source_skill_id": "dancer_music_lesson"
+    },
+    "mage": {
+      "asset_id": "skills.133883e2ee5579dc",
+      "meta_path": "assets/ro/library/skills/skill_sprite_icon/mg_firebolt--133883e2ee55.meta.json",
+      "source_name": "mg_firebolt",
+      "source_skill_id": "mage_fire_bolt"
+    },
+    "wizard": {
+      "asset_id": "skills.7005b61356f4adc9",
+      "meta_path": "assets/ro/library/skills/skill_sprite_icon/wz_stormgust--7005b61356f4.meta.json",
+      "source_name": "wz_stormgust",
+      "source_skill_id": "wizard_storm_gust"
+    },
+    "sage": {
+      "asset_id": "skills.0746d702f0a6f54b",
+      "meta_path": "assets/ro/library/skills/skill_sprite_icon/sa_spellbreaker--0746d702f0a6.meta.json",
+      "source_name": "sa_spellbreaker",
+      "source_skill_id": "sage_spell_breaker"
+    },
+    "thief": {
+      "asset_id": "skills.6fafca6c8ed02fba",
+      "meta_path": "assets/ro/library/skills/skill_sprite_icon/tf_poison--6fafca6c8ed0.meta.json",
+      "source_name": "tf_poison",
+      "source_skill_id": "thief_envenom"
+    },
+    "assassin": {
+      "asset_id": "skills.1872788ad94e9f74",
+      "meta_path": "assets/ro/library/skills/skill_sprite_icon/as_sonicblow--1872788ad94e.meta.json",
+      "source_name": "as_sonicblow",
+      "source_skill_id": "assassin_sonic_blow"
+    },
+    "rogue": {
+      "asset_id": "skills.0d06675b3fa0e35d",
+      "meta_path": "assets/ro/library/skills/skill_sprite_icon/rg_stripweapon--0d06675b3fa0.meta.json",
+      "source_name": "rg_stripweapon",
+      "source_skill_id": "rogue_strip_weapon"
+    },
+    "merchant": {
+      "asset_id": "skills.ef2c088a12c0a0e7",
+      "meta_path": "assets/ro/library/skills/skill_sprite_icon/mc_mammonite--ef2c088a12c0.meta.json",
+      "source_name": "mc_mammonite",
+      "source_skill_id": "merchant_mammonite"
+    },
+    "blacksmith": {
+      "asset_id": "skills.488e08d6c5f9dc25",
+      "meta_path": "assets/ro/library/skills/skill_sprite_icon/bs_weaponperfect--488e08d6c5f9.meta.json",
+      "source_name": "bs_weaponperfect",
+      "source_skill_id": "blacksmith_weapon_perfection"
+    },
+    "alchemist": {
+      "asset_id": "skills.8a26c1276f7c0263",
+      "meta_path": "assets/ro/library/skills/skill_sprite_icon/am_acidterror--8a26c1276f7c.meta.json",
+      "source_name": "am_acidterror",
+      "source_skill_id": "alchemist_acid_terror"
+    }
+  },
+  "class_icon_basis": "D-130: native RO skill art selected to represent19jobs, not an official RO job-emblem set. Crop frame0 using original sidecar; first-frame contact sheet reviewed22October2026 (TASK-101), not full animation review."
 }

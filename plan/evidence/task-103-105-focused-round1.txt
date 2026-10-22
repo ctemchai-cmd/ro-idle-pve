@@ -1,0 +1,144 @@
+✖ Asura all ten ranks: unchanged ATK plus fourfold SP term, zero/low/high SP never compounded (15.133166ms)
+✖ actual Asura pays all current SP and five spheres before offense snapshot, then deals the stronger raw power once (949.577042ms)
+✖ Blessing ranks1/5/10 last5.5/7.5/10s on both modifiers and expire at the exact boundary (85.004708ms)
+✖ same caster Blessing recast adds independent instances; old stacks expire without deleting the newer pair (8.579708ms)
+✖ skill level descriptions expose exact Asura SP growth and Blessing durations without UI-only balance values (40.97125ms)
+✔ Call Spirit1–10 shows1–5 gained spheres then1.2–2% ATK per sphere, with exact upgrade deltas (1072.81025ms)
+✔ Provoke1–10 keeps4.5s/all-enemy target override and clearly excludes area/random; SP19→10 (3.555791ms)
+✔ actual sole endow names Fire/6.5s/team and scope; Enchant Poison only claims ATK (7.40275ms)
+✔ preview SP respects actual cost modifier and max/unlearned/capped levels remain read-only (31.663292ms)
+✔ upgrade summary includes ACD as well as CT, SP and effect changes; all-current SP is readable (7.773875ms)
+✔ Passive proc chance is explicit and SpiritCombo15→35% upgrades produce a real visible delta (4.008834ms)
+✔ Spirit Combo description uses the same learned Call Spirit rank as the actor sphere bonus (6.428ms)
+✔ all126 skill level previews use exact shared resolved data and never mutate content or emit NaN (505.494792ms)
+✔ upgrade deltas omit unchanged clauses and preserve signed values, units and repeated changing numbers (3.905083ms)
+✔ Refine4→5 and9→10 open exact sockets, costs total77000gold/440ore when every step succeeds; max11/duplicate target do not debit (303.153542ms)
+✔ Enchant merges old/current actual paid costs and changing line refunds exact2800gold/11dust once into immutable receipt, not current4200 price (378.737042ms)
+✔ distinct duplicate cards add per source; a single instance moves owners, and investments sleep when gear removed (283.7725ms)
+✔ card level1→5 charges7500gold/300dust once; salvage yields rarity dust only and protected batches reject before mutation (721.995875ms)
+✔ Precision affects preview/engine DEX and CT/ACD through shared primary pipeline; poor-wallet preview works without mutation (429.124041ms)
+✔ repeated level/enchant/reset operations keep only bounded active scopes and archive exact refund evidence without growing save history (444.834125ms)
+✔ equipped-card payload changes build fingerprints, unassigned rewards do not; all slot/card mutations reject while a battle is active (224.578792ms)
+✔ D-057 Refine: +1..+4 always succeed, later steps roll a server seed; failure spends only the step cost, keeps the level and adds pity (283.677083ms)
+✔ D-057 Refine pity reaches the cap so +9→+10 (20%) is guaranteed after 8 failures; unseeded rolls are refused (784.792833ms)
+✔ the nine raw-intent reference cases at levels1/4/10 match the shipped spenders (44.369875ms)
+✔ D-093 highest-level spenders compensate preparation through their own power, without changing costs or hit rules (0.7455ms)
+✔ D-093 actual cast snapshots use only remaining spheres and pre-cost SP; power enters the shared pipeline exactly once (387.826416ms)
+✔ stronger finishers still skip without spheres and never deal their damage or refund costs after interruption (207.777ms)
+✖ the skill page reads new power and multi-hit counts from the same definitions (584.314667ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 22
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9156.910583
+
+✖ failing tests:
+
+test at tests/game/asura-blessing-growth.test.ts:1:978
+✖ Asura all ten ranks: unchanged ATK plus fourfold SP term, zero/low/high SP never compounded (15.133166ms)
+  TypeError [Error]: Cannot assign to read only property 'physical_attack' of object '#<Object>'
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/asura-blessing-growth.test.ts:15:46)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.start (node:internal/test_runner/test:959:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:332:17)
+
+test at tests/game/asura-blessing-growth.test.ts:1:1676
+✖ actual Asura pays all current SP and five spheres before offense snapshot, then deals the stronger raw power once (949.577042ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    step(initial,1500)
+
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/asura-blessing-growth.test.ts:26:78)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:332:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '=='
+  }
+
+test at tests/game/asura-blessing-growth.test.ts:1:2477
+✖ Blessing ranks1/5/10 last5.5/7.5/10s on both modifiers and expire at the exact boundary (85.004708ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 2
+
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/asura-blessing-growth.test.ts:35:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 2,
+    operator: 'strictEqual'
+  }
+
+test at tests/game/asura-blessing-growth.test.ts:1:3298
+✖ same caster Blessing recast adds independent instances; old stacks expire without deleting the newer pair (8.579708ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0 !== 4
+
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/asura-blessing-growth.test.ts:42:73)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 4,
+    operator: 'strictEqual'
+  }
+
+test at tests/game/asura-blessing-growth.test.ts:1:4018
+✖ skill level descriptions expose exact Asura SP growth and Blessing durations without UI-only balance values (40.97125ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /1102.5% SP/. Input:
+
+  'ใช้ SP ทั้งหมด (ขั้นต่ำ 30) ใช้บอล 5 ลูกเมื่อเริ่มร่าย พลังโจมตี 590.63% ATK + 1,102.5% SP · ตามธาตุอาวุธ'
+
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/asura-blessing-growth.test.ts:49:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'ใช้ SP ทั้งหมด (ขั้นต่ำ 30) ใช้บอล 5 ลูกเมื่อเริ่มร่าย พลังโจมตี 590.63% ATK + 1,102.5% SP · ตามธาตุอาวุธ',
+    expected: /1102.5% SP/,
+    operator: 'match'
+  }
+
+test at tests/game/spirit-finisher.test.ts:1:4455
+✖ the skill page reads new power and multi-hit counts from the same definitions (584.314667ms)
+  AssertionError [ERR_ASSERTION]: false == true
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/spirit-finisher.test.ts:67:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '=='
+  }

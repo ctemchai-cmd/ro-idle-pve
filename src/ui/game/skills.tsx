@@ -70,10 +70,10 @@ export function SkillsPage({ context }: { context: GameContext }) {
       </section>
     </div>
     <section ref={strip} className={`loadout ${picking ? 'picking' : ''}`} aria-label="คิวสกิลสี่ช่อง">
-      <p className="loadout-hint" role="status">{picking ? `แตะช่องที่จะใส่ ${options.skills.find(s => s.id === picking)?.name ?? ''}` : 'เลือกสกิล → สวมใส่ → เลือกช่อง'}</p>
+      {picking && <p className="loadout-hint" role="status">จัดช่อง · {options.skills.find(s => s.id === picking)?.name}</p>}
       <div className="loadout-slots">{draft.map((id, i) => <button key={i} className={`loadout-slot ${!picking && id === skill.id ? 'on' : ''} ${picking ? 'target' : ''}`} aria-label={`ช่องสกิล ${i + 1}`} disabled={!!picking && locked} onClick={() => { if (picking) placeAt(picking, i); else if (id) setSelected(id); }}><small>{ordinal[i]}</small>{id ? <SkillIcon id={id} pack={pack} /> : <span className="empty">+</span>}</button>)}</div>
     </section>
     <button className="loadout-timeline" aria-haspopup="dialog" onClick={() => setTimelineOpen(true)}><span>Timeline เทียบเพื่อน</span><small>ดูจังหวะสกิล ›</small></button>
-    {timelineOpen && <Sheet title={`Timeline · ด่าน ${stageId}`} onClose={() => setTimelineOpen(false)} className="tall skill-preview">{!inTeam ? <p className="hint">ตัวละครนี้ไม่ได้อยู่ในทีม · ใส่เข้าทีมก่อนเพื่อดูจังหวะร่วมกับเพื่อน</p> : preview && pack ? <SkillTimeline key={JSON.stringify(draft)} session={preview} pack={pack} view={preview.view()} clock={clock} /> : <p className="hint">ยังจำลอง Timeline ไม่ได้ ลองตรวจคิวสกิล</p>}</Sheet>}
+    {timelineOpen && <Sheet title={`Timeline · ด่าน ${stageId}`} onClose={() => setTimelineOpen(false)} className="tall skill-preview">{!inTeam ? <p className="hint">ตัวละครนี้ไม่ได้อยู่ในทีม</p> : preview && pack ? <SkillTimeline key={JSON.stringify(draft)} session={preview} pack={pack} view={preview.view()} clock={clock} /> : <p className="hint">ยังจำลอง Timeline ไม่ได้</p>}</Sheet>}
   </div>;
 }

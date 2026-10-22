@@ -40,9 +40,9 @@ export function StatsPage({ context }: { context: GameContext }) {
       {base.map(k => <p key={k}><span>{statLabels[k]}</span><Diff before={(current.stats[k] ?? 0)} after={(preview.stats[k] ?? 0)} keyName={k} /></p>)}
       <p><span>รอคิวสกิล</span>{current.intervalMs === preview.intervalMs ? <span className="diff-same">{seconds(current.intervalMs)}</span> : <span className="diff"><b className={preview.intervalMs < current.intervalMs ? 'up' : 'down'}>{seconds(preview.intervalMs)}</b></span>}</p>
     </div></section>
-    <details className="stat-panel extra-stats"><summary><span>Additional Stats</span><small>{extra.filter(k => (current.stats[k] ?? 0) || (preview.stats[k] ?? 0)).length} ค่าที่มีผล · แตะเพื่อดู</small></summary><div className="stat-grid small">
+    <details className="stat-panel extra-stats"><summary><span>Additional Stats</span><small>{extra.filter(k => (current.stats[k] ?? 0) || (preview.stats[k] ?? 0)).length} ค่าที่มีผล</small></summary><div className="stat-grid small">
       {extra.map(k => <p key={k} className={!(current.stats[k] ?? 0) && !(preview.stats[k] ?? 0) ? 'zero' : ''}><span>{statLabels[k]}</span><Diff before={(current.stats[k] ?? 0)} after={(preview.stats[k] ?? 0)} keyName={k} /></p>)}
-    </div><details className="stat-bonus-notes"><summary>โบนัสทุก 10 แต้ม</summary><p>STR ATK+5 · AGI หลบ+1% · VIT HP+50 · INT MATK+8 · DEX แม่น+1% · LUK คริ+1%</p><p>เลขบนปุ่ม + คือจำนวนแต้มที่ใช้ในขั้นถัดไป</p></details></details>
+    </div><details className="stat-bonus-notes"><summary>โบนัสทุก 10 แต้ม</summary><p>STR ATK+5 · AGI หลบ+1% · VIT HP+50 · INT MATK+8 · DEX แม่น+1% · LUK คริ+1%</p></details></details>
     <section className="alloc">
       <Radar value={total(actor.primary_stats)} draft={total(draft)} max={max} />
       <div className="alloc-rows">{primaries.map(k => <div key={k} className="alloc-row">

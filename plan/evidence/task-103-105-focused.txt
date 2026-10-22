@@ -1,0 +1,36 @@
+✔ Asura all ten ranks: unchanged ATK plus fourfold SP term, zero/low/high SP never compounded (9.240125ms)
+✔ actual Asura pays all current SP and five spheres before offense snapshot, then deals the stronger raw power once (6.469958ms)
+✔ Blessing ranks1/5/10 last5.5/7.5/10s on both modifiers and expire at the exact boundary (12.816792ms)
+✔ same caster Blessing recast adds independent instances; old stacks expire without deleting the newer pair (5.086667ms)
+✔ skill level descriptions expose exact Asura SP growth and Blessing durations without UI-only balance values (53.032208ms)
+✔ Call Spirit1–10 shows1–5 gained spheres then1.2–2% ATK per sphere, with exact upgrade deltas (160.98875ms)
+✔ Provoke1–10 keeps4.5s/all-enemy target override and clearly excludes area/random; SP19→10 (5.405125ms)
+✔ actual sole endow names Fire/6.5s/team and scope; Enchant Poison only claims ATK (10.245ms)
+✔ preview SP respects actual cost modifier and max/unlearned/capped levels remain read-only (57.94525ms)
+✔ upgrade summary includes ACD as well as CT, SP and effect changes; all-current SP is readable (6.087ms)
+✔ Passive proc chance is explicit and SpiritCombo15→35% upgrades produce a real visible delta (3.874625ms)
+✔ Spirit Combo description uses the same learned Call Spirit rank as the actor sphere bonus (4.092917ms)
+✔ all126 skill level previews use exact shared resolved data and never mutate content or emit NaN (410.132042ms)
+✔ upgrade deltas omit unchanged clauses and preserve signed values, units and repeated changing numbers (3.389333ms)
+✔ Refine4→5 and9→10 open exact sockets, costs total77000gold/440ore when every step succeeds; max11/duplicate target do not debit (339.120875ms)
+✔ Enchant merges old/current actual paid costs and changing line refunds exact2800gold/11dust once into immutable receipt, not current4200 price (369.45875ms)
+✔ distinct duplicate cards add per source; a single instance moves owners, and investments sleep when gear removed (900.524708ms)
+✔ card level1→5 charges7500gold/300dust once; salvage yields rarity dust only and protected batches reject before mutation (559.081416ms)
+✔ Precision affects preview/engine DEX and CT/ACD through shared primary pipeline; poor-wallet preview works without mutation (382.794959ms)
+✔ repeated level/enchant/reset operations keep only bounded active scopes and archive exact refund evidence without growing save history (299.944958ms)
+✔ equipped-card payload changes build fingerprints, unassigned rewards do not; all slot/card mutations reject while a battle is active (213.477875ms)
+✔ D-057 Refine: +1..+4 always succeed, later steps roll a server seed; failure spends only the step cost, keeps the level and adds pity (285.724792ms)
+✔ D-057 Refine pity reaches the cap so +9→+10 (20%) is guaranteed after 8 failures; unseeded rolls are refused (620.754709ms)
+✔ the nine raw-intent reference cases at levels1/4/10 match the shipped spenders (10.010417ms)
+✔ D-093 highest-level spenders compensate preparation through their own power, without changing costs or hit rules (0.342084ms)
+✔ D-093 actual cast snapshots use only remaining spheres and pre-cost SP; power enters the shared pipeline exactly once (11.739792ms)
+✔ stronger finishers still skip without spheres and never deal their damage or refund costs after interruption (10.411625ms)
+✔ the skill page reads new power and multi-hit counts from the same definitions (147.345167ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7699.149959

@@ -1,4 +1,4 @@
-import { ElementGlyph } from '../element-glyph.tsx';
+import { ScrollIcon } from './scroll-icon.tsx';
 import { CardIcon } from './card-art.tsx';
 import { CardGrade } from './card-grade.tsx';
 import { CardSheet } from './card-sheet.tsx';
@@ -22,15 +22,15 @@ export function StorePage({ context }: { context: GameContext }) {
     <PageHeader title="ร้านค้า" sub={`รีเซ็ตสิทธิ์ซื้อทุกวัน 00:00 (เวลาไทย) · วันนี้ ${view.day}`} onBack={() => go('home')} />
     <div className="seg store-seg" role="tablist">{([['shop', 'ร้านค้า'], ['scrolls', 'ใบธาตุ'], ['cards', 'สุ่มการ์ด'], ['gear', 'สุ่มอุปกรณ์']] as [Section, string][]).map(([id, label]) => <button key={id} role="tab" aria-selected={section === id} className={section === id ? 'on' : ''} onClick={() => { setSection(id); setRevealed([]); }}>{label}</button>)}</div>
     {(section === 'shop'||section === 'scrolls') && <div className="shop-grid">{view.offers.filter(offer=>(section==='scrolls')===!!offer.scroll).map(offer => <article key={offer.id} className={`shop-offer ${offer.left ? '' : 'sold-out'}`}>
-      <div className="shop-grant">{offer.scroll&&<ElementGlyph element={offer.scroll.element} />}{(Object.entries(offer.grant) as [keyof Wallet, number][]).map(([k, n]) => <span key={k}><ResIcon pack={pack} k={k} /><b>{full(n)}</b></span>)}</div>
+      <div className="shop-grant">{offer.scroll&&<ScrollIcon pack={pack} element={offer.scroll.element} />}{(Object.entries(offer.grant) as [keyof Wallet, number][]).map(([k, n]) => <span key={k}><ResIcon pack={pack} k={k} /><b>{full(n)}</b></span>)}</div>
       <b className="shop-name">{offer.name}</b>{offer.scroll&&<small>หนึ่งไฟต์ · ในคลัง {view.scrolls.find(row=>row.id===offer.id)?.stock??0}</small>}<small>เหลือวันนี้ {offer.left}/{offer.daily_limit}</small>
       <button className="btn primary small" disabled={locked || !offer.left || !canPay(state.wallet, offer.price)} onClick={() => void submit('shop.buy', { offer_id: offer.id, quantity: 1 })}><CostChips pack={pack} cost={offer.price} wallet={state.wallet} /></button>
     </article>)}</div>}
     {section === 'scrolls' && <section className="scroll-preparation" aria-label="เตรียมใบธาตุ">
       <header><b>เตรียมใบธาตุ</b><small>ตีปกติและสกิลธาตุตามอาวุธ · หนึ่งไฟต์ถัดไป</small></header>
       <label className="scroll-character">ตัวละคร<select aria-label="ตัวละครสำหรับใบธาตุ" value={scrollCharacterId} disabled={locked} onChange={event=>setScrollCharacterId(event.target.value)}>{state.roster.map(actor=><option key={actor.character_id} value={actor.character_id}>{friendNames[actor.character_id]} · {jobNames[actor.job_id]}</option>)}</select></label>
-      {view.prepared[scrollCharacterId]&&<div className="scroll-prepared"><ElementGlyph element={view.prepared[scrollCharacterId]!.element}/><span>เตรียม{view.prepared[scrollCharacterId]!.name}ไว้แล้ว</span><button className="btn ghost small" disabled={locked} onClick={()=>void submit('consumable.prepare',{character_id:scrollCharacterId,definition_id:null})}>ยกเลิก / คืนใบ</button></div>}
-      <div className="scroll-choices">{view.scrolls.map(row=><button key={row.id} className={`scroll-choice element-${row.element}`} disabled={locked||row.stock<1||view.prepared[scrollCharacterId]?.id===row.id} aria-pressed={view.prepared[scrollCharacterId]?.id===row.id} onClick={()=>void submit('consumable.prepare',{character_id:scrollCharacterId,definition_id:row.id})}><ElementGlyph element={row.element}/><span><b>{row.name}</b><small>{view.prepared[scrollCharacterId]?.id===row.id?'เตรียมแล้ว':`ในคลัง ${row.stock}`}</small></span></button>)}</div>
+      {view.prepared[scrollCharacterId]&&<div className="scroll-prepared"><ScrollIcon pack={pack} element={view.prepared[scrollCharacterId]!.element}/><span>เตรียม{view.prepared[scrollCharacterId]!.name}ไว้แล้ว</span><button className="btn ghost small" disabled={locked} onClick={()=>void submit('consumable.prepare',{character_id:scrollCharacterId,definition_id:null})}>ยกเลิก / คืนใบ</button></div>}
+      <div className="scroll-choices">{view.scrolls.map(row=><button key={row.id} className={`scroll-choice element-${row.element}`} disabled={locked||row.stock<1||view.prepared[scrollCharacterId]?.id===row.id} aria-pressed={view.prepared[scrollCharacterId]?.id===row.id} onClick={()=>void submit('consumable.prepare',{character_id:scrollCharacterId,definition_id:row.id})}><ScrollIcon pack={pack} element={row.element}/><span><b>{row.name}</b><small>{view.prepared[scrollCharacterId]?.id===row.id?'เตรียมแล้ว':`ในคลัง ${row.stock}`}</small></span></button>)}</div>
     </section>}
     {section !== 'shop' && section !== 'scrolls' && (() => { const card = section === 'cards', data = card ? view.cards : view.gear, pool = card ? 'card_v1' : 'equipment_v1';
       return <section className="gacha-box">

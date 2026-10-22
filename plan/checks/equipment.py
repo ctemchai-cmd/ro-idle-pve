@@ -54,9 +54,9 @@ def values():
  # D-128 additive30% Refine: (gear190 + flat80 + card24) *1.3 =382.2 (ATK retains decimals until damage flooring).
  assert abs((v+10*8+8*2*1.5)*(1+10*slots['refine']['per_step_modifiers']['weapon'][2]['value'])-382.2)<1e-9
  assert sum(r['gold'] for r in slots['refine']['upgrade_rows'])==77000
- assert sum(r['refine_ore'] for r in slots['refine']['upgrade_rows'])==275
+ assert sum(r['refine_ore'] for r in slots['refine']['upgrade_rows'])==440
  assert sum(r['gold'] for r in slots['enchant']['upgrade_rows'])==115500
- return {'common_sword60_plus_refine10_gold_card5':382.2,'epic_sword60_base':285,'refine10_gold':77000,'refine10_ore':275,'enchant10_gold':115500,'formula':'add source modifiers once through central buckets'}
+ return {'common_sword60_plus_refine10_gold_card5':382.2,'epic_sword60_base':285,'refine10_gold':77000,'refine10_ore':440,'enchant10_gold':115500,'formula':'add source modifiers once through central buckets'}
 check('numeric_progression_examples',['AC-01','AC-04'],values)
 def cardrules():
  assert len(cards['definitions'])==73 and cards['level_multipliers']==[1,1.25,1.5,1.75,2];assert cards['rarity_is_equipment_rarity'];assert [r['id'] for r in cards['rarities']]==['common','uncommon','rare','epic','legendary','immortal','supreme'];assert all(o['rarity_id']==('rare' if o.get('variant')=='puppet' else {'mini':'epic','mvp':'legendary'}.get(o['grade'], 'common' if o['source_level']<=20 else 'uncommon' if o['source_level']<=45 else 'rare')) for o in cards['origins'].values());assert [r['id'] for r in cards['rarities'] if r['enabled']]==['common','uncommon','rare','epic','legendary']

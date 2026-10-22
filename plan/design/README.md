@@ -44,3 +44,5 @@
 - [ใบธาตุไฟต์ถัดไป](33-element-scrolls.md) — D-123 / TASK-094
 
 - [34 รับรางวัล/Refine/Enchant/เศรษฐกิจ](34-reward-slot-economy-tuning.md) — D-127–129, TASK-098–100
+
+- [35 — Native RO icons / skill growth / Refine cost](35-native-icons-skill-growth.md)

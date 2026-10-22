@@ -30,7 +30,7 @@ test('D-093 highest-level spenders compensate preparation through their own powe
     assert.equal(hit.hit_rule, 'physical_roll'); assert.equal(hit.can_crit, true); assert.equal(hit.armor_rule, 'normal'); assert.equal(s.effects.length, 1);
   }
   const asura = resolve('monk_asura'); assert.deepEqual(asura.cost.sp, { mode: 'all_current', minimum_sp: 30 });
-  const hit = asura.effects[0]!; if (hit.type !== 'damage' || hit.formula.id !== 'sp_burst_power') throw new Error('SP_BURST_REQUIRED'); close(Number(hit.formula.params.sp_ratio), 2.925 * 1.75);
+  const hit = asura.effects[0]!; if (hit.type !== 'damage' || hit.formula.id !== 'sp_burst_power') throw new Error('SP_BURST_REQUIRED'); close(Number(hit.formula.params.sp_ratio), 2.925 * 1.75 * 4);
 });
 
 test('D-093 actual cast snapshots use only remaining spheres and pre-cost SP; power enters the shared pipeline exactly once', () => {
@@ -64,5 +64,5 @@ test('the skill page reads new power and multi-hit counts from the same definiti
   monk.job_id = 'monk'; monk.level = 70; monk.skill_levels = { ...monk.skill_levels, ...Object.fromEntries(ids.map(id => [id, 10])) };
   const options = characterSkillOptions(monk, state).skills;
   for (const [id, count] of [['monk_triple_attack', 3], ['monk_finger_offensive', 5]] as const) assert.ok(options.find(s => s.id === id)!.effects.some(text => text.includes(`× ${count} ครั้ง`)));
-  assert.ok(options.find(s => s.id === 'monk_asura')!.effects.some(text => text.includes('984.38% ATK') && text.includes('511.88% SP')));
+  assert.ok(options.find(s => s.id === 'monk_asura')!.effects.some(text => text.includes('984.38% ATK') && text.includes('2,047.5% SP')));
 });

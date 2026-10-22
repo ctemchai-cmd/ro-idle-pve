@@ -7,6 +7,7 @@ export interface FarmSkin { name: string; label: string; asset_id: string; meta_
 export interface ShellVisuals {
   schema_version: 1;
   ui_icons: Readonly<Record<string, ShellIconRef>>;
+  class_icons?: Readonly<Record<string, ShellIconRef & { source_skill_id: string }>>;
   resource_icons: Readonly<Record<string, ShellIconRef>>;
   feature_icons: Readonly<Record<string, ShellIconRef>>;
   farm: {

@@ -248,3 +248,13 @@ D-117 runtime finding: valid same-user TOKEN_REFRESHED ระหว่าง SDK
 | D-127 | 22 ต.ค.2026 ผู้ใช้ขอเลขเหลืองต่ำลงและรับหลายกล่องพร้อมกัน | TASK-097 follow-up y−240; TASK-098 batch reward.claim และfarm reserve+pay atomicในคำสั่งเดียว คงsingleclaimเดิม |
 | D-128 | 22 ต.ค.2026 ผู้ใช้ขอEnchantต่างกันแต่ละช่อง/ตีบวกเห็นผล และถามใช้% | TASK-099 ใช้flatเดิม+percentบวกสะสมในบัคเก็ตกลาง; Enchantรายslot18ชุดโดยคงlineids/ทุน/ระดับ ตัวเลขassistantbaseline ไม่อ้างสมดุลทั้งเกม |
 | D-129 | 22 ต.ค.2026 ผู้ใช้ขอUpgradeiconเข้าธีม/ใบธาตุแพงขึ้น/CrystalAFKพอ4–5ใบและยืนยัน12h/gearลดครึ่ง | TASK-100 AFK40Crystal/h=480/12hทุกบท; Tower10ทุก5ชั้นเดิม/firstclear; scroll5000gold; gear50%ต่อ5minแยกจากcardroll Legacyunpaid snapshotรักษาค่า |
+
+| D-130 | 22ต.ค.2026 NativeRO Upgrade/EXP/ใบธาตุและรูปสกิลประจำอาชีพแทนcustomglyph; ไม่อ้างofficialjobemblems | TASK-101 |
+
+| D-131 | 22ต.ค.2026 เอาข้อความสอนเล่นออก คงค่าจริง/requirements/คำเตือน; cardlevelเอา C ออก | TASK-102 |
+
+| D-132 | 22ต.ค.2026 AsuraเฉพาะSPterm×4 ATKคงเดิม ผู้ใช้สนใจ4เท่า/ประมาณ1000–2000%SP | TASK-103 |
+
+| D-133 | 22ต.ค.2026 Blessingdurationโตตามเลเวล ผู้ใช้แก้20sเป็นสูงสุด10s; assistanttable5500→10000ms | TASK-104 |
+
+| D-134 | 22ต.ค.2026 Refineใช้หินเพิ่มตามขั้น assistant8×target(+60%) แทน5×target; gold/chance/pityคงเดิม | TASK-105 |

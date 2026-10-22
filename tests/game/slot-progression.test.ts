@@ -27,9 +27,9 @@ function fixture(){
 const params={character_id:'main',slot:'weapon'};
 function refineTo(f:ReturnType<typeof fixture>,target:number,slot:'weapon'='weapon'){for(let level=f.actor.slot_progress[slot].refine+1;level<=target;level++)assert.equal(f.run('slot.refine',{character_id:'main',slot,target_level:level}).receipt.result.code,'SLOT_REFINED');}
 function card(id:string,rarity:'bronze'|'silver'|'gold'='bronze',level=1):Extract<AccountState['inventory'][number],{kind:'card'}>{return{instance_id:id,definition_id:'card_weapon_1',kind:'card',rarity_id:rarity,level,locked:false};}
-test('Refine4→5 and9→10 open exact sockets, costs total77000gold/275ore when every step succeeds; max11/duplicate target do not debit',()=>{
- const f=fixture(),before=structuredClone(f.state.wallet);refineTo(f,4);assert.equal(cardCapacity(f.actor.slot_progress.weapon.refine,content),1);assert.equal(before.gold-f.state.wallet.gold,6000);assert.equal(before.refine_ore-f.state.wallet.refine_ore,50);
- refineTo(f,5);assert.equal(cardCapacity(f.actor.slot_progress.weapon.refine,content),2);refineTo(f,9);assert.equal(cardCapacity(f.actor.slot_progress.weapon.refine,content),2);refineTo(f,10);assert.equal(cardCapacity(f.actor.slot_progress.weapon.refine,content),3);assert.equal(before.gold-f.state.wallet.gold,77000);assert.equal(before.refine_ore-f.state.wallet.refine_ore,275);
+test('Refine4→5 and9→10 open exact sockets, costs total77000gold/440ore when every step succeeds; max11/duplicate target do not debit',()=>{
+ const f=fixture(),before=structuredClone(f.state.wallet);refineTo(f,4);assert.equal(cardCapacity(f.actor.slot_progress.weapon.refine,content),1);assert.equal(before.gold-f.state.wallet.gold,6000);assert.equal(before.refine_ore-f.state.wallet.refine_ore,80);
+ refineTo(f,5);assert.equal(cardCapacity(f.actor.slot_progress.weapon.refine,content),2);refineTo(f,9);assert.equal(cardCapacity(f.actor.slot_progress.weapon.refine,content),2);refineTo(f,10);assert.equal(cardCapacity(f.actor.slot_progress.weapon.refine,content),3);assert.equal(before.gold-f.state.wallet.gold,77000);assert.equal(before.refine_ore-f.state.wallet.refine_ore,440);
  const state=structuredClone(f.state),revision=f.revision;assert.throws(()=>f.run('slot.refine',{...params,target_level:11}));assert.equal(f.run('slot.refine',{...params,target_level:10}).receipt.result.code,'UPGRADE_LEVEL_UNCHANGED');assert.deepEqual(f.state,state);assert.equal(f.revision,revision);assert.equal(f.state.paid_ledger.length,0);
 });
 test('Enchant merges old/current actual paid costs and changing line refunds exact2800gold/11dust once into immutable receipt, not current4200 price',()=>{
@@ -69,7 +69,7 @@ test('D-057 Refine: +1..+4 always succeed, later steps roll a server seed; failu
  const f=fixture();for(let level=1;level<=4;level++)assert.equal(f.run('slot.refine',{...params,target_level:level},FAIL).receipt.result.code,'SLOT_REFINED');
  assert.equal(nextRefineChance(f.actor.slot_progress.weapon),.8);assert.equal(f.run('slot.refine',{...params,target_level:6}).receipt.result.code,'REFINE_ONE_STEP');
  const before=structuredClone(f.state.wallet),failed=f.run('slot.refine',{...params,target_level:5},FAIL);
- assert.equal(failed.receipt.outcome,'committed');assert.equal(failed.receipt.result.code,'REFINE_FAILED');assert.equal(before.gold-f.state.wallet.gold,5000);assert.equal(before.refine_ore-f.state.wallet.refine_ore,25);
+ assert.equal(failed.receipt.outcome,'committed');assert.equal(failed.receipt.result.code,'REFINE_FAILED');assert.equal(before.gold-f.state.wallet.gold,5000);assert.equal(before.refine_ore-f.state.wallet.refine_ore,40);
  assert.equal(f.actor.slot_progress.weapon.refine,4);assert.equal(f.actor.slot_progress.weapon.refine_failures,1);assert.ok(Math.abs(nextRefineChance(f.actor.slot_progress.weapon)-.9)<1e-12);
  assert.equal(f.run('slot.refine',{...params,target_level:5}).receipt.result.code,'SLOT_REFINED');assert.equal(f.actor.slot_progress.weapon.refine,5);assert.equal(f.actor.slot_progress.weapon.refine_failures,0);
 });
@@ -77,4 +77,11 @@ test('D-057 Refine pity reaches the cap so +9→+10 (20%) is guaranteed after 8 
  const f=fixture();refineTo(f,9);for(let i=0;i<8;i++)assert.equal(f.run('slot.refine',{...params,target_level:10},FAIL).receipt.result.code,'REFINE_FAILED');
  assert.equal(f.actor.slot_progress.weapon.refine_failures,8);assert.equal(nextRefineChance(f.actor.slot_progress.weapon),1);assert.equal(f.run('slot.refine',{...params,target_level:10},FAIL).receipt.result.code,'SLOT_REFINED');
  const g=fixture();refineTo(g,4);assert.throws(()=>g.run('slot.refine',{...params,target_level:5},null),/SERVER_ROLL_REQUIRED/);
+});
+test('D-134 insufficient ore refuses before any debit or pity change at every equipment slot',()=>{
+ for(const slot of ['weapon','head','armor','garment','shoes','accessory']as const){
+  const f=fixture();f.state.wallet.refine_ore=7;const before=structuredClone(f.state),revision=f.revision;
+  assert.equal(f.run('slot.refine',{character_id:'main',slot,target_level:1}).receipt.result.code,'INSUFFICIENT_RESOURCES');
+  assert.deepEqual(f.state,before);assert.equal(f.revision,revision);
+ }
 });

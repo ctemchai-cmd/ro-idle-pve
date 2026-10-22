@@ -509,3 +509,18 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T099-AC-02` [TASK-099](done/tasks_099.md) | rules/API/migration/mobile/build/hosted | build/type/boundaries/secrets/readinessผ่าน; actualisolatedChrome+publicVercelตรวจcode/artifactที่ปล่อยจริง | [ผ่าน implementation](evidence/task-099-review.json) |
 | `T100-AC-01` [TASK-100](done/tasks_100.md) | rules/API/migration/mobile/build/hosted | 12hcap/quantization/splitclaim; frozenoldrateรักษา; gearครึ่งcardเดิม; UI320/390ราคา/rates/icon/ข้อความTowerถูกต้อง | [ผ่าน implementation](evidence/task-100-review.json) |
 | `T100-AC-02` [TASK-100](done/tasks_100.md) | rules/API/migration/mobile/build/hosted | build/type/boundaries/secrets/readinessผ่าน; actualisolatedChrome+publicVercelตรวจcode/artifactที่ปล่อยจริง | [ผ่าน implementation](evidence/task-100-review.json) |
+
+| `T101-AC-01` [TASK-101](inprogress/tasks_101.md) | fixedrules/mobile/build/hosted | Native Upgrade/EXP/4ใบธาตุ/19อาชีพโหลดได้ ใช้frame cropถูกต้องและมีชื่อเข้าถึง ไม่มีcustomjobSVG | ยังไม่ตรวจ |
+| `T101-AC-02` [TASK-101](inprogress/tasks_101.md) | fixedrules/mobile/build/hosted | มือถือ320/390ไม่ล้นและpublicVercelส่งmapping/media/bundleตรงchecksum | ยังไม่ตรวจ |
+
+| `T102-AC-01` [TASK-102](inprogress/tasks_102.md) | fixedrules/mobile/build/hosted | ตัดhow-toและคำแนะนำซ้ำในทุกหน้า คงค่าจริง ราคา เงื่อนไขและคำเตือน; cardlevelแสดงเลขล้วน | ยังไม่ตรวจ |
+| `T102-AC-02` [TASK-102](inprogress/tasks_102.md) | fixedrules/mobile/build/hosted | เลือกสกิล/ใส่ช่อง สวมของและupgradeยังทำงานบนมือถือ ไม่มีoverflow/error | ยังไม่ตรวจ |
+
+| `T103-AC-01` [TASK-103](inprogress/tasks_103.md) | fixedrules/mobile/build/hosted | Asura SP ratioทุกเลเวลเท่าของเดิม×4; ATK/Finger/cost/CT/ACD/สเฟียร์เหมือนเดิม; pre-cost SPจริง/ขัดร่ายไม่คืน | ยังไม่ตรวจ |
+| `T103-AC-02` [TASK-103](inprogress/tasks_103.md) | fixedrules/mobile/build/hosted | UIและsharedengineตรงcoefficientsใหม่1102.5–2047.5%SP; focused/build/deployผ่าน ไม่มีbalancebatch | ยังไม่ตรวจ |
+
+| `T104-AC-01` [TASK-104](inprogress/tasks_104.md) | fixedrules/mobile/build/hosted | Lv1–10 duration5500→10000ms step500ทั้งATK/MATK; magnitude/cost/timingคงเดิม | ยังไม่ตรวจ |
+| `T104-AC-02` [TASK-104](inprogress/tasks_104.md) | fixedrules/mobile/build/hosted | แต่ละinstanceหมดเวลาตัวเอง/recastเพิ่มstack; UIleveldescriptionตรงและbuild/deployผ่าน | ยังไม่ตรวจ |
+
+| `T105-AC-01` [TASK-105](inprogress/tasks_105.md) | fixedrules/mobile/build/hosted | Refineใช้8×target oreแทน5×target รวม440oreถึง+10; gold77000/chance/pity/modifiers/cardgatesไม่เปลี่ยน | ยังไม่ตรวจ |
+| `T105-AC-02` [TASK-105](inprogress/tasks_105.md) | fixedrules/mobile/build/hosted | success/failureจ่ายstepcostใหม่ครั้งเดียว insufficientfundsไม่เปลี่ยนstate; oldprogress/paidledgerไม่reprice; UI/build/deployผ่าน | ยังไม่ตรวจ |

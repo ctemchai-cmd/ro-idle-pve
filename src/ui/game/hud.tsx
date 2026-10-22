@@ -28,7 +28,7 @@ export function TopHud({ context, save, controller, sound, toggleSound, reconnec
         <span className="avatar-level">{main.level}</span>
       </button>
       <div className="hud-main">
-        <div className="hud-name"><strong>{friendNames.main}</strong><ClassIcon job={main.job_id} size={16} /><span>{jobNames[main.job_id]}</span><button className={`hud-save ${tone}`} aria-label={`สถานะเซฟ: ${statusText[save.status] ?? save.status}`} title={statusText[save.status]} onClick={() => setSheet('settings')}><i /></button></div>
+        <div className="hud-name"><strong>{friendNames.main}</strong><ClassIcon pack={pack} job={main.job_id} size={16} /><span>{jobNames[main.job_id]}</span><button className={`hud-save ${tone}`} aria-label={`สถานะเซฟ: ${statusText[save.status] ?? save.status}`} title={statusText[save.status]} onClick={() => setSheet('settings')}><i /></button></div>
         <button className="hud-wallet" aria-label="ดูทรัพยากรทั้งหมด" onClick={() => setSheet('wallet')}>
           {(['gold', 'hero_exp', 'crystal'] as const).map(k => <span key={k} className="hud-chip"><ResIcon pack={pack} k={k} /><b data-testid={k === 'gold' ? 'story-gold' : undefined}>{compact(state.wallet[k])}</b></span>)}
         </button>
@@ -41,7 +41,6 @@ export function TopHud({ context, save, controller, sound, toggleSound, reconnec
     {(save.status === 'offline' || save.status === 'error' || save.status === 'read_only' || save.status === 'incompatible') && !maintenance && <div className="hud-alert" role="alert"><span>{statusText[save.status]}</span>{save.status === 'incompatible' ? <button onClick={() => window.location.reload()}>โหลดใหม่</button> : <button disabled={!navigator.onLine} onClick={reconnect}>เชื่อมต่อใหม่</button>}</div>}
     {sheet === 'wallet' && <Sheet title="ทรัพยากร" onClose={() => setSheet(null)}>
       <ul className="wallet-list">{walletOrder.map(k => <li key={k}><ResIcon pack={pack} k={k} /><span>{resourceNames[k]}</span><b>{full(state.wallet[k])}</b></li>)}</ul>
-      <p className="hint">ได้จากฟาร์มอัตโนมัติ รางวัลผ่านด่าน และการย่อยของ</p>
     </Sheet>}
     {sheet === 'settings' && <Sheet title="ตั้งค่าและเซฟ" onClose={() => setSheet(null)}>
       <div className="settings-list">

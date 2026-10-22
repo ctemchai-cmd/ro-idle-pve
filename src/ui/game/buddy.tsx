@@ -85,10 +85,10 @@ function UpgradeSheet({ context, actor, slot, close }: { context: GameContext; a
       {progress.cards[socket] && <button className="btn small ghost" disabled={locked} onClick={() => void submit('card.unassign', { ...params, card_slot: socket })}>ถอดการ์ดช่อง {socket + 1}</button>}
       {cards.length ? <div className="card-list">{cards.map(c => <button key={c.item.instance_id} data-card-equipped={!!c.owner} className={`list-row card-pick-row ${c.owner ? 'equipped' : ''} ${cardId === c.item.instance_id ? 'on' : ''}`} onClick={() => setCardId(c.item.instance_id)}>
         <span className={`icon-frame card-thumb rarity-${c.item.rarity_id}`}><CardIcon card={c} pack={pack} /></span><span className="row-main"><b>{c.name} <CardGrade grade={c.origin?.grade} rarity={c.item.rarity_id} variant={c.origin?.variant} /></b><small>{rarityLabels[c.item.rarity_id]} · Lv.{c.item.level}</small><span className="card-pick-description">{[...c.modifiers.map(modifierText),...c.effects].join(' · ')}</span>{c.owner&&<em className="card-worn-label"><Icon name="check" />ใส่อยู่ · {friendNames[c.owner.character_id]}</em>}</span>
-      </button>)}</div> : <p className="hint">ยังไม่มีการ์ดสำหรับช่องนี้ · หาได้จากฟาร์ม AFK และกาชาการ์ด</p>}
+      </button>)}</div> : <p className="hint">ยังไม่มีการ์ดสำหรับช่องนี้</p>}
       <footer className="card-selection-footer" aria-label="ยืนยันใส่การ์ด">
         {card ? <><b className="card-selected-name">{card.name}<span>{rarityLabels[card.item.rarity_id]} · Lv.{card.item.level}</span></b>
-          {cardPreview ? <button className="btn primary wide" disabled={locked} onClick={() => void submit('card.assign', { ...params, card_slot: socket, card_instance_id: card.item.instance_id })}>{card.owner ? 'ย้ายมาใส่' : 'ใส่การ์ด'}ช่อง {socket + 1}</button> : <p className="hint">{progress.cards[socket]===card.item.instance_id?'ใส่อยู่ในช่องนี้แล้ว':'เลือกช่องที่ปลดล็อกเพื่อใส่การ์ด'}</p>}
+          {cardPreview ? <button className="btn primary wide" disabled={locked} onClick={() => void submit('card.assign', { ...params, card_slot: socket, card_instance_id: card.item.instance_id })}>{card.owner ? 'ย้ายมาใส่' : 'ใส่การ์ด'}ช่อง {socket + 1}</button> : <p className="hint">{progress.cards[socket]===card.item.instance_id?'ใส่อยู่ในช่องนี้แล้ว':'ยังใส่ช่องนี้ไม่ได้'}</p>}
           <details className="card-selected-details" key={card.item.instance_id}><summary>รายละเอียด / เปรียบเทียบ / อัปเกรด</summary><div>
             <ul className="card-effects">{card.modifiers.map((m,i)=><li key={i}>{modifierText(m)}{card.nextModifiers?` → ${modifierText(card.nextModifiers[i]!)}`:''}</li>)}{card.effects.map((text,i)=><li key={`e${i}`}>{text}</li>)}</ul>
             {cardPreview&&<StatChanges before={cardPreview.before} after={cardPreview.after}/>}
@@ -96,7 +96,7 @@ function UpgradeSheet({ context, actor, slot, close }: { context: GameContext; a
             {card.price?<div className="row"><CostChips cost={card.price} wallet={state.wallet} pack={pack}/><button className="btn small" disabled={locked||!canPay(state.wallet,card.price)} onClick={()=>void submit('card.upgrade',{card_instance_id:card.item.instance_id,target_level:card.item.level+1})}>อัปการ์ด Lv.{card.item.level+1}</button></div>:<p className="hint">การ์ดระดับสูงสุดแล้ว</p>}
             <div className="row"><button className="btn small ghost" disabled={locked} onClick={()=>void submit('equipment.lock',{item_instance_id:card.item.instance_id,locked:!card.item.locked})}>{card.item.locked?'ปลดล็อก':'ล็อก'}</button><button className="btn small ghost danger" disabled={locked||card.item.locked||!!card.owner} onClick={()=>void submit('card.salvage',{instance_ids:[card.item.instance_id]})}>ย่อย ({Object.entries(salvageCardsQuote([card.item])).map(([k,n])=>`${resourceNames[k as keyof Wallet]??k} ${n}`).join(' · ')})</button></div>
           </div></details>
-        </>:<p className="hint">เลือกการ์ดจากรายการเพื่อใส่ช่อง {socket+1}</p>}
+        </>:<p className="hint">ยังไม่ได้เลือกการ์ด</p>}
       </footer>
     </section>}
   </Sheet>;
@@ -108,7 +108,6 @@ function ChangeSheet({ context, actor, slot, upgradeId, close }: { context: Game
   const current = actor.equipment[slot], price = equipmentData.targeted_weapon_purchase.cost_rows.find(r => r.tier_level === 1)!.gold, weapon = equipmentData.weapon_compatibility[actor.job_id]!;
   const fit: Record<string, string> = { ITEM_LEVEL_REQUIRED: 'เลเวลยังไม่ถึง', WEAPON_INCOMPATIBLE: 'อาชีพนี้ใช้ไม่ได้', ITEM_SLOT_MISMATCH: 'ชนิดช่องไม่ตรง' };
   return <Sheet title={`เปลี่ยน${slotLabels[slot]} · ${friendNames[actor.character_id]}`} onClose={close} className="tall">
-    <p className="hint">{upgradeId ? 'ของที่ดีกว่าอยู่บนสุด · ' : 'เรียงตามเลเวลและ rarity · '}ค่าพัฒนาช่อง (Refine/Enchant/การ์ด) อยู่กับช่องเดิม ไม่หายเมื่อเปลี่ยนของ</p>
     <div className="item-list">{rows.map(r => { const mine = current === r.item.instance_id, open = picked === r.item.instance_id, mods = itemModifiers(r.item); let preview: ReturnType<typeof equipmentPreview> | null = null;
       if (open && !r.reason && !mine && !state.active_battle) preview = equipmentPreview(state, actor.character_id, slot, r.item.instance_id);
       return <div key={r.item.instance_id} className={`list-item ${open ? 'open' : ''} ${r.reason ? 'dim' : ''}`}>
@@ -120,7 +119,7 @@ function ChangeSheet({ context, actor, slot, upgradeId, close }: { context: Game
         {open && <div className="list-detail"><OptionLines item={r.item} />{r.reason ? <p className="hint warn">{fit[r.reason] ?? reasonText[r.reason] ?? r.reason}</p> : mine ? <div className="row"><p className="hint">กำลังสวมอยู่</p><button className="btn small ghost" disabled={locked} onClick={() => void submit('equipment.unequip', { character_id: actor.character_id, slot })}>ถอดออก</button></div>
           : <>{preview && <StatChanges before={preview.before} after={preview.after} />}{r.owner && <p className="hint">ย้ายจาก {friendNames[r.owner.character_id]} · ช่องของเขาจะว่าง</p>}<button className="btn primary wide" disabled={locked} onClick={() => void submit('equipment.equip', { character_id: actor.character_id, slot, item_instance_id: r.item.instance_id }).then(ok => { if (ok) close(); })}>{r.owner ? 'ย้ายมาสวม' : 'สวมใส่'}</button></>}</div>}
       </div>; })}
-      {!rows.length && <p className="hint">ยังไม่มีของสำหรับช่องนี้ · ได้จากรางวัลฟาร์มและผ่านด่าน</p>}</div>
+      {!rows.length && <p className="hint">ยังไม่มีของสำหรับช่องนี้</p>}</div>
     {slot === 'weapon' && <div className="buy-box"><span>ซื้อ{weaponLabels[weapon]}ฝึกหัด Lv.1<small>ผสม/อัป Tier ไม่ได้ · ย่อยได้ 0</small></span><button className="btn small" disabled={locked || state.wallet.gold < price || state.inventory.length >= equipmentData.inventory_capacity} onClick={() => void submit('equipment.purchase_weapon', { character_id: actor.character_id, weapon_type: weapon, tier_level: 1 })}>{price.toLocaleString()} ทอง</button></div>}
   </Sheet>;
 }
@@ -149,12 +148,11 @@ function CharacterUpgradeSheet({ context, actor, close }: { context: GameContext
       <div className="level-jump"><b>Lv.{actor.level}</b><span>→</span><b className="next">{cost ? `Lv.${actor.level + 1}` : actor.level === data.release.level_cap ? 'MAX' : 'รอ Breakthrough'}</b><small>เพดาน {cap}</small></div>
       {cost && <><CostChips cost={cost} wallet={state.wallet} pack={pack} /><div className="row two"><button className="btn primary" disabled={locked || !canPay(state.wallet, cost)} onClick={() => void submit('character.level_up', { character_id: actor.character_id, target_level: actor.level + 1 })}>อัป +1</button>
         <button className="btn" disabled={locked || best <= actor.level + 1} onClick={() => void submit('character.level_up', { character_id: actor.character_id, target_level: best })}>อัปถึง Lv.{Math.max(best, actor.level + 1)}</button></div></>}
-      <p className="hint">ได้แต้ม Status ไปลงเองในหน้า Stats · เลเวลไม่เพิ่ม AGI/DEX ให้อัตโนมัติ</p>
     </section>
     {gate && <section className="upgrade-pane highlight"><h3>Breakthrough Lv.{gate.at_level}</h3><p className="hint">ปลดเพดานถึง Lv.{Math.min(data.release.level_cap, gate.unlocks_local_cap)}</p><CostChips cost={gate.cost} wallet={state.wallet} pack={pack} />
       <button className="btn primary wide" disabled={locked || !canPay(state.wallet, gate.cost)} onClick={() => void submit('character.breakthrough', { character_id: actor.character_id, gate_level: gate.at_level })}>Breakthrough</button></section>}
     <section className="upgrade-pane"><h3>เปลี่ยนอาชีพ</h3>
-      <div className="chip-row">{jobs.map(j => { const class2 = !roots.includes(j as RootJob), lockedJob = class2 && actor.level < data.promotion.class2_min_level; return <button key={j} className={`chip job-chip ${job === j ? 'on' : ''}`} disabled={lockedJob} onClick={() => setJob(j)}><ClassIcon job={j} size={18} />{jobNames[j]}{lockedJob ? ` · Lv.${data.promotion.class2_min_level}` : ''}</button>; })}<button className="chip job-chip hi-class" disabled title="Hi-class เปิดในรุ่นถัดไป (Lv.70)"><Icon name="sparkles" /> Hi-class · เร็วๆ นี้</button></div>
+      <div className="chip-row">{jobs.map(j => { const class2 = !roots.includes(j as RootJob), lockedJob = class2 && actor.level < data.promotion.class2_min_level; return <button key={j} className={`chip job-chip ${job === j ? 'on' : ''}`} disabled={lockedJob} onClick={() => setJob(j)}><ClassIcon pack={pack} job={j} size={18} />{jobNames[j]}{lockedJob ? ` · Lv.${data.promotion.class2_min_level}` : ''}</button>; })}<button className="chip job-chip hi-class" disabled title="Hi-class เปิดในรุ่นถัดไป (Lv.70)"><Icon name="sparkles" /> Hi-class · เร็วๆ นี้</button></div>
       {job !== actor.job_id ? <><p className="hint">เปลี่ยนฟรี · รีเซ็ต Status/สกิลและคืนทุนที่จ่ายจริง · อาวุธที่ใช้ไม่ได้กลับเข้ากระเป๋า</p><CostChips cost={refund} wallet={state.wallet} pack={pack} />
         <button className="btn primary wide" disabled={locked} onClick={() => void submit('character.change_job', { character_id: actor.character_id, job_id: job })}>เปลี่ยนเป็น {jobNames[job]}</button></> : <p className="hint">อาชีพปัจจุบัน: {jobNames[actor.job_id]}{actor.kind === 'npc' ? ' · เพื่อนเปลี่ยนได้ภายในสายเดิม' : ''}</p>}
     </section>
@@ -168,7 +166,7 @@ export function RosterStrip({ context }: { context: GameContext }) {
   const { state, pack, characterId, selectCharacter } = context;
   const ordered = orderedCharacters(state);
   return <div className="roster-strip" role="tablist" aria-label="เลือกตัวละคร">{ordered.map(a => { const inTeam = state.team.some(p => p.character_id === a.character_id); return <button key={a.character_id} role="tab" aria-selected={characterId === a.character_id} className={`roster-card ${inTeam ? 'in-team' : ''} ${characterId === a.character_id ? 'on' : ''}`} onClick={() => selectCharacter(a.character_id)}>
-    <ActorCanvas pack={pack} look={lookOf(a, state)} width={72} height={84} scale={1.5} footY={128} /><span className="roster-class"><ClassIcon job={a.job_id} size={18} /></span><span className="roster-name">{inTeam && <i className="team-dot" aria-label="อยู่ในทีม" />}{friendNames[a.character_id]}</span><span className="roster-lv">{a.level}</span>
+    <ActorCanvas pack={pack} look={lookOf(a, state)} width={72} height={84} scale={1.5} footY={128} /><span className="roster-class"><ClassIcon pack={pack} job={a.job_id} size={18} /></span><span className="roster-name">{inTeam && <i className="team-dot" aria-label="อยู่ในทีม" />}{friendNames[a.character_id]}</span><span className="roster-lv">{a.level}</span>
   </button>; })}</div>;
 }
 
@@ -178,9 +176,9 @@ export function BuddyPage({ context }: { context: GameContext }) {
   const [slot, setSlot] = useState<EquipmentSlot | null>(null), [sheet, setSheet] = useState<'slot' | 'upgrade' | 'change' | 'character' | null>(null);
   const inTeam = state.team.some(p => p.character_id === actor.character_id), row = (s: EquipmentSlot) => items.find(i => i.item.instance_id === actor.equipment[s]);
   const tile = (s: EquipmentSlot) => <GearTile key={s} row={row(s)} slot={s} pack={pack} state={state} characterId={actor.character_id} upgradeId={upgrades[s]} onClick={() => { setSlot(s); setSheet('slot'); }} />;
-  const statsIcon = iconUrl(pack, 'ui_icons', 'stats'), skillIcon = iconUrl(pack, 'ui_icons', 'skill');
+  const statsIcon = iconUrl(pack, 'ui_icons', 'stats'), skillIcon = iconUrl(pack, 'ui_icons', 'skill'), upgradeIcon = iconUrl(pack, 'ui_icons', 'upgrade');
   return <div className="page buddy-page">
-    <PageHeader title={<>{friendNames[actor.character_id]} <span className="title-class"><ClassIcon job={actor.job_id} size={20} /><em>{jobNames[actor.job_id]}</em></span></>} sub={`Lv.${actor.level} / ${effectiveLevelCap(actor, data)} · ${inTeam ? 'อยู่ในทีม' : 'พักอยู่ในค่าย'}${actor.unspent_status_points ? ` · แต้มเหลือ ${actor.unspent_status_points}` : ''}`} onBack={() => go('home')} />
+    <PageHeader title={<>{friendNames[actor.character_id]} <span className="title-class"><ClassIcon pack={pack} job={actor.job_id} size={20} /><em>{jobNames[actor.job_id]}</em></span></>} sub={`Lv.${actor.level} / ${effectiveLevelCap(actor, data)} · ${inTeam ? 'อยู่ในทีม' : 'พักอยู่ในค่าย'}${actor.unspent_status_points ? ` · แต้มเหลือ ${actor.unspent_status_points}` : ''}`} onBack={() => go('home')} />
     <section className="showcase">
       <div className="gear-col">{leftSlots.map(tile)}</div>
       <div className="hero-stage"><ActorCanvas pack={pack} look={lookOf(actor, state)} width={220} height={250} scale={2.7} footY={226} animate className="hero-canvas" /><span className="hero-plinth" /></div>
@@ -189,7 +187,7 @@ export function BuddyPage({ context }: { context: GameContext }) {
     <div className="action-row">
       <button className="action-btn" onClick={() => go('stats', actor.character_id)}>{statsIcon ? <img src={statsIcon} alt="" /> : <Icon name="chart" />}<span>Stats</span>{actor.unspent_status_points > 0 && <i className="dot" />}</button>
       <button className="action-btn" onClick={() => go('skills', actor.character_id)}>{skillIcon ? <img src={skillIcon} alt="" /> : <Icon name="book" />}<span>Skill</span></button>
-      <button className="action-btn" onClick={() => setSheet('character')}><svg className="upgrade-emblem" viewBox="0 0 32 32" aria-hidden="true"><path d="M6 5h20v15l-10 8L6 20Z" fill="#e8f2ff" stroke="#5a84bc" strokeWidth="1.5"/><path d="m10 19 6-5 6 5M10 13l6-5 6 5" fill="none" stroke="#3472bd" strokeWidth="2.7" strokeLinecap="round" strokeLinejoin="round"/><path d="m24 3 1 3 3 1-3 1-1 3-1-3-3-1 3-1Z" fill="#e9b653" stroke="#b98123" strokeWidth=".6"/></svg><span>Upgrade</span></button>
+      <button className="action-btn" onClick={() => setSheet('character')}><img className="upgrade-icon" src={upgradeIcon ?? undefined} alt="" /><span>Upgrade</span></button>
     </div>
     <RosterStrip context={context} />
     {sheet === 'slot' && slot && <SlotSheet context={context} actor={actor} slot={slot} close={() => setSheet(null)} open={s => setSheet(s)} />}

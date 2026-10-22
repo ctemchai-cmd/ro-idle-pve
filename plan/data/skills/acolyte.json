@@ -116,6 +116,18 @@
           0.2275,
           0.245,
           0.2625
+        ],
+        "duration": [
+          5500,
+          6000,
+          6500,
+          7000,
+          7500,
+          8000,
+          8500,
+          9000,
+          9500,
+          10000
         ]
       },
       "presentation_id": "visual_acolyte_blessing",
@@ -170,7 +182,9 @@
           "type": "apply_status",
           "target": "friends",
           "status_id": "attack_up",
-          "duration_ms": 5000,
+          "duration_ms": {
+            "level_param": "duration"
+          },
           "params": {
             "ratio": {
               "level_param": "ratio"
@@ -183,7 +197,9 @@
           "type": "apply_status",
           "target": "friends",
           "status_id": "magic_up",
-          "duration_ms": 5000,
+          "duration_ms": {
+            "level_param": "duration"
+          },
           "params": {
             "ratio": {
               "level_param": "ratio"
@@ -1227,16 +1243,16 @@
           9.84375
         ],
         "mana": [
-          2.75625,
-          3.018751,
-          3.281249,
-          3.54375,
-          3.806251,
-          4.068749,
-          4.33125,
-          4.593751,
-          4.856249,
-          5.11875
+          11.025,
+          12.075004,
+          13.124996,
+          14.175,
+          15.225004,
+          16.274996,
+          17.325,
+          18.375004,
+          19.424996,
+          20.475
         ]
       },
       "presentation_id": "visual_monk_asura",

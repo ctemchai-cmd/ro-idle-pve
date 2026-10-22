@@ -13,7 +13,7 @@ rewards are left on top as the "player who does everything" bonus. scripts/game/
 
 Usage:  python3 plan/generators/economy_pace.py --write | --check
 """
-import argparse, json, math
+import argparse, json, math, copy
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]; D = ROOT / 'plan/data'
@@ -87,7 +87,11 @@ def main():
   load = lambda n: json.loads((D / n).read_text())
   economy, loot = load('economy.json'), load('loot.json')
   skills_by_root = {root: load(f'skills/{root}.json') for root in REFERENCE_BUILDS}
-  new_rates, factors, plan = rates(load('progression.json'), load('stages.json')['stages'], load('slot-progress.json'), skills_by_root)
+  # D-134 raises the sink, not AFK ore income. Keep the D-069 income-authoring reference
+  # at its original 5 ore/target so regenerating does not silently cancel the user's change.
+  income_reference_slots = copy.deepcopy(load('slot-progress.json'))
+  for row in income_reference_slots['refine']['upgrade_rows']: row['refine_ore'] = 5 * row['to']
+  new_rates, factors, plan = rates(load('progression.json'), load('stages.json')['stages'], income_reference_slots, skills_by_root)
   for row in new_rates:
     row['per_hour']['gold'] *= GOLD_INCOME_MULTIPLIER
     row['per_hour']['crystal'] = economy['farm'].get('crystal_per_hour', 0)  # D-129, fixed all chapters

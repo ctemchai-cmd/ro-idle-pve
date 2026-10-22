@@ -153,7 +153,7 @@ function BossField({ context, app, running, checkpoint, outcome, retreat, statsR
     {view.terminal && !outcome && running && <p className="field-toast">กำลังยืนยันผลไฟต์…</p>}
     {error && <p className="field-toast danger" role="alert">{error}</p>}
     <div className="party-strip" role="group" aria-label="ทีมในไฟต์">{party.map(a => <button key={a.actor_id} className={`party-card ${selected === a.actor_id ? 'on' : ''} ${a.hp <= 0 ? 'down' : ''}`} aria-pressed={selected === a.actor_id} onClick={() => setSelected(a.actor_id)}>
-      <span className="party-name"><ClassIcon job={context.state.roster.find(r => r.character_id === a.actor_id)?.job_id ?? 'swordsman'} size={15} />{a.name.split(' · ')[0]}</span><small>{phaseNames[a.phase]}</small>
+      <span className="party-name"><ClassIcon pack={pack} job={context.state.roster.find(r => r.character_id === a.actor_id)?.job_id ?? 'swordsman'} size={15} />{a.name.split(' · ')[0]}</span><small>{phaseNames[a.phase]}</small>
       <span className="bar hp thin"><i style={{ width: `${a.hp / a.max_hp * 100}%` }} /></span><span className="bar sp thin"><i style={{ width: `${a.sp / a.max_sp * 100}%` }} /></span>
       <StatusSignals actor={a} pack={pack} />
     </button>)}</div>
@@ -167,7 +167,7 @@ function introLabel(target: ChallengeTarget, pack: AssetPack | null, context: Ga
   if (target.kind === 'tower') { const floor = towerView(context.state, target.floor, 1).floors[0]!; return { name: bossName(floor.boss), place: `หอคอย ชั้น ${target.floor}`, level: target.floor }; }
   if (target.kind === 'daily') { const card = dailyView(context.state, Date.now()).bosses.find(b => b.id === target.boss); return { name: card ? bossName(card.enemy) : dailyNames[target.boss] ?? target.boss, place: `ดันเจี้ยนรายวัน · ${dailyNames[target.boss] ?? ''} หลอดที่ ${card?.phase ?? 1}`, level: null }; }
   const authored = storyBossLabel(target.id), skin = stageBossSkin(pack, target.id), info = storyStageInfo(target.id), heavy = info?.heavy_skill ? bossCastInfo(info.heavy_skill) : null;
-  return { name: skin?.label ?? authored?.name ?? '', place: `ด่าน ${target.id}`, level: authored?.level ?? null, hint: info?.heavy_cast ? `บอสร่าย "${heavy?.name ?? 'มหาวิบัติ'}" · จัดสกิลสตั้น/แช่แข็ง/ใบ้/ขัดร่ายเข้าคิว` : null };
+  return { name: skin?.label ?? authored?.name ?? '', place: `ด่าน ${target.id}`, level: authored?.level ?? null, hint: info?.heavy_cast ? `บอสร่าย "${heavy?.name ?? 'มหาวิบัติ'}"` : null };
 }
 function BossIntro({ label }: { label: { name: string; place: string; level: number | null; hint?: string | null } }) {
   return <div className="boss-intro" role="alert" aria-label={`คำเตือน บอส ${label.name} ${label.place}`}>
@@ -185,10 +185,10 @@ function StageSheet({ context, close, challenge }: { context: GameContext; close
       <b>{o.id}</b><small>{o.cleared ? (farm === o.id ? 'ฟาร์มอยู่' : 'ผ่านแล้ว') : o.available ? 'บอส' : <Icon name="lock" />}</small>
     </button>)}</div>
     {stage ? <div className="stage-actions">
-      <p><b>ด่าน {stage.id}</b> · {stage.cleared ? 'ผ่านแล้ว · ตั้งเป็นจุดฟาร์มหรือท้าบอสซ้ำได้' : 'ยังไม่ผ่าน · ชนะบอสเพื่อปลดด่านถัดไป'}</p>
+      <p><b>ด่าน {stage.id}</b> · {stage.cleared ? 'ผ่านแล้ว' : 'ยังไม่ผ่าน'}</p>
       <div className="row">{stage.cleared && <button className="btn" disabled={locked || farm === stage.id} onClick={() => void submit('farm.set_stage', { stage_id: stage.id }).then(ok => { if (ok) close(); })}>{farm === stage.id ? 'กำลังฟาร์มที่นี่' : 'ฟาร์มที่ด่านนี้'}</button>}
         <button className="btn primary" disabled={locked} onClick={() => challenge(stage.id)}><Icon name="adventure" />ท้าบอส {stage.id}</button></div>
-    </div> : <p className="hint">เลือกด่านเพื่อท้าบอสหรือเปลี่ยนจุดฟาร์ม · ฟาร์มได้เฉพาะด่านที่ผ่านแล้ว</p>}
+    </div> : null}
   </Sheet>;
 }
 
@@ -221,12 +221,11 @@ function FarmSheet({ context, close }: { context: GameContext; close: () => void
     {snapshot?.card_drops?<div className="farm-card-rates"><b>การ์ด {(snapshot.card_drops.chance_per_million/10000).toLocaleString('th-TH',{maximumFractionDigits:2})}% / รอบ 5 นาที</b>
       <span>{['normal','mini','mvp'].filter(grade=>snapshot.card_drops!.definition_pool.some(id=>cardOrigin(id)?.grade===grade&&!cardOrigin(id)?.variant)).map(grade=><CardGrade key={grade} grade={grade} />)}{snapshot.card_drops!.definition_pool.some(id=>cardOrigin(id)?.variant==='puppet')&&<CardGrade grade="mvp" variant="puppet" />}</span>
       <small>ระดับตามมอนสเตอร์: {farmCardRarityOdds(snapshot.card_drops).map(r=>`${rarityLabels[r.rarity]} ${r.percent.toLocaleString('th-TH',{maximumFractionDigits:2})}%`).join(' · ')}</small>
-    </div>:snapshot?<p className="hint">รับของที่สะสมไว้รอบนี้ก่อน แล้วจะเริ่มสะสมการ์ดจากฟาร์ม</p>:null}
+    </div>:snapshot?<p className="hint">ช่วงสะสมเดิมยังไม่มีดรอปการ์ด</p>:null}
     {(waiting.length > 0 || items > 0) && <div className="waiting-box"><small>รอรับ {state.pending_rewards.length} รายการ{snapshot && elapsed >= 1000 ? ' + ช่วงฟาร์มล่าสุด' : ''}</small>
       <p className="reward-line">{waiting.map(([k, n]) => <span key={k}><ResIcon pack={pack} k={k} />{compact(n)}</span>)}{items ? <span><Icon name="gift" /> {items} ชิ้น</span> : null}</p></div>}
     <button className="btn primary wide big" disabled={locked || claiming || !ready} onClick={() => void collectAll()}>{claiming ? 'กำลังรับ…' : 'รับทั้งหมด'}</button>
     {foundCards.length>0&&<section className="farm-card-finds" aria-label="การ์ดที่ได้รับ"><b>การ์ดที่พบ · {foundCards.length} ใบ</b><div>{foundCards.slice(0,12).map(c=><button key={c.item.instance_id} title={c.name} aria-label={`ดู${c.name}`} onClick={()=>setOpenCardId(c.item.instance_id)} data-card-definition={c.definition.id}><span className={`card-find-art rarity-${c.item.rarity_id}`} data-card-rarity={c.item.rarity_id}><CardIcon card={c} pack={pack} /></span><CardGrade grade={c.origin?.grade} rarity={c.item.rarity_id} variant={c.origin?.variant} /><small>{c.name}</small></button>)}</div>{foundCards.length>12&&<small>และอีก {foundCards.length-12} ใบในกระเป๋า</small>}</section>}
-    <p className="hint center-text">สะสมตามเวลาจริงสูงสุด 12 ชั่วโมง · ของดรอปสุ่มตอนกดรับ</p>
     {openCard&&<CardSheet context={context} card={openCard} close={()=>setOpenCardId(null)}/>}
   </Sheet>;
 }
@@ -239,7 +238,6 @@ function Debrief({ session }: { session: SavedBattleSession }) {
   const top = Math.max(1, ...debrief.members.map(m => m.damage));
   return <details className="debrief"><summary>สรุปการต่อสู้ · {(debrief.at_ms / 1000).toFixed(1)}s{debrief.kind === 'time_limit' ? ` · บอสเหลือ ${Math.round(debrief.boss_hp_ratio * 100)}%` : ''}</summary>
     <ul>{debrief.members.map(m => <li key={m.actor_id}><b>{friendNames[m.actor_id] ?? m.actor_id}</b><span className="debrief-bar"><i style={{ width: `${m.damage / top * 100}%` }} /></span><small>ดาเมจ {compact(m.damage)}{m.healing ? ` · ฮีล ${compact(m.healing)}` : ''}{m.overheal ? ` (เกิน ${compact(m.overheal)})` : ''}{m.fell_at_ms !== null ? ` · ล้มที่ ${(m.fell_at_ms / 1000).toFixed(0)}s` : ''}{m.interrupted ? ` · ถูกขัด ${m.interrupted}` : ''}{m.sp_skips ? ` · SP ไม่พอ ${m.sp_skips}` : ''}</small></li>)}</ul>
-    {debrief.tips.length > 0 && <ul className="debrief-tips">{debrief.tips.map(tip => <li key={tip}><Icon name="help" /> {tip}</li>)}</ul>}
   </details>;
 }
 function DailyResult({ context, outcome, close, challenge, stats, timeline, session }: { context: GameContext; outcome: Outcome; close: () => void; challenge: (target: ChallengeTarget) => void; stats: () => void; timeline: () => void; session?: SavedBattleSession }) {
@@ -267,7 +265,7 @@ function ResultCard({ context, outcome, close, challenge, stats, timeline, sessi
   const retry: ChallengeTarget = tower ? { kind: 'tower', floor: Number(outcome.stage) } : { kind: 'story', id: outcome.stage };
   return <div className="result-layer" role="dialog" aria-label="ผลการต่อสู้"><div className={`result-card ${won ? 'win' : 'lose'}`}>
     <h2>{won ? 'ชนะแล้ว!' : outcome.code.endsWith('_TIME_LIMIT') ? 'หมดเวลา' : 'ทีมพ่ายแพ้'}</h2>
-    <p>{won ? tower ? `ผ่านหอคอยชั้น ${outcome.stage}${claim ? '' : ' (เคยผ่านแล้ว ไม่มีรางวัลซ้ำ)'}` : `ผ่านด่าน ${outcome.stage}` : 'ลองปรับทีม คิวสกิล หรืออุปกรณ์ แล้วท้าใหม่ได้ฟรี'}</p>
+    <p>{won ? tower ? `ผ่านหอคอยชั้น ${outcome.stage}${claim ? '' : ' (เคยผ่านแล้ว ไม่มีรางวัลซ้ำ)'}` : `ผ่านด่าน ${outcome.stage}` : 'ทีมพ่ายแพ้หรือหมดเวลา'}</p>
     {session && <Debrief session={session} />}
     {claim && <div className="result-reward">{(Object.entries(claim.resource_vector) as [keyof Wallet, number][]).filter(([, n]) => n > 0).map(([k, n]) => <span key={k}><ResIcon pack={pack} k={k} />{full(n)}</span>)}{claim.items.length ? <span><Icon name="gift" /> {claim.items.length}</span> : null}</div>}
     <div className="row">
