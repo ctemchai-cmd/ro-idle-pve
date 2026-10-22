@@ -16,7 +16,7 @@ const statUnits=Object.fromEntries((content.documents['stat-definitions.json']!.
 const number=(n:unknown)=>Number(n).toLocaleString('th-TH',{maximumFractionDigits:2}),percent=(n:unknown)=>number(Number(n)*100)+'%';
 function summaries(definition:SkillDefinition):string[]{
  if(definition.kind==='passive')return [...definition.modifiers.map(m=>`${statNames[m.stat]??m.stat} ${Number(m.value)>=0?'+':''}${m.op==='add_percent'||statUnits[m.stat]==='ratio'?percent(m.value):number(m.value)}${m.when?' เมื่อเข้าเงื่อนไข':''}`),...definition.triggers.flatMap(trigger=>effectDescriptions(trigger.effects).map(text=>'เมื่อเข้าเงื่อนไข · '+text))];
- return effectDescriptions(definition.effects);
+ return [...(typeof definition.cost.sp==='object'&&'mode' in definition.cost.sp?[`ใช้ SP ทั้งหมด · ต้องมีอย่างน้อย ${number(definition.cost.sp.minimum_sp)} SP`]:[]),...(Number(definition.cost.spirit_spheres)>0?[`ใช้ Spirit Sphere ${number(definition.cost.spirit_spheres)} ลูกตอนเริ่มร่าย`]:[]),...effectDescriptions(definition.start_effects).map(text=>'เมื่อเริ่มร่าย · '+text),...effectDescriptions(definition.effects)];
 }
 /** Shared effect text for authored skills and card procs; no second formula authority. */
 export function effectDescriptions(effects: readonly Effect[]): string[] {
@@ -29,24 +29,45 @@ export function effectDescriptions(effects: readonly Effect[]): string[] {
    else if(f.id==='sp_burst_power')text=`พลังโจมตี ${percent(f.params.attack_ratio)} ATK + ${percent(f.params.sp_ratio)} SP`;
    else text='ผลต่อเนื่องตามพลังของสกิล';
   }else if(effect.type==='apply_status'){const ratio=effect.params.ratio;text=(statusNames[effect.status_id]??effect.status_id)+(typeof ratio==='number'?' '+percent(ratio):'');
-   const status=content.statuses[effect.status_id] as unknown as {periodic?:{interval_ms:number;effects:{type:string;formula?:{id:string}}[]}|null},heal=status?.periodic?.effects.find(e=>e.type==='heal');
-   if(heal&&typeof effect.params.power_ratio==='number')text+=` ${percent(effect.params.power_ratio)} ${heal.formula?.id==='physical_power'?'P.ATK':'MATK'} ทุก ${number(status.periodic!.interval_ms/1000)}s`;
-   text+=' · '+number(Number(effect.duration_ms)/1000)+'s';}
+   const status=content.statuses[effect.status_id] as unknown as {periodic?:{interval_ms:number;effects:{type:string;formula?:{id:string}}[]}|null},tick=status?.periodic?.effects.find(e=>e.type==='heal'||e.type==='damage');
+   if(tick&&typeof effect.params.power_ratio==='number')text+=` ${percent(effect.params.power_ratio)} ${tick.formula?.id==='physical_power'?'P.ATK':'MATK'} ทุก ${number(status.periodic!.interval_ms/1000)}s`;
+   text+=' · '+number(Number(effect.duration_ms)/1000)+'s';
+   if(Number(effect.chance)<1)text+=` · โอกาส ${percent(effect.chance)}`;
+   if(effect.status_id==='provoke')text+=' · บังคับตีปกติและสกิลเลือกเป้าเดี่ยวให้หันมาหาผู้ยั่วยุที่ยังมีชีวิต; ท่าหมู่และสุ่มเป้าไม่ถูกบังคับ';}
   else if(effect.type==='interrupt')text='ขัดการร่ายของเป้าหมาย';
-  else if(effect.type==='revive')text='ชุบชีวิตเพื่อน';
-  else if(effect.type==='remove_status')text='ล้างสถานะจากเป้าหมาย';
-  else if(effect.type==='resource_change')text=effect.resource==='spirit_spheres'?`เพิ่ม Spirit Sphere ${number(effect.amount)} ลูก (สูงสุด 5) · บอลที่ถือเพิ่ม ATK ${percent(heldResourceModifiers({sp:0,spirit_spheres:1},content).filter(m=>m.stat==='physical_attack').reduce((n,m)=>n+Number(m.value),0))} ต่อลูก`:'เปลี่ยนทรัพยากรระหว่างต่อสู้';
-  else if(effect.type==='summon')text='เรียกผู้ช่วยลงสนาม'+(typeof effect.power_scale==='number'?` · พลังผู้ช่วย ${percent(effect.power_scale)}`:'');
+  else if(effect.type==='revive')text=`ชุบชีวิตเพื่อน · HP ${percent(effect.hp_ratio)} · SP ${percent(effect.sp_ratio)}`;
+  else if(effect.type==='remove_status')text=`ล้าง${effect.polarity==='buff'?'บัฟ':effect.polarity==='debuff'?'ดีบัฟ':'สถานะ'}${effect.max_instances===null?'ทั้งหมด':'สูงสุด '+number(effect.max_instances)+' ชั้น'}${effect.tags.length?' · '+effect.tags.map(tag=>statusNames[tag]??tag).join(' / '):''}`;
+  else if(effect.type==='resource_change')text=effect.resource==='spirit_spheres'?`เพิ่ม Spirit Sphere ${number(effect.amount)} ลูก (สูงสุด 5) · บอลที่ถือเพิ่ม ATK ${percent(heldResourceModifiers({sp:0,spirit_spheres:1},content).filter(m=>m.stat==='physical_attack').reduce((n,m)=>n+Number(m.value),0))} ต่อลูก · เมื่อใช้บอล โบนัสคิดจากลูกที่เหลือหลังหัก`:`SP ${Number(effect.amount)>=0?'+':''}${number(effect.amount)}`;
+  else if(effect.type==='summon')text=`เรียกผู้ช่วยลงสนาม ${number(Number(effect.duration_ms)/1000)}s · สูงสุด ${effect.max_owned} ตัว`+(typeof effect.power_scale==='number'?` · พลังผู้ช่วย ${percent(effect.power_scale)}`:'');
   else if(effect.type==='handler'&&effect.handler_id==='detonate_own_status')text=`ระเบิด${statusNames[String(effect.params.status_id)]??effect.params.status_id}ของตัวเอง ${typeof effect.params.attack_ratio_per_instance==='number'?[...(Number(effect.params.power_per_instance)?[number(effect.params.power_per_instance)]:[]),`${percent(effect.params.attack_ratio_per_instance)} ATK`].join(' + '):number(effect.params.power_per_instance)} ต่อชั้น`;
   else text='กลไกเฉพาะอาชีพ';
   if(effect.type==='damage'&&Number(effect.hits)>1)text+=` × ${number(effect.hits)} ครั้ง`;
+  if(effect.type==='shield')text+=` · ${number(Number(effect.duration_ms)/1000)}s`;
   const elements=effectDamageElements([effect]);
   if(elements.length)text+=' · '+(effect.type==='damage'||effect.type==='handler'?'':'ดาเมจ')+elements.map(e=>e==='weapon'?elementName(e):'ธาตุ'+elementName(e)).join(' / ');
-  if(effect.type==='apply_status'){const element=content.statuses[effect.status_id]?.weapon_element;if(typeof element==='string')text+=' · เสริมธาตุอาวุธเป็น'+elementName(element as Parameters<typeof elementName>[0]);}
+  if(effect.type==='apply_status'){const element=content.statuses[effect.status_id]?.weapon_element;if(typeof element==='string')text+=' · เปลี่ยนธาตุอาวุธเป็น'+elementName(element as Parameters<typeof elementName>[0])+' มีผลกับตีปกติและสกิลตามธาตุอาวุธ; สกิลธาตุตายตัวและเกราะไม่เปลี่ยน';}
   return text+('when'in effect&&effect.when?' เมื่อเข้าเงื่อนไข':'');
  });
 }
-export interface SkillOption {targetNote:string;id:string;name:string;kind:'active'|'passive';unlock:number;level:number;cap:number;max:number;locked:boolean;definition:SkillDefinition;next:SkillDefinition|null;price:Partial<AccountState['wallet']>|null;effects:string[];nextEffects:string[];castMs:number;afterCastMs:number;sp:number;nextCastMs:number|null;nextAfterCastMs:number|null;nextSp:number|null}
+export interface SkillOption {targetNote:string;id:string;name:string;kind:'active'|'passive';unlock:number;level:number;cap:number;max:number;locked:boolean;definition:SkillDefinition;next:SkillDefinition|null;price:Partial<AccountState['wallet']>|null;effects:string[];nextEffects:string[];castMs:number;afterCastMs:number;sp:number;nextCastMs:number|null;nextAfterCastMs:number|null;nextSp:number|null;previewSpeed:number;previewSpPercent:number}
+export interface SkillLevelRow {level:number;sp:number|null;castMs:number;afterCastMs:number;effects:string[];definition:SkillDefinition}
+/** Resolve only the selected skill on demand; no command, simulation, or authored curve duplication. */
+export function skillLevelComparison(skill:SkillOption):{rows:SkillLevelRow[];spOnly:boolean}{
+ const rows=Array.from({length:skill.max},(_,i)=>{
+  const definition=resolveSkill(skill.id,i+1,content).definition as SkillDefinition;
+  return{level:i+1,definition,effects:summaries(definition),sp:definition.kind==='active'&&typeof definition.cost.sp==='number'?fixedSpCost(definition.cost.sp,{sp_cost_percent:skill.previewSpPercent}):null,castMs:definition.kind==='active'?castDurationMs(Number(definition.timing.cast_ms),skill.previewSpeed):0,afterCastMs:definition.kind==='active'?castDurationMs(Number(definition.timing.after_cast_ms),skill.previewSpeed):0};
+ });
+ const withoutSp=(d:SkillDefinition)=>JSON.stringify(d.kind==='active'?{...d,cost:{...d.cost,sp:0}}:d);
+ return{rows,spOnly:rows[0]?.definition.kind==='active'&&rows.every(r=>withoutSp(r.definition)===withoutSp(rows[0]!.definition))&&new Set(rows.map(r=>r.sp)).size>1};
+}
+export function skillUpgradeChanges(before:SkillLevelRow,after:SkillLevelRow):string[]{
+ const changes:string[]=[];
+ if(before.sp!==after.sp)changes.push(`SP ${before.sp===null?'ทั้งหมด':number(before.sp)} → ${after.sp===null?'ทั้งหมด':number(after.sp)}`);
+ if(before.castMs!==after.castMs)changes.push(`ร่าย ${number(before.castMs/1000)}s → ${number(after.castMs/1000)}s`);
+ if(before.afterCastMs!==after.afterCastMs)changes.push(`พัก ${number(before.afterCastMs/1000)}s → ${number(after.afterCastMs/1000)}s`);
+ for(let i=0;i<Math.max(before.effects.length,after.effects.length);i++)if(before.effects[i]!==after.effects[i])changes.push([before.effects[i],after.effects[i]].filter(Boolean).join(' → '));
+ return changes;
+}
 /** Shared permanent build, including equipped sources when account is provided. */
 export function characterSkillOptions(actor:Character,state?:AccountState):{skills:SkillOption[];intervalMs:number}{
  const compiled=compileCharacterSkills(actor,content),stats=previewCharacterStats(actor,compiled.resolved_skills,content,state?equippedSources(actor,state,content):[]);
@@ -56,7 +77,7 @@ export function characterSkillOptions(actor:Character,state?:AccountState):{skil
   let price:SkillOption['price']=null;if(!locked&&target<=cap)price=skillQuote(actor,source.id,target,content);
   const next=price?structuredClone(resolveSkill(source.id,target,content).definition)as SkillDefinition:null;
   const targetNote=definition.kind==='passive'?'ทำงานอัตโนมัติ':[...new Set([...definition.start_effects,...definition.effects].map(e=>e.target))].map(binding=>{if(binding==='self')return 'ตัวเอง';const selector=definition.selectors[binding];if(!selector)return 'ตามเป้าหมายสกิล';return (selector.team==='allies'?'ฝ่ายเรา':selector.team==='enemies'?'ศัตรู':'ตัวเอง')+(selector.select==='all'?' · ทั้งหมด':' · เป้าหมายเดียว');}).filter((s,i,a)=>a.indexOf(s)===i).join(' / ');
-  return{targetNote,id:source.id,name:labels[source.name_key]??source.id,kind:source.kind,unlock:source.unlock_level,level,cap,max:source.max_level,locked,definition,next,price,effects:summaries(definition),nextEffects:next?summaries(next):[],castMs:definition.kind==='active'?castDurationMs(Number(definition.timing.cast_ms),stats.cast_speed):0,afterCastMs:definition.kind==='active'?castDurationMs(Number(definition.timing.after_cast_ms),stats.cast_speed):0,sp:definition.kind==='active'?typeof definition.cost.sp==='number'?fixedSpCost(definition.cost.sp,stats):NaN:0,nextCastMs:next?.kind==='active'?castDurationMs(Number(next.timing.cast_ms),stats.cast_speed):null,nextAfterCastMs:next?.kind==='active'?castDurationMs(Number(next.timing.after_cast_ms),stats.cast_speed):null,nextSp:next?.kind==='active'?typeof next.cost.sp==='number'?fixedSpCost(next.cost.sp,stats):NaN:null};
+  return{previewSpeed:stats.cast_speed,previewSpPercent:stats.sp_cost_percent,targetNote,id:source.id,name:labels[source.name_key]??source.id,kind:source.kind,unlock:source.unlock_level,level,cap,max:source.max_level,locked,definition,next,price,effects:summaries(definition),nextEffects:next?summaries(next):[],castMs:definition.kind==='active'?castDurationMs(Number(definition.timing.cast_ms),stats.cast_speed):0,afterCastMs:definition.kind==='active'?castDurationMs(Number(definition.timing.after_cast_ms),stats.cast_speed):0,sp:definition.kind==='active'?typeof definition.cost.sp==='number'?fixedSpCost(definition.cost.sp,stats):NaN:0,nextCastMs:next?.kind==='active'?castDurationMs(Number(next.timing.cast_ms),stats.cast_speed):null,nextAfterCastMs:next?.kind==='active'?castDurationMs(Number(next.timing.after_cast_ms),stats.cast_speed):null,nextSp:next?.kind==='active'?typeof next.cost.sp==='number'?fixedSpCost(next.cost.sp,stats):NaN:null};
  });
  // User-approved demo pacing remains explicit, separate from legacy abstract benchmarks.
  return{skills,intervalMs:skillIntervalMs(stats.attack_speed,3000)};

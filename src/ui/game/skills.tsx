@@ -9,6 +9,7 @@ import type { GameContext } from './shell.tsx';
 import { CostChips, PageHeader, Sheet, canPay, friendNames, jobNames, seconds } from './kit.tsx';
 import { CharacterNav } from './character-nav.tsx';
 import { SkillElements } from '../element-badge.tsx';
+import { SkillGrowth } from '../skill-growth.tsx';
 
 const ordinal = ['1st', '2nd', '3rd', '4th'];
 function SkillIcon({ id, pack }: { id: string; pack: AssetPack | null }) {
@@ -57,9 +58,9 @@ export function SkillsPage({ context }: { context: GameContext }) {
         <header><SkillIcon id={skill.id} pack={pack} /><div><h2>{skill.name}</h2><small>{skill.kind === 'active' ? 'Active' : 'Passive'} · {skill.targetNote}</small></div></header>
         <SkillElements definition={skill.definition} />
         <div className="level-line"><span>Level</span><b>{skill.level || '—'}</b><small>เพดาน {skill.cap} / สูงสุด {skill.max}</small></div>
-        {skill.kind === 'active' && <div className="timing"><span>ร่าย <b>{seconds(skill.castMs)}</b></span><span>พัก <b>{seconds(skill.afterCastMs)}</b></span><span>SP <b>{skill.sp}</b></span></div>}
+        {skill.kind === 'active' && <div className="timing"><span>ร่าย <b>{seconds(skill.castMs)}</b></span><span>พัก <b>{seconds(skill.afterCastMs)}</b></span><span>SP <b>{Number.isFinite(skill.sp) ? skill.sp : 'ทั้งหมด'}</b></span></div>}
         <div className="effect-block"><h3>{skill.level ? `ตอนนี้ Lv.${skill.level}` : 'เมื่อเรียน Lv.1'}</h3>{(skill.level ? skill.effects : skill.nextEffects.length ? skill.nextEffects : skill.effects).map((t, i) => <p key={i}>{t}</p>)}</div>
-        {skill.level > 0 && skill.nextEffects.length > 0 && <details className="effect-block next"><summary>Lv.{skill.level + 1} · ดูผลอัปเกรด</summary>{skill.nextEffects.map((t, i) => <p key={i} className={t !== skill.effects[i] ? 'changed' : ''}>{t}</p>)}{skill.nextCastMs !== null && skill.nextCastMs !== skill.castMs && <p className="changed">ร่าย {seconds(skill.nextCastMs)}</p>}{skill.nextSp !== null && skill.nextSp !== skill.sp && <p className="changed">SP {skill.nextSp}</p>}</details>}
+        <SkillGrowth skill={skill} />
         {skill.locked ? <p className="hint warn">ต้องเป็น Lv.{skill.unlock} เพื่อเรียน</p> : skill.price ? <div className="upgrade-box"><CostChips cost={skill.price} wallet={state.wallet} pack={pack} /><button className="btn primary wide" disabled={locked || !canPay(state.wallet, skill.price)} onClick={() => void submit('skill.upgrade', { character_id: actor.character_id, skill_id: skill.id, target_level: skill.level + 1 })}>{skill.level ? 'อัปเกรด' : 'เรียนสกิล'}</button></div> : <p className="hint">{skill.level >= skill.max ? 'ระดับสูงสุดแล้ว' : 'อัปเลเวลตัวละครเพื่อเพิ่มเพดาน'}</p>}
         {skill.kind === 'active' && skill.level > 0 && (picking === skill.id
           ? <button className="btn wide" onClick={() => setPicking(null)}>ยกเลิก · ยังไม่เลือกช่อง</button>

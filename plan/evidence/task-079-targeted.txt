@@ -1,0 +1,27 @@
+✔ direct, weapon, mixed, periodic, passive, summoned and handler skill elements use their actual programs (58.801042ms)
+✔ all126 player skill descriptions remain read-only and nested status cycles terminate (18.888542ms)
+✔ displayed armor element agrees with actual damage priority for every element and latest source (33.66975ms)
+✔ Fire Endow changes only live weapon display and expires; fixed skill/armor remain separate (10.043583ms)
+✔ badges disclose elements as text, distinguish armor/weapon, and do not invent a Holy heal (8.790167ms)
+✔ Call Spirit1–10 holds five spheres with1%ATK each; upgrades only reduce SP27→18 (61.8015ms)
+✔ Provoke1–10 keeps4.5s/all-enemy target override and clearly excludes area/random; SP19→10 (2.240375ms)
+✔ actual sole endow names Fire/6.5s/team and scope; Enchant Poison only claims ATK (5.619541ms)
+✔ preview SP respects actual cost modifier and max/unlearned/capped levels remain read-only (25.188416ms)
+✔ upgrade summary includes ACD as well as CT, SP and effect changes; all-current SP is readable (5.13375ms)
+✔ all126 skill level previews use exact shared resolved data and never mutate content or emit NaN (393.763083ms)
+✔ skill unlock/cap and selected branch are enforced before spending; level unlock never auto-learns (12.01425ms)
+✔ upgrade prices come from tables; reset refunds exact purchased vector once and root grants remain free (1.905208ms)
+✔ all126 player skill definitions have valid owning-class learn/upgrade quotes through their max without mutating shared content (1569.133583ms)
+✔ four ordered active slots reject duplicate/unlearned/passive IDs; learned Passives enter engine automatically and change actual damage stats (48.348917ms)
+✔ preview timing uses shared math and learned Passive speed, empty loadout stays normal-only; active battle rejects upgrade (13.910333ms)
+✔ all class previews resolve human-readable deltas without NaN or hidden cap bypasses (1369.588125ms)
+✔ exclusive copy groups are enforced by catalog metadata instead of permitting two differently named copies (1.427667ms)
+✔ skill-first equip (user, 21 Oct 2026): a new skill replaces the slot, a moved skill swaps with the occupant, remove empties only its slot (3.016833ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4222.8875

@@ -9788,6 +9788,94 @@
         "plan/evidence/task-078-github-deployment.json",
         "plan/evidence/task-078-readiness.txt"
       ]
+    },
+    {
+      "id": "T079-AC-01",
+      "task_id": "TASK-079",
+      "acceptance_id": "AC-01",
+      "criterion": "ภาพการ์ด bag/socket/picker ไม่ล้นกรอบที่320/390px สัดส่วน3:4คงเดิม ขอบมนและbadgeไม่ถูกตัด ตรวจภาพจริง",
+      "input_setup": "Read-only resolved126skill definitions, CallSpirit/Provoke1–10, FireEndow and EnchantPoison; actual disposable mobile320/390 Chrome with native Normal/Mini/MVP cards and signed-out production",
+      "input_refs": [
+        "plan/inprogress/tasks_079.md",
+        "src/client/skills.ts",
+        "src/ui/skill-growth.tsx",
+        "src/ui/game/game.css"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false,
+        "balance_simulation": false
+      },
+      "expected": "ภาพการ์ด bag/socket/picker ไม่ล้นกรอบที่320/390px สัดส่วน3:4คงเดิม ขอบมนและbadgeไม่ถูกตัด ตรวจภาพจริง",
+      "verification": "Focused description tests/shared resolver; actual mobile geometry and screenshots; build and public hosted checks",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T079-AC-02",
+      "task_id": "TASK-079",
+      "acceptance_id": "AC-02",
+      "criterion": "Call Spirit/Provoke บอกผลและ SP ของLv.1–10ตรงนิยาม; Fire Endow บอกธาตุ/ระยะเวลา/เป้าหมายและผลต่อweapon/fixedspell/armor; Enchant Poison ไม่อ้างว่าเปลี่ยนธาตุ",
+      "input_setup": "Read-only resolved126skill definitions, CallSpirit/Provoke1–10, FireEndow and EnchantPoison; actual disposable mobile320/390 Chrome with native Normal/Mini/MVP cards and signed-out production",
+      "input_refs": [
+        "plan/inprogress/tasks_079.md",
+        "src/client/skills.ts",
+        "src/ui/skill-growth.tsx",
+        "src/ui/game/game.css"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false,
+        "balance_simulation": false
+      },
+      "expected": "Call Spirit/Provoke บอกผลและ SP ของLv.1–10ตรงนิยาม; Fire Endow บอกธาตุ/ระยะเวลา/เป้าหมายและผลต่อweapon/fixedspell/armor; Enchant Poison ไม่อ้างว่าเปลี่ยนธาตุ",
+      "verification": "Focused description tests/shared resolver; actual mobile geometry and screenshots; build and public hosted checks",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T079-AC-03",
+      "task_id": "TASK-079",
+      "acceptance_id": "AC-03",
+      "criterion": "สกิลทุกสายแสดงdelta SP/CT/ACD/effectของเลเวลถัดไปตรงresolver รวมcost-only/lockedcap/max/passive/sp-all ไม่มีmutation/NaN และhashcontent/packเดิม",
+      "input_setup": "Read-only resolved126skill definitions, CallSpirit/Provoke1–10, FireEndow and EnchantPoison; actual disposable mobile320/390 Chrome with native Normal/Mini/MVP cards and signed-out production",
+      "input_refs": [
+        "plan/inprogress/tasks_079.md",
+        "src/client/skills.ts",
+        "src/ui/skill-growth.tsx",
+        "src/ui/game/game.css"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false,
+        "balance_simulation": false
+      },
+      "expected": "สกิลทุกสายแสดงdelta SP/CT/ACD/effectของเลเวลถัดไปตรงresolver รวมcost-only/lockedcap/max/passive/sp-all ไม่มีmutation/NaN และhashcontent/packเดิม",
+      "verification": "Focused description tests/shared resolver; actual mobile geometry and screenshots; build and public hosted checks",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T079-AC-04",
+      "task_id": "TASK-079",
+      "acceptance_id": "AC-04",
+      "criterion": "focusedchecks/build/type/boundaries/secretsและactualmobile/hostedผ่าน ไม่มีinspection save/ownerwrite/SQL/env/newassets/6173restart/balance simulation",
+      "input_setup": "Read-only resolved126skill definitions, CallSpirit/Provoke1–10, FireEndow and EnchantPoison; actual disposable mobile320/390 Chrome with native Normal/Mini/MVP cards and signed-out production",
+      "input_refs": [
+        "plan/inprogress/tasks_079.md",
+        "src/client/skills.ts",
+        "src/ui/skill-growth.tsx",
+        "src/ui/game/game.css"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false,
+        "balance_simulation": false
+      },
+      "expected": "focusedchecks/build/type/boundaries/secretsและactualmobile/hostedผ่าน ไม่มีinspection save/ownerwrite/SQL/env/newassets/6173restart/balance simulation",
+      "verification": "Focused description tests/shared resolver; actual mobile geometry and screenshots; build and public hosted checks",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
     }
   ]
 }

@@ -136,6 +136,8 @@
 | D-103 | 22 ต.ค.2026 ผู้ใช้ขอให้การ์ด สกิล และไอเทมส่งผลต่อการต่อสู้มากขึ้น | TASK-077 เพิ่มน้ำหนักและทางเลือกบิลด์ skill/normal/heal/tank ผ่านsharedpipeline ผู้ใช้ชี้แจงscaleทุกอาชีพ/การ์ดไปทิศเดียวกันและคงด่านเดิมแม้ง่ายขึ้น จึงใช้sharedpowerpolicyกับdamage/Passive/DoT/summon/cardprocและsharedgearrolecurve ไม่เพิ่มค่าบอสชดเชย คงSI3s/คิว/SP/CC/stack/cost/economy และงดbalance simulationใหม่ ค่าตัวเลขเป็นassistanttrialbaseline |
 | D-104 | 22 ต.ค.2026 ผู้ใช้ตอบคำถามD-103: ถ้าปรับสกิลให้แรงขึ้นต้องเพิ่มทุกตัวในสัดส่วนใกล้กัน รวมความถึก/ฮีล การ์ดและอาวุธต้องมีผลชัดเมื่อใส่ | TASK-078 เติมพลังheal/shield/revive/HP/DEF/guard/supportที่077ยังเว้นไว้ ด้วยfactor1.75เดิมจากimmutablebaselineครั้งเดียว ไม่เพิ่มdamage077ซ้ำ; primarycardเพิ่มderived%ตามstatconversion ตรวจอาวุธแยกcard คงด่านเดิมและไม่simulationใหม่ |
 
+| D-105 | 22 ต.ค.2026 ผู้ใช้ขอภาพการ์ดพอดีกรอบมน ถามแหล่งเปลี่ยนธาตุและความต่างCallSpirit/Provoke Lv.1–5 และต้องแจ้งผลที่เปลี่ยนในคำอธิบายสกิล | TASK-079 ปรับภาพcard UI และแสดงdelta/ตารางเลเวลจากresolveddefinitions; FireEndowเป็นweaponendowเดียวในcontentปัจจุบัน EnchantPoisonมีATKup; สองท่าที่ถามลดSPอย่างเดียว ไม่เพิ่มลูก/ระยะเวลาโดยพลการ ไม่เปลี่ยนbalance/content/save |
+
 ## คำถามหลักที่ส่งให้ผู้ใช้แล้ว
 
 | ID | ประเด็น | สถานะ |

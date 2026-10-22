@@ -1,0 +1,62 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import type { AccountState, SkillDefinition } from '../../src/contracts/index.ts';
+import { initializeAccount } from '../../src/domain/progression/initialize.ts';
+import { characterSkillOptions, skillLevelComparison, skillUpgradeChanges } from '../../src/client/skills.ts';
+import { resolveSkill } from '../../src/domain/build/resolve-skill.ts';
+import { fixedSpCost } from '../../src/domain/math/combat-modifiers.ts';
+import { content } from './combat-fixtures.ts';
+
+function option(id: string, level = 1) {
+  const source = content.skills[id] as unknown as SkillDefinition;
+  const tree = content.documents['progression.json']!.class_tree as unknown as Record<string, string[]>;
+  const root = Object.keys(tree).find(root => source.class_id === root || tree[root]!.includes(source.class_id))! as AccountState['roster'][number]['root_job_id'];
+  const state = initializeAccount(content, { root_job_id: root, gender: 'male' }, '2026-10-22T00:00:00Z', '2026-10-22', 1), actor = state.roster[0]!;
+  actor.level = 70; actor.job_id = source.class_id as typeof actor.job_id; if (level) actor.skill_levels[id] = level; else delete actor.skill_levels[id];
+  return characterSkillOptions(actor, state).skills.find(s => s.id === id)!;
+}
+test('Call Spirit1–10 holds five spheres with1%ATK each; upgrades only reduce SP27→18', () => {
+  const skill = option('monk_call_spirits'), comparison = skillLevelComparison(skill);
+  assert.equal(comparison.spOnly, true); assert.deepEqual(comparison.rows.map(r => r.sp), [27,26,25,24,23,22,21,20,19,18]);
+  assert.match(skill.effects.join(' '), /5 ลูก.*1% ต่อลูก.*หลังหัก/);
+  assert.equal(comparison.rows[4]!.sp, 23); assert.deepEqual(skillUpgradeChanges(comparison.rows[0]!, comparison.rows[1]!), ['SP 27 → 26']);
+  assert.equal(new Set(comparison.rows.map(r => JSON.stringify(r.effects))).size, 1);
+});
+test('Provoke1–10 keeps4.5s/all-enemy target override and clearly excludes area/random; SP19→10', () => {
+  const skill = option('swordsman_provoke'), comparison = skillLevelComparison(skill);
+  assert.equal(skill.targetNote, 'ศัตรู · ทั้งหมด'); assert.equal(comparison.spOnly, true);
+  assert.deepEqual(comparison.rows.map(r => r.sp), [19,18,17,16,15,14,13,12,11,10]);
+  assert.match(skill.effects.join(' '), /4.5s.*ผู้ยั่วยุที่ยังมีชีวิต.*ท่าหมู่และสุ่มเป้า/);
+  assert.equal(comparison.rows[4]!.sp, 15); assert.equal(new Set(comparison.rows.map(r => JSON.stringify(r.effects))).size, 1);
+});
+test('actual sole endow names Fire/6.5s/team and scope; Enchant Poison only claims ATK', () => {
+  const endow = option('sage_fire_endow'), poison = option('assassin_enchant_poison');
+  assert.equal(endow.targetNote, 'ฝ่ายเรา · ทั้งหมด'); assert.match(endow.effects.join(' '), /6.5s.*เปลี่ยนธาตุอาวุธเป็นไฟ.*ตีปกติ.*สกิลธาตุตายตัวและเกราะไม่เปลี่ยน/);
+  assert.match(poison.effects.join(' '), /เพิ่มพลังโจมตี/); assert.ok(!poison.effects.join(' ').includes('เปลี่ยนธาตุ'));
+  const endows = Object.values(content.statuses).filter(s => typeof s.weapon_element === 'string');
+  assert.deepEqual(endows.map(s => s.id), ['fire_endow']);
+});
+test('preview SP respects actual cost modifier and max/unlearned/capped levels remain read-only', () => {
+  const skill = option('monk_call_spirits', 10); skill.previewSpPercent = .15;
+  const rows = skillLevelComparison(skill).rows;
+  assert.equal(rows[0]!.sp, fixedSpCost(27, { sp_cost_percent: .15 })); assert.equal(rows[9]!.sp, fixedSpCost(18, { sp_cost_percent: .15 }));
+  for (const level of [0, 1, 5, 10]) { const s = option('monk_call_spirits', level); s.cap = 3; const before = JSON.stringify(s); assert.equal(skillLevelComparison(s).rows.length, 10); assert.equal(JSON.stringify(s), before); }
+});
+test('upgrade summary includes ACD as well as CT, SP and effect changes; all-current SP is readable', () => {
+  const row = skillLevelComparison(option('mage_fire_bolt')).rows[0]!, next = { ...row, castMs: row.castMs - 100, afterCastMs: row.afterCastMs - 200, sp: row.sp! - 1, effects: ['เวท 300% MATK'] };
+  const changes = skillUpgradeChanges(row, next).join(' '); assert.match(changes, /SP .* →/); assert.match(changes, /ร่าย .* →/); assert.match(changes, /พัก .* →/); assert.match(changes, /300% MATK/);
+  const asura = option('monk_asura'); assert.match(asura.effects.join(' '), /ใช้ SP ทั้งหมด.*อย่างน้อย.*ใช้ Spirit Sphere/);
+  assert.ok(skillLevelComparison(asura).rows.every(r => r.sp === null));
+});
+test('all126 skill level previews use exact shared resolved data and never mutate content or emit NaN', () => {
+  const before = JSON.stringify(content.skills); let count = 0;
+  for (const source of Object.values(content.skills).filter(s => s.class_id !== 'enemy')) {
+    const s = option(String(source.id)), comparison = skillLevelComparison(s); count++;
+    for (const row of comparison.rows) {
+      assert.deepEqual(row.definition, resolveSkill(s.id, row.level, content).definition);
+      assert.ok(!row.effects.join(' ').includes('NaN'), s.id);
+      if (row.definition.kind === 'active' && typeof row.definition.cost.sp === 'number') assert.equal(row.sp, fixedSpCost(row.definition.cost.sp, { sp_cost_percent: s.previewSpPercent }));
+    }
+  }
+  assert.equal(count, 126); assert.equal(JSON.stringify(content.skills), before);
+});

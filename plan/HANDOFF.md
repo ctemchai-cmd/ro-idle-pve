@@ -4,6 +4,15 @@
 
 
 
+## 22 ต.ค.2026 · Codex — TASK-079 localผ่าน รอpush/hosted
+
+- D-105 ผู้ใช้ขอภาพการ์ดไม่ทับขอบมนและคำอธิบายสกิลที่บอกผล/ต่างเลเวล แก้ bag native3:4 boundedheight+actualradius, socket30px/nativeaspect, picker38pxไม่ใช้percentheightที่ขยายภาพเกินกล่อง; E/lock/gradeไม่clip
+- client/skills summariesรวมstart_effects/ballcost/all-SPminimum/DoTcoeff/chance/expiry/revive/summon พร้อมProvoke/weaponendowscope. SkillGrowth resolveเฉพาะselectedทุกเลเวลจากshared resolver+currentSPmodifier/CSPD แสดงnextdeltaรวมACDทันที+collapsedleveltable แยกSP-only; max/cap previewไม่เปลี่ยนmutationgate คิว4ช่องล่างเหมือนเดิม ใช้ทั้งmain/legacy
+- Static current126skillsมีweapon-inherit29; statusFireEndowอย่างเดียว allalliesFire6500ms+MATKup5500ms EnchantPoisonมีATKupไม่endow. CallSpiritทุกLv5ลูก/1%ATKต่อลูกเหลือ SP27→18; Provoke4500ms SP19→10. ห้ามตีความว่าอ้างROจริง/เปลี่ยนbalanceใน079
+- 19focused/readiness8/buildผ่าน actualfreshAuth/API5+SQL/mobile320/3904groupsผ่าน zeroinspectionwrite/savehash-revisionเหมือนเดิม รูปcards/picker/Provoke320เปิดดูจริงแล้ว เก็บround1test0skillentry/v=bagผิดและround2pickerpercentheightfailไว้ ไม่ปกปิดfailure รูปfinalfullnativeportraitถูกแล้ว ไม่มีowner/6173/env/SQL/newassets/balancebatch contentebaeef7… packc7e45b…เดิม
+- ขั้นต่อไป: pushmain/checkVercel actualpublichealth/hash/login/PWA/newdescription+CSS markersด้วยRO_EVIDENCE_PREFIX=task-079 RO_EXPECT_CONTENT_HASH=ebaeef7fb6af50760c358e7f2ff2da7da9fd471ff0b8c8e187ffbdc3ea5911a5 แล้วreview/move079done/updatecounts. Harnesssharedchunksชื่อgear-upgrades ไม่ใช่shell และCSSminifiertranslate(-50%) ไม่ใช่translateX
+
+
 ## 22 ต.ค.2026 · Codex — TASK-078 done ฮีล/แทงก์/ซัพพอร์ตตามคำตอบผู้ใช้ ขึ้นVercelแล้ว
 
 - ผู้ใช้ตอบasync D-103ว่าอยากให้ทุกบทบาทขยับใกล้กัน รวมฮีล/ถึก ไม่ใช่เฉพาะdamage. D-104/TASK078จึงแทนข้อเว้นheal/supportของ077: factor1.75เดิมจากimmutable79b3baselineครั้งเดียว 59supportprograms/Heal/HoT/Kyrieflat+ratio/HP/DEF/guard/ATK/MATK/คริ/หลบ/regen/Devotion/Revive+HealingPlant CopiedHealตามsource ส่วน52damagecurves077คงค่าเดิม ไม่คูณซ้ำ ไม่เปลี่ยนASPD/CSPD/CT/ACD/SP/CC/chance/expiry/stackpolicy/ด่าน
