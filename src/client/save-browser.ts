@@ -77,6 +77,7 @@ export function createBrowserSavePorts(auth: AuthController, scope: string, stor
         const value = JSON.parse(text) as SaveBackup;
         if (!value || typeof value !== 'object' || !('pending' in value) || !('checkpoint' in value)) return null;
         if (value.pending) validator.shape('command', value.pending as unknown as Json, { source: 'pending command backup', path: '' });
+        if (value.rejectedForUpdate) validator.shape('command', value.rejectedForUpdate as unknown as Json, { source: 'version-refused command backup', path: '' });
         if (value.checkpoint) {
           if (value.checkpoint.save?.account_id !== accountId || value.checkpoint.history?.account_id !== accountId) return null;
           validator.shape('account-state', value.checkpoint.save.state as Json, { source: 'local backup', path: '' });

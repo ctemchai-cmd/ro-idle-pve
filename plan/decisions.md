@@ -229,3 +229,5 @@ TASK-001/002/047 ผ่าน Codex self-review แบบแล้ว: [progress
 | D-118 | 22 ต.ค.2026 ผู้ใช้รายงานทองไม่พอเมื่อเทียบวัสดุตีบวกที่เหลือมาก | TASK-089 baselineทองฟาร์มทุกบท/Treasury×3 คงราคา/วัสดุ/EXP/โอกาส/pityและเงินเก่า Preserveunpaidoldrateก่อนclaimแรกแล้วsnapshotเรทใหม่ ไม่คูณpendingหรือwalletย้อนหลัง |
 
 D-117 runtime finding: valid same-user TOKEN_REFRESHED ระหว่าง SDK getSession ต้องใช้ session ใหม่ ไม่คืน null จน SaveController signed_out ค้าง; เก็บ valid token ภายใน AuthController (ไม่ใส่ UI snapshot) และหลีกเลี่ยง SDK session lock ทุกคลิก คง expiry/explicit logout/401 และ server JWT verification.
+
+| D-119 | 22 ต.ค.2026 ผู้ใช้ยืนยันสู้บอสค้างแล้วติดหน้าอัปเดตเซฟ กดmigrationได้WRITER_NOT_READYและขอreadonlyaccountcheck | TASK-090แก้pending-receipt/version-refusal deadlockก่อนmigration เก็บexactUUIDที่versiongateปฏิเสธในlocalbackup; ไม่ล้างunknown/networkpending ปุ่มmaintenanceตรวจรายการก่อน ไม่มีdirectownerwriteหรือprivateenvread (auto-reviewปฏิเสธ จึงขอsanitizedSQL) |

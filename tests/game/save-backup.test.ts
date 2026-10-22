@@ -10,7 +10,7 @@ import { AccountCommandRules } from '../../src/domain/account/commands.ts';
 import { initializeAccount } from '../../src/domain/progression/initialize.ts';
 import { storyFarmSnapshot, storyStage, storyStages } from '../../src/domain/modes/story.ts';
 import { backupCompat, backupFile, backupRelation, parseBackupFile, saveSummary } from '../../src/domain/build/save-summary.ts';
-import { SaveController, SaveProtocolError, type SavePorts } from '../../src/client/save-controller.ts';
+import { SaveController, SaveProtocolError, type SavePorts, type SaveBackup } from '../../src/client/save-controller.ts';
 import { content } from './combat-fixtures.ts';
 import { dailyBoss, dailyPhaseStats } from '../../src/domain/modes/daily.ts';
 
@@ -60,7 +60,7 @@ function stack(state: AccountState, versions: Partial<StoredSave> = {}, account 
   }
   async function send(type: string, params: unknown, revision?: number, requestId?: string) { now += 1000; const reply = await api.command(identity, command(type, params, revision, requestId)); return reply as { status: number; body: { receipt?: Receipt; code?: string } }; }
   return {
-    api, identity, send, command, backups, history, clockReceipts,
+    api, identity, send, command, backups, history, clockReceipts, receipts,
     get save() { return save; }, get state() { return save.state as AccountState; }, get now() { return now; },
     advance(ms: number) { now += ms; },
     corrupt(edit: (s: AccountState) => void) { const s = structuredClone(save.state) as AccountState; edit(s); save = { ...save, state: s }; },
@@ -82,6 +82,71 @@ async function grown() {
   return f;
 }
 const kept = (s: AccountState) => ({ roster: s.roster, inventory: s.inventory, wallet: s.wallet, story: s.story, tower: s.tower, team: s.team, paid_ledger: s.paid_ledger });
+
+function migrationClient(f: ReturnType<typeof stack>, pending: Command) {
+  let backup: SaveBackup = { checkpoint: null, pending: structuredClone(pending) }, sends = 0;
+  const ports: SavePorts = {
+    async checkpoint() { const r = await f.checkpoint(); if (r.status !== 200) throw new SaveProtocolError(String(r.body.code), r.status, r.body); return r.body.checkpoint as never; },
+    async receipt(request) { return f.receipts.get(request)?.receipt ?? null; },
+    async send(command) { sends++; const r = await f.api.command(f.identity, command); if (r.status !== 200) throw new SaveProtocolError((r.body as { code: string }).code, r.status, r.body); return (r.body as { receipt: Receipt }).receipt; },
+    load() { return structuredClone(backup); }, store(_, value) { backup = structuredClone(value); },
+    async lock() { return () => {}; }, requestId() { return '88888888-8888-4888-8888-888888888888'; },
+  };
+  return { ports, get backup() { return backup; }, get sends() { return sends; } };
+}
+function migrateCommand(f: ReturnType<typeof stack>) { return f.command('save.migrate', { from_revision: f.save.revision, from_content_hash: OLD }); }
+
+test('a committed boss-start receipt releases the pending gate even when the next checkpoint requires migration', async () => {
+  const f = stack(progressed()), command = f.command('battle.start_story', { stage_id: '1-1' });
+  const reply = await f.api.command(f.identity, command); assert.equal(reply.status, 200); assert.ok(f.state.active_battle);
+  f.save.content_hash = OLD; f.history.get(f.save.revision)!.signature = sign(id, f.save.revision, f.save.state_hash, OLD);
+  const before = structuredClone(f.state), p = migrationClient(f, command), controller = new SaveController(p.ports);
+  await controller.start(id); assert.equal(controller.snapshot.reason, 'SAVE_MIGRATION_REQUIRED'); assert.equal(controller.snapshot.pending, null); assert.equal(p.backup.pending, null); assert.equal(p.sends, 0);
+  await controller.maintain(migrateCommand(f)); assert.equal(controller.snapshot.status, 'ready'); assert.equal(f.backups.length, 1); assert.deepEqual(f.backups[0]!.state, before); assert.deepEqual(kept(f.state), kept(before)); assert.equal(f.state.active_battle, null); assert.equal(p.sends, 1); controller.dispose();
+});
+
+test('absent old/current-version intents refused by the version gate are archived before migration and never replayed on new rules', async () => {
+  for (const oldRequest of [true, false]) {
+    const f = stack(progressed(), { content_hash: OLD }), command = f.command('battle.start_story', { stage_id: '1-1' }); if (oldRequest) command.content_hash = OLD;
+    const before = structuredClone(f.state), p = migrationClient(f, command), controller = new SaveController(p.ports); await controller.start(id);
+    assert.equal(controller.snapshot.reason, 'SAVE_MIGRATION_REQUIRED'); assert.equal(controller.snapshot.pending, null); assert.deepEqual(p.backup.rejectedForUpdate, command); assert.equal(f.receipts.size, 0); assert.equal(p.sends, 1);
+    await controller.maintain(migrateCommand(f)); assert.equal(controller.snapshot.status, 'ready'); assert.deepEqual(f.backups[0]!.state, before); assert.deepEqual(kept(f.state), kept(before)); assert.equal(f.state.active_battle, null);
+    assert.deepEqual(p.backup.rejectedForUpdate, command); await controller.reconnect(false); assert.equal(p.sends, 2); assert.equal(f.receipts.size, 1); controller.dispose();
+  }
+});
+
+test('uncertain receipt/network failures keep the original intent; retry can settle it before migration', async () => {
+  const f = stack(progressed(), { content_hash: OLD }), command = f.command('battle.start_story', { stage_id: '1-1' }), p = migrationClient(f, command), controller = new SaveController(p.ports), receipt = p.ports.receipt;
+  p.ports.receipt = async () => { throw new SaveProtocolError('NETWORK_UNAVAILABLE'); }; await controller.start(id);
+  assert.equal(controller.snapshot.status, 'offline'); assert.deepEqual(p.backup.pending, command); assert.equal(p.backup.rejectedForUpdate, undefined); assert.equal(p.sends, 0);
+  p.ports.receipt = receipt; await controller.reconnect(); assert.equal(controller.snapshot.reason, 'SAVE_MIGRATION_REQUIRED'); assert.equal(controller.snapshot.pending, null); await controller.maintain(migrateCommand(f)); assert.equal(controller.snapshot.status, 'ready'); controller.dispose();
+});
+
+test('a version refusal on a live write transitions to the migration preview instead of keeping saving/pending locked', async () => {
+  const f = stack(progressed()), command = f.command('party.set', { placements: f.state.team }), p = migrationClient(f, command);
+  p.ports.load = () => null; const controller = new SaveController(p.ports); await controller.start(id); assert.equal(controller.snapshot.status, 'ready');
+  f.save.content_hash = OLD; f.history.get(f.save.revision)!.signature = sign(id, f.save.revision, f.save.state_hash, OLD);
+  await controller.submit(command); assert.equal(controller.snapshot.reason, 'SAVE_MIGRATION_REQUIRED'); assert.equal(controller.snapshot.pending, null); assert.deepEqual(p.backup.rejectedForUpdate, command);
+  await controller.maintain(migrateCommand(f)); assert.equal(controller.snapshot.status, 'ready'); assert.equal(f.backups.length, 1); controller.dispose();
+});
+
+test('a migration preview older than the recovered receipt cannot discard its pending revision barrier', async () => {
+  const f = stack(progressed()), command = f.command('party.set', { placements: f.state.team }); await f.api.command(f.identity, command);
+  const p = migrationClient(f, command), controller = new SaveController(p.ports); p.ports.checkpoint = async () => { throw new SaveProtocolError('SAVE_MIGRATION_REQUIRED', 409, { migration: { from_revision: 1 } }); };
+  await controller.start(id); assert.equal(controller.snapshot.reason, 'SAVE_MIGRATION_REQUIRED'); assert.deepEqual(p.backup.pending, command); await assert.rejects(controller.maintain(migrateCommand(f)), /WRITER_NOT_READY/); controller.dispose();
+});
+
+test('a storage failure cannot silently drop a version-refused pending intent or strand saving', async () => {
+  const f = stack(progressed(), { content_hash: OLD }), command = f.command('battle.start_story', { stage_id: '1-1' }), p = migrationClient(f, command), store = p.ports.store;
+  p.ports.store = (account, backup) => { if (backup.rejectedForUpdate) throw Error('BACKUP_UNAVAILABLE'); store(account, backup); };
+  const controller = new SaveController(p.ports); await controller.start(id); assert.equal(controller.snapshot.status, 'offline'); assert.deepEqual(p.backup.pending, command); assert.equal(p.backup.rejectedForUpdate, undefined); controller.dispose();
+});
+
+test('a checkpoint version validation error after a possible commit is not mistaken for a server refusal', async () => {
+  const f = stack(progressed()), command = f.command('party.set', { placements: f.state.team }), p = migrationClient(f, command); p.ports.load = () => null;
+  const controller = new SaveController(p.ports); await controller.start(id); p.ports.send = async () => { throw new SaveProtocolError('CONTENT_VERSION_MISMATCH', 409); };
+  await controller.submit(command); assert.deepEqual(p.backup.pending, command); assert.equal(p.backup.rejectedForUpdate, undefined); assert.equal(controller.snapshot.status, 'incompatible'); controller.dispose();
+});
 
 test('T040 AC-01: export → reset → restore brings back the same characters, NPCs, items and slot progress', async () => {
   const f = await grown(), before = structuredClone(f.state), checkpoint = await f.checkpoint();

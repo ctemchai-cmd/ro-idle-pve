@@ -2,7 +2,7 @@ import type { AccountState, Command, Receipt } from '../contracts/index.ts';
 import type { SaveCheckpoint } from '../contracts/save.ts';
 
 export class SaveProtocolError extends Error { constructor(readonly code: string, readonly status = 503, readonly detail: unknown = null) { super(code); } }
-export interface SaveBackup { checkpoint: SaveCheckpoint | null; pending: Command | null }
+export interface SaveBackup { checkpoint: SaveCheckpoint | null; pending: Command | null; /** Exact intent refused by the server's version gate; retained locally, never replayed on new rules. */ rejectedForUpdate?: Command }
 export interface SaveCommandReply { receipt: Receipt; checkpoint?: SaveCheckpoint }
 export interface SavePorts {
   preview?(state: AccountState, command: Command): AccountState | null;
@@ -31,6 +31,7 @@ export class SaveController {
   private epoch = 0;
   private online = true;
   private disposed = false;
+  private rejectedForUpdate: Command | undefined;
   private readonly requests = new Set<AbortController>();
   private readonly requestTimeoutMs: number;
   constructor(private readonly ports: SavePorts, options: { requestTimeoutMs?: number } = {}) {
@@ -47,7 +48,14 @@ export class SaveController {
   }
   subscribe(listener: (state: SaveSnapshot) => void) { this.listeners.add(listener); listener(this.snapshot); return () => { this.listeners.delete(listener); }; }
   private publish(change: Partial<SaveSnapshot>) { this.snapshot = Object.freeze({ ...this.snapshot, ...change }); for (const fn of this.listeners) fn(this.snapshot); }
-  private persist() { if (this.accountId) this.ports.store(this.accountId, { checkpoint: this.snapshot.checkpoint, pending: this.snapshot.pending }); }
+  private persist() { if (this.accountId) this.ports.store(this.accountId, { checkpoint: this.snapshot.checkpoint, pending: this.snapshot.pending, ...(this.rejectedForUpdate ? { rejectedForUpdate: this.rejectedForUpdate } : {}) }); }
+  /** A definite version refusal is not an uncertain network outcome. Archive before releasing the gate. */
+  private versionRejected(command: Command) {
+    const archived = structuredClone(command);
+    if (this.accountId) this.ports.store(this.accountId, { checkpoint: this.snapshot.checkpoint, pending: null, rejectedForUpdate: archived });
+    this.rejectedForUpdate = archived; this.publish({ pending: null });
+  }
+  get hasWriter() { return !!this.release && this.online && !this.disposed; }
   private failed(error: unknown) {
     const e = error instanceof SaveProtocolError ? error : new SaveProtocolError('NETWORK_UNAVAILABLE');
     const incompatible = ['CONTENT_VERSION_MISMATCH', 'SAVE_MIGRATION_REQUIRED', 'UPDATE_REQUIRED', 'MIGRATION_UNSUPPORTED'].includes(e.code);
@@ -57,6 +65,7 @@ export class SaveController {
     const epoch = ++this.epoch; this.release?.(); this.release = null; this.accountId = accountId;
     let backup: SaveBackup | null = null; try { backup = this.ports.load(accountId); } catch { /* Cloud is still authoritative. */ }
     if (backup?.checkpoint && backup.checkpoint.save.account_id !== accountId) backup = null;
+    this.rejectedForUpdate = backup?.rejectedForUpdate;
     this.publish({ preview: null, status: this.online ? 'loading' : 'offline', reason: null, checkpoint: backup?.checkpoint ?? null, pending: backup?.pending ?? null, lastReceipt: null });
     const release = await this.ports.lock(accountId);
     if (this.disposed || epoch !== this.epoch) { release?.(); return; } this.release = release;
@@ -86,7 +95,11 @@ export class SaveController {
         const receipt = known?.request_id === pending.request_id ? known : await this.io(signal => this.ports.receipt(pending.request_id, signal));
         if (!receipt) {
           try { const sent = await this.io(signal => this.ports.send(pending, signal)); if (sent.request_id !== pending.request_id) throw new SaveProtocolError('INVALID_RECEIPT'); minimumRevision = Math.max(minimumRevision, sent.committed_revision); this.publish({ lastReceipt: sent }); }
-          catch (error) { if (error instanceof SaveProtocolError && ['REVISION_CONFLICT', 'IDEMPOTENCY_KEY_REUSE'].includes(error.code)) reason = error.code; else throw error; }
+          catch (error) {
+            if (isVersionRefusal(error)) this.versionRejected(pending);
+            else if (error instanceof SaveProtocolError && ['REVISION_CONFLICT', 'IDEMPOTENCY_KEY_REUSE'].includes(error.code)) reason = error.code;
+            else throw error;
+          }
         } else if (receipt.request_id !== pending.request_id) throw new SaveProtocolError('INVALID_RECEIPT');
         else { minimumRevision = Math.max(minimumRevision, receipt.committed_revision); this.publish({ lastReceipt: receipt }); }
       }
@@ -97,7 +110,21 @@ export class SaveController {
       this.publish({ checkpoint, pending: this.release ? null : pending, reason, detail: null }); this.persist();
       this.publish({ status: this.release ? 'ready' : 'read_only' });
       if (recover && this.release) { const command = this.retreatCommand(); if (command) await this.submit(command); }
-    } catch (error) { if (!this.disposed && epoch === this.epoch) this.failed(error); }
+    } catch (error) {
+      if (this.disposed || epoch !== this.epoch) return;
+      // The original receipt is already definitive. A newer signed-save migration preview
+      // replaces the normal checkpoint here; do not keep a completed intent blocking migration.
+      const pending = this.snapshot.pending, receipt = this.snapshot.lastReceipt;
+      const revision = error instanceof SaveProtocolError && error.code === 'SAVE_MIGRATION_REQUIRED'
+        ? (error.detail as { migration?: { from_revision?: number } } | null)?.migration?.from_revision : undefined;
+      if (pending && receipt?.request_id === pending.request_id && Number.isSafeInteger(revision) && revision! >= minimumRevisionForReceipt(receipt, this.snapshot.checkpoint)) {
+        try {
+          if (this.accountId) this.ports.store(this.accountId, { checkpoint: this.snapshot.checkpoint, pending: null, ...(this.rejectedForUpdate ? { rejectedForUpdate: this.rejectedForUpdate } : {}) });
+          this.publish({ pending: null });
+        } catch { this.failed(new SaveProtocolError('BACKUP_UNAVAILABLE')); return; }
+      }
+      this.failed(error);
+    }
   }
   /**
    * TASK-040: the two writes allowed while the cloud save cannot be played — a previewed
@@ -143,9 +170,22 @@ export class SaveController {
       this.publish({ status: 'loading' }); await this.reconnect(false);
     } catch (error) {
       if (this.disposed || epoch !== this.epoch) return;
+      if (isVersionRefusal(error)) {
+        try { this.versionRejected(command); } catch { this.failed(new SaveProtocolError('BACKUP_UNAVAILABLE')); return; }
+        this.failed(error); await this.reconnect(false); return;
+      }
       this.failed(error);
       if (error instanceof SaveProtocolError && (error.code === 'SAVE_REQUEST_TIMEOUT' || ['REVISION_CONFLICT', 'IDEMPOTENCY_KEY_REUSE'].includes(error.code))) await this.reconnect(error.code !== 'SAVE_REQUEST_TIMEOUT');
     }
   }
   dispose() { this.disposed = true; this.epoch++; for (const request of this.requests) request.abort(new SaveProtocolError('SAVE_DISPOSED')); this.release?.(); this.release = null; this.listeners.clear(); }
+}
+
+function minimumRevisionForReceipt(receipt: Receipt, checkpoint: SaveCheckpoint | null) {
+  return Math.max(receipt.committed_revision, checkpoint?.save.revision ?? 0);
+}
+/** Only an HTTP error body from the API is a refusal; checkpoint validation can report the same code after a commit. */
+function isVersionRefusal(error: unknown): error is SaveProtocolError {
+  return error instanceof SaveProtocolError && error.status === 409 && error.code === 'CONTENT_VERSION_MISMATCH'
+    && (error.detail as { code?: string } | null)?.code === 'CONTENT_VERSION_MISMATCH';
 }

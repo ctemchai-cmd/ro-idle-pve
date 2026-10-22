@@ -19,6 +19,14 @@ const assert=(ok,message)=>{if(!ok)throw new Error(message);};let browser,profil
  assert(assetResponse.ok&&assetResponse.headers.get('cache-control')==='no-store'&&assetManifest.pack_hash===manifest.runtime_asset_pack_hash,'MUTABLE_ASSET_MANIFEST_CACHE_OR_VERSION');
  const row=manifest.build_files.find(r=>/^dist\/assets\/account-session-.*\.js$/.test(r.path));assert(row,'NO_SAVE_BUNDLE');
  const bundle=await(await fetch(base+'/'+row.path.replace(/^dist\//,''))).text();assert(bundle.includes('sendWithCheckpoint')&&bundle.includes('x-ro-checkpoint'),'OLD_SAVE_PROTOCOL_DEPLOYED');
+ if(prefix==='task-090'){
+  assert(createHash('sha256').update(bundle).digest('hex')===row.sha256,'PUBLIC_SAVE_SHA');
+  assert(['rejectedForUpdate','versionRejected','hasWriter','SAVE_MIGRATION_REQUIRED','CONTENT_VERSION_MISMATCH'].every(s=>bundle.includes(s)),'MIGRATION_PENDING_PROTOCOL_NOT_DEPLOYED');
+  const shell=manifest.build_files.find(r=>/^dist\/assets\/shell-.*\.js$/.test(r.path));assert(shell,'NO_MAINTENANCE_UI');
+  const ui=await(await fetch(base+'/'+shell.path.replace(/^dist\//,''))).text();assert(createHash('sha256').update(ui).digest('hex')===shell.sha256,'PUBLIC_MAINTENANCE_SHA');
+  assert(['ตรวจผลรายการค้าง','มีรายการเดิมรอตรวจผล','ยังถือสิทธิ์บันทึกไม่ได้','hasWriter'].every(s=>ui.includes(s)),'PENDING_MAINTENANCE_ACTION_NOT_DEPLOYED');
+  currentProof={tasks:['TASK-090'],migration_pending_gate_fixed:true,version_refused_intent_archived:true,unknown_intent_retained:true,inspect_pending_action:true,bundles:[row,shell].map(({path,sha256})=>({path,sha256}))};
+ }
  if(['task-086','task-087','task-088','task-089'].includes(prefix)){
   const verified={};
   for(const name of ['shell','gear-upgrades','item-options','element-badge','account-session']){

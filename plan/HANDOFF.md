@@ -4,6 +4,15 @@
 
 
 
+## 22 ต.ค.2026 · Codex — TASK-090 localผ่าน รอdeploy / pendingขวางmigrationหลังเริ่มบอส
+
+- Userยืนยันกดบอสค้างแล้วจริงๆเป็นMaintenancePanelปุ่มสำรองอัปเดตได้WRITER_NOT_READY. ขอcheckaccount: auto-reviewปฏิเสธเปิดprivateenvservicekey ห้ามworkaround ได้ใช้user-runSQLแทน **oldcontentfd66a55f…/inbattletrue**, revisionไม่ส่ง. task090-owner-state.json; ไม่อ้างdirectcloudinspection ไม่privateenvread/ownerwrite
+- Rootreconnectมีreceiptแล้วแต่checkpointกลับmigrationpreview ทำให้pendingไม่ถูกปลดและmaintainปฏิเสธ อีกpathno-receipt APIversion409ยังเก็บpendingจนติดตลอด. Fixknownreceipt+previewrevision>=max(receipt,oldcheckpoint)จึงปลด; genuineHTTP409bodyCONTENT_VERSION_MISMATCHเก็บexactintentในlocalSaveBackup.rejectedForUpdateก่อนปลด แล้วcheckpointเพื่อแสดงmigration. **clientcheckpointvalidationerrorcodeเดียวกันไม่ใช่APIrefusal ห้ามarchive/drop**, network/timeout/401/5xx/stalepreview/storagefailureยังpendingเดิม
+- MaintenancePanelตรวจpendingและcontroller.hasWriter: ตรวจผลรายการค้าง/บอกปิดแท็บอื่น+retry ก่อนสร้างmigrationUUID; waitingdisabled/rejectedreceiptแสดงcodeจริง ไม่WRITERรัว. คงbackup-before-write/CAS/receipt/revision/onlineprimaryและmigrationสิ้นสุดactivebattleตามเดิม ไม่มีSQL/serverrules/accountschema/content/pack/ราคา/balanceเปลี่ยน
+- **56focusedTS/Auth/backup/recurring/roundtripsผ่าน + finalbuild/type/boundaries/secrets/readiness8**. ActualfreshAuthAPI5checks+mobile320/390/SQL4groups task090-ui-live/local-stackผ่าน: clickstartcommit→lostreply/oldfd66signedactive→stale-previewpreservesUUID/inspectunlocks; migrateheldreply15s→1UUID/1exactbackup/noprogressloss; 404oldintent+API409→archive/nomultiwrite/noreplayaftermigration/reload; **actualclickbosswhilecloudversionchanges→actionablemigration→newbossstart/retreatได้**. ภาพpending390/version-refused320เปิดดูจริง ไม่physicalAndroid/owneraccountmutation
+- Contentยังf887835108ee3473c39bc6fb3ec0e80d5f0f49c91733e88b6ca561c1dfa736d3 packc7e45b…/30640189B unchanged. Sourcefork0fca4e9ee currentallchangesours. TASK090inprogress Board75/90,inprogress5(041058064067+090),review5,todo5 M4done35/45 ไม่มีownerreset/6173restart/env/SQLใหม่
+- Next push→VercelSUCCESS→RO_EVIDENCE_PREFIX=task-090 RO_EXPECT_CONTENT_HASH=f887835108ee3473c39bc6fb3ec0e80d5f0f49c91733e88b6ca561c1dfa736d3 RO_DEPLOY_COMMIT=<sha> node scripts/test_save_latency_hosted.cjs (branch090actualpublicsave+maintenanceSHA/markers/API/loginPWA). แล้วreview3AC,movedone/board76of90inprogress4M4done36of45/cases/matrix/readiness/docscommit. Userต้องreloadรับfixแล้วกดตรวจรายการ/สำรองอัปเดตเอง ไม่อ้างaccountถูกอัปเดตแล้วหรือคืนdailyสิทธิ์
+
 ## 22 ต.ค.2026 · Codex — TASK-086–089 done ขึ้นVercelแล้ว
 
 - **SOURCE069b09acb6e63ed8f672fe16df1ab116c78acc6a push/VercelSUCCESS** https://vercel.com/chanon2/ro-idle-pve/7x6Nf457q8BSfYFXLKsCMeBpjZCC · actualpublicnewSHAของ5bundles/UI/data/save+health200/SIN1/contenthash/checkpoint401/login/PWA5publiccachefiles/0mutations **3groupsผ่าน firsttry** task086-hosted.json /086089-github-deployment. ทั้ง4tasks3ACeachdone Board75/89,inprogress4เก่า041058064067/review5/todo5,M4done35/44

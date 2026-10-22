@@ -78,3 +78,10 @@ Manualretreatของdailyส่งrequested_game_msได้ serverจำล�
 account.resetยังbackup-before-write แต่daily_recordsของเกมใหม่ว่างทั้งหมด (attempt/phase/HP/rewardedchests) แยกจากguardRestoreที่ยังเก็บตัวนับที่ใช้ไป การซื้อร้านค้าและภารกิจรายวันยังใช้policyเดิม
 
 เซฟจากresetเก่าที่dailyยังไม่unlockแต่มีdaily_recordsเป็นcarry-over: contentmigrationpreviewจะแสดงการแก้ กดสำรองแล้วอัปเดตเซฟจึงbackupและล้างเฉพาะdaily_records/pendingdaily ไม่ล้างroster/wallet/inventory/Story/Tower ไม่ล้างdailyของเกมที่unlockแล้ว ผู้ใช้แก้เป้าหมายเป็นVercel; ไม่มีการเขียนDB6173หรือcloudsaveจากเครื่องโดยตรง
+## D-119 · Pending intent at a content migration barrier (22 Oct 2026)
+
+An original receipt remains definitive when `/api/checkpoint` responds with a migration preview instead of a normal checkpoint. Release that completed pending intent only if the preview revision is at least both the receipt revision and the prior checkpoint revision. This lets the explicitly requested backup/migration proceed without replaying the boss start.
+
+If the API returns an explicit HTTP409 body `{code:"CONTENT_VERSION_MISMATCH"}` for an uncommitted command, retain its complete UUID/type/params/envelope as optional `rejectedForUpdate` in the local `SaveBackup` before clearing `pending`. This is a local audit record, never a command to replay under the updated rules. A client-side checkpoint validation error with the same code is not proof of refusal. Unknown network/timeout/401/5xx outcomes and stale migration previews keep the exact pending command.
+
+Maintenance UI offers “ตรวจผลรายการค้าง” while intent/writer ownership is unresolved. It must not create another migration UUID at that gate. Backup-before-write, revision CAS, server receipts, signed history, migration battle termination and the account-state/SQL schemas are unchanged.

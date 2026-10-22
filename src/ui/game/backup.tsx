@@ -86,7 +86,11 @@ export function BackupSheet({ context, save, controller, close, focusReset = fal
 export function MaintenancePanel({ save, controller }: { save: SaveSnapshot; controller: SaveController }) {
   const [busy, setBusy] = useState(false), [failed, setFailed] = useState<string | null>(null);
   const detail = save.detail as { migration?: { from_revision: number; from_content_hash: string; server_content_hash: string; changes: string[]; before: SaveSummary | null; after: SaveSummary }; recovery?: { checkpoint_id: string; signature: string; revision: number; summary: SaveSummary | null } | null } | null | undefined;
-  async function run(command: Command) { setBusy(true); setFailed(null); try { await controller.maintain(command); const r = controller.snapshot.lastReceipt; if (r?.request_id !== command.request_id) setFailed(controller.snapshot.reason ?? 'ยังไม่ได้รับผลจากเซิร์ฟเวอร์'); } catch (error) { setFailed(error instanceof Error ? error.message : 'ERROR'); } finally { setBusy(false); } }
+  const waiting = save.status === 'saving' || save.status === 'loading';
+  async function inspectPending() { setBusy(true); setFailed(null); try { await controller.reconnect(); } finally { setBusy(false); } }
+  async function run(command: Command) { setBusy(true); setFailed(null); try { await controller.maintain(command); const r = controller.snapshot.lastReceipt; if (r?.request_id !== command.request_id) setFailed(controller.snapshot.reason ?? 'ยังไม่ได้รับผลจากเซิร์ฟเวอร์'); else if (r.outcome === 'rejected') setFailed(r.result.code); } catch (error) { setFailed(error instanceof Error ? error.message : 'ERROR'); } finally { setBusy(false); } }
+  const blocked = !!save.pending || !controller.hasWriter;
+  const blockNotice = blocked && <p className="hint warn">{save.pending ? 'มีรายการเดิมรอตรวจผล กรุณาตรวจรายการก่อนอัปเดตเซฟ' : 'ยังถือสิทธิ์บันทึกไม่ได้ · ปิดเกมแท็บอื่นแล้วตรวจเซฟอีกครั้ง'}</p>;
   if (save.reason === 'SAVE_MIGRATION_REQUIRED' && detail?.migration) {
     const m = detail.migration;
     if (m.server_content_hash !== clientContentHash) return <div className="maintenance-panel" role="alertdialog" aria-label="ต้องโหลดเกมใหม่"><h2>มีเกมรุ่นใหม่</h2><p>โหลดหน้าใหม่ก่อน แล้วระบบจะเสนออัปเดตเซฟให้</p><button className="btn primary" onClick={() => window.location.reload()}>โหลดใหม่</button></div>;
@@ -95,8 +99,9 @@ export function MaintenancePanel({ save, controller }: { save: SaveSnapshot; con
       <p className="hint">เซฟ #{m.from_revision} สร้างจากเกมรุ่นก่อน ต้องปรับให้ตรงกับกติกาปัจจุบันก่อนเล่นต่อ ระบบจะสำรองเซฟเดิมไว้บนคลาวด์ก่อนเสมอ</p>
       <SummaryTable left={m.before} right={m.after} leftLabel={`เดิม #${m.from_revision}`} rightLabel="หลังอัปเดต" />
       <details className="change-list"><summary>รายการที่เปลี่ยน ({m.changes.length})</summary><ul>{m.changes.map(c => <li key={c}>{c}</li>)}</ul></details>
+      {blockNotice}
       {failed && <p className="hint warn">{reasonText[failed] ?? `อัปเดตไม่สำเร็จ (${failed}) · เซฟเดิมยังอยู่ครบ`}</p>}
-      <button className="btn primary wide" disabled={busy} onClick={() => void run({ type: 'save.migrate', params: { from_revision: m.from_revision, from_content_hash: m.from_content_hash }, request_id: randomId(), expected_revision: m.from_revision, ...storyVersions } as Command)}>{busy ? 'กำลังสำรองและอัปเดต…' : 'สำรองแล้วอัปเดตเซฟ'}</button>
+      <button className="btn primary wide" disabled={busy || waiting} onClick={() => blocked ? void inspectPending() : void run({ type: 'save.migrate', params: { from_revision: m.from_revision, from_content_hash: m.from_content_hash }, request_id: randomId(), expected_revision: m.from_revision, ...storyVersions } as Command)}>{busy || waiting ? 'กำลังตรวจและอัปเดต…' : blocked ? 'ตรวจผลรายการค้าง' : 'สำรองแล้วอัปเดตเซฟ'}</button>
     </div>;
   }
   if (save.reason === 'SAVE_INTEGRITY_FAILED') {
@@ -106,8 +111,9 @@ export function MaintenancePanel({ save, controller }: { save: SaveSnapshot; con
       {source ? <>
         <p className="hint">ข้อมูลเซฟไม่ตรงกับลายเซ็นของเซิร์ฟเวอร์ พบจุดล่าสุดที่ลายเซ็นถูกต้อง #{source.revision} ข้อมูลที่เสียจะถูกเก็บไว้ก่อนกู้คืน</p>
         <SummaryTable left={null} right={source.summary} leftLabel="ข้อมูลที่เสีย" rightLabel={`จุดที่ถูกต้อง #${source.revision}`} />
+        {blockNotice}
         {failed && <p className="hint warn">{reasonText[failed] ?? `กู้คืนไม่สำเร็จ (${failed})`}</p>}
-        <button className="btn primary wide" disabled={busy} onClick={() => void run({ type: 'backup.restore_request', params: { checkpoint_id: source.checkpoint_id, signature: source.signature }, request_id: randomId(), expected_revision: source.revision, ...storyVersions } as Command)}>{busy ? 'กำลังกู้คืน…' : `กู้คืนเซฟ #${source.revision}`}</button>
+        <button className="btn primary wide" disabled={busy || waiting} onClick={() => blocked ? void inspectPending() : void run({ type: 'backup.restore_request', params: { checkpoint_id: source.checkpoint_id, signature: source.signature }, request_id: randomId(), expected_revision: source.revision, ...storyVersions } as Command)}>{busy || waiting ? 'กำลังตรวจและกู้คืน…' : blocked ? 'ตรวจผลรายการค้าง' : `กู้คืนเซฟ #${source.revision}`}</button>
       </> : <p className="hint">ยังไม่พบจุดที่ลายเซ็นถูกต้อง · ระบบไม่ได้แก้ไขข้อมูลใด ๆ · ติดต่อผู้ดูแลเพื่อกู้จากสำรองบนเซิร์ฟเวอร์</p>}
     </div>;
   }
