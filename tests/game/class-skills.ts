@@ -51,9 +51,9 @@ export function checkGolden(row: Golden): void {
     const effect = resolvedEffect as Effect & Record<string, unknown>, at = `${path}.${effect.id}`;
     for (const [key, expected] of Object.entries(intent)) {
       if (key === 'effect_id') assert.equal(effect.id, expected, at);
-      else if (['type', 'target', 'status_id', 'duration_ms', 'chance', 'params', 'actor_definition_id', 'max_owned'].includes(key)) assert.deepEqual(effect[key], expected, `${at}.${key}`);
+      else if (['type', 'target', 'status_id', 'duration_ms', 'chance', 'params', 'actor_definition_id', 'max_owned', 'power_scale'].includes(key)) assert.deepEqual(effect[key], expected, `${at}.${key}`);
       else if (key === 'predicate') assert.deepEqual(effect.when, expected, `${at}.when`);
-      else if (key === 'expected_raw_power' && effect.type === 'handler') close(row.input.handler_target_statuses.own_source * Number(effect.params.power_per_instance), Number(expected), at);
+      else if (key === 'expected_raw_power' && effect.type === 'handler') close(row.input.handler_target_statuses.own_source * (Number(effect.params.power_per_instance) + Number(effect.params.attack_ratio_per_instance ?? 0) * row.input.source_physical_attack), Number(expected), at);
       else if (key === 'expected_raw_power') close(rawPower((effect as Extract<Effect, { type: 'damage' }>).formula as never, offense, row.input.pre_cost_sp, row.input.event_hp_damage), Number(expected), at);
       else if (key === 'expected_modifiers' && effect.type === 'apply_status') assert.deepEqual(bindStatusParams(statusDefinition(content, effect.status_id).modifiers, effect.params as Record<string, number>).map(plain), expected, at);
       else if (key === 'requested_delta' && effect.type === 'resource_change') assert.equal(effect.amount, expected, at);
@@ -153,7 +153,7 @@ export function probePassive(id: string, level: number, seed = 1) {
   const carrier = (skills: Resolved[]) => probe('p_carrier', 'player', 'front_1', skills, true, definition.class_id);
   const without = resolveStats(attachLearnedPassives(carrier([]).stat_blueprint, 'p_carrier', {}), content), withPassive = resolveStats(attachLearnedPassives(carrier([skill]).stat_blueprint, 'p_carrier', { [id]: skill as never }), content);
   for (const modifier of definition.modifiers.filter(row => !row.when)) {
-    const delta = withPassive[modifier.stat] - without[modifier.stat]; assert.ok(Math.sign(delta) === Math.sign(Number(modifier.value)) && delta !== 0, `${id} Lv${level} ${modifier.stat} delta ${delta}`);
+    const delta = (withPassive[modifier.stat] ?? 0) - (without[modifier.stat] ?? 0); assert.ok(Math.sign(delta) === Math.sign(Number(modifier.value)) && delta !== 0, `${id} Lv${level} ${modifier.stat} delta ${delta}`);
   }
   if (!definition.triggers.length) return { procs: 0, stats: { without, with: withPassive } };
   const { events } = run([carrier([skill]), probe('p_ally', 'player', 'back_1'), probe('e_front', 'enemy', 'front_1', [], true), probe('e_back', 'enemy', 'back_1', [], true)], 20000, seed,

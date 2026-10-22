@@ -1,0 +1,123 @@
+✔ action bonuses join the existing outgoing bucket; legacy defaults, mitigation, crit and element stay shared (4.254917ms)
+✔ skill identity follows active, passive and periodic programs; normal origin takes precedence (1.99125ms)
+✔ event-damage card proc receives already boosted hit once, without a second skill multiplier (4.55575ms)
+✔ damage bonuses cannot multiply healing, shielding, CC duration or SP regeneration (1.90725ms)
+✔ ATK detonation consumes own poison only and shares outgoing math once (1.630834ms)
+✔ summon snapshots bonus ratios once without duplicating primary milestones or inheriting later buffs (3.503917ms)
+✔ all 126 skill definitions match 378 authored numeric goldens without running encounters (66.288209ms)
+✖ fractional gear roles survive rarity rounding; options and cards stay separate from item rarity (9.714167ms)
+✖ flat monster cards also provide proportional growth for late-game ATK, HP and SP (0.346084ms)
+✖ content migration preserves investments, instances, old rolls, slot progress, cursor and pending rewards (435.453791ms)
+✔ six slots/job and level restrictions, moving one canonical item across main/off-team owner preserves both slot investments (319.771209ms)
+✔ all19 jobs use authored weapon compatibility; all equipment rarity/type definitions fit shared compiler without implicit stat growth (322.235ms)
+✖ rarity affects only item base; Refine/Enchant/card sources remain on each owner, sleep when empty, and preview exactly matches battle snapshot (250.809667ms)
+✔ 500-item bag keeps pending reward fixed; equip/unlock/salvage still work and protected batch rejects atomically (255.334959ms)
+✔ training weapon costs125 once per command, is a distinct unequipped instance, discard yields zero and cannot buy incompatible type (206.792584ms)
+✔ semantic validation rejects duplicate owners/definitions/card slots and all equipment commands lock during live battle (186.821709ms)
+✔ equipment precision enters primary DEX once and skill CT/ACD preview shares that exact cast speed (151.630417ms)
+✔ 66 native RO cards preserve all 60 legacy IDs, correct slots, exact art IDs and distinct source grades (3.831541ms)
+✔ quality/level improve benefits, reduce penalties, scale proc power once and pure control chance only (0.482167ms)
+✔ Raydric/Deviling reduce neutral damage and retain weaknesses; true damage bypasses new resistance (7.486583ms)
+✔ armor element and GTB magic-only guard/SP cost use shared stats; physical hits stay unchanged (6.379625ms)
+✔ Marc/Marduk/Deviruchi resist only their status; hard CC still interrupts Phen (4.183833ms)
+✔ Maya reflects magical only; normalized proc cannot recursively reflect itself (3.252416ms)
+✔ Moonlight changes motion only, with identical virtual-time integration across frame chunks (7.217541ms)
+✔ Osiris improves the existing revive recovery without adding a revive or replaying its old cast (9.726125ms)
+✔ every authored card proc resolves actual effects with target tags and no formula/status errors (14.501333ms)
+✔ Hydra target bonus requires a physical hit against the matching race; its own proc cannot retrigger (1.514791ms)
+✔ farm profile improves stage chance/quality, gates Mini/MVP, retains earlier cards and favors current tiers (46.176ms)
+✔ seeded farm split/cap/retry produces same fixed cards/gear and RNG without kill or speed input (11.401416ms)
+✔ legacy snapshot settles before enabling cards; full bag never consumes or rerolls pending rewards (1214.361916ms)
+✔ slot correction migration returns incompatible cards to bag and preserves exact instance/quality/level/lock (188.407625ms)
+✔ D-058 migration fills new fields, rebalances status budgets and drops dangling stages, then passes the server validator (55.565792ms)
+✔ D-058 migration refunds status investments that exceed the new budget instead of keeping unfunded stats (1.120459ms)
+✔ D-058 migration SQL appends one signed revision per outdated save and skips current saves (935.507959ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 30
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3482.453667
+
+✖ failing tests:
+
+test at tests/game/build-impact.test.ts:1:7926
+✖ fractional gear roles survive rarity rounding; options and cards stay separate from item rarity (9.714167ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0.22 !== 0.04
+  
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/build-impact.test.ts:96:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0.22,
+    expected: 0.04,
+    operator: 'strictEqual'
+  }
+
+test at tests/game/build-impact.test.ts:1:9462
+✖ flat monster cards also provide proportional growth for late-game ATK, HP and SP (0.346084ms)
+  TypeError [Error]: Cannot read properties of undefined (reading 'value')
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/build-impact.test.ts:108:82)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7)
+
+test at tests/game/build-impact.test.ts:1:10008
+✖ content migration preserves investments, instances, old rolls, slot progress, cursor and pending rewards (435.453791ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "must be <= 1000; schema #/properties/inventory/items/oneOf/0/properties/options/items/properties/roll/maximum"
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/build-impact.test.ts:122:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: must be <= 1000; schema #/properties/inventory/items/oneOf/0/properties/options/items/properties/roll/maximum
+        at ContentValidator.shape (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/src/content/validation.ts:61:13)
+        at AccountCommandRules.validateAccount (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/src/domain/account/commands.ts:54:20)
+        at <anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/build-impact.test.ts:122:55)
+        at getActual (node:assert:530:5)
+        at strict.doesNotThrow (node:assert:696:32)
+        at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/build-impact.test.ts:122:10)
+        at Test.runInAsyncScope (node:async_hooks:214:14)
+        at Test.run (node:internal/test_runner/test:1062:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+        at Test.postRun (node:internal/test_runner/test:1191:19),
+    expected: undefined,
+    operator: 'doesNotThrow'
+  }
+
+test at tests/game/equipment-progression.test.ts:1:4498
+✖ rarity affects only item base; Refine/Enchant/card sources remain on each owner, sleep when empty, and preview exactly matches battle snapshot (250.809667ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  304.42 !== 304
+  
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/equipment-progression.test.ts:43:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 304.42,
+    expected: 304,
+    operator: 'strictEqual'
+  }

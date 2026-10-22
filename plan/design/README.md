@@ -36,3 +36,5 @@
 - [30 Game shell แบบมือถือ](30-game-shell-ui.md) — HUD เล็ก/ฉากฟาร์มเดินตีมอนแบบ presentation/ปุ่มท้าบอส/หีบ AFK/เมนูล่าง/หน้า Buddy-Stats-Skill-Backpack-Team และ compatible refresh (TASK-048, D-051)
 
 - [31 การ์ด RO และดรอปจากฟาร์ม](31-ro-cards-and-farm.md) — source/art/Normal-Mini-MVP, shared typed effects, fixed card reward profiles และการเก็บการ์ดเดิมระหว่างmigration (TASK-073)
+
+- [32 น้ำหนักสกิล การ์ด และอุปกรณ์](32-build-impact.md) — โบนัส skill/normal, cost-awarecoefficientsและrolemodifiers; authoredtrialbaselineของTASK077ไม่ใช่whole-gamebalanceproof

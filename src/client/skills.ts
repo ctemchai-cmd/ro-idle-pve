@@ -36,8 +36,8 @@ export function effectDescriptions(effects: readonly Effect[]): string[] {
   else if(effect.type==='revive')text='ชุบชีวิตเพื่อน';
   else if(effect.type==='remove_status')text='ล้างสถานะจากเป้าหมาย';
   else if(effect.type==='resource_change')text=effect.resource==='spirit_spheres'?`เพิ่ม Spirit Sphere ${number(effect.amount)} ลูก (สูงสุด 5) · บอลที่ถือเพิ่ม ATK ${percent(heldResourceModifiers({sp:0,spirit_spheres:1},content).filter(m=>m.stat==='physical_attack').reduce((n,m)=>n+Number(m.value),0))} ต่อลูก`:'เปลี่ยนทรัพยากรระหว่างต่อสู้';
-  else if(effect.type==='summon')text='เรียกผู้ช่วยลงสนาม';
-  else if(effect.type==='handler'&&effect.handler_id==='detonate_own_status')text=`ระเบิด${statusNames[String(effect.params.status_id)]??effect.params.status_id}ของตัวเอง ${number(effect.params.power_per_instance)} ต่อชั้น`;
+  else if(effect.type==='summon')text='เรียกผู้ช่วยลงสนาม'+(typeof effect.power_scale==='number'?` · พลังผู้ช่วย ${percent(effect.power_scale)}`:'');
+  else if(effect.type==='handler'&&effect.handler_id==='detonate_own_status')text=`ระเบิด${statusNames[String(effect.params.status_id)]??effect.params.status_id}ของตัวเอง ${typeof effect.params.attack_ratio_per_instance==='number'?[...(Number(effect.params.power_per_instance)?[number(effect.params.power_per_instance)]:[]),`${percent(effect.params.attack_ratio_per_instance)} ATK`].join(' + '):number(effect.params.power_per_instance)} ต่อชั้น`;
   else text='กลไกเฉพาะอาชีพ';
   if(effect.type==='damage'&&Number(effect.hits)>1)text+=` × ${number(effect.hits)} ครั้ง`;
   const elements=effectDamageElements([effect]);

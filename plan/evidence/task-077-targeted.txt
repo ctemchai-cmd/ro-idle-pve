@@ -1,0 +1,42 @@
+✔ action bonuses join the existing outgoing bucket; legacy defaults, mitigation, crit and element stay shared (2.464709ms)
+✔ skill identity follows active, passive and periodic programs; normal origin takes precedence (1.367042ms)
+✔ event-damage card proc receives already boosted hit once, without a second skill multiplier (1.273292ms)
+✔ damage bonuses cannot multiply healing, shielding, CC duration or SP regeneration (0.974083ms)
+✔ ATK detonation consumes own poison only and shares outgoing math once (1.133375ms)
+✔ summon snapshots bonus ratios once without duplicating primary milestones or inheriting later buffs (4.927459ms)
+✔ all 126 skill definitions match 378 authored numeric goldens without running encounters (61.773542ms)
+✔ fractional gear roles survive rarity rounding; options and cards stay separate from item rarity (1.471125ms)
+✔ flat monster cards also provide proportional growth for late-game ATK, HP and SP (0.155458ms)
+✔ content migration preserves investments, instances, old rolls, slot progress, cursor and pending rewards (282.751125ms)
+✔ six slots/job and level restrictions, moving one canonical item across main/off-team owner preserves both slot investments (298.819666ms)
+✔ all19 jobs use authored weapon compatibility; all equipment rarity/type definitions fit shared compiler without implicit stat growth (156.881708ms)
+✔ rarity affects only item base; Refine/Enchant/card sources remain on each owner, sleep when empty, and preview exactly matches battle snapshot (234.463958ms)
+✔ 500-item bag keeps pending reward fixed; equip/unlock/salvage still work and protected batch rejects atomically (286.35575ms)
+✔ training weapon costs125 once per command, is a distinct unequipped instance, discard yields zero and cannot buy incompatible type (214.767083ms)
+✔ semantic validation rejects duplicate owners/definitions/card slots and all equipment commands lock during live battle (206.484ms)
+✔ equipment precision enters primary DEX once and skill CT/ACD preview shares that exact cast speed (156.719959ms)
+✔ 66 native RO cards preserve all 60 legacy IDs, correct slots, exact art IDs and distinct source grades (16.981792ms)
+✔ quality/level improve benefits, reduce penalties, scale proc power once and pure control chance only (0.479417ms)
+✔ Raydric/Deviling reduce neutral damage and retain weaknesses; true damage bypasses new resistance (6.633292ms)
+✔ armor element and GTB magic-only guard/SP cost use shared stats; physical hits stay unchanged (4.560125ms)
+✔ Marc/Marduk/Deviruchi resist only their status; hard CC still interrupts Phen (2.275917ms)
+✔ Maya reflects magical only; normalized proc cannot recursively reflect itself (1.16725ms)
+✔ Moonlight changes motion only, with identical virtual-time integration across frame chunks (2.850167ms)
+✔ Osiris improves the existing revive recovery without adding a revive or replaying its old cast (3.52175ms)
+✔ every authored card proc resolves actual effects with target tags and no formula/status errors (10.109541ms)
+✔ Hydra target bonus requires a physical hit against the matching race; its own proc cannot retrigger (1.35025ms)
+✔ farm profile improves stage chance/quality, gates Mini/MVP, retains earlier cards and favors current tiers (157.742542ms)
+✔ seeded farm split/cap/retry produces same fixed cards/gear and RNG without kill or speed input (66.590875ms)
+✔ legacy snapshot settles before enabling cards; full bag never consumes or rerolls pending rewards (1036.194042ms)
+✔ slot correction migration returns incompatible cards to bag and preserves exact instance/quality/level/lock (208.9035ms)
+✔ D-058 migration fills new fields, rebalances status budgets and drops dangling stages, then passes the server validator (54.202791ms)
+✔ D-058 migration refunds status investments that exceed the new budget instead of keeping unfunded stats (1.1925ms)
+✔ D-058 migration SQL appends one signed revision per outdated save and skips current saves (756.378125ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3428.764041

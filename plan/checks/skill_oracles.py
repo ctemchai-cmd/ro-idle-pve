@@ -21,10 +21,12 @@ def intent(effect):
   definition=c.resolve(c.STATUSES[effect['status_id']],status_values=effect['params']);result['expected_modifiers']=definition['modifiers']
   if definition['periodic']:
    per=definition['periodic'];result['tick_times_ms']=list(range(0 if per['tick_on_apply'] else per['interval_ms'],effect['duration_ms'],per['interval_ms']));result['periodic_raw_intents']=[intent(e) for e in per['effects']]
- if effect['type']=='handler':result['own_statuses_consumed']=2;result['expected_raw_power']=2*effect['params']['power_per_instance'];result['other_source_statuses_remaining']=1
+ if effect['type']=='handler':result['own_statuses_consumed']=2;result['expected_raw_power']=2*(effect['params']['power_per_instance']+100*effect['params'].get('attack_ratio_per_instance',0));result['other_source_statuses_remaining']=1
  if effect['type']=='resource_change':result['requested_delta']=effect['amount']
  if effect['type']=='revive':result['expected_hp_after']=max(1,int(10000*effect['hp_ratio']));result['expected_sp_after']=int(1000*effect['sp_ratio'])
- if effect['type']=='summon':result.update(actor_definition_id=effect['actor_definition_id'],max_owned=effect['max_owned'],duration_ms=effect['duration_ms'])
+ if effect['type']=='summon':
+  result.update(actor_definition_id=effect['actor_definition_id'],max_owned=effect['max_owned'],duration_ms=effect['duration_ms'])
+  if 'power_scale' in effect:result['power_scale']=effect['power_scale']
  if effect.get('when'):result['predicate']=effect['when']
  return result
 cases=[]

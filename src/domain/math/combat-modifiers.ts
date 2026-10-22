@@ -9,5 +9,5 @@ export function statusResistance(id: string, stats: CombatStats): number {
 }
 export function elementalResistance(element: string, stats: CombatStats): number {
   const keys: Record<string, keyof CombatStats> = { neutral: 'neutral_resistance', water: 'water_resistance', earth: 'earth_resistance', fire: 'fire_resistance', wind: 'wind_resistance', poison: 'poison_resistance', holy: 'holy_resistance', dark: 'dark_resistance', ghost: 'ghost_resistance', undead: 'undead_resistance' };
-  const key = keys[element]; return key ? stats[key] : 0;
+  const key = keys[element]; return key ? stats[key] ?? 0 : 0;
 }

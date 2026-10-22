@@ -24,6 +24,13 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.005
+        },
+        {
+          "id": "impact_physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.14
         }
       ],
       "triggers": [],
@@ -44,6 +51,13 @@
           "op": "add_flat",
           "bucket": "derived",
           "value": 5
+        },
+        {
+          "id": "impact_physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.0875
         }
       ],
       "triggers": [
@@ -117,6 +131,13 @@
           "op": "add_flat",
           "bucket": "derived",
           "value": 25
+        },
+        {
+          "id": "impact_max_sp",
+          "stat": "max_sp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.4375
         }
       ],
       "triggers": [],
@@ -171,6 +192,13 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": -0.05
+        },
+        {
+          "id": "impact_max_sp",
+          "stat": "max_sp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.875
         }
       ],
       "triggers": [],
@@ -225,6 +253,13 @@
           "op": "add_flat",
           "bucket": "derived",
           "value": 5
+        },
+        {
+          "id": "impact_physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.0875
         }
       ],
       "triggers": [],
@@ -487,6 +522,13 @@
           "op": "add_flat",
           "bucket": "derived",
           "value": 40
+        },
+        {
+          "id": "impact_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.07
         }
       ],
       "triggers": [],
@@ -541,6 +583,13 @@
           "op": "add_flat",
           "bucket": "derived",
           "value": 120
+        },
+        {
+          "id": "impact_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.21
         }
       ],
       "triggers": [],
@@ -615,6 +664,13 @@
           "op": "add_flat",
           "bucket": "derived",
           "value": 3
+        },
+        {
+          "id": "impact_physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.0525
         }
       ],
       "triggers": [],
@@ -659,7 +715,7 @@
               "formula": {
                 "id": "event_damage_power",
                 "params": {
-                  "ratio": 0.08
+                  "ratio": 0.14
                 }
               },
               "damage_type": "true",
@@ -721,7 +777,7 @@
               "formula": {
                 "id": "event_damage_power",
                 "params": {
-                  "ratio": 0.08
+                  "ratio": 0.14
                 }
               },
               "damage_type": "true",
@@ -866,6 +922,13 @@
           "op": "add_flat",
           "bucket": "derived",
           "value": 5
+        },
+        {
+          "id": "impact_physical_defense",
+          "stat": "physical_defense",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.0875
         }
       ],
       "triggers": [],
@@ -907,6 +970,13 @@
           "op": "add_flat",
           "bucket": "derived",
           "value": 20
+        },
+        {
+          "id": "impact_physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.35
         }
       ],
       "triggers": [],
@@ -967,6 +1037,13 @@
           "op": "add_flat",
           "bucket": "derived",
           "value": 5
+        },
+        {
+          "id": "impact_physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.0875
         }
       ],
       "triggers": [
@@ -999,7 +1076,7 @@
               "formula": {
                 "id": "event_damage_power",
                 "params": {
-                  "ratio": 0.1
+                  "ratio": 0.175
                 }
               },
               "damage_type": "true",
@@ -1155,6 +1232,13 @@
           "op": "add_flat",
           "bucket": "derived",
           "value": 5
+        },
+        {
+          "id": "impact_physical_defense",
+          "stat": "physical_defense",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.0875
         }
       ],
       "triggers": [],
@@ -1281,7 +1365,7 @@
               "formula": {
                 "id": "event_damage_power",
                 "params": {
-                  "ratio": 0.1
+                  "ratio": 0.175
                 }
               },
               "damage_type": "true",
@@ -1392,7 +1476,7 @@
           "stat": "outgoing_magical_bonus",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.03
+          "value": 0.0525
         }
       ],
       "triggers": [
@@ -1425,8 +1509,8 @@
               "formula": {
                 "id": "magical_power",
                 "params": {
-                  "attack_ratio": 1.2,
-                  "flat_power": 0
+                  "attack_ratio": 2.1,
+                  "flat_power": 0.0
                 }
               },
               "damage_type": "magical",
@@ -1480,7 +1564,7 @@
               "formula": {
                 "id": "event_damage_power",
                 "params": {
-                  "ratio": 0.15
+                  "ratio": 0.2625
                 }
               },
               "damage_type": "true",
@@ -1577,7 +1661,7 @@
               "formula": {
                 "id": "event_damage_power",
                 "params": {
-                  "ratio": 0.2
+                  "ratio": 0.35
                 }
               },
               "damage_type": "true",
@@ -1636,7 +1720,7 @@
           "stat": "outgoing_physical_bonus",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.07
+          "value": 0.1225
         }
       ],
       "triggers": [
@@ -1668,8 +1752,8 @@
               "formula": {
                 "id": "physical_power",
                 "params": {
-                  "attack_ratio": 0.35,
-                  "flat_power": 0
+                  "attack_ratio": 0.6125,
+                  "flat_power": 0.0
                 }
               },
               "damage_type": "physical",
@@ -1722,8 +1806,8 @@
               "formula": {
                 "id": "magical_power",
                 "params": {
-                  "attack_ratio": 0.6,
-                  "flat_power": 0
+                  "attack_ratio": 1.05,
+                  "flat_power": 0.0
                 }
               },
               "damage_type": "magical",
@@ -1916,8 +2000,8 @@
               "formula": {
                 "id": "physical_power",
                 "params": {
-                  "attack_ratio": 0.15,
-                  "flat_power": 0
+                  "attack_ratio": 0.2625,
+                  "flat_power": 0.0
                 }
               },
               "damage_type": "physical",
@@ -1981,6 +2065,13 @@
           "op": "add_flat",
           "bucket": "derived",
           "value": 8
+        },
+        {
+          "id": "impact_physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.14
         }
       ],
       "triggers": [],
@@ -2028,6 +2119,13 @@
           "op": "add_flat",
           "bucket": "derived",
           "value": 5
+        },
+        {
+          "id": "impact_magical_defense",
+          "stat": "magical_defense",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.0875
         }
       ],
       "triggers": [],

@@ -37,11 +37,11 @@ export function StatsPage({ context }: { context: GameContext }) {
   return <div className="page stats-page">
     <PageHeader title={`Stats · ${friendNames[actor.character_id]}`} sub={`${jobNames[actor.job_id]} · Lv.${actor.level}`} onBack={() => go('buddy', actor.character_id)} right={<CharacterNav context={context} />} />
     <section className="stat-panel"><h2>Base Stats</h2><div className="stat-cells">
-      {base.map(k => <p key={k}><span>{statLabels[k]}</span><Diff before={current.stats[k]} after={preview.stats[k]} keyName={k} /></p>)}
+      {base.map(k => <p key={k}><span>{statLabels[k]}</span><Diff before={(current.stats[k] ?? 0)} after={(preview.stats[k] ?? 0)} keyName={k} /></p>)}
       <p><span>รอคิวสกิล</span>{current.intervalMs === preview.intervalMs ? <span className="diff-same">{seconds(current.intervalMs)}</span> : <span className="diff"><b className={preview.intervalMs < current.intervalMs ? 'up' : 'down'}>{seconds(preview.intervalMs)}</b></span>}</p>
     </div></section>
-    <details className="stat-panel extra-stats"><summary><span>Additional Stats</span><small>{extra.filter(k => current.stats[k] || preview.stats[k]).length} ค่าที่มีผล · แตะเพื่อดู</small></summary><div className="stat-grid small">
-      {extra.map(k => <p key={k} className={!current.stats[k] && !preview.stats[k] ? 'zero' : ''}><span>{statLabels[k]}</span><Diff before={current.stats[k]} after={preview.stats[k]} keyName={k} /></p>)}
+    <details className="stat-panel extra-stats"><summary><span>Additional Stats</span><small>{extra.filter(k => (current.stats[k] ?? 0) || (preview.stats[k] ?? 0)).length} ค่าที่มีผล · แตะเพื่อดู</small></summary><div className="stat-grid small">
+      {extra.map(k => <p key={k} className={!(current.stats[k] ?? 0) && !(preview.stats[k] ?? 0) ? 'zero' : ''}><span>{statLabels[k]}</span><Diff before={(current.stats[k] ?? 0)} after={(preview.stats[k] ?? 0)} keyName={k} /></p>)}
     </div><details className="stat-bonus-notes"><summary>โบนัสทุก 10 แต้ม</summary><p>STR ATK+5 · AGI หลบ+1% · VIT HP+50 · INT MATK+8 · DEX แม่น+1% · LUK คริ+1%</p><p>เลขบนปุ่ม + คือจำนวนแต้มที่ใช้ในขั้นถัดไป</p></details></details>
     <section className="alloc">
       <Radar value={total(actor.primary_stats)} draft={total(draft)} max={max} />

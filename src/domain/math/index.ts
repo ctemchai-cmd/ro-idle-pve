@@ -76,10 +76,11 @@ export function calculateDamage(input: MitigationInput): number {
   const power = checked(input.raw * Math.max(0, 1 + (input.outgoing ?? 0)) * (input.element ?? 1) * (input.crit ?? 1) * armor);
   return Math.floor(checked(Math.max(0, power - (input.flat_reduction ?? 0)) * Math.max(0, 1 - (input.guard ?? 0)) * Math.max(0, 1 + (input.vulnerability ?? 0))) + 1e-9);
 }
-export function damageForHit(effect: Extract<Effect, { type: 'damage' }>, raw: number, caster: DeepReadonly<CombatStats>, target: DeepReadonly<CombatStats>, element: number, critical: boolean) {
+export function damageForHit(effect: Extract<Effect, { type: 'damage' }>, raw: number, caster: DeepReadonly<CombatStats>, target: DeepReadonly<CombatStats>, element: number, critical: boolean, action: 'normal' | 'skill' | 'other' = 'other') {
+  const actionBonus = action === 'normal' ? caster.normal_damage_bonus ?? 0 : action === 'skill' ? caster.skill_damage_bonus ?? 0 : 0;
   return calculateDamage({ raw, defense: effect.damage_type === 'magical' ? target.magical_defense : target.physical_defense,
     armor_break: target.armor_break_percent, penetration: caster.penetration_percent, flat_penetration: caster.flat_penetration,
-    outgoing: effect.damage_type === 'magical' ? caster.outgoing_magical_bonus : effect.damage_type === 'true' ? caster.outgoing_true_bonus : caster.outgoing_physical_bonus,
+    outgoing: checked((effect.damage_type === 'magical' ? caster.outgoing_magical_bonus : effect.damage_type === 'true' ? caster.outgoing_true_bonus : caster.outgoing_physical_bonus) + actionBonus),
     element, crit: critical ? critMultiplier(caster) : 1, flat_reduction: target.flat_damage_reduction, guard: target.guard_percent, vulnerability: target.damage_taken_bonus, ignore_armor: effect.armor_rule === 'ignore' });
 }
 export function spRegen(stats: DeepReadonly<CombatStats>) { return Math.floor(checked(Math.max(0, 2 + .02 * stats.max_sp + .02 * (stats.int - 1) + stats.flat_sp_regen) * Math.max(0, 1 + stats.sp_regen_percent))); }

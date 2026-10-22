@@ -130,6 +130,9 @@ def build(equipment, cards_doc, strings, icons):
       for key, (make, ids, th) in variants.items(): emit(target, tier, f'equipment_{slot}_{tier}_{key}', slot, None, make(t, s), ids[i], th[i])
   for d in future: d.pop('presentation_id', None)
   # D-099 owns card identities/art/slots; never regenerate the historical placeholder catalog.
+  from item_impact import apply_roles
+  apply_roles(defs)
+  apply_roles(future)
   from card_catalog import build as build_card_catalog
   cards_doc, card_names = build_card_catalog(cards_doc)
   names.update(card_names)

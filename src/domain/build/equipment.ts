@@ -7,7 +7,8 @@ interface SlotRules {refine:{per_step_modifiers:Record<EquipmentSlot,Modifier[]>
 export function resolvedEquipmentModifiers(item:Extract<AccountState['inventory'][number],{kind:'equipment'}>,content:ValidatedContent):Modifier[]{
  const multiplier=equipmentRules(content).rarities.find(r=>r.id===item.rarity_id)?.power_multiplier;if(multiplier===undefined)throw new Error('INVALID_ITEM_RARITY');
  const definition=itemDefinition(item,content);
- return [...structuredClone(definition.modifiers).map(m=>{if(typeof m.value!=='number')throw new Error('UNRESOLVED_ITEM_MODIFIER');return{...m,value:m.op==='add_flat'?Math.floor(m.value*multiplier):m.value};}),...optionModifiers(item,definition.tier_level,content)]; // D-062 option lines follow the base stats
+ const stats=content.documents['stat-definitions.json']!.stats as unknown as {id:string;unit:string}[];
+ return [...structuredClone(definition.modifiers).map(m=>{if(typeof m.value!=='number')throw new Error('UNRESOLVED_ITEM_MODIFIER');const scaled=m.value*multiplier;return{...m,value:m.op==='add_flat'?(stats.find(s=>s.id===m.stat)?.unit==='ratio'?Math.round(scaled*1e6)/1e6:Math.floor(scaled)):m.value};}),...optionModifiers(item,definition.tier_level,content)]; // D-062 option lines follow the base stats; ratios retain fractional precision.
 }
 export function cardPowerMultiplier(card:Extract<AccountState['inventory'][number],{kind:'card'}>,content:ValidatedContent):number{
  const rules=content.documents['cards.json'] as unknown as{level_multipliers:number[];rarities:{id:string;multiplier:number}[]};

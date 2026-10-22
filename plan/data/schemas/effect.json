@@ -528,6 +528,40 @@
             "replace_oldest",
             "skip"
           ]
+        },
+        "power_scale": {
+          "oneOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "object",
+              "properties": {
+                "level_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "level_param"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "status_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "status_param"
+              ],
+              "additionalProperties": false
+            }
+          ]
         }
       },
       "required": [
@@ -723,6 +757,40 @@
                 "ghost",
                 "undead",
                 "weapon"
+              ]
+            },
+            "attack_ratio_per_instance": {
+              "oneOf": [
+                {
+                  "type": "number",
+                  "minimum": 0
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "level_param": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-z0-9_]*$"
+                    }
+                  },
+                  "required": [
+                    "level_param"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "status_param": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-z0-9_]*$"
+                    }
+                  },
+                  "required": [
+                    "status_param"
+                  ],
+                  "additionalProperties": false
+                }
               ]
             }
           },

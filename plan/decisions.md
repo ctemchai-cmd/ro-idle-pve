@@ -133,6 +133,7 @@
 | D-100 | 22 ต.ค.2026 ผู้ใช้ขอOptionเรียงบรรทัดมีสีและหน้าสวมอาวุธเฉพาะอาชีพ | TASK-074 ใช้sharedOptionLines label/valueหนึ่งบรรทัดและfilterweapon_compatibilityในChangeSheet ไม่เปลี่ยนค่าหรือกติกาสวมใส่และไม่กรองกระเป๋ารวม |
 | D-101 | 22 ต.ค.2026 ผู้ใช้รายงานยังเตรียมภาพไม่ได้หลังอัปเดต | TASK-075 จำกัดimmutableheaderเฉพาะhashhex64ตัวและfetchstablemanifestด้วยno-store ข้ามoldHTTPcache ไม่clearstorage/Auth/เซฟ คงexpectedpackcheckและmediaimmutable เกม/content/packhashเดิม |
 | D-102 | 22 ต.ค.2026 ผู้ใช้ขอแสดงธาตุสกิลและเกราะธาตุเป้าหมาย | TASK-076 อ่านโปรแกรมจริงรวมDoT/Passive/summon/handler แยกfixed/weaponและแต่ละeffect; แสดงเกราะธาตุบอส/ตัวโฟกัสตามsource/card→tag→Neutral แยกจากอาวุธ/endow ไม่เปลี่ยนสูตร/สมดุลหรือเซฟ |
+| D-103 | 22 ต.ค.2026 ผู้ใช้ขอให้การ์ด สกิล และไอเทมส่งผลต่อการต่อสู้มากขึ้น | TASK-077 เพิ่มน้ำหนักและทางเลือกบิลด์ skill/normal/heal/tank ผ่านsharedpipeline ผู้ใช้ชี้แจงscaleทุกอาชีพ/การ์ดไปทิศเดียวกันและคงด่านเดิมแม้ง่ายขึ้น จึงใช้sharedpowerpolicyกับdamage/Passive/DoT/summon/cardprocและsharedgearrolecurve ไม่เพิ่มค่าบอสชดเชย คงSI3s/คิว/SP/CC/stack/cost/economy และงดbalance simulationใหม่ ค่าตัวเลขเป็นassistanttrialbaseline |
 
 ## คำถามหลักที่ส่งให้ผู้ใช้แล้ว
 

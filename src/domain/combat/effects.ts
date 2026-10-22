@@ -114,7 +114,8 @@ export class EffectPipeline {
           if (effect.handler_id !== 'detonate_own_status') throw new Error('UNKNOWN_EFFECT_HANDLER');
           const matches = target.statuses.filter(instance => instance.status_id === effect.params.status_id && instance.source.origin_actor_id === context.self.actor_id).sort((a, b) => a.expires_at - b.expires_at || compareId(a.instance_id, b.instance_id)).slice(0, effect.params.max_consumed ?? undefined);
           const ids = new Set(matches.map(instance => instance.instance_id)); target.statuses = target.statuses.filter(instance => !ids.has(instance.instance_id)); recomputeStats(target, this.content);
-          this.damage({ id: effect.id, type: 'damage', target: effect.target, formula: { id: 'flat_power', params: { amount: checked(matches.length * resolvedNumber(effect.params.power_per_instance)) } }, damage_type: effect.params.damage_type, element: effect.params.element, hit_rule: 'always', can_crit: false, hits: 1, armor_rule: 'normal' }, context, target); break;
+          const perInstance = resolvedNumber(effect.params.power_per_instance) + (effect.params.attack_ratio_per_instance === undefined ? 0 : resolvedNumber(effect.params.attack_ratio_per_instance) * context.offense.physical_attack);
+          this.damage({ id: effect.id, type: 'damage', target: effect.target, formula: { id: 'flat_power', params: { amount: checked(matches.length * perInstance) } }, damage_type: effect.params.damage_type, element: effect.params.element, hit_rule: 'always', can_crit: false, hits: 1, armor_rule: 'normal' }, context, target); break;
         }
         default: throw new Error(`UNKNOWN_EFFECT:${String((effect as { type: unknown }).type)}`);
       }
@@ -135,7 +136,9 @@ export class EffectPipeline {
       const multiplier = (chart.values ?? chart.matrix ?? chart as Record<string, Record<string, number>>)[element]?.[defense];
       if (typeof multiplier !== 'number') throw new Error(`UNKNOWN_ELEMENT:${element}:${defense}`);
       const resistance = effect.damage_type === 'true' ? 1 : Math.max(0, 1 - elementalResistance(element, target.stats)) * (effect.damage_type === 'magical' ? Math.max(0, 1 - target.stats.magical_guard_percent) : 1);
-      const mitigated = damageForHit(effect, raw, context.offense, target.stats, multiplier * resistance, critical);
+      // A skill keeps its definition id through passives/DoT/summons. Item/card procs have item ids.
+      const action = context.origin === 'normal' ? 'normal' : Object.hasOwn(this.content.skills, context.skill_id) ? 'skill' : 'other';
+      const mitigated = damageForHit(effect, raw, context.offense, target.stats, multiplier * resistance, critical, action);
       this.metric(context, 'raw_damage', raw);
       const links = target.statuses.map(instance => ({ instance, ratio: statusDefinition(this.content, instance.status_id).damage_redirect ? resolvedNumber(bindStatusParams(statusDefinition(this.content, instance.status_id).damage_redirect!.ratio, instance.params)) : 0, recipient: this.actor(instance.source.origin_actor_id) }))
         .filter(link => link.ratio > 0 && link.recipient && link.recipient !== target && link.recipient.team === target.team && sourceAlive(link.instance.source, this.state.actors))

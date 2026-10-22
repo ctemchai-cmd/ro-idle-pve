@@ -1,0 +1,59 @@
+{
+  "task_id": "TASK-077",
+  "date": "2026-10-22",
+  "passed": false,
+  "implementation_verified": true,
+  "acceptance": {
+    "AC-01": "passed_local",
+    "AC-02": "passed_local",
+    "AC-03": "passed_local",
+    "AC-04": "passed_local",
+    "AC-05": "pending_actual_hosted"
+  },
+  "content_hash": "7345a9e18fadb6ff568b06426c89e76e571f4577e2af2d01d6a5cb8e62173537",
+  "asset_pack_hash": "c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2",
+  "shared_damage_factor": 1.75,
+  "factor_basis": "assistant trial value; user requests consistent scaling and accepts easier existing stages, not a user-specified number",
+  "checks": {
+    "shared_numeric_policy_skills": 52,
+    "static_skill_level_rows": 106,
+    "authored_skill_definitions": 126,
+    "numeric_goldens": 378,
+    "focused_ts_tests": 67,
+    "local_auth_mobile_groups": 3,
+    "real_auth_api_groups": 5,
+    "build_type_boundaries_content_secrets": true,
+    "all_stage_tower_daily_rows_unchanged": true,
+    "card_identity_count": 66,
+    "new_assets": 0
+  },
+  "evidence": [
+    "plan/evidence/task-077-static-review.json",
+    "plan/evidence/task-077-targeted-final.txt",
+    "plan/evidence/task-077-m0.txt",
+    "plan/evidence/task-077-build.txt",
+    "plan/evidence/task-077-ui-live.json",
+    "plan/evidence/task-077-local-stack.json",
+    "plan/evidence/task-077-local-api.txt"
+  ],
+  "visual_scope": "Inspected full320px actual Bash245% detail, skill-vs-normal equipment preview and native WolfGoldLv5 card detail showing24flat+42%ATK; captured390px too. Disposable account, not physical Android.",
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "balance_simulation": false,
+  "new_sql_or_env": false,
+  "pending": [
+    "actual Vercel deployment/hosted check"
+  ],
+  "retained_failures": [
+    "Initial fixture option rolls10000/4321 exceeded real1000 limit; corrected to1000/432. Initial fixture used wrong cardID forHP; corrected toPupa. Old equipment arithmetic test counted percentage together with flat; now independently verifies304flat/.42ratio/134.9ATKdelta.",
+    "Mobile round1 harness expected two-decimal stat formatting, game uses one; round2 searched hidden third modifier rather than weapon name; round3 compared JSON key order; round4 read trigger-only list instead of modifier details. Product criteria retained; final realAuth/mobile3groups passed."
+  ],
+  "source_sha256": {
+    "src/domain/combat/engine.ts": "c8905ed37c806c269c6e5d9035eada31cc509ca31985719d5313de919894b4eb",
+    "src/domain/combat/effects.ts": "3d93a198b450962b3a1a6c5bfbe49fe323ec343fcd72c4c03e10a28939a23ef9",
+    "src/domain/build/equipment.ts": "210151abf2e271af2b572472e76a6d68e5fcdecde7c9783c1d9d915def5f8c27",
+    "src/domain/math/index.ts": "5afb57ea0b6688296a6933fb15f788ee80eeb77906b7041ec8b397d60da21dc2",
+    "plan/generators/build-impact-spec.json": "8d730763280b946eea0ffa0577400e174dba13f40d6185da2a031b63841bc73f",
+    "scripts/test_build_impact_live.cjs": "7a775cfa4f2304abbbf9b4e86b344897e5ff5694cbf107aedcc5521d1358f91d"
+  }
+}

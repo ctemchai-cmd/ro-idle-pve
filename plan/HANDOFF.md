@@ -4,6 +4,14 @@
 
 
 
+## 22 ต.ค.2026 · Codex — TASK-077 สัดส่วนพลังร่วมทุกอาชีพ/การ์ด ผ่านlocalแล้วรอdeploy
+
+- ผู้ใช้ขอสกิล/การ์ด/ไอเทมมีผลต่อไฟต์มากขึ้นและชี้แจงให้scaleทุกอาชีพ/การ์ดไปทางเดียวกัน ยอมรับด่านเดิมง่ายขึ้น จึงแทนdraftcurveรายท่าด้วยD-103sharedpowerpolicy1.75 (assistanttrialvalue). ข้อเสนอเก่าที่บอกห้ามบัฟทุกท่ารวมในบันทึก076ถูกแทนโดยคำชี้แจงล่าสุดนี้ ไม่เพิ่มบอส/ด่านชดเชย ไม่renewedbalance simulation/calibration
+- 52damageprogramsทุกต้นอาชีพ/Passive/DoT/counter/copy+HellPlantเพิ่มpower1.75; Detonateflat→ATK105–210%/ownstackโดยreferenceATK100×factorเดียวกัน. Carddamageprocทุกใบใช้factorเดียวกัน; flatATK/MATK/HP/SP/DEFcardคงflat+เพิ่ม%จากsharedreference ไม่แก้66ROIDs/art/slots/quality/level/cost/control/resistance/penalties. ด่าน/Tower/Daily/เศรษฐกิจเดิมไม่เปลี่ยน
+- Gear144+future36ใช้role/tiercurveร่วม: skill/normal/heal/tank/SP; เพิ่มoptionskill/normal สองชนิด ไม่rerollของเก่า. Newoptionaldefault0stats skill_damage_bonus/normal_damage_bonusบวกoutgoingเดิม ไม่multiplicativeทุกsource; cardprocไม่รับskillbonusซ้ำ. พบและแก้rarityfloorratio→0ให้ratioเก็บ6digits integerเดิมคงfloor. Summon snapshotbonusจากownerครั้งเดียว หักbaselineprimarymilestonesไม่คูณAGI/LUKซ้ำ; power_scaleเฉพาะATK/MATK
+- Focused67TSรวม378numericgoldens/static106rows/M0/build/type/boundaries/content/secretsผ่าน; actualfreshAuth/Postgres/PostgREST/mobile320/3903groups+API5ผ่าน. ตรวจภาพBash245%, skill→normalpreview17%→0/0→19.2%, nativeWolfGold5+24ATK/+42%จริงแล้ว. เก็บharnessfailround1–4และfixturemathfails ไม่แก้productเพื่อให้ผ่าน ไม่มีownerwrite/6173restart/keys/newSQL/env/media; content7345a9e… packc7e45b…เดิม
+- Task077ยังinprogress รอpushmain/VercelReady→ RO_EVIDENCE_PREFIX=task-077 RO_EXPECT_CONTENT_HASH=<runtimehash> RO_DEPLOY_COMMIT=<source> node scripts/test_save_latency_hosted.cjs→ปิดAC/ย้ายdoneและอัปเดตboard. ไม่อ่านowneraccount. เกมมีcontenthashใหม่ จบไฟต์/reloadแล้วผู้ใช้ใช้backup/migrateเดิม ไม่มีSQL/envใหม่
+
 ## 22 ต.ค.2026 · Codex — TASK-076 done ธาตุสกิล/เกราะเป้าหมายขึ้นVercelแล้ว
 
 - 22 ตุลาคม 2026: ผู้ใช้สังเกตสถิติว่า damage ส่วนมากมาจากตีปกติ ตรวจcode/dataแบบstaticพบ runtime SI3000ms vs normal1500ms (ทั้งคู่ลดตามASPD), ตีได้ในSI/ACDและหยุดตอนCT; normal100%ATK/critได้ ขณะที่ BashLv1=140%→max220%, DoubleStrafeLv1=70%×2→max110%×2. ข้อมูลนี้อธิบายโอกาสnormalครองสัดส่วน โดยเฉพาะสกิลต่ำ/หลายช่องบัฟฮีล แต่ยังไม่ได้อ่านownerbuild/logหรือยืนยันว่าสัดส่วนทุกสายเหมือนกัน จุดตรวจถัดไปคือความคุ้มค่าสกิลโจมตีเทียบCT/SP/ช่องและแยกสายnormal/skill ห้ามเพิ่มตัวคูณทุกท่ารวมกันหรืออ้างwholebalanceจากตัวอย่าง ไม่ได้เปลี่ยนสมดุล/รันsimulationในรอบTASK076

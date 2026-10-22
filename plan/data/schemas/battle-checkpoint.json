@@ -461,6 +461,14 @@
                 "type": "number",
                 "minimum": -9007199254740991,
                 "maximum": 9007199254740991
+              },
+              "skill_damage_bonus": {
+                "type": "number",
+                "description": "D-103 optional for legacy checkpoints; missing is zero. Added to the existing outgoing damage bucket only for this action family."
+              },
+              "normal_damage_bonus": {
+                "type": "number",
+                "description": "D-103 optional for legacy checkpoints; missing is zero. Added to the existing outgoing damage bucket only for this action family."
               }
             },
             "required": [
@@ -941,6 +949,14 @@
                         "type": "number",
                         "minimum": -9007199254740991,
                         "maximum": 9007199254740991
+                      },
+                      "skill_damage_bonus": {
+                        "type": "number",
+                        "description": "D-103 optional for legacy checkpoints; missing is zero. Added to the existing outgoing damage bucket only for this action family."
+                      },
+                      "normal_damage_bonus": {
+                        "type": "number",
+                        "description": "D-103 optional for legacy checkpoints; missing is zero. Added to the existing outgoing damage bucket only for this action family."
                       }
                     },
                     "required": [
@@ -1399,6 +1415,14 @@
                       "type": "number",
                       "minimum": -9007199254740991,
                       "maximum": 9007199254740991
+                    },
+                    "skill_damage_bonus": {
+                      "type": "number",
+                      "description": "D-103 optional for legacy checkpoints; missing is zero. Added to the existing outgoing damage bucket only for this action family."
+                    },
+                    "normal_damage_bonus": {
+                      "type": "number",
+                      "description": "D-103 optional for legacy checkpoints; missing is zero. Added to the existing outgoing damage bucket only for this action family."
                     }
                   },
                   "required": [

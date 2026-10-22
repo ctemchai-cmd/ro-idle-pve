@@ -1,12 +1,14 @@
 """D-099: one authored card catalog; preserve stable IDs, derive data/presentations/names."""
 from pathlib import Path
 import json
+from item_impact import card_power
 
 SPEC = Path(__file__).with_name('cards-spec.json')
 
 def build(previous):
     spec = json.loads(SPEC.read_text()); definitions, presentations, origins, names = [], [], {}, {}
     for row in spec['cards']:
+        row = card_power(row)
         cid, art = row['id'], f"items.card-{row['ro_item_id']}"
         meta = f"assets/ro/items/card-{row['ro_item_id']}.meta.json"
         definition = {'id': cid, 'name_key': cid, 'kind': 'card', 'slot': row['slot'], 'weapon_type': None, 'tier_level': row['tier'], 'required_level': row['tier'], 'modifiers': row['modifiers'], 'triggers': row['triggers'], 'presentation_id': f'visual_{cid}'}

@@ -24,8 +24,8 @@ export function OptionLines({ item }: { item: Parameters<typeof itemOptions>[0] 
 const modifierValue = (m: Modifier) => { const ratio = m.op === 'add_percent' || cardStatUnits[m.stat] === 'ratio', value = Number(m.value); return `${value >= 0 ? '+' : ''}${(value * (ratio ? 100 : 1)).toLocaleString('th-TH', { maximumFractionDigits: 2 })}${ratio ? '%' : ''}`; };
 export const modifierText = (m: Modifier) => `${statLabels[m.stat as keyof CombatStats] ?? m.stat} ${modifierValue(m)}`;
 export function StatChanges({ before, after }: { before: { stats: CombatStats; intervalMs: number }; after: { stats: CombatStats; intervalMs: number } }) {
-  const keys = (Object.keys(after.stats) as (keyof CombatStats)[]).filter(k => before.stats[k] !== after.stats[k]);
-  return <div className="stat-changes" aria-label="ค่าก่อนและหลัง">{keys.length ? keys.map(k => <p key={k}><span>{statLabels[k] ?? k}</span><Diff before={before.stats[k]} after={after.stats[k]} keyName={k} /></p>) : <p><span>ค่าต่อสู้</span><span className="diff-same">เท่าเดิม</span></p>}
+  const keys = (Object.keys(after.stats) as (keyof CombatStats)[]).filter(k => (before.stats[k] ?? 0) !== (after.stats[k] ?? 0));
+  return <div className="stat-changes" aria-label="ค่าก่อนและหลัง">{keys.length ? keys.map(k => <p key={k}><span>{statLabels[k] ?? k}</span><Diff before={(before.stats[k] ?? 0)} after={(after.stats[k] ?? 0)} keyName={k} /></p>) : <p><span>ค่าต่อสู้</span><span className="diff-same">เท่าเดิม</span></p>}
     {before.intervalMs !== after.intervalMs && <p><span>รอคิวสกิล</span><span className="diff"><s>{seconds(before.intervalMs)}</s> → <b className={after.intervalMs < before.intervalMs ? 'up' : 'down'}>{seconds(after.intervalMs)}</b></span></p>}</div>;
 }
 function GearTile({ row, slot, progress, pack, onClick }: { row: ItemRow | undefined; slot: EquipmentSlot; progress: Character['slot_progress'][EquipmentSlot]; pack: GameContext['pack']; onClick: () => void }) {

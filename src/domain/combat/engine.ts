@@ -157,8 +157,14 @@ export function advanceUntil(input: BattleState, toGameMs: number, content: Vali
     }
     // Primary stats snapshot the owner's cast-time offense; the listed derived stats scale by derived_scale.
     const snapshot = context.offense, base = { ...snapshot } as CombatStats;
-    for (const key of SCALED) base[key] = Math.max(key === 'max_hp' ? 1 : 0, Math.floor(snapshot[key] * definition.derived_scale));
+    const powerScale = effect.power_scale === undefined ? 1 : numeric(effect.power_scale);
+    for (const key of SCALED) base[key] = Math.max(key === 'max_hp' ? 1 : 0, Math.floor((snapshot[key] ?? 0) * definition.derived_scale * (key === 'physical_attack' || key === 'magical_attack' ? powerScale : 1)));
     const id = `summon_${owner.actor_id}_${state.event_sequence}`, blueprint = fixedEnemyBlueprint(owner.stat_blueprint.level, base, 'neutral', content);
+    // Preserve the owner's snapshotted bonus ratios once. Core derived stats scale above.
+    const bonusStats = content.documents['stat-definitions.json']!.stats as unknown as { id: keyof CombatStats; group: string }[];
+    const inheritedBase = resolveStats(blueprint, content);
+    const inherited = bonusStats.filter(stat => stat.group === 'bonus').map(stat => ({ id: `snapshot_${stat.id}`, stat: stat.id, op: 'add_flat' as const, bucket: 'bonus' as const, value: (snapshot[stat.id] ?? 0) - (inheritedBase[stat.id] ?? 0) })).filter(modifier => modifier.value !== 0);
+    if (inherited.length) blueprint.permanent_sources.push({ source: { instance_id: `offense_${id}`, owner_actor_id: owner.root_owner_actor_id, origin_actor_id: id, origin_life_epoch: 0, definition_id: context.skill_id }, modifiers: inherited, triggers: [] });
     const next = state.game_time_ms + (definition.action.tick_on_spawn ? 0 : definition.action.interval_ms), expires = state.game_time_ms + duration;
     // In arena fights a summon is a fixed point beside its owner (speed 0); it never moves or collides.
     const spatial = owner.spatial && state.arena ? (() => { const index = owned.length % 3, r = 8, x = Math.min(state.arena!.width - r, Math.max(r, owner.spatial!.x + (owner.team === 'player' ? 34 : -34))), y = Math.min(state.arena!.height - r, Math.max(r, owner.spatial!.y + 18 - index * 14));
