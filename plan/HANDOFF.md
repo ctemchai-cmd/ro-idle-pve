@@ -4,6 +4,19 @@
 
 
 
+
+## 23 ต.ค.2026 · Codex — TASK-101–105 done ขึ้นVercelแล้ว
+
+- Userต่อเนื่อง: ขอnativeROUpgrade/EXP/อาชีพ/ใบธาตุ; ตัดhow-to; AsuraATKเดิมแต่SPขอ1000–2000%/สนใจ4เท่า; Blessingโตตามlvแต่แก้20sเป็น10smax; Refineหินเพิ่ม; C1/CnเอาCออก. D130–134/design35.
+- Native Upgrade lv_up_off43px, EXP BattleManual24px, 4ElementalConverters24pxจากmetadata/ภาพเดิม เพิ่ม6refs+12payloadfiles. ClassIconใช้19skillartrefsที่มีในpack ผ่านAssetPack.iconUrl first-framecrop/cache/ariaชื่ออาชีพ ไม่อ้างofficialjobemblems;ทุกcallerส่งpack. Store3ตำแหน่งใช้ScrollIcon ไม่แก้actualElementBadge/elementmath.
+- UIลดhow-to/coachingในBuddy/Stats/Skills/Team/Onboarding/HUD/Farm/Stage/Results/Bag คงcost/effects/gates/refund/riskและactiveplacementstatus; Cardbagrankเลขล้วนไม่มีC. ไม่มีsaveจากinspection.
+- Asuraเฉพาะlevel_parameters.mana×4จากroundedglobalbaseline =11.025…20.475(1102.5–2047.5%pre-costcurrentSP). ATKcurve/Finger/Triple/cost/CT/ACD/hits/crit/armor/element/remaining-spheres/norefundเดิม. Generatorbuild_impactมีexplicitadjustmentsหลังimmutablebaseline ไม่compound. Blessingduration5500+500×(lv−1)msทั้งATK/MATK; magnitude/SP/CT/ACDและindependentuncappedexpiryเดิม. UIอ่านdataเดียวกัน.
+- Refineore8×targetแทน5(+60%) รวม440ถึง+10successทุกขั้น; gold77000/chance/pity/modifiers/cards5/10เดิม oldprogressไม่reprice. Economy_paceรักษาincome-authoringreference5×targetไม่เพิ่มAFKoreชดเชยsinkใหม่; generator--checkตรงและeconomy.jsonbyte-identical. Staticbeforeauditพิสูจน์แก้เฉพาะ2skills+ore; golden6casesปรับตามuserchange ไม่weakening.
+- 80unique focusedTSรวม378rawgoldens/migration, M0/readiness8/build/type/boundaries/secrets/sourcechecks110/60460/6926ผ่าน. ActualfreshAuth/API/Postgres/mobile320/3904groupsผ่าน: native6icons/19actualClassIconfirstframe, copy/Cremoved, Asura/Blessing10rank, actualskillplacement+Refine8ore200gold1revision/reload. ไม่physicalAndroid/balancebatch/ownerwrite/privateenvread/6173restart.
+- เก็บfailedrounds: testsเลือกactors[0]แต่engineเรียงID/immutableต้องclone, localecommaและemptyslotsข้ามทันทีจึงrecastเร็ว; browsermanifestชื่อshellไม่ใช่shell_visuals. แก้fixturesไม่แก้gameplay. Hostedรอบแรกpublic2groupsผ่านแต่tmpPlaywrightหาย; restoreเฉพาะtoolใน/private/tmp/ro-idle-browser-checkแล้วใช้RO_PLAYWRIGHT_MODULE=/private/tmp/ro-idle-browser-check/node_modules/playwright-core final3groupsผ่าน. ไม่อ่านprojectenv/ใช้ownerAuth.
+- SOURCE`9f1bc77f8f73d4cf9331dd4be53e6e45fc83ccbf` push/VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/4VuE3XXMxUej6ZFypvHYB1aj6Fvn Public3groupsผ่านAPI200SIN1/content/JS/native6mediaSHA/pack/login/0mutations. Content`b6ee95e152d7bc8f82ae7b42558d58e7192334b04c6f1f5bda83c523b0f53d9c`; pack`2b184ac57ee22e8ce858a7f6344e7b6310f61115c9f4aeb63a21e3fd288747a3`726IDs/1337files/30662378B initial1582917B. NoSQL/env; จบไฟต์reload/backupmigrateตามflowเดิม ผู้ใช้ทำเอง ไม่อ้างownerอัปเดตเซฟแล้ว.
+- Review2/2ACeach→done Board91/105done/4inprogressเก่า041058064067/5review/5todo M4done51/60. Finalreadinessหลังmoveก่อนdocsclosurepush.
+
 ## 22 ต.ค.2026 · Codex — TASK-098–100 done ขึ้นVercelแล้ว
 
 - Userต่อเนื่อง: yellowสูง→y−240; multiple10boxesควรรับรวม; Enchantแต่ละslotต่าง/Refineแรงขึ้นถาม% ; Upgradeiconธีม, scrollแพง, AFKCrystal4–5pullsยืนยัน12h, gearลดครึ่ง, ถามTowerCrystal. D127–129/design34.

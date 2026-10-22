@@ -1,0 +1,36 @@
+{
+  "task_ids": [
+    "TASK-101",
+    "TASK-102",
+    "TASK-103",
+    "TASK-104",
+    "TASK-105"
+  ],
+  "passed": true,
+  "checks": [
+    {
+      "case": "new_api_content_and_anonymous_gate",
+      "content_hash": "b6ee95e152d7bc8f82ae7b42558d58e7192334b04c6f1f5bda83c523b0f53d9c",
+      "region": "sin1"
+    },
+    {
+      "case": "public_client_artifacts_match_sha_and_new_behavior",
+      "shell": {
+        "path": "dist/assets/shell-Cdnxhnor.js",
+        "sha256": "2e42fefd9aef45056289574da20867121a07fef1e8383d979a862d39d7291800"
+      },
+      "renderer": {
+        "path": "dist/assets/skill-timeline-BVaipg8z.js",
+        "sha256": "881c456a6076fbc54dc378a30336d27ba72eed1b7885c9fc487b7c42ac2a5227"
+      },
+      "pack_hash": "2b184ac57ee22e8ce858a7f6344e7b6310f61115c9f4aeb63a21e3fd288747a3"
+    },
+    {
+      "case": "production_mobile_login_no_mutations",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "mutations": [],
+  "scope": "Actual signed-out public health/content/JS-SHA/pack/mobile-login proof, no owner account, no hosted writes"
+}
