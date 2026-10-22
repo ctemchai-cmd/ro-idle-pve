@@ -1,0 +1,118 @@
+{
+  "task_id": "TASK-094",
+  "date": "2026-10-22",
+  "passed": true,
+  "status": "passed_implementation",
+  "source_commit": "3a51292679cd5d101d348191b96cc83987acaced",
+  "deployment": "https://vercel.com/chanon2/ro-idle-pve/465gMha4AfFm8VXTCXEeUXnUN1UB",
+  "content_hash": "38859826ae9f3bb1b3c622609f8e3f7c046fa7e9bc182a4db8bdc27b84a7cde2",
+  "asset_pack_hash": "63ff0781ca4f03ade3d0847f01650c8d7c4e1c7f4ed315087d23b0625b37eda0",
+  "focused_tests": 93,
+  "actual_local_ui_groups": 8,
+  "public_groups": 3,
+  "checks": [
+    {
+      "acceptance_id": "AC-01",
+      "criterion": "ร้านค้ามีใบไฟ/น้ำ/ดิน/ลม ซื้อด้วยทองและเก็บstockแยกจากwallet/gear/card; เลือกmain/NPCเพื่อเตรียมได้ สลับหรือยกเลิกก่อนเริ่มคืนใบที่จอง ไม่มีหัก/ซื้อซ้ำจากresponse-lossหรือUUIDreplay",
+      "passed": true,
+      "local_validation": "passed",
+      "production_validation": "passed",
+      "evidence": [
+        "plan/evidence/task-093-094-targeted-final.txt",
+        "plan/evidence/task-093-094-build.txt",
+        "plan/evidence/task-093-094-m0.txt",
+        "plan/evidence/task-093-094-readiness.txt",
+        "plan/evidence/task-093-source-audit.json",
+        "plan/evidence/task-093-094-runtime-assets.txt",
+        "plan/evidence/task-093-094-source-assets.txt",
+        "plan/evidence/task-093-ui-live.json",
+        "plan/evidence/task-093-local-stack.json",
+        "plan/evidence/task-093-local-api.txt",
+        "plan/evidence/task-093-hosted.json",
+        "plan/evidence/task-093-094-github-deployment.json"
+      ]
+    },
+    {
+      "acceptance_id": "AC-02",
+      "criterion": "ใบที่เตรียมมีผลหนึ่งไฟต์Story/Tower/Dailyถัดไปของตัวนั้นและใช้จริงเฉพาะสมาชิกทีมเมื่อเริ่มสำเร็จ; invalidstart/ตัวสำรองไม่เสียใบ ท่าธาตุweaponและตีปกติรับธาตุใหม่ ส่วนfixedelementไม่เปลี่ยน statusendowสกิลยังoverrideตามpipelineเดิม การคำนวณx1/x2/x4ตรงกัน",
+      "passed": true,
+      "local_validation": "passed",
+      "production_validation": "passed",
+      "evidence": [
+        "plan/evidence/task-093-094-targeted-final.txt",
+        "plan/evidence/task-093-094-build.txt",
+        "plan/evidence/task-093-094-m0.txt",
+        "plan/evidence/task-093-094-readiness.txt",
+        "plan/evidence/task-093-source-audit.json",
+        "plan/evidence/task-093-094-runtime-assets.txt",
+        "plan/evidence/task-093-094-source-assets.txt",
+        "plan/evidence/task-093-ui-live.json",
+        "plan/evidence/task-093-local-stack.json",
+        "plan/evidence/task-093-local-api.txt",
+        "plan/evidence/task-093-hosted.json",
+        "plan/evidence/task-093-094-github-deployment.json"
+      ]
+    },
+    {
+      "acceptance_id": "AC-03",
+      "criterion": "เซฟเก่าเติมstock/queueว่างผ่านbackup/migrateเดิม โดยไม่ล้างinventory/paidledger/AFK/pity/characters; stock/queueถูกvalidateและpersist พร้อมserverreceipt ไม่มีSQL/envหรือownerwrite",
+      "passed": true,
+      "local_validation": "passed",
+      "production_validation": "passed",
+      "evidence": [
+        "plan/evidence/task-093-094-targeted-final.txt",
+        "plan/evidence/task-093-094-build.txt",
+        "plan/evidence/task-093-094-m0.txt",
+        "plan/evidence/task-093-094-readiness.txt",
+        "plan/evidence/task-093-source-audit.json",
+        "plan/evidence/task-093-094-runtime-assets.txt",
+        "plan/evidence/task-093-094-source-assets.txt",
+        "plan/evidence/task-093-ui-live.json",
+        "plan/evidence/task-093-local-stack.json",
+        "plan/evidence/task-093-local-api.txt",
+        "plan/evidence/task-093-hosted.json",
+        "plan/evidence/task-093-094-github-deployment.json"
+      ]
+    },
+    {
+      "acceptance_id": "AC-04",
+      "criterion": "ไอคอนร้านค้าเป็นสีและเข้าร้านได้; ใบธาตุใช้ไอคอนแยกสี/ตัวละคร+stock/คิวเตรียมชัด; ป้ายธาตุสกิลใช้SVGที่สื่อธาตุ/compactอ่านง่ายและตามอาวุธแสดงธาตุที่เตรียมได้ ตรวจmobile320/390/build/focused/actualisolatedAPI-save/publicVercelก่อนdone",
+      "passed": true,
+      "local_validation": "passed",
+      "production_validation": "passed",
+      "evidence": [
+        "plan/evidence/task-093-094-targeted-final.txt",
+        "plan/evidence/task-093-094-build.txt",
+        "plan/evidence/task-093-094-m0.txt",
+        "plan/evidence/task-093-094-readiness.txt",
+        "plan/evidence/task-093-source-audit.json",
+        "plan/evidence/task-093-094-runtime-assets.txt",
+        "plan/evidence/task-093-094-source-assets.txt",
+        "plan/evidence/task-093-ui-live.json",
+        "plan/evidence/task-093-local-stack.json",
+        "plan/evidence/task-093-local-api.txt",
+        "plan/evidence/task-093-hosted.json",
+        "plan/evidence/task-093-094-github-deployment.json"
+      ]
+    }
+  ],
+  "owner_cloud_writes": false,
+  "private_env_read": false,
+  "personal_preview_restarted": false,
+  "sql_or_env_changes": false,
+  "new_balance_batch": false,
+  "scope": "Real disposable signed saves/Auth/JWT/API/Postgres/Chrome320/390, and signed-out production data/bundle/API/login/PWA proof. Pure fixtures verify three mode starts/element/speed; actual scroll battle checkpoint proof is Story. Not physical Android or owner account migration.",
+  "scroll_elements": [
+    "fire",
+    "water",
+    "earth",
+    "wind"
+  ],
+  "duration": "next_battle",
+  "gold_price": 50,
+  "daily_limit_each": 99,
+  "pricing_basis": "Assistant-authored trial baseline; user confirmed duration and weapon-only scope.",
+  "prepare": "Reserve one per character; replace/cancel returns prior reservation. Successful battle start consumes only party reservations; bench remains.",
+  "calculation": "Shared weapon_element affects normal/weapon skills only; fixed elements and timed Sage endow override remain unchanged. 1x/2x/4x state/events/RNG identical in focused fixtures.",
+  "diagnostics": "Retained first codegen-before-M0 guard failure, missing new initial-case default, stale pre-D109 test expectation and strict UI locator reports. Final93tests/8actualUIgroups/build/readiness/public all pass; original criteria retained."
+}

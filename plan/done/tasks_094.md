@@ -25,7 +25,9 @@ Fourelementscrollsพร้อมpersistenceและใช้จริงใน
 
 ## เกณฑ์ตรวจรับ
 
-- [ ] AC-01: ร้านค้ามีใบไฟ/น้ำ/ดิน/ลม ซื้อด้วยทองและเก็บstockแยกจากwallet/gear/card; เลือกmain/NPCเพื่อเตรียมได้ สลับหรือยกเลิกก่อนเริ่มคืนใบที่จอง ไม่มีหัก/ซื้อซ้ำจากresponse-lossหรือUUIDreplay
-- [ ] AC-02: ใบที่เตรียมมีผลหนึ่งไฟต์Story/Tower/Dailyถัดไปของตัวนั้นและใช้จริงเฉพาะสมาชิกทีมเมื่อเริ่มสำเร็จ; invalidstart/ตัวสำรองไม่เสียใบ ท่าธาตุweaponและตีปกติรับธาตุใหม่ ส่วนfixedelementไม่เปลี่ยน statusendowสกิลยังoverrideตามpipelineเดิม การคำนวณx1/x2/x4ตรงกัน
-- [ ] AC-03: เซฟเก่าเติมstock/queueว่างผ่านbackup/migrateเดิม โดยไม่ล้างinventory/paidledger/AFK/pity/characters; stock/queueถูกvalidateและpersist พร้อมserverreceipt ไม่มีSQL/envหรือownerwrite
-- [ ] AC-04: ไอคอนร้านค้าเป็นสีและเข้าร้านได้; ใบธาตุใช้ไอคอนแยกสี/ตัวละคร+stock/คิวเตรียมชัด; ป้ายธาตุสกิลใช้SVGที่สื่อธาตุ/compactอ่านง่ายและตามอาวุธแสดงธาตุที่เตรียมได้ ตรวจmobile320/390/build/focused/actualisolatedAPI-save/publicVercelก่อนdone
+- [x] AC-01: ร้านค้ามีใบไฟ/น้ำ/ดิน/ลม ซื้อด้วยทองและเก็บstockแยกจากwallet/gear/card; เลือกmain/NPCเพื่อเตรียมได้ สลับหรือยกเลิกก่อนเริ่มคืนใบที่จอง ไม่มีหัก/ซื้อซ้ำจากresponse-lossหรือUUIDreplay
+- [x] AC-02: ใบที่เตรียมมีผลหนึ่งไฟต์Story/Tower/Dailyถัดไปของตัวนั้นและใช้จริงเฉพาะสมาชิกทีมเมื่อเริ่มสำเร็จ; invalidstart/ตัวสำรองไม่เสียใบ ท่าธาตุweaponและตีปกติรับธาตุใหม่ ส่วนfixedelementไม่เปลี่ยน statusendowสกิลยังoverrideตามpipelineเดิม การคำนวณx1/x2/x4ตรงกัน
+- [x] AC-03: เซฟเก่าเติมstock/queueว่างผ่านbackup/migrateเดิม โดยไม่ล้างinventory/paidledger/AFK/pity/characters; stock/queueถูกvalidateและpersist พร้อมserverreceipt ไม่มีSQL/envหรือownerwrite
+- [x] AC-04: ไอคอนร้านค้าเป็นสีและเข้าร้านได้; ใบธาตุใช้ไอคอนแยกสี/ตัวละคร+stock/คิวเตรียมชัด; ป้ายธาตุสกิลใช้SVGที่สื่อธาตุ/compactอ่านง่ายและตามอาวุธแสดงธาตุที่เตรียมได้ ตรวจmobile320/390/build/focused/actualisolatedAPI-save/publicVercelก่อนdone
+
+Reviewผ่าน4/4AC · 22 ต.ค.2026 · source`3a51292679cd5d101d348191b96cc83987acaced` VercelSUCCESS · [หลักฐาน](../evidence/task-094-review.json)

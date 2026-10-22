@@ -27,7 +27,9 @@ Catalog73ชนิด/7Puppet, sharedtypedmetadata/UI, source/adaptationnotes �
 
 ## เกณฑ์ตรวจรับ
 
-- [ ] AC-01: Angeling/Deviling เป็นMVP/LegendaryตามOrigin; รักษา66stableIDs/รูปต้นทาง/ช่อง/เลเวล/ล็อก/paidledgerและassignment เซฟเก่าย้ายเป็นทองโดยไม่ล้างของ
-- [ ] AC-02: เพิ่ม7Puppet Iเป็นdistinctdefinitionsพร้อมvariant/parent/sourceและRare; ไม่ใช้Holyarmor/ASPD/splashของใบจริง มีeffectsรุ่นรองผ่านcompositionเดิม พลังlevel/rarityและprocไม่คูณซ้ำ; รวม73definitions/66nativeportraits
-- [ ] AC-03: Farm/Tower/gachaสร้างPuppetได้ตามcatalogและtier/variantgate โดยอัตราการ์ดรวมยังเฉลี่ย1.44–2.88ใบต่อ12h ราคา/pity/oldfrozenrewards/RNGpartition/cap/UUIDreplayไม่เปลี่ยน
-- [ ] AC-04: ภาพPuppetสีจางเฉพาะภาพ/กรอบRareยังชัด/ป้ายPUPPETแยกจากMVPบนbag/picker/socket/details/reveal/farm; mobile320/390ไม่ล้น Focused/build/M0/readinessและactualisolatedChrome/saveflow/publicVercelผ่านก่อนdone ไม่ownerwrite/6173restart/SQL/env/newassets/balancebatch
+- [x] AC-01: Angeling/Deviling เป็นMVP/LegendaryตามOrigin; รักษา66stableIDs/รูปต้นทาง/ช่อง/เลเวล/ล็อก/paidledgerและassignment เซฟเก่าย้ายเป็นทองโดยไม่ล้างของ
+- [x] AC-02: เพิ่ม7Puppet Iเป็นdistinctdefinitionsพร้อมvariant/parent/sourceและRare; ไม่ใช้Holyarmor/ASPD/splashของใบจริง มีeffectsรุ่นรองผ่านcompositionเดิม พลังlevel/rarityและprocไม่คูณซ้ำ; รวม73definitions/66nativeportraits
+- [x] AC-03: Farm/Tower/gachaสร้างPuppetได้ตามcatalogและtier/variantgate โดยอัตราการ์ดรวมยังเฉลี่ย1.44–2.88ใบต่อ12h ราคา/pity/oldfrozenrewards/RNGpartition/cap/UUIDreplayไม่เปลี่ยน
+- [x] AC-04: ภาพPuppetสีจางเฉพาะภาพ/กรอบRareยังชัด/ป้ายPUPPETแยกจากMVPบนbag/picker/socket/details/reveal/farm; mobile320/390ไม่ล้น Focused/build/M0/readinessและactualisolatedChrome/saveflow/publicVercelผ่านก่อนdone ไม่ownerwrite/6173restart/SQL/env/newassets/balancebatch
+
+Reviewผ่าน4/4AC · 22 ต.ค.2026 · source`3a51292679cd5d101d348191b96cc83987acaced` VercelSUCCESS · [หลักฐาน](../evidence/task-093-review.json)
