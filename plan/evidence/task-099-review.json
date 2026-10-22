@@ -1,0 +1,70 @@
+{
+  "review_date": "2026-10-22",
+  "reviewer": "Codex self-review",
+  "passed": true,
+  "source_commit": "1118c2094a7496c9068c95070d798ea12d0ae76c",
+  "content_hash": "5cab041209a07d51a05e992b99eaab12f96c8aa2e73e54ca9755a941c4554536",
+  "runtime_asset_pack_hash": "96dec12ee20f2dc6865dda45131c27c96a0527fc757e8d4eaefd91dbec9d5912",
+  "checks": [
+    {
+      "id": "focused_tests",
+      "passed": true,
+      "evidence": "plan/evidence/task-098-targeted.txt",
+      "unique_tests_after_new_content_case": 154,
+      "note": "153 passed in affected suite;38content tests repeated with1newnegative included"
+    },
+    {
+      "id": "local_api_sql_mobile",
+      "passed": true,
+      "evidence": "plan/evidence/task-098-browser.json",
+      "groups": 4
+    },
+    {
+      "id": "build_type_boundaries_secrets_readiness",
+      "passed": true,
+      "evidence": "plan/evidence/task-098-build.txt"
+    },
+    {
+      "id": "public_vercel",
+      "passed": true,
+      "evidence": "plan/evidence/task-098-hosted.json",
+      "groups": 3
+    }
+  ],
+  "source_sha256": {
+    "src/domain/progression/claim-rewards.ts": "22cb6b6b50b8d830c0828a9d1ad68b454a2a16f056734f296c96ad69975cbacb",
+    "src/domain/account/commands.ts": "c3d14cfed5a36a279aa2a184346ead29760e72397f563fde72c0385298949f1f",
+    "src/domain/build/slot-definition.ts": "421bdd5f09c1966ac3182d0fd9f7698c62ec896700f25022293fd69211fa8b17",
+    "src/domain/build/equipment.ts": "6d6cd4fc1b5fc35390f9bd2dd3d97cfff24ab15e76e4be5d9204a78f1db6c16d",
+    "src/domain/progression/slots.ts": "8d9e2d59da8dcce28d372076102b3ce58312e1cac58c86b789afa38fd59a7f97",
+    "src/domain/rewards/farm.ts": "0cb3eb1e903eb46126f29692ce2b9681749f89d692564a71d4b8b6eb3b68c779",
+    "src/domain/modes/story.ts": "c0eeee33dd00583b6c3e7144dc74debdacd7562995f71dd25ed305b305bf224d",
+    "src/content/loader.ts": "9a53b429c6b429aff3e083f888c9ac128849b2d1870e117fff164c3786ea7a23",
+    "src/ui/game/field.tsx": "f85885677cf5f054070fc96788f927e44c158c83aceade2ad4bbf194cc3005de",
+    "src/ui/game/buddy.tsx": "7544f4c21d1cfd9abb9eab4c87ebca87962d660a4c7445136c5e3d54eaeeea2e",
+    "src/ui/game/store.tsx": "ebd0e5df04f50d635770788366dc7608eca536e73926211bdc525d111564ab6e",
+    "src/ui/game/tower.tsx": "a5e86b11f8de2009d1dc18f855d7dcc6028000d6b6c767a0ee941ae5b24bc0b5",
+    "src/renderer/battle.ts": "2e5f67dd09560c16831171bb1212948937bae5c55c6f9e7071ef372ab17d72ba",
+    "plan/data/slot-progress.json": "efbd9853da3605421466da355f7330850d53e5316bb2750efe8010399f7f1e53",
+    "plan/data/economy.json": "76e2c2b56f42cdbf792752f283cbeb6c2da257810ccf315622b52b2fd9f4dce5",
+    "plan/data/loot.json": "0449ef355a02d56276ea817737881bc608ce17abe668990677edbcfaa5343067",
+    "plan/data/schemas/command.json": "3cb0e50deb2f3246464f6bc6bf60dd0fb1d0a14152e49b7bd216ef65c7eeafba",
+    "plan/data/schemas/account-state.json": "d20b15f1869c4c5216e0946651615e3115bbe2d49086da357c132c5520b5b19a"
+  },
+  "limitations": [
+    "No owner save inspected or mutated; migration remains owner-triggered",
+    "No physical Android performance or whole-game balance verdict",
+    "Old frozen AFK profile settles before newCrystal/gear profile starts",
+    "No SQL/env/asset payload changes; personal6173 untouched"
+  ],
+  "task_id": "TASK-099",
+  "deployment": {
+    "source_commit": "1118c2094a7496c9068c95070d798ea12d0ae76c",
+    "state": "success",
+    "url": "https://vercel.com/chanon2/ro-idle-pve/DBm2FZqjzGVTzxWLiD5g8KyT83Ge"
+  },
+  "acceptance": {
+    "AC-01": "passed",
+    "AC-02": "passed"
+  }
+}

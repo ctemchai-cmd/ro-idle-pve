@@ -23,7 +23,7 @@ TASK-027, TASK-077 (done)
 ## เกณฑ์ตรวจรับ
 
 - [x] AC-01: 18linesต่างกัน/serverตรวจslot; +0/1/5/10ต้นปลายผ่านsharedpipeline; migrationรักษาทุน/refund/ระดับ/ของ/การ์ด
-- [ ] AC-02: build/type/boundaries/secrets/readinessผ่าน; actualisolatedChrome+publicVercelตรวจcode/artifactที่ปล่อยจริง
+- [x] AC-02: build/type/boundaries/secrets/readinessผ่าน; actualisolatedChrome+publicVercelตรวจcode/artifactที่ปล่อยจริง
 
 ## วิธีตรวจและหลักฐาน
 
@@ -37,5 +37,7 @@ focused node tests + isolatedChrome fixture + publicSHA/version proof เก็�
 
 เริ่ม22ต.ค.2026 ตามคำขอต่อเนื่อง
 
-- Local review: 153focused +38contentvalidation(เพิ่มnegativeหนึ่งข้อ) ผ่าน, M0/readiness8/build/type/boundaries/secretsผ่าน. ActualisolatedAuth/API/SQL/Chrome320–390 4groupsผ่าน รวม10boxes+AFK=1POST/1revision,6slotmenus/actualupgrade+reload/store/Tower. Nativeเลขเหลืองลด4groupsผ่าน. รอpublicVercelก่อนAC-02/done.
+- Local review: 153focused +38contentvalidation(เพิ่มnegativeหนึ่งข้อ) ผ่าน, M0/readiness8/build/type/boundaries/secretsผ่าน. ActualisolatedAuth/API/SQL/Chrome320–390 4groupsผ่าน รวม10boxes+AFK=1POST/1revision,6slotmenus/actualupgrade+reload/store/Tower. Nativeเลขเหลืองลด4groupsผ่าน. publicVercel3groupsผ่านแล้ว.
 - ชุดแรกเทสต์บางค่าตามข้อมูลเก่า บันทึกHEADcomparisonและindependentarithmeticในtask-099-oracle-audit.jsonก่อนแก้ เก็บround1/2 ไม่ลดreplay/parity/rollbackchecks. Gear144oracleคงไว้กับlegacy100%snapshot; new50%มีtestแยก. Browserround1ติดanimatedchestclick เปลี่ยนเป็นtouchตามวิธีผู้ใช้ ไม่มีproductpatch.
+
+Review2/2ACผ่าน · 22ต.ค.2026 · source`1118c2094a7496c9068c95070d798ea12d0ae76c` VercelSUCCESS/publicSHA/API200SIN1/login/noownerwrites. [หลักฐาน](../evidence/task-099-review.json)
