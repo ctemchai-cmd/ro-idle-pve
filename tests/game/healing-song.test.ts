@@ -33,8 +33,8 @@ test('Bard/Dancer have identical physical Healing Song at all levels and six gol
   for (let level = 1; level <= 10; level++) {
     const a = resolve('bard_healing_song', level), b = resolve('dancer_healing_song', level); assert.deepEqual(a.effects, b.effects);
     assert.deepEqual(a.timing, { cast_ms: 800, after_cast_ms: 1200, interruptible: true }); assert.deepEqual(a.cost, { sp: 38, spirit_spheres: 0 });
-    const opening = a.effects[0]!; assert.equal(opening.type, 'heal'); if (opening.type !== 'heal') throw new Error('OPENING_REQUIRED'); assert.equal(opening.target, 'friends'); assert.equal(opening.formula.id, 'physical_power'); assert.equal(opening.formula.params.attack_ratio, Number((.6 + .4 * (level - 1) / 9).toFixed(6)));
-    const effect = a.effects[1]!; assert.equal(effect.type, 'apply_status'); if (effect.type !== 'apply_status') throw new Error('HOT_REQUIRED'); assert.equal(effect.status_id, 'physical_regeneration'); assert.equal(effect.duration_ms, 6000); assert.equal(effect.params.power_ratio, Number((.3 + .2 * (level - 1) / 9).toFixed(6)));
+    const opening = a.effects[0]!; assert.equal(opening.type, 'heal'); if (opening.type !== 'heal') throw new Error('OPENING_REQUIRED'); assert.equal(opening.target, 'friends'); assert.equal(opening.formula.id, 'physical_power'); assert.equal(opening.formula.params.attack_ratio, Number((Number((.6 + .4 * (level - 1) / 9).toFixed(6)) * 1.75).toFixed(6)));
+    const effect = a.effects[1]!; assert.equal(effect.type, 'apply_status'); if (effect.type !== 'apply_status') throw new Error('HOT_REQUIRED'); assert.equal(effect.status_id, 'physical_regeneration'); assert.equal(effect.duration_ms, 6000); assert.equal(effect.params.power_ratio, Number((Number((.3 + .2 * (level - 1) / 9).toFixed(6)) * 1.75).toFixed(6)));
   }
   for (const row of goldens(['bard_healing_song', 'dancer_healing_song'])) checkGolden(row);
 });
@@ -42,17 +42,17 @@ test('Bard/Dancer have identical physical Healing Song at all levels and six gol
 test('Healing Song uses P.ATK independent of MATK/armor/crit/damage bonuses; Sanctuary remains MATK', () => {
   for (const id of ['bard_healing_song', 'dancer_healing_song']) for (const matk of [100, 10000]) {
     const input = caster('healer', id, 1000, matk); mods(input, [{ id: 'damage', stat: 'outgoing_physical_bonus', op: 'add_flat', bucket: 'bonus', value: 2 }, { id: 'crit', stat: 'crit_chance_bonus', op: 'add_flat', bucket: 'bonus', value: 1 }]);
-    const result = step(scenario([input]), 8300), ticks = heals(result, id); assert.equal(ticks.length, 5); assert.ok(ticks.every(e => e.amount === 500));
+    const result = step(scenario([input]), 8300), ticks = heals(result, id); assert.equal(ticks.length, 5); assert.ok(ticks.every(e => e.amount === 875));
     assert.deepEqual(ticks.map(e => e.at_ms), [3300, 4300, 5300, 6300, 7300]);
   }
-  const result = step(scenario([caster('healer', 'priest_sanctuary', 10000, 100)]), 8400); assert.equal(heals(result, 'priest_sanctuary').length, 5); assert.ok(heals(result, 'priest_sanctuary').every(e => e.amount === 28));
+  const result = step(scenario([caster('healer', 'priest_sanctuary', 10000, 100)]), 8400); assert.equal(heals(result, 'priest_sanctuary').length, 5); assert.ok(heals(result, 'priest_sanctuary').every(e => e.amount === 49));
 });
 
 test('existing outgoing/received-heal bonuses and two independent song sources still apply', () => {
   const a = caster('a', 'bard_healing_song'), b = caster('b', 'dancer_healing_song');
   const music = resolveSkill('bard_music_lesson', 10, content).definition; if (music.kind !== 'passive') throw new Error('PASSIVE_REQUIRED'); mods(a, structuredClone(music.modifiers) as Modifier[]);
   const result = step(scenario([a, b], actor('boss', 'enemy'), .2), 3300);
-  assert.equal(heals(result, 'bard_healing_song')[0]!.amount, 660); assert.equal(heals(result, 'dancer_healing_song')[0]!.amount, 600);
+  assert.equal(heals(result, 'bard_healing_song')[0]!.amount, 1233); assert.equal(heals(result, 'dancer_healing_song')[0]!.amount, 1050);
   const target = result.state.actors.find(a => a.actor_id === 'recipient')!; assert.equal(target.statuses.filter(s => s.status_id === 'physical_regeneration').length, 2); assert.equal(battleStatusViews(result.state).recipient!.healing_aura, true);
 });
 
@@ -62,11 +62,11 @@ test('song heals the whole party at resolve before five later ticks; interrupted
     const opening = resolved.events.filter(e => e.type === 'heal' && e.skill_id === id && e.effect_id === 'opening_heal');
     assert.deepEqual(opening.map(e => e.target_id).sort(), ['healer', 'recipient']);
     assert.ok(opening.every(e => e.at_ms === 2300));
-    assert.equal(opening.find(e => e.target_id === 'recipient')!.amount, 1000);
+    assert.equal(opening.find(e => e.target_id === 'recipient')!.amount, 1750);
     assert.equal(opening.find(e => e.target_id === 'healer')!.amount, 0);
-    assert.equal(opening.find(e => e.target_id === 'healer')!.detail, 'overheal:1000');
+    assert.equal(opening.find(e => e.target_id === 'healer')!.detail, 'overheal:1750');
     const ticks = heals(step(initial, 8300), id); assert.equal(ticks.length, 5);
-    assert.equal(ticks.reduce((sum, e) => sum + e.amount!, 1000), 3500);
+    assert.equal(ticks.reduce((sum, e) => sum + e.amount!, 1750), 6125);
     const interrupt = skill('interrupt', 400, 60000, 0, 1);
     interrupt.effects = [{ id: 'stop', type: 'interrupt', target: 'foe' }];
     const afterInterrupt = step(scenario([caster('healer', id)], actor('boss', 'enemy', [interrupt])), 1900);
@@ -96,8 +96,8 @@ test('aura follows live status expiry/dispel and recipient death; caster death p
 test('skill descriptions name P.ATK and aura geometry is deterministic/game-time-only', () => {
   const state = initializeAccount(content, { root_job_id: 'archer', gender: 'male' }, '2026-10-22T00:00:00.000Z', '2026-10-22', 1), bard = state.roster[0]!;
   bard.job_id = 'bard'; bard.level = 70; bard.skill_levels.bard_healing_song = 10;
-  const option = characterSkillOptions(bard, state).skills.find(s => s.id === 'bard_healing_song')!; assert.ok(option.effects.some(text => text.includes('50% P.ATK') && text.includes('ทุก 1s')));
-  assert.ok(option.effects.some(text => text.includes('100% P.ATK') && text.includes('ฟื้น HP')));
+  const option = characterSkillOptions(bard, state).skills.find(s => s.id === 'bard_healing_song')!; assert.ok(option.effects.some(text => text.includes('87.5% P.ATK') && text.includes('ทุก 1s')));
+  assert.ok(option.effects.some(text => text.includes('175% P.ATK') && text.includes('ฟื้น HP')));
   assert.deepEqual(healingAuraGeometry(0), healingAuraGeometry(0)); assert.notDeepEqual(healingAuraGeometry(0), healingAuraGeometry(300));
   assert.ok(healingAuraGeometry(2000).particles.every(p => Number.isFinite(p.x) && Number.isFinite(p.y) && p.alpha >= 0 && p.alpha <= 1));
 });

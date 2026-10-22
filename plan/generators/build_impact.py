@@ -1,4 +1,4 @@
-"""D-103 deterministic authored damage curves; does not execute or simulate combat."""
+"""D-103/104 authored power curves from immutable baselines; no combat simulation."""
 from pathlib import Path
 import argparse
 import json
@@ -21,6 +21,16 @@ def build():
                 skill['level_parameters']['detonate_ratio'] = [round(v * spec['power_multiplier'] / 100, 6) for v in values]
             else:
                 skill['level_parameters'][key] = [round(v * spec['power_multiplier'], 6) for v in values]
+    for sid, curves in spec.get('baseline_support_power', {}).items():
+        for key, values in curves.items():
+            skills[sid]['level_parameters'][key] = [round(v * spec['power_multiplier'], 6) for v in values]
+    for row in spec.get('baseline_support_formula_constants', []):
+        effect = next(e for e in skills[row['skill_id']]['effects'] if e['id'] == row['effect_id'])
+        effect['formula']['params'][row['formula_param']] = round(row['baseline'] * spec['power_multiplier'], 6)
+    # Healing Plant shares the same power budget as Hell Plant; HP, duration and ticks stay unchanged.
+    if spec.get('baseline_support_power'):
+        for sid in ['alchemist_hell_plant', 'alchemist_bio_cannibalize']:
+            next(e for e in skills[sid]['effects'] if e['type'] == 'summon')['power_scale'] = spec['power_multiplier']
     for doc in docs.values():
         for copy in doc.get('copy_whitelist', []):
             source, target = skills[copy['source_skill_id']], skills[copy['skill_id']]

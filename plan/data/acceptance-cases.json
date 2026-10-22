@@ -9648,6 +9648,98 @@
         "plan/evidence/task-077-hosted.json",
         "plan/evidence/task-077-github-deployment.json"
       ]
+    },
+    {
+      "id": "T078-AC-01",
+      "task_id": "TASK-078",
+      "acceptance_id": "AC-01",
+      "criterion": "heal/HoT/shield/revive/HP/DEF/guardและsupportทุกอาชีพที่เข้าเกณฑ์scale1.75จากbaselineครั้งเดียว รวมcopies/summons; damage077ไม่เพิ่มซ้ำและมีbefore/after audit",
+      "input_setup": "Fixed ATK/MATK1000 effect fixtures, original support curves, primarycards and same-budget weaponless/equipped Tier20/40/60 builds; real disposable Auth/mobile320/390 and signed-out Vercel",
+      "input_refs": [
+        "plan/inprogress/tasks_078.md",
+        "plan/design/32-build-impact.md",
+        "plan/generators/build-impact-spec.json",
+        "tests/game/support-impact.test.ts"
+      ],
+      "parameters": {
+        "power_factor": 1.75,
+        "balance_simulation": false,
+        "owner_cloud_writes": false
+      },
+      "expected": "heal/HoT/shield/revive/HP/DEF/guardและsupportทุกอาชีพที่เข้าเกณฑ์scale1.75จากbaselineครั้งเดียว รวมcopies/summons; damage077ไม่เพิ่มซ้ำและมีbefore/after audit",
+      "verification": "Static before/after power and focused effect/stat assertions;378goldens/M0/build and actual local mobile/hosted checks",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T078-AC-02",
+      "task_id": "TASK-078",
+      "acceptance_id": "AC-02",
+      "criterion": "engineให้Heal/เพลง/โล่/ลดdamage/HPและstackตามค่าที่คาดไว้จริง; SP/คิว/CC/เวลาเดิม การ์ดprimaryมีderived%ที่โตตามบิลด์ อาวุธทุกตระกูลให้ผลแยกจากการ์ดตามTier",
+      "input_setup": "Fixed ATK/MATK1000 effect fixtures, original support curves, primarycards and same-budget weaponless/equipped Tier20/40/60 builds; real disposable Auth/mobile320/390 and signed-out Vercel",
+      "input_refs": [
+        "plan/inprogress/tasks_078.md",
+        "plan/design/32-build-impact.md",
+        "plan/generators/build-impact-spec.json",
+        "tests/game/support-impact.test.ts"
+      ],
+      "parameters": {
+        "power_factor": 1.75,
+        "balance_simulation": false,
+        "owner_cloud_writes": false
+      },
+      "expected": "engineให้Heal/เพลง/โล่/ลดdamage/HPและstackตามค่าที่คาดไว้จริง; SP/คิว/CC/เวลาเดิม การ์ดprimaryมีderived%ที่โตตามบิลด์ อาวุธทุกตระกูลให้ผลแยกจากการ์ดตามTier",
+      "verification": "Static before/after power and focused effect/stat assertions;378goldens/M0/build and actual local mobile/hosted checks",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T078-AC-03",
+      "task_id": "TASK-078",
+      "acceptance_id": "AC-03",
+      "criterion": "focusedchecks/378goldens/M0/type/boundaries/build/secretsผ่าน ไม่มีownerwrite/SQL/env/newassets/เศรษฐกิจหรือด่านเปลี่ยน ไม่มีbalancebatchใหม่",
+      "input_setup": "Fixed ATK/MATK1000 effect fixtures, original support curves, primarycards and same-budget weaponless/equipped Tier20/40/60 builds; real disposable Auth/mobile320/390 and signed-out Vercel",
+      "input_refs": [
+        "plan/inprogress/tasks_078.md",
+        "plan/design/32-build-impact.md",
+        "plan/generators/build-impact-spec.json",
+        "tests/game/support-impact.test.ts"
+      ],
+      "parameters": {
+        "power_factor": 1.75,
+        "balance_simulation": false,
+        "owner_cloud_writes": false
+      },
+      "expected": "focusedchecks/378goldens/M0/type/boundaries/build/secretsผ่าน ไม่มีownerwrite/SQL/env/newassets/เศรษฐกิจหรือด่านเปลี่ยน ไม่มีbalancebatchใหม่",
+      "verification": "Static before/after power and focused effect/stat assertions;378goldens/M0/build and actual local mobile/hosted checks",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T078-AC-04",
+      "task_id": "TASK-078",
+      "acceptance_id": "AC-04",
+      "criterion": "actualmobile320/390แสดงHeal/Kyrie/Endure/HealingSong/CardINTตรงสูตรและไม่มีinspection save; actualdeployAPI/newdata/login/PWAผ่าน จึงย้ายdone",
+      "input_setup": "Fixed ATK/MATK1000 effect fixtures, original support curves, primarycards and same-budget weaponless/equipped Tier20/40/60 builds; real disposable Auth/mobile320/390 and signed-out Vercel",
+      "input_refs": [
+        "plan/inprogress/tasks_078.md",
+        "plan/design/32-build-impact.md",
+        "plan/generators/build-impact-spec.json",
+        "tests/game/support-impact.test.ts"
+      ],
+      "parameters": {
+        "power_factor": 1.75,
+        "balance_simulation": false,
+        "owner_cloud_writes": false
+      },
+      "expected": "actualmobile320/390แสดงHeal/Kyrie/Endure/HealingSong/CardINTตรงสูตรและไม่มีinspection save; actualdeployAPI/newdata/login/PWAผ่าน จึงย้ายdone",
+      "verification": "Static before/after power and focused effect/stat assertions;378goldens/M0/build and actual local mobile/hosted checks",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
     }
   ]
 }

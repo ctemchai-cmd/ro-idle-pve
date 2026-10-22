@@ -1,0 +1,104 @@
+✔ action bonuses join the existing outgoing bucket; legacy defaults, mitigation, crit and element stay shared (2.935917ms)
+✔ skill identity follows active, passive and periodic programs; normal origin takes precedence (3.091834ms)
+✔ event-damage card proc receives already boosted hit once, without a second skill multiplier (1.568875ms)
+✔ damage bonuses cannot multiply healing, shielding, CC duration or SP regeneration (1.665167ms)
+✔ ATK detonation consumes own poison only and shares outgoing math once (1.188959ms)
+✔ summon snapshots bonus ratios once without duplicating primary milestones or inheriting later buffs (6.066667ms)
+✔ all 126 skill definitions match 378 authored numeric goldens without running encounters (73.012167ms)
+✔ fractional gear roles survive rarity rounding; options and cards stay separate from item rarity (1.568041ms)
+✔ flat monster cards also provide proportional growth for late-game ATK, HP and SP (0.153542ms)
+✔ content migration preserves investments, instances, old rolls, slot progress, cursor and pending rewards (356.436875ms)
+✔ Bard/Dancer have identical physical Healing Song at all levels and six golden references still match (7.066375ms)
+✔ Healing Song uses P.ATK independent of MATK/armor/crit/damage bonuses; Sanctuary remains MATK (14.898125ms)
+✔ existing outgoing/received-heal bonuses and two independent song sources still apply (33.152583ms)
+✔ song heals the whole party at resolve before five later ticks; interrupted casts do neither (9.6115ms)
+✔ aura follows live status expiry/dispel and recipient death; caster death preserves the existing HoT policy (10.403625ms)
+✔ skill descriptions name P.ATK and aura geometry is deterministic/game-time-only (5.826875ms)
+✔ M0 stat golden: base_level1 (1.019792ms)
+✔ M0 stat golden: base_level70_no_speed_growth (0.315791ms)
+✔ M0 stat golden: level20_manual_spread (0.191917ms)
+✔ M0 mitigation golden: armor_0 (0.14325ms)
+✔ M0 mitigation golden: armor_200 (0.049292ms)
+✔ M0 mitigation golden: armor_400 (0.037958ms)
+✔ M0 mitigation golden: armor_800 (0.048375ms)
+✔ M0 mitigation golden: armor_1600 (0.037375ms)
+✔ M0 mitigation golden: break_and_penetration (0.062042ms)
+✔ M0 mitigation golden: over_100_percent_break_no_negative_defense (0.075042ms)
+✔ M0 mitigation golden: crit_uses_armor (0.047291ms)
+✔ M0 mitigation golden: guard_vulnerability_shield (0.041584ms)
+✔ M0 mitigation golden: ordered_full_pipeline (0.045416ms)
+✔ M0 mitigation golden: uncapped_guard_has_zero_damage_floor (0.042917ms)
+✔ M0 mitigation golden: shield_landed_not_hp_loss (0.032542ms)
+✔ M0 mitigation golden: overkill_separate (0.037042ms)
+✔ M0 mitigation golden: each_hit_rounds_once (0.033041ms)
+✔ M0 mitigation golden: armor_near_asymptotic_reduction (0.033583ms)
+✔ M0 mitigation golden: full_penetration (0.032458ms)
+✔ RNG matches independently calculated states, including seed0 (0.95325ms)
+✔ timers have1ms natural minimum, with uncapped speed and zero CT (0.311916ms)
+✔ negative bonuses remain negative and max resources floor after modifiers (0.863208ms)
+✔ 66 native RO cards preserve all 60 legacy IDs, correct slots, exact art IDs and distinct source grades (17.712458ms)
+✔ quality/level improve benefits, reduce penalties, scale proc power once and pure control chance only (0.456916ms)
+✔ Raydric/Deviling reduce neutral damage and retain weaknesses; true damage bypasses new resistance (10.876667ms)
+✔ armor element and GTB magic-only guard/SP cost use shared stats; physical hits stay unchanged (15.563584ms)
+✔ Marc/Marduk/Deviruchi resist only their status; hard CC still interrupts Phen (3.011125ms)
+✔ Maya reflects magical only; normalized proc cannot recursively reflect itself (2.62575ms)
+✔ Moonlight changes motion only, with identical virtual-time integration across frame chunks (5.80825ms)
+✔ Osiris improves the existing revive recovery without adding a revive or replaying its old cast (11.4445ms)
+✔ every authored card proc resolves actual effects with target tags and no formula/status errors (16.313292ms)
+✔ Hydra target bonus requires a physical hit against the matching race; its own proc cannot retrigger (1.342667ms)
+✔ farm profile improves stage chance/quality, gates Mini/MVP, retains earlier cards and favors current tiers (68.412125ms)
+✔ seeded farm split/cap/retry produces same fixed cards/gear and RNG without kill or speed input (15.242291ms)
+✔ legacy snapshot settles before enabling cards; full bag never consumes or rerolls pending rewards (1370.978916ms)
+✔ slot correction migration returns incompatible cards to bag and preserves exact instance/quality/level/lock (239.06775ms)
+✖ all support curves scale from their original values once and damage curves do not compound (5.866417ms)
+✔ single heal and shield use the shared role increase including flat shield power (7.834208ms)
+✔ guard, DEF and HP skills gain power while independent stacking and expiry remain intact (2.517709ms)
+✔ offensive and defensive support buffs change only authored power, leaving their timing and speed values intact (2.094375ms)
+✔ Healing Plant inherits shared heal power without changing lifetime, cadence or ownership (5.779375ms)
+✔ primary stat cards keep their RO stat and add proportional late-game power without rerolling instances (0.276833ms)
+✖ all ten weapon families independently increase same-budget builds at tiers20/40/60 without card sources (14.223125ms)
+ℹ tests 59
+ℹ suites 0
+ℹ pass 57
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4432.20375
+
+✖ failing tests:
+
+test at tests/game/support-impact.test.ts:1:1732
+✖ all support curves scale from their original values once and damage curves do not compound (5.866417ms)
+  AssertionError [ERR_ASSERTION]: 0.171111 != 0.171112
+      at close (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/support-impact.test.ts:29:48)
+      at <anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/support-impact.test.ts:35:33)
+      at Array.forEach (<anonymous>)
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/support-impact.test.ts:35:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.start (node:internal/test_runner/test:959:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:332:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '=='
+  }
+
+test at tests/game/support-impact.test.ts:1:7020
+✖ all ten weapon families independently increase same-budget builds at tiers20/40/60 without card sources (14.223125ms)
+  AssertionError [ERR_ASSERTION]: maceLv20 gain must exceed25% without cards
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/support-impact.test.ts:96:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '=='
+  }

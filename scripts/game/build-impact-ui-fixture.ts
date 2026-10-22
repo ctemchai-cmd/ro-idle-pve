@@ -10,6 +10,7 @@ let state = JSON.parse(await new Promise<string>(resolve => { let s = ''; proces
 const loaded = loadValidatedContent(); if (!loaded.ok) throw new Error('CONTENT');
 for (const key of Object.keys(state.wallet) as (keyof AccountState['wallet'])[]) state.wallet[key] = 100000000;
 const jobs: Record<string, string> = { main: 'knight', npc_mage: 'wizard', npc_swordsman: 'knight', npc_acolyte: 'priest', npc_archer: 'hunter', npc_thief: 'assassin', npc_merchant: 'alchemist' };
+if (process.env.RO_EVIDENCE_PREFIX === 'task-078') { jobs.npc_archer = 'bard'; state.roster.find(a => a.character_id === 'npc_archer')!.gender = 'male'; }
 const slots: Record<string, string[]> = { main: ['swordsman_bash', 'swordsman_magnum_break'], npc_swordsman: ['swordsman_provoke'], npc_acolyte: ['acolyte_heal', 'priest_sanctuary'] };
 for (const actor of [...state.roster]) {
   const character_id = actor.character_id;
@@ -29,6 +30,10 @@ state.inventory.push(
 );
 const main = state.roster.find(a => a.character_id === 'main')!;
 main.equipment.weapon = 'qa_skill_weapon'; main.slot_progress.weapon.cards[0] = 'qa_wolf';
+if (process.env.RO_EVIDENCE_PREFIX === 'task-078') {
+  state.inventory.push({ instance_id: 'qa_head', definition_id: 'equipment_head_20', kind: 'equipment', rarity_id: 'common', training: false, locked: false, options: [] }, { instance_id: 'qa_elder', definition_id: 'card_head_2', kind: 'card', rarity_id: 'bronze', level: 1, locked: false });
+  main.equipment.head = 'qa_head'; main.slot_progress.head.cards[0] = 'qa_elder';
+}
 state.team = ['main', 'npc_swordsman', 'npc_acolyte', 'npc_archer'].map((character_id, i) => ({ character_id, position: ['front_1', 'front_2', 'back_1', 'back_2'][i]! })) as AccountState['team'];
 state.story.cleared_stage_ids = storyStages(loaded.value).filter(s => s.chapter <= 3).map(s => s.id);
 state.tower.highest_cleared_floor = 30;

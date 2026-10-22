@@ -24,3 +24,9 @@ Static budgetรายสกิลเทียบrawpower/ช่วงใช้/
 Detonateแปลงflatต่อชั้นเป็นATKratioด้วยreferenceATK100และfactorเดียวกัน (Lv1=105%ATK/ชั้น, max210%ATK/ชั้น) เพื่อโตตามบิลด์ ไม่คงflatซ้ำ; HellPlantใช้power_scale1.75ครั้งเดียวบนoffense ATK/MATKไม่คูณHP/CC/bonuses ค่าพลังsummonก่อนfloorรักษาสัดส่วนเดิม ไม่มีregen/ฮีลplantเพิ่มโดยfactordamage แต่โบนัสฮีลจากownerสืบทอดsnapshotถูกต้องแล้ว
 
 ค่าด่าน/บอส/เศรษฐกิจ/เรทรางวัลเดิมทุกแถวคงไว้ ความง่ายหลังเพิ่มพลังเป็นสิ่งที่ผู้ใช้ยอมรับ ความยากเนื้อหาภายหลังออกแบบแยกได้ ไม่จำเป็นต้องรันsimulationรอบใหม่เพื่อดันด่านเดิมกลับมายากเท่าเดิม
+
+## D-104 — ครบทุกบทบาทหลังผู้ใช้ตอบคำถาม
+
+คำตอบล่าสุดชี้ว่าต้องเพิ่มฮีลและความถึกด้วย จึงแทนข้อยกเว้นของ077ที่คงheal/supportเดิม: ใช้factor1.75จากbaselineก่อน077ครั้งเดียวกับ59supportprograms รวมdirectheal/HoT/shield/revive/HP/DEF/guard/ATK/MATK/คริ/หลบ/SPregen และHealingPlant ค่าดาเมจ077ไม่เพิ่มซ้ำ. ทุกcast/expiry/tick/โอกาสproc/ความเร็ว/CCเดิม ไม่มีเพดานใหม่
+
+อัตราที่เท่ากันหมายถึงค่าพลังที่นิยาม ไม่ใช่รับรองDPS/EHPเท่ากัน เพราะเกราะ/คริ/overheal/สถานการณ์ยังมีผล. PrimarycardsยังคงSTR/INT/VIT/DEXเดิมและเสริมderived%ตามconversionตรง: STR2ATK, INT3MATK+4SP, VIT20HP, DEX1ATK ต่อแต้ม แล้วใช้referenceและfactorของ077. AGI/LUKยังมีประโยชน์ตลอดจากspeed/critเดิม ไม่เพิ่มspeedหรือCCresistanceทุกใบจนวนคิวเปลี่ยน

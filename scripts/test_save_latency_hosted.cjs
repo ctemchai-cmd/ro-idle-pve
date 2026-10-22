@@ -60,10 +60,15 @@ const assert=(ok,message)=>{if(!ok)throw new Error(message);};let browser,profil
   assert(['focus-elements','boss-name','weapon-element'].every(s=>ui.includes(s)),'TARGET_ARMOR_UI_NOT_DEPLOYED');
   assert(['ธาตุสกิล','เกราะธาตุ','ไม่มีธาตุโจมตี','ตามอาวุธ'].every(s=>badges.includes(s)),'SKILL_ELEMENT_UI_NOT_DEPLOYED');
  }
- if(prefix==='task-077'){
+ if(['task-077','task-078'].includes(prefix)){
   const definitions=manifest.build_files.find(r=>/^dist\/assets\/item-options-.*\.js$/.test(r.path));assert(definitions,'NO_BUILD_IMPACT_DATA');
   const actual=await(await fetch(base+'/'+definitions.path.replace(/^dist\//,''))).text();
   assert(['skill_damage_bonus','normal_damage_bonus','attack_ratio_per_instance','detonate_ratio','impact_physical_attack'].every(s=>actual.includes(s))&&actual.replaceAll('\\"','"').includes('"power_scale":1.75'),'SHARED_BUILD_POWER_NOT_DEPLOYED');
+  if(prefix==='task-078'){
+   const normalized=actual.replaceAll('\\"','"'),skill=id=>{const at=normalized.indexOf('"id":"'+id+'"');assert(at>=0,'NO_ACTUAL_SKILL_'+id);return normalized.slice(at,at+2000);};
+   assert(skill('acolyte_heal').includes('"power":[2.1,')&&skill('swordsman_endure').includes('"guard":[0.14,'),'HEAL_AND_GUARD_POWER_NOT_DEPLOYED');
+   assert(skill('alchemist_bio_cannibalize').includes('"power_scale":1.75'),'HEALING_PLANT_POWER_NOT_DEPLOYED');
+  }
  }
  checks.push({case_id:'hosted_shared_save_bundle',passed:true,path:row.path,sha256:createHash('sha256').update(bundle).digest('hex'),combined_reply:true});
  profile=fs.mkdtempSync(path.join(os.tmpdir(),'ro-save-hosted-'));const context=await chromium.launchPersistentContext(profile,{headless:true,executablePath:process.env.RO_CHROME_PATH||'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',viewport:{width:390,height:844}});browser=context.browser();

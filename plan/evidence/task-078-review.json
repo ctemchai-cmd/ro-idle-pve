@@ -1,0 +1,59 @@
+{
+  "task_id": "TASK-078",
+  "date": "2026-10-22",
+  "passed": false,
+  "implementation_verified": true,
+  "acceptance": {
+    "AC-01": "passed_local",
+    "AC-02": "passed_local",
+    "AC-03": "passed_local",
+    "AC-04": "pending_actual_hosted"
+  },
+  "content_hash": "ebaeef7fb6af50760c358e7f2ff2da7da9fd471ff0b8c8e187ffbdc3ea5911a5",
+  "asset_pack_hash": "c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2",
+  "schema_change": false,
+  "shared_power_factor": 1.75,
+  "basis": "D-104 user clarification includes healing and durability. Factor is an assistant baseline, applied from original79b3 once, never multiplied onto077 damage.",
+  "checks": {
+    "support_programs": 59,
+    "damage_programs_not_compounded": 52,
+    "unchanged_skill_timing_cost_skeletons": 126,
+    "focused_tests": 74,
+    "numeric_goldens": 378,
+    "weapon_family_tier_builds_without_cards": 30,
+    "minimum_weapon_power_gain_verified": ">25% at equal authored build",
+    "real_local_mobile_groups": 5,
+    "real_auth_api_groups": 5,
+    "M0_readiness_checks": 8,
+    "build_type_boundaries_secrets_content": true
+  },
+  "evidence": [
+    "plan/evidence/task-078-static-review.json",
+    "plan/evidence/task-078-targeted.txt",
+    "plan/evidence/task-078-m0.txt",
+    "plan/evidence/task-078-build.txt",
+    "plan/evidence/task-078-typecheck.txt",
+    "plan/evidence/task-078-ui-live.json",
+    "plan/evidence/task-078-local-stack.json",
+    "plan/evidence/task-078-local-api.txt"
+  ],
+  "visual_scope": "Inspected actual320px HealingSong105%opening/52.5%HoT and Endure14% details and nativeElderWillowINT2/MATK10.5%/SP14% detail. All fourHeal/Kyrie/Endure/Song captured and layout asserted320/390px. Disposable account, not physical Android.",
+  "pending": [
+    "actual Vercel deploy and signed-out public smoke"
+  ],
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "balance_simulation": false,
+  "new_sql_env_assets": false,
+  "retained_failures": [
+    "M0 readiness initially required the task dependency heading and AC mappings; fixed task metadata before finalgate passed.",
+    "Targeted round1: JS/Python six-decimal rounding differed by1e-6 in policy test (use half authored precision tolerance); test initially classified Alchemist mace as physical despite actual MATK weapon. Corrected test, same definitions pass30 family/tier cases. No product changes to bypass criteria."
+  ],
+  "source_sha256": {
+    "plan/generators/build-impact-spec.json": "d08d8303b7d2a937a2d71ac562a37e1ca2e6d2ca43eab8746bc0ffc9056ce74f",
+    "plan/generators/build_impact.py": "760ec698594e76f1e03242bd544ab97c8a4a900228b96f827304e92400058c0b",
+    "plan/generators/item_impact.py": "debaec7646374d3196b57a5bc7b05f6dc48eb3d42b3334ab2145e68fd73fe2ec",
+    "tests/game/support-impact.test.ts": "e619970a70feebc77d2db25bc90d6217036a3994c2bd74cc5ee6ba5d6a94eca5",
+    "scripts/test_build_impact_live.cjs": "477af8045479eee523f33b2f8987bc23ac68aa1ccb813498299179323b90914f"
+  }
+}
