@@ -104,8 +104,10 @@ export class EffectPipeline {
         }
         case 'remove_status': this.removeStatus(effect, context, target); break;
         case 'interrupt': {
+          const token = target.cast?.token;
           const resistance = clampProbability(target.stats.interrupt_resistance);
           if (resistance <= 0 || nextRandom(this.state.rng) >= resistance) this.ports.interrupt(target, context);
+          if (token && target.cast?.token !== token) (context.successes ??= []).push({ effect_id: effect.id, target_id: target.actor_id });
           break;
         }
         case 'revive': this.ports.revive(target, resolvedNumber(effect.hp_ratio), resolvedNumber(effect.sp_ratio), { ...this.attribution(context, effect), skill_id: context.skill_id, detail: context.source.origin_actor_id }); break;
@@ -124,12 +126,16 @@ export class EffectPipeline {
   private power(formula: { id: string; params: unknown }, context: ProgramContext) { return rawPower(formula as { id: string; params: ObjectValue }, context.offense, context.pre_cost_sp, context.event_damage); }
   private damage(effect: DamageEffect, context: ProgramContext, target: BattleActor): void {
     context = { ...context, damage_type: effect.damage_type };
+    // Per-effect bonuses never mutate the actor, its cast snapshot or the next hit program.
+    const offense = effect.crit_chance_bonus || effect.crit_damage_bonus ? { ...context.offense,
+      crit_chance_bonus: context.offense.crit_chance_bonus + (effect.crit_chance_bonus === undefined ? 0 : resolvedNumber(effect.crit_chance_bonus)),
+      crit_damage_bonus: context.offense.crit_damage_bonus + (effect.crit_damage_bonus === undefined ? 0 : resolvedNumber(effect.crit_damage_bonus)) } : context.offense;
     const raw = this.power(effect.formula, context);
     for (let hit = 0; hit < effect.hits && target.hp > 0; hit++) {
       const landed = nextRandom(this.state.rng) < (effect.hit_rule === 'always' ? 1 : hitChance(context.offense, target.stats));
       context.outcomes.push({ effect_id: effect.id, target_id: target.actor_id, hit_index: hit, landed });
       if (!landed) { this.ports.emit({ type: 'miss', actor_id: context.self.actor_id, target_id: target.actor_id, skill_id: context.skill_id }); continue; }
-      const critical = effect.can_crit && nextRandom(this.state.rng) < critChance(context.offense, target.stats);
+      const critical = effect.can_crit && (effect.critical_rule === 'always' || nextRandom(this.state.rng) < critChance(offense, target.stats));
       const element = effect.element === 'weapon' ? context.weapon_element : effect.element;
       const defense = target.stat_blueprint.permanent_sources.filter(source => source.defense_element).at(-1)?.defense_element ?? target.tags.find(tag => tag.startsWith('element:'))?.slice(8) ?? 'neutral';
       const chart = this.content.documents['combat-rules.json']!.element_chart as unknown as { values?: Record<string, Record<string, number>>; matrix?: Record<string, Record<string, number>> };
@@ -138,7 +144,7 @@ export class EffectPipeline {
       const resistance = effect.damage_type === 'true' ? 1 : Math.max(0, 1 - elementalResistance(element, target.stats)) * (effect.damage_type === 'magical' ? Math.max(0, 1 - target.stats.magical_guard_percent) : 1);
       // A skill keeps its definition id through passives/DoT/summons. Item/card procs have item ids.
       const action = context.origin === 'normal' ? 'normal' : Object.hasOwn(this.content.skills, context.skill_id) ? 'skill' : 'other';
-      const mitigated = damageForHit(effect, raw, context.offense, target.stats, multiplier * resistance, critical, action);
+      const mitigated = damageForHit(effect, raw, offense, target.stats, multiplier * resistance, critical, action);
       this.metric(context, 'raw_damage', raw);
       const links = target.statuses.map(instance => ({ instance, ratio: statusDefinition(this.content, instance.status_id).damage_redirect ? resolvedNumber(bindStatusParams(statusDefinition(this.content, instance.status_id).damage_redirect!.ratio, instance.params)) : 0, recipient: this.actor(instance.source.origin_actor_id) }))
         .filter(link => link.ratio > 0 && link.recipient && link.recipient !== target && link.recipient.team === target.team && sourceAlive(link.instance.source, this.state.actors))
@@ -210,7 +216,7 @@ export class EffectPipeline {
       return (effect.polarity === 'any' || effect.polarity === definition.polarity) && (!effect.tags.length || effect.tags.some(tag => definition.tags.includes(tag))) && (effect.permission === 'consume_own' ? instance.source.origin_actor_id === context.self.actor_id : effect.permission === 'cleanse' ? definition.cleanseable : definition.dispelable);
     }).map(instance => ({ ...instance, shield: false }));
     const shields = effect.permission === 'dispel' && effect.polarity !== 'debuff' && (!effect.tags.length || effect.tags.includes('shield')) ? target.shields.filter(shield => shield.dispelable).map(shield => ({ ...shield, shield: true })) : [];
-    const selected = [...candidates, ...shields].sort((a, b) => a.expires_at - b.expires_at || compareId(a.instance_id, b.instance_id)).slice(0, effect.max_instances ?? undefined);
+    const selected = [...candidates, ...shields].sort((a, b) => a.expires_at - b.expires_at || compareId(a.instance_id, b.instance_id)).slice(0, effect.max_instances === null ? undefined : resolvedNumber(effect.max_instances));
     const ids = new Set(selected.map(instance => instance.instance_id)); target.statuses = target.statuses.filter(instance => !ids.has(instance.instance_id)); target.shields = target.shields.filter(instance => !ids.has(instance.instance_id)); recomputeStats(target, this.content);
     this.ports.emit({ type: 'status_removed', actor_id: context.self.actor_id, target_id: target.actor_id, skill_id: context.skill_id, detail: selected.map(instance => instance.instance_id).join(','), ...this.attribution(context, effect) });
   }

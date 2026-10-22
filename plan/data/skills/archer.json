@@ -426,6 +426,18 @@
           0.116667,
           0.128333,
           0.14
+        ],
+        "critical_damage": [
+          0.05,
+          0.066667,
+          0.083333,
+          0.1,
+          0.116667,
+          0.133333,
+          0.15,
+          0.166667,
+          0.183333,
+          0.2
         ]
       },
       "presentation_id": "visual_archer_vulture_eye",
@@ -438,6 +450,15 @@
           "bucket": "bonus",
           "value": {
             "level_param": "ratio"
+          }
+        },
+        {
+          "id": "critical_damage",
+          "stat": "crit_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "critical_damage"
           }
         }
       ],
@@ -718,16 +739,16 @@
       ],
       "level_parameters": {
         "power": [
-          2.1875,
-          2.352777,
-          2.518056,
-          2.683333,
-          2.848612,
-          3.013888,
-          3.179167,
-          3.344444,
-          3.509723,
-          3.675
+          3.740625,
+          4.035937,
+          4.33125,
+          4.626563,
+          4.921875,
+          5.217187,
+          5.5125,
+          5.807813,
+          6.103125,
+          6.398438
         ]
       },
       "presentation_id": "visual_hunter_claymore",
@@ -811,16 +832,16 @@
       ],
       "level_parameters": {
         "power": [
-          0.7875,
-          0.845833,
-          0.904167,
-          0.9625,
-          1.020833,
-          1.079167,
-          1.1375,
-          1.195833,
-          1.254167,
-          1.3125
+          1.309219,
+          1.412578,
+          1.515937,
+          1.619297,
+          1.722656,
+          1.826016,
+          1.929375,
+          2.032734,
+          2.136094,
+          2.239453
         ]
       },
       "presentation_id": "visual_hunter_rapid_fire",
@@ -1222,6 +1243,18 @@
           0.213333,
           0.226667,
           0.24
+        ],
+        "attack": [
+          0.08,
+          0.093333,
+          0.106667,
+          0.12,
+          0.133333,
+          0.146667,
+          0.16,
+          0.173333,
+          0.186667,
+          0.2
         ]
       },
       "presentation_id": "visual_bard_battle_song",
@@ -1280,6 +1313,19 @@
           "params": {
             "ratio": {
               "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "attack_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "attack_up",
+          "duration_ms": 5500,
+          "params": {
+            "ratio": {
+              "level_param": "attack"
             }
           },
           "chance": 1
@@ -1757,17 +1803,29 @@
         "battle_song"
       ],
       "level_parameters": {
-        "ratio": [
-          0.12,
+        "critical": [
+          0.1,
+          0.116667,
           0.133333,
-          0.146667,
-          0.16,
-          0.173333,
-          0.186667,
+          0.15,
+          0.166667,
+          0.183333,
           0.2,
-          0.213333,
-          0.226667,
-          0.24
+          0.216667,
+          0.233333,
+          0.25
+        ],
+        "critical_damage": [
+          0.15,
+          0.172222,
+          0.194444,
+          0.216667,
+          0.238889,
+          0.261111,
+          0.283333,
+          0.305556,
+          0.327778,
+          0.35
         ]
       },
       "presentation_id": "visual_dancer_battle_song",
@@ -1818,14 +1876,27 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "aspd_up",
+          "id": "critical",
           "type": "apply_status",
           "target": "friends",
-          "status_id": "aspd_up",
+          "status_id": "crit_up",
           "duration_ms": 5500,
           "params": {
             "ratio": {
-              "level_param": "ratio"
+              "level_param": "critical"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "critical_damage",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "crit_damage_up",
+          "duration_ms": 5500,
+          "params": {
+            "ratio": {
+              "level_param": "critical_damage"
             }
           },
           "chance": 1
@@ -1843,17 +1914,17 @@
         "dissonance"
       ],
       "level_parameters": {
-        "ratio": [
-          0.21,
-          0.235277,
-          0.260556,
-          0.285833,
+        "defense": [
+          0.2,
+          0.227778,
+          0.255556,
+          0.283333,
           0.311111,
-          0.336388,
-          0.361667,
-          0.386944,
-          0.412223,
-          0.4375
+          0.338889,
+          0.366667,
+          0.394444,
+          0.422222,
+          0.45
         ]
       },
       "presentation_id": "visual_dancer_dissonance",
@@ -1868,30 +1939,6 @@
         "interruptible": true
       },
       "selectors": {
-        "foe": {
-          "team": "enemies",
-          "life": "living",
-          "select": "front_first",
-          "count": null,
-          "phase": "cast_resolve",
-          "missing": "skip"
-        },
-        "foes": {
-          "team": "enemies",
-          "life": "living",
-          "select": "all",
-          "count": null,
-          "phase": "cast_resolve",
-          "missing": "skip"
-        },
-        "friend": {
-          "team": "allies",
-          "life": "living",
-          "select": "lowest_hp_percent",
-          "count": null,
-          "phase": "cast_resolve",
-          "missing": "skip"
-        },
         "friends": {
           "team": "allies",
           "life": "living",
@@ -1904,24 +1951,30 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "armor_break",
+          "id": "defense",
           "type": "apply_status",
-          "target": "foes",
-          "status_id": "armor_break",
-          "duration_ms": 5000,
+          "target": "friends",
+          "status_id": "defense_up",
+          "duration_ms": 5500,
           "params": {
             "ratio": {
-              "level_param": "ratio"
+              "level_param": "defense"
             }
           },
           "chance": 1
         },
         {
-          "id": "resource",
-          "type": "resource_change",
-          "target": "foes",
-          "resource": "sp",
-          "amount": -10
+          "id": "magic_defense",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "magic_defense_up",
+          "duration_ms": 5500,
+          "params": {
+            "ratio": {
+              "level_param": "defense"
+            }
+          },
+          "chance": 1
         }
       ]
     },

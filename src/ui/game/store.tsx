@@ -3,21 +3,31 @@ import { CardIcon } from './card-art.tsx';
 import { CardGrade } from './card-grade.tsx';
 import { CardSheet } from './card-sheet.tsx';
 import { cardView } from '../../client/slots.ts';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { Icon } from '../icon.tsx';
 import { optionLineSummary, revealItems, storeView } from '../../client/store.ts';
 import { rarityLabels, slotLabels, type EquipmentSlot } from '../../client/equipment.ts';
 import type { GameContext } from './shell.tsx';
-import { CostChips, ItemIcon, PageHeader, ResIcon, canPay, friendNames, jobNames, full, type Wallet } from './kit.tsx';
+import { CostChips, ItemIcon, PageHeader, ResIcon, Sheet, canPay, friendNames, jobNames, full, type Wallet } from './kit.tsx';
 
 type Section = 'shop' | 'scrolls' | 'cards' | 'gear';
 /** Store (TASK-051/037, D-063): daily shop, card gacha and equipment gacha. No real money; every purchase is a server command. */
 export function StorePage({ context }: { context: GameContext }) {
   const { state, pack, submit, locked, go } = context, [section, setSection] = useState<Section>('shop'), [revealed, setRevealed] = useState<string[]>([]), [openCardId,setOpenCardId]=useState<string|null>(null);
   const [scrollCharacterId,setScrollCharacterId]=useState(context.characterId);
+  const [revealOpen,setRevealOpen]=useState(false),[skip,setSkip]=useState(false),[pulling,setPulling]=useState(false),pullGate=useRef(false);
   const openCard=state.inventory.find(item=>item.kind==='card'&&item.instance_id===openCardId);
   const view = storeView(state, Date.now());
-  async function pull(pool: 'card_v1' | 'equipment_v1', count: 1 | 10) { setRevealed([]); if (await submit('gacha.pull', { pool_id: pool, count })) setRevealed(context.lastCreated()); }
+  async function pull(pool: 'card_v1' | 'equipment_v1', count: 1 | 10) {
+    if(pullGate.current)return;pullGate.current=true;setPulling(true);setRevealed([]);setSkip(false);
+    try { if(await submit('gacha.pull',{pool_id:pool,count})) {setRevealed(context.lastCreated());setRevealOpen(pool==='card_v1');} }
+    finally {pullGate.current=false;setPulling(false);}
+  }
   const results = revealItems(state, revealed);
+  const resultGrid = <div className={`gacha-results ${section==='cards'?'card-results':''} ${skip?'skip-reveal':''}`} aria-label="ผลการสุ่ม">{results.map((row,i)=><div key={row.item.instance_id} className={`gacha-card rarity-${row.item.rarity_id}`} style={{animationDelay:`${i*90}ms`}}>
+    {row.item.kind==='card'?<button className="card-reveal" aria-label={`ดู${row.name}`} onClick={()=>setOpenCardId(row.item.instance_id)}><CardIcon card={row} pack={pack}/><b>{row.name}</b></button>:<span className={`icon-frame rarity-${row.item.rarity_id}`}><ItemIcon id={row.iconId} pack={pack}/></span>}
+    <small>{rarityLabels[row.item.rarity_id]}</small>{row.item.kind==='card'&&<CardGrade grade={row.origin?.grade} rarity={row.item.rarity_id} variant={row.origin?.variant}/>}<em>{slotLabels[row.slot as EquipmentSlot]}{row.lines?` · ${row.lines} Option`:''}</em>
+  </div>)}</div>;
   return <div className="page store-page">
     <PageHeader title="ร้านค้า" sub={`รีเซ็ตสิทธิ์ซื้อทุกวัน 00:00 (เวลาไทย) · วันนี้ ${view.day}`} onBack={() => go('home')} />
     <div className="seg store-seg" role="tablist">{([['shop', 'ร้านค้า'], ['scrolls', 'ใบธาตุ'], ['cards', 'สุ่มการ์ด'], ['gear', 'สุ่มอุปกรณ์']] as [Section, string][]).map(([id, label]) => <button key={id} role="tab" aria-selected={section === id} className={section === id ? 'on' : ''} onClick={() => { setSection(id); setRevealed([]); }}>{label}</button>)}</div>
@@ -34,18 +44,23 @@ export function StorePage({ context }: { context: GameContext }) {
     </section>}
     {section !== 'shop' && section !== 'scrolls' && (() => { const card = section === 'cards', data = card ? view.cards : view.gear, pool = card ? 'card_v1' : 'equipment_v1';
       return <section className="gacha-box">
+        {card&&<div className={`card-summon-stage ${pulling?'summoning':''}`} aria-label={pulling?'กำลังอัญเชิญการ์ด':'อัญเชิญการ์ด'}>
+          <span className="summon-orbit" aria-hidden="true"/><div className="summon-deck" aria-hidden="true">{[-1,0,1].map(n=><span className={`summon-back back-${n+1}`} key={n}><Icon name="card"/></span>)}</div>
+          <span className="summon-caption">MIDGARD COLLECTION</span><h2>{pulling?'กำลังอัญเชิญ…':'การ์ดแห่งมิดการ์ด'}</h2><p>Normal · Elite · Mini · MVP</p>
+        </div>}
         <div className={`gacha-banner ${card ? 'cards' : 'gear'}`}><b>{card ? 'การ์ด RO · ระดับตามมอนสเตอร์' : `อุปกรณ์ Tier ${view.gear.tier}`}</b><small>{card ? `การันตี Rare+ ใน ${view.cards.silver_in} · Legendary ใน ${view.cards.gold_in}` : `การันตี Epic+ ใน ${view.gear.epic_in} · Legendary+ ใน ${view.gear.legendary_in}`}</small></div>
         <ul className="gacha-odds">{data.odds.map(row => <li key={row.id} className={`rarity-${row.id}`}><span>{rarityLabels[row.id] ?? row.id}</span><b>{row.percent}%</b></li>)}</ul>
         {!card && <p className="hint">ได้ของ Tier ตามบทที่ผ่านล่าสุด · Rare+ มี Option สุ่ม ({optionLineSummary()} แถว)</p>}
         <div className="row two">
-          <button className="btn" disabled={locked || !canPay(state.wallet, data.cost1)} onClick={() => void pull(pool, 1)}>สุ่ม 1 <CostChips pack={pack} cost={data.cost1} wallet={state.wallet} /></button>
-          <button className="btn primary" disabled={locked || !canPay(state.wallet, data.cost10) || state.inventory.length + 10 > 500} onClick={() => void pull(pool, 10)}>สุ่ม 10 <CostChips pack={pack} cost={data.cost10} wallet={state.wallet} /></button>
+          <button className="btn" disabled={locked || pulling || !canPay(state.wallet, data.cost1)} onClick={() => void pull(pool, 1)}>สุ่ม 1 <CostChips pack={pack} cost={data.cost1} wallet={state.wallet} /></button>
+          <button className="btn primary" disabled={locked || pulling || !canPay(state.wallet, data.cost10) || state.inventory.length + 10 > 500} onClick={() => void pull(pool, 10)}>สุ่ม 10 <CostChips pack={pack} cost={data.cost10} wallet={state.wallet} /></button>
         </div>
-        {results.length > 0 && <div className="gacha-results" aria-label="ผลการสุ่ม">{results.map((row, i) => <div key={row.item.instance_id} className={`gacha-card rarity-${row.item.rarity_id}`} style={{ animationDelay: `${i * 70}ms` }}>
-          {row.item.kind==='card'?<button className="card-reveal" aria-label={`ดู${row.name}`} onClick={()=>setOpenCardId(row.item.instance_id)}><CardIcon card={row} pack={pack} /><b>{row.name}</b></button>:<span className={`icon-frame rarity-${row.item.rarity_id}`}><ItemIcon id={row.iconId} pack={pack} /></span>}<small>{rarityLabels[row.item.rarity_id]}</small>{row.item.kind==='card'&&<CardGrade grade={row.origin?.grade} rarity={row.item.rarity_id} variant={row.origin?.variant} />}<em>{slotLabels[row.slot as EquipmentSlot]}{row.lines ? ` · ${row.lines} Option` : ''}</em>
-        </div>)}</div>}
+        {results.length > 0 && !revealOpen && resultGrid}
       </section>; })()}
     <p className="hint">Crystal จาก AFK 40/ชม. (480/12 ชม.) · หอคอยทุก 5 ชั้น · ผ่านด่านและภารกิจรายวัน</p>
+    {revealOpen&&results.length>0&&<Sheet title={`ได้รับการ์ด ${results.length} ใบ`} className="tall gacha-reveal-sheet" onClose={()=>setRevealOpen(false)}>
+      <div className="summon-results-scroll">{resultGrid}</div><div className="summon-result-actions"><button className="btn ghost" onClick={()=>setSkip(true)}>ข้ามเอฟเฟกต์</button><button className="btn primary" onClick={()=>setRevealOpen(false)}>รับทั้งหมด</button></div>
+    </Sheet>}
     {openCard?.kind==='card'&&<CardSheet context={context} card={cardView(openCard,state)} close={()=>setOpenCardId(null)}/>}
   </div>;
 }

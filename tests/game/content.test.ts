@@ -20,7 +20,7 @@ test('all release catalogs load, are immutable, and expose gameplay counts', () 
   const result = loadValidatedContent(); assert.ok(result.ok);
   assert.equal(Object.keys(result.value.skills).length, 137); // + enemy_cataclysm (D-067), enemy_doom, enemy_twin_hex (D-074)
   assert.equal(Object.keys(result.value.items).length, 217); // D-122: 144 equipment + 73 cards
-  assert.equal(Object.keys(result.value.statuses).length, 28);
+  assert.equal(Object.keys(result.value.statuses).length, 29);
   assert.throws(() => { (result.value.skills['swordsman_bash'] as unknown as ObjectValue).id = 'corrupted'; }, TypeError);
   assert.equal((raw.documents['skills/swordsman.json']!.skills as unknown as ObjectValue[])[0]!.id, 'swordsman_bash');
 });
@@ -86,4 +86,17 @@ test('slot catalogs reject missing presets and invalid modifier units/buckets be
   else slots.enchant.slot_lines.weapon!.precision!.modifiers[1]!.op='add_percent';
   const result=validateContent(changed);assert.equal(result.ok,false);if(!result.ok)assert.ok(result.errors.some(e=>e.source==='slot-progress.json'&&e.code==={missing:'enchant_lines',bucket:'modifier_bucket',unit:'modifier_unit'}[kind]));
  }
+});
+
+// D138 reusable composition: success refers to an earlier interrupt on this same binding.
+test('D138 rejects invalid success references and contradictory guaranteed-crit policy', () => {
+ const source=structuredClone((raw.documents['skills/mage.json']!.skills as unknown as ObjectValue[]).find(s=>s.id==='sage_spell_breaker')!);
+ const effect=(source.effects as ObjectValue[])[1]!;
+ for(const [id,target]of [['missing','foe'],['interrupt','foes']]){
+  const broken=structuredClone(source),e=(broken.effects as ObjectValue[])[1]!;e.when={type:'effect_succeeded',effect_id:id!,scope:'same_target'};e.target=target!;
+  assert.throws(()=>validator.definition('skill',broken,location),InvalidContent);
+ }
+ assert.equal((effect.when as ObjectValue).type,'effect_succeeded');
+ const broken=structuredClone(source),e=(broken.effects as ObjectValue[])[1]!;e.critical_rule='always';e.can_crit=false;
+ assert.throws(()=>validator.definition('skill',broken,location),InvalidContent);
 });

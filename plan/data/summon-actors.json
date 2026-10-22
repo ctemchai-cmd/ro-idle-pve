@@ -76,6 +76,24 @@
         "tick_on_spawn": false,
         "effects": [
           {
+            "id": "plant_hit",
+            "type": "damage",
+            "target": "foe",
+            "formula": {
+              "id": "magical_power",
+              "params": {
+                "attack_ratio": 1,
+                "flat_power": 0
+              }
+            },
+            "damage_type": "magical",
+            "element": "earth",
+            "hit_rule": "always",
+            "can_crit": false,
+            "hits": 1,
+            "armor_rule": "normal"
+          },
+          {
             "id": "heal",
             "type": "heal",
             "target": "friend",
@@ -93,6 +111,14 @@
             "team": "allies",
             "life": "living",
             "select": "lowest_hp_percent",
+            "count": null,
+            "phase": "event",
+            "missing": "skip"
+          },
+          "foe": {
+            "team": "enemies",
+            "life": "living",
+            "select": "front_first",
             "count": null,
             "phase": "event",
             "missing": "skip"

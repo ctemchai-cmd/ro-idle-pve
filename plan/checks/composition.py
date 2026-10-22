@@ -125,6 +125,10 @@ def program(effects, selectors, event=None, phase="cast_resolve", status_context
         target = effect["target"]
         require(target in reserved or target in selectors, "unknown_binding", target)
         for p in predicates(effect.get("when")):
+            if p["type"] == "effect_succeeded":
+                prior = previous.get(p["effect_id"], {})
+                require(prior.get("type") == "interrupt", "outcome_reference")
+                require(prior.get("target") == target, "outcome_scope")
             if p["type"] == "hit_landed":
                 require(p["effect_id"] in previous and previous[p["effect_id"]]["type"] == "damage", "outcome_reference")
                 prior = previous[p["effect_id"]]
@@ -183,7 +187,7 @@ def triggers(rows, actor_ids=frozenset()):
     for t in rows:
         require(0 <= t["chance"] <= 1, "probability")
         for p in predicates(t.get("when")):
-            require(p["type"] != "hit_landed", "outcome_scope")  # event context, not a prior effect program
+            require(p["type"] not in ["hit_landed", "effect_succeeded"], "outcome_scope")  # event context, not a prior effect program
             if p["type"] == "has_status":
                 require(p["status_id"] in STATUSES, "unknown_status")
             if p.get("actor", "").startswith("event_"):

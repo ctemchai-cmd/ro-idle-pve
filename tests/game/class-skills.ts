@@ -51,7 +51,7 @@ export function checkGolden(row: Golden): void {
     const effect = resolvedEffect as Effect & Record<string, unknown>, at = `${path}.${effect.id}`;
     for (const [key, expected] of Object.entries(intent)) {
       if (key === 'effect_id') assert.equal(effect.id, expected, at);
-      else if (['type', 'target', 'status_id', 'duration_ms', 'chance', 'params', 'actor_definition_id', 'max_owned', 'power_scale'].includes(key)) assert.deepEqual(effect[key], expected, `${at}.${key}`);
+      else if (['type', 'target', 'status_id', 'duration_ms', 'chance', 'params', 'actor_definition_id', 'max_owned', 'power_scale', 'max_instances', 'critical_rule', 'crit_chance_bonus', 'crit_damage_bonus', 'damage_type', 'element', 'hit_rule', 'can_crit', 'hits', 'armor_rule'].includes(key)) assert.deepEqual(effect[key], expected, `${at}.${key}`);
       else if (key === 'predicate') assert.deepEqual(effect.when, expected, `${at}.when`);
       else if (key === 'expected_raw_power' && effect.type === 'handler') close(row.input.handler_target_statuses.own_source * (Number(effect.params.power_per_instance) + Number(effect.params.attack_ratio_per_instance ?? 0) * row.input.source_physical_attack), Number(expected), at);
       else if (key === 'expected_raw_power') close(rawPower((effect as Extract<Effect, { type: 'damage' }>).formula as never, offense, row.input.pre_cost_sp, row.input.event_hp_damage), Number(expected), at);

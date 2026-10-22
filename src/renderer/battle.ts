@@ -25,7 +25,7 @@ export class BattleRenderer {
   /** Skill name called out above the user on every cast start, instant skills included (presentation only). */
   private shouts = new Map<string, { skill: string; at: number; until: number }>();
   /** Native per-hit skill effects, timed to the same visual impact as the hit's damage number. */
-  private impacts: { target_id: string; at: number; config: ImpactEffect; asset: NativeAsset }[] = [];
+  private impacts: { target_id: string; at: number; config: ImpactEffect; asset: NativeAsset; hue?: number }[] = [];
   private readonly numbers: DamageNumbers | null;
   private readonly animation: ActorAnimation;
   private readonly finishers = new FinisherEffects();
@@ -88,7 +88,7 @@ export class BattleRenderer {
           if (!reached.has(id)) reached.set(id, event.at_ms + (damaging ? delayFor(row, launch) : contact));
         }
         if (!reached.size) reached.set(`${event.actor_id}:0`, event.at_ms + contact);
-        for (const [id, at] of reached) this.impacts.push({ target_id: id.slice(0, id.lastIndexOf(':')), at, config: impact.config, asset: impact.asset });
+        for (const [id, at] of reached) this.impacts.push({ target_id: id.slice(0, id.lastIndexOf(':')), at, config: impact.config, asset: impact.asset, hue: this.pack.index.combat_visuals.skills[event.skill_id ?? '']?.hue_rotate_deg });
       }
       const targets = event.type === 'normal_attack' && event.target_id ? [event.target_id] : [...new Set(events.filter(row => row.at_ms === event.at_ms && row.actor_id === event.actor_id && row.skill_id === event.skill_id && row.target_id && ['damage', 'miss'].includes(row.type)).map(row => row.target_id!))];
       for (const target of targets) for (const spec of specs) this.projectiles.push({ at_ms: event.at_ms, source_id: event.actor_id, target_id: target, spec, ...(event.world_source ? { from: event.world_source } : {}) });
@@ -193,12 +193,13 @@ export class BattleRenderer {
         if (point) { drawProjectile(context, cue.spec, point); this.frameStats.projectiles.push({ source: source.actor_id, target: target.actor_id, shape: cue.spec.shape }); }
       }
     }
-    this.impacts = this.impacts.filter(cue => presentationMs - cue.at + cue.config.start_ms <= effectLength(cue.asset));
+    this.impacts = this.impacts.filter(cue => presentationMs - cue.at + cue.config.start_ms <= Math.min(effectLength(cue.asset), cue.config.duration_ms ?? Infinity));
     if (this.motion) for (const cue of this.impacts) {
       // Effect clock reads start_ms at the impact and runs from lead_ms before it.
       const clock = cue.config.start_ms + presentationMs - cue.at, target = view.actors.find(actor => actor.actor_id === cue.target_id);
       if (clock < cue.config.start_ms - cue.config.lead_ms || !target) continue;
-      const [tx, ty] = this.point(target); this.drawnLayers += drawEffect(context, cue.asset, Math.max(0, clock), tx, ty - cue.config.lift, cue.config.scale);
+      const [tx, ty] = this.point(target); context.save(); if (cue.hue) context.filter = `hue-rotate(${cue.hue}deg)`;
+      this.drawnLayers += drawEffect(context, cue.asset, Math.max(0, clock), tx, ty - cue.config.lift, cue.config.scale); context.restore();
       this.frameStats.impacts.push({ target: target.actor_id, meta: cue.config.meta });
     }
     if(this.showFinishers)this.finishers.drawImpacts(context,view.actors,a=>this.point(a),wallMs,this.motion);
@@ -227,7 +228,9 @@ export class BattleRenderer {
         // Target effects are positioned from actual resulting hit/heal/status events.
         for (const id of cue.targets) {
           const target = view.actors.find(row => row.actor_id === id); if (!target) continue; const [tx, ty] = this.point(target);
+          context.save(); const hue = this.pack.index.combat_visuals.skills[event.skill_id]?.hue_rotate_deg; if (hue) context.filter = `hue-rotate(${hue}deg)`;
           if (visual.native) drawEffect(context, visual.native, elapsed, tx, ty, .7); else { context.save(); context.translate(tx, ty); context.scale(.65, .65); drawProcedural(context, visual.recipe, elapsed, 0, 0); context.restore(); }
+          context.restore();
         }
         continue;
       }

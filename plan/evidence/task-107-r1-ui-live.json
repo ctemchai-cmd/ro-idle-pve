@@ -1,0 +1,13 @@
+{
+  "task_id": "TASK-107",
+  "passed": false,
+  "checks": [],
+  "measurements": [],
+  "errors": [],
+  "commands": [
+    "account.create",
+    "gacha.pull"
+  ],
+  "failure": "RESOURCES_AND_GACHA: locator.waitFor: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('dialog.card-sheet[open],dialog[open] .card-effects').last() to be visible\u001b[22m\n\u001b[2m    42 × locator resolved to hidden <ul class=\"card-effects\">…</ul>\u001b[22m\n",
+  "scope": "Actual disposableAuth/API/Postgres + real19job components at320/390. No owner cloud writes, privateenv,6173restart or balance batch."
+}

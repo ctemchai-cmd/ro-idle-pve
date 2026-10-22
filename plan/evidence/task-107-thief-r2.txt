@@ -1,0 +1,32 @@
+✔ T033 AC-01: all 24 tree skills (incl. 5 Rogue copies) match the 72 M0 golden cases (20.134334ms)
+✔ T033 AC-01: every Active executes every effect at every level 1-10 (venom, accuracy down, strips, expose, intimidate, detonate, copies) (2258.013042ms)
+✔ T033 AC-01: every Passive changes stats or procs at every level 1-10 (Double Attack only from normal hits) (91.668583ms)
+✔ T033 AC-01: Assassin/Rogue skill pages offer only learnable root+branch skills, each with effect text and a pack visual (4163.574791ms)
+✔ T033 AC-02: each Rogue copy is the whitelisted source program (SP ×1.25) at every level; one copy per loadout, no copy of a copy (5.160208ms)
+✔ T033 AC-02: D138 Rolling Cutter hits independently of venom and preserves all sources (76.110375ms)
+✔ T033 AC-03: dry catalog trace of all four builds reproduces the M0 queue estimate (permanent Passives only) (1733.613708ms)
+✔ T033 AC-03: real fights - Quick Step hastes the critical Assassin; Rogue strips/expose debuff the target for the team; venom is personal (3353.919334ms)
+✖ T033 AC-04: same seed/build gives identical results in server, client session and runner with own-source venom metrics (2541.21525ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 8
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16591.232833
+
+✖ failing tests:
+
+test at tests/game/skills-thief.test.ts:1:8651
+✖ T033 AC-04: same seed/build gives identical results in server, client session and runner with own-source venom metrics (2541.21525ms)
+  AssertionError [ERR_ASSERTION]: main:assassin_detonate
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/skills-thief.test.ts:123:152)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '=='
+  }

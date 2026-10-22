@@ -93,9 +93,10 @@ def review(root):
     a=deepcopy(bard[suffix]);b=deepcopy(dancer[suffix])
     for d in [a,b]:
      for k in ['id','name_key','class_id','presentation_id','tags']:d.pop(k)
-    assert a==b,suffix
+    if suffix in ['battle_song','dissonance']:assert a!=b,suffix
+    else:assert a==b,suffix
    assert len(load(D/'progression.json')['initial_state']['npc_roster'])==6
-   return {'equal_gameplay_pairs':len(bard),'archer_companion_count':1,'appearance_choice':'bard or dancer; same roster character'}
+   return {'equal_gameplay_pairs':len(bard)-2,'distinct_support_pairs':2,'archer_companion_count':1,'appearance_choice':'bard or dancer; same roster character'}
   check('bard_dancer_equal_gameplay_one_npc',['AC-03'],performances)
  if root=='acolyte':
   def healing_tank():
@@ -109,7 +110,7 @@ def review(root):
  if root=='mage':
   def autobolt():
    t=skills['sage_auto_bolt']['triggers'][0];assert t['event']=='normal_attack_hit' and t['accepted_origins']==['normal'];assert all(e['type']=='damage' for e in t['effects']);assert t['reentry']=='deny_same_source_trigger_in_ancestry'
-   example=next(b for b in data['builds'] if b['id']=='sage_auto_bolt');assert isclose(example['queue_estimate']['cast_speed_rating'],179.2);assert example['queue_estimate']['cycle_ms']==6978  # D-061 job bonus (was 164.64/7344)
+   example=next(b for b in data['builds'] if b['id']=='sage_auto_bolt');assert isclose(example['queue_estimate']['cast_speed_rating'],179.2);assert example['queue_estimate']['cycle_ms']==6866  # D-061 job bonus (was 164.64/7344)
    return {'proc':'normal hits only; proc origin does not retrigger it','cast_rule':'baseline15 pauses NA clock during CT; passive grants no exception','spell_breaker':'always in ordered slots, not boss-cast AI'}
   check('autobolt_no_free_cast_or_recursion',['AC-03'],autobolt)
  if root=='merchant':
@@ -118,7 +119,7 @@ def review(root):
     assert a['owner_required'] and not a['targetable'] and not a['counts_for_party_defeat'] and not a['counts_for_enemy_victory'];assert a['source_death']=='remove'
     assert a['action']['interval_ms']>0 and not a['action']['tick_on_spawn'];assert a['derived_scale']==.35
     c.program(a['action']['effects'],a['action']['selectors'],event='battle_start',phase='event',actor_ids=actor_ids)
-    effect=next(e for s in skills.values() for e in s.get('effects',[]) if e.get('actor_definition_id')==a['id']);ticks=list(range(a['action']['interval_ms'],effect['duration_ms'],a['action']['interval_ms']));assert ticks==[1000,2000,3000,4000,5000,6000]
+    effect=next(e for s in skills.values() for e in s.get('effects',[]) if e.get('actor_definition_id')==a['id']);ticks=list(range(a['action']['interval_ms'],effect['duration_ms'],a['action']['interval_ms']));assert ticks==([1000,2000,3000,4000,5000,6000,7000,8000,9000] if a['id']=='hell_plant' else [1000,2000,3000,4000,5000,6000])
     return {'max_owned':effect['max_owned'],'tick_times_ms':ticks,'owner_death':'remove','bounded':'oldest replaced atomically; no hit-trigger actor spawning'}
    check('actor_'+a['id'],['AC-03','AC-04'],actor)
  if root=='thief':

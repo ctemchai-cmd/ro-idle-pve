@@ -7,6 +7,7 @@ export function validateCombatVisuals(value: CombatVisuals, skillIds: readonly s
   if (!value || value.schema_version !== 1 || !value.numbers || !value.normal_attacks || !value.skills) fail();
   if (!value.numbers.meta?.endsWith('.meta.json') || !value.numbers.critical_meta?.endsWith('.meta.json') || !Number.isInteger(value.numbers.critical_frame) || value.numbers.critical_frame < 0 || value.numbers.digit_frames?.length !== 10 || value.numbers.digit_frames.some(frame => !Number.isInteger(frame) || frame < 0)) fail();
   for (const id of Object.keys(value.skills)) if (!skillIds.includes(id)) fail();
+  for (const row of Object.values(value.skills)) if (row.hue_rotate_deg !== undefined && (!Number.isFinite(row.hue_rotate_deg) || Math.abs(row.hue_rotate_deg) > 360)) fail();
   for (const row of [...Object.values(value.normal_attacks), ...Object.values(value.skills)]) {
     if (!Array.isArray(row.special_sfx) || row.special_sfx.length > 8) fail();
     for (const spec of row.special_sfx) {
@@ -17,6 +18,7 @@ export function validateCombatVisuals(value: CombatVisuals, skillIds: readonly s
   for (const [id, impact] of Object.entries(value.impacts ?? {})) {
     if (presentationIds && !presentationIds.includes(id)) fail();
     if (!impact?.meta?.endsWith('.meta.json') || !(impact.scale > 0 && impact.scale <= 3)) fail();
+    if (impact.duration_ms !== undefined && (!Number.isInteger(impact.duration_ms) || impact.duration_ms < 1 || impact.duration_ms > 10000)) fail();
     for (const [key, minimum, maximum] of [['start_ms', 0, 10000], ['lead_ms', 0, 3000], ['stagger_ms', 0, 1000], ['lift', -200, 300]] as const) if (!Number.isInteger(impact[key]) || impact[key] < minimum || impact[key] > maximum) fail();
   }
 }

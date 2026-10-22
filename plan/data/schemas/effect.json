@@ -66,6 +66,51 @@
         },
         "as_reflect": {
           "type": "boolean"
+        },
+        "critical_rule": {
+          "const": "always"
+        },
+        "crit_chance_bonus": {
+          "oneOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "object",
+              "properties": {
+                "level_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "level_param"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "crit_damage_bonus": {
+          "oneOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "object",
+              "properties": {
+                "level_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "level_param"
+              ],
+              "additionalProperties": false
+            }
+          ]
         }
       },
       "required": [
@@ -421,11 +466,28 @@
           ]
         },
         "max_instances": {
-          "type": [
-            "integer",
-            "null"
-          ],
-          "minimum": 1
+          "oneOf": [
+            {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            },
+            {
+              "type": "object",
+              "properties": {
+                "level_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "level_param"
+              ],
+              "additionalProperties": false
+            }
+          ]
         }
       },
       "required": [

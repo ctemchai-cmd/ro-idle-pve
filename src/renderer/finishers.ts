@@ -15,9 +15,9 @@ export const FINISHER_PROFILES: Readonly<Record<string, Profile>> = {
   hunter_rapid_fire: { style: 'volley', color: '#aeefb5', shake: 2, priority: 1, hold: 750 },
   hunter_claymore: { style: 'blast', color: '#ffc77c', shake: 3.5, priority: 1, hold: 750 },
   assassin_sonic_blow: { style: 'slash', color: '#e8abff', shake: 3, priority: 2, hold: 850 },
-  assassin_detonate: { style: 'blast', color: '#b7eb83', shake: 3, priority: 1, hold: 750 },
+  assassin_detonate: { style: 'slash', color: '#c28bff', shake: 3, priority: 1, hold: 750 },
   rogue_raid: { style: 'slash', color: '#b3b9ff', shake: 2, priority: 1, hold: 750 },
-  blacksmith_cart_crash: { style: 'blast', color: '#ffc76b', shake: 4, priority: 2, hold: 850 },
+  blacksmith_cart_crash: { style: 'slash', color: '#ffc76b', shake: 4, priority: 2, hold: 850 },
   alchemist_acid_terror: { style: 'blast', color: '#bded81', shake: 2.5, priority: 1, hold: 750 },
 };
 interface Cue { key: string; skill: string; source: string; target: string; at: number; profile: Profile; started?: number }

@@ -137,6 +137,11 @@ export class ContentValidator {
       const at = { ...location, effect_id: text(effect.id), path: `${location.path}/${index}` };
       demand(reserved.has(target) || Object.hasOwn(selectors, target), 'unknown_binding', at, target);
       for (const predicate of this.predicates(effect.when)) {
+        if (predicate.type === 'effect_succeeded') {
+          const prior = previous.get(text(predicate.effect_id));
+          demand(prior?.type === 'interrupt', 'outcome_reference', at);
+          demand(prior.target === target, 'outcome_scope', at);
+        }
         if (predicate.type === 'hit_landed') {
           const prior = previous.get(text(predicate.effect_id));
           demand(prior?.type === 'damage', 'outcome_reference', at);
@@ -175,6 +180,7 @@ export class ContentValidator {
       if (['apply_status', 'shield', 'summon'].includes(type)) demand(Number.isSafeInteger(effect.duration_ms) && Number(effect.duration_ms) >= 1, 'duration', at);
       if (type === 'resource_change' && ['self', 'source_actor'].includes(target) && Number(effect.amount) < 0 && phase !== 'event') demand(false, 'double_cost', at);
       if (type === 'damage' && effect.damage_type === 'true') demand(effect.armor_rule === 'ignore', 'true_damage_armor', at);
+      if (type === 'damage' && effect.critical_rule === 'always') demand(effect.can_crit === true, 'critical_rule', at);
       if (effect.as_reflect) demand(['damage_received', 'damage_dealt'].includes(event ?? '') && obj(effect.formula).id === 'event_damage_power', 'reflection_context', at);
       if (type === 'handler') demand(text(obj(effect.params).status_id) in this.statuses, 'unknown_status', at);
       if (type === 'summon') demand(this.actorIds.has(text(effect.actor_definition_id)), 'unknown_actor', at, text(effect.actor_definition_id));
@@ -187,7 +193,7 @@ export class ContentValidator {
       const row = obj(value), event = text(row.event), at = { ...location, path: `${location.path}/triggers/${index}` };
       demand(Number(row.chance) >= 0 && Number(row.chance) <= 1, 'probability', at);
       for (const predicate of this.predicates(row.when)) {
-        demand(predicate.type !== 'hit_landed', 'outcome_scope', at);
+        demand(!['hit_landed', 'effect_succeeded'].includes(text(predicate.type)), 'outcome_scope', at);
         if (predicate.type === 'has_status') demand(text(predicate.status_id) in this.statuses, 'unknown_status', at);
         if (text(predicate.actor).startsWith('event_')) demand(this.eventBindings(event).has(text(predicate.actor)), 'event_context', at);
         if (predicate.actor === 'target') demand(this.eventBindings(event).has('event_target'), 'event_context', at);

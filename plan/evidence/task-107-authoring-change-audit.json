@@ -1,0 +1,29 @@
+{
+  "reason": "D138 explicitly supersedes old Bard=Dancer gameplay,6500ms HellPlant and old Sage/Rogue analytical queue times. New optional level-valued crit/removal fields need the same numeric binding schema as existing fields; retain strict resolved shapes.",
+  "expected_updates": {
+    "bard_dancer": "Only battle_song and dissonance differ;5other suffixes equal;one archer NPC unchanged",
+    "hell_plant_tick_ms": [
+      1000,
+      2000,
+      3000,
+      4000,
+      5000,
+      6000,
+      7000,
+      8000,
+      9000
+    ],
+    "healing_plant_tick_ms": [
+      1000,
+      2000,
+      3000,
+      4000,
+      5000,
+      6000
+    ],
+    "spell_breaker_cast": 0,
+    "dispel_cast_max": 0,
+    "rogue_cast_passive": "explicit5\u219215%, no auto primary growth"
+  },
+  "test_policy": "Retain original reports and exact rollback/parity/validation assertions; change expected behavior only where user notes supersede it."
+}

@@ -264,3 +264,5 @@ D-117 runtime finding: valid same-user TOKEN_REFRESHED ระหว่าง SDK
 | D-136 | 23ต.ค.2026 ผู้ใช้ให้หาIconสกิลที่มีเครื่องหมาย+สำหรับUpgrade | ใช้SM_MOVINGRECOVERY/native24pxมี+กลางหัวใจ; ไม่ใช่jobiconและไม่เพิ่มสกิล/ผลgameplay |
 
 | D-137 | 23ต.ค.2026 ผู้ใช้ให้ลองSkilliconsตามassets/modern/suggestion-migrate.txt | TASK106เลือก12ภาพตามmappingเดิม Meditationใช้sharedacolyte_meditation; presentationonly ไม่มีเปลี่ยนVFX/audio/formulas |
+
+| D-138 |23ต.ค.2026ผู้ใช้ให้ทำsuggestion-migrate.txtครบทุกอาชีพรวมnotes/resource/gachaและตอบsingle70%/AoE50%Fingerต่อเป้าเมื่อพลังเท่ากัน | TASK107/design36;stableIDs/paidprogressคงเดิม numericอื่นassistanttrial ไม่มีbalancebatch |

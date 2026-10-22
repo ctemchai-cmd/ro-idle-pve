@@ -897,6 +897,53 @@
       "triggers": [],
       "periodic": null,
       "weapon_element": "fire"
+    },
+    {
+      "id": "crit_damage_up",
+      "polarity": "buff",
+      "tags": [
+        "stat_buff"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "ratio": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": false,
+      "dispelable": true,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [
+        {
+          "id": "magnitude",
+          "stat": "crit_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "status_param": "ratio"
+          }
+        }
+      ],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null
     }
   ],
   "target_override_rule": "most recently applied living hostile provoke source wins, application_id breaks ties; self/all/random/dead selectors unaffected; after source death fall through to next valid instance",

@@ -1,0 +1,49 @@
+✔ D138 major budgets at all ten ranks; Finger and Asura keep their paid sphere/SP rules (10.53075ms)
+✖ D138 successful interrupt outcomes are per target and action; no bonus against idle or interrupt-immune casts (9.272792ms)
+✔ D138 guaranteed and skill-local crit use shared pipeline and cannot change later normal attacks (2.494166ms)
+✖ D138 all-rank utility changes and exact descriptions use resolved definitions (1.87075ms)
+✔ D138 speed1/2/4 preserves event order, interrupt outcomes, RNG and checkpoints (46.753792ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 3
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1951.549709
+
+✖ failing tests:
+
+test at tests/game/modern-skill-changes.test.ts:1:1777
+✖ D138 successful interrupt outcomes are per target and action; no bonus against idle or interrupt-immune casts (9.272792ms)
+  AssertionError [ERR_ASSERTION]: casting
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/modern-skill-changes.test.ts:35:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:332:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual'
+  }
+
+test at tests/game/modern-skill-changes.test.ts:1:4526
+✖ D138 all-rank utility changes and exact descriptions use resolved definitions (1.87075ms)
+  Error: INVALID_SKILL_LOADOUT
+      at validateCharacterSkills (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/src/domain/progression/skills.ts:39:171)
+      at compileCharacterSkills (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/src/domain/progression/skills.ts:43:2)
+      at characterSkillOptions (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/src/client/skills.ts:103:17)
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/modern-skill-changes.test.ts:59:16)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7)

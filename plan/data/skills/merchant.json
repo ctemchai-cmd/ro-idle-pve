@@ -220,16 +220,16 @@
       ],
       "level_parameters": {
         "ratio": [
-          0.0875,
-          0.101112,
-          0.114723,
-          0.128333,
-          0.141944,
-          0.155556,
-          0.169167,
-          0.182777,
-          0.196388,
-          0.21
+          0.175,
+          0.2,
+          0.225,
+          0.25,
+          0.275,
+          0.3,
+          0.325,
+          0.35,
+          0.375,
+          0.4
         ]
       },
       "presentation_id": "visual_merchant_loud_voice",
@@ -305,17 +305,29 @@
         "first_aid"
       ],
       "level_parameters": {
-        "power": [
-          1.05,
-          1.147223,
-          1.244444,
-          1.341667,
-          1.438889,
-          1.536111,
-          1.633333,
-          1.730556,
-          1.827777,
-          1.925
+        "break": [
+          0.2,
+          0.222222,
+          0.244444,
+          0.266667,
+          0.288889,
+          0.311111,
+          0.333333,
+          0.355556,
+          0.377778,
+          0.4
+        ],
+        "duration": [
+          5000,
+          5556,
+          6111,
+          6667,
+          7222,
+          7778,
+          8333,
+          8889,
+          9444,
+          10000
         ]
       },
       "presentation_id": "visual_merchant_first_aid",
@@ -337,47 +349,24 @@
           "count": null,
           "phase": "cast_resolve",
           "missing": "skip"
-        },
-        "foes": {
-          "team": "enemies",
-          "life": "living",
-          "select": "all",
-          "count": null,
-          "phase": "cast_resolve",
-          "missing": "skip"
-        },
-        "friend": {
-          "team": "allies",
-          "life": "living",
-          "select": "lowest_hp_percent",
-          "count": null,
-          "phase": "cast_resolve",
-          "missing": "skip"
-        },
-        "friends": {
-          "team": "allies",
-          "life": "living",
-          "select": "all",
-          "count": null,
-          "phase": "cast_resolve",
-          "missing": "skip"
         }
       },
       "start_effects": [],
       "effects": [
         {
-          "id": "heal",
-          "type": "heal",
-          "target": "self",
-          "formula": {
-            "id": "healing_power",
-            "params": {
-              "attack_ratio": {
-                "level_param": "power"
-              },
-              "flat_power": 0
+          "id": "armor_break",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "armor_break",
+          "duration_ms": {
+            "level_param": "duration"
+          },
+          "params": {
+            "ratio": {
+              "level_param": "break"
             }
-          }
+          },
+          "chance": 1
         }
       ]
     },
@@ -442,6 +431,18 @@
           2.080556,
           2.177777,
           2.275
+        ],
+        "duration": [
+          1000,
+          1111,
+          1222,
+          1333,
+          1444,
+          1556,
+          1667,
+          1778,
+          1889,
+          2000
         ]
       },
       "presentation_id": "visual_blacksmith_hammer_fall",
@@ -516,7 +517,9 @@
           "type": "apply_status",
           "target": "foes",
           "status_id": "stun",
-          "duration_ms": 1000,
+          "duration_ms": {
+            "level_param": "duration"
+          },
           "params": {},
           "chance": 0.4,
           "when": {
@@ -540,16 +543,16 @@
       ],
       "level_parameters": {
         "ratio": [
-          0.12,
-          0.134444,
-          0.148889,
-          0.163333,
-          0.177778,
-          0.192222,
-          0.206667,
-          0.221111,
-          0.235556,
-          0.25
+          0.2,
+          0.222222,
+          0.244444,
+          0.266667,
+          0.288889,
+          0.311111,
+          0.333333,
+          0.355556,
+          0.377778,
+          0.4
         ]
       },
       "presentation_id": "visual_blacksmith_adrenaline",
@@ -636,6 +639,30 @@
           0.373333,
           0.396667,
           0.42
+        ],
+        "critical": [
+          0.08,
+          0.091111,
+          0.102222,
+          0.113333,
+          0.124444,
+          0.135556,
+          0.146667,
+          0.157778,
+          0.168889,
+          0.18
+        ],
+        "critical_damage": [
+          0.1,
+          0.122222,
+          0.144444,
+          0.166667,
+          0.188889,
+          0.211111,
+          0.233333,
+          0.255556,
+          0.277778,
+          0.3
         ]
       },
       "presentation_id": "visual_blacksmith_weapon_perfection",
@@ -697,6 +724,32 @@
             }
           },
           "chance": 1
+        },
+        {
+          "id": "critical",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "crit_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "critical"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "critical_damage",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "crit_damage_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "critical_damage"
+            }
+          },
+          "chance": 1
         }
       ]
     },
@@ -724,16 +777,16 @@
           3.325
         ],
         "break": [
-          0.2625,
-          0.291667,
-          0.320833,
-          0.35,
-          0.379167,
-          0.408333,
-          0.4375,
-          0.466667,
-          0.495833,
-          0.525
+          -0.15,
+          -0.166667,
+          -0.183333,
+          -0.2,
+          -0.216667,
+          -0.233333,
+          -0.25,
+          -0.266667,
+          -0.283333,
+          -0.3
         ]
       },
       "presentation_id": "visual_blacksmith_meltdown",
@@ -804,10 +857,10 @@
           "armor_rule": "normal"
         },
         {
-          "id": "armor_break",
+          "id": "attack_down",
           "type": "apply_status",
           "target": "foe",
-          "status_id": "armor_break",
+          "status_id": "attack_down",
           "duration_ms": 5500,
           "params": {
             "ratio": {
@@ -836,16 +889,16 @@
       ],
       "level_parameters": {
         "power": [
-          1.4,
-          1.497223,
-          1.594444,
-          1.691667,
-          1.788888,
-          1.886111,
-          1.983333,
-          2.080556,
-          2.177777,
-          2.275
+          0.935156,
+          1.008984,
+          1.082812,
+          1.156641,
+          1.230469,
+          1.304297,
+          1.378125,
+          1.451953,
+          1.525781,
+          1.599609
         ]
       },
       "presentation_id": "visual_blacksmith_cart_crash",
@@ -912,7 +965,7 @@
           "element": "weapon",
           "hit_rule": "physical_roll",
           "can_crit": true,
-          "hits": 2,
+          "hits": 4,
           "armor_rule": "normal"
         }
       ]
@@ -1007,16 +1060,16 @@
       ],
       "level_parameters": {
         "power": [
-          2.45,
-          2.644444,
-          2.838888,
-          3.033333,
-          3.227777,
-          3.422223,
-          3.616667,
-          3.811111,
-          4.005556,
-          4.2
+          5.236875,
+          5.650312,
+          6.06375,
+          6.477188,
+          6.890625,
+          7.304062,
+          7.7175,
+          8.130937,
+          8.544375,
+          8.957812
         ],
         "break": [
           0.14,
@@ -1197,6 +1250,17 @@
               "flat_power": 0
             }
           }
+        },
+        {
+          "id": "regeneration",
+          "type": "apply_status",
+          "target": "friend",
+          "status_id": "regeneration",
+          "duration_ms": 5001,
+          "params": {
+            "power_ratio": 0.8
+          },
+          "chance": 1
         }
       ]
     },
@@ -1278,7 +1342,7 @@
           "type": "summon",
           "target": "self",
           "actor_definition_id": "hell_plant",
-          "duration_ms": 6500,
+          "duration_ms": 10000,
           "max_owned": 2,
           "at_limit": "replace_oldest",
           "power_scale": 1.75
@@ -1307,6 +1371,18 @@
           42,
           41,
           40
+        ],
+        "plant_power": [
+          2.49375,
+          2.690625,
+          2.8875,
+          3.084375,
+          3.28125,
+          3.478125,
+          3.675,
+          3.871875,
+          4.06875,
+          4.265625
         ]
       },
       "presentation_id": "visual_alchemist_bio_cannibalize",
@@ -1366,7 +1442,9 @@
           "duration_ms": 6500,
           "max_owned": 1,
           "at_limit": "replace_oldest",
-          "power_scale": 1.75
+          "power_scale": {
+            "level_param": "plant_power"
+          }
         }
       ]
     },
@@ -1382,16 +1460,28 @@
       ],
       "level_parameters": {
         "power": [
-          0.525,
-          0.573612,
-          0.622223,
-          0.670833,
-          0.719444,
-          0.768056,
-          0.816667,
-          0.865277,
-          0.913888,
-          0.9625
+          0.467578,
+          0.504492,
+          0.541406,
+          0.57832,
+          0.615234,
+          0.652148,
+          0.689063,
+          0.725977,
+          0.762891,
+          0.799805
+        ],
+        "burst": [
+          1.870313,
+          2.017969,
+          2.165625,
+          2.313281,
+          2.460938,
+          2.608594,
+          2.75625,
+          2.903906,
+          3.051563,
+          3.199219
         ]
       },
       "presentation_id": "visual_alchemist_demonstration",
@@ -1441,6 +1531,26 @@
       },
       "start_effects": [],
       "effects": [
+        {
+          "id": "burst",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "burst"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "fire",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
         {
           "id": "chemical_burn",
           "type": "apply_status",

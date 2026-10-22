@@ -445,16 +445,16 @@
       ],
       "level_parameters": {
         "power": [
-          0.6125,
-          0.661111,
-          0.709723,
-          0.758333,
-          0.806944,
-          0.855556,
-          0.904167,
-          0.952777,
-          1.001389,
-          1.05
+          0.935156,
+          1.008984,
+          1.082812,
+          1.156641,
+          1.230469,
+          1.304297,
+          1.378125,
+          1.451953,
+          1.525781,
+          1.599609
         ]
       },
       "presentation_id": "visual_wizard_storm_gust",
@@ -531,16 +531,16 @@
       ],
       "level_parameters": {
         "power": [
-          0.7875,
-          0.845833,
-          0.904167,
-          0.9625,
-          1.020833,
-          1.079167,
-          1.1375,
-          1.195833,
-          1.254167,
-          1.3125
+          1.309219,
+          1.412578,
+          1.515937,
+          1.619297,
+          1.722656,
+          1.826016,
+          1.929375,
+          2.032734,
+          2.136094,
+          2.239453
         ]
       },
       "presentation_id": "visual_wizard_jupitel",
@@ -624,16 +624,28 @@
       ],
       "level_parameters": {
         "power": [
-          0.875,
-          0.943056,
-          1.011111,
-          1.079167,
-          1.147223,
-          1.215277,
-          1.283333,
-          1.351388,
-          1.419444,
-          1.4875
+          1.246875,
+          1.345312,
+          1.44375,
+          1.542188,
+          1.640625,
+          1.739062,
+          1.8375,
+          1.935938,
+          2.034375,
+          2.132812
+        ],
+        "stun_duration": [
+          1000,
+          1111,
+          1222,
+          1333,
+          1444,
+          1556,
+          1667,
+          1778,
+          1889,
+          2000
         ]
       },
       "presentation_id": "visual_wizard_meteor",
@@ -702,6 +714,23 @@
           "can_crit": false,
           "hits": 3,
           "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": {
+            "level_param": "stun_duration"
+          },
+          "params": {},
+          "chance": 0.3,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
         }
       ]
     },
@@ -814,16 +843,16 @@
       ],
       "level_parameters": {
         "power": [
-          2.275,
-          2.45,
-          2.625,
-          2.8,
-          2.975,
-          3.15,
-          3.325,
-          3.5,
-          3.675,
-          3.85
+          3.740625,
+          4.035937,
+          4.33125,
+          4.626563,
+          4.921875,
+          5.217187,
+          5.5125,
+          5.807813,
+          6.103125,
+          6.398438
         ]
       },
       "presentation_id": "visual_wizard_heavens_drive",
@@ -1090,6 +1119,18 @@
           30,
           29,
           28
+        ],
+        "power": [
+          10.0,
+          10.555556,
+          11.111111,
+          11.666667,
+          12.222222,
+          12.777778,
+          13.333333,
+          13.888889,
+          14.444444,
+          15.0
         ]
       },
       "presentation_id": "visual_sage_spell_breaker",
@@ -1101,7 +1142,7 @@
         "spirit_spheres": 0
       },
       "timing": {
-        "cast_ms": 200,
+        "cast_ms": 0,
         "after_cast_ms": 800,
         "interruptible": true
       },
@@ -1147,11 +1188,29 @@
           "target": "foe"
         },
         {
-          "id": "resource",
-          "type": "resource_change",
+          "id": "interrupt_hit",
+          "type": "damage",
           "target": "foe",
-          "resource": "sp",
-          "amount": -20
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "neutral",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 1,
+          "armor_rule": "normal",
+          "when": {
+            "type": "effect_succeeded",
+            "effect_id": "interrupt",
+            "scope": "same_target"
+          }
         }
       ]
     },
@@ -1177,6 +1236,30 @@
           42,
           41,
           40
+        ],
+        "cast": [
+          1000,
+          889,
+          778,
+          667,
+          556,
+          444,
+          333,
+          222,
+          111,
+          0
+        ],
+        "removed": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3,
+          4
         ]
       },
       "presentation_id": "visual_sage_dispel",
@@ -1188,7 +1271,9 @@
         "spirit_spheres": 0
       },
       "timing": {
-        "cast_ms": 1000,
+        "cast_ms": {
+          "level_param": "cast"
+        },
         "after_cast_ms": 1100,
         "interruptible": true
       },
@@ -1235,7 +1320,9 @@
           "polarity": "buff",
           "tags": [],
           "permission": "dispel",
-          "max_instances": 2
+          "max_instances": {
+            "level_param": "removed"
+          }
         }
       ]
     },
@@ -1251,16 +1338,16 @@
       ],
       "level_parameters": {
         "power": [
-          3.15,
-          3.383333,
-          3.616667,
-          3.85,
-          4.083333,
-          4.316667,
-          4.55,
-          4.783333,
-          5.016667,
-          5.25
+          3.49125,
+          3.766875,
+          4.0425,
+          4.318125,
+          4.59375,
+          4.869375,
+          5.145,
+          5.420625,
+          5.69625,
+          5.971875
         ]
       },
       "presentation_id": "visual_sage_psychic_bolt",
@@ -1326,9 +1413,10 @@
           "damage_type": "magical",
           "element": "neutral",
           "hit_rule": "always",
-          "can_crit": false,
+          "can_crit": true,
           "hits": 1,
-          "armor_rule": "normal"
+          "armor_rule": "normal",
+          "critical_rule": "always"
         }
       ]
     },
@@ -1343,29 +1431,29 @@
         "magic_barrier"
       ],
       "level_parameters": {
-        "ratio": [
-          0.35,
-          0.388889,
-          0.427777,
-          0.466667,
-          0.505556,
-          0.544444,
-          0.583333,
-          0.622223,
-          0.661111,
-          0.7
+        "power": [
+          5.236875,
+          5.650312,
+          6.06375,
+          6.477188,
+          6.890625,
+          7.304062,
+          7.7175,
+          8.130937,
+          8.544375,
+          8.957812
         ],
-        "mana": [
-          0.175,
-          0.204167,
-          0.233333,
-          0.2625,
-          0.291667,
-          0.320833,
-          0.35,
-          0.379167,
-          0.408333,
-          0.4375
+        "duration": [
+          5000,
+          5333,
+          5667,
+          6000,
+          6333,
+          6667,
+          7000,
+          7333,
+          7667,
+          8000
         ]
       },
       "presentation_id": "visual_sage_magic_barrier",
@@ -1387,58 +1475,39 @@
           "count": null,
           "phase": "cast_resolve",
           "missing": "skip"
-        },
-        "foes": {
-          "team": "enemies",
-          "life": "living",
-          "select": "all",
-          "count": null,
-          "phase": "cast_resolve",
-          "missing": "skip"
-        },
-        "friend": {
-          "team": "allies",
-          "life": "living",
-          "select": "lowest_hp_percent",
-          "count": null,
-          "phase": "cast_resolve",
-          "missing": "skip"
-        },
-        "friends": {
-          "team": "allies",
-          "life": "living",
-          "select": "all",
-          "count": null,
-          "phase": "cast_resolve",
-          "missing": "skip"
         }
       },
       "start_effects": [],
       "effects": [
         {
-          "id": "magic_defense_up",
-          "type": "apply_status",
-          "target": "friends",
-          "status_id": "magic_defense_up",
-          "duration_ms": 6000,
-          "params": {
-            "ratio": {
-              "level_param": "ratio"
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
             }
           },
-          "chance": 1
+          "damage_type": "magical",
+          "element": "neutral",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 1,
+          "armor_rule": "normal"
         },
         {
-          "id": "mana_regen_up",
+          "id": "silence",
           "type": "apply_status",
-          "target": "friends",
-          "status_id": "mana_regen_up",
-          "duration_ms": 6000,
-          "params": {
-            "ratio": {
-              "level_param": "mana"
-            }
+          "target": "foe",
+          "status_id": "silence",
+          "duration_ms": {
+            "level_param": "duration"
           },
+          "params": {},
           "chance": 1
         }
       ]
@@ -2883,7 +2952,7 @@
         "attack_speed_rating": 153.75,
         "cast_speed_rating": 179.20000000000002,
         "si_ms": 976,
-        "cycle_ms": 6978,
+        "cycle_ms": 6866,
         "starts": [
           {
             "skill_id": "sage_fire_endow",
@@ -2900,14 +2969,14 @@
           {
             "skill_id": "sage_spell_breaker",
             "start_ms": 4744,
-            "resolve_ms": 4856,
-            "acd_end_ms": 5303
+            "resolve_ms": 4744,
+            "acd_end_ms": 5191
           },
           {
             "skill_id": "mage_soul_strike",
-            "start_ms": 6279,
-            "resolve_ms": 6559,
-            "acd_end_ms": 6978
+            "start_ms": 6167,
+            "resolve_ms": 6447,
+            "acd_end_ms": 6866
           }
         ],
         "fixed_sp_per_cycle": 110,
@@ -2964,7 +3033,7 @@
         "attack_speed_rating": 116.0,
         "cast_speed_rating": 219.8,
         "si_ms": 1294,
-        "cycle_ms": 8272,
+        "cycle_ms": 7726,
         "starts": [
           {
             "skill_id": "sage_magic_barrier",
@@ -2975,20 +3044,20 @@
           {
             "skill_id": "sage_dispel",
             "start_ms": 3499,
-            "resolve_ms": 3954,
-            "acd_end_ms": 4455
+            "resolve_ms": 3499,
+            "acd_end_ms": 4000
           },
           {
             "skill_id": "sage_spell_breaker",
-            "start_ms": 5749,
-            "resolve_ms": 5840,
-            "acd_end_ms": 6204
+            "start_ms": 5294,
+            "resolve_ms": 5294,
+            "acd_end_ms": 5658
           },
           {
             "skill_id": "sage_fire_endow",
-            "start_ms": 7498,
-            "resolve_ms": 7817,
-            "acd_end_ms": 8272
+            "start_ms": 6952,
+            "resolve_ms": 7271,
+            "acd_end_ms": 7726
           }
         ],
         "fixed_sp_per_cycle": 138,

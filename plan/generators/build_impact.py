@@ -42,6 +42,9 @@ def build():
         skill['level_parameters']['duration'] = values
         for effect in skill['effects']:
             if effect['type'] == 'apply_status': effect['duration_ms'] = {'level_param': 'duration'}
+    # D-138: exact user-note changes overwrite fixed fields, never multiply prior results.
+    from modern_skill_changes import apply
+    apply(skills)
     for doc in docs.values():
         for copy in doc.get('copy_whitelist', []):
             source, target = skills[copy['source_skill_id']], skills[copy['skill_id']]

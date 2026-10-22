@@ -50,15 +50,24 @@ export function effectDescriptions(effects: readonly Effect[], resolved_skills?:
    const bonus=effect.resource==='spirit_spheres'?percent(heldResourceModifiers({sp:0,spirit_spheres:1,resolved_skills},content).filter(m=>m.stat==='physical_attack').reduce((n,m)=>n+Number(m.value),0)):'';
    text=effect.resource==='spirit_spheres'?(compact?`บอล ${Number(effect.amount)>=0?'+':''}${number(effect.amount)} ลูก · ATK +${bonus}/ลูก`:`เพิ่ม Spirit Sphere ${number(effect.amount)} ลูก (สูงสุด 5) · บอลที่ถือเพิ่ม ATK ${bonus} ต่อลูก · เมื่อใช้บอล โบนัสคิดจากลูกที่เหลือหลังหัก`):`SP ${Number(effect.amount)>=0?'+':''}${number(effect.amount)}`;
   }
-  else if(effect.type==='summon')text=`เรียกผู้ช่วยลงสนาม ${number(Number(effect.duration_ms)/1000)}s · สูงสุด ${effect.max_owned} ตัว`+(typeof effect.power_scale==='number'?` · พลังผู้ช่วย ${percent(effect.power_scale)}`:'');
+  else if(effect.type==='summon'){
+   const actors=content.documents['summon-actors.json']!.actors as unknown as {id:string;action:{interval_ms:number;effects:{type:string}[]}}[],helper=actors.find(a=>a.id===effect.actor_definition_id);
+   const roles=helper?[...(helper.action.effects.some(e=>e.type==='damage')?['โจมตี']:[]),...(helper.action.effects.some(e=>e.type==='heal')?['ฮีล']:[])].join('+'):'';
+   text=`ผู้ช่วย ${number(Number(effect.duration_ms)/1000)}s · สูงสุด ${effect.max_owned} ตัว`+(roles?` · ${roles}ทุก ${number(helper!.action.interval_ms/1000)}s`:'')+(typeof effect.power_scale==='number'?` · พลัง ${percent(effect.power_scale)}`:'');
+  }
   else if(effect.type==='handler'&&effect.handler_id==='detonate_own_status')text=`ระเบิด${statusNames[String(effect.params.status_id)]??effect.params.status_id}ของตัวเอง ${typeof effect.params.attack_ratio_per_instance==='number'?[...(Number(effect.params.power_per_instance)?[number(effect.params.power_per_instance)]:[]),`${percent(effect.params.attack_ratio_per_instance)} ATK`].join(' + '):number(effect.params.power_per_instance)} ต่อชั้น`;
   else text='กลไกเฉพาะอาชีพ';
   if(effect.type==='damage'&&Number(effect.hits)>1)text+=` × ${number(effect.hits)} ครั้ง`;
+  if(effect.type==='damage') {
+   if(effect.critical_rule==='always')text+=' · คริเสมอ';
+   if(effect.crit_chance_bonus)text+=` · คริ +${percent(effect.crit_chance_bonus)} เฉพาะท่า`;
+   if(effect.crit_damage_bonus)text+=` · ดาเมจคริ +${percent(effect.crit_damage_bonus)} เฉพาะท่า`;
+  }
   if(effect.type==='shield')text+=` · ${number(Number(effect.duration_ms)/1000)}s`;
   const elements=effectDamageElements([effect]);
   if(elements.length)text+=' · '+(effect.type==='damage'||effect.type==='handler'?'':'ดาเมจ')+elements.map(e=>e==='weapon'?elementName(e):'ธาตุ'+elementName(e)).join(' / ');
   if(effect.type==='apply_status'){const element=content.statuses[effect.status_id]?.weapon_element;if(typeof element==='string')text+=compact?' · อาวุธธาตุ'+elementName(element as Parameters<typeof elementName>[0]):' · เปลี่ยนธาตุอาวุธเป็น'+elementName(element as Parameters<typeof elementName>[0])+' มีผลกับตีปกติและสกิลตามธาตุอาวุธ; สกิลธาตุตายตัวและเกราะไม่เปลี่ยน';}
-  return text+('when'in effect&&effect.when?' เมื่อเข้าเงื่อนไข':'');
+  return text+('when'in effect&&effect.when?(effect.when.type==='effect_succeeded'?' · เมื่อขัดร่ายสำเร็จ':effect.when.type==='hit_landed'?' · เมื่อโจมตีโดน':' เมื่อเข้าเงื่อนไข'):'');
  });
 }
 export interface SkillOption {targetNote:string;id:string;name:string;kind:'active'|'passive';unlock:number;level:number;cap:number;max:number;locked:boolean;previewSkills?:BattleActor['resolved_skills'];definition:SkillDefinition;next:SkillDefinition|null;price:Partial<AccountState['wallet']>|null;effects:string[];nextEffects:string[];notes?:string[];castMs:number;afterCastMs:number;sp:number;nextCastMs:number|null;nextAfterCastMs:number|null;nextSp:number|null;previewSpeed:number;previewSpPercent:number}

@@ -525,16 +525,16 @@
       ],
       "level_parameters": {
         "power": [
-          0.9625,
-          1.030556,
-          1.098611,
-          1.166667,
-          1.234723,
-          1.302777,
-          1.370833,
-          1.438889,
-          1.506944,
-          1.575
+          1.309219,
+          1.412578,
+          1.515937,
+          1.619297,
+          1.722656,
+          1.826016,
+          1.929375,
+          2.032734,
+          2.136094,
+          2.239453
         ]
       },
       "presentation_id": "visual_assassin_sonic_blow",
@@ -628,6 +628,18 @@
           0.386944,
           0.412223,
           0.4375
+        ],
+        "duration": [
+          5000,
+          5556,
+          6111,
+          6667,
+          7222,
+          7778,
+          8333,
+          8889,
+          9444,
+          10000
         ]
       },
       "presentation_id": "visual_assassin_enchant_poison",
@@ -682,7 +694,9 @@
           "type": "apply_status",
           "target": "self",
           "status_id": "attack_up",
-          "duration_ms": 5500,
+          "duration_ms": {
+            "level_param": "duration"
+          },
           "params": {
             "ratio": {
               "level_param": "ratio"
@@ -790,28 +804,28 @@
       ],
       "level_parameters": {
         "power": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0
+          5.236875,
+          5.650312,
+          6.06375,
+          6.477188,
+          6.890625,
+          7.304062,
+          7.7175,
+          8.130937,
+          8.544375,
+          8.957812
         ],
-        "detonate_ratio": [
-          1.05,
-          1.166667,
-          1.283333,
-          1.4,
-          1.516667,
-          1.633333,
-          1.75,
-          1.866667,
-          1.983333,
-          2.1
+        "critical": [
+          0.2,
+          0.233333,
+          0.266667,
+          0.3,
+          0.333333,
+          0.366667,
+          0.4,
+          0.433333,
+          0.466667,
+          0.5
         ]
       },
       "presentation_id": "visual_assassin_detonate",
@@ -862,21 +876,26 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "detonate",
-          "type": "handler",
+          "id": "hit",
+          "type": "damage",
           "target": "foe",
-          "handler_id": "detonate_own_status",
-          "params": {
-            "status_id": "venom",
-            "power_per_instance": {
-              "level_param": "power"
-            },
-            "max_consumed": null,
-            "damage_type": "physical",
-            "element": "poison",
-            "attack_ratio_per_instance": {
-              "level_param": "detonate_ratio"
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
             }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal",
+          "crit_chance_bonus": {
+            "level_param": "critical"
           }
         }
       ]
@@ -893,16 +912,16 @@
       ],
       "level_parameters": {
         "power": [
-          2.1,
-          2.255556,
-          2.411112,
-          2.566667,
-          2.722223,
-          2.877777,
-          3.033333,
-          3.188889,
-          3.344444,
-          3.5
+          2.625,
+          2.819444,
+          3.013889,
+          3.208333,
+          3.402778,
+          3.597222,
+          3.791667,
+          3.986111,
+          4.180556,
+          4.375
         ]
       },
       "presentation_id": "visual_assassin_grimtooth",
@@ -1074,6 +1093,18 @@
           0.546388,
           0.579444,
           0.6125
+        ],
+        "power": [
+          1.2,
+          1.288889,
+          1.377778,
+          1.466667,
+          1.555556,
+          1.644444,
+          1.733333,
+          1.822222,
+          1.911111,
+          2.0
         ]
       },
       "presentation_id": "visual_rogue_strip_armor",
@@ -1124,6 +1155,26 @@
       "start_effects": [],
       "effects": [
         {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
           "id": "armor_break",
           "type": "apply_status",
           "target": "foe",
@@ -1160,6 +1211,18 @@
           -0.338333,
           -0.361667,
           -0.385
+        ],
+        "power": [
+          1.2,
+          1.288889,
+          1.377778,
+          1.466667,
+          1.555556,
+          1.644444,
+          1.733333,
+          1.822222,
+          1.911111,
+          2.0
         ]
       },
       "presentation_id": "visual_rogue_strip_weapon",
@@ -1209,6 +1272,26 @@
       },
       "start_effects": [],
       "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
         {
           "id": "attack_down",
           "type": "apply_status",
@@ -1370,6 +1453,18 @@
           38,
           37,
           36
+        ],
+        "duration": [
+          3000,
+          3333,
+          3667,
+          4000,
+          4333,
+          4667,
+          5000,
+          5333,
+          5667,
+          6000
         ]
       },
       "presentation_id": "visual_rogue_intimidate",
@@ -1426,7 +1521,9 @@
           "type": "apply_status",
           "target": "foe",
           "status_id": "stun",
-          "duration_ms": 1400,
+          "duration_ms": {
+            "level_param": "duration"
+          },
           "params": {},
           "chance": 0.85
         }
@@ -1444,16 +1541,16 @@
       ],
       "level_parameters": {
         "power": [
-          1.75,
-          1.886111,
-          2.022223,
-          2.158333,
-          2.294444,
-          2.430556,
-          2.566667,
-          2.702777,
-          2.838888,
-          2.975
+          3.740625,
+          4.035937,
+          4.33125,
+          4.626563,
+          4.921875,
+          5.217187,
+          5.5125,
+          5.807813,
+          6.103125,
+          6.398438
         ],
         "blind": [
           -0.07,
@@ -1466,6 +1563,18 @@
           -0.151667,
           -0.163333,
           -0.175
+        ],
+        "critical_damage": [
+          0.1,
+          0.122222,
+          0.144444,
+          0.166667,
+          0.188889,
+          0.211111,
+          0.233333,
+          0.255556,
+          0.277778,
+          0.3
         ]
       },
       "presentation_id": "visual_rogue_raid",
@@ -1533,7 +1642,10 @@
           "hit_rule": "physical_roll",
           "can_crit": true,
           "hits": 1,
-          "armor_rule": "normal"
+          "armor_rule": "normal",
+          "crit_damage_bonus": {
+            "level_param": "critical_damage"
+          }
         },
         {
           "id": "accuracy_down",
@@ -1578,6 +1690,18 @@
           0.147777,
           0.161388,
           0.175
+        ],
+        "cast_speed": [
+          0.05,
+          0.061111,
+          0.072222,
+          0.083333,
+          0.094444,
+          0.105556,
+          0.116667,
+          0.127778,
+          0.138889,
+          0.15
         ]
       },
       "presentation_id": "visual_rogue_dodge",
@@ -1590,6 +1714,15 @@
           "bucket": "bonus",
           "value": {
             "level_param": "ratio"
+          }
+        },
+        {
+          "id": "cast_speed",
+          "stat": "cast_speed",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "cast_speed"
           }
         }
       ],
@@ -3754,31 +3887,31 @@
       "queue_estimate": {
         "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
         "si_ms": 1227,
-        "cycle_ms": 8115,
+        "cycle_ms": 7697,
         "starts": [
           {
             "skill_id": "rogue_strip_armor",
             "start_ms": 1227,
-            "resolve_ms": 1478,
-            "acd_end_ms": 1980
+            "resolve_ms": 1445,
+            "acd_end_ms": 1881
           },
           {
             "skill_id": "rogue_strip_weapon",
-            "start_ms": 3207,
-            "resolve_ms": 3486,
-            "acd_end_ms": 4016
+            "start_ms": 3108,
+            "resolve_ms": 3351,
+            "acd_end_ms": 3812
           },
           {
             "skill_id": "rogue_expose",
-            "start_ms": 5243,
-            "resolve_ms": 5522,
-            "acd_end_ms": 6080
+            "start_ms": 5039,
+            "resolve_ms": 5282,
+            "acd_end_ms": 5767
           },
           {
             "skill_id": "rogue_intimidate",
-            "start_ms": 7307,
-            "resolve_ms": 7530,
-            "acd_end_ms": 8115
+            "start_ms": 6994,
+            "resolve_ms": 7188,
+            "acd_end_ms": 7697
           }
         ],
         "fixed_sp_per_cycle": 126,
@@ -3838,31 +3971,31 @@
       "queue_estimate": {
         "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
         "si_ms": 1240,
-        "cycle_ms": 8023,
+        "cycle_ms": 7625,
         "starts": [
           {
             "skill_id": "rogue_strip_armor",
             "start_ms": 1240,
-            "resolve_ms": 1486,
-            "acd_end_ms": 1978
+            "resolve_ms": 1454,
+            "acd_end_ms": 1882
           },
           {
             "skill_id": "rogue_expose",
-            "start_ms": 3218,
-            "resolve_ms": 3492,
-            "acd_end_ms": 4039
+            "start_ms": 3122,
+            "resolve_ms": 3360,
+            "acd_end_ms": 3836
           },
           {
             "skill_id": "rogue_copy_acolyte_heal",
-            "start_ms": 5279,
-            "resolve_ms": 5607,
-            "acd_end_ms": 5990
+            "start_ms": 5076,
+            "resolve_ms": 5362,
+            "acd_end_ms": 5695
           },
           {
             "skill_id": "rogue_intimidate",
-            "start_ms": 7230,
-            "resolve_ms": 7449,
-            "acd_end_ms": 8023
+            "start_ms": 6935,
+            "resolve_ms": 7126,
+            "acd_end_ms": 7625
           }
         ],
         "fixed_sp_per_cycle": 119,

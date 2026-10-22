@@ -5,6 +5,7 @@ export interface HitOutcome { effect_id: string; target_id: string; hit_index: n
 export interface PredicateContext {
   self: BattleActor; target?: BattleActor; event_source?: BattleActor; event_target?: BattleActor;
   outcomes: readonly HitOutcome[];
+  successes?: readonly { effect_id: string; target_id: string }[];
 }
 export function evaluatePredicate(predicate: GamePredicate, context: PredicateContext): boolean {
   switch (predicate.type) {
@@ -12,6 +13,7 @@ export function evaluatePredicate(predicate: GamePredicate, context: PredicateCo
     case 'any': return predicate.conditions.some(value => evaluatePredicate(value, context));
     case 'not': return !evaluatePredicate(predicate.condition, context);
     case 'hit_landed': return context.outcomes.some(value => value.effect_id === predicate.effect_id && value.target_id === context.target?.actor_id && (predicate.hit_index === 'any' || predicate.hit_index === value.hit_index) && value.landed);
+    case 'effect_succeeded': return context.successes?.some(value => value.effect_id === predicate.effect_id && value.target_id === context.target?.actor_id) ?? false;
     case 'has_status': return context[predicate.actor]?.statuses.some(value => value.status_id === predicate.status_id) ?? false;
     case 'has_tag': return context[predicate.actor]?.tags.includes(predicate.tag) ?? false;
     case 'hp_below': { const actor = context[predicate.actor]; return !!actor && actor.hp / actor.stats.max_hp < predicate.ratio; }
@@ -68,5 +70,6 @@ export interface ProgramContext {
   ancestry: readonly string[]; event_source?: BattleActor; event_target?: BattleActor; event_damage?: number;
   damage_type?: 'physical' | 'magical' | 'true';
   selected: Record<string, BattleActor[]>; outcomes: HitOutcome[];
+  successes?: { effect_id: string; target_id: string }[];
 }
 export type DamageEffect = Extract<Effect, { type: 'damage' }>;

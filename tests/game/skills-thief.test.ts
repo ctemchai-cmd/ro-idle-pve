@@ -69,7 +69,7 @@ test('T033 AC-02: each Rogue copy is the whitelisted source program (SP ×1.25) 
   evidence.copies = whitelist.map(row => ({ copy: row.skill_id, source: row.source_skill_id, sp: (content.skills[row.skill_id] as unknown as Active).cost.sp }));
 });
 
-test('T033 AC-02: Detonate consumes only the caster\'s own venom stacks (210% ATK each at Lv10) and leaves an ally\'s venom', () => {
+test('T033 AC-02: D138 Rolling Cutter hits independently of venom and preserves all sources', () => {
   const assassin = probe('p_sin', 'player', 'front_1', [resolved('assassin_venom_dust', 10), resolved('thief_envenom', 10), resolved('assassin_detonate', 10)], false, 'assassin');
   const ally = probe('p_npc', 'player', 'back_1', [resolved('assassin_venom_dust', 1)], false, 'assassin');
   const { events, initial } = run([assassin, ally, probe('e_boss', 'enemy', 'front_1')], 40000);
@@ -82,14 +82,14 @@ test('T033 AC-02: Detonate consumes only the caster\'s own venom stacks (210% AT
     const own = (actor: typeof before) => actor.statuses.filter(row => row.status_id === 'venom' && row.source.origin_actor_id === 'p_sin').length, other = (actor: typeof before) => actor.statuses.filter(row => row.status_id === 'venom' && row.source.origin_actor_id === 'p_npc').length;
     // A venom expiring or another tick at the same ms is excluded by only checking strict before/after counts on the detonation timestamp.
     if (events.some(event => event.at_ms === hit.at_ms && event.type === 'status_expired')) continue;
-    // D-103 replaced the old flat 120 with 210% ATK per stack at Lv10.
+    // D138 replaces detonation with a standalone single-target finisher; original stack mechanics still tested below.
     // These probe skills do not change ATK; raw damage precedes the elemental matchup.
     const attack = initial.actors.find(actor => actor.actor_id === 'p_sin')!.stats.physical_attack;
-    assert.equal(hit.raw, own(before) * (2.1 * attack), `raw = own stacks ${own(before)} × 210% ATK`);
-    assert.equal(own(after), 0, 'own venom consumed'); assert.equal(other(after), other(before), 'ally venom untouched');
+    assert.equal(hit.raw, 8.957812 * attack, 'D138 raw =70%of Finger total × ATK, independent of venom stacks');
+    assert.equal(own(after), own(before), 'own venom retained'); assert.equal(other(after), other(before), 'ally venom untouched');
     if (own(before) >= 2 && other(before) >= 1) checked++;
   }
-  assert.ok(checked > 0, 'a detonation with ≥2 own and ≥1 ally venom was checked');
+  assert.ok(checked > 0, 'a Rolling Cutter hit with ≥2 own and ≥1 ally venom was checked');
   const stacks = events.filter(event => event.type === 'status_applied' && event.status_change?.status_id === 'venom' && event.actor_id === 'p_sin').map(event => event.status_change!.active_instances_after);
   assert.ok(Math.max(...stacks) >= 2, 'same caster stacks independent venom instances');
   evidence.detonate = { detonations: detonations.length, checked_two_own_one_ally: checked, raws: detonations.map(event => event.raw) };
@@ -116,9 +116,9 @@ test('T033 AC-03: real fights - Quick Step hastes the critical Assassin; Rogue s
 
 // --- AC-04 ------------------------------------------------------------------------------------------
 test('T033 AC-04: same seed/build gives identical results in server, client session and runner with own-source venom metrics', async () => {
-  // Parity fixture, not a balance check: 3-8 keeps this two-built-member team alive long enough for every tree skill to act
+  // D138 parity fixture:3-10 supplies enough HP/time for both new finishers and the copied Heal to cast
   // (6-20 became too hard for it after the 21 Oct 2026 calibration, so its late skills never cast).
-  const { runner, clientEvents, code, confirmations, team, stage } = await storyParity('thief', [build('assassin_venom'), build('rogue_support_copy')], '3-8', 33);
+  const { runner, clientEvents, code, confirmations, team, stage } = await storyParity('thief', [build('assassin_venom'), build('rogue_support_copy')], '3-10', 33);
   const skills = runner.report.skills;
   for (const key of ['main:assassin_venom_dust', 'main:assassin_detonate', 'npc_thief:rogue_strip_armor', 'npc_thief:rogue_copy_acolyte_heal']) assert.ok((skills[key]?.metrics.casts_resolved ?? 0) > 0, key);
   const venomTicks = clientEvents.filter(event => event.type === 'damage' && ['thief_envenom', 'assassin_venom_dust'].includes(event.skill_id!) && event.effect_id !== 'hit');

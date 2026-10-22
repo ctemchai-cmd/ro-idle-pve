@@ -52,12 +52,14 @@ export interface ImpactEffect {
   stagger_ms: number;
   /** Draw offset above the feet, in world pixels. */
   lift: number;
+  /** Presentation-only lifetime cap for looping native STRs. */
+  duration_ms?: number;
 }
 export interface CombatVisuals {
   schema_version: 1;
   numbers: { meta: string; digit_frames: readonly number[]; critical_meta: string; critical_frame: number; basis: string; reference: string };
   normal_attacks: Readonly<Record<string, { special_sfx: readonly ProjectileSpec[] }>>;
-  skills: Readonly<Record<string, { special_sfx: readonly ProjectileSpec[] }>>;
+  skills: Readonly<Record<string, { special_sfx: readonly ProjectileSpec[]; hue_rotate_deg?: number }>>;
   /** Keyed by skill presentation id, so copies (e.g. Rogue Plagiarism) share the original's effect. */
   impacts: Readonly<Record<string, ImpactEffect>>;
 }

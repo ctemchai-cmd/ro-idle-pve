@@ -1,0 +1,79 @@
+✔ T030 AC-01: all 19 tree skills match the 57 M0 golden cases (heal/shield/periodic ticks/revive/sphere costs/triggers) (51.701583ms)
+✔ T030 AC-01: every Active executes every effect at every level 1-10 (heal, buffs, HoT ticks, shield, revive, spheres, Asura) (5477.189459ms)
+✔ T030 AC-01: every Passive changes stats or procs at every level 1-10 (Spirit Combo grants spheres on normal hits) (115.12975ms)
+✔ T030 AC-01: Priest/Monk skill pages offer only learnable root+branch skills, each with effect text and a pack visual (2199.149083ms)
+✔ T030 AC-02: Heal still casts on a full-HP party in queue order, spends SP and books everything as overheal (16.7145ms)
+✔ T030 AC-02: Monk spheres never exceed 5, Asura spends all current SP + 5 spheres, and an interrupted Asura refunds nothing (2089.393667ms)
+✔ T030 AC-02: Steel Body Lv10 trades 30% attack speed for 70% guard (D-104) and pulls enemies onto the Monk (10837.74925ms)
+✔ T030 AC-03: dry catalog trace of all four builds reproduces the M0 queue estimate (permanent Passives only) (7099.64525ms)
+✔ T030 AC-03: the full fight uses real effects - Asura spends the live SP pool, Spirit Combo refills spheres, Steel Body slow stretches the dry rotation (6028.948292ms)
+✔ T030 AC-04: same seed/build gives identical state/events/heal-SP-sphere metrics in server, client session and runner; ticks keep their parent cast (9774.676334ms)
+✔ T031 AC-01: all 26 tree skills (Bard and Dancer pairs included) match the 78 M0 golden cases (23.658375ms)
+✔ T031 AC-01: every Active executes every effect at every level 1-10 (arrows, traps, songs, Dissonance SP drain, Encore stun) (8157.668083ms)
+✔ T031 AC-01: every Passive changes stats or procs at every level 1-10; Falcon procs only from normal attacks (165.298625ms)
+✔ T031 AC-01: Hunter/Bard/Dancer skill pages offer only learnable root+branch skills, each with effect text and a pack visual (3190.135167ms)
+✔ T031 AC-02: Bard or Dancer is the same Archer companion (no second NPC), with its own look/weapon and D138 distinct support values (4479.392458ms)
+✔ T031 AC-02: a repeated song adds an independent stack per cast with its own expiry (no refresh), and each expires separately (151.553375ms)
+✔ T031 AC-03: dry catalog trace of all six builds reproduces the M0 queue estimate (permanent Passives only) (14269.668083ms)
+✔ T031 AC-03: the full fight uses real effects - Battle Song speeds up the singer and Concentration does not change timing (11112.885917ms)
+✔ T031 AC-04: same seed/build gives identical state/events/metrics in server, client session and runner with Falcon/song sources intact (3651.846042ms)
+✔ T032 AC-01: all 19 tree skills match the 57 M0 golden cases (bolts, Storm Gust field ticks, Quagmire, Dispel, Spell Breaker, endow, Auto-bolt) (29.752417ms)
+✔ T032 AC-01: every Active executes every effect at every level 1-10 (Spell Breaker interrupts and drains, Dispel removes enemy buffs) (5409.321709ms)
+✔ T032 AC-01: every Passive changes stats or procs at every level 1-10 (97.337041ms)
+✔ T032 AC-01: Wizard/Sage skill pages offer only learnable root+branch skills, each with effect text and a pack visual (2697.829ms)
+✔ T032 AC-02: Sage normal attacks never happen during a cast; Auto-bolt procs only from normal hits and never chains (17.484458ms)
+✔ T032 AC-02: Storm Gust frost field ticks at +1000..+4000 ms (never at its 5000 ms expiry) and rolls Freeze per target per tick (23.306459ms)
+✔ T032 AC-03: dry catalog trace of all four builds reproduces the M0 queue estimate (Sage Auto-bolt cast speed 179.2, cycle 6978 ms after the D-061 job bonus) (9312.846209ms)
+✔ T032 AC-03: the full fight follows the dry first cycle (no self-timing buffs in this tree) while Quagmire slows the enemy for real (7566.073917ms)
+✔ T032 AC-04: same seed/build gives identical HP/status/RNG/metrics in server, client session and runner; field ticks keep their parent cast (11071.428458ms)
+✔ T034 AC-01: all 19 tree skills match the 57 M0 golden cases (summon actor/limit/duration included) (32.019084ms)
+✔ T034 AC-01: every Active executes every effect at every level 1-10, summoned plants act, and no battle touches the wallet (6891.917334ms)
+✔ T034 AC-01: every Passive changes stats at every level 1-10 (26.075ms)
+✔ T034 AC-01: Blacksmith/Alchemist skill pages offer only learnable root+branch skills, each with effect text and a pack visual (2103.074584ms)
+✔ T034 AC-02: Hell Plant keeps at most 2 alive, lives 6500 ms with ticks at +1000..+6000, the oldest is replaced, and damage is credited to the owner once (27.510292ms)
+✔ T034 AC-02: Healing Plant keeps 1 alive and heals the lowest-HP ally; owner death removes every plant immediately (9.632916ms)
+✔ T034 AC-02: Blacksmith buffs raise physical attack / attack speed of the party and leave magic untouched (1117.424875ms)
+✔ T034 AC-03: dry catalog trace of all four builds reproduces the M0 queue estimate (permanent Passives only) (12302.743541ms)
+✔ T034 AC-03: real fights follow the dry first cycle where no self-haste exists, plants stay bounded and never become a fifth party member (8094.799625ms)
+✔ T034 AC-04: same seed/build gives identical state/RNG/source metrics in server, client session and runner; plants act once per tick (12064.763125ms)
+✔ T029 AC-01: all 19 tree skills match the 57 M0 golden cases (cost, order, raw power, status params/modifiers, predicates) (24.846666ms)
+✔ T029 AC-01: every Active executes every effect at every level 1-10, on allowed targets, in program order (6380.517625ms)
+✔ T029 AC-01: every Passive changes stats or procs at every level 1-10 (Reflect returns damage to the attacker) (97.332083ms)
+✔ T029 AC-01: Knight/Crusader skill pages offer only learnable root+branch skills, each with effect text and a pack visual (2267.020625ms)
+✔ T029 AC-03: dry catalog trace of all four builds reproduces the M0 queue estimate with permanent Passives and no temporary buffs (9558.270167ms)
+✔ T029 AC-03: the full fight uses real effects - Two-Hand Quicken shortens the next interval, other builds keep the dry first cycle (9125.721708ms)
+✔ T029 AC-02: Knight striker/counter-tank and Crusader guardian/holy-striker show their distinct roles in one matched encounter (19987.197708ms)
+✔ T029 AC-02: Devotion routes P100 as 52/48 (Lv10) and 0.6+0.6 as 50/50/0 once, without re-mitigating or chaining (18.537916ms)
+✔ T029 AC-04: same seed/build gives identical state, events and metrics in server commands, client session (with render views) and runner (4220.92825ms)
+✔ T033 AC-01: all 24 tree skills (incl. 5 Rogue copies) match the 72 M0 golden cases (18.410375ms)
+✔ T033 AC-01: every Active executes every effect at every level 1-10 (venom, accuracy down, strips, expose, intimidate, detonate, copies) (7254.807958ms)
+✔ T033 AC-01: every Passive changes stats or procs at every level 1-10 (Double Attack only from normal hits) (136.659958ms)
+✔ T033 AC-01: Assassin/Rogue skill pages offer only learnable root+branch skills, each with effect text and a pack visual (1673.705875ms)
+✔ T033 AC-02: each Rogue copy is the whitelisted source program (SP ×1.25) at every level; one copy per loadout, no copy of a copy (3.962875ms)
+✔ T033 AC-02: D138 Rolling Cutter hits independently of venom and preserves all sources (215.669ms)
+✔ T033 AC-03: dry catalog trace of all four builds reproduces the M0 queue estimate (permanent Passives only) (12839.517041ms)
+✔ T033 AC-03: real fights - Quick Step hastes the critical Assassin; Rogue strips/expose debuff the target for the team; venom is personal (9065.112042ms)
+✖ T033 AC-04: same seed/build gives identical results in server, client session and runner with own-source venom metrics (10312.689917ms)
+ℹ tests 56
+ℹ suites 0
+ℹ pass 55
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 56451.528542
+
+✖ failing tests:
+
+test at tests/game/skills-thief.test.ts:1:8651
+✖ T033 AC-04: same seed/build gives identical results in server, client session and runner with own-source venom metrics (10312.689917ms)
+  AssertionError [ERR_ASSERTION]: npc_thief:rogue_copy_acolyte_heal
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/skills-thief.test.ts:123:152)
+      at async Test.run (node:internal/test_runner/test:1069:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '=='
+  }

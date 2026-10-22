@@ -55,7 +55,7 @@ test('T031 AC-01: Hunter/Bard/Dancer skill pages offer only learnable root+branc
 });
 
 // --- AC-02 ------------------------------------------------------------------------------------------
-test('T031 AC-02: Bard or Dancer is the same Archer companion (no second NPC), with its own look/weapon and identical gameplay values', () => {
+test('T031 AC-02: Bard or Dancer is the same Archer companion (no second NPC), with its own look/weapon and D138 distinct support values', () => {
   const rules = new AccountCommandRules(), seen: Record<string, unknown> = {};
   for (const [npc, gender, weapon] of [['bard_support', 'male', 'instrument'], ['dancer_support', 'female', 'whip']] as const) {
     const state = buildAccount('archer', [build('hunter_sniper'), build(npc)]); rules.validateAccount(state);
@@ -69,14 +69,15 @@ test('T031 AC-02: Bard or Dancer is the same Archer companion (no second NPC), w
   const strip = (definition: SkillDefinition) => { const { id: _id, name_key: _n, class_id: _c, presentation_id: _p, tags: _t, ...rest } = definition as SkillDefinition & { presentation_id: string }; return rest; };
   let pairs = 0;
   for (const bard of tree.skills.filter(skill => skill.class_id === 'bard')) for (let level = 1; level <= bard.max_level; level++) {
-    assert.deepEqual(strip(resolved(bard.id, level).definition), strip(resolved(bard.id.replace('bard_', 'dancer_'), level).definition), `${bard.id} Lv${level}`); pairs++;
+    const a=strip(resolved(bard.id,level).definition),b=strip(resolved(bard.id.replace('bard_','dancer_'),level).definition);
+    if(['bard_battle_song','bard_dissonance'].includes(bard.id))assert.notDeepEqual(a,b,`${bard.id} distinct support`);else assert.deepEqual(a,b,`${bard.id} Lv${level}`);pairs++;
   }
   evidence.bard_dancer = { appearance: seen, equal_resolved_pairs_checked: pairs };
 });
 
 test('T031 AC-02: a repeated song adds an independent stack per cast with its own expiry (no refresh), and each expires separately', () => {
   const { events, state } = run([probe('p_bard', 'player', 'front_1', [resolved('bard_battle_song', 10)], false, 'bard'), probe('p_ally', 'player', 'back_1'), probe('e_idle', 'enemy', 'front_1')], 12000);
-  const applied = events.filter(event => event.type === 'status_applied' && event.skill_id === 'bard_battle_song' && event.target_id === 'p_ally');
+  const applied = events.filter(event => event.type === 'status_applied' && event.skill_id === 'bard_battle_song' && event.target_id === 'p_ally' && event.status_change?.status_id === 'aspd_up');
   assert.ok(applied.length >= 2, 'song cast at least twice');
   const [first, second] = applied as [typeof applied[number], typeof applied[number]];
   assert.ok(second.at_ms < first.status_change!.expires_at, 'second cast lands while the first stack is active');
@@ -100,7 +101,7 @@ test('T031 AC-03: the full fight uses real effects - Battle Song speeds up the s
     const starts = events.filter(event => event.actor_id === 'hero' && event.type === 'cast_start').map(event => ({ skill_id: event.skill_id, start_ms: event.at_ms }));
     const dry = row.queue_estimate.starts.map(start => ({ skill_id: start.skill_id, start_ms: start.start_ms }));
     real[row.id] = { real: starts.slice(0, 4), dry };
-    if (row.active_slots[0]!.endsWith('_battle_song')) { assert.deepEqual(starts[0], dry[0]); assert.ok(starts[1]!.start_ms < dry[1]!.start_ms, `${row.id} song haste ${starts[1]!.start_ms} vs ${dry[1]!.start_ms}`); }
+    if (row.active_slots[0] === 'bard_battle_song') { assert.deepEqual(starts[0], dry[0]); assert.ok(starts[1]!.start_ms < dry[1]!.start_ms, `${row.id} song haste ${starts[1]!.start_ms} vs ${dry[1]!.start_ms}`); }
     else assert.deepEqual(starts.slice(0, 4), dry, row.id);
   }
   evidence.real_fight_first_starts = real;

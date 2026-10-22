@@ -3469,6 +3469,13 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.035
+        },
+        {
+          "id": "critical_damage",
+          "stat": "crit_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.05
         }
       ],
       "programs": [],
@@ -3503,6 +3510,13 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.07
+        },
+        {
+          "id": "critical_damage",
+          "stat": "crit_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.1
         }
       ],
       "programs": [],
@@ -3537,6 +3551,13 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.14
+        },
+        {
+          "id": "critical_damage",
+          "stat": "crit_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.2
         }
       ],
       "programs": [],
@@ -4009,7 +4030,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 218.75
+              "expected_raw_power": 374.0625,
+              "damage_type": "physical",
+              "element": "fire",
+              "hit_rule": "physical_roll",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -4051,7 +4078,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 268.3333
+              "expected_raw_power": 462.6563,
+              "damage_type": "physical",
+              "element": "fire",
+              "hit_rule": "physical_roll",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -4093,7 +4126,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 367.5
+              "expected_raw_power": 639.8438,
+              "damage_type": "physical",
+              "element": "fire",
+              "hit_rule": "physical_roll",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -4135,7 +4174,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 78.75
+              "expected_raw_power": 130.9219,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 4,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -4177,7 +4222,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 96.25
+              "expected_raw_power": 161.9297,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 4,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -4219,7 +4270,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 131.25
+              "expected_raw_power": 223.9453,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 4,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -4831,6 +4888,26 @@
                   "value": 0.12
                 }
               ]
+            },
+            {
+              "effect_id": "attack_up",
+              "type": "apply_status",
+              "target": "friends",
+              "status_id": "attack_up",
+              "duration_ms": 5500,
+              "chance": 1,
+              "params": {
+                "ratio": 0.08
+              },
+              "expected_modifiers": [
+                {
+                  "id": "magnitude",
+                  "stat": "physical_attack",
+                  "bucket": "derived",
+                  "op": "add_percent",
+                  "value": 0.08
+                }
+              ]
             }
           ]
         }
@@ -4887,6 +4964,26 @@
                   "value": 0.16
                 }
               ]
+            },
+            {
+              "effect_id": "attack_up",
+              "type": "apply_status",
+              "target": "friends",
+              "status_id": "attack_up",
+              "duration_ms": 5500,
+              "chance": 1,
+              "params": {
+                "ratio": 0.12
+              },
+              "expected_modifiers": [
+                {
+                  "id": "magnitude",
+                  "stat": "physical_attack",
+                  "bucket": "derived",
+                  "op": "add_percent",
+                  "value": 0.12
+                }
+              ]
             }
           ]
         }
@@ -4941,6 +5038,26 @@
                   "bucket": "derived",
                   "op": "add_percent",
                   "value": 0.24
+                }
+              ]
+            },
+            {
+              "effect_id": "attack_up",
+              "type": "apply_status",
+              "target": "friends",
+              "status_id": "attack_up",
+              "duration_ms": 5500,
+              "chance": 1,
+              "params": {
+                "ratio": 0.2
+              },
+              "expected_modifiers": [
+                {
+                  "id": "magnitude",
+                  "stat": "physical_attack",
+                  "bucket": "derived",
+                  "op": "add_percent",
+                  "value": 0.2
                 }
               ]
             }
@@ -5842,22 +5959,42 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "aspd_up",
+              "effect_id": "critical",
               "type": "apply_status",
               "target": "friends",
-              "status_id": "aspd_up",
+              "status_id": "crit_up",
               "duration_ms": 5500,
               "chance": 1,
               "params": {
-                "ratio": 0.12
+                "ratio": 0.1
               },
               "expected_modifiers": [
                 {
                   "id": "magnitude",
-                  "stat": "attack_speed",
-                  "bucket": "derived",
-                  "op": "add_percent",
-                  "value": 0.12
+                  "stat": "crit_chance_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.1
+                }
+              ]
+            },
+            {
+              "effect_id": "critical_damage",
+              "type": "apply_status",
+              "target": "friends",
+              "status_id": "crit_damage_up",
+              "duration_ms": 5500,
+              "chance": 1,
+              "params": {
+                "ratio": 0.15
+              },
+              "expected_modifiers": [
+                {
+                  "id": "magnitude",
+                  "stat": "crit_damage_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.15
                 }
               ]
             }
@@ -5898,22 +6035,42 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "aspd_up",
+              "effect_id": "critical",
               "type": "apply_status",
               "target": "friends",
-              "status_id": "aspd_up",
+              "status_id": "crit_up",
               "duration_ms": 5500,
               "chance": 1,
               "params": {
-                "ratio": 0.16
+                "ratio": 0.15
               },
               "expected_modifiers": [
                 {
                   "id": "magnitude",
-                  "stat": "attack_speed",
-                  "bucket": "derived",
-                  "op": "add_percent",
-                  "value": 0.16
+                  "stat": "crit_chance_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.15
+                }
+              ]
+            },
+            {
+              "effect_id": "critical_damage",
+              "type": "apply_status",
+              "target": "friends",
+              "status_id": "crit_damage_up",
+              "duration_ms": 5500,
+              "chance": 1,
+              "params": {
+                "ratio": 0.216667
+              },
+              "expected_modifiers": [
+                {
+                  "id": "magnitude",
+                  "stat": "crit_damage_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.216667
                 }
               ]
             }
@@ -5954,22 +6111,42 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "aspd_up",
+              "effect_id": "critical",
               "type": "apply_status",
               "target": "friends",
-              "status_id": "aspd_up",
+              "status_id": "crit_up",
               "duration_ms": 5500,
               "chance": 1,
               "params": {
-                "ratio": 0.24
+                "ratio": 0.25
               },
               "expected_modifiers": [
                 {
                   "id": "magnitude",
-                  "stat": "attack_speed",
-                  "bucket": "derived",
-                  "op": "add_percent",
-                  "value": 0.24
+                  "stat": "crit_chance_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.25
+                }
+              ]
+            },
+            {
+              "effect_id": "critical_damage",
+              "type": "apply_status",
+              "target": "friends",
+              "status_id": "crit_damage_up",
+              "duration_ms": 5500,
+              "chance": 1,
+              "params": {
+                "ratio": 0.35
+              },
+              "expected_modifiers": [
+                {
+                  "id": "magnitude",
+                  "stat": "crit_damage_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.35
                 }
               ]
             }
@@ -6010,30 +6187,44 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "armor_break",
+              "effect_id": "defense",
               "type": "apply_status",
-              "target": "foes",
-              "status_id": "armor_break",
-              "duration_ms": 5000,
+              "target": "friends",
+              "status_id": "defense_up",
+              "duration_ms": 5500,
               "chance": 1,
               "params": {
-                "ratio": 0.21
+                "ratio": 0.2
               },
               "expected_modifiers": [
                 {
                   "id": "magnitude",
-                  "stat": "armor_break_percent",
-                  "op": "add_flat",
-                  "bucket": "bonus",
-                  "value": 0.21
+                  "stat": "physical_defense",
+                  "bucket": "derived",
+                  "op": "add_percent",
+                  "value": 0.2
                 }
               ]
             },
             {
-              "effect_id": "resource",
-              "type": "resource_change",
-              "target": "foes",
-              "requested_delta": -10
+              "effect_id": "magic_defense",
+              "type": "apply_status",
+              "target": "friends",
+              "status_id": "magic_defense_up",
+              "duration_ms": 5500,
+              "chance": 1,
+              "params": {
+                "ratio": 0.2
+              },
+              "expected_modifiers": [
+                {
+                  "id": "magnitude",
+                  "stat": "magical_defense",
+                  "bucket": "derived",
+                  "op": "add_percent",
+                  "value": 0.2
+                }
+              ]
             }
           ]
         }
@@ -6072,30 +6263,44 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "armor_break",
+              "effect_id": "defense",
               "type": "apply_status",
-              "target": "foes",
-              "status_id": "armor_break",
-              "duration_ms": 5000,
+              "target": "friends",
+              "status_id": "defense_up",
+              "duration_ms": 5500,
               "chance": 1,
               "params": {
-                "ratio": 0.285833
+                "ratio": 0.283333
               },
               "expected_modifiers": [
                 {
                   "id": "magnitude",
-                  "stat": "armor_break_percent",
-                  "op": "add_flat",
-                  "bucket": "bonus",
-                  "value": 0.285833
+                  "stat": "physical_defense",
+                  "bucket": "derived",
+                  "op": "add_percent",
+                  "value": 0.283333
                 }
               ]
             },
             {
-              "effect_id": "resource",
-              "type": "resource_change",
-              "target": "foes",
-              "requested_delta": -10
+              "effect_id": "magic_defense",
+              "type": "apply_status",
+              "target": "friends",
+              "status_id": "magic_defense_up",
+              "duration_ms": 5500,
+              "chance": 1,
+              "params": {
+                "ratio": 0.283333
+              },
+              "expected_modifiers": [
+                {
+                  "id": "magnitude",
+                  "stat": "magical_defense",
+                  "bucket": "derived",
+                  "op": "add_percent",
+                  "value": 0.283333
+                }
+              ]
             }
           ]
         }
@@ -6134,30 +6339,44 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "armor_break",
+              "effect_id": "defense",
               "type": "apply_status",
-              "target": "foes",
-              "status_id": "armor_break",
-              "duration_ms": 5000,
+              "target": "friends",
+              "status_id": "defense_up",
+              "duration_ms": 5500,
               "chance": 1,
               "params": {
-                "ratio": 0.4375
+                "ratio": 0.45
               },
               "expected_modifiers": [
                 {
                   "id": "magnitude",
-                  "stat": "armor_break_percent",
-                  "op": "add_flat",
-                  "bucket": "bonus",
-                  "value": 0.4375
+                  "stat": "physical_defense",
+                  "bucket": "derived",
+                  "op": "add_percent",
+                  "value": 0.45
                 }
               ]
             },
             {
-              "effect_id": "resource",
-              "type": "resource_change",
-              "target": "foes",
-              "requested_delta": -10
+              "effect_id": "magic_defense",
+              "type": "apply_status",
+              "target": "friends",
+              "status_id": "magic_defense_up",
+              "duration_ms": 5500,
+              "chance": 1,
+              "params": {
+                "ratio": 0.45
+              },
+              "expected_modifiers": [
+                {
+                  "id": "magnitude",
+                  "stat": "magical_defense",
+                  "bucket": "derived",
+                  "op": "add_percent",
+                  "value": 0.45
+                }
+              ]
             }
           ]
         }
@@ -7199,7 +7418,7 @@
               "duration_ms": 5000,
               "chance": 1,
               "params": {
-                "power_ratio": 0.6125
+                "power_ratio": 0.935156
               },
               "expected_modifiers": [],
               "tick_times_ms": [
@@ -7213,7 +7432,13 @@
                   "effect_id": "tick_hit",
                   "type": "damage",
                   "target": "self",
-                  "expected_raw_power": 61.25000000000001
+                  "expected_raw_power": 93.51559999999999,
+                  "damage_type": "magical",
+                  "element": "water",
+                  "hit_rule": "always",
+                  "can_crit": false,
+                  "hits": 1,
+                  "armor_rule": "normal"
                 },
                 {
                   "effect_id": "freeze",
@@ -7223,13 +7448,13 @@
                   "duration_ms": 800,
                   "chance": 0.12,
                   "params": {},
-                  "expected_modifiers": [],
                   "predicate": {
                     "type": "hit_landed",
                     "effect_id": "tick_hit",
                     "scope": "same_target",
                     "hit_index": "any"
-                  }
+                  },
+                  "expected_modifiers": []
                 }
               ]
             }
@@ -7277,7 +7502,7 @@
               "duration_ms": 5000,
               "chance": 1,
               "params": {
-                "power_ratio": 0.758333
+                "power_ratio": 1.156641
               },
               "expected_modifiers": [],
               "tick_times_ms": [
@@ -7291,7 +7516,13 @@
                   "effect_id": "tick_hit",
                   "type": "damage",
                   "target": "self",
-                  "expected_raw_power": 75.83330000000001
+                  "expected_raw_power": 115.6641,
+                  "damage_type": "magical",
+                  "element": "water",
+                  "hit_rule": "always",
+                  "can_crit": false,
+                  "hits": 1,
+                  "armor_rule": "normal"
                 },
                 {
                   "effect_id": "freeze",
@@ -7301,13 +7532,13 @@
                   "duration_ms": 800,
                   "chance": 0.12,
                   "params": {},
-                  "expected_modifiers": [],
                   "predicate": {
                     "type": "hit_landed",
                     "effect_id": "tick_hit",
                     "scope": "same_target",
                     "hit_index": "any"
-                  }
+                  },
+                  "expected_modifiers": []
                 }
               ]
             }
@@ -7355,7 +7586,7 @@
               "duration_ms": 5000,
               "chance": 1,
               "params": {
-                "power_ratio": 1.05
+                "power_ratio": 1.599609
               },
               "expected_modifiers": [],
               "tick_times_ms": [
@@ -7369,7 +7600,13 @@
                   "effect_id": "tick_hit",
                   "type": "damage",
                   "target": "self",
-                  "expected_raw_power": 105.0
+                  "expected_raw_power": 159.9609,
+                  "damage_type": "magical",
+                  "element": "water",
+                  "hit_rule": "always",
+                  "can_crit": false,
+                  "hits": 1,
+                  "armor_rule": "normal"
                 },
                 {
                   "effect_id": "freeze",
@@ -7379,13 +7616,13 @@
                   "duration_ms": 800,
                   "chance": 0.12,
                   "params": {},
-                  "expected_modifiers": [],
                   "predicate": {
                     "type": "hit_landed",
                     "effect_id": "tick_hit",
                     "scope": "same_target",
                     "hit_index": "any"
-                  }
+                  },
+                  "expected_modifiers": []
                 }
               ]
             }
@@ -7429,7 +7666,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 78.75
+              "expected_raw_power": 130.9219,
+              "damage_type": "magical",
+              "element": "wind",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 4,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -7471,7 +7714,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 96.25
+              "expected_raw_power": 161.9297,
+              "damage_type": "magical",
+              "element": "wind",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 4,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -7513,7 +7762,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 131.25
+              "expected_raw_power": 223.9453,
+              "damage_type": "magical",
+              "element": "wind",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 4,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -7555,7 +7810,29 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 87.5
+              "expected_raw_power": 124.6875,
+              "damage_type": "magical",
+              "element": "fire",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 3,
+              "armor_rule": "normal"
+            },
+            {
+              "effect_id": "stun",
+              "type": "apply_status",
+              "target": "foes",
+              "status_id": "stun",
+              "duration_ms": 1000,
+              "chance": 0.3,
+              "params": {},
+              "predicate": {
+                "type": "hit_landed",
+                "effect_id": "hit",
+                "scope": "same_target",
+                "hit_index": "any"
+              },
+              "expected_modifiers": []
             }
           ]
         }
@@ -7597,7 +7874,29 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 107.91669999999999
+              "expected_raw_power": 154.2188,
+              "damage_type": "magical",
+              "element": "fire",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 3,
+              "armor_rule": "normal"
+            },
+            {
+              "effect_id": "stun",
+              "type": "apply_status",
+              "target": "foes",
+              "status_id": "stun",
+              "duration_ms": 1333,
+              "chance": 0.3,
+              "params": {},
+              "predicate": {
+                "type": "hit_landed",
+                "effect_id": "hit",
+                "scope": "same_target",
+                "hit_index": "any"
+              },
+              "expected_modifiers": []
             }
           ]
         }
@@ -7639,7 +7938,29 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 148.75
+              "expected_raw_power": 213.28119999999998,
+              "damage_type": "magical",
+              "element": "fire",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 3,
+              "armor_rule": "normal"
+            },
+            {
+              "effect_id": "stun",
+              "type": "apply_status",
+              "target": "foes",
+              "status_id": "stun",
+              "duration_ms": 2000,
+              "chance": 0.3,
+              "params": {},
+              "predicate": {
+                "type": "hit_landed",
+                "effect_id": "hit",
+                "scope": "same_target",
+                "hit_index": "any"
+              },
+              "expected_modifiers": []
             }
           ]
         }
@@ -7909,7 +8230,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 227.5
+              "expected_raw_power": 374.0625,
+              "damage_type": "magical",
+              "element": "earth",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -7951,7 +8278,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 280.0
+              "expected_raw_power": 462.6563,
+              "damage_type": "magical",
+              "element": "earth",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -7993,7 +8326,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 385.0
+              "expected_raw_power": 639.8438,
+              "damage_type": "magical",
+              "element": "earth",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -8439,10 +8778,21 @@
               "target": "foe"
             },
             {
-              "effect_id": "resource",
-              "type": "resource_change",
+              "effect_id": "interrupt_hit",
+              "type": "damage",
               "target": "foe",
-              "requested_delta": -20
+              "expected_raw_power": 1000.0,
+              "damage_type": "magical",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal",
+              "predicate": {
+                "type": "effect_succeeded",
+                "effect_id": "interrupt",
+                "scope": "same_target"
+              }
             }
           ]
         }
@@ -8486,10 +8836,21 @@
               "target": "foe"
             },
             {
-              "effect_id": "resource",
-              "type": "resource_change",
+              "effect_id": "interrupt_hit",
+              "type": "damage",
               "target": "foe",
-              "requested_delta": -20
+              "expected_raw_power": 1166.6667,
+              "damage_type": "magical",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal",
+              "predicate": {
+                "type": "effect_succeeded",
+                "effect_id": "interrupt",
+                "scope": "same_target"
+              }
             }
           ]
         }
@@ -8533,10 +8894,21 @@
               "target": "foe"
             },
             {
-              "effect_id": "resource",
-              "type": "resource_change",
+              "effect_id": "interrupt_hit",
+              "type": "damage",
               "target": "foe",
-              "requested_delta": -20
+              "expected_raw_power": 1500.0,
+              "damage_type": "magical",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal",
+              "predicate": {
+                "type": "effect_succeeded",
+                "effect_id": "interrupt",
+                "scope": "same_target"
+              }
             }
           ]
         }
@@ -8577,7 +8949,8 @@
             {
               "effect_id": "dispel",
               "type": "remove_status",
-              "target": "foes"
+              "target": "foes",
+              "max_instances": 1
             }
           ]
         }
@@ -8618,7 +8991,8 @@
             {
               "effect_id": "dispel",
               "type": "remove_status",
-              "target": "foes"
+              "target": "foes",
+              "max_instances": 2
             }
           ]
         }
@@ -8659,7 +9033,8 @@
             {
               "effect_id": "dispel",
               "type": "remove_status",
-              "target": "foes"
+              "target": "foes",
+              "max_instances": 4
             }
           ]
         }
@@ -8701,7 +9076,14 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 315.0
+              "expected_raw_power": 349.125,
+              "critical_rule": "always",
+              "damage_type": "magical",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -8743,7 +9125,14 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 385.0
+              "expected_raw_power": 431.8125,
+              "critical_rule": "always",
+              "damage_type": "magical",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -8785,7 +9174,14 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 525.0
+              "expected_raw_power": 597.1875,
+              "critical_rule": "always",
+              "damage_type": "magical",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -8824,44 +9220,26 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "magic_defense_up",
-              "type": "apply_status",
-              "target": "friends",
-              "status_id": "magic_defense_up",
-              "duration_ms": 6000,
-              "chance": 1,
-              "params": {
-                "ratio": 0.35
-              },
-              "expected_modifiers": [
-                {
-                  "id": "magnitude",
-                  "stat": "magical_defense",
-                  "bucket": "derived",
-                  "op": "add_percent",
-                  "value": 0.35
-                }
-              ]
+              "effect_id": "hit",
+              "type": "damage",
+              "target": "foe",
+              "expected_raw_power": 523.6875,
+              "damage_type": "magical",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
             },
             {
-              "effect_id": "mana_regen_up",
+              "effect_id": "silence",
               "type": "apply_status",
-              "target": "friends",
-              "status_id": "mana_regen_up",
-              "duration_ms": 6000,
+              "target": "foe",
+              "status_id": "silence",
+              "duration_ms": 5000,
               "chance": 1,
-              "params": {
-                "ratio": 0.175
-              },
-              "expected_modifiers": [
-                {
-                  "id": "magnitude",
-                  "stat": "sp_regen_percent",
-                  "op": "add_flat",
-                  "bucket": "bonus",
-                  "value": 0.175
-                }
-              ]
+              "params": {},
+              "expected_modifiers": []
             }
           ]
         }
@@ -8900,44 +9278,26 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "magic_defense_up",
-              "type": "apply_status",
-              "target": "friends",
-              "status_id": "magic_defense_up",
-              "duration_ms": 6000,
-              "chance": 1,
-              "params": {
-                "ratio": 0.466667
-              },
-              "expected_modifiers": [
-                {
-                  "id": "magnitude",
-                  "stat": "magical_defense",
-                  "bucket": "derived",
-                  "op": "add_percent",
-                  "value": 0.466667
-                }
-              ]
+              "effect_id": "hit",
+              "type": "damage",
+              "target": "foe",
+              "expected_raw_power": 647.7188,
+              "damage_type": "magical",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
             },
             {
-              "effect_id": "mana_regen_up",
+              "effect_id": "silence",
               "type": "apply_status",
-              "target": "friends",
-              "status_id": "mana_regen_up",
+              "target": "foe",
+              "status_id": "silence",
               "duration_ms": 6000,
               "chance": 1,
-              "params": {
-                "ratio": 0.2625
-              },
-              "expected_modifiers": [
-                {
-                  "id": "magnitude",
-                  "stat": "sp_regen_percent",
-                  "op": "add_flat",
-                  "bucket": "bonus",
-                  "value": 0.2625
-                }
-              ]
+              "params": {},
+              "expected_modifiers": []
             }
           ]
         }
@@ -8976,44 +9336,26 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "magic_defense_up",
-              "type": "apply_status",
-              "target": "friends",
-              "status_id": "magic_defense_up",
-              "duration_ms": 6000,
-              "chance": 1,
-              "params": {
-                "ratio": 0.7
-              },
-              "expected_modifiers": [
-                {
-                  "id": "magnitude",
-                  "stat": "magical_defense",
-                  "bucket": "derived",
-                  "op": "add_percent",
-                  "value": 0.7
-                }
-              ]
+              "effect_id": "hit",
+              "type": "damage",
+              "target": "foe",
+              "expected_raw_power": 895.7812,
+              "damage_type": "magical",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
             },
             {
-              "effect_id": "mana_regen_up",
+              "effect_id": "silence",
               "type": "apply_status",
-              "target": "friends",
-              "status_id": "mana_regen_up",
-              "duration_ms": 6000,
+              "target": "foe",
+              "status_id": "silence",
+              "duration_ms": 8000,
               "chance": 1,
-              "params": {
-                "ratio": 0.4375
-              },
-              "expected_modifiers": [
-                {
-                  "id": "magnitude",
-                  "stat": "sp_regen_percent",
-                  "op": "add_flat",
-                  "bucket": "bonus",
-                  "value": 0.4375
-                }
-              ]
+              "params": {},
+              "expected_modifiers": []
             }
           ]
         }
@@ -9581,7 +9923,7 @@
               "duration_ms": 4500,
               "chance": 1,
               "params": {
-                "ratio": 0.0875
+                "ratio": 0.175
               },
               "expected_modifiers": [
                 {
@@ -9589,7 +9931,7 @@
                   "stat": "physical_attack",
                   "bucket": "derived",
                   "op": "add_percent",
-                  "value": 0.0875
+                  "value": 0.175
                 }
               ]
             }
@@ -9637,7 +9979,7 @@
               "duration_ms": 4500,
               "chance": 1,
               "params": {
-                "ratio": 0.128333
+                "ratio": 0.25
               },
               "expected_modifiers": [
                 {
@@ -9645,7 +9987,7 @@
                   "stat": "physical_attack",
                   "bucket": "derived",
                   "op": "add_percent",
-                  "value": 0.128333
+                  "value": 0.25
                 }
               ]
             }
@@ -9693,7 +10035,7 @@
               "duration_ms": 4500,
               "chance": 1,
               "params": {
-                "ratio": 0.21
+                "ratio": 0.4
               },
               "expected_modifiers": [
                 {
@@ -9701,7 +10043,7 @@
                   "stat": "physical_attack",
                   "bucket": "derived",
                   "op": "add_percent",
-                  "value": 0.21
+                  "value": 0.4
                 }
               ]
             }
@@ -9742,10 +10084,24 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "heal",
-              "type": "heal",
-              "target": "self",
-              "expected_raw_power": 105.0
+              "effect_id": "armor_break",
+              "type": "apply_status",
+              "target": "foe",
+              "status_id": "armor_break",
+              "duration_ms": 5000,
+              "chance": 1,
+              "params": {
+                "ratio": 0.2
+              },
+              "expected_modifiers": [
+                {
+                  "id": "magnitude",
+                  "stat": "armor_break_percent",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.2
+                }
+              ]
             }
           ]
         }
@@ -9784,10 +10140,24 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "heal",
-              "type": "heal",
-              "target": "self",
-              "expected_raw_power": 134.1667
+              "effect_id": "armor_break",
+              "type": "apply_status",
+              "target": "foe",
+              "status_id": "armor_break",
+              "duration_ms": 6667,
+              "chance": 1,
+              "params": {
+                "ratio": 0.266667
+              },
+              "expected_modifiers": [
+                {
+                  "id": "magnitude",
+                  "stat": "armor_break_percent",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.266667
+                }
+              ]
             }
           ]
         }
@@ -9826,10 +10196,24 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "heal",
-              "type": "heal",
-              "target": "self",
-              "expected_raw_power": 192.5
+              "effect_id": "armor_break",
+              "type": "apply_status",
+              "target": "foe",
+              "status_id": "armor_break",
+              "duration_ms": 10000,
+              "chance": 1,
+              "params": {
+                "ratio": 0.4
+              },
+              "expected_modifiers": [
+                {
+                  "id": "magnitude",
+                  "stat": "armor_break_percent",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.4
+                }
+              ]
             }
           ]
         }
@@ -9973,7 +10357,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 140.0
+              "expected_raw_power": 140.0,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             },
             {
               "effect_id": "stun",
@@ -9983,13 +10373,13 @@
               "duration_ms": 1000,
               "chance": 0.4,
               "params": {},
-              "expected_modifiers": [],
               "predicate": {
                 "type": "hit_landed",
                 "effect_id": "hit",
                 "scope": "same_target",
                 "hit_index": "any"
-              }
+              },
+              "expected_modifiers": []
             }
           ]
         }
@@ -10031,23 +10421,29 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 169.1667
+              "expected_raw_power": 169.1667,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             },
             {
               "effect_id": "stun",
               "type": "apply_status",
               "target": "foes",
               "status_id": "stun",
-              "duration_ms": 1000,
+              "duration_ms": 1333,
               "chance": 0.4,
               "params": {},
-              "expected_modifiers": [],
               "predicate": {
                 "type": "hit_landed",
                 "effect_id": "hit",
                 "scope": "same_target",
                 "hit_index": "any"
-              }
+              },
+              "expected_modifiers": []
             }
           ]
         }
@@ -10089,23 +10485,29 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 227.5
+              "expected_raw_power": 227.5,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             },
             {
               "effect_id": "stun",
               "type": "apply_status",
               "target": "foes",
               "status_id": "stun",
-              "duration_ms": 1000,
+              "duration_ms": 2000,
               "chance": 0.4,
               "params": {},
-              "expected_modifiers": [],
               "predicate": {
                 "type": "hit_landed",
                 "effect_id": "hit",
                 "scope": "same_target",
                 "hit_index": "any"
-              }
+              },
+              "expected_modifiers": []
             }
           ]
         }
@@ -10151,7 +10553,7 @@
               "duration_ms": 5500,
               "chance": 1,
               "params": {
-                "ratio": 0.12
+                "ratio": 0.2
               },
               "expected_modifiers": [
                 {
@@ -10159,7 +10561,7 @@
                   "stat": "attack_speed",
                   "bucket": "derived",
                   "op": "add_percent",
-                  "value": 0.12
+                  "value": 0.2
                 }
               ]
             }
@@ -10207,7 +10609,7 @@
               "duration_ms": 5500,
               "chance": 1,
               "params": {
-                "ratio": 0.163333
+                "ratio": 0.266667
               },
               "expected_modifiers": [
                 {
@@ -10215,7 +10617,7 @@
                   "stat": "attack_speed",
                   "bucket": "derived",
                   "op": "add_percent",
-                  "value": 0.163333
+                  "value": 0.266667
                 }
               ]
             }
@@ -10263,7 +10665,7 @@
               "duration_ms": 5500,
               "chance": 1,
               "params": {
-                "ratio": 0.25
+                "ratio": 0.4
               },
               "expected_modifiers": [
                 {
@@ -10271,7 +10673,7 @@
                   "stat": "attack_speed",
                   "bucket": "derived",
                   "op": "add_percent",
-                  "value": 0.25
+                  "value": 0.4
                 }
               ]
             }
@@ -10330,6 +10732,46 @@
                   "value": 0.21
                 }
               ]
+            },
+            {
+              "effect_id": "critical",
+              "type": "apply_status",
+              "target": "friends",
+              "status_id": "crit_up",
+              "duration_ms": 5000,
+              "chance": 1,
+              "params": {
+                "ratio": 0.08
+              },
+              "expected_modifiers": [
+                {
+                  "id": "magnitude",
+                  "stat": "crit_chance_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.08
+                }
+              ]
+            },
+            {
+              "effect_id": "critical_damage",
+              "type": "apply_status",
+              "target": "friends",
+              "status_id": "crit_damage_up",
+              "duration_ms": 5000,
+              "chance": 1,
+              "params": {
+                "ratio": 0.1
+              },
+              "expected_modifiers": [
+                {
+                  "id": "magnitude",
+                  "stat": "crit_damage_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.1
+                }
+              ]
             }
           ]
         }
@@ -10384,6 +10826,46 @@
                   "bucket": "derived",
                   "op": "add_percent",
                   "value": 0.28
+                }
+              ]
+            },
+            {
+              "effect_id": "critical",
+              "type": "apply_status",
+              "target": "friends",
+              "status_id": "crit_up",
+              "duration_ms": 5000,
+              "chance": 1,
+              "params": {
+                "ratio": 0.113333
+              },
+              "expected_modifiers": [
+                {
+                  "id": "magnitude",
+                  "stat": "crit_chance_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.113333
+                }
+              ]
+            },
+            {
+              "effect_id": "critical_damage",
+              "type": "apply_status",
+              "target": "friends",
+              "status_id": "crit_damage_up",
+              "duration_ms": 5000,
+              "chance": 1,
+              "params": {
+                "ratio": 0.166667
+              },
+              "expected_modifiers": [
+                {
+                  "id": "magnitude",
+                  "stat": "crit_damage_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.166667
                 }
               ]
             }
@@ -10442,6 +10924,46 @@
                   "value": 0.42
                 }
               ]
+            },
+            {
+              "effect_id": "critical",
+              "type": "apply_status",
+              "target": "friends",
+              "status_id": "crit_up",
+              "duration_ms": 5000,
+              "chance": 1,
+              "params": {
+                "ratio": 0.18
+              },
+              "expected_modifiers": [
+                {
+                  "id": "magnitude",
+                  "stat": "crit_chance_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.18
+                }
+              ]
+            },
+            {
+              "effect_id": "critical_damage",
+              "type": "apply_status",
+              "target": "friends",
+              "status_id": "crit_damage_up",
+              "duration_ms": 5000,
+              "chance": 1,
+              "params": {
+                "ratio": 0.3
+              },
+              "expected_modifiers": [
+                {
+                  "id": "magnitude",
+                  "stat": "crit_damage_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.3
+                }
+              ]
             }
           ]
         }
@@ -10483,33 +11005,39 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 210.0
+              "expected_raw_power": 210.0,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             },
             {
-              "effect_id": "armor_break",
+              "effect_id": "attack_down",
               "type": "apply_status",
               "target": "foe",
-              "status_id": "armor_break",
+              "status_id": "attack_down",
               "duration_ms": 5500,
               "chance": 1,
               "params": {
-                "ratio": 0.2625
+                "ratio": -0.15
               },
-              "expected_modifiers": [
-                {
-                  "id": "magnitude",
-                  "stat": "armor_break_percent",
-                  "op": "add_flat",
-                  "bucket": "bonus",
-                  "value": 0.2625
-                }
-              ],
               "predicate": {
                 "type": "hit_landed",
                 "effect_id": "hit",
                 "scope": "same_target",
                 "hit_index": "any"
-              }
+              },
+              "expected_modifiers": [
+                {
+                  "id": "magnitude",
+                  "stat": "physical_attack",
+                  "op": "add_percent",
+                  "bucket": "derived",
+                  "value": -0.15
+                }
+              ]
             }
           ]
         }
@@ -10551,33 +11079,39 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 250.83329999999998
+              "expected_raw_power": 250.83329999999998,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             },
             {
-              "effect_id": "armor_break",
+              "effect_id": "attack_down",
               "type": "apply_status",
               "target": "foe",
-              "status_id": "armor_break",
+              "status_id": "attack_down",
               "duration_ms": 5500,
               "chance": 1,
               "params": {
-                "ratio": 0.35
+                "ratio": -0.2
               },
-              "expected_modifiers": [
-                {
-                  "id": "magnitude",
-                  "stat": "armor_break_percent",
-                  "op": "add_flat",
-                  "bucket": "bonus",
-                  "value": 0.35
-                }
-              ],
               "predicate": {
                 "type": "hit_landed",
                 "effect_id": "hit",
                 "scope": "same_target",
                 "hit_index": "any"
-              }
+              },
+              "expected_modifiers": [
+                {
+                  "id": "magnitude",
+                  "stat": "physical_attack",
+                  "op": "add_percent",
+                  "bucket": "derived",
+                  "value": -0.2
+                }
+              ]
             }
           ]
         }
@@ -10619,33 +11153,39 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 332.5
+              "expected_raw_power": 332.5,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             },
             {
-              "effect_id": "armor_break",
+              "effect_id": "attack_down",
               "type": "apply_status",
               "target": "foe",
-              "status_id": "armor_break",
+              "status_id": "attack_down",
               "duration_ms": 5500,
               "chance": 1,
               "params": {
-                "ratio": 0.525
+                "ratio": -0.3
               },
-              "expected_modifiers": [
-                {
-                  "id": "magnitude",
-                  "stat": "armor_break_percent",
-                  "op": "add_flat",
-                  "bucket": "bonus",
-                  "value": 0.525
-                }
-              ],
               "predicate": {
                 "type": "hit_landed",
                 "effect_id": "hit",
                 "scope": "same_target",
                 "hit_index": "any"
-              }
+              },
+              "expected_modifiers": [
+                {
+                  "id": "magnitude",
+                  "stat": "physical_attack",
+                  "op": "add_percent",
+                  "bucket": "derived",
+                  "value": -0.3
+                }
+              ]
             }
           ]
         }
@@ -10687,7 +11227,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 140.0
+              "expected_raw_power": 93.51559999999999,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 4,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -10729,7 +11275,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 169.1667
+              "expected_raw_power": 115.6641,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 4,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -10771,7 +11323,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 227.5
+              "expected_raw_power": 159.9609,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 4,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -11017,7 +11575,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 245.00000000000003
+              "expected_raw_power": 523.6875,
+              "damage_type": "magical",
+              "element": "poison",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
             },
             {
               "effect_id": "armor_break",
@@ -11079,7 +11643,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 303.3333
+              "expected_raw_power": 647.7188,
+              "damage_type": "magical",
+              "element": "poison",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
             },
             {
               "effect_id": "armor_break",
@@ -11141,7 +11711,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 420.0
+              "expected_raw_power": 895.7812,
+              "damage_type": "magical",
+              "element": "poison",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
             },
             {
               "effect_id": "armor_break",
@@ -11204,6 +11780,33 @@
               "type": "heal",
               "target": "friend",
               "expected_raw_power": 157.5
+            },
+            {
+              "effect_id": "regeneration",
+              "type": "apply_status",
+              "target": "friend",
+              "status_id": "regeneration",
+              "duration_ms": 5001,
+              "chance": 1,
+              "params": {
+                "power_ratio": 0.8
+              },
+              "expected_modifiers": [],
+              "tick_times_ms": [
+                1000,
+                2000,
+                3000,
+                4000,
+                5000
+              ],
+              "periodic_raw_intents": [
+                {
+                  "effect_id": "heal_tick",
+                  "type": "heal",
+                  "target": "self",
+                  "expected_raw_power": 80.0
+                }
+              ]
             }
           ]
         }
@@ -11246,6 +11849,33 @@
               "type": "heal",
               "target": "friend",
               "expected_raw_power": 198.3333
+            },
+            {
+              "effect_id": "regeneration",
+              "type": "apply_status",
+              "target": "friend",
+              "status_id": "regeneration",
+              "duration_ms": 5001,
+              "chance": 1,
+              "params": {
+                "power_ratio": 0.8
+              },
+              "expected_modifiers": [],
+              "tick_times_ms": [
+                1000,
+                2000,
+                3000,
+                4000,
+                5000
+              ],
+              "periodic_raw_intents": [
+                {
+                  "effect_id": "heal_tick",
+                  "type": "heal",
+                  "target": "self",
+                  "expected_raw_power": 80.0
+                }
+              ]
             }
           ]
         }
@@ -11288,6 +11918,33 @@
               "type": "heal",
               "target": "friend",
               "expected_raw_power": 280.0
+            },
+            {
+              "effect_id": "regeneration",
+              "type": "apply_status",
+              "target": "friend",
+              "status_id": "regeneration",
+              "duration_ms": 5001,
+              "chance": 1,
+              "params": {
+                "power_ratio": 0.8
+              },
+              "expected_modifiers": [],
+              "tick_times_ms": [
+                1000,
+                2000,
+                3000,
+                4000,
+                5000
+              ],
+              "periodic_raw_intents": [
+                {
+                  "effect_id": "heal_tick",
+                  "type": "heal",
+                  "target": "self",
+                  "expected_raw_power": 80.0
+                }
+              ]
             }
           ]
         }
@@ -11329,9 +11986,9 @@
               "effect_id": "spawn",
               "type": "summon",
               "target": "self",
+              "duration_ms": 10000,
               "actor_definition_id": "hell_plant",
               "max_owned": 2,
-              "duration_ms": 6500,
               "power_scale": 1.75
             }
           ]
@@ -11374,9 +12031,9 @@
               "effect_id": "spawn",
               "type": "summon",
               "target": "self",
+              "duration_ms": 10000,
               "actor_definition_id": "hell_plant",
               "max_owned": 2,
-              "duration_ms": 6500,
               "power_scale": 1.75
             }
           ]
@@ -11419,9 +12076,9 @@
               "effect_id": "spawn",
               "type": "summon",
               "target": "self",
+              "duration_ms": 10000,
               "actor_definition_id": "hell_plant",
               "max_owned": 2,
-              "duration_ms": 6500,
               "power_scale": 1.75
             }
           ]
@@ -11464,10 +12121,10 @@
               "effect_id": "spawn",
               "type": "summon",
               "target": "self",
+              "duration_ms": 6500,
               "actor_definition_id": "healing_plant",
               "max_owned": 1,
-              "duration_ms": 6500,
-              "power_scale": 1.75
+              "power_scale": 2.49375
             }
           ]
         }
@@ -11509,10 +12166,10 @@
               "effect_id": "spawn",
               "type": "summon",
               "target": "self",
+              "duration_ms": 6500,
               "actor_definition_id": "healing_plant",
               "max_owned": 1,
-              "duration_ms": 6500,
-              "power_scale": 1.75
+              "power_scale": 3.084375
             }
           ]
         }
@@ -11554,10 +12211,10 @@
               "effect_id": "spawn",
               "type": "summon",
               "target": "self",
+              "duration_ms": 6500,
               "actor_definition_id": "healing_plant",
               "max_owned": 1,
-              "duration_ms": 6500,
-              "power_scale": 1.75
+              "power_scale": 4.265625
             }
           ]
         }
@@ -11596,6 +12253,18 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
+              "effect_id": "burst",
+              "type": "damage",
+              "target": "foes",
+              "expected_raw_power": 187.0313,
+              "damage_type": "magical",
+              "element": "fire",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
+            },
+            {
               "effect_id": "chemical_burn",
               "type": "apply_status",
               "target": "foes",
@@ -11603,7 +12272,7 @@
               "duration_ms": 5000,
               "chance": 1,
               "params": {
-                "power_ratio": 0.525
+                "power_ratio": 0.467578
               },
               "expected_modifiers": [],
               "tick_times_ms": [
@@ -11617,7 +12286,13 @@
                   "effect_id": "tick_hit",
                   "type": "damage",
                   "target": "self",
-                  "expected_raw_power": 52.5
+                  "expected_raw_power": 46.757799999999996,
+                  "damage_type": "magical",
+                  "element": "fire",
+                  "hit_rule": "always",
+                  "can_crit": false,
+                  "hits": 1,
+                  "armor_rule": "normal"
                 }
               ]
             }
@@ -11658,6 +12333,18 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
+              "effect_id": "burst",
+              "type": "damage",
+              "target": "foes",
+              "expected_raw_power": 231.3281,
+              "damage_type": "magical",
+              "element": "fire",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
+            },
+            {
               "effect_id": "chemical_burn",
               "type": "apply_status",
               "target": "foes",
@@ -11665,7 +12352,7 @@
               "duration_ms": 5000,
               "chance": 1,
               "params": {
-                "power_ratio": 0.670833
+                "power_ratio": 0.57832
               },
               "expected_modifiers": [],
               "tick_times_ms": [
@@ -11679,7 +12366,13 @@
                   "effect_id": "tick_hit",
                   "type": "damage",
                   "target": "self",
-                  "expected_raw_power": 67.08330000000001
+                  "expected_raw_power": 57.831999999999994,
+                  "damage_type": "magical",
+                  "element": "fire",
+                  "hit_rule": "always",
+                  "can_crit": false,
+                  "hits": 1,
+                  "armor_rule": "normal"
                 }
               ]
             }
@@ -11720,6 +12413,18 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
+              "effect_id": "burst",
+              "type": "damage",
+              "target": "foes",
+              "expected_raw_power": 319.9219,
+              "damage_type": "magical",
+              "element": "fire",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
+            },
+            {
               "effect_id": "chemical_burn",
               "type": "apply_status",
               "target": "foes",
@@ -11727,7 +12432,7 @@
               "duration_ms": 5000,
               "chance": 1,
               "params": {
-                "power_ratio": 0.9625
+                "power_ratio": 0.799805
               },
               "expected_modifiers": [],
               "tick_times_ms": [
@@ -11741,7 +12446,13 @@
                   "effect_id": "tick_hit",
                   "type": "damage",
                   "target": "self",
-                  "expected_raw_power": 96.25
+                  "expected_raw_power": 79.98049999999999,
+                  "damage_type": "magical",
+                  "element": "fire",
+                  "hit_rule": "always",
+                  "can_crit": false,
+                  "hits": 1,
+                  "armor_rule": "normal"
                 }
               ]
             }
@@ -12991,7 +13702,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 210.0
+              "expected_raw_power": 374.0625,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -13033,7 +13750,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 256.6667
+              "expected_raw_power": 462.6563,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -13075,7 +13798,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 350.0
+              "expected_raw_power": 639.8438,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -14071,7 +14800,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 297.5
+              "expected_raw_power": 374.0625,
+              "damage_type": "physical",
+              "element": "holy",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -14113,7 +14848,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 361.6667
+              "expected_raw_power": 462.6563,
+              "damage_type": "physical",
+              "element": "holy",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -14155,7 +14896,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 490.00000000000006
+              "expected_raw_power": 639.8438,
+              "damage_type": "physical",
+              "element": "holy",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -15535,7 +16282,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 96.25
+              "expected_raw_power": 130.9219,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 4,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -15577,7 +16330,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 116.66669999999999
+              "expected_raw_power": 161.9297,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 4,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -15619,7 +16378,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 157.5
+              "expected_raw_power": 223.9453,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 4,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -15662,7 +16427,7 @@
               "type": "apply_status",
               "target": "self",
               "status_id": "attack_up",
-              "duration_ms": 5500,
+              "duration_ms": 5000,
               "chance": 1,
               "params": {
                 "ratio": 0.21
@@ -15718,7 +16483,7 @@
               "type": "apply_status",
               "target": "self",
               "status_id": "attack_up",
-              "duration_ms": 5500,
+              "duration_ms": 6667,
               "chance": 1,
               "params": {
                 "ratio": 0.285833
@@ -15774,7 +16539,7 @@
               "type": "apply_status",
               "target": "self",
               "status_id": "attack_up",
-              "duration_ms": 5500,
+              "duration_ms": 10000,
               "chance": 1,
               "params": {
                 "ratio": 0.4375
@@ -16015,12 +16780,17 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "detonate",
-              "type": "handler",
+              "effect_id": "hit",
+              "type": "damage",
               "target": "foe",
-              "own_statuses_consumed": 2,
-              "expected_raw_power": 210.0,
-              "other_source_statuses_remaining": 1
+              "expected_raw_power": 523.6875,
+              "crit_chance_bonus": 0.2,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -16059,12 +16829,17 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "detonate",
-              "type": "handler",
+              "effect_id": "hit",
+              "type": "damage",
               "target": "foe",
-              "own_statuses_consumed": 2,
-              "expected_raw_power": 280.0,
-              "other_source_statuses_remaining": 1
+              "expected_raw_power": 647.7188,
+              "crit_chance_bonus": 0.3,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -16103,12 +16878,17 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "detonate",
-              "type": "handler",
+              "effect_id": "hit",
+              "type": "damage",
               "target": "foe",
-              "own_statuses_consumed": 2,
-              "expected_raw_power": 420.0,
-              "other_source_statuses_remaining": 1
+              "expected_raw_power": 895.7812,
+              "crit_chance_bonus": 0.5,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -16150,7 +16930,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 210.0
+              "expected_raw_power": 262.5,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -16192,7 +16978,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 256.6667
+              "expected_raw_power": 320.8333,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -16234,7 +17026,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 350.0
+              "expected_raw_power": 437.5,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -16477,6 +17275,18 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
+              "effect_id": "hit",
+              "type": "damage",
+              "target": "foe",
+              "expected_raw_power": 120.0,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
+            },
+            {
               "effect_id": "armor_break",
               "type": "apply_status",
               "target": "foe",
@@ -16532,6 +17342,18 @@
         {
           "phase": "cast_resolve",
           "expected_intents": [
+            {
+              "effect_id": "hit",
+              "type": "damage",
+              "target": "foe",
+              "expected_raw_power": 146.6667,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
+            },
             {
               "effect_id": "armor_break",
               "type": "apply_status",
@@ -16589,6 +17411,18 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
+              "effect_id": "hit",
+              "type": "damage",
+              "target": "foe",
+              "expected_raw_power": 200.0,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
+            },
+            {
               "effect_id": "armor_break",
               "type": "apply_status",
               "target": "foe",
@@ -16644,6 +17478,18 @@
         {
           "phase": "cast_resolve",
           "expected_intents": [
+            {
+              "effect_id": "hit",
+              "type": "damage",
+              "target": "foe",
+              "expected_raw_power": 120.0,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
+            },
             {
               "effect_id": "attack_down",
               "type": "apply_status",
@@ -16701,6 +17547,18 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
+              "effect_id": "hit",
+              "type": "damage",
+              "target": "foe",
+              "expected_raw_power": 146.6667,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
+            },
+            {
               "effect_id": "attack_down",
               "type": "apply_status",
               "target": "foe",
@@ -16756,6 +17614,18 @@
         {
           "phase": "cast_resolve",
           "expected_intents": [
+            {
+              "effect_id": "hit",
+              "type": "damage",
+              "target": "foe",
+              "expected_raw_power": 200.0,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
+            },
             {
               "effect_id": "attack_down",
               "type": "apply_status",
@@ -17021,7 +17891,7 @@
               "type": "apply_status",
               "target": "foe",
               "status_id": "stun",
-              "duration_ms": 1400,
+              "duration_ms": 3000,
               "chance": 0.85,
               "params": {},
               "expected_modifiers": []
@@ -17067,7 +17937,7 @@
               "type": "apply_status",
               "target": "foe",
               "status_id": "stun",
-              "duration_ms": 1400,
+              "duration_ms": 4000,
               "chance": 0.85,
               "params": {},
               "expected_modifiers": []
@@ -17113,7 +17983,7 @@
               "type": "apply_status",
               "target": "foe",
               "status_id": "stun",
-              "duration_ms": 1400,
+              "duration_ms": 6000,
               "chance": 0.85,
               "params": {},
               "expected_modifiers": []
@@ -17158,7 +18028,14 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 175.0
+              "expected_raw_power": 374.0625,
+              "crit_damage_bonus": 0.1,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             },
             {
               "effect_id": "accuracy_down",
@@ -17170,6 +18047,12 @@
               "params": {
                 "ratio": -0.07
               },
+              "predicate": {
+                "type": "hit_landed",
+                "effect_id": "hit",
+                "scope": "same_target",
+                "hit_index": "any"
+              },
               "expected_modifiers": [
                 {
                   "id": "magnitude",
@@ -17178,13 +18061,7 @@
                   "bucket": "bonus",
                   "value": -0.07
                 }
-              ],
-              "predicate": {
-                "type": "hit_landed",
-                "effect_id": "hit",
-                "scope": "same_target",
-                "hit_index": "any"
-              }
+              ]
             }
           ]
         }
@@ -17226,7 +18103,14 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 215.83329999999998
+              "expected_raw_power": 462.6563,
+              "crit_damage_bonus": 0.166667,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             },
             {
               "effect_id": "accuracy_down",
@@ -17238,6 +18122,12 @@
               "params": {
                 "ratio": -0.105
               },
+              "predicate": {
+                "type": "hit_landed",
+                "effect_id": "hit",
+                "scope": "same_target",
+                "hit_index": "any"
+              },
               "expected_modifiers": [
                 {
                   "id": "magnitude",
@@ -17246,13 +18136,7 @@
                   "bucket": "bonus",
                   "value": -0.105
                 }
-              ],
-              "predicate": {
-                "type": "hit_landed",
-                "effect_id": "hit",
-                "scope": "same_target",
-                "hit_index": "any"
-              }
+              ]
             }
           ]
         }
@@ -17294,7 +18178,14 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 297.5
+              "expected_raw_power": 639.8438,
+              "crit_damage_bonus": 0.3,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             },
             {
               "effect_id": "accuracy_down",
@@ -17306,6 +18197,12 @@
               "params": {
                 "ratio": -0.175
               },
+              "predicate": {
+                "type": "hit_landed",
+                "effect_id": "hit",
+                "scope": "same_target",
+                "hit_index": "any"
+              },
               "expected_modifiers": [
                 {
                   "id": "magnitude",
@@ -17314,13 +18211,7 @@
                   "bucket": "bonus",
                   "value": -0.175
                 }
-              ],
-              "predicate": {
-                "type": "hit_landed",
-                "effect_id": "hit",
-                "scope": "same_target",
-                "hit_index": "any"
-              }
+              ]
             }
           ]
         }
@@ -17356,6 +18247,13 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.0525
+        },
+        {
+          "id": "cast_speed",
+          "stat": "cast_speed",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.05
         }
       ],
       "programs": [],
@@ -17390,6 +18288,13 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.093333
+        },
+        {
+          "id": "cast_speed",
+          "stat": "cast_speed",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.083333
         }
       ],
       "programs": [],
@@ -17424,6 +18329,13 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.175
+        },
+        {
+          "id": "cast_speed",
+          "stat": "cast_speed",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.15
         }
       ],
       "programs": [],

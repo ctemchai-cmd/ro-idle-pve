@@ -230,6 +230,27 @@
         "tag"
       ],
       "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "effect_succeeded"
+        },
+        "effect_id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "scope": {
+          "const": "same_target"
+        }
+      },
+      "required": [
+        "type",
+        "effect_id",
+        "scope"
+      ],
+      "additionalProperties": false
     }
   ]
 }

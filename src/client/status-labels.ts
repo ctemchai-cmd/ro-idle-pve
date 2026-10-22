@@ -6,3 +6,4 @@ Object.assign(statusNames,{aspd_up:'เพิ่มความเร็วโ�
 Object.assign(statNames,{neutral_resistance:'ต้านไร้ธาตุ',water_resistance:'ต้านน้ำ',earth_resistance:'ต้านดิน',fire_resistance:'ต้านไฟ',wind_resistance:'ต้านลม',poison_resistance:'ต้านพิษธาตุ',holy_resistance:'ต้านศักดิ์สิทธิ์',dark_resistance:'ต้านความมืด',ghost_resistance:'ต้านวิญญาณ',undead_resistance:'ต้านอันเดด',freeze_resistance:'ต้านแช่แข็ง',silence_resistance:'ต้านใบ้',blind_resistance:'ต้านตาบอด',magical_guard_percent:'ลดดาเมจเวท',sp_cost_percent:'SP ที่ใช้',interrupt_resistance:'ต้านขัดร่ายโดยตรง',move_speed_percent:'ความเร็วเดิน',revive_hp_bonus:'HP เมื่อชุบชีวิต',revive_sp_bonus:'SP เมื่อชุบชีวิต'});
 
 Object.assign(statNames,{skill_damage_bonus:'ดาเมจสกิล',normal_damage_bonus:'ดาเมจตีปกติ'});
+Object.assign(statusNames,{crit_damage_up:'เพิ่มดาเมจคริ'});
