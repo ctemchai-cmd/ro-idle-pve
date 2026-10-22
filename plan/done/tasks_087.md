@@ -26,10 +26,12 @@ Milestone: M4 · D-116
 
 ## เกณฑ์ตรวจรับ
 
-- [ ] AC-01: ตารางธาตุครบ10×10=100คู่จาก combat-rules.json ชุดเดียวกับengine แถวโจมตี/คอลัมน์เกราะระบุชัด ตัวเลขเปอร์เซ็นต์/legendตรงตัวคูณจริง รวมHoly→Undead150%,Fire→Earth125%,Fire→Water75%,Neutral→Ghost75%
-- [ ] AC-02: เปิดจากหน้าสกิลและป้ายเกราะบอส/ตัวโฟกัส เลือกคู่ธาตุอ่านสรุปได้ ตารางเลื่อนแนวนอนพร้อมหัวแถว/คอลัมน์คงที่ ใช้ได้320/390px ปิด/Escape/คืนfocusถูกต้อง มีtextร่วมสีและไม่มีAPI/saveขณะดู
-- [ ] AC-03: Focused matrix/pipeline/presentation checksและbuild/type/boundaries/secretsผ่าน พร้อมactualmobileและpublicnewUI/API/login/PWA ไม่เปลี่ยน100ค่าตาราง/สูตร/ธาตุสกิล/content/pack/เซฟ ไม่มีSQL/env/assets/ownerwrite/balancebatch
+- [x] AC-01: ตารางธาตุครบ10×10=100คู่จาก combat-rules.json ชุดเดียวกับengine แถวโจมตี/คอลัมน์เกราะระบุชัด ตัวเลขเปอร์เซ็นต์/legendตรงตัวคูณจริง รวมHoly→Undead150%,Fire→Earth125%,Fire→Water75%,Neutral→Ghost75%
+- [x] AC-02: เปิดจากหน้าสกิลและป้ายเกราะบอส/ตัวโฟกัส เลือกคู่ธาตุอ่านสรุปได้ ตารางเลื่อนแนวนอนพร้อมหัวแถว/คอลัมน์คงที่ ใช้ได้320/390px ปิด/Escape/คืนfocusถูกต้อง มีtextร่วมสีและไม่มีAPI/saveขณะดู
+- [x] AC-03: Focused matrix/pipeline/presentation checksและbuild/type/boundaries/secretsผ่าน พร้อมactualmobileและpublicnewUI/API/login/PWA ไม่เปลี่ยน100ค่าตาราง/สูตร/ธาตุสกิล/content/pack/เซฟ ไม่มีSQL/env/assets/ownerwrite/balancebatch
 
 ## วิธีตรวจและหลักฐาน
 
 Existingelement-presentation100pairpipeline, actualmobile modal/scroll/focus/zeroAPI + build/publicproof เก็บ task-087-* หรือshared086087 evidence
+
+ผล review: ผ่าน 3/3 AC · 22 ต.ค.2026 · source `069b09acb6e63ed8f672fe16df1ab116c78acc6a` ขึ้น Vercel แล้ว · [หลักฐาน](../evidence/task-087-review.json)

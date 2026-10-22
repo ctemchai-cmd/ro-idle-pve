@@ -27,10 +27,12 @@ Milestone: M4 · D-117
 
 ## เกณฑ์ตรวจรับ
 
-- [ ] AC-01: คำขอเซฟ/อ่านreceipt/checkpointรวมรอtokenและbodyมีdeadline15s/AbortSignal ไม่ค้างsaving/loadingตลอดไป; timeoutตอนเขียนตรวจreceiptและreconcileคำสั่งUUIDเดิมอัตโนมัติครั้งเดียว ไม่เพิ่มหักทอง/หินหรือสุ่มตีบวกซ้ำ
-- [ ] AC-02: visibility/reconnectระหว่างwriteไม่แทรกepochจนทิ้งผลสำเร็จ; ใช้validcachedtokenและยอมรับsame-userrefreshใหม่โดยไม่ทำfalse signed_out คงexpiry/logout/401; late reply/failed recovery/offline/disposeไม่ทับcheckpointใหม่ pendingและbackupเดิมคง เมื่อrecoverแล้วกลับreadyและเริ่มไฟต์/ทำรายการต่อได้
-- [ ] AC-03: ในSheetที่กำลังตีบวก/ทำรายการมีข้อความเมื่อรอนานและปุ่มตรวจผลใหม่เมื่อผิดพลาด กดได้โดยไม่ต้องปิดเกม; focusedreplay/timeout/transport+actualdisposableAuth/API/SQL/Chromeheldreply+build/hostedผ่าน ไม่แตะownerเซฟ/6173/SQL/env
+- [x] AC-01: คำขอเซฟ/อ่านreceipt/checkpointรวมรอtokenและbodyมีdeadline15s/AbortSignal ไม่ค้างsaving/loadingตลอดไป; timeoutตอนเขียนตรวจreceiptและreconcileคำสั่งUUIDเดิมอัตโนมัติครั้งเดียว ไม่เพิ่มหักทอง/หินหรือสุ่มตีบวกซ้ำ
+- [x] AC-02: visibility/reconnectระหว่างwriteไม่แทรกepochจนทิ้งผลสำเร็จ; ใช้validcachedtokenและยอมรับsame-userrefreshใหม่โดยไม่ทำfalse signed_out คงexpiry/logout/401; late reply/failed recovery/offline/disposeไม่ทับcheckpointใหม่ pendingและbackupเดิมคง เมื่อrecoverแล้วกลับreadyและเริ่มไฟต์/ทำรายการต่อได้
+- [x] AC-03: ในSheetที่กำลังตีบวก/ทำรายการมีข้อความเมื่อรอนานและปุ่มตรวจผลใหม่เมื่อผิดพลาด กดได้โดยไม่ต้องปิดเกม; focusedreplay/timeout/transport+actualdisposableAuth/API/SQL/Chromeheldreply+build/hostedผ่าน ไม่แตะownerเซฟ/6173/SQL/env
 
 ## วิธีตรวจและหลักฐาน
 
 Existingrecurring-save+transporttestsเพิ่มheldI/O cases และactualisolatedAuth/API/SQL/mobileChromeที่ทำจริงcommitแต่holdreply เก็บtask088-* ไม่ใช้ownerlogin/env/save
+
+ผล review: ผ่าน 3/3 AC · 22 ต.ค.2026 · source `069b09acb6e63ed8f672fe16df1ab116c78acc6a` ขึ้น Vercel แล้ว · [หลักฐาน](../evidence/task-088-review.json)

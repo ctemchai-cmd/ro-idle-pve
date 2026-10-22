@@ -26,10 +26,12 @@ Milestone: M4 · D-115
 
 ## เกณฑ์ตรวจรับ
 
-- [ ] AC-01: คำอธิบายสกิลหลักกระชับ โดย Call Spirit/Provoke/endowไม่ย้ำเงื่อนไขยาวทุกเลเวล; จำนวนบอล/โบนัส/ระยะเวลา/โอกาส/ฮิต/ธาตุ/ต้นทุนยังตรงresolver และเงื่อนไขเฉพาะอ่านได้ในส่วนพับเงื่อนไขสกิล
-- [ ] AC-02: ผลอัปเลเวลทั้ง126สกิลแสดงเฉพาะข้อความที่เปลี่ยน ใช้รูปแบบตัวเลขเดิม→ใหม่กับหน่วยร่วม ไม่มีการตัดคำ/ซ่อนผลเปลี่ยน/ทำตัวเลขติดลบผิดความหมาย; ระดับที่เปลี่ยนจริงมีdeltaที่อ่านได้
-- [ ] AC-03: Existing description/element/rule checksและbuild/type/boundaries/secretsผ่าน พร้อมactualmobile320/390/current+next+table+notesและpublicnewUI/API/login/PWA; content/pack/เกม/เซฟเดิม ไม่มีownerwrite/SQL/env/assets/balancebatch
+- [x] AC-01: คำอธิบายสกิลหลักกระชับ โดย Call Spirit/Provoke/endowไม่ย้ำเงื่อนไขยาวทุกเลเวล; จำนวนบอล/โบนัส/ระยะเวลา/โอกาส/ฮิต/ธาตุ/ต้นทุนยังตรงresolver และเงื่อนไขเฉพาะอ่านได้ในส่วนพับเงื่อนไขสกิล
+- [x] AC-02: ผลอัปเลเวลทั้ง126สกิลแสดงเฉพาะข้อความที่เปลี่ยน ใช้รูปแบบตัวเลขเดิม→ใหม่กับหน่วยร่วม ไม่มีการตัดคำ/ซ่อนผลเปลี่ยน/ทำตัวเลขติดลบผิดความหมาย; ระดับที่เปลี่ยนจริงมีdeltaที่อ่านได้
+- [x] AC-03: Existing description/element/rule checksและbuild/type/boundaries/secretsผ่าน พร้อมactualmobile320/390/current+next+table+notesและpublicnewUI/API/login/PWA; content/pack/เกม/เซฟเดิม ไม่มีownerwrite/SQL/env/assets/balancebatch
 
 ## วิธีตรวจและหลักฐาน
 
 Existing skill-description/element/spirit checks, before/after126×10renderedtext audit, isolated realmobilecomponents320/390 และsignedoutpublicproof เก็บ task-086-* ไม่รันbalancebatchหรือAuthstackเก่าทั้งชุด
+
+ผล review: ผ่าน 3/3 AC · 22 ต.ค.2026 · source `069b09acb6e63ed8f672fe16df1ab116c78acc6a` ขึ้น Vercel แล้ว · [หลักฐาน](../evidence/task-086-review.json)

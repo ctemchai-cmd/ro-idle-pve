@@ -1,0 +1,77 @@
+{
+  "task_id": "TASK-087",
+  "date": "2026-10-22",
+  "passed": true,
+  "status": "passed_implementation",
+  "source_commit": "069b09acb6e63ed8f672fe16df1ab116c78acc6a",
+  "content_hash": "f887835108ee3473c39bc6fb3ec0e80d5f0f49c91733e88b6ca561c1dfa736d3",
+  "asset_pack_hash": "c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2",
+  "checks": [
+    {
+      "acceptance_id": "AC-01",
+      "criterion": "ตารางธาตุครบ10×10=100คู่จาก combat-rules.json ชุดเดียวกับengine แถวโจมตี/คอลัมน์เกราะระบุชัด ตัวเลขเปอร์เซ็นต์/legendตรงตัวคูณจริง รวมHoly→Undead150%,Fire→Earth125%,Fire→Water75%,Neutral→Ghost75%",
+      "passed": true,
+      "local_validation": "passed",
+      "production_validation": "passed",
+      "evidence": [
+        "plan/evidence/task-086-089-targeted.txt",
+        "plan/evidence/task-086-089-build.txt",
+        "plan/evidence/task-086-089-readiness-predeploy.txt",
+        "plan/evidence/task-086-browser.json",
+        "plan/evidence/task-088-ui-live.json",
+        "plan/evidence/task-086-hosted.json",
+        "plan/evidence/task-086-089-github-deployment.json"
+      ]
+    },
+    {
+      "acceptance_id": "AC-02",
+      "criterion": "เปิดจากหน้าสกิลและป้ายเกราะบอส/ตัวโฟกัส เลือกคู่ธาตุอ่านสรุปได้ ตารางเลื่อนแนวนอนพร้อมหัวแถว/คอลัมน์คงที่ ใช้ได้320/390px ปิด/Escape/คืนfocusถูกต้อง มีtextร่วมสีและไม่มีAPI/saveขณะดู",
+      "passed": true,
+      "local_validation": "passed",
+      "production_validation": "passed",
+      "evidence": [
+        "plan/evidence/task-086-089-targeted.txt",
+        "plan/evidence/task-086-089-build.txt",
+        "plan/evidence/task-086-089-readiness-predeploy.txt",
+        "plan/evidence/task-086-browser.json",
+        "plan/evidence/task-088-ui-live.json",
+        "plan/evidence/task-086-hosted.json",
+        "plan/evidence/task-086-089-github-deployment.json"
+      ]
+    },
+    {
+      "acceptance_id": "AC-03",
+      "criterion": "Focused matrix/pipeline/presentation checksและbuild/type/boundaries/secretsผ่าน พร้อมactualmobileและpublicnewUI/API/login/PWA ไม่เปลี่ยน100ค่าตาราง/สูตร/ธาตุสกิล/content/pack/เซฟ ไม่มีSQL/env/assets/ownerwrite/balancebatch",
+      "passed": true,
+      "local_validation": "passed",
+      "production_validation": "passed",
+      "evidence": [
+        "plan/evidence/task-086-089-targeted.txt",
+        "plan/evidence/task-086-089-build.txt",
+        "plan/evidence/task-086-089-readiness-predeploy.txt",
+        "plan/evidence/task-086-browser.json",
+        "plan/evidence/task-088-ui-live.json",
+        "plan/evidence/task-086-hosted.json",
+        "plan/evidence/task-086-089-github-deployment.json"
+      ]
+    }
+  ],
+  "scope": "Shared deterministic rules, real components in Chrome320/390 and disposable Auth/API/Postgres; signed-out public deployment proof required separately. Not physical Android or whole-game balance.",
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "new_sql_or_env": false,
+  "balance_simulation": false,
+  "retained_failures": [
+    "Initial SSR test imported CSS through new element dialog; moved CSS import to global entry. Initial select accessible name included options; explicit aria-label fixed. Original reports retained; final75tests/browser passed."
+  ],
+  "deployment": "https://vercel.com/chanon2/ro-idle-pve/7x6Nf457q8BSfYFXLKsCMeBpjZCC",
+  "focused_tests": 75,
+  "local_component_groups": 4,
+  "local_auth_api_sql_groups": 4,
+  "public_groups": 3,
+  "limitations": [
+    "Actual mobile emulation320/390, not physical Android.",
+    "Gold×3 is an authored trial baseline; no new balance simulation or owner save changes.",
+    "TASK086/087 do not alter combat data; this combined release changes content only for TASK089 gold rates."
+  ]
+}

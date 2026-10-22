@@ -26,10 +26,12 @@ Milestone: M4 · D-118
 
 ## เกณฑ์ตรวจรับ
 
-- [ ] AC-01: ทองฟาร์มทั้ง8บทและTreasurychestเพิ่ม3เท่าจากbaselineก่อนpatchจริง Generatorreproduceได้ รายได้EXP/manual/หิน/essence/dust/lootและราคาตีบวก/Enchant/level/skill/โอกาส/pityเดิม ไม่มีบัฟทองจากsalvageเพื่อสร้างarbitrage
-- [ ] AC-02: wallet/pendingreward/paidledger/จำนวนของ/ชั้น/สิทธิ์รายวันเก่าไม่ถูกคูณหรือรีเซ็ต ช่วงAFKที่frozenเก่าจ่ายตามrateเดิมครั้งเดียวแล้วติดตั้งrateใหม่3เท่าให้เวลาถัดไป Claimreplayไม่จ่ายซ้ำ12hcap/carry/RNGเดิม
-- [ ] AC-03: มีsourcebeforeafterและอัตราทองต่อหินเทียบต้นทุนอย่างชัดเจน ตัวเลขเป็นbaselineทดลองไม่อ้างbalanceครบ; generator/M0/focusedfarm/daily/save/migration/buildและactualdisposableUI/API/SQL/publicproofผ่าน ไม่มีownerwrite/SQL/env/assets/balancebatch
+- [x] AC-01: ทองฟาร์มทั้ง8บทและTreasurychestเพิ่ม3เท่าจากbaselineก่อนpatchจริง Generatorreproduceได้ รายได้EXP/manual/หิน/essence/dust/lootและราคาตีบวก/Enchant/level/skill/โอกาส/pityเดิม ไม่มีบัฟทองจากsalvageเพื่อสร้างarbitrage
+- [x] AC-02: wallet/pendingreward/paidledger/จำนวนของ/ชั้น/สิทธิ์รายวันเก่าไม่ถูกคูณหรือรีเซ็ต ช่วงAFKที่frozenเก่าจ่ายตามrateเดิมครั้งเดียวแล้วติดตั้งrateใหม่3เท่าให้เวลาถัดไป Claimreplayไม่จ่ายซ้ำ12hcap/carry/RNGเดิม
+- [x] AC-03: มีsourcebeforeafterและอัตราทองต่อหินเทียบต้นทุนอย่างชัดเจน ตัวเลขเป็นbaselineทดลองไม่อ้างbalanceครบ; generator/M0/focusedfarm/daily/save/migration/buildและactualdisposableUI/API/SQL/publicproofผ่าน ไม่มีownerwrite/SQL/env/assets/balancebatch
 
 ## วิธีตรวจและหลักฐาน
 
 Generator--check/M0 + existingfarm/daily/migration/replay tests และrealdisposableoldrateclaim→newrate/mobileUI เก็บtask089-* หรือshared086089 ไม่runbalancebatch
+
+ผล review: ผ่าน 3/3 AC · 22 ต.ค.2026 · source `069b09acb6e63ed8f672fe16df1ab116c78acc6a` ขึ้น Vercel แล้ว · [หลักฐาน](../evidence/task-089-review.json)

@@ -4,6 +4,17 @@
 
 
 
+## 22 ต.ค.2026 · Codex — TASK-086–089 done ขึ้นVercelแล้ว
+
+- **SOURCE069b09acb6e63ed8f672fe16df1ab116c78acc6a push/VercelSUCCESS** https://vercel.com/chanon2/ro-idle-pve/7x6Nf457q8BSfYFXLKsCMeBpjZCC · actualpublicnewSHAของ5bundles/UI/data/save+health200/SIN1/contenthash/checkpoint401/login/PWA5publiccachefiles/0mutations **3groupsผ่าน firsttry** task086-hosted.json /086089-github-deployment. ทั้ง4tasks3ACeachdone Board75/89,inprogress4เก่า041058064067/review5/todo5,M4done35/44
+- D118ฟาร์ม/AFK8บททอง×3หลังratesgeneratorและTreasurybase1000→3000 คงรายได้วัสดุ/EXP/manual, ราคา/odds/pity/firstclear/Tower/salvage/ledger. บท3ทอง7238→21714/ore34=213→639gold/ore เทียบRefine+7..10 280–400 เป็นtrialbaselineไม่claimwholebalance. **oldfrozenAFKจ่ายoldrateclaimแรกแล้วติดตั้งnewfuture** ไม่คูณwallet/pendingเก่า ActualSQLold2110จ่าย2135แล้วnew6330และUUIDreplayไม่จ่ายซ้ำ
+- D117เซฟค้าง3สาเหตุ: token/fetch/bodyไม่มีdeadline, valid same-userrefreshระหว่างSDKgetSessionคืนnullfalse signed_out, visibilityreconnectแทรกwriteepoch. ทุกI/O15sAbortSignalและautomaticone originalUUIDreceipt/checkpointreconcile, preservepending/CAS/signatures ไม่blindunlock/สุ่มใหม่. Authcachedvalidsession30sbuffer/newsame-userrefreshไม่เข้าSDKlockทุกclick คงlogout/expiry/401/serverJWT. SaveNoticeหลัง3sและretryในnativeSheetกดได้ไม่ติดHUDinert
+- D115compactskilltext/deltachangedclause/signednumbersกับstaticnotesพับ all126×10 max289→53chars/mean61.90→26.97 ไม่ตัดค่า/เปลี่ยนพลัง/cardfullformatter. D116ElementGuideอ่านchartจริง10×10/เลือกคู่/stickyaxes/scroll/textlegend/Skill+armorbadgeentry/Escapefocus zeroAPI ไม่มีสูตรธาตุเปลี่ยน
+- **75focusedTS/build/type/boundaries/secrets/M0/generator/readiness8ผ่าน** Actualisolatedrealcomponents4groups320/390+freshAuthSDK/API5checks+actualUI/SQL4groups: holdcommittedRefine15s→1charge/1roll, failedlookup→reachable320retry/1charge, frozenAFK/replay, Refineต่อ+realbossstart/armorbadge100table/retreat. เปิดภาพCall320/table320/390/bossentry320/retry320ดูจริง ไม่physicalAndroidหรือowneraccountproof
+- RetainfirstSSR.cssimportfail→globalentryCSSและselectlabelรวมoptions→explicitaria-label; firsttypechecksessionnullable→explicitguard; originalreports retained finalall75passed ไม่ลดcriteria. Secondliveเฉพาะเพิ่มbossentry/start/retreatpassedด้วยsourceเดิม (noNewBalanceBatch)
+- **Contentf887835108ee3473c39bc6fb3ec0e80d5f0f49c91733e88b6ca561c1dfa736d3 /packc7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2 /30640189B unchanged**. Sourcecodeไม่มีSQL/env/assets/ownerwrite/6173restart/privatefilesread. Userจบไฟต์แล้วreload→backup/migrateflowเดิม→รับAFKเดิมครั้งแรกก่อนnewrateเริ่ม ไม่อ้างownerทำแล้ว
+- Docsclosurecommit/pushตามsourceที่ตรวจแล้ว ไม่มีproductworkค้างใน4คำขอนี้ ไม่ปิดold041058064067/review5หรือสัญญาzero techdebt. Userใบธาตุยังproposal. Finalreadinessหลังmoveก่อนจบ
+
 ## 22 ต.ค.2026 · Codex — TASK-086–089 local review / รอ deploy
 
 - User4คำขอต่อเนื่อง: ย่อskilltext/ตารางธาตุเต็ม/ตีบวกปุ่มเทาค้าง/ทองขาดเมื่อหินล้น ทั้ง4inprogressตามD115–118 ไม่ปิดก่อนhostedproof
