@@ -4,12 +4,13 @@
 
 
 
-## 22 ต.ค.2026 · Codex — TASK-078 เติมฮีล/แทงก์/ซัพพอร์ตตามคำตอบผู้ใช้ รอdeploy
+## 22 ต.ค.2026 · Codex — TASK-078 done ฮีล/แทงก์/ซัพพอร์ตตามคำตอบผู้ใช้ ขึ้นVercelแล้ว
 
 - ผู้ใช้ตอบasync D-103ว่าอยากให้ทุกบทบาทขยับใกล้กัน รวมฮีล/ถึก ไม่ใช่เฉพาะdamage. D-104/TASK078จึงแทนข้อเว้นheal/supportของ077: factor1.75เดิมจากimmutable79b3baselineครั้งเดียว 59supportprograms/Heal/HoT/Kyrieflat+ratio/HP/DEF/guard/ATK/MATK/คริ/หลบ/regen/Devotion/Revive+HealingPlant CopiedHealตามsource ส่วน52damagecurves077คงค่าเดิม ไม่คูณซ้ำ ไม่เปลี่ยนASPD/CSPD/CT/ACD/SP/CC/chance/expiry/stackpolicy/ด่าน
 - PrimarycardSTR/INT/VIT/DEXยังมีprimaryเดิม+derived%ตามstatcoeff/referenceกลาง เช่นElderINT2+MATK10.5%+SP14%, PickySTR1+ATK5เดิม+ATK12.25%. Card66identities/cost/quality/level/procs/resistance/weaknessเดิม อาวุธไม่ได้เพิ่มสุ่มอีก: ตรวจทั้ง10families×Tier20/40/60โดยไม่มีการ์ดเพิ่มATK/MATK>25%ทุก30buildจริง Maceเป็นMATKไม่ใช่PATK
 - Focused74TS/378goldens/static126skeleton+59support/52damageunchanged/M0/build/type/boundaries/secretsผ่าน contentebaeef7… packc7e45b…เดิม/ไม่มีschemaSQLenvassets. ActualfreshAuth/SQL/mobile320/3905groups+API5ผ่าน screenshotsHeal/Kyrie/Endure/Song/nativeElderดูจริงแล้ว เรียกtest_build_impact_liveด้วยRO_EVIDENCE_PREFIX=task-078ไม่overwrite077 คงround1testprecision/maceclassificationfailsและM0metadatafixesเป็นประวัติ ไม่productfail
-- TASK078ยังinprogress รอpush/VercelReady+ RO_EVIDENCE_PREFIX=task-078 RO_EXPECT_CONTENT_HASH=ebaeef7fb6af50760c358e7f2ff2da7da9fd471ff0b8c8e187ffbdc3ea5911a5 RO_DEPLOY_COMMIT=<source> node scripts/test_save_latency_hosted.cjs แล้วปิดทุกAC/ย้ายdone/อัปเดตboard ไม่มีownerwrite/6173restart/privateenv/balancebatchใหม่
+- **SOURCE6dbcad7bceeba2118320f6cc6653a4690026a05b push/VercelSUCCESS** https://vercel.com/chanon2/ro-idle-pve/99rTGg2LaWh3RZLrBLoqvxTuSsgq actualhostedAPI/newheal2.1+guard.14+healingPlant1.75data/login/PWA3groupsผ่าน0mutation TASK078doneทุกAC. Board64/78done,inprogress4(041/058/064/067)เดิม,review5,todo5,M4done24/33. ไม่มีownerwrite/6173restart/privateenv/newSQLหรือbalancebatch; จบไฟต์/reloadแล้วผู้ใช้backup/migrateเดิม
+
 
 ## 22 ต.ค.2026 · Codex — TASK-077 done สัดส่วนพลังร่วมทุกอาชีพ/การ์ด ขึ้นVercelแล้ว
 

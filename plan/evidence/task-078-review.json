@@ -1,13 +1,13 @@
 {
   "task_id": "TASK-078",
   "date": "2026-10-22",
-  "passed": false,
+  "passed": true,
   "implementation_verified": true,
   "acceptance": {
-    "AC-01": "passed_local",
-    "AC-02": "passed_local",
-    "AC-03": "passed_local",
-    "AC-04": "pending_actual_hosted"
+    "AC-01": "passed",
+    "AC-02": "passed",
+    "AC-03": "passed",
+    "AC-04": "passed"
   },
   "content_hash": "ebaeef7fb6af50760c358e7f2ff2da7da9fd471ff0b8c8e187ffbdc3ea5911a5",
   "asset_pack_hash": "c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2",
@@ -25,7 +25,8 @@
     "real_local_mobile_groups": 5,
     "real_auth_api_groups": 5,
     "M0_readiness_checks": 8,
-    "build_type_boundaries_secrets_content": true
+    "build_type_boundaries_secrets_content": true,
+    "actual_hosted_api_data_login_pwa_groups": 3
   },
   "evidence": [
     "plan/evidence/task-078-static-review.json",
@@ -35,12 +36,13 @@
     "plan/evidence/task-078-typecheck.txt",
     "plan/evidence/task-078-ui-live.json",
     "plan/evidence/task-078-local-stack.json",
-    "plan/evidence/task-078-local-api.txt"
+    "plan/evidence/task-078-local-api.txt",
+    "plan/evidence/task-078-hosted.json",
+    "plan/evidence/task-078-github-deployment.json",
+    "plan/evidence/task-078-readiness.txt"
   ],
   "visual_scope": "Inspected actual320px HealingSong105%opening/52.5%HoT and Endure14% details and nativeElderWillowINT2/MATK10.5%/SP14% detail. All fourHeal/Kyrie/Endure/Song captured and layout asserted320/390px. Disposable account, not physical Android.",
-  "pending": [
-    "actual Vercel deploy and signed-out public smoke"
-  ],
+  "pending": [],
   "owner_cloud_writes": false,
   "personal_preview_restarted": false,
   "balance_simulation": false,
@@ -55,5 +57,7 @@
     "plan/generators/item_impact.py": "debaec7646374d3196b57a5bc7b05f6dc48eb3d42b3334ab2145e68fd73fe2ec",
     "tests/game/support-impact.test.ts": "e619970a70feebc77d2db25bc90d6217036a3994c2bd74cc5ee6ba5d6a94eca5",
     "scripts/test_build_impact_live.cjs": "477af8045479eee523f33b2f8987bc23ac68aa1ccb813498299179323b90914f"
-  }
+  },
+  "source_commit": "6dbcad7bceeba2118320f6cc6653a4690026a05b",
+  "deployment_url": "https://vercel.com/chanon2/ro-idle-pve/99rTGg2LaWh3RZLrBLoqvxTuSsgq"
 }

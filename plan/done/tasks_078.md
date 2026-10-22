@@ -23,11 +23,13 @@ Milestone: M4 · D-104 · Dependencies: TASK-077, TASK-031, TASK-040 (done)
 
 ## เกณฑ์ตรวจรับ
 
-- [ ] AC-01: heal/HoT/shield/revive/HP/DEF/guardและsupportทุกอาชีพที่เข้าเกณฑ์scale1.75จากbaselineครั้งเดียว รวมcopies/summons; damage077ไม่เพิ่มซ้ำและมีbefore/after audit
-- [ ] AC-02: engineให้Heal/เพลง/โล่/ลดdamage/HPและstackตามค่าที่คาดไว้จริง; SP/คิว/CC/เวลาเดิม การ์ดprimaryมีderived%ที่โตตามบิลด์ อาวุธทุกตระกูลให้ผลแยกจากการ์ดตามTier
-- [ ] AC-03: focusedchecks/378goldens/M0/type/boundaries/build/secretsผ่าน ไม่มีownerwrite/SQL/env/newassets/เศรษฐกิจหรือด่านเปลี่ยน ไม่มีbalancebatchใหม่
-- [ ] AC-04: actualmobile320/390แสดงHeal/Kyrie/Endure/HealingSong/CardINTตรงสูตรและไม่มีinspection save; actualdeployAPI/newdata/login/PWAผ่าน จึงย้ายdone
+- [x] AC-01: heal/HoT/shield/revive/HP/DEF/guardและsupportทุกอาชีพที่เข้าเกณฑ์scale1.75จากbaselineครั้งเดียว รวมcopies/summons; damage077ไม่เพิ่มซ้ำและมีbefore/after audit
+- [x] AC-02: engineให้Heal/เพลง/โล่/ลดdamage/HPและstackตามค่าที่คาดไว้จริง; SP/คิว/CC/เวลาเดิม การ์ดprimaryมีderived%ที่โตตามบิลด์ อาวุธทุกตระกูลให้ผลแยกจากการ์ดตามTier
+- [x] AC-03: focusedchecks/378goldens/M0/type/boundaries/build/secretsผ่าน ไม่มีownerwrite/SQL/env/newassets/เศรษฐกิจหรือด่านเปลี่ยน ไม่มีbalancebatchใหม่
+- [x] AC-04: actualmobile320/390แสดงHeal/Kyrie/Endure/HealingSong/CardINTตรงสูตรและไม่มีinspection save; actualdeployAPI/newdata/login/PWAผ่าน จึงย้ายdone
 
 ## Review
 
-ยังไม่ตรวจ หลักฐาน `plan/evidence/task-078-*` แยกจาก077และ072 ค่าพลังเป็นtrialbaselineที่เลือกตามทิศทางผู้ใช้ ไม่ใช่ผลรับรองว่าทุกอาชีพมีDPSหรือEHPเท่ากัน
+ผ่านทุกเกณฑ์ หลักฐาน `plan/evidence/task-078-*` แยกจาก077และ072 ค่าพลังเป็นtrialbaselineที่เลือกตามทิศทางผู้ใช้ ไม่ใช่ผลรับรองว่าทุกอาชีพมีDPSหรือEHPเท่ากัน
+
+- Final review22ต.ค.2026: 74focused/378goldens/static126+59support+52damageunchanged/build/M0ผ่าน actualAuth/SQL/mobile5groups/API5และproductionAPI/newdata/login/PWA3ผ่าน source6dbcad7bceeba2118320f6cc6653a4690026a05b VercelSUCCESS. ภาพHealingSong/Endure/Elder320pxเปิดดูจริงแล้ว ไม่มีownerwrite/6173restart/SQL/env/schema/assets/balancebatchใหม่

@@ -5,7 +5,7 @@
 ## แหล่งของพลัง
 
 - Normal attack ยังคง100%ATK, intervalฐาน1.5s; skill intervalฐาน3s. CT/ACD/SP/การหักบอล/คิวไม่เปลี่ยน
-- ผู้ใช้ขอscaleทุกอาชีพ/การ์ดไปทางเดียวกันและไม่เพิ่มด่านเดิมชดเชย: shared `power_multiplier=1.75` เป็นassistant trial factor เพิ่มdamageทุกท่า/Passive/DoT/counter/copy/summonและcarddamageprocจากbaselineเดียวกัน รักษาสัดส่วนระหว่างท่า/เลเวลเดิม (ก่อนfloor) ไม่เลือกบัฟบางคลาส บัฟ/ฮีล072/CC/โอกาสproc/ASPD/ต้านทานเป็นutilityแยกจากdamageจึงคงไว้
+- ผู้ใช้ขอscaleทุกอาชีพ/การ์ดไปทางเดียวกันและไม่เพิ่มด่านเดิมชดเชย: shared `power_multiplier=1.75` เป็นassistant trial factor เพิ่มdamageทุกท่า/Passive/DoT/counter/copy/summonและcarddamageprocจากbaselineเดียวกัน รักษาสัดส่วนระหว่างท่า/เลเวลเดิม (ก่อนfloor) ไม่เลือกบัฟบางคลาส ตามD-104 พลังฮีล/โล่/ชุบชีวิต/บัฟและPassive ATK/MATK/HP/DEF/guard/คริ/หลบ/ฟื้นฟูใช้factorเดียวกันจากbaselineเดิมครั้งเดียวด้วย; ความเร็ว/CC/โอกาสproc/ระยะเวลา/ต้านทานยังคงเดิม
 - `skill_damage_bonus` และ `normal_damage_bonus` เป็นratio default0 เลือกตาม origin/sourceจริง แล้ว **บวกกับ outgoing physical/magical/true bucketเดิม** เช่น outgoing20% +skill15%+skill10% ได้1.45 ไม่ใช่1.2×1.15×1.1. ไม่เพิ่มเพดานบัฟ/สแต็กหรือสูตรเกราะใหม่
 - Normalbonusใช้เฉพาะ normal hit; skillbonusใช้โปรแกรมจาก skill definition จริง รวมPassive/DoT/summon. Procจากcard/itemไม่รับskillbonusเพิ่มอีกชั้น และ heal/shield/CCไม่ใช้ทั้งสองค่า. Summonเก็บoffenseโบนัสจากเจ้าของตอนเรียกหนึ่งครั้งและคืนattributionให้เจ้าของ
 
@@ -21,7 +21,7 @@ Static budgetรายสกิลเทียบrawpower/ช่วงใช้/
 
 การอัปเดตมีcontenthashใหม่ จบไฟต์/reloadแล้วใช้ปุ่มสำรองและย้ายรุ่นเดิม Wallet/paidresources/gear/cardinstances/rolls/farmและpendingclaimsคงเดิม ไม่มีSQL/envใหม่. การสอบเทียบwhole-gameของTASK041ต้องทำภายหลังเมื่อได้รับอนุญาตใหม่
 
-Detonateแปลงflatต่อชั้นเป็นATKratioด้วยreferenceATK100และfactorเดียวกัน (Lv1=105%ATK/ชั้น, max210%ATK/ชั้น) เพื่อโตตามบิลด์ ไม่คงflatซ้ำ; HellPlantใช้power_scale1.75ครั้งเดียวบนoffense ATK/MATKไม่คูณHP/CC/bonuses ค่าพลังsummonก่อนfloorรักษาสัดส่วนเดิม ไม่มีregen/ฮีลplantเพิ่มโดยfactordamage แต่โบนัสฮีลจากownerสืบทอดsnapshotถูกต้องแล้ว
+Detonateแปลงflatต่อชั้นเป็นATKratioด้วยreferenceATK100และfactorเดียวกัน (Lv1=105%ATK/ชั้น, max210%ATK/ชั้น) เพื่อโตตามบิลด์ ไม่คงflatซ้ำ; HellPlantใช้power_scale1.75ครั้งเดียวบนoffense ATK/MATKไม่คูณHP/CC/bonuses ค่าพลังsummonก่อนfloorรักษาสัดส่วนเดิม HealingPlantใช้power_scale1.75เช่นกันตามD-104 โดยโบนัสฮีลของownerสืบทอดsnapshotครั้งเดียว
 
 ค่าด่าน/บอส/เศรษฐกิจ/เรทรางวัลเดิมทุกแถวคงไว้ ความง่ายหลังเพิ่มพลังเป็นสิ่งที่ผู้ใช้ยอมรับ ความยากเนื้อหาภายหลังออกแบบแยกได้ ไม่จำเป็นต้องรันsimulationรอบใหม่เพื่อดันด่านเดิมกลับมายากเท่าเดิม
 
