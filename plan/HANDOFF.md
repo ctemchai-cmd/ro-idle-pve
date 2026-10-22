@@ -4,6 +4,16 @@
 
 
 
+## 22 ต.ค.2026 · Codex — TASK-082 localผ่าน รอ public deploy proof
+
+- Sourcecard/rate080081อยู่4af3865c6แล้ว ยังไม่doneรอpublicรวมกับ082. ภาพcardmask/ownerframesและactualoldv1claim→v2สามกลุ่มผ่านตามsectionถัดไป คงcontent7b2a0267…/packc7e45b…
+- D108/T082เพิ่มsrc/renderer/finishers.ts profiles15ท่า/8stylesครบ6roots ใช้actualdamageหรือshieldabsorption/action_id+visualImpactMsเดิม ขัดร่าย/miss/normal/proc/healไม่ขึ้น บังคับdedupAOE/multihitและboundedpending12/active3/draw2/seen1024/noMath.random. Asuraแสงหมัด/radial/วงกระแทก+ASURA STRIKE; title750–1000wallms/impact420wallms/shake≤5intrinsicpx180ms แยกจากengineclock จึงอ่านได้×4 HUD/titleคง; reducedmotionปิดshake/impactคงstatictext. Farmยังมีimpactแต่showFinisherTitles=falseจึงไม่มีbanner/shakeรบกวน
+- **ActualisolatedVite/Chrome/nativepack3groupsผ่าน** task-082-browser.json:10ท่าครบ6roots/8styles contactตรงfirstnumber ไม่มีcheckpointmutation/reducedmotion/quietfarm; actualAsura6000mscheckpoint/events/RNGเท่ากัน1/2/4และinterruptedcastไม่มีfinisher; nativeAsura320/390px+mediareducedmotion/0APIwrites. เปิดภาพmobile320/390/Asura/Meteor/GrandCross/SonicBlowดูจริงแล้ว เป็นdesktopmobileemulation ไม่ใช่ownerAndroidbenchmark
+- 30targetedTS080081082+11nativecontact/animationregressionผ่าน task-080-082-targeted.txt/task-082-contact-regression.txt Finalbuild/type/boundaries/content/secretsผ่าน task-082-build.txt. Retainfirstbuildreadonlyfixturetypefail→แก้testimmutableactorsmap ไม่relaxreadonly; earlierfixturefreeze/viewportmetafailreportและscreensเก็บround1. Noengine/rules/SQL/env/media/ownerwrite/6173restart/newbalancebatch. src/generated ignored intentionally, build regenerates
+- Canonicaldesign33บันทึกprofiles/clock/contact/ROadaptation (native271mappingยังprocedural/missingsound จึงไม่claimexactnativeRO), design31ปรับrare1–2%/5min expected1.44–2.88/12hกับoldfrozenfirstclaim. Hostedharness082เพิ่มactualnewUI/CSS/data/rendererSHA checksพร้อมlogin/PWA/APIregion/content อ่านpublicเท่านั้น
+- ถัดไป: commit/pushsource082→รอVercelSUCCESS→runRO_EVIDENCE_PREFIX=task-082 RO_EXPECT_CONTENT_HASH=7b2a026768c31cf63c7e50510a26e7be840cdcc4010ac6cfb27cf078d8707e91 RO_DEPLOY_COMMIT=<source> node scripts/test_save_latency_hosted.cjs→review080081082/movedone/board68of82/M4done28of37/readiness8→docscommit. อย่าปิดold041/058/064/067หรือreview5ที่รอowner Userproposalใบธาตุยังไม่approvedimplementation
+
+
 ## 22 ต.ค.2026 · Codex — TASK-080/081 localผ่าน + TASK-082 กำลังทำ
 
 - ผู้ใช้ต่อจาก079ขอcardimageใหญ่เต็มช่องแล้วmaskขอบมน และmini cardframesบนgearicon. D106/T080แก้cover+mask bag/picker/socketและnativefullportraitdetailเดิม, qualityBronze/Silver/Gold/emptyframeอ่านactualowner+slot+capacity1/2/3 ไม่ใส่cardsให้freeitem; sharedhelperclient/slots/equipment-cards UIในBuddy/slot/bag/picker Refinepillย้ายบนไม่ทับแถวcard

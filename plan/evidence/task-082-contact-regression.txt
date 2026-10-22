@@ -1,0 +1,19 @@
+✔ native attack plays all nine frames instead of truncating at650ms; hits cannot restart the swing (198.86875ms)
+✔ multi-hit flinch finishes once; casting uses the phase clock and resets stale poses (3.342958ms)
+✔ death is not replaced by subsequent damage and revive clears its visual (2.854708ms)
+✔ complete actor motion advances between native frames and returns to rest without head-only movement (0.425708ms)
+✔ ACT attack event sets contact/release: sword500ms, bow700ms (release pose, not the draw sound), rod500ms, rod500ms (16.69625ms)
+✔ projectiles wait for the native release pose, retain travel/stagger, and never mutate pack definitions (3.387834ms)
+✔ fast attack speed plays the swing faster so the release still lands inside it; slow attacks keep the native clip (2.422833ms)
+✔ monk fists cycle 3 native poses; weapon jobs keep the one attack their overlay draws; skills keep the preset swing (42.460208ms)
+✔ impacts are native STR effects shipped in the pack, keyed by presentation so copies share them (108.927041ms)
+✔ fire/cold bolts fall from the sky onto the target; Lightning Bolt and Arrow Shower use their native strike instead of fake projectiles (3.267417ms)
+✔ damage numbers arc up then fall to one side while shrinking, faster than the old 1.1 s rise (0.602167ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2493.278583

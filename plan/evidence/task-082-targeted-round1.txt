@@ -1,0 +1,28 @@
+✔ finisher follows successful damage only, never charge/interruption/miss/normal/proc/zero (4.382958ms)
+✔ visual contact gates first successful hit; multihit/AoE/receipt replay make one cue per action (0.355625ms)
+✔ 1×/2×/4× preserve impact time and keep Asura title readable for the same wall duration (0.300125ms)
+✔ shake stays subtle/bounded, expires quickly, and reduced motion keeps only static title (0.851667ms)
+✔ stale catch-up cannot replay an old ultimate; buffers remain bounded under repeated events (0.827875ms)
+✔ all configured large attacks exist in current content and represent all six class trees (0.764583ms)
+✖ actual resolved Asura interruption produces no finisher, successful Asura produces exactly one (2.681834ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 6
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1200.642333
+
+✖ failing tests:
+
+test at tests/game/finishers.test.ts:1:3536
+✖ actual resolved Asura interruption produces no finisher, successful Asura produces exactly one (2.681834ms)
+  TypeError [Error]: Cannot assign to read only property 'spirit_spheres' of object '#<Object>'
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/finishers.test.ts:35:285)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7)

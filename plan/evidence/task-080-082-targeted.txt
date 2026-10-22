@@ -1,0 +1,38 @@
+✔ gear card frames use only unlocked sockets, show empty slots and preserve state (2.728334ms)
+✔ frames disclose Bronze/Silver/Gold from actual card instances, separately from monster grade (1.745ms)
+✔ moving equipment leaves cards with each character slot; unowned gear has no attached cards (2.586667ms)
+✔ finisher follows successful damage only, never charge/interruption/miss/normal/proc/zero (2.048959ms)
+✔ visual contact gates first successful hit; multihit/AoE/receipt replay make one cue per action (0.565167ms)
+✔ a successful shield-absorbed hit still lands; quiet farm retains impact without title (0.098625ms)
+✔ 1×/2×/4× preserve impact time and keep Asura title readable for the same wall duration (0.485ms)
+✔ shake stays subtle/bounded, expires quickly, and reduced motion keeps only static title (0.248166ms)
+✔ stale catch-up cannot replay an old ultimate; buffers remain bounded under repeated events (0.773667ms)
+✔ all configured large attacks exist in current content and represent all six class trees (1.164583ms)
+✔ actual resolved Asura interruption produces no finisher, successful Asura produces exactly one (9.6865ms)
+✔ 66 native RO cards preserve all 60 legacy IDs, correct slots, exact art IDs and distinct source grades (63.756ms)
+✔ quality/level improve benefits, reduce penalties, scale proc power once and pure control chance only (1.043625ms)
+✔ Raydric/Deviling reduce neutral damage and retain weaknesses; true damage bypasses new resistance (24.520916ms)
+✔ armor element and GTB magic-only guard/SP cost use shared stats; physical hits stay unchanged (21.140458ms)
+✔ Marc/Marduk/Deviruchi resist only their status; hard CC still interrupts Phen (7.722459ms)
+✔ Maya reflects magical only; normalized proc cannot recursively reflect itself (1.819333ms)
+✔ Moonlight changes motion only, with identical virtual-time integration across frame chunks (57.881166ms)
+✔ Osiris improves the existing revive recovery without adding a revive or replaying its old cast (71.28875ms)
+✔ every authored card proc resolves actual effects with target tags and no formula/status errors (18.889166ms)
+✔ Hydra target bonus requires a physical hit against the matching race; its own proc cannot retrigger (2.234333ms)
+✔ farm profile improves stage chance/quality, gates Mini/MVP, retains earlier cards and favors current tiers (213.22ms)
+✔ D-107 rare farm has1.44–2.88 expected cards per12h, true boundary chances and unchanged quality/grade rules (48.480625ms)
+✔ D-107 frozen v1 accrual/owned/pending cards survive migration; claim settles old rate once then installs v2 (707.604584ms)
+✔ seeded farm split/cap/retry produces same fixed cards/gear and RNG without kill or speed input (6.293792ms)
+✔ legacy snapshot settles before enabling cards; full bag never consumes or rerolls pending rewards (1027.094125ms)
+✔ slot correction migration returns incompatible cards to bag and preserves exact instance/quality/level/lock (186.840334ms)
+✔ D-058 migration fills new fields, rebalances status budgets and drops dangling stages, then passes the server validator (91.597292ms)
+✔ D-058 migration refunds status investments that exceed the new budget instead of keeping unfunded stats (1.737583ms)
+✔ D-058 migration SQL appends one signed revision per outdated save and skips current saves (1168.980791ms)
+ℹ tests 30
+ℹ suites 0
+ℹ pass 30
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4774.136625

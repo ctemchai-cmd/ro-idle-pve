@@ -9,6 +9,7 @@ import { alignProjectiles, attackContactMs, visualImpactMs } from './impact-timi
 import { drawSpiritSpheres } from './spirit-spheres.ts';
 import { drawHealingAura } from './healing-aura.ts';
 import { locateSkillVisual } from './asset-locator.ts';
+import { FinisherEffects, type FinisherFrame } from './finishers.ts';
 
 interface Cue { event: BattlePresentationEvent; duration: number; delay: number; targets: readonly string[] }
 /** Length of one pass through a native STR effect. */
@@ -26,13 +27,17 @@ export class BattleRenderer {
   private impacts: { target_id: string; at: number; config: ImpactEffect; asset: NativeAsset }[] = [];
   private readonly numbers: DamageNumbers | null;
   private readonly animation: ActorAnimation;
-  frameStats = { healing_auras: [] as string[], damage: [] as { source: string; target: string; amount: number; critical: boolean; sequence: number; at_ms: number }[], incoming: [] as { source: string; target: string; amount: number; sequence: number }[], projectiles: [] as { source: string; target: string; shape: string }[], shouts: [] as { actor: string; skill: string }[], impacts: [] as { target: string; meta: string }[] };
+  private readonly finishers = new FinisherEffects();
+  frameStats = { finishers: [] as FinisherFrame[], camera: [0,0] as readonly [number,number], healing_auras: [] as string[], damage: [] as { source: string; target: string; amount: number; critical: boolean; sequence: number; at_ms: number }[], incoming: [] as { source: string; target: string; amount: number; sequence: number }[], projectiles: [] as { source: string; target: string; shape: string }[], shouts: [] as { actor: string; skill: string }[], impacts: [] as { target: string; meta: string }[] };
   private frameTime = 0;
   private statusImages = new Map<string, HTMLImageElement | null>();
   /** Hide ambient-farm status icons without changing the shared combat state. */
   showStatuses = true;
   selected = 'main';
-  motion = true;
+  motion = typeof globalThis.matchMedia !== 'function' || !globalThis.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  showFinishers = true;
+  /** Ambient farm keeps the hit effects without repeated banners/camera shake. */
+  showFinisherTitles = true;
   /** Horizontal background travel in source-image pixels; presentation only. */
   scroll = 0;
   /** Extra camera zoom around the arena centre; presentation only. */
@@ -86,6 +91,7 @@ export class BattleRenderer {
       }
       const launch = launches.get(key(event));
       const delay = launch?.damaging ? visualImpactMs(launch.specs, launch.contact, event.hit_index ?? 0, launch.impact) : 0;
+      if (this.showFinishers) this.finishers.queue(event,event.at_ms+(this.motion?delay:0));
       if (event.type === 'damage' && event.target_id && (event.amount ?? 0) > 0) this.incomingImpact.set(event.target_id, Math.max(this.incomingImpact.get(event.target_id) ?? 0, event.at_ms + delay));
       if (event.type === 'death') this.deathAt.set(event.actor_id, Math.max(event.at_ms, this.incomingImpact.get(event.actor_id) ?? 0));
       if (event.type === 'damage' || event.type === 'death') this.reactions.push({ event, at: event.type === 'death' ? this.deathAt.get(event.actor_id)! : event.at_ms + delay });
@@ -117,9 +123,10 @@ export class BattleRenderer {
     this.projectiles = this.projectiles.slice(-160);
     this.reactions = this.reactions.slice(-600); this.sounds = this.sounds.slice(-300);
   }
-  draw(view: BattleRenderView, presentationMs = view.game_time_ms): void {
+  draw(view: BattleRenderView, presentationMs = view.game_time_ms, wallMs = performance.now()): void {
     const context = this.canvas.getContext('2d'); if (!context) throw new Error('CANVAS_UNAVAILABLE');
     this.frameTime = presentationMs;
+    this.finishers.advance(presentationMs,wallMs);
     for (const cue of this.reactions.filter(cue => !this.motion || cue.at <= presentationMs).sort((a, b) => a.at - b.at || a.event.sequence - b.event.sequence)) this.animation.accept({ ...cue.event, at_ms: this.motion ? cue.at : cue.event.at_ms });
     this.reactions = this.reactions.filter(cue => this.motion && cue.at > presentationMs);
     for (const cue of this.sounds.filter(cue => !this.motion || cue.at <= presentationMs)) if (presentationMs - (this.motion ? cue.at : cue.base) <= 120) void this.pack.sound(cue.ref).catch(error => this.pack.errors.push(String(error)));
@@ -142,9 +149,10 @@ export class BattleRenderer {
     const shade = context.createLinearGradient(0, 0, 0, height); shade.addColorStop(0, 'rgba(17,32,29,.14)'); shade.addColorStop(.45, 'transparent'); shade.addColorStop(1, 'rgba(21,35,30,.3)'); context.fillStyle = shade; context.fillRect(0, 0, width, height);
     const worldWidth = view.arena?.width ?? 1280, worldHeight = view.arena?.height ?? 720;
     const zoom = Math.min(width / worldWidth, height / worldHeight) * this.zoom;
-    context.save(); context.translate((width - worldWidth * zoom) / 2, (height - worldHeight * zoom) / 2); context.scale(zoom, zoom);
+    const camera=this.showFinishers&&this.showFinisherTitles?this.finishers.shake(wallMs,this.motion):[0,0] as const;
+    context.save(); context.translate((width - worldWidth * zoom) / 2+camera[0], (height - worldHeight * zoom) / 2+camera[1]); context.scale(zoom, zoom);
     this.drawnLayers = 0;
-    this.frameStats = { damage: [], incoming: [], projectiles: [], shouts: [], impacts: [], healing_auras: [] };
+    this.frameStats = { finishers: [], camera, damage: [], incoming: [], projectiles: [], shouts: [], impacts: [], healing_auras: [] };
     const appearances = this.scene.actors;
     this.lastView = view;
     for (const actor of view.actors.filter(row => row.summon_of)) this.drawSummon(context, actor, presentationMs);
@@ -183,6 +191,7 @@ export class BattleRenderer {
       const [tx, ty] = this.point(target); this.drawnLayers += drawEffect(context, cue.asset, Math.max(0, clock), tx, ty - cue.config.lift, cue.config.scale);
       this.frameStats.impacts.push({ target: target.actor_id, meta: cue.config.meta });
     }
+    if(this.showFinishers)this.finishers.drawImpacts(context,view.actors,a=>this.point(a),wallMs,this.motion);
     this.cues = this.cues.filter(cue => presentationMs - cue.event.at_ms < cue.duration);
     for (const cue of this.cues) {
       const event = cue.event, elapsed = presentationMs - event.at_ms - (this.motion ? cue.delay : 0); if (elapsed < 0) continue;
@@ -222,6 +231,7 @@ export class BattleRenderer {
     }
     for (const actor of view.actors) { if (actor.summon_of) continue; const [x, y] = this.point(actor); this.label(context, actor, x, y, presentationMs); }
     context.restore();
+    if(this.showFinishers){if(this.showFinisherTitles)this.finishers.drawTitle(context,width,height,this.scene.skill_labels,view.actors,wallMs,this.motion);this.frameStats.finishers=this.finishers.frames(wallMs,this.motion,this.showFinisherTitles);}
   }
   private lastView: BattleRenderView | null = null;
   /** Presentation-only sprout for summoned plants; colour by catalog kind, gentle pulse, no gameplay data. */

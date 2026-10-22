@@ -29,9 +29,13 @@ DarkLord/StormyKnight/Hatii/Baphomet/Marinaใช้typednormal-hit/damage-recei
 
 เพิ่มoptional `card_drops` frozenprofileในfarm.rate_snapshot: chance_per_million, definition_pool(arrayเรียงstable), definition_weights(record), quality_weights(bronze/silver/gold) และversion ไม่เพิ่มcarryclockใหม่ ใช้drop_carry_ms/รอบ5minเดียวกับgear แต่cardrollแยกจากlootRNGที่persist ภาพkill/FPS/fastforwardไม่เปลี่ยนreward
 
-Stageordinal0..129เพิ่มcardchance20→40% และqualitybronze85→15%,silver14→50%,gold1→35%แบบlinearพร้อมintegerweightsที่รวม1,000,000 poolเป็นทุกtierที่ปลดล็อกแล้วแต่เพิ่มweightให้tierหลัง Miniเริ่มบท2+ MVPบท6+และหายากกว่าnormal ไม่รับประกันrollหลังดีกว่าทุกroll
+Stageordinal0..129เพิ่มcardchance1→2% ทุก5นาที (`card_farm_v2`, D-107/TASK-081 แทน20→40%ของTASK-073) คิด12ชั่วโมงมี144รอบ เฉลี่ย1.44→2.88ใบ ไม่ใช่รับประกัน1–3ใบต่อครั้ง ไม่มีpity ส่วนqualitybronze85→15%,silver14→50%,gold1→35%แบบlinearพร้อมintegerweightsที่รวม1,000,000คงเดิม poolเป็นทุกtierที่ปลดล็อกแล้วแต่เพิ่มweightให้tierหลัง Miniเริ่มบท2+ MVPบท6+และหายากกว่าnormal ไม่รับประกันrollหลังดีกว่าทุกroll
 
 reserveFarmสร้างfixedcarditem `${claimId}_card_${dropIndex}` level1/lockedfalseและrarityจากprofileในpendingclaimเดิม retry/fullbagต้องจ่ายinstanceเดียว ไม่reroll Oldsnapshotไม่มีcardprofileไม่retroactiveให้card; farm.claimติดตั้งprofileใหม่หลังsettleoldunpaidintervalและเก็บpendingเดิม untouched ไม่มีSQL/envใหม่
+
+เมื่ออัปเดตจากv1เป็นv2 การย้ายcontentคงfrozenprofileเดิมถ้ากฎ/gear poolเดิมยังเข้ากัน ช่วงสะสมก่อนclaimแรกจึงยังใช้v1และอาจได้หลายใบอีกครั้ง จากนั้นติดตั้งv2สำหรับเวลาถัดไป ไม่ย้อนหลังลดของในกระเป๋าหรือpending และไม่เปลี่ยนgacha/cardpower/grade/quality/อุปกรณ์/ทอง/ทรัพยากร
+
+TASK-080 ขยายcard artในbag/picker/socketด้วยcover+roundedmask รายละเอียดเปิดภาพ3:4เต็มใบ กรอบการ์ดเล็กบนiconอุปกรณ์อ่านowner+slotprogressจริง: เทาเมื่อว่าง และBronze/Silver/Goldเมื่อใส่การ์ด capacity1/2/3ตามRefine0/5/10 ของที่ไม่ได้ใส่ไม่มีcardprogressติดไปกับitem ไม่เพิ่มAPIหรือstate
 
 ## การตรวจรับ
 

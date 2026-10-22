@@ -52,7 +52,7 @@ function FarmField({ context, covered }: { context: GameContext; covered: boolea
     const prepare = async (n: number): Promise<Wave> => {
       const session = new FarmWaveSession(state, stage, n, skins, tuning); await pack.prepare(session.scene, session.skillIds());
       if (pack.soundEnabled) await pack.enableAudio(true, session.scene).catch(() => {});
-      const renderer = new BattleRenderer(node, pack, session.scene); renderer.zoom = 1.3; renderer.showStatuses = false; return { session, renderer };
+      const renderer = new BattleRenderer(node, pack, session.scene); renderer.zoom = 1.3; renderer.showStatuses = false; renderer.showFinisherTitles = false; return { session, renderer };
     };
     const set = (m: typeof mode) => { mode = m; phaseAt = clock; if (!disposed) setPhase(m === 'settle' ? 'fight' : m); };
     void prepare(0).then(value => { if (disposed) return; current = value; clock = 0; set('fight'); }).catch(() => { if (!disposed) setPhase('error'); });
