@@ -24,7 +24,7 @@ Milestone: M4 · D-125 · ประเภท: UI และ read-only comparison
 
 - [x] AC-01: ของที่ใส่ได้/ยังไม่มีคนสวม เตือนเมื่อเลเวลไอเท็มสูงกว่า หรือเลเวลเท่ากันแต่ rarity สูงกว่า; ช่องว่างเตือนเมื่อมีของใส่ได้ ของเท่ากัน/เลเวลต่ำกว่าแม้ Supreme/ผิดอาชีพ/เลเวลไม่ถึง/ของเพื่อนไม่เตือน ออปชัน/ค่าพัฒนาช่องไม่เกี่ยวกับเกณฑ์และเซฟไม่ถูกแก้
 - [x] AC-02: จุดแดงเล็กที่ช่องถูกต้องบนมือถือ320/390 ไม่บัง rarity/Refine/Enchant/การ์ด; เปิดรายการแล้วของที่แนะนำอยู่บนสุดพร้อมป้าย สวมแล้ว/สลับตัวละครแล้วคำเตือนอัปเดต ไม่มี network write จากการแสดงคำเตือน และตรวจ500item/CPU4xเพื่อกัน UI หน่วง
-- [ ] AC-03: targeted rules/build/type/boundaries/secrets/readiness และ public Vercel bundle/หน้า login ผ่าน content hash/pack เดิม ไม่มี SQL หรือเซฟ migration เพิ่ม
+- [x] AC-03: targeted rules/build/type/boundaries/secrets/readiness และ public Vercel bundle/หน้า login ผ่าน content hash/pack เดิม ไม่มี SQL หรือเซฟ migration เพิ่ม
 
 ## วิธีตรวจและหลักฐาน
 
@@ -39,4 +39,6 @@ AC-01 ใช้ focused unit cases กับ tier/rarity/fit และ clone-bef
 - ผู้ใช้แก้เกณฑ์ระหว่างทำงานให้ใช้ level→rarity เท่านั้น จึงถอด stat-comparison/preview templates ทั้งหมด. การทดลองรวม modifier ที่ math/build ไม่อยู่ใน patch สุดท้าย; domain ทั้งสองไฟล์กลับ byte-identical HEAD และ content hashเดิม. เก็บรายงานทดลองแยกเป็นประวัติ ไม่อ้างว่าเป็นสูตรหรือข้อกำหนดผู้ใช้
 - Browserรอบแรกพบจุดแดงทับ progress จึงลดเป็น8pxและเลื่อนเหนือกรอบ พ้นเลขตีบวก/Enchantแล้ว
 
-- Final13focused checks/build/type/boundaries/secrets/readiness8 ผ่าน; actualBuddyPage320/390/real equip callback/character switchผ่าน3กลุ่ม จุดแดง8pxไม่ทับเลข/การ์ด. 500items CPU4x 1.9–4.3ms เทียบก่อนลดscopeตามผู้ใช้ ไม่ใช่physicalAndroid. รอ public Vercel ก่อน AC-03/done
+- Final13focused checks/build/type/boundaries/secrets/readiness8 ผ่าน; actualBuddyPage320/390/real equip callback/character switchผ่าน3กลุ่ม จุดแดง8pxไม่ทับเลข/การ์ด. 500items CPU4x 1.9–4.3ms เทียบก่อนลดscopeตามผู้ใช้ ไม่ใช่physicalAndroid. PublicVercel3กลุ่มผ่าน UI/CSS SHA/API200SIN1/login/PWA/no writes/contentและpackเดิม
+
+Reviewผ่าน3/3AC · 22 ต.ค.2026 · source`b319a6c127549f63ef421950a24e110888f80d96` VercelSUCCESS · [หลักฐาน](../evidence/task-096-review.json)

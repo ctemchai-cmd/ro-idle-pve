@@ -1,0 +1,50 @@
+{
+  "task_id": "TASK-096",
+  "passed": true,
+  "reviewer": "Codex self-review",
+  "review_date": "2026-10-22",
+  "source_commit": "b319a6c127549f63ef421950a24e110888f80d96",
+  "user_confirmed_rule": "Higher item tier first; at equal tier, higher rarity. No stat/option/slot-progression comparison for hints.",
+  "acceptance": [
+    {
+      "id": "AC-01",
+      "passed": true,
+      "evidence": [
+        "plan/evidence/task-096-targeted.txt"
+      ],
+      "result": "13focused tests pass: rank order, fit/level/ownership, empty/equipped transitions, option independence, same/lower tiers, locked item/500bag and save immutability plus existing equipment regression."
+    },
+    {
+      "id": "AC-02",
+      "passed": true,
+      "evidence": [
+        "plan/evidence/task-096-browser.json",
+        "plan/evidence/task-096-upgrade-slots-320.png",
+        "plan/evidence/task-096-upgrade-slots-390.png",
+        "plan/evidence/task-096-upgrade-list-320.png",
+        "plan/evidence/task-096-upgrade-list-390.png"
+      ],
+      "result": "Actual BuddyPage320/390:8px red dot clear of progress/card labels, recommended row first/tagged, explicit memory equip clears hint and actor switch recomputes.500itemsCPU4x1.9–4.3ms, zero HTTP mutations/errors.320screenshots manually viewed."
+    },
+    {
+      "id": "AC-03",
+      "passed": true,
+      "evidence": [
+        "plan/evidence/task-096-build.txt",
+        "plan/evidence/task-096-readiness.txt",
+        "plan/evidence/task-096-hosted.json",
+        "plan/evidence/task-096-github-deployment.json"
+      ],
+      "result": "Build/type/boundaries/secrets/readiness8 passed; actual public JS/CSS SHAs/red markers/API/login/PWA3groups passed. Domain sources unchanged; content and runtime pack unchanged."
+    }
+  ],
+  "content_hash": "38859826ae9f3bb1b3c622609f8e3f7c046fa7e9bc182a4db8bdc27b84a7cde2",
+  "asset_pack_hash": "96dec12ee20f2dc6865dda45131c27c96a0527fc757e8d4eaefd91dbec9d5912",
+  "limitations": [
+    "Mobile Chrome emulation, not physical Android",
+    "No owner Auth/save/cloud write; explicit equip tested on isolated in-memory fixture",
+    "Earlier stat-comparison/math performance trials retained as history, completely removed from final implementation after user clarified level/rarity rule"
+  ],
+  "owner_cloud_writes": false,
+  "save_migration_required": false
+}

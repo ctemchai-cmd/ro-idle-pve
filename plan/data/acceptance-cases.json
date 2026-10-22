@@ -11616,7 +11616,7 @@
       "criterion": "ของที่ใส่ได้/ยังไม่มีคนสวม เตือนเมื่อเลเวลไอเท็มสูงกว่า หรือเลเวลเท่ากันแต่ rarity สูงกว่า; ช่องว่างเตือนเมื่อมีของใส่ได้ ของเท่ากัน/เลเวลต่ำกว่าแม้ Supreme/ผิดอาชีพ/เลเวลไม่ถึง/ของเพื่อนไม่เตือน ออปชัน/ค่าพัฒนาช่องไม่เกี่ยวกับเกณฑ์และเซฟไม่ถูกแก้",
       "input_setup": "Same/higher/lower item tier and rarity, wearable/owned/empty/500-item fixtures, actual BuddyPage320/390",
       "input_refs": [
-        "plan/inprogress/tasks_096.md",
+        "plan/done/tasks_096.md",
         "plan/design/27-equipment-runtime.md"
       ],
       "parameters": {
@@ -11625,8 +11625,10 @@
       "expected": "ของที่ใส่ได้/ยังไม่มีคนสวม เตือนเมื่อเลเวลไอเท็มสูงกว่า หรือเลเวลเท่ากันแต่ rarity สูงกว่า; ช่องว่างเตือนเมื่อมีของใส่ได้ ของเท่ากัน/เลเวลต่ำกว่าแม้ Supreme/ผิดอาชีพ/เลเวลไม่ถึง/ของเพื่อนไม่เตือน ออปชัน/ค่าพัฒนาช่องไม่เกี่ยวกับเกณฑ์และเซฟไม่ถูกแก้",
       "verification": "Focused tier/rarity/fit/immutability tests, real mobile interactions/CPU4x, build and hosted public SHA",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation",
-      "execution_evidence": []
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-096-review.json"
+      ]
     },
     {
       "id": "T096-AC-02",
@@ -11635,7 +11637,7 @@
       "criterion": "จุดแดงเล็กที่ช่องถูกต้องบนมือถือ320/390 ไม่บัง rarity/Refine/Enchant/การ์ด; เปิดรายการแล้วของที่แนะนำอยู่บนสุดพร้อมป้าย สวมแล้ว/สลับตัวละครแล้วคำเตือนอัปเดต ไม่มี network write จากการแสดงคำเตือน และตรวจ500item/CPU4xเพื่อกัน UI หน่วง",
       "input_setup": "Same/higher/lower item tier and rarity, wearable/owned/empty/500-item fixtures, actual BuddyPage320/390",
       "input_refs": [
-        "plan/inprogress/tasks_096.md",
+        "plan/done/tasks_096.md",
         "plan/design/27-equipment-runtime.md"
       ],
       "parameters": {
@@ -11644,8 +11646,10 @@
       "expected": "จุดแดงเล็กที่ช่องถูกต้องบนมือถือ320/390 ไม่บัง rarity/Refine/Enchant/การ์ด; เปิดรายการแล้วของที่แนะนำอยู่บนสุดพร้อมป้าย สวมแล้ว/สลับตัวละครแล้วคำเตือนอัปเดต ไม่มี network write จากการแสดงคำเตือน และตรวจ500item/CPU4xเพื่อกัน UI หน่วง",
       "verification": "Focused tier/rarity/fit/immutability tests, real mobile interactions/CPU4x, build and hosted public SHA",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation",
-      "execution_evidence": []
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-096-review.json"
+      ]
     },
     {
       "id": "T096-AC-03",
@@ -11654,7 +11658,7 @@
       "criterion": "targeted rules/build/type/boundaries/secrets/readiness และ public Vercel bundle/หน้า login ผ่าน content hash/pack เดิม ไม่มี SQL หรือเซฟ migration เพิ่ม",
       "input_setup": "Same/higher/lower item tier and rarity, wearable/owned/empty/500-item fixtures, actual BuddyPage320/390",
       "input_refs": [
-        "plan/inprogress/tasks_096.md",
+        "plan/done/tasks_096.md",
         "plan/design/27-equipment-runtime.md"
       ],
       "parameters": {
@@ -11663,8 +11667,10 @@
       "expected": "targeted rules/build/type/boundaries/secrets/readiness และ public Vercel bundle/หน้า login ผ่าน content hash/pack เดิม ไม่มี SQL หรือเซฟ migration เพิ่ม",
       "verification": "Focused tier/rarity/fit/immutability tests, real mobile interactions/CPU4x, build and hosted public SHA",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation",
-      "execution_evidence": []
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-096-review.json"
+      ]
     }
   ]
 }
