@@ -23,6 +23,7 @@ import { TowerPage } from './tower.tsx';
 import { DailyPage } from './daily.tsx';
 import { StorePage } from './store.tsx';
 import './game.css';
+import { SaveRecoveryProvider } from './save-notice.tsx';
 import { randomId } from '../../client/secure-context.ts';
 
 export type View = 'home' | 'backpack' | 'team' | 'buddy' | 'skills' | 'stats' | 'dungeon' | 'tower' | 'daily' | 'store';
@@ -108,7 +109,7 @@ function ConnectedGame({ auth, scope }: { auth: AuthController; scope: string })
   const characterId = state.roster.some(a => a.character_id === route.character) ? route.character : 'main';
   const context: GameContext = { state, pack, locked: !ready || busy || !!active, busy: !ready || busy, submit, submitWhenReady, lastCode: () => controller.snapshot.lastReceipt?.result.code ?? null, lastCreated: () => [...(controller.snapshot.lastReceipt?.result.created_instance_ids ?? [])], latest: () => controller.snapshot.checkpoint?.save.state as AccountState | undefined, toast, go, characterId, selectCharacter: id => go(route.view, id) , challenge: target => { setRequest({ ...target, at: Date.now() }); go('home'); } };
   const tab: Tab | null = route.view === 'home' ? null : route.view === 'skills' || route.view === 'stats' ? 'buddy' : route.view === 'tower' || route.view === 'daily' ? 'dungeon' : route.view;
-  return <div className="game-root">
+  return <SaveRecoveryProvider value={{status:save.status,pending:!!save.pending,retry:()=>void controller.reconnect()}}><div className="game-root">
     <div className="game-frame">
       <Field context={context} covered={route.view !== 'home' || rotated} save={save} request={request} consumeRequest={() => setRequest(null)} />
       <TopHud context={context} save={save} controller={controller} sound={sound} toggleSound={() => void toggleSound()} reconnect={() => void controller.reconnect()} />
@@ -128,7 +129,7 @@ function ConnectedGame({ auth, scope }: { auth: AuthController; scope: string })
       {maintenance && <div className="maintenance-layer"><MaintenancePanel save={save} controller={controller} /></div>}
       <div className="toasts" role="status">{toasts.map(t => <p key={t.id} className="toast">{t.text}</p>)}</div>
     </div>
-  </div>;
+  </div></SaveRecoveryProvider>;
 }
 
 function ConfiguredGame({ config }: { config: Extract<ReturnType<typeof readPublicAuthConfig>, { kind: 'configured' }>['config'] }) {

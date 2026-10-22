@@ -55,8 +55,14 @@ test('initial session read cannot overwrite a newer provider event', async () =>
   const f = fixture(); let release!: (value: null) => void; f.provider.getSession = () => new Promise(resolve => { release = resolve; });
   try { const starting = f.auth.start(); f.emit('SESSION', session()); release(null); await starting; assert.equal(f.auth.snapshot.status, 'signed_in'); } finally { f.auth.dispose(); }
 });
+test('fresh cached identity avoids waiting for an SDK session lock on every save',async()=>{
+ const f=fixture();try{await f.auth.start();await f.auth.signIn('owner@example.invalid','password');f.provider.getSession=async()=>{throw new Error('SDK_LOCK_MUST_NOT_BE_READ');};assert.equal(await f.auth.getAccessToken(),session().access_token);assert.equal(f.auth.snapshot.status,'signed_in');f.emit('SESSION',{...session(),access_token:'new-fixture-token'});assert.equal(await f.auth.getAccessToken(),'new-fixture-token');assert.ok(!JSON.stringify(f.auth.snapshot).includes('fixture-token'));}finally{f.auth.dispose();}
+});
+test('same-user refresh during a pending SDK read returns the new token instead of a false signed-out result',async()=>{
+ const f=fixture();try{await f.auth.start();await f.auth.signIn('owner@example.invalid','password');f.emit('SESSION',{...session(),expires_at:110});let release!:(s:ProviderSession|null)=>void;f.provider.getSession=()=>new Promise(resolve=>{release=resolve;});const token=f.auth.getAccessToken();f.emit('SESSION',{...session(),access_token:'refreshed-fixture-token'});release(null);assert.equal(await token,'refreshed-fixture-token');assert.equal(f.auth.snapshot.status,'signed_in');}finally{f.auth.dispose();}
+});
 test('pending token read cannot authorize after logout or a newer session event', async () => {
-  const f = fixture(); await f.auth.start(); await f.auth.signIn('owner@example.invalid', 'password');
+  const f = fixture(); await f.auth.start(); await f.auth.signIn('owner@example.invalid', 'password'); f.emit('SESSION', { ...session(), expires_at: 110 });
   let release!: (value: ProviderSession) => void; f.provider.getSession = () => new Promise(resolve => { release = resolve; });
   try { const token = f.auth.getAccessToken(); await f.auth.signOut(); release(session()); assert.equal(await token, null); assert.equal(f.auth.snapshot.status, 'signed_out'); } finally { f.auth.dispose(); }
 });

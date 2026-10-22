@@ -13,6 +13,16 @@ export const elementNames: Readonly<Record<Element, string>> = {
 const loaded = loadValidatedContent(); if (!loaded.ok) throw new Error('CONTENT_UNAVAILABLE');
 const content = loaded.value;
 export const elementName = (element: DamageElement) => element === 'weapon' ? 'ตามธาตุอาวุธ' : elementNames[element];
+/** Attack rows / defense columns, directly from the same authored chart as EffectPipeline. */
+export function elementMatchups(catalog: ValidatedContent = content) {
+  const elements = Object.keys(elementNames) as Element[];
+  const chart = catalog.documents['combat-rules.json']!.element_chart as unknown as Record<Element, Record<Element, number>>;
+  return elements.map(attack => ({ attack, targets: elements.map(armor => {
+    const multiplier = chart[attack]?.[armor];
+    if (typeof multiplier !== 'number' || !Number.isFinite(multiplier) || multiplier < 0) throw new Error('INVALID_ELEMENT_MATCHUP');
+    return { armor, multiplier };
+  }) }));
+}
 
 /** Read-only labels, not a damage calculator. Mirrors the engine's source/card → tag → Neutral priority. */
 export function actorElements(actor: DeepReadonly<BattleActor>, catalog: ValidatedContent = content): { armor: Element; weapon: Element } {

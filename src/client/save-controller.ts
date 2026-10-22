@@ -6,18 +6,18 @@ export interface SaveBackup { checkpoint: SaveCheckpoint | null; pending: Comman
 export interface SaveCommandReply { receipt: Receipt; checkpoint?: SaveCheckpoint }
 export interface SavePorts {
   preview?(state: AccountState, command: Command): AccountState | null;
-  checkpoint(): Promise<SaveCheckpoint>;
-  receipt(id: string): Promise<Receipt | null>;
-  send(command: Command): Promise<Receipt>;
+  checkpoint(signal?: AbortSignal): Promise<SaveCheckpoint>;
+  receipt(id: string, signal?: AbortSignal): Promise<Receipt | null>;
+  send(command: Command, signal?: AbortSignal): Promise<Receipt>;
   /** New servers can return the verified cloud checkpoint with the command receipt. */
-  sendWithCheckpoint?(command: Command): Promise<SaveCommandReply>;
+  sendWithCheckpoint?(command: Command, signal?: AbortSignal): Promise<SaveCommandReply>;
   load(accountId: string): SaveBackup | null;
   store(accountId: string, value: SaveBackup): void;
   lock(accountId: string): Promise<(() => void) | null>;
   requestId(): string;
   /** TASK-040 read-only backup listing/download (optional for protocol test doubles). */
-  backups?(): Promise<BackupListing[]>;
-  backupFile?(id: string): Promise<unknown>;
+  backups?(signal?: AbortSignal): Promise<BackupListing[]>;
+  backupFile?(id: string, signal?: AbortSignal): Promise<unknown>;
 }
 export interface BackupListing { backup_id: string; reason: 'migration' | 'reset' | 'restore' | 'quarantine'; revision: number; created_at: string; content_hash: string; signed: boolean; restorable: boolean; signature: string | null; summary: unknown }
 export type SaveStatus = 'idle' | 'loading' | 'ready' | 'saving' | 'offline' | 'read_only' | 'signed_out' | 'incompatible' | 'error';
@@ -31,7 +31,20 @@ export class SaveController {
   private epoch = 0;
   private online = true;
   private disposed = false;
-  constructor(private readonly ports: SavePorts) {}
+  private readonly requests = new Set<AbortController>();
+  private readonly requestTimeoutMs: number;
+  constructor(private readonly ports: SavePorts, options: { requestTimeoutMs?: number } = {}) {
+    this.requestTimeoutMs = options.requestTimeoutMs ?? 15000;
+    if (!Number.isFinite(this.requestTimeoutMs) || this.requestTimeoutMs <= 0) throw new Error('INVALID_SAVE_DEADLINE');
+  }
+  /** Includes token, headers and body. Late completion cannot settle this operation twice. */
+  private async io<T>(work: (signal: AbortSignal) => Promise<T>): Promise<T> {
+    const controller = new AbortController(); this.requests.add(controller);
+    const aborted = new Promise<never>((_, reject) => controller.signal.addEventListener('abort', () => reject(controller.signal.reason), { once: true }));
+    const timer = setTimeout(() => controller.abort(new SaveProtocolError('SAVE_REQUEST_TIMEOUT')), this.requestTimeoutMs);
+    try { return await Promise.race([work(controller.signal), aborted]); }
+    finally { clearTimeout(timer); this.requests.delete(controller); }
+  }
   subscribe(listener: (state: SaveSnapshot) => void) { this.listeners.add(listener); listener(this.snapshot); return () => { this.listeners.delete(listener); }; }
   private publish(change: Partial<SaveSnapshot>) { this.snapshot = Object.freeze({ ...this.snapshot, ...change }); for (const fn of this.listeners) fn(this.snapshot); }
   private persist() { if (this.accountId) this.ports.store(this.accountId, { checkpoint: this.snapshot.checkpoint, pending: this.snapshot.pending }); }
@@ -49,7 +62,7 @@ export class SaveController {
     if (this.disposed || epoch !== this.epoch) { release?.(); return; } this.release = release;
     await this.reconnect();
   }
-  setOnline(online: boolean) { this.online = online; if (!online) { this.epoch++; this.publish({ preview: null, status: 'offline', reason: 'NETWORK_UNAVAILABLE' }); } }
+  setOnline(online: boolean) { this.online = online; if (!online) { this.epoch++; for (const request of this.requests) request.abort(new SaveProtocolError('NETWORK_UNAVAILABLE')); this.publish({ preview: null, status: 'offline', reason: 'NETWORK_UNAVAILABLE' }); } }
   private retreatCommand(): Command | null {
     const save = this.snapshot.checkpoint?.save, battle = (save?.state as AccountState | undefined)?.active_battle;
     return save && battle ? { type: 'battle.retreat', params: { battle_id: battle.battle_id }, request_id: this.ports.requestId(), expected_revision: save.revision, schema_version: 1, content_version: save.content_version, content_hash: save.content_hash, rules_version: save.rules_version } : null;
@@ -57,6 +70,8 @@ export class SaveController {
   async suspend(): Promise<void> { const command = this.retreatCommand(); if (command && this.snapshot.status === 'ready') await this.submit(command); }
   async reconnect(recover = true): Promise<void> {
     if (!this.accountId || this.disposed || !this.online) return;
+    // Visibility/online notifications must not invalidate a command still awaiting its own reply.
+    if (this.snapshot.status === 'saving') return;
     const epoch = ++this.epoch; this.publish({ preview: null, status: 'loading', reason: null });
     try {
       if (!this.release) {
@@ -68,14 +83,14 @@ export class SaveController {
         this.persist();
         // A reply already received in this tab is authoritative; only uncertain outcomes need a lookup.
         const known = this.snapshot.lastReceipt;
-        const receipt = known?.request_id === pending.request_id ? known : await this.ports.receipt(pending.request_id);
+        const receipt = known?.request_id === pending.request_id ? known : await this.io(signal => this.ports.receipt(pending.request_id, signal));
         if (!receipt) {
-          try { const sent = await this.ports.send(pending); if (sent.request_id !== pending.request_id) throw new SaveProtocolError('INVALID_RECEIPT'); minimumRevision = Math.max(minimumRevision, sent.committed_revision); this.publish({ lastReceipt: sent }); }
+          try { const sent = await this.io(signal => this.ports.send(pending, signal)); if (sent.request_id !== pending.request_id) throw new SaveProtocolError('INVALID_RECEIPT'); minimumRevision = Math.max(minimumRevision, sent.committed_revision); this.publish({ lastReceipt: sent }); }
           catch (error) { if (error instanceof SaveProtocolError && ['REVISION_CONFLICT', 'IDEMPOTENCY_KEY_REUSE'].includes(error.code)) reason = error.code; else throw error; }
         } else if (receipt.request_id !== pending.request_id) throw new SaveProtocolError('INVALID_RECEIPT');
         else { minimumRevision = Math.max(minimumRevision, receipt.committed_revision); this.publish({ lastReceipt: receipt }); }
       }
-      const checkpoint = await this.ports.checkpoint();
+      const checkpoint = await this.io(signal => this.ports.checkpoint(signal));
       if (this.disposed || epoch !== this.epoch) return;
       if (checkpoint.save.account_id !== this.accountId) throw new SaveProtocolError('CHECKPOINT_OWNER_MISMATCH');
       if (checkpoint.save.revision < minimumRevision) throw new SaveProtocolError('STALE_CHECKPOINT');
@@ -96,8 +111,8 @@ export class SaveController {
     if (!(migrate || recover) || !this.release || !this.online || this.snapshot.pending) throw new SaveProtocolError('WRITER_NOT_READY', 409);
     return this.write(command);
   }
-  async listBackups() { if (!this.ports.backups) throw new SaveProtocolError('BACKUPS_NOT_IMPLEMENTED', 501); return this.ports.backups(); }
-  async downloadBackup(id: string) { if (!this.ports.backupFile) throw new SaveProtocolError('BACKUPS_NOT_IMPLEMENTED', 501); return this.ports.backupFile(id); }
+  async listBackups() { if (!this.ports.backups) throw new SaveProtocolError('BACKUPS_NOT_IMPLEMENTED', 501); return this.io(signal => this.ports.backups!(signal)); }
+  async downloadBackup(id: string) { if (!this.ports.backupFile) throw new SaveProtocolError('BACKUPS_NOT_IMPLEMENTED', 501); return this.io(signal => this.ports.backupFile!(id, signal)); }
   async submit(command: Command): Promise<void> {
     const creating = command.type === 'account.create' && this.snapshot.status === 'error' && this.snapshot.reason === 'ACCOUNT_NOT_INITIALIZED' && !this.snapshot.checkpoint;
     if ((!creating && this.snapshot.status !== 'ready') || !this.release || !this.online || this.snapshot.pending) throw new SaveProtocolError('WRITER_NOT_READY', 409);
@@ -112,7 +127,7 @@ export class SaveController {
       if (state && this.ports.preview) {
         try { this.publish({ preview: this.ports.preview(state, command) }); } catch { /* Display must not prevent saving. */ }
       }
-      const reply = this.ports.sendWithCheckpoint ? await this.ports.sendWithCheckpoint(command) : { receipt: await this.ports.send(command) };
+      const reply = await this.io<SaveCommandReply>(signal => this.ports.sendWithCheckpoint ? this.ports.sendWithCheckpoint(command, signal) : this.ports.send(command, signal).then(receipt => ({ receipt })));
       const receipt = reply.receipt;
       if (this.disposed || epoch !== this.epoch) return;
       if (receipt.request_id !== command.request_id) throw new SaveProtocolError('INVALID_RECEIPT');
@@ -125,12 +140,12 @@ export class SaveController {
         this.publish({ status: this.release ? 'ready' : 'read_only' });
         return;
       }
-      await this.reconnect(false);
+      this.publish({ status: 'loading' }); await this.reconnect(false);
     } catch (error) {
       if (this.disposed || epoch !== this.epoch) return;
-      if (error instanceof SaveProtocolError && ['REVISION_CONFLICT', 'IDEMPOTENCY_KEY_REUSE'].includes(error.code)) await this.reconnect();
-      else this.failed(error);
+      this.failed(error);
+      if (error instanceof SaveProtocolError && (error.code === 'SAVE_REQUEST_TIMEOUT' || ['REVISION_CONFLICT', 'IDEMPOTENCY_KEY_REUSE'].includes(error.code))) await this.reconnect(error.code !== 'SAVE_REQUEST_TIMEOUT');
     }
   }
-  dispose() { this.disposed = true; this.epoch++; this.release?.(); this.release = null; this.listeners.clear(); }
+  dispose() { this.disposed = true; this.epoch++; for (const request of this.requests) request.abort(new SaveProtocolError('SAVE_DISPOSED')); this.release?.(); this.release = null; this.listeners.clear(); }
 }

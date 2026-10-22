@@ -219,3 +219,13 @@ TASK-001/002/047 ผ่าน Codex self-review แบบแล้ว: [progress
 | D-113 | 22 ต.ค.2026 ผู้ใช้เสนอ Call Spirit Lv.1–5 เสก1–5ลูก Lv.6–10 เพิ่ม ATK ต่อลูก1→2% | TASK-084 ใช้5ลูกที่Lv.6–10/โบนัส1.2,1.4,1.6,1.8,2%ตามลำดับ คงจำนวนถือสูงสุด5/additive bucket/คิดบอลที่เหลือหลังหัก/SPและราคาเดิม ไม่มี balance simulation ใหม่ |
 
 | D-114 | 22 ต.ค.2026 ผู้ใช้รายงาน scalingหอคอยเพิ่มน้อย/ง่ายไปที่ชั้น21ทีมLv30 | TASK-085ปรับbaselineHPเพิ่มcubic2f³และATKเพิ่มquadratic0.5f²ปัดขึ้น คงรางวัล/ชั้นที่ผ่าน/40s/DEF/ความเร็ว/CC ไม่รีเซ็ตเซฟและไม่อ้างผลbalanceทีมจริง |
+
+| D-115 | 22 ต.ค.2026 ผู้ใช้ขอคำอธิบายสกิล โดยเฉพาะแต่ละเลเวล ให้สั้นและกระชับใจความ | TASK-086 ย่อcurrenteffect/deltaเฉพาะที่เปลี่ยน แยกเงื่อนไขคงที่พับอ่านครั้งเดียว ไม่ตัดตัวเลข/ผล/ธาตุหรือปรับbalance |
+
+| D-116 | 22 ต.ค.2026 ผู้ใช้ขอตารางธาตุทั้งหมดในเกม | TASK-087 ใช้100คู่จากchartจริงในmodal เปิดหน้าสกิล/เกราะ เลือกคู่และเลื่อนตารางบนมือถือได้ ไม่เปลี่ยนตารางหรือสูตร |
+
+| D-117 | 22 ต.ค.2026 ผู้ใช้รายงานตีบวกแล้วเกมปุ่มเทา/เล่นต่อไม่ได้จนrestart | TASK-088 ตัดรอI/O15sและตรวจUUIDเดิม ไม่หักของหรือสุ่มซ้ำ มีretryในSheetและguardvisibilitywrite โดยยังรักษาpending/backup/onlineprimary |
+
+| D-118 | 22 ต.ค.2026 ผู้ใช้รายงานทองไม่พอเมื่อเทียบวัสดุตีบวกที่เหลือมาก | TASK-089 baselineทองฟาร์มทุกบท/Treasury×3 คงราคา/วัสดุ/EXP/โอกาส/pityและเงินเก่า Preserveunpaidoldrateก่อนclaimแรกแล้วsnapshotเรทใหม่ ไม่คูณpendingหรือwalletย้อนหลัง |
+
+D-117 runtime finding: valid same-user TOKEN_REFRESHED ระหว่าง SDK getSession ต้องใช้ session ใหม่ ไม่คืน null จน SaveController signed_out ค้าง; เก็บ valid token ภายใน AuthController (ไม่ใส่ UI snapshot) และหลีกเลี่ยง SDK session lock ทุกคลิก คง expiry/explicit logout/401 และ server JWT verification.

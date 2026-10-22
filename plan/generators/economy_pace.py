@@ -22,6 +22,7 @@ REFINE_TARGET = [0, 1, 3, 3, 5, 5, 6, 7]   # average Refine per worn slot at cha
 ENCHANT_TARGET = [0, 0, 1, 2, 3, 4, 4, 5]  # average Enchant per worn slot at chapter end
 REFERENCE_BUILDS = {'mage': 'wizard_artillery', 'swordsman': 'crusader_guardian', 'acolyte': 'priest_healer', 'archer': 'hunter_sniper'}
 # Journey-tuned multipliers on top of the EXP-proportional scaling (1 = keep the M0 ratio to EXP).
+GOLD_INCOME_MULTIPLIER = 3  # D-118: shared gold funds many sinks; material/EXP pacing stays unchanged.
 RESOURCE_BIAS = {'gold': 1.0, 'hero_exp': 1.0, 'skill_manual': 1.0, 'refine_ore': 1.0, 'breakthrough_essence': 1.0, 'enchant_dust': 1.0}
 M0_RATES = [
   {'chapter': 1, 'per_hour': {'gold': 3600, 'hero_exp': 9000, 'skill_manual': 120, 'refine_ore': 12, 'breakthrough_essence': 6, 'enchant_dust': 0}},
@@ -87,14 +88,16 @@ def main():
   economy, loot = load('economy.json'), load('loot.json')
   skills_by_root = {root: load(f'skills/{root}.json') for root in REFERENCE_BUILDS}
   new_rates, factors, plan = rates(load('progression.json'), load('stages.json')['stages'], load('slot-progress.json'), skills_by_root)
+  for row in new_rates: row['per_hour']['gold'] *= GOLD_INCOME_MULTIPLIER
   economy['rates'] = new_rates
   for cp in economy['checkpoints']:  # same independent budgets, minutes at the D-069 rates; windows ±40 % around them
     per = new_rates[cp['chapter'] - 1]['per_hour']; minutes = max(q / per[k] * 60 for k, q in cp['cost'].items())
-    cp['expected_minutes'] = minutes; cp['acceptable_minutes'] = [math.floor(minutes * 0.6), math.ceil(minutes * 1.4)]
-    cp['pace_basis'] = 'D-069 rates (2–3 weeks to max); window is ±40 % of the computed budget minutes'
+    cp['expected_minutes'] = minutes  # Keep authored acceptance windows; do not move them to hide a failure.
+    cp['pace_basis'] = 'D-118 gold income x3; other D-069 rates and authored acceptance windows unchanged'
   economy['checkpoint_limits'] = 'Empty starting wallet and static unlocked farm chapter; costs are illustrative independent budgets at the D-069 rates, not a measured timeline (scripts/game/journey.ts measures that). First clears/daily/salvage accelerate these estimates. Cannot spend same income on two checkpoints at once.'
   economy['long_term_target'] = 'D-069: Lv70 Class2 and chapter 8 in about 240 continuous farm hours (~10 days with AFK claimed twice a day), maxed gear around 2–3 weeks, then wait for Hi-class; no fixed wait per stage'
   economy['pace_target'] = {'chapter_hours': CHAPTER_HOURS, 'story_end_hours': sum(CHAPTER_HOURS), 'refine_target': REFINE_TARGET, 'enchant_target': ENCHANT_TARGET, 'reference_builds': REFERENCE_BUILDS, 'chapter_end_plan': plan, 'exp_scale_vs_m0': [round(k, 4) for k in factors], 'resource_bias': RESOURCE_BIAS, 'generator': 'plan/generators/economy_pace.py'}
+  economy['pace_target']['gold_income_multiplier'] = GOLD_INCOME_MULTIPLIER
   # D-068 pool size: the common-equivalent throughput bound uses the 36-definition tier catalogue.
   sa = loot['supreme_analysis']; sa['target_definition_probability'] = 1 / 36; sa['equivalent_throughput_minutes'] = 729 / (sa['mean_common_equivalent_per_drop'] / 36 / sa['drop_interval_minutes'])
   text = {'economy.json': json.dumps(economy, ensure_ascii=False, indent=2) + '\n', 'loot.json': json.dumps(loot, ensure_ascii=False, indent=2) + '\n'}

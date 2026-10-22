@@ -41,11 +41,13 @@ export function createBrowserSavePorts(auth: AuthController, scope: string, stor
   const content = loaded.value, validator = new ContentValidator(structuredClone(content.schemas) as unknown as Record<string, ObjectValue>);
   const digest = async (value: unknown) => sha256Hex(canonical(value));
   const key = (accountId: string) => `ro-idle:save:v1:${scope}:${accountId}`;
-  async function call(url: string, command?: Command, includeCheckpoint = false) {
+  async function call(url: string, command?: Command, includeCheckpoint = false, signal?: AbortSignal) {
     const token = await auth.getAccessToken(); if (!token) throw new SaveProtocolError('SIGN_IN_REQUIRED', 401);
-    let response: Response; try { response = await request(url, { method: command ? 'POST' : 'GET', headers: { authorization: `Bearer ${token}`, ...(command ? { 'content-type': 'application/json' } : {}), ...(includeCheckpoint ? { 'x-ro-checkpoint': 'include' } : {}) }, body: command ? JSON.stringify(command) : undefined, cache: 'no-store' }); }
-    catch { throw new SaveProtocolError('NETWORK_UNAVAILABLE'); }
+    signal?.throwIfAborted();
+    let response: Response; try { response = await request(url, { method: command ? 'POST' : 'GET', headers: { authorization: `Bearer ${token}`, ...(command ? { 'content-type': 'application/json' } : {}), ...(includeCheckpoint ? { 'x-ro-checkpoint': 'include' } : {}) }, body: command ? JSON.stringify(command) : undefined, cache: 'no-store', signal }); }
+    catch { if(signal?.aborted)throw signal.reason; throw new SaveProtocolError('NETWORK_UNAVAILABLE'); }
     const body = await response.json() as Record<string, unknown>;
+    signal?.throwIfAborted();
     if (!response.ok) { if (response.status === 401) auth.markUnauthorized(); throw new SaveProtocolError(typeof body.code === 'string' ? body.code : 'SAVE_UNAVAILABLE', response.status, body); }
     return body;
   }
@@ -60,13 +62,13 @@ export function createBrowserSavePorts(auth: AuthController, scope: string, stor
   }
   return {
     preview: (state, command) => previewSave(state, command, content),
-    async checkpoint() {
-      return validateCheckpoint((await call('/api/checkpoint')).checkpoint);
+    async checkpoint(signal) {
+      return validateCheckpoint((await call('/api/checkpoint', undefined, false, signal)).checkpoint);
     },
-    async receipt(id) { try { return validateReceipt((await call('/api/receipts/' + encodeURIComponent(id))).receipt); } catch (error) { if (error instanceof SaveProtocolError && error.status === 404) return null; throw error; } },
-    async send(command) { return validateReceipt((await call('/api/commands', command)).receipt); },
-    async sendWithCheckpoint(command) {
-      const body = await call('/api/commands', command, true), receipt = validateReceipt(body.receipt);
+    async receipt(id, signal) { try { return validateReceipt((await call('/api/receipts/' + encodeURIComponent(id), undefined, false, signal)).receipt); } catch (error) { if (error instanceof SaveProtocolError && error.status === 404) return null; throw error; } },
+    async send(command, signal) { return validateReceipt((await call('/api/commands', command, false, signal)).receipt); },
+    async sendWithCheckpoint(command, signal) {
+      const body = await call('/api/commands', command, true, signal), receipt = validateReceipt(body.receipt);
       return { receipt, ...(body.checkpoint ? { checkpoint: await validateCheckpoint(body.checkpoint) } : {}) };
     },
     load(accountId) {
@@ -83,8 +85,8 @@ export function createBrowserSavePorts(auth: AuthController, scope: string, stor
       } catch { return null; }
     },
     store(accountId, value) { storage.setItem(key(accountId), JSON.stringify(value)); },
-    async backups() { const body = await call('/api/backups'); if (!Array.isArray(body.backups)) throw new SaveProtocolError('INVALID_BACKUP_LIST'); return body.backups as BackupListing[]; },
-    async backupFile(id) { const body = await call('/api/backups/' + encodeURIComponent(id)); if (!body.file) throw new SaveProtocolError('BACKUP_NOT_FOUND', 404); return body.file; },
+    async backups(signal) { const body = await call('/api/backups', undefined, false, signal); if (!Array.isArray(body.backups)) throw new SaveProtocolError('INVALID_BACKUP_LIST'); return body.backups as BackupListing[]; },
+    async backupFile(id, signal) { const body = await call('/api/backups/' + encodeURIComponent(id), undefined, false, signal); if (!body.file) throw new SaveProtocolError('BACKUP_NOT_FOUND', 404); return body.file; },
     lock: locks ? browserWriterLock(locks, `ro-idle:writer:${scope}`) : storageWriterLock(storage, `ro-idle:writer:${scope}`),
     requestId: () => randomId(),
   };

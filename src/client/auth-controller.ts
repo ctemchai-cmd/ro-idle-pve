@@ -11,14 +11,20 @@ export class AuthController {
   private started = false;
   private explicitLogout = false;
   private providerRevision = 0;
+  private currentSession: ProviderSession | null = null;
   constructor(private readonly provider: AuthProvider, private readonly nowSeconds = () => Math.floor(Date.now() / 1000)) {}
   private publish(state: AuthSnapshot) { if (this.disposed) return; this.snapshot = Object.freeze(state); for (const listener of this.listeners) listener(this.snapshot); }
   private session(session: ProviderSession | null, recovery = false) {
-    if (!session) { this.publish({ status: 'signed_out', user: null, expires_at: null, reason: this.explicitLogout ? null : this.snapshot.user ? 'expired' : this.snapshot.reason }); return; }
+    if (!session) { this.currentSession = null; this.publish({ status: 'signed_out', user: null, expires_at: null, reason: this.explicitLogout ? null : this.snapshot.user ? 'expired' : this.snapshot.reason }); return; }
     if (!Number.isFinite(session.expires_at) || session.expires_at <= this.nowSeconds()) { this.expired(); return; }
+    this.currentSession = { ...session, user: { ...session.user } };
     this.publish({ status: recovery ? 'recovery' : 'signed_in', user: { ...session.user }, expires_at: session.expires_at, reason: null });
   }
-  private expired() { this.publish({ status: 'signed_out', user: null, expires_at: null, reason: 'expired' }); }
+  private expired() { this.currentSession = null; this.publish({ status: 'signed_out', user: null, expires_at: null, reason: 'expired' }); }
+  private cachedToken(userId: string | undefined, buffer = 0): string | null {
+    const session = this.currentSession;
+    return !this.explicitLogout && session && session.user.id === userId && session.expires_at > this.nowSeconds() + buffer ? session.access_token : null;
+  }
   subscribe(listener: (state: AuthSnapshot) => void): () => void { this.listeners.add(listener); listener(this.snapshot); return () => { this.listeners.delete(listener); }; }
   async start(): Promise<void> {
     if (this.started || this.disposed) return; this.started = true;
@@ -48,16 +54,19 @@ export class AuthController {
     catch { return { ok: false, code: 'PASSWORD_UPDATE_FAILED', status: 400 }; }
   }
   async getAccessToken(): Promise<string | null> {
-    if (this.snapshot.status === 'signed_out' || this.disposed) return null;
+    if (this.snapshot.status === 'signed_out' || this.disposed || this.explicitLogout) return null;
     const epoch = this.epoch, userId = this.snapshot.user?.id, revision = this.providerRevision;
+    const cached = this.cachedToken(userId, 30); if (cached) return cached;
     try {
       const session = await this.provider.getSession();
-      if (this.disposed || epoch !== this.epoch || revision !== this.providerRevision) return null;
+      if (this.disposed || epoch !== this.epoch) return null;
+      // A same-user refresh is newer than this SDK read; use its token, not a false sign-out.
+      if (revision !== this.providerRevision) return this.cachedToken(userId);
       if (!session || session.expires_at <= this.nowSeconds()) { this.expired(); return null; }
       if (session.user.id !== userId) { this.expired(); return null; }
-      return session.access_token;
-    } catch { this.expired(); return null; }
+      this.currentSession = { ...session, user: { ...session.user } }; return session.access_token;
+    } catch { if (this.disposed || epoch !== this.epoch) return null; if (revision !== this.providerRevision) return this.cachedToken(userId); this.expired(); return null; }
   }
   markUnauthorized(): void { this.expired(); }
-  dispose(): void { this.disposed = true; this.epoch++; this.unsubscribe?.(); this.provider.dispose?.(); if (this.expiryTimer) clearInterval(this.expiryTimer); this.listeners.clear(); }
+  dispose(): void { this.disposed = true; this.currentSession = null; this.epoch++; this.unsubscribe?.(); this.provider.dispose?.(); if (this.expiryTimer) clearInterval(this.expiryTimer); this.listeners.clear(); }
 }

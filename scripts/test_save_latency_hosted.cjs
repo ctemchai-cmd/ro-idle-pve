@@ -4,7 +4,7 @@ const {chromium}=require(process.env.RO_PLAYWRIGHT_MODULE||'/private/tmp/ro-idle
 const root=path.resolve(__dirname,'..'),base='https://ro-idle-pve.vercel.app',checks=[],errors=[],mutations=[],prefix=process.env.RO_EVIDENCE_PREFIX||'task-063';
 if(!/^task-\d{3}$/.test(prefix))throw new Error('INVALID_EVIDENCE_PREFIX');
 const expectedContent=process.env.RO_EXPECT_CONTENT_HASH||(['task-068','task-069','task-070','task-071','task-072','task-073','task-074'].includes(prefix)?JSON.parse(fs.readFileSync(path.join(root,'src/generated/runtime-manifest.json'),'utf8')).content_hash:'768e12a49bf339711d44f501c3710374adbcd10d9eb74d6a2e6f9b8aa79330af');
-const assert=(ok,message)=>{if(!ok)throw new Error(message);};let browser,profile,failure,cardFinisherProof,numericSpiritTowerProof;
+const assert=(ok,message)=>{if(!ok)throw new Error(message);};let browser,profile,failure,cardFinisherProof,numericSpiritTowerProof,currentProof;
 (async()=>{
  const samples=[];
  for(const route of ['/api/health','/api/checkpoint','/api/health']){
@@ -19,6 +19,20 @@ const assert=(ok,message)=>{if(!ok)throw new Error(message);};let browser,profil
  assert(assetResponse.ok&&assetResponse.headers.get('cache-control')==='no-store'&&assetManifest.pack_hash===manifest.runtime_asset_pack_hash,'MUTABLE_ASSET_MANIFEST_CACHE_OR_VERSION');
  const row=manifest.build_files.find(r=>/^dist\/assets\/account-session-.*\.js$/.test(r.path));assert(row,'NO_SAVE_BUNDLE');
  const bundle=await(await fetch(base+'/'+row.path.replace(/^dist\//,''))).text();assert(bundle.includes('sendWithCheckpoint')&&bundle.includes('x-ro-checkpoint'),'OLD_SAVE_PROTOCOL_DEPLOYED');
+ if(['task-086','task-087','task-088','task-089'].includes(prefix)){
+  const verified={};
+  for(const name of ['shell','gear-upgrades','item-options','element-badge','account-session']){
+   const file=manifest.build_files.find(r=>new RegExp('^dist/assets/'+name+'-.*\\.js$').test(r.path));assert(file,'NO_'+name+'_BUNDLE');
+   const response=await fetch(base+'/'+file.path.replace(/^dist\//,'')),source=await response.text();assert(response.ok&&createHash('sha256').update(source).digest('hex')===file.sha256,'PUBLIC_SHA_'+name);verified[name]={path:file.path,sha256:file.sha256,source};
+  }
+  const ui=verified.shell.source+'\n'+verified['gear-upgrades'].source,element=verified['element-badge'].source,data=verified['item-options'].source.replaceAll('\\"','"'),save=verified['account-session'].source;
+  assert(['skill-notes','skill-upgrade-diff','แสดงเฉพาะส่วนที่เปลี่ยน','เงื่อนไขสกิล'].every(s=>ui.includes(s)),'COMPACT_SKILLS_NOT_DEPLOYED');
+  assert(['element-guide-dialog','element-matrix-scroll','element-armor-guide','เกราะเป้าหมาย','ตารางธาตุ'].every(s=>element.includes(s)),'ELEMENT_TABLE_NOT_DEPLOYED');
+  assert(save.includes('SAVE_REQUEST_TIMEOUT')&&save.includes('throwIfAborted')&&save.includes('currentSession')&&save.includes('cachedToken'),'SAVE_TIMEOUT_AUTH_FIX_NOT_DEPLOYED');
+  assert(['save-notice','ยังยืนยันการบันทึกไม่ได้','ตรวจผลอีกครั้ง'].every(s=>ui.includes(s)),'IN_DIALOG_RETRY_NOT_DEPLOYED');
+  assert(data.includes('"gold_income_multiplier":3')&&data.includes('"gold":6330')&&data.includes('"gold":21714')&&data.includes('"gold":53910')&&data.includes('"reward_per_chest_base":{"gold":3000}'),'GOLD_INCOME_NOT_DEPLOYED');
+  currentProof={tasks:['TASK-086','TASK-087','TASK-088','TASK-089'],compact_skills:true,full_element_table:true,bounded_save_and_auth_refresh:true,dialog_retry:true,farm_gold_multiplier:3,treasury_base_gold:3000,bundles:Object.values(verified).map(({source,...r})=>r)};
+ }
  if(['task-084','task-085'].includes(prefix)){
   const verified={};
   for(const name of ['shell','item-options','element-badge']){
@@ -115,7 +129,7 @@ const assert=(ok,message)=>{if(!ok)throw new Error(message);};let browser,profil
    assert(skill('alchemist_bio_cannibalize').includes('"power_scale":1.75'),'HEALING_PLANT_POWER_NOT_DEPLOYED');
   }
  }
- checks.push({case_id:'hosted_shared_save_bundle',passed:true,path:row.path,sha256:createHash('sha256').update(bundle).digest('hex'),combined_reply:true,...(cardFinisherProof?{card_finisher_proof:cardFinisherProof}:{}),...(numericSpiritTowerProof?{numeric_spirit_tower_proof:numericSpiritTowerProof}:{})});
+ checks.push({case_id:'hosted_shared_save_bundle',passed:true,path:row.path,sha256:createHash('sha256').update(bundle).digest('hex'),combined_reply:true,...(currentProof?{current_proof:currentProof}:{}),...(cardFinisherProof?{card_finisher_proof:cardFinisherProof}:{}),...(numericSpiritTowerProof?{numeric_spirit_tower_proof:numericSpiritTowerProof}:{})});
  profile=fs.mkdtempSync(path.join(os.tmpdir(),'ro-save-hosted-'));const context=await chromium.launchPersistentContext(profile,{headless:true,executablePath:process.env.RO_CHROME_PATH||'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',viewport:{width:390,height:844}});browser=context.browser();
  context.on('request',r=>{if(!['GET','HEAD','OPTIONS'].includes(r.method()))mutations.push({method:r.method(),path:new URL(r.url()).pathname});});
  const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));await page.goto(base+'/');await page.getByRole('heading',{name:'เข้าสู่บัญชี',exact:true}).waitFor();

@@ -10842,6 +10842,276 @@
         "plan/evidence/task-085-generator.txt",
         "plan/evidence/task-085-growth.json"
       ]
+    },
+    {
+      "id": "T086-AC-01",
+      "task_id": "TASK-086",
+      "acceptance_id": "AC-01",
+      "criterion": "คำอธิบายสกิลหลักกระชับ โดย Call Spirit/Provoke/endowไม่ย้ำเงื่อนไขยาวทุกเลเวล; จำนวนบอล/โบนัส/ระยะเวลา/โอกาส/ฮิต/ธาตุ/ต้นทุนยังตรงresolver และเงื่อนไขเฉพาะอ่านได้ในส่วนพับเงื่อนไขสกิล",
+      "input_setup": "Current126skills×tenresolvedranks; CallSpirit1/5/6/10,Provoke,FireEndow,Heal,SpiritCombo; actualmobile320/390 and signedoutproduction",
+      "input_refs": [
+        "plan/inprogress/tasks_086.md",
+        "src/client/skills.ts",
+        "src/ui/skill-growth.tsx",
+        "tests/game/skill-description.test.ts"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false,
+        "balance_simulation": false
+      },
+      "expected": "คำอธิบายสกิลหลักกระชับ โดย Call Spirit/Provoke/endowไม่ย้ำเงื่อนไขยาวทุกเลเวล; จำนวนบอล/โบนัส/ระยะเวลา/โอกาส/ฮิต/ธาตุ/ต้นทุนยังตรงresolver และเงื่อนไขเฉพาะอ่านได้ในส่วนพับเงื่อนไขสกิล",
+      "verification": "Existingfocusedsemanticchecks, numeric textdiff/audit, realmobilecomponents/build/publicproof",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T086-AC-02",
+      "task_id": "TASK-086",
+      "acceptance_id": "AC-02",
+      "criterion": "ผลอัปเลเวลทั้ง126สกิลแสดงเฉพาะข้อความที่เปลี่ยน ใช้รูปแบบตัวเลขเดิม→ใหม่กับหน่วยร่วม ไม่มีการตัดคำ/ซ่อนผลเปลี่ยน/ทำตัวเลขติดลบผิดความหมาย; ระดับที่เปลี่ยนจริงมีdeltaที่อ่านได้",
+      "input_setup": "Current126skills×tenresolvedranks; CallSpirit1/5/6/10,Provoke,FireEndow,Heal,SpiritCombo; actualmobile320/390 and signedoutproduction",
+      "input_refs": [
+        "plan/inprogress/tasks_086.md",
+        "src/client/skills.ts",
+        "src/ui/skill-growth.tsx",
+        "tests/game/skill-description.test.ts"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false,
+        "balance_simulation": false
+      },
+      "expected": "ผลอัปเลเวลทั้ง126สกิลแสดงเฉพาะข้อความที่เปลี่ยน ใช้รูปแบบตัวเลขเดิม→ใหม่กับหน่วยร่วม ไม่มีการตัดคำ/ซ่อนผลเปลี่ยน/ทำตัวเลขติดลบผิดความหมาย; ระดับที่เปลี่ยนจริงมีdeltaที่อ่านได้",
+      "verification": "Existingfocusedsemanticchecks, numeric textdiff/audit, realmobilecomponents/build/publicproof",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T086-AC-03",
+      "task_id": "TASK-086",
+      "acceptance_id": "AC-03",
+      "criterion": "Existing description/element/rule checksและbuild/type/boundaries/secretsผ่าน พร้อมactualmobile320/390/current+next+table+notesและpublicnewUI/API/login/PWA; content/pack/เกม/เซฟเดิม ไม่มีownerwrite/SQL/env/assets/balancebatch",
+      "input_setup": "Current126skills×tenresolvedranks; CallSpirit1/5/6/10,Provoke,FireEndow,Heal,SpiritCombo; actualmobile320/390 and signedoutproduction",
+      "input_refs": [
+        "plan/inprogress/tasks_086.md",
+        "src/client/skills.ts",
+        "src/ui/skill-growth.tsx",
+        "tests/game/skill-description.test.ts"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false,
+        "balance_simulation": false
+      },
+      "expected": "Existing description/element/rule checksและbuild/type/boundaries/secretsผ่าน พร้อมactualmobile320/390/current+next+table+notesและpublicnewUI/API/login/PWA; content/pack/เกม/เซฟเดิม ไม่มีownerwrite/SQL/env/assets/balancebatch",
+      "verification": "Existingfocusedsemanticchecks, numeric textdiff/audit, realmobilecomponents/build/publicproof",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T087-AC-01",
+      "task_id": "TASK-087",
+      "acceptance_id": "AC-01",
+      "criterion": "ตารางธาตุครบ10×10=100คู่จาก combat-rules.json ชุดเดียวกับengine แถวโจมตี/คอลัมน์เกราะระบุชัด ตัวเลขเปอร์เซ็นต์/legendตรงตัวคูณจริง รวมHoly→Undead150%,Fire→Earth125%,Fire→Water75%,Neutral→Ghost75%",
+      "input_setup": "All10attack×10armor pairs fromactualchart; selectedFire/Earth,Fire/Water,Holy/Undead,Neutral/Ghost; actualmobile320/390 and signedoutproduction",
+      "input_refs": [
+        "plan/inprogress/tasks_087.md",
+        "src/client/elements.ts",
+        "src/ui/element-badge.tsx",
+        "plan/data/combat-rules.json",
+        "tests/game/element-presentation.test.ts"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false,
+        "balance_simulation": false
+      },
+      "expected": "ตารางธาตุครบ10×10=100คู่จาก combat-rules.json ชุดเดียวกับengine แถวโจมตี/คอลัมน์เกราะระบุชัด ตัวเลขเปอร์เซ็นต์/legendตรงตัวคูณจริง รวมHoly→Undead150%,Fire→Earth125%,Fire→Water75%,Neutral→Ghost75%",
+      "verification": "100pairs comparedtoactualEffectPipeline, mobilematrix/read-only/focus/scroll,build/publicproof",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T087-AC-02",
+      "task_id": "TASK-087",
+      "acceptance_id": "AC-02",
+      "criterion": "เปิดจากหน้าสกิลและป้ายเกราะบอส/ตัวโฟกัส เลือกคู่ธาตุอ่านสรุปได้ ตารางเลื่อนแนวนอนพร้อมหัวแถว/คอลัมน์คงที่ ใช้ได้320/390px ปิด/Escape/คืนfocusถูกต้อง มีtextร่วมสีและไม่มีAPI/saveขณะดู",
+      "input_setup": "All10attack×10armor pairs fromactualchart; selectedFire/Earth,Fire/Water,Holy/Undead,Neutral/Ghost; actualmobile320/390 and signedoutproduction",
+      "input_refs": [
+        "plan/inprogress/tasks_087.md",
+        "src/client/elements.ts",
+        "src/ui/element-badge.tsx",
+        "plan/data/combat-rules.json",
+        "tests/game/element-presentation.test.ts"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false,
+        "balance_simulation": false
+      },
+      "expected": "เปิดจากหน้าสกิลและป้ายเกราะบอส/ตัวโฟกัส เลือกคู่ธาตุอ่านสรุปได้ ตารางเลื่อนแนวนอนพร้อมหัวแถว/คอลัมน์คงที่ ใช้ได้320/390px ปิด/Escape/คืนfocusถูกต้อง มีtextร่วมสีและไม่มีAPI/saveขณะดู",
+      "verification": "100pairs comparedtoactualEffectPipeline, mobilematrix/read-only/focus/scroll,build/publicproof",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T087-AC-03",
+      "task_id": "TASK-087",
+      "acceptance_id": "AC-03",
+      "criterion": "Focused matrix/pipeline/presentation checksและbuild/type/boundaries/secretsผ่าน พร้อมactualmobileและpublicnewUI/API/login/PWA ไม่เปลี่ยน100ค่าตาราง/สูตร/ธาตุสกิล/content/pack/เซฟ ไม่มีSQL/env/assets/ownerwrite/balancebatch",
+      "input_setup": "All10attack×10armor pairs fromactualchart; selectedFire/Earth,Fire/Water,Holy/Undead,Neutral/Ghost; actualmobile320/390 and signedoutproduction",
+      "input_refs": [
+        "plan/inprogress/tasks_087.md",
+        "src/client/elements.ts",
+        "src/ui/element-badge.tsx",
+        "plan/data/combat-rules.json",
+        "tests/game/element-presentation.test.ts"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false,
+        "balance_simulation": false
+      },
+      "expected": "Focused matrix/pipeline/presentation checksและbuild/type/boundaries/secretsผ่าน พร้อมactualmobileและpublicnewUI/API/login/PWA ไม่เปลี่ยน100ค่าตาราง/สูตร/ธาตุสกิล/content/pack/เซฟ ไม่มีSQL/env/assets/ownerwrite/balancebatch",
+      "verification": "100pairs comparedtoactualEffectPipeline, mobilematrix/read-only/focus/scroll,build/publicproof",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T088-AC-01",
+      "task_id": "TASK-088",
+      "acceptance_id": "AC-01",
+      "criterion": "คำขอเซฟ/อ่านreceipt/checkpointรวมรอtokenและbodyมีdeadline15s/AbortSignal ไม่ค้างsaving/loadingตลอดไป; timeoutตอนเขียนตรวจreceiptและreconcileคำสั่งUUIDเดิมอัตโนมัติครั้งเดียว ไม่เพิ่มหักทอง/หินหรือสุ่มตีบวกซ้ำ",
+      "input_setup": "Heldcommandresponse/token/body, successfulservercommitbutlostclientreply, failedreceiptlookup, visibilityduringwrite; disposablemobile/Auth/API/SQL",
+      "input_refs": [
+        "plan/inprogress/tasks_088.md",
+        "src/client/save-controller.ts",
+        "src/client/save-browser.ts",
+        "tests/game/recurring-save.test.ts"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false,
+        "balance_simulation": false
+      },
+      "expected": "คำขอเซฟ/อ่านreceipt/checkpointรวมรอtokenและbodyมีdeadline15s/AbortSignal ไม่ค้างsaving/loadingตลอดไป; timeoutตอนเขียนตรวจreceiptและreconcileคำสั่งUUIDเดิมอัตโนมัติครั้งเดียว ไม่เพิ่มหักทอง/หินหรือสุ่มตีบวกซ้ำ",
+      "verification": "Focusedtimeout/replay/transport tests and actualdisposableChromeheldreply/oneSQLcommit/continuedplay,build/publicproof",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T088-AC-02",
+      "task_id": "TASK-088",
+      "acceptance_id": "AC-02",
+      "criterion": "visibility/reconnectระหว่างwriteไม่แทรกepochจนทิ้งผลสำเร็จ; late reply/failed recovery/offline/disposeไม่ทับcheckpointใหม่ pendingและbackupเดิมคง เมื่อrecoverแล้วกลับreadyและเริ่มไฟต์/ทำรายการต่อได้",
+      "input_setup": "Heldcommandresponse/token/body, successfulservercommitbutlostclientreply, failedreceiptlookup, visibilityduringwrite; disposablemobile/Auth/API/SQL",
+      "input_refs": [
+        "plan/inprogress/tasks_088.md",
+        "src/client/save-controller.ts",
+        "src/client/save-browser.ts",
+        "tests/game/recurring-save.test.ts"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false,
+        "balance_simulation": false
+      },
+      "expected": "visibility/reconnectระหว่างwriteไม่แทรกepochจนทิ้งผลสำเร็จ; late reply/failed recovery/offline/disposeไม่ทับcheckpointใหม่ pendingและbackupเดิมคง เมื่อrecoverแล้วกลับreadyและเริ่มไฟต์/ทำรายการต่อได้",
+      "verification": "Focusedtimeout/replay/transport tests and actualdisposableChromeheldreply/oneSQLcommit/continuedplay,build/publicproof",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T088-AC-03",
+      "task_id": "TASK-088",
+      "acceptance_id": "AC-03",
+      "criterion": "ในSheetที่กำลังตีบวก/ทำรายการมีข้อความเมื่อรอนานและปุ่มตรวจผลใหม่เมื่อผิดพลาด กดได้โดยไม่ต้องปิดเกม; focusedreplay/timeout/transport+actualdisposableAuth/API/SQL/Chromeheldreply+build/hostedผ่าน ไม่แตะownerเซฟ/6173/SQL/env",
+      "input_setup": "Heldcommandresponse/token/body, successfulservercommitbutlostclientreply, failedreceiptlookup, visibilityduringwrite; disposablemobile/Auth/API/SQL",
+      "input_refs": [
+        "plan/inprogress/tasks_088.md",
+        "src/client/save-controller.ts",
+        "src/client/save-browser.ts",
+        "tests/game/recurring-save.test.ts"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false,
+        "balance_simulation": false
+      },
+      "expected": "ในSheetที่กำลังตีบวก/ทำรายการมีข้อความเมื่อรอนานและปุ่มตรวจผลใหม่เมื่อผิดพลาด กดได้โดยไม่ต้องปิดเกม; focusedreplay/timeout/transport+actualdisposableAuth/API/SQL/Chromeheldreply+build/hostedผ่าน ไม่แตะownerเซฟ/6173/SQL/env",
+      "verification": "Focusedtimeout/replay/transport tests and actualdisposableChromeheldreply/oneSQLcommit/continuedplay,build/publicproof",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T089-AC-01",
+      "task_id": "TASK-089",
+      "acceptance_id": "AC-01",
+      "criterion": "ทองฟาร์มทั้ง8บทและTreasurychestเพิ่ม3เท่าจากbaselineก่อนpatchจริง Generatorreproduceได้ รายได้EXP/manual/หิน/essence/dust/lootและราคาตีบวก/Enchant/level/skill/โอกาส/pityเดิม ไม่มีบัฟทองจากsalvageเพื่อสร้างarbitrage",
+      "input_setup": "Prior8chaptergoldrates/Treasury1000base, frozenoldrate/pendingwallet/ledger, nextinterval/replay/cap/carry, isolatedmobile/API/SQL",
+      "input_refs": [
+        "plan/inprogress/tasks_089.md",
+        "plan/data/economy.json",
+        "plan/data/daily-bosses.json",
+        "plan/generators/economy_pace.py",
+        "src/domain/account/commands.ts"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false,
+        "balance_simulation": false
+      },
+      "expected": "ทองฟาร์มทั้ง8บทและTreasurychestเพิ่ม3เท่าจากbaselineก่อนpatchจริง Generatorreproduceได้ รายได้EXP/manual/หิน/essence/dust/lootและราคาตีบวก/Enchant/level/skill/โอกาส/pityเดิม ไม่มีบัฟทองจากsalvageเพื่อสร้างarbitrage",
+      "verification": "Exactsourcecomparison+generator/M0+farm/daily/migration/replay tests+actualdisposableold/newrate and publicproof",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T089-AC-02",
+      "task_id": "TASK-089",
+      "acceptance_id": "AC-02",
+      "criterion": "wallet/pendingreward/paidledger/จำนวนของ/ชั้น/สิทธิ์รายวันเก่าไม่ถูกคูณหรือรีเซ็ต ช่วงAFKที่frozenเก่าจ่ายตามrateเดิมครั้งเดียวแล้วติดตั้งrateใหม่3เท่าให้เวลาถัดไป Claimreplayไม่จ่ายซ้ำ12hcap/carry/RNGเดิม",
+      "input_setup": "Prior8chaptergoldrates/Treasury1000base, frozenoldrate/pendingwallet/ledger, nextinterval/replay/cap/carry, isolatedmobile/API/SQL",
+      "input_refs": [
+        "plan/inprogress/tasks_089.md",
+        "plan/data/economy.json",
+        "plan/data/daily-bosses.json",
+        "plan/generators/economy_pace.py",
+        "src/domain/account/commands.ts"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false,
+        "balance_simulation": false
+      },
+      "expected": "wallet/pendingreward/paidledger/จำนวนของ/ชั้น/สิทธิ์รายวันเก่าไม่ถูกคูณหรือรีเซ็ต ช่วงAFKที่frozenเก่าจ่ายตามrateเดิมครั้งเดียวแล้วติดตั้งrateใหม่3เท่าให้เวลาถัดไป Claimreplayไม่จ่ายซ้ำ12hcap/carry/RNGเดิม",
+      "verification": "Exactsourcecomparison+generator/M0+farm/daily/migration/replay tests+actualdisposableold/newrate and publicproof",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T089-AC-03",
+      "task_id": "TASK-089",
+      "acceptance_id": "AC-03",
+      "criterion": "มีsourcebeforeafterและอัตราทองต่อหินเทียบต้นทุนอย่างชัดเจน ตัวเลขเป็นbaselineทดลองไม่อ้างbalanceครบ; generator/M0/focusedfarm/daily/save/migration/buildและactualdisposableUI/API/SQL/publicproofผ่าน ไม่มีownerwrite/SQL/env/assets/balancebatch",
+      "input_setup": "Prior8chaptergoldrates/Treasury1000base, frozenoldrate/pendingwallet/ledger, nextinterval/replay/cap/carry, isolatedmobile/API/SQL",
+      "input_refs": [
+        "plan/inprogress/tasks_089.md",
+        "plan/data/economy.json",
+        "plan/data/daily-bosses.json",
+        "plan/generators/economy_pace.py",
+        "src/domain/account/commands.ts"
+      ],
+      "parameters": {
+        "owner_cloud_writes": false,
+        "balance_simulation": false
+      },
+      "expected": "มีsourcebeforeafterและอัตราทองต่อหินเทียบต้นทุนอย่างชัดเจน ตัวเลขเป็นbaselineทดลองไม่อ้างbalanceครบ; generator/M0/focusedfarm/daily/save/migration/buildและactualdisposableUI/API/SQL/publicproofผ่าน ไม่มีownerwrite/SQL/env/assets/balancebatch",
+      "verification": "Exactsourcecomparison+generator/M0+farm/daily/migration/replay tests+actualdisposableold/newrate and publicproof",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
     }
   ]
 }

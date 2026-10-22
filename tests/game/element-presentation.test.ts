@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import type { Effect, SkillDefinition, StatusDefinition } from '../../src/contracts/index.ts';
-import { actorElements, elementNames, skillDamageElements } from '../../src/client/elements.ts';
+import { actorElements, elementMatchups, elementNames, skillDamageElements } from '../../src/client/elements.ts';
 import { effectDescriptions } from '../../src/client/skills.ts';
 import { ElementBadge, SkillElements } from '../../src/ui/element-badge.tsx';
 import { EffectPipeline } from '../../src/domain/combat/effects.ts';
@@ -49,6 +49,7 @@ test('all126 player skill descriptions remain read-only and nested status cycles
 test('displayed armor element agrees with actual damage priority for every element and latest source', () => {
   const elements = Object.keys(elementNames) as (keyof typeof elementNames)[];
   const chart = content.documents['combat-rules.json']!.element_chart as unknown as Record<string, Record<string, number>>;
+  const displayed = elementMatchups(); assert.equal(displayed.length, 10); assert.equal(displayed.reduce((n,row)=>n+row.targets.length,0),100);
   for (const armor of elements) {
     const target = actor('target', 'enemy'); target.tags = ['element:water'];
     for (const [i, element] of ['fire', armor].entries()) target.stat_blueprint.permanent_sources.push({
@@ -63,6 +64,7 @@ test('displayed armor element agrees with actual damage priority for every eleme
       const effect: Effect = { id: 'probe', type: 'damage', target: 'target', formula: { id: 'flat_power', params: { amount: 1000 } }, damage_type: 'physical', element: attack, hit_rule: 'always', can_crit: false, hits: 1, armor_rule: 'ignore' };
       const hp = a.hp; pipeline.program([effect], c);
       assert.equal(hp - a.hp, 1000 * chart[attack]![armor]!, `${attack} → ${armor}`);
+      assert.equal(hp-a.hp,1000*displayed.find(row=>row.attack===attack)!.targets.find(cell=>cell.armor===armor)!.multiplier,`display ${attack} → ${armor}`);
     }
   }
   const neutral = battle([actor('plain', 'player'), actor('boss', 'enemy')]).actors[0]!;

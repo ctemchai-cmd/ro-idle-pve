@@ -1,7 +1,8 @@
 // Isolated real components/native icons; no Auth, owner save, or balance batch.
 const fs=require('node:fs'),path=require('node:path'),os=require('node:os');
 const {chromium}=require(process.env.RO_PLAYWRIGHT_MODULE||'/private/tmp/ro-idle-prep/tools/node_modules/playwright-core');
-const root=path.resolve(__dirname,'..'),checks=[],errors=[],mutations=[];
+const root=path.resolve(__dirname,'..'),prefix=process.env.RO_EVIDENCE_PREFIX||'task-084',checks=[],errors=[],mutations=[];
+if(!/^task-\d{3}$/.test(prefix))throw Error('INVALID_PREFIX');
 const assert=(ok,why)=>{if(!ok)throw Error(why);};
 (async()=>{let server,browser,temp,failure;try{
  temp=fs.mkdtempSync(path.join(os.tmpdir(),'ro-spirit-growth-'));
@@ -9,7 +10,7 @@ const assert=(ok,why)=>{if(!ok)throw Error(why);};
  const module=`
  import React from 'react';import {createRoot} from 'react-dom/client';
  import '/src/ui/style.css';import '/src/ui/modern-theme.css';import '/src/ui/game/game.css';
- import {SkillsPage} from '/src/ui/game/skills.tsx';import {BuddyPage} from '/src/ui/game/buddy.tsx';
+ import {ElementBadge} from '/src/ui/element-badge.tsx';import {SkillsPage} from '/src/ui/game/skills.tsx';import {BuddyPage} from '/src/ui/game/buddy.tsx';
  import {CombatStatusStrip} from '/src/ui/game/combat-status.tsx';import {AssetPack} from '/src/renderer/pack.ts';
  import {initializeAccount} from '/src/domain/progression/initialize.ts';import {resolveSkill} from '/src/domain/build/resolve-skill.ts';
  import {recomputeStats} from '/src/domain/combat/status.ts';import {battleRenderView} from '/src/client/story.ts';
@@ -21,7 +22,8 @@ const assert=(ok,why)=>{if(!ok)throw Error(why);};
  const pack=await AssetPack.open(),mount=createRoot(document.getElementById('probe'));let sequence=0;window.probeCommands=[];
  const context={state,pack,locked:false,busy:false,characterId:main.character_id,latest:()=>state,go:()=>{},selectCharacter:()=>{},toast:()=>{},challenge:()=>{},lastCode:()=>null,lastCreated:()=>[],submit:async(...args)=>{window.probeCommands.push(args);return false;},submitWhenReady:async()=>false};
  window.renderProbe=(view,level=6)=>{main.skill_levels.monk_call_spirits=level;let component;
- if(view==='status'){const input=actor('main','player');input.resolved_skills.monk_call_spirits=structuredClone(resolveSkill('monk_call_spirits',level,content));const st=checkpoint(battle([input,actor('boss','enemy')])),a=st.actors.find(a=>a.actor_id==='main');a.spirit_spheres=3;recomputeStats(a,content);const v=battleRenderView(st,{main:'คุณ · Monk',boss:'Poring'});component=React.createElement(CombatStatusStrip,{actor:v.actors.find(a=>a.actor_id==='main'),actors:v.actors,pack,now:0,focus:true});}
+ if(view==='armor')component=React.createElement(ElementBadge,{element:'undead',armor:true});
+ else if(view==='status'){const input=actor('main','player');input.resolved_skills.monk_call_spirits=structuredClone(resolveSkill('monk_call_spirits',level,content));const st=checkpoint(battle([input,actor('boss','enemy')])),a=st.actors.find(a=>a.actor_id==='main');a.spirit_spheres=3;recomputeStats(a,content);const v=battleRenderView(st,{main:'คุณ · Monk',boss:'Poring'});component=React.createElement(CombatStatusStrip,{actor:v.actors.find(a=>a.actor_id==='main'),actors:v.actors,pack,now:0,focus:true});}
  else component=React.createElement(view==='buddy'?BuddyPage:SkillsPage,{context});
  mount.render(React.createElement('div',{className:'game-root',key:++sequence},React.createElement('div',{className:'game-frame'},React.createElement('main',{className:'game-main'},component))));};
  window.probeReady=true;window.renderProbe('skills');`;
@@ -34,16 +36,30 @@ const assert=(ok,why)=>{if(!ok)throw Error(why);};
   assert(await tile.locator('.progress-refine').innerText()==='+5'&&await tile.locator('.progress-enchant').innerText()==='5','NUMERIC_BADGES');
   assert(await tile.locator('.equipment-progress').getAttribute('aria-label')==='Refine +5 · Enchant 5','ACCESSIBLE_NAMES');
   assert(await tile.locator('.progress-refine').evaluate(n=>getComputedStyle(n).backgroundColor)==='rgb(38, 105, 198)'&&await tile.locator('.progress-enchant').evaluate(n=>getComputedStyle(n).backgroundColor)==='rgb(134, 81, 199)','BADGE_COLORS');
-  assert(await page.locator('.equipment-progress').count()===1,'EMPTY_SLOT_BADGES');await page.screenshot({path:path.join(root,`plan/evidence/task-084-badges-${width}.png`)});
+  assert(await page.locator('.equipment-progress').count()===1,'EMPTY_SLOT_BADGES');await page.screenshot({path:path.join(root,`plan/evidence/${prefix}-badges-${width}.png`)});
  }
  checks.push('Real BuddyPage at320/390: +5 /5, blue/purple, descriptive accessible names, no empty-slot badges');
  for(const [level,count,percent]of [[1,1,1],[5,5,1],[6,5,1.2],[10,5,2]]){
-  await page.evaluate(level=>window.renderProbe('skills',level),level);await page.locator('.effect-block').filter({hasText:`ตอนนี้ Lv.${level}`}).waitFor();const text=await page.locator('.effect-block').innerText();assert(text.includes(`Spirit Sphere ${count} ลูก`)&&text.includes(`${percent}% ต่อลูก`),'RANK_DESCRIPTION_'+level);
+  await page.evaluate(level=>window.renderProbe('skills',level),level);await page.locator('.effect-block').filter({hasText:`ตอนนี้ Lv.${level}`}).waitFor();const text=await page.locator('.effect-block').innerText();assert(text.includes(`บอล +${count} ลูก`)&&text.includes(`${percent}%/ลูก`),'RANK_DESCRIPTION_'+level);
   assert(await page.locator('.skill-growth-note').count()===0,'SP_ONLY_NOTE');
  }
- for(const width of[320,390]){await page.setViewportSize({width,height:844});await page.evaluate(()=>window.renderProbe('skills',6));await page.locator('.skill-upgrade-diff').filter({hasText:'1.4%'}).waitFor();await page.locator('.skill-levels summary').click();assert(await page.locator('.skill-levels li').count()===10,'TEN_RANK_ROWS');assert((await page.locator('.skill-levels li').first().innerText()).includes('1 ลูก')&&(await page.locator('.skill-levels li').last().innerText()).includes('2%'),'RANK_TABLE');assert(!await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),'MOBILE_OVERFLOW');await page.screenshot({path:path.join(root,`plan/evidence/task-084-call-spirit-${width}.png`)});}
+ for(const width of[320,390]){await page.setViewportSize({width,height:844});await page.evaluate(()=>window.renderProbe('skills',6));await page.locator('.skill-upgrade-diff').filter({hasText:'1.4%'}).waitFor();await page.locator('.skill-levels summary').click();assert(await page.locator('.skill-levels li').count()===10,'TEN_RANK_ROWS');assert((await page.locator('.skill-levels li').first().innerText()).includes('1 ลูก')&&(await page.locator('.skill-levels li').last().innerText()).includes('2%'),'RANK_TABLE');assert(!await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),'MOBILE_OVERFLOW');await page.screenshot({path:path.join(root,`plan/evidence/${prefix}-call-spirit-${width}.png`)});}
+
+ for(const width of[320,390]){
+  await page.setViewportSize({width,height:844});await page.evaluate(()=>window.renderProbe('skills',6));await page.locator('.skill-upgrade-diff').filter({hasText:'ATK +1.2 → +1.4%/ลูก'}).waitFor();
+  assert(!(await page.locator('.skill-upgrade-diff').innerText()).includes('บอล +5 ลูก'),'UNCHANGED_DUPLICATION');
+  await page.locator('.skill-notes summary').click();assert((await page.locator('.skill-notes').innerText()).includes('หลังใช้สกิล'),'MISSING_STATIC_NOTES');
+  await page.getByRole('button',{name:'ตารางธาตุ',exact:true}).click();const guide=page.locator('.element-guide-dialog');await guide.waitFor();assert(await guide.locator('tbody td').count()===100,'FULL_100_CELLS');
+  await guide.getByLabel('ธาตุโจมตี',{exact:true}).selectOption('holy');await guide.getByLabel('เกราะเป้าหมาย',{exact:true}).selectOption('undead');assert((await guide.locator('.element-pair-result').innerText()).includes('150%'),'HOLY_UNDEAD');
+  const rail=guide.locator('.element-matrix-scroll');await rail.evaluate(n=>{n.scrollLeft=n.scrollWidth;n.scrollTop=n.scrollHeight;});assert(await rail.evaluate(n=>n.scrollLeft)>0,'NO_HORIZONTAL_SCROLL');
+  assert(await guide.locator('thead th').first().evaluate(n=>getComputedStyle(n).position)==='sticky','STICKY_AXES');
+  assert(!await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),'TABLE_PAGE_OVERFLOW');await page.screenshot({path:path.join(root,`plan/evidence/${prefix}-element-table-${width}.png`)});
+  await page.keyboard.press('Escape');await guide.waitFor({state:'detached'});assert(await page.getByRole('button',{name:'ตารางธาตุ',exact:true}).evaluate(n=>n===document.activeElement),'RESTORE_FOCUS');
+ }
+ await page.evaluate(()=>window.renderProbe('armor'));await page.getByRole('button',{name:'เกราะธาตุอันเดด',exact:true}).click();await page.locator('.element-guide-dialog').waitFor();assert(await page.getByLabel('เกราะเป้าหมาย',{exact:true}).inputValue()==='undead','ARMOR_ENTRY');await page.getByRole('button',{name:'ปิดตารางธาตุ',exact:true}).click();
+ checks.push('Full100-pair elemental dialog opens from actual SkillsPage at320/390; Holy→Undead150%, scroll/sticky axes, no page overflow, Escape/focus and compact changes/static notes verified');
  checks.push('Actual SkillsPage1/5/6/10 and expanded ten-rank SkillGrowth320/390: counts/percent/next-level delta, no SP-only note or horizontal overflow');
- await page.evaluate(()=>window.renderProbe('status',6));await page.getByRole('button',{name:/Spirit Sphere 3 จาก 5 ลูก ATK เพิ่ม 3.6/}).click();const dialog=page.getByRole('dialog');await dialog.waitFor();assert((await dialog.innerText()).includes('ATK +3.6%')&&(await dialog.innerText()).includes('ATK 1.2%'),'DECIMAL_BONUS_DETAILS');await page.locator('[data-skill-icon="monk_call_spirits"]').first().waitFor();await page.screenshot({path:path.join(root,'plan/evidence/task-084-sphere-details-390.png')});
+ await page.evaluate(()=>window.renderProbe('status',6));await page.getByRole('button',{name:/Spirit Sphere 3 จาก 5 ลูก ATK เพิ่ม 3.6/}).click();const dialog=page.getByRole('dialog');await dialog.waitFor();assert((await dialog.innerText()).includes('ATK +3.6%')&&(await dialog.innerText()).includes('ATK 1.2%'),'DECIMAL_BONUS_DETAILS');await page.locator('[data-skill-icon="monk_call_spirits"]').first().waitFor();await page.screenshot({path:path.join(root,`plan/evidence/${prefix}-sphere-details-390.png`)});
  assert((await page.evaluate(()=>window.probeCommands)).length===0&&!mutations.length&&!errors.length,'WRITE_OR_BROWSER_ERROR');checks.push('Real shared-engine rank6/three-sphere status dialog shows3.6%total/1.2%each/nativeCallSpirit icon; zero commands/API writes');
- }catch(e){failure=e.stack||String(e);}finally{if(browser)await browser.close();if(server)await server.close();if(temp)fs.rmSync(temp,{recursive:true,force:true});const report={task_id:'TASK-084',passed:!failure&&checks.length===3,checks,errors,mutations,failure,scope:'Real components/shared-engine fixed fixture in isolated desktop Chrome emulating320/390px, not owner phone or Auth/save integration.',owner_cloud_writes:false,personal_preview_restarted:false,balance_simulation:false};fs.writeFileSync(path.join(root,'plan/evidence/task-084-browser.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));if(!report.passed)process.exitCode=1;}
+ }catch(e){failure=e.stack||String(e);}finally{if(browser)await browser.close();if(server)await server.close();if(temp)fs.rmSync(temp,{recursive:true,force:true});const report={task_id:prefix.toUpperCase(),passed:!failure&&checks.length===4,checks,errors,mutations,failure,scope:'Real components/shared-engine fixed fixture in isolated desktop Chrome emulating320/390px, not owner phone or Auth/save integration.',owner_cloud_writes:false,personal_preview_restarted:false,balance_simulation:false};fs.writeFileSync(path.join(root,`plan/evidence/${prefix}-browser.json`),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));if(!report.passed)process.exitCode=1;}
 })();

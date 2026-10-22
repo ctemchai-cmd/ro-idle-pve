@@ -1,0 +1,102 @@
+✔ modern Supabase secret environment works and legacy local configuration remains compatible (10.738416ms)
+✔ password signin preserves password bytes, trims email, and never exposes token in UI snapshot (0.809167ms)
+✔ expired/unauthorized sessions return signin without authorizing another request (0.177458ms)
+✔ password recovery persists across refresh and requires its own authenticated recovery session (0.193291ms)
+✔ logout clears local identity and disposes listeners (0.128625ms)
+✔ stale initial getSession cannot overwrite a newer successful signin (0.104334ms)
+✔ initial session read cannot overwrite a newer provider event (0.090583ms)
+✔ fresh cached identity avoids waiting for an SDK session lock on every save (1.268416ms)
+✔ same-user refresh during a pending SDK read returns the new token instead of a false signed-out result (0.153166ms)
+✔ pending token read cannot authorize after logout or a newer session event (9.268875ms)
+✔ public config rejects private keys and incomplete/remote HTTP configuration without logging values (0.566125ms)
+✔ server config pins non-production project reference and rejects production target or public key (0.090125ms)
+✔ server verifies bearer with getClaims and derives identity from the verified subject (22.331125ms)
+✔ API scopes save lookup to verified identity and never manufactures a wallet on404 (970.137916ms)
+✔ account reader does not merge snapshots, does not send owner IDs, and expires only on401 (0.531833ms)
+✔ account reader rejects another owner, broken envelopes and returns summary only (0.306542ms)
+✔ secret guard catches actual private env values, disguised public env names, and privileged JWTs (2.058167ms)
+✔ build rejects mismatched browser/server projects and production target in test (0.562625ms)
+✔ daily spatial combat at1x/2x/4x preserves exact events, phases, RNG and all final metrics (7145.853333ms)
+✔ T036 AC-01: 3 bosses × 3 attempts per Bangkok day; the attempt is spent at start, HP carries over and the party restarts full (1746.076167ms)
+✔ T036 AC-02: clearing several phases in one timed attempt gives one chest per phase, each next phase stronger at once without resetting the clock (10866.374959ms)
+✔ T036 AC-03: an attempt started 23:59:45 Bangkok and finished after midnight writes only its own ticket day; the new day starts fresh (6336.0905ms)
+✔ T036 AC-04: no double attempts/chests/HP rollback across replays, a second start or stale advances; client prediction matches the server (9961.701875ms)
+
+node:internal/modules/run_main:105
+    triggerUncaughtException(
+    ^
+TypeError [ERR_UNKNOWN_FILE_EXTENSION]: Unknown file extension ".css" for /Users/chanon/Documents/Projects/Personal/RO Idle Classic/src/ui/element-guide.css
+    at Object.getFileProtocolModuleFormat [as file:] (node:internal/modules/esm/get_format:183:9)
+    at defaultGetFormat (node:internal/modules/esm/get_format:209:36)
+    at defaultLoad (node:internal/modules/esm/load:119:22)
+    at async nextLoad (node:internal/modules/esm/hooks:748:22)
+    at async load (file:///Users/chanon/Documents/Projects/Personal/RO%20Idle%20Classic/node_modules/tsx/dist/register-nyXW-TH3.mjs:2:4283)
+    at async nextLoad (node:internal/modules/esm/hooks:748:22)
+    at async Hooks.load (node:internal/modules/esm/hooks:385:20)
+    at async handleMessage (node:internal/modules/esm/worker:199:18) {
+  code: 'ERR_UNKNOWN_FILE_EXTENSION'
+}
+
+Node.js v24.1.0
+✖ tests/game/element-presentation.test.ts (1438.046083ms)
+✔ subsecond farm reservations preserve integer carry and pay no wallet before reward claim (5.973042ms)
+✔ latest12h cap, frozen rate/definition snapshot and rarity-before-definition RNG are replayable (2.138083ms)
+✔ full pending queue/clock regression rejects before any cursor, RNG or reward mutation (1.196416ms)
+✔ rate switch keeps the old reserved bundle fixed and continues from only the unpaid interval (0.561417ms)
+✔ browser transport cannot POST after an aborted token wait, or accept a body that finishes after abort (2726.022167ms)
+✔ level appears before the server replies; only the confirmed checkpoint is backed up, then the cloud replaces the preview (3472.637709ms)
+✔ failed save removes the display preview; reconnect resolves the original request without double spending (1455.673042ms)
+✔ display preview never mutates input, guesses random upgrades or applies unavailable levels (3395.958375ms)
+✔ recurring receipt replay precedes revision, fixed claim pays once and rejected receipts stay immutable (14043.653375ms)
+✔ verified signed state and schema reject changed wallet, foreign history, raw client snapshots and content mismatch (4305.244542ms)
+✔ battle advance credits only DB time, persists checkpoint and replay adds no time; expiry rejects and retreat preserves wallet (5501.242625ms)
+✔ a never-ending command reply times out, aborts and reconciles its original receipt once (761.134959ms)
+✔ timeout before commit retries the exact UUID, and failed recovery leaves an actionable pending backup (471.973542ms)
+✔ visibility reconnect during an active write does not invalidate the successful reply or start a duplicate (605.662541ms)
+✔ a hung checkpoint is bounded and disconnect/dispose cancel outstanding I/O without clearing pending intent (412.273625ms)
+✔ response-loss refresh reconciles the same receipt before cloud load without delta replay or another payment (542.186792ms)
+✔ offline and second-tab readers cannot submit; writer conflicts reload cloud without repeating an intent (903.202334ms)
+✔ refresh with an active boss reconciles then retreats instead of simulating offline combat (915.926791ms)
+✔ an older checkpoint response cannot downgrade a committed receipt or replace the newer wallet backup (5691.572334ms)
+✔ account creation persists a pending UUID without a checkpoint and refresh recovers its original receipt once (3568.753958ms)
+✔ confirmed legacy replies skip the redundant receipt GET; a combined verified checkpoint skips both GETs (4035.69225ms)
+✔ combined replies reject foreign/stale checkpoints and preserve the committed pending intent for reconciliation (2560.569417ms)
+✔ terminal-only start + finish writes twice; a lost finish response reconciles the original receipt without replaying rewards (1314.518417ms)
+✔ D-058 migration fills new fields, rebalances status budgets and drops dangling stages, then passes the server validator (101.837875ms)
+✔ D-058 migration refunds status investments that exceed the new budget instead of keeping unfunded stats (4.438959ms)
+✔ D-058 migration SQL appends one signed revision per outdated save and skips current saves (3504.602042ms)
+✔ an uninstalled optional RPC falls back and is not probed again on each button press (0.747125ms)
+✔ a database outage does not silently fall back into a second write (0.298958ms)
+✔ timings for overlapping requests remain separate (17.170792ms)
+✔ Call Spirit1–10 shows1–5 gained spheres then1.2–2% ATK per sphere, with exact upgrade deltas (106.452875ms)
+✔ Provoke1–10 keeps4.5s/all-enemy target override and clearly excludes area/random; SP19→10 (39.339083ms)
+✔ actual sole endow names Fire/6.5s/team and scope; Enchant Poison only claims ATK (57.931125ms)
+✔ preview SP respects actual cost modifier and max/unlearned/capped levels remain read-only (38.710791ms)
+✔ upgrade summary includes ACD as well as CT, SP and effect changes; all-current SP is readable (4.952833ms)
+✔ Passive proc chance is explicit and SpiritCombo15→35% upgrades produce a real visible delta (2.963542ms)
+✔ Spirit Combo description uses the same learned Call Spirit rank as the actor sphere bonus (19.089917ms)
+✔ all126 skill level previews use exact shared resolved data and never mutate content or emit NaN (1761.246459ms)
+✔ upgrade deltas omit unchanged clauses and preserve signed values, units and repeated changing numbers (4.899292ms)
+✔ Refine4→5 and9→10 open exact sockets, costs total77000gold/275ore when every step succeeds; max11/duplicate target do not debit (1531.813083ms)
+✔ Enchant merges old/current actual paid costs and changing line refunds exact2800gold/11dust once into immutable receipt, not current4200 price (1798.419584ms)
+✔ distinct duplicate cards add per source; a single instance moves owners, and investments sleep when gear removed (951.285292ms)
+✔ card level1→5 charges7500gold/300dust once; salvage yields rarity dust only and protected batches reject before mutation (1692.320375ms)
+✔ Precision affects preview/engine DEX and CT/ACD through shared primary pipeline; poor-wallet preview works without mutation (3527.458833ms)
+✔ repeated level/enchant/reset operations keep only bounded active scopes and archive exact refund evidence without growing save history (11465.78775ms)
+✔ equipped-card payload changes build fingerprints, unassigned rewards do not; all slot/card mutations reject while a battle is active (3994.552417ms)
+✔ D-057 Refine: +1..+4 always succeed, later steps roll a server seed; failure spends only the step cost, keeps the level and adds pity (2013.058625ms)
+✔ D-057 Refine pity reaches the cap so +9→+10 (20%) is guaranteed after 8 failures; unseeded rolls are refused (4951.34675ms)
+ℹ tests 71
+ℹ suites 0
+ℹ pass 70
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 61663.221708
+
+✖ failing tests:
+
+test at tests/game/element-presentation.test.ts:1:1
+✖ tests/game/element-presentation.test.ts (1438.046083ms)
+  'test failed'

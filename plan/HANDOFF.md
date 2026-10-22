@@ -4,6 +4,17 @@
 
 
 
+## 22 ต.ค.2026 · Codex — TASK-086–089 local review / รอ deploy
+
+- User4คำขอต่อเนื่อง: ย่อskilltext/ตารางธาตุเต็ม/ตีบวกปุ่มเทาค้าง/ทองขาดเมื่อหินล้น ทั้ง4inprogressตามD115–118 ไม่ปิดก่อนhostedproof
+- Compact skill effects+notesพับ static, deltaเฉพาะchangedclauses/signednumericold→new รวม126×10 max289→53chars mean61.90→26.97 ไม่มีtruncate. Actual320/390 SkillsPage/tenranks/notes/nativeicons/table100cells/Escapefocus/zeroAPIผ่าน task086-browser; firstSSRfailCSSimportและselectlabelชื่อรวมoptionsแก้CSSไปglobal+explicitarialabel เก็บround1 ไม่relaxcheck
+- ElementGuide100pairsใช้actualcombat-rules chartกับEffectPipeline100asserts มีattack/armorselect, stickyaxes/tablescroll, เข้าจากSkillElementsและarmorbadges ไม่แก้100values/สูตร/ธาตุสกิล. CSSglobalทำSSRไม่อ่าน.cssด้วยNode. task086ภาพtable320/390และCall320เปิดดูแล้ว
+- Save root: no bound token/fetch/body + valid same-user refreshระหว่างgetSessionคืนnullfalse signed_out +visibilityreconnectแทรกwriteepoch. Controller15s AbortSignalทุกI/O/automaticone originalUUIDreconcile/guardsaving, no blindunlock/discardpending; authcachedsession30sbuffer/newsame-userrefreshผ่าน ไม่ลดserverJWT/logout/expiry. SaveNoticeรอ3s/failedretryอยู่ในnativeSheetกันHUDinert
+- ActualfreshAuth/API/SQL/Chrome task088-before-boss-check ผ่าน4groups: committedreplyhold15s→originalreceipt/1charge, failedlookup→reachable320retry/1charge, oldgold2110paid2139once→new6330/replaynopay, Refineต่อได้. Finalเพิ่มbossstart/retreat+actualarmorentryผ่านแล้ว task088-ui-live/stack4groups/SDKAPI5checks; รูปboss table320และretry320เปิดดูจริง
+- D118farm8chaptersgold×3เฉพาะpostgenerator Treasurybase1000→3000; otherresources/costs/odds/pity/firstclear/Tower/salvageเดิม ช่วงoldfrozenAFKจ่ายoldครั้งแรกแล้วnewfuture, pending/walletไม่reprice. Audit chapter3old7238/ore34=213→21714/34=639 เทียบRefine280–400gold/ore เป็นtrialbaseline ไม่claimwholebalance. generator--check/M0ผ่าน ไม่มีnewbalancebatch
+- Contentf887835108ee3473c39bc6fb3ec0e80d5f0f49c91733e88b6ca561c1dfa736d3 packc7e45b…/30640189B unchanged. Finalbuildผ่านหลังexplicitlabels/globalCSS; focusedfinal9files75checksผ่าน. ไม่มีSQL/env/newassets/ownerwrite/6173restart/readprivate นอกscope. Board71/89doneinprogress8review5todo5 M4done31/44
+- Next readiness8ผ่าน→sourcecommit/pushorigin→VercelSUCCESS→RO_EVIDENCE_PREFIX=task-086 RO_EXPECT_CONTENT_HASH=f887835108ee3473c39bc6fb3ec0e80d5f0f49c91733e88b6ca561c1dfa736d3 RO_DEPLOY_COMMIT=<sha> node scripts/test_save_latency_hosted.cjs (new086–089branchverifypublicSHA+all4features+strictlogin/PWA). แล้วreview3ACeach/movedone/cases/matrix/overview75of89/M4done35of44/readiness/docscommit; อย่าปิดold041058064067/review5.
+
 ## 22 ต.ค.2026 · Codex — TASK-084/085 done ขึ้นVercelแล้ว
 
 - **SOURCE e2323a28367c5ebc3636bb7e0f379dd725c24e39 push/VercelSUCCESS** https://vercel.com/chanon2/ro-idle-pve/ABK9Nud7EM3ACMubW6ZrdPEK9mdA actualpublicsourceUI/helper/dataSHA/APIhealth200/hashfd66a55f…/Singapore/checkpoint401/login/PWA3groupsผ่าน task084-hosted.json +task084085-github-deployment. ทั้ง0844AC/0853ACผ่าน/movedone Board71/85done,inprogress4เก่า041058064067/review5/todo5 M4done31/40

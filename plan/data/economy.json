@@ -5,7 +5,7 @@
     {
       "chapter": 1,
       "per_hour": {
-        "gold": 2110,
+        "gold": 6330,
         "hero_exp": 4900,
         "skill_manual": 57,
         "refine_ore": 1,
@@ -16,7 +16,7 @@
     {
       "chapter": 2,
       "per_hour": {
-        "gold": 2136,
+        "gold": 6408,
         "hero_exp": 4900,
         "skill_manual": 57,
         "refine_ore": 13,
@@ -27,7 +27,7 @@
     {
       "chapter": 3,
       "per_hour": {
-        "gold": 7238,
+        "gold": 21714,
         "hero_exp": 4900,
         "skill_manual": 137,
         "refine_ore": 34,
@@ -38,7 +38,7 @@
     {
       "chapter": 4,
       "per_hour": {
-        "gold": 7238,
+        "gold": 21714,
         "hero_exp": 4900,
         "skill_manual": 137,
         "refine_ore": 34,
@@ -49,7 +49,7 @@
     {
       "chapter": 5,
       "per_hour": {
-        "gold": 9057,
+        "gold": 27171,
         "hero_exp": 4900,
         "skill_manual": 204,
         "refine_ore": 34,
@@ -60,7 +60,7 @@
     {
       "chapter": 6,
       "per_hour": {
-        "gold": 9057,
+        "gold": 27171,
         "hero_exp": 5767,
         "skill_manual": 204,
         "refine_ore": 34,
@@ -71,7 +71,7 @@
     {
       "chapter": 7,
       "per_hour": {
-        "gold": 9057,
+        "gold": 27171,
         "hero_exp": 7815,
         "skill_manual": 204,
         "refine_ore": 34,
@@ -82,7 +82,7 @@
     {
       "chapter": 8,
       "per_hour": {
-        "gold": 17970,
+        "gold": 53910,
         "hero_exp": 9788,
         "skill_manual": 204,
         "refine_ore": 34,
@@ -238,7 +238,7 @@
         57
       ],
       "expected_minutes": 40.46938775510204,
-      "pace_basis": "D-069 rates (2–3 weeks to max); window is ±40 % of the computed budget minutes"
+      "pace_basis": "D-118 gold income x3; other D-069 rates and authored acceptance windows unchanged"
     },
     {
       "id": "team_39_to_40",
@@ -252,7 +252,7 @@
         656
       ],
       "expected_minutes": 468.0,
-      "pace_basis": "D-069 rates (2–3 weeks to max); window is ±40 % of the computed budget minutes"
+      "pace_basis": "D-118 gold income x3; other D-069 rates and authored acceptance windows unchanged"
     },
     {
       "id": "two_class2_skills_7_to_8",
@@ -266,7 +266,7 @@
         172
       ],
       "expected_minutes": 122.62773722627739,
-      "pace_basis": "D-069 rates (2–3 weeks to max); window is ±40 % of the computed budget minutes"
+      "pace_basis": "D-118 gold income x3; other D-069 rates and authored acceptance windows unchanged"
     },
     {
       "id": "team_breakthrough_40",
@@ -280,7 +280,7 @@
         3734
       ],
       "expected_minutes": 2666.6666666666665,
-      "pace_basis": "D-069 rates (2–3 weeks to max); window is ±40 % of the computed budget minutes"
+      "pace_basis": "D-118 gold income x3; other D-069 rates and authored acceptance windows unchanged"
     },
     {
       "id": "team_breakthrough_60",
@@ -294,7 +294,7 @@
         14934
       ],
       "expected_minutes": 10666.666666666666,
-      "pace_basis": "D-069 rates (2–3 weeks to max); window is ±40 % of the computed budget minutes"
+      "pace_basis": "D-118 gold income x3; other D-069 rates and authored acceptance windows unchanged"
     },
     {
       "id": "team_24_slots_refine10",
@@ -307,9 +307,9 @@
         15746,
         36742
       ],
-      "expected_minutes": 26244.266313348788,
+      "expected_minutes": 22297.058823529413,
       "cost_basis": "expected cost of 0->+10 x24 under D-057 refine chance/pity (step prices unchanged); acceptance widened from 3600 to 4800 minutes as a D-057 pacing consequence, to tune in TASK-041",
-      "pace_basis": "D-069 rates (2–3 weeks to max); window is ±40 % of the computed budget minutes"
+      "pace_basis": "D-118 gold income x3; other D-069 rates and authored acceptance windows unchanged"
     }
   ],
   "checkpoint_limits": "Empty starting wallet and static unlocked farm chapter; costs are illustrative independent budgets at the D-069 rates, not a measured timeline (scripts/game/journey.ts measures that). First clears/daily/salvage accelerate these estimates. Cannot spend same income on two checkpoints at once.",
@@ -572,6 +572,7 @@
       "breakthrough_essence": 1.0,
       "enchant_dust": 1.0
     },
-    "generator": "plan/generators/economy_pace.py"
+    "generator": "plan/generators/economy_pace.py",
+    "gold_income_multiplier": 3
   }
 }

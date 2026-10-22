@@ -10,9 +10,22 @@ import { content, battle, actor, skill } from './combat-fixtures.ts';
 import { canonical } from '../../src/content/value.ts';
 import { SaveController, SaveProtocolError, type SaveBackup, type SavePorts } from '../../src/client/save-controller.ts';
 import { previewSave } from '../../src/client/save-preview.ts';
+import { createBrowserSavePorts } from '../../src/client/save-browser.ts';
+import type { AuthController } from '../../src/client/auth-controller.ts';
 const id = '11111111-1111-4111-8111-111111111111', identity = { account_id: id, email: null };
 const key = 'isolated-unit-signing-key-'.repeat(3), start = '2026-10-20T00:00:00.000Z';
 const hash = (v: unknown) => createHash('sha256').update(canonical(v)).digest('hex');
+
+test('browser transport cannot POST after an aborted token wait, or accept a body that finishes after abort',async()=>{
+ const f=fixture(),c=f.command();let tokenRelease!:(value:string)=>void,bodyRelease!:(value:unknown)=>void,calls=0;
+ const auth={snapshot:{user:{id}},getAccessToken:()=>new Promise<string>(resolve=>{tokenRelease=resolve;}),markUnauthorized(){throw Error('STALE_UNAUTHORIZED');}} as unknown as AuthController;
+ const storage={getItem:()=>null,setItem:()=>{},removeItem:()=>{}} as unknown as Storage;
+ const request=(async()=>{calls++;return {ok:true,json:()=>new Promise(resolve=>{bodyRelease=resolve;})} as Response;}) as typeof fetch;
+ const ports=createBrowserSavePorts(auth,'timeout-test',storage,undefined,request),signal=new AbortController();
+ const pending=ports.send(c,signal.signal);signal.abort(new SaveProtocolError('SAVE_REQUEST_TIMEOUT'));tokenRelease('test-token');await assert.rejects(pending,/SAVE_REQUEST_TIMEOUT/);assert.equal(calls,0);
+ auth.getAccessToken=async()=> 'test-token';const bodySignal=new AbortController(),bodyPending=ports.send(c,bodySignal.signal);
+ await new Promise(resolve=>setImmediate(resolve));assert.equal(calls,1);bodySignal.abort(new SaveProtocolError('SAVE_REQUEST_TIMEOUT'));bodyRelease({});await assert.rejects(bodyPending,/SAVE_REQUEST_TIMEOUT/);
+});
 
 test('level appears before the server replies; only the confirmed checkpoint is backed up, then the cloud replaces the preview', async () => {
  const f=fixture(),p=client(f),a=new SaveController(p.ports);
@@ -85,6 +98,32 @@ function client(f:ReturnType<typeof fixture>,options:{loss?:boolean;writer?:bool
  const ports:SavePorts={async checkpoint(){const x=await f.server.checkpoint(identity);if(x.status!==200)throw new SaveProtocolError((x.body as any).code,x.status);return (x.body as any).checkpoint;},async receipt(id){return f.receipts.get(id)?.receipt??null;},async send(c){sends++;const x=await f.server.command(identity,c);if(x.status!==200)throw new SaveProtocolError((x.body as any).code,x.status);if(options.loss&&!lost){lost=true;throw new SaveProtocolError('NETWORK_UNAVAILABLE');}return(x.body as any).receipt;},load(){return structuredClone(backup);},store(_id,v){backup=structuredClone(v);},async lock(){return options.writer===false?null:()=>{};},requestId(){return '99999999-9999-4999-8999-999999999999';}};
  return{ports,get sends(){return sends;},get backup(){return backup;}};
 }
+test('a never-ending command reply times out, aborts and reconciles its original receipt once',async()=>{
+ const f=fixture(),p=client(f),send=p.ports.send;let aborted=false,release!:()=>void;
+ p.ports.send=async(c,signal)=>{const receipt=await send(c);signal?.addEventListener('abort',()=>{aborted=true;});await new Promise<void>(resolve=>{release=resolve;});return receipt;};
+ const a=new SaveController(p.ports,{requestTimeoutMs:20});await a.start(id);await a.submit(f.command());
+ assert.equal(aborted,true);assert.equal(a.snapshot.status,'ready');assert.equal(a.snapshot.pending,null);assert.equal(f.writes,1);assert.equal(p.sends,1);
+ const settled=structuredClone(a.snapshot.checkpoint);release();await new Promise(resolve=>setImmediate(resolve));assert.deepEqual(a.snapshot.checkpoint,settled);a.dispose();
+});
+test('timeout before commit retries the exact UUID, and failed recovery leaves an actionable pending backup',async()=>{
+ const f=fixture(),p=client(f),send=p.ports.send,ids:string[]=[];let calls=0;
+ p.ports.send=async(c)=>{ids.push(c.request_id);if(++calls===1)return new Promise(()=>{});return send(c);};
+ const a=new SaveController(p.ports,{requestTimeoutMs:20});await a.start(id);const c=f.command();await a.submit(c);assert.deepEqual(ids,[c.request_id,c.request_id]);assert.equal(f.writes,1);assert.equal(a.snapshot.status,'ready');a.dispose();
+ const q=client(f),b=new SaveController(q.ports,{requestTimeoutMs:20});await b.start(id);q.ports.send=async()=>new Promise(()=>{});q.ports.receipt=async()=>new Promise(()=>{});
+ const next=f.command('66666666-6666-4666-8666-666666666666','character.level_up',{character_id:'main',target_level:2});await b.submit(next);assert.equal(b.snapshot.status,'offline');assert.equal(b.snapshot.reason,'SAVE_REQUEST_TIMEOUT');assert.equal(q.backup!.pending!.request_id,next.request_id);
+ q.ports.receipt=async()=>null;q.ports.send=send;await b.reconnect(false);assert.equal(b.snapshot.status,'ready');assert.equal(b.snapshot.pending,null);b.dispose();
+});
+test('visibility reconnect during an active write does not invalidate the successful reply or start a duplicate',async()=>{
+ const f=fixture(),p=client(f),send=p.ports.send;let release!:()=>void;
+ p.ports.send=async(c)=>{await new Promise<void>(resolve=>{release=resolve;});return send(c);};
+ const a=new SaveController(p.ports);await a.start(id);const writing=a.submit(f.command());await a.reconnect();assert.equal(a.snapshot.status,'saving');release();await writing;
+ assert.equal(a.snapshot.status,'ready');assert.equal(a.snapshot.pending,null);assert.equal(f.writes,1);assert.equal(p.sends,1);a.dispose();
+});
+test('a hung checkpoint is bounded and disconnect/dispose cancel outstanding I/O without clearing pending intent',async()=>{
+ const f=fixture(),p=client(f),checkpoint=p.ports.checkpoint;p.ports.checkpoint=async()=>new Promise(()=>{});
+ const a=new SaveController(p.ports,{requestTimeoutMs:20});await a.start(id);assert.equal(a.snapshot.status,'offline');assert.equal(a.snapshot.reason,'SAVE_REQUEST_TIMEOUT');p.ports.checkpoint=checkpoint;await a.reconnect(false);
+ p.ports.send=async()=>new Promise(()=>{});const writing=a.submit(f.command());a.setOnline(false);await writing;assert.equal(a.snapshot.status,'offline');assert.ok(p.backup!.pending);a.dispose();
+});
 test('response-loss refresh reconciles the same receipt before cloud load without delta replay or another payment',async()=>{
  const f=fixture(),p=client(f,{loss:true}),a=new SaveController(p.ports);await a.start(id);await a.submit(f.command());assert.equal(a.snapshot.status,'offline');assert.ok(p.backup!.pending);assert.equal(f.writes,1);a.dispose();
  const b=new SaveController(p.ports);await b.start(id);assert.equal(b.snapshot.status,'ready');assert.equal(b.snapshot.pending,null);assert.equal(p.sends,1);assert.equal(f.writes,1);assert.equal((b.snapshot.checkpoint!.save.state as AccountState).wallet.gold,1100);b.dispose();
