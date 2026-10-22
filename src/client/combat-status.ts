@@ -44,7 +44,7 @@ export function battleStatusViews(state: BattleState): Record<string, Details> {
     const sphere = (content.documents['stat-definitions.json']!.combat_resources as unknown as { id: string; maximum: number }[]).find(r => r.id === 'spirit_spheres')!;
     result[actor.actor_id] = {
       healing_aura: healingAura, statuses: [...groups.values()].sort((a, b) => a.polarity.localeCompare(b.polarity) || a.next_expiry_at - b.next_expiry_at),
-      ...((actor.stat_blueprint.job_id === 'monk' || actor.spirit_spheres > 0) ? { spirit_spheres: actor.spirit_spheres, spirit_sphere_capacity: sphere.maximum, spirit_attack_bonus: heldResourceModifiers(actor, content).filter(m => m.stat === 'physical_attack' && m.op === 'add_percent').reduce((sum, m) => sum + Number(m.value), 0), spirit_attack_per_sphere: heldResourceModifiers({ sp: actor.sp, spirit_spheres: 1 }, content).filter(m => m.stat === 'physical_attack' && m.op === 'add_percent').reduce((sum, m) => sum + Number(m.value), 0) } : {}),
+      ...((actor.stat_blueprint.job_id === 'monk' || actor.spirit_spheres > 0) ? { spirit_spheres: actor.spirit_spheres, spirit_sphere_capacity: sphere.maximum, spirit_attack_bonus: heldResourceModifiers(actor, content).filter(m => m.stat === 'physical_attack' && m.op === 'add_percent').reduce((sum, m) => sum + Number(m.value), 0), spirit_attack_per_sphere: heldResourceModifiers({ ...actor, spirit_spheres: 1 }, content).filter(m => m.stat === 'physical_attack' && m.op === 'add_percent').reduce((sum, m) => sum + Number(m.value), 0) } : {}),
     };
   }
   cache.set(state, result); return result;

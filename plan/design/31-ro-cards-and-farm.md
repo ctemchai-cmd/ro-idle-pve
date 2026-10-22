@@ -77,6 +77,6 @@ Oldfrozenv1/v2profileไม่เขียนทับในmigration: settlecha
 
 ## D-110/D-111: Add Card และป้ายพัฒนาช่อง
 
-cardInventoryเรียงยังไม่สวมก่อน ตามrarity/level แล้วสวมอยู่ท้ายพร้อมชื่อเจ้าของจริง sharedEquipmentProgressอ่านเฉพาะowner.slot_progressแสดงR+refine/Elevelในป้ายเล็กบนgearicons (ช่องเล็กในbagย่อR+10เป็น+10เพื่อลดการทับlock) ไม่เอาRefine/Enchantไปติดitemหรือcardinstance ของว่างไม่มีbadgeสมมติ
+cardInventoryเรียงยังไม่สวมก่อน ตามrarity/level แล้วสวมอยู่ท้ายพร้อมชื่อเจ้าของจริง sharedEquipmentProgressอ่านเฉพาะowner.slot_progressแสดง+refine/levelตามD-112ในป้ายเล็กบนgeariconsทุกหน้า (เช่น+5สีฟ้า/5สีม่วง ไม่มีR/Eนำหน้า) ไม่เอาRefine/Enchantไปติดitemหรือcardinstance ของว่างไม่มีbadgeสมมติ
 
 Add Cardวางiconซ้าย/ชื่อระดับ+descriptionย่อด้านขวา รายการเลื่อนภายในsheetเฉพาะlist ปุ่มใส่/ย้ายและชื่อใบที่เลือกอยู่footerคงที่ ส่วนรายละเอียดเต็ม/เปรียบเทียบ/อัป/ย่อยพับได้และเลื่อนแยก ไม่เพิ่มconfirmationรอบใหม่หรือcommandตอนเปิด/เลื่อน และmemoizeprojectionตามstate/slotเพื่อไม่resolveทุกใบซ้ำตอนแตะเลือก

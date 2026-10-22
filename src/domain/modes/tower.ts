@@ -4,20 +4,25 @@ import type { StoryStage } from './story.ts';
 
 type Boss = StoryStage['encounter'][number];
 export interface TowerRow { floor: number; hp: number; attack: number; defense: number; definition_id: string; gold: number; crystal: number; bronze_card_count: number }
-interface Linear { base: number; linear: number; quadratic?: number }
+interface Polynomial { base: number; linear: number; quadratic?: number; cubic?: number; divisor?: number }
 interface TowerData {
   unlocks_after: string; authored_initial_rows: number; time_limit_ms: number; resets: boolean; first_clear_only: boolean; element: string; position: string;
   common_base: Pick<CombatStats, 'str' | 'agi' | 'vit' | 'int' | 'dex' | 'luk' | 'attack_speed' | 'cast_speed' | 'max_sp'>;
-  generator: { hp: Linear; attack: Linear; defense: Linear; template_cycle: string[]; skill_cycle: string[][]; adaptive_cc_every: number; reward_gold: Linear; crystal_every: number; crystal_amount: number; bronze_card_every: number };
+  generator: { hp: Polynomial; attack: Polynomial; defense: Polynomial; template_cycle: string[]; skill_cycle: string[][]; adaptive_cc_every: number; reward_gold: Polynomial; crystal_every: number; crystal_amount: number; bronze_card_every: number };
   floor_rows: TowerRow[];
 }
 export const towerData = (content: ValidatedContent) => content.documents['tower.json'] as unknown as TowerData;
 const safe = (value: number) => { if (!Number.isSafeInteger(value) || value < 0) throw new RangeError('TOWER_FLOOR_OVERFLOW'); return value; };
 
-/** Floor N from the M0 generator; authored rows 1-100 are the same formula, there is no gameplay cap at 100. */
+/** Authored rows 1-100 and later floors share the same polynomial; no gameplay cap at 100. */
 export function towerRow(floor: number, content: ValidatedContent): TowerRow {
   if (!Number.isSafeInteger(floor) || floor < 1) throw new RangeError('INVALID_TOWER_FLOOR');
-  const g = towerData(content).generator, curve = (row: Linear) => safe(row.base + row.linear * floor + (row.quadratic ?? 0) * floor * floor);
+  const g = towerData(content).generator, curve = (row: Polynomial) => {
+    const divisor = row.divisor ?? 1;
+    if (!Number.isSafeInteger(divisor) || divisor < 1) throw new RangeError('INVALID_TOWER_CURVE');
+    const numerator = safe(row.base + row.linear * floor + (row.quadratic ?? 0) * floor * floor + (row.cubic ?? 0) * floor * floor * floor);
+    return safe(Math.ceil(numerator / divisor));
+  };
   return { floor, hp: curve(g.hp), attack: curve(g.attack), defense: curve(g.defense), definition_id: g.template_cycle[(floor - 1) % g.template_cycle.length]!,
     gold: curve(g.reward_gold), crystal: floor % g.crystal_every === 0 ? g.crystal_amount : 0, bronze_card_count: floor % g.bronze_card_every === 0 ? 1 : 0 };
 }

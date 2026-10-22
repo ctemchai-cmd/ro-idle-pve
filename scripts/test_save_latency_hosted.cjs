@@ -4,7 +4,7 @@ const {chromium}=require(process.env.RO_PLAYWRIGHT_MODULE||'/private/tmp/ro-idle
 const root=path.resolve(__dirname,'..'),base='https://ro-idle-pve.vercel.app',checks=[],errors=[],mutations=[],prefix=process.env.RO_EVIDENCE_PREFIX||'task-063';
 if(!/^task-\d{3}$/.test(prefix))throw new Error('INVALID_EVIDENCE_PREFIX');
 const expectedContent=process.env.RO_EXPECT_CONTENT_HASH||(['task-068','task-069','task-070','task-071','task-072','task-073','task-074'].includes(prefix)?JSON.parse(fs.readFileSync(path.join(root,'src/generated/runtime-manifest.json'),'utf8')).content_hash:'768e12a49bf339711d44f501c3710374adbcd10d9eb74d6a2e6f9b8aa79330af');
-const assert=(ok,message)=>{if(!ok)throw new Error(message);};let browser,profile,failure,cardFinisherProof;
+const assert=(ok,message)=>{if(!ok)throw new Error(message);};let browser,profile,failure,cardFinisherProof,numericSpiritTowerProof;
 (async()=>{
  const samples=[];
  for(const route of ['/api/health','/api/checkpoint','/api/health']){
@@ -19,6 +19,19 @@ const assert=(ok,message)=>{if(!ok)throw new Error(message);};let browser,profil
  assert(assetResponse.ok&&assetResponse.headers.get('cache-control')==='no-store'&&assetManifest.pack_hash===manifest.runtime_asset_pack_hash,'MUTABLE_ASSET_MANIFEST_CACHE_OR_VERSION');
  const row=manifest.build_files.find(r=>/^dist\/assets\/account-session-.*\.js$/.test(r.path));assert(row,'NO_SAVE_BUNDLE');
  const bundle=await(await fetch(base+'/'+row.path.replace(/^dist\//,''))).text();assert(bundle.includes('sendWithCheckpoint')&&bundle.includes('x-ro-checkpoint'),'OLD_SAVE_PROTOCOL_DEPLOYED');
+ if(['task-084','task-085'].includes(prefix)){
+  const verified={};
+  for(const name of ['shell','item-options','element-badge']){
+   const file=manifest.build_files.find(r=>new RegExp('^dist/assets/'+name+'-.*\\.js$').test(r.path));assert(file,'NO_'+name+'_BUNDLE');
+   const source=await(await fetch(base+'/'+file.path.replace(/^dist\//,''))).text();assert(createHash('sha256').update(source).digest('hex')===file.sha256,'PUBLIC_BUNDLE_HASH_'+name);verified[name]={path:file.path,sha256:file.sha256,source};
+  }
+  const ui=verified.shell.source,definitions=verified['item-options'].source.replaceAll('\\"','"'),resource=verified['element-badge'].source;
+  assert(/className:[`"]progress-refine[`"],children:\[[`"]\+[`"],/.test(ui)&&/className:[`"]progress-enchant[`"],children:[^\[]/.test(ui)&&!ui.includes('progress-refine-prefix'),'NUMERIC_UPGRADE_BADGES_NOT_DEPLOYED');
+  assert(definitions.includes('"spheres":[1,2,3,4,5,5,5,5,5,5]')&&definitions.includes('"attack_per_sphere":[0.01,0.01,0.01,0.01,0.01,0.012,0.014,0.016,0.018,0.02]'),'CALL_SPIRIT_GROWTH_NOT_DEPLOYED');
+  assert(resource.includes('value_from_skill')&&resource.includes('resolved_skills')&&resource.includes('level_parameter'),'SHARED_SKILL_RESOURCE_VALUE_NOT_DEPLOYED');
+  assert(definitions.includes('"content_version":"tower-v2"')&&definitions.includes('"hp":{"base":600,"linear":100,"quadratic":8,"cubic":2}')&&definitions.includes('"attack":{"base":20,"linear":4,"quadratic":1,"divisor":2}'),'TOWER_V2_NOT_DEPLOYED');
+  numericSpiritTowerProof={numeric_badges:true,call_spirit_all_ten_ranks:true,shared_resource_scaling:true,tower_v2:true,bundles:Object.values(verified).map(({source,...file})=>file)};
+ }
  if(prefix==='task-064')assert(bundle.includes('preview:')&&bundle.includes('character.level_up'),'IMMEDIATE_DISPLAY_NOT_DEPLOYED');
  if(prefix==='task-067'){
   const shell=manifest.build_files.find(r=>/^dist\/assets\/shell-.*\.js$/.test(r.path));assert(shell,'NO_GAME_SHELL_BUNDLE');
@@ -102,7 +115,7 @@ const assert=(ok,message)=>{if(!ok)throw new Error(message);};let browser,profil
    assert(skill('alchemist_bio_cannibalize').includes('"power_scale":1.75'),'HEALING_PLANT_POWER_NOT_DEPLOYED');
   }
  }
- checks.push({case_id:'hosted_shared_save_bundle',passed:true,path:row.path,sha256:createHash('sha256').update(bundle).digest('hex'),combined_reply:true,...(cardFinisherProof?{card_finisher_proof:cardFinisherProof}:{})});
+ checks.push({case_id:'hosted_shared_save_bundle',passed:true,path:row.path,sha256:createHash('sha256').update(bundle).digest('hex'),combined_reply:true,...(cardFinisherProof?{card_finisher_proof:cardFinisherProof}:{}),...(numericSpiritTowerProof?{numeric_spirit_tower_proof:numericSpiritTowerProof}:{})});
  profile=fs.mkdtempSync(path.join(os.tmpdir(),'ro-save-hosted-'));const context=await chromium.launchPersistentContext(profile,{headless:true,executablePath:process.env.RO_CHROME_PATH||'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',viewport:{width:390,height:844}});browser=context.browser();
  context.on('request',r=>{if(!['GET','HEAD','OPTIONS'].includes(r.method()))mutations.push({method:r.method(),path:new URL(r.url()).pathname});});
  const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));await page.goto(base+'/');await page.getByRole('heading',{name:'เข้าสู่บัญชี',exact:true}).waitFor();

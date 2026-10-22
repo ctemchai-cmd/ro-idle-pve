@@ -8,7 +8,7 @@ import { actor, battle, checkpoint, content, skill, step, type Active } from './
 import { resolved } from './class-skills.ts';
 
 function gain() {
-  const s = skill('monk_call_spirits', 0, 0, 0);
+  const s = skill('probe_gain_spheres', 0, 0, 0);
   s.effects = [{ id: 'spheres', type: 'resource_change', target: 'self', resource: 'spirit_spheres', amount: 5 }]; return s;
 }
 function monk(skills: Active[]) { const a = actor('monk', 'player', skills); a.stat_blueprint.derived_offsets.physical_attack = 1000; return a; }

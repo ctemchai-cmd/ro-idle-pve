@@ -29,7 +29,7 @@ const check=(v,m)=>{if(!v)throw Error(m);},runTs=(file,input)=>JSON.parse(execFi
   checks.push('All five actual card borders match item palette at320/390, card masks fill their frames, rarity filters and Elite/Mini/MVP labels reflect fixed monster identity');
   stage='LONG_ADD_CARD';
   for(const width of[390,320]){
-   await page.setViewportSize({width,height:844});await page.goto(base+'/play?v=buddy&c=main');await ready();const weapon=page.getByRole('button',{name:/^ช่อง อาวุธ/});check(await weapon.locator('.progress-refine').innerText()==='R+10'&&await weapon.locator('.progress-enchant').innerText()==='E7','UPGRADE_BADGES');
+   await page.setViewportSize({width,height:844});await page.goto(base+'/play?v=buddy&c=main');await ready();const weapon=page.getByRole('button',{name:/^ช่อง อาวุธ/});check(await weapon.locator('.progress-refine').innerText()==='+10'&&await weapon.locator('.progress-enchant').innerText()==='7','UPGRADE_BADGES');
    check(isDeepStrictEqual(await weapon.locator('.gear-card-slot').evaluateAll(ns=>ns.map(n=>n.dataset.cardQuality)),['uncommon','common','legendary']),'FIXED_SOCKET_FRAMES');
    check(!await weapon.evaluate(n=>{const a=n.querySelector('.equipment-progress').getBoundingClientRect(),b=n.querySelector('.gear-card-slots').getBoundingClientRect();return a.left<b.right&&a.right>b.left&&a.top<b.bottom&&a.bottom>b.top;}),'BADGES_OVERLAP_FRAMES');await shot('gear-progress-'+width);
    await weapon.click();await dialog().getByRole('button',{name:'อัปเกรด',exact:true}).click();await dialog().getByRole('tab',{name:/^การ์ด/}).click();const rows=dialog().locator('.card-pick-row');check(await rows.count()>80,'LIST_NOT_LONG');

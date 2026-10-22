@@ -15,12 +15,17 @@ function option(id: string, level = 1) {
   actor.level = 70; actor.job_id = source.class_id as typeof actor.job_id; if (level) actor.skill_levels[id] = level; else delete actor.skill_levels[id];
   return characterSkillOptions(actor, state).skills.find(s => s.id === id)!;
 }
-test('Call Spirit1–10 holds five spheres with1%ATK each; upgrades only reduce SP27→18', () => {
+test('Call Spirit1–10 shows1–5 gained spheres then1.2–2% ATK per sphere, with exact upgrade deltas', () => {
   const skill = option('monk_call_spirits'), comparison = skillLevelComparison(skill);
-  assert.equal(comparison.spOnly, true); assert.deepEqual(comparison.rows.map(r => r.sp), [27,26,25,24,23,22,21,20,19,18]);
-  assert.match(skill.effects.join(' '), /5 ลูก.*1% ต่อลูก.*หลังหัก/);
-  assert.equal(comparison.rows[4]!.sp, 23); assert.deepEqual(skillUpgradeChanges(comparison.rows[0]!, comparison.rows[1]!), ['SP 27 → 26']);
-  assert.equal(new Set(comparison.rows.map(r => JSON.stringify(r.effects))).size, 1);
+  assert.equal(comparison.spOnly, false); assert.deepEqual(comparison.rows.map(r => r.sp), [27,26,25,24,23,22,21,20,19,18]);
+  const counts=[1,2,3,4,5,5,5,5,5,5], percents=[1,1,1,1,1,1.2,1.4,1.6,1.8,2];
+  for(const [i,row]of comparison.rows.entries()) {
+    assert.ok(row.effects.join(' ').includes(`เพิ่ม Spirit Sphere ${counts[i]} ลูก`));
+    assert.ok(row.effects.join(' ').includes(`${percents[i]}% ต่อลูก`));
+    assert.ok(row.effects.join(' ').includes('หลังหัก'));
+    if(i)assert.ok(skillUpgradeChanges(comparison.rows[i-1]!,row).length>=2);
+  }
+  assert.equal(comparison.rows[4]!.sp, 23); assert.equal(new Set(comparison.rows.map(r => JSON.stringify(r.effects))).size, 10);
 });
 test('Provoke1–10 keeps4.5s/all-enemy target override and clearly excludes area/random; SP19→10', () => {
   const skill = option('swordsman_provoke'), comparison = skillLevelComparison(skill);
@@ -53,6 +58,11 @@ test('Passive proc chance is explicit and SpiritCombo15→35% upgrades produce a
   assert.match(comparison.rows[0]!.effects.join(' '), /เมื่อตีปกติโดน.*โอกาส 15%/);
   assert.match(comparison.rows[9]!.effects.join(' '), /โอกาส 35%/);
   assert.match(skillUpgradeChanges(comparison.rows[0]!, comparison.rows[1]!).join(' '), /15%.*→.*17.22%/);
+});
+test('Spirit Combo description uses the same learned Call Spirit rank as the actor sphere bonus', () => {
+  const s=option('monk_spirit_combo',10);
+  s.previewSkills={...s.previewSkills,monk_call_spirits:{level:10,definition:structuredClone(resolveSkill('monk_call_spirits',10,content).definition)as SkillDefinition}};
+  assert.match(skillLevelComparison(s).rows[0]!.effects.join(' '),/2% ต่อลูก/);
 });
 test('all126 skill level previews use exact shared resolved data and never mutate content or emit NaN', () => {
   const before = JSON.stringify(content.skills); let count = 0;

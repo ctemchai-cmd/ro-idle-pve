@@ -725,7 +725,11 @@
           "stat": "physical_attack",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.01
+          "value": 0.01,
+          "value_from_skill": {
+            "skill_id": "monk_call_spirits",
+            "level_parameter": "attack_per_sphere"
+          }
         }
       ]
     }

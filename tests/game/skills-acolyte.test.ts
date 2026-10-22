@@ -92,13 +92,13 @@ test('T030 AC-02: Monk spheres never exceed 5, Asura spends all current SP + 5 s
   evidence.monk = { asura_casts_40s: asura.length, asura_sp_spent: asura.map(event => event.amount), sphere_gained: free.state.metrics.actors.monk!.sphere_gained, sphere_wasted: free.state.metrics.actors.monk!.sphere_wasted, interrupted_at_ms: interrupt!.at_ms, interrupted_sp_spent: metric.sp_spent, stun_resolves_ms: stunAt };
 });
 
-test('T030 AC-02: Steel Body Lv10 trades 30% attack speed for 40% guard and pulls enemies onto the Monk', () => {
+test('T030 AC-02: Steel Body Lv10 trades 30% attack speed for 70% guard (D-104) and pulls enemies onto the Monk', () => {
   const tank = buildActor(build('monk_steel_tank'), 'monk', 'back_1');
   const { events } = run([tank, probe('p_front', 'player', 'front_1', [], true), probe('e_boss', 'enemy', 'front_1', [], true)], 30000, 1, checkpoint => { checkpoint.actors.find(row => row.actor_id === 'e_boss')!.stats.physical_attack = 120; });
   const resolve = events.find(event => event.type === 'cast_resolve' && event.actor_id === 'monk' && event.skill_id === 'monk_steel_body')!;
   const during = run([buildActor(build('monk_steel_tank'), 'monk', 'back_1'), probe('p_front', 'player', 'front_1', [], true), probe('e_boss', 'enemy', 'front_1', [], true)], resolve.at_ms + 1).state.actors.find(row => row.actor_id === 'monk')!;
   const before = run([buildActor(build('monk_steel_tank'), 'monk', 'back_1'), probe('p_front', 'player', 'front_1', [], true), probe('e_boss', 'enemy', 'front_1', [], true)], 1).state.actors.find(row => row.actor_id === 'monk')!;
-  assert.ok(Math.abs(during.stats.guard_percent - before.stats.guard_percent - .4) < 1e-9, `guard ${during.stats.guard_percent}`);
+  assert.ok(Math.abs(during.stats.guard_percent - before.stats.guard_percent - .4 * 1.75) < 1e-9, `guard ${during.stats.guard_percent}`);
   assert.ok(Math.abs(during.stats.attack_speed - before.stats.attack_speed * .7) < 1e-6, `aspd ${before.stats.attack_speed} -> ${during.stats.attack_speed}`);
   const normals = (from: number, to: number) => events.filter(event => event.type === 'normal_attack' && event.actor_id === 'e_boss' && event.at_ms >= from && event.at_ms < to);
   assert.ok(normals(resolve.at_ms, resolve.at_ms + 5000).every(event => event.target_id === 'monk') && normals(resolve.at_ms, resolve.at_ms + 5000).length > 0, 'provoked boss attacks the Monk');

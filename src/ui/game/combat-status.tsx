@@ -5,6 +5,7 @@ import { locateSkillVisual } from '../../renderer/asset-locator.ts';
 import { Icon } from '../icon.tsx';
 import { Sheet } from './kit.tsx';
 
+const percentNumber = (ratio: number) => (ratio * 100).toLocaleString('th-TH', { maximumFractionDigits: 2 });
 const timeLeft = (expires: number, now: number) => `${Math.max(0, (expires - now) / 1000).toFixed(1)}s`;
 function SkillIcon({ skillId, polarity = 'buff', pack }: { skillId: string | null; polarity?: 'buff' | 'debuff'; pack: AssetPack | null }) {
   const [url, setUrl] = useState<string | null>(null);
@@ -33,7 +34,7 @@ export function CombatStatusStrip({ actor, actors, pack, now, focus = false }: {
   if (!groups.length && actor.spirit_spheres === undefined && !open) return null;
   return <div className={`combat-status-strip ${focus ? 'focused' : ''}`} data-status-actor={actor.actor_id}>
     {focus && <span className="status-owner">{actor.name.split(' · ')[0]}</span>}
-    {actor.spirit_spheres !== undefined && <button className="sphere-counter" aria-label={`Spirit Sphere ${actor.spirit_spheres} จาก ${actor.spirit_sphere_capacity} ลูก ATK เพิ่ม ${Math.round((actor.spirit_attack_bonus ?? 0) * 100)} เปอร์เซ็นต์`} onClick={() => setOpen('spirit_spheres')}>
+    {actor.spirit_spheres !== undefined && <button className="sphere-counter" aria-label={`Spirit Sphere ${actor.spirit_spheres} จาก ${actor.spirit_sphere_capacity} ลูก ATK เพิ่ม ${percentNumber(actor.spirit_attack_bonus ?? 0)} เปอร์เซ็นต์`} onClick={() => setOpen('spirit_spheres')}>
       <SphereIcon pack={pack} /><b>{actor.spirit_spheres}<small>/{actor.spirit_sphere_capacity}</small></b>
     </button>}
     <div className="status-icons" role="group" aria-label={`Buff และ Debuff ของ ${actor.name}`}>
@@ -42,7 +43,7 @@ export function CombatStatusStrip({ actor, actors, pack, now, focus = false }: {
       </button>)}
     </div>
     {open && <Sheet title={open === 'spirit_spheres' ? 'Spirit Spheres' : selected?.name ?? 'สถานะสิ้นสุดแล้ว'} onClose={() => setOpen(null)} className="combat-status-details">
-      {open === 'spirit_spheres' ? <><div className="sphere-detail"><SphereIcon pack={pack} /><b>{actor.spirit_spheres} / {actor.spirit_sphere_capacity} ลูก</b><strong>ATK +{Math.round((actor.spirit_attack_bonus ?? 0) * 100)}%</strong></div><p>บอลแต่ละลูกที่ถืออยู่เพิ่ม ATK {Math.round((actor.spirit_attack_per_sphere ?? 0) * 100)}% · ใช้บอลแล้วโบนัสลดทันทีตามจำนวนที่เหลือ</p><p>Call Spirits เติมบอล และ Spirit Combo มีโอกาสเพิ่มบอลจากการตีปกติ · ถูกขัดร่ายจะไม่คืนบอลที่ใช้ไป</p></>
+      {open === 'spirit_spheres' ? <><div className="sphere-detail"><SphereIcon pack={pack} /><b>{actor.spirit_spheres} / {actor.spirit_sphere_capacity} ลูก</b><strong>ATK +{percentNumber(actor.spirit_attack_bonus ?? 0)}%</strong></div><p>บอลแต่ละลูกที่ถืออยู่เพิ่ม ATK {percentNumber(actor.spirit_attack_per_sphere ?? 0)}% · ใช้บอลแล้วโบนัสลดทันทีตามจำนวนที่เหลือ</p><p>Call Spirits เติมบอล และ Spirit Combo มีโอกาสเพิ่มบอลจากการตีปกติ · ถูกขัดร่ายจะไม่คืนบอลที่ใช้ไป</p></>
         : selected ? <><p className="status-detail-summary">{selected.polarity === 'buff' ? 'บัฟ' : 'ดีบัฟ'} · {selected.stacks} ชั้น · ชั้นถัดไปหมดใน {timeLeft(selected.next_expiry_at, now)}</p><div className="status-instance-list">{selected.instances.map(i => <div key={i.instance_id} className="status-instance"><b>{i.name}<time>{timeLeft(i.expires_at, now)}</time></b><p>{i.description}</p><small>จาก {actors.find(a => a.actor_id === i.source_actor_id)?.name.split(' · ')[0] ?? i.source_actor_id}</small></div>)}</div><p className="hint">แต่ละชั้นหมดเวลาของตัวเอง · จำนวนชั้นนับการใช้ซ้ำ ไม่ได้นับจำนวนผลของสกิล</p></> : <p>สถานะนี้หมดเวลา ถูกล้าง หรือถูกใช้หมดแล้ว</p>}
     </Sheet>}
   </div>;

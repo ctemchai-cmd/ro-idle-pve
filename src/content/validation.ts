@@ -97,6 +97,27 @@ export class ContentValidator {
       }
     }
   }
+  resourceModifiers(rows: Json[], skills: Record<string, ObjectValue>, location: DefinitionLocation) {
+    for (const [index, value] of rows.entries()) {
+      const resource = obj(value), at = { ...location, path: `${location.path}/${index}/per_unit_modifiers` };
+      demand(['sp', 'spirit_spheres'].includes(text(resource.id)), 'unknown_resource', at);
+      const modifiers = arr(resource.per_unit_modifiers ?? []).map((value, index) => {
+        const { value_from_skill, ...modifier } = obj(value), here = { ...at, path: `${at.path}/${index}` };
+        this.shape('modifier', modifier, here);
+        demand(typeof modifier.value === 'number' && !modifier.when, 'resource_modifier_value', here);
+        if (value_from_skill !== undefined) {
+          const ref = obj(value_from_skill);
+          demand(Object.keys(ref).length === 2 && typeof ref.skill_id === 'string' && typeof ref.level_parameter === 'string', 'resource_skill_reference', here);
+          const skill = skills[ref.skill_id];
+          demand(skill, 'unknown_resource_skill', here);
+          const curve = obj(skill.level_parameters)[ref.level_parameter];
+          demand(Array.isArray(curve) && curve.length === Number(skill.max_level) && curve.every(n => typeof n === 'number' && Number.isFinite(n)), 'resource_skill_curve', here);
+        }
+        return modifier;
+      });
+      this.modifiers(modifiers, at);
+    }
+  }
   private eventBindings(event?: string) {
     return new Set(!event || event === 'battle_start' ? [] : ['cast_start', 'cast_resolve'].includes(event) ? ['event_source'] : ['event_source', 'event_target']);
   }

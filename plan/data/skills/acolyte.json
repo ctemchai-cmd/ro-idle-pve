@@ -931,6 +931,30 @@
           20,
           19,
           18
+        ],
+        "spheres": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "attack_per_sphere": [
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.01,
+          0.012,
+          0.014,
+          0.016,
+          0.018,
+          0.02
         ]
       },
       "presentation_id": "visual_monk_call_spirits",
@@ -987,7 +1011,9 @@
           "type": "resource_change",
           "target": "self",
           "resource": "spirit_spheres",
-          "amount": 5
+          "amount": {
+            "level_param": "spheres"
+          }
         }
       ]
     },

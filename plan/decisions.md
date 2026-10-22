@@ -214,3 +214,8 @@ TASK-001/002/047 ผ่าน Codex self-review แบบแล้ว: [progress
 ## M0 gate และการเริ่ม implementation — 19 ตุลาคม 2026
 
 ผู้ใช้สั่งลุยต่อและทำงานถัดไปได้อัตโนมัติ M0 TASK-001–014/047 ผ่านระดับdesignครบ15งาน หลักฐาน749checks+8gatechecksอยู่ [gate report](evidence/task-014-review.json) และ201ACmapping ตัวเลขเป็นassistant baselineไม่ใช่คำยืนยันใหม่ของผู้ใช้ เริ่มTASK-015ต่อ;134implementationACยังไม่รัน ไม่มีremote infrastructureหรือdeployจากM0 ใช้ [canonical design index](design/README.md) แทนข้อเสนอเก่าหากรายละเอียดขัดกัน
+
+| D-112 | 22 ต.ค.2026 ผู้ใช้เอา R/E นำหน้าป้ายอัปเกรดออก ให้ Refine5 เป็น +5 และ Enchant5 เป็น5 | TASK-084 ปรับ shared badge ทุกหน้า คงสีฟ้า/ม่วงและ accessible names |
+| D-113 | 22 ต.ค.2026 ผู้ใช้เสนอ Call Spirit Lv.1–5 เสก1–5ลูก Lv.6–10 เพิ่ม ATK ต่อลูก1→2% | TASK-084 ใช้5ลูกที่Lv.6–10/โบนัส1.2,1.4,1.6,1.8,2%ตามลำดับ คงจำนวนถือสูงสุด5/additive bucket/คิดบอลที่เหลือหลังหัก/SPและราคาเดิม ไม่มี balance simulation ใหม่ |
+
+| D-114 | 22 ต.ค.2026 ผู้ใช้รายงาน scalingหอคอยเพิ่มน้อย/ง่ายไปที่ชั้น21ทีมLv30 | TASK-085ปรับbaselineHPเพิ่มcubic2f³และATKเพิ่มquadratic0.5f²ปัดขึ้น คงรางวัล/ชั้นที่ผ่าน/40s/DEF/ความเร็ว/CC ไม่รีเซ็ตเซฟและไม่อ้างผลbalanceทีมจริง |

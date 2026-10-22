@@ -173,3 +173,12 @@ Patch ระบุ skill_id, effect_id, stage, priority และ ID; ห้า�
 เรียง stage→priority→patch ID แต่ถ้าเขียน param เดียวกันใน stage/priority เดียวกันให้ patch_conflict ไม่ใช้ last-wins เพื่อกลบปัญหา Missing effect/param คืน patch_anchor; append ID ซ้ำก็ error หลัง patch ตรวจ schema/context/params/outcomes ใหม่ทั้งหมด ค่า base2.0 → Awaken2.4 → Artifact+0.2=2.6 ใน fixture ขณะที่ actor อีกตัว/baseยัง2.0 และ append guard เฉพาะ variant
 
 `composition-cases.json` ตรวจ arithmetic/invalid definitions และ isolated fixture transforms ได้ก่อนมี engine TASK-017/018 ต้องให้ runtime/runnerได้ผลเดียวกัน; TASK-029–034/041 วัดทุกสกิลจริง/หลาย encounter; TASK-013/014 ยังต้องปิด ownership/serialized actor build/version migration/account transaction และ acceptance matrix ทั้งเกม การผ่านงานนี้จึงไม่ใช่คำรับรองว่าไม่มี technical debt หรือว่าแพตช์ Hi-class ออกแบบเสร็จแล้ว
+
+
+## D-113 / TASK-084: ค่า modifier ต่อทรัพยากรตามสกิลที่เรียน
+
+`combat_resources[].per_unit_modifiers[].value_from_skill={skill_id,level_parameter}` เป็น typed reference ไปยัง curve ของสกิล โดยใช้ rank ใน `actor.resolved_skills` ของเจ้าของเอง ค่า curve แทนค่า `value` พื้นฐาน ไม่คูณซ้ำ; ถ้าไม่ได้เรียนสกิลนั้นใช้พื้นฐานเดิม (Spirit Combo ที่ยังไม่มี Call Spirit ได้1%ต่อลูก) เป็นคุณสมบัติของบอลที่ถือ ไม่ต้องสวม Call Spirit ในสี่ช่องเพื่อรับโบนัสจาก rank ที่เรียน ไม่มี status stack/expiry ใหม่
+
+Call Spirit เสก1/2/3/4/5/5/5/5/5/5ลูก และATKต่อลูก1/1/1/1/1/1.2/1.4/1.6/1.8/2%สูงสุดถือ5 บอลล้นสูญเปล่า โบนัสเข้าถัง additive ATK เดิม เมื่อจ่ายบอลตอนเริ่มร่าย recompute ก่อน offense snapshot ตามD-092 ขัดร่ายไม่คืนบอล/SP ใช้ helper เดียวกับ icon projection และข้อความรายเลเวล ไม่เพิ่มเปอร์เซ็นต์ใน UI หรือ engine อีกแห่ง
+
+Content loader ตรวจ resource ID/modifier shape/stat/bucket/ops/skill ID/curveทุกrank/finite value และปฏิเสธ conditional resource modifier ที่ยังไม่รองรับก่อนเล่น Runtime ปฏิเสธ reference ที่ยัง resolve ไม่ได้ ทั้งหมดไม่เปลี่ยน checkpoint fields/SQL/ราคา/skill cap/ASPD/CSPD/CT/ACD เลเวลสกิลเดิมและ investment ledger เก็บไว้ตาม migration ปกติ เป็นการปรับเกมของเรา ไม่อ้างสูตร RO ต้นฉบับหรือผล balance simulation

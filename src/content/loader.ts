@@ -52,6 +52,7 @@ export function validateContent(raw: unknown): Result<ValidatedContent> {
   register('enemies.json', 'skills', skills, 'skill');
   for (const file of ['equipment.json', 'cards.json']) register(file, 'definitions', items, 'item');
   for (const row of rows) attempt(row.location, () => validator.definition(row.kind, row.value, row.location));
+  attempt({ source: 'stat-definitions.json', path: '/combat_resources' }, () => validator.resourceModifiers(list(bundle.documents['stat-definitions.json']!.combat_resources), skills, { source: 'stat-definitions.json', path: '/combat_resources' }));
   const docAt = (file: string) => ({ source: file, path: '' });
   for (const [file, doc] of Object.entries(bundle.documents)) attempt(docAt(file), () => {
     demand(file.endsWith('.json') && !file.includes('..') && !file.startsWith('/'), 'document_path', docAt(file));

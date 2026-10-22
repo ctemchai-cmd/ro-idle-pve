@@ -1,0 +1,93 @@
+✔ all ten ranks grant the authored number, cap at five, and add the learned per-sphere ATK once (20.519292ms)
+✔ different monks keep their own learned rank, and passive spheres use that rank even off the active slots (2.348416ms)
+✔ rank10 spending uses remaining0/4 spheres at cast start and an interrupted cast never refunds them (2.30925ms)
+✔ resource skill references reject unknown skill/curve or unsupported conditions before gameplay (595.558458ms)
+✔ Call Spirit1–10 shows1–5 gained spheres then1.2–2% ATK per sphere, with exact upgrade deltas (20.840292ms)
+✔ Provoke1–10 keeps4.5s/all-enemy target override and clearly excludes area/random; SP19→10 (1.7405ms)
+✔ actual sole endow names Fire/6.5s/team and scope; Enchant Poison only claims ATK (4.723042ms)
+✔ preview SP respects actual cost modifier and max/unlearned/capped levels remain read-only (14.284541ms)
+✔ upgrade summary includes ACD as well as CT, SP and effect changes; all-current SP is readable (5.0185ms)
+✔ Passive proc chance is explicit and SpiritCombo15→35% upgrades produce a real visible delta (4.767375ms)
+✔ all126 skill level previews use exact shared resolved data and never mutate content or emit NaN (441.381209ms)
+✔ T030 AC-01: all 19 tree skills match the 57 M0 golden cases (heal/shield/periodic ticks/revive/sphere costs/triggers) (25.5705ms)
+✔ T030 AC-01: every Active executes every effect at every level 1-10 (heal, buffs, HoT ticks, shield, revive, spheres, Asura) (1974.047708ms)
+✔ T030 AC-01: every Passive changes stats or procs at every level 1-10 (Spirit Combo grants spheres on normal hits) (31.831291ms)
+✔ T030 AC-01: Priest/Monk skill pages offer only learnable root+branch skills, each with effect text and a pack visual (846.890291ms)
+✔ T030 AC-02: Heal still casts on a full-HP party in queue order, spends SP and books everything as overheal (3.387625ms)
+✔ T030 AC-02: Monk spheres never exceed 5, Asura spends all current SP + 5 spheres, and an interrupted Asura refunds nothing (548.089709ms)
+✖ T030 AC-02: Steel Body Lv10 trades 30% attack speed for 40% guard and pulls enemies onto the Monk (654.551208ms)
+✔ T030 AC-03: dry catalog trace of all four builds reproduces the M0 queue estimate (permanent Passives only) (719.336458ms)
+✔ T030 AC-03: the full fight uses real effects - Asura spends the live SP pool, Spirit Combo refills spheres, Steel Body slow stretches the dry rotation (694.177708ms)
+✔ T030 AC-04: same seed/build gives identical state/events/heal-SP-sphere metrics in server, client session and runner; ticks keep their parent cast (1433.329209ms)
+✔ the nine raw-intent reference cases at levels1/4/10 match the shipped spenders (7.053208ms)
+✖ D-093 highest-level spenders compensate preparation through their own power, without changing costs or hit rules (2.237375ms)
+✔ D-093 actual cast snapshots use only remaining spheres and pre-cost SP; power enters the shared pipeline exactly once (12.45025ms)
+✔ stronger finishers still skip without spheres and never deal their damage or refund costs after interruption (4.987583ms)
+✖ the skill page reads new power and multi-hit counts from the same definitions (100.857667ms)
+✔ held spheres add0–5% in the existing ATK bucket, without changing speed or magic (106.802834ms)
+✔ gain and cast costs recompute ATK before the snapshot; interruption never refunds spent spheres (4.06475ms)
+✔ live status view groups Blessing effects without hiding independent sources, stacks, expiry or shields (51.51425ms)
+✔ sphere projection and orbit geometry show the exact resource count, using only game time (2.163833ms)
+✔ revive clears the old sphere bonus before rebuilding the revived actor stats (2.206958ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 28
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9114.575167
+
+✖ failing tests:
+
+test at tests/game/skills-acolyte.test.ts:1:7889
+✖ T030 AC-02: Steel Body Lv10 trades 30% attack speed for 40% guard and pulls enemies onto the Monk (654.551208ms)
+  AssertionError [ERR_ASSERTION]: guard 0.7
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/skills-acolyte.test.ts:101:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '=='
+  }
+
+test at tests/game/spirit-finisher.test.ts:1:1067
+✖ D-093 highest-level spenders compensate preparation through their own power, without changing costs or hit rules (2.237375ms)
+  AssertionError [ERR_ASSERTION]: 1.859375 != 1.0625
+      at close (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/spirit-finisher.test.ts:14:48)
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/spirit-finisher.test.ts:28:5)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:332:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '=='
+  }
+
+test at tests/game/spirit-finisher.test.ts:1:4443
+✖ the skill page reads new power and multi-hit counts from the same definitions (100.857667ms)
+  AssertionError [ERR_ASSERTION]: false == true
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/spirit-finisher.test.ts:67:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '=='
+  }

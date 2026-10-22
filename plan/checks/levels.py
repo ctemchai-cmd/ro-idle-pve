@@ -56,9 +56,9 @@ check('terminal_boundary_hand_cases',['AC-02'],terminal)
 def tower_case():
  assert len(tower['floor_rows'])==100 and not tower['resets'] and tower['first_clear_only'] and not tower['has_gameplay_floor_cap']
  for row in tower['floor_rows']:
-  f=row['floor'];assert row['hp']==600+100*f+8*f*f;assert row['attack']==10+2*f;assert row['defense']==5+3*f
- assert 600+100*1000+8*1000**2==8100600
- return {'authored_rows':100,'floor1000_hp':8100600,'resets':False,'claim_scope':'account+floor once','extension':'same safe numeric generator, not a victory cap at100'}
+  f=row['floor'];assert row['hp']==600+100*f+8*f*f+2*f**3;assert row['attack']==(20+4*f+f*f+1)//2;assert row['defense']==5+3*f
+ assert 600+100*1000+8*1000**2+2*1000**3==2008100600
+ return {'authored_rows':100,'floor1000_hp':2008100600,'resets':False,'claim_scope':'account+floor once','extension':'same safe numeric generator, not a victory cap at100'}
 check('tower_generator_and_first_clear',['AC-04'],tower_case)
 def daily_case():
  assert len(daily['bosses'])==3

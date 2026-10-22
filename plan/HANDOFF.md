@@ -4,6 +4,17 @@
 
 
 
+## 22 ต.ค.2026 · Codex — TASK-084/085 localผ่าน รอdeploy
+
+- User D112เอาR/Eนำหน้าป้ายออก sharedEquipmentProgressเป็น+5สีฟ้า/5สีม่วงทุกหน้า accessibleRefine/Enchantคง ไม่ลบgreenEเจ้าของ. D113CallSpiritLv1–5เสก1–5ลูก/ATK1%ต่อลูก Lv6–10คง5ลูกและ1.2/1.4/1.6/1.8/2%; สูงสุดถือ5/additiveATK/ใช้บอลก่อนsnapshot/ขัดไม่คืนเดิม skillrank/SP27→18/CT400/ACD700/ราคา/paidledgerเดิม
+- ใช้typedcombat-resources value_from_skill{skill_id,level_parameter}แทนbasevalue ไม่multiply อ่านlearnedrankของactorเอง แม้ถอดActiveออก; ไม่มีCallยังbase1%สำหรับPassiveballs. Loaderตรวจrefs/curves/modifiersก่อนplay ไม่hardcodeMonkในengine. Helperเดียวrecompute/status/description+SpiritCombo/tables ไอคอนรายละเอียดแสดงdecimal1.2/3.6ไม่ปัดเป็นinteger
+- User D114รายงานTowerง่ายที่floor21/teamLv30 oldHP6228/ATK52 จึงnewtrialHP600+100f+8f²+2f³ ATKceil((20+4f+f²)/2) floor21=24750/273 floor30=64800/520 ส่วนfloor1=710/13ใกล้เดิม. Sharedpolynomial+plan/generators/tower.py100rows เหมือน101+ safeguardoverflow ไม่มีfloorcap100. เก็บrewards/frontier/40s/unlock/DEF/CC/speed/cycles ไม่resetowner/noSQL/env/assets/newbalancebatch. ไม่อ้างทีมจริงbalancepassed
+- **40focusedTS/M0/generator/finalbuild/type/boundaries/secretsผ่าน** หลักฐานtask084085-targeted/build,task085-m0/generator/growth,data-diff084. RealisolatedChrome3groupsผ่าน320/390: actualBuddy+5/5,SkillsPage1/5/6/10+tenranktable/nextdelta, realengine3ballsLv6dialog3.6%/1.2/nativeicon/0APIcommands. เปิดscreensbadges320/skills320/status390ดูจริงแล้ว ไม่Auth/cloudowner/physicalAndroidproof
+- Retainfailsround1TSreadonly→helperacceptsDeepReadonly/syntheticgainชื่อprobeแทนfakeCall; old069damageและ030guardoraclesค้างก่อน077/078แก้ใช้factor1.75ตามcanonicalโดยไม่เปลี่ยนskillsอื่น; initialbrowserfixturefistIDไม่มีจริงแก้knuckleเก็บround1. Nocriteriarelax/noownerwrites/6173restart
+- Finalcontentfd66a55fb5f141aa5fe34038784c0a8e976f4123c0842cd438447cb7f0ec640b packc7e45b…/30640189Bเดิม. Sourceparenta032ca769 ยังไม่commitpush product. ทั้ง084/085inprogress Board69/85done,inprogress6(เดิม041058064067+084085),review5,todo5 M4done29/40.
+- Next: readinesspredeploy→commit/push→VercelSUCCESS→RO_EVIDENCE_PREFIX=task-084 RO_EXPECT_CONTENT_HASH=fd66a55fb5f141aa5fe34038784c0a8e976f4123c0842cd438447cb7f0ec640b RO_DEPLOY_COMMIT=<source> node scripts/test_save_latency_hosted.cjs (newbranchตรวจทั้งnumericlabels/Callcurve/sharedresource/Towerv2+3manifestSHAs/API/loginPWA). แล้วreview0844AC/0853AC,movedone/board71of85 M4done31of40,readiness8/docscommit. อย่าปิดoldpendingงานอื่น
+
+
 ## 22 ต.ค.2026 · Codex — TASK-083 done fixed monster rarity/Add Card ขึ้นVercelแล้ว
 
 - **SOURCE 641a7813ca24ea69eb43193f9a6cf2472daec02f push/VercelSUCCESS** https://vercel.com/chanon2/ro-idle-pve/7TFNKYsQGR76CTBqB4T2eYJ3UGRp actualpublichealth200/content0b7d1db6…/regionSG/checkpoint401/newUI-data-CSS manifestSHA/login/PWA3groupsผ่าน task083-hosted/github-deployment.json Task0837ACdone Board69/83done,inprogress4เดิม(041/058/064/067),review5,todo5 M4done29/38

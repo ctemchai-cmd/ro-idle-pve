@@ -5,6 +5,6 @@ export function EquipmentProgress({state,characterId,slot}:{state:AccountState;c
  const actor=state.roster.find(a=>a.character_id===characterId),progress=actor?.slot_progress[slot];
  if(!actor?.equipment[slot]||!progress||(!progress.refine&&!progress.enchant.level))return null;
  return <span className="equipment-progress" aria-label={`Refine +${progress.refine} · Enchant ${progress.enchant.level}`} title={`Refine +${progress.refine} · Enchant ${progress.enchant.level}`}>
-  {progress.refine>0&&<b className="progress-refine"><span className="progress-refine-prefix">R</span>+{progress.refine}</b>}{progress.enchant.level>0&&<b className="progress-enchant">E{progress.enchant.level}</b>}
+  {progress.refine>0&&<b className="progress-refine">+{progress.refine}</b>}{progress.enchant.level>0&&<b className="progress-enchant">{progress.enchant.level}</b>}
  </span>;
 }

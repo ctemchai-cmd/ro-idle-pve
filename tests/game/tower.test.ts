@@ -32,11 +32,11 @@ function fixture(state: AccountState, startIso = '2026-10-20T12:00:00.000Z') {
 }
 const strong = () => { const tree = treeData('swordsman'); const state = buildAccount('swordsman', [tree.builds.find(b => b.id === 'knight_striker')!, tree.builds.find(b => b.id === 'crusader_guardian')!]); state.story.cleared_stage_ids = storyStages(content).slice(0, 20).map(s => s.id); return state; };
 
-test('T035 AC-01: floors 1/100/101/1000 come from one generator (HP 708/90600/…/8100600), load valid refs and start a real battle', () => {
+test('T035 AC-01: floors 1/100/101/1000 come from one generator (HP 710/2090600/…/2008100600), load valid refs and start a real battle', () => {
   const data = towerData(content);
   for (const row of data.floor_rows) assert.deepEqual(towerRow(row.floor, content), row, `authored floor ${row.floor} = generator`);
-  assert.deepEqual([1, 100, 1000].map(floor => towerRow(floor, content).hp), [708, 90600, 8100600]);
-  assert.equal(towerRow(101, content).hp, 600 + 100 * 101 + 8 * 101 * 101);
+  assert.deepEqual([1, 100, 1000].map(floor => towerRow(floor, content).hp), [710, 2090600, 2008100600]);
+  assert.equal(towerRow(101, content).hp, 600 + 100 * 101 + 8 * 101 * 101 + 2 * 101 ** 3);
   const state = strong(), skills = Object.fromEntries(state.team.map(p => [p.character_id, compileCharacterSkills(state.roster.find(a => a.character_id === p.character_id)!, content)])), party = storyParty(state, content, skills, Object.fromEntries(state.roster.map(a => [a.character_id, 'x'])));
   for (const floor of [1, 20, 100, 101, 1000]) {
     const boss = towerBoss(floor, content), battle = unwrap(createBattle(storyInput(towerStageRef(floor, content), boss, party, content, { kind: 'tower' }), content, 1));
@@ -44,6 +44,18 @@ test('T035 AC-01: floors 1/100/101/1000 come from one generator (HP 708/90600/�
     assert.equal(battle.mode.kind, 'tower'); assert.equal(enemy.stats.max_hp, towerRow(floor, content).hp); assert.equal(enemy.stats.physical_defense, towerRow(floor, content).defense);
     assert.ok(boss.active_slots.every(id => id === null || content.skills[id]), `skills of ${floor}`); assert.equal(boss.passives.length, floor % 20 === 0 ? 1 : 0);
   }
+});
+
+test('D-114: floor21 is24750HP/273ATK, following floors grow faster, with original defense/rewards/speed', () => {
+  const expected = [[1,710,13],[10,4400,80],[20,21800,250],[21,24750,273],[22,27968,296],[30,64800,520],[50,275600,1360],[100,2090600,5210]];
+  for(const [floor,hp,attack]of expected){
+    const row=towerRow(floor!,content),boss=towerBoss(floor!,content);
+    assert.equal(row.hp,hp);assert.equal(row.attack,attack);assert.equal(row.defense,5+3*floor!);
+    assert.equal(row.gold,100+15*floor!);assert.equal(row.crystal,floor!%5===0?10:0);assert.equal(row.bronze_card_count,floor!%10===0?1:0);
+    assert.equal(boss.resolved_base.attack_speed,100);assert.equal(boss.resolved_base.cast_speed,100);
+  }
+  assert.equal(towerRow(22,content).attack-towerRow(21,content).attack,23);
+  assert.equal(towerRow(101,content).hp,2152910);assert.equal(towerRow(101,content).attack,5313);
 });
 
 test('T035 AC-02: the frontier floor pays its first clear once; replays, losses and locked floors pay nothing', () => {
@@ -76,12 +88,12 @@ test('T035 AC-03: the Tower never resets across the Bangkok day and survives a r
 });
 
 test('T035 AC-04: generated floors stay finite and safe until the generator itself refuses with TOWER_FLOOR_OVERFLOW', () => {
-  for (const floor of [500, 5000, 50000, 1_000_000, 30_000_000]) {
+  for (const floor of [500, 5000, 50000, 100000, 150000]) {
     const row = towerRow(floor, content), boss = towerBoss(floor, content);
     assert.ok(Object.values(row).every(value => typeof value === 'string' || Number.isSafeInteger(value)), `floor ${floor}`);
     assert.ok(boss.active_slots.every(id => id === null || content.skills[id]) && content.documents['enemies.json'] && boss.resolved_base.attack_speed === 100, 'no hidden speed scaling');
   }
-  assert.throws(() => towerRow(40_000_000, content), /TOWER_FLOOR_OVERFLOW/);
+  assert.throws(() => towerRow(200_000, content), /TOWER_FLOOR_OVERFLOW/);
   assert.throws(() => towerRow(0, content), /INVALID_TOWER_FLOOR/);
 });
 

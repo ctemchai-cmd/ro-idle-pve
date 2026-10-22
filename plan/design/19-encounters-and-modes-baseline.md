@@ -20,7 +20,7 @@
 
 ## Infinity Tower
 
-[tower.json](../data/tower.json) ปลด2-10 มี100rowsเริ่มต้นเพื่อreview และใช้generatorเดียวต่อชั้น101ขึ้นไป ไม่มีชัยชนะจบที่100/ไม่มีreset ศัตรูหมุนห้าarchetypesและแปดskillpatterns HP=`600+100f+8f²`, ATK=`10+2f`, DEF/MDEF=`5+3f` Common primaryทั้งหก=1, ASPD/CastSpeed100, SP100, elementneutral/ตำแหน่งfront1; level=`min(70,1+floor((f−1)/2))` ไม่ใช่การเพิ่มplayercap
+[tower.json](../data/tower.json) ปลด2-10 มี100rowsเริ่มต้นเพื่อreview และใช้generatorเดียวต่อชั้น101ขึ้นไป ไม่มีชัยชนะจบที่100/ไม่มีreset ศัตรูหมุนห้าarchetypesและแปดskillpatterns D-114/TASK-085 HP=`600+100f+8f²+2f³`, ATK=`ceil((20+4f+f²)/2)`, DEF/MDEF=`5+3f` Common primaryทั้งหก=1, ASPD/CastSpeed100, SP100, elementneutral/ตำแหน่งfront1; level=`min(70,f)` ไม่ใช่การเพิ่มplayercap
 
 ผลครบphase/restrictionsเหมือนStory; optionaladaptiveเฉพาะfloorหาร20ลงตัว Rewardfirstcleargold100+15f, crystal10ทุก5ชั้น และcardBronzeหนึ่งinstanceทุก10ชั้นสุ่มจากpool18ใบด้วยclaimseedที่บันทึกไว้ IDsaccount+floorกันจ่ายซ้ำ จำนวนชั้นเป็นsafeintegerและตรวจnumericresultก่อนสร้างencounter ถ้าเกินโดเมนตัวเลขให้diagnosticไม่ปล่อยoverflowเป็นเงินหรือHPผิด
 
@@ -39,3 +39,8 @@ Phasep: HP=`(5000+1500(p−1))×(1+.2(chapter−2))`, ATK=`30+5(p−1)`, DEF/MDE
 Modecontrollerเป็นpure rulesร่วมกับengine: Tower/dailyเติมresolved basesจากformula+commondefaultsที่ระบุ; dailyphaseclearเข้าmodecontinuationก่อนterminalcheck จึงไม่จบหลังchestแรก Bossphase/token/lifeepochเปลี่ยนแต่partyclockและstatusยังเดินปกติ การสร้างphaseต่อเป็นข้อมูล/eventที่replayได้ ไม่รอภาพตาย/DB callbackตัดสิน
 
 `python3 plan/checks/levels.py` ตรวจ80stages, enemies/skill schemas/local media hashes, solutionsกับunlock, 90sboundary/bothwipe, Towergenerator และcross-midnightphase cases หลักฐานยังไม่ใช่runtimeM1/M4; ต้องทดสอบTTK/อัตราชนะ/สองแนวแก้ด้วยmatchedseeds/equalbudgetsเมื่อมีrunner
+
+
+D-114 (22 ต.ค.2026): ผู้ใช้รายงานชั้น21กับทีมLv.30ง่ายเกินไป เส้นเดิมให้HP6,228/ATK52และATKเพิ่มแค่2ต่อชั้น โดยStoryผ่านcalibrationแต่Towerยังใช้baselineแรก จึงเพิ่มHPcubic/ATKquadraticผ่านgeneratorเดียว ไม่เพิ่มเกราะ/ความเร็ว/CCอีกชั้น ตัวเลขใหม่ชั้น1=710/13,21=24,750/273,30=64,800/520,50=275,600/1,360,100=2,090,600/5,210 (HP/ATK) เป็นtrialbaseline ไม่อ้างผลsimulationหรือทีมจริงของผู้ใช้
+
+`plan/generators/tower.py --check` ตรวจ100rowsจากdata.generator; runtime `towerRow`ใช้coefficientsเดียวรวมdivisor/ceilและปฏิเสธunsafeintermediateก่อนround ไม่wrap/Infinity/NaN ไม่มีfloorcap100หรือเพิ่มเลเวลผู้เล่นชดเชย คง40s/รางวัล/claimonce/ชั้นที่ผ่าน/reload/skillcycle/CCresistanceเดิม เซฟเก่าใช้backup+contentmigrationตามflowเดิม ไม่รีเซ็ตTower
