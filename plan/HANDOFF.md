@@ -4,15 +4,15 @@
 
 
 
-## 22 ต.ค.2026 · Codex — TASK-091/092 local ผ่าน รอ Vercel/public proof
+## 22 ต.ค.2026 · Codex — TASK-091/092 done ขึ้น Vercel แล้ว
 
-- ผู้ใช้ให้ตารางธาตุอิง Ragnarok Origin (ย้ำว่าเฉพาะตาราง) และแจ้งข้อความท่าใหญ่สูงเกินไป. TASK-091/092 อยู่ inprogress จนตรวจ hosted สำเร็จ; board76/92 done, M4 36/47.
+- ผู้ใช้ให้ตารางธาตุอิง Ragnarok Origin (ย้ำว่าเฉพาะตาราง) และแจ้งข้อความท่าใหญ่สูงเกินไป. TASK-091/092 reviewผ่าน3ACeachและย้ายdoneแล้ว; board78/92 done, inprogress4เก่า/review5/todo5, M4 38/47.
 - D-120: ถอดครบ100ช่องจากภาพ Elemental Effectiveness ในคู่มือ ROO Global (เครดิต Mumei #4529, ภาพ5พ.ค.2023) เก็บ PNG/SHA/provenance ใน evidence. source percentages คือโบนัสจาก100%; จุดหมายถึง0bonus ไม่ใช่0damage. Generator `plan/generators/element_chart.py --check` reproduceได้; source order ต่างจาก runtime จึง reorderตามชื่อ. เปลี่ยน42คู่ เช่น Fire→Earth175%, Fire→Fire25%, Fire→Water80%, Water→Wind90%, Neutral→Ghost70%, Holy→Undead175%. ไม่ใช้PC4levelsหรือเปลี่ยนธาตุสกิล/การ์ด/อาวุธ/สูตรอื่นจากROO. Engine/UI/headlessอ่าน authority เดิมชุดเดียวกัน.
 - D-121: shared finisher title baseline25%→40% canvas (`FINISHER_TITLE_Y`) ครบ15profiles. NativeCanvasจริง320/390วัด337.6pxใน844px canvas; เปิดภาพดูแล้ว ข้อความอยู่ใกล้สนามลงมา. Nativeeffect/contact/audio/timing/powerไม่เปลี่ยน.
 - ผ่าน103 focused TS (100pipeline+22sourcegoldens/math/6class/backup/migration), M0, build/type/boundaries/secrets/readiness8; actualisolatedChrome element4groups + nativefinisher3groups/10ท่าครบ6สาย/x1x2x4/interrupt/reducedmotion/ซ่อนfarm. ไม่ใช่physicalAndroid/owneraccount. ไม่รันbalancebatch/อ่านprivateenv/เขียนownercloud/รีสตาร์ต6173/เพิ่มSQL/env/assets.
 - Retain targeted-round1 fail2: Devotion expected30/70และDetonate flat120 เป็นtestoraclesก่อนTASK078/077. พิสูจน์skilldata+handler byte-identicalกับHEADและNeutral→Neutralยัง1/rawก่อนelement. อัปเดตเฉพาะtestexpected52/48และ210%ATKต่อstack; explicit.6+.6 routing/stackownershipเดิมยังตรวจครบ. Final103/103ผ่าน; audit task091-stale-test-audit.json.
 - Contentใหม่ `b93bcdd8d38f8db9cfdab01738663bd26b2c5d2055be014e61bc74d6c757fcdc`; runtimepackเดิม c7e45b…/30640189B. ผู้เล่นจบไฟต์reloadแล้วใช้ backup/migrate flow เดิม ไม่อ้างเซฟเจ้าของอัปเดตเองแล้ว.
-- Next: push source→VercelSUCCESS→`RO_EVIDENCE_PREFIX=task-091 RO_EXPECT_CONTENT_HASH=b93bcdd8d38f8db9cfdab01738663bd26b2c5d2055be014e61bc74d6c757fcdc RO_DEPLOY_COMMIT=<sha> node scripts/test_save_latency_hosted.cjs` ตรวจ public100chart/source/label/.4banner/API/login/PWA. แล้วreview3ACeach/movedone/board78of92,M4 38of47/readiness/docsclosurepush. ไม่ปิดold041058064067/review5.
+- **SOURCE `79023b7dde42fc1327f3303290166c3d728e922d` push/VercelSUCCESS** https://vercel.com/chanon2/ro-idle-pve/FKdJDKLqV4bV2syz6wncd1aJogqH. Actualpublic100chart/ROOlabel/.4titleใน3bundlesตรวจSHAตรงmanifest + API200/SIN1/contenthash/checkpoint401/login/PWA5publiccachedfiles/0mutations **3groupsผ่านfirsttry** task091-hosted.json. ไม่ใช่ownerlogin/migration. Finalreadinessหลังmoveก่อนdocsclosurepush. Userจบไฟต์reloadแล้วสำรอง/อัปเดตเมื่อเกมแจ้ง. ไม่ปิดold041058064067/review5.
 
 ## 22 ต.ค.2026 · Codex — TASK-090 done แก้กดบอส/รายการค้างขวางอัปเดตเซฟ ขึ้นVercelแล้ว
 

@@ -23,10 +23,12 @@ Canonicaldata/rendererและหลักฐานsource/rule/mobile/build/pub
 
 ## เกณฑ์ตรวจรับ
 
-- [ ] AC-01: ข้อความท่าใหญ่ทุกprofileใช้ตำแหน่งใหม่40%ของความสูงcanvasแทน25% ลดระยะห่างจากตัวละครในportrait320/390 โดยไม่เปลี่ยนชื่อ/ขนาด/สี/ระยะเวลาแสดงและไม่เพิ่มกรอบหรือUIรก
-- [ ] AC-02: Nativeeffects/เลขdamage/impactcontact/จอสั่น/reducedmotion/ซ่อนในfarm/interruptและผลต่อสู้x1x2x4เหมือนเดิม เปลี่ยนเฉพาะoverlayposition ไม่แก้engine/skillpower/audio/สูตร/เซฟ
-- [ ] AC-03: ExistingrealnativefinisherChromeตรวจ10ท่าครบ6สายและmobile320/390 พร้อมภาพอ่านตำแหน่งจริง/build/type/boundaries/secrets/publicbundleproofผ่าน ไม่มีownerwrite/6173restart/SQL/env/assets/balancebatch
+- [x] AC-01: ข้อความท่าใหญ่ทุกprofileใช้ตำแหน่งใหม่40%ของความสูงcanvasแทน25% ลดระยะห่างจากตัวละครในportrait320/390 โดยไม่เปลี่ยนชื่อ/ขนาด/สี/ระยะเวลาแสดงและไม่เพิ่มกรอบหรือUIรก
+- [x] AC-02: Nativeeffects/เลขdamage/impactcontact/จอสั่น/reducedmotion/ซ่อนในfarm/interruptและผลต่อสู้x1x2x4เหมือนเดิม เปลี่ยนเฉพาะoverlayposition ไม่แก้engine/skillpower/audio/สูตร/เซฟ
+- [x] AC-03: ExistingrealnativefinisherChromeตรวจ10ท่าครบ6สายและmobile320/390 พร้อมภาพอ่านตำแหน่งจริง/build/type/boundaries/secrets/publicbundleproofผ่าน ไม่มีownerwrite/6173restart/SQL/env/assets/balancebatch
 
 ## วิธีตรวจและหลักฐาน
 
 scripts/test_finishers.cjs prefixtask092 ใช้sharedengine fixedfixtures/nativepack/realCanvasวัดbaselineและscreenshots พร้อมx1x2x4/interrupt/reducedmotion ไม่runbalancebatch
+
+Reviewผ่าน3/3AC · 22 ต.ค.2026 · source`79023b7dde42fc1327f3303290166c3d728e922d` VercelSUCCESS · [หลักฐาน](../evidence/task-092-review.json)

@@ -1,0 +1,85 @@
+{
+  "task_id": "TASK-091",
+  "date": "2026-10-22",
+  "passed": true,
+  "status": "passed_implementation",
+  "source_commit": "79023b7dde42fc1327f3303290166c3d728e922d",
+  "deployment": "https://vercel.com/chanon2/ro-idle-pve/FKdJDKLqV4bV2syz6wncd1aJogqH",
+  "content_hash": "b93bcdd8d38f8db9cfdab01738663bd26b2c5d2055be014e61bc74d6c757fcdc",
+  "asset_pack_hash": "c7e45b1fac44ffbb036d4b02a1bebc698b734fc21fc7c701c401b9a821cc1be2",
+  "focused_tests": 103,
+  "local_ui_groups": 4,
+  "public_groups": 3,
+  "checks": [
+    {
+      "acceptance_id": "AC-01",
+      "criterion": "ตารางครบ100คู่ตรงภาพElemental Effectivenessในคู่มือROO Global โดยแปลงโบนัสเป็นตัวคูณรวมและแถวโจมตี/คอลัมน์เกราะถูกต้อง เช่นFire→Earth175%,Fire→Fire25%,Fire→Water80%,Water→Wind90%,Neutral→Ghost70%,Holy→Undead175%; ระบุภาพ/วันที่/SHA/provenanceและgeneratorreproduceได้",
+      "passed": true,
+      "local_validation": "passed",
+      "production_validation": "passed",
+      "evidence": [
+        "plan/evidence/task-091-092-targeted.txt",
+        "plan/evidence/task-091-092-build.txt",
+        "plan/evidence/task-091-hosted.json",
+        "plan/evidence/task-091-092-github-deployment.json",
+        "plan/evidence/task-091-browser.json",
+        "plan/evidence/task-091-generator.txt",
+        "plan/evidence/task-091-source-audit.json",
+        "plan/evidence/task-091-roo-table-source.png",
+        "plan/evidence/task-091-m0.txt",
+        "plan/evidence/task-091-stale-test-audit.json"
+      ]
+    },
+    {
+      "acceptance_id": "AC-02",
+      "criterion": "Engine/หัวตาราง/รายละเอียดคู่ที่เลือกอ่านชุดเดียวกันครบ100คู่; ไม่เปลี่ยนธาตุที่สกิล/การ์ด/อาวุธกำหนด ไม่เพิ่มelementlevelsหรือยกสูตรอื่นจากOrigin คงเซฟ/paidledger/slot/cardsและbackup/migrationflowเดิม ไม่ownerwrite/SQL/env/pack/newbalancebatch",
+      "passed": true,
+      "local_validation": "passed",
+      "production_validation": "passed",
+      "evidence": [
+        "plan/evidence/task-091-092-targeted.txt",
+        "plan/evidence/task-091-092-build.txt",
+        "plan/evidence/task-091-hosted.json",
+        "plan/evidence/task-091-092-github-deployment.json",
+        "plan/evidence/task-091-browser.json",
+        "plan/evidence/task-091-generator.txt",
+        "plan/evidence/task-091-source-audit.json",
+        "plan/evidence/task-091-roo-table-source.png",
+        "plan/evidence/task-091-m0.txt",
+        "plan/evidence/task-091-stale-test-audit.json"
+      ]
+    },
+    {
+      "acceptance_id": "AC-03",
+      "criterion": "Generator/M0/element100pipeline+sourcegoldens/math/class/backup-migration checksและbuild/type/boundaries/secretsผ่าน พร้อมmobile320/390tableและVercelpublichash/source/login/PWAก่อนdone",
+      "passed": true,
+      "local_validation": "passed",
+      "production_validation": "passed",
+      "evidence": [
+        "plan/evidence/task-091-092-targeted.txt",
+        "plan/evidence/task-091-092-build.txt",
+        "plan/evidence/task-091-hosted.json",
+        "plan/evidence/task-091-092-github-deployment.json",
+        "plan/evidence/task-091-browser.json",
+        "plan/evidence/task-091-generator.txt",
+        "plan/evidence/task-091-source-audit.json",
+        "plan/evidence/task-091-roo-table-source.png",
+        "plan/evidence/task-091-m0.txt",
+        "plan/evidence/task-091-stale-test-audit.json"
+      ]
+    }
+  ],
+  "owner_cloud_writes": false,
+  "private_env_read": false,
+  "personal_preview_restarted": false,
+  "sql_or_env_changes": false,
+  "new_balance_batch": false,
+  "scope": "Real isolated Chrome/nativeCanvas at320/390 and shared-engine fixtures; actual signed-out public deploy/API/login/PWA. No physical Android or owner save mutation. Chart from retained ROO guide screenshot, not a claim about every server patch.",
+  "source_url": "https://roo-global.gitbook.io/guide/game-wiki/element",
+  "source_screenshot_date": "2023-05-05",
+  "pairs": 100,
+  "changed_pairs": 42,
+  "source_golden_pairs": 22,
+  "retained_round1": "task-091-092-targeted-round1.txt",
+  "stale_oracles": "Only preexisting Devotion and Detonate expected values corrected; shipped skill data/handler unchanged from HEAD. Final103/103 passed."
+}
