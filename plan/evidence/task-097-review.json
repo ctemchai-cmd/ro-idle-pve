@@ -1,0 +1,52 @@
+{
+  "task_id": "TASK-097",
+  "passed": true,
+  "reviewer": "Codex self-review",
+  "review_date": "2026-10-22",
+  "source_commit": "bb33151f208db27f40553f3b4d306e59880f9ced",
+  "acceptance": [
+    {
+      "id": "AC-01",
+      "passed": true,
+      "evidence": [
+        "plan/evidence/task-097-targeted.txt"
+      ],
+      "result": "19focused tests passed including7grouping cases:100→200→300, time-gating/dedup/separatecasts/targets/focus, rawamount/shield0, excludednormal/single/periodic/proc/reflect/heal/single-hitAoE and expiry."
+    },
+    {
+      "id": "AC-02",
+      "passed": true,
+      "evidence": [
+        "plan/evidence/task-097-browser.json",
+        "plan/evidence/task-097-counter-mobile-320.png",
+        "plan/evidence/task-097-counter-mobile-390.png",
+        "plan/evidence/task-097-monk_finger_offensive-390.png"
+      ],
+      "result": "Actual native Chrome4groups pass: authoredBolt3/Finger5/Double2 at matching white/yellow contacts;100/200/300 goldenpixels549 and samealpha mask; actual1x2x4 events/RNG/checkpoints identical, interruptedBolt and Bashsingle/normal never show totals, focus/fade/reducedmotion/mobile/separation/0APIwrites. Final320/Finger images visually reviewed."
+    },
+    {
+      "id": "AC-03",
+      "passed": true,
+      "evidence": [
+        "plan/evidence/task-097-build.txt",
+        "plan/evidence/task-097-readiness.txt",
+        "plan/evidence/task-097-hosted.json",
+        "plan/evidence/task-097-github-deployment.json"
+      ],
+      "result": "Build/type/boundaries/secrets/readiness8 and actual public Vercel3groups passed: rendererbundle exactSHA/newmarkers, content/pack/API/login/PWA correct. Domain/contracts/save/assets unchanged."
+    }
+  ],
+  "content_hash": "38859826ae9f3bb1b3c622609f8e3f7c046fa7e9bc182a4db8bdc27b84a7cde2",
+  "asset_pack_hash": "96dec12ee20f2dc6865dda45131c27c96a0527fc757e8d4eaefd91dbec9d5912",
+  "owner_cloud_writes": false,
+  "save_migration_required": false,
+  "limitations": [
+    "Mobile viewport emulation, not physical Android; owner account not accessed",
+    "Totals reflect actual direct skill damage events; only one observed hit on a recipient has no running counter",
+    "Fallback90ms and hold/fade are visual-only, not changed combat timestamps or damage formulas"
+  ],
+  "retained_findings": [
+    "Initial yellow row overlapped white flight; moved to y-255/clamp40 and added actual draw-coordinate separation assertion.",
+    "Harness restores Mage sprites after the multi-job cases before controlled/mobile screenshots. Round1 and pre-spacing reports retained."
+  ]
+}

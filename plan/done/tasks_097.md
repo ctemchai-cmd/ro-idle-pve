@@ -26,7 +26,7 @@ Milestone: M4 · D-126 · ประเภท: combat presentation
 
 - [x] AC-01: directmulti-hit100×3 แสดง100→200→300เมื่อถึงvisualcontact ไม่มีนับซ้ำต่อframe/replay แยกcast/ตัวร่าย/เป้า; normal/single-hit/DoT/proc/reflect/heal/AoEฮิตเดียวไม่ขึ้นเลขเหลือง และใช้amountจริง
 - [x] AC-02: actualengineBolt/Finger/DoubleStrafeมีเลขขาวรายฮิตและเหลืองสะสมตามimpact; โฟกัส/reducedmotion/hold-fade/mobile320–390ทำงาน และspeed1/2/4กับการขัดร่ายไม่เปลี่ยนevents/RNG/checkpoint ไม่เขียนsaveหรือAPIจากrenderer
-- [ ] AC-03: focusedtests/build/type/boundaries/secrets/readinessและpublicVercelJS/CSS/หน้าloginผ่าน contenthash/runtimepackเดิม ไม่มีSQL/env/เซฟmigration
+- [x] AC-03: focusedtests/build/type/boundaries/secrets/readinessและpublicVercelJS/CSS/หน้าloginผ่าน contenthash/runtimepackเดิม ไม่มีSQL/env/เซฟmigration
 
 ## วิธีตรวจและหลักฐาน
 
@@ -40,4 +40,6 @@ AC-01 ใช้purecasesของMultiHitNumbers/ordinals; AC-02 ใช้native
 
 - 19focused/build/type/boundaries/secrets/readiness8ผ่าน ActualnativeChrome4groupsผ่าน: Bolt3/Finger5/DoubleStrafe2ตรงimpact, controlled100→200→300/pixels549/alpha maskเดิม, focus/reducedmotion/hold-fade/engine1x2x4/interrupt/Bashsingle/normal/noAPIwrites และ320/390. เปิดภาพmobile320/Fingerดูแล้ว
 - ภาพรอบแรกเห็นเลขเหลืองชนกับ white flight จึงขยับไปband y−255/clamp40 และเพิ่มactualdrawseparation assertion; finalผ่าน. Harnessเตรียม Mage spriteคืนหลังสลับหลายอาชีพก่อนจับภาพควบคุม. เก็บround1/before-spacingreportsเดิมไว้
-- Content/packเดิม ไม่มีengine/contracts/save/asset payloadเปลี่ยน รอVercel public proofก่อนAC-03/done
+- Content/packเดิม ไม่มีengine/contracts/save/asset payloadเปลี่ยน PublicVercel3กลุ่มผ่าน: rendererJS SHA/markers/pack/content/API/login/PWA/0writes
+
+Reviewผ่าน3/3AC · 22 ต.ค.2026 · source`bb33151f208db27f40553f3b4d306e59880f9ced` VercelSUCCESS · [หลักฐาน](../evidence/task-097-review.json)

@@ -1,0 +1,71 @@
+{
+  "task_id": "TASK-097",
+  "date": "2026-10-22",
+  "source_commit": "bb33151f208db27f40553f3b4d306e59880f9ced",
+  "origin": "https://ro-idle-pve.vercel.app",
+  "passed": true,
+  "checks": [
+    {
+      "case_id": "hosted_region_timing_auth_gate_content",
+      "passed": true,
+      "samples": [
+        {
+          "route": "/api/health",
+          "status": 200,
+          "elapsed_ms": 904,
+          "api_region": "sin1",
+          "vercel_id": "sin1::sin1::rhlwq-1792677997118-b0fb8d620d36",
+          "server_timing": "total;dur=3.3"
+        },
+        {
+          "route": "/api/checkpoint",
+          "status": 401,
+          "elapsed_ms": 375,
+          "api_region": "sin1",
+          "vercel_id": "sin1::sin1::hps8g-1792677997836-1a02d736e1bd",
+          "server_timing": "auth;dur=0.3, total;dur=5.4"
+        },
+        {
+          "route": "/api/health",
+          "status": 200,
+          "elapsed_ms": 444,
+          "api_region": "sin1",
+          "vercel_id": "sin1::sin1::lftvl-1792677998306-418ff4cb7782",
+          "server_timing": "total;dur=0.3"
+        }
+      ]
+    },
+    {
+      "case_id": "hosted_shared_save_bundle",
+      "passed": true,
+      "path": "dist/assets/account-session-NsNoRmCz.js",
+      "sha256": "4118a66f8ee705f06c37f8c6cb0cbc14a62ddb2c1a6fe395432471b178f4dbca",
+      "combined_reply": true,
+      "current_proof": {
+        "task": "TASK-097",
+        "yellow_multi_hit_renderer": true,
+        "public_renderer_sha256": "7bc6123c40e5c7d113db53096c6fd2b5f4ec602051d8dbaeeaa708c5aa2df6e1",
+        "pack_unchanged": true
+      }
+    },
+    {
+      "case_id": "hosted_login_pwa_no_private_cache",
+      "passed": true,
+      "login_visible": true,
+      "cache": {
+        "ro-idle-pwa-b9adccc3cc44ca43": [
+          "/offline.html",
+          "/pwa/icon-192.png",
+          "/pwa/icon-512.png",
+          "/pwa/icon-maskable-512.png",
+          "/pwa/apple-touch-icon.png"
+        ]
+      },
+      "mutations": []
+    }
+  ],
+  "errors": [],
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "scope": "Signed-out actual production health/401 gate/new shared-save bundle/login/PWA only. No owner command latency or owner save access; actual mutations/failures tested on isolated stack. TASK064 optional SQL007 installation and cloud2RPC timing are not verified here."
+}

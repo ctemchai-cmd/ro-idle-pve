@@ -11679,7 +11679,7 @@
       "criterion": "directmulti-hit100×3 แสดง100→200→300เมื่อถึงvisualcontact ไม่มีนับซ้ำต่อframe/replay แยกcast/ตัวร่าย/เป้า; normal/single-hit/DoT/proc/reflect/heal/AoEฮิตเดียวไม่ขึ้นเลขเหลือง และใช้amountจริง",
       "input_setup": "Directmulti-hit100×3/nativeBolt/Finger/DoubleStrafe plus single/normal/periodic/proc/interrupt at320/390 and1x2x4",
       "input_refs": [
-        "plan/inprogress/tasks_097.md",
+        "plan/done/tasks_097.md",
         "src/renderer/multi-hit-numbers.ts"
       ],
       "parameters": {
@@ -11688,8 +11688,10 @@
       "expected": "directmulti-hit100×3 แสดง100→200→300เมื่อถึงvisualcontact ไม่มีนับซ้ำต่อframe/replay แยกcast/ตัวร่าย/เป้า; normal/single-hit/DoT/proc/reflect/heal/AoEฮิตเดียวไม่ขึ้นเลขเหลือง และใช้amountจริง",
       "verification": "Puregrouping tests, sharedengine/nativeChrome frameStats+pixels/checkpoint parity/mobile and build/publicSHA",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation",
-      "execution_evidence": []
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-097-review.json"
+      ]
     },
     {
       "id": "T097-AC-02",
@@ -11698,7 +11700,7 @@
       "criterion": "actualengineBolt/Finger/DoubleStrafeมีเลขขาวรายฮิตและเหลืองสะสมตามimpact; โฟกัส/reducedmotion/hold-fade/mobile320–390ทำงาน และspeed1/2/4กับการขัดร่ายไม่เปลี่ยนevents/RNG/checkpoint ไม่เขียนsaveหรือAPIจากrenderer",
       "input_setup": "Directmulti-hit100×3/nativeBolt/Finger/DoubleStrafe plus single/normal/periodic/proc/interrupt at320/390 and1x2x4",
       "input_refs": [
-        "plan/inprogress/tasks_097.md",
+        "plan/done/tasks_097.md",
         "src/renderer/multi-hit-numbers.ts"
       ],
       "parameters": {
@@ -11707,8 +11709,10 @@
       "expected": "actualengineBolt/Finger/DoubleStrafeมีเลขขาวรายฮิตและเหลืองสะสมตามimpact; โฟกัส/reducedmotion/hold-fade/mobile320–390ทำงาน และspeed1/2/4กับการขัดร่ายไม่เปลี่ยนevents/RNG/checkpoint ไม่เขียนsaveหรือAPIจากrenderer",
       "verification": "Puregrouping tests, sharedengine/nativeChrome frameStats+pixels/checkpoint parity/mobile and build/publicSHA",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation",
-      "execution_evidence": []
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-097-review.json"
+      ]
     },
     {
       "id": "T097-AC-03",
@@ -11717,7 +11721,7 @@
       "criterion": "focusedtests/build/type/boundaries/secrets/readinessและpublicVercelJS/CSS/หน้าloginผ่าน contenthash/runtimepackเดิม ไม่มีSQL/env/เซฟmigration",
       "input_setup": "Directmulti-hit100×3/nativeBolt/Finger/DoubleStrafe plus single/normal/periodic/proc/interrupt at320/390 and1x2x4",
       "input_refs": [
-        "plan/inprogress/tasks_097.md",
+        "plan/done/tasks_097.md",
         "src/renderer/multi-hit-numbers.ts"
       ],
       "parameters": {
@@ -11726,8 +11730,10 @@
       "expected": "focusedtests/build/type/boundaries/secrets/readinessและpublicVercelJS/CSS/หน้าloginผ่าน contenthash/runtimepackเดิม ไม่มีSQL/env/เซฟmigration",
       "verification": "Puregrouping tests, sharedengine/nativeChrome frameStats+pixels/checkpoint parity/mobile and build/publicSHA",
       "existing_oracle_case_ids": [],
-      "status": "not_run_implementation",
-      "execution_evidence": []
+      "status": "passed_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-097-review.json"
+      ]
     }
   ]
 }
