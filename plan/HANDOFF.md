@@ -6,6 +6,14 @@
 
 
 
+## 23 ต.ค.2026 · Codex — TASK110 done ขึ้นVercelแล้ว
+
+- SOURCE`3d0ec1ce955a3b4f9a8e24f4bcb15022a0beaf86` VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/Anf1dWvAbfGnb7gpCx7yC7TEzQgG Public3groups API200SIN1/contentbc84ab2a8a3f10900e419b043d8ab2264048cbe09fcc817285ef1376a3b7b850/checkpoint401/newpack/7PaladinSHA/4declaredbundleSHA/mobilelogin0writesผ่าน. Pack1ea6314ef8ec8c83b653f949d8da81fefcf5ec36c5b56a8e018eec61abeba215/791IDs1467files31679919B initial1621492.
+- Userล่าสุดGrandCrossใช้paladin12(แก้จาก27ก่อนpush);7finalsources27/29/48/12/19/33/34exactlocalexports/runtime/metadata. Finalstatic7imagesและactual320screenshotviewed. Before-grand12localpassreports/screenshotsเก็บเป็นsupersededhistoryไม่ใช่final. 224othermodernexportfilesbyte-identical/126skillprogramsทั้งหมดเดิม.
+- D142profileผ่อนตามuserunwinnablefeedback:3–5each5HP+8%/ATK+4%;6+20%/+8%;7–8+12%/+6%;6-10HP86392/ATK2485จาก199521/3003,6-15HP103674/2687. Tower21ATK300จาก341(~12%ลด),HP24750เดิม. คงCC/skills/speed/rewards/Refine15/cardgates. ไม่มีownerwinrateproof/balancebatch/ownercloud/privateenv/6173restart/SQL/envchanges.
+-36targetedTS/38Python/M0/readiness8/build/assets271-60460-6926ผ่าน. ActualfreshAuth/API/Postgres/mobile2groups(7icons+details320/390/Grand12/savedStoryTowerstats/retreat)ผ่าน. Noinspectionwrites. Sourceexplicitlystage7Paladinsourcesonly,notwholemodernfolder.
+-3ACdone Board96/110done/inprogress4old041058064067/review5/todo5 M4done56/65. Finalreadinessaftermove→docsclosurecommit/push. Ownerfinishfight/reload/backup-migrateexistingflow;ไม่อ้างownerอัปเดตแล้ว. Do notcloseoldunverifiedtasksautomatically.
+
 ## 23 ต.ค.2026 · Codex — TASK110 localผ่าน รอpush/hosted
 
 - D142userเปลี่ยนPaladiniconsและรายงานStory/Towerยากเกินหลัง109;ล่าสุดGrandCrossใช้12ไม่ใช่27(แก้ก่อนpush). Exact7sources27/29/48/12/19/33/34ดูภาพครบ7static128px,importmetadata/provenance/manualscope/runtimepackแล้ว. SkillIDs/effects126/costs/timingเดิม. source7filesเท่านั้นไม่ทั้งmodernfolder.

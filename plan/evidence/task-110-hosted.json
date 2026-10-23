@@ -1,0 +1,28 @@
+{
+  "task_id": "TASK-110",
+  "passed": true,
+  "checks": [
+    {
+      "case": "API_and_client_new_content_SIN1_signin_gate",
+      "hash": "bc84ab2a8a3f10900e419b043d8ab2264048cbe09fcc817285ef1376a3b7b850"
+    },
+    {
+      "case": "public_game_bundles_declared_SHA_and_new_Paladin_media_pack",
+      "pack_hash": "1ea6314ef8ec8c83b653f949d8da81fefcf5ec36c5b56a8e018eec61abeba215",
+      "Paladin_icons": 7,
+      "verified": [
+        "dist/assets/shell-BQUWRXNu.js",
+        "dist/assets/account-session-B5nPcOIf.js",
+        "dist/assets/item-options-BQ7AOL42.js",
+        "dist/assets/shell-D7qsO4n5.css"
+      ]
+    },
+    {
+      "case": "production_mobile_signin_zero_writes",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "mutations": [],
+  "scope": "Public read-only API/new content/declared bundle SHA/media pack/login; no owner account or hosted writes."
+}
