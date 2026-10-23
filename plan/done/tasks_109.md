@@ -23,7 +23,7 @@ Storyเพิ่มแรงกดดันทุก5ด่าน โดยเ�
 - [x] AC-03:Refine1–4แน่นอน/5–10ลดเรต/11–15เรตต่ำกว่า/สูงสุด15;ทุกขั้นมีราคาและpityUIตรงsharedrule ปัดเปอร์เซ็นต์ไม่กลบ0.5pp
 - [x] AC-04:การ์ดสูงสุด3ช่อง/จุดปลดตรงคำตอบ;เซฟเดิมเก็บของ/การ์ด/Refine/Enchant/เงิน/เลเวลและของเดิมที่ติดอยู่ไม่สูญหาย
 - [x] AC-05:rollต่ำกว่า/เท่าขอบเรต/guarantee/insufficient funds/inbattle/refine16/receipt-replay/savedRefine15ผ่าน;ค่าstat/preview/serverตรงกัน
-- [ ] AC-06:generator/M0/readiness/build/targeted/actualChrome320-390/publicVercelผ่านพร้อมหลักฐานก่อนdone
+- [x] AC-06:generator/M0/readiness/build/targeted/actualChrome320-390/publicVercelผ่านพร้อมหลักฐานก่อนdone
 
 ## วิธีตรวจและหลักฐาน
 task-109-* arithmeticและfixedfixturesเท่านั้น ไม่มีrenewedbalancebatch;เก็บfailureจริงและแก้โดยไม่ลดเกณฑ์.
@@ -31,4 +31,6 @@ task-109-* arithmeticและfixedfixturesเท่านั้น ไม่ม
 ## Blocker / คำถาม
 ไม่มีคำถามค้าง;จุดปลดยืนยัน0→1@5→2@10→3@15.
 
-Localผ่าน545TS/M0/readiness8/build/actualAuth-API-SQL-Chrome3groups320/390;Refine15sameUUIDreplayไม่จ่ายซ้ำ/ใส่ช่องสาม/โหลดกลับผ่าน. PublicVercelpendingก่อนdone. Evidence task-109-tests/source-audit/ui-live/local-stack. R1selector3freecards ambiguousแก้เฉพาะharnessใช้Commonexact;R2และR3passed. Noownerwrites/SQL/env/6173restart/balancebatch.
+Localผ่าน545TS/M0/readiness8/build/actualAuth-API-SQL-Chrome3groups320/390;Refine15sameUUIDreplayไม่จ่ายซ้ำ/ใส่ช่องสาม/โหลดกลับผ่าน. PublicVercel3groupspassedก่อนdone. Evidence task-109-tests/source-audit/ui-live/local-stack. R1selector3freecards ambiguousแก้เฉพาะharnessใช้Commonexact;R2และR3passed. Noownerwrites/SQL/env/6173restart/balancebatch.
+
+ตรวจรับ23ต.ค.2026:6/6ACผ่าน source`d882d23ee4092dc439ab837cca950e3ec6156232` VercelSUCCESS/public3groups API200SIN1/newcontent/checkpoint401/bundleSHA/mobilelogin0writes. [review](../evidence/task-109-review.json), [hosted](../evidence/task-109-hosted.json). โฟลเดอร์doneหลังผ่านทั้งหมด;ไม่อ้างownerทำmigrationแล้ว.

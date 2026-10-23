@@ -1,6 +1,6 @@
 {
   "task_id": "TASK-109",
-  "passed": false,
+  "passed": true,
   "local_passed": true,
   "reviewer": "Codex self-review",
   "review_date": "2026-10-23",
@@ -10,11 +10,9 @@
     "AC-03": true,
     "AC-04": true,
     "AC-05": true,
-    "AC-06": false
+    "AC-06": true
   },
-  "pending": [
-    "PublicVercel deployment proof beforeAC06/done"
-  ],
+  "pending": [],
   "checks": {
     "TS_full": 545,
     "M0": true,
@@ -40,5 +38,49 @@
     "task-109-source-audit.json",
     "task-109-ui-live.json",
     "task-109-local-stack.json"
+  ],
+  "source_commit": "d882d23ee4092dc439ab837cca950e3ec6156232",
+  "hosted": {
+    "task_id": "TASK-109",
+    "passed": true,
+    "checks": [
+      {
+        "case": "API_and_client_new_content_SIN1_signin_gate",
+        "hash": "16f30545c5bfb4efd65a474f0a90f32c259e6dabcab002a3c53906bfcf9e8ad0"
+      },
+      {
+        "case": "public_game_bundles_declared_SHA_and_unchanged_media_pack",
+        "pack_hash": "477ceb18c79d7f00e6b58c061780fd1654eaf9a93553a7fcbcccaba65caa355b",
+        "verified": [
+          "dist/assets/shell-D7qXPc0p.js",
+          "dist/assets/account-session-UKxJnFb3.js",
+          "dist/assets/item-options-B3dHXDU0.js",
+          "dist/assets/shell-D7qsO4n5.css"
+        ]
+      },
+      {
+        "case": "production_mobile_signin_zero_writes",
+        "passed": true
+      }
+    ],
+    "errors": [],
+    "mutations": [],
+    "scope": "Public read-only API/new content/declared bundle SHA/media pack/login; no owner account or hosted writes."
+  },
+  "deployment": {
+    "state": "success",
+    "statuses": [
+      {
+        "context": "Vercel",
+        "state": "success",
+        "description": "Deployment has completed",
+        "target_url": "https://vercel.com/chanon2/ro-idle-pve/C6xaY3jqDPjnnRtqs393rkg4eDwc"
+      }
+    ]
+  },
+  "resolved_findings": [
+    "R1 browser selector ambiguous among3freecards: exactCommon selectorfixed in harness; R2 andR3passed, noproductpatch",
+    "Fullbaseline regressions andoldoracles reproduced/retained and corrected with independent goldens; final545/545",
+    "Automatic approval rejected broadstage+commit+push; verified explicit45source/test/plan+47evidence names/indexbytes/private exclusions, then separate narrowstage/commit/push approved"
   ]
 }

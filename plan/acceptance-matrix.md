@@ -543,9 +543,9 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T108-AC-05` [TASK-108](done/tasks_108.md) | audit/effects/Chrome/hosted | AC-05ตามdesign37 | [ผ่าน implementation](evidence/task-108-review.json) |
 | `T108-AC-06` [TASK-108](done/tasks_108.md) | audit/effects/Chrome/hosted | AC-06ตามdesign37 | [ผ่าน implementation](evidence/task-108-review.json) |
 
-| `T109-AC-01` [TASK-109](inprogress/tasks_109.md) | design38/fixedfixtures/mobile/public | AC-01ตามdesign38 | ยังไม่ตรวจ |
-| `T109-AC-02` [TASK-109](inprogress/tasks_109.md) | design38/fixedfixtures/mobile/public | AC-02ตามdesign38 | ยังไม่ตรวจ |
-| `T109-AC-03` [TASK-109](inprogress/tasks_109.md) | design38/fixedfixtures/mobile/public | AC-03ตามdesign38 | ยังไม่ตรวจ |
-| `T109-AC-04` [TASK-109](inprogress/tasks_109.md) | design38/fixedfixtures/mobile/public | AC-04ตามdesign38 | ยังไม่ตรวจ |
-| `T109-AC-05` [TASK-109](inprogress/tasks_109.md) | design38/fixedfixtures/mobile/public | AC-05ตามdesign38 | ยังไม่ตรวจ |
-| `T109-AC-06` [TASK-109](inprogress/tasks_109.md) | design38/fixedfixtures/mobile/public | AC-06ตามdesign38 | ยังไม่ตรวจ |
+| `T109-AC-01` [TASK-109](done/tasks_109.md) | design38/fixedfixtures/mobile/public | AC-01ตามdesign38 | ผ่าน runtime/local+hosted · [review](evidence/task-109-review.json) |
+| `T109-AC-02` [TASK-109](done/tasks_109.md) | design38/fixedfixtures/mobile/public | AC-02ตามdesign38 | ผ่าน runtime/local+hosted · [review](evidence/task-109-review.json) |
+| `T109-AC-03` [TASK-109](done/tasks_109.md) | design38/fixedfixtures/mobile/public | AC-03ตามdesign38 | ผ่าน runtime/local+hosted · [review](evidence/task-109-review.json) |
+| `T109-AC-04` [TASK-109](done/tasks_109.md) | design38/fixedfixtures/mobile/public | AC-04ตามdesign38 | ผ่าน runtime/local+hosted · [review](evidence/task-109-review.json) |
+| `T109-AC-05` [TASK-109](done/tasks_109.md) | design38/fixedfixtures/mobile/public | AC-05ตามdesign38 | ผ่าน runtime/local+hosted · [review](evidence/task-109-review.json) |
+| `T109-AC-06` [TASK-109](done/tasks_109.md) | design38/fixedfixtures/mobile/public | AC-06ตามdesign38 | ผ่าน runtime/local+hosted · [review](evidence/task-109-review.json) |

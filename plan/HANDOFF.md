@@ -6,6 +6,14 @@
 
 
 
+## 23 ต.ค.2026 · Codex — TASK109 done ขึ้นVercelแล้ว
+
+- SOURCE`d882d23ee4092dc439ab837cca950e3ec6156232` VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/C6xaY3jqDPjnnRtqs393rkg4eDwc Public3groups API200SIN1/newcontent/checkpoint401/4declaredbundlesSHA/packsame132skills/mobilelogin0writesผ่าน. Content16f30545c5bfb4efd65a474f0a90f32c259e6dabcab002a3c53906bfcf9e8ad0 pack477ceb18c79d7f00e6b58c061780fd1654eaf9a93553a7fcbcccaba65caa355b.
+-545TS/M0/readiness8/build+actualfreshAuth/API/Postgres/mobile320/3903groupsผ่าน: Refine15oneCAS/45000gold120ore/pityreset/sameUUIDreplaynoextraSpend/thirdsocketassign/reload; Story6-5HP137600ATK2501/Tower21HP24750ATK341compiledincheckpoints; exactchanceUI1.5%/0.5pp. See previoussection/data/design38. No renewedbalancebatch/ownercloud/privateenv/6173restart/SQL/envchange.
+- Explicitusercardgates0initial→1@5→2@10→3@15. Existingcardinstances/level/locksremain; migrationclearsnewlylockedbindingsonly. Ownerfinishfight/reload/backup-migrateexistingflow; we didnotupdateownerstate. Story5stagegrowthstartingprofileisnotownerwinrateproof.
+-92reviewedfilesincludes45source/test/plan+47evidence,notmodernassetfolder. Automaticapprovalfirstrefusedbroadgitadd-u+commit+push; explicitpath/indexbyte/privateexclusionauditthen narrowstage/separatecommit/pushapproved. No unfinished approval block. Failurelogs/screenshots retained; baselineoldoraclesfixedbasedonindependentintentgoldens, notnewbalancechanges.
+-6ACdone Board95/109done/inprogress4old041058064067/review5/todo5 M4done55/64. Finalreadinessaftermove→docsclosurecommit/push. Do notcloseoldunverifiedtasksautomatically.
+
 ## 23 ต.ค.2026 · Codex — TASK109 localผ่าน รอpush/hosted
 
 - D140 Storyทุก5ด่านชัดขึ้น/Towerตีหนักขึ้น;D141RefineMax15/ยืนยันเริ่ม0การ์ด→1@5→2@10→3@15. Shareddata/schema/quotes/pity/UI/max15. Migrationปล่อยเฉพาะlockedbindingsการ์ดเดิมยังอยู่inventoryพร้อมlevel/lock/rarity;7actors×6slots/idempotencevalidated,ไม่ownerpatch.
