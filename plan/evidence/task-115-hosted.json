@@ -1,0 +1,35 @@
+{
+  "task_ids": [
+    "TASK-115",
+    "TASK-116"
+  ],
+  "passed": true,
+  "checks": [
+    {
+      "case": "SIN1_new_content_and_both_signin_gates",
+      "content_hash": "c960b6ba4d81bdabec73db626810ff95ff8eb0de45de67327c730e1364f2fd75"
+    },
+    {
+      "case": "corrected_loot_input_SHA_and_declared_bundles_same_pack",
+      "pack_hash": "1ea6314ef8ec8c83b653f949d8da81fefcf5ec36c5b56a8e018eec61abeba215",
+      "verified": [
+        "dist/assets/shell-SXL5dmsK.js",
+        "dist/assets/gear-upgrades-DZDv0gsX.js",
+        "dist/assets/auth-page-DomVbt8m.js",
+        "dist/assets/element-badge-BVzSw-_U.js",
+        "dist/assets/shell-qsUFi9GH.css"
+      ]
+    },
+    {
+      "case": "green_double_chevron_in_verified_JS_and_CSS",
+      "passed": true
+    },
+    {
+      "case": "production_mobile_login_zero_writes",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "mutations": [],
+  "scope": "Public signed-out API/bundles/login only. Actual Android and owner authenticated command latency are outside this read-only smoke."
+}

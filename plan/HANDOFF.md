@@ -6,6 +6,14 @@
 
 
 
+## 23 ต.ค.2026 · Codex — TASK115–116 done / บท1–2Lv1 + ลูกศรคู่เขียว
+
+- SOURCE`e5f492e7d797bb067a9676d85fe078b2a8edecd2` VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/cD4z9HxhMQunGrwQPLeaSqexyX8T Public4groups API200SIN1/newc960content/lootinputSHA/samepack/5declaredbundleSHA/greenchevronsJS-CSS/mobilelogin0writesผ่าน. Noownercloudwrites/privateenv/SQL/env/6173restart/balancebatch/subagents. Usermodernuntrackedassetsอย่าstageทั้งfolder.
+- D148ผู้ใช้แก้จากข้อเสนอassistantTier10เป็นบท1–2gearLv1/บท3Lv20;later4/5=40,6–8=60เดิม. Gachagearยังอิงhighestfullyclearedchapter/tablegearใหม่. Cardfarm/gacha/Towerใช้cardstier_by_chapterที่คัดลอกoldgeartableคงpool/chanceเดิม;sharedcardTierForChapterอยู่content/card-catalogรักษาboundary. Coremigrationเดิมrefreshfuturechapter2pool1;inventory/pending20/RNG/carry/cursorไม่ล้าง. Noitemdowngrade.
+- D149เปลี่ยนvisibleดีกว่าแดงเป็นSVG2upchevronsเขียว20px/transparent/accessiblelabelในChangeSheet;จุดแดงGearTileและlogicเทียบlevel/rarityคงเดิม. Actual320ภาพviewed. 54targetedTS/M0/readiness8/build/secrets223+actualAuth/API/Postgres/mobile3groupsผ่าน:Lv10AFK12hchapter2ได้71gearLv1/chapter3snapshot+gacha10Lv20/old20pending+UUIDreplaypreserved;320390green2paths/equipthenhintclears. Failedr1IDsuffixoracle→canonicaldata,r2box18→explicit20,finalr3passed. Buildboundaryfixedbycataloghelper/fixturetupletypefixed;ไม่ลดเกณฑ์หรือแก้gamepower.
+- Contentc960b6ba4d81bdabec73db626810ff95ff8eb0de45de67327c730e1364f2fd75,pack1ea6314ef8ec8c83b653f949d8da81fefcf5ec36c5b56a8e018eec61abeba215เดิม. จบไฟต์reload→backup/migrateตามflowเดิม ไม่ต้องSQL/envใหม่. UserSQL008ติดตั้งแล้ว. Noownerstateinspection.
+- Board102/116done/inprogress4old041058064067/review5old048054055056057/todo5,M4done62/71. Tasks115/116done/5ACpassed;links/overview/acceptance updated. Finalreadinessหลังmoveและcommit/pushปิดเอกสารแยกsource. Hi-classยังroadmapD145(2skills/job,maxก่อนAwaken90,iconpurpleglow) ไม่implementระหว่างperformancefix. Seeprevioussectionsforrepro andfailurehistory.
+
 ## 23 ต.ค.2026 · Codex — TASK115–116 localผ่าน รอpush/hosted
 
 - UserD148: Map/บท1–2อุปกรณ์Lv1,บท3Lv20 ไม่ต้องTier10. D149ข้อความดีกว่าแดง→double-chevron-upเขียว. คงของเดิม/slotprogress/rarity/โอกาสดรอป/ด่าน/สกิล. Gachaequipmentยังhighestfully-clearedchapterเหมือนเดิมแต่ใช้tableใหม่;cardfarm/gacha/Towerคงpoolเดิมโดยแยกcardstier_by_chapterจากoldgeartable. cardTierForChapterอยู่content/card-catalogเพื่อรักษาboundary(rewardsห้ามimportmodes). Coremigrateเดิมrefreshpool2เป็นTier1 คงoldinventory/pendingTier20/RNG/carry/cursor/การ์ด;noownerdatawrites.

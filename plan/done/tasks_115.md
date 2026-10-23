@@ -16,9 +16,9 @@ TASK-025, TASK-037, TASK-040, TASK-113 (done).
 ## เกณฑ์ตรวจรับ
 - [x] AC-01: ตารางอุปกรณ์1/1/20/40/40/60/60/60ใช้กับfarmและequipmentgacha;ทุกด่านบท2ได้poolLv1และบท3Lv20 ไม่เพิ่มTier10
 - [x] AC-02: การ์ดfarm/gacha/Towerคงpoolและchanceเดิม;ของเดิมและpendingTier20คงครบ,migrationเปลี่ยนfuturefarmchapter2เป็นTier1โดยไม่ล้างcursor/carry/RNG
-- [ ] AC-03: targetedrules/build/M0และเว็บproductioncontent/lootSHA/packตรง ผ่านก่อนdone
+- [x] AC-03: targetedrules/build/M0และเว็บproductioncontent/lootSHA/packตรง ผ่านก่อนdone
 
 ## วิธีตรวจและหลักฐาน
 TargetedTS+productionbuild/M0;disposablelocalAuth/API/Postgres/Chrome320390และpublicread-only ไม่restart6173/ไม่รันbalancebatch. ผลจริงเติมเมื่อรันเสร็จ
 
-Localผ่าน:54targetedTS/M0/build/secrets223/actualAuthAPI-SQL-mobile3groups. ดู[review](../evidence/task-115-review.json). รอhostedก่อนปิดเกณฑ์สุดท้าย
+Localผ่าน:54targetedTS/M0/build/secrets223/actualAuthAPI-SQL-mobile3groups. ดู[review](../evidence/task-115-review.json). VercelSUCCESS source`e5f492e7d`;public4groupsผ่าน API200SIN1/newcontent/lootinputSHA/samepack/5bundleSHA/greenchevrons/login0writes. ปิดเกณฑ์ครบ

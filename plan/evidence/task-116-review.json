@@ -2,30 +2,33 @@
   "task_id": "TASK-116",
   "date": "2026-10-23",
   "reviewer": "Codex self-review",
-  "passed": false,
+  "passed": true,
   "local_passed": true,
   "acceptance": {
     "AC-01": true,
-    "AC-02": false
+    "AC-02": true
   },
-  "pending": [
-    "Publicdeployment/version/bundles/login smoke"
-  ],
+  "pending": [],
   "checks": {
     "targeted_TS": 54,
     "build": true,
     "M0_readiness": 8,
-    "actual_mobile_groups": 3
+    "actual_mobile_groups": 3,
+    "hosted_public_groups": 4
   },
   "evidence": [
     "plan/evidence/task-115-116-tests.txt",
     "plan/evidence/task-115-116-build.txt",
     "plan/evidence/task-115-116-m0.txt",
     "plan/evidence/task-115-116-source-audit.json",
-    "plan/evidence/task-115-116-ui-live.json"
+    "plan/evidence/task-115-116-ui-live.json",
+    "plan/evidence/task-115-hosted.json",
+    "plan/evidence/task-115-github-deployment.json"
   ],
   "limits": [
     "Noownercloud/privateenv/6173 access; no balance batch",
     "Earlier browser r1 suffix assumption fixed using canonical item tiers; r2 icon box size18 was made explicitly20; finalr3passed"
-  ]
+  ],
+  "source_commit": "e5f492e7d797bb067a9676d85fe078b2a8edecd2",
+  "deployment": "https://vercel.com/chanon2/ro-idle-pve/cD4z9HxhMQunGrwQPLeaSqexyX8T"
 }

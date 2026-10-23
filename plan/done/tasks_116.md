@@ -15,9 +15,9 @@ TASK-096, TASK-112 (done).
 
 ## เกณฑ์ตรวจรับ
 - [x] AC-01: รายการเปลี่ยนอุปกรณ์ใช้double-chevron-upสีเขียว ไม่มีข้อความดีกว่าที่มองเห็นและไม่มีป้ายแดง;มีaccessiblelabelเดิม
-- [ ] AC-02: เกณฑ์เทียบเลเวล/rarityและการสวมไม่เปลี่ยน ตรวจmobile320/390และbuild/publicก่อนdone
+- [x] AC-02: เกณฑ์เทียบเลเวล/rarityและการสวมไม่เปลี่ยน ตรวจmobile320/390และbuild/publicก่อนdone
 
 ## วิธีตรวจและหลักฐาน
 TargetedTS+productionbuild/M0;disposablelocalAuth/API/Postgres/Chrome320390และpublicread-only ไม่restart6173/ไม่รันbalancebatch. ผลจริงเติมเมื่อรันเสร็จ
 
-Localผ่าน:54targetedTS/M0/build/secrets223/actualAuthAPI-SQL-mobile3groups. ดู[review](../evidence/task-116-review.json). รอhostedก่อนปิดเกณฑ์สุดท้าย
+Localผ่าน:54targetedTS/M0/build/secrets223/actualAuthAPI-SQL-mobile3groups. ดู[review](../evidence/task-116-review.json). VercelSUCCESS source`e5f492e7d`;public4groupsผ่าน API200SIN1/newcontent/lootinputSHA/samepack/5bundleSHA/greenchevrons/login0writes. ปิดเกณฑ์ครบ
