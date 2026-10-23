@@ -21,7 +21,7 @@ TASK-011, TASK-019, TASK-025, TASK-040, TASK-108, TASK-110, TASK-114, TASK-115 (
 - [x] AC-01: 180ด่าน/9บท/9-1ต่อ8-20/50ด่านใหม่เชื่อมครบ/maxแนะนำ70;130แถวเดิมเท่าbaselineทุกfield;generatorcurrent+legacyreproducible
 - [x] AC-02: native14ชนิดใหม่มีrotation3–4ท่า/traits/ธาตุ/ภาพตรงdefinition;checkpointบอส10/20/30/40/50ต่างกัน;ท่าใหญ่ทุก5ด่านขัดได้และengine/runtime1x2x4ตรงกัน;ท้าบอสมีตัวเดียว
 - [x] AC-03: rewardchapter9ครบ/ฟาร์มTier60/การ์ด1–130คงpool+chanceเดิมและใหม่ไม่เกิน2%;migrationคงprogress/pending/cursor/RNG;dailychapter9schemaและcommandใช้ได้;ไม่มีSQLหรือTier/Hi-classเปิดใหม่
-- [ ] AC-04: actualisolatedAPI+mobile320/390เลือก9-1/9-50และbattle/farmidentityถูก/firstclearครั้งเดียว/reloadใช้เซฟได้;nativepackไม่เพิ่มpayloadและไม่เกิน32MiB;M0/targeted/buildผ่าน;hostedpubliccontent/pack/bundlesตรงก่อนdone
+- [x] AC-04: actualisolatedAPI+mobile320/390เลือก9-1/9-50และbattle/farmidentityถูก/firstclearครั้งเดียว/reloadใช้เซฟได้;nativepackไม่เพิ่มpayloadและไม่เกิน32MiB;M0/targeted/buildผ่าน;hostedpubliccontent/pack/bundlesตรงก่อนdone
 
 ## วิธีตรวจและหลักฐาน
 ใช้oldstagesSHAและoldcardprofilesเป็นoracle;TSintegrationสร้างbattleจากข้อมูลจริง/1x2x4/interrupt/savevalidators. RealAuth/API/Postgres/Chromeบนบัญชีdisposableเท่านั้น;publichostedตรวจไม่loginหรือwrite. บันทึกplan/evidence/task-117-*พร้อมข้อจำกัด;ผลbalanceไม่อ้างจากsmoke.
@@ -31,4 +31,6 @@ TASK-011, TASK-019, TASK-025, TASK-040, TASK-108, TASK-110, TASK-114, TASK-115 (
 ## Blocker / คำถาม
 ผู้ใช้ตอบระหว่างdeploy:เซฟหลัก6-7/เซฟใหม่3-4 ยังไม่ระบุเลเวล. บท9เป็นปลายเกมหลัง8-20ตามbaseline67–70ที่แจ้ง ไม่เป็นblocker. Hi-class unlock/skill detailsยังอยู่roadmap40ไม่อยู่scopeนี้.
 
-Localreview:572fullTSและ11targetedmode tests/build/M0/readiness8/assets271+60460/native32MiBbudgetผ่าน;actualAuth/API/Postgres/mobile320390สามgroupsผ่าน. r1ปุ่มปิดselectorเก่า,r2checkpointenvelopeผิด,r3fixtureไม่ใส่การ์ด/enchantหมดเวลาที่บอส26%;r4เพิ่มเฉพาะงบfixtureด้วยการ์ด12instances/Enchant10ตามกติกาจริงแล้วผ่าน ไม่มีเปลี่ยนgamepower. ข้อAC04ยังรอhosted.
+Localreview:572fullTSและ11targetedmode tests/build/M0/readiness8/assets271+60460/native32MiBbudgetผ่าน;actualAuth/API/Postgres/mobile320390สามgroupsผ่าน. r1ปุ่มปิดselectorเก่า,r2checkpointenvelopeผิด,r3fixtureไม่ใส่การ์ด/enchantหมดเวลาที่บอส26%;r4เพิ่มเฉพาะงบfixtureด้วยการ์ด12instances/Enchant10ตามกติกาจริงแล้วผ่าน ไม่มีเปลี่ยนgamepower. ข้อAC04ผ่านhosted4groupsแล้ว.
+
+Finalreview:source`7f6c17294e3efa47d64e10ac6cdeae20ba4f9fb7` VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/HLPxvtyhJpPFYU7f8Ta8HwJhjGGF;public4groupsผ่าน API200SIN1/contentและ6data/schemaSHA/newpack/5declaredbundleSHA/identitycode/mobilelogin0writes. Firstdeploy4afล้มเพราะstaticJSONimportจากplan/evidenceถูกตัด;ย้ายbaselineไปtests/game/fixturesแล้วfullfilteredbuild/5targetedผ่าน. ดู[review](../evidence/task-117-review.json). ปิดครบ4AC วันที่23ต.ค.2026.
