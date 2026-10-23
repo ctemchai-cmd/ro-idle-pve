@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import baseline from '../../plan/evidence/task-117-baseline.json';
+import baseline from './fixtures/story-expansion-baseline.json';
 import { canonical } from '../../src/content/value.ts';
 import { storyStages, storyStage, storyBoss, storyFarmSnapshot, canChallenge } from '../../src/domain/modes/story.ts';
 import { storyInput } from '../../src/domain/build/story.ts';

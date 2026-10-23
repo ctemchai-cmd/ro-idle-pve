@@ -1,0 +1,14 @@
+{
+  "first_source_commit": "4af9788c071c8a97bfabeef3c462a75ae3ff1f71",
+  "first_vercel_state": "failure",
+  "deployment": "https://vercel.com/chanon2/ro-idle-pve/3SJpsshuvBaEvTyFWyATcSyfSRKy",
+  "reproduction": "After applying Vercel directory exclusions and adding generated build outputs, tsc gives only TS2307 for a static import of plan/evidence/task-117-baseline.json",
+  "fix": "Keep original evidence; copy immutable test baseline to tests/game/fixtures and import that build input",
+  "filtered_full_build_passed": true,
+  "focused_tests_passed": 5,
+  "app_content_hash_unchanged": "8d810ac5b3a3ee6b317a376dd23a6dcb7a1a2d1fb4a542a0b20154c06ab72b7d",
+  "limits": [
+    "No Vercel private logs accessed; failure reproduced locally with identical exclusions",
+    "Initial temp build selected Xcode python launcher; explicit existingPython3.12 resolved environment before successful full build"
+  ]
+}

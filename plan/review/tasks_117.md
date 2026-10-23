@@ -29,6 +29,6 @@ TASK-011, TASK-019, TASK-025, TASK-040, TASK-108, TASK-110, TASK-114, TASK-115 (
 ผู้ตรวจ: Codex self-review · วันที่23ต.ค.2026 · รอบreview0
 
 ## Blocker / คำถาม
-ถามด่าน/เลเวลทีมปัจจุบันเพื่อช่วยเลือกช่วงความยาก;ไม่เป็นblockerของbaseline67–70ที่แจ้งแล้ว. Hi-class unlock/skill detailsยังอยู่roadmap40ไม่อยู่scopeนี้.
+ผู้ใช้ตอบระหว่างdeploy:เซฟหลัก6-7/เซฟใหม่3-4 ยังไม่ระบุเลเวล. บท9เป็นปลายเกมหลัง8-20ตามbaseline67–70ที่แจ้ง ไม่เป็นblocker. Hi-class unlock/skill detailsยังอยู่roadmap40ไม่อยู่scopeนี้.
 
 Localreview:572fullTSและ11targetedmode tests/build/M0/readiness8/assets271+60460/native32MiBbudgetผ่าน;actualAuth/API/Postgres/mobile320390สามgroupsผ่าน. r1ปุ่มปิดselectorเก่า,r2checkpointenvelopeผิด,r3fixtureไม่ใส่การ์ด/enchantหมดเวลาที่บอส26%;r4เพิ่มเฉพาะงบfixtureด้วยการ์ด12instances/Enchant10ตามกติกาจริงแล้วผ่าน ไม่มีเปลี่ยนgamepower. ข้อAC04ยังรอhosted.
