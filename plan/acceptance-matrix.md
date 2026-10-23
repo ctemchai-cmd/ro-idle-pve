@@ -609,10 +609,10 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T124-AC-02` [TASK-124](done/tasks_124.md) | Hi-class/Awaken integration | เศษใหม่ดรอปดันช่วงหลัง/รวมเดิม→ใหม่/ย่อยใหม่→เดิมเป็นbatchatomic;ไม่มีวงแลกเพิ่มของ/overflow/คืนทุนซ้ำ | ผ่านpure rules/migration/ledger/152parity/nativecomponents;125เปิดจริง |
 | `T124-AC-03` [TASK-124](done/tasks_124.md) | Hi-class/Awaken integration | อัปAwakenใช้variantราคาและเศษใหม่/ledgercostversionจริง;รีเซ็ตคืนbase+Awakenจริงครั้งเดียวและmigrationเซฟเก่าไม่สูญหายหรือแจกเศษย้อนหลัง | ผ่านpure rules/migration/ledger/152parity/nativecomponents;125เปิดจริง |
 | `T124-AC-04` [TASK-124](done/tasks_124.md) | Hi-class/Awaken integration | หน้าสกิล/สมุด/Timelineแสดงvariant/rank/ผลจริงพร้อมpurpleinnerglow/nativeicon;runtime/headless/checkpoint/1x2x4ใช้definitionเดียวกัน | ผ่านpure rules/migration/ledger/152parity/nativecomponents;125เปิดจริง |
-| `T125-AC-01` [TASK-125](review/tasks_125.md) | Hi-class/Awaken integration | เปิดHi70/Awakenรายสกิล/levelcap90/บท10–12เมื่อถึงgateจริง;ไม่เปิดArtifact/Class3/Pet/Rune | ยังไม่ตรวจ |
-| `T125-AC-02` [TASK-125](review/tasks_125.md) | Hi-class/Awaken integration | FreshlocalAuthAPI-SQL-mobile320390ผ่าน70→Hiรักษาบิลด์→Awaken→อัป→แลกเศษ→gate80→สกิลใหม่→ไฟต์→reload/slotisolation | ยังไม่ตรวจ |
-| `T125-AC-03` [TASK-125](review/tasks_125.md) | Hi-class/Awaken integration | OldClass2save migration/ทุนเดิม/AFKfrozen/carry/backup/receipt replay/response lossไม่ทำprogressหรือเศษซ้ำ;ปรับbatchเซฟไม่เพิ่มrequests | ยังไม่ตรวจ |
-| `T125-AC-04` [TASK-125](review/tasks_125.md) | Hi-class/Awaken integration | Fullappropriatechecks/filteredVercelbuild/packbudget→push→hostedpublichealth/artifactsและreleaseflagsตรงก่อนdone;ไม่เข้าบัญชีowner/ไม่รันbalancebatch | ยังไม่ตรวจ |
+| `T125-AC-01` [TASK-125](done/tasks_125.md) | Hi-class/Awaken integration | เปิดHi70/Awakenรายสกิล/levelcap90/บท10–12เมื่อถึงgateจริง;ไม่เปิดArtifact/Class3/Pet/Rune | ผ่าน624TS/actualAuthSQL-mobile/hosted4groups |
+| `T125-AC-02` [TASK-125](done/tasks_125.md) | Hi-class/Awaken integration | FreshlocalAuthAPI-SQL-mobile320390ผ่าน70→Hiรักษาบิลด์→Awaken→อัป→แลกเศษ→gate80→สกิลใหม่→ไฟต์→reload/slotisolation | ผ่าน624TS/actualAuthSQL-mobile/hosted4groups |
+| `T125-AC-03` [TASK-125](done/tasks_125.md) | Hi-class/Awaken integration | OldClass2save migration/ทุนเดิม/AFKfrozen/carry/backup/receipt replay/response lossไม่ทำprogressหรือเศษซ้ำ;ปรับbatchเซฟไม่เพิ่มrequests | ผ่าน624TS/actualAuthSQL-mobile/hosted4groups |
+| `T125-AC-04` [TASK-125](done/tasks_125.md) | Hi-class/Awaken integration | Fullappropriatechecks/filteredVercelbuild/packbudget→push→hostedpublichealth/artifactsและreleaseflagsตรงก่อนdone;ไม่เข้าบัญชีowner/ไม่รันbalancebatch | ผ่าน624TS/actualAuthSQL-mobile/hosted4groups |
 
 | `T126-AC-01` [TASK-126](done/tasks_126.md) | batch equipment | คำแนะนำกับserverใช้helperเดียวกัน;เทียบTierก่อนrarityเมื่อTierเท่ากัน/เฉพาะใส่ได้และยังไม่มีเจ้าของ/ไม่เลือกจากoptions/lockedยังใส่ได้ | ผ่าน localmobile/onecommand/reconnect/reload/hosted |
 | `T126-AC-02` [TASK-126](done/tasks_126.md) | batch equipment | คลิกเดียวเปลี่ยนเฉพาะช่องที่มีhintของตัวที่เลือก;หนึ่งatomiccommand/receipt/revision/optimisticpreview,ไม่แตะNPCอื่น/inventorypayload/ทุน/Refine/Enchant/cards และไม่ทำของหาย | ผ่าน localmobile/onecommand/reconnect/reload/hosted |
@@ -625,8 +625,8 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 
 | `T127-AC-03` [TASK-127](done/tasks_127.md) | Sanctuary PureHoT | รายละเอียดทุกrankแสดงMATK/ทุก1s/6s/เริ่มทันทีและวงฮีลตามstatusจริง;targeted/build/M0/realAuthAPI-SQL-mobile320390/hostedผ่านก่อนdone | ผ่านtargeted/legacy-regression/mobile/hosted |
 
-| `T128-AC-01` [TASK-128](review/tasks_128.md) | Hunter boss damage | Spiral Volley 3 hit รวม420→750%ATK/ธาตุอาวุธ, Claymore450→750%ATK, Rapid Fire4hitรวม630→1050%ATK; SP/CT/ACD/ราคาและ123สกิลเดิมไม่เปลี่ยน; Awakenต่อจากค่าที่ปรับแล้ว | ยังไม่ตรวจ |
+| `T128-AC-01` [TASK-128](done/tasks_128.md) | Hunter boss damage | Spiral Volley 3 hit รวม420→750%ATK/ธาตุอาวุธ, Claymore450→750%ATK, Rapid Fire4hitรวม630→1050%ATK; SP/CT/ACD/ราคาและ123สกิลเดิมไม่เปลี่ยน; Awakenต่อจากค่าที่ปรับแล้ว | ผ่าน624TS/actualAuthSQL-mobile/hosted4groups |
 
-| `T128-AC-02` [TASK-128](review/tasks_128.md) | Hunter boss damage | ทุกrank/เป้าเดี่ยวและหมู่/ธาตุ/interrupt/1×2×4×/checkpoint ตรง sharedengine; คำอธิบายและผลหลายhitจริง; updated goldensเฉพาะ9cases | ยังไม่ตรวจ |
+| `T128-AC-02` [TASK-128](done/tasks_128.md) | Hunter boss damage | ทุกrank/เป้าเดี่ยวและหมู่/ธาตุ/interrupt/1×2×4×/checkpoint ตรง sharedengine; คำอธิบายและผลหลายhitจริง; updated goldensเฉพาะ9cases | ผ่าน624TS/actualAuthSQL-mobile/hosted4groups |
 
-| `T128-AC-03` [TASK-128](review/tasks_128.md) | Hunter boss damage | build/checks/native mobile320390/hostedpublicตรงsourceใหม่;ไม่แตะownerเซฟ/SQL/env/6173และไม่รันbalance batch | ยังไม่ตรวจ |
+| `T128-AC-03` [TASK-128](done/tasks_128.md) | Hunter boss damage | build/checks/native mobile320390/hostedpublicตรงsourceใหม่;ไม่แตะownerเซฟ/SQL/env/6173และไม่รันbalance batch | ผ่าน624TS/actualAuthSQL-mobile/hosted4groups |

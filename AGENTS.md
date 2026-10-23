@@ -1,8 +1,8 @@
 # Project context
 
-## Hi-class release candidate and Hunter (24 October 2026)
+## Released Hi-class/Awaken and Hunter (24 October 2026)
 
-TASK123–124 are done locally. TASK125 and128 are in review pending hosted verification: source enables13 High jobs/26 new skills, level70 promotion preserving the build, cap90/gate80, individual max-skill Awaken resetting rank1, new shards/conversion and chapters10–12. Class3/Artifact/Pet/Rune remain closed. Real disposable Auth/API/Postgres/mobile320390 migration/old receipts/response-loss/daily shards/reload/slot isolation passed; 624 TS checks and root/filtered builds passed. Do not describe these as deployed until TASK125 hosted evidence passes. Older cap70/preparation statements below are historical.
+TASK123–125 and128 are done. Sourcefe14ac635 is live on Vercel (SUCCESS; public health/artifacts/native/mobile verified): source enables13 High jobs/26 new skills, level70 promotion preserving the build, cap90/gate80, individual max-skill Awaken resetting rank1, new shards/conversion and chapters10–12. Class3/Artifact/Pet/Rune remain closed. Real disposable Auth/API/Postgres/mobile320390 migration/old receipts/response-loss/daily shards/reload/slot isolation passed; 624 TS checks and root/filtered builds passed. Hosted4groups passed with32 jobs/152 skills/new content hash/pack, native Champion/Sniper90/Hunter750 and no owner login or writes. Older cap70/preparation statements below are historical.
 
 D158/TASK128 raises only Hunter Spiral Volley to3hits×140–250%ATK (420–750% total), now weapon element; Claymore450–750%fire; Rapid Fire4hits×157.5–262.5% (630–1050% total). SP/CT/ACD/prices and123 other base definitions stay unchanged. The three Awaken variants build on those new maxima. No global AoE penalty/bonus or new balance batch; the user is testing balance personally. See plan/design/48-hunter-boss-impact.md and newest HANDOFF.
 

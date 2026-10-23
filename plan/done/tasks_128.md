@@ -17,7 +17,7 @@ TASK-014, TASK-031, TASK-107 (done).
 ## เกณฑ์ตรวจรับ
 - [x] AC-01: Spiral Volley 3 hit รวม420→750%ATK/ธาตุอาวุธ, Claymore450→750%ATK, Rapid Fire4hitรวม630→1050%ATK; SP/CT/ACD/ราคาและ123สกิลเดิมไม่เปลี่ยน; Awakenต่อจากค่าที่ปรับแล้ว
 - [x] AC-02: ทุกrank/เป้าเดี่ยวและหมู่/ธาตุ/interrupt/1×2×4×/checkpoint ตรง sharedengine; คำอธิบายและผลหลายhitจริง; updated goldensเฉพาะ9cases
-- [ ] AC-03: build/checks/native mobile320390/hostedpublicตรงsourceใหม่;ไม่แตะownerเซฟ/SQL/env/6173และไม่รันbalance batch
+- [x] AC-03: build/checks/native mobile320390/hostedpublicตรงsourceใหม่;ไม่แตะownerเซฟ/SQL/env/6173และไม่รันbalance batch
 
 ## วิธีตรวจและหลักฐาน
 tests/game/hunter-impact.test.ts; task-128-golden-authoring-audit.json; integration125และhostedpublic.
@@ -26,3 +26,5 @@ tests/game/hunter-impact.test.ts; task-128-golden-authoring-audit.json; integrat
 24ต.ค.2026 ผู้ใช้ระบุHunterอ่อน โดยเฉพาะSpiral Volley และAoEเสียโอกาสบนบอสเดี่ยว. เดิมSpiralสูงสุด280% neutral/หนึ่งhit;Rapid895.7812%/Claymore639.8438%. ไม่แก้globalAoE multiplierหรืออาชีพอื่น.
 
 - 24ต.ค.2026 local validationผ่านแล้ว;624TS/root+filteredbuild/M0/actualAuth-API-SQL-mobile320390. ภาพและผลตรวจในtask-125-mobile-live.json;ยังรอpushและhostedpublicก่อนdone.
+
+- Hostedผ่าน4groups source`fe14ac635`/VercelSUCCESS: API200SIN1/79ab9437…/Auth401/24bundleSHA/32jobs152skills/nativeChampionSniper90/Hunter750/mobile320390/0writes. ViewedhostedHunter/Sniper320. ปิดงานโดยไม่แตะownercloud/SQL/env/6173;บาลานซ์เป็นค่าทดลองรอผู้ใช้เล่นจริง.
