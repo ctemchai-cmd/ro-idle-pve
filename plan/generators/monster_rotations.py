@@ -65,6 +65,18 @@ def documents():
   presentations[:]=[p for p in presentations if p['skill_id']!=sid]
   # The shared player presentation supplies the real icon/VFX/audio.
   presentations.append({'skill_id':sid,'telegraph_key':source['name_key'],'telegraph_text':{'enemy_cold_bolt':'ลูกน้ำแข็งต่อเนื่อง','enemy_lightning_bolt':'สายฟ้าต่อเนื่อง','enemy_sonic_blow':'โจมตีหลายครั้ง','enemy_armor_break':'ลดเกราะเป้าหมาย','enemy_hammer_fall':'ค้อนกระแทก มีโอกาสสตั้น','enemy_mend':'ฟื้นฟูพลังชีวิต'}[sid],'visual':{'recipe_skill_id':5,'basis':'D139 shared player presentation; ordinary enemy attack budget'},'duration_source':'skill cast_ms scaled by CastSpeed'})
+ # Additional boss programs keep the original17 programs byte-for-byte. Shared
+ # player presentations supply native art/audio; power budgets are enemy-specific.
+ for sid,original in [('enemy_storm_gust','wizard_storm_gust'),('enemy_holy_cross','crusader_holy_cross')]:
+  source=skills[original];s=resolve(deepcopy(source),source['level_parameters'])
+  s.update(id=sid,class_id='enemy',max_level=1,unlock_level=1,level_parameters={},tags=['enemy','borrowed_program'])
+  s['cost']={'sp':0,'spirit_spheres':0};s['timing']['after_cast_ms']=1000;s['timing']['cast_ms']=1800 if sid=='enemy_storm_gust'else 900
+  if sid=='enemy_storm_gust':s['effects'][0]['params']['power_ratio']=.2
+  else:
+   s['effects'][0]['formula']['params']['attack_ratio']=.6;s['effects'][0]['can_crit']=False
+  recipes[sid]=s
+  presentations[:]=[p for p in presentations if p['skill_id']!=sid]
+  presentations.append({'skill_id':sid,'telegraph_key':source['name_key'],'telegraph_text':'พายุหิมะต่อเนื่อง' if sid=='enemy_storm_gust'else 'กางเขนศักดิ์สิทธิ์สองครั้ง','visual':{'recipe_skill_id':5,'basis':'D151 shared player presentation; authored enemy budget'},'duration_source':'skill cast_ms scaled by CastSpeed'})
  enemies['skills']=list(recipes.values())
  for source in EXPANSION['enemies']:
   definition={'id':source['id'],'kind':'enemy','presentation':source['presentation'],'stat_source':'encounter.resolved_base','targetable':True,'counts_for_victory':True,'normal_attack':True,'active_slots':source['active_slots']+[None]*(4-len(source['active_slots'])),'passives':[]}

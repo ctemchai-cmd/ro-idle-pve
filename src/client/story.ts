@@ -3,7 +3,7 @@ import { loadValidatedContent } from './content.ts';
 import { canonical } from '../content/value.ts';
 import type { AccountState, BattleCheckpoint } from '../contracts/index.ts';
 import type { BattleScene, BattleRenderView, ActorRenderView, BattleTimeline } from '../contracts/presentation.ts';
-import { storyStages, storyStage, storyBoss, canChallenge } from '../domain/modes/story.ts';
+import { storyStages, storyStage, storyBoss, canChallenge, storyReleaseLock } from '../domain/modes/story.ts';
 import { towerBoss, towerCanChallenge, towerData, towerRow, towerUnlocked } from '../domain/modes/tower.ts';
 import { bangkokDay, dailyBoss, dailyBossActor, dailyChest, dailyData, dailyPhaseStats, dailyRecord, dailyUnlocked, modePolicy, parseDailyRef } from '../domain/modes/daily.ts';
 import { createBattle, advanceUntil, restoreBattle, serializeBattle, type BattleState } from '../domain/combat/index.ts';
@@ -24,7 +24,7 @@ export function isHeavyCast(skillId:string){return !!(content.skills[skillId] as
 export function storyStageInfo(id:string){const stage=storyStage(id,content);if(!stage)return null;const last=Math.max(...storyStages(content).filter(s=>s.chapter===stage.chapter).map(s=>s.index));return{chapter:stage.chapter,index:stage.index,last:stage.index===last,...(stage.enemy_identity?{enemy_identity:stage.enemy_identity}:{}),heavy_cast:storyBoss(stage).active_slots.some(id=>!!id&&isHeavyCast(id)),heavy_skill:storyBoss(stage).active_slots.find((id):id is string=>!!id&&isHeavyCast(id))??null};}
 /** Presentation label of a stage boss for intros; definition IDs stay the gameplay reference. */
 export function storyBossLabel(id:string){const stage=storyStage(id,content);if(!stage)return null;const boss=storyBoss(stage);return{name:boss.definition_id.split('_').map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(' '),level:boss.level};}
-export function storyOptions(state:AccountState){return storyStages(content).map(stage=>({id:stage.id,chapter:stage.chapter,cleared:state.story.cleared_stage_ids.includes(stage.id),available:canChallenge(stage,state)}));}
+export function storyOptions(state:AccountState){return storyStages(content).map(stage=>({id:stage.id,chapter:stage.chapter,cleared:state.story.cleared_stage_ids.includes(stage.id),available:canChallenge(stage,state,content),release_locked:storyReleaseLock(stage,content)}));}
 const friends:Record<string,string>={main:'คุณ',npc_swordsman:'ไคล์',npc_acolyte:'ลูเมน',npc_archer:'อารี',npc_mage:'เรน',npc_thief:'นิกซ์',npc_merchant:'มิโล'};
 function title(job:string){return job.charAt(0).toUpperCase()+job.slice(1);}
 /** Shared scene labels for every presentation session built from this content. */

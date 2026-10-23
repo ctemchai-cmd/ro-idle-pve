@@ -23,7 +23,7 @@ test('D142 all7Paladin mappings are exact source bytes in exported metadata andr
 test('D142 original130StoryHP/physical/heavy power is no higher thanTASK109 andpreserves all encounter fields/rewards/control',()=>{
  const rows=storyStages(content).filter(s=>s.chapter<=8);
  for(const r of rows){const b=r.encounter[0]!.resolved_base,prior=before.stages[r.id];for(const key of ['max_hp','physical_attack','magical_attack']as const)assert.ok(b[key]<=prior[key],r.id+key);if(r.chapter<=2)assert.deepEqual(b,prior);}
- const stage=read('plan/data/stages.json');stage.stages=stage.stages.filter((s:{chapter:number})=>s.chapter<=8);stage.chapters=8;stage.total_stages=130;delete stage.stages_per_chapter_by_chapter['9'];for(const r of stage.stages)for(const a of r.encounter)for(const key of ['max_hp','physical_attack','magical_attack'])delete a.resolved_base[key];assert.equal(sha(stage),before.stage_other_sha256);
+ const stage=read('plan/data/stages.json');stage.stages=stage.stages.filter((s:{chapter:number})=>s.chapter<=8);stage.chapters=8;stage.total_stages=130;stage.stages_per_chapter_by_chapter=Object.fromEntries(Object.entries(stage.stages_per_chapter_by_chapter).filter(([chapter])=>Number(chapter)<=8));for(const r of stage.stages)for(const a of r.encounter)for(const key of ['max_hp','physical_attack','magical_attack'])delete a.resolved_base[key];assert.equal(sha(stage),before.stage_other_sha256);
  assert.equal(sha(read('plan/data/slot-progress.json')),before.slot_progress_sha256);
 });
 test('D142 Tower lowers attack about12%, preserves every other field andcontinues afterfloor100',()=>{

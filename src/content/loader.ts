@@ -141,8 +141,11 @@ export function validateContent(raw: unknown): Result<ValidatedContent> {
       demand(Number(object(object(loot.gear).tier_by_chapter)[chapter]) > 0, 'missing_loot_tier', at);
       demand(Number(object(object(loot.cards).tier_by_chapter)[String(stage.chapter)]) > 0, 'missing_card_tier', at);
       demand(stage.enemy_identity === undefined || stage.enemy_identity === 'definition', 'invalid_enemy_identity', at);
+      const gate=stage.release_gate===undefined?null:object(stage.release_gate), cap=Number(object(bundle.documents['progression.json']!.release).level_cap);
+      if(gate)demand(['hi_class','awakening'].includes(String(gate.feature))&&Number.isSafeInteger(gate.minimum_level_cap)&&Number(gate.minimum_level_cap)>=Number(stage.recommended_party_level)&&Object.keys(gate).every(k=>['feature','minimum_level_cap'].includes(k)), 'invalid_story_release_gate', at);
       for (const enemyValue of list(stage.encounter)) {
         const enemy = object(enemyValue);
+        demand(Number.isSafeInteger(enemy.level)&&Number(enemy.level)>=1&&Number(enemy.level)<=120&&(gate?Number(enemy.level)<=Number(gate.minimum_level_cap):Number(enemy.level)<=cap), 'invalid_story_enemy_level', at);
         demand(String(enemy.definition_id) in actors, 'unknown_actor', at);
         for (const skill of list(enemy.active_slots).filter(Boolean)) demand(skills[String(skill)]?.kind === 'active', 'unknown_skill', at);
         for (const skill of list(enemy.passives)) demand(skills[String(skill)]?.kind === 'passive', 'unknown_skill', at);

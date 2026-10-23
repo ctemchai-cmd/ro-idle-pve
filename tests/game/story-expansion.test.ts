@@ -24,11 +24,11 @@ const expansion=()=>storyStages(content).filter(s=>s.chapter===9);
 
 test('D150 appends50 connected stages with five distinct named bosses, preserves130 entire rows and all prior combat/progression data',()=>{
  const source=JSON.parse(readFileSync(new URL('../../plan/data/stages.json',import.meta.url),'utf8'));
- assert.equal(source.total_stages,180);assert.equal(source.chapters,9);
+ assert.equal(source.stages.filter((s:{chapter:number})=>s.chapter<=9).length,180);
  assert.equal(sha(canonical(source.stages.slice(0,130))),baseline.stages_sha256);
  for(const [file,expected]of Object.entries(baseline.unchanged_data))assert.equal(sha(readFileSync(new URL('../../plan/data/'+file,import.meta.url))),expected,file);
  const rows=expansion();assert.equal(rows.length,50);assert.equal(rows[0]!.unlock_after,'8-20');
- const state=initial();assert.equal(canChallenge(rows[0]!,state),false);state.story.cleared_stage_ids.push('8-20');assert.equal(canChallenge(rows[0]!,state),true);
+ const state=initial();assert.equal(canChallenge(rows[0]!,state,content),false);state.story.cleared_stage_ids.push('8-20');assert.equal(canChallenge(rows[0]!,state,content),true);
  for(let i=0;i<rows.length;i++){const s=rows[i]!;assert.equal(s.id,'9-'+(i+1));assert.equal(s.unlock_after,i?rows[i-1]!.id:'8-20');assert.equal(s.enemy_identity,'definition');assert.ok(storyBoss(s).level>=67&&storyBoss(s).level<=70);}
  assert.deepEqual([10,20,30,40,50].map(i=>storyBoss(storyStage('9-'+i,content)!).definition_id),['orc_lord','dracula','osiris','doppelganger','dark_lord']);
  assert.ok(new Set(rows.map(s=>storyBoss(s).definition_id)).size>=14);

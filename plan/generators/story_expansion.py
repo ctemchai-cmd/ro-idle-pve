@@ -27,8 +27,9 @@ def append_chapters(rows, profiles, heavy_casts, time_limit_ms):
             heavy=i%chapter['heavy_every']==0
             if heavy:slots=[heavy_casts[(i//chapter['heavy_every']-1)%len(heavy_casts)]]+slots[:3]
             slots += [None]*(4-len(slots))
+            element=identities[identity]['element'] if identity in identities else SPEC['identity_elements'][identity]
             boss={'actor_id':'enemy_front','definition_id':identity,'level':level,'position':'front_1',
-                  'element':identities[identity]['element'] if identity in identities else 'undead',
+                  'element':element,
                   'resolved_base':stats,'active_slots':slots,'passives':['enemy_adaptive_cc'] if i==count else []}
             encounter=[boss]
             for n,mob in enumerate(zone['monsters']):
@@ -42,6 +43,7 @@ def append_chapters(rows, profiles, heavy_casts, time_limit_ms):
                        {'strategy':'counter elemental armor with weapon endow or fixed-element skills; support through ordinary attacks','example_skill_ids':['wizard_meteor','priest_kyrie'],'examples_are_mandatory':False}]
             rows.append({'id':f'{c}-{i}','chapter':c,'index':i,'unlock_after':previous['id'],
                          'recommended_party_level':level,'time_limit_ms':time_limit_ms,'enemy_identity':'definition',
+                         **({'release_gate':deepcopy(chapter['release_gate'])} if 'release_gate' in chapter else {}),
                          'encounter':encounter,'background':deepcopy(chapter['background']),'music':deepcopy(chapter['music']),
                          'first_clear_reward':{'gold':2500*c*c//count,'hero_exp':4000*c*c//count,'skill_manual':100*c//count,'crystal':200//count},
                          'repeat_clear_reward':{},'farm_rate_chapter':c,'mechanic':[zone['name'],*slots[:1]] if heavy else [zone['name'],*profiles[identity]],

@@ -1,7 +1,7 @@
 import type { AccountState, BattleCheckpoint, CombatStats } from '../../contracts/index.ts';
 import type { ValidatedContent } from '../../content/model.ts';
 import type { ModeRespawn, PureModePolicy } from '../combat/index.ts';
-import { storyStages, type StoryStage } from './story.ts';
+import { storyStages, storyReleaseLock, type StoryStage } from './story.ts';
 
 type Boss = StoryStage['encounter'][number];
 type Wallet = AccountState['wallet'];
@@ -24,7 +24,7 @@ export function bangkokDay(ms: number): string {
 export function dailyUnlocked(state: AccountState, content: ValidatedContent) { return state.story.cleared_stage_ids.includes(dailyData(content).unlocks_after); }
 /** Highest chapter whose final stage is cleared, at least 2 (design 19). */
 export function highestClearedChapter(state: AccountState, content: ValidatedContent) {
-  const stages = storyStages(content); let best = 2;
+  const stages = storyStages(content).filter(stage=>!storyReleaseLock(stage,content)); let best = 2;
   for (const chapter of new Set(stages.map(stage => stage.chapter))) { const last = stages.filter(stage => stage.chapter === chapter).at(-1)!; if (state.story.cleared_stage_ids.includes(last.id)) best = Math.max(best, chapter); }
   return best;
 }

@@ -177,10 +177,12 @@ function BossIntro({ label }: { label: { name: string; place: string; level: num
 
 function StageSheet({ context, close, challenge }: { context: GameContext; close: () => void; challenge: (id: string) => void }) {
   const { state, submit, locked } = context, options = storyOptions(state), farm = farmSceneStage(state).id;
-  const chapters = [...new Set(options.map(o => o.chapter))], firstOpen = options.find(o => o.available && !o.cleared)?.chapter ?? chapters.at(-1);
+  const chapters = [...new Set(options.map(o => o.chapter))], firstOpen = options.find(o => o.available && !o.cleared)?.chapter ?? options.filter(o=>o.available).at(-1)?.chapter;
   const [chapter, setChapter] = useState(firstOpen ?? 1), [picked, setPicked] = useState<string | null>(null), stage = options.find(o => o.id === picked);
+  const gate=options.find(o=>o.chapter===chapter)?.release_locked;
   return <Sheet title="แผนที่การผจญภัย" onClose={close}>
-    <div className="chapter-tabs" role="tablist">{chapters.map(c => { const open = options.some(o => o.chapter === c && o.available); return <button key={c} role="tab" aria-selected={chapter === c} disabled={!open} onClick={() => { setChapter(c); setPicked(null); }}>บท {c}</button>; })}</div>
+    <div className="chapter-tabs" role="tablist">{chapters.map(c => { const open = options.some(o => o.chapter === c && (o.available||o.release_locked)); return <button key={c} role="tab" aria-selected={chapter === c} disabled={!open} onClick={() => { setChapter(c); setPicked(null); }}>บท {c}</button>; })}</div>
+    {gate&&<p className="chapter-release-gate" role="status"><Icon name="lock" /><b>รอ {gate==='hi_class'?'Hi-class':'Awaken'}</b></p>}
     <div className="stage-grid">{options.filter(o => o.chapter === chapter).map(o => <button key={o.id} className={`stage-cell ${o.cleared ? 'cleared' : o.available ? 'open' : 'locked'} ${picked === o.id ? 'picked' : ''} ${farm === o.id ? 'farming' : ''}`} disabled={!o.available} onClick={() => setPicked(o.id)}>
       <b>{o.id}</b><small>{o.cleared ? (farm === o.id ? 'ฟาร์มอยู่' : 'ผ่านแล้ว') : o.available ? 'บอส' : <Icon name="lock" />}</small>
     </button>)}</div>
@@ -316,7 +318,7 @@ export function Field({ context, covered, save, request, consumeRequest }: { con
     const timer = setTimeout(() => setIntro(null), ready ? Math.max(0, 2100 - (Date.now() - intro.at)) : 9000);
     return () => clearTimeout(timer);
   }, [intro, boss?.id, active?.battle_id]);
-  const options = storyOptions(state), next = options.find(s => s.available && !s.cleared), farmStage = farmSceneStage(state), mapName = mapNames[(farmStage.background as { name?: string }).name ?? ''] ?? 'ทุ่งหญ้า';
+  const options = storyOptions(state), next = options.find(s => s.available && !s.cleared), waiting=options.find(s=>!s.cleared&&s.release_locked)?.release_locked, waitingName=waiting==='hi_class'?'Hi-class':waiting==='awakening'?'Awaken':null, farmStage = farmSceneStage(state), mapName = mapNames[(farmStage.background as { name?: string }).name ?? ''] ?? 'ทุ่งหญ้า';
   const snapshot = state.farm.rate_snapshot, elapsed = snapshot ? Math.min(FARM_CAP_MS, Math.max(0, now - Date.parse(state.farm.reserved_through))) : 0;
   const showBoss = boss && (active?.battle_id === boss.id || outcome?.id === boss.id), bossIcon = iconUrl(pack, 'ui_icons', 'boss'), chest = iconUrl(pack, 'feature_icons', 'afk_chest'), mapIcon = iconUrl(pack, 'ui_icons', 'stage');
   return <div className={`field ${covered ? 'covered' : ''}`}>
@@ -328,8 +330,8 @@ export function Field({ context, covered, save, request, consumeRequest }: { con
       <button className={`afk-chest ${state.pending_rewards.length ? 'has-reward' : ''}`} aria-label="รางวัลฟาร์มอัตโนมัติ" onClick={() => setSheet('farm')}>
         {chest ? <img src={chest} alt="" /> : <Icon name="gift" />}<time>{snapshot ? duration(elapsed) : 'AFK'}</time>{!!state.pending_rewards.length && <i className="dot">{state.pending_rewards.length}</i>}
       </button>
-      <button className="challenge-btn" disabled={locked || starting || !next} aria-label={next ? `ท้าบอสด่าน ${next.id}` : 'ผ่านครบทุกด่านแล้ว'} onClick={() => next && void challenge({ kind: 'story', id: next.id })}>
-        <span className="challenge-ring">{bossIcon ? <img src={bossIcon} alt="" /> : <Icon name="adventure" />}</span><b>{starting ? 'กำลังเข้า…' : next ? 'ท้าบอส' : 'ครบแล้ว'}</b>{next && <small>{next.id}</small>}
+      <button className="challenge-btn" disabled={locked || starting || !next} aria-label={next ? `ท้าบอสด่าน ${next.id}` : waitingName?`รอ ${waitingName}`:'ผ่านครบทุกด่านแล้ว'} onClick={() => next && void challenge({ kind: 'story', id: next.id })}>
+        <span className="challenge-ring">{bossIcon ? <img src={bossIcon} alt="" /> : <Icon name="adventure" />}</span><b>{starting ? 'กำลังเข้า…' : next ? 'ท้าบอส' : waitingName??'ครบแล้ว'}</b>{next && <small>{next.id}</small>}
       </button>
     </>}
     {intro && !covered && <BossIntro label={intro.label} />}

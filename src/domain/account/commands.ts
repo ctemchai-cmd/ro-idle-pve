@@ -8,7 +8,7 @@ import { createBattle, advanceUntil, restoreBattle, serializeBattle } from '../c
 import { AccountCreationRules } from './creation.ts';
 import { calculateBattleCredit } from './protocol.ts';
 import { applySkillCommand, validateCharacterSkills, compileCharacterSkills, type SkillCommand } from '../progression/skills.ts';
-import { storyStage, storyBoss, storyFarmSnapshot, canChallenge } from '../modes/story.ts';
+import { storyStage, storyBoss, storyFarmSnapshot, canChallenge, storyReleaseLock } from '../modes/story.ts';
 import { storyParty, storyInput } from '../build/story.ts';
 import { towerBoss, towerCanChallenge, towerRow, towerStageRef } from '../modes/tower.ts';
 import { bangkokDay, dailyBoss, dailyBossActor, dailyChest, dailyRecord, dailyRef, dailyUnlocked, modePolicy, parseDailyRef, type DailyBossId } from '../modes/daily.ts';
@@ -96,7 +96,7 @@ export class AccountCommandRules extends AccountCreationRules {
     const pointer0 = () => previous.active_battle;
     const selectFarm = (input: AccountState, stageId: string) => {
       const stage = storyStage(stageId, this.content);
-      if (!stage || !input.story.cleared_stage_ids.includes(stageId)) reject('FARM_STAGE_NOT_CLEARED');
+      if (!stage || storyReleaseLock(stage,this.content) || !input.story.cleared_stage_ids.includes(stageId)) reject('FARM_STAGE_NOT_CLEARED');
       input.story.selected_farm_stage = stageId; input.farm.rate_snapshot = storyFarmSnapshot(stage!, input, this.content); input.farm.reserved_through = time.server_at;
     };
     // Daily objective (economy.daily_objective): today's Bangkok record rolls over on the first committed command of a new day.
@@ -111,7 +111,7 @@ export class AccountCommandRules extends AccountCreationRules {
         state.wallet.crystal += objective.crystal; state.daily_objectives.claimed = true; code = 'DAILY_OBJECTIVE_CLAIMED';
       } else if (command.type === 'battle.start_story') {
         if (state.active_battle) reject('BATTLE_ALREADY_ACTIVE');
-        const stage = storyStage(command.params.stage_id, this.content); if (!stage || !canChallenge(stage, state)) reject('STAGE_LOCKED');
+        const stage = storyStage(command.params.stage_id, this.content); if (!stage || !canChallenge(stage, state, this.content)) reject('STAGE_LOCKED');
         if (state.pending_rewards.length >= Number((this.content.documents['save-contracts.json']!.farm as unknown as {queue_limit:number}).queue_limit)-1) reject('PENDING_REWARDS_FULL');
         if (!time.account_id || !time.battle_id || time.battle_seed===undefined || !time.build_hashes) throw new Error('SERVER_BATTLE_CONTEXT_REQUIRED');
         const compiled = Object.fromEntries(state.team.map(p => [p.character_id, compileCharacterSkills(state.roster.find(a => a.character_id === p.character_id)!, this.content)]));

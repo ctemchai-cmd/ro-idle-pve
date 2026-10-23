@@ -1,0 +1,122 @@
+✔ all release catalogs load, are immutable, and expose gameplay counts (2289.172959ms)
+✔ reject reviewed input: unknown_stat (283.321125ms)
+✔ reject reviewed input: unknown_formula (26.979709ms)
+✔ reject reviewed input: unknown_formula_param (1.466208ms)
+✔ reject reviewed input: unknown_status (1.471083ms)
+✔ reject reviewed input: unknown_binding (0.75975ms)
+✔ reject reviewed input: outcome_other_target (0.470166ms)
+✔ reject reviewed input: outcome_forward_reference (2.168958ms)
+✔ reject reviewed input: outcome_different_binding (1.015833ms)
+✔ reject reviewed input: unknown_status_param (3.157625ms)
+✔ reject reviewed input: undefined_level_param (0.527792ms)
+✔ reject reviewed input: level_curve_length (0.379125ms)
+✔ reject reviewed input: invalid_modifier_bucket (1.039959ms)
+✔ reject reviewed input: ratio_as_add_percent (0.292167ms)
+✔ reject reviewed input: buff_cap (6.954625ms)
+✔ reject reviewed input: chance_above_one (1.330167ms)
+✔ reject reviewed input: event_formula_without_event (0.4055ms)
+✔ reject reviewed input: status_param_in_skill (1.323125ms)
+✔ reject reviewed input: dead_heal_binding (0.619458ms)
+✔ reject reviewed input: unknown_json_field (0.649042ms)
+✔ reject reviewed input: effect_id_duplicate (0.567209ms)
+✔ reject reviewed input: source_sp_double_charge (0.46175ms)
+✔ reject reviewed input: patch_missing_anchor (272.759792ms)
+✔ reject reviewed input: patch_set_conflict (550.515875ms)
+✔ reject reviewed input: unknown_actor_reference (4.658625ms)
+✔ reject reviewed input: modifier_feedback_predicate (2.315041ms)
+✔ reject reviewed input: unsafe_number (0.3795ms)
+✔ reject reviewed input: status_remote_schema (0.303625ms)
+✔ reject reviewed input: skill_as_reflect (0.652833ms)
+✔ reject reviewed input: battle_start_event_target (1.860291ms)
+✔ reject reviewed input: cast_event_ambiguous_target (1.450708ms)
+✔ reject reviewed input: live_source_after_death (0.3565ms)
+✔ reject NaN before schema or formula evaluation (0.263333ms)
+✔ prototype properties cannot masquerade as target bindings (3.100417ms)
+✔ field errors identify originating definition/effect and JSON pointer (0.60975ms)
+✔ loader reports duplicate definitions and invalid document versions (3473.565417ms)
+✔ variants use stable IDs and preserve other actors/shared base (708.007958ms)
+✔ slot catalogs reject missing presets and invalid modifier units/buckets before gameplay builds (5527.03575ms)
+✔ D138 rejects invalid success references and contradictory guaranteed-crit policy (3.644167ms)
+✔ D141 rejects missing ranks/prices, invalid pity targets and malformed socket gates before gameplay (1699.095584ms)
+✔ D148 every stage uses chapter1–2 gearLv1, chapter3Lv20 and unchanged later tiers independently of character level (774.7145ms)
+✔ D148 equipment gacha follows the corrected gear table while cards keep their original tiers and seeded drops (682.3115ms)
+✔ D148 migration refreshes chapter2 future equipment pool without changing earned Lv20 items, pending claims, cards or farm cursor/RNG (4.642042ms)
+✖ D151330 stages keep all180 released rows and old programs/actors/rates/power data byte-identical (37.810958ms)
+✔ D151 future chapter gates share admission and require Hi-class, correct cap, plus Awaken for12 (2471.434542ms)
+✖ D151 enemy90 checkpoint and native profiles are valid, party71 rejected independently of enemy cap (13.5285ms)
+✔ D151 new borrowed StormGust/HolyCross run shared effects identically at1x2x4 and preserve legacy farm economics (738.987875ms)
+✔ D152 catalog covers19 actual jobs and126 logical skills, inherited trees and valid ranks/genders (5.223375ms)
+✖ D152 all126 skills at ranks1/max run actual engine; active resolves and passive never fabricates its own cast (8803.485375ms)
+✖ D152 previews real heal, timed healing, buff, summon, sphere cost and interrupt outcomes (361.9835ms)
+✔ D152 replay and1x2x4 use identical deterministic effects and timestamps (1299.660917ms)
+✔ D150 appends50 connected stages with five distinct named bosses, preserves130 entire rows and all prior combat/progression data (146.625ms)
+✔ D150 expansion keeps old actual card profiles, gear/currency rates, migration state and dailychapter9 serializable (3943.45325ms)
+✔ D150 missing chapter income or loot routes fail content loading before a player can start (6772.77125ms)
+✔ D150 farm species use their own skills, element/race/size and native art, never the passed legacy skins or mutate durable state (191.499959ms)
+✔ D150 actual expanded boss is a single enemy, all ten heavy casts stay interruptible and1x2x4 have identical events/checkpoints (706.496417ms)
+ℹ tests 56
+ℹ suites 0
+ℹ pass 52
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 19667.596667
+
+✖ failing tests:
+
+test at tests/game/hi-chapters.test.ts:1:1178
+✖ D151330 stages keep all180 released rows and old programs/actors/rates/power data byte-identical (37.810958ms)
+  TypeError [Error]: Cannot convert undefined or null to object
+      at Object.entries (<anonymous>)
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/hi-chapters.test.ts:23:37)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.start (node:internal/test_runner/test:959:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:332:17)
+
+test at tests/game/hi-chapters.test.ts:1:3473
+✖ D151 enemy90 checkpoint and native profiles are valid, party71 rejected independently of enemy cap (13.5285ms)
+  Error: [{"code":"Error: INVALID_SPATIAL_PROFILE","source":"combat","path":"","message":"Error: INVALID_SPATIAL_PROFILE"}]
+      at unwrap (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/combat-fixtures.ts:25:73)
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/hi-chapters.test.ts:42:116)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7)
+
+test at tests/game/skill-preview.test.ts:1:1145
+✖ D152 all126 skills at ranks1/max run actual engine; active resolves and passive never fabricates its own cast (8803.485375ms)
+  AssertionError [ERR_ASSERTION]: monk_triple_attack@1
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/skill-preview.test.ts:30:36)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:332:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '=='
+  }
+
+test at tests/game/skill-preview.test.ts:1:2279
+✖ D152 previews real heal, timed healing, buff, summon, sphere cost and interrupt outcomes (361.9835ms)
+  AssertionError [ERR_ASSERTION]: alchemist_hell_plant summon
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/skill-preview.test.ts:41:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '=='
+  }

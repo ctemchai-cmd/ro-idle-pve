@@ -4,12 +4,20 @@ import { farmCardProfile } from './farm-card-profile.ts';
 import { cardTierForChapter } from '../../content/card-catalog.ts';
 export interface StoryStage {
  id:string;chapter:number;index:number;unlock_after:string|null;time_limit_ms:number;enemy_identity?:'definition';
+ release_gate?:{feature:'hi_class'|'awakening';minimum_level_cap:number};
  encounter:{actor_id:string;definition_id:string;level:number;position:string;element:string;resolved_base:CombatStats;active_slots:BattleCheckpoint['actors'][number]['active_slots'];passives:string[]}[];
  background:{meta:string};music:{meta:string};first_clear_reward:Partial<AccountState['wallet']>;farm_rate_chapter:number;
 }
 export function storyStages(content:ValidatedContent):readonly StoryStage[]{return content.documents['stages.json']!.stages as unknown as StoryStage[];}
 export function storyStage(id:string,content:ValidatedContent):StoryStage|undefined{return storyStages(content).find(stage=>stage.id===id);}
-export function canChallenge(stage:StoryStage,state:AccountState){return stage.unlock_after===null||state.story.cleared_stage_ids.includes(stage.unlock_after);}
+/** One authority for UI, commands, farm admission and progression-linked rewards. */
+export function storyReleaseLock(stage:StoryStage,content:ValidatedContent):NonNullable<StoryStage['release_gate']>['feature']|null{
+ const gate=stage.release_gate;if(!gate)return null;
+ const data=content.documents['progression.json'] as unknown as {release:{level_cap:number;excluded_features:string[]};promotion:{hi_class_enabled:boolean}};
+ const enabled=data.promotion.hi_class_enabled&&(gate.feature==='hi_class'||!data.release.excluded_features.includes('awakening'));
+ return enabled&&data.release.level_cap>=gate.minimum_level_cap?null:gate.feature;
+}
+export function canChallenge(stage:StoryStage,state:AccountState,content:ValidatedContent){return !storyReleaseLock(stage,content)&&(stage.unlock_after===null||state.story.cleared_stage_ids.includes(stage.unlock_after));}
 /** A boss challenge has one enemy, per the user's revised gameplay baseline. */
 export function storyBoss(stage:StoryStage){const boss=stage.encounter.find(a=>a.actor_id==='enemy_front');if(!boss)throw new Error('STORY_BOSS_MISSING');return boss;}
 export function storyFarmSnapshot(stage:StoryStage,state:AccountState,content:ValidatedContent):NonNullable<AccountState['farm']['rate_snapshot']>{

@@ -19,7 +19,7 @@ self.addEventListener('fetch', event => {
   if (request.method !== 'GET' || url.origin !== self.location.origin || request.headers.has('authorization') || url.pathname.startsWith('/api/') || url.pathname.startsWith('/auth/v1/')) return;
   if (PUBLIC_FILES.includes(url.pathname) && !url.search) {
     event.respondWith(caches.open(CACHE_NAME).then(async cache => (await cache.match(url.pathname)) || fetch(request)));
-  } else if (request.mode === 'navigate' && ['/', '/play', '/auth', '/index.html', '/demo', '/roster'].includes(url.pathname)) {
+  } else if (request.mode === 'navigate' && ['/', '/play', '/auth', '/index.html', '/demo', '/roster', '/skill-preview'].includes(url.pathname)) {
     // Never persist HTML, PKCE codes, recovery fragments or authenticated responses.
     event.respondWith(fetch(request, { cache: 'no-store' }).catch(async () => (await (await caches.open(CACHE_NAME)).match('/offline.html')) || new Response('Offline', { status: 503 })));
   }

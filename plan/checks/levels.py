@@ -17,7 +17,7 @@ for i,stage in enumerate(story['stages']):
  def entry(stage=stage,i=i):
   assert stage['id']==f"{stage['chapter']}-{stage['index']}" and stage['time_limit_ms']==40000
   assert stage['unlock_after']==(story['stages'][i-1]['id'] if i else None)
-  assert stage['recommended_party_level']<=70 and stage['balance_target']['not_measured_yet']
+  assert stage['recommended_party_level']<=90 and (stage['recommended_party_level']<=70 or stage.get('release_gate',{}).get('minimum_level_cap',0)>=stage['recommended_party_level']) and stage['balance_target']['not_measured_yet']
   ids=set()
   for actor in stage['encounter']:
    assert actor['actor_id'] not in ids;ids.add(actor['actor_id']);assert actor['definition_id'] in actor_ids
@@ -35,17 +35,17 @@ for i,stage in enumerate(story['stages']):
  check('stage_'+stage['id'],['AC-01','AC-02','AC-03'],entry)
 def total():
  # D-057: chapters 1-3 keep 10 stages, 4-8 have 20 (future chapters 50); rewards scale by 10/N so chapter totals stay fixed.
- layout={'1':10,'2':10,'3':10,'4':20,'5':20,'6':20,'7':20,'8':20,'9':50}
- assert story['stages_per_chapter_by_chapter']==layout and story['future_stages_per_chapter']==50 and story['chapters']==9 and 'stages_per_chapter' not in story
- assert story['total_stages']==180 and len(story['stages'])==180 and len({s['id'] for s in story['stages']})==180
+ layout={'1':10,'2':10,'3':10,'4':20,'5':20,'6':20,'7':20,'8':20,'9':50,'10':50,'11':50,'12':50}
+ assert story['stages_per_chapter_by_chapter']==layout and story['future_stages_per_chapter']==50 and story['chapters']==12 and 'stages_per_chapter' not in story
+ assert story['total_stages']==330 and len(story['stages'])==330 and len({s['id'] for s in story['stages']})==330
  for key,n in layout.items():assert [s['index'] for s in story['stages'] if s['chapter']==int(key)]==list(range(1,n+1)),key
- assert sum(s['first_clear_reward']['crystal'] for s in story['stages'])==1800
- for ch in range(1,10):
+ assert sum(s['first_clear_reward']['crystal'] for s in story['stages'])==2400
+ for ch in range(1,13):
   rows=[s for s in story['stages'] if s['chapter']==ch];assert sum(r['first_clear_reward']['gold'] for r in rows)==2500*ch*ch and sum(r['first_clear_reward']['hero_exp'] for r in rows)==4000*ch*ch,ch
  import subprocess,sys
  assert subprocess.run([sys.executable,str(R/'plan/generators/stages.py'),'--check'],capture_output=True).returncode==0,'stages.json differs from its generator'
  assert subprocess.run([sys.executable,str(R/'plan/generators/stages.py'),'--legacy','--check'],capture_output=True).returncode==0,'generator no longer reproduces the reviewed 8x10 baseline'
- return {'chapters':9,'stages':180,'layout':layout,'future_stages_per_chapter':50,'first_clear_crystal_total':1800,'chapter_reward_totals_unchanged':True,'generator':'plan/generators/stages.py (legacy 8x10 byte-identical)','rare_cards_required':False}
+ return {'chapters':12,'stages':330,'layout':layout,'future_stages_per_chapter':50,'first_clear_crystal_total':2400,'chapter_reward_totals_unchanged':True,'generator':'plan/generators/stages.py (legacy 8x10 byte-identical)','rare_cards_required':False}
 check('story_totals',['AC-01','AC-02'],total)
 def terminal():
  def result(player_alive,enemy_alive,t):return 'loss' if t>=40000 or not player_alive else 'win' if not enemy_alive else 'running'

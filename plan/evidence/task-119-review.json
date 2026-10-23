@@ -1,0 +1,25 @@
+{
+  "task_id": "TASK-119",
+  "passed": false,
+  "review_round": 1,
+  "scope": "local complete, public deployment pending",
+  "acceptance": {
+    "AC-01": "passed_local",
+    "AC-02": "passed_local",
+    "AC-03": "passed_local",
+    "AC-04": "pending_public"
+  },
+  "evidence_refs": [
+    "task-118-119-ui-live.json",
+    "task-118-119-targeted-final.txt",
+    "task-118-119-full-tests-r1.txt",
+    "task-118-regressions-fixed.txt",
+    "task-118-native-bosses.png"
+  ],
+  "failure_history": [
+    "r1 fixture HISTORY error without diagnostic; same assertion passed r2/r3/r4",
+    "r3 gallery incorrectly asked to prepare visual for nonvisual adaptive enemy Passive; selected actual Active slots in r4",
+    "early preview sphere setup used array position; fixed actor_id lookup and all126/min-max ranks pass",
+    "two historical oracles normalized original130stage layout and new borrowed-program count; independent old180SHA is unchanged"
+  ]
+}

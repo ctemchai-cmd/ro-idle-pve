@@ -318,6 +318,8 @@ dialog.sheet::backdrop { background: rgba(10, 22, 50, .45); backdrop-filter: blu
 .chapter-tabs button { flex: none; min-height: 34px; padding: 0 12px; border-radius: 10px; border: 1px solid var(--line); background: #fff; font-weight: 700; font-size: 13px; }
 .chapter-tabs button[aria-selected='true'] { background: var(--blue-2); color: #fff; border-color: transparent; }
 .chapter-tabs button:disabled { opacity: .4; }
+.chapter-release-gate { display: flex; align-items: center; gap: 7px; margin: 2px 0 10px; color: var(--muted); font-size: 12px; }
+.chapter-release-gate .ui-icon { width: 15px; height: 15px; }
 .stage-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
 .stage-cell { display: grid; justify-items: center; padding: 8px 2px; border-radius: 12px; border: 2px solid var(--line); background: #fff; }
 .stage-cell b { font-size: 14px; } .stage-cell small { font-size: 10.5px; color: var(--ink-2); }

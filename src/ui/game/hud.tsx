@@ -45,6 +45,7 @@ export function TopHud({ context, save, controller, sound, toggleSound, reconnec
     {sheet === 'settings' && <Sheet title="ตั้งค่าและเซฟ" onClose={() => setSheet(null)}>
       <div className="settings-list">
         <InstallApp />
+        <a className="btn" href="/skill-preview" target="_blank" rel="noopener">Skill Preview</a>
         {switchSave&&<><div className="settings-row"><span>ช่องเซฟ</span><b>{slotNumber} / 10</b></div><button className="btn" disabled={save.status==='saving'||save.status==='loading'||!!state.active_battle} onClick={switchSave}><Icon name="save"/>เปลี่ยนเซฟ</button>{state.active_battle&&<p className="hint">จบไฟต์ก่อนเปลี่ยนเซฟ</p>}</>}
         <div className="settings-row"><span>สถานะเซฟ</span><b className={`save-text ${tone}`}>{statusText[save.status] ?? save.status}{save.checkpoint ? ` · #${save.checkpoint.save.revision}` : ''}</b></div>
         <button className="btn" disabled={save.status === 'loading' || save.status === 'saving' || !navigator.onLine} onClick={reconnect}>เชื่อมต่อเซฟใหม่</button>

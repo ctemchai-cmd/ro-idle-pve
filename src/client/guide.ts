@@ -14,7 +14,7 @@ const canPay = (wallet: AccountState['wallet'], cost: Partial<AccountState['wall
 /** TASK-039 first-play guide: the single most useful next step derived from the real save (no scripted state). */
 export function nextGuide(state: AccountState, seen: ReadonlySet<string> = new Set()): Guide | null {
   const team = state.team.map(p => state.roster.find(a => a.character_id === p.character_id)!), stages = storyStages(content);
-  const firstOpen = stages.find(s => canChallenge(s, state) && !state.story.cleared_stage_ids.includes(s.id));
+  const firstOpen = stages.find(s => canChallenge(s, state, content) && !state.story.cleared_stage_ids.includes(s.id));
   const steps: Guide[] = [];
   if (!state.story.cleared_stage_ids.length && firstOpen) steps.push({ id: 'first_boss', text: `แตะ "ท้าบอส" เพื่อสู้บอสด่าน ${firstOpen.id}`, view: 'stage' });
   if (state.pending_rewards.length) steps.push({ id: 'claim', text: `มีรางวัลรอรับ ${state.pending_rewards.length} รายการ · แตะหีบ AFK`, view: 'farm' });

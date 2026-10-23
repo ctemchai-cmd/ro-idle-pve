@@ -22,6 +22,6 @@ for(const member of state.team){
  }
 }
 for(const resource of Object.keys(state.wallet)as(keyof typeof state.wallet)[])state.wallet[resource]=10000000;
-state.story.cleared_stage_ids=storyStages(content).slice(0,-1).map(s=>s.id);state.story.selected_farm_stage='9-1';
+state.story.cleared_stage_ids=storyStages(content).filter(s=>s.chapter<=9).slice(0,-1).map(s=>s.id);state.story.selected_farm_stage='9-1';
 state.farm.rate_snapshot=storyFarmSnapshot(storyStage('9-1',content)!,state,content);state.farm.reserved_through=new Date().toISOString();
 new AccountCommandRules().validateAccount(state);process.stdout.write(JSON.stringify(state));

@@ -14,7 +14,7 @@ const at='2026-10-23T00:00:00.000Z',base=Date.parse(at);
 const initial=()=>initializeAccount(content,{root_job_id:'mage',gender:'female'},at,'2026-10-23',17);
 const tiers=[1,1,20,40,40,60,60,60,60],oldTiers=[1,20,20,40,40,60,60,60,60];
 test('D148 every stage uses chapter1–2 gearLv1, chapter3Lv20 and unchanged later tiers independently of character level',()=>{
- const state=initial(),stages=storyStages(content);
+ const state=initial(),stages=storyStages(content).filter(s=>s.chapter<=9);
  for(const stage of stages){
   const snapshot=storyFarmSnapshot(stage,state,content);
   assert.equal(snapshot.gear_tier,tiers[stage.chapter-1],stage.id);

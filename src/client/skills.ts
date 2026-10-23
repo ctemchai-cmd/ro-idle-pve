@@ -27,6 +27,11 @@ function skillNotes(definition:SkillDefinition):string[]{
  if(effects.some(e=>e.type==='apply_status'&&typeof content.statuses[e.status_id]?.weapon_element==='string'))notes.push('ธาตุอาวุธมีผลกับตีปกติ/สกิลตามอาวุธ · ไม่เปลี่ยนสกิลธาตุตายตัวหรือเกราะ');
  return notes;
 }
+/** Read-only catalog view; rank resolution and all effect text share the game's implementation. */
+export function previewSkillDetails(id:string,rank:number){
+ const definition=resolveSkill(id,rank,content).definition as SkillDefinition;
+ return {definition,effects:summaries(definition,rank),notes:skillNotes(definition)};
+}
 /** Shared effect text for authored skills and card procs; no second formula authority. */
 export function effectDescriptions(effects: readonly Effect[], resolved_skills?: BattleActor['resolved_skills'], compact=false): string[] {
  return effects.map(effect=>{

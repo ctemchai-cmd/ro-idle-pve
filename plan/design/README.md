@@ -56,3 +56,7 @@
 - [Hi-class/Awaken ขอบเขตใหม่](40-hi-class-roadmap.md) — D144–145,performanceก่อน/2สกิล/เต็มก่อน90/iconinnerglowม่วง
 
 - [41 บท9และทางต่อHi-class](41-story-expansion.md) — D150/TASK117,50ด่าน/identityตรงengine/คง130ด่านและการ์ดเดิม
+
+- [บท10–12พร้อมnativeบอสและrelease gates](42-hi-chapters.md) — TASK118
+
+- [หน้าPreviewสกิลทุกอาชีพ](43-skill-preview.md) — TASK119
