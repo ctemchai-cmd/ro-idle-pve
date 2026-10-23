@@ -78,6 +78,7 @@ export function effectDescriptions(effects: readonly Effect[], resolved_skills?:
    if(effect.critical_rule==='always')text+=' · คริเสมอ';
    if(effect.crit_chance_bonus)text+=` · คริ +${percent(effect.crit_chance_bonus)} เฉพาะท่า`;
    if(effect.crit_damage_bonus)text+=` · ดาเมจคริ +${percent(effect.crit_damage_bonus)} เฉพาะท่า`;
+   if(effect.penetration_bonus)text+=` · เจาะเกราะ +${percent(effect.penetration_bonus)} เฉพาะท่า`;
   }
   if(effect.type==='shield')text+=` · ${number(Number(effect.duration_ms)/1000)}s`;
   const elements=effectDamageElements([effect]);

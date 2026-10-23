@@ -1,0 +1,62 @@
+{
+  "task_id": "TASK-130",
+  "passed": false,
+  "local_passed": true,
+  "hosted_status": "pending_push",
+  "content_before": "79ab94377763e3b181bab703948a94f67288ce011e30345438e5842583607104",
+  "content_after": "9ae8e3b2223cc0ae1e712c5c437ca24601abdf9a372293684954c521570f109e",
+  "changes": {
+    "variants": 152,
+    "base_skills_and_prices_unchanged": true,
+    "native_icons_unchanged": true,
+    "generic_CC_only_bonuses_removed": true,
+    "effect_local_penetration": "typed optional field; frozen cast snapshot unchanged; also has finite independent follow-up boon",
+    "physical_shields": "registered physical_power context; no new raw formula"
+  },
+  "verification": {
+    "full_ts": {
+      "tests": 631,
+      "passed": 631,
+      "failed": 0,
+      "elapsed_ms": 91314.294375
+    },
+    "focused": 57,
+    "all_152_engine_1x2x4_checkpoint": true,
+    "all_ranks_gains_and_total_hits": true,
+    "frozen_baseline_replays": 2,
+    "m0_and_readiness": true,
+    "root_and_filtered_build": {
+      "passed": true,
+      "gzip_bytes": 623450,
+      "pwa_version": "f0b6febad1da48ff"
+    },
+    "native_mobile": {
+      "passed": true,
+      "groups": 4,
+      "viewports": [
+        390,
+        320
+      ],
+      "writes": 0,
+      "viewed": "task-130-catalog-320.png"
+    },
+    "paired_simulation": {
+      "fights": 832,
+      "seeds": "22901..22916",
+      "locked": "pre-patch winners; initial stats, costs, gear and budgets asserted identical; not reoptimized"
+    }
+  },
+  "runtime_pack": {
+    "hash": "b9a9280a8c7cd03a430256592591483015b3cfd0b95cf238a12ca50dea3c32bd",
+    "raw_bytes": 33108285,
+    "unchanged": true
+  },
+  "owner_access": false,
+  "SQL_or_env_changes_required": false,
+  "personal_6173_restart": false,
+  "limitations": [
+    "Before-after comparisons use fixed old winners, not globally optimal new builds",
+    "Single neutral boss and two fixed contexts; not every element/card/encounter",
+    "Some healer benefits are shields/HoT rather than personal DPS"
+  ]
+}

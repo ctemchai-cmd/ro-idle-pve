@@ -1,0 +1,1056 @@
+{
+  "schema_version": 1,
+  "content_hash": "79ab94377763e3b181bab703948a94f67288ce011e30345438e5842583607104",
+  "seed": 22901,
+  "input": {
+    "actors": [
+      {
+        "actor_id": "main",
+        "kind": "party",
+        "team": "player",
+        "position": "back_1",
+        "stat_blueprint": {
+          "kind": "character",
+          "level": 70,
+          "job_id": "hunter",
+          "allocated_primary": {
+            "str": 56,
+            "agi": 49,
+            "vit": 14,
+            "int": 14,
+            "dex": 28,
+            "luk": 70
+          },
+          "derived_offsets": {
+            "physical_attack": 0,
+            "magical_attack": 0,
+            "max_hp": 0,
+            "max_sp": 0,
+            "physical_defense": 0,
+            "magical_defense": 0,
+            "attack_speed": 0,
+            "cast_speed": 0
+          },
+          "permanent_sources": [
+            {
+              "source": {
+                "instance_id": "job_bonus_main",
+                "owner_actor_id": "main",
+                "definition_id": "job_bonus_archer",
+                "origin_actor_id": "main",
+                "origin_life_epoch": 0
+              },
+              "modifiers": [
+                {
+                  "id": "job_bonus_str",
+                  "stat": "str",
+                  "op": "add_flat",
+                  "bucket": "primary",
+                  "value": 3
+                },
+                {
+                  "id": "job_bonus_agi",
+                  "stat": "agi",
+                  "op": "add_flat",
+                  "bucket": "primary",
+                  "value": 6
+                },
+                {
+                  "id": "job_bonus_vit",
+                  "stat": "vit",
+                  "op": "add_flat",
+                  "bucket": "primary",
+                  "value": 2
+                },
+                {
+                  "id": "job_bonus_int",
+                  "stat": "int",
+                  "op": "add_flat",
+                  "bucket": "primary",
+                  "value": 1
+                },
+                {
+                  "id": "job_bonus_dex",
+                  "stat": "dex",
+                  "op": "add_flat",
+                  "bucket": "primary",
+                  "value": 9
+                },
+                {
+                  "id": "job_bonus_luk",
+                  "stat": "luk",
+                  "op": "add_flat",
+                  "bucket": "primary",
+                  "value": 3
+                }
+              ],
+              "triggers": []
+            },
+            {
+              "source": {
+                "instance_id": "audit_main_weapon",
+                "owner_actor_id": "main",
+                "definition_id": "equipment_bow_60",
+                "origin_actor_id": "main",
+                "origin_life_epoch": 0
+              },
+              "modifiers": [
+                {
+                  "id": "physical_attack",
+                  "stat": "physical_attack",
+                  "op": "add_flat",
+                  "bucket": "derived",
+                  "value": 190
+                },
+                {
+                  "id": "impact_skill_damage_bonus",
+                  "stat": "skill_damage_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.1
+                }
+              ],
+              "triggers": []
+            },
+            {
+              "source": {
+                "instance_id": "audit_main_head",
+                "owner_actor_id": "main",
+                "definition_id": "equipment_head_60",
+                "origin_actor_id": "main",
+                "origin_life_epoch": 0
+              },
+              "modifiers": [
+                {
+                  "id": "magical_defense",
+                  "stat": "magical_defense",
+                  "op": "add_flat",
+                  "bucket": "derived",
+                  "value": 68
+                },
+                {
+                  "id": "impact_skill_damage_bonus",
+                  "stat": "skill_damage_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.05
+                }
+              ],
+              "triggers": []
+            },
+            {
+              "source": {
+                "instance_id": "audit_main_armor",
+                "owner_actor_id": "main",
+                "definition_id": "equipment_armor_60",
+                "origin_actor_id": "main",
+                "origin_life_epoch": 0
+              },
+              "modifiers": [
+                {
+                  "id": "max_hp",
+                  "stat": "max_hp",
+                  "op": "add_flat",
+                  "bucket": "derived",
+                  "value": 800
+                },
+                {
+                  "id": "physical_defense",
+                  "stat": "physical_defense",
+                  "op": "add_flat",
+                  "bucket": "derived",
+                  "value": 72
+                },
+                {
+                  "id": "impact_guard_percent",
+                  "stat": "guard_percent",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.04
+                }
+              ],
+              "triggers": []
+            },
+            {
+              "source": {
+                "instance_id": "audit_main_garment",
+                "owner_actor_id": "main",
+                "definition_id": "equipment_garment_60",
+                "origin_actor_id": "main",
+                "origin_life_epoch": 0
+              },
+              "modifiers": [
+                {
+                  "id": "physical_defense",
+                  "stat": "physical_defense",
+                  "op": "add_flat",
+                  "bucket": "derived",
+                  "value": 68
+                },
+                {
+                  "id": "magical_defense",
+                  "stat": "magical_defense",
+                  "op": "add_flat",
+                  "bucket": "derived",
+                  "value": 68
+                },
+                {
+                  "id": "impact_max_hp",
+                  "stat": "max_hp",
+                  "op": "add_percent",
+                  "bucket": "derived",
+                  "value": 0.04
+                }
+              ],
+              "triggers": []
+            },
+            {
+              "source": {
+                "instance_id": "audit_main_shoes",
+                "owner_actor_id": "main",
+                "definition_id": "equipment_shoes_60",
+                "origin_actor_id": "main",
+                "origin_life_epoch": 0
+              },
+              "modifiers": [
+                {
+                  "id": "max_hp",
+                  "stat": "max_hp",
+                  "op": "add_flat",
+                  "bucket": "derived",
+                  "value": 400
+                },
+                {
+                  "id": "impact_max_hp",
+                  "stat": "max_hp",
+                  "op": "add_percent",
+                  "bucket": "derived",
+                  "value": 0.06
+                }
+              ],
+              "triggers": []
+            },
+            {
+              "source": {
+                "instance_id": "audit_main_accessory",
+                "owner_actor_id": "main",
+                "definition_id": "equipment_accessory_60",
+                "origin_actor_id": "main",
+                "origin_life_epoch": 0
+              },
+              "modifiers": [
+                {
+                  "id": "max_sp",
+                  "stat": "max_sp",
+                  "op": "add_flat",
+                  "bucket": "derived",
+                  "value": 80
+                },
+                {
+                  "id": "impact_sp_regen_percent",
+                  "stat": "sp_regen_percent",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.12
+                }
+              ],
+              "triggers": []
+            }
+          ],
+          "weapon_element": "neutral"
+        },
+        "active_slots": [
+          "hunter_hunters_mark",
+          "hunter_rapid_fire",
+          "hunter_blitz_beat",
+          "archer_double_strafe"
+        ],
+        "resolved_skills": {
+          "archer_double_strafe": {
+            "level": 10,
+            "definition": {
+              "id": "archer_double_strafe",
+              "name_key": "archer_double_strafe",
+              "class_id": "archer",
+              "max_level": 10,
+              "unlock_level": 1,
+              "tags": [
+                "archer",
+                "double_strafe"
+              ],
+              "level_parameters": {
+                "power": [
+                  1.225,
+                  1.302777,
+                  1.380556,
+                  1.458333,
+                  1.536111,
+                  1.613889,
+                  1.691667,
+                  1.769444,
+                  1.847223,
+                  1.925
+                ]
+              },
+              "presentation_id": "visual_archer_double_strafe",
+              "kind": "active",
+              "cost": {
+                "sp": 16,
+                "spirit_spheres": 0
+              },
+              "timing": {
+                "cast_ms": 0,
+                "after_cast_ms": 600,
+                "interruptible": true
+              },
+              "selectors": {
+                "foe": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "front_first",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "foes": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friend": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "lowest_hp_percent",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friends": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                }
+              },
+              "start_effects": [],
+              "effects": [
+                {
+                  "id": "hit",
+                  "type": "damage",
+                  "target": "foe",
+                  "formula": {
+                    "id": "physical_power",
+                    "params": {
+                      "attack_ratio": 1.925,
+                      "flat_power": 0
+                    }
+                  },
+                  "damage_type": "physical",
+                  "element": "weapon",
+                  "hit_rule": "physical_roll",
+                  "can_crit": true,
+                  "hits": 2,
+                  "armor_rule": "normal"
+                }
+              ]
+            }
+          },
+          "archer_concentration": {
+            "level": 1,
+            "definition": {
+              "id": "archer_concentration",
+              "name_key": "archer_concentration",
+              "class_id": "archer",
+              "max_level": 10,
+              "unlock_level": 1,
+              "tags": [
+                "archer",
+                "concentration"
+              ],
+              "level_parameters": {
+                "ratio": [
+                  0.14,
+                  0.163333,
+                  0.186667,
+                  0.21,
+                  0.233333,
+                  0.256667,
+                  0.28,
+                  0.303333,
+                  0.326667,
+                  0.35
+                ]
+              },
+              "presentation_id": "visual_archer_concentration",
+              "kind": "active",
+              "cost": {
+                "sp": 18,
+                "spirit_spheres": 0
+              },
+              "timing": {
+                "cast_ms": 200,
+                "after_cast_ms": 650,
+                "interruptible": true
+              },
+              "selectors": {
+                "foe": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "front_first",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "foes": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friend": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "lowest_hp_percent",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friends": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                }
+              },
+              "start_effects": [],
+              "effects": [
+                {
+                  "id": "crit_up",
+                  "type": "apply_status",
+                  "target": "self",
+                  "status_id": "crit_up",
+                  "duration_ms": 5000,
+                  "params": {
+                    "ratio": 0.14
+                  },
+                  "chance": 1
+                }
+              ]
+            }
+          },
+          "archer_vulture_eye": {
+            "level": 10,
+            "definition": {
+              "id": "archer_vulture_eye",
+              "name_key": "archer_vulture_eye",
+              "class_id": "archer",
+              "max_level": 10,
+              "unlock_level": 10,
+              "tags": [
+                "archer",
+                "vulture_eye"
+              ],
+              "level_parameters": {
+                "ratio": [
+                  0.035,
+                  0.046667,
+                  0.058333,
+                  0.07,
+                  0.081667,
+                  0.093333,
+                  0.105,
+                  0.116667,
+                  0.128333,
+                  0.14
+                ],
+                "critical_damage": [
+                  0.05,
+                  0.066667,
+                  0.083333,
+                  0.1,
+                  0.116667,
+                  0.133333,
+                  0.15,
+                  0.166667,
+                  0.183333,
+                  0.2
+                ]
+              },
+              "presentation_id": "visual_archer_vulture_eye",
+              "kind": "passive",
+              "modifiers": [
+                {
+                  "id": "hit_bonus",
+                  "stat": "hit_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.14
+                },
+                {
+                  "id": "critical_damage",
+                  "stat": "crit_damage_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.2
+                }
+              ],
+              "triggers": []
+            }
+          },
+          "hunter_blitz_beat": {
+            "level": 10,
+            "definition": {
+              "id": "hunter_blitz_beat",
+              "name_key": "hunter_blitz_beat",
+              "class_id": "hunter",
+              "max_level": 10,
+              "unlock_level": 20,
+              "tags": [
+                "hunter",
+                "blitz_beat"
+              ],
+              "level_parameters": {
+                "power": [
+                  1.4,
+                  1.522222,
+                  1.644444,
+                  1.766667,
+                  1.888889,
+                  2.011111,
+                  2.133333,
+                  2.255556,
+                  2.377778,
+                  2.5
+                ]
+              },
+              "presentation_id": "visual_hunter_blitz_beat",
+              "kind": "active",
+              "cost": {
+                "sp": 30,
+                "spirit_spheres": 0
+              },
+              "timing": {
+                "cast_ms": 350,
+                "after_cast_ms": 850,
+                "interruptible": true
+              },
+              "selectors": {
+                "foe": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "front_first",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "foes": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friend": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "lowest_hp_percent",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friends": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                }
+              },
+              "start_effects": [],
+              "effects": [
+                {
+                  "id": "hit",
+                  "type": "damage",
+                  "target": "foes",
+                  "formula": {
+                    "id": "physical_power",
+                    "params": {
+                      "attack_ratio": 2.5,
+                      "flat_power": 0
+                    }
+                  },
+                  "damage_type": "physical",
+                  "element": "weapon",
+                  "hit_rule": "physical_roll",
+                  "can_crit": false,
+                  "hits": 3,
+                  "armor_rule": "normal"
+                }
+              ]
+            }
+          },
+          "hunter_hunters_mark": {
+            "level": 10,
+            "definition": {
+              "id": "hunter_hunters_mark",
+              "name_key": "hunter_hunters_mark",
+              "class_id": "hunter",
+              "max_level": 10,
+              "unlock_level": 20,
+              "tags": [
+                "hunter",
+                "hunters_mark"
+              ],
+              "level_parameters": {
+                "ratio": [
+                  0.175,
+                  0.198333,
+                  0.221667,
+                  0.245,
+                  0.268333,
+                  0.291667,
+                  0.315,
+                  0.338333,
+                  0.361667,
+                  0.385
+                ]
+              },
+              "presentation_id": "visual_hunter_hunters_mark",
+              "kind": "active",
+              "cost": {
+                "sp": 26,
+                "spirit_spheres": 0
+              },
+              "timing": {
+                "cast_ms": 200,
+                "after_cast_ms": 800,
+                "interruptible": true
+              },
+              "selectors": {
+                "foe": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "front_first",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "foes": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friend": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "lowest_hp_percent",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friends": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                }
+              },
+              "start_effects": [],
+              "effects": [
+                {
+                  "id": "exposed",
+                  "type": "apply_status",
+                  "target": "foe",
+                  "status_id": "exposed",
+                  "duration_ms": 5000,
+                  "params": {
+                    "ratio": 0.385
+                  },
+                  "chance": 1
+                }
+              ]
+            }
+          },
+          "hunter_rapid_fire": {
+            "level": 10,
+            "definition": {
+              "id": "hunter_rapid_fire",
+              "name_key": "hunter_rapid_fire",
+              "class_id": "hunter",
+              "max_level": 10,
+              "unlock_level": 40,
+              "tags": [
+                "hunter",
+                "rapid_fire"
+              ],
+              "level_parameters": {
+                "power": [
+                  1.575,
+                  1.691667,
+                  1.808333,
+                  1.925,
+                  2.041667,
+                  2.158333,
+                  2.275,
+                  2.391667,
+                  2.508333,
+                  2.625
+                ]
+              },
+              "presentation_id": "visual_hunter_rapid_fire",
+              "kind": "active",
+              "cost": {
+                "sp": 38,
+                "spirit_spheres": 0
+              },
+              "timing": {
+                "cast_ms": 500,
+                "after_cast_ms": 950,
+                "interruptible": true
+              },
+              "selectors": {
+                "foe": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "front_first",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "foes": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friend": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "lowest_hp_percent",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friends": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                }
+              },
+              "start_effects": [],
+              "effects": [
+                {
+                  "id": "hit",
+                  "type": "damage",
+                  "target": "foe",
+                  "formula": {
+                    "id": "physical_power",
+                    "params": {
+                      "attack_ratio": 2.625,
+                      "flat_power": 0
+                    }
+                  },
+                  "damage_type": "physical",
+                  "element": "weapon",
+                  "hit_rule": "physical_roll",
+                  "can_crit": true,
+                  "hits": 4,
+                  "armor_rule": "normal"
+                }
+              ]
+            }
+          },
+          "hunter_falcon": {
+            "level": 10,
+            "definition": {
+              "id": "hunter_falcon",
+              "name_key": "hunter_falcon",
+              "class_id": "hunter",
+              "max_level": 10,
+              "unlock_level": 20,
+              "tags": [
+                "hunter",
+                "falcon"
+              ],
+              "level_parameters": {
+                "power": [
+                  0.525,
+                  0.583333,
+                  0.641667,
+                  0.7,
+                  0.758333,
+                  0.816667,
+                  0.875,
+                  0.933333,
+                  0.991667,
+                  1.05
+                ]
+              },
+              "presentation_id": "visual_hunter_falcon",
+              "kind": "passive",
+              "modifiers": [],
+              "triggers": [
+                {
+                  "id": "falcon_hit",
+                  "event": "normal_attack_hit",
+                  "chance": 0.3,
+                  "accepted_origins": [
+                    "normal"
+                  ],
+                  "limit_scope": "none",
+                  "limit_count": 1,
+                  "reentry": "deny_same_source_trigger_in_ancestry",
+                  "selectors": {},
+                  "effects": [
+                    {
+                      "id": "falcon",
+                      "type": "damage",
+                      "target": "event_target",
+                      "formula": {
+                        "id": "physical_power",
+                        "params": {
+                          "attack_ratio": 1.05,
+                          "flat_power": 0
+                        }
+                      },
+                      "damage_type": "physical",
+                      "element": "neutral",
+                      "hit_rule": "physical_roll",
+                      "can_crit": false,
+                      "hits": 1,
+                      "armor_rule": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "hunter_steel_crow": {
+            "level": 10,
+            "definition": {
+              "id": "hunter_steel_crow",
+              "name_key": "hunter_steel_crow",
+              "class_id": "hunter",
+              "max_level": 10,
+              "unlock_level": 30,
+              "tags": [
+                "hunter",
+                "steel_crow"
+              ],
+              "level_parameters": {
+                "ratio": [
+                  0.07,
+                  0.085556,
+                  0.101112,
+                  0.116667,
+                  0.132223,
+                  0.147777,
+                  0.163333,
+                  0.178888,
+                  0.194444,
+                  0.21
+                ]
+              },
+              "presentation_id": "visual_hunter_steel_crow",
+              "kind": "passive",
+              "modifiers": [
+                {
+                  "id": "outgoing_physical_bonus",
+                  "stat": "outgoing_physical_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.21
+                }
+              ],
+              "triggers": []
+            }
+          }
+        },
+        "build_hash": "audit_hunter-1-critical",
+        "normal_attack_enabled": true,
+        "tags": [],
+        "spatial": {
+          "x": 200,
+          "y": 580,
+          "move_speed": 120,
+          "radius": 18,
+          "normal_range": 285
+        }
+      },
+      {
+        "actor_id": "audit_boss",
+        "team": "enemy",
+        "kind": "enemy",
+        "position": "front_1",
+        "stat_blueprint": {
+          "kind": "fixed",
+          "level": 70,
+          "job_id": null,
+          "allocated_primary": {
+            "str": 1,
+            "agi": 1,
+            "vit": 1,
+            "int": 1,
+            "dex": 1,
+            "luk": 1
+          },
+          "derived_offsets": {
+            "physical_attack": 51,
+            "magical_attack": 51,
+            "max_hp": 999998055,
+            "max_sp": 999729,
+            "physical_defense": 10,
+            "magical_defense": 10,
+            "attack_speed": 0,
+            "cast_speed": 0
+          },
+          "permanent_sources": [],
+          "weapon_element": "neutral"
+        },
+        "active_slots": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "resolved_skills": {},
+        "tags": [
+          "boss",
+          "element:neutral",
+          "element_neutral",
+          "race_demi_human",
+          "size_large"
+        ],
+        "build_hash": "audit_boss_fixed",
+        "normal_attack_enabled": false,
+        "spatial": {
+          "x": 520,
+          "y": 400,
+          "move_speed": 0,
+          "radius": 30,
+          "normal_range": 80
+        }
+      }
+    ],
+    "arena": {
+      "width": 720,
+      "height": 820,
+      "step_ms": 50
+    },
+    "timing": {
+      "skill_interval_base_ms": 3000,
+      "normal_attack_base_ms": 1500
+    },
+    "mode": {
+      "kind": "story",
+      "ref": "audit_dummy_class2-70-gear60",
+      "time_limit_ms": 90000,
+      "ticket_day": null,
+      "daily_phase": null,
+      "daily_current_hp": null,
+      "reserved_phase_keys": []
+    }
+  },
+  "fixture": {
+    "build": {
+      "id": "hunter-1-critical",
+      "job": "hunter",
+      "role": "damage/control",
+      "profile": "critical",
+      "slots": [
+        "hunter_hunters_mark",
+        "hunter_rapid_fire",
+        "hunter_blitz_beat",
+        "archer_double_strafe"
+      ]
+    },
+    "condition": {
+      "id": "class2-70-gear60",
+      "level": 70,
+      "tier": 60,
+      "stage": 2,
+      "awaken": 0
+    },
+    "primary": {
+      "str": 56,
+      "agi": 49,
+      "vit": 14,
+      "int": 14,
+      "dex": 28,
+      "luk": 70
+    },
+    "costs": {
+      "gold": 108000,
+      "hero_exp": 0,
+      "skill_manual": 21600,
+      "refine_ore": 0,
+      "breakthrough_essence": 0,
+      "enchant_dust": 0,
+      "card_dust": 0,
+      "crystal": 0,
+      "awakening_shard": 0
+    },
+    "point_budget": 676,
+    "points_spent": 676
+  },
+  "expected_sample": {
+    "seed": 22901,
+    "dps": 4148.022222222222,
+    "normal_dps": 1289.388888888889,
+    "skill_dps": 2858.633333333333,
+    "team_dps": 4148.022222222222,
+    "hps": 0,
+    "shields": 0,
+    "sp_skips": 0,
+    "sphere_skips": 0,
+    "sp_spent": 974,
+    "casts": 35,
+    "interrupted": 0,
+    "boss_interrupted": 0,
+    "alive_ms": 90000,
+    "survivors": 1,
+    "duration_ms": 90000,
+    "burst10_dps": 3797.4,
+    "last30_dps": 4216.2,
+    "skill_damage": {
+      "normal_attack": 116045,
+      "resource_regen": 0,
+      "hunter_hunters_mark": 0,
+      "hunter_falcon": 25098,
+      "hunter_rapid_fire": 152520,
+      "hunter_blitz_beat": 46089,
+      "archer_double_strafe": 33570
+    },
+    "skill_healing": {
+      "normal_attack": 0,
+      "resource_regen": 0,
+      "hunter_hunters_mark": 0,
+      "hunter_falcon": 0,
+      "hunter_rapid_fire": 0,
+      "hunter_blitz_beat": 0,
+      "archer_double_strafe": 0
+    }
+  },
+  "final_sha256": "f89cb68798c3934c3a7bba1b699389143e86635487276bf70872cbb44629ea04"
+}

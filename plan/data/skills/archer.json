@@ -5264,16 +5264,16 @@
       ],
       "level_parameters": {
         "power": [
-          2.1175,
-          2.192361,
-          2.267222,
-          2.342083,
-          2.416944,
-          2.491806,
-          2.566667,
-          2.641528,
-          2.716389,
-          2.79125
+          1.694,
+          1.753889,
+          1.813778,
+          1.873666,
+          1.933555,
+          1.993445,
+          2.053334,
+          2.113222,
+          2.173111,
+          2.233
         ]
       },
       "presentation_id": "visual_archer_double_strafe",
@@ -5340,19 +5340,8 @@
           "element": "weapon",
           "hit_rule": "physical_roll",
           "can_crit": true,
-          "hits": 2,
+          "hits": 3,
           "armor_rule": "normal"
-        },
-        {
-          "id": "awaken_aftereffect",
-          "type": "apply_status",
-          "target": "foe",
-          "status_id": "slow",
-          "duration_ms": 4000,
-          "params": {
-            "ratio": -0.1
-          },
-          "chance": 1
         }
       ]
     },
@@ -5379,6 +5368,18 @@
           0.480278,
           0.493889,
           0.5075
+        ],
+        "awaken_1": [
+          0.15,
+          0.166667,
+          0.183333,
+          0.2,
+          0.216667,
+          0.233333,
+          0.25,
+          0.266667,
+          0.283333,
+          0.3
         ]
       },
       "presentation_id": "visual_archer_concentration",
@@ -5442,13 +5443,15 @@
           "chance": 1
         },
         {
-          "id": "awaken_boon",
+          "id": "awaken_1",
           "type": "apply_status",
           "target": "self",
-          "status_id": "cc_resistance_up",
-          "duration_ms": 5000,
+          "status_id": "crit_damage_up",
+          "duration_ms": 6000,
           "params": {
-            "ratio": 0.1
+            "ratio": {
+              "level_param": "awaken_1"
+            }
           },
           "chance": 1
         }
@@ -5477,6 +5480,18 @@
           3.241875,
           3.33375,
           3.425625
+        ],
+        "awaken_1": [
+          0.1,
+          0.111111,
+          0.122222,
+          0.133333,
+          0.144444,
+          0.155556,
+          0.166667,
+          0.177778,
+          0.188889,
+          0.2
         ]
       },
       "presentation_id": "visual_archer_arrow_shower",
@@ -5562,15 +5577,23 @@
           }
         },
         {
-          "id": "awaken_aftereffect",
+          "id": "awaken_1",
           "type": "apply_status",
           "target": "foes",
-          "status_id": "slow",
-          "duration_ms": 4000,
+          "status_id": "exposed",
+          "duration_ms": 6000,
           "params": {
-            "ratio": -0.1
+            "ratio": {
+              "level_param": "awaken_1"
+            }
           },
-          "chance": 1
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
         }
       ]
     },
@@ -5597,6 +5620,18 @@
           4.082361,
           4.198056,
           4.31375
+        ],
+        "awaken_1": [
+          0.1,
+          0.111111,
+          0.122222,
+          0.133333,
+          0.144444,
+          0.155556,
+          0.166667,
+          0.177778,
+          0.188889,
+          0.2
         ]
       },
       "presentation_id": "visual_archer_crippling_shot",
@@ -5684,15 +5719,23 @@
           }
         },
         {
-          "id": "awaken_aftereffect",
+          "id": "awaken_1",
           "type": "apply_status",
           "target": "foe",
-          "status_id": "slow",
-          "duration_ms": 4000,
+          "status_id": "exposed",
+          "duration_ms": 6000,
           "params": {
-            "ratio": -0.1
+            "ratio": {
+              "level_param": "awaken_1"
+            }
           },
-          "chance": 1
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
         }
       ]
     },
@@ -5732,17 +5775,17 @@
           0.282222,
           0.29
         ],
-        "awaken_potency": [
-          0.03,
-          0.035556,
-          0.041111,
-          0.046667,
-          0.052222,
-          0.057778,
-          0.063333,
-          0.068889,
-          0.074444,
-          0.08
+        "awaken_identity": [
+          0.1,
+          0.111111,
+          0.122222,
+          0.133333,
+          0.144444,
+          0.155556,
+          0.166667,
+          0.177778,
+          0.188889,
+          0.2
         ]
       },
       "presentation_id": "visual_archer_vulture_eye",
@@ -5767,12 +5810,12 @@
           }
         },
         {
-          "id": "awaken_potency",
-          "stat": "physical_attack",
-          "op": "add_percent",
-          "bucket": "derived",
+          "id": "awaken_identity",
+          "stat": "crit_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
           "value": {
-            "level_param": "awaken_potency"
+            "level_param": "awaken_identity"
           }
         }
       ],
@@ -5791,16 +5834,16 @@
       ],
       "level_parameters": {
         "power": [
-          2.75,
-          2.847222,
-          2.944444,
-          3.041667,
-          3.138889,
-          3.236111,
-          3.333333,
-          3.430556,
-          3.527778,
-          3.625
+          2.475,
+          2.5625,
+          2.65,
+          2.7375,
+          2.825,
+          2.9125,
+          3.0,
+          3.0875,
+          3.175,
+          3.2625
         ]
       },
       "presentation_id": "visual_hunter_blitz_beat",
@@ -5867,19 +5910,8 @@
           "element": "weapon",
           "hit_rule": "physical_roll",
           "can_crit": false,
-          "hits": 3,
+          "hits": 4,
           "armor_rule": "normal"
-        },
-        {
-          "id": "awaken_aftereffect",
-          "type": "apply_status",
-          "target": "foes",
-          "status_id": "slow",
-          "duration_ms": 4000,
-          "params": {
-            "ratio": -0.1
-          },
-          "chance": 1
         }
       ]
     },
@@ -5906,6 +5938,18 @@
           0.528306,
           0.543278,
           0.55825
+        ],
+        "awaken_1": [
+          0.1,
+          0.111111,
+          0.122222,
+          0.133333,
+          0.144444,
+          0.155556,
+          0.166667,
+          0.177778,
+          0.188889,
+          0.2
         ]
       },
       "presentation_id": "visual_hunter_hunters_mark",
@@ -5969,13 +6013,15 @@
           "chance": 1
         },
         {
-          "id": "awaken_boon",
+          "id": "awaken_1",
           "type": "apply_status",
-          "target": "self",
-          "status_id": "cc_resistance_up",
-          "duration_ms": 5000,
+          "target": "foe",
+          "status_id": "armor_break",
+          "duration_ms": 6000,
           "params": {
-            "ratio": 0.1
+            "ratio": {
+              "level_param": "awaken_1"
+            }
           },
           "chance": 1
         }
@@ -6016,6 +6062,18 @@
           3293,
           3387,
           3480
+        ],
+        "awaken_2": [
+          0.1,
+          0.111111,
+          0.122222,
+          0.133333,
+          0.144444,
+          0.155556,
+          0.166667,
+          0.177778,
+          0.188889,
+          0.2
         ]
       },
       "presentation_id": "visual_hunter_ankle_snare",
@@ -6079,13 +6137,15 @@
           "chance": 0.75
         },
         {
-          "id": "awaken_boon",
+          "id": "awaken_2",
           "type": "apply_status",
-          "target": "self",
-          "status_id": "cc_resistance_up",
+          "target": "foe",
+          "status_id": "exposed",
           "duration_ms": 5000,
           "params": {
-            "ratio": 0.1
+            "ratio": {
+              "level_param": "awaken_2"
+            }
           },
           "chance": 1
         }
@@ -6114,6 +6174,18 @@
           10.291667,
           10.583333,
           10.875
+        ],
+        "awaken_1": [
+          0.1,
+          0.111111,
+          0.122222,
+          0.133333,
+          0.144444,
+          0.155556,
+          0.166667,
+          0.177778,
+          0.188889,
+          0.2
         ]
       },
       "presentation_id": "visual_hunter_claymore",
@@ -6184,15 +6256,23 @@
           "armor_rule": "normal"
         },
         {
-          "id": "awaken_aftereffect",
+          "id": "awaken_1",
           "type": "apply_status",
           "target": "foes",
-          "status_id": "slow",
-          "duration_ms": 4000,
+          "status_id": "armor_break",
+          "duration_ms": 6000,
           "params": {
-            "ratio": -0.1
+            "ratio": {
+              "level_param": "awaken_1"
+            }
           },
-          "chance": 1
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
         }
       ]
     },
@@ -6209,16 +6289,16 @@
       ],
       "level_parameters": {
         "power": [
-          2.8875,
-          2.989583,
-          3.091667,
-          3.19375,
-          3.295833,
-          3.397917,
-          3.5,
-          3.602083,
-          3.704167,
-          3.80625
+          2.772,
+          2.87,
+          2.968,
+          3.066,
+          3.164,
+          3.262,
+          3.36,
+          3.458,
+          3.556,
+          3.654
         ]
       },
       "presentation_id": "visual_hunter_rapid_fire",
@@ -6285,19 +6365,8 @@
           "element": "weapon",
           "hit_rule": "physical_roll",
           "can_crit": true,
-          "hits": 4,
+          "hits": 5,
           "armor_rule": "normal"
-        },
-        {
-          "id": "awaken_aftereffect",
-          "type": "apply_status",
-          "target": "foe",
-          "status_id": "slow",
-          "duration_ms": 4000,
-          "params": {
-            "ratio": -0.1
-          },
-          "chance": 1
         }
       ]
     },
@@ -6325,29 +6394,29 @@
           1.481667,
           1.5225
         ],
-        "awaken_potency": [
-          0.03,
-          0.035556,
-          0.041111,
-          0.046667,
-          0.052222,
-          0.057778,
-          0.063333,
-          0.068889,
-          0.074444,
-          0.08
+        "awaken_identity": [
+          0.08,
+          0.088889,
+          0.097778,
+          0.106667,
+          0.115556,
+          0.124444,
+          0.133333,
+          0.142222,
+          0.151111,
+          0.16
         ]
       },
       "presentation_id": "visual_hunter_falcon",
       "kind": "passive",
       "modifiers": [
         {
-          "id": "awaken_potency",
-          "stat": "physical_attack",
-          "op": "add_percent",
-          "bucket": "derived",
+          "id": "awaken_identity",
+          "stat": "penetration_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
           "value": {
-            "level_param": "awaken_potency"
+            "level_param": "awaken_identity"
           }
         }
       ],
@@ -6412,17 +6481,17 @@
           0.296333,
           0.3045
         ],
-        "awaken_potency": [
-          0.03,
-          0.035556,
-          0.041111,
-          0.046667,
-          0.052222,
-          0.057778,
-          0.063333,
-          0.068889,
-          0.074444,
-          0.08
+        "awaken_identity": [
+          0.06,
+          0.066667,
+          0.073333,
+          0.08,
+          0.086667,
+          0.093333,
+          0.1,
+          0.106667,
+          0.113333,
+          0.12
         ]
       },
       "presentation_id": "visual_hunter_steel_crow",
@@ -6438,12 +6507,12 @@
           }
         },
         {
-          "id": "awaken_potency",
-          "stat": "physical_attack",
-          "op": "add_percent",
-          "bucket": "derived",
+          "id": "awaken_identity",
+          "stat": "skill_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
           "value": {
-            "level_param": "awaken_potency"
+            "level_param": "awaken_identity"
           }
         }
       ],
@@ -6472,6 +6541,18 @@
           5.523194,
           5.679722,
           5.83625
+        ],
+        "awaken_1": [
+          0.12,
+          0.133333,
+          0.146667,
+          0.16,
+          0.173333,
+          0.186667,
+          0.2,
+          0.213333,
+          0.226667,
+          0.24
         ]
       },
       "presentation_id": "visual_bard_performance_strike",
@@ -6522,6 +6603,19 @@
       "start_effects": [],
       "effects": [
         {
+          "id": "awaken_1",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "awaken_penetration",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "awaken_1"
+            }
+          },
+          "chance": 1
+        },
+        {
           "id": "hit",
           "type": "damage",
           "target": "foe",
@@ -6539,18 +6633,10 @@
           "hit_rule": "physical_roll",
           "can_crit": true,
           "hits": 1,
-          "armor_rule": "normal"
-        },
-        {
-          "id": "awaken_aftereffect",
-          "type": "apply_status",
-          "target": "foe",
-          "status_id": "slow",
-          "duration_ms": 4000,
-          "params": {
-            "ratio": -0.1
-          },
-          "chance": 1
+          "armor_rule": "normal",
+          "penetration_bonus": {
+            "level_param": "awaken_1"
+          }
         }
       ]
     },
@@ -6589,6 +6675,18 @@
           2.401389,
           2.469444,
           2.5375
+        ],
+        "awaken_barrier": [
+          0.2625,
+          0.281944,
+          0.301389,
+          0.320833,
+          0.340278,
+          0.359722,
+          0.379167,
+          0.398611,
+          0.418056,
+          0.4375
         ]
       },
       "presentation_id": "visual_bard_healing_song",
@@ -6666,15 +6764,20 @@
           "chance": 1
         },
         {
-          "id": "awaken_boon",
-          "type": "apply_status",
+          "id": "awaken_barrier",
+          "type": "shield",
           "target": "friends",
-          "status_id": "cc_resistance_up",
-          "duration_ms": 5000,
-          "params": {
-            "ratio": 0.1
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "awaken_barrier"
+              },
+              "flat_power": 0
+            }
           },
-          "chance": 1
+          "duration_ms": 5000,
+          "dispelable": true
         }
       ]
     },
@@ -6713,6 +6816,18 @@
           0.274444,
           0.282222,
           0.29
+        ],
+        "awaken_2": [
+          0.06,
+          0.066667,
+          0.073333,
+          0.08,
+          0.086667,
+          0.093333,
+          0.1,
+          0.106667,
+          0.113333,
+          0.12
         ]
       },
       "presentation_id": "visual_bard_battle_song",
@@ -6789,13 +6904,15 @@
           "chance": 1
         },
         {
-          "id": "awaken_boon",
+          "id": "awaken_2",
           "type": "apply_status",
           "target": "friends",
-          "status_id": "cc_resistance_up",
-          "duration_ms": 5000,
+          "status_id": "awaken_skill_power",
+          "duration_ms": 6000,
           "params": {
-            "ratio": 0.1
+            "ratio": {
+              "level_param": "awaken_2"
+            }
           },
           "chance": 1
         }
@@ -6824,6 +6941,18 @@
           0.600347,
           0.617361,
           0.634375
+        ],
+        "awaken_1": [
+          0.08,
+          0.088889,
+          0.097778,
+          0.106667,
+          0.115556,
+          0.124444,
+          0.133333,
+          0.142222,
+          0.151111,
+          0.16
         ]
       },
       "presentation_id": "visual_bard_dissonance",
@@ -6894,13 +7023,15 @@
           "amount": -10
         },
         {
-          "id": "awaken_boon",
+          "id": "awaken_1",
           "type": "apply_status",
-          "target": "self",
-          "status_id": "cc_resistance_up",
-          "duration_ms": 5000,
+          "target": "foes",
+          "status_id": "exposed",
+          "duration_ms": 6000,
           "params": {
-            "ratio": 0.1
+            "ratio": {
+              "level_param": "awaken_1"
+            }
           },
           "chance": 1
         }
@@ -6941,6 +7072,18 @@
           2470,
           2540,
           2610
+        ],
+        "awaken_2": [
+          0.08,
+          0.088889,
+          0.097778,
+          0.106667,
+          0.115556,
+          0.124444,
+          0.133333,
+          0.142222,
+          0.151111,
+          0.16
         ]
       },
       "presentation_id": "visual_bard_encore",
@@ -7004,13 +7147,15 @@
           "chance": 0.45
         },
         {
-          "id": "awaken_boon",
+          "id": "awaken_2",
           "type": "apply_status",
-          "target": "self",
-          "status_id": "cc_resistance_up",
+          "target": "foes",
+          "status_id": "exposed",
           "duration_ms": 5000,
           "params": {
-            "ratio": 0.1
+            "ratio": {
+              "level_param": "awaken_2"
+            }
           },
           "chance": 1
         }
@@ -7040,17 +7185,17 @@
           0.246944,
           0.25375
         ],
-        "awaken_potency": [
-          0.03,
-          0.035556,
-          0.041111,
-          0.046667,
-          0.052222,
-          0.057778,
-          0.063333,
-          0.068889,
-          0.074444,
-          0.08
+        "awaken_identity": [
+          0.06,
+          0.066667,
+          0.073333,
+          0.08,
+          0.086667,
+          0.093333,
+          0.1,
+          0.106667,
+          0.113333,
+          0.12
         ]
       },
       "presentation_id": "visual_bard_music_lesson",
@@ -7066,12 +7211,12 @@
           }
         },
         {
-          "id": "awaken_potency",
+          "id": "awaken_identity",
           "stat": "physical_attack",
           "op": "add_percent",
           "bucket": "derived",
           "value": {
-            "level_param": "awaken_potency"
+            "level_param": "awaken_identity"
           }
         }
       ],
@@ -7101,17 +7246,17 @@
           0.617361,
           0.634375
         ],
-        "awaken_potency": [
-          0.03,
-          0.035556,
-          0.041111,
-          0.046667,
-          0.052222,
-          0.057778,
-          0.063333,
-          0.068889,
-          0.074444,
-          0.08
+        "awaken_identity": [
+          0.08,
+          0.088889,
+          0.097778,
+          0.106667,
+          0.115556,
+          0.124444,
+          0.133333,
+          0.142222,
+          0.151111,
+          0.16
         ]
       },
       "presentation_id": "visual_bard_breathing",
@@ -7127,12 +7272,12 @@
           }
         },
         {
-          "id": "awaken_potency",
-          "stat": "physical_attack",
+          "id": "awaken_identity",
+          "stat": "max_sp",
           "op": "add_percent",
           "bucket": "derived",
           "value": {
-            "level_param": "awaken_potency"
+            "level_param": "awaken_identity"
           }
         }
       ],
@@ -7161,6 +7306,18 @@
           5.523194,
           5.679722,
           5.83625
+        ],
+        "awaken_1": [
+          0.12,
+          0.133333,
+          0.146667,
+          0.16,
+          0.173333,
+          0.186667,
+          0.2,
+          0.213333,
+          0.226667,
+          0.24
         ]
       },
       "presentation_id": "visual_dancer_performance_strike",
@@ -7211,6 +7368,19 @@
       "start_effects": [],
       "effects": [
         {
+          "id": "awaken_1",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "awaken_penetration",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "awaken_1"
+            }
+          },
+          "chance": 1
+        },
+        {
           "id": "hit",
           "type": "damage",
           "target": "foe",
@@ -7228,18 +7398,10 @@
           "hit_rule": "physical_roll",
           "can_crit": true,
           "hits": 1,
-          "armor_rule": "normal"
-        },
-        {
-          "id": "awaken_aftereffect",
-          "type": "apply_status",
-          "target": "foe",
-          "status_id": "slow",
-          "duration_ms": 4000,
-          "params": {
-            "ratio": -0.1
-          },
-          "chance": 1
+          "armor_rule": "normal",
+          "penetration_bonus": {
+            "level_param": "awaken_1"
+          }
         }
       ]
     },
@@ -7278,6 +7440,18 @@
           2.401389,
           2.469444,
           2.5375
+        ],
+        "awaken_barrier": [
+          0.2625,
+          0.281944,
+          0.301389,
+          0.320833,
+          0.340278,
+          0.359722,
+          0.379167,
+          0.398611,
+          0.418056,
+          0.4375
         ]
       },
       "presentation_id": "visual_dancer_healing_song",
@@ -7355,15 +7529,20 @@
           "chance": 1
         },
         {
-          "id": "awaken_boon",
-          "type": "apply_status",
+          "id": "awaken_barrier",
+          "type": "shield",
           "target": "friends",
-          "status_id": "cc_resistance_up",
-          "duration_ms": 5000,
-          "params": {
-            "ratio": 0.1
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "awaken_barrier"
+              },
+              "flat_power": 0
+            }
           },
-          "chance": 1
+          "duration_ms": 5000,
+          "dispelable": true
         }
       ]
     },
@@ -7402,6 +7581,18 @@
           0.480278,
           0.493889,
           0.5075
+        ],
+        "awaken_2": [
+          0.1,
+          0.111111,
+          0.122222,
+          0.133333,
+          0.144444,
+          0.155556,
+          0.166667,
+          0.177778,
+          0.188889,
+          0.2
         ]
       },
       "presentation_id": "visual_dancer_battle_song",
@@ -7478,13 +7669,15 @@
           "chance": 1
         },
         {
-          "id": "awaken_boon",
+          "id": "awaken_2",
           "type": "apply_status",
           "target": "friends",
-          "status_id": "cc_resistance_up",
-          "duration_ms": 5000,
+          "status_id": "crit_damage_up",
+          "duration_ms": 6000,
           "params": {
-            "ratio": 0.1
+            "ratio": {
+              "level_param": "awaken_2"
+            }
           },
           "chance": 1
         }
@@ -7513,6 +7706,18 @@
           0.6175,
           0.635,
           0.6525
+        ],
+        "awaken_1": [
+          0.06,
+          0.066667,
+          0.073333,
+          0.08,
+          0.086667,
+          0.093333,
+          0.1,
+          0.106667,
+          0.113333,
+          0.12
         ]
       },
       "presentation_id": "visual_dancer_dissonance",
@@ -7565,13 +7770,15 @@
           "chance": 1
         },
         {
-          "id": "awaken_boon",
+          "id": "awaken_1",
           "type": "apply_status",
           "target": "friends",
-          "status_id": "cc_resistance_up",
-          "duration_ms": 5000,
+          "status_id": "awaken_skill_power",
+          "duration_ms": 6000,
           "params": {
-            "ratio": 0.1
+            "ratio": {
+              "level_param": "awaken_1"
+            }
           },
           "chance": 1
         }
@@ -7612,6 +7819,18 @@
           2470,
           2540,
           2610
+        ],
+        "awaken_2": [
+          0.08,
+          0.088889,
+          0.097778,
+          0.106667,
+          0.115556,
+          0.124444,
+          0.133333,
+          0.142222,
+          0.151111,
+          0.16
         ]
       },
       "presentation_id": "visual_dancer_encore",
@@ -7675,13 +7894,15 @@
           "chance": 0.45
         },
         {
-          "id": "awaken_boon",
+          "id": "awaken_2",
           "type": "apply_status",
-          "target": "self",
-          "status_id": "cc_resistance_up",
+          "target": "foes",
+          "status_id": "exposed",
           "duration_ms": 5000,
           "params": {
-            "ratio": 0.1
+            "ratio": {
+              "level_param": "awaken_2"
+            }
           },
           "chance": 1
         }
@@ -7711,17 +7932,17 @@
           0.246944,
           0.25375
         ],
-        "awaken_potency": [
-          0.03,
-          0.035556,
-          0.041111,
-          0.046667,
-          0.052222,
-          0.057778,
-          0.063333,
-          0.068889,
-          0.074444,
-          0.08
+        "awaken_identity": [
+          0.06,
+          0.066667,
+          0.073333,
+          0.08,
+          0.086667,
+          0.093333,
+          0.1,
+          0.106667,
+          0.113333,
+          0.12
         ]
       },
       "presentation_id": "visual_dancer_music_lesson",
@@ -7737,12 +7958,12 @@
           }
         },
         {
-          "id": "awaken_potency",
+          "id": "awaken_identity",
           "stat": "physical_attack",
           "op": "add_percent",
           "bucket": "derived",
           "value": {
-            "level_param": "awaken_potency"
+            "level_param": "awaken_identity"
           }
         }
       ],
@@ -7772,17 +7993,17 @@
           0.617361,
           0.634375
         ],
-        "awaken_potency": [
-          0.03,
-          0.035556,
-          0.041111,
-          0.046667,
-          0.052222,
-          0.057778,
-          0.063333,
-          0.068889,
-          0.074444,
-          0.08
+        "awaken_identity": [
+          0.08,
+          0.088889,
+          0.097778,
+          0.106667,
+          0.115556,
+          0.124444,
+          0.133333,
+          0.142222,
+          0.151111,
+          0.16
         ]
       },
       "presentation_id": "visual_dancer_breathing",
@@ -7798,12 +8019,12 @@
           }
         },
         {
-          "id": "awaken_potency",
-          "stat": "physical_attack",
+          "id": "awaken_identity",
+          "stat": "max_sp",
           "op": "add_percent",
           "bucket": "derived",
           "value": {
-            "level_param": "awaken_potency"
+            "level_param": "awaken_identity"
           }
         }
       ],
@@ -7902,19 +8123,8 @@
           "element": "neutral",
           "hit_rule": "physical_roll",
           "can_crit": false,
-          "hits": 5,
+          "hits": 6,
           "armor_rule": "normal"
-        },
-        {
-          "id": "awaken_aftereffect",
-          "type": "apply_status",
-          "target": "foe",
-          "status_id": "slow",
-          "duration_ms": 4000,
-          "params": {
-            "ratio": -0.1
-          },
-          "chance": 1
         }
       ]
     },
@@ -7953,6 +8163,18 @@
           8.782222,
           9.031111,
           9.28
+        ],
+        "awaken_1": [
+          0.12,
+          0.133333,
+          0.146667,
+          0.16,
+          0.173333,
+          0.186667,
+          0.2,
+          0.213333,
+          0.226667,
+          0.24
         ]
       },
       "presentation_id": "visual_sniper_sharpshooting",
@@ -7995,6 +8217,19 @@
       "start_effects": [],
       "effects": [
         {
+          "id": "awaken_1",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "awaken_penetration",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "awaken_1"
+            }
+          },
+          "chance": 1
+        },
+        {
           "id": "hit",
           "type": "damage",
           "target": "foes",
@@ -8012,18 +8247,10 @@
           "hit_rule": "physical_roll",
           "can_crit": true,
           "hits": 1,
-          "armor_rule": "normal"
-        },
-        {
-          "id": "awaken_aftereffect",
-          "type": "apply_status",
-          "target": "foes",
-          "status_id": "slow",
-          "duration_ms": 4000,
-          "params": {
-            "ratio": -0.1
-          },
-          "chance": 1
+          "armor_rule": "normal",
+          "penetration_bonus": {
+            "level_param": "awaken_1"
+          }
         }
       ]
     },
@@ -8052,16 +8279,16 @@
       ],
       "level_parameters": {
         "power": [
-          1.265,
-          1.309722,
-          1.354444,
-          1.399167,
-          1.443889,
-          1.488611,
-          1.533333,
-          1.578056,
-          1.622778,
-          1.6675
+          1.3662,
+          1.4145,
+          1.4628,
+          1.5111,
+          1.5594,
+          1.6077,
+          1.656,
+          1.7043,
+          1.7526,
+          1.8009
         ]
       },
       "presentation_id": "visual_clown_arrow_vulcan",
@@ -8120,19 +8347,8 @@
           "element": "weapon",
           "hit_rule": "physical_roll",
           "can_crit": true,
-          "hits": 9,
+          "hits": 10,
           "armor_rule": "normal"
-        },
-        {
-          "id": "awaken_aftereffect",
-          "type": "apply_status",
-          "target": "foe",
-          "status_id": "slow",
-          "duration_ms": 4000,
-          "params": {
-            "ratio": -0.1
-          },
-          "chance": 1
         }
       ]
     },
@@ -8171,6 +8387,18 @@
           0.384222,
           0.395111,
           0.406
+        ],
+        "awaken_1": [
+          0.08,
+          0.088889,
+          0.097778,
+          0.106667,
+          0.115556,
+          0.124444,
+          0.133333,
+          0.142222,
+          0.151111,
+          0.16
         ]
       },
       "presentation_id": "visual_clown_marionette_control",
@@ -8239,13 +8467,15 @@
           "chance": 1
         },
         {
-          "id": "awaken_boon",
+          "id": "awaken_1",
           "type": "apply_status",
           "target": "friends",
-          "status_id": "cc_resistance_up",
-          "duration_ms": 5000,
+          "status_id": "awaken_skill_power",
+          "duration_ms": 6000,
           "params": {
-            "ratio": 0.1
+            "ratio": {
+              "level_param": "awaken_1"
+            }
           },
           "chance": 1
         }
@@ -8298,6 +8528,18 @@
           -0.343056,
           -0.352778,
           -0.3625
+        ],
+        "awaken_2": [
+          0.1,
+          0.111111,
+          0.122222,
+          0.133333,
+          0.144444,
+          0.155556,
+          0.166667,
+          0.177778,
+          0.188889,
+          0.2
         ]
       },
       "presentation_id": "visual_gypsy_tarot_card_of_fate",
@@ -8391,15 +8633,23 @@
           "chance": 0.35
         },
         {
-          "id": "awaken_aftereffect",
+          "id": "awaken_2",
           "type": "apply_status",
           "target": "foe",
-          "status_id": "slow",
-          "duration_ms": 4000,
+          "status_id": "exposed",
+          "duration_ms": 6000,
           "params": {
-            "ratio": -0.1
+            "ratio": {
+              "level_param": "awaken_2"
+            }
           },
-          "chance": 1
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
         }
       ]
     },
@@ -8450,6 +8700,18 @@
           0.274444,
           0.282222,
           0.29
+        ],
+        "awaken_barrier": [
+          0.3,
+          0.322222,
+          0.344444,
+          0.366667,
+          0.388889,
+          0.411111,
+          0.433333,
+          0.455556,
+          0.477778,
+          0.5
         ]
       },
       "presentation_id": "visual_gypsy_moonlit_water_mill",
@@ -8519,15 +8781,20 @@
           "chance": 1
         },
         {
-          "id": "awaken_boon",
-          "type": "apply_status",
+          "id": "awaken_barrier",
+          "type": "shield",
           "target": "friends",
-          "status_id": "cc_resistance_up",
-          "duration_ms": 5000,
-          "params": {
-            "ratio": 0.1
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "awaken_barrier"
+              },
+              "flat_power": 0
+            }
           },
-          "chance": 1
+          "duration_ms": 5000,
+          "dispelable": true
         }
       ]
     }

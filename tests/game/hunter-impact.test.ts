@@ -21,7 +21,7 @@ test('D158 three Hunter curves are explicit at every rank; queue, prices, and no
     assert.deepEqual(s.selectors, old.selectors);
     const a = resolveSkill(id, 1, awakened, true).definition as Active;
     const aw = a.effects[0]!;
-    assert.ok(aw.type === 'damage' && 'attack_ratio' in aw.formula.params && Number(aw.formula.params.attack_ratio) >= high);
+    assert.ok(aw.type === 'damage' && 'attack_ratio' in aw.formula.params && Number(aw.formula.params.attack_ratio)*Number(aw.hits) >= high*hits);
     const descriptions = effectDescriptions(s.effects).join(' ');
     assert.ok(descriptions.includes(id === 'hunter_claymore' ? 'ไฟ' : 'ตามธาตุอาวุธ'), descriptions);
   }

@@ -630,3 +630,21 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T128-AC-02` [TASK-128](done/tasks_128.md) | Hunter boss damage | ทุกrank/เป้าเดี่ยวและหมู่/ธาตุ/interrupt/1×2×4×/checkpoint ตรง sharedengine; คำอธิบายและผลหลายhitจริง; updated goldensเฉพาะ9cases | ผ่าน624TS/actualAuthSQL-mobile/hosted4groups |
 
 | `T128-AC-03` [TASK-128](done/tasks_128.md) | Hunter boss damage | build/checks/native mobile320390/hostedpublicตรงsourceใหม่;ไม่แตะownerเซฟ/SQL/env/6173และไม่รันbalance batch | ผ่าน624TS/actualAuthSQL-mobile/hosted4groups |
+
+
+
+| `T129-AC-01` [TASK-129](done/tasks_129.md) | fixture ทุกตัวผ่าน validation; มี Class2 13/High13 และทุก gear tier ที่ขอ, สี่ช่องไม่ซ้ำ, manual points จริง, ไม่มีบัฟ stat ฟรี | shared engine / tests / reports | ผ่าน |
+
+| `T129-AC-02` [TASK-129](done/tasks_129.md) | matched seeds/boss/gear/level/rank; training แยก pressure/team; ดาเมจ normal+skills รวมเท่ากับ owner รวม summon และ effective heal ไม่รวม overheal | shared engine / tests / reports | ผ่าน |
+
+| `T129-AC-03` [TASK-129](done/tasks_129.md) | หลายบิลด์/สรุป mean+ช่วงความไม่แน่นอน/held-out seeds, skill breakdown+resource skips+survival; replay ทำซ้ำได้ | shared engine / tests / reports | ผ่าน |
+
+| `T129-AC-04` [TASK-129](done/tasks_129.md) | รายงาน JSON/CSV/HTML/Markdown ระบุ content hash, command, เงื่อนไข/ต้นทุน/ข้อจำกัด; tests/typecheck/boundaries ผ่าน ไม่มี gameplay/owner save mutation | shared engine / tests / reports | ผ่าน |
+
+| `T130-AC-01` [TASK-130](review/tasks_130.md) | 152variantsมีgainเฉพาะหน้าที่ตรวจได้ ไม่มีgeneric+10%CCresistanceเป็นโบนัสใหม่เดี่ยว; โบนัสจริงขึ้นตามrankและมีตารางอธิบายรายสกิล | shared engine / tests / reports | ยังไม่ตรวจ |
+
+| `T130-AC-02` [TASK-130](review/tasks_130.md) | active+passive representative oracle และทุก152variant actual sharedengine/1x2x4/checkpointผ่าน; hitรวม/โอกาส/การขัด/ช่วงเวลา/targetsถูกต้อง | shared engine / tests / reports | ยังไม่ตรวจ |
+
+| `T130-AC-03` [TASK-130](review/tasks_130.md) | base152นิยาม/ราคา/Awakenเศษ/ทุน/IDs/nativeicons/queueเดิม; อธิบายสกิล/สมุดสกิล/Timelineตรงผลจริงและไม่มีคำอธิบายตกหล่น | shared engine / tests / reports | ยังไม่ตรวจ |
+
+| `T130-AC-04` [TASK-130](review/tasks_130.md) | targeted/full checksตามความจำเป็น/build/boundaries/native mobile/public deploymentผ่าน และผลbefore-afterอ้างcontent hashแยกจากTASK129ชัด | shared engine / tests / reports | ยังไม่ตรวจ |

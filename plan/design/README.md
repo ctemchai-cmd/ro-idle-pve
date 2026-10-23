@@ -70,3 +70,5 @@
 - [47-sanctuary-hot.md](47-sanctuary-hot.md): Sanctuary Pure HoT เริ่มทันทีและแรงกว่าเพลงเฉพาะส่วนHoT.
 
 - [48 Hunter ทำดาเมจบอสได้คุ้มขึ้น](48-hunter-boss-impact.md) — D158/TASK128,Spiral3hits/weapon element/สามdamagecurvesและAwakenที่ต่อยอด
+
+- [49 · Awaken152ผลเฉพาะสกิล](49-awaken-identities.md): D160/TASK130, per-effectเจาะเกราะ/งบhitรวม/ฮีล+โล่/โบนัสตามหน้าที่; before79ab→after9ae8 และ832matched fights

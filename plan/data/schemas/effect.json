@@ -111,6 +111,27 @@
               "additionalProperties": false
             }
           ]
+        },
+        "penetration_bonus": {
+          "oneOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "object",
+              "properties": {
+                "level_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "level_param"
+              ],
+              "additionalProperties": false
+            }
+          ]
         }
       },
       "required": [

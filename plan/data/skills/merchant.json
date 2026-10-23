@@ -3840,6 +3840,18 @@
           6.003472,
           6.173611,
           6.34375
+        ],
+        "awaken_1": [
+          0.12,
+          0.133333,
+          0.146667,
+          0.16,
+          0.173333,
+          0.186667,
+          0.2,
+          0.213333,
+          0.226667,
+          0.24
         ]
       },
       "presentation_id": "visual_merchant_mammonite",
@@ -3890,6 +3902,19 @@
       "start_effects": [],
       "effects": [
         {
+          "id": "awaken_1",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "awaken_penetration",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "awaken_1"
+            }
+          },
+          "chance": 1
+        },
+        {
           "id": "hit",
           "type": "damage",
           "target": "foe",
@@ -3907,18 +3932,10 @@
           "hit_rule": "physical_roll",
           "can_crit": true,
           "hits": 1,
-          "armor_rule": "normal"
-        },
-        {
-          "id": "awaken_aftereffect",
-          "type": "apply_status",
-          "target": "foe",
-          "status_id": "armor_break",
-          "duration_ms": 4000,
-          "params": {
-            "ratio": 0.1
-          },
-          "chance": 1
+          "armor_rule": "normal",
+          "penetration_bonus": {
+            "level_param": "awaken_1"
+          }
         }
       ]
     },
@@ -3945,6 +3962,18 @@
           3.361944,
           3.457222,
           3.5525
+        ],
+        "awaken_1": [
+          0.1,
+          0.111111,
+          0.122222,
+          0.133333,
+          0.144444,
+          0.155556,
+          0.166667,
+          0.177778,
+          0.188889,
+          0.2
         ]
       },
       "presentation_id": "visual_merchant_cart_revolution",
@@ -4030,15 +4059,23 @@
           }
         },
         {
-          "id": "awaken_aftereffect",
+          "id": "awaken_1",
           "type": "apply_status",
           "target": "foes",
           "status_id": "armor_break",
-          "duration_ms": 4000,
+          "duration_ms": 6000,
           "params": {
-            "ratio": 0.1
+            "ratio": {
+              "level_param": "awaken_1"
+            }
           },
-          "chance": 1
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
         }
       ]
     },
@@ -4065,6 +4102,18 @@
           0.548889,
           0.564444,
           0.58
+        ],
+        "awaken_1": [
+          0.08,
+          0.088889,
+          0.097778,
+          0.106667,
+          0.115556,
+          0.124444,
+          0.133333,
+          0.142222,
+          0.151111,
+          0.16
         ]
       },
       "presentation_id": "visual_merchant_loud_voice",
@@ -4128,13 +4177,15 @@
           "chance": 1
         },
         {
-          "id": "awaken_boon",
+          "id": "awaken_1",
           "type": "apply_status",
           "target": "friends",
-          "status_id": "cc_resistance_up",
-          "duration_ms": 5000,
+          "status_id": "awaken_skill_power",
+          "duration_ms": 6000,
           "params": {
-            "ratio": 0.1
+            "ratio": {
+              "level_param": "awaken_1"
+            }
           },
           "chance": 1
         }
@@ -4175,6 +4226,18 @@
           13722,
           14111,
           14500
+        ],
+        "awaken_2": [
+          0.08,
+          0.088889,
+          0.097778,
+          0.106667,
+          0.115556,
+          0.124444,
+          0.133333,
+          0.142222,
+          0.151111,
+          0.16
         ]
       },
       "presentation_id": "visual_merchant_first_aid",
@@ -4216,13 +4279,15 @@
           "chance": 1
         },
         {
-          "id": "awaken_boon",
+          "id": "awaken_2",
           "type": "apply_status",
-          "target": "self",
-          "status_id": "cc_resistance_up",
-          "duration_ms": 5000,
+          "target": "foe",
+          "status_id": "exposed",
+          "duration_ms": 6000,
           "params": {
-            "ratio": 0.1
+            "ratio": {
+              "level_param": "awaken_2"
+            }
           },
           "chance": 1
         }
@@ -4252,17 +4317,17 @@
           0.296333,
           0.3045
         ],
-        "awaken_potency": [
-          0.03,
-          0.035556,
-          0.041111,
-          0.046667,
-          0.052222,
-          0.057778,
-          0.063333,
-          0.068889,
-          0.074444,
-          0.08
+        "awaken_identity": [
+          0.025,
+          0.027778,
+          0.030556,
+          0.033333,
+          0.036111,
+          0.038889,
+          0.041667,
+          0.044444,
+          0.047222,
+          0.05
         ]
       },
       "presentation_id": "visual_merchant_trading_stamina",
@@ -4278,12 +4343,12 @@
           }
         },
         {
-          "id": "awaken_potency",
-          "stat": "physical_attack",
-          "op": "add_percent",
-          "bucket": "derived",
+          "id": "awaken_identity",
+          "stat": "guard_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
           "value": {
-            "level_param": "awaken_potency"
+            "level_param": "awaken_identity"
           }
         }
       ],
@@ -4324,6 +4389,18 @@
           2744,
           2822,
           2900
+        ],
+        "awaken_2": [
+          0.1,
+          0.111111,
+          0.122222,
+          0.133333,
+          0.144444,
+          0.155556,
+          0.166667,
+          0.177778,
+          0.188889,
+          0.2
         ]
       },
       "presentation_id": "visual_blacksmith_hammer_fall",
@@ -4411,15 +4488,23 @@
           }
         },
         {
-          "id": "awaken_aftereffect",
+          "id": "awaken_2",
           "type": "apply_status",
           "target": "foes",
           "status_id": "armor_break",
-          "duration_ms": 4000,
+          "duration_ms": 6000,
           "params": {
-            "ratio": 0.1
+            "ratio": {
+              "level_param": "awaken_2"
+            }
           },
-          "chance": 1
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
         }
       ]
     },
@@ -4446,6 +4531,18 @@
           0.548889,
           0.564444,
           0.58
+        ],
+        "awaken_1": [
+          0.06,
+          0.066667,
+          0.073333,
+          0.08,
+          0.086667,
+          0.093333,
+          0.1,
+          0.106667,
+          0.113333,
+          0.12
         ]
       },
       "presentation_id": "visual_blacksmith_adrenaline",
@@ -4509,13 +4606,15 @@
           "chance": 1
         },
         {
-          "id": "awaken_boon",
+          "id": "awaken_1",
           "type": "apply_status",
           "target": "friends",
-          "status_id": "cc_resistance_up",
-          "duration_ms": 5000,
+          "status_id": "awaken_skill_power",
+          "duration_ms": 6000,
           "params": {
-            "ratio": 0.1
+            "ratio": {
+              "level_param": "awaken_1"
+            }
           },
           "chance": 1
         }
@@ -4568,6 +4667,18 @@
           0.411667,
           0.423333,
           0.435
+        ],
+        "awaken_3": [
+          0.1,
+          0.111111,
+          0.122222,
+          0.133333,
+          0.144444,
+          0.155556,
+          0.166667,
+          0.177778,
+          0.188889,
+          0.2
         ]
       },
       "presentation_id": "visual_blacksmith_weapon_perfection",
@@ -4657,13 +4768,15 @@
           "chance": 1
         },
         {
-          "id": "awaken_boon",
+          "id": "awaken_3",
           "type": "apply_status",
           "target": "friends",
-          "status_id": "cc_resistance_up",
-          "duration_ms": 5000,
+          "status_id": "crit_damage_up",
+          "duration_ms": 6000,
           "params": {
-            "ratio": 0.1
+            "ratio": {
+              "level_param": "awaken_3"
+            }
           },
           "chance": 1
         }
@@ -4704,6 +4817,18 @@
           -0.411667,
           -0.423333,
           -0.435
+        ],
+        "awaken_2": [
+          0.12,
+          0.133333,
+          0.146667,
+          0.16,
+          0.173333,
+          0.186667,
+          0.2,
+          0.213333,
+          0.226667,
+          0.24
         ]
       },
       "presentation_id": "visual_blacksmith_meltdown",
@@ -4754,6 +4879,19 @@
       "start_effects": [],
       "effects": [
         {
+          "id": "awaken_2",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "awaken_penetration",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "awaken_2"
+            }
+          },
+          "chance": 1
+        },
+        {
           "id": "hit",
           "type": "damage",
           "target": "foe",
@@ -4771,7 +4909,10 @@
           "hit_rule": "physical_roll",
           "can_crit": true,
           "hits": 1,
-          "armor_rule": "normal"
+          "armor_rule": "normal",
+          "penetration_bonus": {
+            "level_param": "awaken_2"
+          }
         },
         {
           "id": "attack_down",
@@ -4791,17 +4932,6 @@
             "scope": "same_target",
             "hit_index": "any"
           }
-        },
-        {
-          "id": "awaken_aftereffect",
-          "type": "apply_status",
-          "target": "foe",
-          "status_id": "armor_break",
-          "duration_ms": 4000,
-          "params": {
-            "ratio": 0.1
-          },
-          "chance": 1
         }
       ]
     },
@@ -4828,6 +4958,18 @@
           2.195019,
           2.257226,
           2.319433
+        ],
+        "awaken_1": [
+          0.1,
+          0.111111,
+          0.122222,
+          0.133333,
+          0.144444,
+          0.155556,
+          0.166667,
+          0.177778,
+          0.188889,
+          0.2
         ]
       },
       "presentation_id": "visual_blacksmith_cart_crash",
@@ -4898,15 +5040,23 @@
           "armor_rule": "normal"
         },
         {
-          "id": "awaken_aftereffect",
+          "id": "awaken_1",
           "type": "apply_status",
           "target": "foes",
           "status_id": "armor_break",
-          "duration_ms": 4000,
+          "duration_ms": 6000,
           "params": {
-            "ratio": 0.1
+            "ratio": {
+              "level_param": "awaken_1"
+            }
           },
-          "chance": 1
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
         }
       ]
     },
@@ -4934,17 +5084,17 @@
           0.4445,
           0.45675
         ],
-        "awaken_potency": [
-          0.03,
-          0.035556,
-          0.041111,
-          0.046667,
-          0.052222,
-          0.057778,
-          0.063333,
-          0.068889,
-          0.074444,
-          0.08
+        "awaken_identity": [
+          0.06,
+          0.066667,
+          0.073333,
+          0.08,
+          0.086667,
+          0.093333,
+          0.1,
+          0.106667,
+          0.113333,
+          0.12
         ]
       },
       "presentation_id": "visual_blacksmith_weapon_research",
@@ -4960,12 +5110,12 @@
           }
         },
         {
-          "id": "awaken_potency",
-          "stat": "physical_attack",
-          "op": "add_percent",
-          "bucket": "derived",
+          "id": "awaken_identity",
+          "stat": "skill_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
           "value": {
-            "level_param": "awaken_potency"
+            "level_param": "awaken_identity"
           }
         }
       ],
@@ -4995,17 +5145,17 @@
           0.543278,
           0.55825
         ],
-        "awaken_potency": [
-          0.03,
-          0.035556,
-          0.041111,
-          0.046667,
-          0.052222,
-          0.057778,
-          0.063333,
-          0.068889,
-          0.074444,
-          0.08
+        "awaken_identity": [
+          0.025,
+          0.027778,
+          0.030556,
+          0.033333,
+          0.036111,
+          0.038889,
+          0.041667,
+          0.044444,
+          0.047222,
+          0.05
         ]
       },
       "presentation_id": "visual_blacksmith_tempering",
@@ -5021,12 +5171,12 @@
           }
         },
         {
-          "id": "awaken_potency",
-          "stat": "physical_attack",
-          "op": "add_percent",
-          "bucket": "derived",
+          "id": "awaken_identity",
+          "stat": "guard_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
           "value": {
-            "level_param": "awaken_potency"
+            "level_param": "awaken_identity"
           }
         }
       ],
@@ -5067,6 +5217,18 @@
           0.43225,
           0.4445,
           0.45675
+        ],
+        "awaken_2": [
+          0.12,
+          0.133333,
+          0.146667,
+          0.16,
+          0.173333,
+          0.186667,
+          0.2,
+          0.213333,
+          0.226667,
+          0.24
         ]
       },
       "presentation_id": "visual_alchemist_acid_terror",
@@ -5117,6 +5279,19 @@
       "start_effects": [],
       "effects": [
         {
+          "id": "awaken_2",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "awaken_penetration",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "awaken_2"
+            }
+          },
+          "chance": 1
+        },
+        {
           "id": "hit",
           "type": "damage",
           "target": "foe",
@@ -5134,7 +5309,10 @@
           "hit_rule": "always",
           "can_crit": false,
           "hits": 1,
-          "armor_rule": "normal"
+          "armor_rule": "normal",
+          "penetration_bonus": {
+            "level_param": "awaken_2"
+          }
         },
         {
           "id": "armor_break",
@@ -5146,17 +5324,6 @@
             "ratio": {
               "level_param": "break"
             }
-          },
-          "chance": 1
-        },
-        {
-          "id": "awaken_aftereffect",
-          "type": "apply_status",
-          "target": "foe",
-          "status_id": "armor_break",
-          "duration_ms": 4000,
-          "params": {
-            "ratio": 0.1
           },
           "chance": 1
         }
@@ -5185,6 +5352,18 @@
           3.842222,
           3.951111,
           4.06
+        ],
+        "awaken_barrier": [
+          0.42,
+          0.451111,
+          0.482222,
+          0.513333,
+          0.544444,
+          0.575556,
+          0.606667,
+          0.637778,
+          0.668889,
+          0.7
         ]
       },
       "presentation_id": "visual_alchemist_potion_pitcher",
@@ -5260,15 +5439,20 @@
           "chance": 1
         },
         {
-          "id": "awaken_boon",
-          "type": "apply_status",
+          "id": "awaken_barrier",
+          "type": "shield",
           "target": "friend",
-          "status_id": "cc_resistance_up",
-          "duration_ms": 5000,
-          "params": {
-            "ratio": 0.1
+          "formula": {
+            "id": "healing_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "awaken_barrier"
+              },
+              "flat_power": 0
+            }
           },
-          "chance": 1
+          "duration_ms": 5000,
+          "dispelable": true
         }
       ]
     },
@@ -5297,16 +5481,28 @@
           35
         ],
         "plant_power": [
-          3.36875,
-          3.487847,
-          3.606944,
-          3.726042,
-          3.845139,
-          3.964236,
-          4.083333,
-          4.202431,
-          4.321528,
-          4.440625
+          3.874062,
+          4.011024,
+          4.147986,
+          4.284948,
+          4.42191,
+          4.558871,
+          4.695833,
+          4.832796,
+          4.969757,
+          5.106719
+        ],
+        "awaken_lifetime": [
+          12000,
+          12333,
+          12667,
+          13000,
+          13333,
+          13667,
+          14000,
+          14333,
+          14667,
+          15000
         ]
       },
       "presentation_id": "visual_alchemist_hell_plant",
@@ -5363,23 +5559,14 @@
           "type": "summon",
           "target": "self",
           "actor_definition_id": "hell_plant",
-          "duration_ms": 10000,
+          "duration_ms": {
+            "level_param": "awaken_lifetime"
+          },
           "max_owned": 2,
           "at_limit": "replace_oldest",
           "power_scale": {
             "level_param": "plant_power"
           }
-        },
-        {
-          "id": "awaken_boon",
-          "type": "apply_status",
-          "target": "self",
-          "status_id": "cc_resistance_up",
-          "duration_ms": 5000,
-          "params": {
-            "ratio": 0.1
-          },
-          "chance": 1
         }
       ]
     },
@@ -5408,16 +5595,28 @@
           32
         ],
         "plant_power": [
-          4.692188,
-          4.858073,
-          5.023958,
-          5.189844,
-          5.355729,
-          5.521615,
-          5.6875,
-          5.853385,
-          6.019271,
-          6.185156
+          5.396016,
+          5.586784,
+          5.777552,
+          5.968321,
+          6.159088,
+          6.349857,
+          6.540625,
+          6.731393,
+          6.922162,
+          7.112929
+        ],
+        "awaken_lifetime": [
+          7800,
+          8017,
+          8233,
+          8450,
+          8667,
+          8883,
+          9100,
+          9317,
+          9533,
+          9750
         ]
       },
       "presentation_id": "visual_alchemist_bio_cannibalize",
@@ -5474,23 +5673,14 @@
           "type": "summon",
           "target": "self",
           "actor_definition_id": "healing_plant",
-          "duration_ms": 6500,
+          "duration_ms": {
+            "level_param": "awaken_lifetime"
+          },
           "max_owned": 1,
           "at_limit": "replace_oldest",
           "power_scale": {
             "level_param": "plant_power"
           }
-        },
-        {
-          "id": "awaken_boon",
-          "type": "apply_status",
-          "target": "self",
-          "status_id": "cc_resistance_up",
-          "duration_ms": 5000,
-          "params": {
-            "ratio": 0.1
-          },
-          "chance": 1
         }
       ]
     },
@@ -5529,6 +5719,18 @@
           4.390039,
           4.514453,
           4.638868
+        ],
+        "awaken_2": [
+          0.12,
+          0.133333,
+          0.146667,
+          0.16,
+          0.173333,
+          0.186667,
+          0.2,
+          0.213333,
+          0.226667,
+          0.24
         ]
       },
       "presentation_id": "visual_alchemist_demonstration",
@@ -5579,6 +5781,19 @@
       "start_effects": [],
       "effects": [
         {
+          "id": "awaken_2",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "awaken_penetration",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "awaken_2"
+            }
+          },
+          "chance": 1
+        },
+        {
           "id": "burst",
           "type": "damage",
           "target": "foes",
@@ -5596,7 +5811,10 @@
           "hit_rule": "always",
           "can_crit": false,
           "hits": 1,
-          "armor_rule": "normal"
+          "armor_rule": "normal",
+          "penetration_bonus": {
+            "level_param": "awaken_2"
+          }
         },
         {
           "id": "chemical_burn",
@@ -5608,17 +5826,6 @@
             "power_ratio": {
               "level_param": "power"
             }
-          },
-          "chance": 1
-        },
-        {
-          "id": "awaken_aftereffect",
-          "type": "apply_status",
-          "target": "foes",
-          "status_id": "armor_break",
-          "duration_ms": 4000,
-          "params": {
-            "ratio": 0.1
           },
           "chance": 1
         }
@@ -5648,17 +5855,17 @@
           0.370417,
           0.380625
         ],
-        "awaken_potency": [
-          0.03,
-          0.035556,
-          0.041111,
-          0.046667,
-          0.052222,
-          0.057778,
-          0.063333,
-          0.068889,
-          0.074444,
-          0.08
+        "awaken_identity": [
+          0.06,
+          0.066667,
+          0.073333,
+          0.08,
+          0.086667,
+          0.093333,
+          0.1,
+          0.106667,
+          0.113333,
+          0.12
         ]
       },
       "presentation_id": "visual_alchemist_learning_potion",
@@ -5674,12 +5881,12 @@
           }
         },
         {
-          "id": "awaken_potency",
-          "stat": "physical_attack",
+          "id": "awaken_identity",
+          "stat": "magical_attack",
           "op": "add_percent",
           "bucket": "derived",
           "value": {
-            "level_param": "awaken_potency"
+            "level_param": "awaken_identity"
           }
         }
       ],
@@ -5709,17 +5916,17 @@
           0.370417,
           0.380625
         ],
-        "awaken_potency": [
-          0.03,
-          0.035556,
-          0.041111,
-          0.046667,
-          0.052222,
-          0.057778,
-          0.063333,
-          0.068889,
-          0.074444,
-          0.08
+        "awaken_identity": [
+          0.06,
+          0.066667,
+          0.073333,
+          0.08,
+          0.086667,
+          0.093333,
+          0.1,
+          0.106667,
+          0.113333,
+          0.12
         ]
       },
       "presentation_id": "visual_alchemist_chemical_expertise",
@@ -5735,12 +5942,12 @@
           }
         },
         {
-          "id": "awaken_potency",
-          "stat": "physical_attack",
-          "op": "add_percent",
-          "bucket": "derived",
+          "id": "awaken_identity",
+          "stat": "skill_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
           "value": {
-            "level_param": "awaken_potency"
+            "level_param": "awaken_identity"
           }
         }
       ],
@@ -5781,6 +5988,18 @@
           13.447778,
           13.828889,
           14.21
+        ],
+        "awaken_1": [
+          0.1,
+          0.111111,
+          0.122222,
+          0.133333,
+          0.144444,
+          0.155556,
+          0.166667,
+          0.177778,
+          0.188889,
+          0.2
         ]
       },
       "presentation_id": "visual_whitesmith_cart_termination",
@@ -5852,15 +6071,23 @@
           "chance": 0.3
         },
         {
-          "id": "awaken_aftereffect",
+          "id": "awaken_1",
           "type": "apply_status",
           "target": "foe",
           "status_id": "armor_break",
-          "duration_ms": 4000,
+          "duration_ms": 6000,
           "params": {
-            "ratio": 0.1
+            "ratio": {
+              "level_param": "awaken_1"
+            }
           },
-          "chance": 1
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
         }
       ]
     },
@@ -5899,6 +6126,18 @@
           0.439111,
           0.451556,
           0.464
+        ],
+        "awaken_1": [
+          0.08,
+          0.088889,
+          0.097778,
+          0.106667,
+          0.115556,
+          0.124444,
+          0.133333,
+          0.142222,
+          0.151111,
+          0.16
         ]
       },
       "presentation_id": "visual_whitesmith_maximum_overthrust",
@@ -5954,13 +6193,15 @@
           "chance": 1
         },
         {
-          "id": "awaken_boon",
+          "id": "awaken_1",
           "type": "apply_status",
           "target": "friends",
-          "status_id": "cc_resistance_up",
-          "duration_ms": 5000,
+          "status_id": "awaken_skill_power",
+          "duration_ms": 6000,
           "params": {
-            "ratio": 0.1
+            "ratio": {
+              "level_param": "awaken_1"
+            }
           },
           "chance": 1
         }
@@ -6013,6 +6254,18 @@
           0.274444,
           0.282222,
           0.29
+        ],
+        "awaken_2": [
+          0.1,
+          0.111111,
+          0.122222,
+          0.133333,
+          0.144444,
+          0.155556,
+          0.166667,
+          0.177778,
+          0.188889,
+          0.2
         ]
       },
       "presentation_id": "visual_creator_acid_demonstration",
@@ -6088,15 +6341,23 @@
           "chance": 1
         },
         {
-          "id": "awaken_aftereffect",
+          "id": "awaken_2",
           "type": "apply_status",
           "target": "foe",
           "status_id": "armor_break",
-          "duration_ms": 4000,
+          "duration_ms": 6000,
           "params": {
-            "ratio": 0.1
+            "ratio": {
+              "level_param": "awaken_2"
+            }
           },
-          "chance": 1
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
         }
       ]
     },
@@ -6147,6 +6408,18 @@
           0.219556,
           0.225778,
           0.232
+        ],
+        "awaken_2": [
+          0.06,
+          0.066667,
+          0.073333,
+          0.08,
+          0.086667,
+          0.093333,
+          0.1,
+          0.106667,
+          0.113333,
+          0.12
         ]
       },
       "presentation_id": "visual_creator_full_chemical_protection",
@@ -6224,13 +6497,15 @@
           "chance": 1
         },
         {
-          "id": "awaken_boon",
+          "id": "awaken_2",
           "type": "apply_status",
           "target": "friends",
-          "status_id": "cc_resistance_up",
-          "duration_ms": 5000,
+          "status_id": "awaken_skill_power",
+          "duration_ms": 6000,
           "params": {
-            "ratio": 0.1
+            "ratio": {
+              "level_param": "awaken_2"
+            }
           },
           "chance": 1
         }

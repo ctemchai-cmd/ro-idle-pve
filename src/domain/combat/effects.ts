@@ -127,9 +127,10 @@ export class EffectPipeline {
   private damage(effect: DamageEffect, context: ProgramContext, target: BattleActor): void {
     context = { ...context, damage_type: effect.damage_type };
     // Per-effect bonuses never mutate the actor, its cast snapshot or the next hit program.
-    const offense = effect.crit_chance_bonus || effect.crit_damage_bonus ? { ...context.offense,
+    const offense = effect.crit_chance_bonus || effect.crit_damage_bonus || effect.penetration_bonus ? { ...context.offense,
       crit_chance_bonus: context.offense.crit_chance_bonus + (effect.crit_chance_bonus === undefined ? 0 : resolvedNumber(effect.crit_chance_bonus)),
-      crit_damage_bonus: context.offense.crit_damage_bonus + (effect.crit_damage_bonus === undefined ? 0 : resolvedNumber(effect.crit_damage_bonus)) } : context.offense;
+      crit_damage_bonus: context.offense.crit_damage_bonus + (effect.crit_damage_bonus === undefined ? 0 : resolvedNumber(effect.crit_damage_bonus)),
+      penetration_percent: context.offense.penetration_percent + (effect.penetration_bonus === undefined ? 0 : resolvedNumber(effect.penetration_bonus)) } : context.offense;
     const raw = this.power(effect.formula, context);
     for (let hit = 0; hit < effect.hits && target.hp > 0; hit++) {
       const landed = nextRandom(this.state.rng) < (effect.hit_rule === 'always' ? 1 : hitChance(context.offense, target.stats));

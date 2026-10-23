@@ -7,3 +7,4 @@ Object.assign(statNames,{neutral_resistance:'ต้านไร้ธาตุ',
 
 Object.assign(statNames,{skill_damage_bonus:'ดาเมจสกิล',normal_damage_bonus:'ดาเมจตีปกติ'});
 Object.assign(statusNames,{crit_damage_up:'เพิ่มดาเมจคริ'});
+Object.assign(statusNames,{awaken_skill_power:'เพิ่มดาเมจสกิล',awaken_penetration:'เจาะเกราะ',awaken_healing_received:'เพิ่มการรับฮีล'});

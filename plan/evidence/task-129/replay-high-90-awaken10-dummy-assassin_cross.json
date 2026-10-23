@@ -1,0 +1,1119 @@
+{
+  "schema_version": 1,
+  "content_hash": "79ab94377763e3b181bab703948a94f67288ce011e30345438e5842583607104",
+  "seed": 22901,
+  "input": {
+    "actors": [
+      {
+        "actor_id": "main",
+        "kind": "party",
+        "team": "player",
+        "position": "back_1",
+        "stat_blueprint": {
+          "kind": "character",
+          "level": 90,
+          "job_id": "assassin_cross",
+          "allocated_primary": {
+            "str": 71,
+            "agi": 62,
+            "vit": 17,
+            "int": 17,
+            "dex": 35,
+            "luk": 89
+          },
+          "derived_offsets": {
+            "physical_attack": 0,
+            "magical_attack": 0,
+            "max_hp": 0,
+            "max_sp": 0,
+            "physical_defense": 0,
+            "magical_defense": 0,
+            "attack_speed": 0,
+            "cast_speed": 0
+          },
+          "permanent_sources": [
+            {
+              "source": {
+                "instance_id": "job_bonus_main",
+                "owner_actor_id": "main",
+                "definition_id": "job_bonus_thief",
+                "origin_actor_id": "main",
+                "origin_life_epoch": 0
+              },
+              "modifiers": [
+                {
+                  "id": "job_bonus_str",
+                  "stat": "str",
+                  "op": "add_flat",
+                  "bucket": "primary",
+                  "value": 5
+                },
+                {
+                  "id": "job_bonus_agi",
+                  "stat": "agi",
+                  "op": "add_flat",
+                  "bucket": "primary",
+                  "value": 9
+                },
+                {
+                  "id": "job_bonus_vit",
+                  "stat": "vit",
+                  "op": "add_flat",
+                  "bucket": "primary",
+                  "value": 3
+                },
+                {
+                  "id": "job_bonus_dex",
+                  "stat": "dex",
+                  "op": "add_flat",
+                  "bucket": "primary",
+                  "value": 4
+                },
+                {
+                  "id": "job_bonus_luk",
+                  "stat": "luk",
+                  "op": "add_flat",
+                  "bucket": "primary",
+                  "value": 3
+                }
+              ],
+              "triggers": []
+            },
+            {
+              "source": {
+                "instance_id": "audit_main_weapon",
+                "owner_actor_id": "main",
+                "definition_id": "equipment_dagger_60",
+                "origin_actor_id": "main",
+                "origin_life_epoch": 0
+              },
+              "modifiers": [
+                {
+                  "id": "physical_attack",
+                  "stat": "physical_attack",
+                  "op": "add_flat",
+                  "bucket": "derived",
+                  "value": 190
+                },
+                {
+                  "id": "impact_skill_damage_bonus",
+                  "stat": "skill_damage_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.1
+                }
+              ],
+              "triggers": []
+            },
+            {
+              "source": {
+                "instance_id": "audit_main_head",
+                "owner_actor_id": "main",
+                "definition_id": "equipment_head_60",
+                "origin_actor_id": "main",
+                "origin_life_epoch": 0
+              },
+              "modifiers": [
+                {
+                  "id": "magical_defense",
+                  "stat": "magical_defense",
+                  "op": "add_flat",
+                  "bucket": "derived",
+                  "value": 68
+                },
+                {
+                  "id": "impact_skill_damage_bonus",
+                  "stat": "skill_damage_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.05
+                }
+              ],
+              "triggers": []
+            },
+            {
+              "source": {
+                "instance_id": "audit_main_armor",
+                "owner_actor_id": "main",
+                "definition_id": "equipment_armor_60",
+                "origin_actor_id": "main",
+                "origin_life_epoch": 0
+              },
+              "modifiers": [
+                {
+                  "id": "max_hp",
+                  "stat": "max_hp",
+                  "op": "add_flat",
+                  "bucket": "derived",
+                  "value": 800
+                },
+                {
+                  "id": "physical_defense",
+                  "stat": "physical_defense",
+                  "op": "add_flat",
+                  "bucket": "derived",
+                  "value": 72
+                },
+                {
+                  "id": "impact_guard_percent",
+                  "stat": "guard_percent",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.04
+                }
+              ],
+              "triggers": []
+            },
+            {
+              "source": {
+                "instance_id": "audit_main_garment",
+                "owner_actor_id": "main",
+                "definition_id": "equipment_garment_60",
+                "origin_actor_id": "main",
+                "origin_life_epoch": 0
+              },
+              "modifiers": [
+                {
+                  "id": "physical_defense",
+                  "stat": "physical_defense",
+                  "op": "add_flat",
+                  "bucket": "derived",
+                  "value": 68
+                },
+                {
+                  "id": "magical_defense",
+                  "stat": "magical_defense",
+                  "op": "add_flat",
+                  "bucket": "derived",
+                  "value": 68
+                },
+                {
+                  "id": "impact_max_hp",
+                  "stat": "max_hp",
+                  "op": "add_percent",
+                  "bucket": "derived",
+                  "value": 0.04
+                }
+              ],
+              "triggers": []
+            },
+            {
+              "source": {
+                "instance_id": "audit_main_shoes",
+                "owner_actor_id": "main",
+                "definition_id": "equipment_shoes_60",
+                "origin_actor_id": "main",
+                "origin_life_epoch": 0
+              },
+              "modifiers": [
+                {
+                  "id": "max_hp",
+                  "stat": "max_hp",
+                  "op": "add_flat",
+                  "bucket": "derived",
+                  "value": 400
+                },
+                {
+                  "id": "impact_max_hp",
+                  "stat": "max_hp",
+                  "op": "add_percent",
+                  "bucket": "derived",
+                  "value": 0.06
+                }
+              ],
+              "triggers": []
+            },
+            {
+              "source": {
+                "instance_id": "audit_main_accessory",
+                "owner_actor_id": "main",
+                "definition_id": "equipment_accessory_60",
+                "origin_actor_id": "main",
+                "origin_life_epoch": 0
+              },
+              "modifiers": [
+                {
+                  "id": "max_sp",
+                  "stat": "max_sp",
+                  "op": "add_flat",
+                  "bucket": "derived",
+                  "value": 80
+                },
+                {
+                  "id": "impact_sp_regen_percent",
+                  "stat": "sp_regen_percent",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.12
+                }
+              ],
+              "triggers": []
+            }
+          ],
+          "weapon_element": "neutral"
+        },
+        "active_slots": [
+          "assassin_enchant_poison",
+          "assassin_sonic_blow",
+          "thief_backstab",
+          "thief_quick_step"
+        ],
+        "resolved_skills": {
+          "thief_envenom": {
+            "level": 1,
+            "definition": {
+              "id": "thief_envenom",
+              "name_key": "thief_envenom",
+              "class_id": "thief",
+              "max_level": 10,
+              "unlock_level": 1,
+              "tags": [
+                "thief",
+                "envenom"
+              ],
+              "level_parameters": {
+                "power": [
+                  1.75,
+                  1.866667,
+                  1.983333,
+                  2.1,
+                  2.216667,
+                  2.333333,
+                  2.45,
+                  2.566667,
+                  2.683333,
+                  2.8
+                ],
+                "poison": [
+                  0.35,
+                  0.388889,
+                  0.427777,
+                  0.466667,
+                  0.505556,
+                  0.544444,
+                  0.583333,
+                  0.622223,
+                  0.661111,
+                  0.7
+                ]
+              },
+              "presentation_id": "visual_thief_envenom",
+              "kind": "active",
+              "cost": {
+                "sp": 18,
+                "spirit_spheres": 0
+              },
+              "timing": {
+                "cast_ms": 150,
+                "after_cast_ms": 650,
+                "interruptible": true
+              },
+              "selectors": {
+                "foe": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "front_first",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "foes": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friend": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "lowest_hp_percent",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friends": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                }
+              },
+              "start_effects": [],
+              "effects": [
+                {
+                  "id": "hit",
+                  "type": "damage",
+                  "target": "foe",
+                  "formula": {
+                    "id": "physical_power",
+                    "params": {
+                      "attack_ratio": 1.75,
+                      "flat_power": 0
+                    }
+                  },
+                  "damage_type": "physical",
+                  "element": "weapon",
+                  "hit_rule": "physical_roll",
+                  "can_crit": true,
+                  "hits": 1,
+                  "armor_rule": "normal"
+                },
+                {
+                  "id": "venom",
+                  "type": "apply_status",
+                  "target": "foe",
+                  "status_id": "venom",
+                  "duration_ms": 5000,
+                  "params": {
+                    "power_ratio": 0.35
+                  },
+                  "chance": 1,
+                  "when": {
+                    "type": "hit_landed",
+                    "effect_id": "hit",
+                    "scope": "same_target",
+                    "hit_index": "any"
+                  }
+                }
+              ]
+            }
+          },
+          "thief_quick_step": {
+            "level": 10,
+            "definition": {
+              "id": "thief_quick_step",
+              "name_key": "thief_quick_step",
+              "class_id": "thief",
+              "max_level": 10,
+              "unlock_level": 1,
+              "tags": [
+                "thief",
+                "quick_step",
+                "awakened"
+              ],
+              "level_parameters": {
+                "ratio": [
+                  0.242,
+                  0.250556,
+                  0.259111,
+                  0.267667,
+                  0.276222,
+                  0.284778,
+                  0.293333,
+                  0.301889,
+                  0.310444,
+                  0.319
+                ]
+              },
+              "presentation_id": "visual_thief_quick_step",
+              "kind": "active",
+              "cost": {
+                "sp": 18,
+                "spirit_spheres": 0
+              },
+              "timing": {
+                "cast_ms": 0,
+                "after_cast_ms": 600,
+                "interruptible": true
+              },
+              "selectors": {
+                "foe": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "front_first",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "foes": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friend": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "lowest_hp_percent",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friends": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                }
+              },
+              "start_effects": [],
+              "effects": [
+                {
+                  "id": "aspd_up",
+                  "type": "apply_status",
+                  "target": "self",
+                  "status_id": "aspd_up",
+                  "duration_ms": 4950,
+                  "params": {
+                    "ratio": 0.319
+                  },
+                  "chance": 1
+                },
+                {
+                  "id": "awaken_boon",
+                  "type": "apply_status",
+                  "target": "self",
+                  "status_id": "cc_resistance_up",
+                  "duration_ms": 5000,
+                  "params": {
+                    "ratio": 0.1
+                  },
+                  "chance": 1
+                }
+              ]
+            }
+          },
+          "thief_backstab": {
+            "level": 10,
+            "definition": {
+              "id": "thief_backstab",
+              "name_key": "thief_backstab",
+              "class_id": "thief",
+              "max_level": 10,
+              "unlock_level": 10,
+              "tags": [
+                "thief",
+                "backstab",
+                "awakened"
+              ],
+              "level_parameters": {
+                "power": [
+                  4.8125,
+                  4.982639,
+                  5.152778,
+                  5.322917,
+                  5.493056,
+                  5.663194,
+                  5.833333,
+                  6.003472,
+                  6.173611,
+                  6.34375
+                ]
+              },
+              "presentation_id": "visual_thief_backstab",
+              "kind": "active",
+              "cost": {
+                "sp": 24,
+                "spirit_spheres": 0
+              },
+              "timing": {
+                "cast_ms": 350,
+                "after_cast_ms": 850,
+                "interruptible": true
+              },
+              "selectors": {
+                "foe": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "front_first",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "foes": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friend": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "lowest_hp_percent",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friends": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                }
+              },
+              "start_effects": [],
+              "effects": [
+                {
+                  "id": "hit",
+                  "type": "damage",
+                  "target": "foe",
+                  "formula": {
+                    "id": "physical_power",
+                    "params": {
+                      "attack_ratio": 6.34375,
+                      "flat_power": 0
+                    }
+                  },
+                  "damage_type": "physical",
+                  "element": "weapon",
+                  "hit_rule": "physical_roll",
+                  "can_crit": true,
+                  "hits": 1,
+                  "armor_rule": "normal"
+                },
+                {
+                  "id": "awaken_aftereffect",
+                  "type": "apply_status",
+                  "target": "foe",
+                  "status_id": "poison",
+                  "duration_ms": 4000,
+                  "params": {
+                    "power_ratio": 0.1
+                  },
+                  "chance": 1
+                }
+              ]
+            }
+          },
+          "thief_double_attack": {
+            "level": 10,
+            "definition": {
+              "id": "thief_double_attack",
+              "name_key": "thief_double_attack",
+              "class_id": "thief",
+              "max_level": 10,
+              "unlock_level": 10,
+              "tags": [
+                "thief",
+                "double_attack"
+              ],
+              "level_parameters": {
+                "power": [
+                  0.6125,
+                  0.680556,
+                  0.748611,
+                  0.816667,
+                  0.884723,
+                  0.952777,
+                  1.020833,
+                  1.088889,
+                  1.156944,
+                  1.225
+                ]
+              },
+              "presentation_id": "visual_thief_double_attack",
+              "kind": "passive",
+              "modifiers": [],
+              "triggers": [
+                {
+                  "id": "double_hit",
+                  "event": "normal_attack_hit",
+                  "chance": 0.25,
+                  "accepted_origins": [
+                    "normal"
+                  ],
+                  "limit_scope": "none",
+                  "limit_count": 1,
+                  "reentry": "deny_same_source_trigger_in_ancestry",
+                  "selectors": {},
+                  "effects": [
+                    {
+                      "id": "extra_hit",
+                      "type": "damage",
+                      "target": "event_target",
+                      "formula": {
+                        "id": "physical_power",
+                        "params": {
+                          "attack_ratio": 1.225,
+                          "flat_power": 0
+                        }
+                      },
+                      "damage_type": "physical",
+                      "element": "weapon",
+                      "hit_rule": "physical_roll",
+                      "can_crit": false,
+                      "hits": 1,
+                      "armor_rule": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "assassin_sonic_blow": {
+            "level": 10,
+            "definition": {
+              "id": "assassin_sonic_blow",
+              "name_key": "assassin_sonic_blow",
+              "class_id": "assassin",
+              "max_level": 10,
+              "unlock_level": 20,
+              "tags": [
+                "assassin",
+                "sonic_blow",
+                "awakened"
+              ],
+              "level_parameters": {
+                "power": [
+                  2.463398,
+                  2.550488,
+                  2.637578,
+                  2.724668,
+                  2.811758,
+                  2.898847,
+                  2.985937,
+                  3.073027,
+                  3.160117,
+                  3.247207
+                ]
+              },
+              "presentation_id": "visual_assassin_sonic_blow",
+              "kind": "active",
+              "cost": {
+                "sp": 34,
+                "spirit_spheres": 0
+              },
+              "timing": {
+                "cast_ms": 500,
+                "after_cast_ms": 1000,
+                "interruptible": true
+              },
+              "selectors": {
+                "foe": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "front_first",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "foes": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friend": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "lowest_hp_percent",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friends": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                }
+              },
+              "start_effects": [],
+              "effects": [
+                {
+                  "id": "hit",
+                  "type": "damage",
+                  "target": "foe",
+                  "formula": {
+                    "id": "physical_power",
+                    "params": {
+                      "attack_ratio": 3.247207,
+                      "flat_power": 0
+                    }
+                  },
+                  "damage_type": "physical",
+                  "element": "weapon",
+                  "hit_rule": "physical_roll",
+                  "can_crit": true,
+                  "hits": 4,
+                  "armor_rule": "normal"
+                },
+                {
+                  "id": "awaken_aftereffect",
+                  "type": "apply_status",
+                  "target": "foe",
+                  "status_id": "poison",
+                  "duration_ms": 4000,
+                  "params": {
+                    "power_ratio": 0.1
+                  },
+                  "chance": 1
+                }
+              ]
+            }
+          },
+          "assassin_enchant_poison": {
+            "level": 10,
+            "definition": {
+              "id": "assassin_enchant_poison",
+              "name_key": "assassin_enchant_poison",
+              "class_id": "assassin",
+              "max_level": 10,
+              "unlock_level": 20,
+              "tags": [
+                "assassin",
+                "enchant_poison",
+                "awakened"
+              ],
+              "level_parameters": {
+                "ratio": [
+                  0.48125,
+                  0.498264,
+                  0.515278,
+                  0.532292,
+                  0.549306,
+                  0.566319,
+                  0.583333,
+                  0.600347,
+                  0.617361,
+                  0.634375
+                ],
+                "duration": [
+                  11000,
+                  11389,
+                  11778,
+                  12167,
+                  12556,
+                  12944,
+                  13333,
+                  13722,
+                  14111,
+                  14500
+                ]
+              },
+              "presentation_id": "visual_assassin_enchant_poison",
+              "kind": "active",
+              "cost": {
+                "sp": 28,
+                "spirit_spheres": 0
+              },
+              "timing": {
+                "cast_ms": 400,
+                "after_cast_ms": 850,
+                "interruptible": true
+              },
+              "selectors": {
+                "foe": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "front_first",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "foes": {
+                  "team": "enemies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friend": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "lowest_hp_percent",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                },
+                "friends": {
+                  "team": "allies",
+                  "life": "living",
+                  "select": "all",
+                  "count": null,
+                  "phase": "cast_resolve",
+                  "missing": "skip"
+                }
+              },
+              "start_effects": [],
+              "effects": [
+                {
+                  "id": "attack_up",
+                  "type": "apply_status",
+                  "target": "self",
+                  "status_id": "attack_up",
+                  "duration_ms": 14500,
+                  "params": {
+                    "ratio": 0.634375
+                  },
+                  "chance": 1
+                },
+                {
+                  "id": "awaken_boon",
+                  "type": "apply_status",
+                  "target": "self",
+                  "status_id": "cc_resistance_up",
+                  "duration_ms": 5000,
+                  "params": {
+                    "ratio": 0.1
+                  },
+                  "chance": 1
+                }
+              ]
+            }
+          },
+          "assassin_katar_mastery": {
+            "level": 10,
+            "definition": {
+              "id": "assassin_katar_mastery",
+              "name_key": "assassin_katar_mastery",
+              "class_id": "assassin",
+              "max_level": 10,
+              "unlock_level": 20,
+              "tags": [
+                "assassin",
+                "katar_mastery"
+              ],
+              "level_parameters": {
+                "ratio": [
+                  0.0875,
+                  0.106944,
+                  0.126388,
+                  0.145833,
+                  0.165277,
+                  0.184723,
+                  0.204167,
+                  0.223612,
+                  0.243056,
+                  0.2625
+                ]
+              },
+              "presentation_id": "visual_assassin_katar_mastery",
+              "kind": "passive",
+              "modifiers": [
+                {
+                  "id": "crit_chance_bonus",
+                  "stat": "crit_chance_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.2625
+                }
+              ],
+              "triggers": []
+            }
+          },
+          "assassin_poison_edge": {
+            "level": 10,
+            "definition": {
+              "id": "assassin_poison_edge",
+              "name_key": "assassin_poison_edge",
+              "class_id": "assassin",
+              "max_level": 10,
+              "unlock_level": 30,
+              "tags": [
+                "assassin",
+                "poison_edge"
+              ],
+              "level_parameters": {
+                "ratio": [
+                  0.07,
+                  0.085556,
+                  0.101112,
+                  0.116667,
+                  0.132223,
+                  0.147777,
+                  0.163333,
+                  0.178888,
+                  0.194444,
+                  0.21
+                ]
+              },
+              "presentation_id": "visual_assassin_poison_edge",
+              "kind": "passive",
+              "modifiers": [
+                {
+                  "id": "outgoing_physical_bonus",
+                  "stat": "outgoing_physical_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.21
+                }
+              ],
+              "triggers": []
+            }
+          }
+        },
+        "build_hash": "audit_assassin_cross-1-critical",
+        "normal_attack_enabled": true,
+        "tags": [],
+        "spatial": {
+          "x": 200,
+          "y": 580,
+          "move_speed": 120,
+          "radius": 18,
+          "normal_range": 76
+        }
+      },
+      {
+        "actor_id": "audit_boss",
+        "team": "enemy",
+        "kind": "enemy",
+        "position": "front_1",
+        "stat_blueprint": {
+          "kind": "fixed",
+          "level": 90,
+          "job_id": null,
+          "allocated_primary": {
+            "str": 1,
+            "agi": 1,
+            "vit": 1,
+            "int": 1,
+            "dex": 1,
+            "luk": 1
+          },
+          "derived_offsets": {
+            "physical_attack": 51,
+            "magical_attack": 51,
+            "max_hp": 999997555,
+            "max_sp": 999669,
+            "physical_defense": 10,
+            "magical_defense": 10,
+            "attack_speed": 0,
+            "cast_speed": 0
+          },
+          "permanent_sources": [],
+          "weapon_element": "neutral"
+        },
+        "active_slots": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "resolved_skills": {},
+        "tags": [
+          "boss",
+          "element:neutral",
+          "element_neutral",
+          "race_demi_human",
+          "size_large"
+        ],
+        "build_hash": "audit_boss_fixed",
+        "normal_attack_enabled": false,
+        "spatial": {
+          "x": 520,
+          "y": 400,
+          "move_speed": 0,
+          "radius": 30,
+          "normal_range": 80
+        }
+      }
+    ],
+    "arena": {
+      "width": 720,
+      "height": 820,
+      "step_ms": 50
+    },
+    "timing": {
+      "skill_interval_base_ms": 3000,
+      "normal_attack_base_ms": 1500
+    },
+    "mode": {
+      "kind": "story",
+      "ref": "audit_dummy_high-90-awaken10",
+      "time_limit_ms": 90000,
+      "ticket_day": null,
+      "daily_phase": null,
+      "daily_current_hp": null,
+      "reserved_phase_keys": []
+    }
+  },
+  "fixture": {
+    "build": {
+      "id": "assassin_cross-1-critical",
+      "job": "assassin_cross",
+      "role": "damage",
+      "profile": "critical",
+      "slots": [
+        "assassin_enchant_poison",
+        "assassin_sonic_blow",
+        "thief_backstab",
+        "thief_quick_step"
+      ]
+    },
+    "condition": {
+      "id": "high-90-awaken10",
+      "level": 90,
+      "tier": 60,
+      "stage": 3,
+      "awaken": 10
+    },
+    "primary": {
+      "str": 71,
+      "agi": 62,
+      "vit": 17,
+      "int": 17,
+      "dex": 35,
+      "luk": 89
+    },
+    "costs": {
+      "gold": 637750,
+      "hero_exp": 0,
+      "skill_manual": 21150,
+      "refine_ore": 0,
+      "breakthrough_essence": 0,
+      "enchant_dust": 0,
+      "card_dust": 0,
+      "crystal": 0,
+      "awakening_shard": 1160
+    },
+    "point_budget": 1050,
+    "points_spent": 1049
+  },
+  "expected_sample": {
+    "seed": 22901,
+    "dps": 11947.6,
+    "normal_dps": 3396.711111111111,
+    "skill_dps": 8550.888888888889,
+    "team_dps": 11947.6,
+    "hps": 0,
+    "shields": 0,
+    "sp_skips": 0,
+    "sphere_skips": 0,
+    "sp_spent": 1126,
+    "casts": 43,
+    "interrupted": 0,
+    "boss_interrupted": 0,
+    "alive_ms": 90000,
+    "survivors": 1,
+    "duration_ms": 90000,
+    "burst10_dps": 7453.9,
+    "last30_dps": 13031.666666666666,
+    "skill_damage": {
+      "resource_regen": 0,
+      "assassin_enchant_poison": 0,
+      "normal_attack": 305704,
+      "thief_double_attack": 65591,
+      "assassin_sonic_blow": 472644,
+      "thief_backstab": 231345,
+      "thief_quick_step": 0
+    },
+    "skill_healing": {
+      "resource_regen": 0,
+      "assassin_enchant_poison": 0,
+      "normal_attack": 0,
+      "thief_double_attack": 0,
+      "assassin_sonic_blow": 0,
+      "thief_backstab": 0,
+      "thief_quick_step": 0
+    }
+  },
+  "final_sha256": "b18cb11f126057d423d4d0b36f6f44ac39cdb2157858885f39ca30c7be8a37e5"
+}

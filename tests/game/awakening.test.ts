@@ -30,11 +30,18 @@ test('every152 Awaken variants keeps its ID/native icon, adds a functional effec
  for(const row of players){
   const id=String(row.id),base=resolveSkill(id,10,future).definition as SkillDefinition,first=resolveSkill(id,1,future,true).definition as SkillDefinition;
   assert.equal(first.id,base.id);assert.equal(first.presentation_id,base.presentation_id);assert.ok(first.tags.includes('awakened'));
-  if(first.kind==='active'&&base.kind==='active'){assert.ok(first.effects.length>base.effects.length);assert.deepEqual(first.timing,base.timing);}
+  if(first.kind==='active'&&base.kind==='active'){
+   const richer=first.effects.length>base.effects.length||first.effects.some(e=>{
+    const old=base.effects.find(b=>b.id===e.id);return e.type==='damage'&&old?.type==='damage'&&Number(e.hits)>Number(old.hits)||e.type==='summon'&&old?.type==='summon'&&Number(e.duration_ms)>Number(old.duration_ms);
+   });assert.ok(richer,id);assert.deepEqual(first.timing,base.timing);
+  }
   else if(first.kind==='passive'&&base.kind==='passive')assert.ok(first.modifiers.length>base.modifiers.length);
   for(const[key,curve]of Object.entries(base.level_parameters)){
    const original=curve.at(-1)!,awakened=first.level_parameters[key]![0]!;
-   assert.ok(key==='sp_cost'?awakened<=original:Math.abs(awakened)>=Math.abs(original)-.000001,`${id}:${key}`);
+   // D160 extra hits divide a larger total-power budget across more hits.
+   const nowHit=first.kind==='active'?first.effects.find(e=>e.type==='damage'):undefined,oldHit=base.kind==='active'?base.effects.find(e=>e.type==='damage'):undefined;
+   const hitFactor=key==='power'&&nowHit?.type==='damage'&&oldHit?.type==='damage'?Number(nowHit.hits)/Number(oldHit.hits):1;
+   assert.ok(key==='sp_cost'?awakened<=original:Math.abs(awakened)*hitFactor>=Math.abs(original)-.000001,`${id}:${key}`);
   }
  }
 });

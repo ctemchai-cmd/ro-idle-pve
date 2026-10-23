@@ -3756,16 +3756,16 @@
       ],
       "level_parameters": {
         "power": [
-          1.3475,
-          1.395139,
-          1.442778,
-          1.490417,
-          1.538056,
-          1.585694,
-          1.633333,
-          1.680972,
-          1.728611,
-          1.77625
+          1.21275,
+          1.255625,
+          1.2985,
+          1.341375,
+          1.38425,
+          1.427125,
+          1.47,
+          1.512875,
+          1.55575,
+          1.598625
         ]
       },
       "presentation_id": "visual_mage_fire_bolt",
@@ -3832,19 +3832,8 @@
           "element": "fire",
           "hit_rule": "always",
           "can_crit": false,
-          "hits": 3,
+          "hits": 4,
           "armor_rule": "normal"
-        },
-        {
-          "id": "awaken_aftereffect",
-          "type": "apply_status",
-          "target": "foe",
-          "status_id": "exposed",
-          "duration_ms": 4000,
-          "params": {
-            "ratio": 0.1
-          },
-          "chance": 1
         }
       ]
     },
@@ -3861,16 +3850,16 @@
       ],
       "level_parameters": {
         "power": [
-          1.25125,
-          1.295486,
-          1.339722,
-          1.383958,
-          1.428194,
-          1.472431,
-          1.516667,
-          1.560903,
-          1.605139,
-          1.649375
+          1.126125,
+          1.165937,
+          1.20575,
+          1.245562,
+          1.285375,
+          1.325188,
+          1.365,
+          1.404813,
+          1.444625,
+          1.484438
         ]
       },
       "presentation_id": "visual_mage_cold_bolt",
@@ -3937,7 +3926,7 @@
           "element": "water",
           "hit_rule": "always",
           "can_crit": false,
-          "hits": 3,
+          "hits": 4,
           "armor_rule": "normal"
         },
         {
@@ -3954,17 +3943,6 @@
             "scope": "same_target",
             "hit_index": "any"
           }
-        },
-        {
-          "id": "awaken_aftereffect",
-          "type": "apply_status",
-          "target": "foe",
-          "status_id": "exposed",
-          "duration_ms": 4000,
-          "params": {
-            "ratio": 0.1
-          },
-          "chance": 1
         }
       ]
     },
@@ -3981,16 +3959,16 @@
       ],
       "level_parameters": {
         "power": [
-          1.3475,
-          1.395139,
-          1.442778,
-          1.490417,
-          1.538056,
-          1.585694,
-          1.633333,
-          1.680972,
-          1.728611,
-          1.77625
+          1.21275,
+          1.255625,
+          1.2985,
+          1.341375,
+          1.38425,
+          1.427125,
+          1.47,
+          1.512875,
+          1.55575,
+          1.598625
         ]
       },
       "presentation_id": "visual_mage_lightning_bolt",
@@ -4057,19 +4035,8 @@
           "element": "wind",
           "hit_rule": "always",
           "can_crit": false,
-          "hits": 3,
+          "hits": 4,
           "armor_rule": "normal"
-        },
-        {
-          "id": "awaken_aftereffect",
-          "type": "apply_status",
-          "target": "foe",
-          "status_id": "exposed",
-          "duration_ms": 4000,
-          "params": {
-            "ratio": 0.1
-          },
-          "chance": 1
         }
       ]
     },
@@ -4086,16 +4053,16 @@
       ],
       "level_parameters": {
         "power": [
-          3.6575,
-          3.786806,
-          3.916111,
-          4.045417,
-          4.174722,
-          4.304028,
-          4.433333,
-          4.562639,
-          4.691944,
-          4.82125
+          2.1945,
+          2.272084,
+          2.349667,
+          2.42725,
+          2.504833,
+          2.582417,
+          2.66,
+          2.737583,
+          2.815166,
+          2.89275
         ]
       },
       "presentation_id": "visual_mage_soul_strike",
@@ -4162,19 +4129,8 @@
           "element": "ghost",
           "hit_rule": "always",
           "can_crit": false,
-          "hits": 1,
+          "hits": 2,
           "armor_rule": "normal"
-        },
-        {
-          "id": "awaken_aftereffect",
-          "type": "apply_status",
-          "target": "foe",
-          "status_id": "exposed",
-          "duration_ms": 4000,
-          "params": {
-            "ratio": 0.1
-          },
-          "chance": 1
         }
       ]
     },
@@ -4202,17 +4158,17 @@
           7.408333,
           7.6125
         ],
-        "awaken_potency": [
-          0.03,
-          0.035556,
-          0.041111,
-          0.046667,
-          0.052222,
-          0.057778,
-          0.063333,
-          0.068889,
-          0.074444,
-          0.08
+        "awaken_identity": [
+          0.08,
+          0.088889,
+          0.097778,
+          0.106667,
+          0.115556,
+          0.124444,
+          0.133333,
+          0.142222,
+          0.151111,
+          0.16
         ]
       },
       "presentation_id": "visual_mage_sp_recovery",
@@ -4228,12 +4184,12 @@
           }
         },
         {
-          "id": "awaken_potency",
-          "stat": "magical_attack",
+          "id": "awaken_identity",
+          "stat": "max_sp",
           "op": "add_percent",
           "bucket": "derived",
           "value": {
-            "level_param": "awaken_potency"
+            "level_param": "awaken_identity"
           }
         }
       ],
@@ -4262,6 +4218,18 @@
           2.195019,
           2.257226,
           2.319433
+        ],
+        "awaken_1": [
+          0.12,
+          0.133333,
+          0.146667,
+          0.16,
+          0.173333,
+          0.186667,
+          0.2,
+          0.213333,
+          0.226667,
+          0.24
         ]
       },
       "presentation_id": "visual_wizard_storm_gust",
@@ -4325,13 +4293,15 @@
           "chance": 1
         },
         {
-          "id": "awaken_boon",
+          "id": "awaken_1",
           "type": "apply_status",
           "target": "self",
-          "status_id": "cc_resistance_up",
-          "duration_ms": 5000,
+          "status_id": "awaken_penetration",
+          "duration_ms": 6000,
           "params": {
-            "ratio": 0.1
+            "ratio": {
+              "level_param": "awaken_1"
+            }
           },
           "chance": 1
         }
@@ -4360,6 +4330,18 @@
           3.073027,
           3.160117,
           3.247207
+        ],
+        "awaken_1": [
+          0.12,
+          0.133333,
+          0.146667,
+          0.16,
+          0.173333,
+          0.186667,
+          0.2,
+          0.213333,
+          0.226667,
+          0.24
         ]
       },
       "presentation_id": "visual_wizard_jupitel",
@@ -4410,6 +4392,19 @@
       "start_effects": [],
       "effects": [
         {
+          "id": "awaken_1",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "awaken_penetration",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "awaken_1"
+            }
+          },
+          "chance": 1
+        },
+        {
           "id": "hit",
           "type": "damage",
           "target": "foe",
@@ -4427,18 +4422,10 @@
           "hit_rule": "always",
           "can_crit": false,
           "hits": 4,
-          "armor_rule": "normal"
-        },
-        {
-          "id": "awaken_aftereffect",
-          "type": "apply_status",
-          "target": "foe",
-          "status_id": "exposed",
-          "duration_ms": 4000,
-          "params": {
-            "ratio": 0.1
-          },
-          "chance": 1
+          "armor_rule": "normal",
+          "penetration_bonus": {
+            "level_param": "awaken_1"
+          }
         }
       ]
     },
@@ -4477,6 +4464,18 @@
           2744,
           2822,
           2900
+        ],
+        "awaken_2": [
+          0.12,
+          0.133333,
+          0.146667,
+          0.16,
+          0.173333,
+          0.186667,
+          0.2,
+          0.213333,
+          0.226667,
+          0.24
         ]
       },
       "presentation_id": "visual_wizard_meteor",
@@ -4527,6 +4526,19 @@
       "start_effects": [],
       "effects": [
         {
+          "id": "awaken_2",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "awaken_penetration",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "awaken_2"
+            }
+          },
+          "chance": 1
+        },
+        {
           "id": "hit",
           "type": "damage",
           "target": "foes",
@@ -4544,7 +4556,10 @@
           "hit_rule": "always",
           "can_crit": false,
           "hits": 3,
-          "armor_rule": "normal"
+          "armor_rule": "normal",
+          "penetration_bonus": {
+            "level_param": "awaken_2"
+          }
         },
         {
           "id": "stun",
@@ -4562,17 +4577,6 @@
             "scope": "same_target",
             "hit_index": "any"
           }
-        },
-        {
-          "id": "awaken_aftereffect",
-          "type": "apply_status",
-          "target": "foes",
-          "status_id": "exposed",
-          "duration_ms": 4000,
-          "params": {
-            "ratio": 0.1
-          },
-          "chance": 1
         }
       ]
     },
@@ -4599,6 +4603,18 @@
           0.528306,
           0.543278,
           0.55825
+        ],
+        "awaken_1": [
+          0.08,
+          0.088889,
+          0.097778,
+          0.106667,
+          0.115556,
+          0.124444,
+          0.133333,
+          0.142222,
+          0.151111,
+          0.16
         ]
       },
       "presentation_id": "visual_wizard_quagmire",
@@ -4673,13 +4689,15 @@
           "chance": 1
         },
         {
-          "id": "awaken_boon",
+          "id": "awaken_1",
           "type": "apply_status",
-          "target": "self",
-          "status_id": "cc_resistance_up",
-          "duration_ms": 5000,
+          "target": "foes",
+          "status_id": "exposed",
+          "duration_ms": 6000,
           "params": {
-            "ratio": 0.1
+            "ratio": {
+              "level_param": "awaken_1"
+            }
           },
           "chance": 1
         }
@@ -4708,6 +4726,18 @@
           8.780079,
           9.028907,
           9.277735
+        ],
+        "awaken_1": [
+          0.12,
+          0.133333,
+          0.146667,
+          0.16,
+          0.173333,
+          0.186667,
+          0.2,
+          0.213333,
+          0.226667,
+          0.24
         ]
       },
       "presentation_id": "visual_wizard_heavens_drive",
@@ -4758,6 +4788,19 @@
       "start_effects": [],
       "effects": [
         {
+          "id": "awaken_1",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "awaken_penetration",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "awaken_1"
+            }
+          },
+          "chance": 1
+        },
+        {
           "id": "hit",
           "type": "damage",
           "target": "foes",
@@ -4775,18 +4818,10 @@
           "hit_rule": "always",
           "can_crit": false,
           "hits": 1,
-          "armor_rule": "normal"
-        },
-        {
-          "id": "awaken_aftereffect",
-          "type": "apply_status",
-          "target": "foes",
-          "status_id": "exposed",
-          "duration_ms": 4000,
-          "params": {
-            "ratio": 0.1
-          },
-          "chance": 1
+          "armor_rule": "normal",
+          "penetration_bonus": {
+            "level_param": "awaken_1"
+          }
         }
       ]
     },
@@ -4814,17 +4849,17 @@
           0.493889,
           0.5075
         ],
-        "awaken_potency": [
-          0.03,
-          0.035556,
-          0.041111,
-          0.046667,
-          0.052222,
-          0.057778,
-          0.063333,
-          0.068889,
-          0.074444,
-          0.08
+        "awaken_identity": [
+          0.06,
+          0.066667,
+          0.073333,
+          0.08,
+          0.086667,
+          0.093333,
+          0.1,
+          0.106667,
+          0.113333,
+          0.12
         ]
       },
       "presentation_id": "visual_wizard_amplified_magic",
@@ -4840,12 +4875,12 @@
           }
         },
         {
-          "id": "awaken_potency",
-          "stat": "magical_attack",
-          "op": "add_percent",
-          "bucket": "derived",
+          "id": "awaken_identity",
+          "stat": "skill_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
           "value": {
-            "level_param": "awaken_potency"
+            "level_param": "awaken_identity"
           }
         }
       ],
@@ -4875,17 +4910,17 @@
           0.141111,
           0.145
         ],
-        "awaken_potency": [
-          0.03,
-          0.035556,
-          0.041111,
-          0.046667,
-          0.052222,
-          0.057778,
-          0.063333,
-          0.068889,
-          0.074444,
-          0.08
+        "awaken_identity": [
+          0.06,
+          0.066667,
+          0.073333,
+          0.08,
+          0.086667,
+          0.093333,
+          0.1,
+          0.106667,
+          0.113333,
+          0.12
         ]
       },
       "presentation_id": "visual_wizard_frost_control",
@@ -4901,12 +4936,12 @@
           }
         },
         {
-          "id": "awaken_potency",
-          "stat": "magical_attack",
-          "op": "add_percent",
-          "bucket": "derived",
+          "id": "awaken_identity",
+          "stat": "skill_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
           "value": {
-            "level_param": "awaken_potency"
+            "level_param": "awaken_identity"
           }
         }
       ],
@@ -4935,6 +4970,18 @@
           0.360208,
           0.370417,
           0.380625
+        ],
+        "awaken_1": [
+          0.08,
+          0.088889,
+          0.097778,
+          0.106667,
+          0.115556,
+          0.124444,
+          0.133333,
+          0.142222,
+          0.151111,
+          0.16
         ]
       },
       "presentation_id": "visual_sage_fire_endow",
@@ -5007,13 +5054,15 @@
           "chance": 1
         },
         {
-          "id": "awaken_boon",
+          "id": "awaken_1",
           "type": "apply_status",
           "target": "friends",
-          "status_id": "cc_resistance_up",
-          "duration_ms": 5000,
+          "status_id": "awaken_skill_power",
+          "duration_ms": 6000,
           "params": {
-            "ratio": 0.1
+            "ratio": {
+              "level_param": "awaken_1"
+            }
           },
           "chance": 1
         }
@@ -5054,6 +5103,18 @@
           20.583333,
           21.166667,
           21.75
+        ],
+        "awaken_2": [
+          0.12,
+          0.133333,
+          0.146667,
+          0.16,
+          0.173333,
+          0.186667,
+          0.2,
+          0.213333,
+          0.226667,
+          0.24
         ]
       },
       "presentation_id": "visual_sage_spell_breaker",
@@ -5111,6 +5172,19 @@
           "target": "foe"
         },
         {
+          "id": "awaken_2",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "awaken_penetration",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "awaken_2"
+            }
+          },
+          "chance": 1
+        },
+        {
           "id": "interrupt_hit",
           "type": "damage",
           "target": "foe",
@@ -5133,18 +5207,10 @@
             "type": "effect_succeeded",
             "effect_id": "interrupt",
             "scope": "same_target"
-          }
-        },
-        {
-          "id": "awaken_aftereffect",
-          "type": "apply_status",
-          "target": "foe",
-          "status_id": "exposed",
-          "duration_ms": 4000,
-          "params": {
-            "ratio": 0.1
           },
-          "chance": 1
+          "penetration_bonus": {
+            "level_param": "awaken_2"
+          }
         }
       ]
     },
@@ -5195,6 +5261,18 @@
           5,
           6,
           6
+        ],
+        "awaken_3": [
+          0.08,
+          0.088889,
+          0.097778,
+          0.106667,
+          0.115556,
+          0.124444,
+          0.133333,
+          0.142222,
+          0.151111,
+          0.16
         ]
       },
       "presentation_id": "visual_sage_dispel",
@@ -5260,13 +5338,15 @@
           }
         },
         {
-          "id": "awaken_boon",
+          "id": "awaken_3",
           "type": "apply_status",
-          "target": "self",
-          "status_id": "cc_resistance_up",
-          "duration_ms": 5000,
+          "target": "foes",
+          "status_id": "exposed",
+          "duration_ms": 6000,
           "params": {
-            "ratio": 0.1
+            "ratio": {
+              "level_param": "awaken_3"
+            }
           },
           "chance": 1
         }
@@ -5295,6 +5375,18 @@
           8.19474,
           8.426979,
           8.659219
+        ],
+        "awaken_1": [
+          0.12,
+          0.133333,
+          0.146667,
+          0.16,
+          0.173333,
+          0.186667,
+          0.2,
+          0.213333,
+          0.226667,
+          0.24
         ]
       },
       "presentation_id": "visual_sage_psychic_bolt",
@@ -5345,6 +5437,19 @@
       "start_effects": [],
       "effects": [
         {
+          "id": "awaken_1",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "awaken_penetration",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "awaken_1"
+            }
+          },
+          "chance": 1
+        },
+        {
           "id": "hit",
           "type": "damage",
           "target": "foe",
@@ -5363,18 +5468,10 @@
           "can_crit": true,
           "hits": 1,
           "armor_rule": "normal",
-          "critical_rule": "always"
-        },
-        {
-          "id": "awaken_aftereffect",
-          "type": "apply_status",
-          "target": "foe",
-          "status_id": "exposed",
-          "duration_ms": 4000,
-          "params": {
-            "ratio": 0.1
-          },
-          "chance": 1
+          "critical_rule": "always",
+          "penetration_bonus": {
+            "level_param": "awaken_1"
+          }
         }
       ]
     },
@@ -5413,6 +5510,18 @@
           10978,
           11289,
           11600
+        ],
+        "awaken_2": [
+          0.12,
+          0.133333,
+          0.146667,
+          0.16,
+          0.173333,
+          0.186667,
+          0.2,
+          0.213333,
+          0.226667,
+          0.24
         ]
       },
       "presentation_id": "visual_sage_magic_barrier",
@@ -5439,6 +5548,19 @@
       "start_effects": [],
       "effects": [
         {
+          "id": "awaken_2",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "awaken_penetration",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "awaken_2"
+            }
+          },
+          "chance": 1
+        },
+        {
           "id": "hit",
           "type": "damage",
           "target": "foe",
@@ -5456,7 +5578,10 @@
           "hit_rule": "always",
           "can_crit": false,
           "hits": 1,
-          "armor_rule": "normal"
+          "armor_rule": "normal",
+          "penetration_bonus": {
+            "level_param": "awaken_2"
+          }
         },
         {
           "id": "silence",
@@ -5467,17 +5592,6 @@
             "level_param": "duration"
           },
           "params": {},
-          "chance": 1
-        },
-        {
-          "id": "awaken_aftereffect",
-          "type": "apply_status",
-          "target": "foe",
-          "status_id": "exposed",
-          "duration_ms": 4000,
-          "params": {
-            "ratio": 0.1
-          },
           "chance": 1
         }
       ]
@@ -5506,29 +5620,29 @@
           1.975556,
           2.03
         ],
-        "awaken_potency": [
-          0.03,
-          0.035556,
-          0.041111,
-          0.046667,
-          0.052222,
-          0.057778,
-          0.063333,
-          0.068889,
-          0.074444,
-          0.08
+        "awaken_identity": [
+          0.08,
+          0.088889,
+          0.097778,
+          0.106667,
+          0.115556,
+          0.124444,
+          0.133333,
+          0.142222,
+          0.151111,
+          0.16
         ]
       },
       "presentation_id": "visual_sage_auto_bolt",
       "kind": "passive",
       "modifiers": [
         {
-          "id": "awaken_potency",
-          "stat": "magical_attack",
-          "op": "add_percent",
-          "bucket": "derived",
+          "id": "awaken_identity",
+          "stat": "penetration_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
           "value": {
-            "level_param": "awaken_potency"
+            "level_param": "awaken_identity"
           }
         }
       ],
@@ -5593,17 +5707,17 @@
           0.169333,
           0.174
         ],
-        "awaken_potency": [
-          0.03,
-          0.035556,
-          0.041111,
-          0.046667,
-          0.052222,
-          0.057778,
-          0.063333,
-          0.068889,
-          0.074444,
-          0.08
+        "awaken_identity": [
+          0.06,
+          0.066667,
+          0.073333,
+          0.08,
+          0.086667,
+          0.093333,
+          0.1,
+          0.106667,
+          0.113333,
+          0.12
         ]
       },
       "presentation_id": "visual_sage_wisdom",
@@ -5619,12 +5733,12 @@
           }
         },
         {
-          "id": "awaken_potency",
-          "stat": "magical_attack",
-          "op": "add_percent",
-          "bucket": "derived",
+          "id": "awaken_identity",
+          "stat": "skill_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
           "value": {
-            "level_param": "awaken_potency"
+            "level_param": "awaken_identity"
           }
         }
       ],
@@ -5665,6 +5779,18 @@
           0.548889,
           0.564444,
           0.58
+        ],
+        "awaken_1": [
+          0.12,
+          0.133333,
+          0.146667,
+          0.16,
+          0.173333,
+          0.186667,
+          0.2,
+          0.213333,
+          0.226667,
+          0.24
         ]
       },
       "presentation_id": "visual_high_wizard_mystical_amplification",
@@ -5720,13 +5846,15 @@
           "chance": 1
         },
         {
-          "id": "awaken_boon",
+          "id": "awaken_1",
           "type": "apply_status",
           "target": "self",
-          "status_id": "cc_resistance_up",
-          "duration_ms": 5000,
+          "status_id": "awaken_penetration",
+          "duration_ms": 6000,
           "params": {
-            "ratio": 0.1
+            "ratio": {
+              "level_param": "awaken_1"
+            }
           },
           "chance": 1
         }
@@ -5825,19 +5953,8 @@
           "element": "ghost",
           "hit_rule": "always",
           "can_crit": false,
-          "hits": 5,
+          "hits": 6,
           "armor_rule": "normal"
-        },
-        {
-          "id": "awaken_aftereffect",
-          "type": "apply_status",
-          "target": "foes",
-          "status_id": "exposed",
-          "duration_ms": 4000,
-          "params": {
-            "ratio": 0.1
-          },
-          "chance": 1
         }
       ]
     },
@@ -5888,6 +6005,18 @@
           0.6175,
           0.635,
           0.6525
+        ],
+        "awaken_2": [
+          0.12,
+          0.133333,
+          0.146667,
+          0.16,
+          0.173333,
+          0.186667,
+          0.2,
+          0.213333,
+          0.226667,
+          0.24
         ]
       },
       "presentation_id": "visual_professor_double_casting",
@@ -5946,13 +6075,15 @@
           "chance": 1
         },
         {
-          "id": "awaken_boon",
+          "id": "awaken_2",
           "type": "apply_status",
           "target": "self",
-          "status_id": "cc_resistance_up",
-          "duration_ms": 5000,
+          "status_id": "awaken_penetration",
+          "duration_ms": 6000,
           "params": {
-            "ratio": 0.1
+            "ratio": {
+              "level_param": "awaken_2"
+            }
           },
           "chance": 1
         }
@@ -6005,6 +6136,18 @@
           0.411667,
           0.423333,
           0.435
+        ],
+        "awaken_sp": [
+          20,
+          22,
+          24,
+          27,
+          29,
+          31,
+          33,
+          36,
+          38,
+          40
         ]
       },
       "presentation_id": "visual_professor_soul_change",
@@ -6069,15 +6212,13 @@
           "chance": 1
         },
         {
-          "id": "awaken_boon",
-          "type": "apply_status",
+          "id": "awaken_sp",
+          "type": "resource_change",
           "target": "friends",
-          "status_id": "cc_resistance_up",
-          "duration_ms": 5000,
-          "params": {
-            "ratio": 0.1
-          },
-          "chance": 1
+          "resource": "sp",
+          "amount": {
+            "level_param": "awaken_sp"
+          }
         }
       ]
     }

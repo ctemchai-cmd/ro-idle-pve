@@ -304,3 +304,7 @@ D146เพิ่มเติม:ผู้ใช้ยืนยันกาชา
 | D-157 |23ต.ค.2026|ผู้ใช้ยืนยันBard/Dancerเป็นinstant+HoT ส่วนSanctuaryเป็นPureHoTที่แรงกว่าและเริ่มต่อเนื่องทันที;TASK127/design47ใช้statusเฉพาะ/ไม่มีopeningheal/105–175%MATKทุก1s6ticksเป็นassistantbaseline คงเพลงเดิม |
 
 | D-158 |24ต.ค.2026|ผู้ใช้ขอบัพHunter/Spiral Volleyเพราะสู้บอสเดี่ยวเป็นหลัก;TASK128เพิ่มเฉพาะสามdamage skillsและAwakenที่ต่อยอด ไม่ใช้globalAoE penalty;750%/1050%เป็นassistantbaselineรอผู้ใช้เล่นจริง|
+
+| D-159 |24ต.ค.2026|ผู้ใช้ขอ controlled balance simulation เปรียบเทียบทุกอาชีพ หลายบิลด์ ของLv1/20/40/60 และHi-class กับบอสเดียวกัน;TASK129วัด actual engine/total DPS/skill damage/normal/support แยกเงื่อนไขและseedคัดเลือก-ตรวจผล อนุญาตรัน audit ครั้งนี้ ไม่ปรับเกมอัตโนมัติและไม่ปิดTASK041ทั้งหมด|
+
+| D-160 |24ต.ค.2026|ผู้ใช้ขอปรับAwakenที่ส่วนใหญ่เติมต้านสถานะ10%ให้ได้ผลเฉพาะสกิลชัดเจน เช่น ลด/เจาะเกราะ ดาเมจสกิล คริเรท/คริดาเมจ multiple hit;TASK130เปลี่ยนโบนัสแบบเหมารวมและรักษาตัวตนท่าdefense/heal/base/ราคา/ทุน/คิวเดิม เก็บผลTASK129เป็นก่อนปรับ ไม่อ้างผลเก่าว่าเป็นผลแพตช์ใหม่|
