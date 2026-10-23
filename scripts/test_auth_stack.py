@@ -24,7 +24,7 @@ ROOT = Path(__file__).resolve().parents[1]
 RUN_TAG = os.environ.get("RO_EVIDENCE_PREFIX", "task-021")
 if not re.fullmatch(r"task-[0-9]{3}",RUN_TAG): raise SystemExit("INVALID_EVIDENCE_PREFIX")
 FOCUS = os.environ.get("RO_LOCAL_TEST_FOCUS", "all")
-if FOCUS not in ("all", "auth", "equip_upgrades", "skill_catalog", "hi_chapters_preview", "story_expansion", "early_loot", "tier_rotation", "navigation", "daily_terminal", "statuses", "history", "healing", "cards", "elements", "impact", "skill_descriptions", "card_frames", "card_rarity", "equipment", "slots", "growth", "shell", "compact", "cadence", "settlement", "daily_reset", "save_latency", "save_timeout", "migration_pending", "reward_slot_economy", "native_icons", "job_emblems", "modern_skill_icons", "modern_all", "skill_growth_monsters", "difficulty_refine15", "paladin_softening", "save_slots", "mobile_performance"): raise SystemExit("INVALID_TEST_FOCUS")
+if FOCUS not in ("all", "auth", "sanctuary", "equip_upgrades", "skill_catalog", "hi_chapters_preview", "story_expansion", "early_loot", "tier_rotation", "navigation", "daily_terminal", "statuses", "history", "healing", "cards", "elements", "impact", "skill_descriptions", "card_frames", "card_rarity", "equipment", "slots", "growth", "shell", "compact", "cadence", "settlement", "daily_reset", "save_latency", "save_timeout", "migration_pending", "reward_slot_economy", "native_icons", "job_emblems", "modern_skill_icons", "modern_all", "skill_growth_monsters", "difficulty_refine15", "paladin_softening", "save_slots", "mobile_performance"): raise SystemExit("INVALID_TEST_FOCUS")
 TOOLS = Path(os.environ.get("RO_AUTH_TOOLS", "/private/tmp/ro-idle-auth-tools"))
 PG = Path(os.environ.get("RO_PG_BIN") or subprocess.check_output(["pg_config", "--bindir"], text=True).strip())
 NODE = os.environ.get("RO_NODE", "node")
@@ -219,6 +219,10 @@ with tempfile.TemporaryDirectory(prefix="ro-auth21-", dir="/private/tmp") as fol
             cards = run([NODE,ROOT/"scripts/test_cards_equipment_live.cjs"],environment)
             (ROOT/("plan/evidence/"+RUN_TAG+"-cards-ui.txt")).write_text(cards)
             report["checks"].append("Actual mobile RO card farm/receipt replay/assignment/reload and option/weapon-family UI passed")
+        if FOCUS == "sanctuary":
+            result = run([NODE,ROOT/"scripts/test_sanctuary_live.cjs"],environment)
+            (ROOT/("plan/evidence/"+RUN_TAG+"-sanctuary.txt")).write_text(result)
+            report["checks"].append("Actual Sanctuary immediate pure HoT, preserved song opening, status, rings and mobile passed")
         if FOCUS == "healing":
             healing = run([NODE,ROOT/"scripts/test_healing_ui_live.cjs"],environment)
             (ROOT/("plan/evidence/"+RUN_TAG+"-healing.txt")).write_text(healing)

@@ -618,3 +618,9 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T126-AC-02` [TASK-126](done/tasks_126.md) | batch equipment | คลิกเดียวเปลี่ยนเฉพาะช่องที่มีhintของตัวที่เลือก;หนึ่งatomiccommand/receipt/revision/optimisticpreview,ไม่แตะNPCอื่น/inventorypayload/ทุน/Refine/Enchant/cards และไม่ทำของหาย | ผ่าน localmobile/onecommand/reconnect/reload/hosted |
 | `T126-AC-03` [TASK-126](done/tasks_126.md) | batch equipment | ไม่มีของ/actorหาย/inbattle/เกินlevel/อาวุธผิด/duplicate request/CASconflict/response lossมีผลที่ชัด;fullbagยังใส่ได้เพราะไม่เพิ่มinventory;ไม่มีpartialset | ผ่าน localmobile/onecommand/reconnect/reload/hosted |
 | `T126-AC-04` [TASK-126](done/tasks_126.md) | batch equipment | ปุ่มmobile320390อ่านง่าย/ไม่ล้น/หายแจ้งเตือนเมื่อใส่แล้ว;targeted/build/boundaries/readiness/realAuth-SQL-mobile+hostedผ่านก่อนdone | ผ่าน localmobile/onecommand/reconnect/reload/hosted |
+
+| `T127-AC-01` [TASK-127](review/tasks_127.md) | Sanctuary PureHoT | Sanctuaryมีเพียงapply_status ไม่มีopening_heal;เริ่มติ๊กที่cast_resolveแล้วทุก1sรวม6ครั้ง,105→175%MATKและทุกrankแรงกว่าเพลงHoTที่powerเท่ากัน;Bard/Dancer/genericregen125สกิลเดิมไม่เปลี่ยน | ยังไม่ตรวจ |
+
+| `T127-AC-02` [TASK-127](review/tasks_127.md) | Sanctuary PureHoT | sharedengine/โบนัสฮีล/independentstack/interruptไม่มีฮีลหรือคืนSP/expiry/1x2x4/checkpointตรงกัน;ไม่เปลี่ยนคิวCTACDหรือสูตรฮีล | ยังไม่ตรวจ |
+
+| `T127-AC-03` [TASK-127](review/tasks_127.md) | Sanctuary PureHoT | รายละเอียดทุกrankแสดงMATK/ทุก1s/6s/เริ่มทันทีและวงฮีลตามstatusจริง;targeted/build/M0/realAuthAPI-SQL-mobile320390/hostedผ่านก่อนdone | ยังไม่ตรวจ |

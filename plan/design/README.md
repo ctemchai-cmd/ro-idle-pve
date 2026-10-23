@@ -66,3 +66,5 @@
 - [45 Hi-class runtime contracts](45-hi-class-implementation.md) — D154/TASK121:สายอาชีพ/สืบทอด/เลื่อนเก็บบิลด์/Awakenตั้งแต่Hi-classและรายการก่อนเปิดจริง
 
 - [46 ใส่ของที่ดีกว่ารวดเดียว](46-equip-upgrades.md) — D156/TASK126;sharedhint/atomicbatch/onewrite
+
+- [47-sanctuary-hot.md](47-sanctuary-hot.md): Sanctuary Pure HoT เริ่มทันทีและแรงกว่าเพลงเฉพาะส่วนHoT.

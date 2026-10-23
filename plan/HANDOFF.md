@@ -6,6 +6,12 @@
 
 
 
+## 23 ต.ค.2026 · Codex — TASK127 Sanctuary localผ่าน/รอhosted;Hi-classยังต่อ123–125
+
+- UserD157แก้ชัด:Bard/Dancerinstant+HoT,SanctuaryPureHoTต้องแรงกว่า. Dedicatedsanctuary_regeneration tick_on_apply true/105→175%MATK/1s×6เริ่มresolve ไม่มีopeningheal. Sharedengineรองรับเดิม ไม่แก้engineหรือเพลง/genericregen/CTACD/SP/targets. Newrankcurveassistantbaseline;125skillprogramsunchanged/sourceaudit. Detailsเริ่มทันที/nativeexistinghealauraรองรับอัตโนมัติ.
+-21targeted/full604(600passed4oldoracle)/60focusedfinalpassed:count30;historicalClass2sourceprojectsเฉพาะoldSanctuaryfixtureโดยคงrawformat7.0;supportsupersededD157goldens;newtestguardsallotherSanctuaryfields. Fullfailedreportเก็บแยก. Golden3changed375same. ActualfreshAuth/API/SQL/mobile3903204groupspassed Sanctuary24heals/4actors at3677+0..5s/zeroopening;BardDanceropening4+ticks20 eachunchanged;statusMATK/ringexpiry/staticmotion/0midfightwrites. Viewed390. Build588457gzip/contente1319aef2e78ea05edbd8fd39721905d971b1526f9aa8f6824c63eda3b6582c5/packunchanged32021698. Localreadiness8passed.
+- Noownercloud/6173restart/SQL/env/balancebatch/subagents. Actualharnessended;safe source/build now. Nextfilteredbuildcompletion→narrowstage/commit/push→VercelSUCCESS→scripts/test_sanctuary_hosted.cjs publicpreviewread-only→127done110/127/M4done68/77/docsclosure. **Hi-classobjectivepersists**:TASK12326skills/assets→124Awaken/shards→125release. Do not sayHi/Awakencomplete;stillflagfalse/cap70.
+
 ## 23 ต.ค.2026 · Codex — TASK126 done / ปุ่มใส่ของรวดเดียวขึ้นVercel / กลับต่อHi-class
 
 - SOURCE76723725ae8190d8c4b2cbad9994f0f973ac9001 VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/AiKQ8BDGThi5juKKaoZg3jfPw8TG. Public4groups API200SIN1/newcontent069c7957d7e28901a91a446723fb0159cc93353bf009369262288c935b114802/owner401/24bundleSHA/newbutton+atomiccommand/sharedTimeline390320/0writesผ่าน. Packเดิม20b7130381af741049db6993ac2af2cb8ad90ab8a28c6c264139d5438c276867/32021698B. Actual authenticatedUI proved disposablelocal,notownercloud. NoSQL/env/privateenv/6173restart/balancebatch/subagents.

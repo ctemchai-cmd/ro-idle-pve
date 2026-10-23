@@ -30,7 +30,7 @@
     "plan/checks/composition.py": "2fd6e3f537d1939fbff20fe6e593f35f6a64e5f50b2d827bed499b49f75efd6a",
     "plan/design/15-combat-baseline.md": "3fc95fe2465fa149dbd311df8f95fdf2fd5f82c83a4c6ae9c128352fca9fd63c",
     "plan/design/16-composition-baseline.md": "b620a6b7970e6020cf37cd99dd89d1846fe62bcf4c0784cf189a89bd38c443ed",
-    "plan/data/class-status-effects.json": "32342f1c326844ed01f012948827d711e47262067cd5ffd25ce6c1ea6a430c95"
+    "plan/data/class-status-effects.json": "20eae456fbe0cba54d7648364f21aeb1c49ccbafbd6d03202c6a192480a1e08c"
   },
   "checks": [
     {
@@ -517,6 +517,19 @@
     },
     {
       "case_id": "status_physical_regeneration",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {
+          "power_ratio": 0
+        }
+      }
+    },
+    {
+      "case_id": "status_sanctuary_regeneration",
       "acceptance": [
         "AC-01",
         "AC-02"
@@ -1191,7 +1204,7 @@
       }
     }
   ],
-  "total": 106,
+  "total": 107,
   "passed": true,
   "manual_review": [
     {

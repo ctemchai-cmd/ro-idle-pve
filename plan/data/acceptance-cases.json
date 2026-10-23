@@ -13789,6 +13789,61 @@
       "evidence_refs": [
         "plan/evidence/task-126-review.json"
       ]
+    },
+    {
+      "id": "T127-AC-01",
+      "task_id": "TASK-127",
+      "acceptance_id": "AC-01",
+      "criterion": "Sanctuaryมีเพียงapply_status ไม่มีopening_heal;เริ่มติ๊กที่cast_resolveแล้วทุก1sรวม6ครั้ง,105→175%MATKและทุกrankแรงกว่าเพลงHoTที่powerเท่ากัน;Bard/Dancer/genericregen125สกิลเดิมไม่เปลี่ยน",
+      "input_setup": "Disposable matched1000MATK/PATK Priest/Bard/Dancer rank1–10, injuredallies, singlecast6000ms and sharedengine chunks/checkpoint/interrupt",
+      "input_refs": [
+        "plan/design/47-sanctuary-hot.md"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "Sanctuaryมีเพียงapply_status ไม่มีopening_heal;เริ่มติ๊กที่cast_resolveแล้วทุก1sรวม6ครั้ง,105→175%MATKและทุกrankแรงกว่าเพลงHoTที่powerเท่ากัน;Bard/Dancer/genericregen125สกิลเดิมไม่เปลี่ยน",
+      "verification": "Targeted sharedengine/golden/realAuth-SQL-mobile/hosted",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-127-review.json"
+      ]
+    },
+    {
+      "id": "T127-AC-02",
+      "task_id": "TASK-127",
+      "acceptance_id": "AC-02",
+      "criterion": "sharedengine/โบนัสฮีล/independentstack/interruptไม่มีฮีลหรือคืนSP/expiry/1x2x4/checkpointตรงกัน;ไม่เปลี่ยนคิวCTACDหรือสูตรฮีล",
+      "input_setup": "Disposable matched1000MATK/PATK Priest/Bard/Dancer rank1–10, injuredallies, singlecast6000ms and sharedengine chunks/checkpoint/interrupt",
+      "input_refs": [
+        "plan/design/47-sanctuary-hot.md"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "sharedengine/โบนัสฮีล/independentstack/interruptไม่มีฮีลหรือคืนSP/expiry/1x2x4/checkpointตรงกัน;ไม่เปลี่ยนคิวCTACDหรือสูตรฮีล",
+      "verification": "Targeted sharedengine/golden/realAuth-SQL-mobile/hosted",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-127-review.json"
+      ]
+    },
+    {
+      "id": "T127-AC-03",
+      "task_id": "TASK-127",
+      "acceptance_id": "AC-03",
+      "criterion": "รายละเอียดทุกrankแสดงMATK/ทุก1s/6s/เริ่มทันทีและวงฮีลตามstatusจริง;targeted/build/M0/realAuthAPI-SQL-mobile320390/hostedผ่านก่อนdone",
+      "input_setup": "Disposable matched1000MATK/PATK Priest/Bard/Dancer rank1–10, injuredallies, singlecast6000ms and sharedengine chunks/checkpoint/interrupt",
+      "input_refs": [
+        "plan/design/47-sanctuary-hot.md"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "รายละเอียดทุกrankแสดงMATK/ทุก1s/6s/เริ่มทันทีและวงฮีลตามstatusจริง;targeted/build/M0/realAuthAPI-SQL-mobile320390/hostedผ่านก่อนdone",
+      "verification": "Targeted sharedengine/golden/realAuth-SQL-mobile/hosted",
+      "status": "not_run_implementation",
+      "evidence_refs": []
     }
   ]
 }

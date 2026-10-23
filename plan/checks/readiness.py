@@ -1,5 +1,6 @@
 """TASK-014 design gate. Does not run or certify the future game/DB/renderer."""
 from pathlib import Path
+from functools import lru_cache
 import json,re,hashlib,math
 from urllib.parse import unquote
 import composition as c
@@ -34,7 +35,8 @@ def graph():
   for d in tasks[n]['deps']:assert d in tasks;visit(d)
   visiting.remove(n);done.add(n)
  for n in tasks:visit(n)
- def ancestors(n):return set(tasks[n]['deps']).union(*(ancestors(d) for d in tasks[n]['deps']))
+ @lru_cache(maxsize=None)
+ def ancestors(n):return frozenset(tasks[n]['deps']).union(*(ancestors(d) for d in tasks[n]['deps']))
  implementation=[n for n in tasks if n>=15 and n!=47]
  for n in implementation:assert 14 in ancestors(n),n
  return {'task_count':len(tasks),'cycles':0,'all_implementation_tasks_wait_for_014':True,'added_after_m0':[n for n in tasks if n>47]}

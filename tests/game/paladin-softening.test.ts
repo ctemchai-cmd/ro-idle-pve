@@ -5,6 +5,7 @@ import {createHash} from 'node:crypto';
 import {content} from './combat-fixtures.ts';
 import {storyStages} from '../../src/domain/modes/story.ts';
 import {towerRow} from '../../src/domain/modes/tower.ts';
+import {legacyClass2Source} from './legacy-class2-source.ts';
 const read=(p:string)=>JSON.parse(readFileSync(p,'utf8'));
 const hash=(b:Buffer)=>createHash('sha256').update(b).digest('hex');
 const stable=(v:unknown):unknown=>Array.isArray(v)?v.map(stable):v&&typeof v==='object'?Object.fromEntries(Object.keys(v).sort().map(k=>[k,stable((v as Record<string,unknown>)[k])])):v;
@@ -18,7 +19,7 @@ test('D142 all7Paladin mappings are exact source bytes in exported metadata andr
   assert.equal(mapping.find((r:{target:string})=>r.target===id).path,path);assert.equal(meta.source.local_path,path);assert.equal(meta.file.sha256,hash(source));assert.deepEqual(readFileSync('assets/ro/'+meta.file.path),source);assert.equal(meta.visual_review.status,'reviewed_static');
   const asset=pack.assets[pack.presentations[pack.skills[id].presentation_id].icon_asset_id],file=pack.files.find((f:{path:string})=>f.path===asset.media_path);assert.equal(file.sha256,hash(source));
  }
- for(const[p,digest]of Object.entries(before.all_player_skill_documents_sha256))assert.equal(sha(read('plan/data/'+p)),digest,p);
+ for(const[p,digest]of Object.entries(before.all_player_skill_documents_sha256))assert.equal(sha(JSON.parse(legacyClass2Source(p).toString())),digest,p);
 });
 test('D142 original130StoryHP/physical/heavy power is no higher thanTASK109 andpreserves all encounter fields/rewards/control',()=>{
  const rows=storyStages(content).filter(s=>s.chapter<=8);

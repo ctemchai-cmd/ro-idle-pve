@@ -49,9 +49,10 @@ export function effectDescriptions(effects: readonly Effect[], resolved_skills?:
    else if(f.id==='sp_burst_power')text=`พลังโจมตี ${percent(f.params.attack_ratio)} ATK + ${percent(f.params.sp_ratio)} SP`;
    else text='ผลต่อเนื่องตามพลังของสกิล';
   }else if(effect.type==='apply_status'){const ratio=effect.params.ratio;text=(statusNames[effect.status_id]??effect.status_id)+(typeof ratio==='number'?' '+percent(ratio):'');
-   const status=content.statuses[effect.status_id] as unknown as {periodic?:{interval_ms:number;effects:{type:string;formula?:{id:string}}[]}|null},tick=status?.periodic?.effects.find(e=>e.type==='heal'||e.type==='damage');
+   const status=content.statuses[effect.status_id] as unknown as {periodic?:{interval_ms:number;tick_on_apply:boolean;effects:{type:string;formula?:{id:string}}[]}|null},tick=status?.periodic?.effects.find(e=>e.type==='heal'||e.type==='damage');
    if(tick&&typeof effect.params.power_ratio==='number')text+=` ${percent(effect.params.power_ratio)} ${tick.formula?.id==='physical_power'?'P.ATK':'MATK'} ทุก ${number(status.periodic!.interval_ms/1000)}s`;
    text+=' · '+number(Number(effect.duration_ms)/1000)+'s';
+   if(tick&&status.periodic?.tick_on_apply)text+=' · เริ่มทันที';
    if(Number(effect.chance)<1)text+=` · โอกาส ${percent(effect.chance)}`;
    if(effect.status_id==='provoke'&&!compact)text+=' · บังคับตีปกติและสกิลเลือกเป้าเดี่ยวให้หันมาหาผู้ยั่วยุที่ยังมีชีวิต; ท่าหมู่และสุ่มเป้าไม่ถูกบังคับ';}
   else if(effect.type==='interrupt')text='ขัดการร่ายของเป้าหมาย';

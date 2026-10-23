@@ -1,0 +1,86 @@
+{
+  "id": "priest_sanctuary",
+  "name_key": "priest_sanctuary",
+  "class_id": "priest",
+  "max_level": 10,
+  "unlock_level": 20,
+  "tags": [
+    "priest",
+    "sanctuary"
+  ],
+  "level_parameters": {
+    "power": [
+      0.2625,
+      0.287777,
+      0.313056,
+      0.338333,
+      0.363611,
+      0.388889,
+      0.414167,
+      0.439444,
+      0.464723,
+      0.49
+    ]
+  },
+  "presentation_id": "visual_priest_sanctuary",
+  "kind": "active",
+  "cost": {
+    "sp": 40,
+    "spirit_spheres": 0
+  },
+  "timing": {
+    "cast_ms": 900,
+    "after_cast_ms": 1000,
+    "interruptible": true
+  },
+  "selectors": {
+    "foe": {
+      "team": "enemies",
+      "life": "living",
+      "select": "front_first",
+      "count": null,
+      "phase": "cast_resolve",
+      "missing": "skip"
+    },
+    "foes": {
+      "team": "enemies",
+      "life": "living",
+      "select": "all",
+      "count": null,
+      "phase": "cast_resolve",
+      "missing": "skip"
+    },
+    "friend": {
+      "team": "allies",
+      "life": "living",
+      "select": "lowest_hp_percent",
+      "count": null,
+      "phase": "cast_resolve",
+      "missing": "skip"
+    },
+    "friends": {
+      "team": "allies",
+      "life": "living",
+      "select": "all",
+      "count": null,
+      "phase": "cast_resolve",
+      "missing": "skip"
+    }
+  },
+  "start_effects": [],
+  "effects": [
+    {
+      "id": "regeneration",
+      "type": "apply_status",
+      "target": "friends",
+      "status_id": "regeneration",
+      "duration_ms": 6000,
+      "params": {
+        "power_ratio": {
+          "level_param": "power"
+        }
+      },
+      "chance": 1
+    }
+  ]
+}

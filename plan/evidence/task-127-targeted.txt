@@ -1,0 +1,29 @@
+✔ Bard/Dancer have identical physical Healing Song at all levels and six golden references still match (6.641125ms)
+✔ Healing Song uses P.ATK independent of MATK/armor/crit/damage bonuses; Sanctuary remains MATK (16.19425ms)
+✔ existing outgoing/received-heal bonuses and two independent song sources still apply (23.812333ms)
+✔ song heals the whole party at resolve before five later ticks; interrupted casts do neither (8.124458ms)
+✔ aura follows live status expiry/dispel and recipient death; caster death preserves the existing HoT policy (12.389208ms)
+✔ skill descriptions name P.ATK and aura geometry is deterministic/game-time-only (4.4075ms)
+✔ all Sanctuary ranks are pure HoT with twice the song tick coefficient and independently authored goldens (28.227958ms)
+✔ six equal MATK ticks begin exactly at cast resolve, then each second, with no expiry or burst heal (6.394125ms)
+✔ incoming/outgoing heal bonuses and independent caster stacks apply equally to the immediate and later ticks (3.211459ms)
+✔ interrupting Sanctuary spends SP but creates no HoT or immediate heal (1.891ms)
+✔ 1x/2x/4x chunks and a serialized mid-HoT checkpoint produce identical events, RNG and state (16.776917ms)
+✔ T030 AC-01: all 19 tree skills match the 57 M0 golden cases (heal/shield/periodic ticks/revive/sphere costs/triggers) (11.40975ms)
+✔ T030 AC-01: every Active executes every effect at every level 1-10 (heal, buffs, HoT ticks, shield, revive, spheres, Asura) (833.258792ms)
+✔ T030 AC-01: every Passive changes stats or procs at every level 1-10 (Spirit Combo grants spheres on normal hits) (30.2355ms)
+✔ T030 AC-01: Priest/Monk skill pages offer only learnable root+branch skills, each with effect text and a pack visual (49.885166ms)
+✔ T030 AC-02: Heal still casts on a full-HP party in queue order, spends SP and books everything as overheal (3.6515ms)
+✔ T030 AC-02: Monk spheres never exceed 5, Asura spends all current SP + 5 spheres, and an interrupted Asura refunds nothing (1162.479959ms)
+✔ T030 AC-02: Steel Body Lv10 trades 30% attack speed for 70% guard (D-104) and pulls enemies onto the Monk (759.643125ms)
+✔ T030 AC-03: dry catalog trace of all four builds reproduces the M0 queue estimate (permanent Passives only) (1003.838416ms)
+✔ T030 AC-03: the full fight uses real effects - Asura spends the live SP pool, Spirit Combo refills spheres, Steel Body slow stretches the dry rotation (970.297375ms)
+✔ T030 AC-04: same seed/build gives identical state/events/heal-SP-sphere metrics in server, client session and runner; ticks keep their parent cast (1250.233958ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7759.801041

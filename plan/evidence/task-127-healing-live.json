@@ -1,0 +1,165 @@
+{
+  "task_id": "TASK-127",
+  "passed": true,
+  "error": null,
+  "errors": [],
+  "checks": [
+    "Real Bard/Dancer HoT status produces exactly one drawn green aura per living recipient, with P.ATK in actual status details",
+    "Actual renderer draws HoT with motion disabled; no separate combat or animation timer",
+    "After actual status expiry all four still-living recipients lose their rings before the next song rotation",
+    "Mobile320px no overflow; aura/status inspection adds no command or mid-fight save"
+  ],
+  "measurements": {
+    "active": {
+      "time": 3716,
+      "motion": true,
+      "expected": [
+        "main",
+        "npc_acolyte",
+        "npc_archer",
+        "npc_swordsman"
+      ],
+      "drawn": [
+        "main",
+        "npc_acolyte",
+        "npc_archer",
+        "npc_swordsman"
+      ],
+      "alive": 4,
+      "statuses": [
+        {
+          "id": "main",
+          "ids": [
+            "physical_regeneration",
+            "physical_regeneration",
+            "sanctuary_regeneration"
+          ]
+        },
+        {
+          "id": "npc_acolyte",
+          "ids": [
+            "physical_regeneration",
+            "physical_regeneration",
+            "sanctuary_regeneration"
+          ]
+        },
+        {
+          "id": "npc_archer",
+          "ids": [
+            "physical_regeneration",
+            "physical_regeneration",
+            "sanctuary_regeneration"
+          ]
+        },
+        {
+          "id": "npc_swordsman",
+          "ids": [
+            "physical_regeneration",
+            "physical_regeneration",
+            "sanctuary_regeneration"
+          ]
+        }
+      ]
+    },
+    "expired": {
+      "time": 10049,
+      "motion": false,
+      "expected": [],
+      "drawn": [],
+      "alive": 4,
+      "statuses": [
+        {
+          "id": "main",
+          "ids": [
+            "aspd_up",
+            "attack_up",
+            "crit_up",
+            "crit_damage_up"
+          ]
+        },
+        {
+          "id": "npc_acolyte",
+          "ids": [
+            "aspd_up",
+            "attack_up",
+            "crit_up",
+            "crit_damage_up"
+          ]
+        },
+        {
+          "id": "npc_archer",
+          "ids": [
+            "aspd_up",
+            "attack_up",
+            "crit_up",
+            "crit_damage_up"
+          ]
+        },
+        {
+          "id": "npc_swordsman",
+          "ids": [
+            "aspd_up",
+            "attack_up",
+            "crit_up",
+            "crit_damage_up"
+          ]
+        }
+      ]
+    },
+    "song_events": {
+      "bard_healing_song": {
+        "resolve_ms": 3476,
+        "opening_events": 4,
+        "opening_effective_heal": 21,
+        "tick_events": 20,
+        "tick_times": [
+          4476,
+          5476,
+          6476,
+          7476,
+          8476
+        ]
+      },
+      "dancer_healing_song": {
+        "resolve_ms": 3476,
+        "opening_events": 4,
+        "opening_effective_heal": 0,
+        "tick_events": 20,
+        "tick_times": [
+          4476,
+          5476,
+          6476,
+          7476,
+          8476
+        ]
+      }
+    },
+    "sanctuary": {
+      "resolve_ms": 3677,
+      "tick_times": [
+        3677,
+        4677,
+        5677,
+        6677,
+        7677,
+        8677
+      ],
+      "heal_events": 24,
+      "opening_heals": 0
+    },
+    "frames_checked": 749,
+    "commands_before_retreat": [
+      "account.create",
+      "battle.start_daily"
+    ]
+  },
+  "commands": [
+    "account.create",
+    "battle.start_daily",
+    "battle.retreat"
+  ],
+  "owner_cloud_writes": false,
+  "personal_preview_restarted": false,
+  "balance_simulation": false,
+  "scope": "Actual isolated Auth/PostgREST/Postgres/mobileChrome. Immediate Sanctuary six equal HoT ticks per ally; preserved song opening+five ticks; status power, aura expiry, reduced motion,320390; no owner/balance batch."
+}

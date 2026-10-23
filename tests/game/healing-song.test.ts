@@ -45,7 +45,7 @@ test('Healing Song uses P.ATK independent of MATK/armor/crit/damage bonuses; San
     const result = step(scenario([input]), 8300), ticks = heals(result, id); assert.equal(ticks.length, 5); assert.ok(ticks.every(e => e.amount === 875));
     assert.deepEqual(ticks.map(e => e.at_ms), [3300, 4300, 5300, 6300, 7300]);
   }
-  const result = step(scenario([caster('healer', 'priest_sanctuary', 10000, 100)]), 8400); assert.equal(heals(result, 'priest_sanctuary').length, 5); assert.ok(heals(result, 'priest_sanctuary').every(e => e.amount === 49));
+  const result = step(scenario([caster('healer', 'priest_sanctuary', 10000, 100)]), 8400); assert.equal(heals(result, 'priest_sanctuary').length, 6); assert.ok(heals(result, 'priest_sanctuary').every(e => e.amount === 175));
 });
 
 test('existing outgoing/received-heal bonuses and two independent song sources still apply', () => {
