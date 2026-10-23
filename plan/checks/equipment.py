@@ -45,7 +45,7 @@ def fusion_negative():
  return {'valid':'3 Common sword tier20 → Uncommon sword tier20','rejected_mismatches':invalid,'atomic_failure':'no inventory/wallet mutation'}
 check('fusion_validation',['AC-02','AC-04'],fusion_negative)
 def slot_owner():
- assert slots['owner_key']==['character_id','equipment_slot'];assert slots['refine']['max']==10;assert slots['cards']['capacity_by_refine']==[{'minimum_refine':0,'slots':1},{'minimum_refine':5,'slots':2},{'minimum_refine':10,'slots':3}]
+ assert slots['owner_key']==['character_id','equipment_slot'];assert slots['refine']['max']==15;assert slots['cards']['capacity_by_refine']==[{'minimum_refine':0,'slots':0},{'minimum_refine':5,'slots':1},{'minimum_refine':10,'slots':2},{'minimum_refine':15,'slots':3}]
  assert e['tier_upgrade']['preserve'][0:2]==['instance_id','rarity_id'];assert all(x in ['item_instance','party_position'] for x in slots['not_owned_by'])
  return {'item_swap':'same character slot unchanged','NPC_swap':'other character owns separate state','refine_capacity':{'0':1,'5':2,'10':3},'ownership':'contract review, runtime swap/rollback evidence belongs to TASK-027/044'}
 check('slot_ownership_and_capacity',['AC-03'],slot_owner)
@@ -53,8 +53,10 @@ def values():
  gear=next(d for d in e['definitions'] if d['id']=='equipment_sword_60');v=gear['modifiers'][0]['value'];epic=next(r['power_multiplier'] for r in e['rarities'] if r['id']=='epic');assert int(v*epic)==285
  # D-128 additive30% Refine: (gear190 + flat80 + card24) *1.3 =382.2 (ATK retains decimals until damage flooring).
  assert abs((v+10*8+8*2*1.5)*(1+10*slots['refine']['per_step_modifiers']['weapon'][2]['value'])-382.2)<1e-9
- assert sum(r['gold'] for r in slots['refine']['upgrade_rows'])==77000
- assert sum(r['refine_ore'] for r in slots['refine']['upgrade_rows'])==440
+ assert sum(r['gold'] for r in slots['refine']['upgrade_rows'] if r['to']<=10)==77000
+ assert sum(r['refine_ore'] for r in slots['refine']['upgrade_rows'] if r['to']<=10)==440
+ assert sum(r['gold'] for r in slots['refine']['upgrade_rows'])==248000
+ assert sum(r['refine_ore'] for r in slots['refine']['upgrade_rows'])==960
  assert sum(r['gold'] for r in slots['enchant']['upgrade_rows'])==115500
  return {'common_sword60_plus_refine10_gold_card5':382.2,'epic_sword60_base':285,'refine10_gold':77000,'refine10_ore':440,'enchant10_gold':115500,'formula':'add source modifiers once through central buckets'}
 check('numeric_progression_examples',['AC-01','AC-04'],values)

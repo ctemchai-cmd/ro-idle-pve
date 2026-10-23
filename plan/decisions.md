@@ -268,3 +268,6 @@ D-117 runtime finding: valid same-user TOKEN_REFRESHED ระหว่าง SDK
 | D-138 |23ต.ค.2026ผู้ใช้ให้ทำsuggestion-migrate.txtครบทุกอาชีพรวมnotes/resource/gachaและตอบsingle70%/AoE50%Fingerต่อเป้าเมื่อพลังเท่ากัน | TASK107/design36;stableIDs/paidprogressคงเดิม numericอื่นassistanttrial ไม่มีbalancebatch |
 
 | D-139 |23ต.ค.2026ทอง16/PriestHappinessHealหมู่14/SP-onlyต้องเพิ่มผล/ภาพธาตุ/มอน3–4ท่า/ตราอาชีพผู้สวมการ์ดไอเทม | TASK108/design37;ตัวเลขassistantbaseline ไม่มีbalancebatch |
+
+| D-140 |23ต.ค.2026Storyต้องรู้สึกยากชัดทุก5ด่านตัวอย่าง6-5→6-10→6-15/Towerตีหนักขึ้นเล็กน้อย | TASK109/design38;assistantprofileไม่ใช่วัดทีมเจ้าของ |
+| D-141 |23ต.ค.2026Refine5–10ยากขึ้น/10–15ต้องดวงดี/Max15รวม3การ์ด | TASK109/design38;ผู้ใช้ยืนยันเริ่ม0ช่อง/ปลด+5,+10,+15/การ์ดช่องล็อกคืนกระเป๋า |

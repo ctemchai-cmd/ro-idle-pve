@@ -29,9 +29,9 @@ test('direct, weapon, mixed, periodic, passive, summoned and handler skill eleme
     wizard_storm_gust: ['water'], wizard_heavens_drive: ['earth'], wizard_meteor: ['fire'],
     acolyte_holy_light: ['holy'], crusader_reflect: ['holy'], hunter_blitz_beat: ['neutral'], hunter_falcon: ['neutral'],
     sage_auto_bolt: ['fire'], thief_envenom: ['weapon', 'poison'], assassin_venom_dust: ['poison'],
-    assassin_detonate: ['poison'], alchemist_hell_plant: ['poison'], alchemist_demonstration: ['fire'],
+    assassin_detonate: ['weapon'], alchemist_hell_plant: ['poison'], alchemist_demonstration: ['fire'],
     swordsman_bash: ['weapon'], monk_asura: ['weapon'], rogue_copy_mage_fire_bolt: ['fire'],
-    acolyte_heal: [], bard_healing_song: [], dancer_healing_song: [], sage_fire_endow: [], alchemist_bio_cannibalize: [],
+    acolyte_heal: [], bard_healing_song: [], dancer_healing_song: [], sage_fire_endow: [], alchemist_bio_cannibalize: ['earth'],
   };
   for (const [id, elements] of Object.entries(expected)) assert.deepEqual(skillDamageElements(definition(id)), elements, id);
   assert.match(effectDescriptions((definition('thief_envenom') as Extract<SkillDefinition, { kind: 'active' }>).effects)[0]!, /ตามธาตุอาวุธ/);

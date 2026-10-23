@@ -1,0 +1,2646 @@
+{
+  "task_id": "TASK-011",
+  "reviewer": "Codex self-review",
+  "review_date": "2026-10-19",
+  "review_round": 1,
+  "scope": "M0 content refs/level gates/manual terminal-reset cases/encounter targets; no measured TTK or success rates",
+  "input_sha256": {
+    "plan/data/stages.json": "02434a8db82a63cd2e15536b42dff3a46dbcfecf3bef9204ce9e0b90ee95bcab",
+    "plan/data/enemies.json": "6a158bbdfd7cdd831d073ff273234b54a479ae74ecabe5c522fac16d69ee6d67",
+    "plan/data/tower.json": "5dac706729531b4f6c324334855016b4c857f14fe042c579dd27ee78cc92cb9e",
+    "plan/data/daily-bosses.json": "c84842c459f38ade945c51912af7ac08e731fa52a07090e66d35f8da71748893",
+    "plan/data/economy.json": "76e2c2b56f42cdbf792752f283cbeb6c2da257810ccf315622b52b2fd9f4dce5",
+    "plan/checks/levels.py": "9e88f68c1904a65e5afdb2e585840be60d4a8455eac564d761e9fb46e11234b5"
+  },
+  "checks": [
+    {
+      "case_id": "enemy_bite",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "enemy_venom",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "enemy_quake",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "enemy_firestorm",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "enemy_guard",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "enemy_enrage",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "enemy_silence",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "enemy_adaptive_cc",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "enemy_cataclysm",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "enemy_doom",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "enemy_twin_hex",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "enemy_cold_bolt",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "enemy_lightning_bolt",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "enemy_sonic_blow",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "enemy_armor_break",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "enemy_hammer_fall",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "enemy_mend",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "actor_poring",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": "monsters.bdec5d1f77dbeef6"
+    },
+    {
+      "case_id": "actor_fabre",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": "monsters.9b16247386d53454"
+    },
+    {
+      "case_id": "actor_lunatic",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": "monsters.61d28a992760b683"
+    },
+    {
+      "case_id": "actor_wolf",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": "monsters.6b9b899004a18d9d"
+    },
+    {
+      "case_id": "actor_ork_warrior",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": "monsters.9346e03737df12a3"
+    },
+    {
+      "case_id": "actor_golem",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": "monsters.75a13868018b19ab"
+    },
+    {
+      "case_id": "actor_eddga",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": "monsters.e153fcb105f6634e"
+    },
+    {
+      "case_id": "actor_drake",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": "monsters.f2b33b6e047b5d01"
+    },
+    {
+      "case_id": "actor_phreeoni",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": "monsters.b73f21859c5c52d5"
+    },
+    {
+      "case_id": "actor_osiris",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": "monsters.39bc14d5d31fad4c"
+    },
+    {
+      "case_id": "actor_baphomet",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": "monsters.356a1a7aeb102a17"
+    },
+    {
+      "case_id": "stage_1-1",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 1,
+        "recommended_level": 1,
+        "solutions": 0,
+        "target_seconds": [
+          1,
+          6
+        ]
+      }
+    },
+    {
+      "case_id": "stage_1-2",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 2,
+        "recommended_level": 5,
+        "solutions": 0,
+        "target_seconds": [
+          4,
+          25
+        ]
+      }
+    },
+    {
+      "case_id": "stage_1-3",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 5,
+        "solutions": 0,
+        "target_seconds": [
+          4,
+          25
+        ]
+      }
+    },
+    {
+      "case_id": "stage_1-4",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 6,
+        "solutions": 0,
+        "target_seconds": [
+          4,
+          25
+        ]
+      }
+    },
+    {
+      "case_id": "stage_1-5",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 7,
+        "solutions": 1,
+        "target_seconds": [
+          4,
+          25
+        ]
+      }
+    },
+    {
+      "case_id": "stage_1-6",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 7,
+        "solutions": 0,
+        "target_seconds": [
+          4,
+          25
+        ]
+      }
+    },
+    {
+      "case_id": "stage_1-7",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 8,
+        "solutions": 0,
+        "target_seconds": [
+          4,
+          25
+        ]
+      }
+    },
+    {
+      "case_id": "stage_1-8",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 8,
+        "solutions": 0,
+        "target_seconds": [
+          4,
+          25
+        ]
+      }
+    },
+    {
+      "case_id": "stage_1-9",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 9,
+        "solutions": 0,
+        "target_seconds": [
+          4,
+          25
+        ]
+      }
+    },
+    {
+      "case_id": "stage_1-10",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 10,
+        "solutions": 3,
+        "target_seconds": [
+          4,
+          25
+        ]
+      }
+    },
+    {
+      "case_id": "stage_2-1",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 12,
+        "solutions": 0,
+        "target_seconds": [
+          4,
+          25
+        ]
+      }
+    },
+    {
+      "case_id": "stage_2-2",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 13,
+        "solutions": 0,
+        "target_seconds": [
+          4,
+          25
+        ]
+      }
+    },
+    {
+      "case_id": "stage_2-3",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 13,
+        "solutions": 0,
+        "target_seconds": [
+          4,
+          25
+        ]
+      }
+    },
+    {
+      "case_id": "stage_2-4",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 14,
+        "solutions": 0,
+        "target_seconds": [
+          4,
+          25
+        ]
+      }
+    },
+    {
+      "case_id": "stage_2-5",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 15,
+        "solutions": 1,
+        "target_seconds": [
+          4,
+          25
+        ]
+      }
+    },
+    {
+      "case_id": "stage_2-6",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 15,
+        "solutions": 0,
+        "target_seconds": [
+          4,
+          25
+        ]
+      }
+    },
+    {
+      "case_id": "stage_2-7",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 16,
+        "solutions": 0,
+        "target_seconds": [
+          4,
+          25
+        ]
+      }
+    },
+    {
+      "case_id": "stage_2-8",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 16,
+        "solutions": 0,
+        "target_seconds": [
+          4,
+          25
+        ]
+      }
+    },
+    {
+      "case_id": "stage_2-9",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 17,
+        "solutions": 0,
+        "target_seconds": [
+          4,
+          25
+        ]
+      }
+    },
+    {
+      "case_id": "stage_2-10",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 18,
+        "solutions": 3,
+        "target_seconds": [
+          4,
+          25
+        ]
+      }
+    },
+    {
+      "case_id": "stage_3-1",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 20,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_3-2",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 21,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_3-3",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 21,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_3-4",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 22,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_3-5",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 23,
+        "solutions": 1,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_3-6",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 23,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_3-7",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 24,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_3-8",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 24,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_3-9",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 25,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_3-10",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 26,
+        "solutions": 3,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_4-1",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 28,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_4-2",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 28,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_4-3",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 28,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_4-4",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 29,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_4-5",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 29,
+        "solutions": 1,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_4-6",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 29,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_4-7",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 30,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_4-8",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 30,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_4-9",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 30,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_4-10",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 31,
+        "solutions": 1,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_4-11",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 31,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_4-12",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 31,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_4-13",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 31,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_4-14",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 32,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_4-15",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 32,
+        "solutions": 1,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_4-16",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 32,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_4-17",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 33,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_4-18",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 33,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_4-19",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 33,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_4-20",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 34,
+        "solutions": 2,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_5-1",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 36,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_5-2",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 36,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_5-3",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 36,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_5-4",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 37,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_5-5",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 37,
+        "solutions": 1,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_5-6",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 37,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_5-7",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 38,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_5-8",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 38,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_5-9",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 38,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_5-10",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 39,
+        "solutions": 1,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_5-11",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 39,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_5-12",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 39,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_5-13",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 39,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_5-14",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 40,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_5-15",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 40,
+        "solutions": 1,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_5-16",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 40,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_5-17",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 41,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_5-18",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 41,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_5-19",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 41,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_5-20",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 42,
+        "solutions": 2,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_6-1",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 44,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_6-2",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 44,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_6-3",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 44,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_6-4",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 45,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_6-5",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 45,
+        "solutions": 1,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_6-6",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 45,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_6-7",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 46,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_6-8",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 46,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_6-9",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 46,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_6-10",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 47,
+        "solutions": 1,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_6-11",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 47,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_6-12",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 47,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_6-13",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 47,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_6-14",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 48,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_6-15",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 48,
+        "solutions": 1,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_6-16",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 48,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_6-17",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 49,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_6-18",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 49,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_6-19",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 49,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_6-20",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 50,
+        "solutions": 2,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_7-1",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 52,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_7-2",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 52,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_7-3",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 52,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_7-4",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 53,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_7-5",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 53,
+        "solutions": 1,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_7-6",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 53,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_7-7",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 54,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_7-8",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 54,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_7-9",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 54,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_7-10",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 55,
+        "solutions": 1,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_7-11",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 55,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_7-12",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 55,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_7-13",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 55,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_7-14",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 56,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_7-15",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 56,
+        "solutions": 1,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_7-16",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 56,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_7-17",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 57,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_7-18",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 57,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_7-19",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 57,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_7-20",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 58,
+        "solutions": 2,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_8-1",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 60,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_8-2",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 60,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_8-3",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 60,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_8-4",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 61,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_8-5",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 61,
+        "solutions": 1,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_8-6",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 61,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_8-7",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 62,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_8-8",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 62,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_8-9",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 62,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_8-10",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 63,
+        "solutions": 1,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_8-11",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 63,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_8-12",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 63,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_8-13",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 63,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_8-14",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 64,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_8-15",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 64,
+        "solutions": 1,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_8-16",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 64,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_8-17",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 65,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_8-18",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 65,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_8-19",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 65,
+        "solutions": 0,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "stage_8-20",
+      "acceptance": [
+        "AC-01",
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 3,
+        "recommended_level": 66,
+        "solutions": 2,
+        "target_seconds": [
+          12,
+          35
+        ]
+      }
+    },
+    {
+      "case_id": "story_totals",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "chapters": 8,
+        "stages": 130,
+        "layout": {
+          "1": 10,
+          "2": 10,
+          "3": 10,
+          "4": 20,
+          "5": 20,
+          "6": 20,
+          "7": 20,
+          "8": 20
+        },
+        "future_stages_per_chapter": 50,
+        "first_clear_crystal_total": 1600,
+        "chapter_reward_totals_unchanged": true,
+        "generator": "plan/generators/stages.py (legacy 8x10 byte-identical)",
+        "rare_cards_required": false
+      }
+    },
+    {
+      "case_id": "terminal_boundary_hand_cases",
+      "acceptance": [
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "main_dead_others_alive": "running",
+        "enemy_death_at_39999": "win",
+        "enemy_death_at_40000": "timeout loss (D-066)",
+        "both_wipe": "loss"
+      }
+    },
+    {
+      "case_id": "tower_generator_and_first_clear",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": false,
+      "error": ""
+    },
+    {
+      "case_id": "daily_reset_phase_and_ticket_day",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "attempts_total_per_day": 9,
+        "cross_midnight_ticket_day": "2026-10-19",
+        "new_day": "2026-10-20",
+        "writes": "archived ticket day only, new day attempts remain0",
+        "chapter4_phase3_hp": 11200.0,
+        "partial_hp": "commit between attempts, new party full HP/SP",
+        "no_offline_damage": true
+      }
+    }
+  ],
+  "passed": false
+}

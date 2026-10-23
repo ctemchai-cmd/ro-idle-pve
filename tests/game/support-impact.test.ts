@@ -10,6 +10,7 @@ import { resolveStats } from '../../src/domain/math/index.ts';
 import { initializeAccount } from '../../src/domain/progression/initialize.ts';
 import { equipmentStats } from '../../src/client/equipment.ts';
 import { resolvedCardModifiers } from '../../src/domain/build/equipment.ts';
+import { checkGolden, goldens } from './class-skills.ts';
 import { actor, battle, checkpoint, content, step } from './combat-fixtures.ts';
 
 function fixture() {
@@ -30,7 +31,12 @@ const close = (a: number, b: number) => assert.ok(Math.abs(a - b) < 1e-7, `${a} 
 test('all support curves scale from their original values once and damage curves do not compound', () => {
   const spec = JSON.parse(readFileSync('plan/generators/build-impact-spec.json', 'utf8'));
   assert.equal(Object.keys(spec.baseline_support_power).length, 59);
+  // D133/D138/D139 explicitly supersede these original curves. Verify every
+  // resolved rank against the separately authored numeric golden intents instead.
+  const superseded=new Set(['priest_resurrection','dancer_dissonance','sage_magic_barrier','merchant_loud_voice','merchant_first_aid','blacksmith_meltdown','knight_brandish','crusader_grand_cross','monk_asura','hunter_claymore','hunter_rapid_fire','wizard_storm_gust','wizard_jupitel','wizard_meteor','wizard_heavens_drive','sage_psychic_bolt','assassin_sonic_blow','assassin_detonate','assassin_grimtooth','rogue_raid','blacksmith_cart_crash','alchemist_acid_terror','alchemist_demonstration']);
+  goldens([...superseded]).forEach(checkGolden);
   for (const family of ['baseline_support_power', 'baseline_skill_power']) for (const [id, curves] of Object.entries(spec[family]) as [string, Record<string, number[]>][]) for (const [key, values] of Object.entries(curves)) {
+    if(superseded.has(id))continue;
     const definition = content.skills[id] as unknown as SkillDefinition, actual = definition.level_parameters[id === 'assassin_detonate' ? 'detonate_ratio' : key]!;
     values.forEach((base, i) => assert.ok(Math.abs(actual[i]! - base * 1.75 / (id === 'assassin_detonate' ? 100 : 1)) <= .00000051, `${id}.${key}.${i} must match within authored six-decimal precision`));
   }
@@ -73,7 +79,7 @@ test('Healing Plant inherits shared heal power without changing lifetime, cadenc
   const skill = resolved.definition; assert.ok(skill.kind === 'active'); if (skill.kind !== 'active') return;
   const spawnAt = 1500 + Number(skill.timing.cast_ms), spawned = step(initial, spawnAt), summon = spawned.state.actors.find(a => a.kind === 'summon')!;
   assert.ok(summon); assert.equal(summon.owner_actor_id, 'a'); assert.equal(summon.summon_expires_at, spawnAt + 6500);
-  const owner = spawned.state.actors[0]!; assert.equal(summon.stats.magical_attack, Math.floor(owner.stats.magical_attack * .35 * 1.75));
+  const owner = spawned.state.actors[0]!; assert.equal(summon.stats.magical_attack, Math.floor(owner.stats.magical_attack * .35 * 2.45));
   const result = step(spawned.state, spawnAt + 1000), heal = result.events.find(e => e.type === 'heal' && e.skill_id === 'alchemist_bio_cannibalize');
   assert.ok(heal); assert.equal(heal.at_ms, spawnAt + 1000); assert.ok(heal.amount! > 0);
 });

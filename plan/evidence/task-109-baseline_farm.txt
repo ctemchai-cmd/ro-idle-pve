@@ -1,0 +1,29 @@
+✖ farm selection closes exactly the old unpaid interval, retains carries, gates ore/essence until1-5 and never awards visual kills (473.026333ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1142.979167
+
+✖ failing tests:
+
+test at tests/game/story-progression.test.ts:1:5435
+✖ farm selection closes exactly the old unpaid interval, retains carries, gates ore/essence until1-5 and never awards visual kills (473.026333ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  9 !== 12
+
+      at TestContext.<anonymous> (/private/tmp/ro-task109-baseline-se2e9m0h/tests/game/story-progression.test.ts:33:549)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.start (node:internal/test_runner/test:959:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:332:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 9,
+    expected: 12,
+    operator: 'strictEqual'
+  }

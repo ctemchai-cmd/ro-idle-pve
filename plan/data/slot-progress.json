@@ -10,18 +10,23 @@
   ],
   "requires_equipped_item_for_battle_effect": true,
   "refine": {
-    "max": 10,
+    "max": 15,
     "success_chance_by_target": {
       "1": 1,
       "2": 1,
       "3": 1,
       "4": 1,
-      "5": 0.8,
-      "6": 0.65,
-      "7": 0.5,
-      "8": 0.4,
-      "9": 0.3,
-      "10": 0.2
+      "5": 0.7,
+      "6": 0.55,
+      "7": 0.4,
+      "8": 0.28,
+      "9": 0.18,
+      "10": 0.1,
+      "11": 0.08,
+      "12": 0.05,
+      "13": 0.03,
+      "14": 0.02,
+      "15": 0.01
     },
     "failure": {
       "consumes": "the step cost only",
@@ -32,14 +37,21 @@
       "bonus_per_failure": 0.1,
       "cap": 1,
       "resets_on_success": true,
-      "counter": "slot_progress[slot].refine_failures"
+      "counter": "slot_progress[slot].refine_failures",
+      "bonus_per_failure_by_target": {
+        "11": 0.005,
+        "12": 0.005,
+        "13": 0.005,
+        "14": 0.005,
+        "15": 0.005
+      }
     },
     "steps_per_command": 1,
     "roll": {
       "source": "server-injected per-command seed (never client supplied)",
-      "rule": "success when roll < min(cap, chance + bonus_per_failure * failures)"
+      "rule": "success when roll < min(cap, chance + per-target pity bonus * failures); per-target overrides fall back to bonus_per_failure"
     },
-    "rule_source": "D-057; chances/pity are an assistant baseline to tune in TASK-041",
+    "rule_source": "D141:maximum15;5-10harder/11-15lowchance;assistantbaseline,notmeasuredsuccessoutcomes",
     "per_step_modifiers": {
       "weapon": [
         {
@@ -212,10 +224,40 @@
         "to": 10,
         "gold": 20000,
         "refine_ore": 80
+      },
+      {
+        "from": 10,
+        "to": 11,
+        "gold": 24200,
+        "refine_ore": 88
+      },
+      {
+        "from": 11,
+        "to": 12,
+        "gold": 28800,
+        "refine_ore": 96
+      },
+      {
+        "from": 12,
+        "to": 13,
+        "gold": 33800,
+        "refine_ore": 104
+      },
+      {
+        "from": 13,
+        "to": 14,
+        "gold": 39200,
+        "refine_ore": 112
+      },
+      {
+        "from": 14,
+        "to": 15,
+        "gold": 45000,
+        "refine_ore": 120
       }
     ],
-    "power_basis": "D-128: existing flat per step plus additive percent in the same stat bucket; never compound per step; prices/chances/card gates unchanged",
-    "material_cost_basis": "D-134: 8 ore per target level (+60% from 5), future attempts only; gold/chances/pity/modifiers unchanged"
+    "power_basis": "D128 additiveflat+percent perstep;D141 extends same modifiers through15. No perstep compounding; chances/pity defined separately.",
+    "material_cost_basis": "D134/D141:8ore pertarget through15;existing1-10prices retained, actualpastinvestments unchanged"
   },
   "enchant": {
     "max": 10,
@@ -604,14 +646,18 @@
     "capacity_by_refine": [
       {
         "minimum_refine": 0,
-        "slots": 1
+        "slots": 0
       },
       {
         "minimum_refine": 5,
-        "slots": 2
+        "slots": 1
       },
       {
         "minimum_refine": 10,
+        "slots": 2
+      },
+      {
+        "minimum_refine": 15,
         "slots": 3
       }
     ],

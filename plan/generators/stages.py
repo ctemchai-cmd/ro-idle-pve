@@ -49,6 +49,32 @@ def magic(boss_atk, sid, spec, layout):
     factor = {} if layout is LEGACY else spec.get('calibration', {}).get(sid, {})
     return round(boss_atk * factor.get('matk', factor.get('atk', 1)))
 
+def apply_difficulty_growth(rows, profile):
+    """D140: deterministic envelope over immutable calibration, never over output.
+    Keep tutorial1–2 and all timing/defense/elements/skills/rewards unchanged.
+    """
+    previous = None
+    heavy_magic = None
+    for row in rows:
+        boss = row['encounter'][0]; stats = boss['resolved_base']
+        if row['chapter'] >= profile['starts_at_chapter']:
+            growth = profile['chapters'].get(str(row['chapter']), profile['default'])
+            old_attack, old_magic = stats['physical_attack'], stats['magical_attack']
+            stats['max_hp'] = max(stats['max_hp'], math.ceil(previous['max_hp'] * growth['hp_per_5'] ** .2))
+            stats['physical_attack'] = max(old_attack, math.ceil(previous['physical_attack'] * growth['attack_per_5'] ** .2))
+            stats['magical_attack'] = round(old_magic * stats['physical_attack'] / old_attack)
+            if any(s in HEAVY_CASTS for s in boss['active_slots']):
+                if heavy_magic is not None:
+                    stats['magical_attack'] = max(stats['magical_attack'], math.ceil(heavy_magic * growth['attack_per_5']))
+                heavy_magic = stats['magical_attack']
+            for actor in row['encounter'][1:]:
+                actor['resolved_base']['max_hp'] = round(stats['max_hp'] / 4)
+                actor['resolved_base']['physical_attack'] = round(stats['physical_attack'] * .6)
+                actor['resolved_base']['magical_attack'] = actor['resolved_base']['physical_attack']
+        elif any(s in HEAVY_CASTS for s in boss['active_slots']):
+            heavy_magic = stats['magical_attack']
+        previous = stats
+
 def stages(layout, spec):
     rows, previous = [], None
     for c in sorted(layout):
@@ -99,6 +125,8 @@ def stages(layout, spec):
                          'repeat_clear_reward': {}, 'farm_rate_chapter': c, 'mechanic': mechanic,
                          'solutions': solutions, 'balance_target': target})
             previous = sid
+    if layout is not LEGACY:
+        apply_difficulty_growth(rows, spec['difficulty_growth'])
     return rows
 
 def document(layout, spec):

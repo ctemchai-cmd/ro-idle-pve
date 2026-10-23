@@ -5,6 +5,7 @@ import type { AccountState } from '../../src/contracts/index.ts';
 import { AccountCommandRules } from '../../src/domain/account/commands.ts';
 import { migrateAccountState } from '../../src/domain/account/migrate.ts';
 import { initializeAccount } from '../../src/domain/progression/initialize.ts';
+import { cardRarity } from '../../src/domain/build/card-rarity.ts';
 import { migrationSql } from '../../scripts/game/migrate-local-saves.ts';
 import { content } from './combat-fixtures.ts';
 
@@ -48,4 +49,27 @@ test('D-058 migration SQL appends one signed revision per outdated save and skip
   assert.ok(sql.includes(`'${id}', 8,`) && sql.includes(signature) && sql.includes(`where account_id = '${id}' and revision = 7`));
   assert.ok(!sql.includes(current));
   assert.throws(() => migrationSql([{ account_id: id, revision: 1, content_hash: 'a'.repeat(64), content_version: 'old', rules_version: 'old', state: { broken: true } }], key));
+});
+
+
+test('D141 socket migration releases only locked bindings across every actor and slot; originals and card investments survive idempotently', () => {
+  const levels = [0, 4, 5, 9, 10, 14, 15], capacities = [0, 0, 1, 1, 2, 2, 3];
+  const state = initializeAccount(content, {root_job_id:'mage',gender:'female'}, '2026-10-23T00:00:00Z', '2026-10-23', 1);
+  state.roster.forEach((actor, i) => Object.entries(actor.slot_progress).forEach(([slot, p]) => {
+    p.refine=levels[i]!;p.refine_failures=2;
+    const definition=Object.values(content.items).find(item=>item.kind==='card'&&item.slot===slot)!;
+    p.cards.forEach((_, index) => {const id=actor.character_id+'_'+slot+'_'+index;
+      state.inventory.push({kind:'card',instance_id:id,definition_id:String(definition.id),rarity_id:cardRarity(String(definition.id),content),level:5,locked:index===2} as AccountState['inventory'][number]);p.cards[index]=id;
+    });
+  }));
+  const before=structuredClone(state);assert.throws(()=>rules.validateAccount(state),/INVALID_CARD_ASSIGNMENT/);
+  const migrated=migrateAccountState(state,content);assert.doesNotThrow(()=>rules.validateAccount(migrated.state));
+  assert.deepEqual(state,before);assert.deepEqual(migrated.state.inventory,before.inventory);assert.deepEqual(migrated.state.wallet,before.wallet);assert.deepEqual(migrated.state.paid_ledger,before.paid_ledger);
+  migrated.state.roster.forEach((actor,i)=>Object.entries(actor.slot_progress).forEach(([slot,p])=>{
+    const old=before.roster[i]!.slot_progress[slot as keyof typeof actor.slot_progress];
+    assert.deepEqual(p,{...old,cards:old.cards.map((id,index)=>index<capacities[i]!?id:null)});
+    assert.equal(actor.level,before.roster[i]!.level);
+  }));
+  assert.equal(migrated.changes.filter(c=>c.includes('locked by Refine')).length,6*(3+3+2+2+1+1));
+  const again=migrateAccountState(migrated.state,content);assert.deepEqual(again.state,migrated.state);assert.deepEqual(again.changes,[]);
 });

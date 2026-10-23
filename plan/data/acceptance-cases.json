@@ -12383,6 +12383,138 @@
       "execution_evidence": [
         "plan/evidence/task-108-review.json"
       ]
+    },
+    {
+      "id": "T109-AC-01",
+      "task_id": "TASK-109",
+      "acceptance_id": "AC-01",
+      "criterion": "Story 6-5=137600HP/2501ATK,6-10=199521/3003,6-15=289308/3606; each5 gains >=45%HP/20%ATK; chapter3+ monotonic and heavy 4000ms interruptible; matched1/2/4x full checkpoints/events identical",
+      "input_setup": "Archived olddata;5stagearithmetic;seededfixedrolls/freshAuth/mobile",
+      "input_refs": [
+        "plan/design/38-difficulty-and-refine15.md",
+        "plan/inprogress/tasks_109.md",
+        "tests/game/difficulty-refine15.test.ts",
+        "tests/game/save-migration.test.ts",
+        "scripts/test_difficulty_refine15_live.cjs"
+      ],
+      "parameters": {
+        "environment": "isolated,noownerwrites"
+      },
+      "expected": "Story 6-5=137600HP/2501ATK,6-10=199521/3003,6-15=289308/3606; each5 gains >=45%HP/20%ATK; chapter3+ monotonic and heavy 4000ms interruptible; matched1/2/4x full checkpoints/events identical",
+      "verification": "node --import tsx --test tests/game/*.test.ts; bash scripts/m0_checks.sh; npm run build; RO_EVIDENCE_PREFIX=task-109 RO_LOCAL_TEST_FOCUS=difficulty_refine15 python3 scripts/test_auth_stack.py; node scripts/test_difficulty_refine15_hosted.cjs",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T109-AC-02",
+      "task_id": "TASK-109",
+      "acceptance_id": "AC-02",
+      "criterion": "Tower floor21=24750HP/341ATK; floor101=2152910HP/6641ATK; all floor attack ceil((100+20f+5f²)/8); HP/DEF/rewards/claims/speed unchanged",
+      "input_setup": "Archived olddata;5stagearithmetic;seededfixedrolls/freshAuth/mobile",
+      "input_refs": [
+        "plan/design/38-difficulty-and-refine15.md",
+        "plan/inprogress/tasks_109.md",
+        "tests/game/difficulty-refine15.test.ts",
+        "tests/game/save-migration.test.ts",
+        "scripts/test_difficulty_refine15_live.cjs"
+      ],
+      "parameters": {
+        "environment": "isolated,noownerwrites"
+      },
+      "expected": "Tower floor21=24750HP/341ATK; floor101=2152910HP/6641ATK; all floor attack ceil((100+20f+5f²)/8); HP/DEF/rewards/claims/speed unchanged",
+      "verification": "node --import tsx --test tests/game/*.test.ts; bash scripts/m0_checks.sh; npm run build; RO_EVIDENCE_PREFIX=task-109 RO_LOCAL_TEST_FOCUS=difficulty_refine15 python3 scripts/test_auth_stack.py; node scripts/test_difficulty_refine15_hosted.cjs",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T109-AC-03",
+      "task_id": "TASK-109",
+      "acceptance_id": "AC-03",
+      "criterion": "Max15; ranks1-15 chances [1,1,1,1,.70,.55,.40,.28,.18,.10,.08,.05,.03,.02,.01]; target11-15 failure +.005; UI14+1miss=1.5%, not2%; prices0→15 248000gold/960ore",
+      "input_setup": "Archived olddata;5stagearithmetic;seededfixedrolls/freshAuth/mobile",
+      "input_refs": [
+        "plan/design/38-difficulty-and-refine15.md",
+        "plan/inprogress/tasks_109.md",
+        "tests/game/difficulty-refine15.test.ts",
+        "tests/game/save-migration.test.ts",
+        "scripts/test_difficulty_refine15_live.cjs"
+      ],
+      "parameters": {
+        "environment": "isolated,noownerwrites"
+      },
+      "expected": "Max15; ranks1-15 chances [1,1,1,1,.70,.55,.40,.28,.18,.10,.08,.05,.03,.02,.01]; target11-15 failure +.005; UI14+1miss=1.5%, not2%; prices0→15 248000gold/960ore",
+      "verification": "node --import tsx --test tests/game/*.test.ts; bash scripts/m0_checks.sh; npm run build; RO_EVIDENCE_PREFIX=task-109 RO_LOCAL_TEST_FOCUS=difficulty_refine15 python3 scripts/test_auth_stack.py; node scripts/test_difficulty_refine15_hosted.cjs",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T109-AC-04",
+      "task_id": "TASK-109",
+      "acceptance_id": "AC-04",
+      "criterion": "Capacity0,4,5,9,10,14,15=[0,0,1,1,2,2,3]; old cards above capacity unassigned only; all7roster×6slots preserve inventory/cardlevel/lock/wallet/ledger/refine/enchant and input, migration idempotent",
+      "input_setup": "Archived olddata;5stagearithmetic;seededfixedrolls/freshAuth/mobile",
+      "input_refs": [
+        "plan/design/38-difficulty-and-refine15.md",
+        "plan/inprogress/tasks_109.md",
+        "tests/game/difficulty-refine15.test.ts",
+        "tests/game/save-migration.test.ts",
+        "scripts/test_difficulty_refine15_live.cjs"
+      ],
+      "parameters": {
+        "environment": "isolated,noownerwrites"
+      },
+      "expected": "Capacity0,4,5,9,10,14,15=[0,0,1,1,2,2,3]; old cards above capacity unassigned only; all7roster×6slots preserve inventory/cardlevel/lock/wallet/ledger/refine/enchant and input, migration idempotent",
+      "verification": "node --import tsx --test tests/game/*.test.ts; bash scripts/m0_checks.sh; npm run build; RO_EVIDENCE_PREFIX=task-109 RO_LOCAL_TEST_FOCUS=difficulty_refine15 python3 scripts/test_auth_stack.py; node scripts/test_difficulty_refine15_hosted.cjs",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T109-AC-05",
+      "task_id": "TASK-109",
+      "acceptance_id": "AC-05",
+      "criterion": "Roll=.01 at14 fails, nextchance=.015 and roll=.014999 succeeds; spends45000gold/120ore once per try. ActualAPI+15 replay sameUUID does not change revision/state; actualthirdsocket assign persists onreload;16/funds/battle guards reject",
+      "input_setup": "Archived olddata;5stagearithmetic;seededfixedrolls/freshAuth/mobile",
+      "input_refs": [
+        "plan/design/38-difficulty-and-refine15.md",
+        "plan/inprogress/tasks_109.md",
+        "tests/game/difficulty-refine15.test.ts",
+        "tests/game/save-migration.test.ts",
+        "scripts/test_difficulty_refine15_live.cjs"
+      ],
+      "parameters": {
+        "environment": "isolated,noownerwrites"
+      },
+      "expected": "Roll=.01 at14 fails, nextchance=.015 and roll=.014999 succeeds; spends45000gold/120ore once per try. ActualAPI+15 replay sameUUID does not change revision/state; actualthirdsocket assign persists onreload;16/funds/battle guards reject",
+      "verification": "node --import tsx --test tests/game/*.test.ts; bash scripts/m0_checks.sh; npm run build; RO_EVIDENCE_PREFIX=task-109 RO_LOCAL_TEST_FOCUS=difficulty_refine15 python3 scripts/test_auth_stack.py; node scripts/test_difficulty_refine15_hosted.cjs",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T109-AC-06",
+      "task_id": "TASK-109",
+      "acceptance_id": "AC-06",
+      "criterion": "545 TS tests pass, M0/readiness8/build pass; fresh real Auth/JWT/API/Postgres/mobile320/390 has zeroerrors; production API200SIN1 newcontent/checkpoint401/publicbundleSHA/mobilelogin0writes beforedone",
+      "input_setup": "Archived olddata;5stagearithmetic;seededfixedrolls/freshAuth/mobile",
+      "input_refs": [
+        "plan/design/38-difficulty-and-refine15.md",
+        "plan/inprogress/tasks_109.md",
+        "tests/game/difficulty-refine15.test.ts",
+        "tests/game/save-migration.test.ts",
+        "scripts/test_difficulty_refine15_live.cjs"
+      ],
+      "parameters": {
+        "environment": "isolated,noownerwrites"
+      },
+      "expected": "545 TS tests pass, M0/readiness8/build pass; fresh real Auth/JWT/API/Postgres/mobile320/390 has zeroerrors; production API200SIN1 newcontent/checkpoint401/publicbundleSHA/mobilelogin0writes beforedone",
+      "verification": "node --import tsx --test tests/game/*.test.ts; bash scripts/m0_checks.sh; npm run build; RO_EVIDENCE_PREFIX=task-109 RO_LOCAL_TEST_FOCUS=difficulty_refine15 python3 scripts/test_auth_stack.py; node scripts/test_difficulty_refine15_hosted.cjs",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
     }
   ]
 }

@@ -45,3 +45,6 @@ Fixturesสำหรับวัตถุดิบ/การ์ด/ราคา�
 
 
 22ต.ค.2026 D-127–129: กติกา reward batch / Refineflat+percent / Enchantรายslot / CrystalAFKและgearchance ใช้ [design34](34-reward-slot-economy-tuning.md) และcanonicaldataล่าสุดเหนือค่าตัวอย่างเก่า
+
+
+23 ต.ค.2026 D-140/141/TASK-109: Refine max15; chances +1–4=100%, +5–15=70/55/40/28/18/10/8/5/3/2/1%. Pity through10 +10percentagepoints/failure;11–15 +0.5pp/failure. Starts0cards, unlock1/2/3 at+5/+10/+15. Prices200×target²gold/8×targetore (total248000gold/960ore if all15 succeed). [design38](38-difficulty-and-refine15.md) supersedes older values above; locked legacy bindings return their original card instances to inventory through signed migration.

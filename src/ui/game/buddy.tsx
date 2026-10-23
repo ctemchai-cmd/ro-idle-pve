@@ -5,7 +5,7 @@ import { useMemo, useState } from 'react';
 import type { CombatStats, Modifier } from '../../contracts/index.ts';
 import { effectiveLevelCap, levelQuote, rosterData as data, type Character, type RootJob } from '../../client/roster.ts';
 import { equipmentData, equipmentPreview, equipmentUpgradeHints, inventoryView, itemModifiers, itemOptions, rarityLabels, rarityRank, slotLabels, weaponLabels, type EquipmentSlot } from '../../client/equipment.ts';
-import { cardInventory, cardStatUnits, slotEnchantLines, refineModifiers, nextRefineChance, refundEnchant, salvageCardsQuote, slotChangePreview, slotUpgradeQuote, socketCapacity } from '../../client/slots.ts';
+import { cardInventory, cardStatUnits, slotEnchantLines, refineModifiers, nextRefineChance, nextRefinePityBonus, refinePercent, slotsData, refundEnchant, salvageCardsQuote, slotChangePreview, slotUpgradeQuote, socketCapacity, socketUnlockRefine, socketUnlockHint } from '../../client/slots.ts';
 import type { GameContext } from './shell.tsx';
 import { ClassIcon } from './class-icon.tsx';
 import { orderedCharacters } from './character-nav.tsx';
@@ -51,7 +51,7 @@ function UpgradeSheet({ context, actor, slot, close }: { context: GameContext; a
     setFx({ ok: !failed, text: failed ? 'ล้มเหลว…' : `+${target} สำเร็จ!`, key: Date.now() }); setTimeout(() => setFx(null), 1600);
   }
   const [tab, setTab] = useState<'refine' | 'enchant' | 'card'>('refine'), [line, setLine] = useState<keyof typeof enchantLines>((progress.enchant.line_id as keyof typeof enchantLines | null) ?? 'offense'), [confirmLine, setConfirmLine] = useState(false), [socket, setSocket] = useState(0), [cardId, setCardId] = useState<string | null>(progress.cards[0] ?? null);
-  const refine = progress.refine < 10 ? slotUpgradeQuote(progress.refine, progress.refine + 1, 'refine') : null, enchant = progress.enchant.level < 10 ? slotUpgradeQuote(progress.enchant.level, progress.enchant.level + 1, 'enchant') : null;
+  const refine = progress.refine < slotsData.refine.max ? slotUpgradeQuote(progress.refine, progress.refine + 1, 'refine') : null, enchant = progress.enchant.level < 10 ? slotUpgradeQuote(progress.enchant.level, progress.enchant.level + 1, 'enchant') : null;
   const changeLine = progress.enchant.line_id !== null && progress.enchant.line_id !== line;
   const refinePreview = refine && !state.active_battle ? slotChangePreview(state, actor.character_id, 'slot.refine', { ...params, target_level: progress.refine + 1 }) : null;
   const enchantPreview = enchant && !changeLine && !state.active_battle ? slotChangePreview(state, actor.character_id, 'slot.enchant', { ...params, line_id: line, target_level: progress.enchant.level + 1 }) : null;
@@ -64,8 +64,8 @@ function UpgradeSheet({ context, actor, slot, close }: { context: GameContext; a
     {tab === 'refine' && <section className="upgrade-pane refine-pane">
       {fx && <div key={fx.key} className={`refine-fx ${fx.ok ? 'ok' : 'fail'}`} role="status"><span className="burst" /><b>{fx.text}</b></div>}
       <div className="level-jump"><b>+{progress.refine}</b><span>→</span><b className="next">{refine ? `+${progress.refine + 1}` : 'MAX'}</b></div>
-      {refine && <div className="refine-chance"><b>{Math.round(nextRefineChance(progress) * 100)}%</b><span>โอกาสสำเร็จ{progress.refine_failures ? ` · รวมโอกาสสะสมจากพลาด ${progress.refine_failures} ครั้ง` : ''}</span></div>}
-      <p className="hint">+1 ถึง +4 สำเร็จแน่นอน · พลาดเสียแค่วัตถุดิบ ระดับไม่ลด และโอกาสครั้งถัดไปเพิ่ม 10% · การ์ดช่องที่ 2 เปิดที่ +5 ช่องที่ 3 ที่ +10</p>
+      {refine && <div className="refine-chance"><b>{refinePercent(nextRefineChance(progress))}</b><span>โอกาสสำเร็จ{progress.refine_failures ? ` · รวมโอกาสสะสมจากพลาด ${progress.refine_failures} ครั้ง` : ''}</span></div>}
+      <p className="hint">+1 ถึง +4 สำเร็จแน่นอน · พลาดเสียแค่วัตถุดิบ ระดับไม่ลด {refine && <> · โอกาสสะสมเพิ่ม {refinePercent(nextRefinePityBonus(progress))} ต่อครั้ง</>} · {socketUnlockHint()}</p>
       <p className="hint slot-bonus" aria-label="ผล Refine ต่อขั้น">ต่อ +1 · {refineModifiers(slot).map(modifierText).join(' · ')}</p>
       {refine ? <><CostChips cost={refine} wallet={state.wallet} pack={pack} />{refinePreview && <StatChanges before={refinePreview.before} after={refinePreview.after} />}
         <button className="btn primary wide" disabled={locked || !canPay(state.wallet, refine)} onClick={() => void refineNow()}>Refine +{progress.refine + 1}</button></> : <p className="hint">Refine สูงสุดแล้ว</p>}
@@ -81,7 +81,7 @@ function UpgradeSheet({ context, actor, slot, close }: { context: GameContext; a
     </section>}
     {tab === 'card' && <section className="upgrade-pane card-upgrade-pane">
       <div className="socket-row" role="group" aria-label="ช่องการ์ด">{progress.cards.map((id, index) => { const source = cards.find(c => c.item.instance_id === id); return <button key={index} className={`socket ${socket === index ? 'on' : ''}`} disabled={index >= capacity} aria-pressed={socket === index} onClick={() => { setSocket(index); setCardId(id); }}>
-        {source ? <span className={`card-art socket-card-art rarity-${source.item.rarity_id}`}><CardIcon card={source} pack={pack} /></span> : <span>{index >= capacity ? <Icon name="lock" /> : '+'}</span>}<small>{index >= capacity ? `ปลด +${index === 1 ? 5 : 10}` : source ? source.name : `ช่อง ${index + 1}`}</small>
+        {source ? <span className={`card-art socket-card-art rarity-${source.item.rarity_id}`}><CardIcon card={source} pack={pack} /></span> : <span>{index >= capacity ? <Icon name="lock" /> : '+'}</span>}<small>{index >= capacity ? `ปลด +${socketUnlockRefine(index)}` : source ? source.name : `ช่อง ${index + 1}`}</small>
       </button>; })}</div>
       {progress.cards[socket] && <button className="btn small ghost" disabled={locked} onClick={() => void submit('card.unassign', { ...params, card_slot: socket })}>ถอดการ์ดช่อง {socket + 1}</button>}
       {cards.length ? <div className="card-list">{cards.map(c => <button key={c.item.instance_id} data-card-equipped={!!c.owner} className={`list-row card-pick-row ${c.owner ? 'equipped' : ''} ${cardId === c.item.instance_id ? 'on' : ''}`} onClick={() => setCardId(c.item.instance_id)}>

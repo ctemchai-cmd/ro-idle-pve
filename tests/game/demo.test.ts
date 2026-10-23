@@ -32,12 +32,12 @@ test('HUD reports the authoritative cursor, phase deadlines, SP and interruption
   for (const actor of view.actors) { const source = session.state.actors.find(value => value.actor_id === actor.actor_id)!; assert.equal(actor.sp, source.sp); assert.equal(actor.phase_ready_at, source.phase_ready_at); assert.equal(actor.next_slot, source.cast?.used_slot_index ?? source.rotation_cursor); assert.equal(actor.cast?.interruptible, source.cast?.interruptible); }
   assert.ok(view.actors.filter(actor => actor.cast).length >= 2);
 });
-test('warded demo changes only its own quake snapshot, preserving base definitions and other runs', () => {
+test('warded demo changes only its own heavy snapshot, preserving base definitions and other runs', () => {
   const ordinary = new DemoSession('boss'), warded = new DemoSession('warded');
-  const quake = (session: DemoSession) => session.state.actors.find(actor => actor.actor_id === 'enemy_front')!.resolved_skills.enemy_quake!.definition;
+  const quake = (session: DemoSession) => Object.values(session.state.actors.find(actor => actor.actor_id === 'enemy_front')!.resolved_skills).find(s=>s.definition.tags.includes('heavy_cast'))!.definition;
   const a = quake(ordinary), b = quake(warded); assert.equal(a.kind, 'active'); assert.equal(b.kind, 'active');
   if (a.kind === 'active' && b.kind === 'active') { assert.equal(a.timing.interruptible, true); assert.equal(b.timing.interruptible, false); }
-  assert.equal((warded.content.skills.enemy_quake!.timing as { interruptible: boolean }).interruptible, true);
+  assert.equal((warded.content.skills[a.id]!.timing as { interruptible: boolean }).interruptible, true);
 });
 test('reordering starts a fresh rotation without mutating another actor or base content', () => {
   const before = new DemoSession(), slots = [...before.view().actors.find(actor => actor.actor_id === 'main')!.slots]; [slots[0], slots[1]] = [slots[1]!, slots[0]!];

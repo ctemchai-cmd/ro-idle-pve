@@ -1,0 +1,198 @@
+{
+  "task_id": "TASK-010",
+  "reviewer": "Codex self-review",
+  "review_round": 1,
+  "review_date": "2026-10-19",
+  "scope": "M0 budget/rate/pity/quantization arithmetic; not accelerated full-game simulation",
+  "input_sha256": {
+    "plan/data/economy.json": "76e2c2b56f42cdbf792752f283cbeb6c2da257810ccf315622b52b2fd9f4dce5",
+    "plan/data/loot.json": "0449ef355a02d56276ea817737881bc608ce17abe668990677edbcfaa5343067",
+    "plan/data/gacha.json": "555625ea9a36f145bd2a3afa192349d82bb8731134130fb25c43998db398046a",
+    "plan/data/equipment.json": "62a62263ad5f8437fd77c97420014f1d51a111d8035d69529dee5bb2612ce57f",
+    "plan/data/cards.json": "8eeef82143917c5f6111c6d32b0108f2e05015fb248d8e9788b6bd9e9cb5295b",
+    "plan/data/slot-progress.json": "e35093c2c4cfb697300de94527d919a51d0ef52801015e86ffa97c3e10a80838",
+    "plan/data/progression.json": "623fd84f9a31d7caa3e5af10cb5a9996c5709eecada1bf000e6bf1e0c27f992f",
+    "plan/checks/economy.py": "ed605dbe3013c274182c193f5da23e5f52a856f469f3389180f0628b8c8e5195"
+  },
+  "checks": [
+    {
+      "case_id": "sources_and_sinks",
+      "acceptance": [
+        "AC-01"
+      ],
+      "passed": true,
+      "result": {
+        "resource_count": 8,
+        "bootstrap": "initial wallet/starter gear plus farm1-1; ore/essence before Lv20 gate; targeted weapons use gold"
+      }
+    },
+    {
+      "case_id": "early_one_character_4_to_10",
+      "acceptance": [
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "minutes": 40.46938775510204,
+        "hours": 0.6744897959183673,
+        "target_range_minutes": [
+          24,
+          57
+        ],
+        "scope": "static equal-resource budget, not measured chapter pacing"
+      }
+    },
+    {
+      "case_id": "team_39_to_40",
+      "acceptance": [
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "minutes": 468.0,
+        "hours": 7.8,
+        "target_range_minutes": [
+          280,
+          656
+        ],
+        "scope": "static equal-resource budget, not measured chapter pacing"
+      }
+    },
+    {
+      "case_id": "two_class2_skills_7_to_8",
+      "acceptance": [
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "minutes": 122.62773722627739,
+        "hours": 2.0437956204379564,
+        "target_range_minutes": [
+          73,
+          172
+        ],
+        "scope": "static equal-resource budget, not measured chapter pacing"
+      }
+    },
+    {
+      "case_id": "team_breakthrough_40",
+      "acceptance": [
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "minutes": 2666.6666666666665,
+        "hours": 44.44444444444444,
+        "target_range_minutes": [
+          1599,
+          3734
+        ],
+        "scope": "static equal-resource budget, not measured chapter pacing"
+      }
+    },
+    {
+      "case_id": "team_breakthrough_60",
+      "acceptance": [
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "minutes": 10666.666666666666,
+        "hours": 177.77777777777777,
+        "target_range_minutes": [
+          6399,
+          14934
+        ],
+        "scope": "static equal-resource budget, not measured chapter pacing"
+      }
+    },
+    {
+      "case_id": "team_24_slots_refine10",
+      "acceptance": [
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "minutes": 22297.058823529413,
+        "hours": 371.61764705882354,
+        "target_range_minutes": [
+          15746,
+          36742
+        ],
+        "scope": "static equal-resource budget, not measured chapter pacing"
+      }
+    },
+    {
+      "case_id": "fractional_income_and_cap",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "six_partial_claims": 6,
+        "one_hour_claim": 6,
+        "four_500ms_claims_gold_at3600_per_hour": 2,
+        "rate_switch_fractional_remainder": 90000,
+        "20h_offline_paid_hours": 12.0,
+        "unpaid_cursor": "reserved once, pending payment separate; cloud protocol owner TASK-013"
+      }
+    },
+    {
+      "case_id": "729_and_higher_rarity_supply",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "common_equivalent_per_drop": 3.0606,
+        "desired_definition_throughput_days": 29.77357380905704,
+        "warning": "not expected stopping time; drops/fusion variance waits for runner"
+      }
+    },
+    {
+      "case_id": "gacha_pool_rates",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "quality_total": 1000000,
+        "definitions": 73,
+        "ten_pull_cost": 1000
+      }
+    },
+    {
+      "case_id": "pity_boundary_sequence",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "worst_bronze_draw_sequence_pulls_10_20_30": [
+          "rare",
+          "rare",
+          "legendary"
+        ],
+        "counters_after_gold": [
+          0,
+          0
+        ],
+        "10pull_order": "same sequential algorithm, one atomic receipt"
+      }
+    },
+    {
+      "case_id": "no_unobtainable_class_weapon",
+      "acceptance": [
+        "AC-01",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "random_drop_not_required_for_class2_weapon": true,
+        "future_tiers_in_pool": false
+      }
+    }
+  ],
+  "passed": true
+}

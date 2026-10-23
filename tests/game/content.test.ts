@@ -100,3 +100,18 @@ test('D138 rejects invalid success references and contradictory guaranteed-crit 
  const broken=structuredClone(source),e=(broken.effects as ObjectValue[])[1]!;e.critical_rule='always';e.can_crit=false;
  assert.throws(()=>validator.definition('skill',broken,location),InvalidContent);
 });
+
+
+test('D141 rejects missing ranks/prices, invalid pity targets and malformed socket gates before gameplay',()=>{
+ for(const kind of ['rank','price','pity_target','pity_bonus','socket_zero','socket_order','socket_count']as const){
+  const changed=structuredClone(raw),slots=changed.documents['slot-progress.json'] as unknown as {refine:{success_chance_by_target:Record<string,number>;upgrade_rows:unknown[];pity:{bonus_per_failure_by_target:Record<string,number>}};cards:{capacity_by_refine:{minimum_refine:number;slots:number}[]}};
+  if(kind==='rank')delete slots.refine.success_chance_by_target['15'];
+  if(kind==='price')slots.refine.upgrade_rows.pop();
+  if(kind==='pity_target')slots.refine.pity.bonus_per_failure_by_target['16']=.005;
+  if(kind==='pity_bonus')slots.refine.pity.bonus_per_failure_by_target['15']=-.1;
+  if(kind==='socket_zero')slots.cards.capacity_by_refine[0]!.minimum_refine=1;
+  if(kind==='socket_order')slots.cards.capacity_by_refine[2]!.minimum_refine=5;
+  if(kind==='socket_count')slots.cards.capacity_by_refine[3]!.slots=4;
+  const result=validateContent(changed);assert.equal(result.ok,false,kind);if(!result.ok)assert.ok(result.errors.some(e=>e.source==='slot-progress.json'),kind);
+ }
+});

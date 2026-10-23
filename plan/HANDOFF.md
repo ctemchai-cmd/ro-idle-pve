@@ -6,6 +6,15 @@
 
 
 
+## 23 ต.ค.2026 · Codex — TASK109 localผ่าน รอpush/hosted
+
+- D140 Storyทุก5ด่านชัดขึ้น/Towerตีหนักขึ้น;D141RefineMax15/ยืนยันเริ่ม0การ์ด→1@5→2@10→3@15. Shareddata/schema/quotes/pity/UI/max15. Migrationปล่อยเฉพาะlockedbindingsการ์ดเดิมยังอยู่inventoryพร้อมlevel/lock/rarity;7actors×6slots/idempotencevalidated,ไม่ownerpatch.
+- Storychapter3+envelopeจากimmutablecalibration;ch6HP×1.45/ATK×1.20ต่อ5ด่าน,6-5=137600/2501,6-10=199521/3003,6-15=289308/3606. TowerATKceil((100+20f+5f²)/8)~+25%,HP/DEF/rewards/claimsunchanged. Heavy4sinterrupt/speedrulesคงเดิม. ตัวเลขassistantstartingprofileไม่ใช่ownerwinrate,ไม่renewedbalancebatch.
+-545TS/fullM0/readiness8/buildผ่าน. ActualfreshAuth/API/SQL/mobile320/3903groupsผ่าน: +14fixturepity200→+15oneCAScost45000gold120ore,repeatUUIDnoextradebit/revision,thirdcardassign/reload;realStory6-5/Tower21checkpointstats;readonly10%/1%/1.5%pity0.5pp. Final320refine/chanceandTowerimagesviewed. R1harnessfreecardselector3matchesretained;R2/R3passed.
+- Fulltestfirst9failเก็บlog:5oldsocketfixturesupdatedwithunlockedlevels;4preexistingfailreproducedarchivedHEAD. Demowardednowchecksheavy_casttag(neverenemyquakeid);elementoraclesD138updated;supersededsupportcurvesvalidateindependentnumericgoldens,plant2.45scale. Farmtestoldguaranteed12loot/0crystalreproducedonHEAD;explicitlegacy100%snapshotfixture/40crystalD129oracle,50%newbehaviorstilltested. Noactualbalancevalueschangedbytheseoracles.
+- Content16f30545c5bfb4efd65a474f0a90f32c259e6dabcab002a3c53906bfcf9e8ad0 pack477ceb18c79d7f00e6b58c061780fd1654eaf9a93553a7fcbcccaba65caa355bunchanged791IDs1467files31684766B. Sourceaudit55otherdatafilesidentical;StageonlyHP/P/Mpower,ToweronlyATK,Enchant/allcardeffects/Refine1–10prices/perrankpowerunchanged. Noassets/privateenv/ownercloud/6173/SQL/envchanges.
+- TASK109inprogressAC1–5localpassed/6publicpending;board94/109done inprogress5/review5/todo5 M4done54/64. Next authorizedsourcepushmain→Vercelstatussuccess→scripts/test_difficulty_refine15_hosted.cjs→6ACreview/done95/109/M4done55/64/readiness/docsclosurepush. Existingownerfinishfight/reload/backup-migrateflow. Do notclaimownerupdated.
+
 ## 23 ต.ค.2026 · Codex — TASK108 done ขึ้นVercelแล้ว
 
 - SOURCE`4df191d373cf697b0ca426aadda159c951a12302` VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/9tYJDjx5rJFHxhZ94usy2yzy9c9g Public4groups162mediaSHA/contentAPI200SIN1/checkpoint401/132runtimealiases/CSS-JSdeclaredSHA/mobilelogin0writesผ่าน. Content16e596da019fb7b7b49358d502f3e2d21cde927e5245e2d171b9603cb88e3ee0 pack477ceb18c79d7f00e6b58c061780fd1654eaf9a93553a7fcbcccaba65caa355b/791IDs1467files31684766B inclmanifest565792/initial1621492.

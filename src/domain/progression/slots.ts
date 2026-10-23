@@ -6,7 +6,7 @@ import { enchantLinesFor, type EnchantLine } from '../build/slot-definition.ts';
 import { cardRarityDust } from '../build/card-rarity.ts';
 type Wallet=AccountState['wallet'];
 export type SlotCommand=Extract<Command,{type:'slot.refine'|'slot.enchant'|'slot.change_enchant'|'card.assign'|'card.unassign'|'card.upgrade'|'card.salvage'}>;
-export interface SlotData {refine:{max:number;success_chance_by_target:Record<string,number>;pity:{bonus_per_failure:number;cap:number};upgrade_rows:{from:number;to:number;gold:number;refine_ore:number}[]};enchant:{max:number;slot_lines:Record<EquipmentSlot,Record<string,EnchantLine>>;upgrade_rows:{from:number;to:number;gold:number;enchant_dust:number}[]};cards:{capacity_by_refine:{minimum_refine:number;slots:number}[]}}
+export interface SlotData {refine:{max:number;success_chance_by_target:Record<string,number>;pity:{bonus_per_failure:number;bonus_per_failure_by_target?:Record<string,number>;cap:number};upgrade_rows:{from:number;to:number;gold:number;refine_ore:number}[]};enchant:{max:number;slot_lines:Record<EquipmentSlot,Record<string,EnchantLine>>;upgrade_rows:{from:number;to:number;gold:number;enchant_dust:number}[]};cards:{capacity_by_refine:{minimum_refine:number;slots:number}[]}}
 interface CardData{level_cost_rows:{from:number;to:number;gold:number;card_dust:number}[];rarities:{id:string;salvage_card_dust:number}[]}
 export const slotData=(content:ValidatedContent)=>content.documents['slot-progress.json'] as unknown as SlotData;
 export const cardData=(content:ValidatedContent)=>content.documents['cards.json'] as unknown as CardData;
@@ -14,7 +14,11 @@ function reject(code:string):never{throw new ProgressionRejection(code);}
 /** D-057: chance of the next single Refine step including accumulated pity; never above the pity cap. */
 export function refineChance(progress:{refine:number;refine_failures:number},content:ValidatedContent):number{
  const refine=slotData(content).refine,base=refine.success_chance_by_target[String(progress.refine+1)];if(base===undefined)return 0;
- return Math.min(refine.pity.cap,base+refine.pity.bonus_per_failure*progress.refine_failures);
+ return Math.min(refine.pity.cap,base+refinePityBonus(progress.refine+1,content)*progress.refine_failures);
+}
+export function refinePityBonus(target:number,content:ValidatedContent):number{
+ const pity=slotData(content).refine.pity;
+ return pity.bonus_per_failure_by_target?.[String(target)]??pity.bonus_per_failure;
 }
 export function cardCapacity(refine:number,content:ValidatedContent){return slotData(content).cards.capacity_by_refine.filter(row=>row.minimum_refine<=refine).at(-1)!.slots;}
 /** Shared integer-cost accumulator for both command and before-confirm preview. */

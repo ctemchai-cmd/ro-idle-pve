@@ -56,6 +56,21 @@ export function validateContent(raw: unknown): Result<ValidatedContent> {
   const docAt = (file: string) => ({ source: file, path: '' });
   attempt(docAt('slot-progress.json'), () => {
     const slots = bundle.documents['slot-progress.json']!, refine = object(object(slots.refine).per_step_modifiers), enchant = object(object(slots.enchant).slot_lines);
+    const config=object(slots.refine),max=config.max,chances=object(config.success_chance_by_target),pity=object(config.pity),prices=list(config.upgrade_rows);
+    const at=docAt('slot-progress.json'),prob=(n:Json|undefined)=>typeof n==='number'&&Number.isFinite(n)&&n>=0&&n<=1;
+    demand(typeof max==='number'&&Number.isSafeInteger(max)&&max>=1,'refine_max',at);
+    demand(Object.keys(chances).length===max&&prices.length===max,'refine_levels',at);
+    for(let level=1;level<=Number(max);level++){
+      demand(prob(chances[String(level)]),'refine_chance',at);
+      const row=object(prices[level-1]);demand(row.from===level-1&&row.to===level&&['gold','refine_ore'].every(k=>typeof row[k]==='number'&&Number.isSafeInteger(row[k])&&Number(row[k])>=0),'refine_price',at);
+    }
+    demand(prob(pity.bonus_per_failure)&&prob(pity.cap),'refine_pity',at);
+    if(pity.bonus_per_failure_by_target!==undefined)for(const[target,bonus]of Object.entries(object(pity.bonus_per_failure_by_target)))demand(/^[1-9]\d*$/.test(target)&&Number(target)<=Number(max)&&prob(bonus),'refine_pity_target',at);
+    const capacities=list(object(slots.cards).capacity_by_refine);
+    demand(capacities.length>=1,'socket_levels',at);
+    capacities.forEach((value,index)=>{const row=object(value),prior=index?object(capacities[index-1]):undefined;
+      demand(typeof row.minimum_refine==='number'&&Number.isSafeInteger(row.minimum_refine)&&row.minimum_refine>=0&&row.minimum_refine<=Number(max)&&typeof row.slots==='number'&&Number.isSafeInteger(row.slots)&&row.slots>=0&&row.slots<=3&&(!index?row.minimum_refine===0:row.minimum_refine>Number(prior!.minimum_refine)&&row.slots>Number(prior!.slots)),'socket_level',at);
+    });
     const names = ['weapon', 'head', 'armor', 'garment', 'shoes', 'accessory'];
     demand(canonical(Object.keys(refine).sort()) === canonical(names.slice().sort()) && canonical(Object.keys(enchant).sort()) === canonical(names.slice().sort()), 'slot_catalog', docAt('slot-progress.json'));
     const validate = (values: Json[], path: string) => {

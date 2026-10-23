@@ -1,5 +1,6 @@
 import type { AccountState } from '../../contracts/index.ts';
 import type { ValidatedContent } from '../../content/model.ts';
+import { cardCapacity } from '../progression/slots.ts';
 import { progressionData } from '../progression/characters.ts';
 import { storyStage, storyFarmSnapshot } from '../modes/story.ts';
 import { legacyOptionSeed, rollItemOptions } from '../build/item-options.ts';
@@ -22,8 +23,14 @@ export function migrateAccountState(input: unknown, content: ValidatedContent): 
     const item=items[index]!;if(item.kind!=='card')continue;
     const normalized=migrateCardRarity(item,content);if(normalized.rarity_id!==item.rarity_id){items[index]=normalized;changes.push(`${item.instance_id}: fixed monster rarity ${item.rarity_id} -> ${normalized.rarity_id} (prior power retained)`);}
   }
-  for (const actor of state.roster) for (const [slot, progress] of Object.entries(actor.slot_progress) as [string, { refine_failures?: number }][]) {
+  for (const actor of state.roster) for (const [slot, progress] of Object.entries(actor.slot_progress)) {
     if (progress.refine_failures === undefined) { progress.refine_failures = 0; changes.push(`${actor.character_id}.${slot}.refine_failures=0`); }
+    // D-141: instances already live in inventory; release only newly locked bindings.
+    const capacity = cardCapacity(progress.refine, content);
+    for (let index = capacity; index < progress.cards.length; index++) if (progress.cards[index]) {
+      changes.push(`${actor.character_id}.${slot}: card ${progress.cards[index]} returned to inventory (socket ${index + 1} locked by Refine)`);
+      progress.cards[index] = null;
+    }
   }
   // Fixed-rarity snapshots keep their earned pool/chance/RNG, while corrected monster
   // classifications must match the new catalog before the first unpaid AFK claim.

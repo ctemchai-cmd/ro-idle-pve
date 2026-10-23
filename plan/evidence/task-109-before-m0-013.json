@@ -1,0 +1,368 @@
+{
+  "task_id": "TASK-013",
+  "reviewer": "Codex self-review",
+  "review_round": 2,
+  "review_date": "2026-10-19",
+  "scope": "M0 schemas/graph/hand protocol-time-refund oracles and manual contract review. No database/API implementation or runtime performance evidence.",
+  "input_sha256": {
+    "plan/data/module-contracts.json": "b11e73fbea2bf672661040594cbac2ef0b226aeecb3cd4ecc0f3afbfa35d20aa",
+    "plan/data/save-contracts.json": "143e0e6429ba18f8825b1a51029fa8caf6d1a3af64b36a73cf0547f1c14b4b39",
+    "plan/data/quality-budgets.json": "40429f4655a2e767af8c2ac587bf54494c654efd770a0bf57cc5e6171de189fd",
+    "plan/data/account-initial-case.json": "31308e8b3ce681c102c2d0bb376ca1750d25748156161a0a6cf872bfbf001dd0",
+    "plan/data/architecture-cases.json": "4a297bd305166f50b62abdd899e2bcaa5e9ca5555c15120773e62e3d473b63b6",
+    "plan/data/ui-flows.json": "6b553c8ce9f38c4f2d38da732f3abca554f49df9b99cafab7cc4e0ffadfd765a",
+    "plan/data/battle-initial-case.json": "6712a917110ba4dac46ed2bff4e565602777c6f5da7b1a388ffb9f7a7a5c1dcd",
+    "plan/data/simulation-initial-case.json": "50c246994ad9f2b2192dd8f16a1a405604efed42b440f8a38433db3ab8fc1e68",
+    "plan/data/simulation-contracts.json": "bfd81576dd6dacdbad8b4358092f8146e70ff8de7cfbe04bf9c19c9763fe494a",
+    "plan/data/combat-rules.json": "10f96dc8871bf59223d2286e3fb9335240dae0888253d5aec482b2e7adb2f8fc",
+    "plan/data/schemas/command.json": "3cb0e50deb2f3246464f6bc6bf60dd0fb1d0a14152e49b7bd216ef65c7eeafba",
+    "plan/data/schemas/account-state.json": "d20b15f1869c4c5216e0946651615e3115bbe2d49086da357c132c5520b5b19a",
+    "plan/data/schemas/receipt.json": "a6fc43ddbc931426e321d31d5b31029acba606abf6449f984bc88a3bed17425a",
+    "plan/data/schemas/battle-checkpoint.json": "b9c90902a1faa3ba9f5d87d9866d2c6fa830fd3323044181cfeb3a4ee123a575",
+    "plan/data/schemas/simulation-scenario.json": "27db3d11711f2bf3f56188510319b8a68b9284565aded730ea84ccfebd4f71b7",
+    "plan/design/11-technical-architecture.md": "28eec32ae8b7abcc1667cb939d4b5be1470ecc937c1c4a1eb9f7bb0b0719269a",
+    "plan/checks/architecture.py": "0e79ae7a4b53ed7b2098bf95d912bf30477c799e7b7ca52cba5fcdc7f87457ee"
+  },
+  "checks": [
+    {
+      "case_id": "valid_initial_account_7_characters_42_items",
+      "acceptance": [
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "characters": 7,
+        "item_instances": 0,
+        "assigned_once": 0,
+        "manual_primary_growth": true
+      }
+    },
+    {
+      "case_id": "schema_command",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "schema_account-state",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "schema_receipt",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "schema_battle-checkpoint",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "schema_simulation-scenario",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": null
+    },
+    {
+      "case_id": "battle_checkpoint_fields_and_regen_timers",
+      "acceptance": [
+        "AC-01",
+        "AC-07",
+        "AC-08"
+      ],
+      "passed": true,
+      "result": {
+        "actors": 5,
+        "timers": 15,
+        "restore_field_paths": 12,
+        "checkpoint": "full timestamp barrier phase7, not partial effects"
+      }
+    },
+    {
+      "case_id": "simulation_scenario_refs_and_budget_contract",
+      "acceptance": [
+        "AC-01",
+        "AC-08"
+      ],
+      "passed": true,
+      "result": {
+        "build_refs": 4,
+        "equipment_profile_refs": 4,
+        "AB_policy": "matched seeds, equal actual budgets; mismatch rejected",
+        "hash": "fixture_hash is a schema fixture only, runtime must supply matching content hash"
+      }
+    },
+    {
+      "case_id": "module_graph_and_public_ports",
+      "acceptance": [
+        "AC-01",
+        "AC-08"
+      ],
+      "passed": true,
+      "result": {
+        "modules": 16,
+        "cycles": 0,
+        "pure_transitive_adapter_imports": 0,
+        "actual_source_lint": "TASK-015/018, not executed by this graph check"
+      }
+    },
+    {
+      "case_id": "all_ui_actions_have_typed_command",
+      "acceptance": [
+        "AC-01",
+        "AC-05"
+      ],
+      "passed": true,
+      "result": {
+        "UI_durable_actions": 39,
+        "typed_command_shapes_validated": 39,
+        "account_id_in_payload": false,
+        "examples_scope": "shape examples, business-precondition fixtures owned by implementation tasks"
+      }
+    },
+    {
+      "case_id": "commit_new",
+      "acceptance": [
+        "AC-02",
+        "AC-03",
+        "AC-05"
+      ],
+      "passed": true,
+      "result": "commit_revision6"
+    },
+    {
+      "case_id": "retry_lost_response",
+      "acceptance": [
+        "AC-02",
+        "AC-03",
+        "AC-05"
+      ],
+      "passed": true,
+      "result": "original_receipt_no_second_mutation"
+    },
+    {
+      "case_id": "reuse_id_changed_payload",
+      "acceptance": [
+        "AC-02",
+        "AC-03",
+        "AC-05"
+      ],
+      "passed": true,
+      "result": "IDEMPOTENCY_KEY_REUSE"
+    },
+    {
+      "case_id": "two_devices_revision_collision",
+      "acceptance": [
+        "AC-02",
+        "AC-03",
+        "AC-05"
+      ],
+      "passed": true,
+      "result": "REVISION_CONFLICT"
+    },
+    {
+      "case_id": "invalid_account_and_owner_inputs",
+      "acceptance": [
+        "AC-02",
+        "AC-05"
+      ],
+      "passed": true,
+      "result": {
+        "invalid_account_examples_rejected": [
+          {
+            "case": "negative_wallet",
+            "error": "SCHEMA"
+          },
+          {
+            "case": "duplicate_item_assignment",
+            "error": "DUPLICATE_ASSIGNMENT"
+          },
+          {
+            "case": "npc_root_changed",
+            "error": "NPC_ROOT_CHANGED"
+          },
+          {
+            "case": "skill_slot_duplicate",
+            "error": "DUPLICATE_SKILL"
+          },
+          {
+            "case": "card_capacity_exceeded",
+            "error": "CARD_CAPACITY"
+          },
+          {
+            "case": "two_rogue_copy_slots",
+            "error": "COPY_GROUP_LIMIT"
+          }
+        ],
+        "client_supplied_owner": "schema rejects",
+        "runtime_tests": "TASK-022/033/044"
+      }
+    },
+    {
+      "case_id": "old_price_actual_paid_refund",
+      "acceptance": [
+        "AC-06"
+      ],
+      "passed": true,
+      "result": {
+        "first_refund_wallet": 300,
+        "repeat_wallet": 300,
+        "refund_is_actual_paid": true
+      }
+    },
+    {
+      "case_id": "active_ledger_coalescing_and_history",
+      "acceptance": [
+        "AC-02",
+        "AC-06"
+      ],
+      "passed": true,
+      "result": {
+        "paid_across_versions": 250,
+        "refund": 250,
+        "second_reset_new_ID_refund": 0,
+        "active_scopes_after_reset": 0,
+        "archived_refund": "receipt only",
+        "seven_character_scope_ceiling": 136
+      }
+    },
+    {
+      "case_id": "farm_reserved_then_paid_not_rerolled",
+      "acceptance": [
+        "AC-03",
+        "AC-06",
+        "AC-07"
+      ],
+      "passed": true,
+      "result": {
+        "reserved": 720,
+        "immediately_paid_with_full_inventory": 0,
+        "pending_payable": 720,
+        "retry_generated": 0,
+        "source_of_truth": "pending claim plus advanced reservation cursor, not a second wallet"
+      }
+    },
+    {
+      "case_id": "normal_ack",
+      "acceptance": [
+        "AC-03",
+        "AC-07"
+      ],
+      "passed": true,
+      "result": {
+        "credited_ms": 2000,
+        "aborted": false
+      }
+    },
+    {
+      "case_id": "slow_ack",
+      "acceptance": [
+        "AC-03",
+        "AC-07"
+      ],
+      "passed": true,
+      "result": {
+        "credited_ms": 5000,
+        "aborted": false
+      }
+    },
+    {
+      "case_id": "disconnected_past_lease",
+      "acceptance": [
+        "AC-03",
+        "AC-07"
+      ],
+      "passed": true,
+      "result": {
+        "credited_ms": 0,
+        "aborted": true
+      }
+    },
+    {
+      "case_id": "lease_deadline_inclusive",
+      "acceptance": [
+        "AC-03",
+        "AC-07"
+      ],
+      "passed": true,
+      "result": {
+        "credited_ms": 0,
+        "aborted": true
+      }
+    },
+    {
+      "case_id": "versions_modes_and_sql_boundary",
+      "acceptance": [
+        "AC-04",
+        "AC-06",
+        "AC-07"
+      ],
+      "passed": true,
+      "result": {
+        "compatibility_cases": 6,
+        "mode_policies": 4,
+        "SQL_business_formulas": false,
+        "stale_backup": "reject, restore only verified latest history tip",
+        "recovery_test_owner": "TASK-040/044"
+      }
+    },
+    {
+      "case_id": "backup_integrity_fixture",
+      "acceptance": [
+        "AC-04",
+        "AC-06"
+      ],
+      "passed": true,
+      "result": {
+        "same_body": "valid fixture signature",
+        "tampered_body": "signature differs",
+        "valid_old_signature": "passes integrity, rejected by stale revision4<cloud8 gate",
+        "server_restore": "not implemented"
+      }
+    },
+    {
+      "case_id": "quality_budgets_and_local_test_routes",
+      "acceptance": [
+        "AC-04",
+        "AC-08"
+      ],
+      "passed": true,
+      "result": {
+        "numeric_budgets": 17,
+        "initial_fixture_bytes": 9970,
+        "500_items_136_active_investments_bytes": 135392,
+        "measurement_profiles": "progression reference profiles + stated warmup/network/cache",
+        "performance_measurement": "not performed; owners TASK-018/019/022/042"
+      }
+    }
+  ],
+  "passed": true,
+  "runtime_pending": [
+    "TASK-015",
+    "TASK-018",
+    "TASK-021",
+    "TASK-022",
+    "TASK-038",
+    "TASK-040",
+    "TASK-044"
+  ]
+}

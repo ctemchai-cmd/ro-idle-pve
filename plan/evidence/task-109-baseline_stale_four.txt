@@ -1,0 +1,83 @@
+✖ warded demo changes only its own quake snapshot, preserving base definitions and other runs (204.363917ms)
+✖ direct, weapon, mixed, periodic, passive, summoned and handler skill elements use their actual programs (3.404375ms)
+✖ all support curves scale from their original values once and damage curves do not compound (0.607333ms)
+✖ Healing Plant inherits shared heal power without changing lifetime, cadence or ownership (8.654541ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 0
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1518.51725
+
+✖ failing tests:
+
+test at tests/game/demo.test.ts:1:2572
+✖ warded demo changes only its own quake snapshot, preserving base definitions and other runs (204.363917ms)
+  TypeError [Error]: Cannot read properties of undefined (reading 'definition')
+      at quake (/private/tmp/ro-task109-baseline-se2e9m0h/tests/game/demo.test.ts:37:129)
+      at TestContext.<anonymous> (/private/tmp/ro-task109-baseline-se2e9m0h/tests/game/demo.test.ts:38:13)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.start (node:internal/test_runner/test:959:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:332:17)
+
+test at tests/game/element-presentation.test.ts:1:1582
+✖ direct, weapon, mixed, periodic, passive, summoned and handler skill elements use their actual programs (3.404375ms)
+  AssertionError [ERR_ASSERTION]: assassin_detonate
+  + actual - expected
+
+    [
+  +   'weapon'
+  -   'poison'
+    ]
+
+      at TestContext.<anonymous> (/private/tmp/ro-task109-baseline-se2e9m0h/tests/game/element-presentation.test.ts:36:65)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.start (node:internal/test_runner/test:959:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:332:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: [ 'weapon' ],
+    expected: [ 'poison' ],
+    operator: 'deepStrictEqual'
+  }
+
+test at tests/game/support-impact.test.ts:1:1749
+✖ all support curves scale from their original values once and damage curves do not compound (0.607333ms)
+  Error: ENOENT: no such file or directory, open 'plan/generators/build-impact-spec.json'
+      at readFileSync (node:fs:433:20)
+      at TestContext.<anonymous> (/private/tmp/ro-task109-baseline-se2e9m0h/tests/game/support-impact.test.ts:31:27)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.start (node:internal/test_runner/test:959:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:332:17) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'plan/generators/build-impact-spec.json'
+  }
+
+test at tests/game/support-impact.test.ts:1:5347
+✖ Healing Plant inherits shared heal power without changing lifetime, cadence or ownership (8.654541ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  28 !== 20
+
+      at TestContext.<anonymous> (/private/tmp/ro-task109-baseline-se2e9m0h/tests/game/support-impact.test.ts:76:50)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at node:internal/test_runner/test:996:31
+      at node:internal/process/task_queues:151:7
+      at AsyncResource.runInAsyncScope (node:async_hooks:214:14)
+      at AsyncResource.runMicrotask (node:internal/process/task_queues:148:8) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 28,
+    expected: 20,
+    operator: 'strictEqual'
+  }

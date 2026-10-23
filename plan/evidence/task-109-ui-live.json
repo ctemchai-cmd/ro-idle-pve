@@ -1,0 +1,65 @@
+{
+  "task_id": "TASK-109",
+  "passed": true,
+  "checks": [
+    "ActualAuth/API/SQL oneRefine+15 CAS/cost/pityreset/threecards/reload at320/390",
+    "ActualStory6-5 andTower21 persist compiled newHP/ATK;retreat changes no progression",
+    "ActualRefineUI exact10/1/1.5percent and0.5pp pity at320/390,zeroinspectionwrites"
+  ],
+  "measurements": [
+    {
+      "width": 390,
+      "level": 9,
+      "misses": 0,
+      "chance": "10%",
+      "pity_bonus": "10%"
+    },
+    {
+      "width": 390,
+      "level": 14,
+      "misses": 0,
+      "chance": "1%",
+      "pity_bonus": "0.5%"
+    },
+    {
+      "width": 390,
+      "level": 14,
+      "misses": 1,
+      "chance": "1.5%",
+      "pity_bonus": "0.5%"
+    },
+    {
+      "width": 320,
+      "level": 9,
+      "misses": 0,
+      "chance": "10%",
+      "pity_bonus": "10%"
+    },
+    {
+      "width": 320,
+      "level": 14,
+      "misses": 0,
+      "chance": "1%",
+      "pity_bonus": "0.5%"
+    },
+    {
+      "width": 320,
+      "level": 14,
+      "misses": 1,
+      "chance": "1.5%",
+      "pity_bonus": "0.5%"
+    }
+  ],
+  "errors": [],
+  "commands": [
+    "account.create",
+    "slot.refine",
+    "slot.refine",
+    "card.assign",
+    "battle.start_story",
+    "battle.retreat",
+    "battle.start_tower",
+    "battle.retreat"
+  ],
+  "scope": "ActualfreshAuth/API/Postgres/mobile,synthetic+14pity200guaranteedstep;neverownercloud/privateenv/6173"
+}

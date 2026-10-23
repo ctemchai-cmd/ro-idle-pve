@@ -125,7 +125,7 @@ test('content migration preserves investments, instances, old rolls, slot progre
   s.farm.rate_snapshot!.content_version = 'before_077';
   const item = gear('equipment_sword_1', 'rare', [{ id: 'opt_skill_damage', roll: 432 }]);
   s.inventory.push(item, { instance_id: 'qa_card', definition_id: 'card_weapon_1', kind: 'card', level: 3, rarity_id: 'silver', locked: true });
-  const equipped = s.roster.find(r => r.character_id === a.character_id)!; equipped.equipment.weapon = item.instance_id; equipped.slot_progress.weapon.cards[0] = 'qa_card';
+  const equipped = s.roster.find(r => r.character_id === a.character_id)!; equipped.equipment.weapon = item.instance_id; equipped.slot_progress.weapon.refine=5; equipped.slot_progress.weapon.cards[0] = 'qa_card';
   assert.ok(s.paid_ledger.length > 0 && s.pending_rewards[0]!.items.length > 0);
   const before = structuredClone(s), migrated = migrateAccountState(s, content).state;
   for (const key of ['wallet', 'paid_ledger', 'inventory', 'roster', 'pending_rewards', 'gacha', 'daily_records'] as const) assert.deepEqual(migrated[key], key === 'inventory' ? before.inventory.map(item => item.kind === 'card' ? migrateCardRarity(item, content) : item) : before[key], key);

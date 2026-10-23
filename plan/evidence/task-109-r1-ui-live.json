@@ -1,0 +1,13 @@
+{
+  "task_id": "TASK-109",
+  "passed": false,
+  "checks": [],
+  "measurements": [],
+  "errors": [],
+  "commands": [
+    "account.create",
+    "slot.refine"
+  ],
+  "failure": "ACTUAL_REFINE15: locator.click: Error: strict mode violation: locator('dialog[open]').last().locator('.card-list button[data-card-equipped=\"false\"]') resolved to 3 elements:\n    1) <button data-card-equipped=\"false\" class=\"list-row card-pick-row  \">…</button> aka getByRole('button', { name: 'การ์ดบาโฟเมท MVP Legendary ·' })\n    2) <button data-card-equipped=\"false\" class=\"list-row card-pick-row  \">…</button> aka getByRole('button', { name: 'การ์ดวูล์ฟ Strong Uncommon ·' })\n    3) <button data-card-equipped=\"false\" class=\"list-row card-pick-row  \">…</button> aka getByRole('button', { name: 'การ์ดวูล์ฟ Normal Common · Lv.1 ATK +8 · โอกาสคริ +0.5% · ATK +14%', exact: true })\n\nCall log:\n\u001b[2m  - waiting for locator('dialog[open]').last().locator('.card-list button[data-card-equipped=\"false\"]')\u001b[22m\n",
+  "scope": "ActualfreshAuth/API/Postgres/mobile,synthetic+14pity200guaranteedstep;neverownercloud/privateenv/6173"
+}

@@ -1,7 +1,7 @@
 import { enchantLinesFor, slotModifiers } from '../domain/build/slot-definition.ts';
 import type { AccountState, Effect } from '../contracts/index.ts';
 import { loadValidatedContent } from '../content/index.ts';
-import { applySlotCommand, slotData, cardData, cardCapacity, upgradeQuote, enchantRefund, cardSalvageQuote, refineChance, type SlotCommand } from '../domain/progression/slots.ts';
+import { applySlotCommand, slotData, cardData, cardCapacity, upgradeQuote, enchantRefund, cardSalvageQuote, refineChance, refinePityBonus, type SlotCommand } from '../domain/progression/slots.ts';
 import { assignedOwner, itemDefinition, type EquipmentSlot, type InventoryItem } from '../domain/progression/equipment.ts';
 import { resolvedCardModifiers, resolvedCardTriggers } from '../domain/build/equipment.ts';
 import { cardOrigins } from '../content/card-catalog.ts';
@@ -16,6 +16,8 @@ export const slotsData=slotData(content),cardsData=cardData(content);
 export const slotEnchantLines=(slot:EquipmentSlot)=>enchantLinesFor(slot,content);
 export const refineModifiers=(slot:EquipmentSlot)=>slotModifiers(content).refine.per_step_modifiers[slot];
 export const socketCapacity=(refine:number)=>cardCapacity(refine,content);
+export const socketUnlockRefine=(index:number)=>slotsData.cards.capacity_by_refine.find(row=>row.slots>index)?.minimum_refine??null;
+export const socketUnlockHint=()=>slotsData.cards.capacity_by_refine.filter(row=>row.minimum_refine>0).map(row=>`การ์ดช่องที่ ${row.slots} เปิดที่ +${row.minimum_refine}`).join(' · ');
 /** Cards belong to a character's equipment slot, never to the item being previewed. */
 export function equippedCardSlots(state:AccountState,characterId:string,slot:EquipmentSlot){
  const actor=state.roster.find(a=>a.character_id===characterId);
@@ -33,6 +35,8 @@ export function slotChangePreview(state:AccountState,id:string,type:SlotCommand[
  for(const[k,n]of Object.entries(quote))next.wallet[k as keyof AccountState['wallet']]=Math.max(next.wallet[k as keyof AccountState['wallet']],n!);
  applySlotCommand(next,intent,content,0);return{before:equipmentStats(state,id),after:equipmentStats(next,id)};}
 /** Success chance (with pity) of the next Refine step for display. */
+export const nextRefinePityBonus=(progress:{refine:number})=>refinePityBonus(progress.refine+1,content);
+export const refinePercent=(chance:number)=>(chance*100).toLocaleString('th-TH',{maximumFractionDigits:2})+'%';
 export const nextRefineChance=(progress:{refine:number;refine_failures:number})=>refineChance(progress,content);
 type CardItem = Extract<InventoryItem,{kind:'card'}>;
 export const cardOrigin = (id:string) => cardOrigins(content)[id] ?? null;

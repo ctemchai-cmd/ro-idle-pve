@@ -1,0 +1,77 @@
+{
+  "task_id": "TASK-109",
+  "passed": true,
+  "changed_data": [
+    "slot-progress.json",
+    "release-content-manifest.json",
+    "acceptance-cases.json",
+    "stages.json",
+    "tower.json",
+    "schemas/account-state.json",
+    "schemas/command.json"
+  ],
+  "unchanged_data_files": 55,
+  "story_changes_only": [
+    "max_hp",
+    "physical_attack",
+    "magical_attack"
+  ],
+  "tower_changes_only": [
+    "generator.attack",
+    "floor_rows.attack"
+  ],
+  "preserved": [
+    "all stage rewards/farm rates/elements/skills/defense/speed/limits",
+    "Tower HP/DEF/claims/rewards",
+    "Refine 1-10 prices and per-rank power",
+    "Enchant all data",
+    "card definitions/effects/upgrade prices",
+    "asset bytes"
+  ],
+  "sockets": [
+    {
+      "minimum_refine": 0,
+      "slots": 0
+    },
+    {
+      "minimum_refine": 5,
+      "slots": 1
+    },
+    {
+      "minimum_refine": 10,
+      "slots": 2
+    },
+    {
+      "minimum_refine": 15,
+      "slots": 3
+    }
+  ],
+  "refine_rates": {
+    "1": 1,
+    "2": 1,
+    "3": 1,
+    "4": 1,
+    "5": 0.7,
+    "6": 0.55,
+    "7": 0.4,
+    "8": 0.28,
+    "9": 0.18,
+    "10": 0.1,
+    "11": 0.08,
+    "12": 0.05,
+    "13": 0.03,
+    "14": 0.02,
+    "15": 0.01
+  },
+  "pack_hash": "477ceb18c79d7f00e6b58c061780fd1654eaf9a93553a7fcbcccaba65caa355b",
+  "before_baseline_commit": "3fe60e2f1",
+  "input_sha256": {
+    "plan/data/stages.json": "02434a8db82a63cd2e15536b42dff3a46dbcfecf3bef9204ce9e0b90ee95bcab",
+    "plan/data/tower.json": "5dac706729531b4f6c324334855016b4c857f14fe042c579dd27ee78cc92cb9e",
+    "plan/data/slot-progress.json": "f38f3fe6956c4902cf7e0f15d078cc8460a4f00fe36289952760d5d2f151a8fe",
+    "plan/generators/stages.py": "e0f6c831d10c552fff18b1179cf1d65fba535c17a7cf013bd0ab8e89073fdc71",
+    "src/domain/account/migrate.ts": "790dc3b7080245df5e172a9ab21622b3e804648ca2b7e01785129ec5afaf0304",
+    "src/domain/progression/slots.ts": "0ab0daf17676fc2453cb51876970ba047b6655d8e41a3a79075be84c713f66f0"
+  },
+  "scope": "Fixed arithmetic/data audit; not owner team balance simulation"
+}
