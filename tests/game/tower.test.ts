@@ -46,16 +46,16 @@ test('T035 AC-01: floors 1/100/101/1000 come from one generator (HP 710/2090600/
   }
 });
 
-test('D-114: floor21 is24750HP/341ATK, following floors grow faster, with original defense/rewards/speed', () => {
-  const expected = [[1,710,16],[10,4400,100],[20,21800,313],[21,24750,341],[22,27968,370],[30,64800,650],[50,275600,1700],[100,2090600,6513]];
+test('D-114: D142 floor21 is24750HP/300ATK, following floors grow faster, with original defense/rewards/speed', () => {
+  const expected = [[1,710,14],[10,4400,88],[20,21800,275],[21,24750,300],[22,27968,326],[30,64800,572],[50,275600,1496],[100,2090600,5731]];
   for(const [floor,hp,attack]of expected){
     const row=towerRow(floor!,content),boss=towerBoss(floor!,content);
     assert.equal(row.hp,hp);assert.equal(row.attack,attack);assert.equal(row.defense,5+3*floor!);
     assert.equal(row.gold,100+15*floor!);assert.equal(row.crystal,floor!%5===0?10:0);assert.equal(row.bronze_card_count,floor!%10===0?1:0);
     assert.equal(boss.resolved_base.attack_speed,100);assert.equal(boss.resolved_base.cast_speed,100);
   }
-  assert.equal(towerRow(22,content).attack-towerRow(21,content).attack,29);
-  assert.equal(towerRow(101,content).hp,2152910);assert.equal(towerRow(101,content).attack,6641);
+  assert.equal(towerRow(22,content).attack-towerRow(21,content).attack,26);
+  assert.equal(towerRow(101,content).hp,2152910);assert.equal(towerRow(101,content).attack,5844);
 });
 
 test('T035 AC-02: the frontier floor pays its first clear once; replays, losses and locked floors pay nothing', () => {

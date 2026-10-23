@@ -549,3 +549,7 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T109-AC-04` [TASK-109](done/tasks_109.md) | design38/fixedfixtures/mobile/public | AC-04ตามdesign38 | ผ่าน runtime/local+hosted · [review](evidence/task-109-review.json) |
 | `T109-AC-05` [TASK-109](done/tasks_109.md) | design38/fixedfixtures/mobile/public | AC-05ตามdesign38 | ผ่าน runtime/local+hosted · [review](evidence/task-109-review.json) |
 | `T109-AC-06` [TASK-109](done/tasks_109.md) | design38/fixedfixtures/mobile/public | AC-06ตามdesign38 | ผ่าน runtime/local+hosted · [review](evidence/task-109-review.json) |
+
+| `T110-AC-01` [TASK-110](inprogress/tasks_110.md) | D142/static+mobile+public | Seven exactPaladin mappings with byteidentical source/export/runtime andactualmobile;all126logicalskillprograms unchanged | ยังไม่ตรวจ |
+| `T110-AC-02` [TASK-110](inprogress/tasks_110.md) | D142/static+mobile+public | Story6-5/10/15=71992/86392/103674HP and2299/2485/2687ATK;Tower21HP24750ATK300;monotonic/reduced andpreservedrewards/CC/Refine/sockets | ยังไม่ตรวจ |
+| `T110-AC-03` [TASK-110](inprogress/tasks_110.md) | D142/static+mobile+public | Assets/M0/build/targeted/freshAuth-API-SQL/mobile/publicnewcontent+newpack+7iconSHA/login0writes passed | ยังไม่ตรวจ |

@@ -6,6 +6,14 @@
 
 
 
+## 23 ต.ค.2026 · Codex — TASK110 localผ่าน รอpush/hosted
+
+- D142userเปลี่ยนPaladiniconsและรายงานStory/Towerยากเกินหลัง109;ล่าสุดGrandCrossใช้12ไม่ใช่27(แก้ก่อนpush). Exact7sources27/29/48/12/19/33/34ดูภาพครบ7static128px,importmetadata/provenance/manualscope/runtimepackแล้ว. SkillIDs/effects126/costs/timingเดิม. source7filesเท่านั้นไม่ทั้งmodernfolder.
+- Rootcausegrowthทบข้ามบท:ผ่อน3–5HP1.08/ATK1.04ต่อ5,chapter6HP1.20/ATK1.08,7–8HP1.12/ATK1.06.6-5=71992/2299,6-10=86392/2485,6-15=103674/2687. TowerATKceil((220+44f+11f²)/20)21=300,101=5844;~12%ลดจาก109/+10%ก่อน109. คงHP/DEF/rewards/claims/skills/CC/speed/Refine15/cardgates. Sourceauditแต่ละstageHP/P/Mไม่สูงกว่า109/อื่นๆSHAคง. เป็นassistantstartingvaluesไม่ownerwinrate;ไม่balancebatch.
+-36targetedTS/38Python/M0/readiness8/build/assets271-60460-6926ผ่าน ActualfreshAuth/JWT/API/Postgres/Chrome320/3902groupsผ่าน7images/detailไม่มีinspectionwrite,Story6-5/Tower21savedcheckpointstats/retreatnoprogression. FinalGrand12bothwidthsconfirmed and320screenshotviewed. before-grand12historyretained as superseded usercorrection,ไม่finalfailure.
+- Contentbc84ab2a8a3f10900e419b043d8ab2264048cbe09fcc817285ef1376a3b7b850 pack1ea6314ef8ec8c83b653f949d8da81fefcf5ec36c5b56a8e018eec61abeba215791IDs1467files media31114127+manifest565792=31679919B/initial1621492. Sourceaudit224othermodernexportmedia/metasbyte-identical. NoSQL/env/ownercloud/privateenv/6173restart.
+- TASK110inprogressAC1–2localpassed/AC3publicpending;Board95/110done inprogress5/review5/todo5 M4done55/65. Next explicitstageonlyreviewedfiles+7Paladinsources(12,19,27,29,33,34,48),commit/pushmainauthorized→Vercelstatus→scripts/test_paladin_softening_hosted.cjs→review3ACdone96/110/M4done56/65/readiness/docsclosurepush. Do notstagealluserassets or broadgitadd-u. Existingownerfinishfight/reload/backup-migrateflow.
+
 ## 23 ต.ค.2026 · Codex — TASK109 done ขึ้นVercelแล้ว
 
 - SOURCE`d882d23ee4092dc439ab837cca950e3ec6156232` VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/C6xaY3jqDPjnnRtqs393rkg4eDwc Public3groups API200SIN1/newcontent/checkpoint401/4declaredbundlesSHA/packsame132skills/mobilelogin0writesผ่าน. Content16f30545c5bfb4efd65a474f0a90f32c259e6dabcab002a3c53906bfcf9e8ad0 pack477ceb18c79d7f00e6b58c061780fd1654eaf9a93553a7fcbcccaba65caa355b.

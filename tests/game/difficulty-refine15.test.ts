@@ -10,20 +10,20 @@ import {migrateAccountState} from '../../src/domain/account/migrate.ts';
 import {resolveSkill} from '../../src/domain/build/resolve-skill.ts';
 import {refinePercent} from '../../src/client/slots.ts';
 
-test('D140 Story every5stages respects growth profiles and chapter boundaries never reset boss HP/ATK fromchapter3',()=>{
- const stages=storyStages(content),rules={3:[1.15,1.10],4:[1.15,1.10],5:[1.15,1.10],6:[1.45,1.20],7:[1.25,1.15],8:[1.25,1.15]}as Record<number,number[]>;
+test('D142 Story every5stages respects growth profiles and chapter boundaries never reset boss HP/ATK fromchapter3',()=>{
+ const stages=storyStages(content),rules={3:[1.08,1.04],4:[1.08,1.04],5:[1.08,1.04],6:[1.20,1.08],7:[1.12,1.06],8:[1.12,1.06]}as Record<number,number[]>;
  for(let i=1;i<stages.length;i++){
   const s=stages[i]!,b=s.encounter[0]!.resolved_base,p=stages[i-1]!.encounter[0]!.resolved_base;
   if(s.chapter<3)continue;assert.ok(b.max_hp>p.max_hp,s.id);assert.ok(b.physical_attack>p.physical_attack,s.id);assert.equal(b.attack_speed,100);assert.equal(b.cast_speed,100);
   if(s.index>5){const last=stages[i-5]!.encounter[0]!.resolved_base;assert.ok(b.max_hp/last.max_hp>=rules[s.chapter]![0]!,s.id);assert.ok(b.physical_attack/last.physical_attack>=rules[s.chapter]![1]!,s.id);}
   if([5,10,15].includes(s.index)){const id=s.encounter[0]!.active_slots[0]!,skill=resolveSkill(id,1,content).definition as Active;assert.equal(skill.timing.cast_ms,4000);assert.equal(skill.timing.interruptible,true);}
  }
- for(const[id,hp,attack]of [['6-5',137600,2501],['6-10',199521,3003],['6-15',289308,3606],['6-20',419501,4330]]as const){const s=stages.find(s=>s.id===id)!;assert.equal(s.encounter[0]!.resolved_base.max_hp,hp);assert.equal(s.encounter[0]!.resolved_base.physical_attack,attack);}
+ for(const[id,hp,attack]of [['6-5',71992,2299],['6-10',86392,2485],['6-15',103674,2687],['6-20',124412,2904]]as const){const s=stages.find(s=>s.id===id)!;assert.equal(s.encounter[0]!.resolved_base.max_hp,hp);assert.equal(s.encounter[0]!.resolved_base.physical_attack,attack);}
  const first=stages[0]!.encounter[0]!.resolved_base;assert.equal(first.max_hp,328);assert.equal(first.physical_attack,4050);
 });
 
-test('D140 Tower ordinary and magic power grow25% fromone polynomial; unchangedHP/DEF/rewards/speed and100+floors',()=>{
- for(const f of [1,10,21,100,101,1000]){const row=towerRow(f,content),boss=towerBoss(f,content);assert.equal(row.attack,Math.ceil((100+20*f+5*f*f)/8));assert.equal(row.hp,600+100*f+8*f*f+2*f**3);assert.equal(row.defense,5+3*f);assert.equal(row.gold,100+15*f);assert.equal(boss.resolved_base.physical_attack,row.attack);assert.equal(boss.resolved_base.magical_attack,row.attack);assert.equal(boss.resolved_base.attack_speed,100);}
+test('D142 Tower ordinary and magic power grow10% fromone polynomial; unchangedHP/DEF/rewards/speed and100+floors',()=>{
+ for(const f of [1,10,21,100,101,1000]){const row=towerRow(f,content),boss=towerBoss(f,content);assert.equal(row.attack,Math.ceil((220+44*f+11*f*f)/20));assert.equal(row.hp,600+100*f+8*f*f+2*f**3);assert.equal(row.defense,5+3*f);assert.equal(row.gold,100+15*f);assert.equal(boss.resolved_base.physical_attack,row.attack);assert.equal(boss.resolved_base.magical_attack,row.attack);assert.equal(boss.resolved_base.attack_speed,100);}
 });
 
 test('D141 exact15rank chances/old prices/new costs and gradualpity are shared and display half-percent accurately',()=>{

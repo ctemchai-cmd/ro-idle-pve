@@ -1,0 +1,58 @@
+{
+  "task_id": "TASK-110",
+  "reviewer": "Codex self-review",
+  "date": "2026-10-23",
+  "passed": false,
+  "local_passed": true,
+  "acceptance": {
+    "AC-01": true,
+    "AC-02": true,
+    "AC-03": false
+  },
+  "pending": [
+    "Vercelpublicnewcontent/newpack/7iconSHA/signin proof beforedone"
+  ],
+  "checks": {
+    "TS_targeted": 36,
+    "Python": 38,
+    "M0": true,
+    "readiness": 8,
+    "build": true,
+    "typecheck": true,
+    "asset_checks": [
+      271,
+      60460,
+      6926
+    ],
+    "actual_mobile_widths": [
+      320,
+      390
+    ],
+    "actual_Auth_API_SQL_mobile_groups": 2,
+    "GrandCross12_user_correction": true
+  },
+  "content_hash": "bc84ab2a8a3f10900e419b043d8ab2264048cbe09fcc817285ef1376a3b7b850",
+  "pack_hash": "1ea6314ef8ec8c83b653f949d8da81fefcf5ec36c5b56a8e018eec61abeba215",
+  "pack_sizes": {
+    "download_policy": "all files in pack are deployable; fetch initial profile then actors/icons/scenery/audio on demand",
+    "first_battle_budget_bytes": 8388608,
+    "initial_profile_raw_bytes": 1621492,
+    "manifest_bytes": 565792,
+    "media_and_sidecar_bytes": 31114127,
+    "pack_budget_bytes": 33554432
+  },
+  "limitations": [
+    "No renewed balancebatch or ownerteamwinrate claim",
+    "No physicalAndroid measurement",
+    "No ownercloud/privateenv/6173restart/SQL/envchanges"
+  ],
+  "evidence": [
+    "task-110-tests.txt",
+    "task-110-source-audit.json",
+    "task-110-local-stack.json",
+    "task-110-ui-live.json"
+  ],
+  "history": [
+    "FirstlocalpassusedGrandCross27 frominitialfile; usercorrectedto12beforepush; rebuilt/retested7iconsandstoredbefore-grand12reports/screenshotsas supersededhistory"
+  ]
+}
