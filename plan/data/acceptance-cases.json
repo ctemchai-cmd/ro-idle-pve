@@ -13281,6 +13281,82 @@
       "evidence_refs": [
         "plan/evidence/task-119-review.json"
       ]
+    },
+    {
+      "id": "T120-AC-01",
+      "task_id": "TASK-120",
+      "acceptance_id": "AC-01",
+      "criterion": "สมุดสกิลภายในเกมเข้าได้จากSettings/หน้าสกิล/เปลี่ยนอาชีพ;19jobs126skillsรวมinherit/passive/copy/ยังไม่เรียน เลือกrank/searchอ่านผลได้และไม่มีลิงก์เปิดแท็บใหม่ในเมนูเกม",
+      "input_setup": "Disposable local account/19jobs126skills and actual session rank snapshots; Chrome320390",
+      "input_refs": [
+        "plan/design/44-skill-catalog-and-timeline.md"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "สมุดสกิลภายในเกมเข้าได้จากSettings/หน้าสกิล/เปลี่ยนอาชีพ;19jobs126skillsรวมinherit/passive/copy/ยังไม่เรียน เลือกrank/searchอ่านผลได้และไม่มีลิงก์เปิดแท็บใหม่ในเมนูเกม",
+      "verification": "Unit+build+readonly realMobile+public Vercel",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-120-review.json"
+      ]
+    },
+    {
+      "id": "T120-AC-02",
+      "task_id": "TASK-120",
+      "acceptance_id": "AC-02",
+      "criterion": "Timeline draft/live/หลังจบและLogแตะดูรายละเอียดได้;ใช้actualactor resolveddefinitionและrankจากsessionพร้อมเวลา/ผลเดิม,missingไม่เดา;ปิดกลับTimelineได้โดยไม่หยุดหรือresetไฟต์",
+      "input_setup": "Disposable local account/19jobs126skills and actual session rank snapshots; Chrome320390",
+      "input_refs": [
+        "plan/design/44-skill-catalog-and-timeline.md"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "Timeline draft/live/หลังจบและLogแตะดูรายละเอียดได้;ใช้actualactor resolveddefinitionและrankจากsessionพร้อมเวลา/ผลเดิม,missingไม่เดา;ปิดกลับTimelineได้โดยไม่หยุดหรือresetไฟต์",
+      "verification": "Unit+build+readonly realMobile+public Vercel",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-120-review.json"
+      ]
+    },
+    {
+      "id": "T120-AC-03",
+      "task_id": "TASK-120",
+      "acceptance_id": "AC-03",
+      "criterion": "อ่านcatalog/Timelineไม่มีsavecommandsหรือsimulationใหม่/ไม่มีbody-VFX-audioโหลดจากcatalog;สกิลคิวอาชีพทุนและcontent/packhashไม่เปลี่ยน;nativeicons320390/focus/Escape/เลือกเร็วไม่stale",
+      "input_setup": "Disposable local account/19jobs126skills and actual session rank snapshots; Chrome320390",
+      "input_refs": [
+        "plan/design/44-skill-catalog-and-timeline.md"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "อ่านcatalog/Timelineไม่มีsavecommandsหรือsimulationใหม่/ไม่มีbody-VFX-audioโหลดจากcatalog;สกิลคิวอาชีพทุนและcontent/packhashไม่เปลี่ยน;nativeicons320390/focus/Escape/เลือกเร็วไม่stale",
+      "verification": "Unit+build+readonly realMobile+public Vercel",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-120-review.json"
+      ]
+    },
+    {
+      "id": "T120-AC-04",
+      "task_id": "TASK-120",
+      "acceptance_id": "AC-04",
+      "criterion": "targeted/build/boundaries/readiness/actualAuthAPI-SQL-mobileและpublicproductionผ่านก่อนdone ไม่SQL/env/ownerwrite/balancebatch",
+      "input_setup": "Disposable local account/19jobs126skills and actual session rank snapshots; Chrome320390",
+      "input_refs": [
+        "plan/design/44-skill-catalog-and-timeline.md"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "targeted/build/boundaries/readiness/actualAuthAPI-SQL-mobileและpublicproductionผ่านก่อนdone ไม่SQL/env/ownerwrite/balancebatch",
+      "verification": "Unit+build+readonly realMobile+public Vercel",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-120-review.json"
+      ]
     }
   ]
 }

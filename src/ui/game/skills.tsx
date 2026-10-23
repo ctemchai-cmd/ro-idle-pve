@@ -4,8 +4,8 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { characterSkillOptions, placeSkill, removeSkill, type SkillOption } from '../../client/skills.ts';
 import { previewStorySession, storyOptions } from '../../client/story.ts';
 import { SkillTimeline } from '../skill-timeline.tsx';
-import { locateSkillVisual } from '../../renderer/asset-locator.ts';
-import type { AssetPack } from '../../renderer/pack.ts';
+import { SkillIcon } from '../skill-icon.tsx';
+import { SkillCatalogSheet } from './skill-catalog.tsx';
 import type { GameContext } from './shell.tsx';
 import { CostChips, PageHeader, Sheet, canPay, friendNames, jobNames, seconds } from './kit.tsx';
 import { CharacterNav } from './character-nav.tsx';
@@ -13,12 +13,6 @@ import { SkillElements } from '../element-badge.tsx';
 import { SkillGrowth } from '../skill-growth.tsx';
 
 const ordinal = ['1st', '2nd', '3rd', '4th'];
-function SkillIcon({ id, pack }: { id: string; pack: AssetPack | null }) {
-  const [loaded, setLoaded] = useState<{id:string;pack:AssetPack;url:string}|null>(null);
-  const url = pack?.icons.get(id) ?? (loaded?.id === id && loaded.pack === pack ? loaded.url : null);
-  useEffect(() => { let active = true; if (pack && !pack.icons.has(id)) { try { void pack.iconUrl(locateSkillVisual(pack.index, id).icon.id).then(url => { pack.icons.set(id,url); if (active) setLoaded({id,pack,url}); }).catch(() => {}); } catch { /* A missing icon never changes skill rules. */ } } return () => { active = false; }; }, [pack, id]);
-  return url ? <img className="skill-icon" src={url} alt="" /> : <span className="skill-icon skill-glyph" aria-hidden="true"><Icon name="sparkles" /></span>;
-}
 const tagText = (s: SkillOption) => {
   const effects = (s.definition.kind === 'active' ? [...s.definition.start_effects, ...s.definition.effects] : []) as unknown as { type: string; status_id?: string }[], tags: string[] = [];
   if (effects.some(e => e.type === 'damage')) tags.push('ดาเมจ'); if (effects.some(e => e.type === 'heal')) tags.push('ฮีล'); if (effects.some(e => e.type === 'shield')) tags.push('โล่');
@@ -30,6 +24,7 @@ const tagText = (s: SkillOption) => {
 export function SkillsPage({ context }: { context: GameContext }) {
   const { state, pack, submit, locked, characterId, go } = context, actor = state.roster.find(a => a.character_id === characterId)!;
   const options = useMemo(() => characterSkillOptions(actor, state), [actor, state]);
+  const [catalog,setCatalog]=useState(false);
   // Skill-first flow (user request, 21 Oct 2026): tap a skill → สวมใส่ → tap the slot. Each placement saves at once;
   // `draft` only shows it optimistically until the receipt arrives (and snaps back if the command is refused).
   const [draft, setDraft] = useState(actor.active_slots), [picking, setPicking] = useState<string | null>(null), [selected, setSelected] = useState<string | null>(actor.active_slots.find(Boolean) ?? null);
@@ -49,7 +44,7 @@ export function SkillsPage({ context }: { context: GameContext }) {
   }, [timelineOpen, state, JSON.stringify(draft), actor.character_id, stageId]);
   useEffect(() => { if (preview && pack) void pack.prepareIcons(preview.view().actors.flatMap(a => a.slots.filter((id): id is string => id !== null))); }, [preview, pack]);
   return <div className="page skills-page">
-    <PageHeader title={`สกิล · ${friendNames[actor.character_id]}`} sub={`${jobNames[actor.job_id]} · Lv.${actor.level} · คิว ${seconds(options.intervalMs)}`} onBack={() => go('buddy', actor.character_id)} right={<CharacterNav context={context} />} />
+    <PageHeader title={`สกิล · ${friendNames[actor.character_id]}`} sub={`${jobNames[actor.job_id]} · Lv.${actor.level} · คิว ${seconds(options.intervalMs)}`} onBack={() => go('buddy', actor.character_id)} right={<div className="character-skill-actions"><button className="icon-btn" title="สมุดสกิลทุกอาชีพ" aria-label="สมุดสกิลทุกอาชีพ" onClick={()=>setCatalog(true)}><Icon name="book"/></button><CharacterNav context={context} /></div>} />
     <div className="skill-split">
       <ul className="skill-list" aria-label="รายการสกิล">{list.map(s => { const at = draft.indexOf(s.id); return <li key={s.id}><button className={`skill-row ${skill.id === s.id ? 'on' : ''} ${s.locked ? 'locked' : ''}`} aria-pressed={skill.id === s.id} onClick={() => { setSelected(s.id); setPicking(null); }}>
         <span className="skill-icon-wrap"><SkillIcon id={s.id} pack={pack} />{s.level > 0 && <i className="lv-badge">{s.level}</i>}</span>
@@ -76,5 +71,6 @@ export function SkillsPage({ context }: { context: GameContext }) {
     </section>
     <button className="loadout-timeline" aria-haspopup="dialog" onClick={() => setTimelineOpen(true)}><span>Timeline เทียบเพื่อน</span><small>ดูจังหวะสกิล ›</small></button>
     {timelineOpen && <Sheet title={`Timeline · ด่าน ${stageId}`} onClose={() => setTimelineOpen(false)} className="tall skill-preview">{!inTeam ? <p className="hint">ตัวละครนี้ไม่ได้อยู่ในทีม</p> : preview && pack ? <SkillTimeline key={JSON.stringify(draft)} session={preview} pack={pack} view={preview.view()} clock={clock} /> : <p className="hint">ยังจำลอง Timeline ไม่ได้</p>}</Sheet>}
+    {catalog&&<SkillCatalogSheet pack={pack} initialJob={actor.job_id} onClose={()=>setCatalog(false)}/>}
   </div>;
 }

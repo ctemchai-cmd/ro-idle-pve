@@ -8,6 +8,7 @@ import { equipmentData, equipmentPreview, equipmentUpgradeHints, inventoryView, 
 import { cardInventory, cardStatUnits, slotEnchantLines, refineModifiers, nextRefineChance, nextRefinePityBonus, refinePercent, slotsData, refundEnchant, salvageCardsQuote, slotChangePreview, slotUpgradeQuote, socketCapacity, socketUnlockRefine, socketUnlockHint } from '../../client/slots.ts';
 import type { GameContext } from './shell.tsx';
 import { ClassIcon } from './class-icon.tsx';
+import { SkillCatalogSheet } from './skill-catalog.tsx';
 import { orderedCharacters } from './character-nav.tsx';
 import { CardGrade } from './card-grade.tsx';
 import { EquipmentCards } from './equipment-cards.tsx';
@@ -139,12 +140,13 @@ function SlotSheet({ context, actor, slot, close, open }: { context: GameContext
 
 function CharacterUpgradeSheet({ context, actor, close }: { context: GameContext; actor: Character; close: () => void }) {
   const { state, pack, submit, locked } = context, cap = effectiveLevelCap(actor, data), [job, setJob] = useState(actor.job_id), [reset, setReset] = useState(false);
+  const [catalog,setCatalog]=useState(false);
   const cost = actor.level < cap ? levelQuote(actor, actor.level + 1, data) : null;
   let best = actor.level; for (let t = actor.level + 1; t <= cap; t++) { if (canPay(state.wallet, levelQuote(actor, t, data))) best = t; else break; }
   const gate = data.progression.breakthrough_gates.find(g => g.at_level === actor.level && actor.local_cap === actor.level && !actor.completed_gate_ids.includes(g.at_level));
   const jobs = actor.kind === 'main' ? roots.flatMap(r => [r, ...data.class_tree[r]]) : [actor.root_job_id, ...data.class_tree[actor.root_job_id]];
   const refund = state.paid_ledger.filter(e => e.character_id === actor.character_id && e.feature_id === 'skill' && e.refund_state === 'active').reduce((sum, e) => { for (const k of Object.keys(sum) as (keyof Wallet)[]) sum[k] += e.paid_resources[k]; return sum; }, Object.fromEntries(Object.keys(state.wallet).map(k => [k, 0])) as Wallet);
-  return <Sheet title={`อัปเกรด ${friendNames[actor.character_id]}`} onClose={close} className="tall">
+  return <><Sheet title={`อัปเกรด ${friendNames[actor.character_id]}`} onClose={close} className="tall">
     <section className="upgrade-pane"><h3>เลเวล</h3>
       <div className="level-jump"><b>Lv.{actor.level}</b><span>→</span><b className="next">{cost ? `Lv.${actor.level + 1}` : actor.level === data.release.level_cap ? 'MAX' : 'รอ Breakthrough'}</b><small>เพดาน {cap}</small></div>
       {cost && <><CostChips cost={cost} wallet={state.wallet} pack={pack} /><div className="row two"><button className="btn primary" disabled={locked || !canPay(state.wallet, cost)} onClick={() => void submit('character.level_up', { character_id: actor.character_id, target_level: actor.level + 1 })}>อัป +1</button>
@@ -152,7 +154,7 @@ function CharacterUpgradeSheet({ context, actor, close }: { context: GameContext
     </section>
     {gate && <section className="upgrade-pane highlight"><h3>Breakthrough Lv.{gate.at_level}</h3><p className="hint">ปลดเพดานถึง Lv.{Math.min(data.release.level_cap, gate.unlocks_local_cap)}</p><CostChips cost={gate.cost} wallet={state.wallet} pack={pack} />
       <button className="btn primary wide" disabled={locked || !canPay(state.wallet, gate.cost)} onClick={() => void submit('character.breakthrough', { character_id: actor.character_id, gate_level: gate.at_level })}>Breakthrough</button></section>}
-    <section className="upgrade-pane"><h3>เปลี่ยนอาชีพ</h3>
+    <section className="upgrade-pane"><div className="upgrade-section-heading"><h3>เปลี่ยนอาชีพ</h3><button className="btn ghost" onClick={()=>setCatalog(true)}><Icon name="book"/>ดูสกิลทุกอาชีพ</button></div>
       <div className="chip-row">{jobs.map(j => { const class2 = !roots.includes(j as RootJob), lockedJob = class2 && actor.level < data.promotion.class2_min_level; return <button key={j} className={`chip job-chip ${job === j ? 'on' : ''}`} disabled={lockedJob} onClick={() => setJob(j)}><ClassIcon pack={pack} job={j} size={18} />{jobNames[j]}{lockedJob ? ` · Lv.${data.promotion.class2_min_level}` : ''}</button>; })}<button className="chip job-chip hi-class" disabled title="Hi-class เปิดในรุ่นถัดไป (Lv.70)"><Icon name="sparkles" /> Hi-class · เร็วๆ นี้</button></div>
       {job !== actor.job_id ? <><p className="hint">เปลี่ยนฟรี · รีเซ็ต Status/สกิลและคืนทุนที่จ่ายจริง · อาวุธที่ใช้ไม่ได้กลับเข้ากระเป๋า</p><CostChips cost={refund} wallet={state.wallet} pack={pack} />
         <button className="btn primary wide" disabled={locked} onClick={() => void submit('character.change_job', { character_id: actor.character_id, job_id: job })}>เปลี่ยนเป็น {jobNames[job]}</button></> : <p className="hint">อาชีพปัจจุบัน: {jobNames[actor.job_id]}{actor.kind === 'npc' ? ' · เพื่อนเปลี่ยนได้ภายในสายเดิม' : ''}</p>}
@@ -160,7 +162,7 @@ function CharacterUpgradeSheet({ context, actor, close }: { context: GameContext
     <section className="upgrade-pane"><h3>รีเซ็ตบิลด์</h3><p className="hint">คืนแต้ม Status และทุนสกิลที่จ่ายจริง · เลเวลและการพัฒนาช่องอุปกรณ์ยังอยู่</p>
       {reset ? <div className="row"><button className="btn danger" disabled={locked} onClick={() => void submit('character.reset_build', { character_id: actor.character_id, features: ['stats', 'skills'] }).then(() => setReset(false))}>ยืนยันรีเซ็ต</button><button className="btn ghost" onClick={() => setReset(false)}>ยกเลิก</button></div> : <button className="btn ghost wide" disabled={locked} onClick={() => setReset(true)}>รีเซ็ต Status / สกิล</button>}
     </section>
-  </Sheet>;
+  </Sheet>{catalog&&<SkillCatalogSheet pack={pack} initialJob={job} onClose={()=>setCatalog(false)}/>}</>;
 }
 
 export function RosterStrip({ context }: { context: GameContext }) {

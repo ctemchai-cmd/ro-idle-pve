@@ -6,13 +6,14 @@ import type { GameContext } from './shell.tsx';
 import { Icon } from '../icon.tsx';
 import { readAudioLevels, saveAudioLevels } from '../../renderer/audio-preferences.ts';
 import { ClassIcon } from './class-icon.tsx';
+import { SkillCatalogSheet } from './skill-catalog.tsx';
 import { ActorCanvas, ResIcon, Sheet, compact, friendNames, full, jobNames, lookOf, resourceNames, type Wallet } from './kit.tsx';
 
 const statusText: Record<string, string> = { ready: 'บันทึกแล้ว', saving: 'กำลังบันทึก…', offline: 'ขาดการเชื่อมต่อ · พักความคืบหน้า', read_only: 'เปิดดู · อีกแท็บกำลังเล่น', incompatible: 'มีเกมรุ่นใหม่ · โหลดหน้าใหม่', loading: 'กำลังตรวจเซฟ…', error: 'เซฟมีปัญหา · เชื่อมต่อใหม่', signed_out: 'ออกจากระบบแล้ว', idle: 'กำลังเตรียม…' };
 const walletOrder: (keyof Wallet)[] = ['gold', 'hero_exp', 'crystal', 'skill_manual', 'breakthrough_essence', 'refine_ore', 'enchant_dust', 'card_dust'];
 
 export function TopHud({ context, save, controller, sound, toggleSound, reconnect, slotNumber, switchSave }: { context: GameContext; save: SaveSnapshot; controller: SaveController; sound: boolean; toggleSound: () => void; reconnect: () => void; slotNumber?:number;switchSave?:()=>void }) {
-  const { state, pack } = context, main = state.roster.find(a => a.character_id === 'main')!, [sheet, setSheet] = useState<'wallet' | 'settings' | 'backup' | 'reset' | null>(null);
+  const { state, pack } = context, main = state.roster.find(a => a.character_id === 'main')!, [sheet, setSheet] = useState<'wallet' | 'settings' | 'backup' | 'reset' | 'catalog' | null>(null);
   const tone = save.status === 'ready' ? 'ok' : save.status === 'saving' || save.status === 'loading' ? 'busy' : 'bad';
   // TASK-040: the maintenance panel explains a save that needs migration/recovery; the generic alert would mislead.
   const maintenance = save.reason === 'SAVE_MIGRATION_REQUIRED' || save.reason === 'SAVE_INTEGRITY_FAILED';
@@ -45,7 +46,7 @@ export function TopHud({ context, save, controller, sound, toggleSound, reconnec
     {sheet === 'settings' && <Sheet title="ตั้งค่าและเซฟ" onClose={() => setSheet(null)}>
       <div className="settings-list">
         <InstallApp />
-        <a className="btn" href="/skill-preview" target="_blank" rel="noopener">Skill Preview</a>
+        <button className="btn" onClick={()=>setSheet('catalog')}><Icon name="book"/>สมุดสกิล</button>
         {switchSave&&<><div className="settings-row"><span>ช่องเซฟ</span><b>{slotNumber} / 10</b></div><button className="btn" disabled={save.status==='saving'||save.status==='loading'||!!state.active_battle} onClick={switchSave}><Icon name="save"/>เปลี่ยนเซฟ</button>{state.active_battle&&<p className="hint">จบไฟต์ก่อนเปลี่ยนเซฟ</p>}</>}
         <div className="settings-row"><span>สถานะเซฟ</span><b className={`save-text ${tone}`}>{statusText[save.status] ?? save.status}{save.checkpoint ? ` · #${save.checkpoint.save.revision}` : ''}</b></div>
         <button className="btn" disabled={save.status === 'loading' || save.status === 'saving' || !navigator.onLine} onClick={reconnect}>เชื่อมต่อเซฟใหม่</button>
@@ -60,5 +61,6 @@ export function TopHud({ context, save, controller, sound, toggleSound, reconnec
       <p className="hint">เซฟหลักอยู่บนเซิร์ฟเวอร์ และสำรองล่าสุดไว้ในเครื่องนี้</p>
     </Sheet>}
     {(sheet === 'backup' || sheet === 'reset') && <BackupSheet context={context} save={save} controller={controller} close={() => setSheet(null)} focusReset={sheet === 'reset'} />}
+    {sheet==='catalog'&&<SkillCatalogSheet pack={pack} initialJob={main.job_id} onClose={()=>setSheet('settings')}/>}
   </>;
 }

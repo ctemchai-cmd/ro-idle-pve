@@ -4,6 +4,17 @@
 
 
 
+
+## 23 ต.ค.2026 · Codex — TASK120 localผ่าน / สมุดสกิลในเกม+Timeline รอpush/hosted
+
+- UserD153แก้Preview:ต้องการอ่านชื่อ/ทำอะไรได้ในเกมเพื่อเลือกอาชีพ ไม่เอาสนามanimation;Timelineจิ้มรายละเอียดได้. AlsoaskedHi-classstatus;ตอบตามจริงยังไม่implement/currentClass2cap70. Finishcatalogก่อนHiตามexistingorder. TASK120/design44.
+- NewSkillCatalogSheet19jobs126skillsรวมinherit/passive/Copy/ยังไม่เรียน,rank/search/expandconciseeffect/nativeicons. Settingsreplacesexternalnewtablink;bookiconSkillsPage+buttonในCharacterUpgradeSheetข้างเปลี่ยนอาชีพ. Readonly/sameplayURL/ไม่โหลดbody-VFX-audio/0accountcommands. Oldpubliclabunlinkedแต่code/routesเก็บเป็นhistory/devtool.
+- Sharedclientskill-catalog/describeResolvedSkill/SkillIcon/SkillInformationBody+portalDialog. Timeline draft/live/history/logใช้session.initial actor resolveddefinition+actualrank(+patched/copy/enemy),ไม่resolvelevel1/ไม่เรียกengineซ้ำ. Rawtimeslabelพื้นฐาน/entryactualtimescontext. Close/Escape/focuspreventScroll/secondtapreopen preservesparent/battle. ElementGuideonCancelstopPropagationโดยตรง ปิดตารางไม่ปิดTimeline/รายละเอียดซ้อน.
+- 28focused+4legacyPreviewregressions/build/root-filtered(noassets/evidence)identical585802gzip/PWA61a19ebbd13a7ba5/boundaries/readiness8passed. ActualfreshAuth/Postgres/API/Chrome3203905groups finalfrozenr5passed:all19/126/CallSpirit10rank2%/search/3entrypoints/0writes/media;draft/liveplayerMeteor7/enemy1/history7/logeffects/nestedtableEscape/focus/reopen. Onlycommandsbattle.start_story+finish. Viewedcatalog320/draftdetail320/enemydetail320/log320. Noownercloud/privateenv/6173restart/SQL/env/balancebatch/subagents.
+- Failurehistoryretained:r1ambiguoussummary→directchild;r2wrongtestbuttonดูตารางธาตุ→ตารางธาตุ;r3UIallpassedbutTSdivonCancelunsupported→stopatElementGuidedialog;r4invalidtestoverlappedrootcodegenbuildwithliveVite→save/assetscontrollerdisposed;frozenr5passed. **Never run root codegen/build during live browser tests**. Existinguser5173/6173notstopped.
+- Gameplay/engine/content/runtimepack unchanged6cca0c590696c19e145da29e6ff8a6cea907189e739f972706e2705805cc195d /20b7130381af741049db6993ac2af2cb8ad90ab8a28c6c264139d5438c276867(32021698B). No migration/SQLrequiredfromthisUI. Bothbuildspassedafterfinalelementguidefix.
+- TASK120reviewAC1–3passedlocal/4publicpending;board105/120done/inprogress4/review6/todo5/M4done65/75. Next explicitstagecurrentreviewedchanges(noassets/modernuntracked/task108hostedlogin)→commit/pushmain→VercelSUCCESS→scripts/test_skill_catalog_hosted.cjs(publicSIN1samehash/pack/allbundleSHA/book3entrytexts/publicdemoTimeline1+enemy/nestedtable/Escape/focus/mobile0writes). Then120done106/120/review5/M4done66/75/cases/matrix/links/readiness/docsclosurepush. PublicactualownerAuthnotallowed/needed;in-gameauthvalidateddisposable. Hi-classnextneeds2newskills/job/Awakenwork aspreviousroadmap,notdone.
+
 ## 23 ต.ค.2026 · Codex — TASK118–119 done / Skill Preview + บท10–12ขึ้นVercelแล้ว
 
 - SOURCE`59f7787e73cd2192333872c270bb5eee5f0945aa` VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/J3W9TZzRTZkQdhrkpfh8eyhZCSNp Public5groupsผ่านAPI200SIN1/7inputSHA/20nativeSHA/4lazybundleSHA/public320390FingerMultiHit+realHealingSong/retry503reloadrecover/0writes. Viewedpublic320. `/skill-preview` ไม่ต้องlogin,Settingsnewtab link. NoSQL/envใหม่/ownercloud/privateenv/6173restart/balancebatch/subagents.

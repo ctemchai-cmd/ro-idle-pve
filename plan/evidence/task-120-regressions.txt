@@ -1,0 +1,36 @@
+✔ recorded Timeline preserves exact starts, slots, instant casts, skips and interruption attribution (2.753875ms)
+✔ skill log excludes normal hits/future entries and keeps original equal-time engine order (0.628042ms)
+✔ SavedBattleSession records actual advances once; confirm/reading history never forecasts or mutates the live battle (259.197208ms)
+✔ D153 catalog covers19 jobs/126 skills, inherited/passive/copy/unlearned without enemies and descriptions follow every real rank (233.855959ms)
+✔ D153 Timeline reads the actor snapshot rank and exact patched program, including copied skills and enemy borrowed programs (9.820541ms)
+✔ D153 concise descriptions retain Call Spirit rank effects, Provoke target rules and passive modifiers (1.638459ms)
+✔ Call Spirit1–10 shows1–5 gained spheres then1.2–2% ATK per sphere, with exact upgrade deltas (39.443417ms)
+✔ Provoke1–10 scales4.5→7.5s/all-enemy target override and clearly excludes area/random; SP19→10 (1.696583ms)
+✔ actual sole endow names Fire/6.5s/team and scope; Enchant Poison only claims ATK (4.397958ms)
+✔ preview SP respects actual cost modifier and max/unlearned/capped levels remain read-only (24.475792ms)
+✔ upgrade summary includes ACD as well as CT, SP and effect changes; all-current SP is readable (36.720542ms)
+✔ Passive proc chance is explicit and SpiritCombo15→35% upgrades produce a real visible delta (4.438042ms)
+✔ Spirit Combo description uses the same learned Call Spirit rank as the actor sphere bonus (3.108917ms)
+✔ all126 skill level previews use exact shared resolved data and never mutate content or emit NaN (425.257042ms)
+✔ upgrade deltas omit unchanged clauses and preserve signed values, units and repeated changing numbers (2.866958ms)
+✔ skill unlock/cap and selected branch are enforced before spending; level unlock never auto-learns (5.516083ms)
+✔ upgrade prices come from tables; reset refunds exact purchased vector once and root grants remain free (1.440208ms)
+✔ all126 player skill definitions have valid owning-class learn/upgrade quotes through their max without mutating shared content (219.020292ms)
+✔ four ordered active slots reject duplicate/unlearned/passive IDs; learned Passives enter engine automatically and change actual damage stats (8.024042ms)
+✔ preview timing uses shared math and learned Passive speed, empty loadout stays normal-only; active battle rejects upgrade (4.488667ms)
+✔ all class previews resolve human-readable deltas without NaN or hidden cap bypasses (98.8295ms)
+✔ exclusive copy groups are enforced by catalog metadata instead of permitting two differently named copies (1.498625ms)
+✔ skill-first equip (user, 21 Oct 2026): a new skill replaces the slot, a moved skill swaps with the occupant, remove empties only its slot (1.680958ms)
+✔ timeline replay matches every real cast/skip and recovery barrier in all demo encounters (383.500292ms)
+✔ Timeline interruption and cast-duration facts match a controlled unequal-speed cast, independent of demo balance (12.404292ms)
+✔ timeline yields between engine chunks and a new rotation has its own forecast (52.91375ms)
+✔ timeline includes exact SP skips for a resource-starved checkpoint without inventing cooldowns (25.52125ms)
+✔ D-060: an interrupting skill is credited on the timeline and the interrupted cast points back to it (6.768708ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2953.142875

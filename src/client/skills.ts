@@ -30,8 +30,14 @@ function skillNotes(definition:SkillDefinition):string[]{
 /** Read-only catalog view; rank resolution and all effect text share the game's implementation. */
 export function previewSkillDetails(id:string,rank:number){
  const definition=resolveSkill(id,rank,content).definition as SkillDefinition;
- return {definition,effects:summaries(definition,rank),notes:skillNotes(definition)};
+ return describeResolvedSkill(definition,rank);
 }
+/** Reads the actual immutable program, including variants and the actor's learned resource bonuses. */
+export function describeResolvedSkill(definition:SkillDefinition,level:number,learnedSkills?:BattleActor['resolved_skills']){
+ const targetNote=skillTargetNote(definition);
+ return {definition,effects:summaries(definition,level,learnedSkills),notes:skillNotes(definition),targetNote};
+}
+function skillTargetNote(definition:SkillDefinition){return definition.kind==='passive'?'ทำงานอัตโนมัติ':[...new Set([...definition.start_effects,...definition.effects].map(e=>e.target))].map(binding=>{if(binding==='self')return 'ตัวเอง';const selector=definition.selectors[binding];if(!selector)return 'ตามเป้าหมายสกิล';return (selector.team==='allies'?'ฝ่ายเรา':selector.team==='enemies'?'ศัตรู':'ตัวเอง')+(selector.select==='all'?' · ทั้งหมด':' · เป้าหมายเดียว');}).filter((s,i,a)=>a.indexOf(s)===i).join(' / ');}
 /** Shared effect text for authored skills and card procs; no second formula authority. */
 export function effectDescriptions(effects: readonly Effect[], resolved_skills?: BattleActor['resolved_skills'], compact=false): string[] {
  return effects.map(effect=>{
@@ -119,7 +125,7 @@ export function characterSkillOptions(actor:Character,state?:AccountState):{skil
   const definition=structuredClone(resolveSkill(source.id,Math.max(1,level),content).definition)as SkillDefinition;
   let price:SkillOption['price']=null;if(!locked&&target<=cap)price=skillQuote(actor,source.id,target,content);
   const next=price?structuredClone(resolveSkill(source.id,target,content).definition)as SkillDefinition:null;
-  const targetNote=definition.kind==='passive'?'ทำงานอัตโนมัติ':[...new Set([...definition.start_effects,...definition.effects].map(e=>e.target))].map(binding=>{if(binding==='self')return 'ตัวเอง';const selector=definition.selectors[binding];if(!selector)return 'ตามเป้าหมายสกิล';return (selector.team==='allies'?'ฝ่ายเรา':selector.team==='enemies'?'ศัตรู':'ตัวเอง')+(selector.select==='all'?' · ทั้งหมด':' · เป้าหมายเดียว');}).filter((s,i,a)=>a.indexOf(s)===i).join(' / ');
+  const targetNote=skillTargetNote(definition);
   return{previewSkills:compiled.resolved_skills,previewSpeed:stats.cast_speed,previewSpPercent:stats.sp_cost_percent,targetNote,id:source.id,name:labels[source.name_key]??source.id,kind:source.kind,unlock:source.unlock_level,level,cap,max:source.max_level,locked,definition,next,price,notes:skillNotes(definition),effects:summaries(definition,Math.max(1,level),compiled.resolved_skills),nextEffects:next?summaries(next,target,compiled.resolved_skills):[],castMs:definition.kind==='active'?castDurationMs(Number(definition.timing.cast_ms),stats.cast_speed):0,afterCastMs:definition.kind==='active'?castDurationMs(Number(definition.timing.after_cast_ms),stats.cast_speed):0,sp:definition.kind==='active'?typeof definition.cost.sp==='number'?fixedSpCost(definition.cost.sp,stats):NaN:0,nextCastMs:next?.kind==='active'?castDurationMs(Number(next.timing.cast_ms),stats.cast_speed):null,nextAfterCastMs:next?.kind==='active'?castDurationMs(Number(next.timing.after_cast_ms),stats.cast_speed):null,nextSp:next?.kind==='active'?typeof next.cost.sp==='number'?fixedSpCost(next.cost.sp,stats):NaN:null};
  });
  // User-approved demo pacing remains explicit, separate from legacy abstract benchmarks.

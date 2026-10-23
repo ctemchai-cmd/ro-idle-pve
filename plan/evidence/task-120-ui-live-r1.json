@@ -1,0 +1,87 @@
+{
+  "task_id": "TASK-120",
+  "passed": false,
+  "checks": [],
+  "errors": [],
+  "commands": [],
+  "samples": [
+    {
+      "job": "swordsman",
+      "skills": 5
+    },
+    {
+      "job": "knight",
+      "skills": 12
+    },
+    {
+      "job": "crusader",
+      "skills": 12
+    },
+    {
+      "job": "acolyte",
+      "skills": 5
+    },
+    {
+      "job": "priest",
+      "skills": 12
+    },
+    {
+      "job": "monk",
+      "skills": 12
+    },
+    {
+      "job": "archer",
+      "skills": 5
+    },
+    {
+      "job": "hunter",
+      "skills": 12
+    },
+    {
+      "job": "bard",
+      "skills": 12
+    },
+    {
+      "job": "dancer",
+      "skills": 12
+    },
+    {
+      "job": "mage",
+      "skills": 5
+    },
+    {
+      "job": "wizard",
+      "skills": 12
+    },
+    {
+      "job": "sage",
+      "skills": 12
+    },
+    {
+      "job": "thief",
+      "skills": 5
+    },
+    {
+      "job": "assassin",
+      "skills": 12
+    },
+    {
+      "job": "rogue",
+      "skills": 17
+    },
+    {
+      "job": "merchant",
+      "skills": 5
+    },
+    {
+      "job": "blacksmith",
+      "skills": 12
+    },
+    {
+      "job": "alchemist",
+      "skills": 12
+    }
+  ],
+  "failure": "SETTINGS_CATALOG: locator.click: Error: strict mode violation: getByRole('dialog', { name: 'สมุดสกิล', exact: true }).locator('[data-skill=\"monk_call_spirits\"]').first().locator('summary') resolved to 2 elements:\n    1) <summary>…</summary> aka locator('summary').filter({ hasText: 'Call SpiritsMonk · Active' })\n    2) <summary>เงื่อนไข</summary> aka getByText('เงื่อนไข')\n\nCall log:\n\u001b[2m  - waiting for getByRole('dialog', { name: 'สมุดสกิล', exact: true }).locator('[data-skill=\"monk_call_spirits\"]').first().locator('summary')\u001b[22m\n",
+  "scope": "Disposable actualAuth/Postgres/API/Chrome320390;onlyintentionalbattle start/finish writes. No owner access or balance claim."
+}

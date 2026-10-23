@@ -60,3 +60,5 @@
 - [บท10–12พร้อมnativeบอสและrelease gates](42-hi-chapters.md) — TASK118
 
 - [หน้าPreviewสกิลทุกอาชีพ](43-skill-preview.md) — TASK119
+
+- [สมุดสกิลในเกมและรายละเอียด Timeline](44-skill-catalog-and-timeline.md) — D153/TASK120

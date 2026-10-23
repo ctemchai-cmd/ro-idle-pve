@@ -1,5 +1,7 @@
 import { Icon } from './icon.tsx';
-import { memo, useEffect, useRef, useState, type RefObject } from 'react';
+import { memo, useEffect, useMemo, useRef, useState, type RefObject } from 'react';
+import { timelineSkillInformation } from '../client/skill-catalog.ts';
+import { SkillInformationDialog } from './skill-information.tsx';
 import type { TimelineSession } from '../client/story.ts';
 import type { ActorRenderView, BattleRenderView, BattleTimeline, SkillTimelineEntry } from '../contracts/presentation.ts';
 import type { AssetPack } from '../renderer/pack.ts';
@@ -28,7 +30,7 @@ export const TimelineRow = memo(function TimelineRow({ actor, entries, ticks, wi
         const bar = (from: number, to: number) => ({ left: `${percent(from)}%`, width: `${percent(to - from)}%` });
         return <div key={entry.id} className={`timeline-entry slot-${entry.slot + 1} ${recorded ? 'elapsed' : 'future'} ${skip ? 'skipped' : ''} ${entry.outcome === 'interrupted' ? 'was-interrupted' : ''} ${entry.interrupts?.length ? 'did-interrupt' : ''}`} data-skill={entry.skill_id} data-start-ms={entry.start_ms} data-end-ms={entry.end_ms}>
           <span className="timeline-cast" style={bar(entry.start_ms, entry.end_ms)} />{!recorded && <span className="timeline-recovery" style={bar(entry.end_ms, entry.recovery_end_ms)} />}
-          <button className={`timeline-skill ${selected === entry.id ? 'chosen' : ''}`} style={{ left: `${percent(entry.start_ms)}%` }} title={describe(entry, name, session.scene.skill_labels, recorded)} aria-label={describe(entry, name, session.scene.skill_labels, recorded)} aria-pressed={selected === entry.id} onClick={() => choose(selected === entry.id ? null : entry.id)}>
+          <button className={`timeline-skill ${selected === entry.id ? 'chosen' : ''}`} style={{ left: `${percent(entry.start_ms)}%` }} title={describe(entry, name, session.scene.skill_labels, recorded)} aria-label={describe(entry, name, session.scene.skill_labels, recorded)} aria-pressed={selected === entry.id} aria-haspopup="dialog" onClick={() => choose(entry.id)}>
             <span className="timeline-icon">{pack.icons.get(entry.skill_id) ? <img src={pack.icons.get(entry.skill_id)} alt="" /> : <Icon name="sparkles" />}<b>{entry.slot + 1}</b>{entry.outcome === 'interrupted' && <em className="timeline-interrupted" aria-hidden="true"><Icon name="close" /></em>}{!!entry.interrupts?.length && <em className="timeline-interrupter" aria-hidden="true"><Icon name="lightning" />{entry.interrupts.length > 1 ? entry.interrupts.length : ''}</em>}{skip && <em>−</em>}</span><time>{seconds(entry.start_ms)}</time>
           </button>
         </div>;
@@ -42,9 +44,10 @@ export function SkillTimeline({ session, pack, view, clock }: { session: Timelin
   const root = useRef<HTMLElement>(null), clockLabel = useRef<HTMLElement>(null);
   const [projection, setProjection] = useState<BattleTimeline | null>(null), [error, setError] = useState('');
   const [windowMs, setWindowMs] = useState(20000), [selected, setSelected] = useState<string | null>(null);
+  const [detailsOpen,setDetailsOpen]=useState(false);
   const [ticks, setTicks] = useState<readonly number[]>([]);
   useEffect(() => {
-    let disposed = false; setProjection(null); setError(''); setSelected(null);
+    let disposed = false; setProjection(null); setError(''); setSelected(null);setDetailsOpen(false);
     void session.timeline(() => new Promise(resolve => setTimeout(resolve, 0))).then(value => { if (!disposed) setProjection(value); }, cause => { if (!disposed) setError(String(cause)); });
     return () => { disposed = true; };
   }, [session]);
@@ -77,6 +80,8 @@ export function SkillTimeline({ session, pack, view, clock }: { session: Timelin
     return () => { cancelAnimationFrame(raf); observer.disconnect(); };
   }, [clock, windowMs, projection, session]);
   const now = view.game_time_ms, chosen = projection?.entries.find(entry => entry.id === selected);
+  const info=useMemo(()=>chosen?timelineSkillInformation(session,chosen.actor_id,chosen.skill_id):null,[session,chosen]);
+  const choose=(id:string|null)=>{setSelected(id);setDetailsOpen(!!id);};
   const actors = [...view.actors.filter(actor => actor.team === 'player' && !actor.summon_of), ...view.actors.filter(actor => actor.team === 'enemy' && !actor.summon_of)];
   return <section ref={root} className="skill-timeline" aria-label="Timeline สกิล">
     <div className="timeline-heading"><div><p className="eyebrow">SKILL TIMELINE</p><h2>จังหวะของทุกคน</h2></div><div className="timeline-options"><span className="timeline-clock">ตอนนี้ <b ref={clockLabel}>0.0s</b></span><label>ช่วงเวลา <select aria-label="ช่วงเวลา Timeline" value={windowMs} onChange={event => setWindowMs(Number(event.target.value))}><option value="10000">10 วินาที</option><option value="20000">20 วินาที</option><option value="40000">40 วินาที</option></select></label></div></div>
@@ -84,9 +89,10 @@ export function SkillTimeline({ session, pack, view, clock }: { session: Timelin
     {!projection && <p className="timeline-message" role="status">{error ? `โหลด Timeline ไม่สำเร็จ: ${error}` : 'กำลังเตรียมจังหวะสกิล…'}</p>}
     <div className="timeline-viewport" tabIndex={0} aria-label="เลื่อนแนวนอนเพื่อดู Timeline ทุกตัวละคร"><div className="timeline-chart">
       <div className="timeline-axis"><div className="timeline-actor-label">ตัวละคร</div><div className="timeline-track"><div className="timeline-content">{ticks.map(ms => <time key={ms} style={{ left: `${ms / windowMs * 100}%` }}>{seconds(ms)}</time>)}</div></div></div>
-      {actors.map((actor, index) => <TimelineRow key={actor.actor_id} actor={{ actor_id: actor.actor_id, name: actor.name, team: actor.team, dead: actor.hp <= 0 }} entries={projection?.entries ?? emptyEntries} ticks={ticks} windowMs={windowMs} pack={pack} session={session} selected={selected} choose={setSelected} enemyStart={actor.team === 'enemy' && actors[index - 1]?.team !== 'enemy'} />)}
+      {actors.map((actor, index) => <TimelineRow key={actor.actor_id} actor={{ actor_id: actor.actor_id, name: actor.name, team: actor.team, dead: actor.hp <= 0 }} entries={projection?.entries ?? emptyEntries} ticks={ticks} windowMs={windowMs} pack={pack} session={session} selected={selected} choose={choose} enemyStart={actor.team === 'enemy' && actors[index - 1]?.team !== 'enemy'} />)}
       <div className="timeline-now-region" aria-hidden="true"><div className="timeline-now"><span>ตอนนี้</span></div></div>
     </div></div>
     <p className="timeline-detail" role="status">{chosen ? `${describe(chosen, session.scene.skill_labels[chosen.skill_id] ?? chosen.skill_id, session.scene.skill_labels)} · ${chosen.end_ms > now ? 'คาดการณ์' : outcomes[chosen.outcome]}` : 'ช่องว่างคือช่วงรอคิว · ตัวเลขใต้สกิลคือเวลาเริ่มนับจากต้นไฟต์ · ขัดร่ายสำเร็จ / ถูกขัดร่าย · แตะสกิลเพื่อดูรายละเอียด'}</p>
+    {detailsOpen&&chosen&&<SkillInformationDialog info={info} pack={pack} name={session.scene.skill_labels[chosen.skill_id]??chosen.skill_id} context={`${actors.find(a=>a.actor_id===chosen.actor_id)?.name??chosen.actor_id} · ${describe(chosen,session.scene.skill_labels[chosen.skill_id]??chosen.skill_id,session.scene.skill_labels)} · ${chosen.end_ms>now?'คาดการณ์':outcomes[chosen.outcome]}`} onClose={()=>setDetailsOpen(false)}/>}
   </section>;
 }

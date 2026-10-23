@@ -292,3 +292,5 @@ D146เพิ่มเติม:ผู้ใช้ยืนยันกาชา
 
 | D-151 |23ต.ค.2026|ผู้ใช้ให้ทำบท10–12เพิ่ม ตามทางต่อHi-class/Awaken;TASK118/design42เตรียม150ด่าน/เปิดพร้อมfeatures/รุ่นนี้cap70เดิม |
 | D-152 |23ต.ค.2026|ผู้ใช้ขอหน้าPreviewสกิลทุกคลาสทุกอาชีพ;TASK119/design43 publicreadonly/sharedengine/nativeassets/noownerwrites |
+
+| D-153 |23ต.ค.2026|ผู้ใช้แก้Previewเป็นสมุดชื่อ/ผลสกิลภายในเกมเพื่อเลือกอาชีพ ไม่ต้องanimation;แตะTimelineดูรายละเอียดสกิลด้วย. TASK120/design44 แทนทางเข้าpubliclabของD152;Hi-classยังไม่ทำตามstatusที่ตอบ |

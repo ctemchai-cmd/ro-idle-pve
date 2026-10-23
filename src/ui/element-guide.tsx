@@ -15,7 +15,7 @@ export function ElementGuide({ onClose, attack: initialAttack = 'fire', armor: i
     const node = ref.current!, opener = document.activeElement; node.showModal();
     return () => { if (node.open) node.close(); if (opener instanceof HTMLElement && opener.isConnected) opener.focus(); };
   }, []);
-  return createPortal(<dialog ref={ref} className="element-guide-dialog" aria-labelledby={titleId} onCancel={e => { e.preventDefault(); onClose(); }} onClick={e => { if (e.target === e.currentTarget) onClose(); }}>
+  return createPortal(<dialog ref={ref} className="element-guide-dialog" aria-labelledby={titleId} onCancel={e => { e.preventDefault(); e.stopPropagation(); onClose(); }} onClick={e => { if (e.target === e.currentTarget) onClose(); }}>
     <header><h2 id={titleId}>ตารางธาตุ</h2><button type="button" autoFocus aria-label="ปิดตารางธาตุ" onClick={onClose}><Icon name="close" /></button></header>
     <div className="element-guide-body">
       <div className="element-pair-select"><label>ธาตุโจมตี<select aria-label="ธาตุโจมตี" value={attack} onChange={e => setAttack(e.target.value as Element)}>{elements.map(e => <option key={e} value={e}>{elementName(e)}</option>)}</select></label><label>เกราะเป้าหมาย<select aria-label="เกราะเป้าหมาย" value={armor} onChange={e => setArmor(e.target.value as Element)}>{elements.map(e => <option key={e} value={e}>{elementName(e)}</option>)}</select></label></div>
