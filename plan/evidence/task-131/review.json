@@ -1,7 +1,7 @@
 {
   "task_id": "TASK-131",
-  "passed": false,
-  "stage": "local passed; awaiting hosted release",
+  "passed": true,
+  "stage": "hosted passed",
   "content_hash": "99a5516d6a1ea601c2c92edf52020ae3df11f611799a1d9930e84089c240b43e",
   "local": {
     "full_tests": 636,
@@ -41,6 +41,16 @@
   "evidence": [
     "plan/evidence/task-131/README.md",
     "plan/evidence/task-131/content-equivalence.json",
-    "plan/evidence/task-131-native.json"
-  ]
+    "plan/evidence/task-131-native.json",
+    "plan/evidence/task-131-hosted.json"
+  ],
+  "release": {
+    "source_commit": "b2cb7425d",
+    "vercel_url": "https://vercel.com/chanon2/ro-idle-pve/4UR4tK37UM4rT9hQaUB3k3PTyCHi",
+    "state": "success",
+    "hosted_groups": 4,
+    "bundle_SHA_files": 24,
+    "owner_writes": 0,
+    "errors": []
+  }
 }

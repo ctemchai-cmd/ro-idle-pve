@@ -23,13 +23,13 @@ TASK-129 และ TASK-130 done: controlled audit และ Awaken identities �
 - [x] AC-01: สกิลหมู่ยังตีหลายเป้าได้ พลังเพิ่มเฉพาะ resolve ที่มีศัตรู living/targetable ตัวเดียว; ฝั่งฝ่ายเดียวกัน/ตัวตาย/untargetable ไม่นับ; direct/periodic snapshot ไม่บวกซ้ำและไม่เพิ่มให้ normal/heal
 - [x] AC-02: ราคา/ทุน/IDs/เลเวล/CT/ACD/SP/interrupt/4-slot/uncapped buffs เดิม; descriptions แสดง bonus จริง และทุกการเปลี่ยนข้อมูลระบุได้
 - [x] AC-03: มี fixed A/B และ candidate re-screen หลายระดับ/gear/seed พร้อม total/skill/team DPS; รายงานผลและข้อจำกัดตามจริง ไม่ปิด TASK041 จาก dummy ตัวเดียว
-- [ ] AC-04: targeted/full regression/build/boundaries/mobile/public deployment ผ่านพร้อมหลักฐาน
+- [x] AC-04: targeted/full regression/build/boundaries/mobile/public deployment ผ่านพร้อมหลักฐาน
 
 ## วิธีตรวจและหลักฐาน
 
 tests/game/boss-focus.test.ts; scripts/game/boss-focus-audit.ts; plan/evidence/task-131/ เก็บ frozen input, seeds, build, stats, costs, per-skill metrics และ review
 
-ผู้ตรวจ: Codex · รอบ review:1 · local ผ่าน รอ hosted
+ผู้ตรวจ: Codex · รอบ review:1 · local และ hosted ผ่าน
 
 ## Blocker / คำถาม
 
@@ -38,3 +38,7 @@ tests/game/boss-focus.test.ts; scripts/game/boss-focus-audit.ts; plan/evidence/t
 ## Review รอบ1
 
 636/636 TS,28targeted+25copy/support+14oracles+9scope/native4groups320390/root+filteredbuild623836gzip/M0readinessผ่าน. วัด15640ไฟต์พร้อมequivalence2448inputs และหลักฐานก่อนหลัง แก้ historical oracles6จุดตาม intentional power changes โดยไม่ตัด rollback/ราคา/interrupt/parity tests. ยังรอ hosted ก่อน AC04/done.
+
+## Review รอบ2 — hosted
+
+source`b2cb7425d` VercelSUCCESS; actualAPI99a55/SIN1/auth401/nativepack32/24bundleSHA/publicHighWizard-Wizard-Alchemist35%/mobile320390/0errors/0writes ผ่าน4groups. ViewedhostedWizard320. ไม่มีSQL/envใหม่หรือownerwrite/6173restart. [ผลตรวจ](../evidence/task-131-review.json) · [รายงานบาลานซ์](../evidence/task-131/README.md).

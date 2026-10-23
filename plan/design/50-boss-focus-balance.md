@@ -11,3 +11,11 @@ Direct damage และ periodic application snapshot สืบทอด offense
 ปรับ power บางท่าของ Mage/Wizard/Sage/Alchemist/Creator แยกตาม frozen baseline9ae8 โดยไม่ลดอาชีพอื่นเพื่อให้ตัวเลขเท่ากัน. ต้องวัดใหม่ก่อนสรุป แยก fixed A/B จาก re-screen และไม่ตัดสิน support/tank จาก personal DPS
 
 ข้อจำกัดการวัด: boss neutral เดียวและ finite90s; ไม่อ้างทุกธาตุ/การ์ด/ทีม/อุปกรณ์หายากสมดุลแล้ว. TASK041 ยังต้องตรวจ encounter และเศรษฐกิจรอบใหญ่
+
+## ผลวัดรอบนี้
+
+- 636/636 TS; 15640ไฟต์ (11472re-screen+4160fixedA/B+8equivalence); Common gear1/20/40/60, Class1/2/Hi-class และ3ระดับAwaken
+- FixedClass270gear60:Wizard2217→4299/Sage2320→3776/Alchemist2177→3636; Assassin4619→4799/Hunter4181→4313
+- FixedHigh90Aw10:HighWizard5279→10238/Professor5341→9007/Creator5335→9086; AssassinCross14298/LordKnight10403เดิม/Sniper10326→10750
+- Re-screenใหม่Championเลือกบิลด์ใหม่ได้9368 (fixedบิลด์เดิม8339); ต้องแยกselection effectจากpower effect
+- Before9ae8 / measured4820 / release99a55. SyncFireBoltcopyท้ายรอบเปลี่ยนเพียง2powerarrays;2448compiledinputsเท่ากันทุกfieldและreplay4กลุ่มเท่ากันยกเว้นhash จึงเก็บhashเดิมตามจริง ไม่ relabel ว่าseedbatchรันใหม่บนhashล่าสุด. [รายงาน](../evidence/task-131/README.md)
