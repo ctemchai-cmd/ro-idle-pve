@@ -1,0 +1,44 @@
+{
+  "task_id": "TASK-111",
+  "passed": true,
+  "checks": [
+    "SQL008twice preserveslegacyID/state/hash/revision/history/receipts/battle/backupbytes andoldsignature",
+    "Real320/390 chooser10/newMage+Archer/legacySwordsman/settings/HUD/reload/emptyback;onlyselectedslotcreates",
+    "10independentDBsaves/sameUUIDper-slot/replay/noextraDBlisting/reset+restoreisolation/invalidslots/actualtwoJWT RLSall5tables",
+    "Activebattle blocksSettingsswitch;retreat enableschooser;allbrowserresponsesremain scoped"
+  ],
+  "errors": [],
+  "commands": [
+    {
+      "slot": "2",
+      "type": "account.create",
+      "uuid": "8432d1ef-aad3-4743-b924-2ff6d49b5dc4"
+    },
+    {
+      "slot": "3",
+      "type": "account.create",
+      "uuid": "2b844526-86be-4657-9d82-22f58d2913b1"
+    },
+    {
+      "slot": "1",
+      "type": "battle.start_story",
+      "uuid": "9d1039e0-7a80-4b8a-be0b-15edb2bc7b3a"
+    },
+    {
+      "slot": "1",
+      "type": "battle.retreat",
+      "uuid": "10147967-61bc-4b1e-9714-885ab03ec231"
+    }
+  ],
+  "measurements": [
+    {
+      "width": 390,
+      "slots": 10
+    },
+    {
+      "width": 320,
+      "slots": 10
+    }
+  ],
+  "scope": "ActualfreshlegacySQL1–7→008twice/Auth/Postgres/API/RLS/mobile320/390;noownercloud/privateenv/6173"
+}

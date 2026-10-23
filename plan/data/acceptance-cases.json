@@ -12626,6 +12626,130 @@
         "plan/evidence/task-110-ui-live.json",
         "plan/evidence/task-110-hosted.json"
       ]
+    },
+    {
+      "id": "T111-AC-01",
+      "task_id": "TASK-111",
+      "acceptance_id": "AC-01",
+      "criterion": "LegacySQLupgrade preservesstate/signature/history/receipt/battle/backup bytes;10boundeduniqueownerslots;14argcompat/rerunnableSQL008",
+      "input_setup": "FreshupstreamAuth/Postgres oldmigrations1–7→008,2owners/10slots/sharedUUID andmobile320/390",
+      "input_refs": [
+        "plan/review/tasks_111.md",
+        "plan/design/39-save-slots.md",
+        "supabase/migrations/202610230008_save_slots.sql"
+      ],
+      "parameters": {
+        "environment": "local,test-only,owneruntouched"
+      },
+      "expected": "LegacySQLupgrade preservesstate/signature/history/receipt/battle/backup bytes;10boundeduniqueownerslots;14argcompat/rerunnableSQL008",
+      "verification": "TSunit/full+SQLupgrade/RLS/API/realChrome/build/publicSHA",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-111-review.json",
+        "plan/evidence/task-111-source-audit.json",
+        "plan/evidence/task-111-local-stack.json",
+        "plan/evidence/task-111-ui-live.json",
+        "plan/evidence/task-111-targeted-tests.txt"
+      ]
+    },
+    {
+      "id": "T111-AC-02",
+      "task_id": "TASK-111",
+      "acceptance_id": "AC-02",
+      "criterion": "10distinctsaves/authJWT/headerboundaries/RLS/crossslotreceiptresetbackupisolation/2RPCunchanged",
+      "input_setup": "FreshupstreamAuth/Postgres oldmigrations1–7→008,2owners/10slots/sharedUUID andmobile320/390",
+      "input_refs": [
+        "plan/review/tasks_111.md",
+        "plan/design/39-save-slots.md",
+        "supabase/migrations/202610230008_save_slots.sql"
+      ],
+      "parameters": {
+        "environment": "local,test-only,owneruntouched"
+      },
+      "expected": "10distinctsaves/authJWT/headerboundaries/RLS/crossslotreceiptresetbackupisolation/2RPCunchanged",
+      "verification": "TSunit/full+SQLupgrade/RLS/API/realChrome/build/publicSHA",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-111-review.json",
+        "plan/evidence/task-111-source-audit.json",
+        "plan/evidence/task-111-local-stack.json",
+        "plan/evidence/task-111-ui-live.json",
+        "plan/evidence/task-111-targeted-tests.txt"
+      ]
+    },
+    {
+      "id": "T111-AC-03",
+      "task_id": "TASK-111",
+      "acceptance_id": "AC-03",
+      "criterion": "Actual10slotmobilechooser320/390/newclasses/settings/currentnumber/switchguards/reload",
+      "input_setup": "FreshupstreamAuth/Postgres oldmigrations1–7→008,2owners/10slots/sharedUUID andmobile320/390",
+      "input_refs": [
+        "plan/review/tasks_111.md",
+        "plan/design/39-save-slots.md",
+        "supabase/migrations/202610230008_save_slots.sql"
+      ],
+      "parameters": {
+        "environment": "local,test-only,owneruntouched"
+      },
+      "expected": "Actual10slotmobilechooser320/390/newclasses/settings/currentnumber/switchguards/reload",
+      "verification": "TSunit/full+SQLupgrade/RLS/API/realChrome/build/publicSHA",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-111-review.json",
+        "plan/evidence/task-111-source-audit.json",
+        "plan/evidence/task-111-local-stack.json",
+        "plan/evidence/task-111-ui-live.json",
+        "plan/evidence/task-111-targeted-tests.txt"
+      ]
+    },
+    {
+      "id": "T111-AC-04",
+      "task_id": "TASK-111",
+      "acceptance_id": "AC-04",
+      "criterion": "Localbackup/pending/lock/late-replyisolation+legacykey+12hper-slot+oldSQLfallback",
+      "input_setup": "FreshupstreamAuth/Postgres oldmigrations1–7→008,2owners/10slots/sharedUUID andmobile320/390",
+      "input_refs": [
+        "plan/review/tasks_111.md",
+        "plan/design/39-save-slots.md",
+        "supabase/migrations/202610230008_save_slots.sql"
+      ],
+      "parameters": {
+        "environment": "local,test-only,owneruntouched"
+      },
+      "expected": "Localbackup/pending/lock/late-replyisolation+legacykey+12hper-slot+oldSQLfallback",
+      "verification": "TSunit/full+SQLupgrade/RLS/API/realChrome/build/publicSHA",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": [
+        "plan/evidence/task-111-review.json",
+        "plan/evidence/task-111-source-audit.json",
+        "plan/evidence/task-111-local-stack.json",
+        "plan/evidence/task-111-ui-live.json",
+        "plan/evidence/task-111-targeted-tests.txt"
+      ]
+    },
+    {
+      "id": "T111-AC-05",
+      "task_id": "TASK-111",
+      "acceptance_id": "AC-05",
+      "criterion": "Targeted/full/M0/build+actualfreshupgradeAPI-SQL-mobile/publicproof;SQL008deliverable/cloudactivationnotassumed",
+      "input_setup": "FreshupstreamAuth/Postgres oldmigrations1–7→008,2owners/10slots/sharedUUID andmobile320/390",
+      "input_refs": [
+        "plan/review/tasks_111.md",
+        "plan/design/39-save-slots.md",
+        "supabase/migrations/202610230008_save_slots.sql"
+      ],
+      "parameters": {
+        "environment": "local,test-only,owneruntouched"
+      },
+      "expected": "Targeted/full/M0/build+actualfreshupgradeAPI-SQL-mobile/publicproof;SQL008deliverable/cloudactivationnotassumed",
+      "verification": "TSunit/full+SQLupgrade/RLS/API/realChrome/build/publicSHA",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
     }
   ]
 }

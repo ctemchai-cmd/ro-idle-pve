@@ -1,0 +1,41 @@
+✔ same Fetch entry serves local health; unfinished cloud routes return503 (662.742ms)
+✔ local repository exercises original receipt replay before revision and detects races (2.467583ms)
+✔ combined command reply reads one verified checkpoint after success; failures retain the receipt and legacy callers stay compatible (614.0545ms)
+✔ browser transport cannot POST after an aborted token wait, or accept a body that finishes after abort (1918.037209ms)
+✔ level appears before the server replies; only the confirmed checkpoint is backed up, then the cloud replaces the preview (774.881459ms)
+✔ failed save removes the display preview; reconnect resolves the original request without double spending (1293.575167ms)
+✔ display preview never mutates input, guesses random upgrades or applies unavailable levels (441.7065ms)
+✔ recurring receipt replay precedes revision, fixed claim pays once and rejected receipts stay immutable (628.781125ms)
+✔ verified signed state and schema reject changed wallet, foreign history, raw client snapshots and content mismatch (611.994375ms)
+✔ battle advance credits only DB time, persists checkpoint and replay adds no time; expiry rejects and retreat preserves wallet (756.350584ms)
+✔ a never-ending command reply times out, aborts and reconciles its original receipt once (557.2705ms)
+✔ timeout before commit retries the exact UUID, and failed recovery leaves an actionable pending backup (517.557042ms)
+✔ visibility reconnect during an active write does not invalidate the successful reply or start a duplicate (350.034416ms)
+✔ a hung checkpoint is bounded and disconnect/dispose cancel outstanding I/O without clearing pending intent (363.662708ms)
+✔ response-loss refresh reconciles the same receipt before cloud load without delta replay or another payment (411.302375ms)
+✔ offline and second-tab readers cannot submit; writer conflicts reload cloud without repeating an intent (921.693083ms)
+✔ refresh with an active boss reconciles then retreats instead of simulating offline combat (462.082583ms)
+✔ an older checkpoint response cannot downgrade a committed receipt or replace the newer wallet backup (710.626875ms)
+✔ account creation persists a pending UUID without a checkpoint and refresh recovers its original receipt once (668.02775ms)
+✔ confirmed legacy replies skip the redundant receipt GET; a combined verified checkpoint skips both GETs (805.546542ms)
+✔ combined replies reject foreign/stale checkpoints and preserve the committed pending intent for reconciliation (1717.844709ms)
+✔ terminal-only start + finish writes twice; a lost finish response reconciles the original receipt without replaying rewards (741.830833ms)
+✔ D-127 ten fixed reward bundles pay in one commit, including original-UUID response-loss replay (437.03225ms)
+✔ an uninstalled optional RPC falls back and is not probed again on each button press (1.378292ms)
+✔ a database outage does not silently fall back into a second write (3.001ms)
+✔ timings for overlapping requests remain separate (21.081292ms)
+✔ D143 slot1 preserves legacyID and all10owner-bound IDs are stable/unique; invalidslot rejected (1.340667ms)
+✔ D143 API derives selected identity fromJWT+slot only on every save route; chooser keepsAuthowner andcachevaries (1011.279084ms)
+✔ D143 browser binds each request, pendingbackup andwriterlease toitsselectedsave; slot1keyunchanged (1448.484375ms)
+✔ D143 chooser rejects anotherowner/duplicates/missing slots and permits legacyfallback onlyslot1 (0.467375ms)
+✔ D143 captured selection cannot change during token wait; an old owner cannot send or sign out the new owner (1302.369958ms)
+✔ D143 switching away from an uncertain create preserves its exact UUID and rejects late HTTP; reopening reconciles only that slot (2029.811541ms)
+✔ D143 each save reserves its own capped12h AFK interval without changing another save cursor, RNG or pending rewards (4.587542ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 33
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 20404.961792

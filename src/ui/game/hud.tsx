@@ -11,7 +11,7 @@ import { ActorCanvas, ResIcon, Sheet, compact, friendNames, full, jobNames, look
 const statusText: Record<string, string> = { ready: 'บันทึกแล้ว', saving: 'กำลังบันทึก…', offline: 'ขาดการเชื่อมต่อ · พักความคืบหน้า', read_only: 'เปิดดู · อีกแท็บกำลังเล่น', incompatible: 'มีเกมรุ่นใหม่ · โหลดหน้าใหม่', loading: 'กำลังตรวจเซฟ…', error: 'เซฟมีปัญหา · เชื่อมต่อใหม่', signed_out: 'ออกจากระบบแล้ว', idle: 'กำลังเตรียม…' };
 const walletOrder: (keyof Wallet)[] = ['gold', 'hero_exp', 'crystal', 'skill_manual', 'breakthrough_essence', 'refine_ore', 'enchant_dust', 'card_dust'];
 
-export function TopHud({ context, save, controller, sound, toggleSound, reconnect }: { context: GameContext; save: SaveSnapshot; controller: SaveController; sound: boolean; toggleSound: () => void; reconnect: () => void }) {
+export function TopHud({ context, save, controller, sound, toggleSound, reconnect, slotNumber, switchSave }: { context: GameContext; save: SaveSnapshot; controller: SaveController; sound: boolean; toggleSound: () => void; reconnect: () => void; slotNumber?:number;switchSave?:()=>void }) {
   const { state, pack } = context, main = state.roster.find(a => a.character_id === 'main')!, [sheet, setSheet] = useState<'wallet' | 'settings' | 'backup' | 'reset' | null>(null);
   const tone = save.status === 'ready' ? 'ok' : save.status === 'saving' || save.status === 'loading' ? 'busy' : 'bad';
   // TASK-040: the maintenance panel explains a save that needs migration/recovery; the generic alert would mislead.
@@ -28,7 +28,7 @@ export function TopHud({ context, save, controller, sound, toggleSound, reconnec
         <span className="avatar-level">{main.level}</span>
       </button>
       <div className="hud-main">
-        <div className="hud-name"><strong>{friendNames.main}</strong><ClassIcon pack={pack} job={main.job_id} size={16} /><span>{jobNames[main.job_id]}</span><button className={`hud-save ${tone}`} aria-label={`สถานะเซฟ: ${statusText[save.status] ?? save.status}`} title={statusText[save.status]} onClick={() => setSheet('settings')}><i /></button></div>
+        <div className="hud-name"><strong>{friendNames.main}</strong><ClassIcon pack={pack} job={main.job_id} size={16} /><span>{jobNames[main.job_id]}</span>{slotNumber&&<small className="hud-slot">เซฟ {slotNumber}</small>}<button className={`hud-save ${tone}`} aria-label={`สถานะเซฟ: ${statusText[save.status] ?? save.status}`} title={statusText[save.status]} onClick={() => setSheet('settings')}><i /></button></div>
         <button className="hud-wallet" aria-label="ดูทรัพยากรทั้งหมด" onClick={() => setSheet('wallet')}>
           {(['gold', 'hero_exp', 'crystal'] as const).map(k => <span key={k} className="hud-chip"><ResIcon pack={pack} k={k} /><b data-testid={k === 'gold' ? 'story-gold' : undefined}>{compact(state.wallet[k])}</b></span>)}
         </button>
@@ -45,6 +45,7 @@ export function TopHud({ context, save, controller, sound, toggleSound, reconnec
     {sheet === 'settings' && <Sheet title="ตั้งค่าและเซฟ" onClose={() => setSheet(null)}>
       <div className="settings-list">
         <InstallApp />
+        {switchSave&&<><div className="settings-row"><span>ช่องเซฟ</span><b>{slotNumber} / 10</b></div><button className="btn" disabled={save.status==='saving'||save.status==='loading'||!!state.active_battle} onClick={switchSave}><Icon name="save"/>เปลี่ยนเซฟ</button>{state.active_battle&&<p className="hint">จบไฟต์ก่อนเปลี่ยนเซฟ</p>}</>}
         <div className="settings-row"><span>สถานะเซฟ</span><b className={`save-text ${tone}`}>{statusText[save.status] ?? save.status}{save.checkpoint ? ` · #${save.checkpoint.save.revision}` : ''}</b></div>
         <button className="btn" disabled={save.status === 'loading' || save.status === 'saving' || !navigator.onLine} onClick={reconnect}>เชื่อมต่อเซฟใหม่</button>
         <div className="settings-row"><span>เสียงและเพลง</span><button className="btn small" onClick={toggleSound}>{sound ? 'ปิดเสียง' : 'เปิดเสียง'}</button></div>

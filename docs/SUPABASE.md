@@ -1,5 +1,25 @@
 # Supabase Auth และฐานเซฟ
 
+## หลายเซฟต่อบัญชี — TASK-111 / SQL008
+
+หลังอัปเดตเว็บ ให้รัน [202610230008_save_slots.sql](../supabase/migrations/202610230008_save_slots.sql) ทั้งไฟล์ใน Supabase → SQL Editor ของโปรเจกต์เดิมที่ติดตั้ง001–007แล้ว จากนั้นโหลด `/play` ใหม่เพื่อเลือกเซฟ1–10 ไม่ต้องเพิ่ม environment variables หรือเปลี่ยน keys
+
+เซฟเดิมเป็นช่อง1โดยคง ID/state/hash/signature/revision/history/backups;ช่อง2–10สร้างใหม่เมื่อกดสร้างตัวละครเท่านั้น สลับที่ตั้งค่าเมื่อจบไฟต์และบันทึกเสร็จ แต่ละช่องมีทีม/ของ/Story/Tower/daily/AFK12ชั่วโมงของตัวเอง ก่อนรันSQL008เว็บยังให้เล่นเซฟเดิมช่อง1ได้พร้อมปุ่มโหลดรายการอีกครั้ง
+
+`game_saves.account_id` เป็น save identity; `owner_id` เป็น Auth UID และ `save_slot` คือ1–10 APIตรวจJWTแล้ว derive saveID จาก `X-RO-Save-Slot` (ไม่มีheader=1สำหรับเครื่องมือเก่า) ทุกเส้นทางเซฟ/backup/commandผูกช่องนี้ ไม่รับowner/saveIDจากclient `GET /api/save-slots` อ่านสรุปครั้งเดียวตอนเปิดตัวเลือก;ไม่เพิ่มDBroundtripให้คำสั่งอัปเกรดเดิม
+
+ตรวจหลังรันแบบอ่านอย่างเดียวในSQL Editor:
+
+```sql
+select account_id, owner_id, save_slot, revision
+from public.game_saves
+where owner_id = 'YOUR_AUTH_USER_UID'
+order by save_slot;
+```
+
+ก่อนสร้างช่องใหม่จะมีแถวเดิมเพียงช่อง1 ไม่จำเป็นต้องสร้างครบ10แถวเอง การรันSQL008ซ้ำปลอดภัยในขอบเขตmigrationที่ทดสอบแล้ว รายละเอียด [design39](../plan/design/39-save-slots.md);ข้อเท็จจริง/การทดสอบเดิมด้านล่างเป็นประวัติแต่ละtask
+
+
 TASK-021 มีหน้า `/auth`, client Auth, server JWT verification, migrations/RLS และช่องทางสร้างเซฟเริ่มต้นที่ผูก verified UID แล้ว ตรวจ unit tests, Chrome กับ fixture, PostgreSQL แยก และ **Auth/PostgREST/SMTP จริงแบบ self-hosted บน loopback** ผ่าน ไม่มี hosted project หรือ production deployment
 
 หลักฐาน: [Auth/JWT/RLS/owner writes](../plan/evidence/task-021-supabase-local.json), [browser SMTP/PKCE recovery](../plan/evidence/task-021-live-browser.json), [ชุดทดสอบแยกและเวอร์ชันบริการ](../plan/evidence/task-021-local-stack.json) ชุดนี้ไม่ใช่ Supabase cloud/Studio/Storage/Realtime และไม่พิสูจน์การส่งเมลภายนอกหรือ Vercel

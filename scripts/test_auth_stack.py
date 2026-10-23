@@ -23,7 +23,7 @@ ROOT = Path(__file__).resolve().parents[1]
 RUN_TAG = os.environ.get("RO_EVIDENCE_PREFIX", "task-021")
 if not re.fullmatch(r"task-[0-9]{3}",RUN_TAG): raise SystemExit("INVALID_EVIDENCE_PREFIX")
 FOCUS = os.environ.get("RO_LOCAL_TEST_FOCUS", "all")
-if FOCUS not in ("all", "auth", "navigation", "daily_terminal", "statuses", "history", "healing", "cards", "elements", "impact", "skill_descriptions", "card_frames", "card_rarity", "equipment", "slots", "growth", "shell", "compact", "cadence", "settlement", "daily_reset", "save_latency", "save_timeout", "migration_pending", "reward_slot_economy", "native_icons", "job_emblems", "modern_skill_icons", "modern_all", "skill_growth_monsters", "difficulty_refine15", "paladin_softening"): raise SystemExit("INVALID_TEST_FOCUS")
+if FOCUS not in ("all", "auth", "navigation", "daily_terminal", "statuses", "history", "healing", "cards", "elements", "impact", "skill_descriptions", "card_frames", "card_rarity", "equipment", "slots", "growth", "shell", "compact", "cadence", "settlement", "daily_reset", "save_latency", "save_timeout", "migration_pending", "reward_slot_economy", "native_icons", "job_emblems", "modern_skill_icons", "modern_all", "skill_growth_monsters", "difficulty_refine15", "paladin_softening", "save_slots"): raise SystemExit("INVALID_TEST_FOCUS")
 TOOLS = Path(os.environ.get("RO_AUTH_TOOLS", "/private/tmp/ro-idle-auth-tools"))
 PG = Path(os.environ.get("RO_PG_BIN") or subprocess.check_output(["pg_config", "--bindir"], text=True).strip())
 NODE = os.environ.get("RO_NODE", "node")
@@ -87,7 +87,9 @@ with tempfile.TemporaryDirectory(prefix="ro-auth21-", dir="/private/tmp") as fol
         start("auth",[TOOLS/"auth/auth","serve"],auth_env)
         wait_url(f"http://127.0.0.1:{auth_port}/health")
         run([*psql,"-c","grant usage on schema public,auth to anon,authenticated,service_role; grant execute on function auth.uid() to anon,authenticated,service_role;"])
-        for migration in sorted((ROOT/"supabase/migrations").glob('*.sql')): run([*psql,"-f",migration])
+        for migration in sorted((ROOT/"supabase/migrations").glob('*.sql')):
+            if FOCUS=="save_slots" and migration.name=="202610230008_save_slots.sql": continue
+            run([*psql,"-f",migration])
         run([*psql,"-c","insert into public.game_deployment values (true,'test','local');"])
         rest_env = {**environment,"DYLD_LIBRARY_PATH":str(PG.parent/"lib"),"PGRST_DB_URI":f"postgres://authenticator:{db_password}@127.0.0.1:{pg_port}/postgres","PGRST_DB_SCHEMAS":"public","PGRST_DB_ANON_ROLE":"anon","PGRST_JWT_SECRET":jwt_secret,"PGRST_SERVER_HOST":"127.0.0.1","PGRST_SERVER_PORT":str(rest_port)}
         start("rest",[TOOLS/"postgrest/postgrest"],rest_env)
@@ -103,8 +105,18 @@ with tempfile.TemporaryDirectory(prefix="ro-auth21-", dir="/private/tmp") as fol
             story_api = run([NODE,"--import","tsx",ROOT/"scripts/game/test-story-supabase.ts"],environment)
             (ROOT/("plan/evidence/"+RUN_TAG+"-story-api.txt")).write_text(story_api)
             report["checks"].append("Real Story failure/main-death/90s/terminal-lease SQL boundary tests passed")
+        if FOCUS == "save_slots":
+            environment["RO_SLOT_UPGRADE_FIXTURE"]=str(base/"slot-upgrade.json")
+            run([NODE,ROOT/"scripts/test_save_slots_live.cjs","prepare"],environment)
+            run([*psql,"-f",ROOT/"supabase/migrations/202610230008_save_slots.sql"])
+            run([*psql,"-f",ROOT/"supabase/migrations/202610230008_save_slots.sql"])
+            report["checks"].append("SQL008 applied twice over a real signed legacy save with history/receipt/backup/battle fixture")
         start("vite",[NODE,ROOT/"node_modules/vite/bin/vite.js","--host","127.0.0.1","--port",str(ui_port),"--strictPort"],cwd=ROOT)
         wait_url(ui+"/auth")
+        if FOCUS == "save_slots":
+            result = run([NODE,ROOT/"scripts/test_save_slots_live.cjs"],environment)
+            (ROOT/f"plan/evidence/{RUN_TAG}-ui-live.txt").write_text(result)
+            report["checks"].append("ActualSQLupgrade/10slots/RLS/receipt/resetbackup/API/mobile chooser passed")
         if FOCUS == "paladin_softening":
             result = run([NODE,ROOT/"scripts/test_paladin_softening_live.cjs"],environment)
             (ROOT/f"plan/evidence/{RUN_TAG}-ui-live.txt").write_text(result)

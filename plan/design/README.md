@@ -50,3 +50,5 @@
 - [37 ฮีลหมู่ Priest/ผลอัปสกิล/ท่ามอน/ภาพธาตุ/ตราผู้สวม](37-skill-growth-and-monster-rotations.md) — D139,stableIDs/meaningfulranks/sharedenemyprograms/asseticons (TASK108)
 
 - [38 ความยาก Story/Tower และ Refine +15](38-difficulty-and-refine15.md) — D140/141, เริ่ม0ช่องการ์ด/ปลด+5,+10,+15/ย้ายการ์ดช่องล็อกคืนกระเป๋า (TASK109)
+
+- [39 เซฟแยก10ช่องต่อบัญชี](39-save-slots.md) — D143/TASK111,owner/saveidentityแยก/SQL008/legacybytepreservation/switchisolation

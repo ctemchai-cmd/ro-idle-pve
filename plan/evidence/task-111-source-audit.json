@@ -1,0 +1,35 @@
+{
+  "task_id": "TASK-111",
+  "passed": true,
+  "base": "a872b2a3423844f33fe6084f45f20b38203f924e",
+  "content_hash": "bc84ab2a8a3f10900e419b043d8ab2264048cbe09fcc817285ef1376a3b7b850",
+  "pack_hash": "1ea6314ef8ec8c83b653f949d8da81fefcf5ec36c5b56a8e018eec61abeba215",
+  "game_rules_data_assets_and_old_migrations_unchanged": true,
+  "file_sha256": {
+    "api/index.ts": "a2763eaa90cf61d03f1443121641e08e2962f6f006d3b05f9e61610329d160a5",
+    "src/server/persistence/save-slots.ts": "78c3b75236167d8a8877d348810fa62177407bb5ac89fa6db7cad232302862e0",
+    "src/server/persistence/supabase.ts": "564be9bb1848bf5b2479ec4725da6a08caec5c7eedf4b1bcd9e44fc21f9c38b4",
+    "src/client/save-browser.ts": "2cf2f78c5d8aac2866aa868ccc7fa9034097ad4d21b5c487c237652367a370c1",
+    "src/client/save-slots.ts": "7f7dee474cbbc239d6319fe3c7d7c59de87c19cd8013b0d25d20d5deac6c2a6d",
+    "src/ui/account-session.ts": "aa4764ee831186ef6a97585fa52a4c27775e87c54c0139a50277d61c97d7838f",
+    "src/ui/auth-page.tsx": "5a61ff3a20c3dd0697e3f1c10577f23ed8f25de726b675734db85e3a1f116d13",
+    "src/ui/game/save-slots.tsx": "0c8b3b5b751195336e4e3952398df8199d9eae0c4405bcd52c11dd1018485e99",
+    "src/ui/game/shell.tsx": "79f151db675b9d5b89408f520b56364646b13b2c01972cbb22c0ead67b1fc648",
+    "src/ui/game/hud.tsx": "b1227dcba827c82b8638c98024144135ff83affb95ac792266eec3940b4b767a",
+    "src/ui/game/game.css": "21de2795e9a10feb17062ca0deb8ebc27a9e5758d8bf6e4a8b378fd3a280bd51",
+    "supabase/migrations/202610230008_save_slots.sql": "c5b0a0d5975421458339553a107ff44a1f8a95a578a8ad04485a78f36ff2edc6"
+  },
+  "checks": [
+    "555TS tests passed; earlier API test mock changed fixture account_id to a valid verified Auth UUID; production UUID validation retained",
+    "SQL001–007→008 twice preserves complete signed legacy save/children and supports legacy14arg creation",
+    "Actual10save identities/ownerRLS/reset+restore isolation/sameUUID replay/no extra per-command listing RPC",
+    "Mobile320/390 chooser/create/switch/reload/save+activebattle guards/maintenance+network/list retry",
+    "Exact pending UUID survives disposal; late old-slot response cannot touch another slot; old Auth owner cannot send or expire a new owner",
+    "Each slot retains own12h AFK cap/cursor/rewards; no balance/asset changes"
+  ],
+  "operator_confirmation": {
+    "SQL008_installed": true,
+    "source": "User explicitly confirmed running successfully during this turn"
+  },
+  "scope": "Local isolated services/test accounts only; no owner-cloud reads/writes, private env reads, 6173 restart or new balance batch"
+}

@@ -553,3 +553,9 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T110-AC-01` [TASK-110](done/tasks_110.md) | D142/static+mobile+public | Seven exactPaladin mappings with byteidentical source/export/runtime andactualmobile;all126logicalskillprograms unchanged | ผ่านlocal+hosted · [review](evidence/task-110-review.json) |
 | `T110-AC-02` [TASK-110](done/tasks_110.md) | D142/static+mobile+public | Story6-5/10/15=71992/86392/103674HP and2299/2485/2687ATK;Tower21HP24750ATK300;monotonic/reduced andpreservedrewards/CC/Refine/sockets | ผ่านlocal+hosted · [review](evidence/task-110-review.json) |
 | `T110-AC-03` [TASK-110](done/tasks_110.md) | D142/static+mobile+public | Assets/M0/build/targeted/freshAuth-API-SQL/mobile/publicnewcontent+newpack+7iconSHA/login0writes passed | ผ่านlocal+hosted · [review](evidence/task-110-review.json) |
+
+| `T111-AC-01` [TASK-111](review/tasks_111.md) | localupgrade/unit/mobile/public | LegacySQLupgrade preservesstate/signature/history/receipt/battle/backup bytes;10boundeduniqueownerslots;14argcompat/rerunnableSQL008 | ผ่าน implementation/local;รอpublicรวม AC05 |
+| `T111-AC-02` [TASK-111](review/tasks_111.md) | localupgrade/unit/mobile/public | 10distinctsaves/authJWT/headerboundaries/RLS/crossslotreceiptresetbackupisolation/2RPCunchanged | ผ่าน implementation/local;รอpublicรวม AC05 |
+| `T111-AC-03` [TASK-111](review/tasks_111.md) | localupgrade/unit/mobile/public | Actual10slotmobilechooser320/390/newclasses/settings/currentnumber/switchguards/reload | ผ่าน implementation/local;รอpublicรวม AC05 |
+| `T111-AC-04` [TASK-111](review/tasks_111.md) | localupgrade/unit/mobile/public | Localbackup/pending/lock/late-replyisolation+legacykey+12hper-slot+oldSQLfallback | ผ่าน implementation/local;รอpublicรวม AC05 |
+| `T111-AC-05` [TASK-111](review/tasks_111.md) | localupgrade/unit/mobile/public | Targeted/full/M0/build+actualfreshupgradeAPI-SQL-mobile/publicproof;SQL008deliverable/cloudactivationnotassumed | ยังไม่ตรวจ |

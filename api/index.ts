@@ -13,11 +13,13 @@ import { canonicalCommand } from '../src/domain/account/protocol.ts';
 import type { AccountState } from '../src/contracts/index.ts';
 import type { BackupReason, StoredBackup } from '../src/contracts/save.ts';
 import { backupFile, saveSummary } from '../src/domain/account/maintenance.ts';
+import { parseSaveSlot, scopeSave, type SaveIdentity } from '../src/server/persistence/save-slots.ts';
 import { captureTiming, timedSync } from '../src/server/persistence/timing.ts';
 
 interface CreationReply { body: unknown; status: number }
 
 export interface ApiServices {
+  listSaveSlots?(identity: AuthenticatedIdentity): Promise<unknown>;
   authenticate(request: Request): Promise<AuthResult<AuthenticatedIdentity>>;
   readAccount(identity: AuthenticatedIdentity): Promise<StoredSave | null>;
   lookupReceipt(identity: AuthenticatedIdentity, requestId: string): Promise<unknown | null>;
@@ -26,7 +28,7 @@ export interface ApiServices {
   checkpoint?(identity: AuthenticatedIdentity): Promise<CreationReply>;
   backups?(identity: AuthenticatedIdentity, backupId: string | null): Promise<CreationReply>;
 }
-function response(body: unknown, status = 200): Response { return Response.json(body, { status, headers: { 'cache-control': 'no-store', vary: 'Authorization' } }); }
+function response(body: unknown, status = 200): Response { return Response.json(body, { status, headers: { 'cache-control': 'no-store', vary: 'Authorization, X-RO-Save-Slot' } }); }
 export function createApi(env: Record<string, string | undefined>, injected?: ApiServices) {
   const configuration = readServerAuthConfig(env), status = getRuntimeStatus();
   let services = injected;
@@ -51,42 +53,45 @@ export function createApi(env: Record<string, string | undefined>, injected?: Ap
     async function handle(): Promise<Response> {
     const path = new URL(request.url).pathname;
     if (path === '/api/health' && request.method === 'GET') return response({ ...status, persistence: configuration.kind === 'configured' || injected ? 'configured' : 'not_configured' }, status.ok ? 200 : 503);
-    if (!['/api/account', '/api/commands', '/api/checkpoint', '/api/backups'].includes(path) && !path.startsWith('/api/receipts/') && !path.startsWith('/api/backups/')) return response({ code: 'NOT_FOUND' }, 404);
+    if (!['/api/save-slots', '/api/account', '/api/commands', '/api/checkpoint', '/api/backups'].includes(path) && !path.startsWith('/api/receipts/') && !path.startsWith('/api/backups/')) return response({ code: 'NOT_FOUND' }, 404);
     try {
       const active = configuredServices();
       if (!active) return response({ code: configuration.kind === 'invalid' ? configuration.code : 'AUTH_NOT_CONFIGURED' }, 503);
       const identity = await measure('auth', () => active.authenticate(request)); if (!identity.ok) return response({ code: identity.code }, identity.status);
+      if(path==='/api/save-slots'&&request.method==='GET')return active.listSaveSlots?response(await active.listSaveSlots(identity.value)):response({code:'SAVE_SLOTS_UNAVAILABLE'},503);
+      let slot:number;try{slot=parseSaveSlot(request.headers.get('x-ro-save-slot'));}catch{return response({code:'INVALID_SAVE_SLOT'},400);}
+      const selected=scopeSave(identity.value,slot);
       if (path === '/api/checkpoint' && request.method === 'GET') {
         if (!active.checkpoint) return response({ code: 'CHECKPOINT_NOT_IMPLEMENTED' }, 501);
-        const reply = await measure('checkpoint', () => active.checkpoint!(identity.value)); return response(reply.body, reply.status);
+        const reply = await measure('checkpoint', () => active.checkpoint!(selected)); return response(reply.body, reply.status);
       }
       if ((path === '/api/backups' || path.startsWith('/api/backups/')) && request.method === 'GET') {
         if (!active.backups) return response({ code: 'BACKUPS_NOT_IMPLEMENTED' }, 501);
         const id = path === '/api/backups' ? null : path.slice('/api/backups/'.length);
         if (id !== null && !/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i.test(id)) return response({ code: 'INVALID_BACKUP_ID' }, 400);
-        const reply = await active.backups(identity.value, id); return response(reply.body, reply.status);
+        const reply = await active.backups(selected, id); return response(reply.body, reply.status);
       }
       if (path === '/api/account' && request.method === 'GET') {
-        const save = await active.readAccount(identity.value);
-        if (save && save.account_id !== identity.value.account_id) return response({ code: 'SAVE_OWNER_MISMATCH' }, 503);
+        const save = await active.readAccount(selected);
+        if (save && save.account_id !== selected.account_id) return response({ code: 'SAVE_OWNER_MISMATCH' }, 503);
         // Absence does not manufacture a new account or starter wallet.
         return save ? response({ save }) : response({ code: 'ACCOUNT_NOT_INITIALIZED' }, 404);
       }
       if (path.startsWith('/api/receipts/') && request.method === 'GET') {
         const id = path.slice('/api/receipts/'.length);
         if (!/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i.test(id)) return response({ code: 'INVALID_REQUEST_ID' }, 400);
-        const receipt = await active.lookupReceipt(identity.value, id); return receipt ? response({ receipt }) : response({ code: 'RECEIPT_NOT_FOUND' }, 404);
+        const receipt = await active.lookupReceipt(selected, id); return receipt ? response({ receipt }) : response({ code: 'RECEIPT_NOT_FOUND' }, 404);
       }
       if (path === '/api/commands' && request.method === 'POST') {
         const handle = active.command ?? active.createAccount;
         if (!handle) return response({ code: 'COMMANDS_NOT_IMPLEMENTED' }, 501);
         const text = await request.text(); if (text.length > 16384) return response({ code: 'COMMAND_TOO_LARGE' }, 413);
         let input: unknown; try { input = JSON.parse(text); } catch { return response({ code: 'INVALID_JSON' }, 400); }
-        const reply = await measure('command', () => handle(identity.value, input));
+        const reply = await measure('command', () => handle(selected, input));
         if (reply.status === 200 && request.headers.get('x-ro-checkpoint') === 'include' && active.checkpoint && !(reply.body as { checkpoint?: unknown })?.checkpoint) {
           // A write may already be committed. Checkpoint failure must not turn it into an uncertain/retried write.
           try {
-            const loaded = await measure('checkpoint', () => active.checkpoint!(identity.value));
+            const loaded = await measure('checkpoint', () => active.checkpoint!(selected));
             if (loaded.status === 200) return response({ ...reply.body as Record<string, unknown>, ...loaded.body as Record<string, unknown> }, reply.status);
           } catch { /* Receipt-only fallback: the client reconciles without resubmitting a confirmed command. */ }
         }
@@ -288,7 +293,7 @@ function createAccountHandler(store: ReturnType<typeof createSaveStore>, signing
     const { state, receipt } = rules.prepare(command, requestHash, serverAt, localDay, randomBytes(4).readUInt32BE());
     const stateHash = sha(state);
     const signature = createHmac('sha256', signingKey).update(rules.canonical({ account_id: identity.account_id, revision: 1, state_hash: stateHash, content_hash: rules.versions.content_hash, schema_version: 1, key_version: 1 })).digest('base64url');
-    const committed = await store.commitInitial({ account_id: identity.account_id, request_id: command.request_id, request_hash: requestHash, state, state_hash: stateHash, receipt, signature, key_version: 1, schema_version: 1, ...rules.versions });
+    const committed = await store.commitInitial({ account_id: identity.account_id, request_id: command.request_id, request_hash: requestHash, state, state_hash: stateHash, receipt, signature, key_version: 1, schema_version: 1, ...rules.versions }, identity as SaveIdentity);
     if (committed.error) return fail(['IDEMPOTENCY_KEY_REUSE', 'REVISION_CONFLICT'].includes(committed.error.message) ? committed.error.message : 'ACCOUNT_CREATION_FAILED', ['IDEMPOTENCY_KEY_REUSE', 'REVISION_CONFLICT'].includes(committed.error.message) ? 409 : 503);
     return { body: { receipt: committed.data }, status: 200 };
   };

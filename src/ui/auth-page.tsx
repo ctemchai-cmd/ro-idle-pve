@@ -8,13 +8,12 @@ import { createBrowserAuth } from '../client/supabase-auth.ts';
 import { createAccountReader } from '../client/account.ts';
 import type { AccountSummary } from '../client/account.ts';
 import type { AuthResult } from '../contracts/auth.ts';
-import { SavePanel } from './save-panel.tsx';
 
 function AuthShell({ children }: { children: ReactNode }) {
   return <div className="app-shell"><header className="topbar"><a className="brand" href="/play"><span className="brand-mark"><Icon name="sparkles" /></span><span><strong>RO<span>Idle Classic</span></strong><small>YOUR LITTLE ADVENTURE</small></span></a><a className="sound-button" href="/play">กลับเกม</a></header><main className="auth-layout"><div className="auth-intro"><p className="eyebrow">A PLACE FOR YOUR ADVENTURE</p><h1>การเดินทางของคุณ</h1><p>เข้าสู่บัญชีส่วนตัวเพื่อเชื่อมต่อเซฟของคุณ</p></div>{children}<InstallApp /><p className="auth-footnote">เซฟการผจญภัยผูกกับบัญชีของคุณ</p></main></div>;
 }
 
-export function AuthExperience({ auth, readAccount, savePanel, returnToPlay }: { auth: AuthController; readAccount: (signal?: AbortSignal) => Promise<AuthResult<AccountSummary>>; savePanel?: ReactNode; returnToPlay?: string }) {
+export function AuthExperience({ auth, readAccount, savePanel, returnToPlay, saveChooser = false }: { auth: AuthController; readAccount: (signal?: AbortSignal) => Promise<AuthResult<AccountSummary>>; savePanel?: ReactNode; returnToPlay?: string; saveChooser?:boolean }) {
   const [state, setState] = useState(auth.snapshot), [mode, setMode] = useState<'signin' | 'reset'>('signin');
   const [busy, setBusy] = useState(false), [message, setMessage] = useState(''), [error, setError] = useState('');
   const [email, setEmail] = useState(''), [password, setPassword] = useState(''), [confirmation, setConfirmation] = useState('');
@@ -52,9 +51,9 @@ export function AuthExperience({ auth, readAccount, savePanel, returnToPlay }: {
   return <AuthShell><section className="auth-card" aria-label="บัญชีส่วนตัว">
     {state.status === 'loading' ? <p role="status">กำลังตรวจบัญชี…</p> : state.status === 'signed_in' ? <>
       <span className="auth-emblem" aria-hidden="true"><Icon name="sparkles" /></span><h2>ยินดีต้อนรับกลับ</h2><p className="auth-email">{state.user?.email ?? 'บัญชีส่วนตัว'}</p>
-      {save && <p role="status">พบเซฟล่าสุด · {new Date(save.updated_at).toLocaleString('th-TH')}</p>}
-      <button className="auth-primary" disabled={busy} onClick={() => void inspectSave()}>{busy ? 'กำลังตรวจ…' : 'ตรวจเซฟของฉัน'}</button>
-      <a className="auth-secondary" href="/play">ผจญภัยต่อ</a><a className="auth-text" href="/roster">เปิดทีมและตัวละคร</a><button className="auth-text" disabled={busy} onClick={() => { setBusy(true); void auth.signOut().then(result => { if (!result.ok) setError('ออกจากบัญชีไม่สำเร็จ กรุณาลองอีกครั้ง'); }).finally(() => setBusy(false)); }}>ออกจากบัญชี</button>
+      {!saveChooser&&save && <p role="status">พบเซฟล่าสุด · {new Date(save.updated_at).toLocaleString('th-TH')}</p>}
+      {saveChooser?<a className="auth-primary" href="/play">เลือกเซฟ</a>:<button className="auth-primary" disabled={busy} onClick={() => void inspectSave()}>{busy ? 'กำลังตรวจ…' : 'ตรวจเซฟของฉัน'}</button>}
+      {!saveChooser&&<><a className="auth-secondary" href="/play">ผจญภัยต่อ</a><a className="auth-text" href="/roster">เปิดทีมและตัวละคร</a></>}<button className="auth-text" disabled={busy} onClick={() => { setBusy(true); void auth.signOut().then(result => { if (!result.ok) setError('ออกจากบัญชีไม่สำเร็จ กรุณาลองอีกครั้ง'); }).finally(() => setBusy(false)); }}>ออกจากบัญชี</button>
       {savePanel}
     </> : <>
       <span className="auth-emblem" aria-hidden="true"><Icon name="sparkles" /></span><h2>{recovery ? 'ตั้งรหัสผ่านใหม่' : mode === 'reset' ? 'กู้รหัสผ่าน' : 'เข้าสู่บัญชี'}</h2>
@@ -78,7 +77,7 @@ function ConfiguredAuth({ config }: { config: Extract<ReturnType<typeof readPubl
   const requested = new URLSearchParams(window.location.search).get('next');
   // Only a relative game URL can be restored after login; never follow an external return URL.
   const returnToPlay = requested && /^\/play(?:\?|$)/.test(requested) ? requested : undefined;
-  return <AuthExperience auth={auth} readAccount={readAccount} returnToPlay={returnToPlay} savePanel={returnToPlay ? undefined : <SavePanel auth={auth} scope={`${config.environment}:${new URL(config.url).host}`} />} />;
+  return <AuthExperience auth={auth} readAccount={readAccount} returnToPlay={returnToPlay} saveChooser />;
 }
 export default function AuthPage() {
   const config = readPublicAuthConfig(import.meta.env, window.location);

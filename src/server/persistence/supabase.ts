@@ -2,6 +2,7 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 import type { AuthenticatedIdentity } from '../../contracts/auth.ts';
 import type { Receipt } from '../../contracts/index.ts';
 import type { CommandCommit, InitialSaveCommit, MaintenanceCommit, ReceiptRecord, SaveContext, StoredBackup, StoredSave } from '../../contracts/save.ts';
+import { saveSlotId, type SaveIdentity } from './save-slots.ts';
 import { timed } from './timing.ts';
 export type { StoredSave } from '../../contracts/save.ts';
 export interface CommandContext { context: SaveContext; previous: ReceiptRecord | null }
@@ -23,6 +24,13 @@ export function createSaveStore(client: SupabaseClient, environment: string, pro
     if (error || data !== true) throw new Error('DATABASE_ENVIRONMENT_MISMATCH');
   }
   return {
+    async listSaveSlots(identity: AuthenticatedIdentity) {
+      const {data,error}=await timed('db_slots',()=>client.rpc('game_list_save_slots',{p_owner_id:identity.account_id,p_environment:environment,p_project_ref:projectRef}));
+      if(missingRpc(error,'game_list_save_slots'))return {enabled:false,owner_id:identity.account_id,slots:[{slot:1,save_id:identity.account_id,initialized:null,updated_at:null,revision:null,job_id:null,level:null,cleared_stages:0}]};
+      if(error||!Array.isArray(data)||data.length!==10)throw new Error('SAVE_SLOTS_UNAVAILABLE');
+      for(const[index,row]of data.entries())if(row.slot!==index+1||row.save_id!==saveSlotId(identity.account_id,index+1))throw new Error('SAVE_SLOT_ID_MISMATCH');
+      return {enabled:true,owner_id:identity.account_id,slots:data};
+    },
     /** Read-only incident evidence; used only when the owner explicitly requests the21Oct daily-clock refund. */
     async dailyClockReceipts(identity: AuthenticatedIdentity): Promise<Receipt[]> {
       await assertEnvironment();
@@ -48,8 +56,8 @@ export function createSaveStore(client: SupabaseClient, environment: string, pro
       const { data, error } = await timed('db_receipt', () => client.from('game_command_receipts').select('request_hash,receipt').eq('account_id', identity.account_id).eq('request_id', requestId).maybeSingle());
       if (error) throw new Error('RECEIPT_READ_FAILED'); return data as ReceiptRecord | null;
     },
-    async commitInitial(input: InitialSaveCommit) {
-      return client.rpc('game_create_account', { p_account_id: input.account_id, p_request_id: input.request_id, p_request_hash: input.request_hash, p_state: input.state, p_state_hash: input.state_hash, p_receipt: input.receipt, p_signature: input.signature, p_key_version: input.key_version, p_schema_version: input.schema_version, p_content_version: input.content_version, p_rules_version: input.rules_version, p_content_hash: input.content_hash, p_environment: environment, p_project_ref: projectRef });
+    async commitInitial(input: InitialSaveCommit, selection?: Pick<SaveIdentity,'owner_id'|'save_slot'>) {
+      return client.rpc('game_create_account', { ...(selection&&selection.save_slot>1?{p_owner_id:selection.owner_id,p_save_slot:selection.save_slot}:{}), p_account_id: input.account_id, p_request_id: input.request_id, p_request_hash: input.request_hash, p_state: input.state, p_state_hash: input.state_hash, p_receipt: input.receipt, p_signature: input.signature, p_key_version: input.key_version, p_schema_version: input.schema_version, p_content_version: input.content_version, p_rules_version: input.rules_version, p_content_hash: input.content_hash, p_environment: environment, p_project_ref: projectRef });
     },
     async commitCommand(input: CommandCommit) {
       return timed('db_commit', () => client.rpc('game_commit_command', commandArgs(input)));

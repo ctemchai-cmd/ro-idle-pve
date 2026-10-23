@@ -1,3 +1,5 @@
+import type { SaveSelection } from '../../client/save-slots.ts';
+import { SaveSlotChooser } from './save-slots.tsx';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { AccountState, Command } from '../../contracts/index.ts';
 import type { AuthController } from '../../client/auth-controller.ts';
@@ -56,8 +58,8 @@ function readRoute(): { view: View; character: string } {
   return { view: view && views.includes(view) ? view : 'home', character: params.get('c') ?? 'main' };
 }
 
-function ConnectedGame({ auth, scope }: { auth: AuthController; scope: string }) {
-  const { controller, save } = useAccountSave(auth, scope);
+function ConnectedGame({ auth, scope, selection, chooseSave }: { auth: AuthController; scope: string; selection:SaveSelection;chooseSave:()=>void }) {
+  const { controller, save } = useAccountSave(auth, scope, selection);
   const [pack, setPack] = useState<AssetPack | null>(null), [route, setRoute] = useState(readRoute), [toasts, setToasts] = useState<{ id: number; text: string }[]>([]), [sound, setSound] = useState(false);
   const toastId = useRef(0), rotated = useRotated();
   const state = save.preview ?? save.checkpoint?.save.state as AccountState | undefined, ready = save.status === 'ready', busy = save.status === 'saving' || !!save.pending;
@@ -99,12 +101,15 @@ function ConnectedGame({ auth, scope }: { auth: AuthController; scope: string })
     try { if (!pack.currentScene) throw new Error('SCENE_NOT_READY'); await pack.enableAudio(!sound, pack.currentScene); setSound(pack.soundEnabled); } catch { toast('เปิดเสียงไม่สำเร็จ ลองกดอีกครั้ง'); }
   }
 
-  // TASK-040: an older save (migration preview) or a quarantined save (signed-tip recovery) blocks play until resolved.
   const maintenance = save.reason === 'SAVE_MIGRATION_REQUIRED' || save.reason === 'SAVE_INTEGRITY_FAILED';
+  const returnToSlots=()=>{if(save.status==='saving'||save.status==='loading'||(active&&!maintenance))return;window.history.replaceState(null,'','/play');chooseSave();};
+  const slotReturn=<button className="btn ghost save-slot-return" disabled={save.status==='saving'||save.status==='loading'} onClick={returnToSlots}>เซฟ {selection.slot} · เลือกเซฟอื่น</button>;
+
+  // TASK-040: an older save (migration preview) or a quarantined save (signed-tip recovery) blocks play until resolved.
   if (!state) {
-    if (maintenance) return <div className="game-root"><div className="game-splash"><div className="splash-logo">RO <span>Idle</span></div><MaintenancePanel save={save} controller={controller} /></div></div>;
-    if (save.reason === 'ACCOUNT_NOT_INITIALIZED') return <div className="game-root"><Onboarding pack={pack} busy={!!save.pending || save.status !== 'error'} create={(root, gender) => void controller.submit({ type: 'account.create', params: { root_job_id: root, gender }, request_id: randomId(), expected_revision: 0, ...storyVersions } as Command).catch(e => toast(reasonText[e instanceof Error ? e.message : ''] ?? 'สร้างตัวละครไม่สำเร็จ'))} /></div>;
-    return <div className="game-root"><div className="game-splash" role="status"><div className="splash-logo">RO <span>Idle</span></div><p>{save.status === 'incompatible' ? 'มีเกมรุ่นใหม่ กรุณาโหลดหน้าใหม่' : save.status === 'offline' ? 'ขาดการเชื่อมต่อ · รอเชื่อมต่อเพื่อโหลดเซฟ' : 'กำลังโหลดเซฟ…'}</p>{(save.status === 'offline' || save.status === 'error') && <button className="btn primary" onClick={() => void controller.reconnect()}>เชื่อมต่อใหม่</button>}</div></div>;
+    if (maintenance) return <div className="game-root">{slotReturn}<div className="game-splash"><div className="splash-logo">RO <span>Idle</span></div><MaintenancePanel save={save} controller={controller} /></div></div>;
+    if (save.reason === 'ACCOUNT_NOT_INITIALIZED') return <div className="game-root slot-onboarding">{slotReturn}<Onboarding pack={pack} busy={!!save.pending || save.status !== 'error'} create={(root, gender) => void controller.submit({ type: 'account.create', params: { root_job_id: root, gender }, request_id: randomId(), expected_revision: 0, ...storyVersions } as Command).catch(e => toast(reasonText[e instanceof Error ? e.message : ''] ?? 'สร้างตัวละครไม่สำเร็จ'))} /></div>;
+    return <div className="game-root">{slotReturn}<div className="game-splash" role="status"><div className="splash-logo">RO <span>Idle</span></div><p>{save.status === 'incompatible' ? 'มีเกมรุ่นใหม่ กรุณาโหลดหน้าใหม่' : save.status === 'offline' ? 'ขาดการเชื่อมต่อ · รอเชื่อมต่อเพื่อโหลดเซฟ' : 'กำลังโหลดเซฟ…'}</p>{(save.status === 'offline' || save.status === 'error') && <button className="btn primary" onClick={() => void controller.reconnect()}>เชื่อมต่อใหม่</button>}</div></div>;
   }
   const characterId = state.roster.some(a => a.character_id === route.character) ? route.character : 'main';
   const context: GameContext = { state, pack, locked: !ready || busy || !!active, busy: !ready || busy, submit, submitWhenReady, lastCode: () => controller.snapshot.lastReceipt?.result.code ?? null, lastCreated: () => [...(controller.snapshot.lastReceipt?.result.created_instance_ids ?? [])], latest: () => controller.snapshot.checkpoint?.save.state as AccountState | undefined, toast, go, characterId, selectCharacter: id => go(route.view, id) , challenge: target => { setRequest({ ...target, at: Date.now() }); go('home'); } };
@@ -112,7 +117,7 @@ function ConnectedGame({ auth, scope }: { auth: AuthController; scope: string })
   return <SaveRecoveryProvider value={{status:save.status,pending:!!save.pending,retry:()=>void controller.reconnect()}}><div className="game-root">
     <div className="game-frame">
       <Field context={context} covered={route.view !== 'home' || rotated} save={save} request={request} consumeRequest={() => setRequest(null)} />
-      <TopHud context={context} save={save} controller={controller} sound={sound} toggleSound={() => void toggleSound()} reconnect={() => void controller.reconnect()} />
+      <TopHud slotNumber={selection.slot} switchSave={returnToSlots} context={context} save={save} controller={controller} sound={sound} toggleSound={() => void toggleSound()} reconnect={() => void controller.reconnect()} />
       {route.view !== 'home' && <main key={`${route.view}:${characterId}`} className="page-layer" aria-live="polite">
         {active && <p className="page-banner">กำลังสู้บอส · ดูข้อมูลได้ แต่ปรับตัวละครได้หลังจบไฟต์</p>}
         {route.view === 'buddy' && <BuddyPage context={context} />}
@@ -126,10 +131,15 @@ function ConnectedGame({ auth, scope }: { auth: AuthController; scope: string })
         {route.view === 'store' && <StorePage context={context} />}
       </main>}
       <BottomBar pack={pack} active={tab} open={t => go(tab === t ? 'home' : t, characterId)} locked={() => toast('ยังไม่เปิดในรุ่นนี้ · กำลังพัฒนา')} />
-      {maintenance && <div className="maintenance-layer"><MaintenancePanel save={save} controller={controller} /></div>}
+      {maintenance && <div className="maintenance-layer">{slotReturn}<MaintenancePanel save={save} controller={controller} /></div>}
       <div className="toasts" role="status">{toasts.map(t => <p key={t.id} className="toast">{t.text}</p>)}</div>
     </div>
   </div></SaveRecoveryProvider>;
+}
+
+function SelectedGame({auth,scope}:{auth:AuthController;scope:string}){
+ const[selection,setSelection]=useState<SaveSelection|null>(null);
+ return selection?<ConnectedGame key={selection.save_id} auth={auth} scope={scope} selection={selection} chooseSave={()=>setSelection(null)}/>:<SaveSlotChooser auth={auth} select={setSelection}/>;
 }
 
 function ConfiguredGame({ config }: { config: Extract<ReturnType<typeof readPublicAuthConfig>, { kind: 'configured' }>['config'] }) {
@@ -137,7 +147,7 @@ function ConfiguredGame({ config }: { config: Extract<ReturnType<typeof readPubl
   useEffect(() => { const stop = auth.subscribe(setSession); void auth.start(); return () => { stop(); auth.dispose(); }; }, [auth]);
   const signInUrl = `/auth?next=${encodeURIComponent('/play' + window.location.search)}`;
   useEffect(() => { if (session.status === 'signed_out') window.location.replace(signInUrl); }, [session.status, signInUrl]);
-  if (session.status === 'signed_in') return <ConnectedGame key={session.user!.id} auth={auth} scope={`${config.environment}:${new URL(config.url).host}`} />;
+  if (session.status === 'signed_in') return <SelectedGame key={session.user!.id} auth={auth} scope={`${config.environment}:${new URL(config.url).host}`} />;
   return <div className="game-root"><div className="game-splash"><div className="splash-logo">RO <span>Idle</span></div><p>{session.status === 'loading' ? 'กำลังตรวจบัญชี…' : 'เข้าสู่บัญชีเพื่อเล่นต่อจากเซฟ'}</p>{session.status !== 'loading' && <a className="btn primary" href={signInUrl}>เข้าสู่บัญชี</a>}</div></div>;
 }
 export default function GamePage() {

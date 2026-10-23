@@ -1,0 +1,43 @@
+{
+  "task_id": "TASK-111",
+  "reviewer": "Codex self-review",
+  "date": "2026-10-23",
+  "passed": false,
+  "local_passed": true,
+  "acceptance": {
+    "AC-01": true,
+    "AC-02": true,
+    "AC-03": true,
+    "AC-04": true,
+    "AC-05": false
+  },
+  "pending": [
+    "Vercel deployment and public read-only proof"
+  ],
+  "checks": {
+    "TS_full": 555,
+    "TS_targeted": 33,
+    "M0_readiness": 8,
+    "build": true,
+    "actual_local_stack_groups": 4,
+    "actual_mobile_groups": 4,
+    "SQL008_upgrade_and_rerun": true,
+    "operator_confirmed_SQL008_installed": true
+  },
+  "evidence": [
+    "plan/evidence/task-111-source-audit.json",
+    "plan/evidence/task-111-full-tests.txt",
+    "plan/evidence/task-111-targeted-tests.txt",
+    "plan/evidence/task-111-build.txt",
+    "plan/evidence/task-111-m0.txt",
+    "plan/evidence/task-111-local-stack.json",
+    "plan/evidence/task-111-ui-live.json",
+    "plan/evidence/task-111-chooser-320.png",
+    "plan/evidence/task-111-chooser-390.png",
+    "plan/evidence/task-111-slot2-320.png"
+  ],
+  "limits": [
+    "Hosted owner account was not inspected or mutated; SQL installation confirmed by user",
+    "Legacy personal6173 untouched; no balance batch or asset/content changes"
+  ]
+}

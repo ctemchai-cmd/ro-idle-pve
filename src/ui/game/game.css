@@ -799,3 +799,24 @@ dialog.gacha-reveal-sheet{height:92dvh}.gacha-reveal-sheet .sheet-body{height:10
 
 /* D139: actual profession attribution, compact in inventory thumbnails. */
 .owner-badge{display:inline-flex;align-items:center;gap:4px;vertical-align:middle;max-width:100%;white-space:nowrap;font-style:normal}.owner-badge .class-icon{flex:none}.owner-badge>span:last-child{overflow:hidden;text-overflow:ellipsis}.gear-owner-mark{position:absolute;left:2px;bottom:15px;z-index:3;background:#f6faffeb;border-radius:6px;padding:1px 2px;box-shadow:0 1px 3px #172d5a30}.owner-badge.compact>span:last-child{display:none}
+
+/* Independent save-slot chooser, mobile portrait first. */
+.save-slots-page { height:100%; overflow-y:auto; overscroll-behavior:contain; padding:24px 14px; background:var(--surface,#eef4ff); color:var(--text,#243750); }
+.save-slots-heading { display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; }
+.save-slots-heading h1 { margin:4px 0 0; font-size:24px; }
+.save-slots-brand { font-size:12px; letter-spacing:.13em; color:#6281ab; }
+.save-slot-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; padding-bottom:16px; }
+.save-slot-card { min-width:0; min-height:146px; padding:12px; display:flex; align-items:flex-start; flex-direction:column; gap:5px; border:1px solid #cfdef2; background:#fff; color:#29456d; border-radius:18px; text-align:left; font:inherit; }
+.save-slot-card:active { background:#e9f2ff; border-color:#4280e8; }
+.save-slot-number { font-size:12px; font-weight:700; color:#7a8ca6; }
+.save-slot-job { display:flex; align-items:center; gap:6px; max-width:100%; font-size:13px; }
+.save-slot-job b { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.save-slot-level { font-size:20px; font-variant-numeric:tabular-nums; }
+.save-slot-card small,.save-slot-card time { font-size:11px; color:#7085a4; }
+.save-slot-card.empty { border-style:dashed; background:rgba(255,255,255,.55); }
+.save-slot-card.empty b { font-size:13px; }
+.save-slot-plus { font-size:36px; font-weight:300; line-height:1; color:#a4b9d7; margin:9px 0; }
+.save-slots-message { margin:60px 0; text-align:center; }
+.save-slot-return { position:fixed; z-index:10; top:12px; right:max(12px,calc((100vw - 430px)/2 + 12px)); font-size:12px; }
+.slot-onboarding .onboarding { padding-top:60px; }
+.hud-slot { color:#6482aa; font-size:10px; white-space:nowrap; }

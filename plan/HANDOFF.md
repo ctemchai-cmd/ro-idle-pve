@@ -6,6 +6,14 @@
 
 
 
+## 23 ต.ค.2026 · Codex — TASK111 localผ่าน / SQL008ผู้ใช้ติดตั้งแล้ว / รอVercel
+
+- Userต้องการ1Auth→10independentsavesเพื่อเล่นหลายอาชีพ. D143/design39:slot1คงAuthUID/state/signature/revision/children/backup/localkey;2–10deriveMD5namespaceUUIDเป็นidentifierเท่านั้น. SQL008เพิ่มowner_id/save_slot/ownerFK/RLSparentjoin/unique+boundedidentity;game_create_account2optionalargs(legacy14works),onechooserRPC. UserยืนยันรันSQL008สำเร็จในturnนี้ ไม่มีownercloudread/writeหรือcredentials.
+- APIJWTก่อนX-RO-Save-Slot1–10deriveowner;allroutes/maintenance/receipts/checkpoints/backup scoped,default1legacy. Existing2RPCmutation unchanged. Chooserafterlogin/reload10mobilecards/job-level-stage/time;Settingsswitch/currentbadge;blocklivebattle/saving,returnfromonboarding/maintenance/error. Clientportsfreeze selection/Authowner,per-savepending+writer lock,disposeepoch ignoreslate oldresponse. No fullstatecloning/crosssave transfers. Per-slot12hAFK.
+-555TS+33targeted/M0/readiness8/build/secrets222ผ่าน. FreshupstreamAuth/Postgres001–007→008twice/actualAPI/Chrome3203904groupsผ่าน:legacy5tablesbytes+HMAC/10creates/sharedUUIDisolation/replay/RLSbothowners/childcascade/resetrestore/invalidslots;save+battle guards/cachedmaintenance/no-cache503/listretry. OldSQLfallbackslot1tested before008. Finalchooser320/Mage320viewed. R1localpassed supersededbyextendedR2;fullr1oneinvalidnonUUIDmock fixedtovalidAuthUID,realguardkept.
+- Contentbc84ab2a8a3f10900e419b043d8ab2264048cbe09fcc817285ef1376a3b7b850/pack1ea6314ef8ec8c83b653f949d8da81fefcf5ec36c5b56a8e018eec61abeba215unchanged;noassets/domain/gamebalance/oldSQL001–007changes. Sourceaudit/task111evidence. No6173restart/privateenvreads/balancebatch/subagents.
+- TASK111reviewAC1–4passed/5publicpending;board96/111done,inprogress4/review6/todo5 M4done56/66. Next narrowexplicitstagefeaturepaths(noassets or env),commit/pushmainauthorized→VercelSUCCESS→scripts/test_save_slots_hosted.cjs(401checkpoint+chooser,newbundlesSHA,unchangedcontent+pack,mobilelogin0writes). Thenreview5ACdone97/111/M4done57/66/readiness/docsclosurepush. SQL008alreadyinstalledperuser;do notaskagain. RootAGENTSneedslatestmultisavenoteaftercompletion.
+
 ## 23 ต.ค.2026 · Codex — TASK110 done ขึ้นVercelแล้ว
 
 - SOURCE`3d0ec1ce955a3b4f9a8e24f4bcb15022a0beaf86` VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/Anf1dWvAbfGnb7gpCx7yC7TEzQgG Public3groups API200SIN1/contentbc84ab2a8a3f10900e419b043d8ab2264048cbe09fcc817285ef1376a3b7b850/checkpoint401/newpack/7PaladinSHA/4declaredbundleSHA/mobilelogin0writesผ่าน. Pack1ea6314ef8ec8c83b653f949d8da81fefcf5ec36c5b56a8e018eec61abeba215/791IDs1467files31679919B initial1621492.
