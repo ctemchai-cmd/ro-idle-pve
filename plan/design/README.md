@@ -54,3 +54,5 @@
 - [39 เซฟแยก10ช่องต่อบัญชี](39-save-slots.md) — D143/TASK111,owner/saveidentityแยก/SQL008/legacybytepreservation/switchisolation
 
 - [Hi-class/Awaken ขอบเขตใหม่](40-hi-class-roadmap.md) — D144–145,performanceก่อน/2สกิล/เต็มก่อน90/iconinnerglowม่วง
+
+- [41 บท9และทางต่อHi-class](41-story-expansion.md) — D150/TASK117,50ด่าน/identityตรงengine/คง130ด่านและการ์ดเดิม

@@ -5,7 +5,7 @@
 - `skills/`: 126definitions/26builds หกrootและทุกClass2; `presentations/` แยกicon/VFX/sound refs ส่วนRoguecopyเป็นderiveddefinitionsจากcopy_whitelist
 - `equipment.json`, `cards.json`, `slot-progress.json`: 60equipment/18cards และinvestmentของcharacter+slot
 - `economy.json`, `loot.json`, `gacha.json`: 8resources/farmmscarry/odds/pity/งบ6จุด
-- `stages.json`, `enemies.json`, `tower.json`, `daily-bosses.json`: Story80ด่าน, Tower100rows+generator, daily3bosses
+- `stages.json`, `enemies.json`, `tower.json`, `daily-bosses.json`: Story180ด่าน (บท1–3×10,4–8×20,9×50), Tower100rows+generator, daily3bosses
 - `module-contracts.json`, `save-contracts.json`, `quality-budgets.json`: boundaries/authorities/command receipts/version/interruptionและงบที่ต้องวัดจริง
 - `schemas/`: 11composition schemas + Command/Account/Receipt/BattleCheckpoint/SimulationScenario
 - `actor-presentations.json`, `strings.th.json`: refs36presets/19jobsและชื่อแสดง ไม่ใช่แหล่งค่าสเตตัส

@@ -28,7 +28,7 @@ const FARM_CAP_MS = 12 * 3600 * 1000;
 /** Boss look per stage (D-056): pooled mini-boss skins, except the chapter-final stage keeps its authored boss. */
 function stageBossSkin(pack: AssetPack | null, stageId: string) {
   const info = storyStageInfo(stageId);
-  return pack && info && !info.last ? bossSkin(pack.index, info.chapter, info.index) : null;
+  return pack && info && !info.last && info.enemy_identity!=='definition' ? bossSkin(pack.index, info.chapter, info.index) : null;
 }
 type Outcome = { id: string; code: string; stage: string; kind: 'story' | 'tower' | 'daily' };
 const OUTCOMES = ['STORY_WON', 'STORY_DEFEATED', 'STORY_TIME_LIMIT', 'TOWER_WON', 'TOWER_DEFEATED', 'TOWER_TIME_LIMIT', 'DAILY_FINISHED', 'DAILY_DEFEATED'];

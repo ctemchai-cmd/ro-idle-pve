@@ -3,7 +3,7 @@ import type { ValidatedContent } from '../../content/model.ts';
 import { farmCardProfile } from './farm-card-profile.ts';
 import { cardTierForChapter } from '../../content/card-catalog.ts';
 export interface StoryStage {
- id:string;chapter:number;index:number;unlock_after:string|null;time_limit_ms:number;
+ id:string;chapter:number;index:number;unlock_after:string|null;time_limit_ms:number;enemy_identity?:'definition';
  encounter:{actor_id:string;definition_id:string;level:number;position:string;element:string;resolved_base:CombatStats;active_slots:BattleCheckpoint['actors'][number]['active_slots'];passives:string[]}[];
  background:{meta:string};music:{meta:string};first_clear_reward:Partial<AccountState['wallet']>;farm_rate_chapter:number;
 }

@@ -11,7 +11,7 @@ import {resolveSkill} from '../../src/domain/build/resolve-skill.ts';
 import {refinePercent} from '../../src/client/slots.ts';
 
 test('D142 Story every5stages respects growth profiles and chapter boundaries never reset boss HP/ATK fromchapter3',()=>{
- const stages=storyStages(content),rules={3:[1.08,1.04],4:[1.08,1.04],5:[1.08,1.04],6:[1.20,1.08],7:[1.12,1.06],8:[1.12,1.06]}as Record<number,number[]>;
+ const stages=storyStages(content).filter(s=>s.chapter<=8),rules={3:[1.08,1.04],4:[1.08,1.04],5:[1.08,1.04],6:[1.20,1.08],7:[1.12,1.06],8:[1.12,1.06]}as Record<number,number[]>;
  for(let i=1;i<stages.length;i++){
   const s=stages[i]!,b=s.encounter[0]!.resolved_base,p=stages[i-1]!.encounter[0]!.resolved_base;
   if(s.chapter<3)continue;assert.ok(b.max_hp>p.max_hp,s.id);assert.ok(b.physical_attack>p.physical_attack,s.id);assert.equal(b.attack_speed,100);assert.equal(b.cast_speed,100);

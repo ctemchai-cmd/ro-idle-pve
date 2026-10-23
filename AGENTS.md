@@ -1,5 +1,9 @@
 # Project context
 
+## Story expansion (23 October 2026, D150/TASK117)
+
+Chapter9 appends50 stages after8-20 (180total), suggestedLv67–70. Original130rows, player skills, Tower/daily rules and rates1–8 stay unchanged. New14enemydefinitions reuse existing native pack media; traits reference rAthena identity only, rotations are game adaptations. stage.enemy_identity=definition makes boss/farm visuals follow their actual definition. Chapter9 rates match8/Tier60; loot.cards.chance_ramp_stage_count=130 preserves all old card probabilities and saturates new stages at2%. Account chapter schemas use safe integers; content loader requires each stage's farm/gear/card tables. NoSQL, Hi-class stilldisabled/cap70. Generator expansion is plan/generators/story-expansion.json + story_expansion.py; legacy generator remains byte-identical. See design41.
+
 ## Early gear and upgrade indicator (23 October 2026, D148–149)
 
 Equipment drops: chapters1–2 give Lv1 gear; chapter3 gives Lv20; chapters4–8 keep their existing tiers. No Lv10 gear. Equipment gacha retains its highest-fully-cleared-chapter rule and reads the gear table. Card tier progression is separate and retains the old values for farm/gacha/Tower. Existing inventory/pending gear remains. The change-equipment list uses a green double-chevron-up instead of the visible red “ดีกว่า” tag; keep the comparison and slot notification rules.

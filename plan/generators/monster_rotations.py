@@ -18,6 +18,8 @@ PROFILES={
  'osiris':['enemy_venom','enemy_silence','enemy_mend','enemy_lightning_bolt'],
  'baphomet':['enemy_firestorm','enemy_lightning_bolt','enemy_enrage','enemy_sonic_blow'],
 }
+EXPANSION=json.loads((Path(__file__).with_name('story-expansion.json')).read_text())
+PROFILES.update({actor['id']:actor['active_slots'] for actor in EXPANSION['enemies']})
 # Ordinary stages gain identity-based2→4action rotations; chapter1 starts gently.
 CYCLES={
  '1':[['enemy_bite'],['enemy_venom','enemy_bite'],['enemy_guard','enemy_bite']],
@@ -64,12 +66,20 @@ def documents():
   # The shared player presentation supplies the real icon/VFX/audio.
   presentations.append({'skill_id':sid,'telegraph_key':source['name_key'],'telegraph_text':{'enemy_cold_bolt':'ลูกน้ำแข็งต่อเนื่อง','enemy_lightning_bolt':'สายฟ้าต่อเนื่อง','enemy_sonic_blow':'โจมตีหลายครั้ง','enemy_armor_break':'ลดเกราะเป้าหมาย','enemy_hammer_fall':'ค้อนกระแทก มีโอกาสสตั้น','enemy_mend':'ฟื้นฟูพลังชีวิต'}[sid],'visual':{'recipe_skill_id':5,'basis':'D139 shared player presentation; ordinary enemy attack budget'},'duration_source':'skill cast_ms scaled by CastSpeed'})
  enemies['skills']=list(recipes.values())
+ for source in EXPANSION['enemies']:
+  definition={'id':source['id'],'kind':'enemy','presentation':source['presentation'],'stat_source':'encounter.resolved_base','targetable':True,'counts_for_victory':True,'normal_attack':True,'active_slots':source['active_slots']+[None]*(4-len(source['active_slots'])),'passives':[]}
+  previous=next((i for i,a in enumerate(enemies['actors']) if a['id']==source['id']),None)
+  if previous is None:enemies['actors'].append(definition)
+  else:enemies['actors'][previous]=definition
  for a in enemies['actors']:a['active_slots']=PROFILES[a['id']]+[None]*(4-len(PROFILES[a['id']]))
+ cards=json.loads((DATA/'cards.json').read_text())
+ for source in EXPANSION['enemies']:
+  cards['monster_traits'][source['id']]={k:source[k] for k in ('ro_monster_id','race','size')}
  spec_path=ROOT/'plan/generators/stages-spec.json';spec=json.loads(spec_path.read_text());spec['ordinary_skill_cycles']=CYCLES
  tower=json.loads((DATA/'tower.json').read_text());tower['generator']['skill_cycle']=[PROFILES[s]for s in tower['generator']['template_cycle']]
  daily=json.loads((DATA/'daily-bosses.json').read_text())
  for boss in daily['bosses']:boss['active_slots']=PROFILES[boss['enemy_definition_id']]+[None]*(4-len(PROFILES[boss['enemy_definition_id']]))
- return{DATA/'enemies.json':enemies,spec_path:spec,DATA/'tower.json':tower,DATA/'daily-bosses.json':daily}
+ return{DATA/'enemies.json':enemies,DATA/'cards.json':cards,spec_path:spec,DATA/'tower.json':tower,DATA/'daily-bosses.json':daily}
 
 if __name__=='__main__':
  import argparse

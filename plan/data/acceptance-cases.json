@@ -13041,6 +13041,82 @@
       "verification": "targeted rules, productionbuild, localAuth/API/mobile and hosted version checks",
       "existing_oracle_case_ids": [],
       "status": "passed_implementation"
+    },
+    {
+      "id": "T117-AC-01",
+      "task_id": "TASK-117",
+      "acceptance_id": "AC-01",
+      "criterion": "180ด่าน/9บท/9-1ต่อ8-20/50ด่านใหม่เชื่อมครบ/maxแนะนำ70;130แถวเดิมเท่าbaselineทุกfield;generatorcurrent+legacyreproducible",
+      "input_setup": "Baseline130/cardprofiles plus newchapter9 actualdata; isolatedAuth/API/Postgres/mobile only",
+      "input_refs": [
+        "plan/design/41-story-expansion.md",
+        "plan/generators/story-expansion.json",
+        "plan/evidence/task-117-baseline.json"
+      ],
+      "parameters": {
+        "seed": 17,
+        "environment": "isolated disposable account, no ownercloud"
+      },
+      "expected": "180ด่าน/9บท/9-1ต่อ8-20/50ด่านใหม่เชื่อมครบ/maxแนะนำ70;130แถวเดิมเท่าbaselineทุกfield;generatorcurrent+legacyreproducible",
+      "verification": "Targeted tests/generator/build, actualChrome320390 and publicproduction smoke; see task117 evidence",
+      "status": "not_run_implementation"
+    },
+    {
+      "id": "T117-AC-02",
+      "task_id": "TASK-117",
+      "acceptance_id": "AC-02",
+      "criterion": "native14ชนิดใหม่มีrotation3–4ท่า/traits/ธาตุ/ภาพตรงdefinition;checkpointบอส10/20/30/40/50ต่างกัน;ท่าใหญ่ทุก5ด่านขัดได้และengine/runtime1x2x4ตรงกัน;ท้าบอสมีตัวเดียว",
+      "input_setup": "Baseline130/cardprofiles plus newchapter9 actualdata; isolatedAuth/API/Postgres/mobile only",
+      "input_refs": [
+        "plan/design/41-story-expansion.md",
+        "plan/generators/story-expansion.json",
+        "plan/evidence/task-117-baseline.json"
+      ],
+      "parameters": {
+        "seed": 17,
+        "environment": "isolated disposable account, no ownercloud"
+      },
+      "expected": "native14ชนิดใหม่มีrotation3–4ท่า/traits/ธาตุ/ภาพตรงdefinition;checkpointบอส10/20/30/40/50ต่างกัน;ท่าใหญ่ทุก5ด่านขัดได้และengine/runtime1x2x4ตรงกัน;ท้าบอสมีตัวเดียว",
+      "verification": "Targeted tests/generator/build, actualChrome320390 and publicproduction smoke; see task117 evidence",
+      "status": "not_run_implementation"
+    },
+    {
+      "id": "T117-AC-03",
+      "task_id": "TASK-117",
+      "acceptance_id": "AC-03",
+      "criterion": "rewardchapter9ครบ/ฟาร์มTier60/การ์ด1–130คงpool+chanceเดิมและใหม่ไม่เกิน2%;migrationคงprogress/pending/cursor/RNG;dailychapter9schemaและcommandใช้ได้;ไม่มีSQLหรือTier/Hi-classเปิดใหม่",
+      "input_setup": "Baseline130/cardprofiles plus newchapter9 actualdata; isolatedAuth/API/Postgres/mobile only",
+      "input_refs": [
+        "plan/design/41-story-expansion.md",
+        "plan/generators/story-expansion.json",
+        "plan/evidence/task-117-baseline.json"
+      ],
+      "parameters": {
+        "seed": 17,
+        "environment": "isolated disposable account, no ownercloud"
+      },
+      "expected": "rewardchapter9ครบ/ฟาร์มTier60/การ์ด1–130คงpool+chanceเดิมและใหม่ไม่เกิน2%;migrationคงprogress/pending/cursor/RNG;dailychapter9schemaและcommandใช้ได้;ไม่มีSQLหรือTier/Hi-classเปิดใหม่",
+      "verification": "Targeted tests/generator/build, actualChrome320390 and publicproduction smoke; see task117 evidence",
+      "status": "not_run_implementation"
+    },
+    {
+      "id": "T117-AC-04",
+      "task_id": "TASK-117",
+      "acceptance_id": "AC-04",
+      "criterion": "actualisolatedAPI+mobile320/390เลือก9-1/9-50และbattle/farmidentityถูก/firstclearครั้งเดียว/reloadใช้เซฟได้;nativepackไม่เพิ่มpayloadและไม่เกิน32MiB;M0/targeted/buildผ่าน;hostedpubliccontent/pack/bundlesตรงก่อนdone",
+      "input_setup": "Baseline130/cardprofiles plus newchapter9 actualdata; isolatedAuth/API/Postgres/mobile only",
+      "input_refs": [
+        "plan/design/41-story-expansion.md",
+        "plan/generators/story-expansion.json",
+        "plan/evidence/task-117-baseline.json"
+      ],
+      "parameters": {
+        "seed": 17,
+        "environment": "isolated disposable account, no ownercloud"
+      },
+      "expected": "actualisolatedAPI+mobile320/390เลือก9-1/9-50และbattle/farmidentityถูก/firstclearครั้งเดียว/reloadใช้เซฟได้;nativepackไม่เพิ่มpayloadและไม่เกิน32MiB;M0/targeted/buildผ่าน;hostedpubliccontent/pack/bundlesตรงก่อนdone",
+      "verification": "Targeted tests/generator/build, actualChrome320390 and publicproduction smoke; see task117 evidence",
+      "status": "not_run_implementation"
     }
   ]
 }

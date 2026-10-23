@@ -12,7 +12,7 @@ import { content } from './combat-fixtures.ts';
 
 const at='2026-10-23T00:00:00.000Z',base=Date.parse(at);
 const initial=()=>initializeAccount(content,{root_job_id:'mage',gender:'female'},at,'2026-10-23',17);
-const tiers=[1,1,20,40,40,60,60,60],oldTiers=[1,20,20,40,40,60,60,60];
+const tiers=[1,1,20,40,40,60,60,60,60],oldTiers=[1,20,20,40,40,60,60,60,60];
 test('D148 every stage uses chapter1–2 gearLv1, chapter3Lv20 and unchanged later tiers independently of character level',()=>{
  const state=initial(),stages=storyStages(content);
  for(const stage of stages){
@@ -30,7 +30,7 @@ test('D148 every stage uses chapter1–2 gearLv1, chapter3Lv20 and unchanged lat
  }
 });
 test('D148 equipment gacha follows the corrected gear table while cards keep their original tiers and seeded drops',()=>{
- for(let chapter=1;chapter<=8;chapter++){
+ for(let chapter=1;chapter<=9;chapter++){
   const state=initial();state.story.cleared_stage_ids=storyStages(content).filter(s=>s.chapter<=chapter).map(s=>s.id);
   assert.equal(gachaGearTier(state,content),tiers[chapter-1]);assert.equal(gachaCardTier(state,content),oldTiers[chapter-1]);
   const rng={state:17,draw_count:0},items=pullGear(state,10,()=>nextRandom(rng),'gear',content);

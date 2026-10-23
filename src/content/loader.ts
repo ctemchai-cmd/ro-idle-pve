@@ -135,6 +135,12 @@ export function validateContent(raw: unknown): Result<ValidatedContent> {
       const stage = object(stageValue), id = String(stage.id), at = { source: 'stages.json', definition_id: id, path: '/stages' };
       demand(!seen.has(id), 'duplicate_id', at); seen.add(id);
       if (stage.unlock_after !== null) demand(seen.has(String(stage.unlock_after)), 'unknown_stage', at);
+      const chapter = String(stage.farm_rate_chapter);
+      demand(list(bundle.documents['economy.json']!.rates).some(row => String(object(row).chapter) === chapter), 'missing_farm_rate', at);
+      const loot = bundle.documents['loot.json']!;
+      demand(Number(object(object(loot.gear).tier_by_chapter)[chapter]) > 0, 'missing_loot_tier', at);
+      demand(Number(object(object(loot.cards).tier_by_chapter)[String(stage.chapter)]) > 0, 'missing_card_tier', at);
+      demand(stage.enemy_identity === undefined || stage.enemy_identity === 'definition', 'invalid_enemy_identity', at);
       for (const enemyValue of list(stage.encounter)) {
         const enemy = object(enemyValue);
         demand(String(enemy.definition_id) in actors, 'unknown_actor', at);

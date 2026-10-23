@@ -16,7 +16,7 @@ function oldSave() {
   const main = state.roster[0]!; main.level = 20; main.primary_stats = { ...main.primary_stats, str: 21 }; main.unspent_status_points = 65; // old 5/level budget: 95 - 30
   state.paid_ledger.push({ entry_id: 'status_main', character_id: 'main', feature_id: 'status', skill_id: null, quantity: 30, cost_version: 'old', cost_versions: ['old'], paid_resources: zero(), refund_state: 'active', refund_command_id: null });
   for (const actor of state.roster) for (const progress of Object.values(actor.slot_progress)) delete (progress as { refine_failures?: number }).refine_failures;
-  state.story.cleared_stage_ids = ['1-1', '9-9']; state.story.selected_farm_stage = '9-9';
+  state.story.cleared_stage_ids = ['1-1', '999-9']; state.story.selected_farm_stage = '999-9';
   return state;
 }
 
@@ -26,7 +26,7 @@ test('D-058 migration fills new fields, rebalances status budgets and drops dang
   assert.equal(main.unspent_status_points, 61); assert.equal(main.primary_stats.str, 21);
   assert.ok(Object.values(main.slot_progress).every(p => p.refine_failures === 0));
   assert.deepEqual(state.story.cleared_stage_ids, ['1-1']); assert.equal(state.story.selected_farm_stage, null); assert.equal(state.farm.rate_snapshot, null);
-  assert.ok(changes.some(c => c.includes('9-9')) && changes.some(c => c.includes('unspent status')));
+  assert.ok(changes.some(c => c.includes('999-9')) && changes.some(c => c.includes('unspent status')));
 });
 
 test('D-058 migration refunds status investments that exceed the new budget instead of keeping unfunded stats', () => {

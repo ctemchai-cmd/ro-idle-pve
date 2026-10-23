@@ -1,0 +1,333 @@
+{
+  "schema_version": 1,
+  "basis": "D150: authored Class2 bridge chapter before Hi-class; skills/stats adapted for this game, not reference AI. No owner balance simulation.",
+  "identity_reference": {
+    "source": "https://raw.githubusercontent.com/rathena/rathena/master/db/re/mob_db.yml",
+    "retrieved": "2026-10-23",
+    "scope": "Only RO monster ID/race/size/element; no PC element levels, stats, skills or AI copied"
+  },
+  "enemies": [
+    {
+      "id": "ghoul",
+      "ro_monster_id": 1036,
+      "race": "undead",
+      "size": "medium",
+      "element": "undead",
+      "active_slots": [
+        "enemy_venom",
+        "enemy_bite",
+        "enemy_mend"
+      ],
+      "presentation": {
+        "asset_id": "monsters.845363736f9f61b6",
+        "meta_path": "assets/ro/library/monsters/monster_atlas/ghoul--845363736f9f.meta.json",
+        "basis": "Existing native ACT atlas, metadata-verified east actions6/14/22/30/38; actual browser review scoped to TASK117"
+      }
+    },
+    {
+      "id": "doppelganger",
+      "ro_monster_id": 1046,
+      "race": "demon",
+      "size": "medium",
+      "element": "dark",
+      "active_slots": [
+        "enemy_sonic_blow",
+        "enemy_enrage",
+        "enemy_armor_break",
+        "enemy_hammer_fall"
+      ],
+      "presentation": {
+        "asset_id": "monsters.639b89c78297b9e8",
+        "meta_path": "assets/ro/library/monsters/monster_atlas/doppelganger--639b89c78297.meta.json",
+        "basis": "Existing native ACT atlas, metadata-verified east actions6/14/22/30/38; actual browser review scoped to TASK117"
+      }
+    },
+    {
+      "id": "jakk",
+      "ro_monster_id": 1130,
+      "race": "formless",
+      "size": "medium",
+      "element": "fire",
+      "active_slots": [
+        "enemy_firestorm",
+        "enemy_enrage",
+        "enemy_bite"
+      ],
+      "presentation": {
+        "asset_id": "monsters.05fba1b42282b2f7",
+        "meta_path": "assets/ro/library/monsters/monster_atlas/jakk--05fba1b42282.meta.json",
+        "basis": "Existing native ACT atlas, metadata-verified east actions6/14/22/30/38; actual browser review scoped to TASK117"
+      }
+    },
+    {
+      "id": "khalitzburg",
+      "ro_monster_id": 1132,
+      "race": "undead",
+      "size": "large",
+      "element": "undead",
+      "active_slots": [
+        "enemy_guard",
+        "enemy_hammer_fall",
+        "enemy_bite"
+      ],
+      "presentation": {
+        "asset_id": "monsters.1eba153920992474",
+        "meta_path": "assets/ro/library/monsters/monster_atlas/khalitzburg--1eba15392099.meta.json",
+        "basis": "Existing native ACT atlas, metadata-verified east actions6/14/22/30/38; actual browser review scoped to TASK117"
+      }
+    },
+    {
+      "id": "orc_zombie",
+      "ro_monster_id": 1153,
+      "race": "undead",
+      "size": "medium",
+      "element": "undead",
+      "active_slots": [
+        "enemy_venom",
+        "enemy_bite",
+        "enemy_silence"
+      ],
+      "presentation": {
+        "asset_id": "monsters.f981d5fa590b5613",
+        "meta_path": "assets/ro/library/monsters/monster_atlas/orc_zombie--f981d5fa590b.meta.json",
+        "basis": "Existing native ACT atlas, metadata-verified east actions6/14/22/30/38; actual browser review scoped to TASK117"
+      }
+    },
+    {
+      "id": "raydric",
+      "ro_monster_id": 1163,
+      "race": "demihuman",
+      "size": "large",
+      "element": "dark",
+      "active_slots": [
+        "enemy_armor_break",
+        "enemy_sonic_blow",
+        "enemy_guard"
+      ],
+      "presentation": {
+        "asset_id": "monsters.194f00ba5ffb5a75",
+        "meta_path": "assets/ro/library/monsters/monster_atlas/raydric--194f00ba5ffb.meta.json",
+        "basis": "Existing native ACT atlas, metadata-verified east actions6/14/22/30/38; actual browser review scoped to TASK117"
+      }
+    },
+    {
+      "id": "whisper",
+      "ro_monster_id": 1179,
+      "race": "demon",
+      "size": "small",
+      "element": "ghost",
+      "active_slots": [
+        "enemy_cold_bolt",
+        "enemy_silence",
+        "enemy_bite"
+      ],
+      "presentation": {
+        "asset_id": "monsters.6da4618703cb0777",
+        "meta_path": "assets/ro/library/monsters/monster_atlas/whisper--6da4618703cb.meta.json",
+        "basis": "Existing native ACT atlas, metadata-verified east actions6/14/22/30/38; actual browser review scoped to TASK117"
+      }
+    },
+    {
+      "id": "orc_lord",
+      "ro_monster_id": 1190,
+      "race": "demihuman",
+      "size": "large",
+      "element": "earth",
+      "active_slots": [
+        "enemy_hammer_fall",
+        "enemy_quake",
+        "enemy_enrage",
+        "enemy_armor_break"
+      ],
+      "presentation": {
+        "asset_id": "monsters.8c603eece2ebe274",
+        "meta_path": "assets/ro/library/monsters/monster_atlas/orc_lord--8c603eece2eb.meta.json",
+        "basis": "Existing native ACT atlas, metadata-verified east actions6/14/22/30/38; actual browser review scoped to TASK117"
+      }
+    },
+    {
+      "id": "wraith",
+      "ro_monster_id": 1192,
+      "race": "undead",
+      "size": "large",
+      "element": "undead",
+      "active_slots": [
+        "enemy_silence",
+        "enemy_cold_bolt",
+        "enemy_venom"
+      ],
+      "presentation": {
+        "asset_id": "monsters.8603e6e40bec95a7",
+        "meta_path": "assets/ro/library/monsters/monster_atlas/wraith--8603e6e40bec.meta.json",
+        "basis": "Existing native ACT atlas, metadata-verified east actions6/14/22/30/38; actual browser review scoped to TASK117"
+      }
+    },
+    {
+      "id": "penomena",
+      "ro_monster_id": 1216,
+      "race": "fish",
+      "size": "medium",
+      "element": "poison",
+      "active_slots": [
+        "enemy_venom",
+        "enemy_lightning_bolt",
+        "enemy_armor_break"
+      ],
+      "presentation": {
+        "asset_id": "monsters.821cbd28c68353dc",
+        "meta_path": "assets/ro/library/monsters/monster_atlas/penomena--821cbd28c683.meta.json",
+        "basis": "Existing native ACT atlas, metadata-verified east actions6/14/22/30/38; actual browser review scoped to TASK117"
+      }
+    },
+    {
+      "id": "dark_frame",
+      "ro_monster_id": 1260,
+      "race": "demon",
+      "size": "medium",
+      "element": "dark",
+      "active_slots": [
+        "enemy_lightning_bolt",
+        "enemy_silence",
+        "enemy_guard"
+      ],
+      "presentation": {
+        "asset_id": "monsters.3aa35215305636c6",
+        "meta_path": "assets/ro/library/monsters/monster_atlas/dark_frame--3aa352153056.meta.json",
+        "basis": "Existing native ACT atlas, metadata-verified east actions6/14/22/30/38; actual browser review scoped to TASK117"
+      }
+    },
+    {
+      "id": "dark_lord",
+      "ro_monster_id": 1272,
+      "race": "demon",
+      "size": "large",
+      "element": "undead",
+      "active_slots": [
+        "enemy_firestorm",
+        "enemy_lightning_bolt",
+        "enemy_silence",
+        "enemy_guard"
+      ],
+      "presentation": {
+        "asset_id": "monsters.894947f4224e1d84",
+        "meta_path": "assets/ro/library/monsters/monster_atlas/dark_lord--894947f4224e.meta.json",
+        "basis": "Existing native ACT atlas, metadata-verified east actions6/14/22/30/38; actual browser review scoped to TASK117"
+      }
+    },
+    {
+      "id": "ancient_mummy",
+      "ro_monster_id": 1297,
+      "race": "undead",
+      "size": "medium",
+      "element": "undead",
+      "active_slots": [
+        "enemy_armor_break",
+        "enemy_venom",
+        "enemy_bite"
+      ],
+      "presentation": {
+        "asset_id": "monsters.a4f899f8a4b80536",
+        "meta_path": "assets/ro/library/monsters/monster_atlas/ancient_mummy--a4f899f8a4b8.meta.json",
+        "basis": "Existing native ACT atlas, metadata-verified east actions6/14/22/30/38; actual browser review scoped to TASK117"
+      }
+    },
+    {
+      "id": "dracula",
+      "ro_monster_id": 1389,
+      "race": "demon",
+      "size": "large",
+      "element": "dark",
+      "active_slots": [
+        "enemy_sonic_blow",
+        "enemy_venom",
+        "enemy_mend",
+        "enemy_silence"
+      ],
+      "presentation": {
+        "asset_id": "monsters.19e685f611fa6f73",
+        "meta_path": "assets/ro/library/monsters/monster_atlas/dracula--19e685f611fa.meta.json",
+        "basis": "Existing native ACT atlas, metadata-verified east actions6/14/22/30/38; actual browser review scoped to TASK117"
+      }
+    }
+  ],
+  "chapters": [
+    {
+      "chapter": 9,
+      "name": "ปราสาทเงา",
+      "count": 50,
+      "level_range": [
+        67,
+        70
+      ],
+      "growth_per_5": {
+        "hp": 1.08,
+        "attack": 1.04
+      },
+      "heavy_every": 5,
+      "background": {
+        "id": "prepared.backgrounds.fc8836134a43985a",
+        "meta": "prepared/backgrounds/gef_dun00--fc8836134a43.meta.json",
+        "name": "gef_dun00",
+        "map": "gef_dun00",
+        "stage": {
+          "floor_y": 560,
+          "left_x": 650,
+          "right_x": 930,
+          "status": "prototype_placement"
+        }
+      },
+      "music": {
+        "id": "prepared.music.4209a7965dcf6a17",
+        "meta": "prepared/music/21--4209a7965dcf.meta.json",
+        "map": "gef_dun00"
+      },
+      "zones": [
+        {
+          "name": "ประตูปราสาท",
+          "monsters": [
+            "raydric",
+            "khalitzburg",
+            "orc_zombie"
+          ],
+          "boss": "orc_lord"
+        },
+        {
+          "name": "หอภาพต้องสาป",
+          "monsters": [
+            "dark_frame",
+            "whisper",
+            "jakk"
+          ],
+          "boss": "dracula"
+        },
+        {
+          "name": "สุสาน",
+          "monsters": [
+            "ancient_mummy",
+            "wraith",
+            "ghoul"
+          ],
+          "boss": "osiris"
+        },
+        {
+          "name": "โบสถ์ร้าง",
+          "monsters": [
+            "raydric",
+            "khalitzburg",
+            "penomena"
+          ],
+          "boss": "doppelganger"
+        },
+        {
+          "name": "บัลลังก์มืด",
+          "monsters": [
+            "dark_frame",
+            "khalitzburg",
+            "ancient_mummy"
+          ],
+          "boss": "dark_lord"
+        }
+      ]
+    }
+  ]
+}

@@ -2,6 +2,14 @@
 
 ไฟล์นี้บันทึกงานที่ agent ตัวหนึ่งทำแล้ว เพื่อให้ตัวถัดไป (Codex/Claude) ทำต่อได้ทันที อ่านคู่กับ [overview](overview.md) และ [AGENTS.md](../AGENTS.md) ล่าสุดอยู่บนสุด
 
+## 23 ต.ค.2026 · Codex — TASK117 localผ่าน / บท9เตรียมHi-class รอpushและhosted
+
+- D150เพิ่มบท9×50ต่อ8-20 รวม180แถว maxrecommended67–70/Hi-classยังdisabled. 130เก่าและcards/rates1–8/playerprograms/Tower/dailyคงเดิม. เพิ่ม14enemydefinitionsจาก94nativeในpackเดิม,traitsอิงrAthenaidentityเท่านั้น,rolesดัดแปลงเอง. Newstage.enemy_identity=definitionทำให้boss/farmใช้ชื่อภาพท่าธาตุ/traitsเดียวกัน. 5checkpointbossOrcLord/Dracula/Osiris/Doppelganger/DarkLord;heavyทุก5ขัดได้/optionaladaptiveเฉพาะท้าย50. Futurechaptergeneratorแยกstory-expansion.json/story_expansion.py ไม่แตะlegacy130.
+- schemachapterเลิกhardcap8เป็นsafeintegerและloaderต้องมีrate/gear/cardtables. Chapter9rates=8/Tier60;cards chance_ramp_stage_count130คงold130profileSHA/new2%. Oldearned/pending/cursor/carry/RNG/migration preserved. NoSQL/env/ownercloud/privateenv/6173restart/balancebatch/subagents.
+- 572fullTS/build/M0/readiness8/assets271+60460ผ่าน;nativefiles1467/791IDsและtotal31679919Bเดิมไม่มีpayloadเพิ่ม. ActualAuth/API/Postgres/mobile3203903groupsผ่าน finalr4(50cells,bossone,real4xvictory/firstclearonce/reload/farm9-50). R1staleclosebuttonlabel,r2wrongcheckpointenvelope,r3uncardedfixturetimeout26%;r4legit3AbysmalLv5/actor+Enchant10fixtureadded;nogamepowertuning. Fullr1oldheavyrules/paladin8chapterhash/9-9invalidfixtures adaptedtoliteralhistoricalscope and999-9;new50 separatelyverified. Failedreportskept. Viewedfarm390/map390/boss320.
+- Content8d810ac5b3a3ee6b317a376dd23a6dcb7a1a2d1fb4a542a0b20154c06ab72b7d,packa2524130787deb30eca85097c55b89b29e80d939bd427267c285a4bc77268009. Currentbaseaeaac9fe5;newpaths117/spec/tests/harnessexplicitlystageonly,neverassets/modernuntracked. Task117reviewAC1–3localpassed/4publicpending;board102/117,inprogress4/review6/todo5,M4=62/72.
+- Next: finaldaily@9commandtargetedlog→readiness/typecheck→narrowcommit/pushmain→GitHubVercelSUCCESS→scripts/test_story_expansion_hosted.cjs publicreadonly0writes→close117done103/117/review5/M4=63/72/cases/matrix/links/readiness/docsclosurepush. Do not rerunbalancebatch or accessowner.
+
 
 
 

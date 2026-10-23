@@ -1,0 +1,19 @@
+✔ D150 daily command accepts a completed chapter9 snapshot, preserves Bangkok attempt/HP semantics and serializes its battle (370.377458ms)
+✔ daily spatial combat at1x/2x/4x preserves exact events, phases, RNG and all final metrics (1737.322459ms)
+✔ T036 AC-01: 3 bosses × 3 attempts per Bangkok day; the attempt is spent at start, HP carries over and the party restarts full (200.80925ms)
+✔ T036 AC-02: clearing several phases in one timed attempt gives one chest per phase, each next phase stronger at once without resetting the clock (425.677041ms)
+✔ T036 AC-03: an attempt started 23:59:45 Bangkok and finished after midnight writes only its own ticket day; the new day starts fresh (369.607375ms)
+✔ T036 AC-04: no double attempts/chests/HP rollback across replays, a second start or stale advances; client prediction matches the server (764.390542ms)
+✔ D150 appends50 connected stages with five distinct named bosses, preserves130 entire rows and all prior combat/progression data (19.07975ms)
+✔ D150 expansion keeps old actual card profiles, gear/currency rates, migration state and dailychapter9 serializable (716.348ms)
+✔ D150 missing chapter income or loot routes fail content loading before a player can start (604.549833ms)
+✔ D150 farm species use their own skills, element/race/size and native art, never the passed legacy skins or mutate durable state (133.834625ms)
+✔ D150 actual expanded boss is a single enemy, all ten heavy casts stay interruptible and1x2x4 have identical events/checkpoints (721.960584ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5947.908834

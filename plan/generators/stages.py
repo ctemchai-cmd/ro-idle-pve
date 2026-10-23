@@ -25,6 +25,7 @@ SPEC = Path(__file__).with_name('stages-spec.json')
 OUT = ROOT / 'plan/data/stages.json'
 # D-057: chapters 1-3 keep 10 stages, 4-8 have 20; future chapters (9+) are planned at 50.
 LAYOUT = {1: 10, 2: 10, 3: 10, 4: 20, 5: 20, 6: 20, 7: 20, 8: 20}
+from story_expansion import SPEC as EXPANSION, append_chapters
 FUTURE_STAGES_PER_CHAPTER = 50
 LEGACY = {c: 10 for c in range(1, 9)}
 TIME_LIMIT_MS = 40000  # D-066; the legacy 8x10 baseline keeps its reviewed 90000
@@ -127,13 +128,16 @@ def stages(layout, spec):
             previous = sid
     if layout is not LEGACY:
         apply_difficulty_growth(rows, spec['difficulty_growth'])
+        from monster_rotations import PROFILES
+        append_chapters(rows, PROFILES, HEAVY_CASTS, TIME_LIMIT_MS)
     return rows
 
 def document(layout, spec):
     top = spec['top']
-    counts = {} if layout is LEGACY else {'stages_per_chapter_by_chapter': {str(c): n for c, n in layout.items()}, 'future_stages_per_chapter': FUTURE_STAGES_PER_CHAPTER}
-    doc = {'schema_version': top['schema_version'], 'content_version': top['content_version'] if layout is LEGACY else 'story-v2', 'chapters': len(layout),
-           'stages_per_chapter': 10 if layout is LEGACY else None, **counts, 'total_stages': sum(layout.values()), 'stages': stages(layout, spec)}
+    full_layout=layout if layout is LEGACY else {**layout,**{c['chapter']:c['count'] for c in EXPANSION['chapters']}}
+    counts = {} if layout is LEGACY else {'stages_per_chapter_by_chapter': {str(c): n for c, n in full_layout.items()}, 'future_stages_per_chapter': FUTURE_STAGES_PER_CHAPTER}
+    doc = {'schema_version': top['schema_version'], 'content_version': top['content_version'] if layout is LEGACY else 'story-v2', 'chapters': len(full_layout),
+           'stages_per_chapter': 10 if layout is LEGACY else None, **counts, 'total_stages': sum(full_layout.values()), 'stages': stages(layout, spec)}
     if layout is not LEGACY: del doc['stages_per_chapter']
     for key, value in top.items():
         if key not in ('schema_version', 'content_version'): doc[key] = value

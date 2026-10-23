@@ -15,7 +15,7 @@ const stats = (primary: Partial<Record<'str' | 'agi' | 'vit' | 'int' | 'dex' | '
 
 test('D-057 stages: chapters 1-3 have 10, 4-8 have 20; chapter bosses sit on the last stage', () => {
   const stages = storyStages(content), byChapter = (c: number) => stages.filter(s => s.chapter === c);
-  assert.equal(stages.length, 130);
+  assert.equal(stages.filter(s => s.chapter <= 8).length, 130);
   for (const c of [1, 2, 3]) assert.equal(byChapter(c).length, 10);
   for (const c of [4, 5, 6, 7, 8]) assert.equal(byChapter(c).length, 20);
   assert.equal(storyBoss(storyStage('4-20', content)!).definition_id, 'golem');
