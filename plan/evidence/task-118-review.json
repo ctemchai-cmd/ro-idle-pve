@@ -1,25 +1,32 @@
 {
   "task_id": "TASK-118",
-  "passed": false,
-  "review_round": 1,
-  "scope": "local complete, public deployment pending",
+  "passed": true,
+  "review_round": 2,
+  "scope": "Shared-engine/content/actual isolated AuthAPI-SQL/mobile/native plus public production; owner untouched",
   "acceptance": {
-    "AC-01": "passed_local",
-    "AC-02": "passed_local",
-    "AC-03": "passed_local",
-    "AC-04": "pending_public"
+    "AC-01": "passed_implementation",
+    "AC-02": "passed_implementation",
+    "AC-03": "passed_implementation",
+    "AC-04": "passed_implementation"
   },
   "evidence_refs": [
     "task-118-119-ui-live.json",
     "task-118-119-targeted-final.txt",
     "task-118-119-full-tests-r1.txt",
     "task-118-regressions-fixed.txt",
-    "task-118-native-bosses.png"
+    "task-118-native-bosses.png",
+    "task-118-119-hosted.json",
+    "task-119-hosted-320.png",
+    "task-118-filtered-build.txt"
   ],
   "failure_history": [
     "r1 fixture HISTORY error without diagnostic; same assertion passed r2/r3/r4",
     "r3 gallery incorrectly asked to prepare visual for nonvisual adaptive enemy Passive; selected actual Active slots in r4",
     "early preview sphere setup used array position; fixed actor_id lookup and all126/min-max ranks pass",
     "two historical oracles normalized original130stage layout and new borrowed-program count; independent old180SHA is unchanged"
-  ]
+  ],
+  "review_date": "2026-10-23",
+  "reviewer": "Codex",
+  "source_commit": "59f7787e73cd2192333872c270bb5eee5f0945aa",
+  "deployment": "https://vercel.com/chanon2/ro-idle-pve/J3W9TZzRTZkQdhrkpfh8eyhZCSNp"
 }

@@ -21,13 +21,13 @@ TASK-014, TASK-019, TASK-020, TASK-025, TASK-040, TASK-108, TASK-117 (done).
 - [x] AC-01: 330ด่าน12บท;150ใหม่เชื่อมครบ/15bossช่วง/180แถวเดิมและ25actors17programsเดิมเท่าfixture;generatorcurrentและlegacyตรง
 - [x] AC-02: บท10–11ล็อกHi-classและcap,บท12ล็อกAwaken;UI/API/farmใช้กฎเดียว/dailyไม่นับบทล็อก;cap70และownerprogressเดิม
 - [x] AC-03: enemy90checkpointได้แต่party71ไม่ได้;36nativeactors/2programsใหม่มีtraitsและeffectsจริง/interrupt/1x2x4ตรง;1bossต่อchallenge
-- [ ] AC-04: Chrome320390ดู3บท50cellsล็อกและAPIrejectได้;runtime≤32MiB/build/M0/targeted/publicVercelผ่าน ไม่มีownerwriteหรือSQL
+- [x] AC-04: Chrome320390ดู3บท50cellsล็อกและAPIrejectได้;runtime≤32MiB/build/M0/targeted/publicVercelผ่าน ไม่มีownerwriteหรือSQL
 
 ## วิธีตรวจและหลักฐาน
-Case T118-AC-01–04 ใน acceptance-matrix.md;ทดสอบตามdesign;หลักฐาน plan/evidence/task-118-*. ผู้ตรวจ:Codex · รอบ1 localผ่าน/รอpublicproduction AC-04.
+Case T118-AC-01–04 ใน acceptance-matrix.md;ทดสอบตามdesign;หลักฐาน plan/evidence/task-118-*. ผู้ตรวจ:Codex · รอบ2 local+publicผ่านครบ.
 
 ## Blocker / คำถาม
 ไม่มี
 
 ## บันทึกการทำงานและ review
-581fullTS:579ผ่าน/2historicalcountsแก้แล้วผ่าน12targeted;16finaltargetedผ่าน. M0/build/filteredbuild/assets271+60460+6926/actualAuthAPI-SQL-mobile6groupsผ่าน. ไม่มีownerwrite. รอVercel/publicก่อนdone.
+581fullTS:579ผ่าน/2historicalcountsแก้แล้วผ่าน12targeted;16finaltargetedผ่าน. M0/build/filteredbuild/assets271+60460+6926/actualAuthAPI-SQL-mobile6groupsผ่าน. ไม่มีownerwrite. Vercel source59f7787e7สำเร็จ;public5groupsผ่าน:API200SIN1/7inputSHA/20nativeSHA/4bundleSHA/มือถือFinger+heal/retry503recover/0writes. ไม่มีSQL/envใหม่.
