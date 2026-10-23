@@ -1,0 +1,696 @@
+{
+  "task_id": "TASK-006",
+  "reviewer": "Codex self-review",
+  "review_round": 2,
+  "review_date": "2026-10-19",
+  "scope": "M0 schemas/all skill levels/upgrade budgets/unbuffed queue estimates/local asset metadata; not battle simulation",
+  "input_sha256": {
+    "plan/data/skills/mage.json": "ad9c1dcb9201eb070147478a29710ecef021e93ed0be4294ffe33f9e76fe0c96",
+    "plan/data/presentations/mage.json": "5fd0ff8ae2e2e824238c463f6b73339dfe500ade8575cf6b8005da20f49902d5",
+    "plan/data/class-status-effects.json": "32342f1c326844ed01f012948827d711e47262067cd5ffd25ce6c1ea6a430c95",
+    "plan/data/combat-rules.json": "10f96dc8871bf59223d2286e3fb9335240dae0888253d5aec482b2e7adb2f8fc",
+    "plan/checks/classes.py": "b8a45e30546cf568edf6d31d6226fa8a6de6d69e3bdb6cb20827886c87454da5"
+  },
+  "checks": [
+    {
+      "case_id": "mage_fire_bolt",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 2250,
+          "skill_manual": 450
+        }
+      }
+    },
+    {
+      "case_id": "mage_cold_bolt",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 2250,
+          "skill_manual": 450
+        }
+      }
+    },
+    {
+      "case_id": "mage_lightning_bolt",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 2250,
+          "skill_manual": 450
+        }
+      }
+    },
+    {
+      "case_id": "mage_soul_strike",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 2250,
+          "skill_manual": 450
+        }
+      }
+    },
+    {
+      "case_id": "mage_sp_recovery",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 2250,
+          "skill_manual": 450
+        }
+      }
+    },
+    {
+      "case_id": "wizard_storm_gust",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "wizard_jupitel",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "wizard_meteor",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "wizard_quagmire",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "wizard_heavens_drive",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "wizard_amplified_magic",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "wizard_frost_control",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "sage_fire_endow",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "sage_spell_breaker",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "sage_dispel",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "sage_psychic_bolt",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "sage_magic_barrier",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "sage_auto_bolt",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "sage_wisdom",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "two_builds_wizard",
+      "acceptance": [
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": [
+        "wizard_artillery",
+        "wizard_controller"
+      ]
+    },
+    {
+      "case_id": "two_builds_sage",
+      "acceptance": [
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": [
+        "sage_auto_bolt",
+        "sage_anti_magic"
+      ]
+    },
+    {
+      "case_id": "wizard_artillery",
+      "acceptance": [
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "spent_status_points": 324,
+        "unspent": 352,
+        "upgrade_budget": {
+          "gold": 27000,
+          "skill_manual": 5400
+        },
+        "unbuffed_cycle_ms": 9854,
+        "warning": "analytical schedule only; SP/sphere stalls/procs wait for engine"
+      }
+    },
+    {
+      "case_id": "wizard_controller",
+      "acceptance": [
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "spent_status_points": 293,
+        "unspent": 383,
+        "upgrade_budget": {
+          "gold": 27000,
+          "skill_manual": 5400
+        },
+        "unbuffed_cycle_ms": 9434,
+        "warning": "analytical schedule only; SP/sphere stalls/procs wait for engine"
+      }
+    },
+    {
+      "case_id": "sage_auto_bolt",
+      "acceptance": [
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "spent_status_points": 282,
+        "unspent": 394,
+        "upgrade_budget": {
+          "gold": 27000,
+          "skill_manual": 5400
+        },
+        "unbuffed_cycle_ms": 6866,
+        "warning": "analytical schedule only; SP/sphere stalls/procs wait for engine"
+      }
+    },
+    {
+      "case_id": "sage_anti_magic",
+      "acceptance": [
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "spent_status_points": 298,
+        "unspent": 378,
+        "upgrade_budget": {
+          "gold": 29250,
+          "skill_manual": 5850
+        },
+        "unbuffed_cycle_ms": 7726,
+        "warning": "analytical schedule only; SP/sphere stalls/procs wait for engine"
+      }
+    },
+    {
+      "case_id": "presentation_mage_fire_bolt",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-mage_fire_bolt",
+        "vfx_recipe": 19,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_mage_cold_bolt",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-mage_cold_bolt",
+        "vfx_recipe": 19,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_mage_lightning_bolt",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-mage_lightning_bolt",
+        "vfx_recipe": 20,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_mage_soul_strike",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-mage_soul_strike",
+        "vfx_recipe": 19,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_mage_sp_recovery",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-mage_sp_recovery",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_wizard_storm_gust",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-wizard_storm_gust",
+        "vfx_recipe": 89,
+        "media_references": 3,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_wizard_jupitel",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-wizard_jupitel",
+        "vfx_recipe": 84,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_wizard_meteor",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-wizard_meteor",
+        "vfx_recipe": 83,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_wizard_quagmire",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-wizard_quagmire",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_wizard_heavens_drive",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-wizard_heavens_drive",
+        "vfx_recipe": 91,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_wizard_amplified_magic",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-wizard_amplified_magic",
+        "vfx_recipe": 19,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_wizard_frost_control",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-wizard_frost_control",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_sage_fire_endow",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-sage_fire_endow",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_sage_spell_breaker",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-sage_spell_breaker",
+        "vfx_recipe": 5,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_sage_dispel",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-sage_dispel",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_sage_psychic_bolt",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-sage_psychic_bolt",
+        "vfx_recipe": 19,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_sage_magic_barrier",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-sage_magic_barrier",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_sage_auto_bolt",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-sage_auto_bolt",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_sage_wisdom",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-sage_wisdom",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "starter_two_skills",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": [
+        "mage_fire_bolt",
+        "mage_cold_bolt"
+      ]
+    },
+    {
+      "case_id": "autobolt_no_free_cast_or_recursion",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "proc": "normal hits only; proc origin does not retrigger it",
+        "cast_rule": "baseline15 pauses NA clock during CT; passive grants no exception",
+        "spell_breaker": "always in ordered slots, not boss-cast AI"
+      }
+    }
+  ],
+  "passed": true,
+  "skill_count": 19,
+  "build_count": 4,
+  "manual_review": {
+    "queue": "No per-slot hold conditions; start costs and snapshot follow baseline15/16. Four distinct active skills; passive triggers are not extra skill casts.",
+    "class_identity": "Build role labels and effects distinguish damage/support/control/guard; actual dominance waits for matched-seed runtime analysis.",
+    "assets": "Icon sidecars/payloads and selected prepared recipes resolve locally; visual adaptations explicitly labeled.",
+    "limits": "These are release selections, not every skill from the original RO client; no Hi-class prerequisite."
+  }
+}

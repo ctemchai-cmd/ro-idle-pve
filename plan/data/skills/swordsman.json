@@ -137,6 +137,18 @@
           12,
           11,
           10
+        ],
+        "duration": [
+          4500,
+          4833,
+          5167,
+          5500,
+          5833,
+          6167,
+          6500,
+          6833,
+          7167,
+          7500
         ]
       },
       "presentation_id": "visual_swordsman_provoke",
@@ -193,7 +205,9 @@
           "type": "apply_status",
           "target": "foes",
           "status_id": "provoke",
-          "duration_ms": 4500,
+          "duration_ms": {
+            "level_param": "duration"
+          },
           "params": {},
           "chance": 1
         }

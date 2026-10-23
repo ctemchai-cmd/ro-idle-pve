@@ -16,7 +16,7 @@
       "normal_attack": true,
       "active_slots": [
         "enemy_bite",
-        null,
+        "enemy_guard",
         null,
         null
       ],
@@ -36,7 +36,7 @@
       "normal_attack": true,
       "active_slots": [
         "enemy_venom",
-        null,
+        "enemy_armor_break",
         null,
         null
       ],
@@ -56,7 +56,7 @@
       "normal_attack": true,
       "active_slots": [
         "enemy_bite",
-        null,
+        "enemy_enrage",
         null,
         null
       ],
@@ -75,9 +75,9 @@
       "counts_for_victory": true,
       "normal_attack": true,
       "active_slots": [
+        "enemy_sonic_blow",
+        "enemy_enrage",
         "enemy_bite",
-        null,
-        null,
         null
       ],
       "passives": []
@@ -95,9 +95,9 @@
       "counts_for_victory": true,
       "normal_attack": true,
       "active_slots": [
+        "enemy_hammer_fall",
+        "enemy_armor_break",
         "enemy_bite",
-        null,
-        null,
         null
       ],
       "passives": []
@@ -115,9 +115,9 @@
       "counts_for_victory": true,
       "normal_attack": true,
       "active_slots": [
-        "enemy_bite",
-        null,
-        null,
+        "enemy_guard",
+        "enemy_hammer_fall",
+        "enemy_quake",
         null
       ],
       "passives": []
@@ -135,10 +135,10 @@
       "counts_for_victory": true,
       "normal_attack": true,
       "active_slots": [
-        "enemy_bite",
-        null,
-        null,
-        null
+        "enemy_enrage",
+        "enemy_firestorm",
+        "enemy_armor_break",
+        "enemy_bite"
       ],
       "passives": []
     },
@@ -155,10 +155,10 @@
       "counts_for_victory": true,
       "normal_attack": true,
       "active_slots": [
-        "enemy_bite",
-        null,
-        null,
-        null
+        "enemy_cold_bolt",
+        "enemy_armor_break",
+        "enemy_sonic_blow",
+        "enemy_guard"
       ],
       "passives": []
     },
@@ -175,10 +175,10 @@
       "counts_for_victory": true,
       "normal_attack": true,
       "active_slots": [
-        "enemy_bite",
-        null,
-        null,
-        null
+        "enemy_quake",
+        "enemy_armor_break",
+        "enemy_hammer_fall",
+        "enemy_enrage"
       ],
       "passives": []
     },
@@ -195,10 +195,10 @@
       "counts_for_victory": true,
       "normal_attack": true,
       "active_slots": [
-        "enemy_bite",
-        null,
-        null,
-        null
+        "enemy_venom",
+        "enemy_silence",
+        "enemy_mend",
+        "enemy_lightning_bolt"
       ],
       "passives": []
     },
@@ -215,10 +215,10 @@
       "counts_for_victory": true,
       "normal_attack": true,
       "active_slots": [
-        "enemy_bite",
-        null,
-        null,
-        null
+        "enemy_firestorm",
+        "enemy_lightning_bolt",
+        "enemy_enrage",
+        "enemy_sonic_blow"
       ],
       "passives": []
     }
@@ -492,7 +492,7 @@
           "type": "damage",
           "target": "foes",
           "formula": {
-            "id": "magical_power",
+            "id": "physical_power",
             "params": {
               "attack_ratio": 1.4,
               "flat_power": 0
@@ -963,6 +963,467 @@
           "armor_rule": "normal"
         }
       ]
+    },
+    {
+      "id": "enemy_cold_bolt",
+      "name_key": "mage_cold_bolt",
+      "class_id": "enemy",
+      "max_level": 1,
+      "unlock_level": 1,
+      "tags": [
+        "enemy",
+        "borrowed_program"
+      ],
+      "level_parameters": {},
+      "presentation_id": "visual_mage_cold_bolt",
+      "kind": "active",
+      "cost": {
+        "sp": 0,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 850,
+        "after_cast_ms": 900,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": 0.3,
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "water",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 3,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "freeze",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "freeze",
+          "duration_ms": 1000,
+          "params": {},
+          "chance": 0.3,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    },
+    {
+      "id": "enemy_lightning_bolt",
+      "name_key": "mage_lightning_bolt",
+      "class_id": "enemy",
+      "max_level": 1,
+      "unlock_level": 1,
+      "tags": [
+        "enemy",
+        "borrowed_program"
+      ],
+      "level_parameters": {},
+      "presentation_id": "visual_mage_lightning_bolt",
+      "kind": "active",
+      "cost": {
+        "sp": 0,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 850,
+        "after_cast_ms": 900,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": 0.32,
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "wind",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 3,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "enemy_sonic_blow",
+      "name_key": "assassin_sonic_blow",
+      "class_id": "enemy",
+      "max_level": 1,
+      "unlock_level": 1,
+      "tags": [
+        "enemy",
+        "borrowed_program"
+      ],
+      "level_parameters": {},
+      "presentation_id": "visual_assassin_sonic_blow",
+      "kind": "active",
+      "cost": {
+        "sp": 0,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 700,
+        "after_cast_ms": 900,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": 0.18,
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "neutral",
+          "hit_rule": "physical_roll",
+          "can_crit": false,
+          "hits": 4,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "enemy_armor_break",
+      "name_key": "merchant_first_aid",
+      "class_id": "enemy",
+      "max_level": 1,
+      "unlock_level": 1,
+      "tags": [
+        "enemy",
+        "borrowed_program"
+      ],
+      "level_parameters": {},
+      "presentation_id": "visual_merchant_first_aid",
+      "kind": "active",
+      "cost": {
+        "sp": 0,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 700,
+        "after_cast_ms": 900,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "armor_break",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "armor_break",
+          "duration_ms": 4500,
+          "params": {
+            "ratio": 0.2
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "enemy_hammer_fall",
+      "name_key": "blacksmith_hammer_fall",
+      "class_id": "enemy",
+      "max_level": 1,
+      "unlock_level": 1,
+      "tags": [
+        "enemy",
+        "borrowed_program"
+      ],
+      "level_parameters": {},
+      "presentation_id": "visual_blacksmith_hammer_fall",
+      "kind": "active",
+      "cost": {
+        "sp": 0,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 700,
+        "after_cast_ms": 900,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": 0.45,
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "neutral",
+          "hit_rule": "physical_roll",
+          "can_crit": false,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": 1000,
+          "params": {},
+          "chance": 0.5,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        }
+      ]
+    },
+    {
+      "id": "enemy_mend",
+      "name_key": "acolyte_heal",
+      "class_id": "enemy",
+      "max_level": 1,
+      "unlock_level": 1,
+      "tags": [
+        "enemy",
+        "borrowed_program"
+      ],
+      "level_parameters": {},
+      "presentation_id": "visual_acolyte_heal",
+      "kind": "active",
+      "cost": {
+        "sp": 0,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 1000,
+        "after_cast_ms": 900,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "heal",
+          "type": "heal",
+          "target": "friend",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": 0.6,
+              "flat_power": 0
+            }
+          }
+        }
+      ]
     }
   ],
   "presentations": [
@@ -1063,6 +1524,66 @@
       "visual": {
         "recipe_skill_id": 20,
         "basis": "authored enemy recipe"
+      },
+      "duration_source": "skill cast_ms scaled by CastSpeed"
+    },
+    {
+      "skill_id": "enemy_cold_bolt",
+      "telegraph_key": "mage_cold_bolt",
+      "telegraph_text": "ลูกน้ำแข็งต่อเนื่อง",
+      "visual": {
+        "recipe_skill_id": 5,
+        "basis": "D139 shared player presentation; ordinary enemy attack budget"
+      },
+      "duration_source": "skill cast_ms scaled by CastSpeed"
+    },
+    {
+      "skill_id": "enemy_lightning_bolt",
+      "telegraph_key": "mage_lightning_bolt",
+      "telegraph_text": "สายฟ้าต่อเนื่อง",
+      "visual": {
+        "recipe_skill_id": 5,
+        "basis": "D139 shared player presentation; ordinary enemy attack budget"
+      },
+      "duration_source": "skill cast_ms scaled by CastSpeed"
+    },
+    {
+      "skill_id": "enemy_sonic_blow",
+      "telegraph_key": "assassin_sonic_blow",
+      "telegraph_text": "โจมตีหลายครั้ง",
+      "visual": {
+        "recipe_skill_id": 5,
+        "basis": "D139 shared player presentation; ordinary enemy attack budget"
+      },
+      "duration_source": "skill cast_ms scaled by CastSpeed"
+    },
+    {
+      "skill_id": "enemy_armor_break",
+      "telegraph_key": "merchant_first_aid",
+      "telegraph_text": "ลดเกราะเป้าหมาย",
+      "visual": {
+        "recipe_skill_id": 5,
+        "basis": "D139 shared player presentation; ordinary enemy attack budget"
+      },
+      "duration_source": "skill cast_ms scaled by CastSpeed"
+    },
+    {
+      "skill_id": "enemy_hammer_fall",
+      "telegraph_key": "blacksmith_hammer_fall",
+      "telegraph_text": "ค้อนกระแทก มีโอกาสสตั้น",
+      "visual": {
+        "recipe_skill_id": 5,
+        "basis": "D139 shared player presentation; ordinary enemy attack budget"
+      },
+      "duration_source": "skill cast_ms scaled by CastSpeed"
+    },
+    {
+      "skill_id": "enemy_mend",
+      "telegraph_key": "acolyte_heal",
+      "telegraph_text": "ฟื้นฟูพลังชีวิต",
+      "visual": {
+        "recipe_skill_id": 5,
+        "basis": "D139 shared player presentation; ordinary enemy attack budget"
       },
       "duration_source": "skill cast_ms scaled by CastSpeed"
     }

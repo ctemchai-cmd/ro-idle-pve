@@ -5,6 +5,15 @@
 
 
 
+
+## 23 ต.ค.2026 · Codex — TASK108 localผ่าน รอsourcepush/hosted
+
+- D139 userทองcraft16/PriestResurrection→HappinessHealหมู่ใหญ่priest14/SP-onlyเพิ่มผล/assetธาตุ/มอนหลากหลาย/ตราผู้สวม. Clarified owner means equipped card/item names, not combat attribution. Stable126IDs/costs/timing/levels/paidprogress; newheal420→700%MATK/allliving/noRevive.5SP-onlygrowProvoke4.5→7.5s,Ankle1.2→2.4s,bothEncore1→1.8s,HellPlantscale1.75→3.0625. Generatoridempotent.
+-6enemyvariantscloneplayerprograms withmodestenemypower/SP0;physical_power formula feeds ordinarymagic too,damage_type/element retained,heavyMATKonlyheavy. Story2→4actions/firstheavykept,Tower/Dailyidentityprofiles. Stagestats/rewards/economy/elementtableunchanged. Runtime132skills=126player+6explicitpresentationaliases;sceneLabels excludesborrowed fromlegacyrecipeoverride. Actualprepareconfirmsicons/native/audio all6,Healrecipe28/HealSFX.
+-101uniqueTS/38Python/M0/readiness8/build/assets271-60460-6926passed. ActualfreshAuth/API/Postgres+mobile320/390passes2groups, readonlyownersPriest/offteamHunter inbag/card/details/picker plus11assetimages. Finalphotosviewed. R1packexcludednewenemyIDs causingallimagesfail:fixedbuilder+negativeguard/tests. R2/R3harness blankscene/incorrectnavigationfixed, failureevidencepreserved. No balancebatch/ownercloud/privateenv/6173restart/SQL/env.
+- Content16e596da019fb7b7b49358d502f3e2d21cde927e5245e2d171b9603cb88e3ee0 pack477ceb18c79d7f00e6b58c061780fd1654eaf9a93553a7fcbcccaba65caa355b 791IDs1467files/31118974B+manifest565792/initial1621492.142selectedmodernmedia includes11assistantselectedelementillustrations notofficialROemblems; exactusergold16/Priest14. Othersourceimagesunchanged. Allsourceaudit108.
+- TASK108inprogress AC1–5localpassed/AC6publicpending Board93/108done M4total63done53. Next stageexplicitselectedsourcesonly via mapping(entries+additional),notwholemodernfolder. Commit/pushmain authorized; Vercelpublic scripts/test_skill_growth_monsters_hosted.cjs expects162mediaSHA+126player/6enemyaliases/newhash/CSS/API200SIN1/checkpoint401/login0writes. Then review→done updateboard94/108,M4done54,acceptancecases/matrix/readiness/docsclosure. No owner migration byus;finishfightreload/backup-migrateexistingflow.
+
 ## 23 ต.ค.2026 · Codex — TASK107 done ขึ้นVercelแล้ว
 
 - SOURCE`6a9d989d5b9695db4e82cda95c63e01c6d163af3` VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/D6aGhBUMQrjSUTVaUPKeU5r11t9g Public4groups151mediaSHA/content/API200SIN1/checkpoint401/login0writesผ่าน. CSSexactlocal; JSappcodeexactหลังreplaceเฉพาะASTpublicimport.meta.envobject(Vercelเพิ่มVITE_VERCEL_*metadata)และchunkhashrefs ไม่ลบgamecode/ไม่logvalues. Rawhashdiagnosticpreserved. See107hosted/local-public-bundles/github-deployment.

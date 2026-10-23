@@ -168,18 +168,19 @@
       "icon_meta_path": "assets/ro/skills/modern-priest_resurrection.meta.json",
       "visual": {
         "type": "prepared_recipe",
-        "reference_skill_id": 54,
+        "reference_skill_id": 28,
         "recipe_path": "assets/ro/prepared/skill-recipes.json",
         "target_binding": "each_effect_target"
       },
       "sound_meta_paths": [
-        "assets/ro/library/effects/sound/priest_resurrection--b0e04e378dd5.meta.json"
+        "assets/ro/library/effects/sound/_heal_effect--39cb41c771a7.meta.json"
       ],
       "provenance": {
         "source_skill_id": 54,
         "source_constant": "ALL_RESURRECTION",
         "icon_basis": "User-selected modern art in suggestion-migrate.txt; VFX/audio configured separately",
-        "vfx_basis": "authored prototype animation; not an exact reconstruction of the original RO skill"
+        "vfx_basis": "authored prototype animation; not an exact reconstruction of the original RO skill",
+        "visual_basis": "D139: Happiness Heal uses shared native Heal recipe and sound on each living ally"
       }
     },
     {

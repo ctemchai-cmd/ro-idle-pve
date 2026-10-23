@@ -708,20 +708,21 @@
       "unlock_level": 30,
       "tags": [
         "priest",
-        "resurrection"
+        "heal",
+        "party_heal"
       ],
       "level_parameters": {
-        "hp": [
-          0.35,
-          0.388889,
-          0.427777,
-          0.466667,
-          0.505556,
-          0.544444,
-          0.583333,
-          0.622223,
-          0.661111,
-          0.7
+        "power": [
+          4.2,
+          4.511111,
+          4.822222,
+          5.133333,
+          5.444444,
+          5.755556,
+          6.066667,
+          6.377778,
+          6.688889,
+          7.0
         ]
       },
       "presentation_id": "visual_priest_resurrection",
@@ -736,10 +737,10 @@
         "interruptible": true
       },
       "selectors": {
-        "dead_friend": {
+        "friends": {
           "team": "allies",
-          "life": "dead",
-          "select": "front_first",
+          "life": "living",
+          "select": "all",
           "count": null,
           "phase": "cast_resolve",
           "missing": "skip"
@@ -748,13 +749,18 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "revive",
-          "type": "revive",
-          "target": "dead_friend",
-          "hp_ratio": {
-            "level_param": "hp"
-          },
-          "sp_ratio": 0
+          "id": "heal",
+          "type": "heal",
+          "target": "friends",
+          "formula": {
+            "id": "healing_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          }
         }
       ]
     },

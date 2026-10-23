@@ -11,6 +11,14 @@ pack = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(pack)
 
 class RuntimeAssetsTests(unittest.TestCase):
+    def test_borrowed_enemy_unknown_presentation_is_rejected_before_pack_write(self):
+        with tempfile.TemporaryDirectory(prefix='ro-pack-enemy-', dir='/private/tmp') as work:
+            root=Path(work); data=root/'data'; shutil.copytree(ROOT/'plan/data',data)
+            p=data/'enemies.json'; document=json.loads(p.read_text())
+            next(s for s in document['skills'] if s['id']=='enemy_cold_bolt')['presentation_id']='missing_visual'
+            p.write_text(json.dumps(document))
+            with self.assertRaisesRegex(ValueError,'Unknown borrowed enemy presentation'):
+                pack.build(data_root=data,output=root/'output')
     def test_reviewed_static_starter_card_is_supported_without_claiming_native_export(self):
         with tempfile.TemporaryDirectory(prefix='ro-pack-card-', dir='/private/tmp') as work:
             root = Path(work); directory = root / 'items'; directory.mkdir()
@@ -84,7 +92,10 @@ class RuntimeAssetsTests(unittest.TestCase):
         first = pack.verify()
         rebuilt = pack.build()
         self.assertEqual(first['pack_hash'], rebuilt['pack_hash'])
-        self.assertEqual(len(first['skills']), 126)
+        self.assertEqual(len(first['skills']), 132)  #126players+6explicit enemy presentation aliases
+        for enemy, player in [('enemy_cold_bolt','mage_cold_bolt'),('enemy_lightning_bolt','mage_lightning_bolt'),('enemy_sonic_blow','assassin_sonic_blow'),('enemy_armor_break','merchant_first_aid'),('enemy_hammer_fall','blacksmith_hammer_fall'),('enemy_mend','acolyte_heal')]:
+            self.assertEqual(first['skills'][enemy], first['skills'][player])
+        self.assertFalse(set(first['combat_visuals']['skills']) - set(first['skills']))
         self.assertEqual(len(first['actor_jobs']), 19)
         self.assertEqual(sum(len(job['presets']) for job in first['actor_jobs']), 36)
         self.assertLess(first['sizes']['media_and_sidecar_bytes'] + first['sizes']['manifest_bytes'], 32 * 1024 * 1024)

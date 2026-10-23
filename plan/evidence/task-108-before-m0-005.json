@@ -1,0 +1,948 @@
+{
+  "task_id": "TASK-005",
+  "reviewer": "Codex self-review",
+  "review_round": 1,
+  "review_date": "2026-10-19",
+  "scope": "M0 schemas/all skill levels/upgrade budgets/unbuffed queue estimates/local asset metadata; not battle simulation",
+  "input_sha256": {
+    "plan/data/skills/archer.json": "331af8df0b297917177a458e5534dc3d4258048c27af59227e304cd4cbe11130",
+    "plan/data/presentations/archer.json": "ae50abec87671478b7dd2fbfab395c6e1943caf30107cfd0f7cd8b00d1c0b320",
+    "plan/data/class-status-effects.json": "32342f1c326844ed01f012948827d711e47262067cd5ffd25ce6c1ea6a430c95",
+    "plan/data/combat-rules.json": "10f96dc8871bf59223d2286e3fb9335240dae0888253d5aec482b2e7adb2f8fc",
+    "plan/checks/classes.py": "b8a45e30546cf568edf6d31d6226fa8a6de6d69e3bdb6cb20827886c87454da5"
+  },
+  "checks": [
+    {
+      "case_id": "archer_double_strafe",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 2250,
+          "skill_manual": 450
+        }
+      }
+    },
+    {
+      "case_id": "archer_concentration",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 2250,
+          "skill_manual": 450
+        }
+      }
+    },
+    {
+      "case_id": "archer_arrow_shower",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 2250,
+          "skill_manual": 450
+        }
+      }
+    },
+    {
+      "case_id": "archer_crippling_shot",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 2250,
+          "skill_manual": 450
+        }
+      }
+    },
+    {
+      "case_id": "archer_vulture_eye",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 2250,
+          "skill_manual": 450
+        }
+      }
+    },
+    {
+      "case_id": "hunter_blitz_beat",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "hunter_hunters_mark",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "hunter_ankle_snare",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "hunter_claymore",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "hunter_rapid_fire",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "hunter_falcon",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "hunter_steel_crow",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "bard_performance_strike",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "bard_healing_song",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "bard_battle_song",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "bard_dissonance",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "bard_encore",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "bard_music_lesson",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "bard_breathing",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "dancer_performance_strike",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "dancer_healing_song",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "dancer_battle_song",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "dancer_dissonance",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "dancer_encore",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "dancer_music_lesson",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "dancer_breathing",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "two_builds_hunter",
+      "acceptance": [
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": [
+        "hunter_sniper",
+        "hunter_trapper"
+      ]
+    },
+    {
+      "case_id": "two_builds_bard",
+      "acceptance": [
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": [
+        "bard_support",
+        "bard_disruptor"
+      ]
+    },
+    {
+      "case_id": "two_builds_dancer",
+      "acceptance": [
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": [
+        "dancer_support",
+        "dancer_disruptor"
+      ]
+    },
+    {
+      "case_id": "bard_support",
+      "acceptance": [
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "spent_status_points": 283,
+        "unspent": 393,
+        "upgrade_budget": {
+          "gold": 27000,
+          "skill_manual": 5400
+        },
+        "unbuffed_cycle_ms": 8777,
+        "warning": "analytical schedule only; SP/sphere stalls/procs wait for engine"
+      }
+    },
+    {
+      "case_id": "bard_disruptor",
+      "acceptance": [
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "spent_status_points": 292,
+        "unspent": 384,
+        "upgrade_budget": {
+          "gold": 29250,
+          "skill_manual": 5850
+        },
+        "unbuffed_cycle_ms": 7938,
+        "warning": "analytical schedule only; SP/sphere stalls/procs wait for engine"
+      }
+    },
+    {
+      "case_id": "dancer_support",
+      "acceptance": [
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "spent_status_points": 283,
+        "unspent": 393,
+        "upgrade_budget": {
+          "gold": 27000,
+          "skill_manual": 5400
+        },
+        "unbuffed_cycle_ms": 8777,
+        "warning": "analytical schedule only; SP/sphere stalls/procs wait for engine"
+      }
+    },
+    {
+      "case_id": "dancer_disruptor",
+      "acceptance": [
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "spent_status_points": 292,
+        "unspent": 384,
+        "upgrade_budget": {
+          "gold": 29250,
+          "skill_manual": 5850
+        },
+        "unbuffed_cycle_ms": 7938,
+        "warning": "analytical schedule only; SP/sphere stalls/procs wait for engine"
+      }
+    },
+    {
+      "case_id": "hunter_sniper",
+      "acceptance": [
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "spent_status_points": 278,
+        "unspent": 398,
+        "upgrade_budget": {
+          "gold": 24750,
+          "skill_manual": 4950
+        },
+        "unbuffed_cycle_ms": 5971,
+        "warning": "analytical schedule only; SP/sphere stalls/procs wait for engine"
+      }
+    },
+    {
+      "case_id": "hunter_trapper",
+      "acceptance": [
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "spent_status_points": 269,
+        "unspent": 407,
+        "upgrade_budget": {
+          "gold": 27000,
+          "skill_manual": 5400
+        },
+        "unbuffed_cycle_ms": 8135,
+        "warning": "analytical schedule only; SP/sphere stalls/procs wait for engine"
+      }
+    },
+    {
+      "case_id": "presentation_archer_double_strafe",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-archer_double_strafe",
+        "vfx_recipe": 46,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_archer_concentration",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-archer_concentration",
+        "vfx_recipe": 45,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_archer_arrow_shower",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-archer_arrow_shower",
+        "vfx_recipe": 46,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_archer_crippling_shot",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-archer_crippling_shot",
+        "vfx_recipe": 46,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_archer_vulture_eye",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-archer_vulture_eye",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_hunter_blitz_beat",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-hunter_blitz_beat",
+        "vfx_recipe": 5,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_hunter_hunters_mark",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-hunter_hunters_mark",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_hunter_ankle_snare",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-hunter_ankle_snare",
+        "vfx_recipe": 5,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_hunter_claymore",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-hunter_claymore",
+        "vfx_recipe": 5,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_hunter_rapid_fire",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-hunter_rapid_fire",
+        "vfx_recipe": 46,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_hunter_falcon",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-hunter_falcon",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_hunter_steel_crow",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-hunter_steel_crow",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_bard_performance_strike",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-bard_performance_strike",
+        "vfx_recipe": 46,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_bard_healing_song",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-bard_healing_song",
+        "vfx_recipe": 28,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_bard_battle_song",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-bard_battle_song",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_bard_dissonance",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-bard_dissonance",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_bard_encore",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-bard_encore",
+        "vfx_recipe": 5,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_bard_music_lesson",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-bard_music_lesson",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_bard_breathing",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-bard_breathing",
+        "vfx_recipe": 45,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_dancer_performance_strike",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-dancer_performance_strike",
+        "vfx_recipe": 46,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_dancer_healing_song",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-dancer_healing_song",
+        "vfx_recipe": 28,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_dancer_battle_song",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-dancer_battle_song",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_dancer_dissonance",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-dancer_dissonance",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_dancer_encore",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-bard_encore",
+        "vfx_recipe": 5,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_dancer_music_lesson",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-dancer_music_lesson",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_dancer_breathing",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-bard_breathing",
+        "vfx_recipe": 45,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "starter_two_skills",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": [
+        "archer_double_strafe",
+        "archer_concentration"
+      ]
+    },
+    {
+      "case_id": "bard_dancer_equal_gameplay_one_npc",
+      "acceptance": [
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "equal_gameplay_pairs": 5,
+        "distinct_support_pairs": 2,
+        "archer_companion_count": 1,
+        "appearance_choice": "bard or dancer; same roster character"
+      }
+    }
+  ],
+  "passed": true,
+  "skill_count": 26,
+  "build_count": 6,
+  "manual_review": {
+    "queue": "No per-slot hold conditions; start costs and snapshot follow baseline15/16. Four distinct active skills; passive triggers are not extra skill casts.",
+    "class_identity": "Build role labels and effects distinguish damage/support/control/guard; actual dominance waits for matched-seed runtime analysis.",
+    "assets": "Icon sidecars/payloads and selected prepared recipes resolve locally; visual adaptations explicitly labeled.",
+    "limits": "These are release selections, not every skill from the original RO client; no Hi-class prerequisite."
+  }
+}

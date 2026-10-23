@@ -1,0 +1,14 @@
+{
+  "task_id": "TASK-108",
+  "passed": false,
+  "checks": [
+    "Actual disposableAuth/API/checkpoint opens new content and asset pack"
+  ],
+  "measurements": [],
+  "errors": [],
+  "commands": [
+    "account.create"
+  ],
+  "failure": "READONLY_FEATURES: page.evaluate: TypeError: UNKNOWN_RUNTIME_ASSET:\n    at locateAsset (http://127.0.0.1:53878/src/renderer/asset-locator.ts:11:20)\n    at http://127.0.0.1:53878/src/renderer/pack.ts:56:21\n    at AssetPack.asset (http://127.0.0.1:53878/src/renderer/pack.ts:68:5)\n    at AssetPack.prepare (http://127.0.0.1:53878/src/renderer/pack.ts:103:32)\n    at async eval (eval at evaluate (:290:30), <anonymous>:7:4)\n    at async <anonymous>:316:30",
+  "scope": "Actual disposableAuth/API/Postgres and read-only synthetic feature components; no owner save/cloud/private files"
+}

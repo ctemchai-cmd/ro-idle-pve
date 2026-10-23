@@ -27,12 +27,12 @@ test('Call Spirit1–10 shows1–5 gained spheres then1.2–2% ATK per sphere, w
   }
   assert.equal(comparison.rows[4]!.sp, 23); assert.equal(new Set(comparison.rows.map(r => JSON.stringify(r.effects))).size, 10);
 });
-test('Provoke1–10 keeps4.5s/all-enemy target override and clearly excludes area/random; SP19→10', () => {
+test('Provoke1–10 scales4.5→7.5s/all-enemy target override and clearly excludes area/random; SP19→10', () => {
   const skill = option('swordsman_provoke'), comparison = skillLevelComparison(skill);
-  assert.equal(skill.targetNote, 'ศัตรู · ทั้งหมด'); assert.equal(comparison.spOnly, true);
+  assert.equal(skill.targetNote, 'ศัตรู · ทั้งหมด'); assert.equal(comparison.spOnly, false);
   assert.deepEqual(comparison.rows.map(r => r.sp), [19,18,17,16,15,14,13,12,11,10]);
   assert.match(skill.effects.join(' '), /4.5s/); assert.match(skill.notes!.join(' '), /ผู้ยั่วยุที่ยังมีชีวิต.*ท่าหมู่\/สุ่มเป้า/);
-  assert.equal(comparison.rows[4]!.sp, 15); assert.equal(new Set(comparison.rows.map(r => JSON.stringify(r.effects))).size, 1);
+  assert.equal(comparison.rows[4]!.sp, 15); assert.equal(new Set(comparison.rows.map(r => JSON.stringify(r.effects))).size, 10);
 });
 test('actual sole endow names Fire/6.5s/team and scope; Enchant Poison only claims ATK', () => {
   const endow = option('sage_fire_endow'), poison = option('assassin_enchant_poison');

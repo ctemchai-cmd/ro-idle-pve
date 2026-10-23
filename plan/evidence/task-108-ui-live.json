@@ -1,0 +1,33 @@
+{
+  "task_id": "TASK-108",
+  "passed": true,
+  "checks": [
+    "Actual disposableAuth/API/checkpoint opens new content and asset pack",
+    "Actual PriestSkills,11asset element badges,inventory/card/details/picker owner emblems at320/390; no mutation"
+  ],
+  "measurements": [
+    {
+      "width": 390,
+      "priest_icon": true,
+      "elements": 11,
+      "owners": [
+        "priest",
+        "hunter"
+      ]
+    },
+    {
+      "width": 320,
+      "priest_icon": true,
+      "elements": 11,
+      "owners": [
+        "priest",
+        "hunter"
+      ]
+    }
+  ],
+  "errors": [],
+  "commands": [
+    "account.create"
+  ],
+  "scope": "Actual disposableAuth/API/Postgres and read-only synthetic feature components; no owner save/cloud/private files"
+}

@@ -1286,6 +1286,18 @@
           46,
           45,
           44
+        ],
+        "plant_power": [
+          1.75,
+          1.895833,
+          2.041667,
+          2.1875,
+          2.333333,
+          2.479167,
+          2.625,
+          2.770833,
+          2.916667,
+          3.0625
         ]
       },
       "presentation_id": "visual_alchemist_hell_plant",
@@ -1345,7 +1357,9 @@
           "duration_ms": 10000,
           "max_owned": 2,
           "at_limit": "replace_oldest",
-          "power_scale": 1.75
+          "power_scale": {
+            "level_param": "plant_power"
+          }
         }
       ]
     },

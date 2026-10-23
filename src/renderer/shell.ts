@@ -7,6 +7,7 @@ export interface FarmSkin { name: string; label: string; asset_id: string; meta_
 export interface ShellVisuals {
   schema_version: 1;
   ui_icons: Readonly<Record<string, ShellIconRef>>;
+  element_icons?: Readonly<Record<string, Pick<ShellIconRef, 'asset_id' | 'meta_path'>>>;
   class_icons?: Readonly<Record<string, ShellIconRef & { game_job_id: number; source_icon_name: string }>>;
   resource_icons: Readonly<Record<string, ShellIconRef>>;
   feature_icons: Readonly<Record<string, ShellIconRef>>;

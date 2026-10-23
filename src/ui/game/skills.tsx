@@ -57,7 +57,7 @@ export function SkillsPage({ context }: { context: GameContext }) {
       </button></li>; })}</ul>
       <section className="skill-detail" aria-label="รายละเอียดสกิล">
         <header><SkillIcon id={skill.id} pack={pack} /><div><h2>{skill.name}</h2><small>{skill.kind === 'active' ? 'Active' : 'Passive'} · {skill.targetNote}</small></div></header>
-        <SkillElements definition={skill.definition} weaponElement={preparedWeaponElement(state, actor.character_id)} />
+        <SkillElements pack={pack} definition={skill.definition} weaponElement={preparedWeaponElement(state, actor.character_id)} />
         <div className="level-line"><span>Level</span><b>{skill.level || '—'}</b><small>เพดาน {skill.cap} / สูงสุด {skill.max}</small></div>
         {skill.kind === 'active' && <div className="timing"><span>ร่าย <b>{seconds(skill.castMs)}</b></span><span>พัก <b>{seconds(skill.afterCastMs)}</b></span><span>SP <b>{Number.isFinite(skill.sp) ? skill.sp : 'ทั้งหมด'}</b></span></div>}
         <div className="effect-block"><h3>{skill.level ? `ตอนนี้ Lv.${skill.level}` : 'เมื่อเรียน Lv.1'}</h3>{(skill.level ? skill.effects : skill.nextEffects.length ? skill.nextEffects : skill.effects).map((t, i) => <p key={i}>{t}</p>)}</div>

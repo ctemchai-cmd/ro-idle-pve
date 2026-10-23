@@ -59,6 +59,12 @@ def apply(skills):
  s=skills['alchemist_bio_cannibalize'];s['level_parameters']['plant_power']=[round(v*.7/(6*.35),6)for v in finger];s['effects'][0]['power_scale']=ref('plant_power')
  # Demonstration: half of AoE budget upfront, half in4ticks before5000ms expiry.
  s=skills['alchemist_demonstration'];s['level_parameters']['burst']=[round(v*.25,6)for v in finger];s['level_parameters']['power']=[round(v*.25/4,6)for v in finger];s['effects']=[hit('burst',target='foes',kind='magical',element='fire',power='burst'),*[e for e in s['effects']if e['type']=='apply_status']]
+ # D139: rank must improve the action as well as SP efficiency. Fixed endpoints
+ # avoid multiplying the previous generated data on each regeneration.
+ for sid,start,end in [('swordsman_provoke',4500,7500),('hunter_ankle_snare',1200,2400),('bard_encore',1000,1800),('dancer_encore',1000,1800)]:
+  s=skills[sid];s['level_parameters']['duration']=curve(start,end,True);s['effects'][0]['duration_ms']=ref('duration')
+ s=skills['alchemist_hell_plant'];s['level_parameters']['plant_power']=curve(1.75,3.0625);s['effects'][0]['power_scale']=ref('plant_power')
+ s=skills['priest_resurrection'];s['tags']=['priest','heal','party_heal'];s['selectors']={'friends':foe('allies','all')};s['level_parameters']={'power':curve(4.2,7)};s['effects']=[{'id':'heal','type':'heal','target':'friends','formula':{'id':'healing_power','params':{'attack_ratio':ref('power'),'flat_power':0}}}]
  return {'finger_total':finger,'major_ratios':major,'policy':'70%single/50%AoE per target before ordinary crits; Psychic includes baseline1.5 guaranteedcrit; utility/interrupt bonuses explicit'}
 
 def supporting_documents(data):

@@ -1,0 +1,730 @@
+{
+  "task_id": "TASK-008",
+  "reviewer": "Codex self-review",
+  "review_round": 1,
+  "review_date": "2026-10-19",
+  "scope": "M0 schemas/all skill levels/upgrade budgets/unbuffed queue estimates/local asset metadata; not battle simulation",
+  "input_sha256": {
+    "plan/data/skills/merchant.json": "1f438ad4121cd394f1981434c6e5a9639d15207fdd61395260146f2ff66751cb",
+    "plan/data/presentations/merchant.json": "05db9d4a43b727c85292df8d10786aebbfbf2ee934bbd09d7d6fcca7dfd38964",
+    "plan/data/class-status-effects.json": "32342f1c326844ed01f012948827d711e47262067cd5ffd25ce6c1ea6a430c95",
+    "plan/data/combat-rules.json": "10f96dc8871bf59223d2286e3fb9335240dae0888253d5aec482b2e7adb2f8fc",
+    "plan/checks/classes.py": "b8a45e30546cf568edf6d31d6226fa8a6de6d69e3bdb6cb20827886c87454da5",
+    "plan/data/summon-actors.json": "9179982618ebc56c0c2b7d905dddee1e2acd852a6ff06ac45019fc0c73226f5e"
+  },
+  "checks": [
+    {
+      "case_id": "merchant_mammonite",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 2250,
+          "skill_manual": 450
+        }
+      }
+    },
+    {
+      "case_id": "merchant_cart_revolution",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 2250,
+          "skill_manual": 450
+        }
+      }
+    },
+    {
+      "case_id": "merchant_loud_voice",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 2250,
+          "skill_manual": 450
+        }
+      }
+    },
+    {
+      "case_id": "merchant_first_aid",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 2250,
+          "skill_manual": 450
+        }
+      }
+    },
+    {
+      "case_id": "merchant_trading_stamina",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 2250,
+          "skill_manual": 450
+        }
+      }
+    },
+    {
+      "case_id": "blacksmith_hammer_fall",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "blacksmith_adrenaline",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "blacksmith_weapon_perfection",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "blacksmith_meltdown",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "blacksmith_cart_crash",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "blacksmith_weapon_research",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "blacksmith_tempering",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "alchemist_acid_terror",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "alchemist_potion_pitcher",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "alchemist_hell_plant",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "alchemist_bio_cannibalize",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "alchemist_demonstration",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "alchemist_learning_potion",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "alchemist_chemical_expertise",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "levels_checked": 10,
+        "character_cap_rows": 70,
+        "upgrade_to_max": {
+          "gold": 4500,
+          "skill_manual": 900
+        }
+      }
+    },
+    {
+      "case_id": "two_builds_blacksmith",
+      "acceptance": [
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": [
+        "blacksmith_hammer",
+        "blacksmith_weaponsmith"
+      ]
+    },
+    {
+      "case_id": "two_builds_alchemist",
+      "acceptance": [
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": [
+        "alchemist_chemist",
+        "alchemist_gardener"
+      ]
+    },
+    {
+      "case_id": "blacksmith_hammer",
+      "acceptance": [
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "spent_status_points": 303,
+        "unspent": 373,
+        "upgrade_budget": {
+          "gold": 27000,
+          "skill_manual": 5400
+        },
+        "unbuffed_cycle_ms": 9484,
+        "warning": "analytical schedule only; SP/sphere stalls/procs wait for engine"
+      }
+    },
+    {
+      "case_id": "blacksmith_weaponsmith",
+      "acceptance": [
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "spent_status_points": 272,
+        "unspent": 404,
+        "upgrade_budget": {
+          "gold": 27000,
+          "skill_manual": 5400
+        },
+        "unbuffed_cycle_ms": 8815,
+        "warning": "analytical schedule only; SP/sphere stalls/procs wait for engine"
+      }
+    },
+    {
+      "case_id": "alchemist_chemist",
+      "acceptance": [
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "spent_status_points": 322,
+        "unspent": 354,
+        "upgrade_budget": {
+          "gold": 29250,
+          "skill_manual": 5850
+        },
+        "unbuffed_cycle_ms": 9833,
+        "warning": "analytical schedule only; SP/sphere stalls/procs wait for engine"
+      }
+    },
+    {
+      "case_id": "alchemist_gardener",
+      "acceptance": [
+        "AC-02",
+        "AC-03"
+      ],
+      "passed": true,
+      "result": {
+        "spent_status_points": 298,
+        "unspent": 378,
+        "upgrade_budget": {
+          "gold": 27000,
+          "skill_manual": 5400
+        },
+        "unbuffed_cycle_ms": 9624,
+        "warning": "analytical schedule only; SP/sphere stalls/procs wait for engine"
+      }
+    },
+    {
+      "case_id": "presentation_merchant_mammonite",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-merchant_mammonite",
+        "vfx_recipe": 5,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_merchant_cart_revolution",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-merchant_cart_revolution",
+        "vfx_recipe": 5,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_merchant_loud_voice",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-merchant_loud_voice",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_merchant_first_aid",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-merchant_first_aid",
+        "vfx_recipe": 28,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_merchant_trading_stamina",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-merchant_trading_stamina",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_blacksmith_hammer_fall",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-blacksmith_hammer_fall",
+        "vfx_recipe": 5,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_blacksmith_adrenaline",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-blacksmith_adrenaline",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_blacksmith_weapon_perfection",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-blacksmith_weapon_perfection",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_blacksmith_meltdown",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-blacksmith_meltdown",
+        "vfx_recipe": 5,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_blacksmith_cart_crash",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-blacksmith_cart_crash",
+        "vfx_recipe": 5,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_blacksmith_weapon_research",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-blacksmith_weapon_research",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_blacksmith_tempering",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-blacksmith_tempering",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_alchemist_acid_terror",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-alchemist_acid_terror",
+        "vfx_recipe": 5,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_alchemist_potion_pitcher",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-alchemist_potion_pitcher",
+        "vfx_recipe": 28,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_alchemist_hell_plant",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-alchemist_hell_plant",
+        "vfx_recipe": 5,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_alchemist_bio_cannibalize",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-alchemist_bio_cannibalize",
+        "vfx_recipe": 28,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_alchemist_demonstration",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-alchemist_demonstration",
+        "vfx_recipe": 5,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_alchemist_learning_potion",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-alchemist_learning_potion",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "presentation_alchemist_chemical_expertise",
+      "acceptance": [
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "icon": "skills.modern-alchemist_chemical_expertise",
+        "vfx_recipe": 34,
+        "media_references": 2,
+        "scope": "metadata-only selection; no new image/animation visual review"
+      }
+    },
+    {
+      "case_id": "starter_two_skills",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": [
+        "merchant_mammonite",
+        "merchant_cart_revolution"
+      ]
+    },
+    {
+      "case_id": "actor_hell_plant",
+      "acceptance": [
+        "AC-03",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "max_owned": 2,
+        "tick_times_ms": [
+          1000,
+          2000,
+          3000,
+          4000,
+          5000,
+          6000,
+          7000,
+          8000,
+          9000
+        ],
+        "owner_death": "remove",
+        "bounded": "oldest replaced atomically; no hit-trigger actor spawning"
+      }
+    },
+    {
+      "case_id": "actor_healing_plant",
+      "acceptance": [
+        "AC-03",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "max_owned": 1,
+        "tick_times_ms": [
+          1000,
+          2000,
+          3000,
+          4000,
+          5000,
+          6000
+        ],
+        "owner_death": "remove",
+        "bounded": "oldest replaced atomically; no hit-trigger actor spawning"
+      }
+    }
+  ],
+  "passed": true,
+  "skill_count": 19,
+  "build_count": 4,
+  "manual_review": {
+    "queue": "No per-slot hold conditions; start costs and snapshot follow baseline15/16. Four distinct active skills; passive triggers are not extra skill casts.",
+    "class_identity": "Build role labels and effects distinguish damage/support/control/guard; actual dominance waits for matched-seed runtime analysis.",
+    "assets": "Icon sidecars/payloads and selected prepared recipes resolve locally; visual adaptations explicitly labeled.",
+    "limits": "These are release selections, not every skill from the original RO client; no Hi-class prerequisite."
+  }
+}

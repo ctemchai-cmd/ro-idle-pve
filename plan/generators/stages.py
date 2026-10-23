@@ -69,6 +69,11 @@ def stages(layout, spec):
             hp, atk = calibrated(hp, base_atk, sid, spec, layout); matk = magic(base_atk, sid, spec, layout)
             boss_spec = spec['final_bosses'][str(c)] if final else None
             slots = list(boss_spec['active_slots']) if final else ['enemy_bite', None, None, None]
+            if layout is not LEGACY:
+                from monster_rotations import PROFILES
+                choices=spec['ordinary_skill_cycles'][str(c)]
+                slots=list(PROFILES[boss_spec['definition_id']] if final else choices[(i-1)%len(choices)])
+                slots += [None]*(4-len(slots))
             if layout is not LEGACY and i in HEAVY_CAST_INDICES and not any(x in HEAVY_CASTS for x in slots):
                 kept = [x for x in slots if x is not None][:3]; slots = [heavy_skill(c, i)] + kept + [None] * (3 - len(kept))  # first cast starts after one skill interval
             resolved = base(level, hp, atk, df)

@@ -1357,11 +1357,10 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "revive",
-              "type": "revive",
-              "target": "dead_friend",
-              "expected_hp_after": 3500,
-              "expected_sp_after": 0
+              "effect_id": "heal",
+              "type": "heal",
+              "target": "friends",
+              "expected_raw_power": 420.0
             }
           ]
         }
@@ -1400,11 +1399,10 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "revive",
-              "type": "revive",
-              "target": "dead_friend",
-              "expected_hp_after": 4666,
-              "expected_sp_after": 0
+              "effect_id": "heal",
+              "type": "heal",
+              "target": "friends",
+              "expected_raw_power": 513.3333
             }
           ]
         }
@@ -1443,11 +1441,10 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "revive",
-              "type": "revive",
-              "target": "dead_friend",
-              "expected_hp_after": 7000,
-              "expected_sp_after": 0
+              "effect_id": "heal",
+              "type": "heal",
+              "target": "friends",
+              "expected_raw_power": 700.0
             }
           ]
         }
@@ -3939,7 +3936,7 @@
               "type": "apply_status",
               "target": "foe",
               "status_id": "stun",
-              "duration_ms": 1200,
+              "duration_ms": 1600,
               "chance": 0.75,
               "params": {},
               "expected_modifiers": []
@@ -3985,7 +3982,7 @@
               "type": "apply_status",
               "target": "foe",
               "status_id": "stun",
-              "duration_ms": 1200,
+              "duration_ms": 2400,
               "chance": 0.75,
               "params": {},
               "expected_modifiers": []
@@ -5334,7 +5331,7 @@
               "type": "apply_status",
               "target": "foes",
               "status_id": "stun",
-              "duration_ms": 1000,
+              "duration_ms": 1267,
               "chance": 0.45,
               "params": {},
               "expected_modifiers": []
@@ -5380,7 +5377,7 @@
               "type": "apply_status",
               "target": "foes",
               "status_id": "stun",
-              "duration_ms": 1000,
+              "duration_ms": 1800,
               "chance": 0.45,
               "params": {},
               "expected_modifiers": []
@@ -6465,7 +6462,7 @@
               "type": "apply_status",
               "target": "foes",
               "status_id": "stun",
-              "duration_ms": 1000,
+              "duration_ms": 1267,
               "chance": 0.45,
               "params": {},
               "expected_modifiers": []
@@ -6511,7 +6508,7 @@
               "type": "apply_status",
               "target": "foes",
               "status_id": "stun",
-              "duration_ms": 1000,
+              "duration_ms": 1800,
               "chance": 0.45,
               "params": {},
               "expected_modifiers": []
@@ -12034,7 +12031,7 @@
               "duration_ms": 10000,
               "actor_definition_id": "hell_plant",
               "max_owned": 2,
-              "power_scale": 1.75
+              "power_scale": 2.1875
             }
           ]
         }
@@ -12079,7 +12076,7 @@
               "duration_ms": 10000,
               "actor_definition_id": "hell_plant",
               "max_owned": 2,
-              "power_scale": 1.75
+              "power_scale": 3.0625
             }
           ]
         }
@@ -12921,7 +12918,7 @@
               "type": "apply_status",
               "target": "foes",
               "status_id": "provoke",
-              "duration_ms": 4500,
+              "duration_ms": 5500,
               "chance": 1,
               "params": {},
               "expected_modifiers": []
@@ -12967,7 +12964,7 @@
               "type": "apply_status",
               "target": "foes",
               "status_id": "provoke",
-              "duration_ms": 4500,
+              "duration_ms": 7500,
               "chance": 1,
               "params": {},
               "expected_modifiers": []

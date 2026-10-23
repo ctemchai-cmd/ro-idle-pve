@@ -5,8 +5,8 @@ import { locateAsset, locateSkillVisual } from '../../src/renderer/asset-locator
 import { AssetPack } from '../../src/renderer/pack.ts';
 import type { RuntimeAssetIndex } from '../../src/contracts/assets.ts';
 const index = JSON.parse(readFileSync('runtime/ro/manifest.json', 'utf8')) as RuntimeAssetIndex;
-test('all126 skill IDs resolve icon/recipe/audio plus native StormGust', () => {
-  assert.equal(Object.keys(index.skills).length, 126);
+test('126player and6borrowed enemy skill IDs resolve icon/recipe/audio plus native StormGust', () => {
+  assert.equal(Object.keys(index.skills).length, 132);
   for (const id of Object.keys(index.skills)) {
     const visual = locateSkillVisual(index, id);
     assert.ok(visual.icon.metaUrl.startsWith(index.base_url));

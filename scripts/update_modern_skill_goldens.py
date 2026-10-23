@@ -7,7 +7,7 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'plan/checks'))
 import composition as c
 ROOT=Path(__file__).resolve().parents[1]
 def main():
- ap=argparse.ArgumentParser();ap.add_argument('--before',required=True);args=ap.parse_args()
+ ap=argparse.ArgumentParser();ap.add_argument('--before',required=True);ap.add_argument('--evidence',default='task-107-golden-authoring-audit.json');args=ap.parse_args()
  before=json.load(open(args.before));old={s['id']:s for path,doc in before.items()if '/skills/'in path for s in doc['skills']}
  new={s['id']:s for p in(ROOT/'plan/data/skills').glob('*.json')for s in json.load(open(p))['skills']}
  changed={id for id in new if new[id]!=old[id]}
@@ -41,5 +41,5 @@ def main():
  for a,b in zip(old_cases,d['cases']):
   if b['skill_id']not in changed:assert a==b
  p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n')
- (ROOT/'plan/evidence/task-107-golden-authoring-audit.json').write_text(json.dumps({'changed_skills':sorted(changed),'updated_cases':changes,'unchanged_cases_verified':len(old_cases)-len(changes),'oracle':'Authored definitions and hand arithmetic, not combat-runner output. Independent D138 tests assert70/50 ratios, outcomes, crit isolation and speed parity.','new_assertions':'Damage policy/crit fields and dispel count now included in changed golden intents; old rollback and parity assertions retained.'},indent=2)+'\n')
+ (ROOT/'plan/evidence'/args.evidence).write_text(json.dumps({'changed_skills':sorted(changed),'updated_cases':changes,'unchanged_cases_verified':len(old_cases)-len(changes),'oracle':'Authored definitions and hand arithmetic, not combat-runner output. Independent request-specific tests assert coefficients, outcomes and speed parity.','new_assertions':'Only changed skill definitions update authored expectations; old rollback/parity and unchanged skill cases retained.'},indent=2)+'\n')
 if __name__=='__main__':main()

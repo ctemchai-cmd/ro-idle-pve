@@ -52,7 +52,8 @@ test('sphere projection and orbit geometry show the exact resource count, using 
 });
 
 test('revive clears the old sphere bonus before rebuilding the revived actor stats', () => {
-  const healer = actor('healer', 'player', [resolved('priest_resurrection', 1).definition as Active]);
+  const revive=skill('probe_revive',1600,1300,60);revive.selectors={dead:{team:'allies',life:'dead',select:'front_first',count:null,phase:'cast_resolve',missing:'skip'}};revive.effects=[{id:'revive',type:'revive',target:'dead',hp_ratio:.35,sp_ratio:0}];
+  const healer = actor('healer', 'player', [revive]);
   const state = checkpoint(battle([monk([]), healer, actor('boss', 'enemy')])), a = state.actors.find(a => a.actor_id === 'monk')!, base = a.stats.physical_attack;
   a.spirit_spheres = 5; recomputeStats(a, content); a.hp = 0; a.action_phase = 'dead'; a.phase_ready_at = null;
   const revived = step(state, 4000).state.actors.find(a => a.actor_id === 'monk')!; assert.ok(revived.hp > 0); assert.equal(revived.spirit_spheres, 0); assert.equal(revived.stats.physical_attack, base);

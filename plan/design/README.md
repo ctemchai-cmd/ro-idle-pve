@@ -46,3 +46,5 @@
 - [34 รับรางวัล/Refine/Enchant/เศรษฐกิจ](34-reward-slot-economy-tuning.md) — D-127–129, TASK-098–100
 
 - [35 — Native RO icons / skill growth / Refine cost](35-native-icons-skill-growth.md)
+
+- [37 ฮีลหมู่ Priest/ผลอัปสกิล/ท่ามอน/ภาพธาตุ/ตราผู้สวม](37-skill-growth-and-monster-rotations.md) — D139,stableIDs/meaningfulranks/sharedenemyprograms/asseticons (TASK108)

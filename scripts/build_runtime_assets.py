@@ -87,7 +87,7 @@ def selection(data_root=DATA):
         'actors': documents['actor-presentations.json']['jobs'],
         'stage_scenery': [{'id': s['id'], 'background': s['background'], 'music': s['music']} for s in documents['stages.json']['stages']],
         'presentations': {name: d.get('presentations', []) for name, d in documents.items() if 'presentations/' in name or name in ['equipment.json', 'cards.json', 'enemies.json']},
-        'skill_presentations': {s['id']: s.get('presentation_id') for name, d in documents.items() if name.startswith('skills/') for s in d['skills']},
+        'skill_presentations': {s['id']: s.get('presentation_id') for name, d in documents.items() if name.startswith('skills/') or name == 'enemies.json' for s in d['skills']},
     }
     return documents, refs, recipe_ids, sha(encoded(signature)), files + [COMBAT_VISUALS, SHELL_VISUALS]
 
@@ -133,6 +133,16 @@ def build(output=OUT, data_root=DATA, ro_root=RO):
             skills[skill['id']] = {'presentation_id': skill['presentation_id']}
     if len(skills) != 126:
         raise ValueError('Release selection requires126 player skills')
+    # Enemy variants may explicitly reuse a complete player presentation (icon,
+    # native effect, sound). Legacy enemy recipes remain on their existing path.
+    for skill in docs['enemies.json']['skills']:
+        if 'borrowed_program' not in skill['tags']:
+            continue
+        if skill['id'] in skills or skill.get('presentation_id') not in presentations:
+            raise ValueError('Unknown borrowed enemy presentation: ' + skill['id'])
+        skills[skill['id']] = {'presentation_id': skill['presentation_id']}
+    if set(read(COMBAT_VISUALS)['skills']) - set(skills):
+        raise ValueError('Combat visual has no runtime skill presentation')
     prepared = read(ro_root / 'prepared/game-pack.json')
     refs |= collect_refs(prepared['font']) | collect_refs(prepared['audio_events'])
     recipes = read(ro_root / 'prepared/skill-recipes.json')['recipes']
