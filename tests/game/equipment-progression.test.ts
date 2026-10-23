@@ -33,7 +33,7 @@ test('six slots/job and level restrictions, moving one canonical item across mai
 test('all19 jobs use authored weapon compatibility; all equipment rarity/type definitions fit shared compiler without implicit stat growth',()=>{
  const f=fixture(),actor=f.state.roster[0]!,data=content.documents['equipment.json']!.weapon_compatibility as unknown as Record<string,string>;
  for(const[job,weapon]of Object.entries(data)){const copy={...actor,job_id:job as typeof actor.job_id};assert.equal(equipmentFit(copy,'weapon',gear('probe',`equipment_${weapon}_1`),content),null,job);assert.equal(equipmentFit(copy,'weapon',gear('probe',`equipment_${weapon}_20`),content),'ITEM_LEVEL_REQUIRED');}
- assert.equal(Object.keys(data).length,19);
+ assert.equal(content.jobs.order.length,19);assert.ok(content.jobs.order.every(job=>job in data));assert.equal(Object.keys(data).length,32); // 13 inactive Hi fits are prepared independently of admission.
 });
 test('rarity affects only item base; Refine/Enchant/card sources remain on each owner, sleep when empty, and preview exactly matches battle snapshot',()=>{
  const f=fixture(),actor=f.state.roster[0]!;level60(actor);const progress=actor.slot_progress.weapon;progress.refine=10;progress.enchant={line_id:'offense',level:2};progress.cards=['gold_card',null,null];

@@ -33,7 +33,9 @@ test('manual resource leveling supports off-team actors, exact costs, caps20/40/
  assert.equal(f.actor('npc_mage').level,70);assert.equal(f.actor('npc_mage').local_cap,80);assert.deepEqual(f.actor('npc_mage').completed_gate_ids,[20,40,60]);assert.deepEqual(f.actor('npc_mage').primary_stats,primary);assert.equal(f.actor('npc_mage').unspent_status_points,676);
  assert.equal(f.state.wallet.gold,initial.gold-402090);assert.equal(f.state.wallet.hero_exp,initial.hero_exp-680225);assert.equal(f.state.wallet.breakthrough_essence,initial.breakthrough_essence-520);
  assert.equal(f.run('character.breakthrough',{character_id:'npc_mage',gate_level:60}).result.code,'BREAKTHROUGH_UNAVAILABLE');
- assert.throws(()=>new AccountCommandRules().parse({type:'character.level_up',params:{character_id:'npc_mage',target_level:71},request_id:'11111111-1111-4111-8111-111111111111',expected_revision:1,schema_version:1,...new AccountCommandRules().versions}));
+ // Schema prepares Hi90, while released Class2 admission still stops at70.
+ const capped=structuredClone(f.state);assert.equal(f.run('character.level_up',{character_id:'npc_mage',target_level:71}).result.code,'LEVEL_CAP_REACHED');assert.deepEqual(f.state,capped);
+ assert.throws(()=>new AccountCommandRules().parse({type:'character.level_up',params:{character_id:'npc_mage',target_level:91},request_id:'11111111-1111-4111-8111-111111111111',expected_revision:1,schema_version:1,...new AccountCommandRules().versions}));
 });
 test('status cost uses reviewed table, no implicit spending, and reset refunds actual point investments once',()=>{
  const f=fixture();f.to20();const base=structuredClone(f.actor().primary_stats),allocation={...base,str:12};assert.equal(allocationQuote(base,allocation,progressionData(content)),12);

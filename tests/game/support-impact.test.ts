@@ -94,7 +94,7 @@ test('all ten weapon families independently increase same-budget builds at tiers
   const compatibility = content.documents['equipment.json']!.weapon_compatibility as unknown as Record<string, string>;
   for (const [weapon, root] of Object.entries(roots)) for (const level of [20, 40, 60]) {
     const s = initializeAccount(content, { root_job_id: root, gender: 'male' }, '2026-10-22T00:00:00.000Z', '2026-10-22', 1), a = s.roster[0]!;
-    a.level = level; a.job_id = Object.keys(compatibility).find(job => compatibility[job] === weapon)! as typeof a.job_id;
+    a.level = level; a.job_id = Object.keys(compatibility).find(job => compatibility[job] === weapon && content.jobs.byId[job]?.root === root)! as typeof a.job_id;
     a.equipment = Object.fromEntries(Object.keys(a.equipment).map(k => [k, null])) as typeof a.equipment;
     const before = equipmentStats(s, 'main').stats, item: Extract<AccountState['inventory'][number], { kind: 'equipment' }> = { instance_id: 'qa_weapon', definition_id: `equipment_${weapon}_${level}`, kind: 'equipment', rarity_id: 'common', locked: false, training: false, options: [] };
     s.inventory.push(item); a.equipment.weapon = item.instance_id;

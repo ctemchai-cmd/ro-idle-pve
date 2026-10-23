@@ -24,7 +24,7 @@ export function nextGuide(state: AccountState, seen: ReadonlySet<string> = new S
   if (levelable) steps.push({ id: `level_${levelable.character_id}`, text: 'ทองพอสำหรับอัปเลเวล · ตัวละคร › Upgrade', view: 'buddy', character: levelable.character_id });
   const unarmed = team.find(a => !a.equipment.weapon);
   if (unarmed && state.wallet.gold >= 125) steps.push({ id: `weapon_${unarmed.character_id}`, text: 'ยังไม่มีอาวุธ · แตะช่องอาวุธเพื่อซื้ออาวุธฝึกหัด', view: 'buddy', character: unarmed.character_id });
-  const learner = team.find(a => Object.values(content.skills).some(row => { const s = row as unknown as SkillDefinition; return allowedSkill(a, s) && a.level >= s.unlock_level && !a.skill_levels[s.id] && characterSkillCap(a, s) >= 1; }));
+  const learner = team.find(a => Object.values(content.skills).some(row => { const s = row as unknown as SkillDefinition; return allowedSkill(a, s, content) && a.level >= s.unlock_level && !a.skill_levels[s.id] && characterSkillCap(a, s) >= 1; }));
   if (learner) steps.push({ id: `skill_${learner.character_id}`, text: 'มีสกิลใหม่ให้เรียนฟรี · ไปหน้า Skill', view: 'skills', character: learner.character_id });
   if (dailyUnlocked(state, content) && !state.daily_records.length) steps.push({ id: 'daily_open', text: 'ดันเจี้ยนรายวันเปิดแล้ว · ท้าบอสรับกล่องรางวัล', view: 'daily' });
   if (towerUnlocked(state, content) && state.tower.highest_cleared_floor === 0) steps.push({ id: 'tower_open', text: 'หอคอยเปิดแล้ว · ไต่ชั้นรับ Crystal', view: 'tower' });

@@ -3,6 +3,8 @@ import { createRoot } from 'react-dom/client';
 import './style.css';
 import './auth.css';
 import './elements.css';
+import './skill-information.css';
+import './game/skill-catalog.css';
 import { readPublicAuthConfig } from '../client/auth-config.ts';
 import { startPwa } from '../client/pwa.ts';
 

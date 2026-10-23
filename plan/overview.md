@@ -1,6 +1,8 @@
 # ภาพรวมแผนและความคืบหน้า
 
-อัปเดต: 23 ตุลาคม 2026 · ระยะปัจจุบัน: **106/120 งานผ่าน done; TASK-041 บาลานซ์, TASK-058 ย้ายเซฟ และ TASK-064 อัปเกรดทันทีขึ้นVercelแล้ว/SQL007ติดตั้งแล้ว/รอcloudtimingอยู่ inprogress; TASK-062 PWAขึ้นVercelและผ่านhostedแล้ว; TASK-063 ทุกmutationลด3→1requestsขึ้นVercelผ่านแล้ว; TASK-060 เซฟเริ่ม/จบและ TASK-061 resetดันขึ้นVercelแล้ว; TASK-048/054/055/056/057 อยู่ review รอผู้ใช้ตรวจภาพ**
+อัปเดต: 23 ตุลาคม 2026 · ระยะปัจจุบัน: **108/126 งานผ่าน done; TASK-041 บาลานซ์, TASK-058 ย้ายเซฟ และ TASK-064 อัปเกรดทันทีขึ้นVercelแล้ว/SQL007ติดตั้งแล้ว/รอcloudtimingอยู่ inprogress; TASK-062 PWAขึ้นVercelและผ่านhostedแล้ว; TASK-063 ทุกmutationลด3→1requestsขึ้นVercelผ่านแล้ว; TASK-060 เซฟเริ่ม/จบและ TASK-061 resetดันขึ้นVercelแล้ว; TASK-048/054/055/056/057 อยู่ review รอผู้ใช้ตรวจภาพ**
+
+[TASK-121](done/tasks_121.md) ฐาน Hi-class ผ่านlocal: catalogลำดับอาชีพ/สืบทอดสกิลร่วมกัน. ผู้ใช้ยืนยันเลื่อนสายเดิมเก็บบิลด์และAwakenเปิดตั้งแต่Hi-class;ยังไม่เปิดfeature/capใหม่. [สัญญาและผลตรวจ](design/45-hi-class-implementation.md)
 
 [TASK-120](done/tasks_120.md) อัปเดตล่าสุด source`c1eb50280`: **สมุดสกิลภายในเกม** จากตั้งค่า/หน้าสกิล/หน้าเปลี่ยนอาชีพ และแตะTimelineอ่านสกิลของทีม/บอสตามrankจริงได้. Localmobile5/public4groupsผ่าน;Hi-classยังไม่implement.[ผลตรวจ](evidence/task-120-review.json)
 
@@ -380,3 +382,15 @@ TASK-101 correction23ต.ค.: แทนskillartเดิมด้วย19actual
 [TASK-119](done/tasks_119.md):publicreadonly skill-preview/19jobs126skills/rank/nativeFX/audio/sharedengine ตามdesign43.
 
 [TASK-120](done/tasks_120.md):ขึ้นVercel source`c1eb50280`แล้ว สมุดสกิลในเกมจากSettings/หน้าสกิล/เปลี่ยนอาชีพ อ่าน19jobs126skills+rank/search;แตะTimeline draft/live/history/logดูactualrank/ผล/ธาตุได้.28targeted+4preview/build/filteredbuild/readonlyactualmobile5/public4groupsผ่าน;hash/packเดิม ไม่SQL/env/migration. Hi-classยังไม่ทำตามstatusผู้ใช้ถาม. [ผลตรวจ](evidence/task-120-review.json)
+
+## M5 — Hi-class/Awaken (เริ่ม23ต.ค.2026)
+
+| งาน | ผลส่งมอบ | สถานะ |
+| --- | --- | --- |
+| [TASK-121](done/tasks_121.md) | ancestry/skill catalog foundation | done(local;ยังไม่ปล่อยHi-class) |
+| [TASK-122](done/tasks_122.md) | เลื่อน Hi-class รักษาบิลด์และตารางเลเวลหลัง70 | done(local;featureยังปิด) |
+| [TASK-123](todo/tasks_123.md) | สกิล Hi-class26ท่าและภาพจริงทุกอาชีพ | todo |
+| [TASK-124](todo/tasks_124.md) | Awakenรายสกิล เศษขั้นใหม่ และแลกเศษสองทิศ | todo |
+| [TASK-125](todo/tasks_125.md) | เปิด Hi-class พร้อม Awaken และด่านต่อบนเว็บ | todo |
+
+[TASK-126](review/tasks_126.md) แทรกตามคำขอ:ปุ่มใส่ของที่ดีกว่ารวดเดียว/currentcharacter/atomicคำสั่งเดียว;Hi-classยังทำต่อใน122–125.

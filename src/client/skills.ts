@@ -116,11 +116,11 @@ function effectChanges(before:string|undefined,after:string|undefined):string[]{
 /** Shared permanent build, including equipped sources when account is provided. */
 /** Icon prefetch needs only class membership, not a full stat/skill preview. */
 export function characterSkillIconIds(actor:Character):string[]{
- return Object.values(content.skills).filter(row=>allowedSkill(actor,row as unknown as SkillDefinition)).map(row=>String(row.id));
+ return Object.values(content.skills).filter(row=>allowedSkill(actor,row as unknown as SkillDefinition,content)).map(row=>String(row.id));
 }
 export function characterSkillOptions(actor:Character,state?:AccountState):{skills:SkillOption[];intervalMs:number}{
  const compiled=compileCharacterSkills(actor,content),stats=previewCharacterStats(actor,compiled.resolved_skills,content,state?equippedSources(actor,state,content):[]);
- const skills=Object.values(content.skills).filter(row=>allowedSkill(actor,row as unknown as SkillDefinition)).map(row=>{
+ const skills=Object.values(content.skills).filter(row=>allowedSkill(actor,row as unknown as SkillDefinition,content)).map(row=>{
   const source=row as unknown as SkillDefinition,level=actor.skill_levels[source.id]??0,cap=characterSkillCap(actor,source),locked=actor.level<source.unlock_level,target=level+1;
   const definition=structuredClone(resolveSkill(source.id,Math.max(1,level),content).definition)as SkillDefinition;
   let price:SkillOption['price']=null;if(!locked&&target<=cap)price=skillQuote(actor,source.id,target,content);

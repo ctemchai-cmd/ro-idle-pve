@@ -12,6 +12,7 @@ import { resolveSkill } from '../../src/domain/build/resolve-skill.ts';
 import { AccountCommandRules } from '../../src/domain/account/commands.ts';
 import { dailyRecord } from '../../src/domain/modes/daily.ts';
 import { content,actor,unwrap,step,type Active } from './combat-fixtures.ts';
+import { legacyClass2Source } from './legacy-class2-source.ts';
 const sha=(value:string|Buffer)=>createHash('sha256').update(value).digest('hex');
 const initial=()=>initializeAccount(content,{root_job_id:'mage',gender:'female'},'2026-10-23T00:00:00Z','2026-10-23',17);
 test('D151330 stages keep all180 released rows and old programs/actors/rates/power data byte-identical',()=>{
@@ -20,7 +21,7 @@ test('D151330 stages keep all180 released rows and old programs/actors/rates/pow
  const enemies=content.documents['enemies.json']!;
  assert.deepEqual((enemies.actors as unknown as object[]).slice(0,25),baseline.old_actors);assert.deepEqual((enemies.skills as unknown as object[]).slice(0,17),baseline.old_enemy_skills);
  assert.deepEqual((content.documents['economy.json']!.rates as unknown as object[]).slice(0,9),baseline.old_rates);
- for(const [file,expected]of Object.entries(baseline.unchanged_file_sha256))assert.equal(sha(readFileSync(new URL('../../plan/data/'+file+'.json',import.meta.url))),expected,file);
+ for(const [file,expected]of Object.entries(baseline.unchanged_file_sha256))assert.equal(sha(legacyClass2Source(file+'.json')),expected,file);
  for(let i=180;i<330;i++){assert.equal(stages[i]!.unlock_after,stages[i-1]!.id);assert.ok(stages[i]!.release_gate);assert.ok(storyBoss(stages[i]!).level>=71&&storyBoss(stages[i]!).level<=90);}
  for(const chapter of[10,11,12]){const rows=stages.filter(s=>s.chapter===chapter);assert.equal(rows.length,50);assert.equal(new Set(rows.filter(s=>s.index%10===0).map(s=>storyBoss(s).definition_id)).size,5);}
 });
@@ -37,11 +38,11 @@ test('D151 future chapter gates share admission and require Hi-class, correct ca
  assert.equal((content.documents['progression.json']!.release as {level_cap:number}).level_cap,70);
  assert.doesNotThrow(()=>new AccountCommandRules().validateAccount(state));
 });
-test('D151 enemy90 checkpoint and native profiles are valid, party71 rejected independently of enemy cap',()=>{
+test('D151 enemy90 checkpoint/native profiles are valid; prepared party schema stays bounded at90 (released progression still70)',()=>{
  for(const id of['10-10','10-20','10-30','10-40','10-50','11-10','11-20','11-30','11-40','11-50','12-10','12-20','12-30','12-40','12-50']){
   const stage=storyStage(id,content)!,input=storyInput(stage,storyBoss(stage),[{...actor('p','player'),spatial:{x:220,y:400,move_speed:120,radius:18,normal_range:80}}],content),state=unwrap(createBattle(input,content,17));
   assert.equal(state.actors.filter(a=>a.team==='enemy').length,1);assert.ok(restoreBattle(serializeBattle(state),content).ok,id);
-  const bad=serializeBattle(state);bad.actors.find(a=>a.kind==='party')!.stat_blueprint.level=71;assert.equal(restoreBattle(bad,content).ok,false);
+  const bad=serializeBattle(state);bad.actors.find(a=>a.kind==='party')!.stat_blueprint.level=91;assert.equal(restoreBattle(bad,content).ok,false);
  }
  const enemies=content.documents['enemies.json']!.actors as unknown as {id:string;active_slots:(string|null)[];presentation:{meta_path:string}}[];
  assert.equal(enemies.length,61);

@@ -1,5 +1,9 @@
 # Project context
 
+## Hi-class work started (23 October 2026, D154–155)
+
+TASK121 adds an immutable job catalog and shared ancestor skill membership; current release remains19jobs/126skills/cap70. The user confirmed same-branch Hi-class promotion keeps the whole build. Awaken is available on entering Hi-class at70, requires the individual skill at max, resets its rank to1 and improves/changes its effects. Two new skills per Hi profession must reach pre-Awaken max near/before90;90 is not a global Awaken unlock. Awaken upgrades use a new shard from later dungeons; old shards may combine into new shards and new may dismantle back, with no profitable conversion loop. See plan/design/45-hi-class-implementation.md. Never claim prepared chapters or ancestry fixtures as completed Hi-class gameplay.
+
 ## Story expansion (23 October 2026, D150/TASK117)
 
 Chapter9 appends50 stages after8-20 (180total), suggestedLv67–70. Original130rows, player skills, Tower/daily rules and rates1–8 stay unchanged. New14enemydefinitions reuse existing native pack media; traits reference rAthena identity only, rotations are game adaptations. stage.enemy_identity=definition makes boss/farm visuals follow their actual definition. Chapter9 rates match8/Tier60; loot.cards.chance_ramp_stage_count=130 preserves all old card probabilities and saturates new stages at2%. Account chapter schemas use safe integers; content loader requires each stage's farm/gear/card tables. NoSQL, Hi-class stilldisabled/cap70. Generator expansion is plan/generators/story-expansion.json + story_expansion.py; legacy generator remains byte-identical. See design41.

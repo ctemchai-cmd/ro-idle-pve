@@ -1,6 +1,7 @@
 import type { AccountState, Command, PrimaryStats } from '../../contracts/index.ts';
 import type { ValidatedContent } from '../../content/model.ts';
 import { ProgressionRejection } from './rejection.ts';
+import { createJobCatalog, type JobAdvancement, type JobCatalog } from '../../content/jobs.ts';
 export { ProgressionRejection } from './rejection.ts';
 
 export type Character = AccountState['roster'][number];
@@ -9,22 +10,63 @@ export type RosterCommand = Extract<Command, { type: 'party.set' | 'character.le
 type Wallet = AccountState['wallet'];
 export interface ProgressionData {
   cost_version: string;
-  release: { level_cap: number };
+  release: { level_cap: number; enabled_job_stages?: number[] };
   initial_state: { initial_active_skill_grants: { skill_level: number } };
   class_tree: Record<RootJob, Character['job_id'][]>;
-  promotion: { class2_min_level: number };
+  job_advancements?: JobAdvancement[];
+  /** Derived runtime index, never a second authored table or a saved field. */
+  job_catalog?: JobCatalog;
+  promotion: { class2_min_level: number; hi_class_enabled?: boolean; class3_enabled?: boolean };
+  hi_class?: {
+    minimum_level: number;
+    level_cap: number;
+    job_advancements: JobAdvancement[];
+    level_rows: ProgressionData['progression']['level_rows'];
+    breakthrough_gates: ProgressionData['progression']['breakthrough_gates'];
+  };
   progression: {
     base_local_cap: number;
     level_rows: { level: number; total_status_points: number; next_level_cost: Partial<Wallet> | null }[];
-    breakthrough_gates: { at_level: 20 | 40 | 60; unlocks_local_cap: Character['local_cap']; cost: Partial<Wallet> }[];
+    breakthrough_gates: { at_level: 20 | 40 | 60 | 80; unlocks_local_cap: Character['local_cap']; cost: Partial<Wallet> }[];
   };
   status_allocation: { base: PrimaryStats; manual_value_max: number; cost_by_new_value: { new_value: number; point_cost: number }[] };
 }
-export function progressionData(content: ValidatedContent): ProgressionData { return content.documents['progression.json'] as unknown as ProgressionData; }
-export function rootForJob(job: Character['job_id'], data: ProgressionData): RootJob | null {
-  return (Object.keys(data.class_tree) as RootJob[]).find(root => root === job || data.class_tree[root].includes(job)) ?? null;
+export function progressionData(content: ValidatedContent): ProgressionData {
+  const data = content.documents['progression.json'] as unknown as ProgressionData;
+  if (!data.promotion.hi_class_enabled) return { ...data, job_catalog: content.jobs };
+  const hi = data.hi_class;
+  if (!hi || hi.level_rows[0]?.level !== data.progression.level_rows.at(-1)?.level) throw new Error('MISSING_HI_PROGRESSION');
+  return { ...data, job_catalog: content.jobs, job_advancements: hi.job_advancements, progression: { ...data.progression,
+    level_rows: [...data.progression.level_rows.slice(0, -1), ...hi.level_rows],
+    breakthrough_gates: [...data.progression.breakthrough_gates, ...hi.breakthrough_gates],
+  } };
 }
-export function effectiveLevelCap(actor: Character, data: ProgressionData) { return Math.min(data.release.level_cap, actor.local_cap); }
+export function rootForJob(job: Character['job_id'], data: ProgressionData): RootJob | null {
+  return (data.job_catalog ?? createJobCatalog(data)).byId[job]?.root as RootJob ?? null;
+}
+export function effectiveLevelCap(actor: Character, data: ProgressionData) {
+  const job = (data.job_catalog ?? createJobCatalog(data)).byId[actor.job_id];
+  const classCap = data.promotion.hi_class_enabled && job && job.stage < 3 ? data.hi_class!.minimum_level : data.release.level_cap;
+  return Math.min(data.release.level_cap, actor.local_cap, classCap);
+}
+
+/** Direct Hi promotion preserves a build. Switching branches/roots retains the existing reset policy. */
+export function jobChangePlan(actor: Character, target: Character['job_id'], data: ProgressionData) {
+  const jobs = createJobCatalog({ ...data, job_advancements: data.hi_class?.job_advancements ?? data.job_advancements ?? [] });
+  const next = jobs.byId[target], current = jobs.byId[actor.job_id];
+  if (!next || !current) throw new ProgressionRejection('INVALID_JOB');
+  if (actor.job_id === target) throw new ProgressionRejection('JOB_UNCHANGED');
+  if (actor.kind === 'npc' && next.root !== actor.root_job_id) throw new ProgressionRejection('NPC_ROOT_IMMUTABLE');
+  if (next.stage >= 3 && !data.promotion.hi_class_enabled) throw new ProgressionRejection('HI_CLASS_UNAVAILABLE');
+  if (next.stage >= 4 && !data.promotion.class3_enabled) throw new ProgressionRejection('CLASS3_UNAVAILABLE');
+  if (data.release.enabled_job_stages && !data.release.enabled_job_stages.includes(next.stage)) throw new ProgressionRejection('CLASS_STAGE_UNAVAILABLE');
+  if (actor.level < next.minimumLevel) throw new ProgressionRejection('CLASS_LEVEL_REQUIRED');
+  if (data.hi_class && actor.level > data.hi_class.minimum_level && next.stage < 3) throw new ProgressionRejection('PROMOTION_DOWNGRADE_BLOCKED');
+  if (next.stage >= 3 && current.stage < next.stage && next.parent !== actor.job_id) throw new ProgressionRejection('PROMOTION_PARENT_REQUIRED');
+  const preservesBuild = next.stage >= 3 && next.parent === actor.job_id && next.root === actor.root_job_id;
+  const gender = next.ancestors.includes('bard') ? 'male' : next.ancestors.includes('dancer') ? 'female' : actor.gender;
+  return { root: next.root as RootJob, preservesBuild, gender };
+}
 export function levelQuote(actor: Character, target: number, data: ProgressionData): Partial<Wallet> {
   if (!Number.isInteger(target) || target <= actor.level) throw new ProgressionRejection('INVALID_TARGET_LEVEL');
   if (target > effectiveLevelCap(actor, data)) throw new ProgressionRejection('LEVEL_CAP_REACHED');
@@ -104,10 +146,7 @@ export function applyRosterCommand(state: AccountState, command: RosterCommand, 
     }
     case 'character.reset_build': reset(command.params.features); return 'BUILD_RESET';
     case 'character.change_job': {
-      const job = command.params.job_id, root = rootForJob(job, data); if (!root) reject('INVALID_JOB');
-      if (actor.job_id === job) reject('JOB_UNCHANGED');
-      if (actor.kind === 'npc' && root !== actor.root_job_id) reject('NPC_ROOT_IMMUTABLE');
-      if (job !== root && actor.level < data.promotion.class2_min_level) reject('CLASS_LEVEL_REQUIRED');
+      const job = command.params.job_id, plan = jobChangePlan(actor, job, data), root = plan.root;
       const compatibility = content.documents['equipment.json']!.weapon_compatibility as Readonly<Record<string, string>>;
       const weapon = state.inventory.find(i => i.instance_id === actor.equipment.weapon), definition = weapon && content.items[weapon.definition_id];
       if (definition && definition.weapon_type !== compatibility[job]) {
@@ -115,9 +154,9 @@ export function applyRosterCommand(state: AccountState, command: RosterCommand, 
         if (state.inventory.length >= Number(content.documents['equipment.json']!.inventory_capacity)) reject('INVENTORY_FULL');
         actor.equipment.weapon = null;
       }
-      reset(['stats', 'skills'], root); actor.root_job_id = root; actor.job_id = job;
-      if (job === 'bard') actor.gender = 'male'; if (job === 'dancer') actor.gender = 'female';
-      return 'JOB_CHANGED';
+      if (!plan.preservesBuild) reset(['stats', 'skills'], root);
+      actor.root_job_id = root; actor.job_id = job; actor.gender = plan.gender;
+      return plan.preservesBuild ? 'HI_CLASS_PROMOTED' : 'JOB_CHANGED';
     }
   }
 }
@@ -126,6 +165,8 @@ export function validateProgression(state: AccountState, content: ValidatedConte
   const data = progressionData(content), npcRoots = new Set<RootJob>();
   for (const actor of state.roster) {
     if (rootForJob(actor.job_id, data) !== actor.root_job_id || actor.level > effectiveLevelCap(actor, data)) throw new Error('INVALID_CHARACTER_PROGRESSION');
+    const job = content.jobs.byId[actor.job_id];
+    if (!job || actor.level < job.minimumLevel || (job.ancestors.includes('bard') && actor.gender !== 'male') || (job.ancestors.includes('dancer') && actor.gender !== 'female')) throw new Error('INVALID_CHARACTER_PROGRESSION');
     if (actor.kind === 'npc') { if (actor.character_id !== `npc_${actor.root_job_id}` || npcRoots.has(actor.root_job_id)) throw new Error('INVALID_ROSTER_IDENTITY'); npcRoots.add(actor.root_job_id); }
     const gates = data.progression.breakthrough_gates.filter(g => actor.completed_gate_ids.includes(g.at_level));
     const cap = gates.at(-1)?.unlocks_local_cap ?? data.progression.base_local_cap;

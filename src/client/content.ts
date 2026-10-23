@@ -1,6 +1,7 @@
 import raw from '../generated/content.json' with { type: 'json' };
 import type { RawContent, Result, ValidatedContent } from '../content/model.ts';
 import { freeze, type ObjectValue } from '../content/value.ts';
+import { createJobCatalog } from '../content/jobs.ts';
 
 // One immutable definition bundle per browser build. This never stores saves, Auth or actor state.
 // npm build validates this exact generated bundle before Vite runs. Index that build-owned data
@@ -19,6 +20,7 @@ export function loadValidatedContent(): Result<ValidatedContent> {
   };
   const roots = ['swordsman', 'acolyte', 'archer', 'mage', 'thief', 'merchant'];
   validated = Object.freeze({ ok: true, value: freeze({ ...bundle,
+    jobs: createJobCatalog(bundle.documents['progression.json']),
     skills: registry([...roots.map(root => [`skills/${root}.json`, 'skills'] as [string, string]), ['enemies.json', 'skills']]),
     items: registry([['equipment.json', 'definitions'], ['cards.json', 'definitions']]),
     statuses: registry([['status-effects.json', 'statuses'], ['class-status-effects.json', 'statuses']]),

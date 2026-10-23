@@ -1,0 +1,60 @@
+{
+  "task_id": "TASK-122",
+  "review_date": "2026-10-23",
+  "reviewer": "Codex",
+  "passed": true,
+  "scope": "Prepared Hi progression, inactive until full feature release",
+  "checks": [
+    {
+      "acceptance_id": "AC-01",
+      "passed": true
+    },
+    {
+      "acceptance_id": "AC-02",
+      "passed": true
+    },
+    {
+      "acceptance_id": "AC-03",
+      "passed": true
+    },
+    {
+      "acceptance_id": "AC-04",
+      "passed": true
+    }
+  ],
+  "evidence_refs": [
+    "plan/evidence/task-122-full-tests.txt",
+    "plan/evidence/task-122-targeted.txt",
+    "plan/evidence/task-126-build.txt",
+    "plan/evidence/task-126-m0.txt"
+  ],
+  "results": {
+    "full_tests": 594,
+    "post_cached_catalog_focused": 23,
+    "hi_promotions_tested": 13,
+    "future_fixture_level_cap": 90,
+    "released_level_cap": 70,
+    "release_enabled": false,
+    "manual_points_at90": 1050,
+    "level70_90_cost": {
+      "hero_exp": 714850,
+      "gold": 285940
+    },
+    "gate80_cost": {
+      "gold": 400000,
+      "breakthrough_essence": 1600
+    }
+  },
+  "findings": [
+    "Shared cached job index avoids recompiling ancestry on each UI level quote",
+    "Future schema admits90, current progression rejects71 until Hi release",
+    "Cross-branch Hi changes retain existing reset/refund semantics; direct promotion preserves all builds",
+    "Fixed prior catalog CSS imports at UI entry so pure rendering tests can import Buddy without Node CSS loader",
+    "Prior weapon-family fixture mixed Mage root with Priest job; now selects a compatible job within its root"
+  ],
+  "limitations": [
+    "No Hi-class native visuals/new26 skills/Awaken implemented by this task",
+    "No balance batch or owner cloud access",
+    "Default release remains Class2 until TASK125"
+  ]
+}

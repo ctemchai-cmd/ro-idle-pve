@@ -1,0 +1,44 @@
+{
+  "task_id": "TASK-126",
+  "reviewer": "Codex",
+  "review_date": "2026-10-23",
+  "passed": false,
+  "status": "Local passed;hosted pending",
+  "checks": [
+    {
+      "acceptance_id": "AC-01",
+      "passed": true
+    },
+    {
+      "acceptance_id": "AC-02",
+      "passed": true
+    },
+    {
+      "acceptance_id": "AC-03",
+      "passed": true
+    },
+    {
+      "acceptance_id": "AC-04",
+      "passed": false
+    }
+  ],
+  "local": {
+    "focused_tests": 18,
+    "actual_mobile": "plan/evidence/task-126-mobile-live.json",
+    "actual_stack": "plan/evidence/task-126-local-stack.json",
+    "build": "plan/evidence/task-126-build.txt",
+    "m0": "plan/evidence/task-126-m0.txt",
+    "viewed_width": 320
+  },
+  "failures_retained": [
+    "task-126-r1-mobile-live.json",
+    "task-126-r2-mobile-live.json",
+    "task-126-r3-mobile-live.json"
+  ],
+  "limits": [
+    "No owner access or hosted authenticated test",
+    "Offline recovery requires reconnect, as designed;confirmed receipt is reused once",
+    "No SQL/env changes, personal preview restart, new runtime assets or balance batch",
+    "Hi-class/Awaken work remains separate and disabled"
+  ]
+}

@@ -10,16 +10,15 @@ import { battleRenderView, sceneLabels } from './story.ts';
 
 const loaded = loadValidatedContent(); if (!loaded.ok) throw new Error('CONTENT_UNAVAILABLE');
 const content = loaded.value;
-const tree = content.documents['progression.json']!.class_tree as unknown as Record<string, string[]>;
 const strings = content.documents['strings.th.json']!.strings as unknown as Record<string, string>;
 const presentations = content.documents['actor-presentations.json']!.jobs as unknown as { job_id: string; presets: { gender: string }[] }[];
-export const previewJobs = Object.entries(tree).flatMap(([root, children]) => [root, ...children].map(id => ({ id, root, genders: presentations.find(j => j.job_id === id)!.presets.map(p => p.gender) })));
+export const previewJobs = content.jobs.order.map(id => ({ id, root: content.jobs.byId[id]!.root, genders: presentations.find(j => j.job_id === id)!.presets.map(p => p.gender) }));
 export const previewPackHash = content.manifest.runtime_asset_pack_hash;
 export const previewSkillCount = Object.values(content.skills).filter(s => s.class_id !== 'enemy').length;
 export interface PreviewSelection { job: string; skill: string; rank: number; gender: string }
 export function previewSkills(job: string): SkillDefinition[] {
-  const entry = previewJobs.find(j => j.id === job);
-  return entry ? Object.values(content.skills).filter(s => s.class_id === entry.root || s.class_id === entry.id) as unknown as SkillDefinition[] : [];
+  const entry = content.jobs.byId[job];
+  return entry ? Object.values(content.skills).filter(s => entry.ancestors.includes(String(s.class_id))) as unknown as SkillDefinition[] : [];
 }
 export function previewSkillName(id: string) { return strings[String(content.skills[id]?.name_key)] ?? id; }
 /** Invalid/deep-linked selections fall back to real catalog entries, never arbitrary programs. */

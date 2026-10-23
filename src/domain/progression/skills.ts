@@ -2,15 +2,16 @@ import type { AccountState, BattleActor, Command, SkillDefinition } from '../../
 import type { ValidatedContent } from '../../content/model.ts';
 import { resolveSkill } from '../build/resolve-skill.ts';
 import { ProgressionRejection } from './rejection.ts';
+import { jobAllowsSkill } from '../../content/jobs.ts';
 type Character = AccountState['roster'][number];
 type Wallet = AccountState['wallet'];
 export type SkillCommand = Extract<Command, { type: 'skill.upgrade' | 'skill.set_loadout' }>;
 type UpgradeTable = Record<string, { learn_level_one_cost: Partial<Wallet>; upgrade_cost_rows: {from_level:number;to_level:number;gold:number;skill_manual:number}[] }>;
-export function allowedSkill(actor: Character, definition: SkillDefinition) { return definition.class_id === actor.root_job_id || definition.class_id === actor.job_id; }
+export function allowedSkill(actor: Character, definition: SkillDefinition, content: ValidatedContent) { return jobAllowsSkill(content.jobs, actor, definition.class_id); }
 export function characterSkillCap(actor: Character, definition: SkillDefinition): number { return Math.min(definition.max_level, 1 + Math.floor((actor.level - 1) / 5)); }
 export function skillQuote(actor: Character, id: string, target: number, content: ValidatedContent): Partial<Wallet> {
  const definition = content.skills[id] as unknown as SkillDefinition | undefined;
- if (!definition || !allowedSkill(actor, definition)) throw new ProgressionRejection('SKILL_UNAVAILABLE');
+ if (!definition || !allowedSkill(actor, definition, content)) throw new ProgressionRejection('SKILL_UNAVAILABLE');
  if (actor.level < definition.unlock_level) throw new ProgressionRejection('SKILL_LOCKED');
  const current = actor.skill_levels[id] ?? 0;
  if (!Number.isInteger(target) || target <= current) throw new ProgressionRejection('SKILL_LEVEL_UNCHANGED');
@@ -33,7 +34,7 @@ export function exclusiveLoadoutConflict(actor: Character, slots: readonly (stri
 export function validateCharacterSkills(actor: Character, content: ValidatedContent): void {
  for(const [id,level]of Object.entries(actor.skill_levels)) {
   const definition=content.skills[id] as unknown as SkillDefinition|undefined;
-  if(!definition||!allowedSkill(actor,definition)||actor.level<definition.unlock_level||!Number.isInteger(level)||level<1||level>characterSkillCap(actor,definition))throw new Error('INVALID_LEARNED_SKILL');
+  if(!definition||!allowedSkill(actor,definition,content)||actor.level<definition.unlock_level||!Number.isInteger(level)||level<1||level>characterSkillCap(actor,definition))throw new Error('INVALID_LEARNED_SKILL');
  }
  const slots=actor.active_slots.filter((id):id is string=>id!==null);
  if(exclusiveLoadoutConflict(actor,slots,content)||slots.length!==new Set(slots).size||slots.some(id=>!actor.skill_levels[id]||content.skills[id]?.kind!=='active'))throw new Error('INVALID_SKILL_LOADOUT');

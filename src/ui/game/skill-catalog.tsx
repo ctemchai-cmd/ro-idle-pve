@@ -5,7 +5,6 @@ import { ClassIcon } from './class-icon.tsx';
 import { Sheet,jobNames } from './kit.tsx';
 import { SkillIcon } from '../skill-icon.tsx';
 import { SkillInformationBody } from '../skill-information.tsx';
-import './skill-catalog.css';
 
 export function SkillCatalogSheet({pack,initialJob,onClose}:{pack:AssetPack|null;initialJob:string;onClose:()=>void}){
  const [job,setJob]=useState(()=>skillCatalogJobs.some(j=>j.id===initialJob)?initialJob:skillCatalogJobs[0]!.id),[rank,setRank]=useState(1),[search,setSearch]=useState('');

@@ -17,6 +17,7 @@ import { content, actor, step, checkpoint, unwrap, type Active } from './combat-
 import raw from '../../src/generated/content.json';
 import { validateContent } from '../../src/content/loader.ts';
 import type { RawContent } from '../../src/content/model.ts';
+import { legacyClass2Source } from './legacy-class2-source.ts';
 
 const at='2026-10-23T00:00:00Z',initial=()=>initializeAccount(content,{root_job_id:'mage',gender:'female'},at,'2026-10-23',17);
 const sha=(value:string|Buffer)=>createHash('sha256').update(value).digest('hex');
@@ -26,7 +27,7 @@ test('D150 appends50 connected stages with five distinct named bosses, preserves
  const source=JSON.parse(readFileSync(new URL('../../plan/data/stages.json',import.meta.url),'utf8'));
  assert.equal(source.stages.filter((s:{chapter:number})=>s.chapter<=9).length,180);
  assert.equal(sha(canonical(source.stages.slice(0,130))),baseline.stages_sha256);
- for(const [file,expected]of Object.entries(baseline.unchanged_data))assert.equal(sha(readFileSync(new URL('../../plan/data/'+file,import.meta.url))),expected,file);
+ for(const [file,expected]of Object.entries(baseline.unchanged_data))assert.equal(sha(legacyClass2Source(file)),expected,file);
  const rows=expansion();assert.equal(rows.length,50);assert.equal(rows[0]!.unlock_after,'8-20');
  const state=initial();assert.equal(canChallenge(rows[0]!,state,content),false);state.story.cleared_stage_ids.push('8-20');assert.equal(canChallenge(rows[0]!,state,content),true);
  for(let i=0;i<rows.length;i++){const s=rows[i]!;assert.equal(s.id,'9-'+(i+1));assert.equal(s.unlock_after,i?rows[i-1]!.id:'8-20');assert.equal(s.enemy_identity,'definition');assert.ok(storyBoss(s).level>=67&&storyBoss(s).level<=70);}

@@ -5,15 +5,19 @@ import { canonical } from '../../content/value.ts';
 import type { Json, ObjectValue } from '../../content/value.ts';
 import { initializeAccount } from './initialize.ts';
 import type { CreateAccountCommand } from './initialize.ts';
+import type { ValidatedContent } from '../../content/model.ts';
 
 /** Validated account rules facade. API supplies time/seed/hash, never formulas. */
 export class AccountCreationRules {
-  protected readonly content;
+  protected readonly content: ValidatedContent;
   protected readonly validator;
   readonly versions;
-  constructor() {
-    const result = loadValidatedContent(); if (!result.ok) throw new Error('CONTENT_UNAVAILABLE');
-    this.content = result.value;
+  constructor(content?: ValidatedContent) {
+    if (content) this.content = content;
+    else {
+      const result = loadValidatedContent(); if (!result.ok) throw new Error('CONTENT_UNAVAILABLE');
+      this.content = result.value;
+    }
     this.validator = new ContentValidator(structuredClone(this.content.schemas) as unknown as Record<string, ObjectValue>);
     const { content_hash, content_version, rules_version } = this.content.manifest;
     this.versions = { content_hash, content_version, rules_version };

@@ -5,7 +5,6 @@ import type { AssetPack } from '../renderer/pack.ts';
 import { SkillElements } from './element-badge.tsx';
 import { SkillIcon } from './skill-icon.tsx';
 import { Icon } from './icon.tsx';
-import './skill-information.css';
 
 export function SkillInformationBody({info,pack}:{info:SkillInformation;pack:AssetPack|null}){
  const active=info.definition.kind==='active'?info.definition:null;

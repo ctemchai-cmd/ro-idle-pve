@@ -2,6 +2,7 @@ import type { ContentIssue, DefinitionLocation, RawContent, Result, ValidatedCon
 import type { Json, ObjectValue } from './value.ts';
 import { arrayAt, canonical, freeze, isObject, objectAt } from './value.ts';
 import { ContentValidator, demand, InvalidContent } from './validation.ts';
+import { createJobCatalog, type JobCatalog } from './jobs.ts';
 
 const object = (value: Json | undefined) => objectAt(value, 'content');
 const list = (value: Json | undefined) => arrayAt(value, 'content');
@@ -102,10 +103,11 @@ export function validateContent(raw: unknown): Result<ValidatedContent> {
     const handlers = list(bundle.documents['effect-primitives.json']!.handler_registry).map(row => String(object(row).id));
     demand(canonical(handlers) === canonical(['detonate_own_status']), 'handler_registry', docAt('effect-primitives.json'));
   });
+  let jobs: JobCatalog | undefined;
   attempt(docAt('progression.json'), () => {
     const progression = bundle.documents['progression.json']!;
-    const tree = object(progression.class_tree);
-    const classes = new Set([...Object.keys(tree), ...Object.values(tree).flatMap(row => list(row).map(String))]);
+    jobs = createJobCatalog(progression);
+    const classes = new Set(jobs.order);
     for (const row of Object.values(skills)) demand(classes.has(String(row.class_id)) || row.class_id === 'enemy', 'unknown_class', { source: 'skills', definition_id: String(row.id), path: '/class_id' });
     const strings = object(bundle.documents['strings.th.json']!.strings);
     for (const row of [...Object.values(skills), ...Object.values(items)]) demand(String(row.name_key) in strings || String(row.id).startsWith('enemy_'), 'unknown_name_key', { source: 'strings.th.json', definition_id: String(row.id), path: `/strings/${String(row.name_key)}` });
@@ -168,5 +170,5 @@ export function validateContent(raw: unknown): Result<ValidatedContent> {
       for (const id of list(boss.active_slots).filter(Boolean)) demand(skills[String(id)]?.kind === 'active', 'unknown_skill', at);
     }
   });
-  return errors.length ? { ok: false, errors } : { ok: true, value: freeze({ manifest: bundle.manifest, documents: bundle.documents, skills, items, statuses: validator.statuses, actors, schemas: bundle.schemas }) };
+  return errors.length ? { ok: false, errors } : { ok: true, value: freeze({ manifest: bundle.manifest, documents: bundle.documents, jobs: jobs!, skills, items, statuses: validator.statuses, actors, schemas: bundle.schemas }) };
 }

@@ -2,11 +2,12 @@ import { enchantLinesFor } from '../build/slot-definition.ts';
 import type { AccountState, Command } from '../../contracts/index.ts';
 import type { ValidatedContent } from '../../content/model.ts';
 import { ProgressionRejection } from './rejection.ts';
+import { equipmentUpgrades } from '../build/equipment-upgrades.ts';
 
 export { equipmentSlots, equipmentRules, itemDefinition, equipmentFit } from '../build/equipment-definition.ts';
 export type { InventoryItem, EquipmentSlot, EquipmentRules } from '../build/equipment-definition.ts';
 import { equipmentSlots, equipmentRules, itemDefinition, equipmentFit, type InventoryItem, type EquipmentSlot } from '../build/equipment-definition.ts';
-export type EquipmentCommand = Extract<Command, {type:'equipment.equip'|'equipment.unequip'|'equipment.lock'|'equipment.salvage'|'equipment.purchase_weapon'}>;
+export type EquipmentCommand = Extract<Command, {type:'equipment.equip'|'equipment.equip_upgrades'|'equipment.unequip'|'equipment.lock'|'equipment.salvage'|'equipment.purchase_weapon'}>;
 function reject(code:string):never{throw new ProgressionRejection(code);}
 /** Ownership is an assignment; the one canonical instance always stays in inventory. */
 export function assignedOwner(state:AccountState,id:string):{character_id:string;slot:EquipmentSlot;kind:InventoryItem['kind']}|null {
@@ -45,6 +46,13 @@ export function applyEquipmentCommand(state:AccountState,command:EquipmentComman
   const item=state.inventory.find(i=>i.instance_id===command.params.item_instance_id);if(!item)reject('ITEM_NOT_FOUND');item!.locked=command.params.locked;return'ITEM_LOCK_UPDATED';
  }
  const actor=state.roster.find(a=>a.character_id===command.params.character_id);if(!actor)reject('CHARACTER_NOT_FOUND');
+ if(command.type==='equipment.equip_upgrades'){
+  const upgrades=equipmentUpgrades(state,actor!.character_id,content);
+  if(!Object.keys(upgrades).length)reject('NO_EQUIPMENT_UPGRADES');
+  // Recommendations are resolved from this transaction's state, never client IDs.
+  for(const slot of equipmentSlots)if(upgrades[slot])actor!.equipment[slot]=upgrades[slot]!;
+  return'EQUIPMENT_UPGRADES_ASSIGNED';
+ }
  if(command.type==='equipment.purchase_weapon'){
   if(state.inventory.length>=rules.inventory_capacity)reject('INVENTORY_FULL');
   if(command.params.weapon_type!==rules.weapon_compatibility[actor!.job_id])reject('WEAPON_INCOMPATIBLE');

@@ -1,0 +1,26 @@
+✔ equip-all uses exactly the existing six hints and keeps all payloads, investments, cards and other actors (3.778625ms)
+✔ tier outranks rarity; same-tier options/ties do not trigger changes and a full500 bag needs no extra capacity (1.928625ms)
+✔ single account command and optimistic preview match, grant nothing, and advance one receipt revision (116.229125ms)
+✔ no upgrades/missing actor/battle reject without partial changes; client cannot supply arbitrary item IDs (2.722875ms)
+✔ choosing an off-team companion equips only that companion and never transfers slot investments (1.862209ms)
+✔ six slots/job and level restrictions, moving one canonical item across main/off-team owner preserves both slot investments (424.062584ms)
+✔ all19 jobs use authored weapon compatibility; all equipment rarity/type definitions fit shared compiler without implicit stat growth (198.459708ms)
+✔ rarity affects only item base; Refine/Enchant/card sources remain on each owner, sleep when empty, and preview exactly matches battle snapshot (272.746625ms)
+✔ 500-item bag keeps pending reward fixed; equip/unlock/salvage still work and protected batch rejects atomically (337.818542ms)
+✔ training weapon costs125 once per command, is a distinct unequipped instance, discard yields zero and cannot buy incompatible type (282.779708ms)
+✔ semantic validation rejects duplicate owners/definitions/card slots and all equipment commands lock during live battle (239.302875ms)
+✔ equipment precision enters primary DEX once and skill CT/ACD preview shares that exact cast speed (201.061791ms)
+✔ a usable improvement marks its slot and stops marking it after equipping; empty slots can be filled (2.279875ms)
+✔ wrong job, required level, equal gear and items equipped by another character never create hints (1.429958ms)
+✔ a lower item level never triggers a hint even at Supreme rarity (0.991417ms)
+✔ same level compares rarity only, regardless of options or slot investment, without changing the save (2.716541ms)
+✔ a higher item level outranks rarity and is suggested before lower-level items (1.331584ms)
+✔ a full 500-item bag with duplicates stays deterministic and a locked bag item remains wearable (2.122958ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4160.561125

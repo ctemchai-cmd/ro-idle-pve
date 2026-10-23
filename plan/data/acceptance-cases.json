@@ -13357,6 +13357,430 @@
       "evidence_refs": [
         "plan/evidence/task-120-review.json"
       ]
+    },
+    {
+      "id": "T121-AC-01",
+      "task_id": "TASK-121",
+      "acceptance_id": "AC-01",
+      "criterion": "catalog สร้าง19อาชีพเดิมตามลำดับเดิม และ fixture4ขั้นคืน ancestry ที่ถูกต้อง;ปฏิเสธ parentหาย/cycle/duplicate/cross-root โดยไม่แก้ input",
+      "input_setup": "Current19-job Class2 content and disposable unordered four-stage job graph; no owner state",
+      "input_refs": [
+        "plan/design/45-hi-class-implementation.md"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "catalog สร้าง19อาชีพเดิมตามลำดับเดิม และ fixture4ขั้นคืน ancestry ที่ถูกต้อง;ปฏิเสธ parentหาย/cycle/duplicate/cross-root โดยไม่แก้ input",
+      "verification": "Pure job graph/skill access tests, current progression/catalog/preview/content regression, build/boundaries/readiness",
+      "status": "passed_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-121-review.json"
+      ]
+    },
+    {
+      "id": "T121-AC-02",
+      "task_id": "TASK-121",
+      "acceptance_id": "AC-02",
+      "criterion": "การเรียน/validate/compile/สมุดสกิล/preview ใช้ ancestry เดียวกัน;Hi-classfixtureสืบทอดClass1+Class2ของตน ไม่ได้ท่าสายพี่น้อง/ต่างroot",
+      "input_setup": "Current19-job Class2 content and disposable unordered four-stage job graph; no owner state",
+      "input_refs": [
+        "plan/design/45-hi-class-implementation.md"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "การเรียน/validate/compile/สมุดสกิล/preview ใช้ ancestry เดียวกัน;Hi-classfixtureสืบทอดClass1+Class2ของตน ไม่ได้ท่าสายพี่น้อง/ต่างroot",
+      "verification": "Pure job graph/skill access tests, current progression/catalog/preview/content regression, build/boundaries/readiness",
+      "status": "passed_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-121-review.json"
+      ]
+    },
+    {
+      "id": "T121-AC-03",
+      "task_id": "TASK-121",
+      "acceptance_id": "AC-03",
+      "criterion": "Class2จริง19อาชีพ126สกิล/cap70/lockedบท10–12/ทุนและloadoutเดิมคงพฤติกรรม;targeted tests/typecheck/build/boundariesผ่าน",
+      "input_setup": "Current19-job Class2 content and disposable unordered four-stage job graph; no owner state",
+      "input_refs": [
+        "plan/design/45-hi-class-implementation.md"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "Class2จริง19อาชีพ126สกิล/cap70/lockedบท10–12/ทุนและloadoutเดิมคงพฤติกรรม;targeted tests/typecheck/build/boundariesผ่าน",
+      "verification": "Pure job graph/skill access tests, current progression/catalog/preview/content regression, build/boundaries/readiness",
+      "status": "passed_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-121-review.json"
+      ]
+    },
+    {
+      "id": "T121-AC-04",
+      "task_id": "TASK-121",
+      "acceptance_id": "AC-04",
+      "criterion": "design45 ระบุรายการต้องทำก่อนเปิดHi-class/คำตอบที่ยังรอ/26ท่าใหม่/ภาพ/อัปเลเวล/เซฟ/Awaken และไม่อ้างว่าHi-classเสร็จจากฐานโครงสร้าง",
+      "input_setup": "Current19-job Class2 content and disposable unordered four-stage job graph; no owner state",
+      "input_refs": [
+        "plan/design/45-hi-class-implementation.md"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "design45 ระบุรายการต้องทำก่อนเปิดHi-class/คำตอบที่ยังรอ/26ท่าใหม่/ภาพ/อัปเลเวล/เซฟ/Awaken และไม่อ้างว่าHi-classเสร็จจากฐานโครงสร้าง",
+      "verification": "Pure job graph/skill access tests, current progression/catalog/preview/content regression, build/boundaries/readiness",
+      "status": "passed_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-121-review.json"
+      ]
+    },
+    {
+      "id": "T122-AC-01",
+      "task_id": "TASK-122",
+      "acceptance_id": "AC-01",
+      "criterion": "ActiveHi fixtureเลื่อนสายเดิมที่70โดยไม่เปลี่ยนStatus/สกิล/loadout/equipment/ทุน;ต่ำ70/ปิดfeature/inbattle/ข้ามrootNPCถูกปฏิเสธ",
+      "input_setup": "DisposableClass2Lv70 plus complete Hi content at gated fixtures; legacy saves and seeded battles; no owner data",
+      "input_refs": [
+        "plan/design/45-hi-class-implementation.md"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "ActiveHi fixtureเลื่อนสายเดิมที่70โดยไม่เปลี่ยนStatus/สกิล/loadout/equipment/ทุน;ต่ำ70/ปิดfeature/inbattle/ข้ามrootNPCถูกปฏิเสธ",
+      "verification": "Pure/schema/content/engine/build and TASK125 actualAuth-SQL-mobile/hosted integration",
+      "status": "passed_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-122-review.json"
+      ]
+    },
+    {
+      "id": "T122-AC-02",
+      "task_id": "TASK-122",
+      "acceptance_id": "AC-02",
+      "criterion": "Level71–90ใช้ต้นทุน/แต้มmanualที่คำนวณได้,gate80แยกจากpromotionและไม่มีgate70;Class2ยังcap70",
+      "input_setup": "DisposableClass2Lv70 plus complete Hi content at gated fixtures; legacy saves and seeded battles; no owner data",
+      "input_refs": [
+        "plan/design/45-hi-class-implementation.md"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "Level71–90ใช้ต้นทุน/แต้มmanualที่คำนวณได้,gate80แยกจากpromotionและไม่มีgate70;Class2ยังcap70",
+      "verification": "Pure/schema/content/engine/build and TASK125 actualAuth-SQL-mobile/hosted integration",
+      "status": "passed_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-122-review.json"
+      ]
+    },
+    {
+      "id": "T122-AC-03",
+      "task_id": "TASK-122",
+      "acceptance_id": "AC-03",
+      "criterion": "Schemaรองรับ13Hi jobs/90/gate80แต่รุ่นปัจจุบันยังปิดHiและcap70;เซฟClass2ยังผ่านและไม่มีauto-promote",
+      "input_setup": "DisposableClass2Lv70 plus complete Hi content at gated fixtures; legacy saves and seeded battles; no owner data",
+      "input_refs": [
+        "plan/design/45-hi-class-implementation.md"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "Schemaรองรับ13Hi jobs/90/gate80แต่รุ่นปัจจุบันยังปิดHiและcap70;เซฟClass2ยังผ่านและไม่มีauto-promote",
+      "verification": "Pure/schema/content/engine/build and TASK125 actualAuth-SQL-mobile/hosted integration",
+      "status": "passed_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-122-review.json"
+      ]
+    },
+    {
+      "id": "T122-AC-04",
+      "task_id": "TASK-122",
+      "acceptance_id": "AC-04",
+      "criterion": "Targeted progression/schema/build/boundariesและlegacyregressionผ่าน;ไม่เปิดreleaseก่อนสกิล/ภาพ/Awakenและintegrationครบ",
+      "input_setup": "DisposableClass2Lv70 plus complete Hi content at gated fixtures; legacy saves and seeded battles; no owner data",
+      "input_refs": [
+        "plan/design/45-hi-class-implementation.md"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "Targeted progression/schema/build/boundariesและlegacyregressionผ่าน;ไม่เปิดreleaseก่อนสกิล/ภาพ/Awakenและintegrationครบ",
+      "verification": "Pure/schema/content/engine/build and TASK125 actualAuth-SQL-mobile/hosted integration",
+      "status": "passed_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-122-review.json"
+      ]
+    },
+    {
+      "id": "T123-AC-01",
+      "task_id": "TASK-123",
+      "acceptance_id": "AC-01",
+      "criterion": "13Hi professionsมี2stable skillsต่ออาชีพครบprogram/rank1–10/ราคา/ชื่อ/คำอธิบายจริง;unlock70และ80/full88และ89",
+      "input_setup": "DisposableClass2Lv70 plus complete Hi content at gated fixtures; legacy saves and seeded battles; no owner data",
+      "input_refs": [
+        "plan/design/45-hi-class-implementation.md"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "13Hi professionsมี2stable skillsต่ออาชีพครบprogram/rank1–10/ราคา/ชื่อ/คำอธิบายจริง;unlock70และ80/full88และ89",
+      "verification": "Pure/schema/content/engine/build and TASK125 actualAuth-SQL-mobile/hosted integration",
+      "status": "not_run_implementation",
+      "evidence_refs": []
+    },
+    {
+      "id": "T123-AC-02",
+      "task_id": "TASK-123",
+      "acceptance_id": "AC-02",
+      "criterion": "Nativebody/head/weapon/actionของ24genderpresetsและjob/skilliconsตรงต้นทาง;packไม่เกิน32MiBหรือมีทางปรับลดที่ตรวจได้",
+      "input_setup": "DisposableClass2Lv70 plus complete Hi content at gated fixtures; legacy saves and seeded battles; no owner data",
+      "input_refs": [
+        "plan/design/45-hi-class-implementation.md"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "Nativebody/head/weapon/actionของ24genderpresetsและjob/skilliconsตรงต้นทาง;packไม่เกิน32MiBหรือมีทางปรับลดที่ตรวจได้",
+      "verification": "Pure/schema/content/engine/build and TASK125 actualAuth-SQL-mobile/hosted integration",
+      "status": "not_run_implementation",
+      "evidence_refs": []
+    },
+    {
+      "id": "T123-AC-03",
+      "task_id": "TASK-123",
+      "acceptance_id": "AC-03",
+      "criterion": "ทุกprogramใช้sharedtypedpipeline/สถานะ/ธาตุ/คิวเดิมและมีdistinctrole;สกิลเดิมไม่ถูกย้าย/ลบทิ้ง",
+      "input_setup": "DisposableClass2Lv70 plus complete Hi content at gated fixtures; legacy saves and seeded battles; no owner data",
+      "input_refs": [
+        "plan/design/45-hi-class-implementation.md"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "ทุกprogramใช้sharedtypedpipeline/สถานะ/ธาตุ/คิวเดิมและมีdistinctrole;สกิลเดิมไม่ถูกย้าย/ลบทิ้ง",
+      "verification": "Pure/schema/content/engine/build and TASK125 actualAuth-SQL-mobile/hosted integration",
+      "status": "not_run_implementation",
+      "evidence_refs": []
+    },
+    {
+      "id": "T123-AC-04",
+      "task_id": "TASK-123",
+      "acceptance_id": "AC-04",
+      "criterion": "Content/golden/targeted1x2x4/build/metadata/nativepreviewผ่าน;ไม่อ้างว่าบาลานซ์ทีมผู้ใช้แล้วและยังไม่เปิดreleaseเดี่ยว",
+      "input_setup": "DisposableClass2Lv70 plus complete Hi content at gated fixtures; legacy saves and seeded battles; no owner data",
+      "input_refs": [
+        "plan/design/45-hi-class-implementation.md"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "Content/golden/targeted1x2x4/build/metadata/nativepreviewผ่าน;ไม่อ้างว่าบาลานซ์ทีมผู้ใช้แล้วและยังไม่เปิดreleaseเดี่ยว",
+      "verification": "Pure/schema/content/engine/build and TASK125 actualAuth-SQL-mobile/hosted integration",
+      "status": "not_run_implementation",
+      "evidence_refs": []
+    },
+    {
+      "id": "T124-AC-01",
+      "task_id": "TASK-124",
+      "acceptance_id": "AC-01",
+      "criterion": "Hi+สกิลMaxจึงAwakenได้;logicalID/loadoutเดิม/กลับrank1/คงทุนเดิม/variantเพิ่มหรือเปลี่ยนผลและเก่งกว่าก่อนAwakenMax",
+      "input_setup": "DisposableClass2Lv70 plus complete Hi content at gated fixtures; legacy saves and seeded battles; no owner data",
+      "input_refs": [
+        "plan/design/45-hi-class-implementation.md"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "Hi+สกิลMaxจึงAwakenได้;logicalID/loadoutเดิม/กลับrank1/คงทุนเดิม/variantเพิ่มหรือเปลี่ยนผลและเก่งกว่าก่อนAwakenMax",
+      "verification": "Pure/schema/content/engine/build and TASK125 actualAuth-SQL-mobile/hosted integration",
+      "status": "not_run_implementation",
+      "evidence_refs": []
+    },
+    {
+      "id": "T124-AC-02",
+      "task_id": "TASK-124",
+      "acceptance_id": "AC-02",
+      "criterion": "เศษใหม่ดรอปดันช่วงหลัง/รวมเดิม→ใหม่/ย่อยใหม่→เดิมเป็นbatchatomic;ไม่มีวงแลกเพิ่มของ/overflow/คืนทุนซ้ำ",
+      "input_setup": "DisposableClass2Lv70 plus complete Hi content at gated fixtures; legacy saves and seeded battles; no owner data",
+      "input_refs": [
+        "plan/design/45-hi-class-implementation.md"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "เศษใหม่ดรอปดันช่วงหลัง/รวมเดิม→ใหม่/ย่อยใหม่→เดิมเป็นbatchatomic;ไม่มีวงแลกเพิ่มของ/overflow/คืนทุนซ้ำ",
+      "verification": "Pure/schema/content/engine/build and TASK125 actualAuth-SQL-mobile/hosted integration",
+      "status": "not_run_implementation",
+      "evidence_refs": []
+    },
+    {
+      "id": "T124-AC-03",
+      "task_id": "TASK-124",
+      "acceptance_id": "AC-03",
+      "criterion": "อัปAwakenใช้variantราคาและเศษใหม่/ledgercostversionจริง;รีเซ็ตคืนbase+Awakenจริงครั้งเดียวและmigrationเซฟเก่าไม่สูญหายหรือแจกเศษย้อนหลัง",
+      "input_setup": "DisposableClass2Lv70 plus complete Hi content at gated fixtures; legacy saves and seeded battles; no owner data",
+      "input_refs": [
+        "plan/design/45-hi-class-implementation.md"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "อัปAwakenใช้variantราคาและเศษใหม่/ledgercostversionจริง;รีเซ็ตคืนbase+Awakenจริงครั้งเดียวและmigrationเซฟเก่าไม่สูญหายหรือแจกเศษย้อนหลัง",
+      "verification": "Pure/schema/content/engine/build and TASK125 actualAuth-SQL-mobile/hosted integration",
+      "status": "not_run_implementation",
+      "evidence_refs": []
+    },
+    {
+      "id": "T124-AC-04",
+      "task_id": "TASK-124",
+      "acceptance_id": "AC-04",
+      "criterion": "หน้าสกิล/สมุด/Timelineแสดงvariant/rank/ผลจริงพร้อมpurpleinnerglow/nativeicon;runtime/headless/checkpoint/1x2x4ใช้definitionเดียวกัน",
+      "input_setup": "DisposableClass2Lv70 plus complete Hi content at gated fixtures; legacy saves and seeded battles; no owner data",
+      "input_refs": [
+        "plan/design/45-hi-class-implementation.md"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "หน้าสกิล/สมุด/Timelineแสดงvariant/rank/ผลจริงพร้อมpurpleinnerglow/nativeicon;runtime/headless/checkpoint/1x2x4ใช้definitionเดียวกัน",
+      "verification": "Pure/schema/content/engine/build and TASK125 actualAuth-SQL-mobile/hosted integration",
+      "status": "not_run_implementation",
+      "evidence_refs": []
+    },
+    {
+      "id": "T125-AC-01",
+      "task_id": "TASK-125",
+      "acceptance_id": "AC-01",
+      "criterion": "เปิดHi70/Awakenรายสกิล/levelcap90/บท10–12เมื่อถึงgateจริง;ไม่เปิดArtifact/Class3/Pet/Rune",
+      "input_setup": "DisposableClass2Lv70 plus complete Hi content at gated fixtures; legacy saves and seeded battles; no owner data",
+      "input_refs": [
+        "plan/design/45-hi-class-implementation.md"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "เปิดHi70/Awakenรายสกิล/levelcap90/บท10–12เมื่อถึงgateจริง;ไม่เปิดArtifact/Class3/Pet/Rune",
+      "verification": "Pure/schema/content/engine/build and TASK125 actualAuth-SQL-mobile/hosted integration",
+      "status": "not_run_implementation",
+      "evidence_refs": []
+    },
+    {
+      "id": "T125-AC-02",
+      "task_id": "TASK-125",
+      "acceptance_id": "AC-02",
+      "criterion": "FreshlocalAuthAPI-SQL-mobile320390ผ่าน70→Hiรักษาบิลด์→Awaken→อัป→แลกเศษ→gate80→สกิลใหม่→ไฟต์→reload/slotisolation",
+      "input_setup": "DisposableClass2Lv70 plus complete Hi content at gated fixtures; legacy saves and seeded battles; no owner data",
+      "input_refs": [
+        "plan/design/45-hi-class-implementation.md"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "FreshlocalAuthAPI-SQL-mobile320390ผ่าน70→Hiรักษาบิลด์→Awaken→อัป→แลกเศษ→gate80→สกิลใหม่→ไฟต์→reload/slotisolation",
+      "verification": "Pure/schema/content/engine/build and TASK125 actualAuth-SQL-mobile/hosted integration",
+      "status": "not_run_implementation",
+      "evidence_refs": []
+    },
+    {
+      "id": "T125-AC-03",
+      "task_id": "TASK-125",
+      "acceptance_id": "AC-03",
+      "criterion": "OldClass2save migration/ทุนเดิม/AFKfrozen/carry/backup/receipt replay/response lossไม่ทำprogressหรือเศษซ้ำ;ปรับbatchเซฟไม่เพิ่มrequests",
+      "input_setup": "DisposableClass2Lv70 plus complete Hi content at gated fixtures; legacy saves and seeded battles; no owner data",
+      "input_refs": [
+        "plan/design/45-hi-class-implementation.md"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "OldClass2save migration/ทุนเดิม/AFKfrozen/carry/backup/receipt replay/response lossไม่ทำprogressหรือเศษซ้ำ;ปรับbatchเซฟไม่เพิ่มrequests",
+      "verification": "Pure/schema/content/engine/build and TASK125 actualAuth-SQL-mobile/hosted integration",
+      "status": "not_run_implementation",
+      "evidence_refs": []
+    },
+    {
+      "id": "T125-AC-04",
+      "task_id": "TASK-125",
+      "acceptance_id": "AC-04",
+      "criterion": "Fullappropriatechecks/filteredVercelbuild/packbudget→push→hostedpublichealth/artifactsและreleaseflagsตรงก่อนdone;ไม่เข้าบัญชีowner/ไม่รันbalancebatch",
+      "input_setup": "DisposableClass2Lv70 plus complete Hi content at gated fixtures; legacy saves and seeded battles; no owner data",
+      "input_refs": [
+        "plan/design/45-hi-class-implementation.md"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "Fullappropriatechecks/filteredVercelbuild/packbudget→push→hostedpublichealth/artifactsและreleaseflagsตรงก่อนdone;ไม่เข้าบัญชีowner/ไม่รันbalancebatch",
+      "verification": "Pure/schema/content/engine/build and TASK125 actualAuth-SQL-mobile/hosted integration",
+      "status": "not_run_implementation",
+      "evidence_refs": []
+    },
+    {
+      "id": "T126-AC-01",
+      "task_id": "TASK-126",
+      "acceptance_id": "AC-01",
+      "criterion": "คำแนะนำกับserverใช้helperเดียวกัน;เทียบTierก่อนrarityเมื่อTierเท่ากัน/เฉพาะใส่ได้และยังไม่มีเจ้าของ/ไม่เลือกจากoptions/lockedยังใส่ได้",
+      "input_setup": "Disposable selectedLv20 character with6eligible upgrades,wrong class/level,assigned/locked/tie items and fullbag500; real mobile320390",
+      "input_refs": [
+        "plan/design/46-equip-upgrades.md"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "คำแนะนำกับserverใช้helperเดียวกัน;เทียบTierก่อนrarityเมื่อTierเท่ากัน/เฉพาะใส่ได้และยังไม่มีเจ้าของ/ไม่เลือกจากoptions/lockedยังใส่ได้",
+      "verification": "Pure unit/preview/protocol and realAuth-SQL-mobile/hosted",
+      "status": "not_run_implementation",
+      "evidence_refs": []
+    },
+    {
+      "id": "T126-AC-02",
+      "task_id": "TASK-126",
+      "acceptance_id": "AC-02",
+      "criterion": "คลิกเดียวเปลี่ยนเฉพาะช่องที่มีhintของตัวที่เลือก;หนึ่งatomiccommand/receipt/revision/optimisticpreview,ไม่แตะNPCอื่น/inventorypayload/ทุน/Refine/Enchant/cards และไม่ทำของหาย",
+      "input_setup": "Disposable selectedLv20 character with6eligible upgrades,wrong class/level,assigned/locked/tie items and fullbag500; real mobile320390",
+      "input_refs": [
+        "plan/design/46-equip-upgrades.md"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "คลิกเดียวเปลี่ยนเฉพาะช่องที่มีhintของตัวที่เลือก;หนึ่งatomiccommand/receipt/revision/optimisticpreview,ไม่แตะNPCอื่น/inventorypayload/ทุน/Refine/Enchant/cards และไม่ทำของหาย",
+      "verification": "Pure unit/preview/protocol and realAuth-SQL-mobile/hosted",
+      "status": "not_run_implementation",
+      "evidence_refs": []
+    },
+    {
+      "id": "T126-AC-03",
+      "task_id": "TASK-126",
+      "acceptance_id": "AC-03",
+      "criterion": "ไม่มีของ/actorหาย/inbattle/เกินlevel/อาวุธผิด/duplicate request/CASconflict/response lossมีผลที่ชัด;fullbagยังใส่ได้เพราะไม่เพิ่มinventory;ไม่มีpartialset",
+      "input_setup": "Disposable selectedLv20 character with6eligible upgrades,wrong class/level,assigned/locked/tie items and fullbag500; real mobile320390",
+      "input_refs": [
+        "plan/design/46-equip-upgrades.md"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "ไม่มีของ/actorหาย/inbattle/เกินlevel/อาวุธผิด/duplicate request/CASconflict/response lossมีผลที่ชัด;fullbagยังใส่ได้เพราะไม่เพิ่มinventory;ไม่มีpartialset",
+      "verification": "Pure unit/preview/protocol and realAuth-SQL-mobile/hosted",
+      "status": "not_run_implementation",
+      "evidence_refs": []
+    },
+    {
+      "id": "T126-AC-04",
+      "task_id": "TASK-126",
+      "acceptance_id": "AC-04",
+      "criterion": "ปุ่มmobile320390อ่านง่าย/ไม่ล้น/หายแจ้งเตือนเมื่อใส่แล้ว;targeted/build/boundaries/readiness/realAuth-SQL-mobile+hostedผ่านก่อนdone",
+      "input_setup": "Disposable selectedLv20 character with6eligible upgrades,wrong class/level,assigned/locked/tie items and fullbag500; real mobile320390",
+      "input_refs": [
+        "plan/design/46-equip-upgrades.md"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "ปุ่มmobile320390อ่านง่าย/ไม่ล้น/หายแจ้งเตือนเมื่อใส่แล้ว;targeted/build/boundaries/readiness/realAuth-SQL-mobile+hostedผ่านก่อนdone",
+      "verification": "Pure unit/preview/protocol and realAuth-SQL-mobile/hosted",
+      "status": "not_run_implementation",
+      "evidence_refs": []
     }
   ]
 }

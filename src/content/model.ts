@@ -1,4 +1,5 @@
 import type { DeepReadonly, Json, ObjectValue } from './value.ts';
+import type { JobCatalog } from './jobs.ts';
 
 export interface ContentManifest {
   schema_version: 1;
@@ -32,6 +33,7 @@ export interface ContentIssue {
 export type Result<T> = { ok: true; value: T } | { ok: false; errors: ContentIssue[] };
 
 export interface ContentData {
+  jobs: JobCatalog;
   manifest: ContentManifest;
   documents: Record<string, ObjectValue>;
   skills: Record<string, ObjectValue>;

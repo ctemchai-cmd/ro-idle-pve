@@ -6,6 +6,7 @@ import { optionModifiers } from '../domain/build/item-options.ts';
 import { previewCharacterStats } from '../domain/build/character.ts';
 import { compileCharacterSkills } from '../domain/progression/skills.ts';
 import { castDurationMs, skillIntervalMs } from '../domain/math/index.ts';
+import { equipmentUpgrades } from '../domain/build/equipment-upgrades.ts';
 export { equipmentSlots, assignedOwner, salvageQuote };
 export type { EquipmentSlot, InventoryItem };
 const loaded=loadValidatedContent();if(!loaded.ok)throw new Error('CONTENT_UNAVAILABLE');const content=loaded.value;
@@ -34,21 +35,7 @@ export function equipmentPreview(state:AccountState,characterId:string,slot:Equi
  return{before:equipmentStats(state,characterId),after:equipmentStats(next,characterId)};
 }
 /** D-125: higher item level first, then higher rarity at the same level. Read-only, no stat simulation. */
-export function equipmentUpgradeHints(state:AccountState,characterId:string,rows=inventoryView(state,characterId)):Partial<Record<EquipmentSlot,string>>{
- const hints:Partial<Record<EquipmentSlot,string>>={};
- if(state.active_battle)return hints;
- const actor=state.roster.find(a=>a.character_id===characterId)!,byId=new Map(rows.map(row=>[row.item.instance_id,row]));
- type Row=typeof rows[number];
- const higher=(a:Row,b:Row)=>a.definition.tier_level>b.definition.tier_level||(a.definition.tier_level===b.definition.tier_level&&(rarityRank[a.item.rarity_id]??0)>(rarityRank[b.item.rarity_id]??0));
- for(const row of rows){
-  if(row.reason||row.owner)continue;
-  const current=byId.get(actor.equipment[row.slot]??'');
-  if(current&&!higher(row,current))continue;
-  const suggested=byId.get(hints[row.slot]??'');
-  if(!suggested||higher(row,suggested))hints[row.slot]=row.item.instance_id;
- }
- return hints;
-}
+export function equipmentUpgradeHints(state:AccountState,characterId:string):Partial<Record<EquipmentSlot,string>>{return equipmentUpgrades(state,characterId,content);}
 /** Equipped head/garment tiers for presentation (visible headgear/garment); stats never read this. */
 export function wardrobeTiers(state:AccountState,characterId:string):{head_tier:number|null;garment_tier:number|null}{
  const actor=state.roster.find(a=>a.character_id===characterId),tier=(id:string|null)=>{const item=id?state.inventory.find(i=>i.instance_id===id):undefined;return item?itemDefinition(item,content).tier_level:null;};

@@ -175,7 +175,8 @@ export function RosterStrip({ context }: { context: GameContext }) {
 
 export function BuddyPage({ context }: { context: GameContext }) {
   const { state, pack, characterId, go } = context, actor = state.roster.find(a => a.character_id === characterId)!, items = useMemo(() => inventoryView(state, actor.character_id), [state, actor.character_id]);
-  const upgrades = useMemo(() => equipmentUpgradeHints(state, actor.character_id, items), [state, actor.character_id, items]);
+  const upgrades = useMemo(() => equipmentUpgradeHints(state, actor.character_id), [state, actor.character_id]);
+  const upgradeCount = Object.keys(upgrades).length;
   const [slot, setSlot] = useState<EquipmentSlot | null>(null), [sheet, setSheet] = useState<'slot' | 'upgrade' | 'change' | 'character' | null>(null);
   const inTeam = state.team.some(p => p.character_id === actor.character_id), row = (s: EquipmentSlot) => items.find(i => i.item.instance_id === actor.equipment[s]);
   const tile = (s: EquipmentSlot) => <GearTile key={s} row={row(s)} slot={s} pack={pack} state={state} characterId={actor.character_id} upgradeId={upgrades[s]} onClick={() => { setSlot(s); setSheet('slot'); }} />;
@@ -187,6 +188,7 @@ export function BuddyPage({ context }: { context: GameContext }) {
       <div className="hero-stage"><ActorCanvas pack={pack} look={lookOf(actor, state)} width={220} height={250} scale={2.7} footY={226} animate className="hero-canvas" /><span className="hero-plinth" /></div>
       <div className="gear-col">{rightSlots.map(tile)}</div>
     </section>
+    <button className="btn equip-upgrades-btn" disabled={context.locked || !upgradeCount} onClick={()=>void context.submit('equipment.equip_upgrades',{character_id:actor.character_id})}><Icon name="chevrons-up"/><span>ใส่ของที่ดีกว่า</span>{upgradeCount>0&&<small>{upgradeCount} ช่อง</small>}</button>
     <div className="action-row">
       <button className="action-btn" onClick={() => go('stats', actor.character_id)}>{statsIcon ? <img src={statsIcon} alt="" /> : <Icon name="chart" />}<span>Stats</span>{actor.unspent_status_points > 0 && <i className="dot" />}</button>
       <button className="action-btn" onClick={() => go('skills', actor.character_id)}>{skillIcon ? <img src={skillIcon} alt="" /> : <Icon name="book" />}<span>Skill</span></button>
