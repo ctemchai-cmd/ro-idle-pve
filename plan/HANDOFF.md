@@ -6,6 +6,14 @@
 
 
 
+## 23 ต.ค.2026 · Codex — TASK112–114 done / ขึ้นVercelแล้ว
+
+- SOURCE`8b6d64d40fa2975650bd23342a48a034d3cde1f2` VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/E1X8SjxXxu34VjHhQfvdXoEwEz6G Public4groups API200SIN1/new94d70content/checkpoint+save-slots401/samepack/5declaredbundleSHA/prevalidatedcontent+retiredTier+4slotrules/mobilelogin0writesผ่าน. Noownercloudwrites. Userจบไฟต์reload→backup/migrateตามflowเดิม ไม่ต้องSQL/envใหม่;SQL008ติดตั้งแล้วอย่าขอซ้ำ.
+- 564TS/fullM0/readiness8/build/secrets223และactuallocalperformance/navigation/10save/AuthAPI-SQL-mobile320390/retiredAPI+receipt+newgear/runtime-headless1x2x4-CC-Timeline-serverผ่าน. 112comparisonbefore113/114data: cold12.523→4.699s/cached8.949→4.342s/navp9595→107ms≤150/0API/preview503→398msก่อนheldreply/60sfarmmax649.8→83.4ms. NotactualAndroid/cloudlatency. TASK0423scache/bootstrap/Safari/stressและ064cloudtimingยังไม่ปิด.
+- D146เอาอัปTierออกทั้งUI/preview+serverpolicyrejectไม่หักทุน;คงoldgear/options/slotcards/history/receipt/schema/prices. **Userยืนยันequipmentgachaยังได้Tierสูงเป็นชิ้นใหม่** เหมือนdrop. FusionคงTier. D147คิว4slotsรวมnull,emptyใช้SI/normalต่อ/noSP-CT-ACD,allnullnormal_only,sharedallrotationactors. Exactslot0single3/15/27s,slot2first9s. ไม่ปรับpower/loot/levelauto-growth/ไม่รันbalancebatch. Pack1ea6314ef8ec8c83b653f949d8da81fefcf5ec36c5b56a8e018eec61abeba215เดิม791IDs1467files31679919B;content94d70d1d30f44c7efbfe81cc50501d4677b4720df779389a9a60605066cd5efb.
+- D144performanceก่อนHi-class/userเทสbalanceเอง. D145อาชีพละ2ท่าใหม่/เดิมmaxก่อน70/ใหม่maxก่อนAwaken90/iconเกม+purpleinner-lineglow. Design40+examplecapsเขียนแล้ว;proposedunlock70/full88และ80/full89ยังไม่ยืนยัน. Hi-classยังไม่implement;ต้องออกแบบeffects/prices/variantcontractก่อนงานถัดไป.
+- Board100/114done/inprogress4old041058064067/review5old048054055056057/todo5 M4done60/69. Tasks112/113/114done/10newACpassed;links/overview/acceptance updated. Finalreadiness8ผ่านหลังย้ายdone;บันทึกปิดงานแยกcommitจากsourceตามworkflow. 151narrowreviewedpathsไม่มีassets/env;untoucheduseruntrackedmodern~1000imagesอย่าstageทั้งfolder. Noagents/privateenvreads/6173restart. Seeprevioussectionforrootcauses/repro/failurehistory,finalreports112summary/113-114-ui-live/sourceaudit.
+
 ## 23 ต.ค.2026 · Codex — TASK112–114 localผ่าน รอpush/hosted
 
 - User: performanceก่อนHi-class/ผู้ใช้เทสbalanceเอง D144. D145Hi-classเพิ่มแค่2skills/job;เดิมเต็มก่อน70,ใหม่ก่อนAwaken90/iconเกม+purpleinner-lineglow. design40+examplesเสนอunlock70/full88และ80/full89ยังไม่user-confirmed. ยังไม่implementHi-class. D146เอาTierupออก/ผู้ใช้ยืนยันgachaยังTierสูงได้. D147ช่องว่างต้องใช้SIครบ4slots.

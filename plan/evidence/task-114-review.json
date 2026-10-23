@@ -2,27 +2,35 @@
   "task_id": "TASK-114",
   "reviewer": "Codex self-review",
   "date": "2026-10-23",
-  "passed": false,
+  "passed": true,
   "local_passed": true,
   "acceptance": {
     "AC-01": true,
     "AC-02": true,
-    "AC-03": false
+    "AC-03": true
   },
-  "pending": [
-    "Public deployment and declared bundle/API/mobile signed-out smoke"
-  ],
+  "pending": [],
   "evidence": [
     "plan/evidence/task-112-114-full-tests.txt",
     "plan/evidence/task-112-114-build.txt",
     "plan/evidence/task-112-114-m0.txt",
     "plan/evidence/task-112-114-source-audit.json",
-    "plan/evidence/task-113-114-ui-live.json"
+    "plan/evidence/task-113-114-ui-live.json",
+    "plan/evidence/task-112-hosted.json",
+    "plan/evidence/task-112-github-deployment.json"
   ],
   "limits": [
     "Actual Android and authenticated owner cloud latency not measured",
     "No ownercloud/6173/privateenv access; user is balancing the game"
   ],
   "content_hash": "94d70d1d30f44c7efbfe81cc50501d4677b4720df779389a9a60605066cd5efb",
-  "pack_hash": "1ea6314ef8ec8c83b653f949d8da81fefcf5ec36c5b56a8e018eec61abeba215"
+  "pack_hash": "1ea6314ef8ec8c83b653f949d8da81fefcf5ec36c5b56a8e018eec61abeba215",
+  "source_commit": "8b6d64d40fa2975650bd23342a48a034d3cde1f2",
+  "deployment": "https://vercel.com/chanon2/ro-idle-pve/E1X8SjxXxu34VjHhQfvdXoEwEz6G",
+  "checks": {
+    "TS_full": 564,
+    "build": true,
+    "M0_readiness": 8,
+    "hosted_public_groups": 4
+  }
 }

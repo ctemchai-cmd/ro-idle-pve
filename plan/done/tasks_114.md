@@ -16,9 +16,9 @@ TASK-016, TASK-018, TASK-020, TASK-024, TASK-060, TASK-111 (done). ทำหล�
 ## เกณฑ์ตรวจรับ
 - [x] AC-01:instant0ACD/ASPD100/SI3000,ช่อง0ท่าเดียวcastที่3000/15000/27000;ช่อง2ท่าเดียวfirst9000;มีnormalhitsระหว่างช่องว่าง,allnullไม่cast
 - [x] AC-02:CT/ACDจริง+speed snapshot/SPskip/CCไม่เปลี่ยนหลักเดิม;checkpointresume/1x2x4/headless/runtime/serverและTimelineeventตรงกัน
-- [ ] AC-03:unit/targeted/fullappropriate/build/M0/localmobileAPI/publicผ่านพร้อมอธิบายcontentmigration;ไม่มีแก้power/lootหรือownercloudsave
+- [x] AC-03:unit/targeted/fullappropriate/build/M0/localmobileAPI/publicผ่านพร้อมอธิบายcontentmigration;ไม่มีแก้power/lootหรือownercloudsave
 
 ## หลักฐาน
 6เคสเฉพาะตรวจslot0/leadingholes/2–4slots/allnull/ASPD/CT/ACD/SP/CC/revive/checkpoint. Actualbrowser1/2/4xตรงheadlessครบevents/RNG,Timelineและ3interruptsตรงกัน;actualsavedStory runtimeทำนายdefeat14.7sตรงserverfinish.
 
-ตรวจ local ผ่าน 23ต.ค.2026: 564TS/M0/readiness8/build และactualAuth/API/Postgres/Chrome320–390 ตาม [review](../evidence/task-114-review.json). รอ public deployment จึงปิดเกณฑ์สุดท้าย
+ตรวจ local ผ่าน 23ต.ค.2026: 564TS/M0/readiness8/build และactualAuth/API/Postgres/Chrome320–390 ตาม [review](../evidence/task-114-review.json). ขึ้นVercelแล้ว source`8b6d64d40`;public4groupsผ่าน API200SIN1/newcontent/5bundleSHA/retiredTier+4slot rules/login0writes จึงปิดเกณฑ์ครบ

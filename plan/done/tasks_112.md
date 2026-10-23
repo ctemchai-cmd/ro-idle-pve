@@ -19,9 +19,9 @@ TASK-041ผู้ใช้ทดสอบเอง ไม่บล็อกง�
 - [x] AC-01: baseline/afterloadfirst/cachedพร้อมnetwork/build/CPUและbytes,profileชี้rootcauseจริง;ไม่เรียกfixtureว่าAndroidผู้ใช้
 - [x] AC-02: matchednav500items+Stats/Skills/character switchดีขึ้นหรืออยู่≤150msp95บนCPU4x,0navigationAPI,no staleafterupgrade/equipment/save switch
 - [x] AC-03: deterministicupgradeเห็นpreviewก่อนreply,pending/replay/confirmationหลักเดิม;แยกCPU/hash/DB/networkและไม่อ้างlocalเป็นcloudlatency
-- [ ] AC-04: render/farm/Boss/SFX/memoryเหมาะสมและengineoutcomeunchanged;targeted/build/actualUI/sharedsave/publicproofผ่านโดยไม่แตะบาลานซ์หรือownerdata
+- [x] AC-04: render/farm/Boss/SFX/memoryเหมาะสมและengineoutcomeunchanged;targeted/build/actualUI/sharedsave/publicproofผ่านโดยไม่แตะบาลานซ์หรือownerdata
 
 ## ผล/หลักฐาน
 Productionmatchedfixture: cold12523→4699ms/cached8949→4342ms,navp9595→107ms(ยัง≤150)และ0API,upgradepreview503→398msก่อนreply;60sfarmmax649.8→83.4ms. Actual500items/scroll/filter/bulk/equip/level/skillsและ10save-switchpassed. ข้อจำกัดfullTASK042/actualAndroid/cloudtimingยังเปิดอยู่ ดูperformance-summaryและreview.
 
-ตรวจ local ผ่าน 23ต.ค.2026: 564TS/M0/readiness8/build และactualAuth/API/Postgres/Chrome320–390 ตาม [review](../evidence/task-112-review.json). รอ public deployment จึงปิดเกณฑ์สุดท้าย
+ตรวจ local ผ่าน 23ต.ค.2026: 564TS/M0/readiness8/build และactualAuth/API/Postgres/Chrome320–390 ตาม [review](../evidence/task-112-review.json). ขึ้นVercelแล้ว source`8b6d64d40`;public4groupsผ่าน API200SIN1/newcontent/5bundleSHA/retiredTier+4slot rules/login0writes จึงปิดเกณฑ์ครบ
