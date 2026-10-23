@@ -21,13 +21,13 @@ TASK-014, TASK-020, TASK-024, TASK-070, TASK-119 (done).
 - [x] AC-01: สมุดสกิลภายในเกมเข้าได้จากSettings/หน้าสกิล/เปลี่ยนอาชีพ;19jobs126skillsรวมinherit/passive/copy/ยังไม่เรียน เลือกrank/searchอ่านผลได้และไม่มีลิงก์เปิดแท็บใหม่ในเมนูเกม
 - [x] AC-02: Timeline draft/live/หลังจบและLogแตะดูรายละเอียดได้;ใช้actualactor resolveddefinitionและrankจากsessionพร้อมเวลา/ผลเดิม,missingไม่เดา;ปิดกลับTimelineได้โดยไม่หยุดหรือresetไฟต์
 - [x] AC-03: อ่านcatalog/Timelineไม่มีsavecommandsหรือsimulationใหม่/ไม่มีbody-VFX-audioโหลดจากcatalog;สกิลคิวอาชีพทุนและcontent/packhashไม่เปลี่ยน;nativeicons320390/focus/Escape/เลือกเร็วไม่stale
-- [ ] AC-04: targeted/build/boundaries/readiness/actualAuthAPI-SQL-mobileและpublicproductionผ่านก่อนdone ไม่SQL/env/ownerwrite/balancebatch
+- [x] AC-04: targeted/build/boundaries/readiness/actualAuthAPI-SQL-mobileและpublicproductionผ่านก่อนdone ไม่SQL/env/ownerwrite/balancebatch
 
 ## วิธีตรวจและหลักฐาน
-T120-AC-01–04 ในacceptance-matrix/design44. Unit readonly/runtime+actualChrome320390/AuthAPI/SQL/public. ผู้ตรวจ:Codex · รอบ1 localผ่าน/รอpublic AC04.
+T120-AC-01–04 ในacceptance-matrix/design44. Unit readonly/runtime+actualChrome320390/AuthAPI/SQL/public. ผู้ตรวจ:Codex · รอบ2 local+publicผ่านครบ.
 
 ## Blocker / คำถาม
 ไม่มี
 
 ## บันทึกการทำงานและ review
-28targeted+4previewregressions/build/root-filtered/boundaries/readiness8/actualAuthAPI-SQL-mobile5groupsผ่าน;frozenfinalr5. Readonly0commands/0body-VFX-audioเพิ่ม;onlyintentionalbattle.start_story/finish. รอpush/hostedก่อนdone.
+28targeted+4previewregressions/build/root-filtered/boundaries/readiness8/actualAuthAPI-SQL-mobile5groupsผ่าน;frozenfinalr5. Readonly0commands/0body-VFX-audioเพิ่ม;onlyintentionalbattle.start_story/finish. Vercel sourcec1eb50280สำเร็จ;public4groupsผ่าน SIN1/samecontent+pack/24bundleSHA/3entrylabels/sharedpublicTimelineplayer+enemy/nestedtable/Escape/focus/0writes. ไม่ต้องSQL/env/migrationใหม่.

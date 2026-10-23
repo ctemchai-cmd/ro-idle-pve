@@ -1,14 +1,14 @@
 {
   "task_id": "TASK-120",
-  "passed": false,
+  "passed": true,
   "reviewer": "Codex",
   "review_date": "2026-10-23",
-  "review_round": 1,
+  "review_round": 2,
   "acceptance": {
-    "AC-01": "passed_local",
-    "AC-02": "passed_local",
-    "AC-03": "passed_local",
-    "AC-04": "pending_public"
+    "AC-01": "passed_implementation",
+    "AC-02": "passed_implementation",
+    "AC-03": "passed_implementation",
+    "AC-04": "passed_implementation"
   },
   "evidence_refs": [
     "task-120-ui-live.json",
@@ -16,7 +16,10 @@
     "task-120-regressions.txt",
     "task-120-catalog-preview-tests.txt",
     "task-120-build.txt",
-    "task-120-filtered-build.txt"
+    "task-120-filtered-build.txt",
+    "task-120-hosted.json",
+    "task-120-public-demo-local.json",
+    "task-120-hosted-detail-320.png"
   ],
   "failure_history": [
     "r1 ambiguous nested summary selector; narrowed to direct summary",
@@ -28,5 +31,7 @@
     "Current catalog is19 existing Class1/2 jobs, Hi-class not implemented",
     "Authenticated production owner not accessed; actual auth/live/history covered on disposable local stack",
     "No balance batch or actual Android latency claim"
-  ]
+  ],
+  "source_commit": "c1eb50280f2e804d9b85d9944843c25735e4afeb",
+  "deployment": "https://vercel.com/chanon2/ro-idle-pve/CFbRHdtqJBwrWvUfHAQjJ7gsqT5C"
 }

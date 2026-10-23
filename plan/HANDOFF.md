@@ -5,6 +5,16 @@
 
 
 
+
+## 23 ต.ค.2026 · Codex — TASK120 done / สมุดสกิลในเกม + Timelineรายละเอียดขึ้นVercelแล้ว
+
+- SOURCE`c1eb50280f2e804d9b85d9944843c25735e4afeb` VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/CFbRHdtqJBwrWvUfHAQjJ7gsqT5C Public4groups API200SIN1/checkpoint+slots401/samecontent+pack/24bundleSHA/book3entrylabels/publicdemoTimelineplayer1+enemy1/nativeicons/320390/nestedtable/Escape/focus/reopen/0writesผ่าน;viewedhosted320. AuthenticatedGamebook/live/historyอยู่actualdisposablelocaltest5groups ไม่อ้างownercloudtest. NoSQL/env/migration/privateenv/6173restart/balancebatch/subagents.
+- D153userแก้D152:ต้องการสมุดชื่อ/ผลสกิลภายในเกมเพื่อเลือกอาชีพ ไม่ใช่animationlab. Settings→สมุดสกิลในเกม (ไม่มีexternalnewtab),SkillsPagebookicon,CharacterUpgrade→ดูสกิลทุกอาชีพ.19jobs126logicalskillsรวมinherit/passive/copy/unlearned/rank/search/expandnativeicons. Old `/skill-preview` labยังอยู่แต่unlinked/devonly;ไม่ใช่เมนูที่ส่งมอบล่าสุด. Hi-classยังไม่เสร็จ/currentClass2cap70 ตอบผู้ใช้ตรงๆแล้ว;ยังไม่เปิด2newskills/Awaken.
+- clientskill-catalog+describeResolvedSkillใช้programเดียวกับเกม;Timeline draft/live/history/logจิ้มportalDialogอ่านsession.initialของactor/actualrank/actualpatched/copy/enemydefinition ไม่resolveเป็น1หรือจำลองใหม่. Timesพื้นฐานแยกentrycontext. SkillIconใช้ร่วม;ElementGuidecancelstopPropagationที่dialogต้นทาง;Escape/close/focuspreventScroll/secondtapreopenคงparent/battle.
+- 28targeted+4Previewregressions/build/root-filtered585802gzip/PWA61a19ebbd13a7ba5/boundaries/readiness8/actualfreshAuthAPI-Postgres-Chrome3203905groups/finalfrozenr5ผ่าน. Onlyintentionalcommandsbattle.start_story+finish;catalog/details0writes/0body-VFX-audioเพิ่ม. GameplayerMeteor7/enemy1/history7/logและครบ19/126/CallSpirit10=2%/3entrypoints/search/ranks. Viewedcatalog/draft/enemy/log320. Addisolatedenv-emptypublicDemo localproofpassed beforehosted. See nextsection/reports forfailurehistory.
+- **Never codegen/build root while live browser tests run.** r4invalidated by overlappingbuild→Vite disposedsave/assetscontroller;frozenr5passed. r1nestedsummary/r2wrongtablebuttonname;r3runtimepassedbutTSdivonCancelunsupported→stoppedcancelatElementGuidedialog/typedbuildfinalpassed. No productformula changes to pass tests. Historicalfailedreports retained.
+- Engine/gameplay/authoreddata/runtimepack unchanged content6cca0c590696c19e145da29e6ff8a6cea907189e739f972706e2705805cc195d/pack20b7130381af741049db6993ac2af2cb8ad90ab8a28c6c264139d5438c276867(32021698B). Board106/120done/inprogress4old041058064067/review5old048054055056057/todo5/M4done66/75. TASK120done4AC/cases/matrix/linksupdated;finalreadiness/docsclosurepushfollowing. Don'tstageuseruntrackedmodernassets or unrelatedtask108hostedlogin. Hi-classnextstillrequiresimplementation perdesign40,notdonefrompreparedchapters.
+
 ## 23 ต.ค.2026 · Codex — TASK120 localผ่าน / สมุดสกิลในเกม+Timeline รอpush/hosted
 
 - UserD153แก้Preview:ต้องการอ่านชื่อ/ทำอะไรได้ในเกมเพื่อเลือกอาชีพ ไม่เอาสนามanimation;Timelineจิ้มรายละเอียดได้. AlsoaskedHi-classstatus;ตอบตามจริงยังไม่implement/currentClass2cap70. Finishcatalogก่อนHiตามexistingorder. TASK120/design44.
