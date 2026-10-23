@@ -10,7 +10,7 @@ import type { RosterCommand } from '../domain/progression/characters.ts';
 import type { AccountState } from '../contracts/index.ts';
 import { jobBonus } from '../domain/build/character.ts';
 import { randomId } from './secure-context.ts';
-export { allocationQuote, effectiveLevelCap, levelQuote } from '../domain/progression/characters.ts';
+export { allocationQuote, effectiveLevelCap, levelQuote,jobChangePlan } from '../domain/progression/characters.ts';
 export type BuildCommand = RosterCommand | SkillCommand | EquipmentCommand | SlotCommand | GearUpgradeCommand;
 export type { Character, RootJob, RosterCommand } from '../domain/progression/characters.ts';
 const loaded = loadValidatedContent(); if (!loaded.ok) throw new Error('CONTENT_UNAVAILABLE');
@@ -28,7 +28,7 @@ export function initialRosterSandbox(): AccountState {
 export function applySandboxRoster(state: AccountState, type: BuildCommand['type'], params: unknown): AccountState {
   const next = structuredClone(state);
   const command = { type, params, request_id: randomId(), expected_revision: 0, schema_version: 1, ...rosterVersions } as BuildCommand;
-  if(command.type==='skill.upgrade'||command.type==='skill.set_loadout')applySkillCommand(next,command,content);
+  if(command.type.startsWith('skill.'))applySkillCommand(next,command as SkillCommand,content);
   else if(command.type.startsWith('slot.')||command.type.startsWith('card.'))applySlotCommand(next,command as SlotCommand,content,Math.random());
   else if(command.type==='equipment.fuse'||command.type==='equipment.tier_up')applyGearUpgrade(next,command as GearUpgradeCommand,content);
   else if(command.type.startsWith('equipment.'))applyEquipmentCommand(next,command as EquipmentCommand,content);

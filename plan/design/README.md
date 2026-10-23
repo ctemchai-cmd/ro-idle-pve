@@ -68,3 +68,5 @@
 - [46 ใส่ของที่ดีกว่ารวดเดียว](46-equip-upgrades.md) — D156/TASK126;sharedhint/atomicbatch/onewrite
 
 - [47-sanctuary-hot.md](47-sanctuary-hot.md): Sanctuary Pure HoT เริ่มทันทีและแรงกว่าเพลงเฉพาะส่วนHoT.
+
+- [48 Hunter ทำดาเมจบอสได้คุ้มขึ้น](48-hunter-boss-impact.md) — D158/TASK128,Spiral3hits/weapon element/สามdamagecurvesและAwakenที่ต่อยอด

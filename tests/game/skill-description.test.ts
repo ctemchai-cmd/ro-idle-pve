@@ -9,10 +9,9 @@ import { content } from './combat-fixtures.ts';
 
 function option(id: string, level = 1) {
   const source = content.skills[id] as unknown as SkillDefinition;
-  const tree = content.documents['progression.json']!.class_tree as unknown as Record<string, string[]>;
-  const root = Object.keys(tree).find(root => source.class_id === root || tree[root]!.includes(source.class_id))! as AccountState['roster'][number]['root_job_id'];
+  const root = content.jobs.byId[source.class_id]!.root as AccountState['roster'][number]['root_job_id'];
   const state = initializeAccount(content, { root_job_id: root, gender: 'male' }, '2026-10-22T00:00:00Z', '2026-10-22', 1), actor = state.roster[0]!;
-  actor.level = 70; actor.job_id = source.class_id as typeof actor.job_id; if (level) actor.skill_levels[id] = level; else delete actor.skill_levels[id];
+  actor.level = content.jobs.byId[source.class_id]!.stage >= 3 ? 90 : 70; actor.job_id = source.class_id as typeof actor.job_id; if (level) actor.skill_levels[id] = level; else delete actor.skill_levels[id];
   return characterSkillOptions(actor, state).skills.find(s => s.id === id)!;
 }
 test('Call Spirit1–10 shows1–5 gained spheres then1.2–2% ATK per sphere, with exact upgrade deltas', () => {
@@ -76,7 +75,7 @@ test('all126 skill level previews use exact shared resolved data and never mutat
       if (row.level > 1 && JSON.stringify(row.definition) !== JSON.stringify(comparison.rows[row.level - 2]!.definition)) assert.ok(skillUpgradeChanges(comparison.rows[row.level - 2]!, row).length > 0, `${s.id} Lv.${row.level} changed silently`);
     }
   }
-  assert.equal(count, 126); assert.equal(JSON.stringify(content.skills), before);
+  assert.equal(count, 152); assert.equal(JSON.stringify(content.skills), before);
 });
 
 test('upgrade deltas omit unchanged clauses and preserve signed values, units and repeated changing numbers', () => {

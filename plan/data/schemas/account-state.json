@@ -45,6 +45,11 @@
           "type": "integer",
           "minimum": 0,
           "maximum": 9007199254740991
+        },
+        "awakening_shard": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
         }
       },
       "required": [
@@ -55,7 +60,8 @@
         "breakthrough_essence",
         "enchant_dust",
         "card_dust",
-        "crystal"
+        "crystal",
+        "awakening_shard"
       ],
       "additionalProperties": false
     },
@@ -734,6 +740,15 @@
               "accessory"
             ],
             "additionalProperties": false
+          },
+          "awakened_skills": {
+            "type": "array",
+            "maxItems": 200,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]*$"
+            }
           }
         },
         "required": [
@@ -750,7 +765,8 @@
           "skill_levels",
           "active_slots",
           "equipment",
-          "slot_progress"
+          "slot_progress",
+          "awakened_skills"
         ],
         "additionalProperties": false
       },
@@ -1149,6 +1165,11 @@
                       "type": "integer",
                       "minimum": 0,
                       "maximum": 9007199254740991
+                    },
+                    "awakening_shard": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
                     }
                   },
                   "required": [
@@ -1159,7 +1180,8 @@
                     "breakthrough_essence",
                     "enchant_dust",
                     "card_dust",
-                    "crystal"
+                    "crystal",
+                    "awakening_shard"
                   ],
                   "additionalProperties": false
                 },
@@ -1385,6 +1407,11 @@
               "type": "integer",
               "minimum": 0,
               "maximum": 3599999
+            },
+            "awakening_shard": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 3599999
             }
           },
           "required": [
@@ -1395,7 +1422,8 @@
             "breakthrough_essence",
             "enchant_dust",
             "card_dust",
-            "crystal"
+            "crystal",
+            "awakening_shard"
           ],
           "additionalProperties": false
         },
@@ -1494,6 +1522,11 @@
                 "type": "integer",
                 "minimum": 0,
                 "maximum": 9007199254740991
+              },
+              "awakening_shard": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
               }
             },
             "required": [
@@ -1504,7 +1537,8 @@
               "breakthrough_essence",
               "enchant_dust",
               "card_dust",
-              "crystal"
+              "crystal",
+              "awakening_shard"
             ],
             "additionalProperties": false
           },
@@ -1760,6 +1794,11 @@
                 "type": "integer",
                 "minimum": 0,
                 "maximum": 9007199254740991
+              },
+              "awakening_shard": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
               }
             },
             "required": [
@@ -1770,7 +1809,8 @@
               "breakthrough_essence",
               "enchant_dust",
               "card_dust",
-              "crystal"
+              "crystal",
+              "awakening_shard"
             ],
             "additionalProperties": false
           },

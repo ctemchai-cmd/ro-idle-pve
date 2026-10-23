@@ -5,6 +5,7 @@ import './auth.css';
 import './elements.css';
 import './skill-information.css';
 import './game/skill-catalog.css';
+import './game/awakening.css';
 import { readPublicAuthConfig } from '../client/auth-config.ts';
 import { startPwa } from '../client/pwa.ts';
 

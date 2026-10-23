@@ -12,7 +12,7 @@ const loaded = loadValidatedContent(); if (!loaded.ok) throw new Error('CONTENT_
 const content = loaded.value;
 const strings = content.documents['strings.th.json']!.strings as unknown as Record<string, string>;
 const presentations = content.documents['actor-presentations.json']!.jobs as unknown as { job_id: string; presets: { gender: string }[] }[];
-export const previewJobs = content.jobs.order.map(id => ({ id, root: content.jobs.byId[id]!.root, genders: presentations.find(j => j.job_id === id)!.presets.map(p => p.gender) }));
+export const previewJobs = content.jobs.order.map(id => ({ id, root: content.jobs.byId[id]!.root, stage: content.jobs.byId[id]!.stage, genders: presentations.find(j => j.job_id === id)!.presets.map(p => p.gender) }));
 export const previewPackHash = content.manifest.runtime_asset_pack_hash;
 export const previewSkillCount = Object.values(content.skills).filter(s => s.class_id !== 'enemy').length;
 export interface PreviewSelection { job: string; skill: string; rank: number; gender: string }
@@ -28,7 +28,7 @@ export function previewSelection(input: Partial<PreviewSelection>): PreviewSelec
   return { job: job.id, skill: skill.id, rank: Math.min(skill.max_level, Math.max(1, Number.isFinite(input.rank) ? Math.floor(input.rank!) : 1)), gender: job.genders.includes(input.gender ?? '') ? input.gender! : job.genders[0]! };
 }
 function blueprint(job: string | null, enemy = false): StatBlueprint {
-  const bp: StatBlueprint = { kind: 'fixed', level: 70, job_id: job, allocated_primary: { str: 1, agi: 1, vit: 1, int: 1, dex: 1, luk: 1 }, derived_offsets: { physical_attack: 0, magical_attack: 0, max_hp: 0, max_sp: 0, physical_defense: 0, magical_defense: 0, attack_speed: 0, cast_speed: 0 }, permanent_sources: [], weapon_element: 'neutral' };
+  const bp: StatBlueprint = { kind: 'fixed', level: job && content.jobs.byId[job]!.stage >= 3 ? 90 : 70, job_id: job, allocated_primary: { str: 1, agi: 1, vit: 1, int: 1, dex: 1, luk: 1 }, derived_offsets: { physical_attack: 0, magical_attack: 0, max_hp: 0, max_sp: 0, physical_defense: 0, magical_defense: 0, attack_speed: 0, cast_speed: 0 }, permanent_sources: [], weapon_element: 'neutral' };
   const base = resolveStats(bp, content);
   const target = { physical_attack: enemy ? 60 : 300, magical_attack: enemy ? 60 : 300, max_hp: enemy ? 1000000 : 10000, max_sp: 1000, physical_defense: 30, magical_defense: 30, attack_speed: 100, cast_speed: 100 };
   for (const key of Object.keys(target) as (keyof typeof target)[]) bp.derived_offsets[key] = target[key] - base[key];

@@ -1,5 +1,11 @@
 # Project context
 
+## Hi-class release candidate and Hunter (24 October 2026)
+
+TASK123–124 are done locally. TASK125 and128 are in review pending hosted verification: source enables13 High jobs/26 new skills, level70 promotion preserving the build, cap90/gate80, individual max-skill Awaken resetting rank1, new shards/conversion and chapters10–12. Class3/Artifact/Pet/Rune remain closed. Real disposable Auth/API/Postgres/mobile320390 migration/old receipts/response-loss/daily shards/reload/slot isolation passed; 624 TS checks and root/filtered builds passed. Do not describe these as deployed until TASK125 hosted evidence passes. Older cap70/preparation statements below are historical.
+
+D158/TASK128 raises only Hunter Spiral Volley to3hits×140–250%ATK (420–750% total), now weapon element; Claymore450–750%fire; Rapid Fire4hits×157.5–262.5% (630–1050% total). SP/CT/ACD/prices and123 other base definitions stay unchanged. The three Awaken variants build on those new maxima. No global AoE penalty/bonus or new balance batch; the user is testing balance personally. See plan/design/48-hunter-boss-impact.md and newest HANDOFF.
+
 ## Current Sanctuary rule (23 October 2026)
 
 D-157/TASK-127: Bard/Dancer Healing Song is opening heal + physical HoT. Priest Sanctuary is pure MATK HoT using dedicated `sanctuary_regeneration`, six equal ticks at resolve +0/1/2/3/4/5s, expires +6s, no separate opening heal. Power105–175%MATK by rank; generic regeneration and songs stay unchanged. Details derive immediate-tick text from status data; shared healing aura already detects periodic heals. Preserve this identity when authoring Hi-class/Awaken variants; see plan/design/47-sanctuary-hot.md.

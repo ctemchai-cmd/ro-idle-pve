@@ -33,7 +33,7 @@ test('all support curves scale from their original values once and damage curves
   assert.equal(Object.keys(spec.baseline_support_power).length, 59);
   // D133/D138/D139/D157 explicitly supersede these original curves. Verify every
   // resolved rank against the separately authored numeric golden intents instead.
-  const superseded=new Set(['priest_sanctuary','priest_resurrection','dancer_dissonance','sage_magic_barrier','merchant_loud_voice','merchant_first_aid','blacksmith_meltdown','knight_brandish','crusader_grand_cross','monk_asura','hunter_claymore','hunter_rapid_fire','wizard_storm_gust','wizard_jupitel','wizard_meteor','wizard_heavens_drive','sage_psychic_bolt','assassin_sonic_blow','assassin_detonate','assassin_grimtooth','rogue_raid','blacksmith_cart_crash','alchemist_acid_terror','alchemist_demonstration']);
+  const superseded=new Set(['hunter_blitz_beat','priest_sanctuary','priest_resurrection','dancer_dissonance','sage_magic_barrier','merchant_loud_voice','merchant_first_aid','blacksmith_meltdown','knight_brandish','crusader_grand_cross','monk_asura','hunter_claymore','hunter_rapid_fire','wizard_storm_gust','wizard_jupitel','wizard_meteor','wizard_heavens_drive','sage_psychic_bolt','assassin_sonic_blow','assassin_detonate','assassin_grimtooth','rogue_raid','blacksmith_cart_crash','alchemist_acid_terror','alchemist_demonstration']);
   goldens([...superseded]).forEach(checkGolden);
   for (const family of ['baseline_support_power', 'baseline_skill_power']) for (const [id, curves] of Object.entries(spec[family]) as [string, Record<string, number[]>][]) for (const [key, values] of Object.entries(curves)) {
     if(superseded.has(id))continue;

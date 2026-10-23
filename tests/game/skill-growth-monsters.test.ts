@@ -21,7 +21,7 @@ test('D139 Happiness Heal restores all living allies, excludes dead, keeps exist
 });
 
 test('D139 every player skill has real rank growth; five previous SP-only actions improve at every rank',()=>{
- const ids=(Object.values(content.skills) as unknown as SkillDefinition[]).filter(s=>s.class_id!=='enemy');assert.equal(ids.length,126);
+ const ids=(Object.values(content.skills) as unknown as SkillDefinition[]).filter(s=>s.class_id!=='enemy');assert.equal(ids.length,152);
  for(const s of ids){
   if(s.kind!=='active'||s.max_level<2)continue;
   const definitions=Array.from({length:s.max_level},(_,i)=>active(String(s.id),i+1));

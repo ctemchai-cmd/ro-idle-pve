@@ -10,7 +10,7 @@ import { SkillCatalogSheet } from './skill-catalog.tsx';
 import { ActorCanvas, ResIcon, Sheet, compact, friendNames, full, jobNames, lookOf, resourceNames, type Wallet } from './kit.tsx';
 
 const statusText: Record<string, string> = { ready: 'บันทึกแล้ว', saving: 'กำลังบันทึก…', offline: 'ขาดการเชื่อมต่อ · พักความคืบหน้า', read_only: 'เปิดดู · อีกแท็บกำลังเล่น', incompatible: 'มีเกมรุ่นใหม่ · โหลดหน้าใหม่', loading: 'กำลังตรวจเซฟ…', error: 'เซฟมีปัญหา · เชื่อมต่อใหม่', signed_out: 'ออกจากระบบแล้ว', idle: 'กำลังเตรียม…' };
-const walletOrder: (keyof Wallet)[] = ['gold', 'hero_exp', 'crystal', 'skill_manual', 'breakthrough_essence', 'refine_ore', 'enchant_dust', 'card_dust'];
+const walletOrder: (keyof Wallet)[] = ['gold', 'hero_exp', 'crystal', 'skill_manual', 'awakening_shard', 'breakthrough_essence', 'refine_ore', 'enchant_dust', 'card_dust'];
 
 export function TopHud({ context, save, controller, sound, toggleSound, reconnect, slotNumber, switchSave }: { context: GameContext; save: SaveSnapshot; controller: SaveController; sound: boolean; toggleSound: () => void; reconnect: () => void; slotNumber?:number;switchSave?:()=>void }) {
   const { state, pack } = context, main = state.roster.find(a => a.character_id === 'main')!, [sheet, setSheet] = useState<'wallet' | 'settings' | 'backup' | 'reset' | 'catalog' | null>(null);

@@ -1,0 +1,63 @@
+{
+  "passed": false,
+  "checks": [
+    "Real signed old eight-resource save -> backup+migrate adds zero shards/empty flags, retains exact old paid ledger, gear, frozen farm/carry/unpaid claim; old receipt replays unchanged",
+    "Actual Champion promotion at70 changes only job_id; all stats/levels/slots/paid resources/equipment/cards survive",
+    "Mobile actual shard conversions and Awaken+new-shard upgrade each one command/revision; committed reply loss reconciles original UUID once, with real same-icon purple inset",
+    "Actual level70→80→onlygate80→90 with unchanged manual primaries; two new High skills learn and max through real commands, then individually eligible for Awaken"
+  ],
+  "errors": [],
+  "metrics": {},
+  "commands": [
+    {
+      "type": "save.migrate",
+      "request_id": "34ce69a1-2740-4658-b0f3-ae4090534fe0"
+    },
+    {
+      "type": "character.change_job",
+      "request_id": "8af98caa-c0b1-4ad0-be26-c37cbac75e31"
+    },
+    {
+      "type": "skill.convert_shards",
+      "request_id": "f82931ed-95c0-425c-98cd-5405ff3d7723"
+    },
+    {
+      "type": "skill.convert_shards",
+      "request_id": "d5d19e8d-2733-47be-8af6-cc3a62ddce66"
+    },
+    {
+      "type": "skill.awaken",
+      "request_id": "46b95c1f-4371-45ec-9c78-110bb4644bd1"
+    },
+    {
+      "type": "skill.upgrade",
+      "request_id": "67b655e3-d6b5-4061-bebf-49813ab0d90c"
+    },
+    {
+      "type": "character.level_up",
+      "request_id": "0276222a-0b37-4378-b6bc-72edde3b2ce4"
+    },
+    {
+      "type": "character.breakthrough",
+      "request_id": "0ec3faff-fc71-403f-8fe3-1817032e0ca4"
+    },
+    {
+      "type": "character.level_up",
+      "request_id": "51ea0e35-8d5a-4760-992d-d86e2a9aee2b"
+    },
+    {
+      "type": "skill.upgrade",
+      "request_id": "8247e51e-528c-479b-85b5-9e7302933a89"
+    },
+    {
+      "type": "skill.upgrade",
+      "request_id": "5a805a3a-4822-40c2-b829-7662303ee6e2"
+    }
+  ],
+  "owner_cloud_access": false,
+  "balance_batch": false,
+  "failure": {
+    "stage": "CATALOG_HUNTER",
+    "message": "locator.innerText: Error: strict mode violation: locator('[data-skill=\"hunter_blitz_beat\"]') resolved to 2 elements:\n    1) <details data-level=\"10\" class=\"skill-catalog-row\" data-skill=\"hunter_blitz_beat\">…</details> aka getByText('Spiral VolleyHunter · Activeกายภาพ 250% ATK × 3 ครั้ง · ตามธาตุอาวุธActive')\n    2) <div data-level=\"10\" class=\"skill-information\" data-skill=\"hunter_blitz_beat\">…</div> aka getByText('Active · ศัตรู · ทั้งหมดตามอาวุธตารางธาตุSP พื้นฐาน 30ร่ายพื้นฐาน 0.35sACD')\n\nCall log:\n\u001b[2m  - waiting for locator('[data-skill=\"hunter_blitz_beat\"]')\u001b[22m\n\n    at /Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/test_hi_release_live.cjs:43:399"
+  }
+}

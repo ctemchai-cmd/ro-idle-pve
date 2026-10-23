@@ -8,7 +8,7 @@ type Wallet = AccountState['wallet'];
 export type DailyBossId = AccountState['daily_records'][number]['boss_id'];
 export type DailyRecord = AccountState['daily_records'][number];
 interface Growth { base: number; per_phase_after_first: number; per_unlocked_chapter_after_two_multiplier?: number }
-export interface DailyBoss { id: DailyBossId; enemy_definition_id: string; attempts_per_day: number; time_limit_ms: number; phase_hp: Growth; phase_attack: Growth; phase_defense: Growth; active_slots: Boss['active_slots']; reward_per_chest_base: Partial<Wallet> }
+export interface DailyBoss { id: DailyBossId; enemy_definition_id: string; attempts_per_day: number; time_limit_ms: number; phase_hp: Growth; phase_attack: Growth; phase_defense: Growth; active_slots: Boss['active_slots']; reward_per_chest_base: Partial<Wallet>; awakening_reward?:{minimum_chapter:number;amount:number} }
 interface DailyData { unlocks_after: string; bosses: DailyBoss[]; common_base: Pick<CombatStats, 'str' | 'agi' | 'vit' | 'int' | 'dex' | 'luk' | 'attack_speed' | 'cast_speed' | 'max_sp'>; element: string; position: string }
 export const dailyData = (content: ValidatedContent) => content.documents['daily-bosses.json'] as unknown as DailyData;
 export function dailyBoss(id: string, content: ValidatedContent): DailyBoss { const boss = dailyData(content).bosses.find(row => row.id === id); if (!boss) throw new Error('DAILY_BOSS_UNKNOWN'); return boss; }
@@ -40,8 +40,10 @@ export function dailyBossActor(id: DailyBossId, phase: number, chapter: number, 
   return { actor_id: 'enemy_front', definition_id: boss.enemy_definition_id, level: stats.level, position: data.position, element: data.element, resolved_base, active_slots: structuredClone(boss.active_slots), passives: [] };
 }
 /** One chest per (boss, ticket day, phase): base × (1 + 0.2 (phase − 1)), floored per currency. */
-export function dailyChest(boss: DailyBoss, phase: number): Partial<Wallet> {
-  return Object.fromEntries(Object.entries(boss.reward_per_chest_base).map(([key, amount]) => [key, Math.floor(Number(amount) * (1 + .2 * (phase - 1)))]));
+export function dailyChest(boss: DailyBoss, phase: number, chapter = 0): Partial<Wallet> {
+  const base={...boss.reward_per_chest_base};
+  if(boss.awakening_reward&&chapter>=boss.awakening_reward.minimum_chapter)base.awakening_shard=boss.awakening_reward.amount;
+  return Object.fromEntries(Object.entries(base).map(([key, amount]) => [key, Math.floor(Number(amount) * (1 + .2 * (phase - 1)))]));
 }
 /** The day's record for a boss; a fresh day starts at phase 1, zero attempts and a chapter snapshot taken now. */
 export function dailyRecord(state: AccountState, id: DailyBossId, day: string, content: ValidatedContent): DailyRecord {

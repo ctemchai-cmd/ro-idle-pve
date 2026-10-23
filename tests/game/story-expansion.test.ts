@@ -51,7 +51,7 @@ test('D150 expansion keeps old actual card profiles, gear/currency rates, migrat
  legacy.inventory.push({kind:'equipment',instance_id:'earned_old',definition_id:'equipment_staff_20',rarity_id:'rare',locked:true,training:false,options:[]});
  legacy.pending_rewards.push({claim_id:'old_farm',kind:'farm',items:[{...legacy.inventory[0]!,instance_id:'pending_old'}],resource_vector:{...legacy.wallet,gold:111},content_version:content.manifest.content_version,reserved_at:at,source_keys:['farm:old'],status:'pending'});
  assert.deepEqual(migrateAccountState(legacy,content).state,legacy,'old earned/pending items, frozen farm/card profile, progress, cursor/carry and RNG remain exact');
- state.story.cleared_stage_ids=stages.map(s=>s.id);state.daily_records=[dailyRecord(state,'essence','2026-10-23',content)];assert.equal(state.daily_records[0]!.chapter_snapshot,9);assert.doesNotThrow(()=>new AccountCommandRules().validateAccount(state));
+ state.story.cleared_stage_ids=stages.filter(s=>s.chapter<=9).map(s=>s.id);state.daily_records=[dailyRecord(state,'essence','2026-10-23',content)];assert.equal(state.daily_records[0]!.chapter_snapshot,9);assert.doesNotThrow(()=>new AccountCommandRules().validateAccount(state));
 });
 
 test('D150 missing chapter income or loot routes fail content loading before a player can start',()=>{

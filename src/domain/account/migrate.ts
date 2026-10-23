@@ -18,6 +18,12 @@ const canonicalPool = (pool: readonly string[]) => [...pool].sort().join(',');
  */
 export function migrateAccountState(input: unknown, content: ValidatedContent): SaveMigration {
   const state = structuredClone(input) as AccountState, changes: string[] = [], data = progressionData(content);
+  // The new currency starts at zero everywhere, including frozen unpaid snapshots
+  // and actual-paid ledgers. Never price old investments or grant shards retroactively.
+  for(const vector of [state.wallet,state.farm.remainders,...state.pending_rewards.map(r=>r.resource_vector),...state.paid_ledger.map(r=>r.paid_resources),...(state.farm.rate_snapshot?[state.farm.rate_snapshot.per_hour]:[])]){
+    if(vector.awakening_shard===undefined){vector.awakening_shard=0;changes.push('awakening_shard defaulted to0');}
+  }
+  for(const actor of state.roster)if(!actor.awakened_skills){actor.awakened_skills=[];changes.push(`${actor.character_id}: no awakened skills in legacy save`);}
   if (!state.battle_supplies) { state.battle_supplies = { stock: {}, queued: {} }; changes.push('battle_supplies initialized'); }
   for(const items of [state.inventory,...state.pending_rewards.map(claim=>claim.items)])for(let index=0;index<items.length;index++){
     const item=items[index]!;if(item.kind!=='card')continue;

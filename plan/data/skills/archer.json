@@ -476,16 +476,16 @@
       ],
       "level_parameters": {
         "power": [
-          1.575,
-          1.711112,
-          1.847223,
-          1.983333,
-          2.119444,
+          1.4,
+          1.522222,
+          1.644444,
+          1.766667,
+          1.888889,
+          2.011111,
+          2.133333,
           2.255556,
-          2.391667,
-          2.527777,
-          2.663889,
-          2.8
+          2.377778,
+          2.5
         ]
       },
       "presentation_id": "visual_hunter_blitz_beat",
@@ -549,10 +549,10 @@
             }
           },
           "damage_type": "physical",
-          "element": "neutral",
+          "element": "weapon",
           "hit_rule": "physical_roll",
           "can_crit": false,
-          "hits": 1,
+          "hits": 3,
           "armor_rule": "normal"
         }
       ]
@@ -753,16 +753,16 @@
       ],
       "level_parameters": {
         "power": [
-          3.740625,
-          4.035937,
-          4.33125,
-          4.626563,
-          4.921875,
-          5.217187,
-          5.5125,
-          5.807813,
-          6.103125,
-          6.398438
+          4.5,
+          4.833333,
+          5.166667,
+          5.5,
+          5.833333,
+          6.166667,
+          6.5,
+          6.833333,
+          7.166667,
+          7.5
         ]
       },
       "presentation_id": "visual_hunter_claymore",
@@ -846,16 +846,16 @@
       ],
       "level_parameters": {
         "power": [
-          1.309219,
-          1.412578,
-          1.515937,
-          1.619297,
-          1.722656,
-          1.826016,
-          1.929375,
-          2.032734,
-          2.136094,
-          2.239453
+          1.575,
+          1.691667,
+          1.808333,
+          1.925,
+          2.041667,
+          2.158333,
+          2.275,
+          2.391667,
+          2.508333,
+          2.625
         ]
       },
       "presentation_id": "visual_hunter_rapid_fire",
@@ -4223,5 +4223,6203 @@
     "dancer_music_lesson": "",
     "dancer_breathing": ""
   },
-  "future_awaken": "stable skill/effect IDs; no hi-class definitions required by these builds"
+  "future_awaken": "stable skill/effect IDs; no hi-class definitions required by these builds",
+  "hi_class_skills": [
+    {
+      "id": "sniper_falcon_assault",
+      "name_key": "sniper_falcon_assault",
+      "class_id": "sniper",
+      "max_level": 10,
+      "unlock_level": 70,
+      "rank_unlock_levels": [
+        70,
+        72,
+        74,
+        76,
+        78,
+        80,
+        82,
+        84,
+        86,
+        88
+      ],
+      "tags": [
+        "sniper",
+        "hi_class"
+      ],
+      "level_parameters": {
+        "power": [
+          1.25,
+          1.333333,
+          1.416667,
+          1.5,
+          1.583333,
+          1.666667,
+          1.75,
+          1.833333,
+          1.916667,
+          2.0
+        ]
+      },
+      "presentation_id": "visual_sniper_falcon_assault",
+      "kind": "active",
+      "cost": {
+        "sp": 55,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 700,
+        "after_cast_ms": 1200,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "neutral",
+          "hit_rule": "physical_roll",
+          "can_crit": false,
+          "hits": 5,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "sniper_sharpshooting",
+      "name_key": "sniper_sharpshooting",
+      "class_id": "sniper",
+      "max_level": 10,
+      "unlock_level": 80,
+      "rank_unlock_levels": [
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
+      ],
+      "tags": [
+        "sniper",
+        "hi_class"
+      ],
+      "level_parameters": {
+        "power": [
+          3.8,
+          4.088889,
+          4.377778,
+          4.666667,
+          4.955556,
+          5.244444,
+          5.533333,
+          5.822222,
+          6.111111,
+          6.4
+        ]
+      },
+      "presentation_id": "visual_sniper_sharpshooting",
+      "kind": "active",
+      "cost": {
+        "sp": 62,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 950,
+        "after_cast_ms": 1250,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "clown_arrow_vulcan",
+      "name_key": "clown_arrow_vulcan",
+      "class_id": "clown",
+      "max_level": 10,
+      "unlock_level": 70,
+      "rank_unlock_levels": [
+        70,
+        72,
+        74,
+        76,
+        78,
+        80,
+        82,
+        84,
+        86,
+        88
+      ],
+      "tags": [
+        "clown",
+        "hi_class"
+      ],
+      "level_parameters": {
+        "power": [
+          0.7,
+          0.75,
+          0.8,
+          0.85,
+          0.9,
+          0.95,
+          1.0,
+          1.05,
+          1.1,
+          1.15
+        ]
+      },
+      "presentation_id": "visual_clown_arrow_vulcan",
+      "kind": "active",
+      "cost": {
+        "sp": 58,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 900,
+        "after_cast_ms": 1400,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 9,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "clown_marionette_control",
+      "name_key": "clown_marionette_control",
+      "class_id": "clown",
+      "max_level": 10,
+      "unlock_level": 80,
+      "rank_unlock_levels": [
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
+      ],
+      "tags": [
+        "clown",
+        "hi_class"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.14,
+          0.155556,
+          0.171111,
+          0.186667,
+          0.202222,
+          0.217778,
+          0.233333,
+          0.248889,
+          0.264444,
+          0.28
+        ]
+      },
+      "presentation_id": "visual_clown_marionette_control",
+      "kind": "active",
+      "cost": {
+        "sp": 65,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 750,
+        "after_cast_ms": 1150,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "attack_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "attack_up",
+          "duration_ms": 10000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "magic_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "magic_up",
+          "duration_ms": 10000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "gypsy_tarot_card_of_fate",
+      "name_key": "gypsy_tarot_card_of_fate",
+      "class_id": "gypsy",
+      "max_level": 10,
+      "unlock_level": 70,
+      "rank_unlock_levels": [
+        70,
+        72,
+        74,
+        76,
+        78,
+        80,
+        82,
+        84,
+        86,
+        88
+      ],
+      "tags": [
+        "gypsy",
+        "hi_class"
+      ],
+      "level_parameters": {
+        "power": [
+          4.5,
+          4.833333,
+          5.166667,
+          5.5,
+          5.833333,
+          6.166667,
+          6.5,
+          6.833333,
+          7.166667,
+          7.5
+        ],
+        "ratio": [
+          -0.12,
+          -0.134444,
+          -0.148889,
+          -0.163333,
+          -0.177778,
+          -0.192222,
+          -0.206667,
+          -0.221111,
+          -0.235556,
+          -0.25
+        ]
+      },
+      "presentation_id": "visual_gypsy_tarot_card_of_fate",
+      "kind": "active",
+      "cost": {
+        "sp": 55,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 900,
+        "after_cast_ms": 1250,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "neutral",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "attack_down",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "attack_down",
+          "duration_ms": 8000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "silence",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "silence",
+          "duration_ms": 2000,
+          "params": {},
+          "chance": 0.35
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "stun",
+          "duration_ms": 1500,
+          "params": {},
+          "chance": 0.35
+        }
+      ]
+    },
+    {
+      "id": "gypsy_moonlit_water_mill",
+      "name_key": "gypsy_moonlit_water_mill",
+      "class_id": "gypsy",
+      "max_level": 10,
+      "unlock_level": 80,
+      "rank_unlock_levels": [
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
+      ],
+      "tags": [
+        "gypsy",
+        "hi_class"
+      ],
+      "level_parameters": {
+        "power": [
+          1.2,
+          1.288889,
+          1.377778,
+          1.466667,
+          1.555556,
+          1.644444,
+          1.733333,
+          1.822222,
+          1.911111,
+          2.0
+        ],
+        "guard": [
+          0.1,
+          0.111111,
+          0.122222,
+          0.133333,
+          0.144444,
+          0.155556,
+          0.166667,
+          0.177778,
+          0.188889,
+          0.2
+        ]
+      },
+      "presentation_id": "visual_gypsy_moonlit_water_mill",
+      "kind": "active",
+      "cost": {
+        "sp": 62,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 900,
+        "after_cast_ms": 1300,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "heal",
+          "type": "heal",
+          "target": "friends",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          }
+        },
+        {
+          "id": "guard_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "guard_up",
+          "duration_ms": 8000,
+          "params": {
+            "ratio": {
+              "level_param": "guard"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    }
+  ],
+  "hi_class_upgrades": {
+    "sniper_falcon_assault": {
+      "learn_level_one_cost": {
+        "gold": 2500,
+        "skill_manual": 100
+      },
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 2000,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 3000,
+          "skill_manual": 150
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 4000,
+          "skill_manual": 200
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 5000,
+          "skill_manual": 250
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 6000,
+          "skill_manual": 300
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 7000,
+          "skill_manual": 350
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 8000,
+          "skill_manual": 400
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 9000,
+          "skill_manual": 450
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 10000,
+          "skill_manual": 500
+        }
+      ]
+    },
+    "sniper_sharpshooting": {
+      "learn_level_one_cost": {
+        "gold": 2500,
+        "skill_manual": 100
+      },
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 2000,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 3000,
+          "skill_manual": 150
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 4000,
+          "skill_manual": 200
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 5000,
+          "skill_manual": 250
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 6000,
+          "skill_manual": 300
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 7000,
+          "skill_manual": 350
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 8000,
+          "skill_manual": 400
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 9000,
+          "skill_manual": 450
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 10000,
+          "skill_manual": 500
+        }
+      ]
+    },
+    "clown_arrow_vulcan": {
+      "learn_level_one_cost": {
+        "gold": 2500,
+        "skill_manual": 100
+      },
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 2000,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 3000,
+          "skill_manual": 150
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 4000,
+          "skill_manual": 200
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 5000,
+          "skill_manual": 250
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 6000,
+          "skill_manual": 300
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 7000,
+          "skill_manual": 350
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 8000,
+          "skill_manual": 400
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 9000,
+          "skill_manual": 450
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 10000,
+          "skill_manual": 500
+        }
+      ]
+    },
+    "clown_marionette_control": {
+      "learn_level_one_cost": {
+        "gold": 2500,
+        "skill_manual": 100
+      },
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 2000,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 3000,
+          "skill_manual": 150
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 4000,
+          "skill_manual": 200
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 5000,
+          "skill_manual": 250
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 6000,
+          "skill_manual": 300
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 7000,
+          "skill_manual": 350
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 8000,
+          "skill_manual": 400
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 9000,
+          "skill_manual": 450
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 10000,
+          "skill_manual": 500
+        }
+      ]
+    },
+    "gypsy_tarot_card_of_fate": {
+      "learn_level_one_cost": {
+        "gold": 2500,
+        "skill_manual": 100
+      },
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 2000,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 3000,
+          "skill_manual": 150
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 4000,
+          "skill_manual": 200
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 5000,
+          "skill_manual": 250
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 6000,
+          "skill_manual": 300
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 7000,
+          "skill_manual": 350
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 8000,
+          "skill_manual": 400
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 9000,
+          "skill_manual": 450
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 10000,
+          "skill_manual": 500
+        }
+      ]
+    },
+    "gypsy_moonlit_water_mill": {
+      "learn_level_one_cost": {
+        "gold": 2500,
+        "skill_manual": 100
+      },
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 2000,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 3000,
+          "skill_manual": 150
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 4000,
+          "skill_manual": 200
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 5000,
+          "skill_manual": 250
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 6000,
+          "skill_manual": 300
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 7000,
+          "skill_manual": 350
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 8000,
+          "skill_manual": 400
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 9000,
+          "skill_manual": 450
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 10000,
+          "skill_manual": 500
+        }
+      ]
+    }
+  },
+  "awakened_variants": {
+    "archer_double_strafe": {
+      "id": "archer_double_strafe",
+      "name_key": "archer_double_strafe",
+      "class_id": "archer",
+      "max_level": 10,
+      "unlock_level": 1,
+      "tags": [
+        "archer",
+        "double_strafe",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          2.1175,
+          2.192361,
+          2.267222,
+          2.342083,
+          2.416944,
+          2.491806,
+          2.566667,
+          2.641528,
+          2.716389,
+          2.79125
+        ]
+      },
+      "presentation_id": "visual_archer_double_strafe",
+      "kind": "active",
+      "cost": {
+        "sp": 16,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 600,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 2,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "slow",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": -0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "archer_concentration": {
+      "id": "archer_concentration",
+      "name_key": "archer_concentration",
+      "class_id": "archer",
+      "max_level": 10,
+      "unlock_level": 1,
+      "tags": [
+        "archer",
+        "concentration",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.385,
+          0.398611,
+          0.412222,
+          0.425833,
+          0.439444,
+          0.453056,
+          0.466667,
+          0.480278,
+          0.493889,
+          0.5075
+        ]
+      },
+      "presentation_id": "visual_archer_concentration",
+      "kind": "active",
+      "cost": {
+        "sp": 18,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 200,
+        "after_cast_ms": 650,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "crit_up",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "crit_up",
+          "duration_ms": 5500,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "archer_arrow_shower": {
+      "id": "archer_arrow_shower",
+      "name_key": "archer_arrow_shower",
+      "class_id": "archer",
+      "max_level": 10,
+      "unlock_level": 5,
+      "tags": [
+        "archer",
+        "arrow_shower",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          2.59875,
+          2.690625,
+          2.7825,
+          2.874375,
+          2.96625,
+          3.058125,
+          3.15,
+          3.241875,
+          3.33375,
+          3.425625
+        ]
+      },
+      "presentation_id": "visual_archer_arrow_shower",
+      "kind": "active",
+      "cost": {
+        "sp": 26,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 400,
+        "after_cast_ms": 850,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": 1100,
+          "params": {},
+          "chance": 0.4,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "slow",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": -0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "archer_crippling_shot": {
+      "id": "archer_crippling_shot",
+      "name_key": "archer_crippling_shot",
+      "class_id": "archer",
+      "max_level": 10,
+      "unlock_level": 10,
+      "tags": [
+        "archer",
+        "crippling_shot",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          3.2725,
+          3.388194,
+          3.503889,
+          3.619583,
+          3.735278,
+          3.850972,
+          3.966667,
+          4.082361,
+          4.198056,
+          4.31375
+        ]
+      },
+      "presentation_id": "visual_archer_crippling_shot",
+      "kind": "active",
+      "cost": {
+        "sp": 22,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 450,
+        "after_cast_ms": 750,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "slow",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "slow",
+          "duration_ms": 4400,
+          "params": {
+            "ratio": -0.2
+          },
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "slow",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": -0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "archer_vulture_eye": {
+      "id": "archer_vulture_eye",
+      "name_key": "archer_vulture_eye",
+      "class_id": "archer",
+      "max_level": 10,
+      "unlock_level": 10,
+      "tags": [
+        "archer",
+        "vulture_eye",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.154,
+          0.159444,
+          0.164889,
+          0.170333,
+          0.175778,
+          0.181222,
+          0.186667,
+          0.192111,
+          0.197556,
+          0.203
+        ],
+        "critical_damage": [
+          0.22,
+          0.227778,
+          0.235556,
+          0.243333,
+          0.251111,
+          0.258889,
+          0.266667,
+          0.274444,
+          0.282222,
+          0.29
+        ],
+        "awaken_potency": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_archer_vulture_eye",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "hit_bonus",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "ratio"
+          }
+        },
+        {
+          "id": "critical_damage",
+          "stat": "crit_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "critical_damage"
+          }
+        },
+        {
+          "id": "awaken_potency",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "awaken_potency"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    "hunter_blitz_beat": {
+      "id": "hunter_blitz_beat",
+      "name_key": "hunter_blitz_beat",
+      "class_id": "hunter",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "hunter",
+        "blitz_beat",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          2.75,
+          2.847222,
+          2.944444,
+          3.041667,
+          3.138889,
+          3.236111,
+          3.333333,
+          3.430556,
+          3.527778,
+          3.625
+        ]
+      },
+      "presentation_id": "visual_hunter_blitz_beat",
+      "kind": "active",
+      "cost": {
+        "sp": 30,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 350,
+        "after_cast_ms": 850,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": false,
+          "hits": 3,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "slow",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": -0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "hunter_hunters_mark": {
+      "id": "hunter_hunters_mark",
+      "name_key": "hunter_hunters_mark",
+      "class_id": "hunter",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "hunter",
+        "hunters_mark",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.4235,
+          0.438472,
+          0.453444,
+          0.468417,
+          0.483389,
+          0.498361,
+          0.513333,
+          0.528306,
+          0.543278,
+          0.55825
+        ]
+      },
+      "presentation_id": "visual_hunter_hunters_mark",
+      "kind": "active",
+      "cost": {
+        "sp": 26,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 200,
+        "after_cast_ms": 800,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "exposed",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "exposed",
+          "duration_ms": 5500,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "hunter_ankle_snare": {
+      "id": "hunter_ankle_snare",
+      "name_key": "hunter_ankle_snare",
+      "class_id": "hunter",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "hunter",
+        "ankle_snare",
+        "awakened"
+      ],
+      "level_parameters": {
+        "sp_cost": [
+          29,
+          28,
+          28,
+          28,
+          27,
+          27,
+          27,
+          26,
+          26,
+          26
+        ],
+        "duration": [
+          2640,
+          2733,
+          2827,
+          2920,
+          3013,
+          3107,
+          3200,
+          3293,
+          3387,
+          3480
+        ]
+      },
+      "presentation_id": "visual_hunter_ankle_snare",
+      "kind": "active",
+      "cost": {
+        "sp": {
+          "level_param": "sp_cost"
+        },
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 650,
+        "after_cast_ms": 1000,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "stun",
+          "duration_ms": {
+            "level_param": "duration"
+          },
+          "params": {},
+          "chance": 0.75
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "hunter_claymore": {
+      "id": "hunter_claymore",
+      "name_key": "hunter_claymore",
+      "class_id": "hunter",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "hunter",
+        "claymore",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          8.25,
+          8.541667,
+          8.833333,
+          9.125,
+          9.416667,
+          9.708333,
+          10.0,
+          10.291667,
+          10.583333,
+          10.875
+        ]
+      },
+      "presentation_id": "visual_hunter_claymore",
+      "kind": "active",
+      "cost": {
+        "sp": 40,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 800,
+        "after_cast_ms": 1000,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "fire",
+          "hit_rule": "physical_roll",
+          "can_crit": false,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "slow",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": -0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "hunter_rapid_fire": {
+      "id": "hunter_rapid_fire",
+      "name_key": "hunter_rapid_fire",
+      "class_id": "hunter",
+      "max_level": 10,
+      "unlock_level": 40,
+      "tags": [
+        "hunter",
+        "rapid_fire",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          2.8875,
+          2.989583,
+          3.091667,
+          3.19375,
+          3.295833,
+          3.397917,
+          3.5,
+          3.602083,
+          3.704167,
+          3.80625
+        ]
+      },
+      "presentation_id": "visual_hunter_rapid_fire",
+      "kind": "active",
+      "cost": {
+        "sp": 38,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 500,
+        "after_cast_ms": 950,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 4,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "slow",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": -0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "hunter_falcon": {
+      "id": "hunter_falcon",
+      "name_key": "hunter_falcon",
+      "class_id": "hunter",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "hunter",
+        "falcon",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          1.155,
+          1.195833,
+          1.236667,
+          1.2775,
+          1.318333,
+          1.359167,
+          1.4,
+          1.440833,
+          1.481667,
+          1.5225
+        ],
+        "awaken_potency": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_hunter_falcon",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "awaken_potency",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "awaken_potency"
+          }
+        }
+      ],
+      "triggers": [
+        {
+          "id": "falcon_hit",
+          "event": "normal_attack_hit",
+          "chance": 0.3,
+          "accepted_origins": [
+            "normal"
+          ],
+          "limit_scope": "none",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {},
+          "effects": [
+            {
+              "id": "falcon",
+              "type": "damage",
+              "target": "event_target",
+              "formula": {
+                "id": "physical_power",
+                "params": {
+                  "attack_ratio": {
+                    "level_param": "power"
+                  },
+                  "flat_power": 0
+                }
+              },
+              "damage_type": "physical",
+              "element": "neutral",
+              "hit_rule": "physical_roll",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    "hunter_steel_crow": {
+      "id": "hunter_steel_crow",
+      "name_key": "hunter_steel_crow",
+      "class_id": "hunter",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "hunter",
+        "steel_crow",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.231,
+          0.239167,
+          0.247333,
+          0.2555,
+          0.263667,
+          0.271833,
+          0.28,
+          0.288167,
+          0.296333,
+          0.3045
+        ],
+        "awaken_potency": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_hunter_steel_crow",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "outgoing_physical_bonus",
+          "stat": "outgoing_physical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "ratio"
+          }
+        },
+        {
+          "id": "awaken_potency",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "awaken_potency"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    "bard_performance_strike": {
+      "id": "bard_performance_strike",
+      "name_key": "bard_performance_strike",
+      "class_id": "bard",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "bard",
+        "performance_strike",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          4.4275,
+          4.584028,
+          4.740556,
+          4.897083,
+          5.053611,
+          5.210139,
+          5.366667,
+          5.523194,
+          5.679722,
+          5.83625
+        ]
+      },
+      "presentation_id": "visual_bard_performance_strike",
+      "kind": "active",
+      "cost": {
+        "sp": 24,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 350,
+        "after_cast_ms": 850,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "slow",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": -0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "bard_healing_song": {
+      "id": "bard_healing_song",
+      "name_key": "bard_healing_song",
+      "class_id": "bard",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "bard",
+        "healing_song",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          0.9625,
+          0.996528,
+          1.030556,
+          1.064583,
+          1.098611,
+          1.132639,
+          1.166667,
+          1.200694,
+          1.234722,
+          1.26875
+        ],
+        "opening_power": [
+          1.925,
+          1.993056,
+          2.061111,
+          2.129167,
+          2.197222,
+          2.265278,
+          2.333333,
+          2.401389,
+          2.469444,
+          2.5375
+        ]
+      },
+      "presentation_id": "visual_bard_healing_song",
+      "kind": "active",
+      "cost": {
+        "sp": 38,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 800,
+        "after_cast_ms": 1200,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "opening_heal",
+          "type": "heal",
+          "target": "friends",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "opening_power"
+              },
+              "flat_power": 0
+            }
+          }
+        },
+        {
+          "id": "regeneration",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "physical_regeneration",
+          "duration_ms": 6600,
+          "params": {
+            "power_ratio": {
+              "level_param": "power"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "bard_battle_song": {
+      "id": "bard_battle_song",
+      "name_key": "bard_battle_song",
+      "class_id": "bard",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "bard",
+        "battle_song",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.264,
+          0.273333,
+          0.282667,
+          0.292,
+          0.301333,
+          0.310667,
+          0.32,
+          0.329333,
+          0.338667,
+          0.348
+        ],
+        "attack": [
+          0.22,
+          0.227778,
+          0.235556,
+          0.243333,
+          0.251111,
+          0.258889,
+          0.266667,
+          0.274444,
+          0.282222,
+          0.29
+        ]
+      },
+      "presentation_id": "visual_bard_battle_song",
+      "kind": "active",
+      "cost": {
+        "sp": 36,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 850,
+        "after_cast_ms": 1200,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "aspd_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "aspd_up",
+          "duration_ms": 6050,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "attack_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "attack_up",
+          "duration_ms": 6050,
+          "params": {
+            "ratio": {
+              "level_param": "attack"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "bard_dissonance": {
+      "id": "bard_dissonance",
+      "name_key": "bard_dissonance",
+      "class_id": "bard",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "bard",
+        "dissonance",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.48125,
+          0.498264,
+          0.515278,
+          0.532292,
+          0.549306,
+          0.566319,
+          0.583333,
+          0.600347,
+          0.617361,
+          0.634375
+        ]
+      },
+      "presentation_id": "visual_bard_dissonance",
+      "kind": "active",
+      "cost": {
+        "sp": 40,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 900,
+        "after_cast_ms": 1250,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "armor_break",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "armor_break",
+          "duration_ms": 5500,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "resource",
+          "type": "resource_change",
+          "target": "foes",
+          "resource": "sp",
+          "amount": -10
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "bard_encore": {
+      "id": "bard_encore",
+      "name_key": "bard_encore",
+      "class_id": "bard",
+      "max_level": 10,
+      "unlock_level": 40,
+      "tags": [
+        "bard",
+        "encore",
+        "awakened"
+      ],
+      "level_parameters": {
+        "sp_cost": [
+          38,
+          37,
+          37,
+          36,
+          36,
+          35,
+          35,
+          35,
+          34,
+          34
+        ],
+        "duration": [
+          1980,
+          2050,
+          2120,
+          2190,
+          2260,
+          2330,
+          2400,
+          2470,
+          2540,
+          2610
+        ]
+      },
+      "presentation_id": "visual_bard_encore",
+      "kind": "active",
+      "cost": {
+        "sp": {
+          "level_param": "sp_cost"
+        },
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 1100,
+        "after_cast_ms": 1300,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": {
+            "level_param": "duration"
+          },
+          "params": {},
+          "chance": 0.45
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "bard_music_lesson": {
+      "id": "bard_music_lesson",
+      "name_key": "bard_music_lesson",
+      "class_id": "bard",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "bard",
+        "music_lesson",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.1925,
+          0.199306,
+          0.206111,
+          0.212917,
+          0.219722,
+          0.226528,
+          0.233333,
+          0.240139,
+          0.246944,
+          0.25375
+        ],
+        "awaken_potency": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_bard_music_lesson",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "outgoing_healing_bonus",
+          "stat": "outgoing_healing_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "ratio"
+          }
+        },
+        {
+          "id": "awaken_potency",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "awaken_potency"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    "bard_breathing": {
+      "id": "bard_breathing",
+      "name_key": "bard_breathing",
+      "class_id": "bard",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "bard",
+        "breathing",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.48125,
+          0.498264,
+          0.515278,
+          0.532292,
+          0.549306,
+          0.566319,
+          0.583333,
+          0.600347,
+          0.617361,
+          0.634375
+        ],
+        "awaken_potency": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_bard_breathing",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "ratio"
+          }
+        },
+        {
+          "id": "awaken_potency",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "awaken_potency"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    "dancer_performance_strike": {
+      "id": "dancer_performance_strike",
+      "name_key": "dancer_performance_strike",
+      "class_id": "dancer",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "dancer",
+        "performance_strike",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          4.4275,
+          4.584028,
+          4.740556,
+          4.897083,
+          5.053611,
+          5.210139,
+          5.366667,
+          5.523194,
+          5.679722,
+          5.83625
+        ]
+      },
+      "presentation_id": "visual_dancer_performance_strike",
+      "kind": "active",
+      "cost": {
+        "sp": 24,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 350,
+        "after_cast_ms": 850,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "slow",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": -0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "dancer_healing_song": {
+      "id": "dancer_healing_song",
+      "name_key": "dancer_healing_song",
+      "class_id": "dancer",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "dancer",
+        "healing_song",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          0.9625,
+          0.996528,
+          1.030556,
+          1.064583,
+          1.098611,
+          1.132639,
+          1.166667,
+          1.200694,
+          1.234722,
+          1.26875
+        ],
+        "opening_power": [
+          1.925,
+          1.993056,
+          2.061111,
+          2.129167,
+          2.197222,
+          2.265278,
+          2.333333,
+          2.401389,
+          2.469444,
+          2.5375
+        ]
+      },
+      "presentation_id": "visual_dancer_healing_song",
+      "kind": "active",
+      "cost": {
+        "sp": 38,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 800,
+        "after_cast_ms": 1200,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "opening_heal",
+          "type": "heal",
+          "target": "friends",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "opening_power"
+              },
+              "flat_power": 0
+            }
+          }
+        },
+        {
+          "id": "regeneration",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "physical_regeneration",
+          "duration_ms": 6600,
+          "params": {
+            "power_ratio": {
+              "level_param": "power"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "dancer_battle_song": {
+      "id": "dancer_battle_song",
+      "name_key": "dancer_battle_song",
+      "class_id": "dancer",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "dancer",
+        "battle_song",
+        "awakened"
+      ],
+      "level_parameters": {
+        "critical": [
+          0.275,
+          0.284722,
+          0.294444,
+          0.304167,
+          0.313889,
+          0.323611,
+          0.333333,
+          0.343056,
+          0.352778,
+          0.3625
+        ],
+        "critical_damage": [
+          0.385,
+          0.398611,
+          0.412222,
+          0.425833,
+          0.439444,
+          0.453056,
+          0.466667,
+          0.480278,
+          0.493889,
+          0.5075
+        ]
+      },
+      "presentation_id": "visual_dancer_battle_song",
+      "kind": "active",
+      "cost": {
+        "sp": 36,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 850,
+        "after_cast_ms": 1200,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "critical",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "crit_up",
+          "duration_ms": 6050,
+          "params": {
+            "ratio": {
+              "level_param": "critical"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "critical_damage",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "crit_damage_up",
+          "duration_ms": 6050,
+          "params": {
+            "ratio": {
+              "level_param": "critical_damage"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "dancer_dissonance": {
+      "id": "dancer_dissonance",
+      "name_key": "dancer_dissonance",
+      "class_id": "dancer",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "dancer",
+        "dissonance",
+        "awakened"
+      ],
+      "level_parameters": {
+        "defense": [
+          0.495,
+          0.5125,
+          0.53,
+          0.5475,
+          0.565,
+          0.5825,
+          0.6,
+          0.6175,
+          0.635,
+          0.6525
+        ]
+      },
+      "presentation_id": "visual_dancer_dissonance",
+      "kind": "active",
+      "cost": {
+        "sp": 40,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 900,
+        "after_cast_ms": 1250,
+        "interruptible": true
+      },
+      "selectors": {
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "defense",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "defense_up",
+          "duration_ms": 6050,
+          "params": {
+            "ratio": {
+              "level_param": "defense"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "magic_defense",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "magic_defense_up",
+          "duration_ms": 6050,
+          "params": {
+            "ratio": {
+              "level_param": "defense"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "dancer_encore": {
+      "id": "dancer_encore",
+      "name_key": "dancer_encore",
+      "class_id": "dancer",
+      "max_level": 10,
+      "unlock_level": 40,
+      "tags": [
+        "dancer",
+        "encore",
+        "awakened"
+      ],
+      "level_parameters": {
+        "sp_cost": [
+          38,
+          37,
+          37,
+          36,
+          36,
+          35,
+          35,
+          35,
+          34,
+          34
+        ],
+        "duration": [
+          1980,
+          2050,
+          2120,
+          2190,
+          2260,
+          2330,
+          2400,
+          2470,
+          2540,
+          2610
+        ]
+      },
+      "presentation_id": "visual_dancer_encore",
+      "kind": "active",
+      "cost": {
+        "sp": {
+          "level_param": "sp_cost"
+        },
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 1100,
+        "after_cast_ms": 1300,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": {
+            "level_param": "duration"
+          },
+          "params": {},
+          "chance": 0.45
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "dancer_music_lesson": {
+      "id": "dancer_music_lesson",
+      "name_key": "dancer_music_lesson",
+      "class_id": "dancer",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "dancer",
+        "music_lesson",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.1925,
+          0.199306,
+          0.206111,
+          0.212917,
+          0.219722,
+          0.226528,
+          0.233333,
+          0.240139,
+          0.246944,
+          0.25375
+        ],
+        "awaken_potency": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_dancer_music_lesson",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "outgoing_healing_bonus",
+          "stat": "outgoing_healing_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "ratio"
+          }
+        },
+        {
+          "id": "awaken_potency",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "awaken_potency"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    "dancer_breathing": {
+      "id": "dancer_breathing",
+      "name_key": "dancer_breathing",
+      "class_id": "dancer",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "dancer",
+        "breathing",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.48125,
+          0.498264,
+          0.515278,
+          0.532292,
+          0.549306,
+          0.566319,
+          0.583333,
+          0.600347,
+          0.617361,
+          0.634375
+        ],
+        "awaken_potency": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_dancer_breathing",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "ratio"
+          }
+        },
+        {
+          "id": "awaken_potency",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "awaken_potency"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    "sniper_falcon_assault": {
+      "id": "sniper_falcon_assault",
+      "name_key": "sniper_falcon_assault",
+      "class_id": "sniper",
+      "max_level": 10,
+      "unlock_level": 70,
+      "rank_unlock_levels": [
+        70,
+        72,
+        74,
+        76,
+        78,
+        80,
+        82,
+        84,
+        86,
+        88
+      ],
+      "tags": [
+        "sniper",
+        "hi_class",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          2.2,
+          2.277778,
+          2.355556,
+          2.433333,
+          2.511111,
+          2.588889,
+          2.666667,
+          2.744444,
+          2.822222,
+          2.9
+        ]
+      },
+      "presentation_id": "visual_sniper_falcon_assault",
+      "kind": "active",
+      "cost": {
+        "sp": 55,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 700,
+        "after_cast_ms": 1200,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "neutral",
+          "hit_rule": "physical_roll",
+          "can_crit": false,
+          "hits": 5,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "slow",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": -0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "sniper_sharpshooting": {
+      "id": "sniper_sharpshooting",
+      "name_key": "sniper_sharpshooting",
+      "class_id": "sniper",
+      "max_level": 10,
+      "unlock_level": 80,
+      "rank_unlock_levels": [
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
+      ],
+      "tags": [
+        "sniper",
+        "hi_class",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          7.04,
+          7.288889,
+          7.537778,
+          7.786667,
+          8.035556,
+          8.284444,
+          8.533333,
+          8.782222,
+          9.031111,
+          9.28
+        ]
+      },
+      "presentation_id": "visual_sniper_sharpshooting",
+      "kind": "active",
+      "cost": {
+        "sp": 62,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 950,
+        "after_cast_ms": 1250,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "slow",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": -0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "clown_arrow_vulcan": {
+      "id": "clown_arrow_vulcan",
+      "name_key": "clown_arrow_vulcan",
+      "class_id": "clown",
+      "max_level": 10,
+      "unlock_level": 70,
+      "rank_unlock_levels": [
+        70,
+        72,
+        74,
+        76,
+        78,
+        80,
+        82,
+        84,
+        86,
+        88
+      ],
+      "tags": [
+        "clown",
+        "hi_class",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          1.265,
+          1.309722,
+          1.354444,
+          1.399167,
+          1.443889,
+          1.488611,
+          1.533333,
+          1.578056,
+          1.622778,
+          1.6675
+        ]
+      },
+      "presentation_id": "visual_clown_arrow_vulcan",
+      "kind": "active",
+      "cost": {
+        "sp": 58,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 900,
+        "after_cast_ms": 1400,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 9,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "slow",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": -0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "clown_marionette_control": {
+      "id": "clown_marionette_control",
+      "name_key": "clown_marionette_control",
+      "class_id": "clown",
+      "max_level": 10,
+      "unlock_level": 80,
+      "rank_unlock_levels": [
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
+      ],
+      "tags": [
+        "clown",
+        "hi_class",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.308,
+          0.318889,
+          0.329778,
+          0.340667,
+          0.351556,
+          0.362444,
+          0.373333,
+          0.384222,
+          0.395111,
+          0.406
+        ]
+      },
+      "presentation_id": "visual_clown_marionette_control",
+      "kind": "active",
+      "cost": {
+        "sp": 65,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 750,
+        "after_cast_ms": 1150,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "attack_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "attack_up",
+          "duration_ms": 11000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "magic_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "magic_up",
+          "duration_ms": 11000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "gypsy_tarot_card_of_fate": {
+      "id": "gypsy_tarot_card_of_fate",
+      "name_key": "gypsy_tarot_card_of_fate",
+      "class_id": "gypsy",
+      "max_level": 10,
+      "unlock_level": 70,
+      "rank_unlock_levels": [
+        70,
+        72,
+        74,
+        76,
+        78,
+        80,
+        82,
+        84,
+        86,
+        88
+      ],
+      "tags": [
+        "gypsy",
+        "hi_class",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          8.25,
+          8.541667,
+          8.833333,
+          9.125,
+          9.416667,
+          9.708333,
+          10.0,
+          10.291667,
+          10.583333,
+          10.875
+        ],
+        "ratio": [
+          -0.275,
+          -0.284722,
+          -0.294444,
+          -0.304167,
+          -0.313889,
+          -0.323611,
+          -0.333333,
+          -0.343056,
+          -0.352778,
+          -0.3625
+        ]
+      },
+      "presentation_id": "visual_gypsy_tarot_card_of_fate",
+      "kind": "active",
+      "cost": {
+        "sp": 55,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 900,
+        "after_cast_ms": 1250,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "neutral",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "attack_down",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "attack_down",
+          "duration_ms": 8800,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "silence",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "silence",
+          "duration_ms": 2200,
+          "params": {},
+          "chance": 0.35
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "stun",
+          "duration_ms": 1650,
+          "params": {},
+          "chance": 0.35
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "slow",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": -0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "gypsy_moonlit_water_mill": {
+      "id": "gypsy_moonlit_water_mill",
+      "name_key": "gypsy_moonlit_water_mill",
+      "class_id": "gypsy",
+      "max_level": 10,
+      "unlock_level": 80,
+      "rank_unlock_levels": [
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
+      ],
+      "tags": [
+        "gypsy",
+        "hi_class",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          2.2,
+          2.277778,
+          2.355556,
+          2.433333,
+          2.511111,
+          2.588889,
+          2.666667,
+          2.744444,
+          2.822222,
+          2.9
+        ],
+        "guard": [
+          0.22,
+          0.227778,
+          0.235556,
+          0.243333,
+          0.251111,
+          0.258889,
+          0.266667,
+          0.274444,
+          0.282222,
+          0.29
+        ]
+      },
+      "presentation_id": "visual_gypsy_moonlit_water_mill",
+      "kind": "active",
+      "cost": {
+        "sp": 62,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 900,
+        "after_cast_ms": 1300,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "heal",
+          "type": "heal",
+          "target": "friends",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          }
+        },
+        {
+          "id": "guard_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "guard_up",
+          "duration_ms": 8800,
+          "params": {
+            "ratio": {
+              "level_param": "guard"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    }
+  },
+  "awakened_upgrades": {
+    "archer_double_strafe": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "archer_concentration": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "archer_arrow_shower": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "archer_crippling_shot": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "archer_vulture_eye": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "hunter_blitz_beat": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "hunter_hunters_mark": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "hunter_ankle_snare": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "hunter_claymore": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "hunter_rapid_fire": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "hunter_falcon": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "hunter_steel_crow": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "bard_performance_strike": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "bard_healing_song": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "bard_battle_song": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "bard_dissonance": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "bard_encore": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "bard_music_lesson": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "bard_breathing": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "dancer_performance_strike": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "dancer_healing_song": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "dancer_battle_song": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "dancer_dissonance": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "dancer_encore": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "dancer_music_lesson": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "dancer_breathing": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "sniper_falcon_assault": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "sniper_sharpshooting": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "clown_arrow_vulcan": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "clown_marionette_control": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "gypsy_tarot_card_of_fate": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "gypsy_moonlit_water_mill": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    }
+  }
 }

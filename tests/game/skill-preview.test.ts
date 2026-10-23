@@ -5,14 +5,14 @@ import { restoreBattle, serializeBattle } from '../../src/domain/combat/index.ts
 import { content } from './combat-fixtures.ts';
 
 test('D152 catalog covers19 actual jobs and126 logical skills, inherited trees and valid ranks/genders', () => {
- assert.equal(previewJobs.length,19);
+ assert.equal(previewJobs.length,32);
  const ids=new Set<string>();
  for(const job of previewJobs){
   const skills=previewSkills(job.id);assert.ok(skills.length>=5);
-  assert.ok(skills.every(s=>s.class_id===job.id||s.class_id===job.root));
+  assert.ok(skills.every(s=>content.jobs.byId[job.id]!.ancestors.includes(s.class_id)));
   for(const s of skills)ids.add(s.id);
  }
- assert.equal(ids.size,126);
+ assert.equal(ids.size,152);
  assert.equal(previewSelection({job:'dancer',gender:'male'}).gender,'female');
  assert.equal(previewSelection({job:'monk',skill:'wizard_meteor',rank:NaN}).skill,'acolyte_heal');
  assert.deepEqual(previewSelection({job:'missing',rank:-Infinity}),previewSelection({}));
@@ -33,7 +33,7 @@ test('D152 all126 skills at ranks1/max run actual engine; active resolves and pa
    assert.ok(restoreBattle(serializeBattle(session.state),content).ok,skill.id);
   }
  }
- assert.equal(seen.size,126);assert.equal(JSON.stringify(content.documents),before,'catalog is never changed by a preview');
+ assert.equal(seen.size,152);assert.equal(JSON.stringify(content.documents),before,'catalog is never changed by a preview');
 });
 test('D152 previews real heal, timed healing, buff, summon, sphere cost and interrupt outcomes',()=>{
  for(const [job,skill,event]of [['acolyte','acolyte_heal','heal'],['bard','bard_healing_song','heal'],['acolyte','acolyte_blessing','status_applied'],['alchemist','alchemist_hell_plant','summon'],['monk','monk_call_spirits','resource_change'],['monk','monk_asura','damage'],['sage','sage_spell_breaker','cast_interrupt']]as const){

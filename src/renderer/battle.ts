@@ -124,7 +124,7 @@ export class BattleRenderer {
       if (event.type === 'terminal') { const sound = this.pack.index.audio_events[event.detail === 'enemy_team_wiped' ? 'victory' : 'defeat']; if (sound) this.sounds.push({ ref: sound.id, at: Math.max(event.at_ms, ...this.deathAt.values()), base: event.at_ms }); }
       if (event.type === 'normal_attack') {
         const job = this.scene.actors.find(actor => actor.actor_id === event.actor_id)?.job_id;
-        const key = !job ? 'hit' : ['archer', 'hunter', 'bard', 'dancer'].includes(job) ? 'attack_bow' : ['mage', 'wizard', 'sage'].includes(job) ? 'attack_rod' : ['acolyte', 'priest', 'monk', 'alchemist'].includes(job) ? 'attack_mace' : ['merchant', 'blacksmith'].includes(job) ? 'attack_axe' : ['thief', 'assassin', 'rogue'].includes(job) ? 'attack_dagger' : 'attack_sword';
+        const key = this.pack.index.actor_jobs.find(row=>row.job_id===job)?.normal_attack_sound_event ?? (!job ? 'hit' : ['archer', 'hunter', 'bard', 'dancer'].includes(job) ? 'attack_bow' : ['mage', 'wizard', 'sage'].includes(job) ? 'attack_rod' : ['acolyte', 'priest', 'monk', 'alchemist'].includes(job) ? 'attack_mace' : ['merchant', 'blacksmith'].includes(job) ? 'attack_axe' : ['thief', 'assassin', 'rogue'].includes(job) ? 'attack_dagger' : 'attack_sword');
         const sound = this.pack.index.audio_events[key]; if (sound) this.sounds.push({ ref: sound.id, at: event.at_ms + (launch?.contact ?? 0), base: event.at_ms });
       }
     }

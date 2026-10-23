@@ -2977,5 +2977,4250 @@
     "crusader_faith": "",
     "crusader_reflect": ""
   },
-  "future_awaken": "stable skill/effect IDs; no hi-class definitions required by these builds"
+  "future_awaken": "stable skill/effect IDs; no hi-class definitions required by these builds",
+  "hi_class_skills": [
+    {
+      "id": "lord_knight_aura_blade",
+      "name_key": "lord_knight_aura_blade",
+      "class_id": "lord_knight",
+      "max_level": 10,
+      "unlock_level": 70,
+      "rank_unlock_levels": [
+        70,
+        72,
+        74,
+        76,
+        78,
+        80,
+        82,
+        84,
+        86,
+        88
+      ],
+      "tags": [
+        "lord_knight",
+        "hi_class"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.18,
+          0.198889,
+          0.217778,
+          0.236667,
+          0.255556,
+          0.274444,
+          0.293333,
+          0.312222,
+          0.331111,
+          0.35
+        ]
+      },
+      "presentation_id": "visual_lord_knight_aura_blade",
+      "kind": "active",
+      "cost": {
+        "sp": 45,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 350,
+        "after_cast_ms": 850,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "attack_up",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "attack_up",
+          "duration_ms": 8000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "lord_knight_spiral_pierce",
+      "name_key": "lord_knight_spiral_pierce",
+      "class_id": "lord_knight",
+      "max_level": 10,
+      "unlock_level": 80,
+      "rank_unlock_levels": [
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
+      ],
+      "tags": [
+        "lord_knight",
+        "hi_class"
+      ],
+      "level_parameters": {
+        "power": [
+          1.1,
+          1.188889,
+          1.277778,
+          1.366667,
+          1.455556,
+          1.544444,
+          1.633333,
+          1.722222,
+          1.811111,
+          1.9
+        ]
+      },
+      "presentation_id": "visual_lord_knight_spiral_pierce",
+      "kind": "active",
+      "cost": {
+        "sp": 58,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 700,
+        "after_cast_ms": 1200,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 5,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "paladin_shield_chain",
+      "name_key": "paladin_shield_chain",
+      "class_id": "paladin",
+      "max_level": 10,
+      "unlock_level": 70,
+      "rank_unlock_levels": [
+        70,
+        72,
+        74,
+        76,
+        78,
+        80,
+        82,
+        84,
+        86,
+        88
+      ],
+      "tags": [
+        "paladin",
+        "hi_class"
+      ],
+      "level_parameters": {
+        "power": [
+          1.05,
+          1.133333,
+          1.216667,
+          1.3,
+          1.383333,
+          1.466667,
+          1.55,
+          1.633333,
+          1.716667,
+          1.8
+        ]
+      },
+      "presentation_id": "visual_paladin_shield_chain",
+      "kind": "active",
+      "cost": {
+        "sp": 52,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 600,
+        "after_cast_ms": 1100,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 5,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "paladin_gospel",
+      "name_key": "paladin_gospel",
+      "class_id": "paladin",
+      "max_level": 10,
+      "unlock_level": 80,
+      "rank_unlock_levels": [
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
+      ],
+      "tags": [
+        "paladin",
+        "hi_class"
+      ],
+      "level_parameters": {
+        "guard": [
+          0.1,
+          0.111111,
+          0.122222,
+          0.133333,
+          0.144444,
+          0.155556,
+          0.166667,
+          0.177778,
+          0.188889,
+          0.2
+        ],
+        "power": [
+          0.25,
+          0.272222,
+          0.294444,
+          0.316667,
+          0.338889,
+          0.361111,
+          0.383333,
+          0.405556,
+          0.427778,
+          0.45
+        ]
+      },
+      "presentation_id": "visual_paladin_gospel",
+      "kind": "active",
+      "cost": {
+        "sp": 65,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 1100,
+        "after_cast_ms": 1300,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "guard_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "guard_up",
+          "duration_ms": 8000,
+          "params": {
+            "ratio": {
+              "level_param": "guard"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "physical_regeneration",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "physical_regeneration",
+          "duration_ms": 8000,
+          "params": {
+            "power_ratio": {
+              "level_param": "power"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    }
+  ],
+  "hi_class_upgrades": {
+    "lord_knight_aura_blade": {
+      "learn_level_one_cost": {
+        "gold": 2500,
+        "skill_manual": 100
+      },
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 2000,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 3000,
+          "skill_manual": 150
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 4000,
+          "skill_manual": 200
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 5000,
+          "skill_manual": 250
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 6000,
+          "skill_manual": 300
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 7000,
+          "skill_manual": 350
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 8000,
+          "skill_manual": 400
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 9000,
+          "skill_manual": 450
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 10000,
+          "skill_manual": 500
+        }
+      ]
+    },
+    "lord_knight_spiral_pierce": {
+      "learn_level_one_cost": {
+        "gold": 2500,
+        "skill_manual": 100
+      },
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 2000,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 3000,
+          "skill_manual": 150
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 4000,
+          "skill_manual": 200
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 5000,
+          "skill_manual": 250
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 6000,
+          "skill_manual": 300
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 7000,
+          "skill_manual": 350
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 8000,
+          "skill_manual": 400
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 9000,
+          "skill_manual": 450
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 10000,
+          "skill_manual": 500
+        }
+      ]
+    },
+    "paladin_shield_chain": {
+      "learn_level_one_cost": {
+        "gold": 2500,
+        "skill_manual": 100
+      },
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 2000,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 3000,
+          "skill_manual": 150
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 4000,
+          "skill_manual": 200
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 5000,
+          "skill_manual": 250
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 6000,
+          "skill_manual": 300
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 7000,
+          "skill_manual": 350
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 8000,
+          "skill_manual": 400
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 9000,
+          "skill_manual": 450
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 10000,
+          "skill_manual": 500
+        }
+      ]
+    },
+    "paladin_gospel": {
+      "learn_level_one_cost": {
+        "gold": 2500,
+        "skill_manual": 100
+      },
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 2000,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 3000,
+          "skill_manual": 150
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 4000,
+          "skill_manual": 200
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 5000,
+          "skill_manual": 250
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 6000,
+          "skill_manual": 300
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 7000,
+          "skill_manual": 350
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 8000,
+          "skill_manual": 400
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 9000,
+          "skill_manual": 450
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 10000,
+          "skill_manual": 500
+        }
+      ]
+    }
+  },
+  "awakened_variants": {
+    "swordsman_bash": {
+      "id": "swordsman_bash",
+      "name_key": "swordsman_bash",
+      "class_id": "swordsman",
+      "max_level": 10,
+      "unlock_level": 1,
+      "tags": [
+        "swordsman",
+        "bash",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          4.235,
+          4.384722,
+          4.534444,
+          4.684167,
+          4.833889,
+          4.983611,
+          5.133333,
+          5.283056,
+          5.432778,
+          5.5825
+        ]
+      },
+      "presentation_id": "visual_swordsman_bash",
+      "kind": "active",
+      "cost": {
+        "sp": 12,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 500,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "stun",
+          "duration_ms": 1100,
+          "params": {},
+          "chance": 0.6,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "armor_break",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "swordsman_provoke": {
+      "id": "swordsman_provoke",
+      "name_key": "swordsman_provoke",
+      "class_id": "swordsman",
+      "max_level": 10,
+      "unlock_level": 1,
+      "tags": [
+        "swordsman",
+        "provoke",
+        "awakened"
+      ],
+      "level_parameters": {
+        "sp_cost": [
+          9,
+          9,
+          9,
+          9,
+          9,
+          8,
+          8,
+          8,
+          8,
+          8
+        ],
+        "duration": [
+          8250,
+          8542,
+          8833,
+          9125,
+          9417,
+          9708,
+          10000,
+          10292,
+          10583,
+          10875
+        ]
+      },
+      "presentation_id": "visual_swordsman_provoke",
+      "kind": "active",
+      "cost": {
+        "sp": {
+          "level_param": "sp_cost"
+        },
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 450,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "provoke",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "provoke",
+          "duration_ms": {
+            "level_param": "duration"
+          },
+          "params": {},
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "swordsman_magnum_break": {
+      "id": "swordsman_magnum_break",
+      "name_key": "swordsman_magnum_break",
+      "class_id": "swordsman",
+      "max_level": 10,
+      "unlock_level": 5,
+      "tags": [
+        "swordsman",
+        "magnum_break",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          2.59875,
+          2.690625,
+          2.7825,
+          2.874375,
+          2.96625,
+          3.058125,
+          3.15,
+          3.241875,
+          3.33375,
+          3.425625
+        ]
+      },
+      "presentation_id": "visual_swordsman_magnum_break",
+      "kind": "active",
+      "cost": {
+        "sp": 24,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 250,
+        "after_cast_ms": 800,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "fire",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "armor_break",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "swordsman_endure": {
+      "id": "swordsman_endure",
+      "name_key": "swordsman_endure",
+      "class_id": "swordsman",
+      "max_level": 10,
+      "unlock_level": 10,
+      "tags": [
+        "swordsman",
+        "endure",
+        "awakened"
+      ],
+      "level_parameters": {
+        "guard": [
+          0.308,
+          0.318889,
+          0.329778,
+          0.340667,
+          0.351556,
+          0.362444,
+          0.373333,
+          0.384222,
+          0.395111,
+          0.406
+        ]
+      },
+      "presentation_id": "visual_swordsman_endure",
+      "kind": "active",
+      "cost": {
+        "sp": 14,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 500,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "guard_up",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "guard_up",
+          "duration_ms": 5500,
+          "params": {
+            "ratio": {
+              "level_param": "guard"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "swordsman_sword_mastery": {
+      "id": "swordsman_sword_mastery",
+      "name_key": "swordsman_sword_mastery",
+      "class_id": "swordsman",
+      "max_level": 10,
+      "unlock_level": 10,
+      "tags": [
+        "swordsman",
+        "sword_mastery",
+        "awakened"
+      ],
+      "level_parameters": {
+        "attack": [
+          0.231,
+          0.239167,
+          0.247333,
+          0.2555,
+          0.263667,
+          0.271833,
+          0.28,
+          0.288167,
+          0.296333,
+          0.3045
+        ],
+        "awaken_potency": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_swordsman_sword_mastery",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "attack"
+          }
+        },
+        {
+          "id": "awaken_potency",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "awaken_potency"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    "knight_pierce": {
+      "id": "knight_pierce",
+      "name_key": "knight_pierce",
+      "class_id": "knight",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "knight",
+        "pierce",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          2.02125,
+          2.092708,
+          2.164167,
+          2.235625,
+          2.307083,
+          2.378542,
+          2.45,
+          2.521458,
+          2.592917,
+          2.664375
+        ]
+      },
+      "presentation_id": "visual_knight_pierce",
+      "kind": "active",
+      "cost": {
+        "sp": 26,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 350,
+        "after_cast_ms": 800,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 3,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "armor_break",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "knight_twohand_quicken": {
+      "id": "knight_twohand_quicken",
+      "name_key": "knight_twohand_quicken",
+      "class_id": "knight",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "knight",
+        "twohand_quicken",
+        "awakened"
+      ],
+      "level_parameters": {
+        "speed": [
+          0.275,
+          0.284722,
+          0.294444,
+          0.304167,
+          0.313889,
+          0.323611,
+          0.333333,
+          0.343056,
+          0.352778,
+          0.3625
+        ]
+      },
+      "presentation_id": "visual_knight_twohand_quicken",
+      "kind": "active",
+      "cost": {
+        "sp": 24,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 200,
+        "after_cast_ms": 650,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "aspd_up",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "aspd_up",
+          "duration_ms": 5500,
+          "params": {
+            "ratio": {
+              "level_param": "speed"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "knight_brandish": {
+      "id": "knight_brandish",
+      "name_key": "knight_brandish",
+      "class_id": "knight",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "knight",
+        "brandish",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          7.038282,
+          7.28711,
+          7.535938,
+          7.784766,
+          8.033594,
+          8.282423,
+          8.531251,
+          8.780079,
+          9.028907,
+          9.277735
+        ]
+      },
+      "presentation_id": "visual_knight_brandish",
+      "kind": "active",
+      "cost": {
+        "sp": 36,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 650,
+        "after_cast_ms": 1000,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "armor_break",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "knight_battle_cry": {
+      "id": "knight_battle_cry",
+      "name_key": "knight_battle_cry",
+      "class_id": "knight",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "knight",
+        "battle_cry",
+        "awakened"
+      ],
+      "level_parameters": {
+        "attack": [
+          0.231,
+          0.239167,
+          0.247333,
+          0.2555,
+          0.263667,
+          0.271833,
+          0.28,
+          0.288167,
+          0.296333,
+          0.3045
+        ]
+      },
+      "presentation_id": "visual_knight_battle_cry",
+      "kind": "active",
+      "cost": {
+        "sp": 30,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 450,
+        "after_cast_ms": 900,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "attack_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "attack_up",
+          "duration_ms": 4950,
+          "params": {
+            "ratio": {
+              "level_param": "attack"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "knight_counter_stance": {
+      "id": "knight_counter_stance",
+      "name_key": "knight_counter_stance",
+      "class_id": "knight",
+      "max_level": 10,
+      "unlock_level": 40,
+      "tags": [
+        "knight",
+        "counter_stance",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          1.25125,
+          1.295486,
+          1.339722,
+          1.383958,
+          1.428194,
+          1.472431,
+          1.516667,
+          1.560903,
+          1.605139,
+          1.649375
+        ]
+      },
+      "presentation_id": "visual_knight_counter_stance",
+      "kind": "active",
+      "cost": {
+        "sp": 24,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 800,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "counter_stance",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "counter_stance",
+          "duration_ms": 4950,
+          "params": {
+            "ratio": {
+              "level_param": "power"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "knight_veteran": {
+      "id": "knight_veteran",
+      "name_key": "knight_veteran",
+      "class_id": "knight",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "knight",
+        "veteran",
+        "awakened"
+      ],
+      "level_parameters": {
+        "hp": [
+          0.28875,
+          0.298958,
+          0.309167,
+          0.319375,
+          0.329583,
+          0.339792,
+          0.35,
+          0.360208,
+          0.370417,
+          0.380625
+        ],
+        "awaken_potency": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_knight_veteran",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "hp"
+          }
+        },
+        {
+          "id": "awaken_potency",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "awaken_potency"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    "knight_weapon_drill": {
+      "id": "knight_weapon_drill",
+      "name_key": "knight_weapon_drill",
+      "class_id": "knight",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "knight",
+        "weapon_drill",
+        "awakened"
+      ],
+      "level_parameters": {
+        "crit": [
+          0.385,
+          0.398611,
+          0.412222,
+          0.425833,
+          0.439444,
+          0.453056,
+          0.466667,
+          0.480278,
+          0.493889,
+          0.5075
+        ],
+        "awaken_potency": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_knight_weapon_drill",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "crit_damage_bonus",
+          "stat": "crit_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "crit"
+          }
+        },
+        {
+          "id": "awaken_potency",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "awaken_potency"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    "crusader_holy_cross": {
+      "id": "crusader_holy_cross",
+      "name_key": "crusader_holy_cross",
+      "class_id": "crusader",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "crusader",
+        "holy_cross",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          2.40625,
+          2.491319,
+          2.576389,
+          2.661458,
+          2.746528,
+          2.831597,
+          2.916667,
+          3.001736,
+          3.086806,
+          3.171875
+        ]
+      },
+      "presentation_id": "visual_crusader_holy_cross",
+      "kind": "active",
+      "cost": {
+        "sp": 28,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 500,
+        "after_cast_ms": 850,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "holy",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 2,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "armor_break",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "crusader_auto_guard": {
+      "id": "crusader_auto_guard",
+      "name_key": "crusader_auto_guard",
+      "class_id": "crusader",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "crusader",
+        "auto_guard",
+        "awakened"
+      ],
+      "level_parameters": {
+        "guard": [
+          0.539,
+          0.558056,
+          0.577111,
+          0.596167,
+          0.615222,
+          0.634278,
+          0.653333,
+          0.672389,
+          0.691444,
+          0.7105
+        ]
+      },
+      "presentation_id": "visual_crusader_auto_guard",
+      "kind": "active",
+      "cost": {
+        "sp": 24,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 100,
+        "after_cast_ms": 700,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "guard_up",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "guard_up",
+          "duration_ms": 5500,
+          "params": {
+            "ratio": {
+              "level_param": "guard"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "crusader_devotion": {
+      "id": "crusader_devotion",
+      "name_key": "crusader_devotion",
+      "class_id": "crusader",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "crusader",
+        "devotion",
+        "awakened"
+      ],
+      "level_parameters": {
+        "redirect": [
+          0.5775,
+          0.597917,
+          0.618333,
+          0.63875,
+          0.659167,
+          0.679583,
+          0.7,
+          0.720417,
+          0.740833,
+          0.76125
+        ]
+      },
+      "presentation_id": "visual_crusader_devotion",
+      "kind": "active",
+      "cost": {
+        "sp": 38,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 550,
+        "after_cast_ms": 1000,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "devotion",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "devotion",
+          "duration_ms": 5500,
+          "params": {
+            "ratio": {
+              "level_param": "redirect"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "crusader_grand_cross": {
+      "id": "crusader_grand_cross",
+      "name_key": "crusader_grand_cross",
+      "class_id": "crusader",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "crusader",
+        "grand_cross",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          7.038282,
+          7.28711,
+          7.535938,
+          7.784766,
+          8.033594,
+          8.282423,
+          8.531251,
+          8.780079,
+          9.028907,
+          9.277735
+        ]
+      },
+      "presentation_id": "visual_crusader_grand_cross",
+      "kind": "active",
+      "cost": {
+        "sp": 48,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 1100,
+        "after_cast_ms": 1200,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "holy",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "armor_break",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "crusader_defender": {
+      "id": "crusader_defender",
+      "name_key": "crusader_defender",
+      "class_id": "crusader",
+      "max_level": 10,
+      "unlock_level": 40,
+      "tags": [
+        "crusader",
+        "defender",
+        "awakened"
+      ],
+      "level_parameters": {
+        "defense": [
+          0.5775,
+          0.597917,
+          0.618333,
+          0.63875,
+          0.659167,
+          0.679583,
+          0.7,
+          0.720417,
+          0.740833,
+          0.76125
+        ]
+      },
+      "presentation_id": "visual_crusader_defender",
+      "kind": "active",
+      "cost": {
+        "sp": 34,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 600,
+        "after_cast_ms": 1100,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "defense_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "defense_up",
+          "duration_ms": 5500,
+          "params": {
+            "ratio": {
+              "level_param": "defense"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "magic_defense_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "magic_defense_up",
+          "duration_ms": 5500,
+          "params": {
+            "ratio": {
+              "level_param": "defense"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "crusader_faith": {
+      "id": "crusader_faith",
+      "name_key": "crusader_faith",
+      "class_id": "crusader",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "crusader",
+        "faith",
+        "awakened"
+      ],
+      "level_parameters": {
+        "hp": [
+          0.4235,
+          0.438472,
+          0.453444,
+          0.468417,
+          0.483389,
+          0.498361,
+          0.513333,
+          0.528306,
+          0.543278,
+          0.55825
+        ],
+        "awaken_potency": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_crusader_faith",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "hp"
+          }
+        },
+        {
+          "id": "awaken_potency",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "awaken_potency"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    "crusader_reflect": {
+      "id": "crusader_reflect",
+      "name_key": "crusader_reflect",
+      "class_id": "crusader",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "crusader",
+        "reflect",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          0.28875,
+          0.298958,
+          0.309167,
+          0.319375,
+          0.329583,
+          0.339792,
+          0.35,
+          0.360208,
+          0.370417,
+          0.380625
+        ],
+        "awaken_potency": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_crusader_reflect",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "awaken_potency",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "awaken_potency"
+          }
+        }
+      ],
+      "triggers": [
+        {
+          "id": "reflect",
+          "event": "damage_received",
+          "chance": 1,
+          "accepted_origins": [
+            "skill",
+            "normal"
+          ],
+          "limit_scope": "none",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {},
+          "effects": [
+            {
+              "id": "return_hit",
+              "type": "damage",
+              "target": "event_source",
+              "formula": {
+                "id": "event_damage_power",
+                "params": {
+                  "ratio": {
+                    "level_param": "power"
+                  }
+                }
+              },
+              "damage_type": "physical",
+              "element": "holy",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal",
+              "as_reflect": true
+            }
+          ]
+        }
+      ]
+    },
+    "lord_knight_aura_blade": {
+      "id": "lord_knight_aura_blade",
+      "name_key": "lord_knight_aura_blade",
+      "class_id": "lord_knight",
+      "max_level": 10,
+      "unlock_level": 70,
+      "rank_unlock_levels": [
+        70,
+        72,
+        74,
+        76,
+        78,
+        80,
+        82,
+        84,
+        86,
+        88
+      ],
+      "tags": [
+        "lord_knight",
+        "hi_class",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.385,
+          0.398611,
+          0.412222,
+          0.425833,
+          0.439444,
+          0.453056,
+          0.466667,
+          0.480278,
+          0.493889,
+          0.5075
+        ]
+      },
+      "presentation_id": "visual_lord_knight_aura_blade",
+      "kind": "active",
+      "cost": {
+        "sp": 45,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 350,
+        "after_cast_ms": 850,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "attack_up",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "attack_up",
+          "duration_ms": 8800,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "lord_knight_spiral_pierce": {
+      "id": "lord_knight_spiral_pierce",
+      "name_key": "lord_knight_spiral_pierce",
+      "class_id": "lord_knight",
+      "max_level": 10,
+      "unlock_level": 80,
+      "rank_unlock_levels": [
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
+      ],
+      "tags": [
+        "lord_knight",
+        "hi_class",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          2.09,
+          2.163889,
+          2.237778,
+          2.311667,
+          2.385556,
+          2.459444,
+          2.533333,
+          2.607222,
+          2.681111,
+          2.755
+        ]
+      },
+      "presentation_id": "visual_lord_knight_spiral_pierce",
+      "kind": "active",
+      "cost": {
+        "sp": 58,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 700,
+        "after_cast_ms": 1200,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 5,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "armor_break",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "paladin_shield_chain": {
+      "id": "paladin_shield_chain",
+      "name_key": "paladin_shield_chain",
+      "class_id": "paladin",
+      "max_level": 10,
+      "unlock_level": 70,
+      "rank_unlock_levels": [
+        70,
+        72,
+        74,
+        76,
+        78,
+        80,
+        82,
+        84,
+        86,
+        88
+      ],
+      "tags": [
+        "paladin",
+        "hi_class",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          1.98,
+          2.05,
+          2.12,
+          2.19,
+          2.26,
+          2.33,
+          2.4,
+          2.47,
+          2.54,
+          2.61
+        ]
+      },
+      "presentation_id": "visual_paladin_shield_chain",
+      "kind": "active",
+      "cost": {
+        "sp": 52,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 600,
+        "after_cast_ms": 1100,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 5,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "armor_break",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "paladin_gospel": {
+      "id": "paladin_gospel",
+      "name_key": "paladin_gospel",
+      "class_id": "paladin",
+      "max_level": 10,
+      "unlock_level": 80,
+      "rank_unlock_levels": [
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
+      ],
+      "tags": [
+        "paladin",
+        "hi_class",
+        "awakened"
+      ],
+      "level_parameters": {
+        "guard": [
+          0.22,
+          0.227778,
+          0.235556,
+          0.243333,
+          0.251111,
+          0.258889,
+          0.266667,
+          0.274444,
+          0.282222,
+          0.29
+        ],
+        "power": [
+          0.495,
+          0.5125,
+          0.53,
+          0.5475,
+          0.565,
+          0.5825,
+          0.6,
+          0.6175,
+          0.635,
+          0.6525
+        ]
+      },
+      "presentation_id": "visual_paladin_gospel",
+      "kind": "active",
+      "cost": {
+        "sp": 65,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 1100,
+        "after_cast_ms": 1300,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "guard_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "guard_up",
+          "duration_ms": 8800,
+          "params": {
+            "ratio": {
+              "level_param": "guard"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "physical_regeneration",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "physical_regeneration",
+          "duration_ms": 8800,
+          "params": {
+            "power_ratio": {
+              "level_param": "power"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    }
+  },
+  "awakened_upgrades": {
+    "swordsman_bash": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "swordsman_provoke": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "swordsman_magnum_break": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "swordsman_endure": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "swordsman_sword_mastery": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "knight_pierce": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "knight_twohand_quicken": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "knight_brandish": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "knight_battle_cry": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "knight_counter_stance": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "knight_veteran": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "knight_weapon_drill": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "crusader_holy_cross": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "crusader_auto_guard": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "crusader_devotion": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "crusader_grand_cross": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "crusader_defender": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "crusader_faith": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "crusader_reflect": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "lord_knight_aura_blade": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "lord_knight_spiral_pierce": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "paladin_shield_chain": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "paladin_gospel": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    }
+  }
 }

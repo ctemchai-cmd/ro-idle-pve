@@ -2,6 +2,7 @@ import raw from '../generated/content.json' with { type: 'json' };
 import type { RawContent, Result, ValidatedContent } from '../content/model.ts';
 import { freeze, type ObjectValue } from '../content/value.ts';
 import { createJobCatalog } from '../content/jobs.ts';
+import { projectContentDocuments } from '../content/extensions.ts';
 
 // One immutable definition bundle per browser build. This never stores saves, Auth or actor state.
 // npm build validates this exact generated bundle before Vite runs. Index that build-owned data
@@ -10,7 +11,8 @@ import { createJobCatalog } from '../content/jobs.ts';
 let validated: Result<ValidatedContent> | undefined;
 export function loadValidatedContent(): Result<ValidatedContent> {
   if (validated) return validated;
-  const bundle = raw as unknown as RawContent;
+  const source = raw as unknown as RawContent;
+  const bundle = { ...source, documents: projectContentDocuments(source.documents) };
   if (bundle.manifest.schema_version !== 1 || !/^[a-f0-9]{64}$/.test(bundle.manifest.content_hash))
     return { ok: false, errors: [{ code: 'bundle_shape', source: 'generated client bundle', path: '/manifest', message: 'Rebuild the validated content bundle' }] };
   const registry = (sources: readonly [string, string][]) => {

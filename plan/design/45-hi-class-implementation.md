@@ -95,3 +95,11 @@ DirectClass2→ลูกHiในสายเดิมเก็บบิลด์
 | Creator | Acid Demonstration /490 | Full Chemical Protection /479 | เคมี/ลดเกราะและป้องกันdebuffทีม |
 
 แหล่งตราอาชีพROOมีครบ13จากcatalog https://roocdb.com/data/classes/professions/asia/en.json (cache `/private/tmp/ro-task123-professions.json`). ชื่อภูมิภาคใช้Minstrel7202กับสายBard→Clown,Mastersmith6102ภายในWhiteSmith,และBiochemist6202ภายในCreator;ต้องบันทึกaliasในsidecarไม่เดาภาพแทน. BodyHigh24ชุดมีในlocalแต่weaponoverlayไม่มีโฟลเดอร์High2แยกในexport;ต้องตรวจการใช้parentoverlayกับbodyclock/ACT/anchorsจริงก่อนบันทึกว่ารองรับ ไม่อ้างจากชื่อclass.idอย่างเดียว.
+
+## TASK124 implemented baseline (local; release125 still pending)
+
+152Awaken variants retainstableIDs/icons and addfunctionalroleeffects. Rank1usesatleastoldMaxpowerplusnewdebuff/support/passivepotency;SteelBodyexplicit77–85%guard,notglobalbuffcap. SanctuaryremainsPureHoT;Bard/Dancerremainopening+HoT. Noautomaticstatsfrompromotion. Nativeiconsusepurpleinnerline/staticglowacrossskilllist/details/catalog/Timeline.
+
+Awakenunlock25000gold+20awakening_shard;upgradesrank2–10cost2000×targetgold+5×targetshards,totalfullAwaken133000gold/290shards. Actualbaseledger`skill`andnew`skill_awaken`remainseparate;resetsrefundactualpaidoncewiththeiroriginalversions. Conversion10manual→1shardand1shard→5manual,batchsinglecommand,nonrefundable. Newessencedungeonchestsaward2shardsatphase1fromchapter9snapshot,scaleexisting20%perphase;noAFKshards/oldpendingchestsrepricing. NativeAbyssJewelFragmentartisadaptedcurrency,notclaimedofficialROAwakenitem.
+
+Wallet/carry/frozenper_hour/claims/ledgergainnewkey0onmigration;actorsgainemptyawakened_skills. Historicalreceiptskeep8-keypayloadsvalidwithoutrewritingtheirhashes;newreceiptscontain9resources. NoSQLmigration:SupabaseRPCsalreadycommitopaqueJSONwithCAS/history/receipts. TASK125mustproveactuallegacybackup/migrate/replayand10-slotisolationbeforedeployment.

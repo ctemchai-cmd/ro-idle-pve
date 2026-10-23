@@ -2997,5 +2997,4336 @@
     "monk_iron_fist": "",
     "monk_spirit_combo": ""
   },
-  "future_awaken": "stable skill/effect IDs; no hi-class definitions required by these builds"
+  "future_awaken": "stable skill/effect IDs; no hi-class definitions required by these builds",
+  "hi_class_skills": [
+    {
+      "id": "high_priest_assumptio",
+      "name_key": "high_priest_assumptio",
+      "class_id": "high_priest",
+      "max_level": 10,
+      "unlock_level": 70,
+      "rank_unlock_levels": [
+        70,
+        72,
+        74,
+        76,
+        78,
+        80,
+        82,
+        84,
+        86,
+        88
+      ],
+      "tags": [
+        "high_priest",
+        "hi_class"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.14,
+          0.155556,
+          0.171111,
+          0.186667,
+          0.202222,
+          0.217778,
+          0.233333,
+          0.248889,
+          0.264444,
+          0.28
+        ]
+      },
+      "presentation_id": "visual_high_priest_assumptio",
+      "kind": "active",
+      "cost": {
+        "sp": 55,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 650,
+        "after_cast_ms": 1050,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "guard_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "guard_up",
+          "duration_ms": 10000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "high_priest_basilica",
+      "name_key": "high_priest_basilica",
+      "class_id": "high_priest",
+      "max_level": 10,
+      "unlock_level": 80,
+      "rank_unlock_levels": [
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
+      ],
+      "tags": [
+        "high_priest",
+        "hi_class"
+      ],
+      "level_parameters": {
+        "power": [
+          3.5,
+          3.777778,
+          4.055556,
+          4.333333,
+          4.611111,
+          4.888889,
+          5.166667,
+          5.444444,
+          5.722222,
+          6.0
+        ],
+        "guard": [
+          0.1,
+          0.108889,
+          0.117778,
+          0.126667,
+          0.135556,
+          0.144444,
+          0.153333,
+          0.162222,
+          0.171111,
+          0.18
+        ]
+      },
+      "presentation_id": "visual_high_priest_basilica",
+      "kind": "active",
+      "cost": {
+        "sp": 75,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 1300,
+        "after_cast_ms": 1500,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "shield",
+          "type": "shield",
+          "target": "friends",
+          "formula": {
+            "id": "healing_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "duration_ms": 6000,
+          "dispelable": true
+        },
+        {
+          "id": "guard_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "guard_up",
+          "duration_ms": 6000,
+          "params": {
+            "ratio": {
+              "level_param": "guard"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "cleanse",
+          "type": "remove_status",
+          "target": "friends",
+          "polarity": "debuff",
+          "tags": [],
+          "max_instances": null,
+          "permission": "cleanse"
+        }
+      ]
+    },
+    {
+      "id": "champion_palm_strike",
+      "name_key": "champion_palm_strike",
+      "class_id": "champion",
+      "max_level": 10,
+      "unlock_level": 70,
+      "rank_unlock_levels": [
+        70,
+        72,
+        74,
+        76,
+        78,
+        80,
+        82,
+        84,
+        86,
+        88
+      ],
+      "tags": [
+        "champion",
+        "hi_class"
+      ],
+      "level_parameters": {
+        "power": [
+          5.5,
+          5.888889,
+          6.277778,
+          6.666667,
+          7.055556,
+          7.444444,
+          7.833333,
+          8.222222,
+          8.611111,
+          9.0
+        ],
+        "stun": [
+          1000,
+          1089,
+          1178,
+          1267,
+          1356,
+          1444,
+          1533,
+          1622,
+          1711,
+          1800
+        ]
+      },
+      "presentation_id": "visual_champion_palm_strike",
+      "kind": "active",
+      "cost": {
+        "sp": 42,
+        "spirit_spheres": 1
+      },
+      "timing": {
+        "cast_ms": 400,
+        "after_cast_ms": 1050,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "stun",
+          "duration_ms": {
+            "level_param": "stun"
+          },
+          "params": {},
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "champion_chain_crush_combo",
+      "name_key": "champion_chain_crush_combo",
+      "class_id": "champion",
+      "max_level": 10,
+      "unlock_level": 80,
+      "rank_unlock_levels": [
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
+      ],
+      "tags": [
+        "champion",
+        "hi_class"
+      ],
+      "level_parameters": {
+        "power": [
+          1.5,
+          1.622222,
+          1.744444,
+          1.866667,
+          1.988889,
+          2.111111,
+          2.233333,
+          2.355556,
+          2.477778,
+          2.6
+        ]
+      },
+      "presentation_id": "visual_champion_chain_crush_combo",
+      "kind": "active",
+      "cost": {
+        "sp": 58,
+        "spirit_spheres": 3
+      },
+      "timing": {
+        "cast_ms": 600,
+        "after_cast_ms": 1300,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 5,
+          "armor_rule": "normal"
+        }
+      ]
+    }
+  ],
+  "hi_class_upgrades": {
+    "high_priest_assumptio": {
+      "learn_level_one_cost": {
+        "gold": 2500,
+        "skill_manual": 100
+      },
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 2000,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 3000,
+          "skill_manual": 150
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 4000,
+          "skill_manual": 200
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 5000,
+          "skill_manual": 250
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 6000,
+          "skill_manual": 300
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 7000,
+          "skill_manual": 350
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 8000,
+          "skill_manual": 400
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 9000,
+          "skill_manual": 450
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 10000,
+          "skill_manual": 500
+        }
+      ]
+    },
+    "high_priest_basilica": {
+      "learn_level_one_cost": {
+        "gold": 2500,
+        "skill_manual": 100
+      },
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 2000,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 3000,
+          "skill_manual": 150
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 4000,
+          "skill_manual": 200
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 5000,
+          "skill_manual": 250
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 6000,
+          "skill_manual": 300
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 7000,
+          "skill_manual": 350
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 8000,
+          "skill_manual": 400
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 9000,
+          "skill_manual": 450
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 10000,
+          "skill_manual": 500
+        }
+      ]
+    },
+    "champion_palm_strike": {
+      "learn_level_one_cost": {
+        "gold": 2500,
+        "skill_manual": 100
+      },
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 2000,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 3000,
+          "skill_manual": 150
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 4000,
+          "skill_manual": 200
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 5000,
+          "skill_manual": 250
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 6000,
+          "skill_manual": 300
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 7000,
+          "skill_manual": 350
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 8000,
+          "skill_manual": 400
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 9000,
+          "skill_manual": 450
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 10000,
+          "skill_manual": 500
+        }
+      ]
+    },
+    "champion_chain_crush_combo": {
+      "learn_level_one_cost": {
+        "gold": 2500,
+        "skill_manual": 100
+      },
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 2000,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 3000,
+          "skill_manual": 150
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 4000,
+          "skill_manual": 200
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 5000,
+          "skill_manual": 250
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 6000,
+          "skill_manual": 300
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 7000,
+          "skill_manual": 350
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 8000,
+          "skill_manual": 400
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 9000,
+          "skill_manual": 450
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 10000,
+          "skill_manual": 500
+        }
+      ]
+    }
+  },
+  "awakened_variants": {
+    "acolyte_heal": {
+      "id": "acolyte_heal",
+      "name_key": "acolyte_heal",
+      "class_id": "acolyte",
+      "max_level": 10,
+      "unlock_level": 1,
+      "tags": [
+        "acolyte",
+        "heal",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          4.235,
+          4.384722,
+          4.534444,
+          4.684167,
+          4.833889,
+          4.983611,
+          5.133333,
+          5.283056,
+          5.432778,
+          5.5825
+        ]
+      },
+      "presentation_id": "visual_acolyte_heal",
+      "kind": "active",
+      "cost": {
+        "sp": 18,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 600,
+        "after_cast_ms": 700,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "heal",
+          "type": "heal",
+          "target": "friend",
+          "formula": {
+            "id": "healing_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          }
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "friend",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "acolyte_blessing": {
+      "id": "acolyte_blessing",
+      "name_key": "acolyte_blessing",
+      "class_id": "acolyte",
+      "max_level": 10,
+      "unlock_level": 1,
+      "tags": [
+        "acolyte",
+        "blessing",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.28875,
+          0.298958,
+          0.309167,
+          0.319375,
+          0.329583,
+          0.339792,
+          0.35,
+          0.360208,
+          0.370417,
+          0.380625
+        ],
+        "duration": [
+          11000,
+          11389,
+          11778,
+          12167,
+          12556,
+          12944,
+          13333,
+          13722,
+          14111,
+          14500
+        ]
+      },
+      "presentation_id": "visual_acolyte_blessing",
+      "kind": "active",
+      "cost": {
+        "sp": 24,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 450,
+        "after_cast_ms": 800,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "attack_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "attack_up",
+          "duration_ms": {
+            "level_param": "duration"
+          },
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "magic_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "magic_up",
+          "duration_ms": {
+            "level_param": "duration"
+          },
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "acolyte_holy_light": {
+      "id": "acolyte_holy_light",
+      "name_key": "acolyte_holy_light",
+      "class_id": "acolyte",
+      "max_level": 10,
+      "unlock_level": 5,
+      "tags": [
+        "acolyte",
+        "holy_light",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          3.6575,
+          3.786806,
+          3.916111,
+          4.045417,
+          4.174722,
+          4.304028,
+          4.433333,
+          4.562639,
+          4.691944,
+          4.82125
+        ]
+      },
+      "presentation_id": "visual_acolyte_holy_light",
+      "kind": "active",
+      "cost": {
+        "sp": 16,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 650,
+        "after_cast_ms": 650,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "holy",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "silence",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "silence",
+          "duration_ms": 1650,
+          "params": {},
+          "chance": 0.5,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "exposed",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "acolyte_increase_agi": {
+      "id": "acolyte_increase_agi",
+      "name_key": "acolyte_increase_agi",
+      "class_id": "acolyte",
+      "max_level": 10,
+      "unlock_level": 10,
+      "tags": [
+        "acolyte",
+        "increase_agi",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.154,
+          0.159444,
+          0.164889,
+          0.170333,
+          0.175778,
+          0.181222,
+          0.186667,
+          0.192111,
+          0.197556,
+          0.203
+        ]
+      },
+      "presentation_id": "visual_acolyte_increase_agi",
+      "kind": "active",
+      "cost": {
+        "sp": 26,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 500,
+        "after_cast_ms": 900,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "aspd_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "aspd_up",
+          "duration_ms": 4950,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "acolyte_meditation": {
+      "id": "acolyte_meditation",
+      "name_key": "acolyte_meditation",
+      "class_id": "acolyte",
+      "max_level": 10,
+      "unlock_level": 10,
+      "tags": [
+        "acolyte",
+        "meditation",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.385,
+          0.398611,
+          0.412222,
+          0.425833,
+          0.439444,
+          0.453056,
+          0.466667,
+          0.480278,
+          0.493889,
+          0.5075
+        ],
+        "awaken_potency": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_acolyte_meditation",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "ratio"
+          }
+        },
+        {
+          "id": "awaken_potency",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "awaken_potency"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    "priest_sanctuary": {
+      "id": "priest_sanctuary",
+      "name_key": "priest_sanctuary",
+      "class_id": "priest",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "priest",
+        "sanctuary",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          1.925,
+          1.993056,
+          2.061111,
+          2.129167,
+          2.197222,
+          2.265278,
+          2.333333,
+          2.401389,
+          2.469444,
+          2.5375
+        ]
+      },
+      "presentation_id": "visual_priest_sanctuary",
+      "kind": "active",
+      "cost": {
+        "sp": 40,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 900,
+        "after_cast_ms": 1000,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "regeneration",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "sanctuary_regeneration",
+          "duration_ms": 6600,
+          "params": {
+            "power_ratio": {
+              "level_param": "power"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "guard_up",
+          "duration_ms": 6000,
+          "params": {
+            "ratio": 0.05
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "priest_impositio": {
+      "id": "priest_impositio",
+      "name_key": "priest_impositio",
+      "class_id": "priest",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "priest",
+        "impositio",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.48125,
+          0.498264,
+          0.515278,
+          0.532292,
+          0.549306,
+          0.566319,
+          0.583333,
+          0.600347,
+          0.617361,
+          0.634375
+        ]
+      },
+      "presentation_id": "visual_priest_impositio",
+      "kind": "active",
+      "cost": {
+        "sp": 32,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 650,
+        "after_cast_ms": 900,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "attack_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "attack_up",
+          "duration_ms": 6050,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "priest_magnificat": {
+      "id": "priest_magnificat",
+      "name_key": "priest_magnificat",
+      "class_id": "priest",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "priest",
+        "magnificat",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.9625,
+          0.996528,
+          1.030556,
+          1.064583,
+          1.098611,
+          1.132639,
+          1.166667,
+          1.200694,
+          1.234722,
+          1.26875
+        ]
+      },
+      "presentation_id": "visual_priest_magnificat",
+      "kind": "active",
+      "cost": {
+        "sp": 38,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 900,
+        "after_cast_ms": 1100,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "mana_regen_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "mana_regen_up",
+          "duration_ms": 7150,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "priest_resurrection": {
+      "id": "priest_resurrection",
+      "name_key": "priest_resurrection",
+      "class_id": "priest",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "priest",
+        "heal",
+        "party_heal",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          7.7,
+          7.972222,
+          8.244444,
+          8.516667,
+          8.788889,
+          9.061111,
+          9.333333,
+          9.605556,
+          9.877778,
+          10.15
+        ]
+      },
+      "presentation_id": "visual_priest_resurrection",
+      "kind": "active",
+      "cost": {
+        "sp": 60,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 1600,
+        "after_cast_ms": 1300,
+        "interruptible": true
+      },
+      "selectors": {
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "heal",
+          "type": "heal",
+          "target": "friends",
+          "formula": {
+            "id": "healing_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          }
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "priest_kyrie": {
+      "id": "priest_kyrie",
+      "name_key": "priest_kyrie",
+      "class_id": "priest",
+      "max_level": 10,
+      "unlock_level": 40,
+      "tags": [
+        "priest",
+        "kyrie",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          1.7325,
+          1.79375,
+          1.855,
+          1.91625,
+          1.9775,
+          2.03875,
+          2.1,
+          2.16125,
+          2.2225,
+          2.28375
+        ]
+      },
+      "presentation_id": "visual_priest_kyrie",
+      "kind": "active",
+      "cost": {
+        "sp": 44,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 900,
+        "after_cast_ms": 1100,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "shield",
+          "type": "shield",
+          "target": "friends",
+          "formula": {
+            "id": "healing_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 52.5
+            }
+          },
+          "duration_ms": 5000,
+          "dispelable": true
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "priest_healing_art": {
+      "id": "priest_healing_art",
+      "name_key": "priest_healing_art",
+      "class_id": "priest",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "priest",
+        "healing_art",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.3465,
+          0.35875,
+          0.371,
+          0.38325,
+          0.3955,
+          0.40775,
+          0.42,
+          0.43225,
+          0.4445,
+          0.45675
+        ],
+        "awaken_potency": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_priest_healing_art",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "outgoing_healing_bonus",
+          "stat": "outgoing_healing_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "ratio"
+          }
+        },
+        {
+          "id": "awaken_potency",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "awaken_potency"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    "priest_spirit_recovery": {
+      "id": "priest_spirit_recovery",
+      "name_key": "priest_spirit_recovery",
+      "class_id": "priest",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "priest",
+        "spirit_recovery",
+        "awakened"
+      ],
+      "level_parameters": {
+        "regen": [
+          5.775,
+          5.979167,
+          6.183333,
+          6.3875,
+          6.591667,
+          6.795833,
+          7.0,
+          7.204167,
+          7.408333,
+          7.6125
+        ],
+        "awaken_potency": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_priest_spirit_recovery",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "flat_sp_regen",
+          "stat": "flat_sp_regen",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "regen"
+          }
+        },
+        {
+          "id": "awaken_potency",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "awaken_potency"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    "monk_call_spirits": {
+      "id": "monk_call_spirits",
+      "name_key": "monk_call_spirits",
+      "class_id": "monk",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "monk",
+        "call_spirits",
+        "awakened"
+      ],
+      "level_parameters": {
+        "sp_cost": [
+          16,
+          16,
+          16,
+          16,
+          15,
+          15,
+          15,
+          15,
+          15,
+          14
+        ],
+        "spheres": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "attack_per_sphere": [
+          0.022,
+          0.022778,
+          0.023556,
+          0.024333,
+          0.025111,
+          0.025889,
+          0.026667,
+          0.027444,
+          0.028222,
+          0.029
+        ]
+      },
+      "presentation_id": "visual_monk_call_spirits",
+      "kind": "active",
+      "cost": {
+        "sp": {
+          "level_param": "sp_cost"
+        },
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 400,
+        "after_cast_ms": 700,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "resource",
+          "type": "resource_change",
+          "target": "self",
+          "resource": "spirit_spheres",
+          "amount": {
+            "level_param": "spheres"
+          }
+        },
+        {
+          "id": "awaken_sp",
+          "type": "resource_change",
+          "target": "self",
+          "resource": "sp",
+          "amount": 8
+        }
+      ]
+    },
+    "monk_triple_attack": {
+      "id": "monk_triple_attack",
+      "name_key": "monk_triple_attack",
+      "class_id": "monk",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "monk",
+        "triple_attack",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          2.045313,
+          2.117622,
+          2.189931,
+          2.26224,
+          2.334549,
+          2.406858,
+          2.479167,
+          2.551476,
+          2.623785,
+          2.696094
+        ]
+      },
+      "presentation_id": "visual_monk_triple_attack",
+      "kind": "active",
+      "cost": {
+        "sp": 24,
+        "spirit_spheres": 1
+      },
+      "timing": {
+        "cast_ms": 150,
+        "after_cast_ms": 750,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 3,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "exposed",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "monk_finger_offensive": {
+      "id": "monk_finger_offensive",
+      "name_key": "monk_finger_offensive",
+      "class_id": "monk",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "monk",
+        "finger_offensive",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          2.815313,
+          2.914844,
+          3.014375,
+          3.113906,
+          3.213438,
+          3.312969,
+          3.4125,
+          3.512031,
+          3.611563,
+          3.711094
+        ]
+      },
+      "presentation_id": "visual_monk_finger_offensive",
+      "kind": "active",
+      "cost": {
+        "sp": 35,
+        "spirit_spheres": 5
+      },
+      "timing": {
+        "cast_ms": 1000,
+        "after_cast_ms": 1000,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 5,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "exposed",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "monk_asura": {
+      "id": "monk_asura",
+      "name_key": "monk_asura",
+      "class_id": "monk",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "monk",
+        "asura",
+        "awakened"
+      ],
+      "level_parameters": {
+        "attack": [
+          10.828125,
+          11.210938,
+          11.59375,
+          11.976563,
+          12.359375,
+          12.742188,
+          13.125,
+          13.507812,
+          13.890625,
+          14.273438
+        ],
+        "mana": [
+          22.5225,
+          23.31875,
+          24.115,
+          24.91125,
+          25.7075,
+          26.50375,
+          27.3,
+          28.09625,
+          28.8925,
+          29.68875
+        ]
+      },
+      "presentation_id": "visual_monk_asura",
+      "kind": "active",
+      "cost": {
+        "sp": {
+          "mode": "all_current",
+          "minimum_sp": 30
+        },
+        "spirit_spheres": 5
+      },
+      "timing": {
+        "cast_ms": 1300,
+        "after_cast_ms": 1600,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "sp_burst_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "attack"
+              },
+              "sp_ratio": {
+                "level_param": "mana"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "exposed",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "monk_steel_body": {
+      "id": "monk_steel_body",
+      "name_key": "monk_steel_body",
+      "class_id": "monk",
+      "max_level": 10,
+      "unlock_level": 40,
+      "tags": [
+        "monk",
+        "steel_body",
+        "awakened"
+      ],
+      "level_parameters": {
+        "guard": [
+          0.77,
+          0.797222,
+          0.824444,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85,
+          0.85
+        ]
+      },
+      "presentation_id": "visual_monk_steel_body",
+      "kind": "active",
+      "cost": {
+        "sp": 35,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 600,
+        "after_cast_ms": 1200,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "guard_up",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "guard_up",
+          "duration_ms": 6600,
+          "params": {
+            "ratio": {
+              "level_param": "guard"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "provoke",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "provoke",
+          "duration_ms": 5500,
+          "params": {},
+          "chance": 1
+        },
+        {
+          "id": "slow",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "slow",
+          "duration_ms": 6600,
+          "params": {
+            "ratio": -0.3
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "monk_iron_fist": {
+      "id": "monk_iron_fist",
+      "name_key": "monk_iron_fist",
+      "class_id": "monk",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "monk",
+        "iron_fist",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.3465,
+          0.35875,
+          0.371,
+          0.38325,
+          0.3955,
+          0.40775,
+          0.42,
+          0.43225,
+          0.4445,
+          0.45675
+        ],
+        "awaken_potency": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_monk_iron_fist",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "ratio"
+          }
+        },
+        {
+          "id": "awaken_potency",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "awaken_potency"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    "monk_spirit_combo": {
+      "id": "monk_spirit_combo",
+      "name_key": "monk_spirit_combo",
+      "class_id": "monk",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "monk",
+        "spirit_combo",
+        "awakened"
+      ],
+      "level_parameters": {
+        "chance": [
+          0.385,
+          0.398611,
+          0.412222,
+          0.425833,
+          0.439444,
+          0.453056,
+          0.466667,
+          0.480278,
+          0.493889,
+          0.5075
+        ],
+        "awaken_potency": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_monk_spirit_combo",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "awaken_potency",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "awaken_potency"
+          }
+        }
+      ],
+      "triggers": [
+        {
+          "id": "spirit_on_hit",
+          "event": "normal_attack_hit",
+          "chance": {
+            "level_param": "chance"
+          },
+          "accepted_origins": [
+            "normal"
+          ],
+          "limit_scope": "none",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {},
+          "effects": [
+            {
+              "id": "resource",
+              "type": "resource_change",
+              "target": "self",
+              "resource": "spirit_spheres",
+              "amount": 1
+            }
+          ]
+        }
+      ]
+    },
+    "high_priest_assumptio": {
+      "id": "high_priest_assumptio",
+      "name_key": "high_priest_assumptio",
+      "class_id": "high_priest",
+      "max_level": 10,
+      "unlock_level": 70,
+      "rank_unlock_levels": [
+        70,
+        72,
+        74,
+        76,
+        78,
+        80,
+        82,
+        84,
+        86,
+        88
+      ],
+      "tags": [
+        "high_priest",
+        "hi_class",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.308,
+          0.318889,
+          0.329778,
+          0.340667,
+          0.351556,
+          0.362444,
+          0.373333,
+          0.384222,
+          0.395111,
+          0.406
+        ]
+      },
+      "presentation_id": "visual_high_priest_assumptio",
+      "kind": "active",
+      "cost": {
+        "sp": 55,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 650,
+        "after_cast_ms": 1050,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "guard_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "guard_up",
+          "duration_ms": 11000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "high_priest_basilica": {
+      "id": "high_priest_basilica",
+      "name_key": "high_priest_basilica",
+      "class_id": "high_priest",
+      "max_level": 10,
+      "unlock_level": 80,
+      "rank_unlock_levels": [
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
+      ],
+      "tags": [
+        "high_priest",
+        "hi_class",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          6.6,
+          6.833333,
+          7.066667,
+          7.3,
+          7.533333,
+          7.766667,
+          8.0,
+          8.233333,
+          8.466667,
+          8.7
+        ],
+        "guard": [
+          0.198,
+          0.205,
+          0.212,
+          0.219,
+          0.226,
+          0.233,
+          0.24,
+          0.247,
+          0.254,
+          0.261
+        ]
+      },
+      "presentation_id": "visual_high_priest_basilica",
+      "kind": "active",
+      "cost": {
+        "sp": 75,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 1300,
+        "after_cast_ms": 1500,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "shield",
+          "type": "shield",
+          "target": "friends",
+          "formula": {
+            "id": "healing_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "duration_ms": 6000,
+          "dispelable": true
+        },
+        {
+          "id": "guard_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "guard_up",
+          "duration_ms": 6600,
+          "params": {
+            "ratio": {
+              "level_param": "guard"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "cleanse",
+          "type": "remove_status",
+          "target": "friends",
+          "polarity": "debuff",
+          "tags": [],
+          "max_instances": null,
+          "permission": "cleanse"
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "champion_palm_strike": {
+      "id": "champion_palm_strike",
+      "name_key": "champion_palm_strike",
+      "class_id": "champion",
+      "max_level": 10,
+      "unlock_level": 70,
+      "rank_unlock_levels": [
+        70,
+        72,
+        74,
+        76,
+        78,
+        80,
+        82,
+        84,
+        86,
+        88
+      ],
+      "tags": [
+        "champion",
+        "hi_class",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          9.9,
+          10.25,
+          10.6,
+          10.95,
+          11.3,
+          11.65,
+          12.0,
+          12.35,
+          12.7,
+          13.05
+        ],
+        "stun": [
+          1980,
+          2050,
+          2120,
+          2190,
+          2260,
+          2330,
+          2400,
+          2470,
+          2540,
+          2610
+        ]
+      },
+      "presentation_id": "visual_champion_palm_strike",
+      "kind": "active",
+      "cost": {
+        "sp": 42,
+        "spirit_spheres": 1
+      },
+      "timing": {
+        "cast_ms": 400,
+        "after_cast_ms": 1050,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "stun",
+          "duration_ms": {
+            "level_param": "stun"
+          },
+          "params": {},
+          "chance": 1
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "exposed",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "champion_chain_crush_combo": {
+      "id": "champion_chain_crush_combo",
+      "name_key": "champion_chain_crush_combo",
+      "class_id": "champion",
+      "max_level": 10,
+      "unlock_level": 80,
+      "rank_unlock_levels": [
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
+      ],
+      "tags": [
+        "champion",
+        "hi_class",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          2.86,
+          2.961111,
+          3.062222,
+          3.163333,
+          3.264444,
+          3.365556,
+          3.466667,
+          3.567778,
+          3.668889,
+          3.77
+        ]
+      },
+      "presentation_id": "visual_champion_chain_crush_combo",
+      "kind": "active",
+      "cost": {
+        "sp": 58,
+        "spirit_spheres": 3
+      },
+      "timing": {
+        "cast_ms": 600,
+        "after_cast_ms": 1300,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 5,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "exposed",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    }
+  },
+  "awakened_upgrades": {
+    "acolyte_heal": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "acolyte_blessing": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "acolyte_holy_light": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "acolyte_increase_agi": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "acolyte_meditation": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "priest_sanctuary": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "priest_impositio": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "priest_magnificat": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "priest_resurrection": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "priest_kyrie": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "priest_healing_art": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "priest_spirit_recovery": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "monk_call_spirits": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "monk_triple_attack": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "monk_finger_offensive": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "monk_asura": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "monk_steel_body": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "monk_iron_fist": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "monk_spirit_combo": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "high_priest_assumptio": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "high_priest_basilica": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "champion_palm_strike": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "champion_chain_crush_combo": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    }
+  }
 }

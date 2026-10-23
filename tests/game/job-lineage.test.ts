@@ -20,8 +20,9 @@ const extensions = [
 test('job graph preserves current19 jobs/order and both catalogs match all current memberships', () => {
   const tree = content.documents['progression.json']!.class_tree as unknown as Record<string, string[]>;
   const order = Object.entries(tree).flatMap(([root, jobs]) => [root, ...jobs]);
-  assert.equal(order.length, 19); assert.deepEqual(content.jobs.order, order);
-  assert.deepEqual(skillCatalogJobs.map(j => j.id), order); assert.deepEqual(previewJobs.map(j => j.id), order);
+  assert.equal(order.length, 19); assert.deepEqual(content.jobs.order.filter(j=>content.jobs.byId[j]!.stage<=2), order);
+  const allJobs=content.jobs.order;assert.equal(allJobs.length,32);
+  assert.deepEqual(skillCatalogJobs.map(j => j.id), allJobs); assert.deepEqual(previewJobs.map(j => j.id), allJobs);
   for (const [root, jobs] of Object.entries(tree)) for (const job of [root, ...jobs]) {
     assert.equal(content.jobs.byId[job]!.root, root);
     assert.deepEqual(content.jobs.byId[job]!.ancestors, job === root ? [root] : [root, job]);

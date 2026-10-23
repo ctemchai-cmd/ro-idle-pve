@@ -541,6 +541,86 @@
         ]
       },
       "weapon_element": null
+    },
+    {
+      "id": "double_casting",
+      "polarity": "buff",
+      "tags": [
+        "skill_followup"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "power_ratio": {
+            "type": "number",
+            "minimum": 0
+          },
+          "chance": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        },
+        "required": [
+          "power_ratio",
+          "chance"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": false,
+      "dispelable": true,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [],
+      "triggers": [
+        {
+          "id": "echo",
+          "event": "damage_dealt",
+          "chance": {
+            "status_param": "chance"
+          },
+          "accepted_origins": [
+            "skill"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {},
+          "effects": [
+            {
+              "id": "echo",
+              "type": "damage",
+              "target": "event_target",
+              "formula": {
+                "id": "magical_power",
+                "params": {
+                  "attack_ratio": {
+                    "status_param": "power_ratio"
+                  },
+                  "flat_power": 0
+                }
+              },
+              "damage_type": "magical",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
+            }
+          ]
+        }
+      ],
+      "periodic": null,
+      "weapon_element": null
     }
   ],
   "status": "Class content extensions authored in TASK-003–008; additive policies unchanged."

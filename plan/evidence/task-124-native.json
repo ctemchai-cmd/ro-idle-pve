@@ -1,0 +1,47 @@
+{
+  "task_id": "TASK-124",
+  "passed": true,
+  "checks": [
+    {
+      "case": "same_native_icon_purple_inner_line_actual_rank1_checkpoint_Timeline_and_details",
+      "actual": {
+        "skill": "monk_finger_offensive",
+        "rank": 1,
+        "tags": [
+          "monk",
+          "finger_offensive",
+          "awakened"
+        ],
+        "start_ms": 1500,
+        "resolve_ms": 2500,
+        "source_icon": "http://127.0.0.1:7483/ro/b9a9280a8c7cd03a430256592591483015b3cfd0b95cf238a12ca50dea3c32bd/skills/modern-monk_finger_offensive.webp",
+        "extra_effect": {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "exposed",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      },
+      "glow": {
+        "shadow": "rgb(166, 86, 217) 0px 0px 6px 2px inset, rgba(172, 107, 230, 0.32) 0px 0px 4px 0px",
+        "border": "solid",
+        "url": "http://127.0.0.1:7483/ro/b9a9280a8c7cd03a430256592591483015b3cfd0b95cf238a12ca50dea3c32bd/skills/modern-monk_finger_offensive.webp"
+      }
+    },
+    {
+      "case": "static_reduced_motion_390320_zero_save_writes",
+      "motion": {
+        "animation": "none",
+        "shadow": "rgb(166, 86, 217) 0px 0px 6px 2px inset, rgba(172, 107, 230, 0.32) 0px 0px 4px 0px"
+      }
+    }
+  ],
+  "errors": [],
+  "writes": [],
+  "scope": "Actual shared SkillIcon/skill details/TimelineRow from an engine-produced Awaken checkpoint in isolated Chrome. Authenticated progression/catalog/save integration belongs to TASK125; no owner access."
+}

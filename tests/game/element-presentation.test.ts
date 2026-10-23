@@ -27,7 +27,7 @@ test('direct, weapon, mixed, periodic, passive, summoned and handler skill eleme
   const expected = {
     mage_fire_bolt: ['fire'], mage_cold_bolt: ['water'], mage_lightning_bolt: ['wind'], mage_soul_strike: ['ghost'],
     wizard_storm_gust: ['water'], wizard_heavens_drive: ['earth'], wizard_meteor: ['fire'],
-    acolyte_holy_light: ['holy'], crusader_reflect: ['holy'], hunter_blitz_beat: ['neutral'], hunter_falcon: ['neutral'],
+    acolyte_holy_light: ['holy'], crusader_reflect: ['holy'], hunter_blitz_beat: ['weapon'], hunter_falcon: ['neutral'],
     sage_auto_bolt: ['fire'], thief_envenom: ['weapon', 'poison'], assassin_venom_dust: ['poison'],
     assassin_detonate: ['weapon'], alchemist_hell_plant: ['poison'], alchemist_demonstration: ['fire'],
     swordsman_bash: ['weapon'], monk_asura: ['weapon'], rogue_copy_mage_fire_bolt: ['fire'],
@@ -44,7 +44,7 @@ test('direct, weapon, mixed, periodic, passive, summoned and handler skill eleme
 
 test('all126 player skill descriptions remain read-only and nested status cycles terminate', () => {
   const ids = Object.values(content.skills).filter(s => s.class_id !== 'enemy').map(s => String(s.id));
-  assert.equal(ids.length, 126);
+  assert.equal(ids.length, 152);
   for (const id of ids) {
     const d = definition(id), before = JSON.stringify(d), elements = skillDamageElements(d);
     assert.ok(elements.every(e => e === 'weapon' || e in elementNames), id);

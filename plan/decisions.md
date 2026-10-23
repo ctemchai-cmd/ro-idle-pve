@@ -302,3 +302,5 @@ D146เพิ่มเติม:ผู้ใช้ยืนยันกาชา
 | D-156 |23ต.ค.2026|ผู้ใช้ขอปุ่มใส่ของรวดเดียว เฉพาะของที่มีแจ้งเตือนดีกว่า;TASK126ใช้เกณฑ์Tierก่อนrarityเดิม/currentcharacter/หนึ่งatomiccommand ไม่ยกเลิกHi-class |
 
 | D-157 |23ต.ค.2026|ผู้ใช้ยืนยันBard/Dancerเป็นinstant+HoT ส่วนSanctuaryเป็นPureHoTที่แรงกว่าและเริ่มต่อเนื่องทันที;TASK127/design47ใช้statusเฉพาะ/ไม่มีopeningheal/105–175%MATKทุก1s6ticksเป็นassistantbaseline คงเพลงเดิม |
+
+| D-158 |24ต.ค.2026|ผู้ใช้ขอบัพHunter/Spiral Volleyเพราะสู้บอสเดี่ยวเป็นหลัก;TASK128เพิ่มเฉพาะสามdamage skillsและAwakenที่ต่อยอด ไม่ใช้globalAoE penalty;750%/1050%เป็นassistantbaselineรอผู้ใช้เล่นจริง|

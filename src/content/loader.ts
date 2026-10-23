@@ -3,6 +3,7 @@ import type { Json, ObjectValue } from './value.ts';
 import { arrayAt, canonical, freeze, isObject, objectAt } from './value.ts';
 import { ContentValidator, demand, InvalidContent } from './validation.ts';
 import { createJobCatalog, type JobCatalog } from './jobs.ts';
+import { projectContentDocuments } from './extensions.ts';
 
 const object = (value: Json | undefined) => objectAt(value, 'content');
 const list = (value: Json | undefined) => arrayAt(value, 'content');
@@ -21,6 +22,7 @@ export function validateContent(raw: unknown): Result<ValidatedContent> {
     canonical(raw);
     demand(isObject(raw) && isObject(raw.documents) && isObject(raw.schemas) && isObject(raw.manifest), 'bundle_shape', root);
     bundle = structuredClone(raw) as unknown as RawContent;
+    bundle.documents = projectContentDocuments(bundle.documents);
     demand(bundle.manifest.schema_version === 1 && bundle.manifest.content_version === 'class2-v1.0.0' && bundle.manifest.rules_version === 'combat-baseline-v1', 'version', root);
     for (const key of ['content_hash', 'engine_data_hash', 'schema_hash', 'implementation_hash'] as const) demand(/^[a-f0-9]{64}$/.test(bundle.manifest[key]), 'version_hash', { ...root, path: `/manifest/${key}` });
     demand(canonical(Object.keys(bundle.schemas).sort()) === canonical([...SCHEMAS].sort()), 'schema_catalog', root);
@@ -53,6 +55,16 @@ export function validateContent(raw: unknown): Result<ValidatedContent> {
   register('enemies.json', 'skills', skills, 'skill');
   for (const file of ['equipment.json', 'cards.json']) register(file, 'definitions', items, 'item');
   for (const row of rows) attempt(row.location, () => validator.definition(row.kind, row.value, row.location));
+  for (const name of CLASS_ROOTS) {
+    const variants = bundle.documents[`skills/${name}.json`]!.awakened_variants;
+    if (isObject(variants)) for (const [id, value] of Object.entries(variants)) attempt({source:`skills/${name}.json`,definition_id:id,path:`/awakened_variants/${id}`},()=>{
+      const row=object(value),base=skills[id];
+      // Closed High variants are still validated as typed programs, but not admitted to play.
+      const authoredBase=base??list(bundle.documents[`skills/${name}.json`]!.hi_class_skills??[]).map(object).find(s=>s.id===id);
+      demand(authoredBase&&row.id===id&&row.class_id===authoredBase.class_id&&row.presentation_id===authoredBase.presentation_id,'invalid_awaken_variant',{source:`skills/${name}.json`,path:`/awakened_variants/${id}`});
+      validator.definition('skill',row,{source:`skills/${name}.json`,definition_id:id,path:`/awakened_variants/${id}`});
+    });
+  }
   attempt({ source: 'stat-definitions.json', path: '/combat_resources' }, () => validator.resourceModifiers(list(bundle.documents['stat-definitions.json']!.combat_resources), skills, { source: 'stat-definitions.json', path: '/combat_resources' }));
   const docAt = (file: string) => ({ source: file, path: '' });
   attempt(docAt('slot-progress.json'), () => {

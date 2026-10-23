@@ -1,0 +1,20 @@
+{
+  "passed": false,
+  "checks": [
+    "Real signed old eight-resource save -> backup+migrate adds zero shards/empty flags, retains exact old paid ledger, gear, frozen farm/carry/unpaid claim; old receipt replays unchanged"
+  ],
+  "errors": [],
+  "metrics": {},
+  "commands": [
+    {
+      "type": "save.migrate",
+      "request_id": "8f9d1c94-df7a-46c8-ab3e-45153967be46"
+    }
+  ],
+  "owner_cloud_access": false,
+  "balance_batch": false,
+  "failure": {
+    "stage": "PROMOTE",
+    "message": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Champion', exact: true })\u001b[22m\n\n    at /Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/test_hi_release_live.cjs:32:239"
+  }
+}

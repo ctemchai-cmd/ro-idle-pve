@@ -69,6 +69,15 @@ def selection(data_root=DATA):
     files += sorted((data_root / 'presentations').glob('*.json'))
     files += sorted((data_root / 'skills').glob('*.json'))
     documents = {str(p.relative_to(data_root)): read(p) for p in files}
+    # Pack prepared High assets too; the content release flag still controls gameplay.
+    # This is a dependency closure, not a second gameplay registry.
+    for name, document in documents.items():
+        if name.startswith('skills/'):
+            document['skills'] += document.get('hi_class_skills', [])
+        if name.startswith('presentations/'):
+            document['presentations'] += document.get('hi_class_presentations', [])
+        if name == 'actor-presentations.json':
+            document['jobs'] += document.get('hi_class_jobs', [])
     refs = collect_refs(read(COMBAT_VISUALS)) | collect_refs(read(SHELL_VISUALS))
     recipe_ids = set()
     for document in documents.values():
@@ -131,8 +140,9 @@ def build(output=OUT, data_root=DATA, ro_root=RO):
             if skill['id'] in skills or skill.get('presentation_id') not in presentations:
                 raise ValueError('Duplicate skill or unknown presentation: ' + skill['id'])
             skills[skill['id']] = {'presentation_id': skill['presentation_id']}
-    if len(skills) != 126:
-        raise ValueError('Release selection requires126 player skills')
+    expected_players = 126 + sum(len(d.get('hi_class_skills', [])) for name, d in docs.items() if name.startswith('skills/'))
+    if len(skills) != expected_players:
+        raise ValueError('Player skill dependency closure is incomplete')
     # Enemy variants may explicitly reuse a complete player presentation (icon,
     # native effect, sound). Legacy enemy recipes remain on their existing path.
     for skill in docs['enemies.json']['skills']:

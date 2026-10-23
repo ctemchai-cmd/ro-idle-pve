@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { class2Content } from './class2-content-fixture.ts';
 import assert from 'node:assert/strict';
 import rawJson from '../../src/generated/content.json';
 import { validateContent } from '../../src/content/loader.ts';
@@ -8,7 +9,7 @@ import { applyRosterCommand, effectiveLevelCap, jobChangePlan, levelQuote, progr
 import { applySkillCommand, compileCharacterSkills } from '../../src/domain/progression/skills.ts';
 import { equipmentFit } from '../../src/domain/build/equipment-definition.ts';
 import { equipStarterSet } from './gear-fixtures.ts';
-import { content, unwrap } from './combat-fixtures.ts';
+import { unwrap } from './combat-fixtures.ts';
 import type { Command } from '../../src/contracts/index.ts';
 
 function futureContent() {
@@ -35,14 +36,15 @@ function fixture(parent: Character['job_id'] = 'knight') {
   return { state, actor, command };
 }
 
-test('prepared Hi rows stay inactive in product; current schema rejects over-cap states at the semantic boundary', () => {
+test('former Class2 release fixture remains closed and rejects over-cap states at the semantic boundary', () => {
+  const content = class2Content();
   assert.equal(content.jobs.order.length, 19); assert.equal(data.hi_class!.job_advancements.length, 13);
   assert.equal(progressionData(content).progression.level_rows.at(-1)!.level, 70);
   assert.equal(progressionData(content).release.level_cap, 70);
   assert.equal(content.jobs.byId.champion, undefined);
   const f = fixture(); assert.throws(() => jobChangePlan(f.actor, 'lord_knight', progressionData(content)), /HI_CLASS_UNAVAILABLE/);
   f.actor.level = 71; f.actor.unspent_status_points += 17;
-  assert.throws(() => new AccountCommandRules().validateAccount(f.state), /INVALID_CHARACTER_PROGRESSION|INVALID_ITEM/);
+  assert.throws(() => new AccountCommandRules(content).validateAccount(f.state), /INVALID_CHARACTER_PROGRESSION|INVALID_ITEM/);
 });
 
 test('all13 same-branch Hi promotions retain paid stats/skills/slots/equipment/cards/ledger without automatic growth', () => {

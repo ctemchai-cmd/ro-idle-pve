@@ -3121,5 +3121,4479 @@
     "alchemist_learning_potion": "",
     "alchemist_chemical_expertise": ""
   },
-  "future_awaken": "stable skill/effect IDs; no hi-class definitions required by these builds"
+  "future_awaken": "stable skill/effect IDs; no hi-class definitions required by these builds",
+  "hi_class_skills": [
+    {
+      "id": "whitesmith_cart_termination",
+      "name_key": "whitesmith_cart_termination",
+      "class_id": "whitesmith",
+      "max_level": 10,
+      "unlock_level": 70,
+      "rank_unlock_levels": [
+        70,
+        72,
+        74,
+        76,
+        78,
+        80,
+        82,
+        84,
+        86,
+        88
+      ],
+      "tags": [
+        "whitesmith",
+        "hi_class"
+      ],
+      "level_parameters": {
+        "power": [
+          5.8,
+          6.244444,
+          6.688889,
+          7.133333,
+          7.577778,
+          8.022222,
+          8.466667,
+          8.911111,
+          9.355556,
+          9.8
+        ]
+      },
+      "presentation_id": "visual_whitesmith_cart_termination",
+      "kind": "active",
+      "cost": {
+        "sp": 58,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 550,
+        "after_cast_ms": 1200,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "stun",
+          "duration_ms": 1200,
+          "params": {},
+          "chance": 0.3
+        }
+      ]
+    },
+    {
+      "id": "whitesmith_maximum_overthrust",
+      "name_key": "whitesmith_maximum_overthrust",
+      "class_id": "whitesmith",
+      "max_level": 10,
+      "unlock_level": 80,
+      "rank_unlock_levels": [
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
+      ],
+      "tags": [
+        "whitesmith",
+        "hi_class"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.16,
+          0.177778,
+          0.195556,
+          0.213333,
+          0.231111,
+          0.248889,
+          0.266667,
+          0.284444,
+          0.302222,
+          0.32
+        ]
+      },
+      "presentation_id": "visual_whitesmith_maximum_overthrust",
+      "kind": "active",
+      "cost": {
+        "sp": 62,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 800,
+        "after_cast_ms": 1200,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "attack_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "attack_up",
+          "duration_ms": 10000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "creator_acid_demonstration",
+      "name_key": "creator_acid_demonstration",
+      "class_id": "creator",
+      "max_level": 10,
+      "unlock_level": 70,
+      "rank_unlock_levels": [
+        70,
+        72,
+        74,
+        76,
+        78,
+        80,
+        82,
+        84,
+        86,
+        88
+      ],
+      "tags": [
+        "creator",
+        "hi_class"
+      ],
+      "level_parameters": {
+        "power": [
+          1.15,
+          1.233333,
+          1.316667,
+          1.4,
+          1.483333,
+          1.566667,
+          1.65,
+          1.733333,
+          1.816667,
+          1.9
+        ],
+        "ratio": [
+          0.1,
+          0.111111,
+          0.122222,
+          0.133333,
+          0.144444,
+          0.155556,
+          0.166667,
+          0.177778,
+          0.188889,
+          0.2
+        ]
+      },
+      "presentation_id": "visual_creator_acid_demonstration",
+      "kind": "active",
+      "cost": {
+        "sp": 65,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 1000,
+        "after_cast_ms": 1300,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "neutral",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 5,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "armor_break",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "armor_break",
+          "duration_ms": 8000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "creator_full_chemical_protection",
+      "name_key": "creator_full_chemical_protection",
+      "class_id": "creator",
+      "max_level": 10,
+      "unlock_level": 80,
+      "rank_unlock_levels": [
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
+      ],
+      "tags": [
+        "creator",
+        "hi_class"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.25,
+          0.277778,
+          0.305556,
+          0.333333,
+          0.361111,
+          0.388889,
+          0.416667,
+          0.444444,
+          0.472222,
+          0.5
+        ],
+        "guard": [
+          0.08,
+          0.088889,
+          0.097778,
+          0.106667,
+          0.115556,
+          0.124444,
+          0.133333,
+          0.142222,
+          0.151111,
+          0.16
+        ]
+      },
+      "presentation_id": "visual_creator_full_chemical_protection",
+      "kind": "active",
+      "cost": {
+        "sp": 68,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 1000,
+        "after_cast_ms": 1400,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "cleanse",
+          "type": "remove_status",
+          "target": "friends",
+          "polarity": "debuff",
+          "tags": [],
+          "max_instances": null,
+          "permission": "cleanse"
+        },
+        {
+          "id": "cc_resistance_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 10000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "guard_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "guard_up",
+          "duration_ms": 10000,
+          "params": {
+            "ratio": {
+              "level_param": "guard"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    }
+  ],
+  "hi_class_upgrades": {
+    "whitesmith_cart_termination": {
+      "learn_level_one_cost": {
+        "gold": 2500,
+        "skill_manual": 100
+      },
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 2000,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 3000,
+          "skill_manual": 150
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 4000,
+          "skill_manual": 200
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 5000,
+          "skill_manual": 250
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 6000,
+          "skill_manual": 300
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 7000,
+          "skill_manual": 350
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 8000,
+          "skill_manual": 400
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 9000,
+          "skill_manual": 450
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 10000,
+          "skill_manual": 500
+        }
+      ]
+    },
+    "whitesmith_maximum_overthrust": {
+      "learn_level_one_cost": {
+        "gold": 2500,
+        "skill_manual": 100
+      },
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 2000,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 3000,
+          "skill_manual": 150
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 4000,
+          "skill_manual": 200
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 5000,
+          "skill_manual": 250
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 6000,
+          "skill_manual": 300
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 7000,
+          "skill_manual": 350
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 8000,
+          "skill_manual": 400
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 9000,
+          "skill_manual": 450
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 10000,
+          "skill_manual": 500
+        }
+      ]
+    },
+    "creator_acid_demonstration": {
+      "learn_level_one_cost": {
+        "gold": 2500,
+        "skill_manual": 100
+      },
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 2000,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 3000,
+          "skill_manual": 150
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 4000,
+          "skill_manual": 200
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 5000,
+          "skill_manual": 250
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 6000,
+          "skill_manual": 300
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 7000,
+          "skill_manual": 350
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 8000,
+          "skill_manual": 400
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 9000,
+          "skill_manual": 450
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 10000,
+          "skill_manual": 500
+        }
+      ]
+    },
+    "creator_full_chemical_protection": {
+      "learn_level_one_cost": {
+        "gold": 2500,
+        "skill_manual": 100
+      },
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 2000,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 3000,
+          "skill_manual": 150
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 4000,
+          "skill_manual": 200
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 5000,
+          "skill_manual": 250
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 6000,
+          "skill_manual": 300
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 7000,
+          "skill_manual": 350
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 8000,
+          "skill_manual": 400
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 9000,
+          "skill_manual": 450
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 10000,
+          "skill_manual": 500
+        }
+      ]
+    }
+  },
+  "awakened_variants": {
+    "merchant_mammonite": {
+      "id": "merchant_mammonite",
+      "name_key": "merchant_mammonite",
+      "class_id": "merchant",
+      "max_level": 10,
+      "unlock_level": 1,
+      "tags": [
+        "merchant",
+        "mammonite",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          4.8125,
+          4.982639,
+          5.152778,
+          5.322917,
+          5.493056,
+          5.663194,
+          5.833333,
+          6.003472,
+          6.173611,
+          6.34375
+        ]
+      },
+      "presentation_id": "visual_merchant_mammonite",
+      "kind": "active",
+      "cost": {
+        "sp": 22,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 200,
+        "after_cast_ms": 850,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "armor_break",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "merchant_cart_revolution": {
+      "id": "merchant_cart_revolution",
+      "name_key": "merchant_cart_revolution",
+      "class_id": "merchant",
+      "max_level": 10,
+      "unlock_level": 1,
+      "tags": [
+        "merchant",
+        "cart_revolution",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          2.695,
+          2.790278,
+          2.885556,
+          2.980833,
+          3.076111,
+          3.171389,
+          3.266667,
+          3.361944,
+          3.457222,
+          3.5525
+        ]
+      },
+      "presentation_id": "visual_merchant_cart_revolution",
+      "kind": "active",
+      "cost": {
+        "sp": 24,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 400,
+        "after_cast_ms": 900,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": 1100,
+          "params": {},
+          "chance": 0.4,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "armor_break",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "merchant_loud_voice": {
+      "id": "merchant_loud_voice",
+      "name_key": "merchant_loud_voice",
+      "class_id": "merchant",
+      "max_level": 10,
+      "unlock_level": 5,
+      "tags": [
+        "merchant",
+        "loud_voice",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.44,
+          0.455556,
+          0.471111,
+          0.486667,
+          0.502222,
+          0.517778,
+          0.533333,
+          0.548889,
+          0.564444,
+          0.58
+        ]
+      },
+      "presentation_id": "visual_merchant_loud_voice",
+      "kind": "active",
+      "cost": {
+        "sp": 26,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 450,
+        "after_cast_ms": 850,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "attack_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "attack_up",
+          "duration_ms": 4950,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "merchant_first_aid": {
+      "id": "merchant_first_aid",
+      "name_key": "merchant_first_aid",
+      "class_id": "merchant",
+      "max_level": 10,
+      "unlock_level": 10,
+      "tags": [
+        "merchant",
+        "first_aid",
+        "awakened"
+      ],
+      "level_parameters": {
+        "break": [
+          0.44,
+          0.455556,
+          0.471111,
+          0.486667,
+          0.502222,
+          0.517778,
+          0.533333,
+          0.548889,
+          0.564444,
+          0.58
+        ],
+        "duration": [
+          11000,
+          11389,
+          11778,
+          12167,
+          12556,
+          12944,
+          13333,
+          13722,
+          14111,
+          14500
+        ]
+      },
+      "presentation_id": "visual_merchant_first_aid",
+      "kind": "active",
+      "cost": {
+        "sp": 18,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 500,
+        "after_cast_ms": 800,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "armor_break",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "armor_break",
+          "duration_ms": {
+            "level_param": "duration"
+          },
+          "params": {
+            "ratio": {
+              "level_param": "break"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "merchant_trading_stamina": {
+      "id": "merchant_trading_stamina",
+      "name_key": "merchant_trading_stamina",
+      "class_id": "merchant",
+      "max_level": 10,
+      "unlock_level": 10,
+      "tags": [
+        "merchant",
+        "trading_stamina",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.231,
+          0.239167,
+          0.247333,
+          0.2555,
+          0.263667,
+          0.271833,
+          0.28,
+          0.288167,
+          0.296333,
+          0.3045
+        ],
+        "awaken_potency": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_merchant_trading_stamina",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "ratio"
+          }
+        },
+        {
+          "id": "awaken_potency",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "awaken_potency"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    "blacksmith_hammer_fall": {
+      "id": "blacksmith_hammer_fall",
+      "name_key": "blacksmith_hammer_fall",
+      "class_id": "blacksmith",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "blacksmith",
+        "hammer_fall",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          2.5025,
+          2.590972,
+          2.679444,
+          2.767917,
+          2.856389,
+          2.944861,
+          3.033333,
+          3.121806,
+          3.210278,
+          3.29875
+        ],
+        "duration": [
+          2200,
+          2278,
+          2356,
+          2433,
+          2511,
+          2589,
+          2667,
+          2744,
+          2822,
+          2900
+        ]
+      },
+      "presentation_id": "visual_blacksmith_hammer_fall",
+      "kind": "active",
+      "cost": {
+        "sp": 34,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 600,
+        "after_cast_ms": 1000,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": {
+            "level_param": "duration"
+          },
+          "params": {},
+          "chance": 0.4,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "armor_break",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "blacksmith_adrenaline": {
+      "id": "blacksmith_adrenaline",
+      "name_key": "blacksmith_adrenaline",
+      "class_id": "blacksmith",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "blacksmith",
+        "adrenaline",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.44,
+          0.455556,
+          0.471111,
+          0.486667,
+          0.502222,
+          0.517778,
+          0.533333,
+          0.548889,
+          0.564444,
+          0.58
+        ]
+      },
+      "presentation_id": "visual_blacksmith_adrenaline",
+      "kind": "active",
+      "cost": {
+        "sp": 36,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 600,
+        "after_cast_ms": 1100,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "aspd_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "aspd_up",
+          "duration_ms": 6050,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "blacksmith_weapon_perfection": {
+      "id": "blacksmith_weapon_perfection",
+      "name_key": "blacksmith_weapon_perfection",
+      "class_id": "blacksmith",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "blacksmith",
+        "weapon_perfection",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.462,
+          0.478333,
+          0.494667,
+          0.511,
+          0.527333,
+          0.543667,
+          0.56,
+          0.576333,
+          0.592667,
+          0.609
+        ],
+        "critical": [
+          0.198,
+          0.205,
+          0.212,
+          0.219,
+          0.226,
+          0.233,
+          0.24,
+          0.247,
+          0.254,
+          0.261
+        ],
+        "critical_damage": [
+          0.33,
+          0.341667,
+          0.353333,
+          0.365,
+          0.376667,
+          0.388333,
+          0.4,
+          0.411667,
+          0.423333,
+          0.435
+        ]
+      },
+      "presentation_id": "visual_blacksmith_weapon_perfection",
+      "kind": "active",
+      "cost": {
+        "sp": 34,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 650,
+        "after_cast_ms": 1000,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "attack_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "attack_up",
+          "duration_ms": 5500,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "critical",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "crit_up",
+          "duration_ms": 5500,
+          "params": {
+            "ratio": {
+              "level_param": "critical"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "critical_damage",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "crit_damage_up",
+          "duration_ms": 5500,
+          "params": {
+            "ratio": {
+              "level_param": "critical_damage"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "blacksmith_meltdown": {
+      "id": "blacksmith_meltdown",
+      "name_key": "blacksmith_meltdown",
+      "class_id": "blacksmith",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "blacksmith",
+        "meltdown",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          3.6575,
+          3.786806,
+          3.916111,
+          4.045417,
+          4.174722,
+          4.304028,
+          4.433333,
+          4.562639,
+          4.691944,
+          4.82125
+        ],
+        "break": [
+          -0.33,
+          -0.341667,
+          -0.353333,
+          -0.365,
+          -0.376667,
+          -0.388333,
+          -0.4,
+          -0.411667,
+          -0.423333,
+          -0.435
+        ]
+      },
+      "presentation_id": "visual_blacksmith_meltdown",
+      "kind": "active",
+      "cost": {
+        "sp": 34,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 500,
+        "after_cast_ms": 950,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "attack_down",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "attack_down",
+          "duration_ms": 6050,
+          "params": {
+            "ratio": {
+              "level_param": "break"
+            }
+          },
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "armor_break",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "blacksmith_cart_crash": {
+      "id": "blacksmith_cart_crash",
+      "name_key": "blacksmith_cart_crash",
+      "class_id": "blacksmith",
+      "max_level": 10,
+      "unlock_level": 40,
+      "tags": [
+        "blacksmith",
+        "cart_crash",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          1.75957,
+          1.821777,
+          1.883984,
+          1.946191,
+          2.008398,
+          2.070605,
+          2.132812,
+          2.195019,
+          2.257226,
+          2.319433
+        ]
+      },
+      "presentation_id": "visual_blacksmith_cart_crash",
+      "kind": "active",
+      "cost": {
+        "sp": 44,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 850,
+        "after_cast_ms": 1100,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 4,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "armor_break",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "blacksmith_weapon_research": {
+      "id": "blacksmith_weapon_research",
+      "name_key": "blacksmith_weapon_research",
+      "class_id": "blacksmith",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "blacksmith",
+        "weapon_research",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.3465,
+          0.35875,
+          0.371,
+          0.38325,
+          0.3955,
+          0.40775,
+          0.42,
+          0.43225,
+          0.4445,
+          0.45675
+        ],
+        "awaken_potency": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_blacksmith_weapon_research",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "ratio"
+          }
+        },
+        {
+          "id": "awaken_potency",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "awaken_potency"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    "blacksmith_tempering": {
+      "id": "blacksmith_tempering",
+      "name_key": "blacksmith_tempering",
+      "class_id": "blacksmith",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "blacksmith",
+        "tempering",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.4235,
+          0.438472,
+          0.453444,
+          0.468417,
+          0.483389,
+          0.498361,
+          0.513333,
+          0.528306,
+          0.543278,
+          0.55825
+        ],
+        "awaken_potency": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_blacksmith_tempering",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "ratio"
+          }
+        },
+        {
+          "id": "awaken_potency",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "awaken_potency"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    "alchemist_acid_terror": {
+      "id": "alchemist_acid_terror",
+      "name_key": "alchemist_acid_terror",
+      "class_id": "alchemist",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "alchemist",
+        "acid_terror",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          9.853593,
+          10.201953,
+          10.550312,
+          10.898671,
+          11.247031,
+          11.59539,
+          11.943749,
+          12.292109,
+          12.640468,
+          12.988827
+        ],
+        "break": [
+          0.3465,
+          0.35875,
+          0.371,
+          0.38325,
+          0.3955,
+          0.40775,
+          0.42,
+          0.43225,
+          0.4445,
+          0.45675
+        ]
+      },
+      "presentation_id": "visual_alchemist_acid_terror",
+      "kind": "active",
+      "cost": {
+        "sp": 32,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 750,
+        "after_cast_ms": 900,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "poison",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "armor_break",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "armor_break",
+          "duration_ms": 5500,
+          "params": {
+            "ratio": {
+              "level_param": "break"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "armor_break",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "alchemist_potion_pitcher": {
+      "id": "alchemist_potion_pitcher",
+      "name_key": "alchemist_potion_pitcher",
+      "class_id": "alchemist",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "alchemist",
+        "potion_pitcher",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          3.08,
+          3.188889,
+          3.297778,
+          3.406667,
+          3.515556,
+          3.624444,
+          3.733333,
+          3.842222,
+          3.951111,
+          4.06
+        ]
+      },
+      "presentation_id": "visual_alchemist_potion_pitcher",
+      "kind": "active",
+      "cost": {
+        "sp": 26,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 600,
+        "after_cast_ms": 900,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "heal",
+          "type": "heal",
+          "target": "friend",
+          "formula": {
+            "id": "healing_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          }
+        },
+        {
+          "id": "regeneration",
+          "type": "apply_status",
+          "target": "friend",
+          "status_id": "regeneration",
+          "duration_ms": 5501,
+          "params": {
+            "power_ratio": 0.8
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "friend",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "alchemist_hell_plant": {
+      "id": "alchemist_hell_plant",
+      "name_key": "alchemist_hell_plant",
+      "class_id": "alchemist",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "alchemist",
+        "hell_plant",
+        "awakened"
+      ],
+      "level_parameters": {
+        "sp_cost": [
+          40,
+          39,
+          39,
+          38,
+          38,
+          37,
+          37,
+          36,
+          36,
+          35
+        ],
+        "plant_power": [
+          3.36875,
+          3.487847,
+          3.606944,
+          3.726042,
+          3.845139,
+          3.964236,
+          4.083333,
+          4.202431,
+          4.321528,
+          4.440625
+        ]
+      },
+      "presentation_id": "visual_alchemist_hell_plant",
+      "kind": "active",
+      "cost": {
+        "sp": {
+          "level_param": "sp_cost"
+        },
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 1100,
+        "after_cast_ms": 1300,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "spawn",
+          "type": "summon",
+          "target": "self",
+          "actor_definition_id": "hell_plant",
+          "duration_ms": 10000,
+          "max_owned": 2,
+          "at_limit": "replace_oldest",
+          "power_scale": {
+            "level_param": "plant_power"
+          }
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "alchemist_bio_cannibalize": {
+      "id": "alchemist_bio_cannibalize",
+      "name_key": "alchemist_bio_cannibalize",
+      "class_id": "alchemist",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "alchemist",
+        "bio_cannibalize",
+        "awakened"
+      ],
+      "level_parameters": {
+        "sp_cost": [
+          36,
+          36,
+          35,
+          35,
+          34,
+          34,
+          33,
+          33,
+          32,
+          32
+        ],
+        "plant_power": [
+          4.692188,
+          4.858073,
+          5.023958,
+          5.189844,
+          5.355729,
+          5.521615,
+          5.6875,
+          5.853385,
+          6.019271,
+          6.185156
+        ]
+      },
+      "presentation_id": "visual_alchemist_bio_cannibalize",
+      "kind": "active",
+      "cost": {
+        "sp": {
+          "level_param": "sp_cost"
+        },
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 1100,
+        "after_cast_ms": 1300,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "spawn",
+          "type": "summon",
+          "target": "self",
+          "actor_definition_id": "healing_plant",
+          "duration_ms": 6500,
+          "max_owned": 1,
+          "at_limit": "replace_oldest",
+          "power_scale": {
+            "level_param": "plant_power"
+          }
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "alchemist_demonstration": {
+      "id": "alchemist_demonstration",
+      "name_key": "alchemist_demonstration",
+      "class_id": "alchemist",
+      "max_level": 10,
+      "unlock_level": 40,
+      "tags": [
+        "alchemist",
+        "demonstration",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          0.879786,
+          0.910889,
+          0.941993,
+          0.973096,
+          1.0042,
+          1.035303,
+          1.066407,
+          1.09751,
+          1.128614,
+          1.159717
+        ],
+        "burst": [
+          3.519141,
+          3.643555,
+          3.767969,
+          3.892383,
+          4.016797,
+          4.141211,
+          4.265625,
+          4.390039,
+          4.514453,
+          4.638868
+        ]
+      },
+      "presentation_id": "visual_alchemist_demonstration",
+      "kind": "active",
+      "cost": {
+        "sp": 44,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 900,
+        "after_cast_ms": 1200,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "burst",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "burst"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "fire",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "chemical_burn",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "chemical_burn",
+          "duration_ms": 5500,
+          "params": {
+            "power_ratio": {
+              "level_param": "power"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "armor_break",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "alchemist_learning_potion": {
+      "id": "alchemist_learning_potion",
+      "name_key": "alchemist_learning_potion",
+      "class_id": "alchemist",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "alchemist",
+        "learning_potion",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.28875,
+          0.298958,
+          0.309167,
+          0.319375,
+          0.329583,
+          0.339792,
+          0.35,
+          0.360208,
+          0.370417,
+          0.380625
+        ],
+        "awaken_potency": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_alchemist_learning_potion",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "outgoing_healing_bonus",
+          "stat": "outgoing_healing_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "ratio"
+          }
+        },
+        {
+          "id": "awaken_potency",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "awaken_potency"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    "alchemist_chemical_expertise": {
+      "id": "alchemist_chemical_expertise",
+      "name_key": "alchemist_chemical_expertise",
+      "class_id": "alchemist",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "alchemist",
+        "chemical_expertise",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.28875,
+          0.298958,
+          0.309167,
+          0.319375,
+          0.329583,
+          0.339792,
+          0.35,
+          0.360208,
+          0.370417,
+          0.380625
+        ],
+        "awaken_potency": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_alchemist_chemical_expertise",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "ratio"
+          }
+        },
+        {
+          "id": "awaken_potency",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "awaken_potency"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    "whitesmith_cart_termination": {
+      "id": "whitesmith_cart_termination",
+      "name_key": "whitesmith_cart_termination",
+      "class_id": "whitesmith",
+      "max_level": 10,
+      "unlock_level": 70,
+      "rank_unlock_levels": [
+        70,
+        72,
+        74,
+        76,
+        78,
+        80,
+        82,
+        84,
+        86,
+        88
+      ],
+      "tags": [
+        "whitesmith",
+        "hi_class",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          10.78,
+          11.161111,
+          11.542222,
+          11.923333,
+          12.304444,
+          12.685556,
+          13.066667,
+          13.447778,
+          13.828889,
+          14.21
+        ]
+      },
+      "presentation_id": "visual_whitesmith_cart_termination",
+      "kind": "active",
+      "cost": {
+        "sp": 58,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 550,
+        "after_cast_ms": 1200,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "stun",
+          "duration_ms": 1320,
+          "params": {},
+          "chance": 0.3
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "armor_break",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "whitesmith_maximum_overthrust": {
+      "id": "whitesmith_maximum_overthrust",
+      "name_key": "whitesmith_maximum_overthrust",
+      "class_id": "whitesmith",
+      "max_level": 10,
+      "unlock_level": 80,
+      "rank_unlock_levels": [
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
+      ],
+      "tags": [
+        "whitesmith",
+        "hi_class",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.352,
+          0.364444,
+          0.376889,
+          0.389333,
+          0.401778,
+          0.414222,
+          0.426667,
+          0.439111,
+          0.451556,
+          0.464
+        ]
+      },
+      "presentation_id": "visual_whitesmith_maximum_overthrust",
+      "kind": "active",
+      "cost": {
+        "sp": 62,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 800,
+        "after_cast_ms": 1200,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "attack_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "attack_up",
+          "duration_ms": 11000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "creator_acid_demonstration": {
+      "id": "creator_acid_demonstration",
+      "name_key": "creator_acid_demonstration",
+      "class_id": "creator",
+      "max_level": 10,
+      "unlock_level": 70,
+      "rank_unlock_levels": [
+        70,
+        72,
+        74,
+        76,
+        78,
+        80,
+        82,
+        84,
+        86,
+        88
+      ],
+      "tags": [
+        "creator",
+        "hi_class",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          2.09,
+          2.163889,
+          2.237778,
+          2.311667,
+          2.385556,
+          2.459444,
+          2.533333,
+          2.607222,
+          2.681111,
+          2.755
+        ],
+        "ratio": [
+          0.22,
+          0.227778,
+          0.235556,
+          0.243333,
+          0.251111,
+          0.258889,
+          0.266667,
+          0.274444,
+          0.282222,
+          0.29
+        ]
+      },
+      "presentation_id": "visual_creator_acid_demonstration",
+      "kind": "active",
+      "cost": {
+        "sp": 65,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 1000,
+        "after_cast_ms": 1300,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "neutral",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 5,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "armor_break",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "armor_break",
+          "duration_ms": 8800,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "armor_break",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "creator_full_chemical_protection": {
+      "id": "creator_full_chemical_protection",
+      "name_key": "creator_full_chemical_protection",
+      "class_id": "creator",
+      "max_level": 10,
+      "unlock_level": 80,
+      "rank_unlock_levels": [
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
+      ],
+      "tags": [
+        "creator",
+        "hi_class",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.55,
+          0.569444,
+          0.588889,
+          0.608333,
+          0.627778,
+          0.647222,
+          0.666667,
+          0.686111,
+          0.705556,
+          0.725
+        ],
+        "guard": [
+          0.176,
+          0.182222,
+          0.188444,
+          0.194667,
+          0.200889,
+          0.207111,
+          0.213333,
+          0.219556,
+          0.225778,
+          0.232
+        ]
+      },
+      "presentation_id": "visual_creator_full_chemical_protection",
+      "kind": "active",
+      "cost": {
+        "sp": 68,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 1000,
+        "after_cast_ms": 1400,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "cleanse",
+          "type": "remove_status",
+          "target": "friends",
+          "polarity": "debuff",
+          "tags": [],
+          "max_instances": null,
+          "permission": "cleanse"
+        },
+        {
+          "id": "cc_resistance_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 11000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "guard_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "guard_up",
+          "duration_ms": 11000,
+          "params": {
+            "ratio": {
+              "level_param": "guard"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    }
+  },
+  "awakened_upgrades": {
+    "merchant_mammonite": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "merchant_cart_revolution": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "merchant_loud_voice": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "merchant_first_aid": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "merchant_trading_stamina": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "blacksmith_hammer_fall": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "blacksmith_adrenaline": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "blacksmith_weapon_perfection": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "blacksmith_meltdown": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "blacksmith_cart_crash": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "blacksmith_weapon_research": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "blacksmith_tempering": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "alchemist_acid_terror": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "alchemist_potion_pitcher": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "alchemist_hell_plant": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "alchemist_bio_cannibalize": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "alchemist_demonstration": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "alchemist_learning_potion": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "alchemist_chemical_expertise": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "whitesmith_cart_termination": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "whitesmith_maximum_overthrust": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "creator_acid_demonstration": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "creator_full_chemical_protection": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    }
+  }
 }

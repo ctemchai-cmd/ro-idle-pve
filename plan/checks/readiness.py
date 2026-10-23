@@ -42,7 +42,10 @@ def graph():
  return {'task_count':len(tasks),'cycles':0,'all_implementation_tasks_wait_for_014':True,'added_after_m0':[n for n in tasks if n>47]}
 check('task_graph_and_implementation_gate',['AC-03'],graph)
 def decisions():
- p=load(D/'progression.json');r=load(D/'combat-rules.json');statuses=list(c.STATUSES.values());assert p['release']['level_cap']==70 and not p['promotion']['hi_class_enabled'];assert p['promotion']['class2_min_level']==20
+ p=load(D/'progression.json');r=load(D/'combat-rules.json');statuses=list(c.STATUSES.values());hi=p['promotion']['hi_class_enabled'];assert p['release']['level_cap']==(90 if hi else 70);assert p['promotion']['class2_min_level']==20
+ if hi:
+  assert p['hi_class']['minimum_level']==70 and p['release']['enabled_job_stages']==[1,2,3]
+  assert 'awakening'not in p['release']['excluded_features'] and all(x in p['release']['excluded_features']for x in ['artifact','pet','rune']) and not p['promotion']['class3_enabled']
  assert r['modifiers']['level_auto_primary_growth'] is False
  for status in statuses:
   if status['polarity']=='buff':assert status['stacking']=={'admission':'independent','max_instances':None,'magnitude_cap':None,'expiry':'per_instance'},status['id']
@@ -50,7 +53,7 @@ def decisions():
  assert all('cooldown' not in s for path in (D/'skills').glob('*.json') for s in load(path)['skills'])
  assert load(D/'save-contracts.json')['farm']['quantization']['divisor']==3600000
  assert all('Unlock does not auto-learn' in load(p)['learn_policy'] for p in (D/'skills').glob('*.json'))
- return {'buffs':'independent, additive, uncapped even same caster','primary_growth':'manual only','cap':70,'skill_cooldowns':False,'farm_precision':'integer milliseconds'}
+ return {'buffs':'independent, additive, uncapped even same caster','primary_growth':'manual only','cap':p['release']['level_cap'],'skill_cooldowns':False,'farm_precision':'integer milliseconds'}
 check('confirmed_decisions_preserved',['AC-02'],decisions)
 def content_refs():
  skilldefs=[s for p in (D/'skills').glob('*.json') for s in load(p)['skills']];assert len(skilldefs)==126 and len({s['id'] for s in skilldefs})==126
@@ -72,7 +75,9 @@ def content_refs():
  return {'skills':126,'builds':26,'equipment':144,'cards':73,'golden_raw_intents':378,'notes':'golden fixtures not executed TS battles; manifest implementation not built'}
 check('complete_content_refs_names_versions',['AC-02','AC-03'],content_refs)
 def actor_assets():
- jobs=load(D/'actor-presentations.json')['jobs'];expected={x for root,bs in load(D/'progression.json')['class_tree'].items() for x in [root,*bs]};assert {j['job_id'] for j in jobs}==expected
+ progression=load(D/'progression.json');actors=load(D/'actor-presentations.json');jobs=actors['jobs'];expected={x for root,bs in progression['class_tree'].items() for x in [root,*bs]};hi=progression['promotion']['hi_class_enabled']
+ if hi:jobs+=actors['hi_class_jobs'];expected.update(j['job_id']for j in progression['hi_class']['job_advancements'])
+ assert {j['job_id'] for j in jobs}==expected
  count=0
  for j in jobs:
   assert j['presets']
@@ -82,7 +87,7 @@ def actor_assets():
     ref=preset.get(layer)
     if ref:assert asset_reference('assets/ro/'+ref['meta'])['id']==ref['id']
    count+=1
- assert count==36
+ assert count==(60 if hi else 36)
  cards=load(D/'cards.json');symbols={asset_reference(x['symbol_meta_path'])['file']['sha256'] for x in cards['presentations']};assert len(symbols)==66
  return {'jobs':len(jobs),'presets':count,'card_portrait_media':66,'scope':'selected sidecar/media integrity only, not new visual review or runtime closure pack'}
 check('actor_and_presentation_references',['AC-03'],actor_assets)

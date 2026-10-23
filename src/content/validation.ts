@@ -205,6 +205,10 @@ export class ContentValidator {
     this.shape(kind, value, location);
     if (kind === 'skill') {
       const curves = obj(value.level_parameters), max = Number(value.max_level);
+      if (value.rank_unlock_levels !== undefined) {
+        const levels = arr(value.rank_unlock_levels);
+        demand(levels.length === max && levels[0] === value.unlock_level && levels.every((level, i) => Number.isSafeInteger(level) && Number(level) >= 1 && (!i || Number(level) > Number(levels[i - 1]))), 'rank_unlock_levels', location);
+      }
       for (const [key, curve] of Object.entries(curves)) demand(arr(curve).length === max, 'level_curve', { ...location, path: `${location.path}/level_parameters/${key}` });
       for (let index = 0; index < max; index++) {
         const values = Object.fromEntries(Object.entries(curves).map(([key, curve]) => [key, arr(curve)[index]!])) as ObjectValue;

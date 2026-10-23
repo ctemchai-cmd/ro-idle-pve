@@ -17,19 +17,20 @@
     "D-038"
   ],
   "release": {
-    "id": "class2-v1",
+    "id": "hi-class-v1",
     "level_min": 1,
-    "level_cap": 70,
+    "level_cap": 90,
     "enabled_job_stages": [
       1,
-      2
+      2,
+      3
     ],
     "future_job_stages": [
       {
         "stage": 3,
         "kind": "hi_class",
         "minimum_level": 70,
-        "enabled": false
+        "enabled": true
       },
       {
         "stage": 4,
@@ -39,7 +40,6 @@
       }
     ],
     "excluded_features": [
-      "awakening",
       "artifact",
       "pet",
       "rune",
@@ -76,6 +76,11 @@
       "purpose": "skill upgrades",
       "first_source": "account_creation",
       "income_owner": "TASK-010"
+    },
+    {
+      "id": "awakening_shard",
+      "purpose": "Awaken skill upgrades",
+      "first_source": "late_daily_or_conversion"
     }
   ],
   "initial_state": {
@@ -84,7 +89,8 @@
       "hero_exp": 1600,
       "breakthrough_essence": 0,
       "crystal": 0,
-      "skill_manual": 80
+      "skill_manual": 80,
+      "awakening_shard": 0
     },
     "grant_id": "account_creation_v1",
     "grant_once_per_account_save": true,
@@ -218,7 +224,7 @@
     "preserves_character_level": true,
     "npc_root_mutable": false,
     "main_root_mutable": true,
-    "hi_class_enabled": false,
+    "hi_class_enabled": true,
     "class3_enabled": false
   },
   "progression": {
@@ -2159,7 +2165,7 @@
     ]
   },
   "hi_class": {
-    "authoring_status": "Inactive Hi-class baseline for TASK122–125; not measured balance; release remains disabled until integration passes",
+    "authoring_status": "Hi-class/Awaken authored release; numeric balance is an assistant baseline, not measured owner balance.",
     "minimum_level": 70,
     "level_cap": 90,
     "job_advancements": [
@@ -2517,7 +2523,11 @@
         "base_per_shard": 10,
         "base_from_shard": 5
       },
-      "cost_version": "awakening-costs-v1"
+      "cost_version": "awakening-costs-v1",
+      "unlock_cost": {
+        "gold": 25000,
+        "awakening_shard": 20
+      }
     }
   }
 }

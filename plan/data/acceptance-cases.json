@@ -13524,8 +13524,10 @@
       },
       "expected": "13Hi professionsมี2stable skillsต่ออาชีพครบprogram/rank1–10/ราคา/ชื่อ/คำอธิบายจริง;unlock70และ80/full88และ89",
       "verification": "Pure/schema/content/engine/build and TASK125 actualAuth-SQL-mobile/hosted integration",
-      "status": "not_run_implementation",
-      "evidence_refs": []
+      "status": "passed_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-123-review.json"
+      ]
     },
     {
       "id": "T123-AC-02",
@@ -13541,8 +13543,10 @@
       },
       "expected": "Nativebody/head/weapon/actionของ24genderpresetsและjob/skilliconsตรงต้นทาง;packไม่เกิน32MiBหรือมีทางปรับลดที่ตรวจได้",
       "verification": "Pure/schema/content/engine/build and TASK125 actualAuth-SQL-mobile/hosted integration",
-      "status": "not_run_implementation",
-      "evidence_refs": []
+      "status": "passed_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-123-review.json"
+      ]
     },
     {
       "id": "T123-AC-03",
@@ -13558,8 +13562,10 @@
       },
       "expected": "ทุกprogramใช้sharedtypedpipeline/สถานะ/ธาตุ/คิวเดิมและมีdistinctrole;สกิลเดิมไม่ถูกย้าย/ลบทิ้ง",
       "verification": "Pure/schema/content/engine/build and TASK125 actualAuth-SQL-mobile/hosted integration",
-      "status": "not_run_implementation",
-      "evidence_refs": []
+      "status": "passed_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-123-review.json"
+      ]
     },
     {
       "id": "T123-AC-04",
@@ -13575,8 +13581,10 @@
       },
       "expected": "Content/golden/targeted1x2x4/build/metadata/nativepreviewผ่าน;ไม่อ้างว่าบาลานซ์ทีมผู้ใช้แล้วและยังไม่เปิดreleaseเดี่ยว",
       "verification": "Pure/schema/content/engine/build and TASK125 actualAuth-SQL-mobile/hosted integration",
-      "status": "not_run_implementation",
-      "evidence_refs": []
+      "status": "passed_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-123-review.json"
+      ]
     },
     {
       "id": "T124-AC-01",
@@ -13592,8 +13600,10 @@
       },
       "expected": "Hi+สกิลMaxจึงAwakenได้;logicalID/loadoutเดิม/กลับrank1/คงทุนเดิม/variantเพิ่มหรือเปลี่ยนผลและเก่งกว่าก่อนAwakenMax",
       "verification": "Pure/schema/content/engine/build and TASK125 actualAuth-SQL-mobile/hosted integration",
-      "status": "not_run_implementation",
-      "evidence_refs": []
+      "status": "passed_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-124-review.json"
+      ]
     },
     {
       "id": "T124-AC-02",
@@ -13609,8 +13619,10 @@
       },
       "expected": "เศษใหม่ดรอปดันช่วงหลัง/รวมเดิม→ใหม่/ย่อยใหม่→เดิมเป็นbatchatomic;ไม่มีวงแลกเพิ่มของ/overflow/คืนทุนซ้ำ",
       "verification": "Pure/schema/content/engine/build and TASK125 actualAuth-SQL-mobile/hosted integration",
-      "status": "not_run_implementation",
-      "evidence_refs": []
+      "status": "passed_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-124-review.json"
+      ]
     },
     {
       "id": "T124-AC-03",
@@ -13626,8 +13638,10 @@
       },
       "expected": "อัปAwakenใช้variantราคาและเศษใหม่/ledgercostversionจริง;รีเซ็ตคืนbase+Awakenจริงครั้งเดียวและmigrationเซฟเก่าไม่สูญหายหรือแจกเศษย้อนหลัง",
       "verification": "Pure/schema/content/engine/build and TASK125 actualAuth-SQL-mobile/hosted integration",
-      "status": "not_run_implementation",
-      "evidence_refs": []
+      "status": "passed_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-124-review.json"
+      ]
     },
     {
       "id": "T124-AC-04",
@@ -13643,8 +13657,10 @@
       },
       "expected": "หน้าสกิล/สมุด/Timelineแสดงvariant/rank/ผลจริงพร้อมpurpleinnerglow/nativeicon;runtime/headless/checkpoint/1x2x4ใช้definitionเดียวกัน",
       "verification": "Pure/schema/content/engine/build and TASK125 actualAuth-SQL-mobile/hosted integration",
-      "status": "not_run_implementation",
-      "evidence_refs": []
+      "status": "passed_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-124-review.json"
+      ]
     },
     {
       "id": "T125-AC-01",
@@ -13846,6 +13862,60 @@
       "evidence_refs": [
         "plan/evidence/task-127-review.json"
       ]
+    },
+    {
+      "id": "T128-AC-01",
+      "task_id": "TASK-128",
+      "acceptance_id": "AC-01",
+      "criterion": "Spiral Volley 3 hit รวม420→750%ATK/ธาตุอาวุธ, Claymore450→750%ATK, Rapid Fire4hitรวม630→1050%ATK; SP/CT/ACD/ราคาและ123สกิลเดิมไม่เปลี่ยน; Awakenต่อจากค่าที่ปรับแล้ว",
+      "input_setup": "Shared definitions at ranks1–10, matched1000ATK one/three targets, seeded clocks1/2/4 and native details",
+      "input_refs": [
+        "plan/data/skills/archer.json",
+        "tests/game/hunter-impact.test.ts"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "Spiral Volley 3 hit รวม420→750%ATK/ธาตุอาวุธ, Claymore450→750%ATK, Rapid Fire4hitรวม630→1050%ATK; SP/CT/ACD/ราคาและ123สกิลเดิมไม่เปลี่ยน; Awakenต่อจากค่าที่ปรับแล้ว",
+      "verification": "Targeted rule checks, actual release integration and hosted public",
+      "status": "not_run_implementation",
+      "evidence_refs": []
+    },
+    {
+      "id": "T128-AC-02",
+      "task_id": "TASK-128",
+      "acceptance_id": "AC-02",
+      "criterion": "ทุกrank/เป้าเดี่ยวและหมู่/ธาตุ/interrupt/1×2×4×/checkpoint ตรง sharedengine; คำอธิบายและผลหลายhitจริง; updated goldensเฉพาะ9cases",
+      "input_setup": "Shared definitions at ranks1–10, matched1000ATK one/three targets, seeded clocks1/2/4 and native details",
+      "input_refs": [
+        "plan/data/skills/archer.json",
+        "tests/game/hunter-impact.test.ts"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "ทุกrank/เป้าเดี่ยวและหมู่/ธาตุ/interrupt/1×2×4×/checkpoint ตรง sharedengine; คำอธิบายและผลหลายhitจริง; updated goldensเฉพาะ9cases",
+      "verification": "Targeted rule checks, actual release integration and hosted public",
+      "status": "not_run_implementation",
+      "evidence_refs": []
+    },
+    {
+      "id": "T128-AC-03",
+      "task_id": "TASK-128",
+      "acceptance_id": "AC-03",
+      "criterion": "build/checks/native mobile320390/hostedpublicตรงsourceใหม่;ไม่แตะownerเซฟ/SQL/env/6173และไม่รันbalance batch",
+      "input_setup": "Shared definitions at ranks1–10, matched1000ATK one/three targets, seeded clocks1/2/4 and native details",
+      "input_refs": [
+        "plan/data/skills/archer.json",
+        "tests/game/hunter-impact.test.ts"
+      ],
+      "parameters": {
+        "seed": 17
+      },
+      "expected": "build/checks/native mobile320390/hostedpublicตรงsourceใหม่;ไม่แตะownerเซฟ/SQL/env/6173และไม่รันbalance batch",
+      "verification": "Targeted rule checks, actual release integration and hosted public",
+      "status": "not_run_implementation",
+      "evidence_refs": []
     }
   ]
 }

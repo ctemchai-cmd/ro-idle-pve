@@ -28,7 +28,7 @@ export interface Build { id: string; job_id: string; level: number; role: string
 interface Golden { id: string; skill_id: string; skill_level: number; input: { source_physical_attack: number; source_magical_attack: number; pre_cost_sp: number; event_hp_damage: number; revive_target_max_hp: number; revive_target_max_sp: number; handler_target_statuses: { own_source: number; other_source: number } }; expected_cost: unknown; expected_modifiers: unknown[]; programs: { phase: string; trigger_id?: string; chance?: number; expected_intents: Record<string, unknown>[] }[] }
 
 /** Shipped skills come from the content bundle; example builds are M0 design references (not shipped), read from plan data. */
-export const treeData = (root: string) => ({ skills: (content.documents[`skills/${root}.json`]!.skills as unknown as SkillDefinition[]), builds: (JSON.parse(readFileSync(`plan/data/skills/${root}.json`, 'utf8')) as { builds: Build[] }).builds });
+export const treeData = (root: string) => ({ skills: (content.documents[`skills/${root}.json`]!.skills as unknown as SkillDefinition[]).filter(s=>!s.tags.includes('hi_class')), builds: (JSON.parse(readFileSync(`plan/data/skills/${root}.json`, 'utf8')) as { builds: Build[] }).builds });
 export const resolved = (id: string, level: number) => structuredClone(resolveSkill(id, level, content)) as Resolved;
 const resolve = resolved;
 export const goldens = (ids: readonly string[]) => (JSON.parse(readFileSync('plan/data/skill-program-cases.json', 'utf8')) as { cases: Golden[] }).cases.filter(row => ids.includes(row.skill_id));

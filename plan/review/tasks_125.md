@@ -18,9 +18,9 @@ TASK-014, TASK-122, TASK-123, TASK-124.
 4. ส่งต่อintegrationTASK125ก่อนเปิดfeature
 
 ## เกณฑ์ตรวจรับ
-- [ ] AC-01: เปิดHi70/Awakenรายสกิล/levelcap90/บท10–12เมื่อถึงgateจริง;ไม่เปิดArtifact/Class3/Pet/Rune
-- [ ] AC-02: FreshlocalAuthAPI-SQL-mobile320390ผ่าน70→Hiรักษาบิลด์→Awaken→อัป→แลกเศษ→gate80→สกิลใหม่→ไฟต์→reload/slotisolation
-- [ ] AC-03: OldClass2save migration/ทุนเดิม/AFKfrozen/carry/backup/receipt replay/response lossไม่ทำprogressหรือเศษซ้ำ;ปรับbatchเซฟไม่เพิ่มrequests
+- [x] AC-01: เปิดHi70/Awakenรายสกิล/levelcap90/บท10–12เมื่อถึงgateจริง;ไม่เปิดArtifact/Class3/Pet/Rune
+- [x] AC-02: FreshlocalAuthAPI-SQL-mobile320390ผ่าน70→Hiรักษาบิลด์→Awaken→อัป→แลกเศษ→gate80→สกิลใหม่→ไฟต์→reload/slotisolation
+- [x] AC-03: OldClass2save migration/ทุนเดิม/AFKfrozen/carry/backup/receipt replay/response lossไม่ทำprogressหรือเศษซ้ำ;ปรับbatchเซฟไม่เพิ่มrequests
 - [ ] AC-04: Fullappropriatechecks/filteredVercelbuild/packbudget→push→hostedpublichealth/artifactsและreleaseflagsตรงก่อนdone;ไม่เข้าบัญชีowner/ไม่รันbalancebatch
 
 ## วิธีตรวจและหลักฐาน
@@ -31,3 +31,5 @@ T125-AC-01–04 ในacceptance-matrix. Pure/unit/content/schema/build/boundari
 
 ## บันทึกการทำงานและ review
 - 23ต.ค.2026 แตกงานตามกติกาที่ผู้ใช้ยืนยัน;ยังไม่done.
+
+- 24ต.ค.2026 local validationผ่านแล้ว;624TS/root+filteredbuild/M0/actualAuth-API-SQL-mobile320390. ภาพและผลตรวจในtask-125-mobile-live.json;ยังรอpushและhostedpublicก่อนdone.

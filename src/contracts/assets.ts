@@ -30,7 +30,7 @@ export interface RuntimeAssetIndex {
   skills: Readonly<Record<string, { presentation_id: string }>>;
   presentations: Readonly<Record<string, SkillPresentation>>;
   recipes: readonly RuntimeRecipe[];
-  actor_jobs: readonly { job_id: string; presets: readonly ActorPreset[] }[];
+  actor_jobs: readonly { job_id: string; normal_attack_sound_event?:string; presets: readonly ActorPreset[] }[];
   font: { id: string; file: string; meta: string };
   audio_events: Readonly<Record<string, { id: string; meta: string }>>;
   combat_visuals: CombatVisuals;

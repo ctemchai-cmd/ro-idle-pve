@@ -75,6 +75,34 @@
           "color": "#b6e6ff"
         }
       ]
+    },
+    "high_wizard": {
+      "special_sfx": [
+        {
+          "kind": "projectile",
+          "shape": "orb",
+          "travel_ms": 360,
+          "release_ms": 100,
+          "count": 1,
+          "stagger_ms": 0,
+          "arc_height": 18,
+          "color": "#b6e6ff"
+        }
+      ]
+    },
+    "professor": {
+      "special_sfx": [
+        {
+          "kind": "projectile",
+          "shape": "orb",
+          "travel_ms": 360,
+          "release_ms": 100,
+          "count": 1,
+          "stagger_ms": 0,
+          "arc_height": 18,
+          "color": "#b6e6ff"
+        }
+      ]
     }
   },
   "skills": {
@@ -291,6 +319,99 @@
       "hue_rotate_deg": 160
     },
     "enemy_hammer_fall": {
+      "special_sfx": []
+    },
+    "assassin_cross_soul_destroyer": {
+      "special_sfx": [],
+      "hue_rotate_deg": 160
+    },
+    "assassin_cross_meteor_assault": {
+      "special_sfx": [],
+      "hue_rotate_deg": 160
+    },
+    "stalker_chase_walk": {
+      "special_sfx": []
+    },
+    "stalker_full_strip": {
+      "special_sfx": []
+    },
+    "lord_knight_aura_blade": {
+      "special_sfx": []
+    },
+    "lord_knight_spiral_pierce": {
+      "special_sfx": []
+    },
+    "paladin_shield_chain": {
+      "special_sfx": []
+    },
+    "paladin_gospel": {
+      "special_sfx": []
+    },
+    "whitesmith_cart_termination": {
+      "special_sfx": []
+    },
+    "whitesmith_maximum_overthrust": {
+      "special_sfx": []
+    },
+    "creator_acid_demonstration": {
+      "special_sfx": []
+    },
+    "creator_full_chemical_protection": {
+      "special_sfx": []
+    },
+    "sniper_falcon_assault": {
+      "special_sfx": []
+    },
+    "sniper_sharpshooting": {
+      "special_sfx": []
+    },
+    "clown_arrow_vulcan": {
+      "special_sfx": []
+    },
+    "clown_marionette_control": {
+      "special_sfx": []
+    },
+    "gypsy_tarot_card_of_fate": {
+      "special_sfx": []
+    },
+    "gypsy_moonlit_water_mill": {
+      "special_sfx": []
+    },
+    "high_priest_assumptio": {
+      "special_sfx": []
+    },
+    "high_priest_basilica": {
+      "special_sfx": []
+    },
+    "champion_palm_strike": {
+      "special_sfx": []
+    },
+    "champion_chain_crush_combo": {
+      "special_sfx": []
+    },
+    "high_wizard_mystical_amplification": {
+      "special_sfx": []
+    },
+    "high_wizard_napalm_vulcan": {
+      "special_sfx": [
+        {
+          "kind": "projectile",
+          "shape": "spear",
+          "path": "sky",
+          "travel_ms": 300,
+          "release_ms": 60,
+          "count": 3,
+          "stagger_ms": 130,
+          "arc_height": 0,
+          "color": "#ff6a1f"
+        }
+      ],
+      "hue_rotate_deg": 265
+    },
+    "professor_double_casting": {
+      "special_sfx": []
+    },
+    "professor_soul_change": {
       "special_sfx": []
     }
   },
@@ -527,6 +648,55 @@
       "stagger_ms": 0,
       "lift": 0,
       "duration_ms": 850
+    },
+    "visual_assassin_cross_soul_destroyer": {
+      "meta": "library/effects/keyframe_effect_atlas/sonicblow--8ff63a20bc32.meta.json",
+      "scale": 0.6,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0
+    },
+    "visual_assassin_cross_meteor_assault": {
+      "meta": "library/effects/keyframe_effect_atlas/new_rollingcutter_count_01--c628c32658a3.meta.json",
+      "scale": 0.7,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "duration_ms": 850
+    },
+    "visual_lord_knight_spiral_pierce": {
+      "meta": "library/effects/keyframe_effect_atlas/pierce--4b6786ce5550.meta.json",
+      "scale": 0.6,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0
+    },
+    "visual_paladin_shield_chain": {
+      "meta": "library/effects/keyframe_effect_atlas/holy_cross--7ff94dbbc6de.meta.json",
+      "scale": 0.7,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0
+    },
+    "visual_whitesmith_cart_termination": {
+      "meta": "library/effects/keyframe_effect_atlas/new_axetornado--acee97518f02.meta.json",
+      "scale": 0.65,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 90,
+      "lift": 0
+    },
+    "visual_high_wizard_napalm_vulcan": {
+      "meta": "library/effects/keyframe_effect_atlas/firehit1--4a19f438bcb6.meta.json",
+      "scale": 0.55,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 10
     }
   }
 }

@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { class2Content } from './class2-content-fixture.ts';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
@@ -25,7 +26,8 @@ test('D151330 stages keep all180 released rows and old programs/actors/rates/pow
  for(let i=180;i<330;i++){assert.equal(stages[i]!.unlock_after,stages[i-1]!.id);assert.ok(stages[i]!.release_gate);assert.ok(storyBoss(stages[i]!).level>=71&&storyBoss(stages[i]!).level<=90);}
  for(const chapter of[10,11,12]){const rows=stages.filter(s=>s.chapter===chapter);assert.equal(rows.length,50);assert.equal(new Set(rows.filter(s=>s.index%10===0).map(s=>storyBoss(s).definition_id)).size,5);}
 });
-test('D151 future chapter gates share admission and require Hi-class, correct cap, plus Awaken for12',()=>{
+test('D151 former release gates remain explicit; current release opens10–12 with High/Awaken',()=>{
+ const content=class2Content();
  const state=initial();state.story.cleared_stage_ids=storyStages(content).map(s=>s.id);
  for(const id of['10-1','11-1','12-1'])assert.equal(canChallenge(storyStage(id,content)!,state,content),false,id);
  assert.equal(canChallenge(storyStage('9-50',content)!,state,content),true);
@@ -36,7 +38,7 @@ test('D151 future chapter gates share admission and require Hi-class, correct ca
  p.release.excluded_features=p.release.excluded_features.filter(f=>f!=='awakening');assert.equal(storyReleaseLock(storyStage('12-1',future)!,future),null);
  assert.equal(dailyRecord(state,'essence','2026-10-23',content).chapter_snapshot,9);
  assert.equal((content.documents['progression.json']!.release as {level_cap:number}).level_cap,70);
- assert.doesNotThrow(()=>new AccountCommandRules().validateAccount(state));
+ assert.doesNotThrow(()=>new AccountCommandRules(content).validateAccount(state));
 });
 test('D151 enemy90 checkpoint/native profiles are valid; prepared party schema stays bounded at90 (released progression still70)',()=>{
  for(const id of['10-10','10-20','10-30','10-40','10-50','11-10','11-20','11-30','11-40','11-50','12-10','12-20','12-30','12-40','12-50']){

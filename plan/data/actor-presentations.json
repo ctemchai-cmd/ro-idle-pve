@@ -723,5 +723,529 @@
       ]
     }
   ],
-  "render_contract": "body/head attachments flip as one for left; metadata action/anchor/timing. Resolve gameplay weapon overlay by class_sprite+gender+weapon family in TASK-019; prepared default is a reference, not the economic item definition. attack_release_frame (optional) overrides the ACT sound frame as the projectile release pose (bows: the sound marks the draw; frames 4–6 hold the full draw and frame 7 is the release). attack_variant_indices (optional) lists body actions a normal attack may cycle through; only actions whose weapon overlay draws (or a weaponless fist job) may be listed, since RO weapon overlays draw in exactly one attack group."
+  "render_contract": "body/head attachments flip as one for left; metadata action/anchor/timing. Resolve gameplay weapon overlay by class_sprite+gender+weapon family in TASK-019; prepared default is a reference, not the economic item definition. attack_release_frame (optional) overrides the ACT sound frame as the projectile release pose (bows: the sound marks the draw; frames 4–6 hold the full draw and frame 7 is the release). attack_variant_indices (optional) lists body actions a normal attack may cycle through; only actions whose weapon overlay draws (or a weaponless fist job) may be listed, since RO weapon overlays draw in exactly one attack group.",
+  "hi_class_jobs": [
+    {
+      "job_id": "lord_knight",
+      "presets": [
+        {
+          "preset_id": "4008-male",
+          "gender": "male",
+          "body": {
+            "id": "characters.0ef012ef3c2681e2",
+            "meta": "library/characters/body_atlas/_--0ef012ef3c26.meta.json"
+          },
+          "head": {
+            "id": "characters.3059452a68c94143",
+            "meta": "library/characters/head_atlas/6_--3059452a68c9.meta.json"
+          },
+          "weapon": {
+            "id": "weapons.ca3b138cbdc37dea",
+            "meta": "library/weapons/weapon_overlay_atlas/_-_--ca3b138cbdc3.meta.json"
+          },
+          "attack_source_action_index": 86,
+          "overlay_basis": "High-class client body + parent weapon ACT; attachment compatibility checked separately in TASK123 visual evidence"
+        },
+        {
+          "preset_id": "4008-female",
+          "gender": "female",
+          "body": {
+            "id": "characters.fc4c9829a49e6af0",
+            "meta": "library/characters/body_atlas/_--fc4c9829a49e.meta.json"
+          },
+          "head": {
+            "id": "characters.18013b6d0438e3fb",
+            "meta": "library/characters/head_atlas/3_--18013b6d0438.meta.json"
+          },
+          "weapon": {
+            "id": "weapons.bbb9ea857a5d3854",
+            "meta": "library/weapons/weapon_overlay_atlas/_-_--bbb9ea857a5d.meta.json"
+          },
+          "attack_source_action_index": 86,
+          "overlay_basis": "High-class client body + parent weapon ACT; attachment compatibility checked separately in TASK123 visual evidence"
+        }
+      ],
+      "normal_attack_sound_event": "attack_sword"
+    },
+    {
+      "job_id": "paladin",
+      "presets": [
+        {
+          "preset_id": "4015-male",
+          "gender": "male",
+          "body": {
+            "id": "characters.b32ab8c593cc06b1",
+            "meta": "library/characters/body_atlas/_--b32ab8c593cc.meta.json"
+          },
+          "head": {
+            "id": "characters.d8ae9d564fcd4cfb",
+            "meta": "library/characters/head_atlas/19_--d8ae9d564fcd.meta.json"
+          },
+          "weapon": {
+            "id": "weapons.be15cb4fe585a950",
+            "meta": "library/weapons/weapon_overlay_atlas/_-_--be15cb4fe585.meta.json"
+          },
+          "attack_source_action_index": 86,
+          "overlay_basis": "High-class client body + parent weapon ACT; attachment compatibility checked separately in TASK123 visual evidence"
+        },
+        {
+          "preset_id": "4015-female",
+          "gender": "female",
+          "body": {
+            "id": "characters.6b45e31b1580bbd9",
+            "meta": "library/characters/body_atlas/_--6b45e31b1580.meta.json"
+          },
+          "head": {
+            "id": "characters.da2e2e203f1431a4",
+            "meta": "library/characters/head_atlas/13_--da2e2e203f14.meta.json"
+          },
+          "weapon": {
+            "id": "weapons.a98ee6cb1b330276",
+            "meta": "library/weapons/weapon_overlay_atlas/_-_--a98ee6cb1b33.meta.json"
+          },
+          "attack_source_action_index": 86,
+          "overlay_basis": "High-class client body + parent weapon ACT; attachment compatibility checked separately in TASK123 visual evidence"
+        }
+      ],
+      "normal_attack_sound_event": "attack_sword"
+    },
+    {
+      "job_id": "high_priest",
+      "presets": [
+        {
+          "preset_id": "4009-male",
+          "gender": "male",
+          "body": {
+            "id": "characters.42b787ca1653ad76",
+            "meta": "library/characters/body_atlas/_--42b787ca1653.meta.json"
+          },
+          "head": {
+            "id": "characters.b956e7d55f5dfc69",
+            "meta": "library/characters/head_atlas/8_--b956e7d55f5d.meta.json"
+          },
+          "weapon": {
+            "id": "weapons.e0309fcbad212b78",
+            "meta": "library/weapons/weapon_overlay_atlas/_-_--e0309fcbad21.meta.json"
+          },
+          "attack_source_action_index": 86,
+          "overlay_basis": "High-class client body + parent weapon ACT; attachment compatibility checked separately in TASK123 visual evidence"
+        },
+        {
+          "preset_id": "4009-female",
+          "gender": "female",
+          "body": {
+            "id": "characters.fbdf9934885fa2b5",
+            "meta": "library/characters/body_atlas/_--fbdf9934885f.meta.json"
+          },
+          "head": {
+            "id": "characters.a5c50b5a2da540e2",
+            "meta": "library/characters/head_atlas/28_--a5c50b5a2da5.meta.json"
+          },
+          "weapon": {
+            "id": "weapons.0b8229a664309282",
+            "meta": "library/weapons/weapon_overlay_atlas/_-_--0b8229a66430.meta.json"
+          },
+          "attack_source_action_index": 86,
+          "overlay_basis": "High-class client body + parent weapon ACT; attachment compatibility checked separately in TASK123 visual evidence"
+        }
+      ],
+      "normal_attack_sound_event": "attack_mace"
+    },
+    {
+      "job_id": "champion",
+      "presets": [
+        {
+          "preset_id": "4016-male",
+          "gender": "male",
+          "body": {
+            "id": "characters.bc02cd1556f74515",
+            "meta": "library/characters/body_atlas/_--bc02cd1556f7.meta.json"
+          },
+          "head": {
+            "id": "characters.7c5040f64349fe22",
+            "meta": "library/characters/head_atlas/32_--7c5040f64349.meta.json"
+          },
+          "weapon": {
+            "id": "weapons.978e9b8e21859e91",
+            "meta": "library/weapons/weapon_overlay_atlas/_-_--978e9b8e2185.meta.json"
+          },
+          "attack_source_action_index": 86,
+          "attack_variant_indices": [
+            86,
+            94,
+            46
+          ],
+          "overlay_basis": "High-class client body + parent weapon ACT; attachment compatibility checked separately in TASK123 visual evidence"
+        },
+        {
+          "preset_id": "4016-female",
+          "gender": "female",
+          "body": {
+            "id": "characters.479566a11f1438c2",
+            "meta": "library/characters/body_atlas/_--479566a11f14.meta.json"
+          },
+          "head": {
+            "id": "characters.0bc657ebc4183152",
+            "meta": "library/characters/head_atlas/32_--0bc657ebc418.meta.json"
+          },
+          "weapon": {
+            "id": "weapons.187ed5184e20504e",
+            "meta": "library/weapons/weapon_overlay_atlas/_-_--187ed5184e20.meta.json"
+          },
+          "attack_source_action_index": 86,
+          "attack_variant_indices": [
+            86,
+            94,
+            46
+          ],
+          "overlay_basis": "High-class client body + parent weapon ACT; attachment compatibility checked separately in TASK123 visual evidence"
+        }
+      ],
+      "normal_attack_sound_event": "attack_mace"
+    },
+    {
+      "job_id": "sniper",
+      "presets": [
+        {
+          "preset_id": "4012-male",
+          "gender": "male",
+          "body": {
+            "id": "characters.4ca5343c557fa477",
+            "meta": "library/characters/body_atlas/_--4ca5343c557f.meta.json"
+          },
+          "head": {
+            "id": "characters.70968dc4401e87c8",
+            "meta": "library/characters/head_atlas/22_--70968dc4401e.meta.json"
+          },
+          "weapon": {
+            "id": "weapons.0094cd614ca802f3",
+            "meta": "library/weapons/weapon_overlay_atlas/_-_--0094cd614ca8.meta.json"
+          },
+          "attack_source_action_index": 94,
+          "attack_release_frame": 7,
+          "overlay_basis": "High-class client body + parent weapon ACT; attachment compatibility checked separately in TASK123 visual evidence"
+        },
+        {
+          "preset_id": "4012-female",
+          "gender": "female",
+          "body": {
+            "id": "characters.bf8947caaf362245",
+            "meta": "library/characters/body_atlas/_--bf8947caaf36.meta.json"
+          },
+          "head": {
+            "id": "characters.b203402f9b8f7b4e",
+            "meta": "library/characters/head_atlas/19_--b203402f9b8f.meta.json"
+          },
+          "weapon": {
+            "id": "weapons.bedf9f03fc481eec",
+            "meta": "library/weapons/weapon_overlay_atlas/_-_--bedf9f03fc48.meta.json"
+          },
+          "attack_source_action_index": 94,
+          "attack_release_frame": 7,
+          "overlay_basis": "High-class client body + parent weapon ACT; attachment compatibility checked separately in TASK123 visual evidence"
+        }
+      ],
+      "normal_attack_sound_event": "attack_bow"
+    },
+    {
+      "job_id": "clown",
+      "presets": [
+        {
+          "preset_id": "4020-male",
+          "gender": "male",
+          "body": {
+            "id": "characters.3aa7e8c4502554db",
+            "meta": "library/characters/body_atlas/_--3aa7e8c45025.meta.json"
+          },
+          "head": {
+            "id": "characters.8d2ca171c7cd6d0e",
+            "meta": "library/characters/head_atlas/14_--8d2ca171c7cd.meta.json"
+          },
+          "weapon": {
+            "id": "weapons.ceeaaa199e788467",
+            "meta": "library/weapons/weapon_overlay_atlas/_-_--ceeaaa199e78.meta.json"
+          },
+          "attack_source_action_index": 86,
+          "overlay_basis": "High-class client body + parent weapon ACT; attachment compatibility checked separately in TASK123 visual evidence"
+        }
+      ],
+      "normal_attack_sound_event": "attack_bow"
+    },
+    {
+      "job_id": "gypsy",
+      "presets": [
+        {
+          "preset_id": "4021-female",
+          "gender": "female",
+          "body": {
+            "id": "characters.eac95c296ce6ea77",
+            "meta": "library/characters/body_atlas/_--eac95c296ce6.meta.json"
+          },
+          "head": {
+            "id": "characters.e96163c8417c5a86",
+            "meta": "library/characters/head_atlas/20_--e96163c8417c.meta.json"
+          },
+          "weapon": {
+            "id": "weapons.1a059fe122821dc7",
+            "meta": "library/weapons/weapon_overlay_atlas/_-_--1a059fe12282.meta.json"
+          },
+          "attack_source_action_index": 86,
+          "overlay_basis": "High-class client body + parent weapon ACT; attachment compatibility checked separately in TASK123 visual evidence"
+        }
+      ],
+      "normal_attack_sound_event": "attack_bow"
+    },
+    {
+      "job_id": "high_wizard",
+      "presets": [
+        {
+          "preset_id": "4010-male",
+          "gender": "male",
+          "body": {
+            "id": "characters.ba90027756ee2b52",
+            "meta": "library/characters/body_atlas/_--ba90027756ee.meta.json"
+          },
+          "head": {
+            "id": "characters.99a8b37181096f71",
+            "meta": "library/characters/head_atlas/21_--99a8b3718109.meta.json"
+          },
+          "weapon": {
+            "id": "weapons.3989acce3d05dfce",
+            "meta": "library/weapons/weapon_overlay_atlas/_-_--3989acce3d05.meta.json"
+          },
+          "attack_source_action_index": 86,
+          "overlay_basis": "High-class client body + parent weapon ACT; attachment compatibility checked separately in TASK123 visual evidence"
+        },
+        {
+          "preset_id": "4010-female",
+          "gender": "female",
+          "body": {
+            "id": "characters.56498ea1e9ec3ab7",
+            "meta": "library/characters/body_atlas/_--56498ea1e9ec.meta.json"
+          },
+          "head": {
+            "id": "characters.85b831e918441a26",
+            "meta": "library/characters/head_atlas/22_--85b831e91844.meta.json"
+          },
+          "weapon": {
+            "id": "weapons.3135f304351dbe77",
+            "meta": "library/weapons/weapon_overlay_atlas/_-_--3135f304351d.meta.json"
+          },
+          "attack_source_action_index": 94,
+          "overlay_basis": "High-class client body + parent weapon ACT; attachment compatibility checked separately in TASK123 visual evidence"
+        }
+      ],
+      "normal_attack_sound_event": "attack_rod"
+    },
+    {
+      "job_id": "professor",
+      "presets": [
+        {
+          "preset_id": "4017-male",
+          "gender": "male",
+          "body": {
+            "id": "characters.529a31fbe77f37a8",
+            "meta": "library/characters/body_atlas/_--529a31fbe77f.meta.json"
+          },
+          "head": {
+            "id": "characters.1447e89726463585",
+            "meta": "library/characters/head_atlas/24_--1447e8972646.meta.json"
+          },
+          "weapon": {
+            "id": "weapons.5f5d420282067b18",
+            "meta": "library/weapons/weapon_overlay_atlas/_-_--5f5d42028206.meta.json"
+          },
+          "attack_source_action_index": 94,
+          "overlay_basis": "High-class client body + parent weapon ACT; attachment compatibility checked separately in TASK123 visual evidence"
+        },
+        {
+          "preset_id": "4017-female",
+          "gender": "female",
+          "body": {
+            "id": "characters.07940f38d6704cd1",
+            "meta": "library/characters/body_atlas/_--07940f38d670.meta.json"
+          },
+          "head": {
+            "id": "characters.d7b6cb8e19493ec6",
+            "meta": "library/characters/head_atlas/9_--d7b6cb8e1949.meta.json"
+          },
+          "weapon": {
+            "id": "weapons.cb58a6173f21efa2",
+            "meta": "library/weapons/weapon_overlay_atlas/_-_--cb58a6173f21.meta.json"
+          },
+          "attack_source_action_index": 94,
+          "overlay_basis": "High-class client body + parent weapon ACT; attachment compatibility checked separately in TASK123 visual evidence"
+        }
+      ],
+      "normal_attack_sound_event": "attack_rod"
+    },
+    {
+      "job_id": "assassin_cross",
+      "presets": [
+        {
+          "preset_id": "4013-male",
+          "gender": "male",
+          "body": {
+            "id": "characters.77aa206c4f1a1050",
+            "meta": "library/characters/body_atlas/_--77aa206c4f1a.meta.json"
+          },
+          "head": {
+            "id": "characters.ef4e792d0dfb5686",
+            "meta": "library/characters/head_atlas/27_--ef4e792d0dfb.meta.json"
+          },
+          "weapon": {
+            "id": "weapons.3468a97fd1dc6b83",
+            "meta": "library/weapons/weapon_overlay_atlas/_-_--3468a97fd1dc.meta.json"
+          },
+          "attack_source_action_index": 86,
+          "overlay_basis": "High-class client body + parent weapon ACT; attachment compatibility checked separately in TASK123 visual evidence"
+        },
+        {
+          "preset_id": "4013-female",
+          "gender": "female",
+          "body": {
+            "id": "characters.14e87061500ef510",
+            "meta": "library/characters/body_atlas/_--14e87061500e.meta.json"
+          },
+          "head": {
+            "id": "characters.2b4424e6e5fb8a48",
+            "meta": "library/characters/head_atlas/4_--2b4424e6e5fb.meta.json"
+          },
+          "weapon": {
+            "id": "weapons.5b2751ac80dbac30",
+            "meta": "library/weapons/weapon_overlay_atlas/_-_--5b2751ac80db.meta.json"
+          },
+          "attack_source_action_index": 86,
+          "overlay_basis": "High-class client body + parent weapon ACT; attachment compatibility checked separately in TASK123 visual evidence"
+        }
+      ],
+      "normal_attack_sound_event": "attack_dagger"
+    },
+    {
+      "job_id": "stalker",
+      "presets": [
+        {
+          "preset_id": "4018-male",
+          "gender": "male",
+          "body": {
+            "id": "characters.38ec98e5260e69d4",
+            "meta": "library/characters/body_atlas/_--38ec98e5260e.meta.json"
+          },
+          "head": {
+            "id": "characters.b044e9734162b031",
+            "meta": "library/characters/head_atlas/18_--b044e9734162.meta.json"
+          },
+          "weapon": {
+            "id": "weapons.69facffc53834508",
+            "meta": "library/weapons/weapon_overlay_atlas/_-_--69facffc5383.meta.json"
+          },
+          "attack_source_action_index": 86,
+          "overlay_basis": "High-class client body + parent weapon ACT; attachment compatibility checked separately in TASK123 visual evidence"
+        },
+        {
+          "preset_id": "4018-female",
+          "gender": "female",
+          "body": {
+            "id": "characters.4b04d3159c7fcf89",
+            "meta": "library/characters/body_atlas/_--4b04d3159c7f.meta.json"
+          },
+          "head": {
+            "id": "characters.decc3f69c399733a",
+            "meta": "library/characters/head_atlas/33_--decc3f69c399.meta.json"
+          },
+          "weapon": {
+            "id": "weapons.b83a995c39577642",
+            "meta": "library/weapons/weapon_overlay_atlas/_-_--b83a995c3957.meta.json"
+          },
+          "attack_source_action_index": 86,
+          "overlay_basis": "High-class client body + parent weapon ACT; attachment compatibility checked separately in TASK123 visual evidence"
+        }
+      ],
+      "normal_attack_sound_event": "attack_dagger"
+    },
+    {
+      "job_id": "whitesmith",
+      "presets": [
+        {
+          "preset_id": "4011-male",
+          "gender": "male",
+          "body": {
+            "id": "characters.7f39de6f13e5a72b",
+            "meta": "library/characters/body_atlas/_--7f39de6f13e5.meta.json"
+          },
+          "head": {
+            "id": "characters.1b73449bea69f00d",
+            "meta": "library/characters/head_atlas/30_--1b73449bea69.meta.json"
+          },
+          "weapon": {
+            "id": "weapons.5b248e36f34f80fa",
+            "meta": "library/weapons/weapon_overlay_atlas/_-_--5b248e36f34f.meta.json"
+          },
+          "attack_source_action_index": 94,
+          "overlay_basis": "High-class client body + parent weapon ACT; attachment compatibility checked separately in TASK123 visual evidence"
+        },
+        {
+          "preset_id": "4011-female",
+          "gender": "female",
+          "body": {
+            "id": "characters.b5454a418359849f",
+            "meta": "library/characters/body_atlas/_--b5454a418359.meta.json"
+          },
+          "head": {
+            "id": "characters.1338c6cfddd07e26",
+            "meta": "library/characters/head_atlas/29_--1338c6cfddd0.meta.json"
+          },
+          "weapon": {
+            "id": "weapons.8889a144ae69eb0c",
+            "meta": "library/weapons/weapon_overlay_atlas/_-_--8889a144ae69.meta.json"
+          },
+          "attack_source_action_index": 94,
+          "overlay_basis": "High-class client body + parent weapon ACT; attachment compatibility checked separately in TASK123 visual evidence"
+        }
+      ],
+      "normal_attack_sound_event": "attack_axe"
+    },
+    {
+      "job_id": "creator",
+      "presets": [
+        {
+          "preset_id": "4019-male",
+          "gender": "male",
+          "body": {
+            "id": "characters.781f2a71e7e4449d",
+            "meta": "library/characters/body_atlas/_--781f2a71e7e4.meta.json"
+          },
+          "head": {
+            "id": "characters.dd7660bd6ab0724c",
+            "meta": "library/characters/head_atlas/35_--dd7660bd6ab0.meta.json"
+          },
+          "weapon": {
+            "id": "weapons.ea124ae01d894bec",
+            "meta": "library/weapons/weapon_overlay_atlas/_-_--ea124ae01d89.meta.json"
+          },
+          "attack_source_action_index": 94,
+          "overlay_basis": "High-class client body + parent weapon ACT; attachment compatibility checked separately in TASK123 visual evidence"
+        },
+        {
+          "preset_id": "4019-female",
+          "gender": "female",
+          "body": {
+            "id": "characters.4450011608cbf055",
+            "meta": "library/characters/body_atlas/_--4450011608cb.meta.json"
+          },
+          "head": {
+            "id": "characters.625a9b8c8660017f",
+            "meta": "library/characters/head_atlas/37_--625a9b8c8660.meta.json"
+          },
+          "weapon": {
+            "id": "weapons.5ff489b6aaeed697",
+            "meta": "library/weapons/weapon_overlay_atlas/_-_--5ff489b6aaee.meta.json"
+          },
+          "attack_source_action_index": 94,
+          "overlay_basis": "High-class client body + parent weapon ACT; attachment compatibility checked separately in TASK123 visual evidence"
+        }
+      ],
+      "normal_attack_sound_event": "attack_mace"
+    }
+  ]
 }

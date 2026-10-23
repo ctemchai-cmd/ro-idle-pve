@@ -8,10 +8,10 @@ import type { SkillDefinition } from '../../src/contracts/index.ts';
 import { actor,content,unwrap,type Active } from './combat-fixtures.ts';
 
 test('D153 catalog covers19 jobs/126 skills, inherited/passive/copy/unlearned without enemies and descriptions follow every real rank',()=>{
- const before=JSON.stringify(content.documents),seen=new Set<string>();assert.equal(skillCatalogJobs.length,19);assert.equal(skillCatalogCount,126);
+ const before=JSON.stringify(content.documents),seen=new Set<string>();assert.equal(skillCatalogJobs.length,32);assert.equal(skillCatalogCount,152);
  for(const job of skillCatalogJobs){
   const rows=skillDefinitionsForJob(job.id);assert.ok(rows.length>=5);
-  assert.ok(rows.every(s=>s.class_id===job.id||s.class_id===job.root));
+  assert.ok(rows.every(s=>content.jobs.byId[job.id]!.ancestors.includes(s.class_id)));
   assert.equal(new Set(rows.map(s=>s.id)).size,rows.length);
   for(const row of rows)if(!seen.has(row.id)){
    seen.add(row.id);
@@ -22,7 +22,7 @@ test('D153 catalog covers19 jobs/126 skills, inherited/passive/copy/unlearned wi
    }
   }
  }
- assert.equal(seen.size,126);assert.ok(seen.has('rogue_copy_swordsman_bash'));
+ assert.equal(seen.size,152);assert.ok(seen.has('rogue_copy_swordsman_bash'));
  assert.equal(catalogSkillInformation('enemy_bite',1),null);assert.equal(catalogSkillInformation('unknown',1),null);
  assert.deepEqual(skillDefinitionsForJob('unknown'),[]);
  assert.equal(catalogSkillInformation('monk_call_spirits',NaN)!.level,1);

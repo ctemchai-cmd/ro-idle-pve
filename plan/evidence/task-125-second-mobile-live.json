@@ -1,0 +1,18 @@
+{
+  "passed": false,
+  "checks": [],
+  "errors": [],
+  "metrics": {},
+  "commands": [
+    {
+      "type": "save.migrate",
+      "request_id": "b8fc4e31-0406-4d6b-8425-3a0621f66f1c"
+    }
+  ],
+  "owner_cloud_access": false,
+  "balance_batch": false,
+  "failure": {
+    "stage": "LOGIN_MIGRATE",
+    "message": "AssertionError [ERR_ASSERTION]: LEGACY_MIGRATION_CHANGED_PROGRESS\n+ actual - expected\n... Skipped lines\n\n  {\n    active_battle: null,\n    battle_supplies: {\n      queued: {},\n      stock: {}\n...\n        locked: false,\n+       rarity_id: 'uncommon'\n-       rarity_id: 'common'\n      }\n    ],\n    paid_ledger: [\n      {\n        character_id: 'main',\n\n    at /Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/test_hi_release_live.cjs:30:123\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"
+  }
+}

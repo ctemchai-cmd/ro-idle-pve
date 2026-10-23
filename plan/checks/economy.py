@@ -8,7 +8,7 @@ def check(cid,ac,fn):
  try:r=fn();rows.append({'case_id':cid,'acceptance':ac,'passed':True,'result':r})
  except Exception as ex:rows.append({'case_id':cid,'acceptance':ac,'passed':False,'error':str(ex)})
 def resources():
- ids={r['id'] for r in e['resources']};assert len(ids)==8
+ ids={r['id'] for r in e['resources']};assert len(ids)==9
  for r in e['resources']:assert r['sources'] and r['sinks']
  assert set(e['rates'][0]['per_hour'])<=ids;assert e['farm']['rate_restrictions']['breakthrough_essence']=='clear 1-5'
  assert all(all(isinstance(v,int) and v>=0 for v in r['per_hour'].values()) for r in e['rates'])

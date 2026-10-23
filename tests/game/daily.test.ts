@@ -32,7 +32,7 @@ function fixture(state: AccountState, startIso = '2026-10-20T05:00:00.000Z') {
 const unlocked = (builds: string[] = ['knight_striker', 'crusader_holy_striker']) => { const tree = treeData('swordsman'); const state = buildAccount('swordsman', builds.map(id => tree.builds.find(b => b.id === id)!)); state.story.cleared_stage_ids = storyStages(content).slice(0, 20).map(s => s.id); return state; };
 const record = (state: AccountState, boss: string, day: string) => state.daily_records.find(row => row.boss_id === boss && row.ticket_day === day);
 test('D150 daily command accepts a completed chapter9 snapshot, preserves Bangkok attempt/HP semantics and serializes its battle',()=>{
- const state=unlocked();state.story.cleared_stage_ids=storyStages(content).map(s=>s.id);
+ const state=unlocked();state.story.cleared_stage_ids=storyStages(content).filter(s=>s.chapter<=9).map(s=>s.id);
  const f=fixture(state,'2026-10-23T05:00:00.000Z');assert.equal(f.run('battle.start_daily',{boss_id:'essence'}).result.code,'DAILY_STARTED');
  const row=record(f.state,'essence','2026-10-23')!;assert.equal(row.chapter_snapshot,9);assert.equal(row.attempts_used,1);assert.equal((f.stored!.payload as BattleCheckpoint).mode.ref,'essence@9');assert.doesNotThrow(()=>rules.validateAccount(f.state));
  const hp=row.current_hp;assert.equal(f.run('battle.retreat',{battle_id:f.state.active_battle!.battle_id},0).result.code,'DAILY_RETREATED');assert.equal(record(f.state,'essence','2026-10-23')!.attempts_used,1);assert.equal(record(f.state,'essence','2026-10-23')!.current_hp,hp);

@@ -1,0 +1,18 @@
+✔ all152 Awaken variants execute and serialize using the same engine, with1x2x4 event/RNG/state parity (1917.12925ms)
+✔ every152 Awaken variants keeps its ID/native icon, adds a functional effect, and starts at or beyond base-max effect strength (5.473667ms)
+✔ Awaken requires High+individual max and resets only rank to1 while keeping four-slot order, paid base costs and actual compiled variant (55.329667ms)
+✔ no globalLv90 gate: original max skill Awaken atHigh70; newer skills must finish their70..88/80..89 rank schedule (0.431709ms)
+✔ Awaken upgrades charge new shards and record distinct actual-paid scope/version; reset refunds both scopes exactly once (0.587333ms)
+✔ 10 old→1new→5old conversion is atomic, batchable, nonrefundable and cannot create materials by cycling (0.710625ms)
+✔ late essence dungeon chests award new shards only from chapter9 snapshot, scaling with phase; old chests and early dungeons stay fixed (0.192666ms)
+✔ legacy state migration fills currency0 in wallet/carry/frozen snapshot/claims/paid ledger, preserves costs and never auto-Awakens (49.890292ms)
+✔ new receipt schema accepts unchanged historical8-resource receipts while new creation emits9 resources (77.744167ms)
+✔ Professor Double Casting follows skill hits at most once per root cast; follow-up damage never recurses (20.757083ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4221.029167

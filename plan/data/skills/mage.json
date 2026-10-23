@@ -3086,5 +3086,4359 @@
     "sage_auto_bolt": "Only normal origin hits in SI/ACD; no NA during CT, no recursive skill cast.",
     "sage_wisdom": ""
   },
-  "future_awaken": "stable skill/effect IDs; no hi-class definitions required by these builds"
+  "future_awaken": "stable skill/effect IDs; no hi-class definitions required by these builds",
+  "hi_class_skills": [
+    {
+      "id": "high_wizard_mystical_amplification",
+      "name_key": "high_wizard_mystical_amplification",
+      "class_id": "high_wizard",
+      "max_level": 10,
+      "unlock_level": 70,
+      "rank_unlock_levels": [
+        70,
+        72,
+        74,
+        76,
+        78,
+        80,
+        82,
+        84,
+        86,
+        88
+      ],
+      "tags": [
+        "high_wizard",
+        "hi_class"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.2,
+          0.222222,
+          0.244444,
+          0.266667,
+          0.288889,
+          0.311111,
+          0.333333,
+          0.355556,
+          0.377778,
+          0.4
+        ]
+      },
+      "presentation_id": "visual_high_wizard_mystical_amplification",
+      "kind": "active",
+      "cost": {
+        "sp": 48,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 500,
+        "after_cast_ms": 1000,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "magic_up",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "magic_up",
+          "duration_ms": 10000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "high_wizard_napalm_vulcan",
+      "name_key": "high_wizard_napalm_vulcan",
+      "class_id": "high_wizard",
+      "max_level": 10,
+      "unlock_level": 80,
+      "rank_unlock_levels": [
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
+      ],
+      "tags": [
+        "high_wizard",
+        "hi_class"
+      ],
+      "level_parameters": {
+        "power": [
+          0.8,
+          0.861111,
+          0.922222,
+          0.983333,
+          1.044444,
+          1.105556,
+          1.166667,
+          1.227778,
+          1.288889,
+          1.35
+        ]
+      },
+      "presentation_id": "visual_high_wizard_napalm_vulcan",
+      "kind": "active",
+      "cost": {
+        "sp": 68,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 1200,
+        "after_cast_ms": 1300,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "ghost",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 5,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "professor_double_casting",
+      "name_key": "professor_double_casting",
+      "class_id": "professor",
+      "max_level": 10,
+      "unlock_level": 70,
+      "rank_unlock_levels": [
+        70,
+        72,
+        74,
+        76,
+        78,
+        80,
+        82,
+        84,
+        86,
+        88
+      ],
+      "tags": [
+        "professor",
+        "hi_class"
+      ],
+      "level_parameters": {
+        "power": [
+          1.2,
+          1.288889,
+          1.377778,
+          1.466667,
+          1.555556,
+          1.644444,
+          1.733333,
+          1.822222,
+          1.911111,
+          2.0
+        ],
+        "chance": [
+          0.25,
+          0.272222,
+          0.294444,
+          0.316667,
+          0.338889,
+          0.361111,
+          0.383333,
+          0.405556,
+          0.427778,
+          0.45
+        ]
+      },
+      "presentation_id": "visual_professor_double_casting",
+      "kind": "active",
+      "cost": {
+        "sp": 55,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 600,
+        "after_cast_ms": 1000,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "double_casting",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "double_casting",
+          "duration_ms": 10000,
+          "params": {
+            "power_ratio": {
+              "level_param": "power"
+            },
+            "chance": {
+              "level_param": "chance"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "professor_soul_change",
+      "name_key": "professor_soul_change",
+      "class_id": "professor",
+      "max_level": 10,
+      "unlock_level": 80,
+      "rank_unlock_levels": [
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
+      ],
+      "tags": [
+        "professor",
+        "hi_class"
+      ],
+      "level_parameters": {
+        "sp": [
+          25,
+          28,
+          32,
+          35,
+          38,
+          42,
+          45,
+          48,
+          52,
+          55
+        ],
+        "ratio": [
+          0.12,
+          0.14,
+          0.16,
+          0.18,
+          0.2,
+          0.22,
+          0.24,
+          0.26,
+          0.28,
+          0.3
+        ]
+      },
+      "presentation_id": "visual_professor_soul_change",
+      "kind": "active",
+      "cost": {
+        "sp": 65,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 1000,
+        "after_cast_ms": 1300,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "restore_sp",
+          "type": "resource_change",
+          "target": "friends",
+          "resource": "sp",
+          "amount": {
+            "level_param": "sp"
+          }
+        },
+        {
+          "id": "mana_regen_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "mana_regen_up",
+          "duration_ms": 10000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    }
+  ],
+  "hi_class_upgrades": {
+    "high_wizard_mystical_amplification": {
+      "learn_level_one_cost": {
+        "gold": 2500,
+        "skill_manual": 100
+      },
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 2000,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 3000,
+          "skill_manual": 150
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 4000,
+          "skill_manual": 200
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 5000,
+          "skill_manual": 250
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 6000,
+          "skill_manual": 300
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 7000,
+          "skill_manual": 350
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 8000,
+          "skill_manual": 400
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 9000,
+          "skill_manual": 450
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 10000,
+          "skill_manual": 500
+        }
+      ]
+    },
+    "high_wizard_napalm_vulcan": {
+      "learn_level_one_cost": {
+        "gold": 2500,
+        "skill_manual": 100
+      },
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 2000,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 3000,
+          "skill_manual": 150
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 4000,
+          "skill_manual": 200
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 5000,
+          "skill_manual": 250
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 6000,
+          "skill_manual": 300
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 7000,
+          "skill_manual": 350
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 8000,
+          "skill_manual": 400
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 9000,
+          "skill_manual": 450
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 10000,
+          "skill_manual": 500
+        }
+      ]
+    },
+    "professor_double_casting": {
+      "learn_level_one_cost": {
+        "gold": 2500,
+        "skill_manual": 100
+      },
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 2000,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 3000,
+          "skill_manual": 150
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 4000,
+          "skill_manual": 200
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 5000,
+          "skill_manual": 250
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 6000,
+          "skill_manual": 300
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 7000,
+          "skill_manual": 350
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 8000,
+          "skill_manual": 400
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 9000,
+          "skill_manual": 450
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 10000,
+          "skill_manual": 500
+        }
+      ]
+    },
+    "professor_soul_change": {
+      "learn_level_one_cost": {
+        "gold": 2500,
+        "skill_manual": 100
+      },
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 2000,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 3000,
+          "skill_manual": 150
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 4000,
+          "skill_manual": 200
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 5000,
+          "skill_manual": 250
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 6000,
+          "skill_manual": 300
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 7000,
+          "skill_manual": 350
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 8000,
+          "skill_manual": 400
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 9000,
+          "skill_manual": 450
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 10000,
+          "skill_manual": 500
+        }
+      ]
+    }
+  },
+  "awakened_variants": {
+    "mage_fire_bolt": {
+      "id": "mage_fire_bolt",
+      "name_key": "mage_fire_bolt",
+      "class_id": "mage",
+      "max_level": 10,
+      "unlock_level": 1,
+      "tags": [
+        "mage",
+        "fire_bolt",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          1.3475,
+          1.395139,
+          1.442778,
+          1.490417,
+          1.538056,
+          1.585694,
+          1.633333,
+          1.680972,
+          1.728611,
+          1.77625
+        ]
+      },
+      "presentation_id": "visual_mage_fire_bolt",
+      "kind": "active",
+      "cost": {
+        "sp": 18,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 800,
+        "after_cast_ms": 650,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "fire",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 3,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "exposed",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "mage_cold_bolt": {
+      "id": "mage_cold_bolt",
+      "name_key": "mage_cold_bolt",
+      "class_id": "mage",
+      "max_level": 10,
+      "unlock_level": 1,
+      "tags": [
+        "mage",
+        "cold_bolt",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          1.25125,
+          1.295486,
+          1.339722,
+          1.383958,
+          1.428194,
+          1.472431,
+          1.516667,
+          1.560903,
+          1.605139,
+          1.649375
+        ]
+      },
+      "presentation_id": "visual_mage_cold_bolt",
+      "kind": "active",
+      "cost": {
+        "sp": 18,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 850,
+        "after_cast_ms": 650,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "water",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 3,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "freeze",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "freeze",
+          "duration_ms": 1100,
+          "params": {},
+          "chance": 0.3,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "exposed",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "mage_lightning_bolt": {
+      "id": "mage_lightning_bolt",
+      "name_key": "mage_lightning_bolt",
+      "class_id": "mage",
+      "max_level": 10,
+      "unlock_level": 5,
+      "tags": [
+        "mage",
+        "lightning_bolt",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          1.3475,
+          1.395139,
+          1.442778,
+          1.490417,
+          1.538056,
+          1.585694,
+          1.633333,
+          1.680972,
+          1.728611,
+          1.77625
+        ]
+      },
+      "presentation_id": "visual_mage_lightning_bolt",
+      "kind": "active",
+      "cost": {
+        "sp": 20,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 850,
+        "after_cast_ms": 700,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "wind",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 3,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "exposed",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "mage_soul_strike": {
+      "id": "mage_soul_strike",
+      "name_key": "mage_soul_strike",
+      "class_id": "mage",
+      "max_level": 10,
+      "unlock_level": 10,
+      "tags": [
+        "mage",
+        "soul_strike",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          3.6575,
+          3.786806,
+          3.916111,
+          4.045417,
+          4.174722,
+          4.304028,
+          4.433333,
+          4.562639,
+          4.691944,
+          4.82125
+        ]
+      },
+      "presentation_id": "visual_mage_soul_strike",
+      "kind": "active",
+      "cost": {
+        "sp": 18,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 500,
+        "after_cast_ms": 750,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "ghost",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "exposed",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "mage_sp_recovery": {
+      "id": "mage_sp_recovery",
+      "name_key": "mage_sp_recovery",
+      "class_id": "mage",
+      "max_level": 10,
+      "unlock_level": 10,
+      "tags": [
+        "mage",
+        "sp_recovery",
+        "awakened"
+      ],
+      "level_parameters": {
+        "regen": [
+          5.775,
+          5.979167,
+          6.183333,
+          6.3875,
+          6.591667,
+          6.795833,
+          7.0,
+          7.204167,
+          7.408333,
+          7.6125
+        ],
+        "awaken_potency": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_mage_sp_recovery",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "flat_sp_regen",
+          "stat": "flat_sp_regen",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "regen"
+          }
+        },
+        {
+          "id": "awaken_potency",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "awaken_potency"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    "wizard_storm_gust": {
+      "id": "wizard_storm_gust",
+      "name_key": "wizard_storm_gust",
+      "class_id": "wizard",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "wizard",
+        "storm_gust",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          1.75957,
+          1.821777,
+          1.883984,
+          1.946191,
+          2.008398,
+          2.070605,
+          2.132812,
+          2.195019,
+          2.257226,
+          2.319433
+        ]
+      },
+      "presentation_id": "visual_wizard_storm_gust",
+      "kind": "active",
+      "cost": {
+        "sp": 52,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 1800,
+        "after_cast_ms": 1200,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "frost_field",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "frost_field",
+          "duration_ms": 5500,
+          "params": {
+            "power_ratio": {
+              "level_param": "power"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "wizard_jupitel": {
+      "id": "wizard_jupitel",
+      "name_key": "wizard_jupitel",
+      "class_id": "wizard",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "wizard",
+        "jupitel",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          2.463398,
+          2.550488,
+          2.637578,
+          2.724668,
+          2.811758,
+          2.898847,
+          2.985937,
+          3.073027,
+          3.160117,
+          3.247207
+        ]
+      },
+      "presentation_id": "visual_wizard_jupitel",
+      "kind": "active",
+      "cost": {
+        "sp": 32,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 950,
+        "after_cast_ms": 850,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "wind",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 4,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "exposed",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "wizard_meteor": {
+      "id": "wizard_meteor",
+      "name_key": "wizard_meteor",
+      "class_id": "wizard",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "wizard",
+        "meteor",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          2.346093,
+          2.429036,
+          2.511979,
+          2.594921,
+          2.677864,
+          2.760807,
+          2.843749,
+          2.926692,
+          3.009635,
+          3.092577
+        ],
+        "stun_duration": [
+          2200,
+          2278,
+          2356,
+          2433,
+          2511,
+          2589,
+          2667,
+          2744,
+          2822,
+          2900
+        ]
+      },
+      "presentation_id": "visual_wizard_meteor",
+      "kind": "active",
+      "cost": {
+        "sp": 54,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 2000,
+        "after_cast_ms": 1300,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "fire",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 3,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": {
+            "level_param": "stun_duration"
+          },
+          "params": {},
+          "chance": 0.3,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "exposed",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "wizard_quagmire": {
+      "id": "wizard_quagmire",
+      "name_key": "wizard_quagmire",
+      "class_id": "wizard",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "wizard",
+        "quagmire",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.4235,
+          0.438472,
+          0.453444,
+          0.468417,
+          0.483389,
+          0.498361,
+          0.513333,
+          0.528306,
+          0.543278,
+          0.55825
+        ]
+      },
+      "presentation_id": "visual_wizard_quagmire",
+      "kind": "active",
+      "cost": {
+        "sp": 36,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 1000,
+        "after_cast_ms": 1100,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "slow",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "slow",
+          "duration_ms": 5500,
+          "params": {
+            "ratio": -0.3
+          },
+          "chance": 1
+        },
+        {
+          "id": "armor_break",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "armor_break",
+          "duration_ms": 5500,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "wizard_heavens_drive": {
+      "id": "wizard_heavens_drive",
+      "name_key": "wizard_heavens_drive",
+      "class_id": "wizard",
+      "max_level": 10,
+      "unlock_level": 40,
+      "tags": [
+        "wizard",
+        "heavens_drive",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          7.038282,
+          7.28711,
+          7.535938,
+          7.784766,
+          8.033594,
+          8.282423,
+          8.531251,
+          8.780079,
+          9.028907,
+          9.277735
+        ]
+      },
+      "presentation_id": "visual_wizard_heavens_drive",
+      "kind": "active",
+      "cost": {
+        "sp": 42,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 1300,
+        "after_cast_ms": 1100,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "earth",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "exposed",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "wizard_amplified_magic": {
+      "id": "wizard_amplified_magic",
+      "name_key": "wizard_amplified_magic",
+      "class_id": "wizard",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "wizard",
+        "amplified_magic",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.385,
+          0.398611,
+          0.412222,
+          0.425833,
+          0.439444,
+          0.453056,
+          0.466667,
+          0.480278,
+          0.493889,
+          0.5075
+        ],
+        "awaken_potency": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_wizard_amplified_magic",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "ratio"
+          }
+        },
+        {
+          "id": "awaken_potency",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "awaken_potency"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    "wizard_frost_control": {
+      "id": "wizard_frost_control",
+      "name_key": "wizard_frost_control",
+      "class_id": "wizard",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "wizard",
+        "frost_control",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.11,
+          0.113889,
+          0.117778,
+          0.121667,
+          0.125556,
+          0.129444,
+          0.133333,
+          0.137222,
+          0.141111,
+          0.145
+        ],
+        "awaken_potency": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_wizard_frost_control",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "control_accuracy",
+          "stat": "control_accuracy",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "ratio"
+          }
+        },
+        {
+          "id": "awaken_potency",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "awaken_potency"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    "sage_fire_endow": {
+      "id": "sage_fire_endow",
+      "name_key": "sage_fire_endow",
+      "class_id": "sage",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "sage",
+        "fire_endow",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.28875,
+          0.298958,
+          0.309167,
+          0.319375,
+          0.329583,
+          0.339792,
+          0.35,
+          0.360208,
+          0.370417,
+          0.380625
+        ]
+      },
+      "presentation_id": "visual_sage_fire_endow",
+      "kind": "active",
+      "cost": {
+        "sp": 32,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 700,
+        "after_cast_ms": 1000,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "fire_endow",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "fire_endow",
+          "duration_ms": 7150,
+          "params": {},
+          "chance": 1
+        },
+        {
+          "id": "magic_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "magic_up",
+          "duration_ms": 6050,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "sage_spell_breaker": {
+      "id": "sage_spell_breaker",
+      "name_key": "sage_spell_breaker",
+      "class_id": "sage",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "sage",
+        "spell_breaker",
+        "awakened"
+      ],
+      "level_parameters": {
+        "sp_cost": [
+          25,
+          25,
+          25,
+          24,
+          24,
+          24,
+          23,
+          23,
+          23,
+          22
+        ],
+        "power": [
+          16.5,
+          17.083333,
+          17.666667,
+          18.25,
+          18.833333,
+          19.416667,
+          20.0,
+          20.583333,
+          21.166667,
+          21.75
+        ]
+      },
+      "presentation_id": "visual_sage_spell_breaker",
+      "kind": "active",
+      "cost": {
+        "sp": {
+          "level_param": "sp_cost"
+        },
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 800,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "interrupt",
+          "type": "interrupt",
+          "target": "foe"
+        },
+        {
+          "id": "interrupt_hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "neutral",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 1,
+          "armor_rule": "normal",
+          "when": {
+            "type": "effect_succeeded",
+            "effect_id": "interrupt",
+            "scope": "same_target"
+          }
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "exposed",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "sage_dispel": {
+      "id": "sage_dispel",
+      "name_key": "sage_dispel",
+      "class_id": "sage",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "sage",
+        "dispel",
+        "awakened"
+      ],
+      "level_parameters": {
+        "sp_cost": [
+          36,
+          36,
+          35,
+          35,
+          34,
+          34,
+          33,
+          33,
+          32,
+          32
+        ],
+        "cast": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "removed": [
+          4,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          6,
+          6
+        ]
+      },
+      "presentation_id": "visual_sage_dispel",
+      "kind": "active",
+      "cost": {
+        "sp": {
+          "level_param": "sp_cost"
+        },
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": {
+          "level_param": "cast"
+        },
+        "after_cast_ms": 1100,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "dispel",
+          "type": "remove_status",
+          "target": "foes",
+          "polarity": "buff",
+          "tags": [],
+          "permission": "dispel",
+          "max_instances": {
+            "level_param": "removed"
+          }
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "sage_psychic_bolt": {
+      "id": "sage_psychic_bolt",
+      "name_key": "sage_psychic_bolt",
+      "class_id": "sage",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "sage",
+        "psychic_bolt",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          6.569063,
+          6.801302,
+          7.033542,
+          7.265781,
+          7.498021,
+          7.73026,
+          7.9625,
+          8.19474,
+          8.426979,
+          8.659219
+        ]
+      },
+      "presentation_id": "visual_sage_psychic_bolt",
+      "kind": "active",
+      "cost": {
+        "sp": 32,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 750,
+        "after_cast_ms": 800,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "neutral",
+          "hit_rule": "always",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal",
+          "critical_rule": "always"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "exposed",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "sage_magic_barrier": {
+      "id": "sage_magic_barrier",
+      "name_key": "sage_magic_barrier",
+      "class_id": "sage",
+      "max_level": 10,
+      "unlock_level": 40,
+      "tags": [
+        "sage",
+        "magic_barrier",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          9.853593,
+          10.201953,
+          10.550312,
+          10.898671,
+          11.247031,
+          11.59539,
+          11.943749,
+          12.292109,
+          12.640468,
+          12.988827
+        ],
+        "duration": [
+          8800,
+          9111,
+          9422,
+          9733,
+          10044,
+          10356,
+          10667,
+          10978,
+          11289,
+          11600
+        ]
+      },
+      "presentation_id": "visual_sage_magic_barrier",
+      "kind": "active",
+      "cost": {
+        "sp": 38,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 850,
+        "after_cast_ms": 1150,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "neutral",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "silence",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "silence",
+          "duration_ms": {
+            "level_param": "duration"
+          },
+          "params": {},
+          "chance": 1
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "exposed",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "sage_auto_bolt": {
+      "id": "sage_auto_bolt",
+      "name_key": "sage_auto_bolt",
+      "class_id": "sage",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "sage",
+        "auto_bolt",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          1.54,
+          1.594444,
+          1.648889,
+          1.703333,
+          1.757778,
+          1.812222,
+          1.866667,
+          1.921111,
+          1.975556,
+          2.03
+        ],
+        "awaken_potency": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_sage_auto_bolt",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "awaken_potency",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "awaken_potency"
+          }
+        }
+      ],
+      "triggers": [
+        {
+          "id": "auto_bolt",
+          "event": "normal_attack_hit",
+          "chance": 0.35,
+          "accepted_origins": [
+            "normal"
+          ],
+          "limit_scope": "none",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {},
+          "effects": [
+            {
+              "id": "bolt",
+              "type": "damage",
+              "target": "event_target",
+              "formula": {
+                "id": "magical_power",
+                "params": {
+                  "attack_ratio": {
+                    "level_param": "power"
+                  },
+                  "flat_power": 0
+                }
+              },
+              "damage_type": "magical",
+              "element": "fire",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    "sage_wisdom": {
+      "id": "sage_wisdom",
+      "name_key": "sage_wisdom",
+      "class_id": "sage",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "sage",
+        "wisdom",
+        "awakened"
+      ],
+      "level_parameters": {
+        "speed": [
+          0.132,
+          0.136667,
+          0.141333,
+          0.146,
+          0.150667,
+          0.155333,
+          0.16,
+          0.164667,
+          0.169333,
+          0.174
+        ],
+        "awaken_potency": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_sage_wisdom",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "cast_speed",
+          "stat": "cast_speed",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "speed"
+          }
+        },
+        {
+          "id": "awaken_potency",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "awaken_potency"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    "high_wizard_mystical_amplification": {
+      "id": "high_wizard_mystical_amplification",
+      "name_key": "high_wizard_mystical_amplification",
+      "class_id": "high_wizard",
+      "max_level": 10,
+      "unlock_level": 70,
+      "rank_unlock_levels": [
+        70,
+        72,
+        74,
+        76,
+        78,
+        80,
+        82,
+        84,
+        86,
+        88
+      ],
+      "tags": [
+        "high_wizard",
+        "hi_class",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.44,
+          0.455556,
+          0.471111,
+          0.486667,
+          0.502222,
+          0.517778,
+          0.533333,
+          0.548889,
+          0.564444,
+          0.58
+        ]
+      },
+      "presentation_id": "visual_high_wizard_mystical_amplification",
+      "kind": "active",
+      "cost": {
+        "sp": 48,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 500,
+        "after_cast_ms": 1000,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "magic_up",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "magic_up",
+          "duration_ms": 11000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "high_wizard_napalm_vulcan": {
+      "id": "high_wizard_napalm_vulcan",
+      "name_key": "high_wizard_napalm_vulcan",
+      "class_id": "high_wizard",
+      "max_level": 10,
+      "unlock_level": 80,
+      "rank_unlock_levels": [
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
+      ],
+      "tags": [
+        "high_wizard",
+        "hi_class",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          1.485,
+          1.5375,
+          1.59,
+          1.6425,
+          1.695,
+          1.7475,
+          1.8,
+          1.8525,
+          1.905,
+          1.9575
+        ]
+      },
+      "presentation_id": "visual_high_wizard_napalm_vulcan",
+      "kind": "active",
+      "cost": {
+        "sp": 68,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 1200,
+        "after_cast_ms": 1300,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "ghost",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 5,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "exposed",
+          "duration_ms": 4000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "professor_double_casting": {
+      "id": "professor_double_casting",
+      "name_key": "professor_double_casting",
+      "class_id": "professor",
+      "max_level": 10,
+      "unlock_level": 70,
+      "rank_unlock_levels": [
+        70,
+        72,
+        74,
+        76,
+        78,
+        80,
+        82,
+        84,
+        86,
+        88
+      ],
+      "tags": [
+        "professor",
+        "hi_class",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          2.2,
+          2.277778,
+          2.355556,
+          2.433333,
+          2.511111,
+          2.588889,
+          2.666667,
+          2.744444,
+          2.822222,
+          2.9
+        ],
+        "chance": [
+          0.495,
+          0.5125,
+          0.53,
+          0.5475,
+          0.565,
+          0.5825,
+          0.6,
+          0.6175,
+          0.635,
+          0.6525
+        ]
+      },
+      "presentation_id": "visual_professor_double_casting",
+      "kind": "active",
+      "cost": {
+        "sp": 55,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 600,
+        "after_cast_ms": 1000,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "double_casting",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "double_casting",
+          "duration_ms": 11000,
+          "params": {
+            "power_ratio": {
+              "level_param": "power"
+            },
+            "chance": {
+              "level_param": "chance"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "professor_soul_change": {
+      "id": "professor_soul_change",
+      "name_key": "professor_soul_change",
+      "class_id": "professor",
+      "max_level": 10,
+      "unlock_level": 80,
+      "rank_unlock_levels": [
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
+      ],
+      "tags": [
+        "professor",
+        "hi_class",
+        "awakened"
+      ],
+      "level_parameters": {
+        "sp": [
+          61,
+          63,
+          65,
+          67,
+          69,
+          71,
+          73,
+          75,
+          78,
+          80
+        ],
+        "ratio": [
+          0.33,
+          0.341667,
+          0.353333,
+          0.365,
+          0.376667,
+          0.388333,
+          0.4,
+          0.411667,
+          0.423333,
+          0.435
+        ]
+      },
+      "presentation_id": "visual_professor_soul_change",
+      "kind": "active",
+      "cost": {
+        "sp": 65,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 1000,
+        "after_cast_ms": 1300,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "restore_sp",
+          "type": "resource_change",
+          "target": "friends",
+          "resource": "sp",
+          "amount": {
+            "level_param": "sp"
+          }
+        },
+        {
+          "id": "mana_regen_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "mana_regen_up",
+          "duration_ms": 11000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    }
+  },
+  "awakened_upgrades": {
+    "mage_fire_bolt": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "mage_cold_bolt": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "mage_lightning_bolt": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "mage_soul_strike": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "mage_sp_recovery": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "wizard_storm_gust": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "wizard_jupitel": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "wizard_meteor": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "wizard_quagmire": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "wizard_heavens_drive": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "wizard_amplified_magic": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "wizard_frost_control": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "sage_fire_endow": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "sage_spell_breaker": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "sage_dispel": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "sage_psychic_bolt": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "sage_magic_barrier": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "sage_auto_bolt": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "sage_wisdom": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "high_wizard_mystical_amplification": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "high_wizard_napalm_vulcan": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "professor_double_casting": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "professor_soul_change": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    }
+  }
 }

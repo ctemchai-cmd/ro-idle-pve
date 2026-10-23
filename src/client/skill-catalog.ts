@@ -15,10 +15,10 @@ export function skillDefinitionsForJob(job:string):SkillDefinition[]{
  return row?Object.values(content.skills).filter(s=>row.ancestors.includes(String(s.class_id))) as unknown as SkillDefinition[]:[];
 }
 export type SkillInformation=ReturnType<typeof describeResolvedSkill>&{name:string;level:number};
-export function catalogSkillInformation(id:string,level:number):SkillInformation|null{
+export function catalogSkillInformation(id:string,level:number,awakened=false):SkillInformation|null{
  const source=content.skills[id];if(!source||source.class_id==='enemy')return null;
  const rank=Math.min(Number(source.max_level),Math.max(1,Number.isFinite(level)?Math.floor(level):1));
- const definition=resolveSkill(id,rank,content).definition as SkillDefinition;
+ const definition=resolveSkill(id,rank,content,awakened).definition as SkillDefinition;
  return {...describeResolvedSkill(definition,rank),name:skillCatalogName(id),level:rank};
 }
 /** Never resolve at a guessed level: the battle snapshot owns rank, copied programs and source bonuses. */

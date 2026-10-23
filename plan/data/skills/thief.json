@@ -4078,5 +4078,5479 @@
     "rogue_copy_archer_double_strafe",
     "rogue_copy_mage_fire_bolt",
     "rogue_copy_merchant_cart_revolution"
-  ]
+  ],
+  "hi_class_skills": [
+    {
+      "id": "assassin_cross_soul_destroyer",
+      "name_key": "assassin_cross_soul_destroyer",
+      "class_id": "assassin_cross",
+      "max_level": 10,
+      "unlock_level": 70,
+      "rank_unlock_levels": [
+        70,
+        72,
+        74,
+        76,
+        78,
+        80,
+        82,
+        84,
+        86,
+        88
+      ],
+      "tags": [
+        "assassin_cross",
+        "hi_class"
+      ],
+      "level_parameters": {
+        "power": [
+          4.5,
+          4.833333,
+          5.166667,
+          5.5,
+          5.833333,
+          6.166667,
+          6.5,
+          6.833333,
+          7.166667,
+          7.5
+        ],
+        "magic": [
+          1.5,
+          1.611111,
+          1.722222,
+          1.833333,
+          1.944444,
+          2.055556,
+          2.166667,
+          2.277778,
+          2.388889,
+          2.5
+        ]
+      },
+      "presentation_id": "visual_assassin_cross_soul_destroyer",
+      "kind": "active",
+      "cost": {
+        "sp": 55,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 650,
+        "after_cast_ms": 1150,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "soul",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "magic"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "neutral",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 1,
+          "armor_rule": "normal"
+        }
+      ]
+    },
+    {
+      "id": "assassin_cross_meteor_assault",
+      "name_key": "assassin_cross_meteor_assault",
+      "class_id": "assassin_cross",
+      "max_level": 10,
+      "unlock_level": 80,
+      "rank_unlock_levels": [
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
+      ],
+      "tags": [
+        "assassin_cross",
+        "hi_class"
+      ],
+      "level_parameters": {
+        "power": [
+          3.8,
+          4.088889,
+          4.377778,
+          4.666667,
+          4.955556,
+          5.244444,
+          5.533333,
+          5.822222,
+          6.111111,
+          6.4
+        ]
+      },
+      "presentation_id": "visual_assassin_cross_meteor_assault",
+      "kind": "active",
+      "cost": {
+        "sp": 65,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 850,
+        "after_cast_ms": 1300,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": 1600,
+          "params": {},
+          "chance": 0.4
+        }
+      ]
+    },
+    {
+      "id": "stalker_chase_walk",
+      "name_key": "stalker_chase_walk",
+      "class_id": "stalker",
+      "max_level": 10,
+      "unlock_level": 70,
+      "rank_unlock_levels": [
+        70,
+        72,
+        74,
+        76,
+        78,
+        80,
+        82,
+        84,
+        86,
+        88
+      ],
+      "tags": [
+        "stalker",
+        "hi_class"
+      ],
+      "level_parameters": {
+        "guard": [
+          0.1,
+          0.111111,
+          0.122222,
+          0.133333,
+          0.144444,
+          0.155556,
+          0.166667,
+          0.177778,
+          0.188889,
+          0.2
+        ],
+        "ratio": [
+          0.08,
+          0.091111,
+          0.102222,
+          0.113333,
+          0.124444,
+          0.135556,
+          0.146667,
+          0.157778,
+          0.168889,
+          0.18
+        ]
+      },
+      "presentation_id": "visual_stalker_chase_walk",
+      "kind": "active",
+      "cost": {
+        "sp": 48,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 350,
+        "after_cast_ms": 1000,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "guard_up",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "guard_up",
+          "duration_ms": 8000,
+          "params": {
+            "ratio": {
+              "level_param": "guard"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "aspd_up",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "aspd_up",
+          "duration_ms": 8000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "id": "stalker_full_strip",
+      "name_key": "stalker_full_strip",
+      "class_id": "stalker",
+      "max_level": 10,
+      "unlock_level": 80,
+      "rank_unlock_levels": [
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
+      ],
+      "tags": [
+        "stalker",
+        "hi_class"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.16,
+          0.175556,
+          0.191111,
+          0.206667,
+          0.222222,
+          0.237778,
+          0.253333,
+          0.268889,
+          0.284444,
+          0.3
+        ],
+        "attack": [
+          -0.16,
+          -0.175556,
+          -0.191111,
+          -0.206667,
+          -0.222222,
+          -0.237778,
+          -0.253333,
+          -0.268889,
+          -0.284444,
+          -0.3
+        ]
+      },
+      "presentation_id": "visual_stalker_full_strip",
+      "kind": "active",
+      "cost": {
+        "sp": 58,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 750,
+        "after_cast_ms": 1250,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "armor_break",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "armor_break",
+          "duration_ms": 10000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "attack_down",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "attack_down",
+          "duration_ms": 10000,
+          "params": {
+            "ratio": {
+              "level_param": "attack"
+            }
+          },
+          "chance": 1
+        }
+      ]
+    }
+  ],
+  "hi_class_upgrades": {
+    "assassin_cross_soul_destroyer": {
+      "learn_level_one_cost": {
+        "gold": 2500,
+        "skill_manual": 100
+      },
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 2000,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 3000,
+          "skill_manual": 150
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 4000,
+          "skill_manual": 200
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 5000,
+          "skill_manual": 250
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 6000,
+          "skill_manual": 300
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 7000,
+          "skill_manual": 350
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 8000,
+          "skill_manual": 400
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 9000,
+          "skill_manual": 450
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 10000,
+          "skill_manual": 500
+        }
+      ]
+    },
+    "assassin_cross_meteor_assault": {
+      "learn_level_one_cost": {
+        "gold": 2500,
+        "skill_manual": 100
+      },
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 2000,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 3000,
+          "skill_manual": 150
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 4000,
+          "skill_manual": 200
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 5000,
+          "skill_manual": 250
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 6000,
+          "skill_manual": 300
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 7000,
+          "skill_manual": 350
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 8000,
+          "skill_manual": 400
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 9000,
+          "skill_manual": 450
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 10000,
+          "skill_manual": 500
+        }
+      ]
+    },
+    "stalker_chase_walk": {
+      "learn_level_one_cost": {
+        "gold": 2500,
+        "skill_manual": 100
+      },
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 2000,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 3000,
+          "skill_manual": 150
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 4000,
+          "skill_manual": 200
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 5000,
+          "skill_manual": 250
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 6000,
+          "skill_manual": 300
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 7000,
+          "skill_manual": 350
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 8000,
+          "skill_manual": 400
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 9000,
+          "skill_manual": 450
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 10000,
+          "skill_manual": 500
+        }
+      ]
+    },
+    "stalker_full_strip": {
+      "learn_level_one_cost": {
+        "gold": 2500,
+        "skill_manual": 100
+      },
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 2000,
+          "skill_manual": 100
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 3000,
+          "skill_manual": 150
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 4000,
+          "skill_manual": 200
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 5000,
+          "skill_manual": 250
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 6000,
+          "skill_manual": 300
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 7000,
+          "skill_manual": 350
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 8000,
+          "skill_manual": 400
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 9000,
+          "skill_manual": 450
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 10000,
+          "skill_manual": 500
+        }
+      ]
+    }
+  },
+  "awakened_variants": {
+    "thief_envenom": {
+      "id": "thief_envenom",
+      "name_key": "thief_envenom",
+      "class_id": "thief",
+      "max_level": 10,
+      "unlock_level": 1,
+      "tags": [
+        "thief",
+        "envenom",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          3.08,
+          3.188889,
+          3.297778,
+          3.406667,
+          3.515556,
+          3.624444,
+          3.733333,
+          3.842222,
+          3.951111,
+          4.06
+        ],
+        "poison": [
+          0.77,
+          0.797222,
+          0.824444,
+          0.851667,
+          0.878889,
+          0.906111,
+          0.933333,
+          0.960556,
+          0.987778,
+          1.015
+        ]
+      },
+      "presentation_id": "visual_thief_envenom",
+      "kind": "active",
+      "cost": {
+        "sp": 18,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 150,
+        "after_cast_ms": 650,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "venom",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "venom",
+          "duration_ms": 5500,
+          "params": {
+            "power_ratio": {
+              "level_param": "poison"
+            }
+          },
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "poison",
+          "duration_ms": 4000,
+          "params": {
+            "power_ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "thief_quick_step": {
+      "id": "thief_quick_step",
+      "name_key": "thief_quick_step",
+      "class_id": "thief",
+      "max_level": 10,
+      "unlock_level": 1,
+      "tags": [
+        "thief",
+        "quick_step",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.242,
+          0.250556,
+          0.259111,
+          0.267667,
+          0.276222,
+          0.284778,
+          0.293333,
+          0.301889,
+          0.310444,
+          0.319
+        ]
+      },
+      "presentation_id": "visual_thief_quick_step",
+      "kind": "active",
+      "cost": {
+        "sp": 18,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 600,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "aspd_up",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "aspd_up",
+          "duration_ms": 4950,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "thief_sand_attack": {
+      "id": "thief_sand_attack",
+      "name_key": "thief_sand_attack",
+      "class_id": "thief",
+      "max_level": 10,
+      "unlock_level": 5,
+      "tags": [
+        "thief",
+        "sand_attack",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          2.5025,
+          2.590972,
+          2.679444,
+          2.767917,
+          2.856389,
+          2.944861,
+          3.033333,
+          3.121806,
+          3.210278,
+          3.29875
+        ],
+        "blind": [
+          -0.231,
+          -0.239167,
+          -0.247333,
+          -0.2555,
+          -0.263667,
+          -0.271833,
+          -0.28,
+          -0.288167,
+          -0.296333,
+          -0.3045
+        ]
+      },
+      "presentation_id": "visual_thief_sand_attack",
+      "kind": "active",
+      "cost": {
+        "sp": 20,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 250,
+        "after_cast_ms": 750,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "accuracy_down",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "accuracy_down",
+          "duration_ms": 4950,
+          "params": {
+            "ratio": {
+              "level_param": "blind"
+            }
+          },
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "stun",
+          "duration_ms": 1100,
+          "params": {},
+          "chance": 0.5,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "poison",
+          "duration_ms": 4000,
+          "params": {
+            "power_ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "thief_backstab": {
+      "id": "thief_backstab",
+      "name_key": "thief_backstab",
+      "class_id": "thief",
+      "max_level": 10,
+      "unlock_level": 10,
+      "tags": [
+        "thief",
+        "backstab",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          4.8125,
+          4.982639,
+          5.152778,
+          5.322917,
+          5.493056,
+          5.663194,
+          5.833333,
+          6.003472,
+          6.173611,
+          6.34375
+        ]
+      },
+      "presentation_id": "visual_thief_backstab",
+      "kind": "active",
+      "cost": {
+        "sp": 24,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 350,
+        "after_cast_ms": 850,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "poison",
+          "duration_ms": 4000,
+          "params": {
+            "power_ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "thief_double_attack": {
+      "id": "thief_double_attack",
+      "name_key": "thief_double_attack",
+      "class_id": "thief",
+      "max_level": 10,
+      "unlock_level": 10,
+      "tags": [
+        "thief",
+        "double_attack",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          1.3475,
+          1.395139,
+          1.442778,
+          1.490417,
+          1.538056,
+          1.585694,
+          1.633333,
+          1.680972,
+          1.728611,
+          1.77625
+        ],
+        "awaken_potency": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_thief_double_attack",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "awaken_potency",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "awaken_potency"
+          }
+        }
+      ],
+      "triggers": [
+        {
+          "id": "double_hit",
+          "event": "normal_attack_hit",
+          "chance": 0.25,
+          "accepted_origins": [
+            "normal"
+          ],
+          "limit_scope": "none",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {},
+          "effects": [
+            {
+              "id": "extra_hit",
+              "type": "damage",
+              "target": "event_target",
+              "formula": {
+                "id": "physical_power",
+                "params": {
+                  "attack_ratio": {
+                    "level_param": "power"
+                  },
+                  "flat_power": 0
+                }
+              },
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    "assassin_sonic_blow": {
+      "id": "assassin_sonic_blow",
+      "name_key": "assassin_sonic_blow",
+      "class_id": "assassin",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "assassin",
+        "sonic_blow",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          2.463398,
+          2.550488,
+          2.637578,
+          2.724668,
+          2.811758,
+          2.898847,
+          2.985937,
+          3.073027,
+          3.160117,
+          3.247207
+        ]
+      },
+      "presentation_id": "visual_assassin_sonic_blow",
+      "kind": "active",
+      "cost": {
+        "sp": 34,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 500,
+        "after_cast_ms": 1000,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 4,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "poison",
+          "duration_ms": 4000,
+          "params": {
+            "power_ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "assassin_enchant_poison": {
+      "id": "assassin_enchant_poison",
+      "name_key": "assassin_enchant_poison",
+      "class_id": "assassin",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "assassin",
+        "enchant_poison",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.48125,
+          0.498264,
+          0.515278,
+          0.532292,
+          0.549306,
+          0.566319,
+          0.583333,
+          0.600347,
+          0.617361,
+          0.634375
+        ],
+        "duration": [
+          11000,
+          11389,
+          11778,
+          12167,
+          12556,
+          12944,
+          13333,
+          13722,
+          14111,
+          14500
+        ]
+      },
+      "presentation_id": "visual_assassin_enchant_poison",
+      "kind": "active",
+      "cost": {
+        "sp": 28,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 400,
+        "after_cast_ms": 850,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "attack_up",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "attack_up",
+          "duration_ms": {
+            "level_param": "duration"
+          },
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "assassin_venom_dust": {
+      "id": "assassin_venom_dust",
+      "name_key": "assassin_venom_dust",
+      "class_id": "assassin",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "assassin",
+        "venom_dust",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          0.9625,
+          0.996528,
+          1.030556,
+          1.064583,
+          1.098611,
+          1.132639,
+          1.166667,
+          1.200694,
+          1.234722,
+          1.26875
+        ]
+      },
+      "presentation_id": "visual_assassin_venom_dust",
+      "kind": "active",
+      "cost": {
+        "sp": 38,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 650,
+        "after_cast_ms": 1100,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "venom",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "venom",
+          "duration_ms": 6600,
+          "params": {
+            "power_ratio": {
+              "level_param": "power"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "assassin_detonate": {
+      "id": "assassin_detonate",
+      "name_key": "assassin_detonate",
+      "class_id": "assassin",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "assassin",
+        "detonate",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          9.853593,
+          10.201953,
+          10.550312,
+          10.898671,
+          11.247031,
+          11.59539,
+          11.943749,
+          12.292109,
+          12.640468,
+          12.988827
+        ],
+        "critical": [
+          0.55,
+          0.569444,
+          0.588889,
+          0.608333,
+          0.627778,
+          0.647222,
+          0.666667,
+          0.686111,
+          0.705556,
+          0.725
+        ]
+      },
+      "presentation_id": "visual_assassin_detonate",
+      "kind": "active",
+      "cost": {
+        "sp": 34,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 750,
+        "after_cast_ms": 1200,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal",
+          "crit_chance_bonus": {
+            "level_param": "critical"
+          }
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "poison",
+          "duration_ms": 4000,
+          "params": {
+            "power_ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "assassin_grimtooth": {
+      "id": "assassin_grimtooth",
+      "name_key": "assassin_grimtooth",
+      "class_id": "assassin",
+      "max_level": 10,
+      "unlock_level": 40,
+      "tags": [
+        "assassin",
+        "grimtooth",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          4.8125,
+          4.982639,
+          5.152778,
+          5.322917,
+          5.493056,
+          5.663194,
+          5.833333,
+          6.003472,
+          6.173611,
+          6.34375
+        ]
+      },
+      "presentation_id": "visual_assassin_grimtooth",
+      "kind": "active",
+      "cost": {
+        "sp": 36,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 500,
+        "after_cast_ms": 1000,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "poison",
+          "duration_ms": 4000,
+          "params": {
+            "power_ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "assassin_katar_mastery": {
+      "id": "assassin_katar_mastery",
+      "name_key": "assassin_katar_mastery",
+      "class_id": "assassin",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "assassin",
+        "katar_mastery",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.28875,
+          0.298958,
+          0.309167,
+          0.319375,
+          0.329583,
+          0.339792,
+          0.35,
+          0.360208,
+          0.370417,
+          0.380625
+        ],
+        "awaken_potency": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_assassin_katar_mastery",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "crit_chance_bonus",
+          "stat": "crit_chance_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "ratio"
+          }
+        },
+        {
+          "id": "awaken_potency",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "awaken_potency"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    "assassin_poison_edge": {
+      "id": "assassin_poison_edge",
+      "name_key": "assassin_poison_edge",
+      "class_id": "assassin",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "assassin",
+        "poison_edge",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.231,
+          0.239167,
+          0.247333,
+          0.2555,
+          0.263667,
+          0.271833,
+          0.28,
+          0.288167,
+          0.296333,
+          0.3045
+        ],
+        "awaken_potency": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_assassin_poison_edge",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "outgoing_physical_bonus",
+          "stat": "outgoing_physical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "ratio"
+          }
+        },
+        {
+          "id": "awaken_potency",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "awaken_potency"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    "rogue_strip_armor": {
+      "id": "rogue_strip_armor",
+      "name_key": "rogue_strip_armor",
+      "class_id": "rogue",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "rogue",
+        "strip_armor",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.67375,
+          0.697569,
+          0.721389,
+          0.745208,
+          0.769028,
+          0.792847,
+          0.816667,
+          0.840486,
+          0.864306,
+          0.888125
+        ],
+        "power": [
+          2.2,
+          2.277778,
+          2.355556,
+          2.433333,
+          2.511111,
+          2.588889,
+          2.666667,
+          2.744444,
+          2.822222,
+          2.9
+        ]
+      },
+      "presentation_id": "visual_rogue_strip_armor",
+      "kind": "active",
+      "cost": {
+        "sp": 28,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 450,
+        "after_cast_ms": 900,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "armor_break",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "armor_break",
+          "duration_ms": 6050,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "poison",
+          "duration_ms": 4000,
+          "params": {
+            "power_ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "rogue_strip_weapon": {
+      "id": "rogue_strip_weapon",
+      "name_key": "rogue_strip_weapon",
+      "class_id": "rogue",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "rogue",
+        "strip_weapon",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          -0.4235,
+          -0.438472,
+          -0.453444,
+          -0.468417,
+          -0.483389,
+          -0.498361,
+          -0.513333,
+          -0.528306,
+          -0.543278,
+          -0.55825
+        ],
+        "power": [
+          2.2,
+          2.277778,
+          2.355556,
+          2.433333,
+          2.511111,
+          2.588889,
+          2.666667,
+          2.744444,
+          2.822222,
+          2.9
+        ]
+      },
+      "presentation_id": "visual_rogue_strip_weapon",
+      "kind": "active",
+      "cost": {
+        "sp": 30,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 500,
+        "after_cast_ms": 950,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "attack_down",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "attack_down",
+          "duration_ms": 5500,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "poison",
+          "duration_ms": 4000,
+          "params": {
+            "power_ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "rogue_expose": {
+      "id": "rogue_expose",
+      "name_key": "rogue_expose",
+      "class_id": "rogue",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "rogue",
+        "expose",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          3.08,
+          3.188889,
+          3.297778,
+          3.406667,
+          3.515556,
+          3.624444,
+          3.733333,
+          3.842222,
+          3.951111,
+          4.06
+        ],
+        "ratio": [
+          0.44275,
+          0.458403,
+          0.474056,
+          0.489708,
+          0.505361,
+          0.521014,
+          0.536667,
+          0.552319,
+          0.567972,
+          0.583625
+        ]
+      },
+      "presentation_id": "visual_rogue_expose",
+      "kind": "active",
+      "cost": {
+        "sp": 32,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 500,
+        "after_cast_ms": 1000,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "exposed",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "exposed",
+          "duration_ms": 5500,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "poison",
+          "duration_ms": 4000,
+          "params": {
+            "power_ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "rogue_intimidate": {
+      "id": "rogue_intimidate",
+      "name_key": "rogue_intimidate",
+      "class_id": "rogue",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "rogue",
+        "intimidate",
+        "awakened"
+      ],
+      "level_parameters": {
+        "sp_cost": [
+          32,
+          32,
+          32,
+          31,
+          31,
+          30,
+          30,
+          30,
+          29,
+          29
+        ],
+        "duration": [
+          6600,
+          6833,
+          7067,
+          7300,
+          7533,
+          7767,
+          8000,
+          8233,
+          8467,
+          8700
+        ]
+      },
+      "presentation_id": "visual_rogue_intimidate",
+      "kind": "active",
+      "cost": {
+        "sp": {
+          "level_param": "sp_cost"
+        },
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 400,
+        "after_cast_ms": 1050,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "stun",
+          "duration_ms": {
+            "level_param": "duration"
+          },
+          "params": {},
+          "chance": 0.85
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "rogue_raid": {
+      "id": "rogue_raid",
+      "name_key": "rogue_raid",
+      "class_id": "rogue",
+      "max_level": 10,
+      "unlock_level": 40,
+      "tags": [
+        "rogue",
+        "raid",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          7.038282,
+          7.28711,
+          7.535938,
+          7.784766,
+          8.033594,
+          8.282423,
+          8.531251,
+          8.780079,
+          9.028907,
+          9.277735
+        ],
+        "blind": [
+          -0.1925,
+          -0.199306,
+          -0.206111,
+          -0.212917,
+          -0.219722,
+          -0.226528,
+          -0.233333,
+          -0.240139,
+          -0.246944,
+          -0.25375
+        ],
+        "critical_damage": [
+          0.33,
+          0.341667,
+          0.353333,
+          0.365,
+          0.376667,
+          0.388333,
+          0.4,
+          0.411667,
+          0.423333,
+          0.435
+        ]
+      },
+      "presentation_id": "visual_rogue_raid",
+      "kind": "active",
+      "cost": {
+        "sp": 40,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 650,
+        "after_cast_ms": 1100,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal",
+          "crit_damage_bonus": {
+            "level_param": "critical_damage"
+          }
+        },
+        {
+          "id": "accuracy_down",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "accuracy_down",
+          "duration_ms": 4400,
+          "params": {
+            "ratio": {
+              "level_param": "blind"
+            }
+          },
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "poison",
+          "duration_ms": 4000,
+          "params": {
+            "power_ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "rogue_dodge": {
+      "id": "rogue_dodge",
+      "name_key": "rogue_dodge",
+      "class_id": "rogue",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "rogue",
+        "dodge",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.1925,
+          0.199306,
+          0.206111,
+          0.212917,
+          0.219722,
+          0.226528,
+          0.233333,
+          0.240139,
+          0.246944,
+          0.25375
+        ],
+        "cast_speed": [
+          0.165,
+          0.170833,
+          0.176667,
+          0.1825,
+          0.188333,
+          0.194167,
+          0.2,
+          0.205833,
+          0.211667,
+          0.2175
+        ],
+        "awaken_potency": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_rogue_dodge",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "ratio"
+          }
+        },
+        {
+          "id": "cast_speed",
+          "stat": "cast_speed",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "cast_speed"
+          }
+        },
+        {
+          "id": "awaken_potency",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "awaken_potency"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    "rogue_dirty_tricks": {
+      "id": "rogue_dirty_tricks",
+      "name_key": "rogue_dirty_tricks",
+      "class_id": "rogue",
+      "max_level": 10,
+      "unlock_level": 30,
+      "tags": [
+        "rogue",
+        "dirty_tricks",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.11,
+          0.113889,
+          0.117778,
+          0.121667,
+          0.125556,
+          0.129444,
+          0.133333,
+          0.137222,
+          0.141111,
+          0.145
+        ],
+        "awaken_potency": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
+        ]
+      },
+      "presentation_id": "visual_rogue_dirty_tricks",
+      "kind": "passive",
+      "modifiers": [
+        {
+          "id": "control_accuracy",
+          "stat": "control_accuracy",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "ratio"
+          }
+        },
+        {
+          "id": "awaken_potency",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "awaken_potency"
+          }
+        }
+      ],
+      "triggers": []
+    },
+    "rogue_copy_swordsman_bash": {
+      "id": "rogue_copy_swordsman_bash",
+      "name_key": "rogue_copy_swordsman_bash",
+      "class_id": "rogue",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "rogue",
+        "copy",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          4.235,
+          4.384722,
+          4.534444,
+          4.684167,
+          4.833889,
+          4.983611,
+          5.133333,
+          5.283056,
+          5.432778,
+          5.5825
+        ]
+      },
+      "presentation_id": "visual_swordsman_bash",
+      "kind": "active",
+      "cost": {
+        "sp": 15,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 500,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "stun",
+          "duration_ms": 1100,
+          "params": {},
+          "chance": 0.6,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "poison",
+          "duration_ms": 4000,
+          "params": {
+            "power_ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "rogue_copy_acolyte_heal": {
+      "id": "rogue_copy_acolyte_heal",
+      "name_key": "rogue_copy_acolyte_heal",
+      "class_id": "rogue",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "rogue",
+        "copy",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          4.235,
+          4.384722,
+          4.534444,
+          4.684167,
+          4.833889,
+          4.983611,
+          5.133333,
+          5.283056,
+          5.432778,
+          5.5825
+        ]
+      },
+      "presentation_id": "visual_acolyte_heal",
+      "kind": "active",
+      "cost": {
+        "sp": 23,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 600,
+        "after_cast_ms": 700,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "heal",
+          "type": "heal",
+          "target": "friend",
+          "formula": {
+            "id": "healing_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          }
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "friend",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "rogue_copy_archer_double_strafe": {
+      "id": "rogue_copy_archer_double_strafe",
+      "name_key": "rogue_copy_archer_double_strafe",
+      "class_id": "rogue",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "rogue",
+        "copy",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          2.1175,
+          2.192361,
+          2.267222,
+          2.342083,
+          2.416944,
+          2.491806,
+          2.566667,
+          2.641528,
+          2.716389,
+          2.79125
+        ]
+      },
+      "presentation_id": "visual_archer_double_strafe",
+      "kind": "active",
+      "cost": {
+        "sp": 20,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 0,
+        "after_cast_ms": 600,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 2,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "poison",
+          "duration_ms": 4000,
+          "params": {
+            "power_ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "rogue_copy_mage_fire_bolt": {
+      "id": "rogue_copy_mage_fire_bolt",
+      "name_key": "rogue_copy_mage_fire_bolt",
+      "class_id": "rogue",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "rogue",
+        "copy",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          1.3475,
+          1.395139,
+          1.442778,
+          1.490417,
+          1.538056,
+          1.585694,
+          1.633333,
+          1.680972,
+          1.728611,
+          1.77625
+        ]
+      },
+      "presentation_id": "visual_mage_fire_bolt",
+      "kind": "active",
+      "cost": {
+        "sp": 23,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 800,
+        "after_cast_ms": 650,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "fire",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 3,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "poison",
+          "duration_ms": 4000,
+          "params": {
+            "power_ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "rogue_copy_merchant_cart_revolution": {
+      "id": "rogue_copy_merchant_cart_revolution",
+      "name_key": "rogue_copy_merchant_cart_revolution",
+      "class_id": "rogue",
+      "max_level": 10,
+      "unlock_level": 20,
+      "tags": [
+        "rogue",
+        "copy",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          2.695,
+          2.790278,
+          2.885556,
+          2.980833,
+          3.076111,
+          3.171389,
+          3.266667,
+          3.361944,
+          3.457222,
+          3.5525
+        ]
+      },
+      "presentation_id": "visual_merchant_cart_revolution",
+      "kind": "active",
+      "cost": {
+        "sp": 30,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 400,
+        "after_cast_ms": 900,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friend": {
+          "team": "allies",
+          "life": "living",
+          "select": "lowest_hp_percent",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": 1100,
+          "params": {},
+          "chance": 0.4,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "poison",
+          "duration_ms": 4000,
+          "params": {
+            "power_ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "assassin_cross_soul_destroyer": {
+      "id": "assassin_cross_soul_destroyer",
+      "name_key": "assassin_cross_soul_destroyer",
+      "class_id": "assassin_cross",
+      "max_level": 10,
+      "unlock_level": 70,
+      "rank_unlock_levels": [
+        70,
+        72,
+        74,
+        76,
+        78,
+        80,
+        82,
+        84,
+        86,
+        88
+      ],
+      "tags": [
+        "assassin_cross",
+        "hi_class",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          8.25,
+          8.541667,
+          8.833333,
+          9.125,
+          9.416667,
+          9.708333,
+          10.0,
+          10.291667,
+          10.583333,
+          10.875
+        ],
+        "magic": [
+          2.75,
+          2.847222,
+          2.944444,
+          3.041667,
+          3.138889,
+          3.236111,
+          3.333333,
+          3.430556,
+          3.527778,
+          3.625
+        ]
+      },
+      "presentation_id": "visual_assassin_cross_soul_destroyer",
+      "kind": "active",
+      "cost": {
+        "sp": 55,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 650,
+        "after_cast_ms": 1150,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "soul",
+          "type": "damage",
+          "target": "foe",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "magic"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "neutral",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "poison",
+          "duration_ms": 4000,
+          "params": {
+            "power_ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "assassin_cross_meteor_assault": {
+      "id": "assassin_cross_meteor_assault",
+      "name_key": "assassin_cross_meteor_assault",
+      "class_id": "assassin_cross",
+      "max_level": 10,
+      "unlock_level": 80,
+      "rank_unlock_levels": [
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
+      ],
+      "tags": [
+        "assassin_cross",
+        "hi_class",
+        "awakened"
+      ],
+      "level_parameters": {
+        "power": [
+          7.04,
+          7.288889,
+          7.537778,
+          7.786667,
+          8.035556,
+          8.284444,
+          8.533333,
+          8.782222,
+          9.031111,
+          9.28
+        ]
+      },
+      "presentation_id": "visual_assassin_cross_meteor_assault",
+      "kind": "active",
+      "cost": {
+        "sp": 65,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 850,
+        "after_cast_ms": 1300,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "physical",
+          "element": "weapon",
+          "hit_rule": "physical_roll",
+          "can_crit": true,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "stun",
+          "duration_ms": 1760,
+          "params": {},
+          "chance": 0.4
+        },
+        {
+          "id": "awaken_aftereffect",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "poison",
+          "duration_ms": 4000,
+          "params": {
+            "power_ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "stalker_chase_walk": {
+      "id": "stalker_chase_walk",
+      "name_key": "stalker_chase_walk",
+      "class_id": "stalker",
+      "max_level": 10,
+      "unlock_level": 70,
+      "rank_unlock_levels": [
+        70,
+        72,
+        74,
+        76,
+        78,
+        80,
+        82,
+        84,
+        86,
+        88
+      ],
+      "tags": [
+        "stalker",
+        "hi_class",
+        "awakened"
+      ],
+      "level_parameters": {
+        "guard": [
+          0.22,
+          0.227778,
+          0.235556,
+          0.243333,
+          0.251111,
+          0.258889,
+          0.266667,
+          0.274444,
+          0.282222,
+          0.29
+        ],
+        "ratio": [
+          0.198,
+          0.205,
+          0.212,
+          0.219,
+          0.226,
+          0.233,
+          0.24,
+          0.247,
+          0.254,
+          0.261
+        ]
+      },
+      "presentation_id": "visual_stalker_chase_walk",
+      "kind": "active",
+      "cost": {
+        "sp": 48,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 350,
+        "after_cast_ms": 1000,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "guard_up",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "guard_up",
+          "duration_ms": 8800,
+          "params": {
+            "ratio": {
+              "level_param": "guard"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "aspd_up",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "aspd_up",
+          "duration_ms": 8800,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    },
+    "stalker_full_strip": {
+      "id": "stalker_full_strip",
+      "name_key": "stalker_full_strip",
+      "class_id": "stalker",
+      "max_level": 10,
+      "unlock_level": 80,
+      "rank_unlock_levels": [
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89
+      ],
+      "tags": [
+        "stalker",
+        "hi_class",
+        "awakened"
+      ],
+      "level_parameters": {
+        "ratio": [
+          0.33,
+          0.341667,
+          0.353333,
+          0.365,
+          0.376667,
+          0.388333,
+          0.4,
+          0.411667,
+          0.423333,
+          0.435
+        ],
+        "attack": [
+          -0.33,
+          -0.341667,
+          -0.353333,
+          -0.365,
+          -0.376667,
+          -0.388333,
+          -0.4,
+          -0.411667,
+          -0.423333,
+          -0.435
+        ]
+      },
+      "presentation_id": "visual_stalker_full_strip",
+      "kind": "active",
+      "cost": {
+        "sp": 58,
+        "spirit_spheres": 0
+      },
+      "timing": {
+        "cast_ms": 750,
+        "after_cast_ms": 1250,
+        "interruptible": true
+      },
+      "selectors": {
+        "foe": {
+          "team": "enemies",
+          "life": "living",
+          "select": "front_first",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "foes": {
+          "team": "enemies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        },
+        "friends": {
+          "team": "allies",
+          "life": "living",
+          "select": "all",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip"
+        }
+      },
+      "start_effects": [],
+      "effects": [
+        {
+          "id": "armor_break",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "armor_break",
+          "duration_ms": 11000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "attack_down",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "attack_down",
+          "duration_ms": 11000,
+          "params": {
+            "ratio": {
+              "level_param": "attack"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "awaken_boon",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "cc_resistance_up",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": 0.1
+          },
+          "chance": 1
+        }
+      ]
+    }
+  },
+  "awakened_upgrades": {
+    "thief_envenom": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "thief_quick_step": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "thief_sand_attack": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "thief_backstab": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "thief_double_attack": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "assassin_sonic_blow": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "assassin_enchant_poison": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "assassin_venom_dust": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "assassin_detonate": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "assassin_grimtooth": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "assassin_katar_mastery": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "assassin_poison_edge": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "rogue_strip_armor": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "rogue_strip_weapon": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "rogue_expose": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "rogue_intimidate": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "rogue_raid": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "rogue_dodge": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "rogue_dirty_tricks": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "rogue_copy_swordsman_bash": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "rogue_copy_acolyte_heal": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "rogue_copy_archer_double_strafe": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "rogue_copy_mage_fire_bolt": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "rogue_copy_merchant_cart_revolution": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "assassin_cross_soul_destroyer": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "assassin_cross_meteor_assault": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "stalker_chase_walk": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    },
+    "stalker_full_strip": {
+      "cost_version": "awakening-costs-v1",
+      "upgrade_cost_rows": [
+        {
+          "from_level": 1,
+          "to_level": 2,
+          "gold": 4000,
+          "awakening_shard": 10
+        },
+        {
+          "from_level": 2,
+          "to_level": 3,
+          "gold": 6000,
+          "awakening_shard": 15
+        },
+        {
+          "from_level": 3,
+          "to_level": 4,
+          "gold": 8000,
+          "awakening_shard": 20
+        },
+        {
+          "from_level": 4,
+          "to_level": 5,
+          "gold": 10000,
+          "awakening_shard": 25
+        },
+        {
+          "from_level": 5,
+          "to_level": 6,
+          "gold": 12000,
+          "awakening_shard": 30
+        },
+        {
+          "from_level": 6,
+          "to_level": 7,
+          "gold": 14000,
+          "awakening_shard": 35
+        },
+        {
+          "from_level": 7,
+          "to_level": 8,
+          "gold": 16000,
+          "awakening_shard": 40
+        },
+        {
+          "from_level": 8,
+          "to_level": 9,
+          "gold": 18000,
+          "awakening_shard": 45
+        },
+        {
+          "from_level": 9,
+          "to_level": 10,
+          "gold": 20000,
+          "awakening_shard": 50
+        }
+      ]
+    }
+  }
 }

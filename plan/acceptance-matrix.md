@@ -601,18 +601,18 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T122-AC-02` [TASK-122](done/tasks_122.md) | Hi-class/Awaken integration | Level71–90ใช้ต้นทุน/แต้มmanualที่คำนวณได้,gate80แยกจากpromotionและไม่มีgate70;Class2ยังcap70 | ผ่าน594full/23focused/build/M0;Hiยังปิด |
 | `T122-AC-03` [TASK-122](done/tasks_122.md) | Hi-class/Awaken integration | Schemaรองรับ13Hi jobs/90/gate80แต่รุ่นปัจจุบันยังปิดHiและcap70;เซฟClass2ยังผ่านและไม่มีauto-promote | ผ่าน594full/23focused/build/M0;Hiยังปิด |
 | `T122-AC-04` [TASK-122](done/tasks_122.md) | Hi-class/Awaken integration | Targeted progression/schema/build/boundariesและlegacyregressionผ่าน;ไม่เปิดreleaseก่อนสกิล/ภาพ/Awakenและintegrationครบ | ผ่าน594full/23focused/build/M0;Hiยังปิด |
-| `T123-AC-01` [TASK-123](todo/tasks_123.md) | Hi-class/Awaken integration | 13Hi professionsมี2stable skillsต่ออาชีพครบprogram/rank1–10/ราคา/ชื่อ/คำอธิบายจริง;unlock70และ80/full88และ89 | ยังไม่ตรวจ |
-| `T123-AC-02` [TASK-123](todo/tasks_123.md) | Hi-class/Awaken integration | Nativebody/head/weapon/actionของ24genderpresetsและjob/skilliconsตรงต้นทาง;packไม่เกิน32MiBหรือมีทางปรับลดที่ตรวจได้ | ยังไม่ตรวจ |
-| `T123-AC-03` [TASK-123](todo/tasks_123.md) | Hi-class/Awaken integration | ทุกprogramใช้sharedtypedpipeline/สถานะ/ธาตุ/คิวเดิมและมีdistinctrole;สกิลเดิมไม่ถูกย้าย/ลบทิ้ง | ยังไม่ตรวจ |
-| `T123-AC-04` [TASK-123](todo/tasks_123.md) | Hi-class/Awaken integration | Content/golden/targeted1x2x4/build/metadata/nativepreviewผ่าน;ไม่อ้างว่าบาลานซ์ทีมผู้ใช้แล้วและยังไม่เปิดreleaseเดี่ยว | ยังไม่ตรวจ |
-| `T124-AC-01` [TASK-124](todo/tasks_124.md) | Hi-class/Awaken integration | Hi+สกิลMaxจึงAwakenได้;logicalID/loadoutเดิม/กลับrank1/คงทุนเดิม/variantเพิ่มหรือเปลี่ยนผลและเก่งกว่าก่อนAwakenMax | ยังไม่ตรวจ |
-| `T124-AC-02` [TASK-124](todo/tasks_124.md) | Hi-class/Awaken integration | เศษใหม่ดรอปดันช่วงหลัง/รวมเดิม→ใหม่/ย่อยใหม่→เดิมเป็นbatchatomic;ไม่มีวงแลกเพิ่มของ/overflow/คืนทุนซ้ำ | ยังไม่ตรวจ |
-| `T124-AC-03` [TASK-124](todo/tasks_124.md) | Hi-class/Awaken integration | อัปAwakenใช้variantราคาและเศษใหม่/ledgercostversionจริง;รีเซ็ตคืนbase+Awakenจริงครั้งเดียวและmigrationเซฟเก่าไม่สูญหายหรือแจกเศษย้อนหลัง | ยังไม่ตรวจ |
-| `T124-AC-04` [TASK-124](todo/tasks_124.md) | Hi-class/Awaken integration | หน้าสกิล/สมุด/Timelineแสดงvariant/rank/ผลจริงพร้อมpurpleinnerglow/nativeicon;runtime/headless/checkpoint/1x2x4ใช้definitionเดียวกัน | ยังไม่ตรวจ |
-| `T125-AC-01` [TASK-125](todo/tasks_125.md) | Hi-class/Awaken integration | เปิดHi70/Awakenรายสกิล/levelcap90/บท10–12เมื่อถึงgateจริง;ไม่เปิดArtifact/Class3/Pet/Rune | ยังไม่ตรวจ |
-| `T125-AC-02` [TASK-125](todo/tasks_125.md) | Hi-class/Awaken integration | FreshlocalAuthAPI-SQL-mobile320390ผ่าน70→Hiรักษาบิลด์→Awaken→อัป→แลกเศษ→gate80→สกิลใหม่→ไฟต์→reload/slotisolation | ยังไม่ตรวจ |
-| `T125-AC-03` [TASK-125](todo/tasks_125.md) | Hi-class/Awaken integration | OldClass2save migration/ทุนเดิม/AFKfrozen/carry/backup/receipt replay/response lossไม่ทำprogressหรือเศษซ้ำ;ปรับbatchเซฟไม่เพิ่มrequests | ยังไม่ตรวจ |
-| `T125-AC-04` [TASK-125](todo/tasks_125.md) | Hi-class/Awaken integration | Fullappropriatechecks/filteredVercelbuild/packbudget→push→hostedpublichealth/artifactsและreleaseflagsตรงก่อนdone;ไม่เข้าบัญชีowner/ไม่รันbalancebatch | ยังไม่ตรวจ |
+| `T123-AC-01` [TASK-123](done/tasks_123.md) | Hi-class/Awaken integration | 13Hi professionsมี2stable skillsต่ออาชีพครบprogram/rank1–10/ราคา/ชื่อ/คำอธิบายจริง;unlock70และ80/full88และ89 | ผ่านcontent/art/rank/goldens/localbuild;รอ125เปิดจริง |
+| `T123-AC-02` [TASK-123](done/tasks_123.md) | Hi-class/Awaken integration | Nativebody/head/weapon/actionของ24genderpresetsและjob/skilliconsตรงต้นทาง;packไม่เกิน32MiBหรือมีทางปรับลดที่ตรวจได้ | ผ่านcontent/art/rank/goldens/localbuild;รอ125เปิดจริง |
+| `T123-AC-03` [TASK-123](done/tasks_123.md) | Hi-class/Awaken integration | ทุกprogramใช้sharedtypedpipeline/สถานะ/ธาตุ/คิวเดิมและมีdistinctrole;สกิลเดิมไม่ถูกย้าย/ลบทิ้ง | ผ่านcontent/art/rank/goldens/localbuild;รอ125เปิดจริง |
+| `T123-AC-04` [TASK-123](done/tasks_123.md) | Hi-class/Awaken integration | Content/golden/targeted1x2x4/build/metadata/nativepreviewผ่าน;ไม่อ้างว่าบาลานซ์ทีมผู้ใช้แล้วและยังไม่เปิดreleaseเดี่ยว | ผ่านcontent/art/rank/goldens/localbuild;รอ125เปิดจริง |
+| `T124-AC-01` [TASK-124](done/tasks_124.md) | Hi-class/Awaken integration | Hi+สกิลMaxจึงAwakenได้;logicalID/loadoutเดิม/กลับrank1/คงทุนเดิม/variantเพิ่มหรือเปลี่ยนผลและเก่งกว่าก่อนAwakenMax | ผ่านpure rules/migration/ledger/152parity/nativecomponents;125เปิดจริง |
+| `T124-AC-02` [TASK-124](done/tasks_124.md) | Hi-class/Awaken integration | เศษใหม่ดรอปดันช่วงหลัง/รวมเดิม→ใหม่/ย่อยใหม่→เดิมเป็นbatchatomic;ไม่มีวงแลกเพิ่มของ/overflow/คืนทุนซ้ำ | ผ่านpure rules/migration/ledger/152parity/nativecomponents;125เปิดจริง |
+| `T124-AC-03` [TASK-124](done/tasks_124.md) | Hi-class/Awaken integration | อัปAwakenใช้variantราคาและเศษใหม่/ledgercostversionจริง;รีเซ็ตคืนbase+Awakenจริงครั้งเดียวและmigrationเซฟเก่าไม่สูญหายหรือแจกเศษย้อนหลัง | ผ่านpure rules/migration/ledger/152parity/nativecomponents;125เปิดจริง |
+| `T124-AC-04` [TASK-124](done/tasks_124.md) | Hi-class/Awaken integration | หน้าสกิล/สมุด/Timelineแสดงvariant/rank/ผลจริงพร้อมpurpleinnerglow/nativeicon;runtime/headless/checkpoint/1x2x4ใช้definitionเดียวกัน | ผ่านpure rules/migration/ledger/152parity/nativecomponents;125เปิดจริง |
+| `T125-AC-01` [TASK-125](review/tasks_125.md) | Hi-class/Awaken integration | เปิดHi70/Awakenรายสกิล/levelcap90/บท10–12เมื่อถึงgateจริง;ไม่เปิดArtifact/Class3/Pet/Rune | ยังไม่ตรวจ |
+| `T125-AC-02` [TASK-125](review/tasks_125.md) | Hi-class/Awaken integration | FreshlocalAuthAPI-SQL-mobile320390ผ่าน70→Hiรักษาบิลด์→Awaken→อัป→แลกเศษ→gate80→สกิลใหม่→ไฟต์→reload/slotisolation | ยังไม่ตรวจ |
+| `T125-AC-03` [TASK-125](review/tasks_125.md) | Hi-class/Awaken integration | OldClass2save migration/ทุนเดิม/AFKfrozen/carry/backup/receipt replay/response lossไม่ทำprogressหรือเศษซ้ำ;ปรับbatchเซฟไม่เพิ่มrequests | ยังไม่ตรวจ |
+| `T125-AC-04` [TASK-125](review/tasks_125.md) | Hi-class/Awaken integration | Fullappropriatechecks/filteredVercelbuild/packbudget→push→hostedpublichealth/artifactsและreleaseflagsตรงก่อนdone;ไม่เข้าบัญชีowner/ไม่รันbalancebatch | ยังไม่ตรวจ |
 
 | `T126-AC-01` [TASK-126](done/tasks_126.md) | batch equipment | คำแนะนำกับserverใช้helperเดียวกัน;เทียบTierก่อนrarityเมื่อTierเท่ากัน/เฉพาะใส่ได้และยังไม่มีเจ้าของ/ไม่เลือกจากoptions/lockedยังใส่ได้ | ผ่าน localmobile/onecommand/reconnect/reload/hosted |
 | `T126-AC-02` [TASK-126](done/tasks_126.md) | batch equipment | คลิกเดียวเปลี่ยนเฉพาะช่องที่มีhintของตัวที่เลือก;หนึ่งatomiccommand/receipt/revision/optimisticpreview,ไม่แตะNPCอื่น/inventorypayload/ทุน/Refine/Enchant/cards และไม่ทำของหาย | ผ่าน localmobile/onecommand/reconnect/reload/hosted |
@@ -624,3 +624,9 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T127-AC-02` [TASK-127](done/tasks_127.md) | Sanctuary PureHoT | sharedengine/โบนัสฮีล/independentstack/interruptไม่มีฮีลหรือคืนSP/expiry/1x2x4/checkpointตรงกัน;ไม่เปลี่ยนคิวCTACDหรือสูตรฮีล | ผ่านtargeted/legacy-regression/mobile/hosted |
 
 | `T127-AC-03` [TASK-127](done/tasks_127.md) | Sanctuary PureHoT | รายละเอียดทุกrankแสดงMATK/ทุก1s/6s/เริ่มทันทีและวงฮีลตามstatusจริง;targeted/build/M0/realAuthAPI-SQL-mobile320390/hostedผ่านก่อนdone | ผ่านtargeted/legacy-regression/mobile/hosted |
+
+| `T128-AC-01` [TASK-128](review/tasks_128.md) | Hunter boss damage | Spiral Volley 3 hit รวม420→750%ATK/ธาตุอาวุธ, Claymore450→750%ATK, Rapid Fire4hitรวม630→1050%ATK; SP/CT/ACD/ราคาและ123สกิลเดิมไม่เปลี่ยน; Awakenต่อจากค่าที่ปรับแล้ว | ยังไม่ตรวจ |
+
+| `T128-AC-02` [TASK-128](review/tasks_128.md) | Hunter boss damage | ทุกrank/เป้าเดี่ยวและหมู่/ธาตุ/interrupt/1×2×4×/checkpoint ตรง sharedengine; คำอธิบายและผลหลายhitจริง; updated goldensเฉพาะ9cases | ยังไม่ตรวจ |
+
+| `T128-AC-03` [TASK-128](review/tasks_128.md) | Hunter boss damage | build/checks/native mobile320390/hostedpublicตรงsourceใหม่;ไม่แตะownerเซฟ/SQL/env/6173และไม่รันbalance batch | ยังไม่ตรวจ |

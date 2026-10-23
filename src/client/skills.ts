@@ -1,8 +1,9 @@
 import { heldResourceModifiers } from '../domain/combat/resources.ts';
+import {bindStatusParams} from '../domain/combat/program.ts';
 import { statNames, statusNames } from './status-labels.ts';
 import { loadValidatedContent } from './content.ts';
-import type { AccountState, BattleActor, Effect, SkillDefinition } from '../contracts/index.ts';
-import { allowedSkill, characterSkillCap, compileCharacterSkills, skillQuote } from '../domain/progression/skills.ts';
+import type { AccountState, BattleActor, Effect, SkillDefinition,Trigger } from '../contracts/index.ts';
+import { allowedSkill, characterSkillCap, compileCharacterSkills, skillQuote,skillIsAwakened,skillAwakenQuote,awakeningEnabled,shardConversionQuote } from '../domain/progression/skills.ts';
 import { resolveSkill } from '../domain/build/resolve-skill.ts';
 import { equippedSources } from '../domain/build/equipment.ts';
 import { previewCharacterStats } from '../domain/build/character.ts';
@@ -10,6 +11,8 @@ import { castDurationMs, skillIntervalMs } from '../domain/math/index.ts';
 import { fixedSpCost } from '../domain/math/combat-modifiers.ts';
 import { effectDamageElements, elementName } from './elements.ts';
 const loaded=loadValidatedContent();if(!loaded.ok)throw new Error('CONTENT_UNAVAILABLE');const content=loaded.value;
+export const skillAwakeningEnabled=awakeningEnabled(content);
+export const quoteShardConversion=(direction:'base_to_awakened'|'awakened_to_base',quantity:number)=>shardConversionQuote(direction,quantity,content);
 type Character=AccountState['roster'][number];
 const labels=content.documents['strings.th.json']!.strings as unknown as Record<string,string>;
 const statUnits=Object.fromEntries((content.documents['stat-definitions.json']!.stats as unknown as {id:string;unit:string}[]).map(s=>[s.id,s.unit]));
@@ -49,10 +52,11 @@ export function effectDescriptions(effects: readonly Effect[], resolved_skills?:
    else if(f.id==='sp_burst_power')text=`พลังโจมตี ${percent(f.params.attack_ratio)} ATK + ${percent(f.params.sp_ratio)} SP`;
    else text='ผลต่อเนื่องตามพลังของสกิล';
   }else if(effect.type==='apply_status'){const ratio=effect.params.ratio;text=(statusNames[effect.status_id]??effect.status_id)+(typeof ratio==='number'?' '+percent(ratio):'');
-   const status=content.statuses[effect.status_id] as unknown as {periodic?:{interval_ms:number;tick_on_apply:boolean;effects:{type:string;formula?:{id:string}}[]}|null},tick=status?.periodic?.effects.find(e=>e.type==='heal'||e.type==='damage');
+   const status=content.statuses[effect.status_id] as unknown as {triggers?:Trigger[];periodic?:{interval_ms:number;tick_on_apply:boolean;effects:{type:string;formula?:{id:string}}[]}|null},tick=status?.periodic?.effects.find(e=>e.type==='heal'||e.type==='damage');
    if(tick&&typeof effect.params.power_ratio==='number')text+=` ${percent(effect.params.power_ratio)} ${tick.formula?.id==='physical_power'?'P.ATK':'MATK'} ทุก ${number(status.periodic!.interval_ms/1000)}s`;
    text+=' · '+number(Number(effect.duration_ms)/1000)+'s';
    if(tick&&status.periodic?.tick_on_apply)text+=' · เริ่มทันที';
+   if(status.triggers?.length){const triggers=bindStatusParams(status.triggers,effect.params as Record<string,number>);for(const trigger of triggers){const simple=trigger.effects.filter(e=>['damage','heal','resource_change'].includes(e.type));if(simple.length)text+=` · ${trigger.event==='damage_dealt'?'เมื่อสกิลโดน':trigger.event==='damage_received'?'เมื่อรับดาเมจ':'เมื่อตีปกติโดน'} ${percent(trigger.chance)} · ${effectDescriptions(simple,resolved_skills,true).join(' / ')}${trigger.limit_scope==='per_root_action'?' · สูงสุด 1 ครั้ง/สกิล':''}`;}}
    if(Number(effect.chance)<1)text+=` · โอกาส ${percent(effect.chance)}`;
    if(effect.status_id==='provoke'&&!compact)text+=' · บังคับตีปกติและสกิลเลือกเป้าเดี่ยวให้หันมาหาผู้ยั่วยุที่ยังมีชีวิต; ท่าหมู่และสุ่มเป้าไม่ถูกบังคับ';}
   else if(effect.type==='interrupt')text='ขัดการร่ายของเป้าหมาย';
@@ -82,12 +86,12 @@ export function effectDescriptions(effects: readonly Effect[], resolved_skills?:
   return text+('when'in effect&&effect.when?(effect.when.type==='effect_succeeded'?' · เมื่อขัดร่ายสำเร็จ':effect.when.type==='hit_landed'?' · เมื่อโจมตีโดน':' เมื่อเข้าเงื่อนไข'):'');
  });
 }
-export interface SkillOption {targetNote:string;id:string;name:string;kind:'active'|'passive';unlock:number;level:number;cap:number;max:number;locked:boolean;previewSkills?:BattleActor['resolved_skills'];definition:SkillDefinition;next:SkillDefinition|null;price:Partial<AccountState['wallet']>|null;effects:string[];nextEffects:string[];notes?:string[];castMs:number;afterCastMs:number;sp:number;nextCastMs:number|null;nextAfterCastMs:number|null;nextSp:number|null;previewSpeed:number;previewSpPercent:number}
+export interface SkillOption {awakened?:boolean;awakenPrice?:Partial<AccountState['wallet']>|null;awakenEffects?:string[];targetNote:string;id:string;name:string;kind:'active'|'passive';unlock:number;level:number;cap:number;max:number;locked:boolean;previewSkills?:BattleActor['resolved_skills'];definition:SkillDefinition;next:SkillDefinition|null;price:Partial<AccountState['wallet']>|null;effects:string[];nextEffects:string[];notes?:string[];castMs:number;afterCastMs:number;sp:number;nextCastMs:number|null;nextAfterCastMs:number|null;nextSp:number|null;previewSpeed:number;previewSpPercent:number}
 export interface SkillLevelRow {level:number;sp:number|null;castMs:number;afterCastMs:number;effects:string[];definition:SkillDefinition}
 /** Resolve only the selected skill on demand; no command, simulation, or authored curve duplication. */
 export function skillLevelComparison(skill:SkillOption):{rows:SkillLevelRow[];spOnly:boolean}{
  const rows=Array.from({length:skill.max},(_,i)=>{
-  const definition=resolveSkill(skill.id,i+1,content).definition as SkillDefinition;
+  const definition=resolveSkill(skill.id,i+1,content,skill.awakened).definition as SkillDefinition;
   return{level:i+1,definition,effects:summaries(definition,i+1,skill.previewSkills),sp:definition.kind==='active'&&typeof definition.cost.sp==='number'?fixedSpCost(definition.cost.sp,{sp_cost_percent:skill.previewSpPercent}):null,castMs:definition.kind==='active'?castDurationMs(Number(definition.timing.cast_ms),skill.previewSpeed):0,afterCastMs:definition.kind==='active'?castDurationMs(Number(definition.timing.after_cast_ms),skill.previewSpeed):0};
  });
  const withoutSp=(d:SkillDefinition)=>JSON.stringify(d.kind==='active'?{...d,cost:{...d.cost,sp:0}}:d);
@@ -123,11 +127,14 @@ export function characterSkillOptions(actor:Character,state?:AccountState):{skil
  const compiled=compileCharacterSkills(actor,content),stats=previewCharacterStats(actor,compiled.resolved_skills,content,state?equippedSources(actor,state,content):[]);
  const skills=Object.values(content.skills).filter(row=>allowedSkill(actor,row as unknown as SkillDefinition,content)).map(row=>{
   const source=row as unknown as SkillDefinition,level=actor.skill_levels[source.id]??0,cap=characterSkillCap(actor,source),locked=actor.level<source.unlock_level,target=level+1;
-  const definition=structuredClone(resolveSkill(source.id,Math.max(1,level),content).definition)as SkillDefinition;
+  const awakened=skillIsAwakened(actor,source.id);
+  const definition=structuredClone(resolveSkill(source.id,Math.max(1,level),content,awakened).definition)as SkillDefinition;
   let price:SkillOption['price']=null;if(!locked&&target<=cap)price=skillQuote(actor,source.id,target,content);
-  const next=price?structuredClone(resolveSkill(source.id,target,content).definition)as SkillDefinition:null;
+  const next=price?structuredClone(resolveSkill(source.id,target,content,awakened).definition)as SkillDefinition:null;
+  const awakenPrice=skillAwakeningEnabled&&!awakened&&level===source.max_level&&(content.jobs.byId[actor.job_id]?.stage??0)>=3?skillAwakenQuote(actor,source.id,content):null;
+  const awakenEffects=awakenPrice?summaries(resolveSkill(source.id,1,content,true).definition as SkillDefinition,1,compiled.resolved_skills):[];
   const targetNote=skillTargetNote(definition);
-  return{previewSkills:compiled.resolved_skills,previewSpeed:stats.cast_speed,previewSpPercent:stats.sp_cost_percent,targetNote,id:source.id,name:labels[source.name_key]??source.id,kind:source.kind,unlock:source.unlock_level,level,cap,max:source.max_level,locked,definition,next,price,notes:skillNotes(definition),effects:summaries(definition,Math.max(1,level),compiled.resolved_skills),nextEffects:next?summaries(next,target,compiled.resolved_skills):[],castMs:definition.kind==='active'?castDurationMs(Number(definition.timing.cast_ms),stats.cast_speed):0,afterCastMs:definition.kind==='active'?castDurationMs(Number(definition.timing.after_cast_ms),stats.cast_speed):0,sp:definition.kind==='active'?typeof definition.cost.sp==='number'?fixedSpCost(definition.cost.sp,stats):NaN:0,nextCastMs:next?.kind==='active'?castDurationMs(Number(next.timing.cast_ms),stats.cast_speed):null,nextAfterCastMs:next?.kind==='active'?castDurationMs(Number(next.timing.after_cast_ms),stats.cast_speed):null,nextSp:next?.kind==='active'?typeof next.cost.sp==='number'?fixedSpCost(next.cost.sp,stats):NaN:null};
+  return{awakened,awakenPrice,awakenEffects,previewSkills:compiled.resolved_skills,previewSpeed:stats.cast_speed,previewSpPercent:stats.sp_cost_percent,targetNote,id:source.id,name:labels[source.name_key]??source.id,kind:source.kind,unlock:source.unlock_level,level,cap,max:source.max_level,locked,definition,next,price,notes:skillNotes(definition),effects:summaries(definition,Math.max(1,level),compiled.resolved_skills),nextEffects:next?summaries(next,target,compiled.resolved_skills):[],castMs:definition.kind==='active'?castDurationMs(Number(definition.timing.cast_ms),stats.cast_speed):0,afterCastMs:definition.kind==='active'?castDurationMs(Number(definition.timing.after_cast_ms),stats.cast_speed):0,sp:definition.kind==='active'?typeof definition.cost.sp==='number'?fixedSpCost(definition.cost.sp,stats):NaN:0,nextCastMs:next?.kind==='active'?castDurationMs(Number(next.timing.cast_ms),stats.cast_speed):null,nextAfterCastMs:next?.kind==='active'?castDurationMs(Number(next.timing.after_cast_ms),stats.cast_speed):null,nextSp:next?.kind==='active'?typeof next.cost.sp==='number'?fixedSpCost(next.cost.sp,stats):NaN:null};
  });
  // User-approved demo pacing remains explicit, separate from legacy abstract benchmarks.
  return{skills,intervalMs:skillIntervalMs(stats.attack_speed,3000)};

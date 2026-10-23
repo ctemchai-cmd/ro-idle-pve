@@ -1,0 +1,104 @@
+{
+  "passed": true,
+  "checks": [
+    "Real signed old eight-resource save -> backup+migrate adds zero shards/empty flags, retains exact old paid ledger, gear, frozen farm/carry/unpaid claim; old receipt replays unchanged",
+    "Actual Champion promotion at70 changes only job_id; all stats/levels/slots/paid resources/equipment/cards survive",
+    "Mobile actual shard conversions and Awaken+new-shard upgrade each one command/revision; committed reply loss reconciles original UUID once, with real same-icon purple inset",
+    "Actual level70→80→onlygate80→90 with unchanged manual primaries; two new High skills learn and max through real commands, then individually eligible for Awaken",
+    "Real saved daily battle uses Awaken snapshot and Hunter3-hit Spiral; late essence phase claims new shards atomically; native Timeline and reload retain actual variant",
+    "Same account slot2 fresh Mage remains independent; slot1 actual progression/paid ledger and wallet byte-identical"
+  ],
+  "errors": [],
+  "metrics": {
+    "battle_events": [
+      {
+        "skill": "hunter_blitz_beat",
+        "at": 2892,
+        "amount": 1692,
+        "action": "cast_npc_archer_0_310",
+        "target": "enemy_front"
+      },
+      {
+        "skill": "hunter_blitz_beat",
+        "at": 2892,
+        "amount": 1692,
+        "action": "cast_npc_archer_0_310",
+        "target": "enemy_front"
+      },
+      {
+        "skill": "hunter_blitz_beat",
+        "at": 2892,
+        "amount": 1692,
+        "action": "cast_npc_archer_0_310",
+        "target": "enemy_front"
+      },
+      {
+        "skill": "monk_finger_offensive",
+        "at": 7016,
+        "amount": 1304,
+        "action": "cast_main_0_844",
+        "target": "enemy_front"
+      }
+    ]
+  },
+  "commands": [
+    {
+      "type": "save.migrate",
+      "request_id": "1de18bfc-268f-443c-9746-d1e89a1af888"
+    },
+    {
+      "type": "character.change_job",
+      "request_id": "1f5c56b1-ba4c-4fd8-aa1a-18fae59132a8"
+    },
+    {
+      "type": "skill.convert_shards",
+      "request_id": "65cca0f2-a275-4f77-b0e3-4791f3dca75e"
+    },
+    {
+      "type": "skill.convert_shards",
+      "request_id": "993a5bf7-43a3-4c47-a687-f33416b0adb6"
+    },
+    {
+      "type": "skill.awaken",
+      "request_id": "17effb7a-2a36-42c8-9f3c-7147c1536076"
+    },
+    {
+      "type": "skill.upgrade",
+      "request_id": "0fb8d8fe-2561-4f36-a836-88d4edbcbaa2"
+    },
+    {
+      "type": "character.level_up",
+      "request_id": "081f8a6b-b931-437c-9708-a0aff086f476"
+    },
+    {
+      "type": "character.breakthrough",
+      "request_id": "c6bda921-cce4-4294-bbe9-6bfa9b3ac78a"
+    },
+    {
+      "type": "character.level_up",
+      "request_id": "f95dc130-a1c4-4b20-90f8-4a1736764a8a"
+    },
+    {
+      "type": "skill.upgrade",
+      "request_id": "d0f48460-fc1d-49d7-a3ee-65c04f0c3528"
+    },
+    {
+      "type": "skill.upgrade",
+      "request_id": "04d89f63-790e-4747-bf77-387d10d8bef1"
+    },
+    {
+      "type": "battle.start_daily",
+      "request_id": "1cc3dca3-4b58-4c3b-bee8-91bf344442b0"
+    },
+    {
+      "type": "battle.retreat",
+      "request_id": "629ca8e5-2c0d-447d-aa1c-8fab0dc4a522"
+    },
+    {
+      "type": "account.create",
+      "request_id": "a5cc6207-379b-44be-b072-5e8333e02c1c"
+    }
+  ],
+  "owner_cloud_access": false,
+  "balance_batch": false
+}

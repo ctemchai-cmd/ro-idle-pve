@@ -1,0 +1,281 @@
+[
+  {
+    "id": "hunter_blitz_beat",
+    "name_key": "hunter_blitz_beat",
+    "class_id": "hunter",
+    "max_level": 10,
+    "unlock_level": 20,
+    "tags": [
+      "hunter",
+      "blitz_beat"
+    ],
+    "level_parameters": {
+      "power": [
+        1.575,
+        1.711112,
+        1.847223,
+        1.983333,
+        2.119444,
+        2.255556,
+        2.391667,
+        2.527777,
+        2.663889,
+        2.8
+      ]
+    },
+    "presentation_id": "visual_hunter_blitz_beat",
+    "kind": "active",
+    "cost": {
+      "sp": 30,
+      "spirit_spheres": 0
+    },
+    "timing": {
+      "cast_ms": 350,
+      "after_cast_ms": 850,
+      "interruptible": true
+    },
+    "selectors": {
+      "foe": {
+        "team": "enemies",
+        "life": "living",
+        "select": "front_first",
+        "count": null,
+        "phase": "cast_resolve",
+        "missing": "skip"
+      },
+      "foes": {
+        "team": "enemies",
+        "life": "living",
+        "select": "all",
+        "count": null,
+        "phase": "cast_resolve",
+        "missing": "skip"
+      },
+      "friend": {
+        "team": "allies",
+        "life": "living",
+        "select": "lowest_hp_percent",
+        "count": null,
+        "phase": "cast_resolve",
+        "missing": "skip"
+      },
+      "friends": {
+        "team": "allies",
+        "life": "living",
+        "select": "all",
+        "count": null,
+        "phase": "cast_resolve",
+        "missing": "skip"
+      }
+    },
+    "start_effects": [],
+    "effects": [
+      {
+        "id": "hit",
+        "type": "damage",
+        "target": "foes",
+        "formula": {
+          "id": "physical_power",
+          "params": {
+            "attack_ratio": {
+              "level_param": "power"
+            },
+            "flat_power": 0
+          }
+        },
+        "damage_type": "physical",
+        "element": "neutral",
+        "hit_rule": "physical_roll",
+        "can_crit": false,
+        "hits": 1,
+        "armor_rule": "normal"
+      }
+    ]
+  },
+  {
+    "id": "hunter_claymore",
+    "name_key": "hunter_claymore",
+    "class_id": "hunter",
+    "max_level": 10,
+    "unlock_level": 30,
+    "tags": [
+      "hunter",
+      "claymore"
+    ],
+    "level_parameters": {
+      "power": [
+        3.740625,
+        4.035937,
+        4.33125,
+        4.626563,
+        4.921875,
+        5.217187,
+        5.5125,
+        5.807813,
+        6.103125,
+        6.398438
+      ]
+    },
+    "presentation_id": "visual_hunter_claymore",
+    "kind": "active",
+    "cost": {
+      "sp": 40,
+      "spirit_spheres": 0
+    },
+    "timing": {
+      "cast_ms": 800,
+      "after_cast_ms": 1000,
+      "interruptible": true
+    },
+    "selectors": {
+      "foe": {
+        "team": "enemies",
+        "life": "living",
+        "select": "front_first",
+        "count": null,
+        "phase": "cast_resolve",
+        "missing": "skip"
+      },
+      "foes": {
+        "team": "enemies",
+        "life": "living",
+        "select": "all",
+        "count": null,
+        "phase": "cast_resolve",
+        "missing": "skip"
+      },
+      "friend": {
+        "team": "allies",
+        "life": "living",
+        "select": "lowest_hp_percent",
+        "count": null,
+        "phase": "cast_resolve",
+        "missing": "skip"
+      },
+      "friends": {
+        "team": "allies",
+        "life": "living",
+        "select": "all",
+        "count": null,
+        "phase": "cast_resolve",
+        "missing": "skip"
+      }
+    },
+    "start_effects": [],
+    "effects": [
+      {
+        "id": "hit",
+        "type": "damage",
+        "target": "foes",
+        "formula": {
+          "id": "physical_power",
+          "params": {
+            "attack_ratio": {
+              "level_param": "power"
+            },
+            "flat_power": 0
+          }
+        },
+        "damage_type": "physical",
+        "element": "fire",
+        "hit_rule": "physical_roll",
+        "can_crit": false,
+        "hits": 1,
+        "armor_rule": "normal"
+      }
+    ]
+  },
+  {
+    "id": "hunter_rapid_fire",
+    "name_key": "hunter_rapid_fire",
+    "class_id": "hunter",
+    "max_level": 10,
+    "unlock_level": 40,
+    "tags": [
+      "hunter",
+      "rapid_fire"
+    ],
+    "level_parameters": {
+      "power": [
+        1.309219,
+        1.412578,
+        1.515937,
+        1.619297,
+        1.722656,
+        1.826016,
+        1.929375,
+        2.032734,
+        2.136094,
+        2.239453
+      ]
+    },
+    "presentation_id": "visual_hunter_rapid_fire",
+    "kind": "active",
+    "cost": {
+      "sp": 38,
+      "spirit_spheres": 0
+    },
+    "timing": {
+      "cast_ms": 500,
+      "after_cast_ms": 950,
+      "interruptible": true
+    },
+    "selectors": {
+      "foe": {
+        "team": "enemies",
+        "life": "living",
+        "select": "front_first",
+        "count": null,
+        "phase": "cast_resolve",
+        "missing": "skip"
+      },
+      "foes": {
+        "team": "enemies",
+        "life": "living",
+        "select": "all",
+        "count": null,
+        "phase": "cast_resolve",
+        "missing": "skip"
+      },
+      "friend": {
+        "team": "allies",
+        "life": "living",
+        "select": "lowest_hp_percent",
+        "count": null,
+        "phase": "cast_resolve",
+        "missing": "skip"
+      },
+      "friends": {
+        "team": "allies",
+        "life": "living",
+        "select": "all",
+        "count": null,
+        "phase": "cast_resolve",
+        "missing": "skip"
+      }
+    },
+    "start_effects": [],
+    "effects": [
+      {
+        "id": "hit",
+        "type": "damage",
+        "target": "foe",
+        "formula": {
+          "id": "physical_power",
+          "params": {
+            "attack_ratio": {
+              "level_param": "power"
+            },
+            "flat_power": 0
+          }
+        },
+        "damage_type": "physical",
+        "element": "weapon",
+        "hit_rule": "physical_roll",
+        "can_crit": true,
+        "hits": 4,
+        "armor_rule": "normal"
+      }
+    ]
+  }
+]

@@ -18,9 +18,9 @@ const location = { source: 'negative fixture', definition_id: 'fixture_bash', pa
 
 test('all release catalogs load, are immutable, and expose gameplay counts', () => {
   const result = loadValidatedContent(); assert.ok(result.ok);
-  assert.equal(Object.keys(result.value.skills).length, 145); //126 player +19 enemy programs, including2 D151 future chapter programs
+  assert.equal(Object.keys(result.value.skills).length, 171); //152 player +19 enemy programs
   assert.equal(Object.keys(result.value.items).length, 217); // D-122: 144 equipment + 73 cards
-  assert.equal(Object.keys(result.value.statuses).length, 30);
+  assert.equal(Object.keys(result.value.statuses).length, 31);
   assert.throws(() => { (result.value.skills['swordsman_bash'] as unknown as ObjectValue).id = 'corrupted'; }, TypeError);
   assert.equal((raw.documents['skills/swordsman.json']!.skills as unknown as ObjectValue[])[0]!.id, 'swordsman_bash');
 });

@@ -116,7 +116,7 @@ export function applyRosterCommand(state: AccountState, command: RosterCommand, 
     }
     if (features.includes('skills')) {
       // Future skill upgrades use feature_id=skill and the same actual-paid ledger.
-      for (const row of state.paid_ledger.filter(e => e.character_id === actor.character_id && e.feature_id === 'skill' && e.refund_state === 'active')) {
+      for (const row of state.paid_ledger.filter(e => e.character_id === actor.character_id && ['skill','skill_awaken'].includes(e.feature_id) && e.refund_state === 'active')) {
         for (const key of Object.keys(state.wallet) as (keyof Wallet)[]) {
           const total = state.wallet[key] + row.paid_resources[key]; if (!Number.isSafeInteger(total)) reject('RESOURCE_OVERFLOW'); state.wallet[key] = total;
         }
@@ -124,6 +124,7 @@ export function applyRosterCommand(state: AccountState, command: RosterCommand, 
       }
       const starter = Object.values(content.skills).filter(s => s.class_id === root && s.kind === 'active' && Number(s.unlock_level) <= 1).map(s => String(s.id));
       if (starter.length !== 2) throw new Error('STARTER_SKILL_CATALOG_MISMATCH');
+      actor.awakened_skills = [];
       actor.skill_levels = Object.fromEntries(starter.map(id => [id, data.initial_state.initial_active_skill_grants.skill_level]));
       actor.active_slots = [starter[0]!, starter[1]!, null, null];
     }

@@ -11,8 +11,9 @@ const damage=(s:Active)=>s.effects.find(e=>e.type==='damage')! as Extract<Active
 const ratio=(s:Active)=>Number((damage(s).formula.params as {attack_ratio:number}).attack_ratio)*damage(s).hits;
 
 test('D138 major budgets at all ten ranks; Finger and Asura keep their paid sphere/SP rules',()=>{
- const single=['hunter_rapid_fire','wizard_jupitel','sage_psychic_bolt','sage_magic_barrier','assassin_sonic_blow','assassin_detonate','alchemist_acid_terror'];
- const aoe=['knight_brandish','crusader_grand_cross','hunter_claymore','wizard_meteor','wizard_heavens_drive','rogue_raid','blacksmith_cart_crash'];
+ // D158 supersedes the old Hunter budget, independently checked in hunter-impact.test.
+ const single=['wizard_jupitel','sage_psychic_bolt','sage_magic_barrier','assassin_sonic_blow','assassin_detonate','alchemist_acid_terror'];
+ const aoe=['knight_brandish','crusader_grand_cross','wizard_meteor','wizard_heavens_drive','rogue_raid','blacksmith_cart_crash'];
  for(let lv=1;lv<=10;lv++){
   const finger=active('monk_finger_offensive',lv),power=ratio(finger);
   for(const id of [...single,...aoe]){

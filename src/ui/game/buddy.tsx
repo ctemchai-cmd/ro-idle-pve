@@ -3,7 +3,7 @@ import { CardIcon } from './card-art.tsx';
 import { Icon } from '../icon.tsx';
 import { useMemo, useState } from 'react';
 import type { CombatStats, Modifier } from '../../contracts/index.ts';
-import { effectiveLevelCap, levelQuote, rosterData as data, type Character, type RootJob } from '../../client/roster.ts';
+import { effectiveLevelCap, levelQuote,jobChangePlan, rosterData as data, type Character } from '../../client/roster.ts';
 import { equipmentData, equipmentPreview, equipmentUpgradeHints, inventoryView, itemModifiers, itemOptions, rarityLabels, rarityRank, slotLabels, weaponLabels, type EquipmentSlot } from '../../client/equipment.ts';
 import { cardInventory, cardStatUnits, slotEnchantLines, refineModifiers, nextRefineChance, nextRefinePityBonus, refinePercent, slotsData, refundEnchant, salvageCardsQuote, slotChangePreview, slotUpgradeQuote, socketCapacity, socketUnlockRefine, socketUnlockHint } from '../../client/slots.ts';
 import type { GameContext } from './shell.tsx';
@@ -16,7 +16,6 @@ import { EquipmentProgress } from './equipment-progress.tsx';
 import { ActorCanvas, CostChips, Diff, ItemIcon, PageHeader, Sheet, canPay, friendNames, iconUrl, jobNames, lookOf, reasonText, resourceNames, seconds, statLabels, type Wallet } from './kit.tsx';
 
 const leftSlots: EquipmentSlot[] = ['weapon', 'armor', 'accessory'], rightSlots: EquipmentSlot[] = ['head', 'garment', 'shoes'];
-const roots = Object.keys(data.class_tree) as RootJob[];
 type ItemRow = ReturnType<typeof inventoryView>[number];
 /** D-062 option lines in their own colour so players can tell rolled lines from the base item stats. */
 export function OptionLines({ item }: { item: Parameters<typeof itemOptions>[0] }) {
@@ -144,19 +143,20 @@ function CharacterUpgradeSheet({ context, actor, close }: { context: GameContext
   const cost = actor.level < cap ? levelQuote(actor, actor.level + 1, data) : null;
   let best = actor.level; for (let t = actor.level + 1; t <= cap; t++) { if (canPay(state.wallet, levelQuote(actor, t, data))) best = t; else break; }
   const gate = data.progression.breakthrough_gates.find(g => g.at_level === actor.level && actor.local_cap === actor.level && !actor.completed_gate_ids.includes(g.at_level));
-  const jobs = actor.kind === 'main' ? roots.flatMap(r => [r, ...data.class_tree[r]]) : [actor.root_job_id, ...data.class_tree[actor.root_job_id]];
-  const refund = state.paid_ledger.filter(e => e.character_id === actor.character_id && e.feature_id === 'skill' && e.refund_state === 'active').reduce((sum, e) => { for (const k of Object.keys(sum) as (keyof Wallet)[]) sum[k] += e.paid_resources[k]; return sum; }, Object.fromEntries(Object.keys(state.wallet).map(k => [k, 0])) as Wallet);
+  const jobs = data.job_catalog!.order.filter(id=>(actor.kind==='main'||data.job_catalog!.byId[id]!.root===actor.root_job_id)&&(actor.level<=70||data.job_catalog!.byId[id]!.stage>=3));
+  let preservesBuild=false;try{preservesBuild=jobChangePlan(actor,job,data).preservesBuild;}catch{/* The current/locked chip has no pending promotion. */}
+  const refund = state.paid_ledger.filter(e => e.character_id === actor.character_id && ['skill','skill_awaken'].includes(e.feature_id) && e.refund_state === 'active').reduce((sum, e) => { for (const k of Object.keys(sum) as (keyof Wallet)[]) sum[k] += e.paid_resources[k]; return sum; }, Object.fromEntries(Object.keys(state.wallet).map(k => [k, 0])) as Wallet);
   return <><Sheet title={`อัปเกรด ${friendNames[actor.character_id]}`} onClose={close} className="tall">
     <section className="upgrade-pane"><h3>เลเวล</h3>
-      <div className="level-jump"><b>Lv.{actor.level}</b><span>→</span><b className="next">{cost ? `Lv.${actor.level + 1}` : actor.level === data.release.level_cap ? 'MAX' : 'รอ Breakthrough'}</b><small>เพดาน {cap}</small></div>
+      <div className="level-jump"><b>Lv.{actor.level}</b><span>→</span><b className="next">{cost ? `Lv.${actor.level + 1}` : actor.level === data.release.level_cap ? 'MAX' : actor.level===70&&(data.job_catalog!.byId[actor.job_id]?.stage??0)<3?'รอ Hi-class':'รอ Breakthrough'}</b><small>เพดาน {cap}</small></div>
       {cost && <><CostChips cost={cost} wallet={state.wallet} pack={pack} /><div className="row two"><button className="btn primary" disabled={locked || !canPay(state.wallet, cost)} onClick={() => void submit('character.level_up', { character_id: actor.character_id, target_level: actor.level + 1 })}>อัป +1</button>
         <button className="btn" disabled={locked || best <= actor.level + 1} onClick={() => void submit('character.level_up', { character_id: actor.character_id, target_level: best })}>อัปถึง Lv.{Math.max(best, actor.level + 1)}</button></div></>}
     </section>
     {gate && <section className="upgrade-pane highlight"><h3>Breakthrough Lv.{gate.at_level}</h3><p className="hint">ปลดเพดานถึง Lv.{Math.min(data.release.level_cap, gate.unlocks_local_cap)}</p><CostChips cost={gate.cost} wallet={state.wallet} pack={pack} />
       <button className="btn primary wide" disabled={locked || !canPay(state.wallet, gate.cost)} onClick={() => void submit('character.breakthrough', { character_id: actor.character_id, gate_level: gate.at_level })}>Breakthrough</button></section>}
     <section className="upgrade-pane"><div className="upgrade-section-heading"><h3>เปลี่ยนอาชีพ</h3><button className="btn ghost" onClick={()=>setCatalog(true)}><Icon name="book"/>ดูสกิลทุกอาชีพ</button></div>
-      <div className="chip-row">{jobs.map(j => { const class2 = !roots.includes(j as RootJob), lockedJob = class2 && actor.level < data.promotion.class2_min_level; return <button key={j} className={`chip job-chip ${job === j ? 'on' : ''}`} disabled={lockedJob} onClick={() => setJob(j)}><ClassIcon pack={pack} job={j} size={18} />{jobNames[j]}{lockedJob ? ` · Lv.${data.promotion.class2_min_level}` : ''}</button>; })}<button className="chip job-chip hi-class" disabled title="Hi-class เปิดในรุ่นถัดไป (Lv.70)"><Icon name="sparkles" /> Hi-class · เร็วๆ นี้</button></div>
-      {job !== actor.job_id ? <><p className="hint">เปลี่ยนฟรี · รีเซ็ต Status/สกิลและคืนทุนที่จ่ายจริง · อาวุธที่ใช้ไม่ได้กลับเข้ากระเป๋า</p><CostChips cost={refund} wallet={state.wallet} pack={pack} />
+      <div className="chip-row">{jobs.map(j => { const minimum=data.job_catalog!.byId[j]!.minimumLevel;let lockedJob=false;try{if(j!==actor.job_id)jobChangePlan(actor,j as Character['job_id'],data);}catch{lockedJob=true;} return <button key={j} className={`chip job-chip ${job === j ? 'on' : ''}`} disabled={lockedJob} onClick={() => setJob(j as Character['job_id'])}><ClassIcon pack={pack} job={j} size={18} />{jobNames[j]}{lockedJob ? ` · Lv.${minimum}` : ''}</button>; })}{!data.promotion.hi_class_enabled&&<button className="chip job-chip hi-class" disabled title="Hi-class เปิดในรุ่นถัดไป (Lv.70)"><Icon name="sparkles" /> Hi-class · เร็วๆ นี้</button>}</div>
+      {job !== actor.job_id ? <><p className="hint">{preservesBuild?'เลื่อนอาชีพ · เก็บเลเวล Status สกิล และอุปกรณ์เดิม':'เปลี่ยนฟรี · รีเซ็ต Status/สกิลและคืนทุนที่จ่ายจริง · อาวุธที่ใช้ไม่ได้กลับเข้ากระเป๋า'}</p>{!preservesBuild&&<CostChips cost={refund} wallet={state.wallet} pack={pack} />}
         <button className="btn primary wide" disabled={locked} onClick={() => void submit('character.change_job', { character_id: actor.character_id, job_id: job })}>เปลี่ยนเป็น {jobNames[job]}</button></> : <p className="hint">อาชีพปัจจุบัน: {jobNames[actor.job_id]}{actor.kind === 'npc' ? ' · เพื่อนเปลี่ยนได้ภายในสายเดิม' : ''}</p>}
     </section>
     <section className="upgrade-pane"><h3>รีเซ็ตบิลด์</h3><p className="hint">คืนแต้ม Status และทุนสกิลที่จ่ายจริง · เลเวลและการพัฒนาช่องอุปกรณ์ยังอยู่</p>
