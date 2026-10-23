@@ -6,6 +6,13 @@
 
 
 
+## 23 ต.ค.2026 · Codex — TASK127 done / Sanctuaryขึ้นVercel;Hi-classยังค้าง123–125
+
+- SOURCE73e53c043f6cdc1c27b96dc7da725742fb0703cc VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/E8TrkbfNxQD7doAKuJmdXF6NrNhK. Public4groupsผ่านhealthSIN1/e1319aef2e78ea05edbd8fd39721905d971b1526f9aa8f6824c63eda3b6582c5/auth401/24bundleSHA/nativepackเดิม/mobile390320rank10/1Sanctuary/เพลงสองeffectsเดิม/0writes. Viewedhosted320. ActualAuthgame/rings/ticksproveddisposablelocal ดูsectionถัดไป. Board110/127done/M4done68/77/M5done2/5foundationsonly. Finalreadiness/docsclosurepushnext.
+- D157:SanctuaryPureHoTเริ่มทันที105→175%MATK,6equalticks0..5s/expiry6 ไม่มีopeningheal;BardDancerยังopening+5HoT/PATK. Noenginechange/statusdedicated/125othersunchanged/genericregenunchanged. NoSQL/env/ownerreadwrite/6173restart/balancebatch/subagents. Root+filteredbuild588457gzip/PWA764d38e95a51a1d2/pack32021698Bเหมือนกัน.
+- ReadinessancestryDAGnowmemoized(frozenset/lru_cache),allassertionsunchanged/8passed,avoidsminutesofrepeatedrecursivegraphwalk. Historicalfull604had4oldexpectations;allclosedin60focusedfinalwithoutgameplaychanges. NewtestguardsotherSanctuaryfieldsexactoldfixture. No allgreenfullrerunclaimed. Alllocal/publicharnessesended.
+- **Hi-classobjectivepersists**:TASK12326skills+24nativepresets/jobicons→124Awaken+shards/conversion/glow→125release. AllremainTODO;flagfalse/currentcap70. Do not markHi/Awakencomplete fromfoundation/chapters. UseranswersD154155stillbinding. Noquestionspending. CacheROOsource/nativeIDs indesign45/priorhandoff. Don'tstageuseruntrackedmodernassets/task108hostedlogin/privateenvs.
+
 ## 23 ต.ค.2026 · Codex — TASK127 Sanctuary localผ่าน/รอhosted;Hi-classยังต่อ123–125
 
 - UserD157แก้ชัด:Bard/Dancerinstant+HoT,SanctuaryPureHoTต้องแรงกว่า. Dedicatedsanctuary_regeneration tick_on_apply true/105→175%MATK/1s×6เริ่มresolve ไม่มีopeningheal. Sharedengineรองรับเดิม ไม่แก้engineหรือเพลง/genericregen/CTACD/SP/targets. Newrankcurveassistantbaseline;125skillprogramsunchanged/sourceaudit. Detailsเริ่มทันที/nativeexistinghealauraรองรับอัตโนมัติ.

@@ -1,5 +1,9 @@
 # Project context
 
+## Current Sanctuary rule (23 October 2026)
+
+D-157/TASK-127: Bard/Dancer Healing Song is opening heal + physical HoT. Priest Sanctuary is pure MATK HoT using dedicated `sanctuary_regeneration`, six equal ticks at resolve +0/1/2/3/4/5s, expires +6s, no separate opening heal. Power105–175%MATK by rank; generic regeneration and songs stay unchanged. Details derive immediate-tick text from status data; shared healing aura already detects periodic heals. Preserve this identity when authoring Hi-class/Awaken variants; see plan/design/47-sanctuary-hot.md.
+
 ## Atomic equip upgrades (23 October 2026, D156/TASK126)
 
 Buddy has one compact equip-upgrades button for the selected actor. Shared build/equipment-upgrades.ts drives both red indicators and equipment.equip_upgrades; compare tier first, rarity only at equal tier, fit/unassigned items only, locked gear is wearable. One atomic command/receipt/revision and shared optimistic preview; preserve all slot cards/Refine/Enchant and other actors. Actual disposable Auth/API/SQL/mobile320390 plus response-loss/manualReconnect/reload and public Vercel passed; no SQL/env or owner access. Source76723725a. Hi-class remains disabled/cap70;TASK121–122 are preparation and TASK123–125 remain.

@@ -1,7 +1,7 @@
 {
   "task_id": "TASK-127",
-  "passed": false,
-  "status": "local_passed_hosted_pending",
+  "passed": true,
+  "status": "done",
   "checks": [
     {
       "case": "pure_HoT_all_ranks_goldens_source_audit",
@@ -17,19 +17,23 @@
     },
     {
       "case": "hosted_public",
-      "passed": false,
-      "status": "pending"
+      "passed": true,
+      "source_commit": "73e53c043f6cdc1c27b96dc7da725742fb0703cc",
+      "deployment": "https://vercel.com/chanon2/ro-idle-pve/E8TrkbfNxQD7doAKuJmdXF6NrNhK",
+      "proof": "Public4groups healthSIN1/newhash/401/24bundleSHA/mobile320390 rank1/10 Sanctuary + preserved BardDancer/0writes"
     }
   ],
   "evidence": [
     "plan/evidence/task-127-targeted.txt",
     "plan/evidence/task-127-regression-final.txt",
     "plan/evidence/task-127-source-audit.json",
-    "plan/evidence/task-127-healing-live.json"
+    "plan/evidence/task-127-healing-live.json",
+    "plan/evidence/task-127-hosted.json"
   ],
   "full_test_scope": "604 full tests:600 passed,4 historical expectations required explicit D157 migration. All4 affected groups passed in60 focused rerun. Not claiming an unrun all-green full rerun.",
   "owner_cloud_writes": false,
   "personal_preview_restarted": false,
   "balance_batch": false,
-  "sql_env_changes": false
+  "sql_env_changes": false,
+  "readiness": "8passed; dependency ancestors memoized without changing graph/acceptance checks"
 }

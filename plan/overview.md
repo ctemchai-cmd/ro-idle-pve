@@ -1,8 +1,8 @@
 # ภาพรวมแผนและความคืบหน้า
 
-อัปเดต: 23 ตุลาคม 2026 · ระยะปัจจุบัน: **109/127 งานผ่าน done; TASK-041 บาลานซ์, TASK-058 ย้ายเซฟ และ TASK-064 อัปเกรดทันทีขึ้นVercelแล้ว/SQL007ติดตั้งแล้ว/รอcloudtimingอยู่ inprogress; TASK-062 PWAขึ้นVercelและผ่านhostedแล้ว; TASK-063 ทุกmutationลด3→1requestsขึ้นVercelผ่านแล้ว; TASK-060 เซฟเริ่ม/จบและ TASK-061 resetดันขึ้นVercelแล้ว; TASK-048/054/055/056/057 อยู่ review รอผู้ใช้ตรวจภาพ**
+อัปเดต: 23 ตุลาคม 2026 · ระยะปัจจุบัน: **110/127 งานผ่าน done; TASK-041 บาลานซ์, TASK-058 ย้ายเซฟ และ TASK-064 อัปเกรดทันทีขึ้นVercelแล้ว/SQL007ติดตั้งแล้ว/รอcloudtimingอยู่ inprogress; TASK-062 PWAขึ้นVercelและผ่านhostedแล้ว; TASK-063 ทุกmutationลด3→1requestsขึ้นVercelผ่านแล้ว; TASK-060 เซฟเริ่ม/จบและ TASK-061 resetดันขึ้นVercelแล้ว; TASK-048/054/055/056/057 อยู่ review รอผู้ใช้ตรวจภาพ**
 
-[TASK-127](review/tasks_127.md) กำลังปรับ Sanctuary เป็นPure HoTที่เริ่มทันที/แรงกว่าเพลงฮีลส่วนHoT;Bard/Dancerคงinstant+HoT. [ข้อกำหนด](design/47-sanctuary-hot.md).
+[TASK-127](done/tasks_127.md) ขึ้นVercel source`73e53c043`แล้ว: Sanctuary PureHoT105–175%MATKทุก1sรวม6ticksเริ่มทันที ไม่มีopeningแยก;เพลงBard/Dancerคงinstant+HoTเดิม. Targeted/60regression/realAuth-SQL-mobile320390/hosted4groupsผ่าน.[ผลตรวจ](evidence/task-127-review.json).
 
 [TASK-126](done/tasks_126.md) ขึ้นVercel source`76723725a`แล้ว:หน้าอุปกรณ์ตัวละครมีปุ่มใส่ของที่ดีกว่าครบทุกช่องด้วยหนึ่งcommand/receipt/revision. Mobile320390/reload/response-loss+Reconnect/18focused/build/filteredbuild/M0/hosted4groupsผ่าน;slot investments/NPC/packเดิม. [ผลตรวจ](evidence/task-126-review.json). Hi-classยังปิดรอTASK123–125.
 
@@ -167,7 +167,7 @@ TASK-001–014 และ TASK-047 อยู่doneครบM0 TASK-015–028ผ�
 | M1 | แกนต่อสู้และ headless simulation | 4 | 4 |
 | M2 | วงจรเกม ภาพ และ cloud save | 7 | 7 |
 | M3 | อุปกรณ์และสกิลครบทุกสาย + game shell (TASK-048) + กติกา D-057 (TASK-049) + ย้ายเซฟ (TASK-050) + ร้านค้า/กาชาอุปกรณ์ (TASK-051) + Option สุ่ม (TASK-052) + ไอเทม/การ์ดหลากหลาย (TASK-053) + ภาพการต่อสู้ตรง RO (TASK-054) + คำขอระหว่างลองเล่น (TASK-055) | 19 | 14 |
-| M4 | โหมด บาลานซ์ ตรวจรับ และ deploy รวมย้ายเซฟcloud (058), เซฟ/รีเซ็ตดัน (059–061) PWA (062) และลดเวลาบันทึก (063) | 77 | 67 |
+| M4 | โหมด บาลานซ์ ตรวจรับ และ deploy รวมย้ายเซฟcloud (058), เซฟ/รีเซ็ตดัน (059–061) PWA (062) และลดเวลาบันทึก (063) | 77 | 68 |
 | M5 | Hi-class/Awaken:ฐานอาชีพ,เลเวล,26สกิลใหม่,เศษ/variantและเปิดจริง | 5 | 2 |
 
 TASK-001–013 และ TASK-047 ออกแบบข้อมูล/สูตร/โมดูลสถานะ/สกิลครบหกสาย/อุปกรณ์/เศรษฐกิจ/ด่าน/UX/สถาปัตยกรรม (ลำดับแกนคือ TASK-001 → 002 → 047 → ข้อมูลสกิล/ไอเทม) จากนั้น TASK-014 ตรวจรวมทั้งหมดก่อนเริ่มเขียนเกมตามความต้องการออกแบบก่อน coding งานพัฒนา TASK-015–046 มี gate นี้ใน dependency

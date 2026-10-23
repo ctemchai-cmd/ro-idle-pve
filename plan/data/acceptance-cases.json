@@ -13804,7 +13804,7 @@
       },
       "expected": "Sanctuaryมีเพียงapply_status ไม่มีopening_heal;เริ่มติ๊กที่cast_resolveแล้วทุก1sรวม6ครั้ง,105→175%MATKและทุกrankแรงกว่าเพลงHoTที่powerเท่ากัน;Bard/Dancer/genericregen125สกิลเดิมไม่เปลี่ยน",
       "verification": "Targeted sharedengine/golden/realAuth-SQL-mobile/hosted",
-      "status": "not_run_implementation",
+      "status": "passed_implementation",
       "evidence_refs": [
         "plan/evidence/task-127-review.json"
       ]
@@ -13823,7 +13823,7 @@
       },
       "expected": "sharedengine/โบนัสฮีล/independentstack/interruptไม่มีฮีลหรือคืนSP/expiry/1x2x4/checkpointตรงกัน;ไม่เปลี่ยนคิวCTACDหรือสูตรฮีล",
       "verification": "Targeted sharedengine/golden/realAuth-SQL-mobile/hosted",
-      "status": "not_run_implementation",
+      "status": "passed_implementation",
       "evidence_refs": [
         "plan/evidence/task-127-review.json"
       ]
@@ -13842,8 +13842,10 @@
       },
       "expected": "รายละเอียดทุกrankแสดงMATK/ทุก1s/6s/เริ่มทันทีและวงฮีลตามstatusจริง;targeted/build/M0/realAuthAPI-SQL-mobile320390/hostedผ่านก่อนdone",
       "verification": "Targeted sharedengine/golden/realAuth-SQL-mobile/hosted",
-      "status": "not_run_implementation",
-      "evidence_refs": []
+      "status": "passed_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-127-review.json"
+      ]
     }
   ]
 }

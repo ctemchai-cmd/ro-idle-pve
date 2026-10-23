@@ -20,7 +20,7 @@ Sanctuary ฮีลต่อเนื่องตั้งแต่ร่าย�
 ## เกณฑ์ตรวจรับ
 - [x] AC-01: Sanctuaryมีเพียงapply_status ไม่มีopening_heal;เริ่มติ๊กที่cast_resolveแล้วทุก1sรวม6ครั้ง,105→175%MATKและทุกrankแรงกว่าเพลงHoTที่powerเท่ากัน;Bard/Dancer/genericregen125สกิลเดิมไม่เปลี่ยน
 - [x] AC-02: sharedengine/โบนัสฮีล/independentstack/interruptไม่มีฮีลหรือคืนSP/expiry/1x2x4/checkpointตรงกัน;ไม่เปลี่ยนคิวCTACDหรือสูตรฮีล
-- [ ] AC-03: รายละเอียดทุกrankแสดงMATK/ทุก1s/6s/เริ่มทันทีและวงฮีลตามstatusจริง;targeted/build/M0/realAuthAPI-SQL-mobile320390/hostedผ่านก่อนdone
+- [x] AC-03: รายละเอียดทุกrankแสดงMATK/ทุก1s/6s/เริ่มทันทีและวงฮีลตามstatusจริง;targeted/build/M0/realAuthAPI-SQL-mobile320390/hostedผ่านก่อนdone
 
 ## วิธีตรวจและหลักฐาน
 T127-AC-01–03 ในacceptance-matrix;tests/game/sanctuary-hot.test.ts,healing-song.test.ts,classgoldens;disposablelocalAuth/SQL/Chromeและpublichostedไม่เข้าบัญชีowner.
@@ -33,3 +33,5 @@ T127-AC-01–03 ในacceptance-matrix;tests/game/sanctuary-hot.test.ts,healing
 
 - Local:21targeted + full604(600passed/4legacy-oraclefailures) +60focused全部ผ่านหลังแก้statuscount30/แยกD157จากsupportscaleเดิม/คงhistoricalbyteprojectionเฉพาะSanctuaryก่อน127;newtestล็อกค่าอื่นของสกิลเดิมทั้งหมด. ไม่เปลี่ยนgameplayเพื่อตามoracles. Fullfirstและfinalreportsเก็บแยก. Goldenเฉพาะ3Sanctuarycasesเปลี่ยน/375เดิมคง. Sourceaudit125สกิลเดิมคง.
 - ActualAuth/API/Postgres/mobile3203904groupsผ่าน: Sanctuary24events/4alliesที่3677/4677/5677/6677/7677/8677ms ไม่มีopening;เพลงopening4+ticks20ต่อท่าคงเดิม/status105%MATK/rings/expiry/reducedmotion/0midbattlewrites. Viewed390. Build/M0/readiness8ผ่าน. รอfilteredbuild/push/hostedAC03.
+
+- Hosted4groupsผ่าน source73e53c043f6cdc1c27b96dc7da725742fb0703cc VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/E8TrkbfNxQD7doAKuJmdXF6NrNhK:API200SIN1/newhash/auth401/24bundleSHA/Sanctuaryrank1/10mobile320390/เพลง2effectsเดิม/0writes. Viewedhosted320. Root+filteredbuild588457gzipเหมือนกัน. NoSQL/env/owneraccess. ปรับตัวตรวจreadinessให้cacheบรรพบุรุษในDAGเดิม ลดการวนซ้ำโดยคงทุกassertion;8checksผ่าน.
