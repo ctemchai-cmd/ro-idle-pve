@@ -1,7 +1,7 @@
 """TASK124 explicit Awaken variants, stable logical IDs and native icons retained.
 Authored starting values; not RO equations or measured balance. Review before release125.
 """
-import copy,json
+import copy,json,argparse
 from pathlib import Path
 from awaken_identity import identity
 R=Path(__file__).resolve().parents[2];D=R/'plan/data'
@@ -45,6 +45,9 @@ for p in(D/'skills').glob('*.json'):
   prices[s['id']]={'cost_version':'awakening-costs-v1','upgrade_cost_rows':[{'from_level':i,'to_level':i+1,'gold':2000*(i+1),'awakening_shard':5*(i+1)}for i in range(1,10)]}
   index.append({'id':s['id'],'kind':s['kind'],'class_id':s['class_id'],'gains':gains,'same_native_icon':s['presentation_id']==original['presentation_id']})
  doc['awakened_variants']=variants;doc['awakened_upgrades']=prices;write(p,doc)
-write(R/'plan/evidence/task-130-variant-index.json',{'variants':index,'count':len(index),'scope':'D160 explicit identities; no generic CC-resist fallback. Base rank potency curve retained; extra hits use +20% TOTAL direct-power budget. Native protection CC remains; SP/cast/ACD/prices unchanged. Independent uncapped stacking.'})
-write(R/'tests/game/fixtures/awaken-identities-130.json',{'variants':index,'count':len(index)})
+args=argparse.ArgumentParser();args.add_argument('--evidence-task',type=int);task=args.parse_args().evidence_task
+# Historical review evidence is immutable during later balance regeneration.
+if task:
+ write(R/f'plan/evidence/task-{task}-variant-index.json',{'variants':index,'count':len(index),'scope':'D160 explicit identities; current authored base power. Extra hits use +20% TOTAL direct-power budget, not an extra multiplier per hit.'})
+ if task==130:write(R/'tests/game/fixtures/awaken-identities-130.json',{'variants':index,'count':len(index)})
 print('Authored',len(index),'Awaken variants with genuine native icons and extra effects.')

@@ -297,6 +297,28 @@
             "maximum": 120
           },
           "uniqueItems": true
+        },
+        "single_target_damage_bonus": {
+          "description": "Add to skill damage bonus once at resolve when exactly one living targetable hostile remains. Periodic/summon application snapshots retain the result.",
+          "oneOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "object",
+              "properties": {
+                "level_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "level_param"
+              ],
+              "additionalProperties": false
+            }
+          ]
         }
       },
       "required": [

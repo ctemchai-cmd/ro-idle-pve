@@ -648,3 +648,12 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T130-AC-03` [TASK-130](done/tasks_130.md) | base152นิยาม/ราคา/Awakenเศษ/ทุน/IDs/nativeicons/queueเดิม; อธิบายสกิล/สมุดสกิล/Timelineตรงผลจริงและไม่มีคำอธิบายตกหล่น | shared engine / tests / reports | ผ่าน631TS/832paired/native+hosted4groups |
 
 | `T130-AC-04` [TASK-130](done/tasks_130.md) | targeted/full checksตามความจำเป็น/build/boundaries/native mobile/public deploymentผ่าน และผลbefore-afterอ้างcontent hashแยกจากTASK129ชัด | shared engine / tests / reports | ผ่าน631TS/832paired/native+hosted4groups |
+
+## TASK-131 — Boss focus และ balance
+
+| Case | Task | เกณฑ์ | Input / Expected / วิธีตรวจ | สถานะ |
+| --- | --- | --- | --- | --- |
+| `T131-AC-01` | TASK-131 | สกิลหมู่ยังตีหลายเป้าได้ พลังเพิ่มเฉพาะ resolve ที่มีศัตรู living/targetable ตัวเดียว; ฝั่งฝ่ายเดียวกัน/ตัวตาย/untargetable ไม่นับ; direct/periodic snapshot ไม่บวกซ้ำและไม่เพิ่มให้ normal/heal | tests/game/boss-focus.test.ts / scripts/game/boss-focus-audit.ts / shared engine + native UI | not_run_implementation |
+| `T131-AC-02` | TASK-131 | ราคา/ทุน/IDs/เลเวล/CT/ACD/SP/interrupt/4-slot/uncapped buffs เดิม; descriptions แสดง bonus จริง และทุกการเปลี่ยนข้อมูลระบุได้ | tests/game/boss-focus.test.ts / scripts/game/boss-focus-audit.ts / shared engine + native UI | not_run_implementation |
+| `T131-AC-03` | TASK-131 | มี fixed A/B และ candidate re-screen หลายระดับ/gear/seed พร้อม total/skill/team DPS; รายงานผลและข้อจำกัดตามจริง ไม่ปิด TASK041 จาก dummy ตัวเดียว | tests/game/boss-focus.test.ts / scripts/game/boss-focus-audit.ts / shared engine + native UI | not_run_implementation |
+| `T131-AC-04` | TASK-131 | targeted/full regression/build/boundaries/mobile/public deployment ผ่านพร้อมหลักฐาน | tests/game/boss-focus.test.ts / scripts/game/boss-focus-audit.ts / shared engine + native UI | not_run_implementation |

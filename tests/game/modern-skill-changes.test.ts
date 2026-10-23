@@ -6,19 +6,21 @@ import {critMultiplier} from '../../src/domain/math/index.ts';
 import {EffectPipeline} from '../../src/domain/combat/effects.ts';
 import {initializeAccount} from '../../src/domain/progression/initialize.ts';
 import {characterSkillOptions} from '../../src/client/skills.ts';
+import tuning131 from './fixtures/boss-focus-131.json';
 const active=(id:string,lv=10)=>structuredClone(resolveSkill(id,lv,content).definition) as Active;
 const damage=(s:Active)=>s.effects.find(e=>e.type==='damage')! as Extract<Active['effects'][number],{type:'damage'}>;
 const ratio=(s:Active)=>Number((damage(s).formula.params as {attack_ratio:number}).attack_ratio)*damage(s).hits;
 
-test('D138 major budgets at all ten ranks; Finger and Asura keep their paid sphere/SP rules',()=>{
+test('D138 major budgets plus explicit D161 tuning at all ten ranks; Finger and Asura keep their paid sphere/SP rules',()=>{
  // D158 supersedes the old Hunter budget, independently checked in hunter-impact.test.
  const single=['wizard_jupitel','sage_psychic_bolt','sage_magic_barrier','assassin_sonic_blow','assassin_detonate','alchemist_acid_terror'];
  const aoe=['knight_brandish','crusader_grand_cross','wizard_meteor','wizard_heavens_drive','rogue_raid','blacksmith_cart_crash'];
  for(let lv=1;lv<=10;lv++){
   const finger=active('monk_finger_offensive',lv),power=ratio(finger);
   for(const id of [...single,...aoe]){
-   const actual=ratio(active(id,lv))*(id==='sage_psychic_bolt'?1.5:1),wanted=power*(single.includes(id)?.7:.5);
-   assert.ok(Math.abs(actual-wanted)<.00001,`${id} rank${lv}: ${actual}/${wanted}`);
+   const scale=Number((tuning131.skills.find(s=>s.id===id)?.power_scales as Partial<Record<string,number>>|undefined)?.power??1);
+   const actual=ratio(active(id,lv))*(id==='sage_psychic_bolt'?1.5:1),wanted=power*(single.includes(id)?.7:.5)*scale;
+   assert.ok(Math.abs(actual-wanted)<.00002,`${id} rank${lv}: ${actual}/${wanted}`);
   }
   assert.equal(finger.cost.spirit_spheres,5);assert.deepEqual(active('monk_asura',lv).cost,{sp:{mode:'all_current',minimum_sp:30},spirit_spheres:5});
   assert.equal(damage(active('blacksmith_cart_crash',lv)).hits,4);

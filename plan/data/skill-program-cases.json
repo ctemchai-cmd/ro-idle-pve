@@ -3097,7 +3097,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 140.0
+              "expected_raw_power": 140.0,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             },
             {
               "effect_id": "stun",
@@ -3107,13 +3113,13 @@
               "duration_ms": 1000,
               "chance": 0.4,
               "params": {},
-              "expected_modifiers": [],
               "predicate": {
                 "type": "hit_landed",
                 "effect_id": "hit",
                 "scope": "same_target",
                 "hit_index": "any"
-              }
+              },
+              "expected_modifiers": []
             }
           ]
         }
@@ -3155,7 +3161,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 172.0833
+              "expected_raw_power": 172.0833,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             },
             {
               "effect_id": "stun",
@@ -3165,13 +3177,13 @@
               "duration_ms": 1000,
               "chance": 0.4,
               "params": {},
-              "expected_modifiers": [],
               "predicate": {
                 "type": "hit_landed",
                 "effect_id": "hit",
                 "scope": "same_target",
                 "hit_index": "any"
-              }
+              },
+              "expected_modifiers": []
             }
           ]
         }
@@ -3213,7 +3225,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 236.24999999999997
+              "expected_raw_power": 236.24999999999997,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             },
             {
               "effect_id": "stun",
@@ -3223,13 +3241,13 @@
               "duration_ms": 1000,
               "chance": 0.4,
               "params": {},
-              "expected_modifiers": [],
               "predicate": {
                 "type": "hit_landed",
                 "effect_id": "hit",
                 "scope": "same_target",
                 "hit_index": "any"
-              }
+              },
+              "expected_modifiers": []
             }
           ]
         }
@@ -6778,7 +6796,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 70.0
+              "expected_raw_power": 126.0,
+              "damage_type": "magical",
+              "element": "fire",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 3,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -6820,7 +6844,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 87.5
+              "expected_raw_power": 157.5,
+              "damage_type": "magical",
+              "element": "fire",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 3,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -6862,7 +6892,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 122.50000000000001
+              "expected_raw_power": 220.5,
+              "damage_type": "magical",
+              "element": "fire",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 3,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -6904,7 +6940,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 61.25000000000001
+              "expected_raw_power": 110.25,
+              "damage_type": "magical",
+              "element": "water",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 3,
+              "armor_rule": "normal"
             },
             {
               "effect_id": "freeze",
@@ -6914,13 +6956,13 @@
               "duration_ms": 1000,
               "chance": 0.3,
               "params": {},
-              "expected_modifiers": [],
               "predicate": {
                 "type": "hit_landed",
                 "effect_id": "hit",
                 "scope": "same_target",
                 "hit_index": "any"
-              }
+              },
+              "expected_modifiers": []
             }
           ]
         }
@@ -6962,7 +7004,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 78.75
+              "expected_raw_power": 141.75,
+              "damage_type": "magical",
+              "element": "water",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 3,
+              "armor_rule": "normal"
             },
             {
               "effect_id": "freeze",
@@ -6972,13 +7020,13 @@
               "duration_ms": 1000,
               "chance": 0.3,
               "params": {},
-              "expected_modifiers": [],
               "predicate": {
                 "type": "hit_landed",
                 "effect_id": "hit",
                 "scope": "same_target",
                 "hit_index": "any"
-              }
+              },
+              "expected_modifiers": []
             }
           ]
         }
@@ -7020,7 +7068,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 113.75
+              "expected_raw_power": 204.75,
+              "damage_type": "magical",
+              "element": "water",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 3,
+              "armor_rule": "normal"
             },
             {
               "effect_id": "freeze",
@@ -7030,13 +7084,13 @@
               "duration_ms": 1000,
               "chance": 0.3,
               "params": {},
-              "expected_modifiers": [],
               "predicate": {
                 "type": "hit_landed",
                 "effect_id": "hit",
                 "scope": "same_target",
                 "hit_index": "any"
-              }
+              },
+              "expected_modifiers": []
             }
           ]
         }
@@ -7078,7 +7132,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 70.0
+              "expected_raw_power": 126.0,
+              "damage_type": "magical",
+              "element": "wind",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 3,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -7120,7 +7180,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 87.5
+              "expected_raw_power": 157.5,
+              "damage_type": "magical",
+              "element": "wind",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 3,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -7162,7 +7228,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 122.50000000000001
+              "expected_raw_power": 220.5,
+              "damage_type": "magical",
+              "element": "wind",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 3,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -7204,7 +7276,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 192.5
+              "expected_raw_power": 346.5,
+              "damage_type": "magical",
+              "element": "ghost",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -7246,7 +7324,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 239.1667
+              "expected_raw_power": 430.5001,
+              "damage_type": "magical",
+              "element": "ghost",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -7288,7 +7372,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 332.5
+              "expected_raw_power": 598.5,
+              "damage_type": "magical",
+              "element": "ghost",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -7436,7 +7526,7 @@
               "duration_ms": 5000,
               "chance": 1,
               "params": {
-                "power_ratio": 0.935156
+                "power_ratio": 1.589765
               },
               "expected_modifiers": [],
               "tick_times_ms": [
@@ -7450,7 +7540,7 @@
                   "effect_id": "tick_hit",
                   "type": "damage",
                   "target": "self",
-                  "expected_raw_power": 93.51559999999999,
+                  "expected_raw_power": 158.97650000000002,
                   "damage_type": "magical",
                   "element": "water",
                   "hit_rule": "always",
@@ -7520,7 +7610,7 @@
               "duration_ms": 5000,
               "chance": 1,
               "params": {
-                "power_ratio": 1.156641
+                "power_ratio": 1.96629
               },
               "expected_modifiers": [],
               "tick_times_ms": [
@@ -7534,7 +7624,7 @@
                   "effect_id": "tick_hit",
                   "type": "damage",
                   "target": "self",
-                  "expected_raw_power": 115.6641,
+                  "expected_raw_power": 196.62900000000002,
                   "damage_type": "magical",
                   "element": "water",
                   "hit_rule": "always",
@@ -7604,7 +7694,7 @@
               "duration_ms": 5000,
               "chance": 1,
               "params": {
-                "power_ratio": 1.599609
+                "power_ratio": 2.719335
               },
               "expected_modifiers": [],
               "tick_times_ms": [
@@ -7618,7 +7708,7 @@
                   "effect_id": "tick_hit",
                   "type": "damage",
                   "target": "self",
-                  "expected_raw_power": 159.9609,
+                  "expected_raw_power": 271.9335,
                   "damage_type": "magical",
                   "element": "water",
                   "hit_rule": "always",
@@ -7684,7 +7774,7 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 130.9219,
+              "expected_raw_power": 222.56719999999999,
               "damage_type": "magical",
               "element": "wind",
               "hit_rule": "always",
@@ -7732,7 +7822,7 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 161.9297,
+              "expected_raw_power": 275.2805,
               "damage_type": "magical",
               "element": "wind",
               "hit_rule": "always",
@@ -7780,7 +7870,7 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 223.9453,
+              "expected_raw_power": 380.707,
               "damage_type": "magical",
               "element": "wind",
               "hit_rule": "always",
@@ -7828,7 +7918,7 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 124.6875,
+              "expected_raw_power": 211.96869999999998,
               "damage_type": "magical",
               "element": "fire",
               "hit_rule": "always",
@@ -7892,7 +7982,7 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 154.2188,
+              "expected_raw_power": 262.17199999999997,
               "damage_type": "magical",
               "element": "fire",
               "hit_rule": "always",
@@ -7956,7 +8046,7 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 213.28119999999998,
+              "expected_raw_power": 362.578,
               "damage_type": "magical",
               "element": "fire",
               "hit_rule": "always",
@@ -8248,7 +8338,7 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 374.0625,
+              "expected_raw_power": 635.9063,
               "damage_type": "magical",
               "element": "earth",
               "hit_rule": "always",
@@ -8296,7 +8386,7 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 462.6563,
+              "expected_raw_power": 786.5157,
               "damage_type": "magical",
               "element": "earth",
               "hit_rule": "always",
@@ -8344,7 +8434,7 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 639.8438,
+              "expected_raw_power": 1087.7345,
               "damage_type": "magical",
               "element": "earth",
               "hit_rule": "always",
@@ -9094,7 +9184,7 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 349.125,
+              "expected_raw_power": 663.3375,
               "critical_rule": "always",
               "damage_type": "magical",
               "element": "neutral",
@@ -9143,7 +9233,7 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 431.8125,
+              "expected_raw_power": 820.4437,
               "critical_rule": "always",
               "damage_type": "magical",
               "element": "neutral",
@@ -9192,7 +9282,7 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 597.1875,
+              "expected_raw_power": 1134.6562000000001,
               "critical_rule": "always",
               "damage_type": "magical",
               "element": "neutral",
@@ -9241,7 +9331,7 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 523.6875,
+              "expected_raw_power": 864.0844,
               "damage_type": "magical",
               "element": "neutral",
               "hit_rule": "always",
@@ -9299,7 +9389,7 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 647.7188,
+              "expected_raw_power": 1068.736,
               "damage_type": "magical",
               "element": "neutral",
               "hit_rule": "always",
@@ -9357,7 +9447,7 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 895.7812,
+              "expected_raw_power": 1478.039,
               "damage_type": "magical",
               "element": "neutral",
               "hit_rule": "always",
@@ -9413,7 +9503,13 @@
               "effect_id": "bolt",
               "type": "damage",
               "target": "event_target",
-              "expected_raw_power": 70.0
+              "expected_raw_power": 105.0,
+              "damage_type": "magical",
+              "element": "fire",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -9453,7 +9549,13 @@
               "effect_id": "bolt",
               "type": "damage",
               "target": "event_target",
-              "expected_raw_power": 93.3333
+              "expected_raw_power": 139.9999,
+              "damage_type": "magical",
+              "element": "fire",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -9493,7 +9595,13 @@
               "effect_id": "bolt",
               "type": "damage",
               "target": "event_target",
-              "expected_raw_power": 140.0
+              "expected_raw_power": 210.0,
+              "damage_type": "magical",
+              "element": "fire",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -9763,7 +9871,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 140.0
+              "expected_raw_power": 140.0,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             },
             {
               "effect_id": "stun",
@@ -9773,13 +9887,13 @@
               "duration_ms": 1000,
               "chance": 0.4,
               "params": {},
-              "expected_modifiers": [],
               "predicate": {
                 "type": "hit_landed",
                 "effect_id": "hit",
                 "scope": "same_target",
                 "hit_index": "any"
-              }
+              },
+              "expected_modifiers": []
             }
           ]
         }
@@ -9821,7 +9935,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 175.0
+              "expected_raw_power": 175.0,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             },
             {
               "effect_id": "stun",
@@ -9831,13 +9951,13 @@
               "duration_ms": 1000,
               "chance": 0.4,
               "params": {},
-              "expected_modifiers": [],
               "predicate": {
                 "type": "hit_landed",
                 "effect_id": "hit",
                 "scope": "same_target",
                 "hit_index": "any"
-              }
+              },
+              "expected_modifiers": []
             }
           ]
         }
@@ -9879,7 +9999,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 245.00000000000003
+              "expected_raw_power": 245.00000000000003,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             },
             {
               "effect_id": "stun",
@@ -9889,13 +10015,13 @@
               "duration_ms": 1000,
               "chance": 0.4,
               "params": {},
-              "expected_modifiers": [],
               "predicate": {
                 "type": "hit_landed",
                 "effect_id": "hit",
                 "scope": "same_target",
                 "hit_index": "any"
-              }
+              },
+              "expected_modifiers": []
             }
           ]
         }
@@ -11593,7 +11719,7 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 523.6875,
+              "expected_raw_power": 864.0844,
               "damage_type": "magical",
               "element": "poison",
               "hit_rule": "always",
@@ -11661,7 +11787,7 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 647.7188,
+              "expected_raw_power": 1068.736,
               "damage_type": "magical",
               "element": "poison",
               "hit_rule": "always",
@@ -11729,7 +11855,7 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 895.7812,
+              "expected_raw_power": 1478.039,
               "damage_type": "magical",
               "element": "poison",
               "hit_rule": "always",
@@ -12274,7 +12400,7 @@
               "effect_id": "burst",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 187.0313,
+              "expected_raw_power": 308.60159999999996,
               "damage_type": "magical",
               "element": "fire",
               "hit_rule": "always",
@@ -12290,7 +12416,7 @@
               "duration_ms": 5000,
               "chance": 1,
               "params": {
-                "power_ratio": 0.467578
+                "power_ratio": 0.771504
               },
               "expected_modifiers": [],
               "tick_times_ms": [
@@ -12304,7 +12430,7 @@
                   "effect_id": "tick_hit",
                   "type": "damage",
                   "target": "self",
-                  "expected_raw_power": 46.757799999999996,
+                  "expected_raw_power": 77.15039999999999,
                   "damage_type": "magical",
                   "element": "fire",
                   "hit_rule": "always",
@@ -12354,7 +12480,7 @@
               "effect_id": "burst",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 231.3281,
+              "expected_raw_power": 381.6914,
               "damage_type": "magical",
               "element": "fire",
               "hit_rule": "always",
@@ -12370,7 +12496,7 @@
               "duration_ms": 5000,
               "chance": 1,
               "params": {
-                "power_ratio": 0.57832
+                "power_ratio": 0.954228
               },
               "expected_modifiers": [],
               "tick_times_ms": [
@@ -12384,7 +12510,7 @@
                   "effect_id": "tick_hit",
                   "type": "damage",
                   "target": "self",
-                  "expected_raw_power": 57.831999999999994,
+                  "expected_raw_power": 95.4228,
                   "damage_type": "magical",
                   "element": "fire",
                   "hit_rule": "always",
@@ -12434,7 +12560,7 @@
               "effect_id": "burst",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 319.9219,
+              "expected_raw_power": 527.8711000000001,
               "damage_type": "magical",
               "element": "fire",
               "hit_rule": "always",
@@ -12450,7 +12576,7 @@
               "duration_ms": 5000,
               "chance": 1,
               "params": {
-                "power_ratio": 0.799805
+                "power_ratio": 1.319678
               },
               "expected_modifiers": [],
               "tick_times_ms": [
@@ -12464,7 +12590,7 @@
                   "effect_id": "tick_hit",
                   "type": "damage",
                   "target": "self",
-                  "expected_raw_power": 79.98049999999999,
+                  "expected_raw_power": 131.96779999999998,
                   "damage_type": "magical",
                   "element": "fire",
                   "hit_rule": "always",
@@ -13030,7 +13156,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 148.75
+              "expected_raw_power": 148.75,
+              "damage_type": "physical",
+              "element": "fire",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -13072,7 +13204,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 177.9167
+              "expected_raw_power": 177.9167,
+              "damage_type": "physical",
+              "element": "fire",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -13114,7 +13252,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 236.24999999999997
+              "expected_raw_power": 236.24999999999997,
+              "damage_type": "physical",
+              "element": "fire",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -16631,7 +16775,13 @@
                   "effect_id": "tick_hit",
                   "type": "damage",
                   "target": "self",
-                  "expected_raw_power": 43.75
+                  "expected_raw_power": 43.75,
+                  "damage_type": "physical",
+                  "element": "poison",
+                  "hit_rule": "always",
+                  "can_crit": false,
+                  "hits": 1,
+                  "armor_rule": "normal"
                 }
               ]
             }
@@ -16694,7 +16844,13 @@
                   "effect_id": "tick_hit",
                   "type": "damage",
                   "target": "self",
-                  "expected_raw_power": 58.3333
+                  "expected_raw_power": 58.3333,
+                  "damage_type": "physical",
+                  "element": "poison",
+                  "hit_rule": "always",
+                  "can_crit": false,
+                  "hits": 1,
+                  "armor_rule": "normal"
                 }
               ]
             }
@@ -16757,7 +16913,13 @@
                   "effect_id": "tick_hit",
                   "type": "damage",
                   "target": "self",
-                  "expected_raw_power": 87.5
+                  "expected_raw_power": 87.5,
+                  "damage_type": "physical",
+                  "element": "poison",
+                  "hit_rule": "always",
+                  "can_crit": false,
+                  "hits": 1,
+                  "armor_rule": "normal"
                 }
               ]
             }
@@ -18922,7 +19084,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 70.0
+              "expected_raw_power": 126.0,
+              "damage_type": "magical",
+              "element": "fire",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 3,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -18964,7 +19132,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 87.5
+              "expected_raw_power": 157.5,
+              "damage_type": "magical",
+              "element": "fire",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 3,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -19006,7 +19180,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 122.50000000000001
+              "expected_raw_power": 220.5,
+              "damage_type": "magical",
+              "element": "fire",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 3,
+              "armor_rule": "normal"
             }
           ]
         }
@@ -19048,7 +19228,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 140.0
+              "expected_raw_power": 140.0,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             },
             {
               "effect_id": "stun",
@@ -19058,13 +19244,13 @@
               "duration_ms": 1000,
               "chance": 0.4,
               "params": {},
-              "expected_modifiers": [],
               "predicate": {
                 "type": "hit_landed",
                 "effect_id": "hit",
                 "scope": "same_target",
                 "hit_index": "any"
-              }
+              },
+              "expected_modifiers": []
             }
           ]
         }
@@ -19106,7 +19292,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 175.0
+              "expected_raw_power": 175.0,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             },
             {
               "effect_id": "stun",
@@ -19116,13 +19308,13 @@
               "duration_ms": 1000,
               "chance": 0.4,
               "params": {},
-              "expected_modifiers": [],
               "predicate": {
                 "type": "hit_landed",
                 "effect_id": "hit",
                 "scope": "same_target",
                 "hit_index": "any"
-              }
+              },
+              "expected_modifiers": []
             }
           ]
         }
@@ -19164,7 +19356,13 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 245.00000000000003
+              "expected_raw_power": 245.00000000000003,
+              "damage_type": "physical",
+              "element": "weapon",
+              "hit_rule": "physical_roll",
+              "can_crit": true,
+              "hits": 1,
+              "armor_rule": "normal"
             },
             {
               "effect_id": "stun",
@@ -19174,13 +19372,13 @@
               "duration_ms": 1000,
               "chance": 0.4,
               "params": {},
-              "expected_modifiers": [],
               "predicate": {
                 "type": "hit_landed",
                 "effect_id": "hit",
                 "scope": "same_target",
                 "hit_index": "any"
-              }
+              },
+              "expected_modifiers": []
             }
           ]
         }

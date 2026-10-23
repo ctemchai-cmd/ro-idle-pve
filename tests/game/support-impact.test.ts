@@ -2,6 +2,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import tuning131 from './fixtures/boss-focus-131.json';
 import type { AccountState, Effect, Modifier, SkillDefinition } from '../../src/contracts/index.ts';
 import { EffectPipeline } from '../../src/domain/combat/effects.ts';
 import { recomputeStats } from '../../src/domain/combat/status.ts';
@@ -34,6 +35,7 @@ test('all support curves scale from their original values once and damage curves
   // D133/D138/D139/D157 explicitly supersede these original curves. Verify every
   // resolved rank against the separately authored numeric golden intents instead.
   const superseded=new Set(['hunter_blitz_beat','priest_sanctuary','priest_resurrection','dancer_dissonance','sage_magic_barrier','merchant_loud_voice','merchant_first_aid','blacksmith_meltdown','knight_brandish','crusader_grand_cross','monk_asura','hunter_claymore','hunter_rapid_fire','wizard_storm_gust','wizard_jupitel','wizard_meteor','wizard_heavens_drive','sage_psychic_bolt','assassin_sonic_blow','assassin_detonate','assassin_grimtooth','rogue_raid','blacksmith_cart_crash','alchemist_acid_terror','alchemist_demonstration']);
+  for(const row of tuning131.skills)if(Object.keys(row.power_scales).length)superseded.add(row.id);
   goldens([...superseded]).forEach(checkGolden);
   for (const family of ['baseline_support_power', 'baseline_skill_power']) for (const [id, curves] of Object.entries(spec[family]) as [string, Record<string, number[]>][]) for (const [key, values] of Object.entries(curves)) {
     if(superseded.has(id))continue;

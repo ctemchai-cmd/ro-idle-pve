@@ -1,0 +1,44 @@
+{
+  "passed": true,
+  "measured_hash": "48208178f82835282713a1490058b9565c136287db457fbf673626ab7a0d379f",
+  "released_hash": "99a5516d6a1ea601c2c92edf52020ae3df11f611799a1d9930e84089c240b43e",
+  "only_delta": "rogue_copy_mage_fire_bolt base and Awaken power synchronized to Fire Bolt; none of the bounded audit candidates equips that copied skill",
+  "fixtures": 1224,
+  "inputs": 2448,
+  "all_input_sha256": "9fdc181cc04de3bff96240b4268b18fff8912ab4f3d55eff22e8f7c5513bf075",
+  "examples": [
+    {
+      "condition": "class2-70-gear60",
+      "build": "wizard-1-magic",
+      "encounter": "dummy",
+      "seed": 22901,
+      "sample_identical": true,
+      "final_identical_except_content_hash": true
+    },
+    {
+      "condition": "class2-70-gear60",
+      "build": "wizard-1-magic",
+      "encounter": "pressure",
+      "seed": 22901,
+      "sample_identical": true,
+      "final_identical_except_content_hash": true
+    },
+    {
+      "condition": "class2-70-gear60",
+      "build": "rogue-1-power",
+      "encounter": "dummy",
+      "seed": 22901,
+      "sample_identical": true,
+      "final_identical_except_content_hash": true
+    },
+    {
+      "condition": "class2-70-gear60",
+      "build": "rogue-1-power",
+      "encounter": "pressure",
+      "seed": 22901,
+      "sample_identical": true,
+      "final_identical_except_content_hash": true
+    }
+  ],
+  "method": "Schema and implementation hashes equal. All documents equal after restoring exactly two declared power arrays. Every complete compiled battle input, initial budget and cost equals the measured version. Four actual seed replays have identical samples and checkpoints except manifest content_hash. This is an equivalence proof, not a new full seed batch."
+}

@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import { gunzipSync } from 'node:zlib';
 import raw from '../../src/generated/content.json';
 import manifest from './fixtures/awaken-identities-130.json';
+import tuning131 from './fixtures/boss-focus-131.json';
 import { actor,content,unwrap,type Active } from './combat-fixtures.ts';
 import { resolveSkill } from '../../src/domain/build/resolve-skill.ts';
 import { createBattle,advanceUntil } from '../../src/domain/combat/index.ts';
@@ -11,11 +12,17 @@ import type { BattleCheckpoint,SkillDefinition } from '../../src/contracts/index
 import { effectDescriptions } from '../../src/client/skills.ts';
 
 const before=JSON.parse(gunzipSync(readFileSync(new URL('../../plan/evidence/task-129/content-before.json.gz',import.meta.url))).toString()) as typeof raw;
-test('D160 keeps every base definition, price, native icon and saved logical ID; 152 explicit gains replace generic CC fallback',()=>{
+test('D160 keeps prices, native icons and saved IDs; base differences are limited to D161 declared power/focus tuning',()=>{
  assert.equal(manifest.count,152);assert.equal(new Set(manifest.variants.map(s=>s.id)).size,152);
  for(const root of ['swordsman','acolyte','archer','mage','thief','merchant']as const){
   const file=`skills/${root}.json`as 'skills/acolyte.json',old=before.documents[file],now=raw.documents[file];
-  for(const key of ['skills','hi_class_skills','upgrades','hi_class_upgrades','awakened_upgrades']as const)assert.deepEqual(now[key],old[key],`${root}:${key}`);
+  for(const key of ['upgrades','hi_class_upgrades','awakened_upgrades']as const)assert.deepEqual(now[key],old[key],`${root}:${key}`);
+  for(const key of ['skills','hi_class_skills']as const)for(const original of old[key]){
+   const actual=structuredClone(now[key].find(s=>s.id===original.id)!)as Record<string,any>,change=tuning131.skills.find(s=>s.id===original.id);
+   if(change?.focus_bonus)delete actual.single_target_damage_bonus;
+   for(const param of Object.keys(change?.power_scales??{}))actual.level_parameters[param]=(original.level_parameters as Partial<Record<string,number[]>>)[param];
+   assert.deepEqual(actual,original,original.id); // D161 arithmetic checked independently in boss-focus.test.ts.
+  }
  }
  for(const entry of manifest.variants){
   const base=resolveSkill(entry.id,10,content).definition as SkillDefinition;
@@ -42,7 +49,8 @@ test('D160 extra hits use a uniform +20% total direct-power budget at all ranks,
    assert.ok('attack_ratio'in oldHit.formula.params);assert.ok('attack_ratio'in hit.formula.params);
    const param=oldHit.formula.params.attack_ratio as unknown as {level_param:string};
    const oldPerHit=(old as SkillDefinition).level_parameters[param.level_param]![rank-1]!;
-   assert.ok(Math.abs(Number(hit.formula.params.attack_ratio)*Number(hit.hits)-oldPerHit*Number(oldHit.hits)*1.2)<.00002,row.id);
+   const scale=Number((tuning131.skills.find(s=>s.id===row.id)?.power_scales as Record<string,number>|undefined)?.[param.level_param]??1);
+   assert.ok(Math.abs(Number(hit.formula.params.attack_ratio)*Number(hit.hits)-oldPerHit*scale*Number(oldHit.hits)*1.2)<.00003,row.id);
   }
  }
 });

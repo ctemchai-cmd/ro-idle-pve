@@ -1,4 +1,6 @@
 import { readFileSync } from 'node:fs';
+import {gunzipSync} from 'node:zlib';
+import tuning131 from './fixtures/boss-focus-131.json';
 import sanctuaryBefore127 from './fixtures/sanctuary-before-127.json';
 import hunterBefore128 from './fixtures/hunter-before-128.json';
 /** Frozen scope checks retain all historical bytes except separately tested D154/D157 changes. */
@@ -8,6 +10,13 @@ export function legacyClass2Source(file: string): Buffer {
     // TASK123 appends inactive High programs/prices; preserve the original Class2 bytes.
     const text = bytes.toString(), start = text.indexOf(',\n  \"hi_class_skills\"');
     if (start >= 0) bytes = Buffer.from(text.slice(0, start) + '\n}\n');
+    // D161's exact power/focus changes have their own frozen arithmetic and A/B
+    // tests. Restore only those skill rows for historical asset-only scope checks.
+    const baseline=JSON.parse(gunzipSync(readFileSync(new URL('../../plan/evidence/task-131/authored-before.json.gz',import.meta.url))).toString())as Record<string,string>;
+    for(const s of tuning131.skills){
+      const pattern=new RegExp('^    \\{\\n      "id": "'+s.id+'"[\\s\\S]*?\\n    \\}','m'),original=baseline['plan/data/'+file]!.match(pattern)?.[0];
+      if(original)bytes=Buffer.from(bytes.toString().replace(pattern,original));
+    }
   }
   if (file === 'skills/archer.json') {
     for (const skill of hunterBefore128) {

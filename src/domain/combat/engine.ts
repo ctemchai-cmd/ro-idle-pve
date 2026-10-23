@@ -263,7 +263,12 @@ export function advanceUntil(input: BattleState, toGameMs: number, content: Vali
     if (skill.kind !== 'active') throw new Error('INVALID_CAST_PROGRAM');
     const selected = targets(actor, skill, cast.target_bindings);
     emit({ type: 'cast_resolve', actor_id: actor.actor_id, skill_id: skill.id }); metric(actor, skill.id, 'casts_resolved', 1);
-    const context = { ...pipeline.context(actor, skill.id, 'skill', cast.token), offense: cast.offense_snapshot, pre_cost_sp: cast.pre_cost.sp, weapon_element: cast.weapon_element_snapshot, selected };
+    // A skill can concentrate its damage when only one hostile remains. Evaluate
+    // once before effects: kills within this program cannot change its own bonus.
+    // Periodic effects inherit this application snapshot, without reapplying it.
+    const focused = skill.single_target_damage_bonus !== undefined && state.actors.filter(a => a.team !== actor.team && a.targetable && a.hp > 0).length === 1;
+    const offense = focused ? { ...cast.offense_snapshot, skill_damage_bonus: (cast.offense_snapshot.skill_damage_bonus ?? 0) + numeric(skill.single_target_damage_bonus!) } : cast.offense_snapshot;
+    const context = { ...pipeline.context(actor, skill.id, 'skill', cast.token), offense, pre_cost_sp: cast.pre_cost.sp, weapon_element: cast.weapon_element_snapshot, selected };
     context.source.origin_life_epoch = originEpoch;
     pipeline.program(skill.effects, context); pipeline.event('cast_resolve', actor, context);
     if (actor.hp > 0 && actor.cast === cast) resume(actor, numeric(skill.timing.after_cast_ms));

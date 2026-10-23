@@ -1,0 +1,46 @@
+{
+  "task_id": "TASK-131",
+  "passed": false,
+  "stage": "local passed; awaiting hosted release",
+  "content_hash": "99a5516d6a1ea601c2c92edf52020ae3df11f611799a1d9930e84089c240b43e",
+  "local": {
+    "full_tests": 636,
+    "full_passed": 636,
+    "targeted": 28,
+    "copy_support": 25,
+    "oracle_regressions": 14,
+    "scope_regressions": 9,
+    "native_groups": 4,
+    "native_390_320": true,
+    "root_build_gzip_bytes": 623836,
+    "filtered_build_gzip_bytes": 623836,
+    "pack_bytes": 33108285,
+    "pack_hash": "b9a9280a8c7cd03a430256592591483015b3cfd0b95cf238a12ca50dea3c32bd",
+    "M0_and_readiness": "passed"
+  },
+  "balance": {
+    "rescreen_fights": 11472,
+    "fixed_A_B_fights": 4160,
+    "equivalence_replay_fights": 8,
+    "conditions": 11,
+    "fixtures": 1224,
+    "screen_groups": 2448,
+    "heldout_groups": 258,
+    "measured_hash": "48208178f82835282713a1490058b9565c136287db457fbf673626ab7a0d379f",
+    "release_equivalence": "All2448 compiled battle inputs identical after FireBolt copy sync; metadata preserves both hashes, no falsely relabeled seed batch."
+  },
+  "limitations": [
+    "Single neutral90s boss; support judged separately from personal DPS",
+    "No all-card/refine/rarity/element matrix; TASK041 stays open",
+    "Candidate pool bounded, not exhaustive best builds",
+    "Only4 equipped Active skills Awaken; passives use base"
+  ],
+  "owner_writes": 0,
+  "SQL_or_env_changes": false,
+  "personal_preview_restarted": false,
+  "evidence": [
+    "plan/evidence/task-131/README.md",
+    "plan/evidence/task-131/content-equivalence.json",
+    "plan/evidence/task-131-native.json"
+  ]
+}

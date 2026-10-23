@@ -14094,6 +14094,86 @@
         "plan/evidence/task-130-review.json",
         "plan/evidence/task-130-hosted.json"
       ]
+    },
+    {
+      "id": "T131-AC-01",
+      "task_id": "TASK-131",
+      "acceptance_id": "AC-01",
+      "criterion": "สกิลหมู่ยังตีหลายเป้าได้ พลังเพิ่มเฉพาะ resolve ที่มีศัตรู living/targetable ตัวเดียว; ฝั่งฝ่ายเดียวกัน/ตัวตาย/untargetable ไม่นับ; direct/periodic snapshot ไม่บวกซ้ำและไม่เพิ่มให้ normal/heal",
+      "input_setup": "Synthetic identical build/gear/boss/seed and disposable shared UI; no owner save",
+      "input_refs": [
+        "scripts/game/boss-focus-audit.ts",
+        "tests/game/boss-focus.test.ts"
+      ],
+      "parameters": {
+        "seeds": "22901–22916"
+      },
+      "expected": "สกิลหมู่ยังตีหลายเป้าได้ พลังเพิ่มเฉพาะ resolve ที่มีศัตรู living/targetable ตัวเดียว; ฝั่งฝ่ายเดียวกัน/ตัวตาย/untargetable ไม่นับ; direct/periodic snapshot ไม่บวกซ้ำและไม่เพิ่มให้ normal/heal",
+      "verification": "Shared engine assertions, frozen A/B, candidate re-screen, build and native/hosted browser",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-131/review.json"
+      ]
+    },
+    {
+      "id": "T131-AC-02",
+      "task_id": "TASK-131",
+      "acceptance_id": "AC-02",
+      "criterion": "ราคา/ทุน/IDs/เลเวล/CT/ACD/SP/interrupt/4-slot/uncapped buffs เดิม; descriptions แสดง bonus จริง และทุกการเปลี่ยนข้อมูลระบุได้",
+      "input_setup": "Synthetic identical build/gear/boss/seed and disposable shared UI; no owner save",
+      "input_refs": [
+        "scripts/game/boss-focus-audit.ts",
+        "tests/game/boss-focus.test.ts"
+      ],
+      "parameters": {
+        "seeds": "22901–22916"
+      },
+      "expected": "ราคา/ทุน/IDs/เลเวล/CT/ACD/SP/interrupt/4-slot/uncapped buffs เดิม; descriptions แสดง bonus จริง และทุกการเปลี่ยนข้อมูลระบุได้",
+      "verification": "Shared engine assertions, frozen A/B, candidate re-screen, build and native/hosted browser",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-131/review.json"
+      ]
+    },
+    {
+      "id": "T131-AC-03",
+      "task_id": "TASK-131",
+      "acceptance_id": "AC-03",
+      "criterion": "มี fixed A/B และ candidate re-screen หลายระดับ/gear/seed พร้อม total/skill/team DPS; รายงานผลและข้อจำกัดตามจริง ไม่ปิด TASK041 จาก dummy ตัวเดียว",
+      "input_setup": "Synthetic identical build/gear/boss/seed and disposable shared UI; no owner save",
+      "input_refs": [
+        "scripts/game/boss-focus-audit.ts",
+        "tests/game/boss-focus.test.ts"
+      ],
+      "parameters": {
+        "seeds": "22901–22916"
+      },
+      "expected": "มี fixed A/B และ candidate re-screen หลายระดับ/gear/seed พร้อม total/skill/team DPS; รายงานผลและข้อจำกัดตามจริง ไม่ปิด TASK041 จาก dummy ตัวเดียว",
+      "verification": "Shared engine assertions, frozen A/B, candidate re-screen, build and native/hosted browser",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-131/review.json"
+      ]
+    },
+    {
+      "id": "T131-AC-04",
+      "task_id": "TASK-131",
+      "acceptance_id": "AC-04",
+      "criterion": "targeted/full regression/build/boundaries/mobile/public deployment ผ่านพร้อมหลักฐาน",
+      "input_setup": "Synthetic identical build/gear/boss/seed and disposable shared UI; no owner save",
+      "input_refs": [
+        "scripts/game/boss-focus-audit.ts",
+        "tests/game/boss-focus.test.ts"
+      ],
+      "parameters": {
+        "seeds": "22901–22916"
+      },
+      "expected": "targeted/full regression/build/boundaries/mobile/public deployment ผ่านพร้อมหลักฐาน",
+      "verification": "Shared engine assertions, frozen A/B, candidate re-screen, build and native/hosted browser",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-131/review.json"
+      ]
     }
   ]
 }
