@@ -25,15 +25,15 @@ TASK-124/125/128/129 (done): Awaken152 variants, ราคาและเซฟ�
 - [x] AC-01: 152variantsมีgainเฉพาะหน้าที่ตรวจได้ ไม่มีgeneric+10%CCresistanceเป็นโบนัสใหม่เดี่ยว; โบนัสจริงขึ้นตามrankและมีตารางอธิบายรายสกิล
 - [x] AC-02: active+passive representative oracle และทุก152variant actual sharedengine/1x2x4/checkpointผ่าน; hitรวม/โอกาส/การขัด/ช่วงเวลา/targetsถูกต้อง
 - [x] AC-03: base152นิยาม/ราคา/Awakenเศษ/ทุน/IDs/nativeicons/queueเดิม; อธิบายสกิล/สมุดสกิล/Timelineตรงผลจริงและไม่มีคำอธิบายตกหล่น
-- [ ] AC-04: targeted/full checksตามความจำเป็น/build/boundaries/native mobile/public deploymentผ่าน และผลbefore-afterอ้างcontent hashแยกจากTASK129ชัด
+- [x] AC-04: targeted/full checksตามความจำเป็น/build/boundaries/native mobile/public deploymentผ่าน และผลbefore-afterอ้างcontent hashแยกจากTASK129ชัด
 
 ## วิธีตรวจและหลักฐาน
 
 | เกณฑ์ | วิธีตรวจ | ผลจริง |
 | --- | --- | --- |
-| AC-01–04 | generator manifest / targeted tests / actual engine parity / build / mobile / hosted | รอตรวจ |
+| AC-01–04 | generator manifest / targeted tests / actual engine parity / build / mobile / hosted | ผ่าน152gains/631TS/root+filtered/native4groups/832paired/hosted4groups |
 
-ผู้ตรวจ: Codex · วันที่:24ต.ค.2026 · รอบreview:0
+ผู้ตรวจ: Codex · วันที่:24ต.ค.2026 · รอบreview:2
 
 ## Blocker / คำถาม
 
@@ -46,3 +46,8 @@ TASK-124/125/128/129 (done): Awaken152 variants, ราคาและเซฟ�
 - Nativeสมุดสกิล32jobs/rank10/7representatives/Timeline/6hit/purpleNative390320ผ่าน4groups/0writes; viewed320. Harnessแก้selectorที่ซ้อนกัน ไม่แก้UIเพียงเพื่อผ่าน
 - Paired832ไฟต์ newhash9ae8e3b2… actualinitialstats+ต้นทุนเท่ากันทุกseed. [ผล](../evidence/task-130-high-90-awaken10-comparison.json)
 - AC04ยังรอcommit/push/VercelSUCCESS/publicproofก่อนdone ไม่มีownerเซฟหรือ6173ถูกแตะ
+
+## Hosted review รอบ2
+
+- SOURCEdfd3f0fc4 / VercelSUCCESS9NSJoEXV3yRVpnXEKWkPJFmSepiz; public4groupsผ่าน: API9ae8hash/SIN1/auth401,24publishedbundleSHA/new3statuses+penetrationfield,32jobs152skills/nativeChampionSniper90/Hunterbase/320390/0writes
+- [ผลตรวจ](../evidence/task-130-review.json) / [hosted](../evidence/task-130-hosted.json) / [ผลทุกสกิล](../design/49-awaken-identities.md). พร้อมใช้บนเว็บ ไม่มีSQL/envใหม่หรือownerwrite/6173restart

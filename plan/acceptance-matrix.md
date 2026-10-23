@@ -641,10 +641,10 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 
 | `T129-AC-04` [TASK-129](done/tasks_129.md) | รายงาน JSON/CSV/HTML/Markdown ระบุ content hash, command, เงื่อนไข/ต้นทุน/ข้อจำกัด; tests/typecheck/boundaries ผ่าน ไม่มี gameplay/owner save mutation | shared engine / tests / reports | ผ่าน |
 
-| `T130-AC-01` [TASK-130](review/tasks_130.md) | 152variantsมีgainเฉพาะหน้าที่ตรวจได้ ไม่มีgeneric+10%CCresistanceเป็นโบนัสใหม่เดี่ยว; โบนัสจริงขึ้นตามrankและมีตารางอธิบายรายสกิล | shared engine / tests / reports | ยังไม่ตรวจ |
+| `T130-AC-01` [TASK-130](done/tasks_130.md) | 152variantsมีgainเฉพาะหน้าที่ตรวจได้ ไม่มีgeneric+10%CCresistanceเป็นโบนัสใหม่เดี่ยว; โบนัสจริงขึ้นตามrankและมีตารางอธิบายรายสกิล | shared engine / tests / reports | ผ่าน631TS/832paired/native+hosted4groups |
 
-| `T130-AC-02` [TASK-130](review/tasks_130.md) | active+passive representative oracle และทุก152variant actual sharedengine/1x2x4/checkpointผ่าน; hitรวม/โอกาส/การขัด/ช่วงเวลา/targetsถูกต้อง | shared engine / tests / reports | ยังไม่ตรวจ |
+| `T130-AC-02` [TASK-130](done/tasks_130.md) | active+passive representative oracle และทุก152variant actual sharedengine/1x2x4/checkpointผ่าน; hitรวม/โอกาส/การขัด/ช่วงเวลา/targetsถูกต้อง | shared engine / tests / reports | ผ่าน631TS/832paired/native+hosted4groups |
 
-| `T130-AC-03` [TASK-130](review/tasks_130.md) | base152นิยาม/ราคา/Awakenเศษ/ทุน/IDs/nativeicons/queueเดิม; อธิบายสกิล/สมุดสกิล/Timelineตรงผลจริงและไม่มีคำอธิบายตกหล่น | shared engine / tests / reports | ยังไม่ตรวจ |
+| `T130-AC-03` [TASK-130](done/tasks_130.md) | base152นิยาม/ราคา/Awakenเศษ/ทุน/IDs/nativeicons/queueเดิม; อธิบายสกิล/สมุดสกิล/Timelineตรงผลจริงและไม่มีคำอธิบายตกหล่น | shared engine / tests / reports | ผ่าน631TS/832paired/native+hosted4groups |
 
-| `T130-AC-04` [TASK-130](review/tasks_130.md) | targeted/full checksตามความจำเป็น/build/boundaries/native mobile/public deploymentผ่าน และผลbefore-afterอ้างcontent hashแยกจากTASK129ชัด | shared engine / tests / reports | ยังไม่ตรวจ |
+| `T130-AC-04` [TASK-130](done/tasks_130.md) | targeted/full checksตามความจำเป็น/build/boundaries/native mobile/public deploymentผ่าน และผลbefore-afterอ้างcontent hashแยกจากTASK129ชัด | shared engine / tests / reports | ผ่าน631TS/832paired/native+hosted4groups |

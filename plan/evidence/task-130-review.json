@@ -1,8 +1,8 @@
 {
   "task_id": "TASK-130",
-  "passed": false,
+  "passed": true,
   "local_passed": true,
-  "hosted_status": "pending_push",
+  "hosted_status": "success",
   "content_before": "79ab94377763e3b181bab703948a94f67288ce011e30345438e5842583607104",
   "content_after": "9ae8e3b2223cc0ae1e712c5c437ca24601abdf9a372293684954c521570f109e",
   "changes": {
@@ -44,6 +44,19 @@
       "fights": 832,
       "seeds": "22901..22916",
       "locked": "pre-patch winners; initial stats, costs, gear and budgets asserted identical; not reoptimized"
+    },
+    "hosted": {
+      "passed": true,
+      "groups": 4,
+      "api_region": "sin1",
+      "content_hash": "9ae8e3b2223cc0ae1e712c5c437ca24601abdf9a372293684954c521570f109e",
+      "bundle_files_SHA": 24,
+      "native_mobile": [
+        390,
+        320
+      ],
+      "new_bonuses_in_published_bundle": true,
+      "writes": 0
     }
   },
   "runtime_pack": {
@@ -58,5 +71,7 @@
     "Before-after comparisons use fixed old winners, not globally optimal new builds",
     "Single neutral boss and two fixed contexts; not every element/card/encounter",
     "Some healer benefits are shields/HoT rather than personal DPS"
-  ]
+  ],
+  "source_commit": "dfd3f0fc4",
+  "deployment_url": "https://vercel.com/chanon2/ro-idle-pve/9NSJoEXV3yRVpnXEKWkPJFmSepiz"
 }
