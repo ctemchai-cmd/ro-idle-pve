@@ -6,6 +6,14 @@
 
 
 
+## 23 ต.ค.2026 · Codex — TASK108 done ขึ้นVercelแล้ว
+
+- SOURCE`4df191d373cf697b0ca426aadda159c951a12302` VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/9tYJDjx5rJFHxhZ94usy2yzy9c9g Public4groups162mediaSHA/contentAPI200SIN1/checkpoint401/132runtimealiases/CSS-JSdeclaredSHA/mobilelogin0writesผ่าน. Content16e596da019fb7b7b49358d502f3e2d21cde927e5245e2d171b9603cb88e3ee0 pack477ceb18c79d7f00e6b58c061780fd1654eaf9a93553a7fcbcccaba65caa355b/791IDs1467files31684766B inclmanifest565792/initial1621492.
+-101uniqueTS/38Python/M0/readiness8/build/271-60460-6926assetchecks +ActualfreshAuth/API/SQL/Chrome320/3902groupspassed.6enemyaliases loadsharednativeicon/effect/audio;HappinessHealrecipe28/HealSFX. PhotosPriest320/cardpicker320/elements390viewed. Source142selectedmodernimages bytechecked; nofullmodernfolderstaged/privateenv/ownercloud/6173restart/SQL/env/balancebatch.
+- R1actualblankassets caught missingborrowedenemyrefs, fixedruntimebuilder+negativeguard/test;R2/R3harnessscene/navcorrectedwithoutproductpatch,failureevidencekept. HostedcopiedreportoriginalTASK107labelonlycorrectedto108; originalreportpreserved/allchecksunchanged. Newhostedscript validates separateindexCSS(elementimages)andShellCSS(ownerbadges), notwrongchunk.
+- D139stable126playerIDs/costs/timing/levels;PriestResurrectionnowHappinessHeal420→700%MATK/allliving/noRevive/priest14.5previousSP-onlygrowthasdesign37. EnemyordinarymagicusesP.ATKpowerformula+magicaldamage_type/armor,heavyMATKkeptonlyheavy;stagecalibratedstats/rewards/economy/elementtableunchanged. Ownersreadactualrosterjob19genuineemblemsinbag/card/details/picker,notcombatattribution. See previoussectiondetail.
+-6ACdone Board94/108done/inprogress4old041058064067/review5/todo5 M4done54/63. Finalreadinessaftermove then docsclosurepush. Ownerfinishfightreload/backup-migrateexistingflow; noownerpatchperformed. Sourceuserothermodernassetsremainuntrackeduntouched.
+
 ## 23 ต.ค.2026 · Codex — TASK108 localผ่าน รอsourcepush/hosted
 
 - D139 userทองcraft16/PriestResurrection→HappinessHealหมู่ใหญ่priest14/SP-onlyเพิ่มผล/assetธาตุ/มอนหลากหลาย/ตราผู้สวม. Clarified owner means equipped card/item names, not combat attribution. Stable126IDs/costs/timing/levels/paidprogress; newheal420→700%MATK/allliving/noRevive.5SP-onlygrowProvoke4.5→7.5s,Ankle1.2→2.4s,bothEncore1→1.8s,HellPlantscale1.75→3.0625. Generatoridempotent.

@@ -1,6 +1,6 @@
 {
   "task_id": "TASK-108",
-  "passed": false,
+  "passed": true,
   "reviewer": "Codex self-review",
   "review_date": "2026-10-23",
   "local_passed": true,
@@ -9,11 +9,10 @@
     "AC-02": true,
     "AC-03": true,
     "AC-04": true,
-    "AC-05": true
+    "AC-05": true,
+    "AC-06": true
   },
-  "pending": [
-    "AC-06 public Vercel source/SHA/API/login verification"
-  ],
+  "pending": [],
   "checks": {
     "TS_unique": 101,
     "python": 38,
@@ -53,5 +52,16 @@
     "R1 runtime pack excluded borrowed enemy references; added6explicit aliases and build-time guard plus negative test. Old failure screenshot/report retained",
     "R2 blank background in native harness replaced with real stage scenery",
     "R3 harness now enters Upgrade before selecting card tab; no product patch to hide failure"
-  ]
+  ],
+  "source_commit": "4df191d373cf697b0ca426aadda159c951a12302",
+  "hosted": {
+    "passed": true,
+    "checks": 4,
+    "media_SHA": 162,
+    "content_hash": "16e596da019fb7b7b49358d502f3e2d21cde927e5245e2d171b9603cb88e3ee0",
+    "api_region": "sin1",
+    "anonymous_checkpoint": 401,
+    "errors": [],
+    "mutations": []
+  }
 }

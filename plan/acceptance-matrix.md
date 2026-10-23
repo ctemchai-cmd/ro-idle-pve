@@ -536,9 +536,9 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T107-AC-05` [TASK-107](done/tasks_107.md) | userfile/sharedengine/mobile/public | AC-05ตามdesign36/tasks107 | [ผ่าน implementation](evidence/task-107-review.json) |
 | `T107-AC-06` [TASK-107](done/tasks_107.md) | userfile/sharedengine/mobile/public | AC-06ตามdesign36/tasks107 | [ผ่าน implementation](evidence/task-107-review.json) |
 
-| `T108-AC-01` [TASK-108](inprogress/tasks_108.md) | audit/effects/Chrome/hosted | AC-01ตามdesign37 | ยังไม่ตรวจ |
-| `T108-AC-02` [TASK-108](inprogress/tasks_108.md) | audit/effects/Chrome/hosted | AC-02ตามdesign37 | ยังไม่ตรวจ |
-| `T108-AC-03` [TASK-108](inprogress/tasks_108.md) | audit/effects/Chrome/hosted | AC-03ตามdesign37 | ยังไม่ตรวจ |
-| `T108-AC-04` [TASK-108](inprogress/tasks_108.md) | audit/effects/Chrome/hosted | AC-04ตามdesign37 | ยังไม่ตรวจ |
-| `T108-AC-05` [TASK-108](inprogress/tasks_108.md) | audit/effects/Chrome/hosted | AC-05ตามdesign37 | ยังไม่ตรวจ |
-| `T108-AC-06` [TASK-108](inprogress/tasks_108.md) | audit/effects/Chrome/hosted | AC-06ตามdesign37 | ยังไม่ตรวจ |
+| `T108-AC-01` [TASK-108](done/tasks_108.md) | audit/effects/Chrome/hosted | AC-01ตามdesign37 | [ผ่าน implementation](evidence/task-108-review.json) |
+| `T108-AC-02` [TASK-108](done/tasks_108.md) | audit/effects/Chrome/hosted | AC-02ตามdesign37 | [ผ่าน implementation](evidence/task-108-review.json) |
+| `T108-AC-03` [TASK-108](done/tasks_108.md) | audit/effects/Chrome/hosted | AC-03ตามdesign37 | [ผ่าน implementation](evidence/task-108-review.json) |
+| `T108-AC-04` [TASK-108](done/tasks_108.md) | audit/effects/Chrome/hosted | AC-04ตามdesign37 | [ผ่าน implementation](evidence/task-108-review.json) |
+| `T108-AC-05` [TASK-108](done/tasks_108.md) | audit/effects/Chrome/hosted | AC-05ตามdesign37 | [ผ่าน implementation](evidence/task-108-review.json) |
+| `T108-AC-06` [TASK-108](done/tasks_108.md) | audit/effects/Chrome/hosted | AC-06ตามdesign37 | [ผ่าน implementation](evidence/task-108-review.json) |

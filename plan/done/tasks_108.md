@@ -23,7 +23,7 @@ TASK-107, TASK-035, TASK-036, TASK-040 (done)
 - [x] AC-03: resolved audit ทุกสกิลไม่เหลือ SP-only;5ท่าที่พบเพิ่มผลจริงทุกระดับและ descriptions ตรง
 - [x] AC-04: Story/Tower/Daily มีหลายชุดท่า รวม3–4ท่า; ไม่มีซ้ำช่อง; ใช้ shared engine/SP/interrupt ตามเดิม; heavy castยังเปิดก่อนและใช้ค่า calibration เดิมโดยไม่เอา heavy MATK ไปคูณท่าเบา
 - [x] AC-05: การ์ด/ไอเทมที่ใส่อยู่แสดงชื่อ+ตราอาชีพจริงทุกจุด และ mobile320/390ไม่ล้น
-- [ ] AC-06: focused/shared-speed/migration/assets/build/readiness/actualChrome/hostedผ่านพร้อมหลักฐานก่อนdone
+- [x] AC-06: focused/shared-speed/migration/assets/build/readiness/actualChrome/hostedผ่านพร้อมหลักฐานก่อนdone
 
 ## วิธีตรวจและหลักฐาน
 task-108-* audit, arithmetic/effect fixtures, real Chrome selected UI and enemy rotations, public SHA/API/Auth gate. เก็บผลที่ไม่ผ่านก่อนแก้ ไม่เปลี่ยนเกณฑ์เพื่อซ่อน failure.
@@ -35,3 +35,5 @@ task-108-* audit, arithmetic/effect fixtures, real Chrome selected UI and enemy 
 เริ่ม23ต.ค.2026; พบ SP-only5ท่า Provoke/HellPlant/AnkleSnare/BardEncore/DancerEncore.
 
 Local23ต.ค.:101uniqueTS/38Python/M0/readiness8/build/assets271-60460-6926ผ่าน. ActualAuth/API/SQLและmobile320/390ผ่าน native6borrowed skills+PriestHeal recipe/soundจริง; owneremblemsmain/offteam/card/gear/picker. R1runtimealiasbugแก้และมีnegativebuildtest;R2/R3เป็นharnessscene/navigationแก้และเก็บfailure. ไม่balancebatch/ownerwrite/6173restart. รอpublicAC06ก่อนdone.
+
+Final23ต.ค.:PublicVercel4groupsผ่าน content/API200SIN1/checkpoint401/162mediaSHA/126player+6enemy refs/11elementimages/19classemblems/CSS+JSdeclaredSHA/mobilelogin0writes. Source`4df191d373cf697b0ca426aadda159c951a12302` [review](../evidence/task-108-review.json). ผู้ตรวจCodex self-review ไม่อ้างผู้ใช้อนุมัติภาพ. จบไฟต์reload/backup-migrateflowเดิม;ไม่ownercloudwrite.
