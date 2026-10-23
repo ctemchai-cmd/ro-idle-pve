@@ -23,13 +23,15 @@ TASK-022, TASK-040, TASK-063, TASK-110 (done)
 - [x] AC-02:หนึ่งownerสร้างครบ10เซฟคนละidentity;JWTowner+slotderiveเท่านั้น;0/11/invalid400,anonymous401,otherownerอ่านเขียนไม่ได้;UUIDเดิมแยกต่อslot/replayไม่จ่ายซ้ำ;reset/restore/migrate/backup/farm/battle/rightsไม่ข้ามช่อง;mutationยัง2RPC/ไม่มีlistingต่อclick
 - [x] AC-03:หลังloginแสดง10ช่องและเลือกสร้าง/เล่นได้,320/390ไม่ล้น;job/level/stageเวลาแสดงจริง;Settingsสลับได้และแสดงช่องปัจจุบัน;ห้ามสลับระหว่างsaveหรือbattle;empty/migration/errorกลับchooserได้;reloadกลับchooserเลือกเดิมยังอยู่
 - [x] AC-04:localbackup/lock/pending/receipt/lateHTTPresponseแยกsaveID;slot1keyเก่าใช้ต่อ;dispose/reconnect/switchไม่เขียนสลับ;AFKแต่ละเซฟ12hแยก;oldSQLfeaturefallbackเล่นslot1ต่อได้
-- [ ] AC-05:targeted/fullappropriate/M0/readiness/build/type/boundary/secrets+freshactualAuth-API-Postgres/localbrowserผ่าน;publicdeploy/login/unauthorizedAPI/version/bundleSHAผ่าน. SQL008พร้อมให้ผู้ใช้รัน;ยังไม่อ้างว่าcloudเปิด10เซฟจนยืนยันติดตั้ง/ใช้งานจริง
+- [x] AC-05:targeted/fullappropriate/M0/readiness/build/type/boundary/secrets+freshactualAuth-API-Postgres/localbrowserผ่าน;publicdeploy/login/unauthorizedAPI/version/bundleSHAผ่าน. SQL008พร้อมให้ผู้ใช้รัน;ยังไม่อ้างว่าcloudเปิด10เซฟจนยืนยันติดตั้ง/ใช้งานจริง
 
 ## วิธีตรวจและหลักฐาน
 TASK111 unit/freshSQLupgrade/RLS/API/Chrome320-390/publicread-only;ไม่อ่านenvส่วนตัวหรือแตะownercloud/6173. เก็บevidence task-111-*ก่อนdone. SupabaseSQLจริงต้องผู้ใช้ติดตั้งเพราะไม่มีDBaccessในsession.
 
-## Blocker / คำถาม
-ผู้ใช้ยืนยันรันSQL008สำเร็จแล้ว23ต.ค.2026;ไม่มีDBcredentialsในsessionและไม่ได้เข้าownercloud. รอsourcepush/Vercel/publicproofก่อนdone.
+## การเปิดใช้งาน
+ผู้ใช้ยืนยันรันSQL008สำเร็จแล้ว23ต.ค.2026;ไม่มีDBcredentialsในsessionและไม่ได้เข้าownercloud. sourcecbe4a7ce4134db789aa4f45e61b0041acc80ca6aขึ้นVercelSUCCESSแล้วและpublic3groupsผ่าน.
 
 ## ผลตรวจ23ต.ค.2026
-555TS/33targeted/M0/readiness8/buildผ่าน. FreshAuth/Postgres001–007→008twice/API/Chrome320–390ผ่าน4groups;legacybytes/signature/childrenครบ,10saves/sameUUID replay/RLS/childcascade/reset+restoreisolation,save+battleguards,maintenance/errorกลับchooser,late-response/pending/12hแยก. ภาพchooser320และMage320ตรวจแล้ว. AC05เหลือpublicdeployment. [review](../evidence/task-111-review.json) · [local](../evidence/task-111-local-stack.json) · [source](../evidence/task-111-source-audit.json)
+555TS/33targeted/M0/readiness8/buildผ่าน. FreshAuth/Postgres001–007→008twice/API/Chrome320–390ผ่าน4groups;legacybytes/signature/childrenครบ,10saves/sameUUID replay/RLS/childcascade/reset+restoreisolation,save+battleguards,maintenance/errorกลับchooser,late-response/pending/12hแยก. ภาพchooser320และMage320ตรวจแล้ว. AC05publicผ่าน3groups:API200SIN1/checkpoint+save-slots401/4declaredbundleSHA/unchangedcontent-pack/mobilelogin0writes. ผู้ใช้ยืนยันติดตั้งSQL008;ไม่ได้เข้าownerบัญชีเพื่อตรวจหรือเขียนเซฟ. [review](../evidence/task-111-review.json) · [local](../evidence/task-111-local-stack.json) · [source](../evidence/task-111-source-audit.json)
+
+Source`cbe4a7ce4134db789aa4f45e61b0041acc80ca6a` · [deployment](https://vercel.com/chanon2/ro-idle-pve/3qeAhPp1FcWWmEqpR8t9RTnn1BoU) · [public](../evidence/task-111-hosted.json). ผ่าน5AC → done.

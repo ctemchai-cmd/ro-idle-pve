@@ -6,6 +6,13 @@
 
 
 
+## 23 ต.ค.2026 · Codex — TASK111 done / 10save-slotsขึ้นVercelแล้ว
+
+- SOURCE`cbe4a7ce4134db789aa4f45e61b0041acc80ca6a` VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/3qeAhPp1FcWWmEqpR8t9RTnn1BoU Public3groups:API200SIN1/contentbc84/checkpoint+save-slots401/4declaredbundleSHA/newchooserandheaderbinding/mobilelogin0writesผ่าน. ผู้ใช้ยืนยันรันSQL008สำเร็จในturnนี้;ห้ามขอให้รันใหม่โดยไม่มีสาเหตุ. Noownercloudreads/writes.
+-1Auth→10independentsaves D143/design39. Slot1คงAuthUID+state/signature/history/receipts/backups/localkey;2–10derivedID. game_saves.account_id=saveidentity,owner_id=Authowner,save_slot=1–10. APIJWT→header→derive allsave/maintenance/receipt/backup paths;default1legacy. SQL008backfillmetadataonly/ownerFK/RLSchildren;creation14argcompatible+2optionalargs;onechooserRPC,noadditionalper-clickRPC. Pending/locks/Authowner/lateHTTP scoped,oldcontrollersdisposeonchange. Per-slot12hAFK;nodeviceprefsduplication.
+-555TS/33targeted/M0/readiness8/build/secrets222+freshrealSQL001–007→008twice/AuthAPI/Chrome3203904groupsผ่าน. Preserves5legacytables/HMAC;10create/replaysharedUUID/RLS/CASCADE/resetrestore/saving+battleguards/error+cachedmaintenanceback;oldSQLfallback/latepending/12h. Finalchooser320/Mage320viewed. Contentbc84ab2a8a3f10900e419b043d8ab2264048cbe09fcc817285ef1376a3b7b850/pack1ea6314ef8ec8c83b653f949d8da81fefcf5ec36c5b56a8e018eec61abeba215unchanged. Noassets/domainbalance/oldSQL/privateenv/6173restart/subagents.
+-5ACdone Board97/111done/inprogress4old041058064067/review5/todo5 M4done57/66. RootAGENTS/docsSupabaseupdated owner-vs-save invariants. Finalreadiness/docsclosurepushstillneededafterthisnote. Existingolderdebugtoolswithoutheaderoperateonlyslot1;normal/authflowchoosesrun. Do notcloseoldunverifiedtasksautomatically.
+
 ## 23 ต.ค.2026 · Codex — TASK111 localผ่าน / SQL008ผู้ใช้ติดตั้งแล้ว / รอVercel
 
 - Userต้องการ1Auth→10independentsavesเพื่อเล่นหลายอาชีพ. D143/design39:slot1คงAuthUID/state/signature/revision/children/backup/localkey;2–10deriveMD5namespaceUUIDเป็นidentifierเท่านั้น. SQL008เพิ่มowner_id/save_slot/ownerFK/RLSparentjoin/unique+boundedidentity;game_create_account2optionalargs(legacy14works),onechooserRPC. UserยืนยันรันSQL008สำเร็จในturnนี้ ไม่มีownercloudread/writeหรือcredentials.

@@ -2,18 +2,16 @@
   "task_id": "TASK-111",
   "reviewer": "Codex self-review",
   "date": "2026-10-23",
-  "passed": false,
+  "passed": true,
   "local_passed": true,
   "acceptance": {
     "AC-01": true,
     "AC-02": true,
     "AC-03": true,
     "AC-04": true,
-    "AC-05": false
+    "AC-05": true
   },
-  "pending": [
-    "Vercel deployment and public read-only proof"
-  ],
+  "pending": [],
   "checks": {
     "TS_full": 555,
     "TS_targeted": 33,
@@ -22,7 +20,8 @@
     "actual_local_stack_groups": 4,
     "actual_mobile_groups": 4,
     "SQL008_upgrade_and_rerun": true,
-    "operator_confirmed_SQL008_installed": true
+    "operator_confirmed_SQL008_installed": true,
+    "hosted_public_groups": 3
   },
   "evidence": [
     "plan/evidence/task-111-source-audit.json",
@@ -34,10 +33,15 @@
     "plan/evidence/task-111-ui-live.json",
     "plan/evidence/task-111-chooser-320.png",
     "plan/evidence/task-111-chooser-390.png",
-    "plan/evidence/task-111-slot2-320.png"
+    "plan/evidence/task-111-slot2-320.png",
+    "plan/evidence/task-111-hosted.json",
+    "plan/evidence/task-111-github-deployment.json",
+    "plan/evidence/task-111-hosted-login.png"
   ],
   "limits": [
     "Hosted owner account was not inspected or mutated; SQL installation confirmed by user",
     "Legacy personal6173 untouched; no balance batch or asset/content changes"
-  ]
+  ],
+  "source_commit": "cbe4a7ce4134db789aa4f45e61b0041acc80ca6a",
+  "deployment": "https://vercel.com/chanon2/ro-idle-pve/3qeAhPp1FcWWmEqpR8t9RTnn1BoU"
 }
