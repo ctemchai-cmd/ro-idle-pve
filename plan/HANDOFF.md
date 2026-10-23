@@ -6,6 +6,13 @@
 
 
 
+## 23 ต.ค.2026 · Codex — TASK115–116 localผ่าน รอpush/hosted
+
+- UserD148: Map/บท1–2อุปกรณ์Lv1,บท3Lv20 ไม่ต้องTier10. D149ข้อความดีกว่าแดง→double-chevron-upเขียว. คงของเดิม/slotprogress/rarity/โอกาสดรอป/ด่าน/สกิล. Gachaequipmentยังhighestfully-clearedchapterเหมือนเดิมแต่ใช้tableใหม่;cardfarm/gacha/Towerคงpoolเดิมโดยแยกcardstier_by_chapterจากoldgeartable. cardTierForChapterอยู่content/card-catalogเพื่อรักษาboundary(rewardsห้ามimportmodes). Coremigrateเดิมrefreshpool2เป็นTier1 คงoldinventory/pendingTier20/RNG/carry/cursor/การ์ด;noownerdatawrites.
+- 54targetedTS/M0/readiness8/build/secrets223passed. ActualfreshAuth/API/Postgres/mobile3groups:Lv10AFK12hchapter2ได้71gearLv1,chapter3snapshot/gacha10ชิ้นTier20;old20pendingคงและUUIDreplayไม่ซ้ำ. 320/390SVG2pathsสีrgb35,150,99/transparent/20x20ไม่มีvisibletext,afteractualequipbadgedisappears/overlevel20ไม่recommend. Final320imageviewed. Records115-116-ui-live/sourceaudit/tests/build. Earlierr1testguessedIDsuffixผิด(variantIDsไม่ลงท้าย_1)→ใช้canonicaldefinitions;r2box18→explicit20;finalr3passed. FailuresJSONkept. Typefixturetuplefixed;nogameplaytestcriteriaweakened.
+- Sourcebase70fc63cb0 main,uncommittedreviewedchanges. Newcontentc960b6ba4d81bdabec73db626810ff95ff8eb0de45de67327c730e1364f2fd75;pack1ea6314ef8ec8c83b653f949d8da81fefcf5ec36c5b56a8e018eec61abeba215เดิม. NoSQL/env/ownercloud/privateenv/6173restart/balancebatch/subagents. Usermodernuntracked~1000assetsอย่าstageทั้งfolder.
+- Tasks115/116review(lastACpublicpending);board100/116done/inprogress4/review7/todo5 M4done60/71. Rerunreadinessafterfoldermove/links. Narrowexplicitstage→commit/pushmainauthorized→GitHubVercelSUCCESS→scripts/test_early_loot_hosted.cjs(APInewhash/SIN1/lootinputSHA/samepack/5bundleSHA/greenchevronsJS-CSS/mobilelogin0writes)→closebothdone102/116/M4done62/71/all5ACpassed/links/readiness/docsclosurepush. Keepcommentary<=60s;originalMap2taskstillactivealongnewarrowrequest. Performance/Hi-classD144–147stillasprevioussection.
+
 ## 23 ต.ค.2026 · Codex — TASK112–114 done / ขึ้นVercelแล้ว
 
 - SOURCE`8b6d64d40fa2975650bd23342a48a034d3cde1f2` VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/E1X8SjxXxu34VjHhQfvdXoEwEz6G Public4groups API200SIN1/new94d70content/checkpoint+save-slots401/samepack/5declaredbundleSHA/prevalidatedcontent+retiredTier+4slotrules/mobilelogin0writesผ่าน. Noownercloudwrites. Userจบไฟต์reload→backup/migrateตามflowเดิม ไม่ต้องSQL/envใหม่;SQL008ติดตั้งแล้วอย่าขอซ้ำ.

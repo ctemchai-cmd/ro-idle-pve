@@ -118,10 +118,10 @@ test('D-071: battle.advance speed 4 credits four times the wall interval through
 });
 
 test('T053 AC-02: a Tower card chest gives a card of the player\'s tier (chapter 2 cleared → tier 20; chapter 4 → tier 40)', async () => {
-  const { gachaGearTier } = await import('../../src/domain/rewards/gacha.ts');
+  const { gachaCardTier } = await import('../../src/domain/rewards/gacha.ts');
   for (const [chapters, tier] of [[2, 20], [4, 40]] as const) {
     const state = strong(); state.story.cleared_stage_ids = storyStages(content).filter(s => s.chapter <= chapters).map(s => s.id); state.tower.highest_cleared_floor = 9;
-    const f = fixture(state); assert.equal(gachaGearTier(f.state, content), tier);
+    const f = fixture(state); assert.equal(gachaCardTier(f.state, content), tier);
     assert.equal(f.run('battle.start_tower', { floor: 10 }).result.code, 'TOWER_STARTED'); assert.equal(f.finish().result.code, 'TOWER_WON');
     const card = f.state.pending_rewards.find(c => c.claim_id === 'tower_10')!.items[0]!;
     assert.equal(card.kind, 'card'); assert.equal((content.items[card.definition_id] as unknown as { tier_level: number }).tier_level, tier, `chapter ${chapters}`);

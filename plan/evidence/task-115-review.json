@@ -1,0 +1,32 @@
+{
+  "task_id": "TASK-115",
+  "date": "2026-10-23",
+  "reviewer": "Codex self-review",
+  "passed": false,
+  "local_passed": true,
+  "acceptance": {
+    "AC-01": true,
+    "AC-02": true,
+    "AC-03": false
+  },
+  "pending": [
+    "Publicdeployment/version/bundles/login smoke"
+  ],
+  "checks": {
+    "targeted_TS": 54,
+    "build": true,
+    "M0_readiness": 8,
+    "actual_mobile_groups": 3
+  },
+  "evidence": [
+    "plan/evidence/task-115-116-tests.txt",
+    "plan/evidence/task-115-116-build.txt",
+    "plan/evidence/task-115-116-m0.txt",
+    "plan/evidence/task-115-116-source-audit.json",
+    "plan/evidence/task-115-116-ui-live.json"
+  ],
+  "limits": [
+    "Noownercloud/privateenv/6173 access; no balance batch",
+    "Earlier browser r1 suffix assumption fixed using canonical item tiers; r2 icon box size18 was made explicitly20; finalr3passed"
+  ]
+}

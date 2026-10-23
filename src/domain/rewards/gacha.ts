@@ -3,7 +3,7 @@ import type { ValidatedContent } from '../../content/model.ts';
 import { rollItemOptions } from '../build/item-options.ts';
 import { gachaCardDefinition } from './cards.ts';
 import { CARD_RARITIES } from '../build/card-rarity.ts';
-import type { CardRarity } from '../../content/card-catalog.ts';
+import { cardTierForChapter, type CardRarity } from '../../content/card-catalog.ts';
 
 type Item = AccountState['inventory'][number];
 type Wallet = AccountState['wallet'];
@@ -26,7 +26,7 @@ function weighted<K extends string>(roll: number, weights: Partial<Record<K, num
 }
 /** D-109: fixed-monster rarity; existing counter names preserve Legendary/Rare+ pity progress. */
 export function pullCards(state: AccountState, count: 1 | 10, draw: () => number, idPrefix: string, content: ValidatedContent): Item[] {
-  const pool = cardPool(content), counters = state.gacha.card_v1, items: Item[] = [], tier = gachaGearTier(state, content);
+  const pool = cardPool(content), counters = state.gacha.card_v1, items: Item[] = [], tier = gachaCardTier(state, content);
   for (let n = 0; n < count; n++) {
     const roll = draw();
     const enabled=CARD_RARITIES.filter(r=>pool.quality_weights[r]>0),keys=counters.gold_misses>=pool.pity.gold_after_misses?enabled.filter(r=>CARD_RARITIES.indexOf(r)>=4):counters.bronze_streak>=pool.pity.silver_or_better_after_bronzes?enabled.filter(r=>CARD_RARITIES.indexOf(r)>=2):enabled;
@@ -39,10 +39,17 @@ export function pullCards(state: AccountState, count: 1 | 10, draw: () => number
   return items;
 }
 /** Highest Story chapter whose final stage is cleared (≥ 1) decides the equipment tier of gacha gear (loot tier_by_chapter). */
-export function gachaGearTier(state: AccountState, content: ValidatedContent): number {
-  const stages = content.documents['stages.json']!.stages as unknown as { id: string; chapter: number }[], tiers = (content.documents['loot.json']!.gear as unknown as { tier_by_chapter: Record<string, number> }).tier_by_chapter;
+function highestClearedChapter(state: AccountState, content: ValidatedContent): number {
+  const stages = content.documents['stages.json']!.stages as unknown as { id: string; chapter: number }[];
   let chapter = 1; for (const c of new Set(stages.map(stage => stage.chapter))) { const last = stages.filter(stage => stage.chapter === c).at(-1)!; if (state.story.cleared_stage_ids.includes(last.id)) chapter = Math.max(chapter, c); }
-  return tiers[String(chapter)] ?? 1;
+  return chapter;
+}
+export function gachaGearTier(state: AccountState, content: ValidatedContent): number {
+  const tiers = (content.documents['loot.json']!.gear as unknown as { tier_by_chapter: Record<string, number> }).tier_by_chapter;
+  return tiers[String(highestClearedChapter(state, content))] ?? 1;
+}
+export function gachaCardTier(state: AccountState, content: ValidatedContent): number {
+  return cardTierForChapter(highestClearedChapter(state, content), content);
 }
 const GEAR: readonly GearRarity[] = ['rare', 'epic', 'legendary', 'immortal'];
 /** Equipment gacha (TASK-051, D-063): rarity with legendary/epic pity, a uniform definition of the player's tier, then D-062 options. */

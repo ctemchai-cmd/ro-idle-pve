@@ -163,7 +163,7 @@ test('T051 AC-03: gacha gear uses the player\'s tier and works with equip/fuse/s
 });
 
 test('D146 equipment gacha still creates new Tier20/40/60 items at the corresponding cleared chapters',()=>{
- for(const [chapter,tier] of [[2,20],[4,40],[6,60]]){
+ for(const [chapter,tier] of [[2,1],[3,20],[4,40],[6,60]]){
   const f=fixture(s=>{s.wallet.crystal=1500;s.story.cleared_stage_ids=storyStages(content).filter(row=>row.chapter<=chapter!).map(row=>row.id);});
   const before=structuredClone(f.state.inventory),receipt=f.run('gacha.pull',{pool_id:'equipment_v1',count:10},23);
   assert.equal(receipt.result.code,'GACHA_PULLED');const created=new Set(receipt.result.created_instance_ids);

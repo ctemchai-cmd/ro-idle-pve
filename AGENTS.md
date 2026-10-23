@@ -1,5 +1,9 @@
 # Project context
 
+## Early gear and upgrade indicator (23 October 2026, D148–149)
+
+Equipment drops: chapters1–2 give Lv1 gear; chapter3 gives Lv20; chapters4–8 keep their existing tiers. No Lv10 gear. Equipment gacha retains its highest-fully-cleared-chapter rule and reads the gear table. Card tier progression is separate and retains the old values for farm/gacha/Tower. Existing inventory/pending gear remains. The change-equipment list uses a green double-chevron-up instead of the visible red “ดีกว่า” tag; keep the comparison and slot notification rules.
+
 ## Latest user rules (23 October 2026, D144–147)
 
 Prioritize mobile loading/navigation/upgrade responsiveness; the user is testing balance. Do not run a new balance batch or tune combat power as part of performance work. Hi-class is the next scope: exactly two new skills per profession, existing skills maxable before70, both new skills maxable before Awaken90. See design40; suggested70/80 unlocks are still proposals. Awaken uses the actual skill icon with a purple inner-line glow.

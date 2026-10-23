@@ -1,4 +1,4 @@
-export type IconName = 'adventure' | 'team' | 'account' | 'timeline' | 'settings' | 'sound' | 'mute' | 'play' | 'pause' | 'chart' | 'close' | 'fast-forward' | 'retreat' | 'warning' | 'lightning' | 'lock' | 'gift' | 'help' | 'music' | 'save' | 'reset' | 'book' | 'sparkles' | 'check' | 'card' | 'upgrade' | 'shield' | 'heart' | 'download' | 'share';
+export type IconName = 'adventure' | 'team' | 'account' | 'timeline' | 'settings' | 'sound' | 'mute' | 'play' | 'pause' | 'chart' | 'close' | 'fast-forward' | 'retreat' | 'warning' | 'lightning' | 'lock' | 'gift' | 'help' | 'music' | 'save' | 'reset' | 'book' | 'sparkles' | 'check' | 'card' | 'upgrade' | 'chevrons-up' | 'shield' | 'heart' | 'download' | 'share';
 const paths: Record<IconName, readonly string[]> = {
   download: ['M12 3v12m-5-5 5 5 5-5', 'M4 16v5h16v-5'],
   share: ['M12 15V2m-4 4 4-4 4 4', 'M7 9H4v13h16V9h-3'],
@@ -26,6 +26,7 @@ const paths: Record<IconName, readonly string[]> = {
   check: ['m5 12 4 4L20 5'],
   card: ['M5 2h14v20H5V2Z', 'm12 6 3 6-3 5-3-5 3-6Z'],
   upgrade: ['M12 21V3m-7 7 7-7 7 7'],
+  'chevrons-up': ['m6 11 6-6 6 6', 'm6 19 6-6 6 6'],
   shield: ['M12 2 3 6v6c0 5 9 10 9 10s9-5 9-10V6l-9-4Z'],
   heart: ['M20 4a5 5 0 0 0-8 2 5 5 0 0 0-8-2c-5 5 8 16 8 16S25 9 20 4Z'],
 };
