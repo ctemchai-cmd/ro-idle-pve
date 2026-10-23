@@ -25,11 +25,7 @@ function numeric(value: unknown): number {
   return value;
 }
 function occupied(actor: BattleActor): boolean {
-  for (let index = 0; index < 4; index++) {
-    const slot = (actor.rotation_cursor + index) % 4;
-    if (actor.active_slots[slot]) { actor.rotation_cursor = slot; return true; }
-  }
-  return false;
+  return actor.active_slots.some(id => id !== null);
 }
 function activeDefinition(actor: BattleActor): ActiveSkill {
   const id = actor.active_slots[actor.rotation_cursor];
@@ -274,6 +270,12 @@ export function advanceUntil(input: BattleState, toGameMs: number, content: Vali
   }
 
   function start(actor: BattleActor) {
+    // D147: an empty slot spends its SI, without a cast, SP cost or invented ACD.
+    // It still waits at the same action gate during CC, and normals keep their clock.
+    if (actor.active_slots[actor.rotation_cursor] === null) {
+      actor.rotation_cursor = (actor.rotation_cursor + 1) % 4;
+      enterPhase(state, actor, 'skill_interval'); return;
+    }
     const skill = activeDefinition(actor), cost = skill.cost;
     const requiredSp = typeof cost.sp === 'number' ? fixedSpCost(cost.sp, actor.stats) : 'mode' in cost.sp ? numeric(cost.sp.minimum_sp) : NaN;
     const spheres = numeric(cost.spirit_spheres);

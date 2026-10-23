@@ -3,7 +3,7 @@ import { useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 /** Keep visible inventory rows mounted; filters and bulk selection still use the full list. */
 export function VirtualGrid<T>({ items, renderItem }: { items: readonly T[]; renderItem: (item: T, index: number) => ReactNode }) {
   const root = useRef<HTMLDivElement>(null), grid = useRef<HTMLDivElement>(null);
-  const [range, setRange] = useState({ row: 0, count: 12, columns: 6, pitch: 64, gap: 6 });
+  const [range, setRange] = useState({ row: 0, count: 8, columns: 6, pitch: 64, gap: 6 });
   useLayoutEffect(() => {
     const node = root.current!, cells = grid.current!, viewport = node.closest<HTMLElement>('.page-layer');
     if (!viewport) return;
@@ -13,7 +13,7 @@ export function VirtualGrid<T>({ items, renderItem }: { items: readonly T[]; ren
       const style = getComputedStyle(cells), columns = style.gridTemplateColumns.split(/\s+/).length || 6, gap = parseFloat(style.rowGap) || 0;
       const cell = cells.querySelector<HTMLElement>('.bag-cell'), pitch = (cell?.getBoundingClientRect().height ?? 58) + gap;
       const rows = Math.ceil(items.length / columns), offset = viewport.getBoundingClientRect().top - node.getBoundingClientRect().top;
-      const row = Math.min(Math.max(0, rows - 1), Math.max(0, Math.floor(offset / pitch) - 2)), count = Math.ceil(viewport.clientHeight / pitch) + 4;
+      const row = Math.min(Math.max(0, rows - 1), Math.max(0, Math.floor(offset / pitch) - 1)), count = Math.ceil(viewport.clientHeight / pitch) + 2;
       setRange(old => old.row === row && old.count === count && old.columns === columns && old.pitch === pitch && old.gap === gap ? old : { row, count, columns, pitch, gap });
     };
     const schedule = () => { if (!raf) raf = requestAnimationFrame(measure); };

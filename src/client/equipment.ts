@@ -1,4 +1,4 @@
-import { loadValidatedContent } from '../content/index.ts';
+import { loadValidatedContent } from './content.ts';
 import type { AccountState, CombatStats } from '../contracts/index.ts';
 import { applyEquipmentCommand, assignedOwner, equipmentFit, equipmentRules, equipmentSlots, itemDefinition, salvageQuote, type EquipmentCommand, type EquipmentSlot, type InventoryItem } from '../domain/progression/equipment.ts';
 import { equippedSources, resolvedEquipmentModifiers } from '../domain/build/equipment.ts';

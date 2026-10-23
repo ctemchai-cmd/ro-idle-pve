@@ -1,0 +1,32 @@
+{
+  "task_id": "TASK-112",
+  "passed": false,
+  "checks": [
+    "SQL008twice preserveslegacyID/state/hash/revision/history/receipts/battle/backupbytes andoldsignature"
+  ],
+  "errors": [],
+  "commands": [
+    {
+      "slot": "2",
+      "type": "account.create",
+      "uuid": "4ace2949-0c40-4267-addb-d16fded2ce69"
+    },
+    {
+      "slot": "3",
+      "type": "account.create",
+      "uuid": "35a4c3a5-0590-4ac0-a152-db7a1c90a798"
+    }
+  ],
+  "measurements": [
+    {
+      "width": 390,
+      "slots": 10
+    },
+    {
+      "width": 320,
+      "slots": 10
+    }
+  ],
+  "failure": "MOBILE_CHOOSER: RELOAD_LOST_SLOT",
+  "scope": "ActualfreshlegacySQL1–7→008twice/Auth/Postgres/API/RLS/mobile320/390;noownercloud/privateenv/6173"
+}

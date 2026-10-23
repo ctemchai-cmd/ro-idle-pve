@@ -1,0 +1,41 @@
+{
+  "task_ids": [
+    "TASK-112",
+    "TASK-113",
+    "TASK-114"
+  ],
+  "passed": true,
+  "base_commit": "b04f5a2475793f0524708a6205ae6efe9c6e6e8a",
+  "final_content_hash": "94d70d1d30f44c7efbfe81cc50501d4677b4720df779389a9a60605066cd5efb",
+  "pack_hash": "1ea6314ef8ec8c83b653f949d8da81fefcf5ec36c5b56a8e018eec61abeba215",
+  "only_equipment_change": "tier_upgrade.enabled=false",
+  "only_combat_rules_change": [
+    "/rotation/empty_slots"
+  ],
+  "preserved_data_sha256": {
+    "plan/data/progression.json": "623fd84f9a31d7caa3e5af10cb5a9996c5709eecada1bf000e6bf1e0c27f992f",
+    "plan/data/cards.json": "8eeef82143917c5f6111c6d32b0108f2e05015fb248d8e9788b6bd9e9cb5295b",
+    "plan/data/loot.json": "0449ef355a02d56276ea817737881bc608ce17abe668990677edbcfaa5343067",
+    "plan/data/stages.json": "53bcb7eaf19ea4beeab78b6e603619c096f17772f9cb6ccbd97812cb753cd7f1",
+    "plan/data/tower.json": "0465a4380ee3deaa90ebb630ec45913d3adba858c3ecc4b8e6add4ef363e0dcd",
+    "plan/data/enemies.json": "6a158bbdfd7cdd831d073ff273234b54a479ae74ecabe5c522fac16d69ee6d67",
+    "plan/data/slot-progress.json": "f38f3fe6956c4902cf7e0f15d078cc8460a4f00fe36289952760d5d2f151a8fe",
+    "plan/data/skills/thief.json": "5fad2e2a02904f269f981076286908bfc4188fed81be563045d79d86299cda8b",
+    "plan/data/skills/swordsman.json": "3a584c34866366adcb0ce906712f2510c4666e1d8f21838b62423e5e908ddb38",
+    "plan/data/skills/merchant.json": "940b4cadecefa473309aaa2eee1191240613e4feb3c67b18deee70eefe53e7b8",
+    "plan/data/skills/archer.json": "5c3c3b42b3ffbda847e7d5f5f2d74769335a1e9623bd15f50e89a3d02c0a32a4",
+    "plan/data/skills/acolyte.json": "dd3117c3ea64a2f19ffae714bb412495e5594bc05790e796b509feee6a6252d8",
+    "plan/data/skills/mage.json": "ad9c1dcb9201eb070147478a29710ecef021e93ed0be4294ffe33f9e76fe0c96"
+  },
+  "owner_data_access": false,
+  "SQL_changes": false,
+  "no_balance_batch": true,
+  "full_tests": 564,
+  "build": true,
+  "actual_mobile_passed": true,
+  "failure_history": [
+    "112baseline-r1 main/offteam selector; save/nav async selector fixes retained",
+    "113-114 r1 old single-skill timing assertions and test fixture enum/card rarity; updated independently forD147",
+    "113-114 browser r1 stopped at test HISTORY seed; r2 explicit validated signature fields passed"
+  ]
+}

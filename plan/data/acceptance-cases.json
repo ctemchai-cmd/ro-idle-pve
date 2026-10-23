@@ -12756,6 +12756,196 @@
         "plan/evidence/task-111-ui-live.json",
         "plan/evidence/task-111-hosted.json"
       ]
+    },
+    {
+      "id": "T112-AC-01",
+      "task_id": "TASK-112",
+      "acceptance_id": "AC-01",
+      "criterion": "baseline/afterloadfirst/cachedพร้อมnetwork/build/CPUและbytes,profileชี้rootcauseจริง;ไม่เรียกfixtureว่าAndroidผู้ใช้",
+      "input_setup": "Frozenproductionbefore/after/Chrome390CPU4x/500itemfixture,isolatedAuthAPI-Postgres,owneruntouched",
+      "input_refs": [
+        "plan/review/tasks_112.md",
+        "plan/data/quality-budgets.json"
+      ],
+      "parameters": {
+        "environment": "isolated-local-only"
+      },
+      "expected": "baseline/afterloadfirst/cachedพร้อมnetwork/build/CPUและbytes,profileชี้rootcauseจริง;ไม่เรียกfixtureว่าAndroidผู้ใช้",
+      "verification": "Matchedproductionprofile/targetedunit/build/actualmobileAPI/publicbundles",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T112-AC-02",
+      "task_id": "TASK-112",
+      "acceptance_id": "AC-02",
+      "criterion": "matchednav500items+Stats/Skills/character switchดีขึ้นหรืออยู่≤150msp95บนCPU4x,0navigationAPI,no staleafterupgrade/equipment/save switch",
+      "input_setup": "Frozenproductionbefore/after/Chrome390CPU4x/500itemfixture,isolatedAuthAPI-Postgres,owneruntouched",
+      "input_refs": [
+        "plan/review/tasks_112.md",
+        "plan/data/quality-budgets.json"
+      ],
+      "parameters": {
+        "environment": "isolated-local-only"
+      },
+      "expected": "matchednav500items+Stats/Skills/character switchดีขึ้นหรืออยู่≤150msp95บนCPU4x,0navigationAPI,no staleafterupgrade/equipment/save switch",
+      "verification": "Matchedproductionprofile/targetedunit/build/actualmobileAPI/publicbundles",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T112-AC-03",
+      "task_id": "TASK-112",
+      "acceptance_id": "AC-03",
+      "criterion": "deterministicupgradeเห็นpreviewก่อนreply,pending/replay/confirmationหลักเดิม;แยกCPU/hash/DB/networkและไม่อ้างlocalเป็นcloudlatency",
+      "input_setup": "Frozenproductionbefore/after/Chrome390CPU4x/500itemfixture,isolatedAuthAPI-Postgres,owneruntouched",
+      "input_refs": [
+        "plan/review/tasks_112.md",
+        "plan/data/quality-budgets.json"
+      ],
+      "parameters": {
+        "environment": "isolated-local-only"
+      },
+      "expected": "deterministicupgradeเห็นpreviewก่อนreply,pending/replay/confirmationหลักเดิม;แยกCPU/hash/DB/networkและไม่อ้างlocalเป็นcloudlatency",
+      "verification": "Matchedproductionprofile/targetedunit/build/actualmobileAPI/publicbundles",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T112-AC-04",
+      "task_id": "TASK-112",
+      "acceptance_id": "AC-04",
+      "criterion": "render/farm/Boss/SFX/memoryเหมาะสมและengineoutcomeunchanged;targeted/build/actualUI/sharedsave/publicproofผ่านโดยไม่แตะบาลานซ์หรือownerdata",
+      "input_setup": "Frozenproductionbefore/after/Chrome390CPU4x/500itemfixture,isolatedAuthAPI-Postgres,owneruntouched",
+      "input_refs": [
+        "plan/review/tasks_112.md",
+        "plan/data/quality-budgets.json"
+      ],
+      "parameters": {
+        "environment": "isolated-local-only"
+      },
+      "expected": "render/farm/Boss/SFX/memoryเหมาะสมและengineoutcomeunchanged;targeted/build/actualUI/sharedsave/publicproofผ่านโดยไม่แตะบาลานซ์หรือownerdata",
+      "verification": "Matchedproductionprofile/targetedunit/build/actualmobileAPI/publicbundles",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T113-AC-01",
+      "task_id": "TASK-113",
+      "acceptance_id": "AC-01",
+      "criterion": "ไม่มีปุ่ม/preview/tierupcopyในproduct;APIใหม่ปฏิเสธก่อนwallet/itemsเปลี่ยน;fusionคนละTierยังไม่ได้",
+      "input_setup": "Frozenproductionbefore/after/Chrome390CPU4x/500itemfixture,isolatedAuthAPI-Postgres,owneruntouched",
+      "input_refs": [
+        "plan/review/tasks_113.md",
+        "plan/data/quality-budgets.json"
+      ],
+      "parameters": {
+        "environment": "isolated-local-only"
+      },
+      "expected": "ไม่มีปุ่ม/preview/tierupcopyในproduct;APIใหม่ปฏิเสธก่อนwallet/itemsเปลี่ยน;fusionคนละTierยังไม่ได้",
+      "verification": "Matchedproductionprofile/targetedunit/build/actualmobileAPI/publicbundles",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T113-AC-02",
+      "task_id": "TASK-113",
+      "acceptance_id": "AC-02",
+      "criterion": "oldtieritems/options/slotcards/ledgerคงเดิม,oldreceiptReplayเดิม,version/pending/migrationไม่ทำของหายหรือหักซ้ำ",
+      "input_setup": "Frozenproductionbefore/after/Chrome390CPU4x/500itemfixture,isolatedAuthAPI-Postgres,owneruntouched",
+      "input_refs": [
+        "plan/review/tasks_113.md",
+        "plan/data/quality-budgets.json"
+      ],
+      "parameters": {
+        "environment": "isolated-local-only"
+      },
+      "expected": "oldtieritems/options/slotcards/ledgerคงเดิม,oldreceiptReplayเดิม,version/pending/migrationไม่ทำของหายหรือหักซ้ำ",
+      "verification": "Matchedproductionprofile/targetedunit/build/actualmobileAPI/publicbundles",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T113-AC-03",
+      "task_id": "TASK-113",
+      "acceptance_id": "AC-03",
+      "criterion": "dropnewhigherTier/equipพร้อมUIเก็บค่าช่อง,tests/build/localAPI-mobile/publicผ่านโดยไม่มีownercloudwrite",
+      "input_setup": "Frozenproductionbefore/after/Chrome390CPU4x/500itemfixture,isolatedAuthAPI-Postgres,owneruntouched",
+      "input_refs": [
+        "plan/review/tasks_113.md",
+        "plan/data/quality-budgets.json"
+      ],
+      "parameters": {
+        "environment": "isolated-local-only"
+      },
+      "expected": "dropnewhigherTier/equipพร้อมUIเก็บค่าช่อง,tests/build/localAPI-mobile/publicผ่านโดยไม่มีownercloudwrite",
+      "verification": "Matchedproductionprofile/targetedunit/build/actualmobileAPI/publicbundles",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T114-AC-01",
+      "task_id": "TASK-114",
+      "acceptance_id": "AC-01",
+      "criterion": "instant0ACD/ASPD100/SI3000,ช่อง0ท่าเดียวcastที่3000/15000/27000;ช่อง2ท่าเดียวfirst9000;มีnormalhitsระหว่างช่องว่าง,allnullไม่cast",
+      "input_setup": "ExactseedrotationsSI3000/ASPD100/singleSkill+holes/CC/checkpoint/speed1x2x4",
+      "input_refs": [
+        "plan/review/tasks_114.md",
+        "plan/design/15-combat-baseline.md"
+      ],
+      "parameters": {
+        "environment": "isolated-only"
+      },
+      "expected": "instant0ACD/ASPD100/SI3000,ช่อง0ท่าเดียวcastที่3000/15000/27000;ช่อง2ท่าเดียวfirst9000;มีnormalhitsระหว่างช่องว่าง,allnullไม่cast",
+      "verification": "Exacteventtime unit+checkpoint/headless/runtime/realAPI-mobile/public",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T114-AC-02",
+      "task_id": "TASK-114",
+      "acceptance_id": "AC-02",
+      "criterion": "CT/ACDจริง+speed snapshot/SPskip/CCไม่เปลี่ยนหลักเดิม;checkpointresume/1x2x4/headless/runtime/serverและTimelineeventตรงกัน",
+      "input_setup": "ExactseedrotationsSI3000/ASPD100/singleSkill+holes/CC/checkpoint/speed1x2x4",
+      "input_refs": [
+        "plan/review/tasks_114.md",
+        "plan/design/15-combat-baseline.md"
+      ],
+      "parameters": {
+        "environment": "isolated-only"
+      },
+      "expected": "CT/ACDจริง+speed snapshot/SPskip/CCไม่เปลี่ยนหลักเดิม;checkpointresume/1x2x4/headless/runtime/serverและTimelineeventตรงกัน",
+      "verification": "Exacteventtime unit+checkpoint/headless/runtime/realAPI-mobile/public",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
+    },
+    {
+      "id": "T114-AC-03",
+      "task_id": "TASK-114",
+      "acceptance_id": "AC-03",
+      "criterion": "unit/targeted/fullappropriate/build/M0/localmobileAPI/publicผ่านพร้อมอธิบายcontentmigration;ไม่มีแก้power/lootหรือownercloudsave",
+      "input_setup": "ExactseedrotationsSI3000/ASPD100/singleSkill+holes/CC/checkpoint/speed1x2x4",
+      "input_refs": [
+        "plan/review/tasks_114.md",
+        "plan/design/15-combat-baseline.md"
+      ],
+      "parameters": {
+        "environment": "isolated-only"
+      },
+      "expected": "unit/targeted/fullappropriate/build/M0/localmobileAPI/publicผ่านพร้อมอธิบายcontentmigration;ไม่มีแก้power/lootหรือownercloudsave",
+      "verification": "Exacteventtime unit+checkpoint/headless/runtime/realAPI-mobile/public",
+      "existing_oracle_case_ids": [],
+      "status": "not_run_implementation",
+      "execution_evidence": []
     }
   ]
 }

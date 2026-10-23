@@ -1,4 +1,4 @@
-import { loadValidatedContent } from '../content/index.ts';
+import { loadValidatedContent } from './content.ts';
 import type { ActorRenderView, StatusRenderGroup, StatusRenderInstance } from '../contracts/presentation.ts';
 import type { BattleState } from '../domain/combat/index.ts';
 import { heldResourceModifiers } from '../domain/combat/resources.ts';

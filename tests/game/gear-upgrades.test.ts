@@ -4,9 +4,9 @@ import type { AccountState, Command } from '../../src/contracts/index.ts';
 import { AccountCommandRules, type CommandTime } from '../../src/domain/account/commands.ts';
 import { initializeAccount } from '../../src/domain/progression/initialize.ts';
 import { resolvedEquipmentModifiers } from '../../src/domain/build/equipment.ts';
-import { equipmentStats } from '../../src/client/equipment.ts';
 import { gearGrowthOptions } from '../../src/client/gear-upgrades.ts';
 import { content } from './combat-fixtures.ts';
+import { migrateAccountState } from '../../src/domain/account/migrate.ts';
 import { equipStarterSet } from './gear-fixtures.ts';
 const at='2026-10-20T00:00:00.000Z';
 type Gear=Extract<AccountState['inventory'][number],{kind:'equipment'}>;
@@ -32,21 +32,33 @@ test('wrong tier/type, duplicate/missing IDs, equipped/locked/training and Supre
  for(const[items,ids,code]of cases){const f=fixture();f.state.inventory.push(...items);const before=structuredClone(f.state);assert.equal(f.run('equipment.fuse',{instance_ids:ids}).receipt.result.code,code);assert.deepEqual(f.state,before,code);assert.equal(f.revision,1);}
  const f=fixture();f.state.inventory.push(gear('a'));assert.throws(()=>f.run('equipment.fuse',{instance_ids:['a','a','a']}));
 });
-test('Tier1→20→40→60 preserves exact ID/rarity/lock/refine/enchant/cards and costs26000gold/170ore, equipment sources increase only base',()=>{
- const f=fixture();f.actor.level=60;f.actor.local_cap=80;f.actor.completed_gate_ids=[20,40,60];f.actor.unspent_status_points=519;f.state.inventory.push({...gear('invested','epic'),locked:true},{kind:'card',instance_id:'card',definition_id:'card_weapon_1',rarity_id:'gold',level:5,locked:false});f.actor.equipment.weapon='invested';f.actor.slot_progress.weapon={refine:10,refine_failures:0,enchant:{line_id:'offense',level:2},cards:['card',null,null]};const progress=structuredClone(f.actor.slot_progress),before=structuredClone(f.state.wallet),attack=equipmentStats(f.state,'main').stats.physical_attack;
- for(const target of[20,40,60]){const preview=gearGrowthOptions(f.state,'main','invested').tier!;assert.equal(preview.definition.tier_level,target);f.run('equipment.tier_up',{item_instance_id:'invested',target_tier:target});assert.deepEqual(equipmentStats(f.state,'main'),preview.after);}
- const final=f.state.inventory.find(i=>i.instance_id==='invested')as Gear;assert.equal(final.definition_id,'equipment_sword_60');assert.equal(final.rarity_id,'epic');assert.equal(final.locked,true);assert.equal(f.actor.equipment.weapon,'invested');assert.deepEqual(f.actor.slot_progress,progress);assert.equal(before.gold-f.state.wallet.gold,26000);assert.equal(before.refine_ore-f.state.wallet.refine_ore,170);assert.equal(equipmentStats(f.state,'main').stats.physical_attack-attack,266*(1+.42+.30+.03));assert.equal(f.state.paid_ledger.length,0);
+test('D146 retired tier-up refuses all targets without changing invested legacy gear or slots; migration preserves it',()=>{
+ const f=fixture();f.actor.level=60;f.actor.local_cap=80;f.actor.completed_gate_ids=[20,40,60];f.actor.unspent_status_points=519;
+ f.state.inventory.push({...gear('invested','epic','equipment_sword_60'),locked:true,options:[{id:'opt_atk',roll:500}]},{kind:'card',instance_id:'card',definition_id:'card_weapon_1',rarity_id:'uncommon',level:5,locked:false});
+ f.actor.equipment.weapon='invested';f.actor.slot_progress.weapon={refine:10,refine_failures:0,enchant:{line_id:'offense',level:2},cards:['card',null,null]};
+ const before=structuredClone(f.state);
+ for(const target of[20,40,60]){assert.equal(f.run('equipment.tier_up',{item_instance_id:'invested',target_tier:target}).receipt.result.code,'TIER_UPGRADE_DISABLED');assert.deepEqual(f.state,before);}
+ const migrated=migrateAccountState(before,content).state;
+ assert.deepEqual(migrated.inventory,before.inventory);assert.deepEqual(migrated.roster,before.roster);assert.deepEqual(migrated.paid_ledger,before.paid_ledger);
+ assert.equal('tier' in gearGrowthOptions(f.state,'main','invested'),false);
 });
-test('equipped level gate/training/jump/downward tier fail; unequipped upgrade is allowed but cannot bypass equip requirement',()=>{
- const f=fixture(),before=structuredClone(f.state);assert.equal(f.run('equipment.tier_up',{item_instance_id:'starter_main_weapon',target_tier:20}).receipt.result.code,'ITEM_LEVEL_REQUIRED');assert.deepEqual(f.state,before);assert.equal(f.run('equipment.tier_up',{item_instance_id:'starter_main_weapon',target_tier:40}).receipt.result.code,'INVALID_TIER_STEP');
- f.run('equipment.unequip',{character_id:'main',slot:'weapon'});assert.equal(f.run('equipment.tier_up',{item_instance_id:'starter_main_weapon',target_tier:20}).receipt.outcome,'committed');assert.equal(f.run('equipment.equip',{character_id:'main',slot:'weapon',item_instance_id:'starter_main_weapon'}).receipt.result.code,'ITEM_LEVEL_REQUIRED');
- const bought=f.run('equipment.purchase_weapon',{character_id:'main',weapon_type:'sword',tier_level:1}),id=bought.receipt.result.created_instance_ids[0]!;assert.equal(f.run('equipment.tier_up',{item_instance_id:id,target_tier:20}).receipt.result.code,'TRAINING_WEAPON_RESTRICTED');
+test('D146 a newly acquired higher-tier item equips at its level while keeping Refine/Enchant/cards on the character slot',()=>{
+ const f=fixture();f.state.inventory.push(gear('new_drop','rare','equipment_sword_20'));
+ assert.equal(f.run('equipment.equip',{character_id:'main',slot:'weapon',item_instance_id:'new_drop'}).receipt.result.code,'ITEM_LEVEL_REQUIRED');
+ f.actor.level=20;f.actor.local_cap=40;f.actor.completed_gate_ids=[20];f.actor.unspent_status_points=91;
+ f.actor.slot_progress.weapon={refine:5,refine_failures:2,enchant:{line_id:'offense',level:2},cards:[null,null,null]};
+ const progress=structuredClone(f.actor.slot_progress),wallet=structuredClone(f.state.wallet);
+ assert.equal(f.run('equipment.equip',{character_id:'main',slot:'weapon',item_instance_id:'new_drop'}).receipt.result.code,'EQUIPMENT_ASSIGNED');
+ assert.equal(f.actor.equipment.weapon,'new_drop');assert.deepEqual(f.actor.slot_progress,progress);assert.deepEqual(f.state.wallet,wallet);
 });
 test('500-item bag may fuse to free two spaces, leaves pending fixed reward untouched, then pays the exact original instance once',()=>{
  const f=fixture();for(let i=42;i<500;i++)f.state.inventory.push(gear(`bag_${i}`));const vector={...Object.fromEntries(Object.keys(f.state.wallet).map(k=>[k,0]))}as AccountState['wallet'];f.state.pending_rewards.push({claim_id:'fixed',kind:'farm',items:[gear('fixed_drop')],resource_vector:vector,content_version:content.manifest.content_version,reserved_at:at,source_keys:['probe'],status:'pending'});
  const pending=structuredClone(f.state.pending_rewards);f.run('equipment.fuse',{instance_ids:['bag_42','bag_43','bag_44']});assert.equal(f.state.inventory.length,498);assert.deepEqual(f.state.pending_rewards,pending);f.run('reward.claim',{claim_id:'fixed'});assert.equal(f.state.inventory.length,499);assert.equal(f.state.inventory.filter(i=>i.instance_id==='fixed_drop').length,1);
 });
-test('poor-wallet preview does not mutate account; actual insufficient funds and active-battle upgrades do not change build fingerprint',()=>{
- const f=fixture();f.actor.level=20;f.actor.unspent_status_points=91;f.state.wallet.gold=0;f.state.wallet.refine_ore=0;const state=structuredClone(f.state),key=f.rules.canonical(f.rules.buildInputs(f.state));const preview=gearGrowthOptions(f.state,'main','starter_main_weapon');assert.ok(preview.tier);assert.ok(preview.tier!.after!.stats.physical_attack>preview.tier!.before.stats.physical_attack);assert.deepEqual(f.state,state);assert.equal(f.run('equipment.tier_up',{item_instance_id:'starter_main_weapon',target_tier:20}).receipt.result.code,'INSUFFICIENT_RESOURCES');assert.equal(f.rules.canonical(f.rules.buildInputs(f.state)),key);
- f.state.active_battle={battle_id:'33333333-3333-4333-8333-333333333333',mode:'story',mode_ref:'1-1',ticket_day:null,started_at:at,last_ack_at:at,lease_expires_at:'2026-10-20T00:00:15.000Z',content_hash:content.manifest.content_hash,content_version:content.manifest.content_version,rules_version:content.manifest.rules_version};assert.equal(f.run('equipment.tier_up',{item_instance_id:'starter_main_weapon',target_tier:20}).receipt.result.code,'BUILD_LOCKED_DURING_BATTLE');assert.equal(f.run('equipment.fuse',{instance_ids:['x','y','z']}).receipt.result.code,'BUILD_LOCKED_DURING_BATTLE');
+test('D146 no tier preview or wallet work; battle mutation locks and rarity fusion still apply',()=>{
+ const f=fixture();f.state.wallet.gold=0;f.state.wallet.refine_ore=0;const before=structuredClone(f.state),key=f.rules.canonical(f.rules.buildInputs(f.state));
+ const preview=gearGrowthOptions(f.state,'main','starter_main_weapon');assert.equal('tier' in preview,false);assert.deepEqual(f.state,before);
+ assert.equal(f.run('equipment.tier_up',{item_instance_id:'starter_main_weapon',target_tier:20}).receipt.result.code,'TIER_UPGRADE_DISABLED');assert.equal(f.rules.canonical(f.rules.buildInputs(f.state)),key);
+ f.state.active_battle={battle_id:'33333333-3333-4333-8333-333333333333',mode:'story',mode_ref:'1-1',ticket_day:null,started_at:at,last_ack_at:at,lease_expires_at:'2026-10-20T00:00:15.000Z',content_hash:content.manifest.content_hash,content_version:content.manifest.content_version,rules_version:content.manifest.rules_version};
+ assert.equal(f.run('equipment.tier_up',{item_instance_id:'starter_main_weapon',target_tier:20}).receipt.result.code,'BUILD_LOCKED_DURING_BATTLE');assert.equal(f.run('equipment.fuse',{instance_ids:['x','y','z']}).receipt.result.code,'BUILD_LOCKED_DURING_BATTLE');
 });

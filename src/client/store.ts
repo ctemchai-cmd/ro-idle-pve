@@ -1,5 +1,5 @@
 import { elementScrolls, preparedScroll, supplyStock } from '../domain/build/consumables.ts';
-import { loadValidatedContent } from '../content/index.ts';
+import { loadValidatedContent } from './content.ts';
 import type { AccountState } from '../contracts/index.ts';
 import { itemDefinition } from '../domain/build/equipment-definition.ts';
 import { bangkokDay } from '../domain/modes/daily.ts';

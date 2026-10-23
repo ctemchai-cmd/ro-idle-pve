@@ -95,11 +95,11 @@ test('T052 AC-02: option lines enter the shared stat pipeline exactly once and t
   assert.equal(hp.length, 1); assert.equal(hp[0]!.value, 0.05); assert.equal(crit.length, 1); assert.equal(crit[0]!.value, 0.005);
 });
 
-test('T052 AC-03: tier-up keeps the rolled lines and scales their values; old saves get stable lines from migration', () => {
+test('D146/T052: legacy higher-tier lines retain their scale and retired tier-up cannot mutate them; old saves get stable lines', () => {
   const f = fixture(s => { s.wallet.gold = 1e6; s.wallet.refine_ore = 1e4; const main = s.roster.find(a => a.character_id === 'main')!; main.level = 20; main.local_cap = 40; main.completed_gate_ids = [20]; main.unspent_status_points = 91;
-    s.inventory.push({ instance_id: 'blade', definition_id: 'equipment_sword_1', kind: 'equipment', rarity_id: 'rare', locked: false, training: false, options: [{ id: 'opt_atk', roll: 500 }] }); });
+    s.inventory.push({ instance_id: 'blade', definition_id: 'equipment_sword_20', kind: 'equipment', rarity_id: 'rare', locked: false, training: false, options: [{ id: 'opt_atk', roll: 500 }] }); });
   const before = (f.state.inventory.find(i => i.instance_id === 'blade') as Gear).options;
-  assert.equal(f.run('equipment.tier_up', { item_instance_id: 'blade', target_tier: 20 }).result.code, 'EQUIPMENT_TIER_UPGRADED');
+  assert.equal(f.run('equipment.tier_up', { item_instance_id: 'blade', target_tier: 20 }).result.code, 'TIER_UPGRADE_DISABLED');
   const after = f.state.inventory.find(i => i.instance_id === 'blade') as Gear; assert.deepEqual(after.options, before);
   assert.equal(optionValue(after.options[0]!, itemDefinition(after, content).tier_level, content).value, Math.round(optionValue(before[0]!, 1, content).value * 1.5 * 10000) / 10000);
   const old = initializeAccount(content, { root_job_id: 'mage', gender: 'female' }, '2026-10-20T00:00:00.000Z', '2026-10-20', 1) as unknown as Omit<AccountState, 'shop'> & { shop?: unknown };
@@ -137,7 +137,7 @@ test('T051 AC-02: equipment gacha costs 150/1500 crystal from the server seed, w
   assert.deepEqual(worst.state.gacha.equipment_v1, { legendary_misses: 0, rare_streak: 0 });
 });
 
-test('T051 AC-03: gacha gear uses the player\'s tier and works with equip/fuse/tier-up/salvage like any drop', () => {
+test('T051 AC-03: gacha gear uses the player\'s tier and works with equip/fuse/salvage like any drop; tier-up stays retired', () => {
   const f = fixture(s => { s.wallet.crystal = 4500; s.wallet.gold = 1e6; s.wallet.refine_ore = 1e4; s.story.cleared_stage_ids = storyStages(content).slice(0, 10).map(x => x.id); });
   for (const seed of [21, 22, 23]) assert.equal(f.run('gacha.pull', { pool_id: 'equipment_v1', count: 10 }, seed).result.code, 'GACHA_PULLED', `pull ${seed}`);
   const gear = f.state.inventory.filter(i => i.kind === 'equipment') as Gear[], def = (item: Gear) => itemDefinition(item, content);
@@ -150,10 +150,10 @@ test('T051 AC-03: gacha gear uses the player\'s tier and works with equip/fuse/t
   assert.equal(f.run('equipment.fuse', { instance_ids: triple.map(item => item.instance_id) }, 31).result.code, 'EQUIPMENT_FUSED', 'gacha items fuse');
   const pulled = new Set(gear.map(item => item.instance_id)), fused = f.state.inventory.find(item => item.kind === 'equipment' && item.instance_id.startsWith('fusion_')) as Gear;
   assert.ok(fused && fused.options.length === optionRules(content).lines_by_rarity[fused.rarity_id], `fused ${fused?.rarity_id} has its own option lines`);
-  // Tier-up keeps the rolled lines; equip a wearable pulled item; salvage another.
+  // D146: refused tier-up keeps the rolled lines; equip a wearable pulled item; salvage another.
   const rest = (f.state.inventory.filter(i => i.kind === 'equipment') as Gear[]).filter(item => pulled.has(item.instance_id));
   const climber = rest[0]!, lines = structuredClone(climber.options);
-  assert.equal(f.run('equipment.tier_up', { item_instance_id: climber.instance_id, target_tier: 20 }).result.code, 'EQUIPMENT_TIER_UPGRADED', 'gacha item tiers up');
+  assert.equal(f.run('equipment.tier_up', { item_instance_id: climber.instance_id, target_tier: 20 }).result.code, 'TIER_UPGRADE_DISABLED', 'gacha item cannot be converted to another tier');
   assert.deepEqual((f.state.inventory.find(i => i.instance_id === climber.instance_id) as Gear).options, lines, 'tier-up keeps lines');
   const wearable = rest.find(item => item !== climber && !def(item).weapon_type && Number(def(item).required_level) <= 1)!;
   assert.ok(wearable, 'a level-1 armour piece among the pulls');
@@ -162,6 +162,15 @@ test('T051 AC-03: gacha gear uses the player\'s tier and works with equip/fuse/t
   assert.equal(f.run('equipment.salvage', { instance_ids: [spare.instance_id] }).result.code, 'EQUIPMENT_SALVAGED', 'gacha item salvages');
 });
 
+test('D146 equipment gacha still creates new Tier20/40/60 items at the corresponding cleared chapters',()=>{
+ for(const [chapter,tier] of [[2,20],[4,40],[6,60]]){
+  const f=fixture(s=>{s.wallet.crystal=1500;s.story.cleared_stage_ids=storyStages(content).filter(row=>row.chapter<=chapter!).map(row=>row.id);});
+  const before=structuredClone(f.state.inventory),receipt=f.run('gacha.pull',{pool_id:'equipment_v1',count:10},23);
+  assert.equal(receipt.result.code,'GACHA_PULLED');const created=new Set(receipt.result.created_instance_ids);
+  assert.equal(created.size,10);assert.ok(f.state.inventory.filter(i=>created.has(i.instance_id)).every(i=>itemDefinition(i,content).tier_level===tier));
+  assert.deepEqual(f.state.inventory.filter(i=>!created.has(i.instance_id)),before);
+ }
+});
 test('D-068: the gear gacha banner states the rolled option lines from content (Immortal 4, Supreme 5), not a stale literal', async () => {
   const { optionLineSummary } = await import('../../src/client/store.ts'), rules = optionRules(content);
   const text = optionLineSummary();

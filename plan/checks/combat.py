@@ -70,7 +70,7 @@ def trace_case(case):
     if kind == "normal_pause": return {"normal_due_after_pause_ms":i["normal_due_without_pause_ms"]+i["ct_ms"]}
     if kind == "empty_slots":
         occupied=[x for x in i["slots"] if x is not None]
-        return {"mode":"normal_only","skill_timer_events":0,"max_slots_scanned":4} if not occupied else {"mode":"rotation","next_after_a":occupied[1],"extra_SI_for_empty":0,"max_slots_scanned":4}
+        return {"mode":"normal_only","skill_timer_events":0,"max_slots_scanned":4} if not occupied else {"mode":"rotation","next_after_a":i["slots"][1],"extra_SI_for_empty":1,"max_slots_scanned":4}
     if kind == "silence": return {"skill_start_ms":max(i["ready_ms"],i["silence_end_ms"]),"normal_hit_times_before_skill_ms":list(range(i["normal_interval_ms"],i["silence_end_ms"],i["normal_interval_ms"])),"slot_consumed_before_start":False}
     if kind == "death_cast": return {"cast_resolves":not(i["cast_start_ms"]<i["death_ms"]<i["resolve_ms"]),"sp_after":i["sp_before"]-i["sp_cost"],"sp_refunded":False}
     if kind == "periodic_death_cast": return {"cast_completes":i["death_tick_ms"]>i["cast_resolve_ms"],"refund_sp":False}

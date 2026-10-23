@@ -1,6 +1,6 @@
 import type { ImpactEffect, RuntimeAssetIndex, RuntimeRecipe } from '../contracts/assets.ts';
 import type { ActorAppearance, BattleScene } from '../contracts/presentation.ts';
-import { locateAsset, locateSkillVisual } from './asset-locator.ts';
+import { locateAsset, locateSkillVisual, prepareAssetLookup } from './asset-locator.ts';
 import type { ActorParts, NativeAsset, NativeMeta } from './native.mjs';
 import { BattleAudio, type AudioLevels } from './audio.ts';
 import { wardrobeRefs, type WardrobeTiers } from './shell.ts';
@@ -21,6 +21,7 @@ export class AssetPack {
   numberFont: NativeAsset | null = null;
   criticalFont: NativeAsset | null = null;
   private readonly assets = new Map<string, Promise<NativeAsset>>();
+  private readonly readyAssets = new Map<string, NativeAsset>();
   private readonly cropped = new Map<string, Promise<string>>();
   private readonly images = new Map<string, Promise<HTMLImageElement>>();
   private readonly audioMixer: BattleAudio;
@@ -37,8 +38,11 @@ export class AssetPack {
     if (index.schema_version !== 1 || !/^[a-f0-9]{64}$/.test(index.pack_hash) || index.base_url !== `/ro/${index.pack_hash}/`) throw new Error('INVALID_RUNTIME_ASSET_MANIFEST');
     validateCombatVisuals(index.combat_visuals, Object.keys(index.skills), Object.values(index.skills).map(skill => skill.presentation_id));
     if (expectedPackHash !== undefined && expectedPackHash !== index.pack_hash) throw new Error('INCOMPATIBLE_RUNTIME_ASSET_PACK');
+    prepareAssetLookup(index);
     return new AssetPack(index);
   }
+  /** Already decoded media can be shown on the first React paint. Scoped to this pack. */
+  peekAsset(id: string): NativeAsset | undefined { return this.readyAssets.get(id); }
   asset(id: string): Promise<NativeAsset> {
     if (!this.assets.has(id)) this.assets.set(id, (async () => {
       const location = locateAsset(this.index, id), meta = await json<NativeMeta>(location.metaUrl);
@@ -46,7 +50,10 @@ export class AssetPack {
       if (!this.images.has(location.mediaUrl)) this.images.set(location.mediaUrl, (async () => {
         const image = new Image(); image.src = location.mediaUrl; await image.decode(); return image;
       })());
-      return { meta, image: await this.images.get(location.mediaUrl)! };
+      const asset = { meta, image: await this.images.get(location.mediaUrl)! };
+      this.readyAssets.set(id, asset);
+      this.readyAssets.set(location.id, asset);
+      return asset;
     })());
     return this.assets.get(id)!;
   }
@@ -60,14 +67,8 @@ export class AssetPack {
     return { body, ...(head ? { head } : {}), ...(weapon ? { weapon } : {}), ...(headgear ? { headgear } : {}), ...(garment ? { garment } : {}), ...presetSwing(preset) };
   }
   async prepare(scene: BattleScene, skillIds: readonly string[]): Promise<void> {
-    this.numberFont ??= await this.asset(this.index.combat_visuals.numbers.meta);
-    this.criticalFont ??= await this.asset(this.index.combat_visuals.numbers.critical_meta);
     this.fontReady ??= (async () => { const fontLocation = locateAsset(this.index, this.index.font.id); const font = new FontFace('ROThai', `url("${fontLocation.mediaUrl}")`); await font.load(); document.fonts.add(font); })();
-    await this.fontReady;
-    this.background = await this.asset(scene.background_meta);
-    this.currentScene = scene;
-    await Promise.all(scene.actors.map(async appearance => this.actors.set(appearance.actor_id, await this.actor(appearance))));
-    await Promise.all([...new Set(skillIds)].map(async id => {
+    const visuals = [...new Set(skillIds)].map(async id => {
       if (Object.hasOwn(scene.enemy_recipes, id)) {
         const recipe = this.index.recipes.find(row => row.skill_id === scene.enemy_recipes[id]);
         if (!recipe?.ready) throw new Error(`MISSING_ENEMY_RECIPE:${id}`);
@@ -80,7 +81,18 @@ export class AssetPack {
         const impact = this.index.combat_visuals.impacts?.[this.index.skills[id]!.presentation_id];
         if (impact) this.impacts.set(id, { config: impact, asset: await this.asset(impact.meta) });
       }
-    }));
+    });
+    // Independent media do not need to wait for numbers → font → background → actors.
+    // Existing per-pack promises still deduplicate shared atlas/image requests.
+    await Promise.all([
+      this.asset(this.index.combat_visuals.numbers.meta).then(asset => { this.numberFont = asset; }),
+      this.asset(this.index.combat_visuals.numbers.critical_meta).then(asset => { this.criticalFont = asset; }),
+      this.fontReady,
+      this.asset(scene.background_meta).then(asset => { this.background = asset; }),
+      ...scene.actors.map(async appearance => this.actors.set(appearance.actor_id, await this.actor(appearance))),
+      ...visuals,
+    ]);
+    this.currentScene = scene;
   }
   /**
    * Icon image cropped to its sprite frame. Skill icon atlases keep a 1px border plus 5–6 spare columns on the right,

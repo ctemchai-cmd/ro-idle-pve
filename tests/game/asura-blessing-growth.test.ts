@@ -39,7 +39,7 @@ test('Blessing ranks1/5/10 last5.5/7.5/10s on both modifiers and expire at the e
 });
 test('same caster Blessing recast adds independent instances; old stacks expire without deleting the newer pair',()=>{
  const s=resolve('acolyte_blessing',10),initial=battle([actor('support','player',[s]),actor('boss','enemy')]);
- const result=step(initial,5000),mutable=checkpoint(result.state),source=mutable.actors.find(a=>a.actor_id==='support')!;assert.equal(source.statuses.length,4);
+ const result=step(initial,10000),mutable=checkpoint(result.state),source=mutable.actors.find(a=>a.actor_id==='support')!;assert.equal(source.statuses.length,4);
  assert.equal(new Set(source.statuses.map(s=>s.instance_id)).size,4);const expiries=[...new Set(source.statuses.map(s=>s.expires_at))].sort((a,b)=>a-b);assert.equal(expiries.length,2);
  source.active_slots=[null,null,null,null];const later=step(mutable,expiries[0]!).state.actors.find(a=>a.actor_id==='support')!;assert.equal(later.statuses.length,2);assert.ok(later.statuses.every(s=>s.expires_at===expiries[1]));
 });

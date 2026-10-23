@@ -1,6 +1,6 @@
 import { enchantLinesFor, slotModifiers } from '../domain/build/slot-definition.ts';
 import type { AccountState, Effect } from '../contracts/index.ts';
-import { loadValidatedContent } from '../content/index.ts';
+import { loadValidatedContent } from './content.ts';
 import { applySlotCommand, slotData, cardData, cardCapacity, upgradeQuote, enchantRefund, cardSalvageQuote, refineChance, refinePityBonus, type SlotCommand } from '../domain/progression/slots.ts';
 import { assignedOwner, itemDefinition, type EquipmentSlot, type InventoryItem } from '../domain/progression/equipment.ts';
 import { resolvedCardModifiers, resolvedCardTriggers } from '../domain/build/equipment.ts';

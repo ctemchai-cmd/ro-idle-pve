@@ -1,7 +1,7 @@
 // Real game UI, throwaway Auth/DB only; no personal preview or production account.
 const fs=require('node:fs'),path=require('node:path'),{execFileSync}=require('node:child_process'),{randomUUID,randomBytes}=require('node:crypto');
 const {createClient}=require('@supabase/supabase-js'),{chromium}=require(process.env.RO_PLAYWRIGHT_MODULE||'/private/tmp/ro-idle-prep/tools/node_modules/playwright-core');
-const root=path.resolve(__dirname,'..'),base=process.env.RO_LIVE_URL,gateway=process.env.SUPABASE_URL,tag=process.env.RO_NAV_TAG||'baseline';
+const root=path.resolve(__dirname,'..'),base=process.env.RO_LIVE_URL,gateway=process.env.SUPABASE_URL,tag=process.env.RO_NAV_TAG||'baseline',prefix=process.env.RO_EVIDENCE_PREFIX||'task-066';
 if(process.env.RO_SUPABASE_LOCAL_STACK!=='1'||![base,gateway].every(u=>u&&new URL(u).hostname==='127.0.0.1')||!/^[a-z0-9-]+$/.test(tag))throw new Error('ISOLATED_STACK_REQUIRED');
 const assert=(ok,message)=>{if(!ok)throw new Error(message);};
 (async()=>{
@@ -13,7 +13,7 @@ const assert=(ok,message)=>{if(!ok)throw new Error(message);};
   const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true}),page=await context.newPage();
   page.on('pageerror',e=>errors.push(e.message));await page.goto(base+'/auth');
   await page.getByLabel('อีเมล',{exact:true}).fill(email);await page.getByLabel('รหัสผ่าน',{exact:true}).fill(password);await page.getByRole('button',{name:'เข้าสู่บัญชี',exact:true}).click();
-  await page.waitForTimeout(350);await page.goto(base+'/play');await page.getByRole('radio',{name:/^Mage/}).click();await page.getByRole('button',{name:'เริ่มการเดินทาง',exact:true}).click();await page.locator('.hud-save.ok').waitFor();await page.waitForTimeout(2200);
+  await page.waitForTimeout(350);await page.goto(base+'/play');await page.locator('.save-slot-card').first().waitFor();await page.getByRole('button',{name:/^เลือกเซฟ 1(?: ·|$)/}).click();await page.getByRole('radio',{name:/^Mage/}).click();await page.getByRole('button',{name:'เริ่มการเดินทาง',exact:true}).click();await page.locator('.hud-save.ok').waitFor();await page.waitForTimeout(2200);
   if(process.env.RO_NAV_POPULATED==='1'){
    await page.goto('about:blank');
    const r=await admin.from('game_saves').select('*').eq('account_id',uid).single();assert(!r.error,'FIXTURE_READ_FAILED');
@@ -23,7 +23,7 @@ const assert=(ok,message)=>{if(!ok)throw new Error(message);};
    const signed=run('scripts/game/sign-test-save.ts',{account_id:uid,revision,state});
    assert(!(await admin.from('game_save_history').insert({account_id:uid,revision,state,state_hash:signed.state_hash,signature:signed.signature,key_version:1})).error,'HISTORY_SEED_FAILED');
    assert(!(await admin.from('game_saves').update({revision,state,state_hash:signed.state_hash}).eq('account_id',uid)).error,'SAVE_SEED_FAILED');
-   await page.goto(base+'/play');await page.locator('.hud-save.ok').waitFor();await page.waitForTimeout(2200);
+   await page.goto(base+'/play');await page.locator('.save-slot-card').first().waitFor();await page.getByRole('button',{name:/^เลือกเซฟ 1(?: ·|$)/}).click();await page.locator('.hud-save.ok').waitFor();await page.waitForTimeout(2200);
   }
   const cdp=await context.newCDPSession(page);await cdp.send('Emulation.setCPUThrottlingRate',{rate:4});await cdp.send('Profiler.enable');await cdp.send('Profiler.start');
   const navigationRequest=r=>{if(new URL(r.url()).pathname.startsWith('/api/'))apiRequests.push({method:r.method(),path:new URL(r.url()).pathname});};page.on('request',navigationRequest);
@@ -83,16 +83,16 @@ const assert=(ok,message)=>{if(!ok)throw new Error(message);};
    await nav('กระเป๋า').click();await scrollEnd();await page.locator('[data-id="nav_498"]').click();await page.getByRole('button',{name:'สวมให้…',exact:true}).click();
    await page.getByRole('dialog').locator('.pick-list .list-row').filter({hasText:'คุณ ·'}).click();await settled();
    assert((await ownState()).roster.find(a=>a.character_id==='main').equipment.weapon==='nav_498','EQUIPMENT_SAVE_FAILED');
-   assert(await page.locator('[data-id="nav_498"] .e-badge').count()===1,'EQUIPMENT_STALE_AFTER_SAVE');
-   await page.reload();await settled();await scrollEnd();assert(await page.locator('[data-id="nav_498"] .e-badge').count()===1&&await page.locator('[data-id="nav_499"] .lock-mark').count()===1,'GRID_STALE_AFTER_RELOAD');
+   assert(await page.locator('[data-id="nav_498"] .gear-owner-mark').count()===1,'EQUIPMENT_STALE_AFTER_SAVE');
+   await page.reload();await page.locator('.save-slot-card').first().waitFor();await page.getByRole('button',{name:/^เลือกเซฟ 1(?: ·|$)/}).click();await settled();await scrollEnd();assert(await page.locator('[data-id="nav_498"] .gear-owner-mark').count()===1&&await page.locator('[data-id="nav_499"] .lock-mark').count()===1,'GRID_STALE_AFTER_RELOAD');
    assert(!errors.length,'FUNCTIONAL_BROWSER_ERROR');functional.push({case_id:'status_skill_equipment_changes_remain_current_across_routes_and_reload',passed:true,character_id:character,skill:skillName});
-   await page.screenshot({path:path.join(root,'plan/evidence/task-066-inventory-window.png')});
+   await page.screenshot({path:path.join(root,'plan/evidence/'+prefix+'-inventory-window.png')});
   }
  }catch(e){error=String(e);}finally{
   if(browser)await browser.close();await admin.auth.admin.deleteUser(uid);
   const hot=new Map(),nodes=new Map((profile?.nodes||[]).map(n=>[n.id,n]));
   for(let i=0;i<(profile?.samples||[]).length;i++){const node=nodes.get(profile.samples[i]),name=node.callFrame.functionName||'(anonymous)',url=node.callFrame.url.replace(base||'','').split('?')[0],key=name+' '+url;hot.set(key,(hot.get(key)||0)+(profile.timeDeltas?.[i]||0)/1000);}
-  const report={task_id:'TASK-066',passed:!error&&!errors.length&&samples.length===(process.env.RO_NAV_POPULATED==='1'?27:15),error,errors,cpu_throttling:4,inventory_size:process.env.RO_NAV_POPULATED==='1'?500:0,samples,api_requests:apiRequests,functional,hot_functions:[...hot].sort((a,b)=>b[1]-a[1]).slice(0,24).map(([fn,ms])=>({fn,self_ms:Math.round(ms)})),owner_cloud_writes:false,personal_preview_restarted:false,scope:'Actual mobile touch navigation on isolated local stack, not owner phone; pointerup to secondRAF, CPU4x. Includes Class2/stats/skills when populated. No save requests while changing menus. Explicit functional save checks use only throwaway fixture account.'};
-  fs.writeFileSync(path.join(root,`plan/evidence/task-066-navigation-${tag}.json`),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));if(!report.passed)process.exitCode=1;
+  const report={task_id:prefix.toUpperCase(),passed:!error&&!errors.length&&samples.length===(process.env.RO_NAV_POPULATED==='1'?27:15),error,errors,cpu_throttling:4,inventory_size:process.env.RO_NAV_POPULATED==='1'?500:0,samples,api_requests:apiRequests,functional,hot_functions:[...hot].sort((a,b)=>b[1]-a[1]).slice(0,24).map(([fn,ms])=>({fn,self_ms:Math.round(ms)})),owner_cloud_writes:false,personal_preview_restarted:false,scope:'Actual mobile touch navigation on isolated local stack, not owner phone; pointerup to secondRAF, CPU4x. Includes Class2/stats/skills when populated. No save requests while changing menus. Explicit functional save checks use only throwaway fixture account.'};
+  fs.writeFileSync(path.join(root,`plan/evidence/${prefix}-navigation-${tag}.json`),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));if(!report.passed)process.exitCode=1;
  }
 })().catch(()=>{console.error('NAVIGATION_FIXTURE_FAILED');process.exitCode=1;});

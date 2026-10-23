@@ -4,6 +4,8 @@
 
 > **D-057 (TASK-049):** Refine มีโอกาสพลาดแล้ว (ดูแถว Refine ใน [design28](28-slot-and-card-runtime.md) และ `slot-progress.json` → `refine.success_chance_by_target`/`pity`) checkpoint `team_24_slots_refine10` ใน economy.json เป็นค่าใช้จ่ายคาดหวัง (~2.14 เท่า) และขยายช่วงรับได้เป็น 4,800 นาที ให้ TASK-041 จูน
 
+> **D146 / TASK113 (23 ต.ค.2026):** ยกเลิกอัป Tier แล้ว ไม่มีปุ่มหรือ preview และคำสั่งใหม่ถูกปฏิเสธก่อนจ่ายทุน ต้องหาชิ้นใหม่จากดรอปหรือกาชาอุปกรณ์ตาม Tier ของด่าน คง ID/rarity/options/slot progress/ledger ของที่เคยอัปไว้; เก็บ schema/receipt และแถวราคาเดิมสำหรับประวัติ ไม่เปิดให้ใช้ราคาเหล่านั้นอัปชิ้นเดิมอีก ข้อความอัป Tier ด้านล่างเป็นประวัติ baseline เก่า
+
 ## อุปกรณ์และแหล่งพัฒนา
 
 [equipment.json](../data/equipment.json) มี60 definitions: Tier1/20/40/60 แต่ละ tierมีอาวุธ10ชนิดและ armor5slot อาวุธตาม job mappingครบ19 jobs รวมClass1 ไม่มี tier80/100ดรอป Armorไม่แยกอาชีพ; Rarity7ขั้น multiplier1/1.12/1.28/1.5/1.8/2.2/2.7 เฉพาะ base flat modifiersของ item ไม่คูณค่าจาก Refine/Enchant/การ์ดซ้ำ

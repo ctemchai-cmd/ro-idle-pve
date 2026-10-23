@@ -337,7 +337,7 @@
     "cc_does_not_spend_unstarted_slot": true,
     "cast_start": "advance_cursor_and_spend_SP_atomically; no_next_cast_during_own_CT_or_ACD",
     "interrupt": "invalidate_cast_token; start_ACD_at_interrupt_time then SI; both advance during_CC",
-    "empty_slots": "scan_at_most_four_for_next_occupied_before_starting_SI; no_extra_SI_for_empty",
+    "empty_slots": "D147_all_four_slots_consume_SI; empty_action_advances_cursor_without_cast_SP_CT_or_ACD; normals_continue",
     "all_empty": "normal_only_no_skill_timer",
     "silenced_ready_actor": "wait_until_skill_actions_allowed; do_not_consume_unstarted_slot",
     "unusable_skill_reference": "build_validation_error, not silent_empty",

@@ -11,6 +11,7 @@ import hmac
 import json
 import os
 import re
+import shutil
 from pathlib import Path
 import secrets
 import socket
@@ -23,7 +24,7 @@ ROOT = Path(__file__).resolve().parents[1]
 RUN_TAG = os.environ.get("RO_EVIDENCE_PREFIX", "task-021")
 if not re.fullmatch(r"task-[0-9]{3}",RUN_TAG): raise SystemExit("INVALID_EVIDENCE_PREFIX")
 FOCUS = os.environ.get("RO_LOCAL_TEST_FOCUS", "all")
-if FOCUS not in ("all", "auth", "navigation", "daily_terminal", "statuses", "history", "healing", "cards", "elements", "impact", "skill_descriptions", "card_frames", "card_rarity", "equipment", "slots", "growth", "shell", "compact", "cadence", "settlement", "daily_reset", "save_latency", "save_timeout", "migration_pending", "reward_slot_economy", "native_icons", "job_emblems", "modern_skill_icons", "modern_all", "skill_growth_monsters", "difficulty_refine15", "paladin_softening", "save_slots"): raise SystemExit("INVALID_TEST_FOCUS")
+if FOCUS not in ("all", "auth", "tier_rotation", "navigation", "daily_terminal", "statuses", "history", "healing", "cards", "elements", "impact", "skill_descriptions", "card_frames", "card_rarity", "equipment", "slots", "growth", "shell", "compact", "cadence", "settlement", "daily_reset", "save_latency", "save_timeout", "migration_pending", "reward_slot_economy", "native_icons", "job_emblems", "modern_skill_icons", "modern_all", "skill_growth_monsters", "difficulty_refine15", "paladin_softening", "save_slots", "mobile_performance"): raise SystemExit("INVALID_TEST_FOCUS")
 TOOLS = Path(os.environ.get("RO_AUTH_TOOLS", "/private/tmp/ro-idle-auth-tools"))
 PG = Path(os.environ.get("RO_PG_BIN") or subprocess.check_output(["pg_config", "--bindir"], text=True).strip())
 NODE = os.environ.get("RO_NODE", "node")
@@ -111,8 +112,25 @@ with tempfile.TemporaryDirectory(prefix="ro-auth21-", dir="/private/tmp") as fol
             run([*psql,"-f",ROOT/"supabase/migrations/202610230008_save_slots.sql"])
             run([*psql,"-f",ROOT/"supabase/migrations/202610230008_save_slots.sql"])
             report["checks"].append("SQL008 applied twice over a real signed legacy save with history/receipt/backup/battle fixture")
-        start("vite",[NODE,ROOT/"node_modules/vite/bin/vite.js","--host","127.0.0.1","--port",str(ui_port),"--strictPort"],cwd=ROOT)
+        if FOCUS == "mobile_performance":
+            web = base/"web"
+            run([NODE,ROOT/"node_modules/vite/bin/vite.js","build","--outDir",web],environment)
+            pack = json.loads((ROOT/"runtime/ro/manifest.json").read_text())
+            shutil.copytree(ROOT/"runtime/ro/payload",web/"ro"/pack["pack_hash"])
+            shutil.copyfile(ROOT/"runtime/ro/manifest.json",web/"ro/manifest.json")
+            environment["RO_PERFORMANCE_WEB_ROOT"] = str(web)
+            start("preview",[NODE,ROOT/"node_modules/vite/bin/vite.js","preview","--outDir",web,"--host","127.0.0.1","--port",str(ui_port),"--strictPort"],cwd=ROOT)
+        else:
+            start("vite",[NODE,ROOT/"node_modules/vite/bin/vite.js","--host","127.0.0.1","--port",str(ui_port),"--strictPort"],cwd=ROOT)
         wait_url(ui+"/auth")
+        if FOCUS == "tier_rotation":
+            result = run([NODE,ROOT/"scripts/test_tier_rotation_live.cjs"],environment)
+            (ROOT/f"plan/evidence/{RUN_TAG}-ui-live.txt").write_text(result)
+            report["checks"].append("RetiredTier API/mobile and four-slot runtime/timeline/speed/server parity passed")
+        if FOCUS == "mobile_performance":
+            result = run([NODE,ROOT/"scripts/test_mobile_performance.cjs"],environment)
+            (ROOT/f"plan/evidence/{RUN_TAG}-performance-{os.environ.get('RO_PERFORMANCE_TAG','baseline')}.txt").write_text(result)
+            report["checks"].append("Production mobile load/nav/upgrade/frames/memory profile captured")
         if FOCUS == "save_slots":
             result = run([NODE,ROOT/"scripts/test_save_slots_live.cjs"],environment)
             (ROOT/f"plan/evidence/{RUN_TAG}-ui-live.txt").write_text(result)

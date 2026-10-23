@@ -16,6 +16,7 @@ export function fusionQuote(state:AccountState,ids:readonly string[],content:Val
  return{items,next_rarity:next.id as Gear['rarity_id'],definition,cost:structuredClone(rules.fusion.fee)};
 }
 export function tierQuote(state:AccountState,id:string,target:number,content:ValidatedContent){
+ if(!equipmentRules(content).tier_upgrade.enabled)reject('TIER_UPGRADE_DISABLED');
  const item=gear(state,id);if(item.training)reject('TRAINING_WEAPON_RESTRICTED');const definition=itemDefinition(item,content),row=equipmentRules(content).tier_upgrade.rows.find(r=>r.from===definition.tier_level&&r.to===target);if(!row)reject('INVALID_TIER_STEP');
  const next=Object.values(content.items).find(d=>d.kind==='equipment'&&d.tier_level===target&&d.slot===definition.slot&&d.weapon_type===definition.weapon_type);if(!next)throw new Error('MISSING_TIER_DEFINITION');
  const owner=assignedOwner(state,id);if(owner&&state.roster.find(a=>a.character_id===owner.character_id)!.level<Number(next.required_level))reject('ITEM_LEVEL_REQUIRED');

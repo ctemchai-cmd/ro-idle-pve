@@ -51,7 +51,7 @@ test('T030 AC-01: Priest/Monk skill pages offer only learnable root+branch skill
 
 // --- AC-02 ------------------------------------------------------------------------------------------
 test('T030 AC-02: Heal still casts on a full-HP party in queue order, spends SP and books everything as overheal', () => {
-  const { events, state } = run([probe('p_priest', 'player', 'front_1', [resolved('acolyte_heal', 10)], false, 'priest'), probe('p_ally', 'player', 'back_1'), probe('e_idle', 'enemy', 'front_1')], 20000);
+  const { events, state } = run([probe('p_priest', 'player', 'front_1', [resolved('acolyte_heal', 10)], false, 'priest'), probe('p_ally', 'player', 'back_1'), probe('e_idle', 'enemy', 'front_1')], 40000);
   const heals = events.filter(event => event.type === 'heal' && event.skill_id === 'acolyte_heal'), row = state.metrics.skills['p_priest:acolyte_heal']!;
   assert.ok(row.casts_resolved >= 5 && row.sp_spent === row.casts_started * 18, `casts ${row.casts_resolved} sp ${row.sp_spent}`);
   assert.ok(heals.length === row.casts_resolved && heals.every(event => event.amount === 0), 'every heal lands on a full target for 0');

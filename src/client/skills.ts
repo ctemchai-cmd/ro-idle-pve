@@ -1,6 +1,6 @@
 import { heldResourceModifiers } from '../domain/combat/resources.ts';
 import { statNames, statusNames } from './status-labels.ts';
-import { loadValidatedContent } from '../content/index.ts';
+import { loadValidatedContent } from './content.ts';
 import type { AccountState, BattleActor, Effect, SkillDefinition } from '../contracts/index.ts';
 import { allowedSkill, characterSkillCap, compileCharacterSkills, skillQuote } from '../domain/progression/skills.ts';
 import { resolveSkill } from '../domain/build/resolve-skill.ts';
@@ -103,6 +103,10 @@ function effectChanges(before:string|undefined,after:string|undefined):string[]{
  });
 }
 /** Shared permanent build, including equipped sources when account is provided. */
+/** Icon prefetch needs only class membership, not a full stat/skill preview. */
+export function characterSkillIconIds(actor:Character):string[]{
+ return Object.values(content.skills).filter(row=>allowedSkill(actor,row as unknown as SkillDefinition)).map(row=>String(row.id));
+}
 export function characterSkillOptions(actor:Character,state?:AccountState):{skills:SkillOption[];intervalMs:number}{
  const compiled=compileCharacterSkills(actor,content),stats=previewCharacterStats(actor,compiled.resolved_skills,content,state?equippedSources(actor,state,content):[]);
  const skills=Object.values(content.skills).filter(row=>allowedSkill(actor,row as unknown as SkillDefinition)).map(row=>{

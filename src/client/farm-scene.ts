@@ -1,4 +1,4 @@
-import { loadValidatedContent } from '../content/index.ts';
+import { loadValidatedContent } from './content.ts';
 import type { AccountState, BattleActor, CombatStats } from '../contracts/index.ts';
 import type { ActorInput } from '../contracts/battle-input.ts';
 import type { BattleRenderView, BattleScene } from '../contracts/presentation.ts';

@@ -9,7 +9,7 @@ export interface EquipmentRules {
  salvage:{gold_per_tier_unit:number;refine_ore_by_rarity:number[]};
  targeted_weapon_purchase:{cost_rows:{tier_level:number;gold:number}[]};
  fusion:{input_count:number;fee:Partial<AccountState['wallet']>};
- tier_upgrade:{rows:{from:number;to:number;gold:number;refine_ore:number}[]};
+ tier_upgrade:{enabled:boolean;rows:{from:number;to:number;gold:number;refine_ore:number}[]};
 }
 export const equipmentRules=(content:ValidatedContent)=>content.documents['equipment.json'] as unknown as EquipmentRules;
 export function boundItemInstances(actor:AccountState['roster'][number],state:AccountState):AccountState['inventory'] {

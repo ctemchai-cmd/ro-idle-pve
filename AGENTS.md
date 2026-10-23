@@ -1,5 +1,14 @@
 # Project context
 
+## Latest user rules (23 October 2026, D144–147)
+
+Prioritize mobile loading/navigation/upgrade responsiveness; the user is testing balance. Do not run a new balance batch or tune combat power as part of performance work. Hi-class is the next scope: exactly two new skills per profession, existing skills maxable before70, both new skills maxable before Awaken90. See design40; suggested70/80 unlocks are still proposals. Awaken uses the actual skill icon with a purple inner-line glow.
+
+Equipment Tier upgrades are retired (D146/TASK113): no product UI/preview; new `equipment.tier_up` intents reject without spending. Keep the legacy command schema/receipts and historical prices so old pending receipts can replay. Existing gear, options and slot investments remain. Higher Tier needs a new drop or equipment-gacha item; gacha is explicitly allowed. Rarity fusion stays within the same Tier.
+
+All four ordered slots consume SI, including empty slots (D147/TASK114). Empty slots advance only at the action gate, have no SP/CT/ACD and leave normal attacks running. Never compact the queue to occupied slots. All-null is normal_only; periodic summons remain separate. At ASPD100/SI3000/instant0ACD, one skill in slot0 casts at3/15/27s; slot2 first casts at9s. Same shared engine for enemies, runtime, headless, Timeline and server.
+
+
 GitHub source is published at `ctemchai-cmd/ro-idle-pve` on `main`. This machine's repo origin uses the existing SSH alias `github-new` (verified account `ctemchai-cmd`); default `github.com` authenticates as `Rehpyc-z`, which lacks write access here. Push through the configured origin. The full source asset library and selected `runtime/ro/` deployment artifact are tracked; regenerate and commit the artifact after asset changes. Keep `.local/`, secrets, dependencies and build output ignored. `vercel.json` and `docs/DEPLOYMENT.md` prepare hosting, but no hosted deployment has been verified.
 
 D-081/TASK-058: the user created a hosted Supabase project, reports running all six migrations, and explicitly chose to transfer the existing 6173 save. Sign-in/no-sign-up already exists. New deployments use `SUPABASE_SECRET_KEY` with an `sb_secret_` key and `VITE_SUPABASE_PUBLISHABLE_KEY` with an `sb_publishable_` key. `SUPABASE_SERVICE_ROLE_KEY` remains a legacy/local compatibility alias; conflicting dual values are rejected. Operator tools `scripts/prepare_local_cloud_transfer.py` and `scripts/game/prepare-cloud-transfer.ts` preserve the entire current state/revision, verify the source signature, bind a new signature to the target Auth UID, and produce private SQL plus the matching Vercel signing key. No public raw-save import was added. Refuse active battles/nonempty destinations/wrong markers; exact receipt replay is a no-op. `.local/cloud-transfer/` contains private artifacts and must stay ignored. The real local export is prepared, but cloud import/hosted login are NOT yet verified; TASK-058 remains inprogress until AC05. Never print signing-key/env/context/import contents. The Vercel signing key must match the private export file; user supplies Supabase API keys in Vercel, not chat.
@@ -13,6 +22,10 @@ Release/pacing/ownership confirmed: the first release ends at Class 2 with a lev
 Simulation is an explicit user requirement (D-029). Keep combat/progression rules separate from DOM, Canvas, audio, persistence, wall clock, and global randomness. Share the same engine/content between runtime and a fast headless runner, inject virtual clock/seeded RNG, and expose replayable scenario inputs plus team/actor/skill metrics. Use matched seeds/equal budgets/multiple encounter types for A/B balance analysis. Plan pure farm/progression calculations for future accelerated play simulation. A dashboard, exhaustive search, or full autoplay across days is not required for the first release; see `plan/design/08-simulation-and-balance.md`.
 
 The user confirmed that backgrounds and UI only need to fit the game's theme and work visually with its characters. The game is mobile-first portrait only (D-052): no landscape layout; phones held sideways show a rotate prompt and desktop shows the centered portrait frame (D-051, plan/design/30-game-shell-ui.md). Exact fidelity to RO Classic is not required; do not treat the current Classic-style preview as a locked art direction.
+
+## User priority — 23 October 2026 (D144–145)
+
+The user is testing balance personally. Prioritize measured mobile smoothness, loading, navigation and upgrade latency; do not run a balance calibration batch or change combat/economy values for this work. Hi-class follows performance work and adds exactly two skills per profession. Existing skills must reach their upgrade cap before70, new two before Awaken at90. Proposed new unlock/cap schedules require design before implementation; see design40. Awaken keeps genuine game skill artwork with a purple inner-line glow. Do not open Hi-class/Awaken during the current performance patch.
 
 ## Current save slots — 23 October 2026 (D143 / TASK-111)
 

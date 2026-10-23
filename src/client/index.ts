@@ -1,4 +1,4 @@
-import { loadValidatedContent } from '../content/index.ts';
+import { loadValidatedContent } from './content.ts';
 
 export function inspectProjectContent() {
   const result = loadValidatedContent();

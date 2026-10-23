@@ -27,6 +27,8 @@ import { StorePage } from './store.tsx';
 import './game.css';
 import { SaveRecoveryProvider } from './save-notice.tsx';
 import { randomId } from '../../client/secure-context.ts';
+import { characterSkillIconIds } from '../../client/skills.ts';
+import { inventoryView } from '../../client/equipment.ts';
 
 export type View = 'home' | 'backpack' | 'team' | 'buddy' | 'skills' | 'stats' | 'dungeon' | 'tower' | 'daily' | 'store';
 export type ChallengeTarget = { kind: 'story'; id: string } | { kind: 'tower'; floor: number } | { kind: 'daily'; boss: string };
@@ -66,6 +68,15 @@ function ConnectedGame({ auth, scope, selection, chooseSave }: { auth: AuthContr
   const toast = useCallback((text: string) => { const id = ++toastId.current; setToasts(list => [...list.slice(-2), { id, text }]); setTimeout(() => setToasts(list => list.filter(t => t.id !== id)), 2800); }, []);
   useEffect(() => { let disposed = false; void AssetPack.open(STORY_PACK_HASH).then(p => { if (disposed) { p.dispose(); return; } try { p.setAudioLevels(readAudioLevels(localStorage)); } catch { /* Defaults remain. */ } setPack(p); }).catch(() => toast('ยังเตรียมภาพไม่ได้ กรุณาโหลดหน้าใหม่')); return () => { disposed = true; }; }, [toast]);
   useEffect(() => () => pack?.dispose(), [pack]);
+  // Warm only the selected class and a bounded set of bag art, never the whole library.
+  const selectedJob = state?.roster.find(a => a.character_id === route.character)?.job_id;
+  useEffect(() => {
+    const actor = state?.roster.find(a => a.character_id === route.character);
+    if (!pack || !state || !actor) return;
+    void pack.prepareIcons(characterSkillIconIds(actor));
+    const icons = [...new Set(inventoryView(state, actor.character_id).map(row => row.iconId).filter((id):id is string => !!id))].slice(0,24);
+    for (const id of icons) void pack.asset(id).catch(() => {});
+  }, [pack, selectedJob]);
   useEffect(() => { const pop = () => setRoute(readRoute()); window.addEventListener('popstate', pop); return () => window.removeEventListener('popstate', pop); }, []);
   useEffect(() => { const hidden = () => { void pack?.setAudioHidden(document.hidden).catch(() => setSound(false)); }; document.addEventListener('visibilitychange', hidden); return () => document.removeEventListener('visibilitychange', hidden); }, [pack]);
   const go = useCallback((view: View, character?: string) => {

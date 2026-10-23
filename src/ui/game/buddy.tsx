@@ -53,9 +53,9 @@ function UpgradeSheet({ context, actor, slot, close }: { context: GameContext; a
   const [tab, setTab] = useState<'refine' | 'enchant' | 'card'>('refine'), [line, setLine] = useState<keyof typeof enchantLines>((progress.enchant.line_id as keyof typeof enchantLines | null) ?? 'offense'), [confirmLine, setConfirmLine] = useState(false), [socket, setSocket] = useState(0), [cardId, setCardId] = useState<string | null>(progress.cards[0] ?? null);
   const refine = progress.refine < slotsData.refine.max ? slotUpgradeQuote(progress.refine, progress.refine + 1, 'refine') : null, enchant = progress.enchant.level < 10 ? slotUpgradeQuote(progress.enchant.level, progress.enchant.level + 1, 'enchant') : null;
   const changeLine = progress.enchant.line_id !== null && progress.enchant.line_id !== line;
-  const refinePreview = refine && !state.active_battle ? slotChangePreview(state, actor.character_id, 'slot.refine', { ...params, target_level: progress.refine + 1 }) : null;
-  const enchantPreview = enchant && !changeLine && !state.active_battle ? slotChangePreview(state, actor.character_id, 'slot.enchant', { ...params, line_id: line, target_level: progress.enchant.level + 1 }) : null;
-  const capacity = socketCapacity(progress.refine), cards = useMemo(()=>cardInventory(state, slot),[state,slot]), card = cards.find(c => c.item.instance_id === cardId);
+  const refinePreview = useMemo(() => tab === 'refine' && refine && !state.active_battle ? slotChangePreview(state, actor.character_id, 'slot.refine', { ...params, target_level: progress.refine + 1 }) : null, [state, actor.character_id, slot, tab]);
+  const enchantPreview = useMemo(() => tab === 'enchant' && enchant && !changeLine && !state.active_battle ? slotChangePreview(state, actor.character_id, 'slot.enchant', { ...params, line_id: line, target_level: progress.enchant.level + 1 }) : null, [state, actor.character_id, slot, tab, line]);
+  const capacity = socketCapacity(progress.refine), cards = useMemo(()=>tab === 'card' ? cardInventory(state, slot) : [],[state,slot,tab]), card = cards.find(c => c.item.instance_id === cardId);
   let cardPreview: ReturnType<typeof slotChangePreview> | null = null;
   if (card && socket < capacity && progress.cards[socket] !== card.item.instance_id && !state.active_battle) cardPreview = slotChangePreview(state, actor.character_id, 'card.assign', { ...params, card_slot: socket, card_instance_id: card.item.instance_id });
   return <Sheet title={`พัฒนาช่อง${slotLabels[slot]} · ${friendNames[actor.character_id]}`} onClose={close} className={tab==='card'?'tall card-upgrade-sheet':'tall'}>
@@ -121,7 +121,7 @@ function ChangeSheet({ context, actor, slot, upgradeId, close }: { context: Game
           : <>{preview && <StatChanges before={preview.before} after={preview.after} />}{r.owner && <p className="hint">ย้ายจาก <OwnerBadge state={state} characterId={r.owner.character_id} pack={pack}/> · ช่องของเขาจะว่าง</p>}<button className="btn primary wide" disabled={locked} onClick={() => void submit('equipment.equip', { character_id: actor.character_id, slot, item_instance_id: r.item.instance_id }).then(ok => { if (ok) close(); })}>{r.owner ? 'ย้ายมาสวม' : 'สวมใส่'}</button></>}</div>}
       </div>; })}
       {!rows.length && <p className="hint">ยังไม่มีของสำหรับช่องนี้</p>}</div>
-    {slot === 'weapon' && <div className="buy-box"><span>ซื้อ{weaponLabels[weapon]}ฝึกหัด Lv.1<small>ผสม/อัป Tier ไม่ได้ · ย่อยได้ 0</small></span><button className="btn small" disabled={locked || state.wallet.gold < price || state.inventory.length >= equipmentData.inventory_capacity} onClick={() => void submit('equipment.purchase_weapon', { character_id: actor.character_id, weapon_type: weapon, tier_level: 1 })}>{price.toLocaleString()} ทอง</button></div>}
+    {slot === 'weapon' && <div className="buy-box"><span>ซื้อ{weaponLabels[weapon]}ฝึกหัด Lv.1<small>ผสมไม่ได้ · ย่อยได้ 0</small></span><button className="btn small" disabled={locked || state.wallet.gold < price || state.inventory.length >= equipmentData.inventory_capacity} onClick={() => void submit('equipment.purchase_weapon', { character_id: actor.character_id, weapon_type: weapon, tier_level: 1 })}>{price.toLocaleString()} ทอง</button></div>}
   </Sheet>;
 }
 

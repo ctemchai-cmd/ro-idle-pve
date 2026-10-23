@@ -71,7 +71,7 @@ test('heal chooses lowest HP percent and still casts at full HP with all-overhea
   const heal = skill('heal', 0, 0, 10); heal.selectors = { ally: { team: 'allies', life: 'living', select: 'lowest_hp_percent', count: null, phase: 'cast_resolve', missing: 'skip' } }; heal.effects = [{ id: 'heal', type: 'heal', target: 'ally', formula: { id: 'flat_power', params: { amount: 100 } } }];
   const initial = checkpoint(battle([actor('a', 'player', [heal]), actor('c', 'player'), actor('z', 'enemy')])); initial.actors[1]!.hp -= 60;
   const first = step(initial, 1500); assert.equal(first.events.find(value => value.type === 'heal')?.target_id, 'c'); assert.equal(first.state.metrics.actors.a!.effective_heal, 60); assert.equal(first.state.metrics.actors.a!.overheal, 40);
-  const second = step(first.state, 3000); assert.equal(second.state.metrics.actors.a!.casts_started, 2); assert.equal(second.state.metrics.actors.a!.effective_heal, 60); assert.equal(second.state.metrics.actors.a!.overheal, 140); assert.equal(second.state.metrics.actors.a!.sp_spent, 20);
+  const second = step(first.state, 7500); assert.equal(second.state.metrics.actors.a!.casts_started, 2); assert.equal(second.state.metrics.actors.a!.effective_heal, 60); assert.equal(second.state.metrics.actors.a!.overheal, 140); assert.equal(second.state.metrics.actors.a!.sp_spent, 20);
 });
 test('front ordering and latest living Provoke source; all/random selectors ignore it', () => {
   const c = actor('c', 'enemy'); c.position = 'back_1'; const f = setup([actor('a', 'player'), actor('b', 'enemy'), c]); const source = f.state.actors[2]!;
@@ -255,5 +255,6 @@ test('Revive advances life epoch, restores ratios, starts next SI and never repl
   const first = step(battle([actor('a', 'player', [revive]), actor('c', 'player', [skill('blast', 3000)]), actor('z', 'enemy')]), 1600);
   const killed = checkpoint(first.state); killed.actors[1]!.hp = 0;
   const raised = step(killed, 2500); const c = raised.state.actors[1]!; assert.equal(c.life_epoch, 1); assert.equal(c.hp, Math.floor(c.stats.max_hp * .3)); assert.equal(c.sp, 32); assert.equal(c.action_phase, 'skill_interval'); assert.equal(c.phase_ready_at, 4000);
-  const later = step(raised.state, 4500); assert.equal(later.events.some(value => value.type === 'cast_resolve' && value.skill_id === 'blast'), false); assert.equal(later.state.actors[1]!.cast?.started_at, 4000);
+  // D147: the spent blast leaves cursor1; empty slots at4/5.5/7s precede the next blast at8.5s.
+  const later = step(raised.state, 9000); assert.equal(later.events.some(value => value.type === 'cast_resolve' && value.skill_id === 'blast'), false); assert.equal(later.state.actors[1]!.cast?.started_at, 8500);
 });

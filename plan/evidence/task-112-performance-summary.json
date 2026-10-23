@@ -1,0 +1,63 @@
+{
+  "task_id": "TASK-112",
+  "baseline": {
+    "cold_ms": 12523,
+    "cached_ms": 8949,
+    "nav_samples": 27,
+    "nav_p95_ms": 95,
+    "nav_median_ms": 40,
+    "upgrade_preview_ms": 503,
+    "farm": {
+      "case": "farm_frames_60s_after10s",
+      "count": 3285,
+      "median_ms": 16.69999999999709,
+      "p95_ms": 16.80000000000291,
+      "max_ms": 649.8000000000029,
+      "heap_before_bytes": 34627884,
+      "heap_after_bytes": 54442288
+    }
+  },
+  "after": {
+    "cold_ms": 4699,
+    "cached_ms": 4342,
+    "nav_samples": 27,
+    "nav_p95_ms": 107,
+    "nav_median_ms": 51,
+    "upgrade_preview_ms": 398,
+    "farm": {
+      "case": "farm_frames_60s_after10s",
+      "count": 3556,
+      "median_ms": 16.69999999999709,
+      "p95_ms": 16.70000000001164,
+      "max_ms": 83.40000000000146,
+      "heap_before_bytes": 26074180,
+      "heap_after_bytes": 41332992
+    }
+  },
+  "matched_fixture": "production Vite preview Chrome390x844 CPU4x,10Mbps100ms loading; warm-network navigation27 taps/500items",
+  "root_causes": [
+    "15 client modules repeatedly validated/cloned the same build bundle",
+    "serial independent scene media loading",
+    "repeated linear scans of1467 pack files for icon resolution",
+    "hidden skill comparison DOM and eager inactive upgrade tab previews",
+    "placeholder first render for already decoded icons"
+  ],
+  "navigation_API_requests": 0,
+  "content_during_comparison": "bc84ab2a8a3f10900e419b043d8ab2264048cbe09fcc817285ef1376a3b7b850",
+  "later_gameplay_change_tasks": [
+    "TASK-113",
+    "TASK-114"
+  ],
+  "limits": [
+    "Not an actual Android capture or authenticated hosted latency",
+    "TASK042 bootstrap/3s cached target and Safari/stress gate remain open",
+    "Performance measurements taken before the intentional D146/D147 gameplay patch"
+  ],
+  "verification": [
+    "task-112-final.json",
+    "task-112-navigation-final.json",
+    "task-112-ui-live.json",
+    "task-112-final-startup.cpuprofile",
+    "task-112-baseline-startup.cpuprofile"
+  ]
+}

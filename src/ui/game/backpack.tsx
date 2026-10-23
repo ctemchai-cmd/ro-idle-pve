@@ -18,14 +18,14 @@ import { EquipmentProgress } from './equipment-progress.tsx';
 
 type Filter = 'all' | EquipmentSlot | 'card';
 type Gear = ReturnType<typeof inventoryView>[number];
-const growthReasons: Record<string, string> = { ITEM_EQUIPPED: 'ถอดชิ้นนี้ก่อนนำไปผสม', ITEM_LOCKED: 'ปลดล็อกก่อนนำไปผสม', TRAINING_WEAPON_RESTRICTED: 'อาวุธฝึกหัดผสมและอัป Tier ไม่ได้', RARITY_MAX_REACHED: 'Supreme เป็น rarity สูงสุดแล้ว', TIER_MAX_REACHED: 'ถึง Tier สูงสุดของรุ่นนี้แล้ว', NOT_ENOUGH_MATCHING_EQUIPMENT: 'ต้องมีของว่างไม่ล็อก 3 ชิ้น ชนิด/Tier/rarity เดียวกัน', ITEM_LEVEL_REQUIRED: 'ผู้สวมต้องมีเลเวลถึง Tier ถัดไป', BUILD_LOCKED_DURING_BATTLE: 'จบไฟต์ก่อนพัฒนาของ' };
+const growthReasons: Record<string, string> = { ITEM_EQUIPPED: 'ถอดชิ้นนี้ก่อนนำไปผสม', ITEM_LOCKED: 'ปลดล็อกก่อนนำไปผสม', TRAINING_WEAPON_RESTRICTED: 'อาวุธฝึกหัดผสมไม่ได้', RARITY_MAX_REACHED: 'Supreme เป็น rarity สูงสุดแล้ว', NOT_ENOUGH_MATCHING_EQUIPMENT: 'ต้องมีของว่างไม่ล็อก 3 ชิ้น ชนิด/Tier/rarity เดียวกัน', ITEM_LEVEL_REQUIRED: 'ผู้สวมต้องมีเลเวลถึง Tier ถัดไป', BUILD_LOCKED_DURING_BATTLE: 'จบไฟต์ก่อนพัฒนาของ' };
 const quoteText = (q: Partial<Wallet>) => Object.entries(q).filter(([, n]) => n).map(([k, n]) => `${resourceNames[k as keyof Wallet] ?? k} ${n!.toLocaleString()}`).join(' · ') || 'ไม่ได้อะไร';
 function BaseChange({ before, after }: { before: Modifier[]; after: Modifier[] }) {
   return <div className="stat-changes">{after.map(m => { const old = Number(before.find(r => r.id === m.id && r.stat === m.stat)?.value ?? 0); return <p key={m.id + m.stat}><span>{statLabels[m.stat as keyof typeof statLabels] ?? m.stat}</span><span className="diff"><s>{old.toLocaleString()}</s> → <b className={Number(m.value) >= old ? 'up' : 'down'}>{Number(m.value).toLocaleString()}</b></span></p>; })}</div>;
 }
 
 function GearSheet({ context, row, close }: { context: GameContext; row: Gear; close: () => void }) {
-  const { state, pack, submit, locked } = context, id = row.item.instance_id, [mode, setMode] = useState<'equip' | 'fusion' | 'tier' | 'salvage' | null>(null);
+  const { state, pack, submit, locked } = context, id = row.item.instance_id, [mode, setMode] = useState<'equip' | 'fusion' | 'salvage' | null>(null);
   const growth = useMemo(() => gearGrowthOptions(state, row.owner?.character_id ?? 'main', id), [state, id, row.owner?.character_id]);
   const fits = useMemo(() => state.roster.map(a => ({ actor: a, reason: inventoryView(state, a.character_id).find(r => r.item.instance_id === id)?.reason ?? null })), [state, id]);
   return <Sheet title={row.name} onClose={close}>
@@ -35,15 +35,12 @@ function GearSheet({ context, row, close }: { context: GameContext; row: Gear; c
       <button className={`btn ${mode === 'equip' ? 'primary' : ''}`} onClick={() => setMode(mode === 'equip' ? null : 'equip')}>สวมให้…</button>
       <button className="btn" disabled={locked} onClick={() => void submit('equipment.lock', { item_instance_id: id, locked: !row.item.locked })}>{row.item.locked ? 'ปลดล็อก' : 'ล็อก'}</button>
       <button className={`btn ${mode === 'fusion' ? 'primary' : ''}`} onClick={() => setMode(mode === 'fusion' ? null : 'fusion')}>ผสม rarity</button>
-      <button className={`btn ${mode === 'tier' ? 'primary' : ''}`} onClick={() => setMode(mode === 'tier' ? null : 'tier')}>อัป Tier</button>
       <button className="btn danger-outline" disabled={!!row.owner || row.item.locked} onClick={() => setMode(mode === 'salvage' ? null : 'salvage')}>ย่อย</button>
     </div>
     {mode === 'equip' && <div className="pick-list">{fits.map(({ actor, reason }) => <button key={actor.character_id} className="list-row" disabled={locked || !!reason || actor.equipment[row.slot] === id} onClick={() => void submit('equipment.equip', { character_id: actor.character_id, slot: row.slot, item_instance_id: id }).then(ok => { if (ok) close(); })}>
       <ClassIcon pack={pack} job={actor.job_id} size={26} /><span className="row-main"><b>{friendNames[actor.character_id]} · {jobNames[actor.job_id]}</b><small>Lv.{actor.level}{actor.equipment[row.slot] === id ? ' · สวมอยู่' : reason ? ` · ${reasonText[reason] ?? reason}` : ''}</small></span></button>)}</div>}
     {mode === 'fusion' && <div className="detail-box">{growth.fusion ? <><p>{rarityLabels[growth.item.rarity_id]} ×3 → <b>{rarityLabels[growth.fusion.output.rarity_id]}</b> · ใช้ของว่างที่ไม่ล็อก 3 ชิ้น (รวมชิ้นนี้)</p><BaseChange before={growth.base} after={growth.fusion.modifiers} />{growth.fusion.after && <StatChanges before={growth.fusion.before} after={growth.fusion.after} />}<CostChips cost={growth.fusion.cost} wallet={state.wallet} pack={pack} />
       <button className="btn primary wide" disabled={locked || !canPay(state.wallet, growth.fusion.cost)} onClick={() => void submit('equipment.fuse', growth.fusion!.params).then(ok => { if (ok) close(); })}>ยืนยันผสม 3 ชิ้น</button></> : <p className="hint warn">{growthReasons[growth.fusionReason] ?? 'ยังผสมชุดนี้ไม่ได้'}</p>}</div>}
-    {mode === 'tier' && <div className="detail-box">{growth.tier ? <><p>Lv.{growth.definition.tier_level} → <b>Lv.{growth.tier.definition.tier_level}</b> · คง rarity · ค่าพัฒนาช่องและการ์ดยังอยู่</p><BaseChange before={growth.base} after={growth.tier.modifiers} />{growth.tier.after && <StatChanges before={growth.tier.before} after={growth.tier.after} />}<CostChips cost={growth.tier.cost} wallet={state.wallet} pack={pack} />
-      <button className="btn primary wide" disabled={locked || !canPay(state.wallet, growth.tier.cost)} onClick={() => void submit('equipment.tier_up', growth.tier!.params)}>ยืนยันอัป Tier</button></> : <p className="hint warn">{growthReasons[growth.tierReason] ?? 'ยังอัป Tier ไม่ได้'}</p>}</div>}
     {mode === 'salvage' && <div className="detail-box"><p>ย่อยแล้วได้ {quoteText(itemSalvageQuote([row.item]))}</p><button className="btn danger wide" disabled={locked} onClick={() => void submit('equipment.salvage', { instance_ids: [id] }).then(ok => { if (ok) close(); })}>ยืนยันย่อย</button></div>}
   </Sheet>;
 }

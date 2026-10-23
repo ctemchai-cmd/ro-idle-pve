@@ -1,7 +1,7 @@
 import type { BattleActor, Effect, SkillDefinition, StatBlueprint, StatusDefinition } from '../contracts/index.ts';
 import type { ValidatedContent } from '../content/model.ts';
 import type { DeepReadonly } from '../content/value.ts';
-import { loadValidatedContent } from '../content/index.ts';
+import { loadValidatedContent } from './content.ts';
 import { weaponElement } from '../domain/combat/status.ts';
 
 export type Element = StatBlueprint['weapon_element'];

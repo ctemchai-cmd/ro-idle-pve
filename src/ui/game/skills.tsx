@@ -14,8 +14,9 @@ import { SkillGrowth } from '../skill-growth.tsx';
 
 const ordinal = ['1st', '2nd', '3rd', '4th'];
 function SkillIcon({ id, pack }: { id: string; pack: AssetPack | null }) {
-  const [url, setUrl] = useState<string | null>(null);
-  useEffect(() => { let active = true; setUrl(null); if (pack) { try { void pack.iconUrl(locateSkillVisual(pack.index, id).icon.id).then(url => { if (active) setUrl(url); }).catch(() => {}); } catch { /* A missing icon never changes skill rules. */ } } return () => { active = false; }; }, [pack, id]);
+  const [loaded, setLoaded] = useState<{id:string;pack:AssetPack;url:string}|null>(null);
+  const url = pack?.icons.get(id) ?? (loaded?.id === id && loaded.pack === pack ? loaded.url : null);
+  useEffect(() => { let active = true; if (pack && !pack.icons.has(id)) { try { void pack.iconUrl(locateSkillVisual(pack.index, id).icon.id).then(url => { pack.icons.set(id,url); if (active) setLoaded({id,pack,url}); }).catch(() => {}); } catch { /* A missing icon never changes skill rules. */ } } return () => { active = false; }; }, [pack, id]);
   return url ? <img className="skill-icon" src={url} alt="" /> : <span className="skill-icon skill-glyph" aria-hidden="true"><Icon name="sparkles" /></span>;
 }
 const tagText = (s: SkillOption) => {

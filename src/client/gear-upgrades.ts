@@ -1,7 +1,7 @@
 import type { AccountState } from '../contracts/index.ts';
-import { loadValidatedContent } from '../content/index.ts';
-import { applyGearUpgrade, fusionCandidates, fusionQuote, tierQuote, type GearUpgradeCommand } from '../domain/progression/gear-upgrades.ts';
-import { applyEquipmentCommand, assignedOwner, equipmentFit, equipmentRules, itemDefinition } from '../domain/progression/equipment.ts';
+import { loadValidatedContent } from './content.ts';
+import { applyGearUpgrade, fusionCandidates, fusionQuote, type GearUpgradeCommand } from '../domain/progression/gear-upgrades.ts';
+import { applyEquipmentCommand, assignedOwner, equipmentFit, itemDefinition } from '../domain/progression/equipment.ts';
 import { resolvedEquipmentModifiers } from '../domain/build/equipment.ts';
 import { equipmentStats } from './equipment.ts';
 const loaded=loadValidatedContent();if(!loaded.ok)throw new Error('CONTENT_UNAVAILABLE');const content=loaded.value;
@@ -9,7 +9,6 @@ type Gear=Extract<AccountState['inventory'][number],{kind:'equipment'}>;
 export function gearGrowthOptions(state:AccountState,characterId:string,id:string){
  const item=state.inventory.find((i):i is Gear=>i.instance_id===id&&i.kind==='equipment');if(!item)throw new Error('ITEM_NOT_FOUND');
  const definition=itemDefinition(item,content),owner=assignedOwner(state,id),ids=fusionCandidates(state,id,content);
- const next=equipmentRules(content).tier_upgrade.rows.find(row=>row.from===definition.tier_level);
  const prepare=(type:GearUpgradeCommand['type'],params:unknown,cost:Partial<AccountState['wallet']>,materialIds:string[])=>{
   const clone=structuredClone(state);for(const[k,n]of Object.entries(cost))clone.wallet[k as keyof AccountState['wallet']]=Math.max(clone.wallet[k as keyof AccountState['wallet']],n!);
   applyGearUpgrade(clone,{type,params,request_id:'preview'}as GearUpgradeCommand,content);
@@ -22,9 +21,8 @@ export function gearGrowthOptions(state:AccountState,characterId:string,id:strin
   }
   return{params,cost,materialIds,output,definition:outputDefinition,modifiers:resolvedEquipmentModifiers(output,content),beneficiary,before:equipmentStats(state,beneficiary),after:stats};
  };
- let fusion:ReturnType<typeof prepare>|null=null,tier:ReturnType<typeof prepare>|null=null,fusionReason='',tierReason='';
- if(state.active_battle)return{item,definition,base:resolvedEquipmentModifiers(item,content),fusion,tier,fusionReason:'BUILD_LOCKED_DURING_BATTLE',tierReason:'BUILD_LOCKED_DURING_BATTLE'};
+ let fusion:ReturnType<typeof prepare>|null=null,fusionReason='';
+ if(state.active_battle)return{item,definition,base:resolvedEquipmentModifiers(item,content),fusion,fusionReason:'BUILD_LOCKED_DURING_BATTLE'};
  try{if(!ids.length)throw new Error(item.training?'TRAINING_WEAPON_RESTRICTED':item.locked?'ITEM_LOCKED':owner?'ITEM_EQUIPPED':item.rarity_id==='supreme'?'RARITY_MAX_REACHED':'NOT_ENOUGH_MATCHING_EQUIPMENT');const quote=fusionQuote(state,ids,content);fusion=prepare('equipment.fuse',{instance_ids:ids},quote.cost,ids);}catch(error){fusionReason=error instanceof Error?error.message:'FUSION_UNAVAILABLE';}
- try{if(!next)throw new Error('TIER_MAX_REACHED');const quote=tierQuote(state,id,next.to,content);tier=prepare('equipment.tier_up',{item_instance_id:id,target_tier:next.to},quote.cost,[]);}catch(error){tierReason=error instanceof Error?error.message:'TIER_UNAVAILABLE';}
- return{item,definition,base:resolvedEquipmentModifiers(item,content),fusion,tier,fusionReason,tierReason};
+ return{item,definition,base:resolvedEquipmentModifiers(item,content),fusion,fusionReason};
 }

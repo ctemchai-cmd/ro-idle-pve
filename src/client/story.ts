@@ -1,5 +1,5 @@
 import { battleStatusViews } from './combat-status.ts';
-import { loadValidatedContent } from '../content/index.ts';
+import { loadValidatedContent } from './content.ts';
 import { canonical } from '../content/value.ts';
 import type { AccountState, BattleCheckpoint } from '../contracts/index.ts';
 import type { BattleScene, BattleRenderView, ActorRenderView, BattleTimeline } from '../contracts/presentation.ts';

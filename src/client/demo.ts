@@ -1,5 +1,5 @@
 import { battleStatusViews } from './combat-status.ts';
-import { loadValidatedContent } from '../content/index.ts';
+import { loadValidatedContent } from './content.ts';
 import type { ValidatedContent } from '../content/model.ts';
 import type { CombatStats, StatBlueprint } from '../contracts/index.ts';
 import type { ActorRenderView, BattleRenderView, BattleScene, BattleTimeline } from '../contracts/presentation.ts';

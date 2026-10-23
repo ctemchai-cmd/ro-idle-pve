@@ -11,8 +11,8 @@
   "command": "python3 plan/checks/combat.py --write-report",
   "rules_version": "combat-baseline-v1",
   "input_sha256": {
-    "plan/data/combat-rules.json": "10f96dc8871bf59223d2286e3fb9335240dae0888253d5aec482b2e7adb2f8fc",
-    "plan/data/combat-cases.json": "7aca955d623c2352e4224a5344f4d3ef9b6958a27fa2c72d33fd0e8ccea889e4",
+    "plan/data/combat-rules.json": "d334c77231415651674d97faa80d9286165497c6abe6e4a1330e7c16ba11ad93",
+    "plan/data/combat-cases.json": "d93ec5dd5440fec83e572087231579f61a6f24a9ec52bdd47b3834cfaed86cff",
     "plan/data/progression.json": "623fd84f9a31d7caa3e5af10cb5a9996c5709eecada1bf000e6bf1e0c27f992f"
   },
   "acceptance_results": {
@@ -544,8 +544,8 @@
       "passed": true,
       "result": {
         "mode": "rotation",
-        "next_after_a": "b",
-        "extra_SI_for_empty": 0,
+        "next_after_a": null,
+        "extra_SI_for_empty": 1,
         "max_slots_scanned": 4
       }
     },

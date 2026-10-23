@@ -76,7 +76,9 @@ test('T031 AC-02: Bard or Dancer is the same Archer companion (no second NPC), w
 });
 
 test('T031 AC-02: a repeated song adds an independent stack per cast with its own expiry (no refresh), and each expires separately', () => {
-  const { events, state } = run([probe('p_bard', 'player', 'front_1', [resolved('bard_battle_song', 10)], false, 'bard'), probe('p_ally', 'player', 'back_1'), probe('e_idle', 'enemy', 'front_1')], 12000);
+  // D147: a fast manually-built Bard can overlap the5.5s song across all4slots.
+  const bard=probe('p_bard', 'player', 'front_1', [resolved('bard_battle_song', 10)], false, 'bard');bard.stat_blueprint.derived_offsets.attack_speed=100;
+  const { events, state } = run([bard, probe('p_ally', 'player', 'back_1'), probe('e_idle', 'enemy', 'front_1')], 12000);
   const applied = events.filter(event => event.type === 'status_applied' && event.skill_id === 'bard_battle_song' && event.target_id === 'p_ally' && event.status_change?.status_id === 'aspd_up');
   assert.ok(applied.length >= 2, 'song cast at least twice');
   const [first, second] = applied as [typeof applied[number], typeof applied[number]];

@@ -1,4 +1,4 @@
-import { loadValidatedContent } from '../content/index.ts';
+import { loadValidatedContent } from './content.ts';
 import { initializeAccount } from '../domain/progression/initialize.ts';
 import { applyGearUpgrade, type GearUpgradeCommand } from '../domain/progression/gear-upgrades.ts';
 import { compactPaidLedger } from '../domain/progression/ledger.ts';

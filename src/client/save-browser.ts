@@ -3,7 +3,7 @@ import type { Command, Receipt } from '../contracts/index.ts';
 import type { SaveCheckpoint } from '../contracts/save.ts';
 import type { AuthController } from './auth-controller.ts';
 import { SaveProtocolError, type BackupListing, type SavePorts, type SaveBackup } from './save-controller.ts';
-import { loadValidatedContent } from '../content/index.ts';
+import { loadValidatedContent } from './content.ts';
 import { ContentValidator } from '../content/validation.ts';
 import type { Json, ObjectValue } from '../content/value.ts';
 import { canonical } from '../content/value.ts';

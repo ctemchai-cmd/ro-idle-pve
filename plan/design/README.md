@@ -52,3 +52,5 @@
 - [38 ความยาก Story/Tower และ Refine +15](38-difficulty-and-refine15.md) — D140/141, เริ่ม0ช่องการ์ด/ปลด+5,+10,+15/ย้ายการ์ดช่องล็อกคืนกระเป๋า (TASK109)
 
 - [39 เซฟแยก10ช่องต่อบัญชี](39-save-slots.md) — D143/TASK111,owner/saveidentityแยก/SQL008/legacybytepreservation/switchisolation
+
+- [Hi-class/Awaken ขอบเขตใหม่](40-hi-class-roadmap.md) — D144–145,performanceก่อน/2สกิล/เต็มก่อน90/iconinnerglowม่วง

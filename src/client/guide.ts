@@ -1,4 +1,4 @@
-import { loadValidatedContent } from '../content/index.ts';
+import { loadValidatedContent } from './content.ts';
 import type { AccountState, SkillDefinition } from '../contracts/index.ts';
 import { effectiveLevelCap, levelQuote, progressionData } from '../domain/progression/characters.ts';
 import { allowedSkill, characterSkillCap } from '../domain/progression/skills.ts';

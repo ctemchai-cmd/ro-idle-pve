@@ -1,0 +1,73 @@
+✖ D147 one active slot keeps all four intervals; leading holes delay the first cast, normals keep attacking (18.327542ms)
+✔ D147 two/four skills and empty-only loadouts retain their own intervals without phantom casts (3.874583ms)
+✔ D147 CT/ACD apply only to real skills, and ASPD snapshots scale empty slots too (2.448083ms)
+✔ D147 insufficient SP spends that slot once, rather than accelerating the next occupied slot (1.405416ms)
+✔ D147 Stun waits at the action gate; an interrupted cast remains spent with its normal recovery (6.612542ms)
+✔ D147 checkpoint continuation, timeline and 1/2/4x chunking share exact cast/CC/RNG outcomes (309.072458ms)
+✔ T037 AC-01: D109 fixed monster cards use all73 identities at50/25/20/2/3 for 100/1000 crystal, with no pet/artifact outcomes (3.200125ms)
+✔ T037 AC-02: a pull debits crystal, adds cards and moves pity atomically; 99 crystal changes nothing (111.715875ms)
+✔ T037 AC-03: the same server seed reproduces the same cards; duplicates are distinct fixed-rarity instances with rarity salvage unless worn/locked (5.800458ms)
+✔ T037 AC-04: a worst-case Common sequence hits Rare at pull10/20 and Legendary at pull30, then counters reset (1.640875ms)
+✔ T052 AC-01: every creation path gives Rare 1 / Epic 2 / Legendary 3 / Immortal 4 / Supreme 5 lines (D-068) within range, deterministic per seed (4.4555ms)
+✔ T052 AC-02: option lines enter the shared stat pipeline exactly once and the pool has no timing stats (1.4975ms)
+✔ D146/T052: legacy higher-tier lines retain their scale and retired tier-up cannot mutate them; old saves get stable lines (2.454542ms)
+✔ T051 AC-01: shop offers debit and grant exactly, refuse over-limit/insufficient buys whole, and reset limits on the next Bangkok day (4.194208ms)
+✔ T051 AC-02: equipment gacha costs 150/1500 crystal from the server seed, with epic pity on the 10th and legendary pity on the 50th (2.711292ms)
+✔ T051 AC-03: gacha gear uses the player's tier and works with equip/fuse/salvage like any drop; tier-up stays retired (6.298208ms)
+✔ D-068: the gear gacha banner states the rolled option lines from content (Immortal 4, Supreme 5), not a stale literal (16.488334ms)
+✔ D-068 regression (found by the 25-day journey, 21 Oct 2026): a Supreme item with 5 option lines is a valid save in the inventory and in a pending reward (2.596667ms)
+✔ all six rarity fusions consume exactly3/create1 with authored floor14/16/19/23/28/35 and no fee or slot mutation (1697.4915ms)
+✔ wrong tier/type, duplicate/missing IDs, equipped/locked/training and Supreme reject without losing any item or resources (1535.559583ms)
+✖ D146 retired tier-up refuses all targets without changing invested legacy gear or slots; migration preserves it (167.645458ms)
+✔ D146 a newly acquired higher-tier item equips at its level while keeping Refine/Enchant/cards on the character slot (193.336292ms)
+✔ 500-item bag may fuse to free two spaces, leaves pending fixed reward untouched, then pays the exact original instance once (201.63325ms)
+✔ D146 no tier preview or wallet work; battle mutation locks and rarity fusion still apply (191.901709ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 22
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5333.385625
+
+✖ failing tests:
+
+test at tests/game/four-slot-rotation.test.ts:1:830
+✖ D147 one active slot keeps all four intervals; leading holes delay the first cast, normals keep attacking (18.327542ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    [
+      6000,
+      18000,
+  -   30000
+    ]
+
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/four-slot-rotation.test.ts:18:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.start (node:internal/test_runner/test:959:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:332:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 6000, 18000 ],
+    expected: [ 6000, 18000, 30000 ],
+    operator: 'deepStrictEqual'
+  }
+
+test at tests/game/gear-upgrades.test.ts:1:3979
+✖ D146 retired tier-up refuses all targets without changing invested legacy gear or slots; migration preserves it (167.645458ms)
+  Error: must be equal to one of the allowed values; schema #/oneOf/14/properties/params/properties/target_tier/enum
+      at ContentValidator.shape (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/src/content/validation.ts:61:13)
+      at AccountCommandRules.parse (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/src/domain/account/creation.ts:21:51)
+      at Object.run (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/gear-upgrades.test.ts:16:232)
+      at TestContext.<anonymous> (/Users/chanon/Documents/Projects/Personal/RO Idle Classic/tests/game/gear-upgrades.test.ts:41:50)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1062:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:752:18)
+      at Test.postRun (node:internal/test_runner/test:1191:19)
+      at Test.run (node:internal/test_runner/test:1119:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:752:7) {
+    issue: { source: 'account command', path: '/params/target_tier', effect_id: undefined, code: 'schema', message: 'must be equal to one of the allowed values; schema #/oneOf/14/properties/params/properties/target_tier/enum' }
+  }
