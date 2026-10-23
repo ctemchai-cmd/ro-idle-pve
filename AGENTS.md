@@ -1,5 +1,9 @@
 # Project context
 
+## Atomic equip upgrades (23 October 2026, D156/TASK126)
+
+Buddy has one compact equip-upgrades button for the selected actor. Shared build/equipment-upgrades.ts drives both red indicators and equipment.equip_upgrades; compare tier first, rarity only at equal tier, fit/unassigned items only, locked gear is wearable. One atomic command/receipt/revision and shared optimistic preview; preserve all slot cards/Refine/Enchant and other actors. Actual disposable Auth/API/SQL/mobile320390 plus response-loss/manualReconnect/reload and public Vercel passed; no SQL/env or owner access. Source76723725a. Hi-class remains disabled/cap70;TASK121–122 are preparation and TASK123–125 remain.
+
 ## Hi-class work started (23 October 2026, D154–155)
 
 TASK121 adds an immutable job catalog and shared ancestor skill membership; current release remains19jobs/126skills/cap70. The user confirmed same-branch Hi-class promotion keeps the whole build. Awaken is available on entering Hi-class at70, requires the individual skill at max, resets its rank to1 and improves/changes its effects. Two new skills per Hi profession must reach pre-Awaken max near/before90;90 is not a global Awaken unlock. Awaken upgrades use a new shard from later dungeons; old shards may combine into new shards and new may dismantle back, with no profitable conversion loop. See plan/design/45-hi-class-implementation.md. Never claim prepared chapters or ancestry fixtures as completed Hi-class gameplay.

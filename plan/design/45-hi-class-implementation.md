@@ -73,3 +73,25 @@ Baselineเสนอสำหรับงานimplementation:10เศษเด�
 `progression.hi_class`เก็บ13advancements/rows70–90/gate80/สองgrowthprofilesแบบinactive. `progressionData`ฉายrows/gatesใหม่เมื่อpromotion.hi_class_enabledเท่านั้น;loaderderivecatalog32ตอนเปิดและคืนcachedimmutableindexให้levelquotes. Dataปัจจุบันยังfalse/cap70/19อาชีพ. Row90มี1050manualpoints;70→90ใช้714850EXP/285940gold,gate80แยก400000gold+1600essence (authoredbaselineตามสูตรเดิม). ไม่เพิ่มgate70หรือprimary/speedอัตโนมัติ.
 
 DirectClass2→ลูกHiในสายเดิมเก็บบิลด์ทั้งหมด;เปลี่ยนข้ามHiเมื่อเป็นHiแล้วใช้reset/refundเดิม. ก่อนเป็นHiต้องมาจากparentClass2;หลังLv70ไม่ลดกลับClass1/2เพื่อป้องกันstateอยู่เหนือclasscap ให้เลือกHiสายอื่นโดยตรง. NPCยังข้ามrootไม่ได้. Weaponcompatibility13แถวเตรียมตามparent,แต่ภาพ/26โปรแกรมและAwakenยังต้องTASK123–124. Account/command/checkpointschemasเตรียม90/gate80,serversemanticcapยัง70ในรุ่นปิดHi.
+
+## รายการ26ท่าใหม่สำหรับTASK123
+
+รายการต่อไปนี้เป็นชุดที่ผู้ช่วยเลือกให้ทำต่อ ไม่ใช่โปรแกรมที่เปิดเล่นแล้ว. ตัวตนอาชีพ/สกิลและiconตรวจจากlocal `library/skill-assets/<ID>.json`;ผลเกมและตัวเลขเป็นการดัดแปลงตามrole ไม่อ้างว่าเป็นสูตรROเดิม. ท่าแรกunlock70/full88,ท่าสองunlock80/full89. แต่ละท่ายังต้องมีรายละเอียด/ราคา/rank/typedprogram/ข้อความ/variantและหลักฐานก่อนTASK125เปิด.
+
+| Hi-class | ท่า70 / source skill ID | ท่า80 / source skill ID | ทิศทางบิลด์ |
+| --- | --- | --- | --- |
+| Lord Knight | Aura Blade /355 | Spiral Pierce /397 | บัฟตนเอง/แทงต่อเนื่องเป้าเดียว |
+| Paladin | Shield Chain /480 | Gospel /369 | โล่หลายhit/สนับสนุนป้องกันและฟื้นฟูทีม |
+| High Priest | Assumptio /361 | Basilica /362 | ลดความเสียหาย/เขตปกป้องพร้อมshieldทีม |
+| Champion | Palm Strike /370 | Chain Crush Combo /372 | ท่าใช้บอลโจมตีหยุดเป้า/คอมโบหลายhit ไม่แทนที่AsuraหรือFinger |
+| Sniper | Falcon Assault /381 | Sharpshooting /382 | เหยี่ยวเดี่ยว/ยิงหมู่คริได้ |
+| Clown | Arrow Vulcan /394 | Marionette Control /396 | ยิงต่อเนื่องด้วยเครื่องดนตรี/เสริมพลังทีม |
+| Gypsy | Tarot Card of Fate /489 | Moonlit Water Mill /395 | debuffที่ใช้seededRNG/เพลงป้องกันฮีลP.ATK |
+| High Wizard | Mystical Amplification /366 | Napalm Vulcan /400 | เสริมเวทตนเอง/เวทGhostหลายhit |
+| Professor | Double Casting /482 | Soul Change /374 | เวทติดตามจากcast/ช่วยSPทีม |
+| Assassin Cross | Soul Destroyer /379 | Meteor Assault /406 | พลังผสมเดี่ยว/กายภาพหมู่+CC |
+| Stalker | Chase Walk /389 | Full Strip /476 | หลบรับ/เร่งตนเองและลดพลังศัตรู |
+| Whitesmith | Cart Termination /485 | Maximum Overthrust /486 | รถเข็นดาเมจเดี่ยว/บัฟATKทีม |
+| Creator | Acid Demonstration /490 | Full Chemical Protection /479 | เคมี/ลดเกราะและป้องกันdebuffทีม |
+
+แหล่งตราอาชีพROOมีครบ13จากcatalog https://roocdb.com/data/classes/professions/asia/en.json (cache `/private/tmp/ro-task123-professions.json`). ชื่อภูมิภาคใช้Minstrel7202กับสายBard→Clown,Mastersmith6102ภายในWhiteSmith,และBiochemist6202ภายในCreator;ต้องบันทึกaliasในsidecarไม่เดาภาพแทน. BodyHigh24ชุดมีในlocalแต่weaponoverlayไม่มีโฟลเดอร์High2แยกในexport;ต้องตรวจการใช้parentoverlayกับbodyclock/ACT/anchorsจริงก่อนบันทึกว่ารองรับ ไม่อ้างจากชื่อclass.idอย่างเดียว.

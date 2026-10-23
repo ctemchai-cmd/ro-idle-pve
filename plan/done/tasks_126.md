@@ -21,7 +21,7 @@ TASK-014, TASK-026, TASK-063, TASK-096, TASK-116 (done).
 - [x] AC-01: คำแนะนำกับserverใช้helperเดียวกัน;เทียบTierก่อนrarityเมื่อTierเท่ากัน/เฉพาะใส่ได้และยังไม่มีเจ้าของ/ไม่เลือกจากoptions/lockedยังใส่ได้
 - [x] AC-02: คลิกเดียวเปลี่ยนเฉพาะช่องที่มีhintของตัวที่เลือก;หนึ่งatomiccommand/receipt/revision/optimisticpreview,ไม่แตะNPCอื่น/inventorypayload/ทุน/Refine/Enchant/cards และไม่ทำของหาย
 - [x] AC-03: ไม่มีของ/actorหาย/inbattle/เกินlevel/อาวุธผิด/duplicate request/CASconflict/response lossมีผลที่ชัด;fullbagยังใส่ได้เพราะไม่เพิ่มinventory;ไม่มีpartialset
-- [ ] AC-04: ปุ่มmobile320390อ่านง่าย/ไม่ล้น/หายแจ้งเตือนเมื่อใส่แล้ว;targeted/build/boundaries/readiness/realAuth-SQL-mobile+hostedผ่านก่อนdone
+- [x] AC-04: ปุ่มmobile320390อ่านง่าย/ไม่ล้น/หายแจ้งเตือนเมื่อใส่แล้ว;targeted/build/boundaries/readiness/realAuth-SQL-mobile+hostedผ่านก่อนdone
 
 ## วิธีตรวจและหลักฐาน
 T126-AC-01–04 ในacceptance-matrix. Unit pure selection/reducer/preview/schema/receipt replay;disposable realSQL/Auth/API/mobileต้องวัดหนึ่งcommandsPOST/หนึ่งrevision+reload. Hostedpublicไม่เข้าบัญชีowner.
@@ -33,3 +33,5 @@ T126-AC-01–04 ในacceptance-matrix. Unit pure selection/reducer/preview/sch
 - เริ่มจากคำขอผู้ใช้ระหว่างทำHi-class;ไม่ยกเลิกงานHi-class.
 
 - Local18targeted/build/boundaries/M0และactualAuth/API/Postgres/Chrome320390ผ่านfinalr4:หนึ่งPOST/หนึ่งrevision/หนึ่งreceipt,ครบ6slots/ทุนและNPCคงเดิม/reload;ตอบกลับหลุด320ต้องกดเชื่อมต่อใหม่ตามofflinepolicyแล้วรับreceiptเดิมโดยไม่POSTซ้ำ. Viewed320. Failedharnessesเก็บ:r1ไม่เลือกเซฟหลังreload;r2กดnavซ้ำปิดBuddyที่URLจำไว้;r3คาดreconnectอัตโนมัติแทนปุ่มตามflowจริง. ไม่มีการแก้productformulaเพื่อตามtest. รอfilteredbuild/push/hostedAC04.
+
+- Hosted:source76723725ae8190d8c4b2cbad9994f0f973ac9001 VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/AiKQ8BDGThi5juKKaoZg3jfPw8TG;public4groupsผ่านAPI200SIN1/currentcontent/packเดิม/ownerendpoints401/24bundleSHA/ปุ่มและcommandจริง/sharedTimeline-mobile0writes. Root+filteredbuild588375gzipเหมือนกัน;ไม่SQL/envหรือเข้าowneraccount.

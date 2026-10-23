@@ -2,8 +2,8 @@
   "task_id": "TASK-126",
   "reviewer": "Codex",
   "review_date": "2026-10-23",
-  "passed": false,
-  "status": "Local passed;hosted pending",
+  "passed": true,
+  "status": "Local and hosted passed",
   "checks": [
     {
       "acceptance_id": "AC-01",
@@ -19,7 +19,7 @@
     },
     {
       "acceptance_id": "AC-04",
-      "passed": false
+      "passed": true
     }
   ],
   "local": {
@@ -40,5 +40,9 @@
     "Offline recovery requires reconnect, as designed;confirmed receipt is reused once",
     "No SQL/env changes, personal preview restart, new runtime assets or balance batch",
     "Hi-class/Awaken work remains separate and disabled"
-  ]
+  ],
+  "source_commit": "76723725ae8190d8c4b2cbad9994f0f973ac9001",
+  "deployment": "https://vercel.com/chanon2/ro-idle-pve/AiKQ8BDGThi5juKKaoZg3jfPw8TG",
+  "hosted": "plan/evidence/task-126-hosted.json",
+  "filtered_build": "plan/evidence/task-126-filtered-build.txt"
 }

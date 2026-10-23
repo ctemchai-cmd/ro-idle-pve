@@ -6,6 +6,14 @@
 
 
 
+## 23 ต.ค.2026 · Codex — TASK126 done / ปุ่มใส่ของรวดเดียวขึ้นVercel / กลับต่อHi-class
+
+- SOURCE76723725ae8190d8c4b2cbad9994f0f973ac9001 VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/AiKQ8BDGThi5juKKaoZg3jfPw8TG. Public4groups API200SIN1/newcontent069c7957d7e28901a91a446723fb0159cc93353bf009369262288c935b114802/owner401/24bundleSHA/newbutton+atomiccommand/sharedTimeline390320/0writesผ่าน. Packเดิม20b7130381af741049db6993ac2af2cb8ad90ab8a28c6c264139d5438c276867/32021698B. Actual authenticatedUI proved disposablelocal,notownercloud. NoSQL/env/privateenv/6173restart/balancebatch/subagents.
+- TASK126done4AC/cases/matrix/links;board109/126done/M4done67/76/M5done2/5(121122foundationsonly). Userinformedlivebuttonundergear/jบไฟต์reload. Localproof/failurehistoryและimplementationรายละเอียดอ่านsectionถัดไป. Root+filteredbuild588375gzip/PWAe0a8f7d712552af6same. ManualReconnect expected on simulatednetworkerror;onePOST/oneDBrevision/receipt verified afterrecovery. No pendingquestions.
+- **ACTIVE OBJECTIVE STILL Hi-class**:user'sequipbuttonwassteering/addition,notcancellation. Next TASK12326newskills+native24presets/icons →124Awaken+shards+conversion →125fullrelease. D154–155:directpromotionat70preserveswholebuild;AwakenonHi/maxskillrequired/resetrank1/improvechangeeffects/newshardsfromlaterdungeons/combineold→new/dismantlenew→old. Do not return tooldAwaken90globalgate. Candidate26nativeIDsandroleswrittenattaildesign45,notimplemented. CachedROOjobsourcehas13newemblems;noHighassetimportyet. Keep32MiBbudget.
+- Defaultcurrentrelease19jobs126skills/cap70/Hi flagfalse. Schema90+inactiveprogression.hi_class/joblineage/weaponfits32doneTASK122,notplayableHi. Do not claimallreadyfrompreparedtables. Needper-skillvariants/materialmigration/actualpaidrefund/UIglow/read-onlycatalogvariant/sharedruntime-sim/savedstory loopbeforeopeningfeature. NoArtifact/Class3/Pet/Rune now.
+- Finalreadiness/docsclosurepushnext;thenresume123withoutre-askingauthorization. Source/testsalltracked;useruntracked~1000assets/modern andtask108hostedloginuntouched. Freeze root/codegen whilelive tests;currentalllocal/hostedprocessesended.
+
 ## 23 ต.ค.2026 · Codex — TASK121–122 done local / TASK126 atomic equip localผ่าน รอpush/hosted
 
 - Latest usersteering:เพิ่มปุ่มใส่ของที่ดีกว่ารวดเดียว(D156/TASK126),ไม่ยกเลิกHi-class. D154–155ยืนยันHi70/directpromotionเก็บบิลด์/ต้องสกิลMaxก่อนAwaken/กลับrank1/เสริมเปลี่ยนeffects/เศษใหม่ดันหลังๆ/รวมเดิม→ใหม่และย่อยใหม่→เดิมได้. **Awakenไม่ล็อกทุกท่าที่90**;90เป็นช่วงสองสกิลใหม่เต็ม. ไม่มีคำถามค้าง. Design40แก้แล้ว/design45. อัตรา10เดิม→1ใหม่→5เดิมเป็นassistantbaseline ยังไม่implemented.
