@@ -754,9 +754,9 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 
 | ID | Task | เกณฑ์ | วิธีตรวจ | สถานะ |
 | --- | --- | --- | --- | --- |
-| `T142-AC-01` | TASK-142 | BlessingรวมASPDของIncreaseAGIและแยกแกนบัฟจากImpo;RuwachHolyMATKโจมตี+ลดDEF/MDEFพร้อมicon/effectถูกชนิด | Audit/engine/native/hosted | not_run_implementation |
-| `T142-AC-02` | TASK-142 | auditทั้ง152base/Awakenและแก้กลุ่มซ้ำจริงให้มีบทบาทต่างกัน รวมEndure/AutoGuard;sharedancestry/copyspell/pairedhealsต้องระบุเหตุผลหรือแยกจังหวะโดยคงidentity | Audit/engine/native/hosted | not_run_implementation |
-| `T142-AC-03` | TASK-142 | ทุกrank1–10มีความก้าวหน้าและAwaken1ดีกว่าbaseMaxในผลหลักรวม;อธิบายP.ATK/M.ATK/DEF-MDEF/เป้าหมาย/ระยะเวลา/CCให้ตรงจริง | Audit/engine/native/hosted | not_run_implementation |
-| `T142-AC-04` | TASK-142 | ใช้sharedengine/statuspipeline;buffindependent/noaggregatecap/normal4slot/SPcaststart/retryrulesเดิม;นอกscopebyteเท่าเดิมและprice/timing/unlockไม่เปลี่ยน | Audit/engine/native/hosted | not_run_implementation |
-| `T142-AC-05` | TASK-142 | เซฟเดิมคงskillrank/slot/Awaken/paidledgerและแปลงversionผ่านbackupflow,oldreceiptsยังอ่านได้;ไม่owner/SQL/env/6173 | Audit/engine/native/hosted | not_run_implementation |
-| `T142-AC-06` | TASK-142 | meaningfulactualeffects/fulltests/M0/assets/root+filteredbuild/nativeUI/hostedผ่านก่อนdone;รายงานขอบเขตไม่อ้างglobalbalanceจากแค่unit | Audit/engine/native/hosted | not_run_implementation |
+| `T142-AC-01` | TASK-142 | BlessingรวมASPDของIncreaseAGIและแยกแกนบัฟจากImpo;RuwachHolyMATKโจมตี+ลดDEF/MDEFพร้อมicon/effectถูกชนิด | Audit/engine/native/hosted | passed_implementation |
+| `T142-AC-02` | TASK-142 | auditทั้ง152base/Awakenและแก้กลุ่มซ้ำจริงให้มีบทบาทต่างกัน รวมEndure/AutoGuard;sharedancestry/copyspell/pairedhealsต้องระบุเหตุผลหรือแยกจังหวะโดยคงidentity | Audit/engine/native/hosted | passed_implementation |
+| `T142-AC-03` | TASK-142 | ทุกrank1–10มีความก้าวหน้าและAwaken1ดีกว่าbaseMaxในผลหลักรวม;อธิบายP.ATK/M.ATK/DEF-MDEF/เป้าหมาย/ระยะเวลา/CCให้ตรงจริง | Audit/engine/native/hosted | passed_implementation |
+| `T142-AC-04` | TASK-142 | ใช้sharedengine/statuspipeline;buffindependent/noaggregatecap/normal4slot/SPcaststart/retryrulesเดิม;นอกscopebyteเท่าเดิมและprice/timing/unlockไม่เปลี่ยน | Audit/engine/native/hosted | passed_implementation |
+| `T142-AC-05` | TASK-142 | เซฟเดิมคงskillrank/slot/Awaken/paidledgerและแปลงversionผ่านbackupflow,oldreceiptsยังอ่านได้;ไม่owner/SQL/env/6173 | Audit/engine/native/hosted | passed_implementation |
+| `T142-AC-06` | TASK-142 | meaningfulactualeffects/fulltests/M0/assets/root+filteredbuild/nativeUI/hostedผ่านก่อนdone;รายงานขอบเขตไม่อ้างglobalbalanceจากแค่unit | Audit/engine/native/hosted | passed_implementation |

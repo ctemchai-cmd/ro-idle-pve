@@ -25,12 +25,12 @@ TASK-124, TASK-136, TASK-141 (doneก่อนเริ่มimplementation)
 - [x] AC-03: ทุกrank1–10มีความก้าวหน้าและAwaken1ดีกว่าbaseMaxในผลหลักรวม;อธิบายP.ATK/M.ATK/DEF-MDEF/เป้าหมาย/ระยะเวลา/CCให้ตรงจริง
 - [x] AC-04: ใช้sharedengine/statuspipeline;buffindependent/noaggregatecap/normal4slot/SPcaststart/retryrulesเดิม;นอกscopebyteเท่าเดิมและprice/timing/unlockไม่เปลี่ยน
 - [x] AC-05: เซฟเดิมคงskillrank/slot/Awaken/paidledgerและแปลงversionผ่านbackupflow,oldreceiptsยังอ่านได้;ไม่owner/SQL/env/6173
-- [ ] AC-06: meaningfulactualeffects/fulltests/M0/assets/root+filteredbuild/nativeUI/hostedผ่านก่อนdone;รายงานขอบเขตไม่อ้างglobalbalanceจากแค่unit
+- [x] AC-06: meaningfulactualeffects/fulltests/M0/assets/root+filteredbuild/nativeUI/hostedผ่านก่อนdone;รายงานขอบเขตไม่อ้างglobalbalanceจากแค่unit
 
 ## วิธีตรวจและหลักฐาน
 
-T142-AC01–06:plan/evidence/task-142-review.json(เตรียมเมื่อเริ่ม);design57/audit/rank-engine/scope/refund/pack tests. Local implementation ผ่านแล้ว รอ hosted ก่อน done.
+T142-AC01–06:plan/evidence/task-142-review.json(เตรียมเมื่อเริ่ม);design57/audit/rank-engine/scope/refund/pack tests. ครบlocalและhosted4groupsผ่าน;source8dfe5fec1 VercelSUCCESS.
 
 ## Blocker / คำถาม
 
-ไม่มีคำถามผู้ใช้;141doneแล้ว. Local682fullTS+11focused/M0/assets/root-filtered/native3groupsผ่าน. รอsource deploy+hosted.
+ไม่มีคำถามผู้ใช้;141doneแล้ว. Local682fullTS+11focused/M0/assets/root-filtered/native3groupsผ่าน. VercelSUCCESS+hosted4groups passed API8617/SIN1/auth401/24bundleSHA/pack5591/320390/zeroerrors-writes.

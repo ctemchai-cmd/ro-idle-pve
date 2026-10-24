@@ -11,4 +11,6 @@ D168 ตามผู้ใช้: BlessingรวมIncreaseAGI;ช่องเ�
 - M0/readinessผ่าน;starter284/library60460passed (9knownmissingdependenciesเดิม),root+filtereduncachedbuild632869gzip/PWAd7c3ba01fc19df86/pack33140863bytes. Runtimeเพิ่มnativeRuwachicon/soundและrecipe24,Encoreใช้buffrecipe74. NativeVFXเป็นauthoredburstไม่ใช่exactlensSTR. Generator+goldensrerunbyte-idempotent.
 - Initialfull672มี25old-assumptionfailuresและfixturelabactorindexผิด;แก้expectationsตามD168/guardnormalizationอย่างจำกัดแล้วfull682green. Initialnativefixtureเปิดcatalogdialogค้างจึงกดTimelineไม่ได้;แก้testปิดdialog/ระบุrank10-ACDจริงแล้วผ่าน. Failuresเก็บprivate/tmp ไม่ลบหลักฐานเก่า.
 
-ไม่แตะowner/SQL/env/6173หรือbalancebatch. ไม่อ้างglobalDPSbalanceจากunit. Statusdeployดูreview/hosted.json;localครบและรอsourceเผยแพร่.
+ไม่แตะowner/SQL/env/6173หรือbalancebatch. ไม่อ้างglobalDPSbalanceจากunit. Statusdeployดูreview/hosted.json;localและhostedครบแล้ว.
+
+Source8dfe5fec1 VercelSUCCESS; publichosted4groupspassed API8617/SIN1/auth401/24bundleSHA/pack5591/32jobs/nativeRuwach-Blessing-Endure-Loud320390/zeroerrors-writes. https://vercel.com/chanon2/ro-idle-pve/HYfBn6ngGP1xLEU4AJhALmvoGwXR.

@@ -2,11 +2,11 @@
 
 ## Distinct skill roles (25 October 2026, D168/TASK142)
 
-Local18stable-ID base/Awaken role patches +7 typed statuses pass682fullTS+11focused/native3/M0/assets/root-filtered; pending source deployment. Canonical design57 and skill-distinctness.json; never restore duplicate raw-attack Blessing/Loud/BattleCry. Blessing STR/INT/DEX+ASPD; Impo rawP/MATK; Loud skill/heal; Cry normal/crit; Endure control+interrupt resistance vs AutoGuard mitigation. Persisted acolyte_increase_agi now displays Ruwach (nativeAL_RUWACH24icon/sound, HolyM.ATK+DEF/MDEFdown). Preserve ID/ranks/loadout/Awaken/costs/timing/legacyprices/receipts; content upgrade uses existing backup flow. Bard50%opening/50%HoT raw budget vs DancerHoT focus; Sanctuary rule below unchanged. D168 postprocessor runs last after Awaken generation. Full numeric/role details design57. No new global balance batch.
+Source8dfe5fec1 live/VercelSUCCESS;18stable-ID base/Awaken role patches +7 typed statuses pass682fullTS+11focused/native3/M0/assets/root-filtered/publichosted4. Canonical design57 and skill-distinctness.json; never restore duplicate raw-attack Blessing/Loud/BattleCry. Blessing STR/INT/DEX+ASPD; Impo rawP/MATK; Loud skill/heal; Cry normal/crit; Endure control+interrupt resistance vs AutoGuard mitigation. Persisted acolyte_increase_agi now displays Ruwach (nativeAL_RUWACH24icon/sound, HolyM.ATK+DEF/MDEFdown). Preserve ID/ranks/loadout/Awaken/costs/timing/legacyprices/receipts; content upgrade uses existing backup flow. Bard50%opening/50%HoT raw budget vs DancerHoT focus; Sanctuary rule below unchanged. D168 postprocessor runs last after Awaken generation. Full numeric/role details design57. No new global balance batch.
 
 ## Compact battle HUD and result actions (25 October 2026, TASK141)
 
-Source3d431a78c is live on VercelSUCCESS; nativeHUD3/result16cases2 groups/uncachedbuild/publichosted4 passed. TASK142 skill rework is separately inprogress and not yet released.
+Source3d431a78c is live on VercelSUCCESS; nativeHUD3/result16cases2 groups/uncachedbuild/publichosted4 passed. TASK142 skill rework is also live (source8dfe5fec1); see D168 above.
 
 Boss HP/name/compact element+size stay at the top; Stats/Timeline/speed/retreat/Auto now share one row in the lower battle-dock with the compact party/focus panels. Keep native damage/actor coordinates unchanged. Element/size compact views retain full accessible labels and armor guide interaction. ResultCard/DailyResult use a scrolling result-body and fixed result-footer: clear primary next/retry/team controls plus secondary analysis/exit buttons. Do not return the controls into the large HP panel. See latestHANDOFF for release status.
 
