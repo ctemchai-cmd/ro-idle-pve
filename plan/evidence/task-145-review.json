@@ -1,16 +1,16 @@
 {
   "task_id": "TASK-145",
   "date": "2026-10-25",
-  "passed": false,
+  "passed": true,
   "local_passed": true,
-  "status": "review",
+  "status": "done",
   "content_hash": "dfef4021ffe5d25839c01987420fb4e7039a9b461e3f48353fc1e69004c5a9a4",
   "pack_hash": "b954270e0ff33c97bc43e1c910bc48f06385fab60a0533625ec585c7995dc6e5",
   "acceptance_results": {
     "AC-01": "passed",
     "AC-02": "passed",
     "AC-03": "passed",
-    "AC-04": "pending_hosted"
+    "AC-04": "passed"
   },
   "checks": {
     "full_TS": 698,
@@ -23,7 +23,9 @@
     "modern_icons": 162,
     "final_matched_fights": 2120,
     "first_pass_fights": 1828,
-    "gate_risk_fights": 24
+    "gate_risk_fights": 24,
+    "hosted_groups": 4,
+    "hosted_bundle_SHA_files": 24
   },
   "evidence": [
     "plan/evidence/task-145/README.md",
@@ -35,5 +37,11 @@
     "Bounded data A/B using current engine legacy path; not an exhaustive optimum or historical binary comparison.",
     "Support/tank contribution differs from solo DPS.",
     "No owner,SQL,env,6173 or agents."
-  ]
+  ],
+  "source_commit": "581557c2bd1c0193d4b856d41036ab9915d43bc0",
+  "hosted": "plan/evidence/task-145/hosted.json",
+  "deployment": {
+    "state": "SUCCESS",
+    "url": "https://vercel.com/chanon2/ro-idle-pve/BGRfAd3jT8AAqaxpMz4G8cufrDoQ"
+  }
 }

@@ -22,7 +22,7 @@ TASK-143, TASK-144
 - [x] AC-01: วัดactualbefore-afterแบบboundedmatchedseed/equalbudget/bossเดียวกัน,รายงานtotalDPS/skilldamage/HPcost/supportไม่ตัดสินsupportด้วยsoloDPS
 - [x] AC-02: ทดสอบmechanics/invalidschemas/expiry/death/multihits/interruption/1x2x4/checkpoint/oldreceiptsพร้อมfullTSและM0
 - [x] AC-03: native320390ครบภาพ/description/Link/Timeline/HPsacrifice/multihitและpurpleVFX;root+filteredbuild/assetsผ่าน
-- [ ] AC-04: pushและVercelSUCCESSพร้อมpublichostedตรวจcontent/pack/API/bundles/mobile;ไม่owner/SQL/env/6173restart
+- [x] AC-04: pushและVercelSUCCESSพร้อมpublichostedตรวจcontent/pack/API/bundles/mobile;ไม่owner/SQL/env/6173restart
 
 ## วิธีตรวจและหลักฐาน
 
@@ -31,3 +31,7 @@ T145-ACxx: design58/frozen143before/sourceSHA/typedunit/actualsim/native/build/h
 ## Blocker / คำถาม
 
 ตอบครบทุกข้อ. ChaseWalkเสริมสกิลโจมตีถัดไปทั้งท่า ตีปกติไม่กิน.
+
+## ผลส่งมอบ
+
+Source581557c2b ขึ้นVercelSUCCESS. Publichosted4groupsผ่านAPI/SIN1/auth401/24bundleSHA/pack32jobs/21exacticons/mobile320390/zeroerrors-writes. Full698/targeted38/native4/M0/root-filtered passed;final2120matched+24Gateriskfights. ดูevidence/task-145/README.mdและreview.json.
