@@ -1022,8 +1022,8 @@
       "kind": "passive",
       "modifiers": [
         {
-          "id": "outgoing_physical_bonus",
-          "stat": "outgoing_physical_bonus",
+          "id": "skill_damage",
+          "stat": "skill_damage_bonus",
           "op": "add_flat",
           "bucket": "bonus",
           "value": {
@@ -1045,16 +1045,16 @@
       ],
       "level_parameters": {
         "power": [
-          2.45,
-          2.625,
-          2.8,
-          2.975,
-          3.15,
-          3.325,
-          3.5,
-          3.675,
-          3.85,
-          4.025
+          1.225,
+          1.3125,
+          1.4,
+          1.4875,
+          1.575,
+          1.6625,
+          1.75,
+          1.8375,
+          1.925,
+          2.0125
         ]
       },
       "presentation_id": "visual_bard_performance_strike",
@@ -1121,7 +1121,7 @@
           "element": "weapon",
           "hit_rule": "physical_roll",
           "can_crit": true,
-          "hits": 1,
+          "hits": 2,
           "armor_rule": "normal"
         }
       ]
@@ -1138,28 +1138,28 @@
       ],
       "level_parameters": {
         "power": [
-          0.525,
-          0.563889,
-          0.602777,
-          0.641667,
-          0.680556,
-          0.719444,
-          0.758333,
-          0.797223,
-          0.836112,
-          0.875
+          0.3675,
+          0.394722,
+          0.421944,
+          0.449167,
+          0.476389,
+          0.503611,
+          0.530833,
+          0.558056,
+          0.585278,
+          0.6125
         ],
         "opening_power": [
-          1.05,
-          1.127777,
-          1.205556,
-          1.283333,
-          1.361112,
-          1.438889,
-          1.516667,
-          1.594444,
-          1.672223,
-          1.75
+          1.8375,
+          1.973611,
+          2.10972,
+          2.245834,
+          2.381946,
+          2.518054,
+          2.654166,
+          2.79028,
+          2.926391,
+          3.0625
         ]
       },
       "presentation_id": "visual_bard_healing_song",
@@ -1478,17 +1478,29 @@
           43,
           42
         ],
-        "duration": [
-          1000,
-          1089,
-          1178,
-          1267,
-          1356,
-          1444,
-          1533,
-          1622,
-          1711,
-          1800
+        "cast": [
+          0.1,
+          0.111111,
+          0.122222,
+          0.133333,
+          0.144444,
+          0.155556,
+          0.166667,
+          0.177778,
+          0.188889,
+          0.2
+        ],
+        "regen": [
+          0.2,
+          0.233333,
+          0.266667,
+          0.3,
+          0.333333,
+          0.366667,
+          0.4,
+          0.433333,
+          0.466667,
+          0.5
         ]
       },
       "presentation_id": "visual_bard_encore",
@@ -1541,15 +1553,30 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "stun",
+          "id": "casting",
           "type": "apply_status",
-          "target": "foes",
-          "status_id": "stun",
-          "duration_ms": {
-            "level_param": "duration"
+          "target": "friends",
+          "status_id": "cast_speed_up",
+          "duration_ms": 6000,
+          "params": {
+            "ratio": {
+              "level_param": "cast"
+            }
           },
-          "params": {},
-          "chance": 0.45
+          "chance": 1
+        },
+        {
+          "id": "mana",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "mana_regen_up",
+          "duration_ms": 6000,
+          "params": {
+            "ratio": {
+              "level_param": "regen"
+            }
+          },
+          "chance": 1
         }
       ]
     },
@@ -1575,6 +1602,18 @@
           0.147777,
           0.161388,
           0.175
+        ],
+        "capacity": [
+          0.05,
+          0.061111,
+          0.072222,
+          0.083333,
+          0.094444,
+          0.105556,
+          0.116667,
+          0.127778,
+          0.138889,
+          0.15
         ]
       },
       "presentation_id": "visual_bard_music_lesson",
@@ -1587,6 +1626,15 @@
           "bucket": "bonus",
           "value": {
             "level_param": "ratio"
+          }
+        },
+        {
+          "id": "capacity",
+          "stat": "max_sp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "capacity"
           }
         }
       ],
@@ -1958,17 +2006,17 @@
         "dissonance"
       ],
       "level_parameters": {
-        "defense": [
-          0.2,
-          0.227778,
-          0.255556,
-          0.283333,
-          0.311111,
-          0.338889,
-          0.366667,
-          0.394444,
-          0.422222,
-          0.45
+        "ward": [
+          -0.06,
+          -0.07,
+          -0.08,
+          -0.09,
+          -0.1,
+          -0.11,
+          -0.12,
+          -0.13,
+          -0.14,
+          -0.15
         ]
       },
       "presentation_id": "visual_dancer_dissonance",
@@ -1995,27 +2043,14 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "defense",
+          "id": "ward",
           "type": "apply_status",
           "target": "friends",
-          "status_id": "defense_up",
+          "status_id": "dance_ward",
           "duration_ms": 5500,
           "params": {
             "ratio": {
-              "level_param": "defense"
-            }
-          },
-          "chance": 1
-        },
-        {
-          "id": "magic_defense",
-          "type": "apply_status",
-          "target": "friends",
-          "status_id": "magic_defense_up",
-          "duration_ms": 5500,
-          "params": {
-            "ratio": {
-              "level_param": "defense"
+              "level_param": "ward"
             }
           },
           "chance": 1
@@ -2142,6 +2177,18 @@
           0.147777,
           0.161388,
           0.175
+        ],
+        "evasion": [
+          0.03,
+          0.035556,
+          0.041111,
+          0.046667,
+          0.052222,
+          0.057778,
+          0.063333,
+          0.068889,
+          0.074444,
+          0.08
         ]
       },
       "presentation_id": "visual_dancer_music_lesson",
@@ -2154,6 +2201,15 @@
           "bucket": "bonus",
           "value": {
             "level_param": "ratio"
+          }
+        },
+        {
+          "id": "evasion",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "evasion"
           }
         }
       ],
@@ -2171,16 +2227,28 @@
       ],
       "level_parameters": {
         "ratio": [
-          0.14,
-          0.173056,
-          0.206112,
-          0.239167,
-          0.272223,
-          0.305277,
-          0.338333,
-          0.371389,
-          0.404444,
-          0.4375
+          0.07,
+          0.086528,
+          0.103056,
+          0.119583,
+          0.136111,
+          0.152639,
+          0.169166,
+          0.185695,
+          0.202222,
+          0.21875
+        ],
+        "recovery": [
+          0.003,
+          0.003778,
+          0.004556,
+          0.005333,
+          0.006111,
+          0.006889,
+          0.007667,
+          0.008444,
+          0.009222,
+          0.01
         ]
       },
       "presentation_id": "visual_dancer_breathing",
@@ -2193,6 +2261,15 @@
           "bucket": "bonus",
           "value": {
             "level_param": "ratio"
+          }
+        },
+        {
+          "id": "recovery",
+          "stat": "hp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "recovery"
           }
         }
       ],
@@ -6518,8 +6595,8 @@
       "kind": "passive",
       "modifiers": [
         {
-          "id": "outgoing_physical_bonus",
-          "stat": "outgoing_physical_bonus",
+          "id": "skill_damage",
+          "stat": "skill_damage_bonus",
           "op": "add_flat",
           "bucket": "bonus",
           "value": {
@@ -6551,16 +6628,16 @@
       ],
       "level_parameters": {
         "power": [
-          4.4275,
-          4.584028,
-          4.740556,
-          4.897083,
-          5.053611,
-          5.210139,
-          5.366667,
-          5.523194,
-          5.679722,
-          5.83625
+          1.106875,
+          1.146007,
+          1.185139,
+          1.224271,
+          1.263403,
+          1.302535,
+          1.341667,
+          1.380799,
+          1.41993,
+          1.459062
         ],
         "awaken_1": [
           0.12,
@@ -6652,7 +6729,7 @@
           "element": "weapon",
           "hit_rule": "physical_roll",
           "can_crit": true,
-          "hits": 1,
+          "hits": 4,
           "armor_rule": "normal",
           "penetration_bonus": {
             "level_param": "awaken_1"
@@ -6673,28 +6750,28 @@
       ],
       "level_parameters": {
         "power": [
-          0.9625,
-          0.996528,
-          1.030556,
-          1.064583,
-          1.098611,
-          1.132639,
-          1.166667,
-          1.200694,
-          1.234722,
-          1.26875
+          0.641667,
+          0.664352,
+          0.687037,
+          0.709722,
+          0.732407,
+          0.755093,
+          0.777778,
+          0.800463,
+          0.823148,
+          0.845833
         ],
         "opening_power": [
-          1.925,
-          1.993056,
-          2.061111,
-          2.129167,
-          2.197222,
-          2.265278,
-          2.333333,
-          2.401389,
-          2.469444,
-          2.5375
+          3.85,
+          3.986112,
+          4.122224,
+          4.258332,
+          4.394444,
+          4.530556,
+          4.666667,
+          4.802777,
+          4.938888,
+          5.075
         ],
         "awaken_barrier": [
           0.2625,
@@ -7094,17 +7171,29 @@
           34,
           34
         ],
-        "duration": [
-          1980,
-          2050,
-          2120,
-          2190,
-          2260,
-          2330,
-          2400,
-          2470,
-          2540,
-          2610
+        "cast": [
+          0.22,
+          0.227778,
+          0.235556,
+          0.243333,
+          0.251111,
+          0.258889,
+          0.266667,
+          0.274444,
+          0.282222,
+          0.29
+        ],
+        "regen": [
+          0.55,
+          0.569444,
+          0.588889,
+          0.608333,
+          0.627778,
+          0.647222,
+          0.666667,
+          0.686111,
+          0.705556,
+          0.725
         ],
         "awaken_2": [
           0.08,
@@ -7169,15 +7258,30 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "stun",
+          "id": "casting",
           "type": "apply_status",
-          "target": "foes",
-          "status_id": "stun",
-          "duration_ms": {
-            "level_param": "duration"
+          "target": "friends",
+          "status_id": "cast_speed_up",
+          "duration_ms": 6600,
+          "params": {
+            "ratio": {
+              "level_param": "cast"
+            }
           },
-          "params": {},
-          "chance": 0.45
+          "chance": 1
+        },
+        {
+          "id": "mana",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "mana_regen_up",
+          "duration_ms": 6600,
+          "params": {
+            "ratio": {
+              "level_param": "regen"
+            }
+          },
+          "chance": 1
         },
         {
           "id": "awaken_2",
@@ -7229,6 +7333,18 @@
           0.106667,
           0.113333,
           0.12
+        ],
+        "capacity": [
+          0.165,
+          0.170833,
+          0.176667,
+          0.1825,
+          0.188333,
+          0.194167,
+          0.2,
+          0.205833,
+          0.211667,
+          0.2175
         ]
       },
       "presentation_id": "visual_bard_music_lesson",
@@ -7250,6 +7366,15 @@
           "bucket": "derived",
           "value": {
             "level_param": "awaken_identity"
+          }
+        },
+        {
+          "id": "capacity",
+          "stat": "max_sp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "level_param": "capacity"
           }
         }
       ],
@@ -7728,18 +7853,6 @@
         "awakened"
       ],
       "level_parameters": {
-        "defense": [
-          0.495,
-          0.5125,
-          0.53,
-          0.5475,
-          0.565,
-          0.5825,
-          0.6,
-          0.6175,
-          0.635,
-          0.6525
-        ],
         "awaken_1": [
           0.06,
           0.066667,
@@ -7751,6 +7864,18 @@
           0.106667,
           0.113333,
           0.12
+        ],
+        "ward": [
+          -0.165,
+          -0.170833,
+          -0.176667,
+          -0.1825,
+          -0.188333,
+          -0.194167,
+          -0.2,
+          -0.205833,
+          -0.211667,
+          -0.2175
         ]
       },
       "presentation_id": "visual_dancer_dissonance",
@@ -7777,27 +7902,14 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "defense",
+          "id": "ward",
           "type": "apply_status",
           "target": "friends",
-          "status_id": "defense_up",
+          "status_id": "dance_ward",
           "duration_ms": 6050,
           "params": {
             "ratio": {
-              "level_param": "defense"
-            }
-          },
-          "chance": 1
-        },
-        {
-          "id": "magic_defense",
-          "type": "apply_status",
-          "target": "friends",
-          "status_id": "magic_defense_up",
-          "duration_ms": 6050,
-          "params": {
-            "ratio": {
-              "level_param": "defense"
+              "level_param": "ward"
             }
           },
           "chance": 1
@@ -7976,6 +8088,18 @@
           0.106667,
           0.113333,
           0.12
+        ],
+        "evasion": [
+          0.088,
+          0.091111,
+          0.094222,
+          0.097333,
+          0.100444,
+          0.103556,
+          0.106667,
+          0.109778,
+          0.112889,
+          0.116
         ]
       },
       "presentation_id": "visual_dancer_music_lesson",
@@ -7998,6 +8122,15 @@
           "value": {
             "level_param": "awaken_identity"
           }
+        },
+        {
+          "id": "evasion",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "evasion"
+          }
         }
       ],
       "triggers": []
@@ -8015,16 +8148,16 @@
       ],
       "level_parameters": {
         "ratio": [
-          0.48125,
-          0.498264,
-          0.515278,
-          0.532292,
-          0.549306,
-          0.566319,
-          0.583333,
-          0.600347,
-          0.617361,
-          0.634375
+          0.240625,
+          0.249132,
+          0.257639,
+          0.266146,
+          0.274653,
+          0.28316,
+          0.291666,
+          0.300173,
+          0.308681,
+          0.317188
         ],
         "awaken_identity": [
           0.08,
@@ -8037,6 +8170,18 @@
           0.142222,
           0.151111,
           0.16
+        ],
+        "recovery": [
+          0.011,
+          0.011389,
+          0.011778,
+          0.012167,
+          0.012556,
+          0.012944,
+          0.013333,
+          0.013722,
+          0.014111,
+          0.0145
         ]
       },
       "presentation_id": "visual_dancer_breathing",
@@ -8058,6 +8203,15 @@
           "bucket": "derived",
           "value": {
             "level_param": "awaken_identity"
+          }
+        },
+        {
+          "id": "recovery",
+          "stat": "hp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "recovery"
           }
         }
       ],

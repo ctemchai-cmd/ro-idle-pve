@@ -5,11 +5,11 @@
   "review_date": "2026-10-19",
   "scope": "M0 schemas/all skill levels/upgrade budgets/unbuffed queue estimates/local asset metadata; not battle simulation",
   "input_sha256": {
-    "plan/data/skills/archer.json": "73cb72cbb015b2c6de2339e06512d3bec49ed47f0c1f2dd9729878d556f3639d",
-    "plan/data/presentations/archer.json": "90411fe8c7b93242f236e27a290579ecb8aff3ee1053d9541d7aa65e723960a1",
+    "plan/data/skills/archer.json": "530b7e65de43f26a72cd9bad3ec6d7ff82fdad132514ddb23846c93b9828afe3",
+    "plan/data/presentations/archer.json": "b95d98f840152d052d73fbeb41b57a44765be0e24ee8a3b44d728c587e7added",
     "plan/data/class-status-effects.json": "24c2e62418ba644bfaed3326b1eae50399d25768283d26dea7e82740b3c4857a",
     "plan/data/combat-rules.json": "d334c77231415651674d97faa80d9286165497c6abe6e4a1330e7c16ba11ad93",
-    "plan/checks/classes.py": "cc89827152cc02d5bb9d7d952c4459a765893fb81e87dc539dab8edfff591551"
+    "plan/checks/classes.py": "9dd31586a65f43819b2cb4c744b2f3ec3b14e2141102aad5297940a8ab834353"
   },
   "checks": [
     {
@@ -788,7 +788,7 @@
       "passed": true,
       "result": {
         "icon": "skills.modern-bard_encore",
-        "vfx_recipe": 5,
+        "vfx_recipe": 74,
         "media_references": 2,
         "scope": "metadata-only selection; no new image/animation visual review"
       }
@@ -929,10 +929,10 @@
       ],
       "passed": true,
       "result": {
-        "equal_gameplay_pairs": 5,
-        "distinct_support_pairs": 2,
+        "equal_gameplay_pairs": 0,
+        "distinct_pairs": 7,
         "archer_companion_count": 1,
-        "appearance_choice": "bard or dancer; same roster character"
+        "appearance_choice": "bard or dancer; same roster character, distinct skills"
       }
     }
   ],

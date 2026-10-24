@@ -70,7 +70,7 @@ test('T031 AC-02: Bard or Dancer is the same Archer companion (no second NPC), w
   let pairs = 0;
   for (const bard of tree.skills.filter(skill => skill.class_id === 'bard')) for (let level = 1; level <= bard.max_level; level++) {
     const a=strip(resolved(bard.id,level).definition),b=strip(resolved(bard.id.replace('bard_','dancer_'),level).definition);
-    if(['bard_battle_song','bard_dissonance'].includes(bard.id))assert.notDeepEqual(a,b,`${bard.id} distinct support`);else assert.deepEqual(a,b,`${bard.id} Lv${level}`);pairs++;
+    assert.notDeepEqual(a,b,`${bard.id} D168 distinct role Lv${level}`);pairs++;
   }
   evidence.bard_dancer = { appearance: seen, equal_resolved_pairs_checked: pairs };
 });
@@ -104,6 +104,7 @@ test('T031 AC-03: the full fight uses real effects - Battle Song speeds up the s
     const dry = row.queue_estimate.starts.map(start => ({ skill_id: start.skill_id, start_ms: start.start_ms }));
     real[row.id] = { real: starts.slice(0, 4), dry };
     if (row.active_slots[0] === 'bard_battle_song') { assert.deepEqual(starts[0], dry[0]); assert.ok(starts[1]!.start_ms < dry[1]!.start_ms, `${row.id} song haste ${starts[1]!.start_ms} vs ${dry[1]!.start_ms}`); }
+    else if(row.active_slots.includes('bard_encore')) {assert.deepEqual(starts[0],dry[0]);assert.ok(starts[3]!.start_ms<dry[3]!.start_ms,'Encore CSPD accelerates later cast/recovery');}
     else assert.deepEqual(starts.slice(0, 4), dry, row.id);
   }
   evidence.real_fight_first_starts = real;

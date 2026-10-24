@@ -1,5 +1,9 @@
 # Project context
 
+## Distinct skill roles (25 October 2026, D168/TASK142)
+
+Local18stable-ID base/Awaken role patches +7 typed statuses pass682fullTS+11focused/native3/M0/assets/root-filtered; pending source deployment. Canonical design57 and skill-distinctness.json; never restore duplicate raw-attack Blessing/Loud/BattleCry. Blessing STR/INT/DEX+ASPD; Impo rawP/MATK; Loud skill/heal; Cry normal/crit; Endure control+interrupt resistance vs AutoGuard mitigation. Persisted acolyte_increase_agi now displays Ruwach (nativeAL_RUWACH24icon/sound, HolyM.ATK+DEF/MDEFdown). Preserve ID/ranks/loadout/Awaken/costs/timing/legacyprices/receipts; content upgrade uses existing backup flow. Bard50%opening/50%HoT raw budget vs DancerHoT focus; Sanctuary rule below unchanged. D168 postprocessor runs last after Awaken generation. Full numeric/role details design57. No new global balance batch.
+
 ## Compact battle HUD and result actions (25 October 2026, TASK141)
 
 Source3d431a78c is live on VercelSUCCESS; nativeHUD3/result16cases2 groups/uncachedbuild/publichosted4 passed. TASK142 skill rework is separately inprogress and not yet released.

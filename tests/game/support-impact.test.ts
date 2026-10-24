@@ -2,6 +2,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import roles from '../../plan/generators/skill-distinctness.json';
 import tuning131 from './fixtures/boss-focus-131.json';
 import type { AccountState, Effect, Modifier, SkillDefinition } from '../../src/contracts/index.ts';
 import { EffectPipeline } from '../../src/domain/combat/effects.ts';
@@ -37,6 +38,7 @@ test('all support curves scale from their original values once and damage curves
   const superseded=new Set(['hunter_blitz_beat','priest_sanctuary','priest_resurrection','dancer_dissonance','sage_magic_barrier','merchant_loud_voice','merchant_first_aid','blacksmith_meltdown','knight_brandish','crusader_grand_cross','monk_asura','hunter_claymore','hunter_rapid_fire','wizard_storm_gust','wizard_jupitel','wizard_meteor','wizard_heavens_drive','sage_psychic_bolt','assassin_sonic_blow','assassin_detonate','assassin_grimtooth','rogue_raid','blacksmith_cart_crash','alchemist_acid_terror','alchemist_demonstration']);
   for(const row of tuning131.skills)if(Object.keys(row.power_scales).length)superseded.add(row.id);
   superseded.add('assassin_enchant_poison'); // D163: the ATK amplifier is now14.4–30%, independently tested.
+  for(const id of Object.keys(roles.updates))superseded.add(id);
   goldens([...superseded]).forEach(checkGolden);
   for (const family of ['baseline_support_power', 'baseline_skill_power']) for (const [id, curves] of Object.entries(spec[family]) as [string, Record<string, number[]>][]) for (const [key, values] of Object.entries(curves)) {
     if(superseded.has(id))continue;
@@ -55,12 +57,12 @@ test('single heal and shield use the shared role increase including flat shield 
 });
 test('guard, DEF and HP skills gain power while independent stacking and expiry remain intact', () => {
   const f = fixture(), hp = f.caster.stats.max_hp;
-  f.apply('swordsman_endure'); close(f.caster.stats.guard_percent, .28);
-  f.state.game_time_ms = 1000; f.apply('swordsman_endure'); close(f.caster.stats.guard_percent, .56);
+  f.apply('crusader_auto_guard'); close(f.caster.stats.guard_percent, .49);
+  f.state.game_time_ms = 1000; f.apply('crusader_auto_guard'); close(f.caster.stats.guard_percent, .98);
   const hit: Effect = { id: 'hit', type: 'damage', target: 'foe', formula: { id: 'flat_power', params: { amount: 1000 } }, damage_type: 'physical', element: 'neutral', hit_rule: 'always', can_crit: false, hits: 1, armor_rule: 'normal' };
   const context = f.pipeline.context(f.target, 'normal', 'normal', 'incoming'); context.selected = { foe: [f.caster] }; f.pipeline.program([hit], context);
-  assert.equal(f.events.filter(e => e.type === 'damage').at(-1)!.amount, 440);
-  f.state.game_time_ms = 5000; f.pipeline.expire(); close(f.caster.stats.guard_percent, .28);
+  assert.equal(f.events.filter(e => e.type === 'damage').at(-1)!.amount, 20);
+  f.state.game_time_ms = 5000; f.pipeline.expire(); close(f.caster.stats.guard_percent, .49);
   f.state.game_time_ms = 6000; f.pipeline.expire(); close(f.caster.stats.guard_percent, 0);
   assert.equal(f.caster.stats.max_hp, hp);
   const guard = resolveSkill('monk_steel_body', 10, content).definition; assert.equal(guard.kind, 'active'); if (guard.kind === 'active') assert.equal((guard.effects[0] as Extract<Effect, { type: 'apply_status' }>).params.ratio, .7);
@@ -69,7 +71,7 @@ test('guard, DEF and HP skills gain power while independent stacking and expiry 
 });
 test('offensive and defensive support buffs change only authored power, leaving their timing and speed values intact', () => {
   const f = fixture(), atk = f.caster.stats.physical_attack; recomputeStats(f.caster, content); const base = f.caster.stats.physical_attack;
-  f.apply('acolyte_blessing'); close(f.caster.stats.physical_attack, base * 1.2625);
+  f.apply('priest_impositio'); close(f.caster.stats.physical_attack, base * 1.4375);
   const raw = resolveSkill('crusader_defender', 10, content).definition; assert.ok(raw.kind === 'active');
   if (raw.kind === 'active') { const effects = raw.effects as Extract<Effect, { type: 'apply_status' }>[]; close(Number(effects[0]!.params.ratio), .525); close(Number(effects[1]!.params.ratio), .525); }
   const song = resolveSkill('bard_battle_song', 10, content).definition; assert.ok(song.kind === 'active'); if (song.kind === 'active') close(Number((song.effects[0] as Extract<Effect, { type: 'apply_status' }>).params.ratio), .24);

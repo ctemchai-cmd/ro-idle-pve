@@ -128,6 +128,18 @@
           9000,
           9500,
           10000
+        ],
+        "haste": [
+          0.06,
+          0.068889,
+          0.077778,
+          0.086667,
+          0.095556,
+          0.104444,
+          0.113333,
+          0.122222,
+          0.131111,
+          0.14
         ]
       },
       "presentation_id": "visual_acolyte_blessing",
@@ -178,10 +190,10 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "attack_up",
+          "id": "attributes",
           "type": "apply_status",
           "target": "friends",
-          "status_id": "attack_up",
+          "status_id": "blessing_attributes",
           "duration_ms": {
             "level_param": "duration"
           },
@@ -193,16 +205,16 @@
           "chance": 1
         },
         {
-          "id": "magic_up",
+          "id": "agility",
           "type": "apply_status",
           "target": "friends",
-          "status_id": "magic_up",
+          "status_id": "aspd_up",
           "duration_ms": {
             "level_param": "duration"
           },
           "params": {
             "ratio": {
-              "level_param": "ratio"
+              "level_param": "haste"
             }
           },
           "chance": 1
@@ -328,17 +340,29 @@
         "increase_agi"
       ],
       "level_parameters": {
-        "ratio": [
-          0.06,
-          0.068889,
-          0.077778,
-          0.086667,
-          0.095556,
-          0.104444,
+        "power": [
+          1.4,
+          1.522222,
+          1.644444,
+          1.766667,
+          1.888889,
+          2.011111,
+          2.133333,
+          2.255556,
+          2.377778,
+          2.5
+        ],
+        "break": [
+          0.08,
+          0.091111,
+          0.102222,
           0.113333,
-          0.122222,
-          0.131111,
-          0.14
+          0.124444,
+          0.135556,
+          0.146667,
+          0.157778,
+          0.168889,
+          0.18
         ]
       },
       "presentation_id": "visual_acolyte_increase_agi",
@@ -389,19 +413,40 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "aspd_up",
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
+            }
+          },
+          "damage_type": "magical",
+          "element": "holy",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 1,
+          "armor_rule": "normal"
+        },
+        {
+          "id": "reveal_armor",
           "type": "apply_status",
-          "target": "friends",
-          "status_id": "aspd_up",
-          "duration_ms": 4500,
+          "target": "foes",
+          "status_id": "armor_break",
+          "duration_ms": 6000,
           "params": {
             "ratio": {
-              "level_param": "ratio"
+              "level_param": "break"
             }
           },
           "chance": 1
         }
-      ]
+      ],
+      "single_target_damage_bonus": 0.35
     },
     {
       "id": "acolyte_meditation",
@@ -927,6 +972,18 @@
           4.472223,
           4.861111,
           5.25
+        ],
+        "healing": [
+          0.06,
+          0.07,
+          0.08,
+          0.09,
+          0.1,
+          0.11,
+          0.12,
+          0.13,
+          0.14,
+          0.15
         ]
       },
       "presentation_id": "visual_priest_spirit_recovery",
@@ -939,6 +996,15 @@
           "bucket": "bonus",
           "value": {
             "level_param": "regen"
+          }
+        },
+        {
+          "id": "healing",
+          "stat": "outgoing_healing_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "healing"
           }
         }
       ],
@@ -3861,6 +3927,18 @@
           0.142222,
           0.151111,
           0.16
+        ],
+        "haste": [
+          0.154,
+          0.159444,
+          0.164889,
+          0.170333,
+          0.175778,
+          0.181222,
+          0.186667,
+          0.192111,
+          0.197556,
+          0.203
         ]
       },
       "presentation_id": "visual_acolyte_blessing",
@@ -3911,10 +3989,10 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "attack_up",
+          "id": "attributes",
           "type": "apply_status",
           "target": "friends",
-          "status_id": "attack_up",
+          "status_id": "blessing_attributes",
           "duration_ms": {
             "level_param": "duration"
           },
@@ -3926,16 +4004,16 @@
           "chance": 1
         },
         {
-          "id": "magic_up",
+          "id": "agility",
           "type": "apply_status",
           "target": "friends",
-          "status_id": "magic_up",
+          "status_id": "aspd_up",
           "duration_ms": {
             "level_param": "duration"
           },
           "params": {
             "ratio": {
-              "level_param": "ratio"
+              "level_param": "haste"
             }
           },
           "chance": 1
@@ -4104,29 +4182,29 @@
         "awakened"
       ],
       "level_parameters": {
-        "ratio": [
-          0.154,
-          0.159444,
-          0.164889,
-          0.170333,
-          0.175778,
-          0.181222,
-          0.186667,
-          0.192111,
-          0.197556,
-          0.203
+        "power": [
+          1.375,
+          1.423611,
+          1.472222,
+          1.520833,
+          1.569444,
+          1.618056,
+          1.666667,
+          1.715278,
+          1.763889,
+          1.8125
         ],
-        "awaken_1": [
-          0.06,
-          0.066667,
-          0.073333,
-          0.08,
-          0.086667,
-          0.093333,
-          0.1,
-          0.106667,
-          0.113333,
-          0.12
+        "break": [
+          0.198,
+          0.205,
+          0.212,
+          0.219,
+          0.226,
+          0.233,
+          0.24,
+          0.247,
+          0.254,
+          0.261
         ]
       },
       "presentation_id": "visual_acolyte_increase_agi",
@@ -4177,32 +4255,40 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "aspd_up",
-          "type": "apply_status",
-          "target": "friends",
-          "status_id": "aspd_up",
-          "duration_ms": 4950,
-          "params": {
-            "ratio": {
-              "level_param": "ratio"
+          "id": "hit",
+          "type": "damage",
+          "target": "foes",
+          "formula": {
+            "id": "magical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "power"
+              },
+              "flat_power": 0
             }
           },
-          "chance": 1
+          "damage_type": "magical",
+          "element": "holy",
+          "hit_rule": "always",
+          "can_crit": false,
+          "hits": 2,
+          "armor_rule": "normal"
         },
         {
-          "id": "awaken_1",
+          "id": "reveal_armor",
           "type": "apply_status",
-          "target": "friends",
-          "status_id": "awaken_skill_power",
-          "duration_ms": 6000,
+          "target": "foes",
+          "status_id": "armor_break",
+          "duration_ms": 6600,
           "params": {
             "ratio": {
-              "level_param": "awaken_1"
+              "level_param": "break"
             }
           },
           "chance": 1
         }
-      ]
+      ],
+      "single_target_damage_bonus": 0.35
     },
     "acolyte_meditation": {
       "id": "acolyte_meditation",
@@ -4898,7 +4984,7 @@
           6.3875,
           6.591667,
           6.795833,
-          7.0,
+          7,
           7.204167,
           7.408333,
           7.6125
@@ -4914,6 +5000,18 @@
           0.142222,
           0.151111,
           0.16
+        ],
+        "healing": [
+          0.165,
+          0.170833,
+          0.176667,
+          0.1825,
+          0.188333,
+          0.194167,
+          0.2,
+          0.205833,
+          0.211667,
+          0.2175
         ]
       },
       "presentation_id": "visual_priest_spirit_recovery",
@@ -4935,6 +5033,15 @@
           "bucket": "derived",
           "value": {
             "level_param": "awaken_identity"
+          }
+        },
+        {
+          "id": "healing",
+          "stat": "outgoing_healing_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "healing"
           }
         }
       ],

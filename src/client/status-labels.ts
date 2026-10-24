@@ -8,3 +8,5 @@ Object.assign(statNames,{neutral_resistance:'ต้านไร้ธาตุ',
 Object.assign(statNames,{skill_damage_bonus:'ดาเมจสกิล',normal_damage_bonus:'ดาเมจตีปกติ'});
 Object.assign(statusNames,{crit_damage_up:'เพิ่มดาเมจคริ'});
 Object.assign(statusNames,{awaken_skill_power:'เพิ่มดาเมจสกิล',awaken_penetration:'เจาะเกราะ',awaken_healing_received:'เพิ่มการรับฮีล'});
+Object.assign(statusNames,{blessing_attributes:'STR / INT / DEX',skill_power_up:'ดาเมจสกิล / พลังฮีล',normal_power_up:'ดาเมจตีปกติ',endure_focus:'ต้าน CC / ขัดร่าย',intimidated:'ลด P.ATK / M.ATK',dance_ward:'ดาเมจที่ได้รับ',evasion_up:'เพิ่มการหลบ',armor_break:'ลด DEF / MDEF'});
+Object.assign(statNames,{interrupt_resistance:'ต้านขัดร่าย',armor_break_percent:'ลด DEF / MDEF',normal_damage_bonus:'ดาเมจตีปกติ',skill_damage_bonus:'ดาเมจสกิล'});

@@ -20,7 +20,7 @@
 
 [TASK-129](done/tasks_129.md) วัดแล้ว14,168ไฟต์ / 32อาชีพ / 11เงื่อนไข / 1224บิลด์: [รายงาน](evidence/task-129/README.md) · [ตารางกรองได้](evidence/task-129/report.html). เก็บbaseline79ab9437ก่อนคำขอปรับAwaken TASK130; ไม่มีการปรับเกมจากอันดับอัตโนมัติ
 
-อัปเดต: 24 ตุลาคม 2026 · ระยะปัจจุบัน: **127/142 งานผ่าน done; TASK-041 บาลานซ์, TASK-058 ย้ายเซฟ และ TASK-064 อัปเกรดทันทีขึ้นVercelแล้ว/SQL007ติดตั้งแล้ว/รอcloudtimingอยู่ inprogress; TASK-062 PWAขึ้นVercelและผ่านhostedแล้ว; TASK-063 ทุกmutationลด3→1requestsขึ้นVercelผ่านแล้ว; TASK-060 เซฟเริ่ม/จบและ TASK-061 resetดันขึ้นVercelแล้ว; TASK-048/054/055/056/057 อยู่ review รอผู้ใช้ตรวจภาพ**
+อัปเดต: 25 ตุลาคม 2026 · ระยะปัจจุบัน: **127/142 งานผ่าน done; TASK-041 บาลานซ์, TASK-058 ย้ายเซฟ และ TASK-064 อัปเกรดทันทีขึ้นVercelแล้ว/SQL007ติดตั้งแล้ว/รอcloudtimingอยู่ inprogress; TASK-062 PWAขึ้นVercelและผ่านhostedแล้ว; TASK-063 ทุกmutationลด3→1requestsขึ้นVercelผ่านแล้ว; TASK-060 เซฟเริ่ม/จบและ TASK-061 resetดันขึ้นVercelแล้ว; TASK-048/054/055/056/057 อยู่ review รอผู้ใช้ตรวจภาพ**
 
 [TASK-125](done/tasks_125.md)/[TASK-128](done/tasks_128.md) ขึ้นVercel source`fe14ac635`แล้ว: **Hi-class13อาชีพ/26สกิล, Awaken152variants, Lv.70→90, บท10–12** และบัพHunterสามท่า. Spiral3hitรวม750%weapon/Rapid1050%/Claymore750%เมื่อเต็ม. 624TS/root+filteredbuild/M0/actualAuthSQL-mobile6groups/hosted4groupsผ่าน;ไม่SQL/envใหม่/ไม่เข้าบัญชีowner/ไม่รันbalancebatch. [Hi review](evidence/task-125-review.json) · [Hunter review](evidence/task-128-review.json). จบไฟต์reloadแล้วสำรองอัปเดตเซฟตามflowเดิม.
 
@@ -133,8 +133,8 @@ Q-001–Q-022 ตอบแล้ว: บัฟบวกกันไม่มี�
 | สถานะ | จำนวนไฟล์ tasks_*.md | งานปัจจุบัน |
 | --- | ---: | --- |
 | todo | 5 | ออกแบบ/พัฒนา/ตรวจรับตามรายการด้านล่าง |
-| inprogress | 5 | TASK-041 บาลานซ์; TASK-058 ย้ายเซฟ; TASK-064 cloud timing; TASK-067 รอผู้ใช้คืนสิทธิ์แก่นพลัง; TASK142skill roles |
-| review | 5 | [TASK-048](review/tasks_048.md) game shell /play รอผู้ใช้ตรวจหน้าตา (AC-08), [TASK-054](review/tasks_054.md) ภาพการต่อสู้ตรง RO รอผู้ใช้ตรวจ (AC-06), [TASK-055](review/tasks_055.md) คำขอระหว่างลองเล่น รอผู้ใช้ (AC-06), [TASK-056](review/tasks_056.md) UI D-076–078/080 อัปเดตแล้วรอผู้ใช้ตรวจภาพ (AC-06), [TASK-057](review/tasks_057.md) ทรงผม D-079 อัปเดตแล้วรอผู้ใช้ตรวจ (AC-05) |
+| inprogress | 4 | TASK-041 บาลานซ์; TASK-058 ย้ายเซฟ; TASK-064 cloud timing; TASK-067 รอผู้ใช้คืนสิทธิ์แก่นพลัง |
+| review | 6 | [TASK-048](review/tasks_048.md) game shell /play รอผู้ใช้ตรวจหน้าตา (AC-08), [TASK-054](review/tasks_054.md) ภาพการต่อสู้ตรง RO รอผู้ใช้ตรวจ (AC-06), [TASK-055](review/tasks_055.md) คำขอระหว่างลองเล่น รอผู้ใช้ (AC-06), [TASK-056](review/tasks_056.md) UI D-076–078/080 อัปเดตแล้วรอผู้ใช้ตรวจภาพ (AC-06), [TASK-057](review/tasks_057.md) ทรงผม D-079 อัปเดตแล้วรอผู้ใช้ตรวจ (AC-05); [TASK142](review/tasks_142.md) skill rolesรอhosted |
 | done | 127 | ผ่าน review ตามหลักฐานในแต่ละงาน |
 
 Progress ของกระดาน: **127/142 งานผ่าน done** ไม่รวมงานเตรียม assets ที่ทำก่อนเริ่มใช้กระดาน ตำแหน่งไฟล์เป็นสถานะจริง ID คงเดิม เมื่อย้ายไฟล์ให้อัปเดตจำนวนและลิงก์ในเอกสารนี้
@@ -435,4 +435,4 @@ TASK-101 correction23ต.ค.: แทนskillartเดิมด้วย19actual
 
 | [TASK-141](done/tasks_141.md) | M4 | HUDบอสกระชับ/พื้นที่ดาเมจ | TASK-138, TASK-140 |
 
-[TASK142](inprogress/tasks_142.md) กำลังทำskillไม่ซ้ำ/BlessingรวมAGI/RuwachลดDEF-MDEF ตามD168 หลัง141done.
+[TASK142](review/tasks_142.md) localผ่าน18skill roles/BlessingรวมAGI/RuwachลดDEF-MDEF ตามD168;682full+11focused/native3groups รอsource deploy+hosted.

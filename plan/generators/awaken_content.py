@@ -45,6 +45,11 @@ for p in(D/'skills').glob('*.json'):
   prices[s['id']]={'cost_version':'awakening-costs-v1','upgrade_cost_rows':[{'from_level':i,'to_level':i+1,'gold':2000*(i+1),'awakening_shard':5*(i+1)}for i in range(1,10)]}
   index.append({'id':s['id'],'kind':s['kind'],'class_id':s['class_id'],'gains':gains,'same_native_icon':s['presentation_id']==original['presentation_id']})
  doc['awakened_variants']=variants;doc['awakened_upgrades']=prices;write(p,doc)
+from skill_distinctness import apply as apply_distinctness
+apply_distinctness() # D168 roles override generic scaling after every regeneration.
+roles=load(R/'plan/generators/skill-distinctness.json')['updates']
+for entry in index:
+ if entry['id'] in roles:entry['gains']=[{'type':'composed_role','role':roles[entry['id']]['role'],'definition_source':'plan/generators/skill-distinctness.json'}]
 args=argparse.ArgumentParser();args.add_argument('--evidence-task',type=int);task=args.parse_args().evidence_task
 # Historical review evidence is immutable during later balance regeneration.
 if task:

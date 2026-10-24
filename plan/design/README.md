@@ -86,3 +86,5 @@ D166/TASK137: [54-grimtooth-balance.md](54-grimtooth-balance.md).
 D166/TASK138: [55-boss-size.md](55-boss-size.md).
 
 D167/TASK139: [ร้าน/แลกเศษ/Panel](56-shop-and-exchange-ui.md).
+
+- [57 บทบาทสกิลแยกกัน](57-distinct-skill-roles.md) — D168/TASK142: Blessing+ASPD/Ruwach/18identityprograms; stable IDs/costs/timing/ledger.

@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs';
 import {gunzipSync} from 'node:zlib';
+import roleSpec from '../../plan/generators/skill-distinctness.json';
 import rankBefore136 from './fixtures/skill-rank-before-136.json';
 import tuning131 from './fixtures/boss-focus-131.json';
 import sanctuaryBefore127 from './fixtures/sanctuary-before-127.json';
@@ -8,6 +9,11 @@ import hunterBefore128 from './fixtures/hunter-before-128.json';
 export function legacyClass2Source(file: string): Buffer {
   let bytes = readFileSync(new URL(`../../plan/data/${file}`, import.meta.url));
   if (file.startsWith('skills/')) {
+    const roleBefore=JSON.parse(gunzipSync(readFileSync(new URL('../../plan/evidence/task-142/authored-before.json.gz',import.meta.url))).toString())as Record<string,string>;
+    for(const id of Object.keys(roleSpec.updates)){
+      const pattern=new RegExp('^    \\{\\n      "id": "'+id+'"[\\s\\S]*?\\n    \\}','m'),old=roleBefore['plan/data/'+file]!.match(pattern)?.[0];
+      if(old)bytes=Buffer.from(bytes.toString().replace(pattern,old));
+    }
     // TASK123 appends inactive High programs/prices; preserve the original Class2 bytes.
     const text = bytes.toString(), start = text.indexOf(',\n  \"hi_class_skills\"');
     if (start >= 0) bytes = Buffer.from(text.slice(0, start) + '\n}\n');

@@ -28,7 +28,7 @@ test('D139 every player skill has real rank growth; five previous SP-only action
   const strip=(d:Active)=>JSON.stringify({...d,cost:{...d.cost,sp:0}});
   assert.ok(new Set(definitions.map(strip)).size>1,`${s.id} only changes SP`);
  }
- for(const[id,start,end]of [['swordsman_provoke',4500,7500],['hunter_ankle_snare',1200,2400],['bard_encore',1000,1800],['dancer_encore',1000,1800]]as const){
+ for(const[id,start,end]of [['swordsman_provoke',4500,7500],['hunter_ankle_snare',1200,2400],['dancer_encore',1000,1800]]as const){
   const values=Array.from({length:10},(_,i)=>Number((active(id,i+1).effects[0] as {duration_ms:number}).duration_ms));
   assert.equal(values[0],start);assert.equal(values[9],end);assert.ok(values.every((v,i)=>!i||v>values[i-1]!));
  }

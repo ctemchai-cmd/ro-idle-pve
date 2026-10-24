@@ -23,7 +23,7 @@ function setup(healers = [healer()], enemy = actor('boss', 'enemy')) {
 }
 const ticks = (events: ReturnType<typeof step>['events']) => events.filter(e => e.type === 'heal' && e.skill_id === 'priest_sanctuary' && e.target_id === 'recipient');
 
-test('all Sanctuary ranks are pure HoT with twice the song tick coefficient and independently authored goldens', () => {
+test('all Sanctuary ranks are pure HoT with stronger ticks than both physical songs and independently authored goldens', () => {
   const authored = structuredClone(content.skills.priest_sanctuary) as unknown as typeof before;
   authored.level_parameters.power = before.level_parameters.power;
   authored.effects[0]!.status_id = 'regeneration';
@@ -38,7 +38,7 @@ test('all Sanctuary ranks are pure HoT with twice the song tick coefficient and 
       const music = resolveSkill(song, rank, content).definition as Active;
       assert.equal(music.effects[0]!.type, 'heal');
       const hot = music.effects[1]!; if (hot.type !== 'apply_status') throw Error('SONG_HOT_REQUIRED');
-      assert.ok(Math.abs(Number(effect.params.power_ratio) - Number(hot.params.power_ratio) * 2) < .000003, '2x within authored six-decimal rounding');
+      assert.ok(Number(effect.params.power_ratio) >= Number(hot.params.power_ratio)*2-.000003, 'Sanctuary stays at least twice each song tick');
     }
     const details = previewSkillDetails('priest_sanctuary', rank);
     assert.equal(details.effects.length, 1); assert.match(details.effects[0]!, /M\.ATK ทุก 1s · 6s · เริ่มทันที/);

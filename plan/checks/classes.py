@@ -95,10 +95,10 @@ def review(root):
     a=deepcopy(bard[suffix]);b=deepcopy(dancer[suffix])
     for d in [a,b]:
      for k in ['id','name_key','class_id','presentation_id','tags']:d.pop(k)
-    if suffix in ['battle_song','dissonance']:assert a!=b,suffix
-    else:assert a==b,suffix
+    # D168 distinguishes every sibling role; aliases/roster identity remain shared.
+    assert a!=b,suffix
    assert len(load(D/'progression.json')['initial_state']['npc_roster'])==6
-   return {'equal_gameplay_pairs':len(bard)-2,'distinct_support_pairs':2,'archer_companion_count':1,'appearance_choice':'bard or dancer; same roster character'}
+   return {'equal_gameplay_pairs':0,'distinct_pairs':len(bard),'archer_companion_count':1,'appearance_choice':'bard or dancer; same roster character, distinct skills'}
   check('bard_dancer_equal_gameplay_one_npc',['AC-03'],performances)
  if root=='acolyte':
   def healing_tank():

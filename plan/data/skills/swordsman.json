@@ -318,17 +318,17 @@
         "endure"
       ],
       "level_parameters": {
-        "guard": [
-          0.14,
-          0.155556,
-          0.171111,
-          0.186667,
-          0.202223,
-          0.217777,
-          0.233333,
-          0.248888,
-          0.264444,
-          0.28
+        "resist": [
+          0.5,
+          0.555556,
+          0.611111,
+          0.666667,
+          0.722222,
+          0.777778,
+          0.833333,
+          0.888889,
+          0.944444,
+          1.0
         ]
       },
       "presentation_id": "visual_swordsman_endure",
@@ -379,14 +379,14 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "guard_up",
+          "id": "enduring",
           "type": "apply_status",
           "target": "self",
-          "status_id": "guard_up",
+          "status_id": "endure_focus",
           "duration_ms": 5000,
           "params": {
             "ratio": {
-              "level_param": "guard"
+              "level_param": "resist"
             }
           },
           "chance": 1
@@ -727,6 +727,18 @@
           0.182777,
           0.196388,
           0.21
+        ],
+        "crit": [
+          0.04,
+          0.044444,
+          0.048889,
+          0.053333,
+          0.057778,
+          0.062222,
+          0.066667,
+          0.071111,
+          0.075556,
+          0.08
         ]
       },
       "presentation_id": "visual_knight_battle_cry",
@@ -777,10 +789,10 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "attack_up",
+          "id": "normal_power",
           "type": "apply_status",
           "target": "friends",
-          "status_id": "attack_up",
+          "status_id": "normal_power_up",
           "duration_ms": 4500,
           "params": {
             "ratio": {
@@ -790,14 +802,14 @@
           "chance": 1
         },
         {
-          "id": "support_magic_up",
+          "id": "critical",
           "type": "apply_status",
           "target": "friends",
-          "status_id": "magic_up",
+          "status_id": "crit_up",
           "duration_ms": 4500,
           "params": {
             "ratio": {
-              "level_param": "attack"
+              "level_param": "crit"
             }
           },
           "chance": 1
@@ -4048,29 +4060,41 @@
         "awakened"
       ],
       "level_parameters": {
-        "guard": [
-          0.308,
-          0.318889,
-          0.329778,
-          0.340667,
-          0.351556,
-          0.362444,
-          0.373333,
-          0.384222,
-          0.395111,
-          0.406
+        "resist": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
         ],
-        "awaken_1": [
-          0.4,
-          0.444444,
-          0.488889,
-          0.533333,
-          0.577778,
-          0.622222,
-          0.666667,
-          0.711111,
-          0.755556,
-          0.8
+        "duration": [
+          5500,
+          5694,
+          5889,
+          6083,
+          6278,
+          6472,
+          6667,
+          6861,
+          7056,
+          7250
+        ],
+        "recovery": [
+          0.1,
+          0.111111,
+          0.122222,
+          0.133333,
+          0.144444,
+          0.155556,
+          0.166667,
+          0.177778,
+          0.188889,
+          0.2
         ]
       },
       "presentation_id": "visual_swordsman_endure",
@@ -4121,27 +4145,31 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "guard_up",
+          "id": "enduring",
           "type": "apply_status",
           "target": "self",
-          "status_id": "guard_up",
-          "duration_ms": 5500,
+          "status_id": "endure_focus",
+          "duration_ms": {
+            "level_param": "duration"
+          },
           "params": {
             "ratio": {
-              "level_param": "guard"
+              "level_param": "resist"
             }
           },
           "chance": 1
         },
         {
-          "id": "awaken_1",
+          "id": "awaken_recovery",
           "type": "apply_status",
           "target": "self",
-          "status_id": "counter_stance",
-          "duration_ms": 6000,
+          "status_id": "awaken_healing_received",
+          "duration_ms": {
+            "level_param": "duration"
+          },
           "params": {
             "ratio": {
-              "level_param": "awaken_1"
+              "level_param": "recovery"
             }
           },
           "chance": 1
@@ -4576,6 +4604,18 @@
           0.177778,
           0.188889,
           0.2
+        ],
+        "crit": [
+          0.088,
+          0.091111,
+          0.094222,
+          0.097333,
+          0.100444,
+          0.103556,
+          0.106667,
+          0.109778,
+          0.112889,
+          0.116
         ]
       },
       "presentation_id": "visual_knight_battle_cry",
@@ -4626,10 +4666,10 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "attack_up",
+          "id": "normal_power",
           "type": "apply_status",
           "target": "friends",
-          "status_id": "attack_up",
+          "status_id": "normal_power_up",
           "duration_ms": 4950,
           "params": {
             "ratio": {
@@ -4639,14 +4679,14 @@
           "chance": 1
         },
         {
-          "id": "support_magic_up",
+          "id": "critical",
           "type": "apply_status",
           "target": "friends",
-          "status_id": "magic_up",
+          "status_id": "crit_up",
           "duration_ms": 4950,
           "params": {
             "ratio": {
-              "level_param": "attack"
+              "level_param": "crit"
             }
           },
           "chance": 1

@@ -281,23 +281,10 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "attack_up",
+          "id": "skill_power",
           "type": "apply_status",
           "target": "friends",
-          "status_id": "attack_up",
-          "duration_ms": 4500,
-          "params": {
-            "ratio": {
-              "level_param": "ratio"
-            }
-          },
-          "chance": 1
-        },
-        {
-          "id": "support_magic_up",
-          "type": "apply_status",
-          "target": "friends",
-          "status_id": "magic_up",
+          "status_id": "skill_power_up",
           "duration_ms": 4500,
           "params": {
             "ratio": {
@@ -1021,6 +1008,18 @@
           0.264444,
           0.289723,
           0.315
+        ],
+        "accuracy": [
+          0.03,
+          0.037778,
+          0.045556,
+          0.053333,
+          0.061111,
+          0.068889,
+          0.076667,
+          0.084444,
+          0.092222,
+          0.1
         ]
       },
       "presentation_id": "visual_blacksmith_weapon_research",
@@ -1033,6 +1032,15 @@
           "bucket": "derived",
           "value": {
             "level_param": "ratio"
+          }
+        },
+        {
+          "id": "accuracy",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "accuracy"
           }
         }
       ],
@@ -4208,23 +4216,10 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "attack_up",
+          "id": "skill_power",
           "type": "apply_status",
           "target": "friends",
-          "status_id": "attack_up",
-          "duration_ms": 4950,
-          "params": {
-            "ratio": {
-              "level_param": "ratio"
-            }
-          },
-          "chance": 1
-        },
-        {
-          "id": "support_magic_up",
-          "type": "apply_status",
-          "target": "friends",
-          "status_id": "magic_up",
+          "status_id": "skill_power_up",
           "duration_ms": 4950,
           "params": {
             "ratio": {
@@ -5167,6 +5162,18 @@
           0.106667,
           0.113333,
           0.12
+        ],
+        "accuracy": [
+          0.11,
+          0.113889,
+          0.117778,
+          0.121667,
+          0.125556,
+          0.129444,
+          0.133333,
+          0.137222,
+          0.141111,
+          0.145
         ]
       },
       "presentation_id": "visual_blacksmith_weapon_research",
@@ -5188,6 +5195,15 @@
           "bucket": "bonus",
           "value": {
             "level_param": "awaken_identity"
+          }
+        },
+        {
+          "id": "accuracy",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "level_param": "accuracy"
           }
         }
       ],

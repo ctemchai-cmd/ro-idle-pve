@@ -160,10 +160,10 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "attack_up",
+              "effect_id": "attributes",
               "type": "apply_status",
               "target": "friends",
-              "status_id": "attack_up",
+              "status_id": "blessing_attributes",
               "duration_ms": 5500,
               "chance": 1,
               "params": {
@@ -171,31 +171,45 @@
               },
               "expected_modifiers": [
                 {
-                  "id": "magnitude",
-                  "stat": "physical_attack",
-                  "bucket": "derived",
+                  "id": "str",
+                  "stat": "str",
                   "op": "add_percent",
+                  "bucket": "primary",
+                  "value": 0.105
+                },
+                {
+                  "id": "int",
+                  "stat": "int",
+                  "op": "add_percent",
+                  "bucket": "primary",
+                  "value": 0.105
+                },
+                {
+                  "id": "dex",
+                  "stat": "dex",
+                  "op": "add_percent",
+                  "bucket": "primary",
                   "value": 0.105
                 }
               ]
             },
             {
-              "effect_id": "magic_up",
+              "effect_id": "agility",
               "type": "apply_status",
               "target": "friends",
-              "status_id": "magic_up",
+              "status_id": "aspd_up",
               "duration_ms": 5500,
               "chance": 1,
               "params": {
-                "ratio": 0.105
+                "ratio": 0.06
               },
               "expected_modifiers": [
                 {
                   "id": "magnitude",
-                  "stat": "magical_attack",
+                  "stat": "attack_speed",
                   "bucket": "derived",
                   "op": "add_percent",
-                  "value": 0.105
+                  "value": 0.06
                 }
               ]
             }
@@ -236,10 +250,10 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "attack_up",
+              "effect_id": "attributes",
               "type": "apply_status",
               "target": "friends",
-              "status_id": "attack_up",
+              "status_id": "blessing_attributes",
               "duration_ms": 7000,
               "chance": 1,
               "params": {
@@ -247,31 +261,45 @@
               },
               "expected_modifiers": [
                 {
-                  "id": "magnitude",
-                  "stat": "physical_attack",
-                  "bucket": "derived",
+                  "id": "str",
+                  "stat": "str",
                   "op": "add_percent",
+                  "bucket": "primary",
+                  "value": 0.1575
+                },
+                {
+                  "id": "int",
+                  "stat": "int",
+                  "op": "add_percent",
+                  "bucket": "primary",
+                  "value": 0.1575
+                },
+                {
+                  "id": "dex",
+                  "stat": "dex",
+                  "op": "add_percent",
+                  "bucket": "primary",
                   "value": 0.1575
                 }
               ]
             },
             {
-              "effect_id": "magic_up",
+              "effect_id": "agility",
               "type": "apply_status",
               "target": "friends",
-              "status_id": "magic_up",
+              "status_id": "aspd_up",
               "duration_ms": 7000,
               "chance": 1,
               "params": {
-                "ratio": 0.1575
+                "ratio": 0.086667
               },
               "expected_modifiers": [
                 {
                   "id": "magnitude",
-                  "stat": "magical_attack",
+                  "stat": "attack_speed",
                   "bucket": "derived",
                   "op": "add_percent",
-                  "value": 0.1575
+                  "value": 0.086667
                 }
               ]
             }
@@ -312,10 +340,10 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "attack_up",
+              "effect_id": "attributes",
               "type": "apply_status",
               "target": "friends",
-              "status_id": "attack_up",
+              "status_id": "blessing_attributes",
               "duration_ms": 10000,
               "chance": 1,
               "params": {
@@ -323,31 +351,45 @@
               },
               "expected_modifiers": [
                 {
-                  "id": "magnitude",
-                  "stat": "physical_attack",
-                  "bucket": "derived",
+                  "id": "str",
+                  "stat": "str",
                   "op": "add_percent",
+                  "bucket": "primary",
+                  "value": 0.2625
+                },
+                {
+                  "id": "int",
+                  "stat": "int",
+                  "op": "add_percent",
+                  "bucket": "primary",
+                  "value": 0.2625
+                },
+                {
+                  "id": "dex",
+                  "stat": "dex",
+                  "op": "add_percent",
+                  "bucket": "primary",
                   "value": 0.2625
                 }
               ]
             },
             {
-              "effect_id": "magic_up",
+              "effect_id": "agility",
               "type": "apply_status",
               "target": "friends",
-              "status_id": "magic_up",
+              "status_id": "aspd_up",
               "duration_ms": 10000,
               "chance": 1,
               "params": {
-                "ratio": 0.2625
+                "ratio": 0.14
               },
               "expected_modifiers": [
                 {
                   "id": "magnitude",
-                  "stat": "magical_attack",
+                  "stat": "attack_speed",
                   "bucket": "derived",
                   "op": "add_percent",
-                  "value": 0.2625
+                  "value": 0.14
                 }
               ]
             }
@@ -562,22 +604,28 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "aspd_up",
+              "effect_id": "hit",
+              "type": "damage",
+              "target": "foes",
+              "expected_raw_power": 140.0
+            },
+            {
+              "effect_id": "reveal_armor",
               "type": "apply_status",
-              "target": "friends",
-              "status_id": "aspd_up",
-              "duration_ms": 4500,
+              "target": "foes",
+              "status_id": "armor_break",
+              "duration_ms": 6000,
               "chance": 1,
               "params": {
-                "ratio": 0.06
+                "ratio": 0.08
               },
               "expected_modifiers": [
                 {
                   "id": "magnitude",
-                  "stat": "attack_speed",
-                  "bucket": "derived",
-                  "op": "add_percent",
-                  "value": 0.06
+                  "stat": "armor_break_percent",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.08
                 }
               ]
             }
@@ -618,22 +666,28 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "aspd_up",
+              "effect_id": "hit",
+              "type": "damage",
+              "target": "foes",
+              "expected_raw_power": 176.6667
+            },
+            {
+              "effect_id": "reveal_armor",
               "type": "apply_status",
-              "target": "friends",
-              "status_id": "aspd_up",
-              "duration_ms": 4500,
+              "target": "foes",
+              "status_id": "armor_break",
+              "duration_ms": 6000,
               "chance": 1,
               "params": {
-                "ratio": 0.086667
+                "ratio": 0.113333
               },
               "expected_modifiers": [
                 {
                   "id": "magnitude",
-                  "stat": "attack_speed",
-                  "bucket": "derived",
-                  "op": "add_percent",
-                  "value": 0.086667
+                  "stat": "armor_break_percent",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.113333
                 }
               ]
             }
@@ -674,22 +728,28 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "aspd_up",
+              "effect_id": "hit",
+              "type": "damage",
+              "target": "foes",
+              "expected_raw_power": 250.0
+            },
+            {
+              "effect_id": "reveal_armor",
               "type": "apply_status",
-              "target": "friends",
-              "status_id": "aspd_up",
-              "duration_ms": 4500,
+              "target": "foes",
+              "status_id": "armor_break",
+              "duration_ms": 6000,
               "chance": 1,
               "params": {
-                "ratio": 0.14
+                "ratio": 0.18
               },
               "expected_modifiers": [
                 {
                   "id": "magnitude",
-                  "stat": "attack_speed",
-                  "bucket": "derived",
-                  "op": "add_percent",
-                  "value": 0.14
+                  "stat": "armor_break_percent",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.18
                 }
               ]
             }
@@ -1771,6 +1831,13 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 1.75
+        },
+        {
+          "id": "healing",
+          "stat": "outgoing_healing_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.06
         }
       ],
       "programs": [],
@@ -1805,6 +1872,13 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 2.916667
+        },
+        {
+          "id": "healing",
+          "stat": "outgoing_healing_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.09
         }
       ],
       "programs": [],
@@ -1839,6 +1913,13 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 5.25
+        },
+        {
+          "id": "healing",
+          "stat": "outgoing_healing_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.15
         }
       ],
       "programs": [],
@@ -4523,8 +4604,8 @@
       },
       "expected_modifiers": [
         {
-          "id": "outgoing_physical_bonus",
-          "stat": "outgoing_physical_bonus",
+          "id": "skill_damage",
+          "stat": "skill_damage_bonus",
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.07
@@ -4557,8 +4638,8 @@
       },
       "expected_modifiers": [
         {
-          "id": "outgoing_physical_bonus",
-          "stat": "outgoing_physical_bonus",
+          "id": "skill_damage",
+          "stat": "skill_damage_bonus",
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.116667
@@ -4591,8 +4672,8 @@
       },
       "expected_modifiers": [
         {
-          "id": "outgoing_physical_bonus",
-          "stat": "outgoing_physical_bonus",
+          "id": "skill_damage",
+          "stat": "skill_damage_bonus",
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.21
@@ -4636,7 +4717,7 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 245.00000000000003
+              "expected_raw_power": 122.50000000000001
             }
           ]
         }
@@ -4678,7 +4759,7 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 297.5
+              "expected_raw_power": 148.75
             }
           ]
         }
@@ -4720,7 +4801,7 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 402.50000000000006
+              "expected_raw_power": 201.25000000000003
             }
           ]
         }
@@ -4762,7 +4843,7 @@
               "effect_id": "opening_heal",
               "type": "heal",
               "target": "friends",
-              "expected_raw_power": 105.0
+              "expected_raw_power": 183.75
             },
             {
               "effect_id": "regeneration",
@@ -4772,7 +4853,7 @@
               "duration_ms": 6000,
               "chance": 1,
               "params": {
-                "power_ratio": 0.525
+                "power_ratio": 0.3675
               },
               "expected_modifiers": [],
               "tick_times_ms": [
@@ -4787,7 +4868,7 @@
                   "effect_id": "heal_tick",
                   "type": "heal",
                   "target": "self",
-                  "expected_raw_power": 52.5
+                  "expected_raw_power": 36.75
                 }
               ]
             }
@@ -4831,7 +4912,7 @@
               "effect_id": "opening_heal",
               "type": "heal",
               "target": "friends",
-              "expected_raw_power": 128.3333
+              "expected_raw_power": 224.58339999999998
             },
             {
               "effect_id": "regeneration",
@@ -4841,7 +4922,7 @@
               "duration_ms": 6000,
               "chance": 1,
               "params": {
-                "power_ratio": 0.641667
+                "power_ratio": 0.449167
               },
               "expected_modifiers": [],
               "tick_times_ms": [
@@ -4856,7 +4937,7 @@
                   "effect_id": "heal_tick",
                   "type": "heal",
                   "target": "self",
-                  "expected_raw_power": 64.16669999999999
+                  "expected_raw_power": 44.9167
                 }
               ]
             }
@@ -4900,7 +4981,7 @@
               "effect_id": "opening_heal",
               "type": "heal",
               "target": "friends",
-              "expected_raw_power": 175.0
+              "expected_raw_power": 306.25
             },
             {
               "effect_id": "regeneration",
@@ -4910,7 +4991,7 @@
               "duration_ms": 6000,
               "chance": 1,
               "params": {
-                "power_ratio": 0.875
+                "power_ratio": 0.6125
               },
               "expected_modifiers": [],
               "tick_times_ms": [
@@ -4925,7 +5006,7 @@
                   "effect_id": "heal_tick",
                   "type": "heal",
                   "target": "self",
-                  "expected_raw_power": 87.5
+                  "expected_raw_power": 61.25000000000001
                 }
               ]
             }
@@ -5440,14 +5521,44 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "stun",
+              "effect_id": "casting",
               "type": "apply_status",
-              "target": "foes",
-              "status_id": "stun",
-              "duration_ms": 1000,
-              "chance": 0.45,
-              "params": {},
-              "expected_modifiers": []
+              "target": "friends",
+              "status_id": "cast_speed_up",
+              "duration_ms": 6000,
+              "chance": 1,
+              "params": {
+                "ratio": 0.1
+              },
+              "expected_modifiers": [
+                {
+                  "id": "magnitude",
+                  "stat": "cast_speed",
+                  "bucket": "derived",
+                  "op": "add_percent",
+                  "value": 0.1
+                }
+              ]
+            },
+            {
+              "effect_id": "mana",
+              "type": "apply_status",
+              "target": "friends",
+              "status_id": "mana_regen_up",
+              "duration_ms": 6000,
+              "chance": 1,
+              "params": {
+                "ratio": 0.2
+              },
+              "expected_modifiers": [
+                {
+                  "id": "magnitude",
+                  "stat": "sp_regen_percent",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.2
+                }
+              ]
             }
           ]
         }
@@ -5486,14 +5597,44 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "stun",
+              "effect_id": "casting",
               "type": "apply_status",
-              "target": "foes",
-              "status_id": "stun",
-              "duration_ms": 1267,
-              "chance": 0.45,
-              "params": {},
-              "expected_modifiers": []
+              "target": "friends",
+              "status_id": "cast_speed_up",
+              "duration_ms": 6000,
+              "chance": 1,
+              "params": {
+                "ratio": 0.133333
+              },
+              "expected_modifiers": [
+                {
+                  "id": "magnitude",
+                  "stat": "cast_speed",
+                  "bucket": "derived",
+                  "op": "add_percent",
+                  "value": 0.133333
+                }
+              ]
+            },
+            {
+              "effect_id": "mana",
+              "type": "apply_status",
+              "target": "friends",
+              "status_id": "mana_regen_up",
+              "duration_ms": 6000,
+              "chance": 1,
+              "params": {
+                "ratio": 0.3
+              },
+              "expected_modifiers": [
+                {
+                  "id": "magnitude",
+                  "stat": "sp_regen_percent",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.3
+                }
+              ]
             }
           ]
         }
@@ -5532,14 +5673,44 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "stun",
+              "effect_id": "casting",
               "type": "apply_status",
-              "target": "foes",
-              "status_id": "stun",
-              "duration_ms": 1800,
-              "chance": 0.45,
-              "params": {},
-              "expected_modifiers": []
+              "target": "friends",
+              "status_id": "cast_speed_up",
+              "duration_ms": 6000,
+              "chance": 1,
+              "params": {
+                "ratio": 0.2
+              },
+              "expected_modifiers": [
+                {
+                  "id": "magnitude",
+                  "stat": "cast_speed",
+                  "bucket": "derived",
+                  "op": "add_percent",
+                  "value": 0.2
+                }
+              ]
+            },
+            {
+              "effect_id": "mana",
+              "type": "apply_status",
+              "target": "friends",
+              "status_id": "mana_regen_up",
+              "duration_ms": 6000,
+              "chance": 1,
+              "params": {
+                "ratio": 0.5
+              },
+              "expected_modifiers": [
+                {
+                  "id": "magnitude",
+                  "stat": "sp_regen_percent",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.5
+                }
+              ]
             }
           ]
         }
@@ -5575,6 +5746,13 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.0525
+        },
+        {
+          "id": "capacity",
+          "stat": "max_sp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.05
         }
       ],
       "programs": [],
@@ -5609,6 +5787,13 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.093333
+        },
+        {
+          "id": "capacity",
+          "stat": "max_sp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.083333
         }
       ],
       "programs": [],
@@ -5643,6 +5828,13 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.175
+        },
+        {
+          "id": "capacity",
+          "stat": "max_sp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.15
         }
       ],
       "programs": [],
@@ -6343,42 +6535,22 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "defense",
+              "effect_id": "ward",
               "type": "apply_status",
               "target": "friends",
-              "status_id": "defense_up",
+              "status_id": "dance_ward",
               "duration_ms": 5500,
               "chance": 1,
               "params": {
-                "ratio": 0.2
+                "ratio": -0.06
               },
               "expected_modifiers": [
                 {
-                  "id": "magnitude",
-                  "stat": "physical_defense",
-                  "bucket": "derived",
-                  "op": "add_percent",
-                  "value": 0.2
-                }
-              ]
-            },
-            {
-              "effect_id": "magic_defense",
-              "type": "apply_status",
-              "target": "friends",
-              "status_id": "magic_defense_up",
-              "duration_ms": 5500,
-              "chance": 1,
-              "params": {
-                "ratio": 0.2
-              },
-              "expected_modifiers": [
-                {
-                  "id": "magnitude",
-                  "stat": "magical_defense",
-                  "bucket": "derived",
-                  "op": "add_percent",
-                  "value": 0.2
+                  "id": "damage_taken_bonus",
+                  "stat": "damage_taken_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": -0.06
                 }
               ]
             }
@@ -6419,42 +6591,22 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "defense",
+              "effect_id": "ward",
               "type": "apply_status",
               "target": "friends",
-              "status_id": "defense_up",
+              "status_id": "dance_ward",
               "duration_ms": 5500,
               "chance": 1,
               "params": {
-                "ratio": 0.283333
+                "ratio": -0.09
               },
               "expected_modifiers": [
                 {
-                  "id": "magnitude",
-                  "stat": "physical_defense",
-                  "bucket": "derived",
-                  "op": "add_percent",
-                  "value": 0.283333
-                }
-              ]
-            },
-            {
-              "effect_id": "magic_defense",
-              "type": "apply_status",
-              "target": "friends",
-              "status_id": "magic_defense_up",
-              "duration_ms": 5500,
-              "chance": 1,
-              "params": {
-                "ratio": 0.283333
-              },
-              "expected_modifiers": [
-                {
-                  "id": "magnitude",
-                  "stat": "magical_defense",
-                  "bucket": "derived",
-                  "op": "add_percent",
-                  "value": 0.283333
+                  "id": "damage_taken_bonus",
+                  "stat": "damage_taken_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": -0.09
                 }
               ]
             }
@@ -6495,42 +6647,22 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "defense",
+              "effect_id": "ward",
               "type": "apply_status",
               "target": "friends",
-              "status_id": "defense_up",
+              "status_id": "dance_ward",
               "duration_ms": 5500,
               "chance": 1,
               "params": {
-                "ratio": 0.45
+                "ratio": -0.15
               },
               "expected_modifiers": [
                 {
-                  "id": "magnitude",
-                  "stat": "physical_defense",
-                  "bucket": "derived",
-                  "op": "add_percent",
-                  "value": 0.45
-                }
-              ]
-            },
-            {
-              "effect_id": "magic_defense",
-              "type": "apply_status",
-              "target": "friends",
-              "status_id": "magic_defense_up",
-              "duration_ms": 5500,
-              "chance": 1,
-              "params": {
-                "ratio": 0.45
-              },
-              "expected_modifiers": [
-                {
-                  "id": "magnitude",
-                  "stat": "magical_defense",
-                  "bucket": "derived",
-                  "op": "add_percent",
-                  "value": 0.45
+                  "id": "damage_taken_bonus",
+                  "stat": "damage_taken_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": -0.15
                 }
               ]
             }
@@ -6706,6 +6838,13 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.0525
+        },
+        {
+          "id": "evasion",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.03
         }
       ],
       "programs": [],
@@ -6740,6 +6879,13 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.093333
+        },
+        {
+          "id": "evasion",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.046667
         }
       ],
       "programs": [],
@@ -6774,6 +6920,13 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.175
+        },
+        {
+          "id": "evasion",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.08
         }
       ],
       "programs": [],
@@ -6807,7 +6960,14 @@
           "stat": "sp_regen_percent",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.14
+          "value": 0.07
+        },
+        {
+          "id": "recovery",
+          "stat": "hp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.003
         }
       ],
       "programs": [],
@@ -6841,7 +7001,14 @@
           "stat": "sp_regen_percent",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.239167
+          "value": 0.119583
+        },
+        {
+          "id": "recovery",
+          "stat": "hp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.005333
         }
       ],
       "programs": [],
@@ -6875,7 +7042,14 @@
           "stat": "sp_regen_percent",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.4375
+          "value": 0.21875
+        },
+        {
+          "id": "recovery",
+          "stat": "hp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.01
         }
       ],
       "programs": [],
@@ -10180,10 +10354,10 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "attack_up",
+              "effect_id": "skill_power",
               "type": "apply_status",
               "target": "friends",
-              "status_id": "attack_up",
+              "status_id": "skill_power_up",
               "duration_ms": 4500,
               "chance": 1,
               "params": {
@@ -10191,30 +10365,17 @@
               },
               "expected_modifiers": [
                 {
-                  "id": "magnitude",
-                  "stat": "physical_attack",
-                  "bucket": "derived",
-                  "op": "add_percent",
+                  "id": "skill_damage_bonus",
+                  "stat": "skill_damage_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
                   "value": 0.175
-                }
-              ]
-            },
-            {
-              "effect_id": "support_magic_up",
-              "type": "apply_status",
-              "target": "friends",
-              "status_id": "magic_up",
-              "duration_ms": 4500,
-              "chance": 1,
-              "params": {
-                "ratio": 0.175
-              },
-              "expected_modifiers": [
+                },
                 {
-                  "id": "magnitude",
-                  "stat": "magical_attack",
-                  "bucket": "derived",
-                  "op": "add_percent",
+                  "id": "outgoing_healing_bonus",
+                  "stat": "outgoing_healing_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
                   "value": 0.175
                 }
               ]
@@ -10256,10 +10417,10 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "attack_up",
+              "effect_id": "skill_power",
               "type": "apply_status",
               "target": "friends",
-              "status_id": "attack_up",
+              "status_id": "skill_power_up",
               "duration_ms": 4500,
               "chance": 1,
               "params": {
@@ -10267,30 +10428,17 @@
               },
               "expected_modifiers": [
                 {
-                  "id": "magnitude",
-                  "stat": "physical_attack",
-                  "bucket": "derived",
-                  "op": "add_percent",
+                  "id": "skill_damage_bonus",
+                  "stat": "skill_damage_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
                   "value": 0.25
-                }
-              ]
-            },
-            {
-              "effect_id": "support_magic_up",
-              "type": "apply_status",
-              "target": "friends",
-              "status_id": "magic_up",
-              "duration_ms": 4500,
-              "chance": 1,
-              "params": {
-                "ratio": 0.25
-              },
-              "expected_modifiers": [
+                },
                 {
-                  "id": "magnitude",
-                  "stat": "magical_attack",
-                  "bucket": "derived",
-                  "op": "add_percent",
+                  "id": "outgoing_healing_bonus",
+                  "stat": "outgoing_healing_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
                   "value": 0.25
                 }
               ]
@@ -10332,10 +10480,10 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "attack_up",
+              "effect_id": "skill_power",
               "type": "apply_status",
               "target": "friends",
-              "status_id": "attack_up",
+              "status_id": "skill_power_up",
               "duration_ms": 4500,
               "chance": 1,
               "params": {
@@ -10343,30 +10491,17 @@
               },
               "expected_modifiers": [
                 {
-                  "id": "magnitude",
-                  "stat": "physical_attack",
-                  "bucket": "derived",
-                  "op": "add_percent",
+                  "id": "skill_damage_bonus",
+                  "stat": "skill_damage_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
                   "value": 0.4
-                }
-              ]
-            },
-            {
-              "effect_id": "support_magic_up",
-              "type": "apply_status",
-              "target": "friends",
-              "status_id": "magic_up",
-              "duration_ms": 4500,
-              "chance": 1,
-              "params": {
-                "ratio": 0.4
-              },
-              "expected_modifiers": [
+                },
                 {
-                  "id": "magnitude",
-                  "stat": "magical_attack",
-                  "bucket": "derived",
-                  "op": "add_percent",
+                  "id": "outgoing_healing_bonus",
+                  "stat": "outgoing_healing_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
                   "value": 0.4
                 }
               ]
@@ -11749,6 +11884,13 @@
           "op": "add_percent",
           "bucket": "derived",
           "value": 0.0875
+        },
+        {
+          "id": "accuracy",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.03
         }
       ],
       "programs": [],
@@ -11783,6 +11925,13 @@
           "op": "add_percent",
           "bucket": "derived",
           "value": 0.163333
+        },
+        {
+          "id": "accuracy",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.053333
         }
       ],
       "programs": [],
@@ -11817,6 +11966,13 @@
           "op": "add_percent",
           "bucket": "derived",
           "value": 0.315
+        },
+        {
+          "id": "accuracy",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.1
         }
       ],
       "programs": [],
@@ -13537,22 +13693,29 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "guard_up",
+              "effect_id": "enduring",
               "type": "apply_status",
               "target": "self",
-              "status_id": "guard_up",
+              "status_id": "endure_focus",
               "duration_ms": 5000,
               "chance": 1,
               "params": {
-                "ratio": 0.14
+                "ratio": 0.5
               },
               "expected_modifiers": [
                 {
-                  "id": "magnitude",
-                  "stat": "guard_percent",
+                  "id": "control_resistance",
+                  "stat": "control_resistance",
                   "op": "add_flat",
                   "bucket": "bonus",
-                  "value": 0.14
+                  "value": 0.5
+                },
+                {
+                  "id": "interrupt_resistance",
+                  "stat": "interrupt_resistance",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.5
                 }
               ]
             }
@@ -13593,22 +13756,29 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "guard_up",
+              "effect_id": "enduring",
               "type": "apply_status",
               "target": "self",
-              "status_id": "guard_up",
+              "status_id": "endure_focus",
               "duration_ms": 5000,
               "chance": 1,
               "params": {
-                "ratio": 0.186667
+                "ratio": 0.666667
               },
               "expected_modifiers": [
                 {
-                  "id": "magnitude",
-                  "stat": "guard_percent",
+                  "id": "control_resistance",
+                  "stat": "control_resistance",
                   "op": "add_flat",
                   "bucket": "bonus",
-                  "value": 0.186667
+                  "value": 0.666667
+                },
+                {
+                  "id": "interrupt_resistance",
+                  "stat": "interrupt_resistance",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.666667
                 }
               ]
             }
@@ -13649,22 +13819,29 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "guard_up",
+              "effect_id": "enduring",
               "type": "apply_status",
               "target": "self",
-              "status_id": "guard_up",
+              "status_id": "endure_focus",
               "duration_ms": 5000,
               "chance": 1,
               "params": {
-                "ratio": 0.28
+                "ratio": 1.0
               },
               "expected_modifiers": [
                 {
-                  "id": "magnitude",
-                  "stat": "guard_percent",
+                  "id": "control_resistance",
+                  "stat": "control_resistance",
                   "op": "add_flat",
                   "bucket": "bonus",
-                  "value": 0.28
+                  "value": 1.0
+                },
+                {
+                  "id": "interrupt_resistance",
+                  "stat": "interrupt_resistance",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 1.0
                 }
               ]
             }
@@ -14245,10 +14422,10 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "attack_up",
+              "effect_id": "normal_power",
               "type": "apply_status",
               "target": "friends",
-              "status_id": "attack_up",
+              "status_id": "normal_power_up",
               "duration_ms": 4500,
               "chance": 1,
               "params": {
@@ -14256,31 +14433,31 @@
               },
               "expected_modifiers": [
                 {
-                  "id": "magnitude",
-                  "stat": "physical_attack",
-                  "bucket": "derived",
-                  "op": "add_percent",
+                  "id": "normal_damage_bonus",
+                  "stat": "normal_damage_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
                   "value": 0.0875
                 }
               ]
             },
             {
-              "effect_id": "support_magic_up",
+              "effect_id": "critical",
               "type": "apply_status",
               "target": "friends",
-              "status_id": "magic_up",
+              "status_id": "crit_up",
               "duration_ms": 4500,
               "chance": 1,
               "params": {
-                "ratio": 0.0875
+                "ratio": 0.04
               },
               "expected_modifiers": [
                 {
                   "id": "magnitude",
-                  "stat": "magical_attack",
-                  "bucket": "derived",
-                  "op": "add_percent",
-                  "value": 0.0875
+                  "stat": "crit_chance_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.04
                 }
               ]
             }
@@ -14321,10 +14498,10 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "attack_up",
+              "effect_id": "normal_power",
               "type": "apply_status",
               "target": "friends",
-              "status_id": "attack_up",
+              "status_id": "normal_power_up",
               "duration_ms": 4500,
               "chance": 1,
               "params": {
@@ -14332,31 +14509,31 @@
               },
               "expected_modifiers": [
                 {
-                  "id": "magnitude",
-                  "stat": "physical_attack",
-                  "bucket": "derived",
-                  "op": "add_percent",
+                  "id": "normal_damage_bonus",
+                  "stat": "normal_damage_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
                   "value": 0.128333
                 }
               ]
             },
             {
-              "effect_id": "support_magic_up",
+              "effect_id": "critical",
               "type": "apply_status",
               "target": "friends",
-              "status_id": "magic_up",
+              "status_id": "crit_up",
               "duration_ms": 4500,
               "chance": 1,
               "params": {
-                "ratio": 0.128333
+                "ratio": 0.053333
               },
               "expected_modifiers": [
                 {
                   "id": "magnitude",
-                  "stat": "magical_attack",
-                  "bucket": "derived",
-                  "op": "add_percent",
-                  "value": 0.128333
+                  "stat": "crit_chance_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.053333
                 }
               ]
             }
@@ -14397,10 +14574,10 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "attack_up",
+              "effect_id": "normal_power",
               "type": "apply_status",
               "target": "friends",
-              "status_id": "attack_up",
+              "status_id": "normal_power_up",
               "duration_ms": 4500,
               "chance": 1,
               "params": {
@@ -14408,31 +14585,31 @@
               },
               "expected_modifiers": [
                 {
-                  "id": "magnitude",
-                  "stat": "physical_attack",
-                  "bucket": "derived",
-                  "op": "add_percent",
+                  "id": "normal_damage_bonus",
+                  "stat": "normal_damage_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
                   "value": 0.21
                 }
               ]
             },
             {
-              "effect_id": "support_magic_up",
+              "effect_id": "critical",
               "type": "apply_status",
               "target": "friends",
-              "status_id": "magic_up",
+              "status_id": "crit_up",
               "duration_ms": 4500,
               "chance": 1,
               "params": {
-                "ratio": 0.21
+                "ratio": 0.08
               },
               "expected_modifiers": [
                 {
                   "id": "magnitude",
-                  "stat": "magical_attack",
-                  "bucket": "derived",
-                  "op": "add_percent",
-                  "value": 0.21
+                  "stat": "crit_chance_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.08
                 }
               ]
             }
@@ -16075,10 +16252,10 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "aspd_up",
+              "effect_id": "evasion",
               "type": "apply_status",
               "target": "self",
-              "status_id": "aspd_up",
+              "status_id": "evasion_up",
               "duration_ms": 4500,
               "chance": 1,
               "params": {
@@ -16086,10 +16263,10 @@
               },
               "expected_modifiers": [
                 {
-                  "id": "magnitude",
-                  "stat": "attack_speed",
-                  "bucket": "derived",
-                  "op": "add_percent",
+                  "id": "evasion_bonus",
+                  "stat": "evasion_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
                   "value": 0.1
                 }
               ]
@@ -16131,10 +16308,10 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "aspd_up",
+              "effect_id": "evasion",
               "type": "apply_status",
               "target": "self",
-              "status_id": "aspd_up",
+              "status_id": "evasion_up",
               "duration_ms": 4500,
               "chance": 1,
               "params": {
@@ -16142,10 +16319,10 @@
               },
               "expected_modifiers": [
                 {
-                  "id": "magnitude",
-                  "stat": "attack_speed",
-                  "bucket": "derived",
-                  "op": "add_percent",
+                  "id": "evasion_bonus",
+                  "stat": "evasion_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
                   "value": 0.14
                 }
               ]
@@ -16187,10 +16364,10 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "aspd_up",
+              "effect_id": "evasion",
               "type": "apply_status",
               "target": "self",
-              "status_id": "aspd_up",
+              "status_id": "evasion_up",
               "duration_ms": 4500,
               "chance": 1,
               "params": {
@@ -16198,10 +16375,10 @@
               },
               "expected_modifiers": [
                 {
-                  "id": "magnitude",
-                  "stat": "attack_speed",
-                  "bucket": "derived",
-                  "op": "add_percent",
+                  "id": "evasion_bonus",
+                  "stat": "evasion_bonus",
+                  "op": "add_flat",
+                  "bucket": "bonus",
                   "value": 0.22
                 }
               ]
@@ -18367,14 +18544,41 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "stun",
+              "effect_id": "silence",
               "type": "apply_status",
               "target": "foe",
-              "status_id": "stun",
+              "status_id": "silence",
               "duration_ms": 3000,
               "chance": 0.85,
               "params": {},
               "expected_modifiers": []
+            },
+            {
+              "effect_id": "intimidated",
+              "type": "apply_status",
+              "target": "foe",
+              "status_id": "intimidated",
+              "duration_ms": 6000,
+              "chance": 1,
+              "params": {
+                "ratio": -0.12
+              },
+              "expected_modifiers": [
+                {
+                  "id": "physical_attack",
+                  "stat": "physical_attack",
+                  "op": "add_percent",
+                  "bucket": "derived",
+                  "value": -0.12
+                },
+                {
+                  "id": "magical_attack",
+                  "stat": "magical_attack",
+                  "op": "add_percent",
+                  "bucket": "derived",
+                  "value": -0.12
+                }
+              ]
             }
           ]
         }
@@ -18413,14 +18617,41 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "stun",
+              "effect_id": "silence",
               "type": "apply_status",
               "target": "foe",
-              "status_id": "stun",
+              "status_id": "silence",
               "duration_ms": 4000,
               "chance": 0.85,
               "params": {},
               "expected_modifiers": []
+            },
+            {
+              "effect_id": "intimidated",
+              "type": "apply_status",
+              "target": "foe",
+              "status_id": "intimidated",
+              "duration_ms": 6000,
+              "chance": 1,
+              "params": {
+                "ratio": -0.163333
+              },
+              "expected_modifiers": [
+                {
+                  "id": "physical_attack",
+                  "stat": "physical_attack",
+                  "op": "add_percent",
+                  "bucket": "derived",
+                  "value": -0.163333
+                },
+                {
+                  "id": "magical_attack",
+                  "stat": "magical_attack",
+                  "op": "add_percent",
+                  "bucket": "derived",
+                  "value": -0.163333
+                }
+              ]
             }
           ]
         }
@@ -18459,14 +18690,41 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "stun",
+              "effect_id": "silence",
               "type": "apply_status",
               "target": "foe",
-              "status_id": "stun",
+              "status_id": "silence",
               "duration_ms": 6000,
               "chance": 0.85,
               "params": {},
               "expected_modifiers": []
+            },
+            {
+              "effect_id": "intimidated",
+              "type": "apply_status",
+              "target": "foe",
+              "status_id": "intimidated",
+              "duration_ms": 6000,
+              "chance": 1,
+              "params": {
+                "ratio": -0.25
+              },
+              "expected_modifiers": [
+                {
+                  "id": "physical_attack",
+                  "stat": "physical_attack",
+                  "op": "add_percent",
+                  "bucket": "derived",
+                  "value": -0.25
+                },
+                {
+                  "id": "magical_attack",
+                  "stat": "magical_attack",
+                  "op": "add_percent",
+                  "bucket": "derived",
+                  "value": -0.25
+                }
+              ]
             }
           ]
         }
@@ -18850,6 +19108,13 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.03
+        },
+        {
+          "id": "dirty_penetration",
+          "stat": "penetration_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.04
         }
       ],
       "programs": [],
@@ -18884,6 +19149,13 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.053333
+        },
+        {
+          "id": "dirty_penetration",
+          "stat": "penetration_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.06
         }
       ],
       "programs": [],
@@ -18915,6 +19187,13 @@
         {
           "id": "control_accuracy",
           "stat": "control_accuracy",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.1
+        },
+        {
+          "id": "dirty_penetration",
+          "stat": "penetration_percent",
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.1

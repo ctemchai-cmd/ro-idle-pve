@@ -1,0 +1,2583 @@
+{
+  "schema_version": 1,
+  "decision": "D168",
+  "baseline_content_hash": "6d2d125d956656ed90f7e82ee0deb3bdc91025ae57b5f062863b945b741d28c6",
+  "updates": {
+    "acolyte_blessing": {
+      "role": "STR/INT/DEX + ASPD; Impositio remains direct P.ATK/M.ATK",
+      "base": {
+        "level_parameters": {
+          "ratio": [
+            0.105,
+            0.1225,
+            0.14,
+            0.1575,
+            0.175,
+            0.1925,
+            0.21,
+            0.2275,
+            0.245,
+            0.2625
+          ],
+          "duration": [
+            5500,
+            6000,
+            6500,
+            7000,
+            7500,
+            8000,
+            8500,
+            9000,
+            9500,
+            10000
+          ],
+          "haste": [
+            0.06,
+            0.068889,
+            0.077778,
+            0.086667,
+            0.095556,
+            0.104444,
+            0.113333,
+            0.122222,
+            0.131111,
+            0.14
+          ]
+        },
+        "effects": [
+          {
+            "id": "attributes",
+            "type": "apply_status",
+            "target": "friends",
+            "status_id": "blessing_attributes",
+            "duration_ms": {
+              "level_param": "duration"
+            },
+            "params": {
+              "ratio": {
+                "level_param": "ratio"
+              }
+            },
+            "chance": 1
+          },
+          {
+            "id": "agility",
+            "type": "apply_status",
+            "target": "friends",
+            "status_id": "aspd_up",
+            "duration_ms": {
+              "level_param": "duration"
+            },
+            "params": {
+              "ratio": {
+                "level_param": "haste"
+              }
+            },
+            "chance": 1
+          }
+        ]
+      },
+      "awakened": {
+        "level_parameters": {
+          "ratio": [
+            0.28875,
+            0.298958,
+            0.309167,
+            0.319375,
+            0.329583,
+            0.339792,
+            0.35,
+            0.360208,
+            0.370417,
+            0.380625
+          ],
+          "duration": [
+            11000,
+            11389,
+            11778,
+            12167,
+            12556,
+            12944,
+            13333,
+            13722,
+            14111,
+            14500
+          ],
+          "awaken_2": [
+            0.08,
+            0.088889,
+            0.097778,
+            0.106667,
+            0.115556,
+            0.124444,
+            0.133333,
+            0.142222,
+            0.151111,
+            0.16
+          ],
+          "haste": [
+            0.154,
+            0.159444,
+            0.164889,
+            0.170333,
+            0.175778,
+            0.181222,
+            0.186667,
+            0.192111,
+            0.197556,
+            0.203
+          ]
+        },
+        "effects": [
+          {
+            "id": "attributes",
+            "type": "apply_status",
+            "target": "friends",
+            "status_id": "blessing_attributes",
+            "duration_ms": {
+              "level_param": "duration"
+            },
+            "params": {
+              "ratio": {
+                "level_param": "ratio"
+              }
+            },
+            "chance": 1
+          },
+          {
+            "id": "agility",
+            "type": "apply_status",
+            "target": "friends",
+            "status_id": "aspd_up",
+            "duration_ms": {
+              "level_param": "duration"
+            },
+            "params": {
+              "ratio": {
+                "level_param": "haste"
+              }
+            },
+            "chance": 1
+          },
+          {
+            "id": "awaken_2",
+            "type": "apply_status",
+            "target": "friends",
+            "status_id": "awaken_skill_power",
+            "duration_ms": 6000,
+            "params": {
+              "ratio": {
+                "level_param": "awaken_2"
+              }
+            },
+            "chance": 1
+          }
+        ]
+      }
+    },
+    "acolyte_increase_agi": {
+      "role": "Ruwach: Holy M.ATK area damage + DEF/MDEF break; Awaken two pulses sharing total power",
+      "base": {
+        "level_parameters": {
+          "power": [
+            1.4,
+            1.522222,
+            1.644444,
+            1.766667,
+            1.888889,
+            2.011111,
+            2.133333,
+            2.255556,
+            2.377778,
+            2.5
+          ],
+          "break": [
+            0.08,
+            0.091111,
+            0.102222,
+            0.113333,
+            0.124444,
+            0.135556,
+            0.146667,
+            0.157778,
+            0.168889,
+            0.18
+          ]
+        },
+        "effects": [
+          {
+            "id": "hit",
+            "type": "damage",
+            "target": "foes",
+            "formula": {
+              "id": "magical_power",
+              "params": {
+                "attack_ratio": {
+                  "level_param": "power"
+                },
+                "flat_power": 0
+              }
+            },
+            "damage_type": "magical",
+            "element": "holy",
+            "hit_rule": "always",
+            "can_crit": false,
+            "hits": 1,
+            "armor_rule": "normal"
+          },
+          {
+            "id": "reveal_armor",
+            "type": "apply_status",
+            "target": "foes",
+            "status_id": "armor_break",
+            "duration_ms": 6000,
+            "params": {
+              "ratio": {
+                "level_param": "break"
+              }
+            },
+            "chance": 1
+          }
+        ],
+        "single_target_damage_bonus": 0.35
+      },
+      "awakened": {
+        "level_parameters": {
+          "power": [
+            1.375,
+            1.423611,
+            1.472222,
+            1.520833,
+            1.569444,
+            1.618056,
+            1.666667,
+            1.715278,
+            1.763889,
+            1.8125
+          ],
+          "break": [
+            0.198,
+            0.205,
+            0.212,
+            0.219,
+            0.226,
+            0.233,
+            0.24,
+            0.247,
+            0.254,
+            0.261
+          ]
+        },
+        "effects": [
+          {
+            "id": "hit",
+            "type": "damage",
+            "target": "foes",
+            "formula": {
+              "id": "magical_power",
+              "params": {
+                "attack_ratio": {
+                  "level_param": "power"
+                },
+                "flat_power": 0
+              }
+            },
+            "damage_type": "magical",
+            "element": "holy",
+            "hit_rule": "always",
+            "can_crit": false,
+            "hits": 2,
+            "armor_rule": "normal"
+          },
+          {
+            "id": "reveal_armor",
+            "type": "apply_status",
+            "target": "foes",
+            "status_id": "armor_break",
+            "duration_ms": 6600,
+            "params": {
+              "ratio": {
+                "level_param": "break"
+              }
+            },
+            "chance": 1
+          }
+        ],
+        "single_target_damage_bonus": 0.35
+      }
+    },
+    "merchant_loud_voice": {
+      "role": "Skill damage and outgoing healing; not raw attack",
+      "base": {
+        "level_parameters": {
+          "ratio": [
+            0.175,
+            0.2,
+            0.225,
+            0.25,
+            0.275,
+            0.3,
+            0.325,
+            0.35,
+            0.375,
+            0.4
+          ]
+        },
+        "effects": [
+          {
+            "id": "skill_power",
+            "type": "apply_status",
+            "target": "friends",
+            "status_id": "skill_power_up",
+            "duration_ms": 4500,
+            "params": {
+              "ratio": {
+                "level_param": "ratio"
+              }
+            },
+            "chance": 1
+          }
+        ]
+      },
+      "awakened": {
+        "level_parameters": {
+          "ratio": [
+            0.44,
+            0.455556,
+            0.471111,
+            0.486667,
+            0.502222,
+            0.517778,
+            0.533333,
+            0.548889,
+            0.564444,
+            0.58
+          ],
+          "awaken_1": [
+            0.08,
+            0.088889,
+            0.097778,
+            0.106667,
+            0.115556,
+            0.124444,
+            0.133333,
+            0.142222,
+            0.151111,
+            0.16
+          ]
+        },
+        "effects": [
+          {
+            "id": "skill_power",
+            "type": "apply_status",
+            "target": "friends",
+            "status_id": "skill_power_up",
+            "duration_ms": 4950,
+            "params": {
+              "ratio": {
+                "level_param": "ratio"
+              }
+            },
+            "chance": 1
+          },
+          {
+            "id": "awaken_1",
+            "type": "apply_status",
+            "target": "friends",
+            "status_id": "awaken_skill_power",
+            "duration_ms": 6000,
+            "params": {
+              "ratio": {
+                "level_param": "awaken_1"
+              }
+            },
+            "chance": 1
+          }
+        ]
+      }
+    },
+    "knight_battle_cry": {
+      "role": "Normal attack damage + critical chance; Awaken retains critical damage",
+      "base": {
+        "level_parameters": {
+          "attack": [
+            0.0875,
+            0.101112,
+            0.114723,
+            0.128333,
+            0.141944,
+            0.155556,
+            0.169167,
+            0.182777,
+            0.196388,
+            0.21
+          ],
+          "crit": [
+            0.04,
+            0.044444,
+            0.048889,
+            0.053333,
+            0.057778,
+            0.062222,
+            0.066667,
+            0.071111,
+            0.075556,
+            0.08
+          ]
+        },
+        "effects": [
+          {
+            "id": "normal_power",
+            "type": "apply_status",
+            "target": "friends",
+            "status_id": "normal_power_up",
+            "duration_ms": 4500,
+            "params": {
+              "ratio": {
+                "level_param": "attack"
+              }
+            },
+            "chance": 1
+          },
+          {
+            "id": "critical",
+            "type": "apply_status",
+            "target": "friends",
+            "status_id": "crit_up",
+            "duration_ms": 4500,
+            "params": {
+              "ratio": {
+                "level_param": "crit"
+              }
+            },
+            "chance": 1
+          }
+        ]
+      },
+      "awakened": {
+        "level_parameters": {
+          "attack": [
+            0.231,
+            0.239167,
+            0.247333,
+            0.2555,
+            0.263667,
+            0.271833,
+            0.28,
+            0.288167,
+            0.296333,
+            0.3045
+          ],
+          "awaken_1": [
+            0.1,
+            0.111111,
+            0.122222,
+            0.133333,
+            0.144444,
+            0.155556,
+            0.166667,
+            0.177778,
+            0.188889,
+            0.2
+          ],
+          "crit": [
+            0.088,
+            0.091111,
+            0.094222,
+            0.097333,
+            0.100444,
+            0.103556,
+            0.106667,
+            0.109778,
+            0.112889,
+            0.116
+          ]
+        },
+        "effects": [
+          {
+            "id": "normal_power",
+            "type": "apply_status",
+            "target": "friends",
+            "status_id": "normal_power_up",
+            "duration_ms": 4950,
+            "params": {
+              "ratio": {
+                "level_param": "attack"
+              }
+            },
+            "chance": 1
+          },
+          {
+            "id": "critical",
+            "type": "apply_status",
+            "target": "friends",
+            "status_id": "crit_up",
+            "duration_ms": 4950,
+            "params": {
+              "ratio": {
+                "level_param": "crit"
+              }
+            },
+            "chance": 1
+          },
+          {
+            "id": "awaken_1",
+            "type": "apply_status",
+            "target": "friends",
+            "status_id": "crit_damage_up",
+            "duration_ms": 6000,
+            "params": {
+              "ratio": {
+                "level_param": "awaken_1"
+              }
+            },
+            "chance": 1
+          }
+        ]
+      }
+    },
+    "swordsman_endure": {
+      "role": "Control/direct-interrupt resistance window; Awaken adds received healing",
+      "base": {
+        "level_parameters": {
+          "resist": [
+            0.5,
+            0.555556,
+            0.611111,
+            0.666667,
+            0.722222,
+            0.777778,
+            0.833333,
+            0.888889,
+            0.944444,
+            1.0
+          ]
+        },
+        "effects": [
+          {
+            "id": "enduring",
+            "type": "apply_status",
+            "target": "self",
+            "status_id": "endure_focus",
+            "duration_ms": 5000,
+            "params": {
+              "ratio": {
+                "level_param": "resist"
+              }
+            },
+            "chance": 1
+          }
+        ]
+      },
+      "awakened": {
+        "level_parameters": {
+          "resist": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "duration": [
+            5500,
+            5694,
+            5889,
+            6083,
+            6278,
+            6472,
+            6667,
+            6861,
+            7056,
+            7250
+          ],
+          "recovery": [
+            0.1,
+            0.111111,
+            0.122222,
+            0.133333,
+            0.144444,
+            0.155556,
+            0.166667,
+            0.177778,
+            0.188889,
+            0.2
+          ]
+        },
+        "effects": [
+          {
+            "id": "enduring",
+            "type": "apply_status",
+            "target": "self",
+            "status_id": "endure_focus",
+            "duration_ms": {
+              "level_param": "duration"
+            },
+            "params": {
+              "ratio": {
+                "level_param": "resist"
+              }
+            },
+            "chance": 1
+          },
+          {
+            "id": "awaken_recovery",
+            "type": "apply_status",
+            "target": "self",
+            "status_id": "awaken_healing_received",
+            "duration_ms": {
+              "level_param": "duration"
+            },
+            "params": {
+              "ratio": {
+                "level_param": "recovery"
+              }
+            },
+            "chance": 1
+          }
+        ]
+      }
+    },
+    "rogue_intimidate": {
+      "role": "Silence/cast denial + P.ATK/M.ATK weakening; Ankle Snare stays a stun",
+      "base": {
+        "level_parameters": {
+          "sp_cost": [
+            45,
+            44,
+            43,
+            42,
+            41,
+            40,
+            39,
+            38,
+            37,
+            36
+          ],
+          "duration": [
+            3000,
+            3333,
+            3667,
+            4000,
+            4333,
+            4667,
+            5000,
+            5333,
+            5667,
+            6000
+          ],
+          "weakening": [
+            -0.12,
+            -0.134444,
+            -0.148889,
+            -0.163333,
+            -0.177778,
+            -0.192222,
+            -0.206667,
+            -0.221111,
+            -0.235556,
+            -0.25
+          ]
+        },
+        "effects": [
+          {
+            "id": "silence",
+            "type": "apply_status",
+            "target": "foe",
+            "status_id": "silence",
+            "duration_ms": {
+              "level_param": "duration"
+            },
+            "params": {},
+            "chance": 0.85
+          },
+          {
+            "id": "intimidated",
+            "type": "apply_status",
+            "target": "foe",
+            "status_id": "intimidated",
+            "duration_ms": 6000,
+            "params": {
+              "ratio": {
+                "level_param": "weakening"
+              }
+            },
+            "chance": 1
+          }
+        ]
+      },
+      "awakened": {
+        "level_parameters": {
+          "sp_cost": [
+            32,
+            32,
+            32,
+            31,
+            31,
+            30,
+            30,
+            30,
+            29,
+            29
+          ],
+          "duration": [
+            6600,
+            6833,
+            7067,
+            7300,
+            7533,
+            7767,
+            8000,
+            8233,
+            8467,
+            8700
+          ],
+          "awaken_2": [
+            0.1,
+            0.111111,
+            0.122222,
+            0.133333,
+            0.144444,
+            0.155556,
+            0.166667,
+            0.177778,
+            0.188889,
+            0.2
+          ],
+          "weakening": [
+            -0.275,
+            -0.284722,
+            -0.294444,
+            -0.304167,
+            -0.313889,
+            -0.323611,
+            -0.333333,
+            -0.343056,
+            -0.352778,
+            -0.3625
+          ]
+        },
+        "effects": [
+          {
+            "id": "silence",
+            "type": "apply_status",
+            "target": "foe",
+            "status_id": "silence",
+            "duration_ms": {
+              "level_param": "duration"
+            },
+            "params": {},
+            "chance": 0.85
+          },
+          {
+            "id": "intimidated",
+            "type": "apply_status",
+            "target": "foe",
+            "status_id": "intimidated",
+            "duration_ms": 6600,
+            "params": {
+              "ratio": {
+                "level_param": "weakening"
+              }
+            },
+            "chance": 1
+          },
+          {
+            "id": "awaken_2",
+            "type": "apply_status",
+            "target": "foe",
+            "status_id": "exposed",
+            "duration_ms": 5000,
+            "params": {
+              "ratio": {
+                "level_param": "awaken_2"
+              }
+            },
+            "chance": 1
+          }
+        ]
+      }
+    },
+    "bard_encore": {
+      "role": "Party CSPD + SP recovery; Dancer Encore stays area control",
+      "base": {
+        "level_parameters": {
+          "sp_cost": [
+            51,
+            50,
+            49,
+            48,
+            47,
+            46,
+            45,
+            44,
+            43,
+            42
+          ],
+          "cast": [
+            0.1,
+            0.111111,
+            0.122222,
+            0.133333,
+            0.144444,
+            0.155556,
+            0.166667,
+            0.177778,
+            0.188889,
+            0.2
+          ],
+          "regen": [
+            0.2,
+            0.233333,
+            0.266667,
+            0.3,
+            0.333333,
+            0.366667,
+            0.4,
+            0.433333,
+            0.466667,
+            0.5
+          ]
+        },
+        "effects": [
+          {
+            "id": "casting",
+            "type": "apply_status",
+            "target": "friends",
+            "status_id": "cast_speed_up",
+            "duration_ms": 6000,
+            "params": {
+              "ratio": {
+                "level_param": "cast"
+              }
+            },
+            "chance": 1
+          },
+          {
+            "id": "mana",
+            "type": "apply_status",
+            "target": "friends",
+            "status_id": "mana_regen_up",
+            "duration_ms": 6000,
+            "params": {
+              "ratio": {
+                "level_param": "regen"
+              }
+            },
+            "chance": 1
+          }
+        ]
+      },
+      "awakened": {
+        "level_parameters": {
+          "sp_cost": [
+            38,
+            37,
+            37,
+            36,
+            36,
+            35,
+            35,
+            35,
+            34,
+            34
+          ],
+          "cast": [
+            0.22,
+            0.227778,
+            0.235556,
+            0.243333,
+            0.251111,
+            0.258889,
+            0.266667,
+            0.274444,
+            0.282222,
+            0.29
+          ],
+          "regen": [
+            0.55,
+            0.569444,
+            0.588889,
+            0.608333,
+            0.627778,
+            0.647222,
+            0.666667,
+            0.686111,
+            0.705556,
+            0.725
+          ],
+          "awaken_2": [
+            0.08,
+            0.088889,
+            0.097778,
+            0.106667,
+            0.115556,
+            0.124444,
+            0.133333,
+            0.142222,
+            0.151111,
+            0.16
+          ]
+        },
+        "effects": [
+          {
+            "id": "casting",
+            "type": "apply_status",
+            "target": "friends",
+            "status_id": "cast_speed_up",
+            "duration_ms": 6600,
+            "params": {
+              "ratio": {
+                "level_param": "cast"
+              }
+            },
+            "chance": 1
+          },
+          {
+            "id": "mana",
+            "type": "apply_status",
+            "target": "friends",
+            "status_id": "mana_regen_up",
+            "duration_ms": 6600,
+            "params": {
+              "ratio": {
+                "level_param": "regen"
+              }
+            },
+            "chance": 1
+          },
+          {
+            "id": "awaken_2",
+            "type": "apply_status",
+            "target": "foes",
+            "status_id": "exposed",
+            "duration_ms": 5000,
+            "params": {
+              "ratio": {
+                "level_param": "awaken_2"
+              }
+            },
+            "chance": 1
+          }
+        ]
+      }
+    },
+    "dancer_dissonance": {
+      "role": "Final incoming damage ward; Defender keeps DEF/MDEF growth, no additive guard stacking",
+      "base": {
+        "level_parameters": {
+          "ward": [
+            -0.06,
+            -0.07,
+            -0.08,
+            -0.09,
+            -0.1,
+            -0.11,
+            -0.12,
+            -0.13,
+            -0.14,
+            -0.15
+          ]
+        },
+        "effects": [
+          {
+            "id": "ward",
+            "type": "apply_status",
+            "target": "friends",
+            "status_id": "dance_ward",
+            "duration_ms": 5500,
+            "params": {
+              "ratio": {
+                "level_param": "ward"
+              }
+            },
+            "chance": 1
+          }
+        ]
+      },
+      "awakened": {
+        "level_parameters": {
+          "awaken_1": [
+            0.06,
+            0.066667,
+            0.073333,
+            0.08,
+            0.086667,
+            0.093333,
+            0.1,
+            0.106667,
+            0.113333,
+            0.12
+          ],
+          "ward": [
+            -0.165,
+            -0.170833,
+            -0.176667,
+            -0.1825,
+            -0.188333,
+            -0.194167,
+            -0.2,
+            -0.205833,
+            -0.211667,
+            -0.2175
+          ]
+        },
+        "effects": [
+          {
+            "id": "ward",
+            "type": "apply_status",
+            "target": "friends",
+            "status_id": "dance_ward",
+            "duration_ms": 6050,
+            "params": {
+              "ratio": {
+                "level_param": "ward"
+              }
+            },
+            "chance": 1
+          },
+          {
+            "id": "awaken_1",
+            "type": "apply_status",
+            "target": "friends",
+            "status_id": "awaken_skill_power",
+            "duration_ms": 6000,
+            "params": {
+              "ratio": {
+                "level_param": "awaken_1"
+              }
+            },
+            "chance": 1
+          }
+        ]
+      }
+    },
+    "thief_quick_step": {
+      "role": "Evasion rather than Twohand Quicken ASPD",
+      "base": {
+        "level_parameters": {
+          "ratio": [
+            0.1,
+            0.113333,
+            0.126667,
+            0.14,
+            0.153333,
+            0.166667,
+            0.18,
+            0.193333,
+            0.206667,
+            0.22
+          ]
+        },
+        "effects": [
+          {
+            "id": "evasion",
+            "type": "apply_status",
+            "target": "self",
+            "status_id": "evasion_up",
+            "duration_ms": 4500,
+            "params": {
+              "ratio": {
+                "level_param": "ratio"
+              }
+            },
+            "chance": 1
+          }
+        ]
+      },
+      "awakened": {
+        "level_parameters": {
+          "ratio": [
+            0.242,
+            0.250556,
+            0.259111,
+            0.267667,
+            0.276222,
+            0.284778,
+            0.293333,
+            0.301889,
+            0.310444,
+            0.319
+          ],
+          "awaken_1": [
+            0.05,
+            0.055556,
+            0.061111,
+            0.066667,
+            0.072222,
+            0.077778,
+            0.083333,
+            0.088889,
+            0.094444,
+            0.1
+          ]
+        },
+        "effects": [
+          {
+            "id": "evasion",
+            "type": "apply_status",
+            "target": "self",
+            "status_id": "evasion_up",
+            "duration_ms": 4950,
+            "params": {
+              "ratio": {
+                "level_param": "ratio"
+              }
+            },
+            "chance": 1
+          },
+          {
+            "id": "awaken_1",
+            "type": "apply_status",
+            "target": "self",
+            "status_id": "crit_up",
+            "duration_ms": 5000,
+            "params": {
+              "ratio": {
+                "level_param": "awaken_1"
+              }
+            },
+            "chance": 1
+          }
+        ]
+      }
+    },
+    "bard_healing_song": {
+      "role": "50% raw heal immediately / 50% HoT; Dancer retains the steadier 2:5 opening/tick budget",
+      "base": {
+        "level_parameters": {
+          "power": [
+            0.3675,
+            0.394722,
+            0.421944,
+            0.449167,
+            0.476389,
+            0.503611,
+            0.530833,
+            0.558056,
+            0.585278,
+            0.6125
+          ],
+          "opening_power": [
+            1.8375,
+            1.973611,
+            2.10972,
+            2.245834,
+            2.381946,
+            2.518054,
+            2.654166,
+            2.79028,
+            2.926391,
+            3.0625
+          ]
+        },
+        "effects": [
+          {
+            "id": "opening_heal",
+            "type": "heal",
+            "target": "friends",
+            "formula": {
+              "id": "physical_power",
+              "params": {
+                "attack_ratio": {
+                  "level_param": "opening_power"
+                },
+                "flat_power": 0
+              }
+            }
+          },
+          {
+            "id": "regeneration",
+            "type": "apply_status",
+            "target": "friends",
+            "status_id": "physical_regeneration",
+            "duration_ms": 6000,
+            "params": {
+              "power_ratio": {
+                "level_param": "power"
+              }
+            },
+            "chance": 1
+          }
+        ]
+      },
+      "awakened": {
+        "level_parameters": {
+          "power": [
+            0.641667,
+            0.664352,
+            0.687037,
+            0.709722,
+            0.732407,
+            0.755093,
+            0.777778,
+            0.800463,
+            0.823148,
+            0.845833
+          ],
+          "opening_power": [
+            3.85,
+            3.986112,
+            4.122224,
+            4.258332,
+            4.394444,
+            4.530556,
+            4.666667,
+            4.802777,
+            4.938888,
+            5.075
+          ],
+          "awaken_barrier": [
+            0.2625,
+            0.281944,
+            0.301389,
+            0.320833,
+            0.340278,
+            0.359722,
+            0.379167,
+            0.398611,
+            0.418056,
+            0.4375
+          ]
+        },
+        "effects": [
+          {
+            "id": "opening_heal",
+            "type": "heal",
+            "target": "friends",
+            "formula": {
+              "id": "physical_power",
+              "params": {
+                "attack_ratio": {
+                  "level_param": "opening_power"
+                },
+                "flat_power": 0
+              }
+            }
+          },
+          {
+            "id": "regeneration",
+            "type": "apply_status",
+            "target": "friends",
+            "status_id": "physical_regeneration",
+            "duration_ms": 6600,
+            "params": {
+              "power_ratio": {
+                "level_param": "power"
+              }
+            },
+            "chance": 1
+          },
+          {
+            "id": "awaken_barrier",
+            "type": "shield",
+            "target": "friends",
+            "formula": {
+              "id": "physical_power",
+              "params": {
+                "attack_ratio": {
+                  "level_param": "awaken_barrier"
+                },
+                "flat_power": 0
+              }
+            },
+            "duration_ms": 5000,
+            "dispelable": true
+          }
+        ]
+      }
+    },
+    "bard_performance_strike": {
+      "role": "Two beats (four Awaken hits) with the original total direct power; Hip Shaker stays a single blow",
+      "base": {
+        "level_parameters": {
+          "power": [
+            1.225,
+            1.3125,
+            1.4,
+            1.4875,
+            1.575,
+            1.6625,
+            1.75,
+            1.8375,
+            1.925,
+            2.0125
+          ]
+        },
+        "effects": [
+          {
+            "id": "hit",
+            "type": "damage",
+            "target": "foe",
+            "formula": {
+              "id": "physical_power",
+              "params": {
+                "attack_ratio": {
+                  "level_param": "power"
+                },
+                "flat_power": 0
+              }
+            },
+            "damage_type": "physical",
+            "element": "weapon",
+            "hit_rule": "physical_roll",
+            "can_crit": true,
+            "hits": 2,
+            "armor_rule": "normal"
+          }
+        ]
+      },
+      "awakened": {
+        "level_parameters": {
+          "power": [
+            1.106875,
+            1.146007,
+            1.185139,
+            1.224271,
+            1.263403,
+            1.302535,
+            1.341667,
+            1.380799,
+            1.41993,
+            1.459062
+          ],
+          "awaken_1": [
+            0.12,
+            0.133333,
+            0.146667,
+            0.16,
+            0.173333,
+            0.186667,
+            0.2,
+            0.213333,
+            0.226667,
+            0.24
+          ]
+        },
+        "effects": [
+          {
+            "id": "awaken_1",
+            "type": "apply_status",
+            "target": "self",
+            "status_id": "awaken_penetration",
+            "duration_ms": 5000,
+            "params": {
+              "ratio": {
+                "level_param": "awaken_1"
+              }
+            },
+            "chance": 1
+          },
+          {
+            "id": "hit",
+            "type": "damage",
+            "target": "foe",
+            "formula": {
+              "id": "physical_power",
+              "params": {
+                "attack_ratio": {
+                  "level_param": "power"
+                },
+                "flat_power": 0
+              }
+            },
+            "damage_type": "physical",
+            "element": "weapon",
+            "hit_rule": "physical_roll",
+            "can_crit": true,
+            "hits": 4,
+            "armor_rule": "normal",
+            "penetration_bonus": {
+              "level_param": "awaken_1"
+            }
+          }
+        ]
+      }
+    },
+    "priest_spirit_recovery": {
+      "role": "SP recovery plus healing",
+      "base": {
+        "level_parameters": {
+          "regen": [
+            1.75,
+            2.138888,
+            2.527777,
+            2.916667,
+            3.305556,
+            3.694444,
+            4.083333,
+            4.472223,
+            4.861111,
+            5.25
+          ],
+          "healing": [
+            0.06,
+            0.07,
+            0.08,
+            0.09,
+            0.1,
+            0.11,
+            0.12,
+            0.13,
+            0.14,
+            0.15
+          ]
+        },
+        "modifiers": [
+          {
+            "id": "flat_sp_regen",
+            "stat": "flat_sp_regen",
+            "op": "add_flat",
+            "bucket": "bonus",
+            "value": {
+              "level_param": "regen"
+            }
+          },
+          {
+            "id": "healing",
+            "stat": "outgoing_healing_bonus",
+            "op": "add_flat",
+            "bucket": "bonus",
+            "value": {
+              "level_param": "healing"
+            }
+          }
+        ]
+      },
+      "awakened": {
+        "level_parameters": {
+          "regen": [
+            5.775,
+            5.979167,
+            6.183333,
+            6.3875,
+            6.591667,
+            6.795833,
+            7,
+            7.204167,
+            7.408333,
+            7.6125
+          ],
+          "awaken_identity": [
+            0.08,
+            0.088889,
+            0.097778,
+            0.106667,
+            0.115556,
+            0.124444,
+            0.133333,
+            0.142222,
+            0.151111,
+            0.16
+          ],
+          "healing": [
+            0.165,
+            0.170833,
+            0.176667,
+            0.1825,
+            0.188333,
+            0.194167,
+            0.2,
+            0.205833,
+            0.211667,
+            0.2175
+          ]
+        },
+        "modifiers": [
+          {
+            "id": "flat_sp_regen",
+            "stat": "flat_sp_regen",
+            "op": "add_flat",
+            "bucket": "bonus",
+            "value": {
+              "level_param": "regen"
+            }
+          },
+          {
+            "id": "awaken_identity",
+            "stat": "max_sp",
+            "op": "add_percent",
+            "bucket": "derived",
+            "value": {
+              "level_param": "awaken_identity"
+            }
+          },
+          {
+            "id": "healing",
+            "stat": "outgoing_healing_bonus",
+            "op": "add_flat",
+            "bucket": "bonus",
+            "value": {
+              "level_param": "healing"
+            }
+          }
+        ]
+      }
+    },
+    "blacksmith_weapon_research": {
+      "role": "Attack plus accuracy",
+      "base": {
+        "level_parameters": {
+          "ratio": [
+            0.0875,
+            0.112777,
+            0.138056,
+            0.163333,
+            0.188611,
+            0.213888,
+            0.239167,
+            0.264444,
+            0.289723,
+            0.315
+          ],
+          "accuracy": [
+            0.03,
+            0.037778,
+            0.045556,
+            0.053333,
+            0.061111,
+            0.068889,
+            0.076667,
+            0.084444,
+            0.092222,
+            0.1
+          ]
+        },
+        "modifiers": [
+          {
+            "id": "physical_attack",
+            "stat": "physical_attack",
+            "op": "add_percent",
+            "bucket": "derived",
+            "value": {
+              "level_param": "ratio"
+            }
+          },
+          {
+            "id": "accuracy",
+            "stat": "hit_bonus",
+            "op": "add_flat",
+            "bucket": "bonus",
+            "value": {
+              "level_param": "accuracy"
+            }
+          }
+        ]
+      },
+      "awakened": {
+        "level_parameters": {
+          "ratio": [
+            0.3465,
+            0.35875,
+            0.371,
+            0.38325,
+            0.3955,
+            0.40775,
+            0.42,
+            0.43225,
+            0.4445,
+            0.45675
+          ],
+          "awaken_identity": [
+            0.06,
+            0.066667,
+            0.073333,
+            0.08,
+            0.086667,
+            0.093333,
+            0.1,
+            0.106667,
+            0.113333,
+            0.12
+          ],
+          "accuracy": [
+            0.11,
+            0.113889,
+            0.117778,
+            0.121667,
+            0.125556,
+            0.129444,
+            0.133333,
+            0.137222,
+            0.141111,
+            0.145
+          ]
+        },
+        "modifiers": [
+          {
+            "id": "physical_attack",
+            "stat": "physical_attack",
+            "op": "add_percent",
+            "bucket": "derived",
+            "value": {
+              "level_param": "ratio"
+            }
+          },
+          {
+            "id": "awaken_identity",
+            "stat": "skill_damage_bonus",
+            "op": "add_flat",
+            "bucket": "bonus",
+            "value": {
+              "level_param": "awaken_identity"
+            }
+          },
+          {
+            "id": "accuracy",
+            "stat": "hit_bonus",
+            "op": "add_flat",
+            "bucket": "bonus",
+            "value": {
+              "level_param": "accuracy"
+            }
+          }
+        ]
+      }
+    },
+    "bard_music_lesson": {
+      "role": "Healing plus SP capacity",
+      "base": {
+        "level_parameters": {
+          "ratio": [
+            0.0525,
+            0.066112,
+            0.079723,
+            0.093333,
+            0.106944,
+            0.120556,
+            0.134167,
+            0.147777,
+            0.161388,
+            0.175
+          ],
+          "capacity": [
+            0.05,
+            0.061111,
+            0.072222,
+            0.083333,
+            0.094444,
+            0.105556,
+            0.116667,
+            0.127778,
+            0.138889,
+            0.15
+          ]
+        },
+        "modifiers": [
+          {
+            "id": "outgoing_healing_bonus",
+            "stat": "outgoing_healing_bonus",
+            "op": "add_flat",
+            "bucket": "bonus",
+            "value": {
+              "level_param": "ratio"
+            }
+          },
+          {
+            "id": "capacity",
+            "stat": "max_sp",
+            "op": "add_percent",
+            "bucket": "derived",
+            "value": {
+              "level_param": "capacity"
+            }
+          }
+        ]
+      },
+      "awakened": {
+        "level_parameters": {
+          "ratio": [
+            0.1925,
+            0.199306,
+            0.206111,
+            0.212917,
+            0.219722,
+            0.226528,
+            0.233333,
+            0.240139,
+            0.246944,
+            0.25375
+          ],
+          "awaken_identity": [
+            0.06,
+            0.066667,
+            0.073333,
+            0.08,
+            0.086667,
+            0.093333,
+            0.1,
+            0.106667,
+            0.113333,
+            0.12
+          ],
+          "capacity": [
+            0.165,
+            0.170833,
+            0.176667,
+            0.1825,
+            0.188333,
+            0.194167,
+            0.2,
+            0.205833,
+            0.211667,
+            0.2175
+          ]
+        },
+        "modifiers": [
+          {
+            "id": "outgoing_healing_bonus",
+            "stat": "outgoing_healing_bonus",
+            "op": "add_flat",
+            "bucket": "bonus",
+            "value": {
+              "level_param": "ratio"
+            }
+          },
+          {
+            "id": "awaken_identity",
+            "stat": "physical_attack",
+            "op": "add_percent",
+            "bucket": "derived",
+            "value": {
+              "level_param": "awaken_identity"
+            }
+          },
+          {
+            "id": "capacity",
+            "stat": "max_sp",
+            "op": "add_percent",
+            "bucket": "derived",
+            "value": {
+              "level_param": "capacity"
+            }
+          }
+        ]
+      }
+    },
+    "dancer_music_lesson": {
+      "role": "Healing plus evasion",
+      "base": {
+        "level_parameters": {
+          "ratio": [
+            0.0525,
+            0.066112,
+            0.079723,
+            0.093333,
+            0.106944,
+            0.120556,
+            0.134167,
+            0.147777,
+            0.161388,
+            0.175
+          ],
+          "evasion": [
+            0.03,
+            0.035556,
+            0.041111,
+            0.046667,
+            0.052222,
+            0.057778,
+            0.063333,
+            0.068889,
+            0.074444,
+            0.08
+          ]
+        },
+        "modifiers": [
+          {
+            "id": "outgoing_healing_bonus",
+            "stat": "outgoing_healing_bonus",
+            "op": "add_flat",
+            "bucket": "bonus",
+            "value": {
+              "level_param": "ratio"
+            }
+          },
+          {
+            "id": "evasion",
+            "stat": "evasion_bonus",
+            "op": "add_flat",
+            "bucket": "bonus",
+            "value": {
+              "level_param": "evasion"
+            }
+          }
+        ]
+      },
+      "awakened": {
+        "level_parameters": {
+          "ratio": [
+            0.1925,
+            0.199306,
+            0.206111,
+            0.212917,
+            0.219722,
+            0.226528,
+            0.233333,
+            0.240139,
+            0.246944,
+            0.25375
+          ],
+          "awaken_identity": [
+            0.06,
+            0.066667,
+            0.073333,
+            0.08,
+            0.086667,
+            0.093333,
+            0.1,
+            0.106667,
+            0.113333,
+            0.12
+          ],
+          "evasion": [
+            0.088,
+            0.091111,
+            0.094222,
+            0.097333,
+            0.100444,
+            0.103556,
+            0.106667,
+            0.109778,
+            0.112889,
+            0.116
+          ]
+        },
+        "modifiers": [
+          {
+            "id": "outgoing_healing_bonus",
+            "stat": "outgoing_healing_bonus",
+            "op": "add_flat",
+            "bucket": "bonus",
+            "value": {
+              "level_param": "ratio"
+            }
+          },
+          {
+            "id": "awaken_identity",
+            "stat": "physical_attack",
+            "op": "add_percent",
+            "bucket": "derived",
+            "value": {
+              "level_param": "awaken_identity"
+            }
+          },
+          {
+            "id": "evasion",
+            "stat": "evasion_bonus",
+            "op": "add_flat",
+            "bucket": "bonus",
+            "value": {
+              "level_param": "evasion"
+            }
+          }
+        ]
+      }
+    },
+    "hunter_steel_crow": {
+      "role": "Skill damage including Falcon true damage; Poison Edge keeps physical damage",
+      "base": {
+        "level_parameters": {
+          "ratio": [
+            0.07,
+            0.085556,
+            0.101112,
+            0.116667,
+            0.132223,
+            0.147777,
+            0.163333,
+            0.178888,
+            0.194444,
+            0.21
+          ]
+        },
+        "modifiers": [
+          {
+            "id": "skill_damage",
+            "stat": "skill_damage_bonus",
+            "op": "add_flat",
+            "bucket": "bonus",
+            "value": {
+              "level_param": "ratio"
+            }
+          }
+        ]
+      },
+      "awakened": {
+        "level_parameters": {
+          "ratio": [
+            0.231,
+            0.239167,
+            0.247333,
+            0.2555,
+            0.263667,
+            0.271833,
+            0.28,
+            0.288167,
+            0.296333,
+            0.3045
+          ],
+          "awaken_identity": [
+            0.06,
+            0.066667,
+            0.073333,
+            0.08,
+            0.086667,
+            0.093333,
+            0.1,
+            0.106667,
+            0.113333,
+            0.12
+          ]
+        },
+        "modifiers": [
+          {
+            "id": "skill_damage",
+            "stat": "skill_damage_bonus",
+            "op": "add_flat",
+            "bucket": "bonus",
+            "value": {
+              "level_param": "ratio"
+            }
+          },
+          {
+            "id": "awaken_identity",
+            "stat": "skill_damage_bonus",
+            "op": "add_flat",
+            "bucket": "bonus",
+            "value": {
+              "level_param": "awaken_identity"
+            }
+          }
+        ]
+      }
+    },
+    "dancer_breathing": {
+      "role": "Hybrid SP/HP sustain; Bard Breathing keeps full SP focus",
+      "base": {
+        "level_parameters": {
+          "ratio": [
+            0.07,
+            0.086528,
+            0.103056,
+            0.119583,
+            0.136111,
+            0.152639,
+            0.169166,
+            0.185695,
+            0.202222,
+            0.21875
+          ],
+          "recovery": [
+            0.003,
+            0.003778,
+            0.004556,
+            0.005333,
+            0.006111,
+            0.006889,
+            0.007667,
+            0.008444,
+            0.009222,
+            0.01
+          ]
+        },
+        "modifiers": [
+          {
+            "id": "sp_regen_percent",
+            "stat": "sp_regen_percent",
+            "op": "add_flat",
+            "bucket": "bonus",
+            "value": {
+              "level_param": "ratio"
+            }
+          },
+          {
+            "id": "recovery",
+            "stat": "hp_regen_percent",
+            "op": "add_flat",
+            "bucket": "bonus",
+            "value": {
+              "level_param": "recovery"
+            }
+          }
+        ]
+      },
+      "awakened": {
+        "level_parameters": {
+          "ratio": [
+            0.240625,
+            0.249132,
+            0.257639,
+            0.266146,
+            0.274653,
+            0.28316,
+            0.291666,
+            0.300173,
+            0.308681,
+            0.317188
+          ],
+          "awaken_identity": [
+            0.08,
+            0.088889,
+            0.097778,
+            0.106667,
+            0.115556,
+            0.124444,
+            0.133333,
+            0.142222,
+            0.151111,
+            0.16
+          ],
+          "recovery": [
+            0.011,
+            0.011389,
+            0.011778,
+            0.012167,
+            0.012556,
+            0.012944,
+            0.013333,
+            0.013722,
+            0.014111,
+            0.0145
+          ]
+        },
+        "modifiers": [
+          {
+            "id": "sp_regen_percent",
+            "stat": "sp_regen_percent",
+            "op": "add_flat",
+            "bucket": "bonus",
+            "value": {
+              "level_param": "ratio"
+            }
+          },
+          {
+            "id": "awaken_identity",
+            "stat": "max_sp",
+            "op": "add_percent",
+            "bucket": "derived",
+            "value": {
+              "level_param": "awaken_identity"
+            }
+          },
+          {
+            "id": "recovery",
+            "stat": "hp_regen_percent",
+            "op": "add_flat",
+            "bucket": "bonus",
+            "value": {
+              "level_param": "recovery"
+            }
+          }
+        ]
+      }
+    },
+    "rogue_dirty_tricks": {
+      "base": {
+        "level_parameters": {
+          "ratio": [
+            0.03,
+            0.037778,
+            0.045556,
+            0.053333,
+            0.061111,
+            0.068889,
+            0.076667,
+            0.084444,
+            0.092222,
+            0.1
+          ],
+          "penetration": [
+            0.04,
+            0.046667,
+            0.053333,
+            0.06,
+            0.066667,
+            0.073333,
+            0.08,
+            0.086667,
+            0.093333,
+            0.1
+          ]
+        },
+        "modifiers": [
+          {
+            "id": "control_accuracy",
+            "stat": "control_accuracy",
+            "op": "add_flat",
+            "bucket": "bonus",
+            "value": {
+              "level_param": "ratio"
+            }
+          },
+          {
+            "id": "dirty_penetration",
+            "stat": "penetration_percent",
+            "op": "add_flat",
+            "bucket": "bonus",
+            "value": {
+              "level_param": "penetration"
+            }
+          }
+        ]
+      },
+      "awakened": {
+        "level_parameters": {
+          "ratio": [
+            0.11,
+            0.113889,
+            0.117778,
+            0.121667,
+            0.125556,
+            0.129444,
+            0.133333,
+            0.137222,
+            0.141111,
+            0.145
+          ],
+          "awaken_identity": [
+            0.06,
+            0.066667,
+            0.073333,
+            0.08,
+            0.086667,
+            0.093333,
+            0.1,
+            0.106667,
+            0.113333,
+            0.12
+          ],
+          "penetration": [
+            0.11,
+            0.113889,
+            0.117778,
+            0.121667,
+            0.125556,
+            0.129444,
+            0.133333,
+            0.137222,
+            0.141111,
+            0.145
+          ]
+        },
+        "modifiers": [
+          {
+            "id": "control_accuracy",
+            "stat": "control_accuracy",
+            "op": "add_flat",
+            "bucket": "bonus",
+            "value": {
+              "level_param": "ratio"
+            }
+          },
+          {
+            "id": "awaken_identity",
+            "stat": "skill_damage_bonus",
+            "op": "add_flat",
+            "bucket": "bonus",
+            "value": {
+              "level_param": "awaken_identity"
+            }
+          },
+          {
+            "id": "dirty_penetration",
+            "stat": "penetration_percent",
+            "op": "add_flat",
+            "bucket": "bonus",
+            "value": {
+              "level_param": "penetration"
+            }
+          }
+        ]
+      },
+      "role": "Dirty Tricks: control accuracy + armor penetration; Frost Control remains control/magic role"
+    }
+  },
+  "statuses": [
+    {
+      "id": "blessing_attributes",
+      "polarity": "buff",
+      "tags": [
+        "stat_buff"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "ratio": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": false,
+      "dispelable": true,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [
+        {
+          "id": "str",
+          "stat": "str",
+          "op": "add_percent",
+          "bucket": "primary",
+          "value": {
+            "status_param": "ratio"
+          }
+        },
+        {
+          "id": "int",
+          "stat": "int",
+          "op": "add_percent",
+          "bucket": "primary",
+          "value": {
+            "status_param": "ratio"
+          }
+        },
+        {
+          "id": "dex",
+          "stat": "dex",
+          "op": "add_percent",
+          "bucket": "primary",
+          "value": {
+            "status_param": "ratio"
+          }
+        }
+      ],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null
+    },
+    {
+      "id": "skill_power_up",
+      "polarity": "buff",
+      "tags": [
+        "stat_buff"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "ratio": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": false,
+      "dispelable": true,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [
+        {
+          "id": "skill_damage_bonus",
+          "stat": "skill_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "status_param": "ratio"
+          }
+        },
+        {
+          "id": "outgoing_healing_bonus",
+          "stat": "outgoing_healing_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "status_param": "ratio"
+          }
+        }
+      ],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null
+    },
+    {
+      "id": "normal_power_up",
+      "polarity": "buff",
+      "tags": [
+        "stat_buff"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "ratio": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": false,
+      "dispelable": true,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [
+        {
+          "id": "normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "status_param": "ratio"
+          }
+        }
+      ],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null
+    },
+    {
+      "id": "endure_focus",
+      "polarity": "buff",
+      "tags": [
+        "stat_buff"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "ratio": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": false,
+      "dispelable": true,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [
+        {
+          "id": "control_resistance",
+          "stat": "control_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "status_param": "ratio"
+          }
+        },
+        {
+          "id": "interrupt_resistance",
+          "stat": "interrupt_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "status_param": "ratio"
+          }
+        }
+      ],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null
+    },
+    {
+      "id": "intimidated",
+      "polarity": "debuff",
+      "tags": [
+        "stat_debuff"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "ratio": {
+            "type": "number",
+            "minimum": -1,
+            "maximum": 0
+          }
+        },
+        "required": [
+          "ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": true,
+      "dispelable": false,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "status_param": "ratio"
+          }
+        },
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "status_param": "ratio"
+          }
+        }
+      ],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null
+    },
+    {
+      "id": "dance_ward",
+      "polarity": "buff",
+      "tags": [
+        "stat_buff"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "ratio": {
+            "type": "number",
+            "minimum": -1,
+            "maximum": 0
+          }
+        },
+        "required": [
+          "ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": false,
+      "dispelable": true,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [
+        {
+          "id": "damage_taken_bonus",
+          "stat": "damage_taken_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "status_param": "ratio"
+          }
+        }
+      ],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null
+    },
+    {
+      "id": "evasion_up",
+      "polarity": "buff",
+      "tags": [
+        "stat_buff"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "ratio": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": false,
+      "dispelable": true,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "status_param": "ratio"
+          }
+        }
+      ],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null
+    }
+  ],
+  "notes": [
+    "Assistant-authored role/number baseline for this game, not reverse-engineered RO equations.",
+    "Stable legacy acolyte_increase_agi ID now displays Ruwach; prices/timing/unlock/save bindings stay unchanged.",
+    "Dance ward uses damage_taken_bonus, keeping it in a different existing mitigation lane from guard_percent."
+  ]
+}

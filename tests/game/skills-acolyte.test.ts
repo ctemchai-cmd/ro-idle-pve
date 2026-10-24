@@ -128,6 +128,7 @@ test('T030 AC-03: the full fight uses real effects - Asura spends the live SP po
       (real as Record<string, unknown>).monk_finisher_asura_sp = spent;
     }
     else if (row.id === 'monk_steel_tank') { assert.deepEqual(rows[0], { type: 'cast_start', skill_id: 'monk_steel_body', at_ms: dry[0]!.start_ms }); assert.ok(rows[1]!.at_ms > dry[1]!.start_ms, `slow delays the next start ${rows[1]!.at_ms} vs ${dry[1]!.start_ms}`); }
+    else if(row.active_slots[0]==='acolyte_blessing'){assert.equal(rows[0]!.at_ms,dry[0]!.start_ms);assert.ok(rows[1]!.at_ms<dry[1]!.start_ms,'D168 Blessing haste+DEX speed up later slots');}
     else assert.deepEqual(rows.slice(0, 4).map(event => ({ skill_id: event.skill_id, start_ms: event.at_ms })), dry, row.id);
   }
   evidence.real_fight_first_starts = real;

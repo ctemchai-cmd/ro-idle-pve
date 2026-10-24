@@ -100,15 +100,15 @@ test('T033 AC-03: dry catalog trace of all four builds reproduces the M0 queue e
   evidence.dry_trace = checkDryTraces('thief', tree.builds);
 });
 
-test('T033 AC-03: real fights - Quick Step hastes the critical Assassin; Rogue strips/expose debuff the target for the team; venom is personal', () => {
+test('T033 AC-03: real fights - Quick Step grants evasion without changing timing; Rogue strips/expose debuff the target for the team; venom is personal', () => {
   const real: Record<string, unknown> = {};
   for (const row of tree.builds) {
     const { events } = run([buildActor(row, 'hero', 'front_1'), probe('p_ally', 'player', 'back_1'), probe('e_boss', 'enemy', 'front_1')], 20000);
     const starts = events.filter(event => event.actor_id === 'hero' && event.type === 'cast_start').map(event => ({ skill_id: event.skill_id, start_ms: event.at_ms }));
     const dry = row.queue_estimate.starts.map(start => ({ skill_id: start.skill_id, start_ms: start.start_ms }));
     real[row.id] = { real: starts.slice(0, 4), dry };
-    if (row.active_slots[0] === 'thief_quick_step') { assert.deepEqual(starts[0], dry[0]); assert.ok(starts[1]!.start_ms < dry[1]!.start_ms, 'Quick Step hastes'); }
-    else assert.deepEqual(starts.slice(0, 4), dry, row.id);
+    assert.deepEqual(starts.slice(0,4),dry,row.id);
+    if(row.active_slots[0]==='thief_quick_step')assert.ok(events.some(e=>e.type==='status_applied'&&e.status_change?.status_id==='evasion_up'));
     if (row.job_id === 'rogue') assert.ok(['armor_break', 'attack_down', 'exposed'].some(status => events.some(event => event.type === 'status_applied' && event.target_id === 'e_boss' && event.status_change?.status_id === status)), `${row.id} debuffs the shared target`);
   }
   evidence.real_fight_first_starts = real;
