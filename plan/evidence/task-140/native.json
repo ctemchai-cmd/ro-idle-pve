@@ -1,0 +1,94 @@
+{
+  "passed": true,
+  "scope": "Actual Field/native engine checkpoints; controlled synthetic UI transport; no real Auth/API/Supabase/owner saves",
+  "checks": [
+    {
+      "case": "story_slow_transition_no_old_result_replay",
+      "expected_replay": false,
+      "mode": "story",
+      "oldRef": "1-1",
+      "phases": [
+        {
+          "phase": "result:ผ่านด่าน 1-1",
+          "at": 1293
+        },
+        {
+          "phase": "warning",
+          "at": 1801.199999999255
+        },
+        {
+          "phase": "battle:new-f744e323-05a2-4e33-8316-106382c2ba18",
+          "at": 6928.5999999996275
+        }
+      ],
+      "commands": [
+        {
+          "type": "battle.finish",
+          "params": {
+            "battle_id": "old-e38a093c-23bc-4752-a1ee-ccfb247ae2b5",
+            "collect_rewards": true
+          },
+          "at": 1223.5999999996275
+        },
+        {
+          "type": "battle.start_story",
+          "params": {
+            "stage_id": "1-2"
+          },
+          "at": 3296.5999999996275
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "case": "tower_slow_transition_no_old_result_replay",
+      "expected_replay": false,
+      "mode": "tower",
+      "oldRef": "1",
+      "phases": [
+        {
+          "phase": "result:ผ่านหอคอยชั้น 1",
+          "at": 7362.199999999255
+        },
+        {
+          "phase": "warning",
+          "at": 7751.699999999255
+        },
+        {
+          "phase": "battle:new-d4fcdcef-893c-49a1-9a6a-cfa21a9882e8",
+          "at": 12280.099999999627
+        }
+      ],
+      "commands": [
+        {
+          "type": "battle.finish",
+          "params": {
+            "battle_id": "old-71da0998-8e79-43d6-b09e-c746044984c4",
+            "collect_rewards": true
+          },
+          "at": 7333.4000000003725
+        },
+        {
+          "type": "battle.start_tower",
+          "params": {
+            "floor": 2
+          },
+          "at": 9246.599999999627
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "case": "stop_during_intro_no_start_command",
+      "passed": true
+    },
+    {
+      "case": "rejected_start_stops_auto_releases_controls",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "writes": [],
+  "content_hash": "6d2d125d956656ed90f7e82ee0deb3bdc91025ae57b5f062863b945b741d28c6",
+  "source_scope": "a15aa0371 for baseline; after adds only setOutcome(null) at challenge start"
+}

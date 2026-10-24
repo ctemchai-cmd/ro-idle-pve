@@ -1,0 +1,36 @@
+{
+  "task_id": "TASK-140",
+  "passed": false,
+  "local_passed": true,
+  "status": "review",
+  "date": "2026-10-24",
+  "content_hash": "6d2d125d956656ed90f7e82ee0deb3bdc91025ae57b5f062863b945b741d28c6",
+  "acceptance_results": {
+    "AC-01": "passed_local",
+    "AC-02": "passed_local",
+    "AC-03": "passed_local",
+    "AC-04": "pending_hosted"
+  },
+  "tests": {
+    "old_regression_groups": 2,
+    "native_groups": 4,
+    "unit_groups": 4,
+    "root_gzip_bytes": 628913,
+    "pwa_version": "e9a6989a67c27f4c",
+    "filtered_gzip_bytes": 628913
+  },
+  "scope": "Two UI lines only; actual native components/engine checkpoints with synthetic controlled transport, not new API/Auth/SQL proof",
+  "evidence": [
+    "plan/evidence/task-140/README.md",
+    "plan/evidence/task-140/before.json",
+    "plan/evidence/task-140/native.json",
+    "plan/evidence/task-140/unit.txt",
+    "plan/evidence/task-140/build.txt",
+    "plan/evidence/task-140/build-filtered.txt"
+  ],
+  "limits": [
+    "No owner/SQL/env/personal6173 restart",
+    "No combat/economy/retry/receipt changes",
+    "4 targeted unit tests and native regression; full672 not repeated for two UI lines"
+  ]
+}

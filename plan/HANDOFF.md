@@ -1,5 +1,11 @@
 # Handoff ระหว่าง agent
 
+## 24 ต.ค.2026 · Codex — TASK140 localผ่าน รอdeploy
+
+- UserรายงานAutoชนะ→Warning→ชนะเดิม→สู้. Actualnativebaselineก่อนแก้ยืนยันทั้งStoryAPI3600ms/Towerprepare3000ms. Rootcauseoutcome/bossเก่าทำintroใหม่readyก่อนnewbossโหลด จึงปิดintro2100และโชว์Resultเก่า. แก้เพียงsetOutcome(null)ก่อนเปิดintro/awaitในField.challenge (+comment);ไม่มีengine/data/เวลา/retry/reward/APIเปลี่ยน.
+- Nativeafter4groupsผ่านactualField/nativecheckpoints/controlledsyntheticUItransport ไม่ใช่Auth/API/SQL:Story390/Tower320oldresultครั้งเดียว/stopbeforestart/rejectunlocks/nooverflow/noHTTPwrites. Unit4reducerเดิมผ่าน. Root+filtereduncachedbuild/M0readiness8ผ่าน628913gzip/PWAe9a6989a67c27f4c/content6d2d/packb9aเดิม. Before/after/readmeใน140dir;afterStory390viewed. InitialfixtureIDผิดแก้เป็นexistingauditBuild,debug.local/auto140-debug.
+- Task140review/125of140/M4done79of89. Needpushsource→VercelSUCCESS→node scripts/test_auto_transition_hosted.cjs→done126of140/M4done80of89/AC/readiness/closurepush. HostedASTจับchallengeมีnullresetก่อนawait2เทียบold1;publicbeforeตรวจแล้วold1. Noowner/keys/SQL/env/6173/agents. OwnVite7496PID13624closed/Chromesclosed;useruntrackedmodernassets/task108pnguntouched. ไม่มีคำถามpending.
+
 ## 24 ต.ค.2026 · Codex — TASK139 ขึ้นVercelแล้ว
 
 - Userส่งactualVercelbuildlogc4cbc0e:TS6196unusedWalletในsrc/client/store.ts:11. ลบaliasและปิดtsconfigincremental(คงstrict/noUnused),ไม่ใช้cachedtypecheckgateอีก. Root+cleantrackedfiltereduncachedbuildผ่านทั้งคู่content6d2d/628933gzip/PWA80546d33a409b9f9/packb9aเดิม. Type-only/config ไม่มีruntime/economyหรือownerwrite. Evidence139/build-*-uncached.txt/vercel-failure.txt.

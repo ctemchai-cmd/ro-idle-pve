@@ -303,6 +303,8 @@ export function Field({ context, covered, save, request, consumeRequest }: { con
   async function challenge(target: ChallengeTarget, automatic = false) {
     if (startingRef.current || (automatic && !autoRef.current)) return;
     if (!automatic) stopAuto();
+    // Retire the previous result before its boss can satisfy the new intro's readiness check.
+    setOutcome(null);
     const token = epoch.current; startingRef.current = true; setSheet(null); setStarting(true); setIntro({ label: introLabel(target, pack, context), at: Date.now() });
     try {
       await new Promise(resolve => setTimeout(resolve, 1500));

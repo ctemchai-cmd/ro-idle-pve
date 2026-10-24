@@ -19,3 +19,7 @@ Client รุ่นใหม่ส่ง battle.finish พร้อม collect_r
 ## ตรวจรับ
 
 Unit: all152×base/Awaken×10 descriptions, six party buffs exact ratio/expiry, actual effect stack; atomic win+farm+receipt/replay/fullbag; pure auto retry/win/reset/duplicate/stop. Actual disposable Auth/API/SQL/mobile: หลาย win ต่อเนื่อง, retry จนหยุด, manual stop ใน intro/ระหว่างไฟต์, ผลรับทันที, response-loss/reload, no recurring battle save,320/390. Public hosted ตรวจ hash/bundles/คำอธิบาย/หน้า login โดยไม่ใช้ owner account. ไม่มี SQL/env ใหม่.
+
+## TASK140 — ผลเก่าต้องจบก่อนเริ่มintroใหม่
+
+เมื่อchallengeใหม่ผ่านguardแล้วต้องretireoutcomeเดิมทันที ก่อนแสดงWarningและawaitเริ่มไฟต์. ไม่ให้boss/outcomeเก่าทำintroของรอบใหม่ready และไม่แสดงResultเก่าในช่วงรอAPI/pack. ไม่แก้ด้วยซ่อนWarningหรือเปลี่ยนเวลา/retry/รางวัล. ปุ่มstopและstartfailureใช้flowเดิม. Nativebefore/aftertask140จำลองAPI3600ms/prepare3000msแยกStory/Tower.

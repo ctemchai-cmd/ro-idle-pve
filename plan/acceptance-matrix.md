@@ -730,3 +730,12 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T139-AC-04` | TASK-139 | แลกทั้งหมดคิดmin(เงิน,โควตา,ขีดจำกัด,capacity)ด้วยsharedquote;1command/receipt/revision,20Crystalexchangeและ99scrollได้ในครั้งเดียว;overflow/ขาดเงิน/replay/dayrollไม่จ่ายซ้ำหรือหักบางส่วน | Shared/HTTP/mobile/hosted | passed_implementation |
 | `T139-AC-05` | TASK-139 | Panelร้าน/แลกเศษ/หอคอย/ดัน/กาชา/Refine/Stats/เลือกอาชีพใช้white-blue surfacesสอดคล้อง ไม่แตะrarity/glow/ข้อมูลต่อสู้และmobileportrait | Shared/HTTP/mobile/hosted | passed_implementation |
 | `T139-AC-06` | TASK-139 | unit/actualreducerและHTTP-receipt+mobile320390interaction/pending/reject/overflow/build+filtered/hostedผ่านก่อนdone;ไม่SQL/env/owner/6173 | Shared/HTTP/mobile/hosted | passed_implementation |
+
+## TASK-140 — ผลเก่าไม่ย้อนระหว่างAuto
+
+| ID | Task | เกณฑ์ | วิธีตรวจ | สถานะ |
+| --- | --- | --- | --- | --- |
+| `T140-AC-01` | TASK-140 | Story/Tower แสดงผลเก่าหนึ่งครั้ง แล้วWarning→ไฟต์ใหม่; ไม่มีผลเก่าย้อนเมื่อAPIหรือprepareช้ากว่า2100ms | Native/unit/build/hosted | not_run_implementation |
+| `T140-AC-02` | TASK-140 | เริ่ม/จบครั้งเดียวต่อไฟต์; แพ้3ครั้ง/รับรางวัลเดิม/คิวและข้อมูลengineไม่เปลี่ยน | Native/unit/build/hosted | not_run_implementation |
+| `T140-AC-03` | TASK-140 | หยุดระหว่างintroยกเลิกnextได้,เริ่มไม่สำเร็จหยุดAutoและปุ่มไม่ค้าง; UIมือถือ320390ไม่overflow | Native/unit/build/hosted | not_run_implementation |
+| `T140-AC-04` | TASK-140 | meaningfulnative regression/unit/uncachedbuild+filtered/Vercel+hostedผ่าน;ไม่owner/SQL/env/6173 | Native/unit/build/hosted | not_run_implementation |

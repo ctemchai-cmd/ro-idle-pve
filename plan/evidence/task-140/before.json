@@ -1,0 +1,94 @@
+{
+  "passed": true,
+  "scope": "Actual Field/native engine checkpoints; controlled synthetic UI transport; no real Auth/API/Supabase/owner saves",
+  "checks": [
+    {
+      "case": "story_slow_transition_no_old_result_replay",
+      "expected_replay": true,
+      "mode": "story",
+      "oldRef": "1-1",
+      "phases": [
+        {
+          "phase": "result:ผ่านด่าน 1-1",
+          "at": 1770
+        },
+        {
+          "phase": "warning",
+          "at": 1801.7000000011176
+        },
+        {
+          "phase": "result:ผ่านด่าน 1-1",
+          "at": 3904
+        },
+        {
+          "phase": "battle:new-1d4aa11d-f78d-4810-98f4-a52f68bbe061",
+          "at": 6919.9000000003725
+        }
+      ],
+      "commands": [
+        {
+          "type": "battle.finish",
+          "params": {
+            "battle_id": "old-bd0b50b6-28b3-4227-810e-8b09ff6a0fc1",
+            "collect_rewards": true
+          },
+          "at": 1737.300000000745
+        },
+        {
+          "type": "battle.start_story",
+          "params": {
+            "stage_id": "1-2"
+          },
+          "at": 3300.2000000011176
+        }
+      ],
+      "overflow": false
+    },
+    {
+      "case": "tower_slow_transition_no_old_result_replay",
+      "expected_replay": true,
+      "mode": "tower",
+      "oldRef": "1",
+      "phases": [
+        {
+          "phase": "result:ผ่านหอคอยชั้น 1",
+          "at": 7569.700000001118
+        },
+        {
+          "phase": "warning",
+          "at": 7619.4000000003725
+        },
+        {
+          "phase": "result:ผ่านหอคอยชั้น 1",
+          "at": 9723.60000000149
+        },
+        {
+          "phase": "battle:new-7259a5c8-4d36-4316-93eb-ef69bd0c4877",
+          "at": 12157.200000001118
+        }
+      ],
+      "commands": [
+        {
+          "type": "battle.finish",
+          "params": {
+            "battle_id": "old-4f786108-129c-4cb1-8ade-c402d2ca8c60",
+            "collect_rewards": true
+          },
+          "at": 7546.800000000745
+        },
+        {
+          "type": "battle.start_tower",
+          "params": {
+            "floor": 2
+          },
+          "at": 9118.5
+        }
+      ],
+      "overflow": false
+    }
+  ],
+  "errors": [],
+  "writes": [],
+  "content_hash": "6d2d125d956656ed90f7e82ee0deb3bdc91025ae57b5f062863b945b741d28c6",
+  "source_scope": "a15aa0371 for baseline; after adds only setOutcome(null) at challenge start"
+}

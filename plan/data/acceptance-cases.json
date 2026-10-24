@@ -14804,6 +14804,74 @@
         "plan/evidence/task-139/build-root-uncached.txt",
         "plan/evidence/task-139/build-filtered-uncached.txt"
       ]
+    },
+    {
+      "id": "T140-AC-01",
+      "task_id": "TASK-140",
+      "acceptance_id": "AC-01",
+      "criterion": "Story/Tower แสดงผลเก่าหนึ่งครั้ง แล้วWarning→ไฟต์ใหม่; ไม่มีผลเก่าย้อนเมื่อAPIหรือprepareช้ากว่า2100ms",
+      "input_setup": "Actual Field/native checkpoints and controlled delayed transport on loopback; not owner/Auth/SQL",
+      "input_refs": [
+        "plan/design/52-auto-battle-and-rewards.md"
+      ],
+      "parameters": {},
+      "expected": "Story/Tower แสดงผลเก่าหนึ่งครั้ง แล้วWarning→ไฟต์ใหม่; ไม่มีผลเก่าย้อนเมื่อAPIหรือprepareช้ากว่า2100ms",
+      "verification": "Native lifecycle regression/unit/build/hosted",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-140-review.json"
+      ]
+    },
+    {
+      "id": "T140-AC-02",
+      "task_id": "TASK-140",
+      "acceptance_id": "AC-02",
+      "criterion": "เริ่ม/จบครั้งเดียวต่อไฟต์; แพ้3ครั้ง/รับรางวัลเดิม/คิวและข้อมูลengineไม่เปลี่ยน",
+      "input_setup": "Actual Field/native checkpoints and controlled delayed transport on loopback; not owner/Auth/SQL",
+      "input_refs": [
+        "plan/design/52-auto-battle-and-rewards.md"
+      ],
+      "parameters": {},
+      "expected": "เริ่ม/จบครั้งเดียวต่อไฟต์; แพ้3ครั้ง/รับรางวัลเดิม/คิวและข้อมูลengineไม่เปลี่ยน",
+      "verification": "Native lifecycle regression/unit/build/hosted",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-140-review.json"
+      ]
+    },
+    {
+      "id": "T140-AC-03",
+      "task_id": "TASK-140",
+      "acceptance_id": "AC-03",
+      "criterion": "หยุดระหว่างintroยกเลิกnextได้,เริ่มไม่สำเร็จหยุดAutoและปุ่มไม่ค้าง; UIมือถือ320390ไม่overflow",
+      "input_setup": "Actual Field/native checkpoints and controlled delayed transport on loopback; not owner/Auth/SQL",
+      "input_refs": [
+        "plan/design/52-auto-battle-and-rewards.md"
+      ],
+      "parameters": {},
+      "expected": "หยุดระหว่างintroยกเลิกnextได้,เริ่มไม่สำเร็จหยุดAutoและปุ่มไม่ค้าง; UIมือถือ320390ไม่overflow",
+      "verification": "Native lifecycle regression/unit/build/hosted",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-140-review.json"
+      ]
+    },
+    {
+      "id": "T140-AC-04",
+      "task_id": "TASK-140",
+      "acceptance_id": "AC-04",
+      "criterion": "meaningfulnative regression/unit/uncachedbuild+filtered/Vercel+hostedผ่าน;ไม่owner/SQL/env/6173",
+      "input_setup": "Actual Field/native checkpoints and controlled delayed transport on loopback; not owner/Auth/SQL",
+      "input_refs": [
+        "plan/design/52-auto-battle-and-rewards.md"
+      ],
+      "parameters": {},
+      "expected": "meaningfulnative regression/unit/uncachedbuild+filtered/Vercel+hostedผ่าน;ไม่owner/SQL/env/6173",
+      "verification": "Native lifecycle regression/unit/build/hosted",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-140-review.json"
+      ]
     }
   ]
 }

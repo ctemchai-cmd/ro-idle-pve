@@ -1,5 +1,9 @@
 # Project context
 
+## Auto Battle result transition (24 October 2026, TASK140)
+
+Field.challenge retires the previous outcome before opening the next Warning or awaiting its start. Otherwise the old boss/outcome satisfies intro readiness and the old victory panel returns during a slow API/pack load. Keep the Warning, existing delays, stop-on-three losses, reward/receipt rules unchanged. Native regression covers Story slow start and Tower slow preparation; see latestHANDOFF for publish status.
+
 ## Shop batches and exchange UI (24 October 2026, D167)
 
 Sourcebbf0987fa is deployed on VercelSUCCESS; 672TS/nativeHTTP8groups/uncachedroot+filteredbuild/publichosted4groups passed. Required TypeScript gate now disables incremental caching (strict/noUnused unchanged); remove unused aliases before release. Local shop UI receipts use signed synthetic in-memory persistence, not new Supabase/RLS proof. No owner writes or SQL/env changes.
