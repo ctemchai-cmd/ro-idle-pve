@@ -24,4 +24,4 @@ Publishedfinal1680fights=1488screen+selected/fixedA-B/replaysและ192growth.
 
 Nativeครั้งแรกเครื่องมือPlaywrightในtmpถูกล้างจึงMODULE_NOT_FOUND,ติดตั้งชั่วคราว1.58.2แล้วผ่าน. ภาพตรวจพบnativepagewrapperไม่เหมือนpage-layerจริงจึงแก้harnessและทำgeometrychecks;ปรับcontrastธาตุและwrapขนาดTowerด้วยCSS,finalnative4groupsผ่าน/ภาพ320ตรวจด้วยตา. TypecheckรอบแรกunionFormulaไม่ได้narrow,แก้testtypeguardsแล้วผ่าน. Failedlogsอยู่/private/tmp;ไม่ลดเกณฑ์เพื่อผ่าน.
 
-Hosted: pending.
+Hosted4groupsผ่าน:APIe49a/SIN1/auth401/24bundleSHA/sizebadgeUIcode/publicGrim625/Sonicbase223.95%×4/Backstab437.5/MAtk/320390/zeroerrorszeroownerwrites. Source5701cde9aVercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/CVu4x1EBe77F9QUBHpj6VquWeFEU. ทุกACผ่าน;actualbossUIprovedบนisolatednativeไม่ใช่ownercloudlogin.

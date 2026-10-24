@@ -1,11 +1,11 @@
 # Handoff ระหว่าง agent
 
-## 24 ต.ค.2026 · Codex — TASK137–138 localผ่าน รอdeploy
+## 24 ต.ค.2026 · Codex — TASK137–138 ขึ้นVercelแล้ว
 
 - UserD166อนุมัติGrim625และให้nerfอื่นถ้าAssXเกิน9–11k;ขอขนาดบอสเพราะมีsizecards. BaseGrim375–625/Aw687.5–906.25,ยังAoE/focus. Grim-onlyHigh11229.72→11975.42จึงลดเฉพาะSonicAw6hitdirecttotalเหลือ112–128%baseMax;newselected10934.88(CI10907–10962),oldwinnerไม่มีGrim10908.86→10016.60. ไม่เนิฟSonicbase/EP/normal/passive/crit.
 - Sharedactualfinal1680fights+initial1548separate;allGrimsubstitutions/oldwinner/3screen+16holdout/dummy-pressure/equalcoststats;Class2growthcapsD165จริง. Frozenbeforeee411/aftere49a29da3af254e68e65f9659d99bf5a8ade9efeaefe95920937a075713114ec. Reportplan/evidence/task-137/README.md;replays/frozen/initialpreserved. No universalbalanceclaim/TASK041stillopen.
 - Sizeclienthelperจากcards.monster_traitsและliveactorTags;all330Story/Tower/dailyตรงการ์ด. Bossbarใหม่metaธาตุ+ขนาดแยกบรรทัดเล็ก/StageSheet/intro/Tower/dailyก่อนสู้. Headerไม่ใช้spriteScale. Actualnative4groups/320390passedภาพBaphoและTower320reviewed,MinorousactualengineonlyLarge. Noowner/SQL/env/6173restart/agents/newassets.
-- Full667TSgreen/36focused+11targeted/M0readiness8/root+filteredbuildpassed;packb9a9280a/raw33108285เดิม. AlltemporaryChrome/Vite7493ended;newplaywrighttmp1.58.2installed. Tasks137138review/board122of138/M4done76of87. Needsourcecommitpush→VercelSUCCESS→scripts/test_grim_size_hosted.cjs→done124of138/M4done78of87+readiness/closurepush. Useruntrackedmodernassets/task108pnguntouched. Gitonlycurrenttrackedmodsours.
+- Full667TSgreen/36focused+11targeted/M0readiness8/root+filtered626972gzip/PWA28821d56127274d1ตรงกัน;packb9a9280a/raw33108285เดิม. Source5701cde9aVercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/CVu4x1EBe77F9QUBHpj6VquWeFEU /hosted4groupsAPIe49aSIN1auth401/24bundleSHA/Grim625-Sonicbaseเดิม-sizecode/public320390/0writesผ่าน. Tasks137138done/board124of138/M4done78of87. AlltemporaryChrome/Vite7493ended;playwrighttmp1.58.2installed. Useruntrackedmodernassets/task108pnguntouched. NoownerSQL/env/6173/subagents. Closure docs push next;productliveverified.
 
 
 

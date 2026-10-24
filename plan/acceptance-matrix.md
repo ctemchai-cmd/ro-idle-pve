@@ -706,16 +706,16 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 
 | ID | Task | เกณฑ์ | วิธีตรวจ | สถานะ |
 | --- | --- | --- | --- | --- |
-| `T137-AC-01` | TASK-137 | Grimtoothbase375–625%P.ATK/Aw687.5–906.25%,AoE/focus/Expose/cost/queueเดิม;otherchangesเฉพาะผลเกินกรอบที่วัดจริง | Shared/native/hosted | not_run_implementation |
-| `T137-AC-02` | TASK-137 | matchedbefore-afterของAssassin70และAssX90/หลายชุดรวมGrim/seedคัดและตรวจแยก/commongear60/bossเดิม;HiDDmean9–11kหรือต้องแก้จุดเกินเฉพาะสกิล | Shared/native/hosted | not_run_implementation |
-| `T137-AC-03` | TASK-137 | base/Awrankall/effectivehit/speed1x2x4/checkpoint/ราคาและsavedskilllevelsไม่เปลี่ยน;historicalguardยังเข้มและfulltests/buildผ่าน | Shared/native/hosted | not_run_implementation |
-| `T137-AC-04` | TASK-137 | nativecatalog/Timeline/mobile320390คำอธิบาย625ตรงprogram;deploy/hostedhashตรงก่อนdone | Shared/native/hosted | not_run_implementation |
+| `T137-AC-01` | TASK-137 | Grimtoothbase375–625%P.ATK/Aw687.5–906.25%,AoE/focus/Expose/cost/queueเดิม;otherchangesเฉพาะผลเกินกรอบที่วัดจริง | Shared/native/hosted | passed_implementation |
+| `T137-AC-02` | TASK-137 | matchedbefore-afterของAssassin70และAssX90/หลายชุดรวมGrim/seedคัดและตรวจแยก/commongear60/bossเดิม;HiDDmean9–11kหรือต้องแก้จุดเกินเฉพาะสกิล | Shared/native/hosted | passed_implementation |
+| `T137-AC-03` | TASK-137 | base/Awrankall/effectivehit/speed1x2x4/checkpoint/ราคาและsavedskilllevelsไม่เปลี่ยน;historicalguardยังเข้มและfulltests/buildผ่าน | Shared/native/hosted | passed_implementation |
+| `T137-AC-04` | TASK-137 | nativecatalog/Timeline/mobile320390คำอธิบาย625ตรงprogram;deploy/hostedhashตรงก่อนdone | Shared/native/hosted | passed_implementation |
 
 ## TASK-138 — แสดงขนาดบอสให้ตรงกับการ์ดตีขนาด
 
 | ID | Task | เกณฑ์ | วิธีตรวจ | สถานะ |
 | --- | --- | --- | --- | --- |
-| `T138-AC-01` | TASK-138 | ใช้ขนาดจริงsmall/medium/largeจากmonster_traitsและliveactorTagsไม่อนุมานจากsprite;Story/Tower/Dailyครบ | Shared/native/hosted | not_run_implementation |
-| `T138-AC-02` | TASK-138 | การ์ดsizeconditionalยังคิดตามtagตรงกับข้อความแสดง;missing/invalidไม่เดาเป็นlarge;ไม่เปลี่ยนstats/traits/cardrateหรือสูตร | Shared/native/hosted | not_run_implementation |
-| `T138-AC-03` | TASK-138 | หน้าต่อสู้/เลือกบอสก่อนเริ่มแสดงขนาดอ่านได้บน320390โดยไม่ทำbossbarรก;ไม่มีการเขียนเซฟจากการดู | Shared/native/hosted | not_run_implementation |
-| `T138-AC-04` | TASK-138 | tests/buildและnative/mobile/hostedผ่าน;ไม่มีowner/SQL/env/6173restart | Shared/native/hosted | not_run_implementation |
+| `T138-AC-01` | TASK-138 | ใช้ขนาดจริงsmall/medium/largeจากmonster_traitsและliveactorTagsไม่อนุมานจากsprite;Story/Tower/Dailyครบ | Shared/native/hosted | passed_implementation |
+| `T138-AC-02` | TASK-138 | การ์ดsizeconditionalยังคิดตามtagตรงกับข้อความแสดง;missing/invalidไม่เดาเป็นlarge;ไม่เปลี่ยนstats/traits/cardrateหรือสูตร | Shared/native/hosted | passed_implementation |
+| `T138-AC-03` | TASK-138 | หน้าต่อสู้/เลือกบอสก่อนเริ่มแสดงขนาดอ่านได้บน320390โดยไม่ทำbossbarรก;ไม่มีการเขียนเซฟจากการดู | Shared/native/hosted | passed_implementation |
+| `T138-AC-04` | TASK-138 | tests/buildและnative/mobile/hostedผ่าน;ไม่มีowner/SQL/env/6173restart | Shared/native/hosted | passed_implementation |

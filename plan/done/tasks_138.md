@@ -22,11 +22,11 @@ TASK-074, TASK-091, TASK-136
 - [x] AC-01: ใช้ขนาดจริงsmall/medium/largeจากmonster_traitsและliveactorTagsไม่อนุมานจากsprite;Story/Tower/Dailyครบ
 - [x] AC-02: การ์ดsizeconditionalยังคิดตามtagตรงกับข้อความแสดง;missing/invalidไม่เดาเป็นlarge;ไม่เปลี่ยนstats/traits/cardrateหรือสูตร
 - [x] AC-03: หน้าต่อสู้/เลือกบอสก่อนเริ่มแสดงขนาดอ่านได้บน320390โดยไม่ทำbossbarรก;ไม่มีการเขียนเซฟจากการดู
-- [ ] AC-04: tests/buildและnative/mobile/hostedผ่าน;ไม่มีowner/SQL/env/6173restart
+- [x] AC-04: tests/buildและnative/mobile/hostedผ่าน;ไม่มีowner/SQL/env/6173restart
 
 ## วิธีตรวจและหลักฐาน
 
-T138-AC01–04: sharedtests/actualengine/nativeChrome320390/publichosted;plan/evidence/task-138-review.json. ยังไม่ตรวจ.
+T138-AC01–04: sharedtests/actualengine/nativeChrome320390/publichosted;plan/evidence/task-138-review.json. ผ่านตามหลักฐาน.
 
 ## Blocker / คำถาม
 
@@ -34,4 +34,4 @@ T138-AC01–04: sharedtests/actualengine/nativeChrome320390/publichosted;plan/ev
 
 ## Review
 
-Local667TS/actualnative4groups/engineandmatchedA-B/root+filteredผ่าน;รอVercelhostedAC04.
+Local667TS/actualnative4groups/engineandmatchedA-B/root+filteredผ่าน;Source5701cde9a/VercelSUCCESS/hosted4groups24bundleSHA/Grim625และSonicbaseเดิม/sizeUIcode/public320390/noownerwritesผ่านแล้ว ทุกACผ่านdone.
