@@ -662,7 +662,7 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 
 | Case | Task | เกณฑ์ | วิธีตรวจ | สถานะ |
 | --- | --- | --- | --- | --- |
-| `T132-AC-01` | TASK-132 | มี causal ablation และ per-skill/crit/uptime/overlap จริง ระบุแหล่งที่นำ พร้อมข้อจำกัดของ marginal comparisons | actual ablation / fixed A-B / tests / browser | not_run_implementation |
-| `T132-AC-02` | TASK-132 | ปรับเฉพาะ curve/effect ที่ระบุ ไม่มี job penalty หรือ buff cap/refresh; IDs/ราคา/ทุน/CT/ACD/SPเดิม; programอื่นนอกEP/HighCartTerminationไม่เปลี่ยน และ Awaken1ยังดีขึ้นจาก baseMax | actual ablation / fixed A-B / tests / browser | not_run_implementation |
-| `T132-AC-03` | TASK-132 | fixed A/B และ candidate re-screen หลายseed/solo/pressure/ช่วงAwaken; Hi90/Common60/4ActiveAw10 สายดาเมจ9อาชีพเฉลี่ย9–11k และClass2Assassinใกล้Hunter/Wizardที่gearเท่ากัน ไม่อ้างทุกencounterสมดุล | actual ablation / fixed A-B / tests / browser | not_run_implementation |
-| `T132-AC-04` | TASK-132 | regression/parity/stacking/descriptions/build/mobile/public release ผ่าน และบันทึกหลักฐาน | actual ablation / fixed A-B / tests / browser | not_run_implementation |
+| `T132-AC-01` | TASK-132 | มี causal ablation และ per-skill/crit/uptime/overlap จริง ระบุแหล่งที่นำ พร้อมข้อจำกัดของ marginal comparisons | actual ablation / fixed A-B / tests / browser | passed_implementation |
+| `T132-AC-02` | TASK-132 | ปรับเฉพาะ curve/effect ที่ระบุ ไม่มี job penalty หรือ buff cap/refresh; IDs/ราคา/ทุน/CT/ACD/SPเดิม; programอื่นนอกEP/HighCartTerminationไม่เปลี่ยน และ Awaken1ยังดีขึ้นจาก baseMax | actual ablation / fixed A-B / tests / browser | passed_implementation |
+| `T132-AC-03` | TASK-132 | fixed A/B และ candidate re-screen หลายseed/solo/pressure/ช่วงAwaken; Hi90/Common60/4ActiveAw10 สายดาเมจ9อาชีพเฉลี่ย9–11k และClass2Assassinใกล้Hunter/Wizardที่gearเท่ากัน ไม่อ้างทุกencounterสมดุล | actual ablation / fixed A-B / tests / browser | passed_implementation |
+| `T132-AC-04` | TASK-132 | regression/parity/stacking/descriptions/build/mobile/public release ผ่าน และบันทึกหลักฐาน | actual ablation / fixed A-B / tests / browser | passed_implementation |

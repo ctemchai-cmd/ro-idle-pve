@@ -56,3 +56,7 @@ node --import tsx scripts/game/targeted-class-balance.ts run --worker 0 --worker
 node --import tsx scripts/game/targeted-class-balance.ts merge --workers 3
 node --import tsx scripts/game/targeted-class-balance.ts comparators
 ```
+
+## ตรวจและเผยแพร่
+
+ผ่าน 638/638 TypeScript tests, native browser 5 กลุ่ม, root/filtered Vercel build และ public hosted 4 กลุ่ม (24 bundle SHA, คำอธิบายสกิลจริง, จอ320/390, ไม่มี error หรือเขียนเซฟ). Source `8fe64ee6a` deploy สำเร็จแล้ว. [ผลตรวจ](../task-132-review.json) · [hosted](../task-132-hosted.json)

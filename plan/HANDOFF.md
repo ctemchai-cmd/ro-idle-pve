@@ -1,5 +1,12 @@
 # Handoff ระหว่าง agent
 
+## 24 ต.ค.2026 · Codex — TASK132 บาลานซ์ Assassin/Hi-class ขึ้น Vercel แล้ว
+
+- User latest: ลดClass2Assassinด้วย หลังยืนยันHiDDmean9–11k. TASK132done/source`8fe64ee6a` VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/4tNWaSpDWPZVxxXADvTH5JSi7vzQ. Public4groupsผ่านAPI0ac01fa6/SIN1/auth401/24bundleSHA/pack32/nativeEPbase30และHighCT1078/mobile320390/zeroerrors-writes. ViewedhostedAssassin320. Board118/132done, M4done72of81. Closure docs commit/push next; sourcealreadyhostedverified. Noquestions/subagents/SQL/env/ownerwrite/6173restart. AlltemporaryVite/Chromesended.
+- Final EPbase14.4–30%/5–10s;Aw33–36%/11–12s/pen12–24%6s unchanged. RootcausegenericAwformerlyscaledATKandduration→overlap;noenginebug/nocap/jobpenalty/globalcritnerf. HighWhitesmithCartTerminationpower+10%. Sharedengine3338fights/638tests/root+filtered623826gzip/native5groups; report `plan/evidence/task-132/README.md`. All9HiDDmean9–11k: AssX10909/Sniper10750/LK10403/Stalker10330/HW10238/Champ9368/WS9189/Creator9086/Prof9007. Class2Assgear604799→4348/Hunter4313/Wiz4299. Finitecandidate/neutral90sboss/Commongear60/4ActiveAw10/basepassives only; TASK041stillopen.
+- Content0ac01fa6e97f1463cac3bacd72ae0a05249b0e728ed71541180ecfdab8470d46/packb9a9280a(raw33108285)unchanged/PWAd773715ba7d1e5ad. Source committed; latest onlyclosure132docs/evidence/readiness needpush. Useruntrackedmodernassets/task108pnguntouched. NoSQL/envneeded; finishfightreload/backup-migrateusualflow. Do notrerunlargebatchesmerelytoclosealreadyverifiedwork.
+
+
 ## 24 ต.ค.2026 · Codex — TASK132 ผ่าน local ครบ รอ source push / hosted
 
 - TASK132 ย้าย review: 638/638 TS, native5groups(actualCSS/EPbase30%10s/Aw36%12s/pen24%), root+filtered build623826gzip, 3338actualfights, all9HiDDmean9–11k. LatestD163 includes Class2Assassin reduction and WhitesmithHighCartTermination+10%. Full report `plan/evidence/task-132/README.md`; content0ac01fa6e97f1463cac3bacd72ae0a05249b0e728ed71541180ecfdab8470d46. Local review passed except hosted AC04 pending; no owner write/SQL/env/6173restart.
