@@ -33,4 +33,4 @@ plan/evidence/task-133-review.json (ยังไม่รัน)
 
 ## Review
 
-Local ผ่าน: 650 tests / actual Auth-API-SQL-mobile 7+2 กลุ่ม / root และ filtered build. ยังไม่ done: รอ source deploy และ public hosted proof. [หลักฐาน](../evidence/task-133-review.json)
+Local ผ่าน: 650 tests / actual Auth-API-SQL-mobile 7+2 กลุ่ม / root และ filtered build. Source `7a76b40cc` ขึ้น Vercel success และ public hosted4groups/24bundleSHA/mobile320390 ผ่านแล้ว; ไม่มี owner write/SQL/env ใหม่. ทุกเกณฑ์ผ่าน done. [หลักฐาน](../evidence/task-133-review.json)

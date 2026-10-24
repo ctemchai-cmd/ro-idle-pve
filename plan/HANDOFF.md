@@ -1,5 +1,18 @@
 # Handoff ระหว่าง agent
 
+## 24 ตุลาคม 2026 · Codex — TASK133–135 ขึ้นเว็บแล้ว
+
+- ทั้งสามงาน done/source **7a76b40cc** VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/C8UoYRdqj5yd9ypu6U77RnEFd8b5. Hosted4groupsผ่าน API3b95/SIN1/auth401/24bundleSHA/pack32/nativeImpoLoudP.ATK+M.ATK/AsuraP.ATK+SP/BoltM.ATK/320390/zeroerrors-writes. กระดาน121/135done, M4done75of84. Closure docs commit/push next; product already live and verified.
+- ผู้ใช้ยืนยันแพ้ “3 ครั้งติด”. Auto Story/Towerชนะต่อfrontier/resetlosses,แพ้3ติดหยุด;manualstopปล่อยcurrentfightจบ/ยกเลิกnext, navigation-hidden-offline-reload-slotหยุด ไม่persistAuto. ชนะรับfixedrewards+closedfarmและย้ายfrontierfarmในfinishcollect:trueเดียว;fullbagเก็บclaimแล้วรับเองหลังมีพื้นที่. บัฟทีม6ท่าเพิ่มmagicคู่physical รวมAwaken;3040คำอธิบายใช้P.ATK/M.ATK. NoSQL/env/owneraccess/6173restart/agents.
+- Full650/650, root+filtered626129gzip, actualAuthSQLmobile7+2groups, public4groups. Alltemporaryservices/browsersclosed. Producthash3b95a929ebae50fb99d488d58306527cea4017dd0e260197f6bf3d35c814b5dc,packb9a9280a/raw33108285unchanged/PWA1a190b6527500800. Useruntrackedmodernassets/task108png untouched. Report `plan/evidence/task-135/README.md`; source committed. Finalresponse4features/3consecutive/finishfightreload+backup-migrateifprompted/noSQLneeded.
+
+
+## 24 ตุลาคม 2026 · Codex — TASK133–135 source pushed รอ Vercel/hosted
+
+- Source **7a76b40cc** pushed origin/main. Vercel pending https://vercel.com/chanon2/ro-idle-pve/C8UoYRdqj5yd9ypu6U77RnEFd8b5. ทั้งสาม taskอยู่review /118of135done. ผู้ใช้ตอบชัดแล้ว “3 ครั้งติด” และโค้ดตรงนี้. Need waitSUCCESS→`node scripts/test_auto_battle_hosted.cjs` require_escalated→task133134135done/121of135/M4done75of84/acceptance/readiness/reviews/closurepush. No pending questions.
+- Full650green/37oracle/root+filtered626129gzip/localactual7+2groupspassed. Allsourcecommitted; no owner/privateenv/SQL/6173restart/subagents. No processes left except pending Git/Vercel remote. Useruntrackedmodern assets/task108png untouched. Producthash3b95a929ebae50fb99d488d58306527cea4017dd0e260197f6bf3d35c814b5dc,packb9a9280aunchanged. Newpublicharnesschecks24bundleSHA/SIN1/auth401/32jobs152skills/Impo-LoudP.ATK+M.ATK/AsuraP.ATK+SP/BoltM.ATK/mobile320390/noOwnerWrites. Finaluseranswerlist4features+3consecutivecounts+reload;noSQLneeded.
+
+
 ## 24 ตุลาคม 2026 · Codex — TASK133–135 local ผ่าน รอ commit/deploy
 
 - ผู้ใช้ขอคำอธิบาย P.ATK/M.ATK, บัฟทีมเพิ่มเวท, รับรางวัลเมื่อชนะทันที และ Auto Story/Tower. ยืนยันล่าสุด “3 ครั้งติด”: หยุดเมื่อแพ้/หมดเวลา 3 ไฟต์ติด ชนะ reset. ทั้งสามงานอยู่ review รอ source commit/push → Vercel success → `node scripts/test_auto_battle_hosted.cjs` → done/closure push. ยังไม่ขึ้นเว็บ. กระดาน118/135done/M4done72of84.

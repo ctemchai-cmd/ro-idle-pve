@@ -14271,9 +14271,10 @@
       "parameters": {},
       "expected": "คำอธิบาย shared ของทุกสกิล/ทุก rank/Timeline ระบุ P.ATK หรือ M.ATK ตามสูตรจริง ไม่มี ATK หรือพลังโจมตีที่กำกวม",
       "verification": "Shared rule tests, real local stack/mobile and public hosted proof",
-      "status": "not_run_implementation",
+      "status": "passed_implementation",
       "evidence_refs": [
-        "plan/evidence/task-133-review.json"
+        "plan/evidence/task-133-review.json",
+        "plan/evidence/task-135-hosted.json"
       ]
     },
     {
@@ -14288,9 +14289,10 @@
       "parameters": {},
       "expected": "Impositio และ Loud Voice เพิ่ม M.ATK เท่ากับ P.ATK ในทุก rank รวม Awaken; ค่าเดิม/เวลา/ราคา/ทุน/คิว/independent stacking คงเดิม",
       "verification": "Shared rule tests, real local stack/mobile and public hosted proof",
-      "status": "not_run_implementation",
+      "status": "passed_implementation",
       "evidence_refs": [
-        "plan/evidence/task-133-review.json"
+        "plan/evidence/task-133-review.json",
+        "plan/evidence/task-135-hosted.json"
       ]
     },
     {
@@ -14305,9 +14307,10 @@
       "parameters": {},
       "expected": "ตรวจ actual engine ว่า stats ทั้งสองเพิ่ม/ซ้อน/หมดตามเวลา และ UI มือถือแสดงผลตรง program; regression/build ผ่าน",
       "verification": "Shared rule tests, real local stack/mobile and public hosted proof",
-      "status": "not_run_implementation",
+      "status": "passed_implementation",
       "evidence_refs": [
-        "plan/evidence/task-133-review.json"
+        "plan/evidence/task-133-review.json",
+        "plan/evidence/task-135-hosted.json"
       ]
     },
     {
@@ -14322,9 +14325,10 @@
       "parameters": {},
       "expected": "Story/Tower ชนะครั้งแรกจ่ายรางวัลทันทีใน battle finish เดียวพร้อม receipt/revision เดียว; ไม่มีปุ่มรับรางวัลและไม่ต้องเปิด AFK",
       "verification": "Shared rule tests, real local stack/mobile and public hosted proof",
-      "status": "not_run_implementation",
+      "status": "passed_implementation",
       "evidence_refs": [
-        "plan/evidence/task-134-review.json"
+        "plan/evidence/task-134-review.json",
+        "plan/evidence/task-135-hosted.json"
       ]
     },
     {
@@ -14339,9 +14343,10 @@
       "parameters": {},
       "expected": "Story first clear ปิดและจ่ายช่วงฟาร์มเดิมอย่างถูกต้อง ย้าย frontier farm ใน commit เดียวโดยเคารพจุดเก่าที่ผู้เล่นเลือก; ไม่จ่ายซ้ำเมื่อ replay/reload/แพ้",
       "verification": "Shared rule tests, real local stack/mobile and public hosted proof",
-      "status": "not_run_implementation",
+      "status": "passed_implementation",
       "evidence_refs": [
-        "plan/evidence/task-134-review.json"
+        "plan/evidence/task-134-review.json",
+        "plan/evidence/task-135-hosted.json"
       ]
     },
     {
@@ -14356,9 +14361,10 @@
       "parameters": {},
       "expected": "กระเป๋าเต็มไม่ทำผลไฟต์ค้างหรือรางวัลหาย: เก็บรางวัลชิ้นของไว้เป็น pending ที่กู้รับอัตโนมัติเมื่อมีพื้นที่; Auto หยุดพร้อมสาเหตุ",
       "verification": "Shared rule tests, real local stack/mobile and public hosted proof",
-      "status": "not_run_implementation",
+      "status": "passed_implementation",
       "evidence_refs": [
-        "plan/evidence/task-134-review.json"
+        "plan/evidence/task-134-review.json",
+        "plan/evidence/task-135-hosted.json"
       ]
     },
     {
@@ -14373,9 +14379,10 @@
       "parameters": {},
       "expected": "Actual Auth/API/SQL/mobile/reload/response-loss proof และ tests/build ผ่าน; daily/AFKปกติยังคง flow เดิม",
       "verification": "Shared rule tests, real local stack/mobile and public hosted proof",
-      "status": "not_run_implementation",
+      "status": "passed_implementation",
       "evidence_refs": [
-        "plan/evidence/task-134-review.json"
+        "plan/evidence/task-134-review.json",
+        "plan/evidence/task-135-hosted.json"
       ]
     },
     {
@@ -14390,9 +14397,10 @@
       "parameters": {},
       "expected": "เริ่ม/หยุด Auto ได้ใน Story และ Tower; ชนะแล้วรอ confirmed settlement ก่อนเข้าสู่ด่านหรือชั้นถัดไป อิง frontier จริง",
       "verification": "Shared rule tests, real local stack/mobile and public hosted proof",
-      "status": "not_run_implementation",
+      "status": "passed_implementation",
       "evidence_refs": [
-        "plan/evidence/task-135-review.json"
+        "plan/evidence/task-135-review.json",
+        "plan/evidence/task-135-hosted.json"
       ]
     },
     {
@@ -14407,9 +14415,10 @@
       "parameters": {},
       "expected": "แพ้/หมดเวลาทำ retry ด่านเดิมตามจำนวนที่ยืนยันและ reset ตัวนับเมื่อชนะ; receipt เดิม/ rerender ไม่ทำ retry ซ้ำ",
       "verification": "Shared rule tests, real local stack/mobile and public hosted proof",
-      "status": "not_run_implementation",
+      "status": "passed_implementation",
       "evidence_refs": [
-        "plan/evidence/task-135-review.json"
+        "plan/evidence/task-135-review.json",
+        "plan/evidence/task-135-hosted.json"
       ]
     },
     {
@@ -14424,9 +14433,10 @@
       "parameters": {},
       "expected": "กดหยุดยกเลิกการเริ่มไฟต์ถัดไปทันที ปล่อยไฟต์ปัจจุบันจบ; เปลี่ยนหน้า/เซฟ/reload/เน็ตขาด/กระเป๋าเต็ม/error หยุดอย่างชัดเจน ไม่เกิด background command loop",
       "verification": "Shared rule tests, real local stack/mobile and public hosted proof",
-      "status": "not_run_implementation",
+      "status": "passed_implementation",
       "evidence_refs": [
-        "plan/evidence/task-135-review.json"
+        "plan/evidence/task-135-review.json",
+        "plan/evidence/task-135-hosted.json"
       ]
     },
     {
@@ -14441,9 +14451,10 @@
       "parameters": {},
       "expected": "ใช้ combat engine เดิม/ความเร็ว1x2x4เดิม และ UI ปุ่มไม่ล้น320/390; actual browser/API/SQLหลายชนะ-แพ้/หยุด-ฟื้นเน็ต/reloadผ่าน",
       "verification": "Shared rule tests, real local stack/mobile and public hosted proof",
-      "status": "not_run_implementation",
+      "status": "passed_implementation",
       "evidence_refs": [
-        "plan/evidence/task-135-review.json"
+        "plan/evidence/task-135-review.json",
+        "plan/evidence/task-135-hosted.json"
       ]
     }
   ]

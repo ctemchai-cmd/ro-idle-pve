@@ -29,4 +29,4 @@ Auto ใช้ engine/ความเร็วเดิมและ SaveControll
 
 ## เผยแพร่
 
-Local ผ่านครบ; รอ source deploy และ public hosted proof ก่อนปิดงาน.
+Source `7a76b40cc` ขึ้น Vercel สำเร็จและผ่าน public hosted 4 กลุ่ม: API hash/SIN1/auth401, SHA ของ24bundles, nativeคำอธิบายImpo/Loud/Asura/Bolt320/390, ไม่มี error หรือ owner writes. [Hosted proof](../task-135-hosted.json). TASK133–135 done.
