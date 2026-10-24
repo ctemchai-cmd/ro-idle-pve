@@ -1,7 +1,8 @@
+import { applyShopPurchase } from '../progression/shop.ts';
 import { collectProgressRewards } from '../progression/auto-rewards.ts';
 import { claimRewards } from '../progression/claim-rewards.ts';
 import { preparedScroll, validateSupplies } from '../build/consumables.ts';
-import { grantConsumables, prepareConsumable, consumePreparedForTeam } from '../progression/consumables.ts';
+import { prepareConsumable, consumePreparedForTeam } from '../progression/consumables.ts';
 import type { AccountState, Command, Receipt } from '../../contracts/index.ts';
 import type { BattleWrite, StoredBattle } from '../../contracts/save.ts';
 import type { Json } from '../../content/value.ts';
@@ -165,16 +166,7 @@ export class AccountCommandRules extends AccountCreationRules {
       } else if (command.type === 'consumable.prepare') {
         prepareConsumable(state, command.params.character_id, command.params.definition_id, this.content); code='CONSUMABLE_PREPARED';
       } else if (command.type === 'shop.buy') {
-        const shop = this.content.documents['economy.json']!.shop as unknown as { offers: { id: string; price: Partial<AccountState['wallet']>; grant: Partial<AccountState['wallet']>; consumable_grant?: Record<string,number>; daily_limit: number }[] };
-        const offer = shop.offers.find(row => row.id === command.params.offer_id); if (!offer) reject('SHOP_OFFER_UNKNOWN');
-        const day = bangkokDay(time.now_ms), quantity = command.params.quantity;
-        if (state.shop.day !== day) state.shop = { day, purchases: {} }; // daily limits reset with the server Bangkok day
-        const bought = state.shop.purchases[offer!.id] ?? 0; if (bought + quantity > offer!.daily_limit) reject('SHOP_LIMIT_REACHED');
-        for (const [key, amount] of Object.entries(offer!.price) as [keyof AccountState['wallet'], number][]) if (state.wallet[key] < amount * quantity) reject('INSUFFICIENT_RESOURCES');
-        for (const [key, amount] of Object.entries(offer!.price) as [keyof AccountState['wallet'], number][]) state.wallet[key] -= amount * quantity;
-        for (const [key, amount] of Object.entries(offer!.grant) as [keyof AccountState['wallet'], number][]) { const total = state.wallet[key] + amount * quantity; if (!Number.isSafeInteger(total)) reject('RESOURCE_OVERFLOW'); state.wallet[key] = total; }
-        grantConsumables(state, offer!.consumable_grant ?? {}, quantity, this.content);
-        state.shop.purchases[offer!.id] = bought + quantity; code = 'SHOP_PURCHASED';
+        applyShopPurchase(state,command.params.offer_id,command.params.quantity,bangkokDay(time.now_ms),this.content);code='SHOP_PURCHASED';
       } else if (command.type === 'farm.set_stage') {
         state = reserveCurrent(state, `farm_${command.request_id}`); selectFarm(state, command.params.stage_id); code='FARM_STAGE_SELECTED';
       } else if (command.type === 'farm.claim') {

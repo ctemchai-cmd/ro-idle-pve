@@ -1,5 +1,11 @@
 # Handoff ระหว่าง agent
 
+## 24 ต.ค.2026 · Codex — TASK139 localผ่าน รอVercel
+
+- Userขอ5ข้อ:แลกเศษspacing/ลบCrystalhow-to/ร้านแพง+quota/แลกหมด/Panel. D167 Crystal20×10/day25000gold,วัสดุ10/day/ทอง2500-3000-4000-5000,scroll6000/99. Grants/nonGold/gacha/AFKเดิม,counterเดิมไม่reset. SharedshopQuote/max/apply/schema99+loader,1commandไม่loop,refsinge-flight/finally. No combatcalibration.
+- Local672TS/29focused/M0readiness8/root+filtered628933gzip/PWA80546d33a409b9f9ผ่าน;content6d2d125d956656ed90f7e82ee0deb3bdc91025ae57b5f062863b945b741d28c6/packb9a9280a/raw33108285เดิม. Native8groupsactualReact+SaveController+HTTPsignedsyntheticinmemory,notSupabase/RLS:20/99batch/oldcounter/poor/overflow/doubletap/shard10to1-1to5/320390/reject/lostresponsepassed. Screenshotsstore/shards/Tower320viewed. Noowner/keys/SQL/env/6173/agents. Alltemporary7494/7495stopped.
+- Task139review/board124of139/M4done78of88. Needsourcecommitpush→VercelSUCCESS→scripts/test_store_exchange_hosted.cjs→done125of139/M4done79of88/ACreadiness/closurepush. Noquestionpending. Initialfull669of672failed2oldscroll5000expectations+newraw-vs-projectedscopetest;fixednarrowlythen672green. Nativeinitial44pxsubmitoverriddenbylate.btnCSS→specificityfixed;subsequenttestrunservernotreset→fixture-resetfixed;allfailures.local/shop139-debug,/private/tmp preserved. Useruntrackedmodernassets/task108pnguntouched.
+
 ## 24 ต.ค.2026 · Codex — TASK137–138 ขึ้นVercelแล้ว
 
 - UserD166อนุมัติGrim625และให้nerfอื่นถ้าAssXเกิน9–11k;ขอขนาดบอสเพราะมีsizecards. BaseGrim375–625/Aw687.5–906.25,ยังAoE/focus. Grim-onlyHigh11229.72→11975.42จึงลดเฉพาะSonicAw6hitdirecttotalเหลือ112–128%baseMax;newselected10934.88(CI10907–10962),oldwinnerไม่มีGrim10908.86→10016.60. ไม่เนิฟSonicbase/EP/normal/passive/crit.

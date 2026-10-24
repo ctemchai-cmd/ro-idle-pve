@@ -1,3 +1,4 @@
+import { shopCatalog,shopMaxQuantity,shopQuote,shopRemaining } from '../domain/progression/shop.ts';
 import { elementScrolls, preparedScroll, supplyStock } from '../domain/build/consumables.ts';
 import { loadValidatedContent } from './content.ts';
 import type { AccountState } from '../contracts/index.ts';
@@ -20,15 +21,14 @@ const offerNames: Record<string, string> = { exp_pack: 'ถุง EXP', manual_p
 
 /** Store tab data (D-063): today's remaining limits on the server Bangkok day, gacha prices/rates and pity counters. */
 export function storeView(state: AccountState, nowMs: number) {
-  const day = bangkokDay(nowMs), shop = content.documents['economy.json']!.shop as unknown as { offers: { id: string; price: Partial<Wallet>; grant: Partial<Wallet>; consumable_grant?: Record<string,number>; daily_limit: number }[] };
-  const bought = (id: string) => state.shop.day === day ? state.shop.purchases[id] ?? 0 : 0;
+  const day = bangkokDay(nowMs),shop=shopCatalog(content);
   const gacha = content.documents['gacha.json'] as unknown as { quality_weights: Record<string, number>; weight_total: number; pity: { gold_after_misses: number; silver_or_better_after_bronzes: number }; equipment_pool: { rarity_weights: Record<string, number>; weight_total: number; pity: { legendary_or_better_after_misses: number; epic_or_better_after_rares: number } } };
   const odds = (weights: Record<string, number>, total: number) => Object.entries(weights).filter(([,weight])=>weight>0).map(([id, weight]) => ({ id, percent: Math.round(weight / total * 10000) / 100 }));
   return {
     scrolls: elementScrolls(content).map(row=>({...row, stock:supplyStock(state,row.id)})),
     prepared: Object.fromEntries(state.roster.map(actor=>[actor.character_id,preparedScroll(state,actor.character_id,content)])),
     day,
-    offers: shop.offers.map(offer => ({ ...offer, scroll: elementScrolls(content).find(row=>row.id===offer.id), name: elementScrolls(content).find(row=>row.id===offer.id)?.name ?? offerNames[offer.id] ?? offer.id, left: Math.max(0, offer.daily_limit - bought(offer.id)) })),
+    offers: shop.offers.map(offer => {const maxQuantity=shopMaxQuantity(state,offer.id,day,content);return{...offer,scroll:elementScrolls(content).find(row=>row.id===offer.id),name:elementScrolls(content).find(row=>row.id===offer.id)?.name??offerNames[offer.id]??offer.id,left:shopRemaining(state,offer,day),maxQuantity,maxPrice:maxQuantity?shopQuote(state,offer.id,maxQuantity,day,content).cost:null};}),
     cards: { cost1: pullCost('card_v1', 1, content), cost10: pullCost('card_v1', 10, content), odds: odds(gacha.quality_weights, gacha.weight_total), gold_in: gacha.pity.gold_after_misses + 1 - state.gacha.card_v1.gold_misses, silver_in: gacha.pity.silver_or_better_after_bronzes + 1 - state.gacha.card_v1.bronze_streak },
     gear: { cost1: pullCost('equipment_v1', 1, content), cost10: pullCost('equipment_v1', 10, content), odds: odds(gacha.equipment_pool.rarity_weights, gacha.equipment_pool.weight_total), tier: gachaGearTier(state, content),
       legendary_in: gacha.equipment_pool.pity.legendary_or_better_after_misses + 1 - state.gacha.equipment_v1.legendary_misses, epic_in: gacha.equipment_pool.pity.epic_or_better_after_rares + 1 - state.gacha.equipment_v1.rare_streak },

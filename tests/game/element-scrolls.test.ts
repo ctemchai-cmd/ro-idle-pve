@@ -16,9 +16,9 @@ function fixture(){
   const result=rules.decide(command,state,null,time,'c'.repeat(64));state=result.state;return result;
  }};
 }
-test('D123 four scrolls buy at5000gold each; prepare/replace/cancel preserves the reserved item and daily reset does not clear stock',()=>{
+test('D123 four scrolls buy at6000gold each (D167); prepare/replace/cancel preserves the reserved item and daily reset does not clear stock',()=>{
  const f=fixture();assert.deepEqual(elementScrolls(content).map(r=>r.element),['fire','water','earth','wind']);
- assert.equal(f.run('shop.buy',{offer_id:'fire_scroll',quantity:3}).receipt.result.code,'SHOP_PURCHASED');assert.equal(f.state.wallet.gold,85000);assert.equal(f.state.battle_supplies!.stock.fire_scroll,3);
+ assert.equal(f.run('shop.buy',{offer_id:'fire_scroll',quantity:3}).receipt.result.code,'SHOP_PURCHASED');assert.equal(f.state.wallet.gold,82000);assert.equal(f.state.battle_supplies!.stock.fire_scroll,3);
  f.run('shop.buy',{offer_id:'water_scroll',quantity:1});assert.equal(f.run('consumable.prepare',{character_id:'main',definition_id:'fire_scroll'}).receipt.outcome,'committed');assert.equal(f.state.battle_supplies!.stock.fire_scroll,2);
  assert.equal(f.run('consumable.prepare',{character_id:'main',definition_id:'water_scroll'}).receipt.outcome,'committed');assert.equal(f.state.battle_supplies!.stock.fire_scroll,3);assert.equal(f.state.battle_supplies!.stock.water_scroll,0);assert.equal(preparedScroll(f.state,'main',content)!.element,'water');
  f.run('consumable.prepare',{character_id:'main',definition_id:null});assert.equal(f.state.battle_supplies!.stock.water_scroll,1);assert.equal(preparedScroll(f.state,'main',content),null);

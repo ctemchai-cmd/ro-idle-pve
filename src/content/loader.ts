@@ -67,6 +67,21 @@ export function validateContent(raw: unknown): Result<ValidatedContent> {
   }
   attempt({ source: 'stat-definitions.json', path: '/combat_resources' }, () => validator.resourceModifiers(list(bundle.documents['stat-definitions.json']!.combat_resources), skills, { source: 'stat-definitions.json', path: '/combat_resources' }));
   const docAt = (file: string) => ({ source: file, path: '' });
+  attempt(docAt('economy.json'),()=>{
+    const shop=object(bundle.documents['economy.json']!.shop),offers=list(shop.offers),at={source:'economy.json',path:'/shop'},resources=new Set(list(bundle.documents['economy.json']!.resources).map(r=>String(object(r).id)));
+    const buy=list(bundle.schemas.command!.oneOf).map(object).find(row=>object(object(row.properties).type).const==='shop.buy');
+    demand(buy,'shop_command_missing',at);
+    const params=object(object(buy!.properties).params),quantity=object(object(params.properties).quantity);
+    demand(Number.isSafeInteger(shop.max_quantity_per_command)&&Number(shop.max_quantity_per_command)>=1&&Number(shop.max_quantity_per_command)<=Number(quantity.maximum),'shop_batch_limit',at);
+    const seen=new Set<string>();
+    for(const value of offers){const offer=object(value),id=String(offer.id),price=object(offer.price),grant=object(offer.grant),consumables=object(offer.consumable_grant??{});
+      demand(/^[a-z][a-z0-9_]*$/.test(id)&&!seen.has(id),'shop_offer_id',at);seen.add(id);
+      demand(Number.isSafeInteger(offer.daily_limit)&&Number(offer.daily_limit)>=1,'shop_daily_limit',at);
+      for(const vector of[price,grant])for(const[key,amount]of Object.entries(vector))demand(resources.has(key)&&Number.isSafeInteger(amount)&&Number(amount)>=0,'shop_resource_amount',at);
+      demand(Object.values(price).some(n=>Number(n)>0)&&([...Object.values(grant),...Object.values(consumables)].some(n=>Number(n)>0)),'shop_empty_offer',at);
+      for(const amount of Object.values(consumables))demand(Number.isSafeInteger(amount)&&Number(amount)>0,'shop_consumable_amount',at);
+    }
+  });
   attempt(docAt('slot-progress.json'), () => {
     const slots = bundle.documents['slot-progress.json']!, refine = object(object(slots.refine).per_step_modifiers), enchant = object(object(slots.enchant).slot_lines);
     const config=object(slots.refine),max=config.max,chances=object(config.success_chance_by_target),pity=object(config.pity),prices=list(config.upgrade_rows);

@@ -1,5 +1,9 @@
 # Project context
 
+## Shop batches and exchange UI (24 October 2026, D167)
+
+TASK139: Crystal exchange20/day ×10Crystal at25000gold; six material packs10/day, gold EXP2500/manual3000/ore4000/enchant5000, non-gold prices unchanged. Scrolls6000gold/99day. Counter purchases remain intact across migration. Shared progression/shop.ts quotes/max/reducer validate all funds/rights/capacity before spending, max99 per command; buy-max is one command/receipt/revision with single-flight UI. Shard conversion stays10SkillBook→1Awaken and1→5, now spaced tabs/stepper/native icons/44px submit. No Crystal acquisition footer in gacha. Preserve rarity/Awaken glow and battle rules. See design56/latestHANDOFF for publish status.
+
 ## Grimtooth balance and boss sizes (24 October 2026, D166)
 
 TASK137–138: Grimtoothbase375–625%P.ATK/Aw687.5–906.25%, unchanged1hit/AoE/weapon/focus+.35/Expose/SP/queue/prices. Grim-only High benchmark exceeded11k, so only SonicBlow Awaken direct total now112–128%ofbaseMax over6hits (still above baseMax atAw1); Sonicbase/EnchantPoison/normal/passives/crit unchanged. NewGrimHighselectedmean10934.88/neutral90s/Common60/3screen+16holdout;boundedcandidate comparison, not universal balance. See design54/latestHANDOFF for publish status.

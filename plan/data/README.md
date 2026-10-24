@@ -26,3 +26,5 @@ D165/TASK136: ดู [design53](../design/53-skill-rank-caps.md); canonical cap�
 D166/TASK137: [54-grimtooth-balance.md](../design/54-grimtooth-balance.md).
 
 D166/TASK138: [55-boss-size.md](../design/55-boss-size.md).
+
+D167/TASK139: [ร้าน/แลกเศษ/Panel](../design/56-shop-and-exchange-ui.md).

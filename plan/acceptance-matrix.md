@@ -719,3 +719,14 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T138-AC-02` | TASK-138 | การ์ดsizeconditionalยังคิดตามtagตรงกับข้อความแสดง;missing/invalidไม่เดาเป็นlarge;ไม่เปลี่ยนstats/traits/cardrateหรือสูตร | Shared/native/hosted | passed_implementation |
 | `T138-AC-03` | TASK-138 | หน้าต่อสู้/เลือกบอสก่อนเริ่มแสดงขนาดอ่านได้บน320390โดยไม่ทำbossbarรก;ไม่มีการเขียนเซฟจากการดู | Shared/native/hosted | passed_implementation |
 | `T138-AC-04` | TASK-138 | tests/buildและnative/mobile/hostedผ่าน;ไม่มีowner/SQL/env/6173restart | Shared/native/hosted | passed_implementation |
+
+## TASK-139 — ร้าน/แลกเศษ/Panel
+
+| ID | Task | เกณฑ์ | วิธีตรวจ | สถานะ |
+| --- | --- | --- | --- | --- |
+| `T139-AC-01` | TASK-139 | แลกเศษสกิลมีtab/flow/nativeicons/quantity/spacingและปุ่ม44pxอ่านง่าย320390,รวม10→1/ย่อย1→5เดิม;กรอกผิด/เงินไม่พอ/กดย้ำไม่สร้างหลายคำสั่ง | Shared/HTTP/mobile/hosted | not_run_implementation |
+| `T139-AC-02` | TASK-139 | ข้อความCrystalจากAFK/หาCrystalถูกเอาออกจากร้าน/การ์ด/อุปกรณ์ทั้งหมด ไม่มีช่องว่างทิ้งไว้ | Shared/HTTP/mobile/hosted | not_run_implementation |
+| `T139-AC-03` | TASK-139 | Crystal20ครั้งต่อวัน×10Crystal/25000gold;แพ็กวัสดุ10ครั้ง/วัน,Gold2500/3000/4000/5000,scroll6000/99สิทธิ์;grantเดิม/nonGoldpriceเดิม/ซื้อไปแล้วไม่นับใหม่ | Shared/HTTP/mobile/hosted | not_run_implementation |
+| `T139-AC-04` | TASK-139 | แลกทั้งหมดคิดmin(เงิน,โควตา,ขีดจำกัด,capacity)ด้วยsharedquote;1command/receipt/revision,20Crystalexchangeและ99scrollได้ในครั้งเดียว;overflow/ขาดเงิน/replay/dayrollไม่จ่ายซ้ำหรือหักบางส่วน | Shared/HTTP/mobile/hosted | not_run_implementation |
+| `T139-AC-05` | TASK-139 | Panelร้าน/แลกเศษ/หอคอย/ดัน/กาชา/Refine/Stats/เลือกอาชีพใช้white-blue surfacesสอดคล้อง ไม่แตะrarity/glow/ข้อมูลต่อสู้และmobileportrait | Shared/HTTP/mobile/hosted | not_run_implementation |
+| `T139-AC-06` | TASK-139 | unit/actualreducerและHTTP-receipt+mobile320390interaction/pending/reject/overflow/build+filtered/hostedผ่านก่อนdone;ไม่SQL/env/owner/6173 | Shared/HTTP/mobile/hosted | not_run_implementation |

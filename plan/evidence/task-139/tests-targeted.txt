@@ -1,0 +1,37 @@
+✔ D123 four scrolls buy at6000gold each (D167); prepare/replace/cancel preserves the reserved item and daily reset does not clear stock (1090.2875ms)
+✔ D123 empty/unknown/same/overflow requests reject atomically and do not lose a previously reserved scroll (437.992042ms)
+✔ D123 each successful Story/Tower/Daily start consumes only the participating reservation, and failed starts preserve all scrolls (1261.898666ms)
+✔ D123 weapon normal/skill hits inherit the element, fixed skills do not; endow statuses still override and1×/2×/4× keep identical events/RNG (21.257375ms)
+✔ D123 old saves gain an empty supply pouch once; queued/stock/paid resources persist and migration is idempotent (338.36975ms)
+✔ T037 AC-01: D109 fixed monster cards use all73 identities at50/25/20/2/3 for 100/1000 crystal, with no pet/artifact outcomes (3.547666ms)
+✔ T037 AC-02: a pull debits crystal, adds cards and moves pity atomically; 99 crystal changes nothing (170.043375ms)
+✔ T037 AC-03: the same server seed reproduces the same cards; duplicates are distinct fixed-rarity instances with rarity salvage unless worn/locked (9.759625ms)
+✔ T037 AC-04: a worst-case Common sequence hits Rare at pull10/20 and Legendary at pull30, then counters reset (2.884458ms)
+✔ T052 AC-01: every creation path gives Rare 1 / Epic 2 / Legendary 3 / Immortal 4 / Supreme 5 lines (D-068) within range, deterministic per seed (5.107917ms)
+✔ T052 AC-02: option lines enter the shared stat pipeline exactly once and the pool has no timing stats (1.329917ms)
+✔ D146/T052: legacy higher-tier lines retain their scale and retired tier-up cannot mutate them; old saves get stable lines (2.667083ms)
+✔ T051 AC-01: shop offers debit and grant exactly, refuse over-limit/insufficient buys whole, and reset limits on the next Bangkok day (3.925625ms)
+✔ T051 AC-02: equipment gacha costs 150/1500 crystal from the server seed, with epic pity on the 10th and legendary pity on the 50th (3.832833ms)
+✔ T051 AC-03: gacha gear uses the player's tier and works with equip/fuse/salvage like any drop; tier-up stays retired (8.692917ms)
+✔ D146 equipment gacha still creates new Tier20/40/60 items at the corresponding cleared chapters (3.885291ms)
+✔ D-068: the gear gacha banner states the rolled option lines from content (Immortal 4, Supreme 5), not a stale literal (28.262208ms)
+✔ D-068 regression (found by the 25-day journey, 21 Oct 2026): a Supreme item with 5 option lines is a valid save in the inventory and in a pending reward (3.346375ms)
+✔ batch claims validate full selection/capacity/duplicates/overflow before changing wallet or rewards (169.780417ms)
+✔ farm collect reserves and pays every pending bundle in one proposal, even a full32-claim queue; full inventory rolls back reservation too (18.321625ms)
+✔ all18 Enchant presets differ and all6 slots compile their own definition, with server/preview parity and exact historical refunds (93.934458ms)
+✔ Refine uses additive percentages once for all6 slots at+0/1/5/10 on low and high stats; swapping gear retains investment (77.636292ms)
+✔ AFK40Crystal/h caps at480 per12h, fractional claims preserve carry; frozen legacy earns no retroactiveCrystal then switches to40/h (4.64425ms)
+✔ gear50% roll stays independent of card attempts, legacy100% draw order retained, all scrolls6000gold (D167) and Tower milestones unchanged (6.28275ms)
+✔ D167 shop scope is exact: grants and non-gold prices unchanged; only requested gold prices, limits and batch maximum change (2.590917ms)
+✔ D167 quote/max are pure and choose only affordable remaining quantities; purchased1 today leaves19, tomorrow20 (1098.051584ms)
+✔ D167 batches20/99 grant exact resources and stock once; insufficient/limit/invalid/overflow do not partially spend (796.166834ms)
+✔ D167 real API command path returns one signed checkpoint/revision per batch and same UUID replay never buys again (386.669916ms)
+✔ D167 loader rejects malformed shop prices, duplicate ids and a batch beyond the command schema (959.279667ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5125.882916

@@ -8,7 +8,7 @@ import { Icon } from '../icon.tsx';
 import { optionLineSummary, revealItems, storeView } from '../../client/store.ts';
 import { rarityLabels, slotLabels, type EquipmentSlot } from '../../client/equipment.ts';
 import type { GameContext } from './shell.tsx';
-import { CostChips, ItemIcon, PageHeader, ResIcon, Sheet, canPay, friendNames, jobNames, full, type Wallet } from './kit.tsx';
+import { CostChips, ItemIcon, PageHeader, ResIcon, Sheet, canPay, friendNames, jobNames, full, compact, type Wallet } from './kit.tsx';
 
 type Section = 'shop' | 'scrolls' | 'cards' | 'gear';
 /** Store (TASK-051/037, D-063): daily shop, card gacha and equipment gacha. No real money; every purchase is a server command. */
@@ -23,6 +23,12 @@ export function StorePage({ context }: { context: GameContext }) {
     try { if(await submit('gacha.pull',{pool_id:pool,count})) {setRevealed(context.lastCreated());setRevealOpen(pool==='card_v1');} }
     finally {pullGate.current=false;setPulling(false);}
   }
+  const buyGate=useRef(false),[buying,setBuying]=useState<string|null>(null);
+  async function buy(id:string,quantity:number){
+    if(buyGate.current||locked||quantity<1)return;
+    buyGate.current=true;setBuying(id);
+    try{await submit('shop.buy',{offer_id:id,quantity});}catch{context.toast('แลกไม่สำเร็จ ลองใหม่อีกครั้ง');}finally{buyGate.current=false;setBuying(null);}
+  }
   const results = revealItems(state, revealed);
   const resultGrid = <div className={`gacha-results ${section==='cards'?'card-results':''} ${skip?'skip-reveal':''}`} aria-label="ผลการสุ่ม">{results.map((row,i)=><div key={row.item.instance_id} className={`gacha-card rarity-${row.item.rarity_id}`} style={{animationDelay:`${i*90}ms`}}>
     {row.item.kind==='card'?<button className="card-reveal" aria-label={`ดู${row.name}`} onClick={()=>setOpenCardId(row.item.instance_id)}><CardIcon card={row} pack={pack}/><b>{row.name}</b></button>:<span className={`icon-frame rarity-${row.item.rarity_id}`}><ItemIcon id={row.iconId} pack={pack}/></span>}
@@ -31,10 +37,12 @@ export function StorePage({ context }: { context: GameContext }) {
   return <div className="page store-page">
     <PageHeader title="ร้านค้า" sub={`รีเซ็ตสิทธิ์ซื้อทุกวัน 00:00 (เวลาไทย) · วันนี้ ${view.day}`} onBack={() => go('home')} />
     <div className="seg store-seg" role="tablist">{([['shop', 'ร้านค้า'], ['scrolls', 'ใบธาตุ'], ['cards', 'สุ่มการ์ด'], ['gear', 'สุ่มอุปกรณ์']] as [Section, string][]).map(([id, label]) => <button key={id} role="tab" aria-selected={section === id} className={section === id ? 'on' : ''} onClick={() => { setSection(id); setRevealed([]); }}>{label}</button>)}</div>
-    {(section === 'shop'||section === 'scrolls') && <div className="shop-grid">{view.offers.filter(offer=>(section==='scrolls')===!!offer.scroll).map(offer => <article key={offer.id} className={`shop-offer ${offer.left ? '' : 'sold-out'}`}>
+    {(section === 'shop'||section === 'scrolls') && <div className="shop-grid">{view.offers.filter(offer=>(section==='scrolls')===!!offer.scroll).map(offer => <article key={offer.id} data-offer={offer.id} className={`shop-offer ${offer.left ? '' : 'sold-out'}`}>
       <div className="shop-grant">{offer.scroll&&<ScrollIcon pack={pack} element={offer.scroll.element} />}{(Object.entries(offer.grant) as [keyof Wallet, number][]).map(([k, n]) => <span key={k}><ResIcon pack={pack} k={k} /><b>{full(n)}</b></span>)}</div>
       <b className="shop-name">{offer.name}</b>{offer.scroll&&<small>หนึ่งไฟต์ · ในคลัง {view.scrolls.find(row=>row.id===offer.id)?.stock??0}</small>}<small>เหลือวันนี้ {offer.left}/{offer.daily_limit}</small>
-      <button className="btn primary small" disabled={locked || !offer.left || !canPay(state.wallet, offer.price)} onClick={() => void submit('shop.buy', { offer_id: offer.id, quantity: 1 })}><CostChips pack={pack} cost={offer.price} wallet={state.wallet} /></button>
+      <div className="shop-unit-price"><span>ต่อครั้ง</span>{(Object.entries(offer.price)as[keyof Wallet,number][]).map(([k,n])=><strong key={k}><ResIcon pack={pack} k={k}/>{full(n)}</strong>)}</div>
+      <div className="shop-actions"><button className="btn small" aria-label={`แลก ${offer.name} 1 ครั้ง`} disabled={locked||!!buying||!offer.maxQuantity} onClick={()=>void buy(offer.id,1)}>{buying===offer.id?'กำลังแลก…':'แลก 1'}</button><button className="btn primary small" aria-label={`แลกทั้งหมด ${offer.name} ${offer.maxQuantity} ครั้ง`} disabled={locked||!!buying||!offer.maxQuantity} onClick={()=>void buy(offer.id,offer.maxQuantity)}>แลกหมด <b>×{offer.maxQuantity}</b></button></div>
+      <small className="shop-batch-cost" aria-label={`ราคารวม ${offer.name}`}>{offer.maxPrice?<>รวม {(Object.entries(offer.maxPrice)as[keyof Wallet,number][]).map(([k,n])=><span key={k}><ResIcon pack={pack} k={k}/>{compact(n)}</span>)}</>:offer.left?'เงินไม่พอ':'ครบโควตาวันนี้'}</small>
     </article>)}</div>}
     {section === 'scrolls' && <section className="scroll-preparation" aria-label="เตรียมใบธาตุ">
       <header><b>เตรียมใบธาตุ</b><small>ตีปกติและสกิลธาตุตามอาวุธ · หนึ่งไฟต์ถัดไป</small></header>
@@ -57,7 +65,6 @@ export function StorePage({ context }: { context: GameContext }) {
         </div>
         {results.length > 0 && !revealOpen && resultGrid}
       </section>; })()}
-    <p className="hint">Crystal จาก AFK 40/ชม. (480/12 ชม.) · หอคอยทุก 5 ชั้น · ผ่านด่านและภารกิจรายวัน</p>
     {revealOpen&&results.length>0&&<Sheet title={`ได้รับการ์ด ${results.length} ใบ`} className="tall gacha-reveal-sheet" onClose={()=>setRevealOpen(false)}>
       <div className="summon-results-scroll">{resultGrid}</div><div className="summon-result-actions"><button className="btn ghost" onClick={()=>setSkip(true)}>ข้ามเอฟเฟกต์</button><button className="btn primary" onClick={()=>setRevealOpen(false)}>รับทั้งหมด</button></div>
     </Sheet>}

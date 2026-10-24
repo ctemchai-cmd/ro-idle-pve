@@ -84,3 +84,5 @@ D165/TASK136: ดู [เพดานสกิลและคืนทุน](53
 D166/TASK137: [54-grimtooth-balance.md](54-grimtooth-balance.md).
 
 D166/TASK138: [55-boss-size.md](55-boss-size.md).
+
+D167/TASK139: [ร้าน/แลกเศษ/Panel](56-shop-and-exchange-ui.md).

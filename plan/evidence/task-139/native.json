@@ -1,0 +1,184 @@
+{
+  "passed": true,
+  "fixture": "synthetic signed in-memory persistence; actual API HTTP + SaveController + React; no Supabase/RLS/owner access",
+  "checks": [
+    {
+      "case": "rapid_double_tap_single_HTTP_command20_receipt_revision_exact500000gold200Crystal",
+      "passed": true
+    },
+    {
+      "case": "99_scrolls_single_command_and_exact_stock_price",
+      "passed": true
+    },
+    {
+      "case": "affordability_old1leaves19_soldout_capacity_safe_no_counter_reset",
+      "passed": true
+    },
+    {
+      "case": "native_shard_merge10to1_dismantle1to5_mode_reset_invalid_quantity",
+      "passed": true
+    },
+    {
+      "case": "mobile320390_spacing_native_images_panels_no_overflow",
+      "rows": [
+        {
+          "width": 390,
+          "kind": "shards",
+          "overflow": false,
+          "documentOverflow": false,
+          "step": 42,
+          "submit": 44,
+          "exchangeGap": "18px",
+          "bg": null
+        },
+        {
+          "width": 390,
+          "kind": "store",
+          "overflow": false,
+          "documentOverflow": false,
+          "exchangeGap": null,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "width": 390,
+          "kind": "tower",
+          "overflow": false,
+          "documentOverflow": false,
+          "exchangeGap": null,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "width": 390,
+          "kind": "daily",
+          "overflow": false,
+          "documentOverflow": false,
+          "exchangeGap": null,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "width": 320,
+          "kind": "shards",
+          "overflow": false,
+          "documentOverflow": false,
+          "step": 42,
+          "submit": 44,
+          "exchangeGap": "18px",
+          "bg": null
+        },
+        {
+          "width": 320,
+          "kind": "store",
+          "overflow": false,
+          "documentOverflow": false,
+          "exchangeGap": null,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "width": 320,
+          "kind": "tower",
+          "overflow": false,
+          "documentOverflow": false,
+          "exchangeGap": null,
+          "bg": "rgb(255, 255, 255)"
+        },
+        {
+          "width": 320,
+          "kind": "daily",
+          "overflow": false,
+          "documentOverflow": false,
+          "exchangeGap": null,
+          "bg": "rgb(255, 255, 255)"
+        }
+      ]
+    },
+    {
+      "case": "card_gear_no_Crystal_acquisition_footer",
+      "passed": true
+    },
+    {
+      "case": "rejected_batch_no_spend_no_revision_controls_released",
+      "passed": true
+    },
+    {
+      "case": "lost_response_pending_receipt_reconnect_exactly_once_releases_gate",
+      "passed": true
+    }
+  ],
+  "commands": [
+    {
+      "type": "shop.buy",
+      "params": {
+        "offer_id": "crystal_exchange",
+        "quantity": 20
+      },
+      "request_id": "1e6749c4-8078-4251-abb7-3c79b49554cb",
+      "expected_revision": 1
+    },
+    {
+      "type": "shop.buy",
+      "params": {
+        "offer_id": "fire_scroll",
+        "quantity": 99
+      },
+      "request_id": "b7aa8d3c-1714-4978-b9b5-540aa4d0ed67",
+      "expected_revision": 2
+    },
+    {
+      "type": "shop.buy",
+      "params": {
+        "offer_id": "crystal_exchange",
+        "quantity": 2
+      },
+      "request_id": "0ad276b4-76c7-49e0-bb9f-a7647046529a",
+      "expected_revision": 1
+    },
+    {
+      "type": "shop.buy",
+      "params": {
+        "offer_id": "fire_scroll",
+        "quantity": 2
+      },
+      "request_id": "361027dc-acf8-44b9-8898-83a046bbaadf",
+      "expected_revision": 1
+    },
+    {
+      "type": "skill.convert_shards",
+      "params": {
+        "direction": "base_to_awakened",
+        "quantity": 5
+      },
+      "request_id": "1add6657-031b-4af2-8847-d9ee96b2f9c0",
+      "expected_revision": 1
+    },
+    {
+      "type": "skill.convert_shards",
+      "params": {
+        "direction": "awakened_to_base",
+        "quantity": 1
+      },
+      "request_id": "4239fff5-2523-422e-bd87-b990efc0e8fa",
+      "expected_revision": 2
+    },
+    {
+      "type": "shop.buy",
+      "params": {
+        "offer_id": "crystal_exchange",
+        "quantity": 21
+      },
+      "request_id": "5162539f-b9c1-4f22-a385-dbeabfc11370",
+      "expected_revision": 1
+    },
+    {
+      "type": "shop.buy",
+      "params": {
+        "offer_id": "crystal_exchange",
+        "quantity": 20
+      },
+      "request_id": "c63848cf-624b-490a-9b07-fa9aa0666c63",
+      "expected_revision": 1
+    }
+  ],
+  "errors": [],
+  "tested_content_hash": "6d2d125d956656ed90f7e82ee0deb3bdc91025ae57b5f062863b945b741d28c6",
+  "hash_provenance": "Isolated Vite startup generated this same content hash before the native run; product rules did not change during or after it."
+}

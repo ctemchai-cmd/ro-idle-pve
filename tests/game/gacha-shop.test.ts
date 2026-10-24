@@ -114,9 +114,9 @@ test('D146/T052: legacy higher-tier lines retain their scale and retired tier-up
 test('T051 AC-01: shop offers debit and grant exactly, refuse over-limit/insufficient buys whole, and reset limits on the next Bangkok day', () => {
   const f = fixture(s => { s.wallet.gold = 50000; }, '2026-10-20T16:00:00.000Z'), wallet = structuredClone(f.state.wallet);
   assert.equal(f.run('shop.buy', { offer_id: 'ore_pack', quantity: 3 }).result.code, 'SHOP_PURCHASED');
-  assert.equal(f.state.wallet.gold, wallet.gold - 9000); assert.equal(f.state.wallet.refine_ore, wallet.refine_ore + 30);
+  assert.equal(f.state.wallet.gold, wallet.gold - 12000); assert.equal(f.state.wallet.refine_ore, wallet.refine_ore + 30);
   const before = structuredClone(f.state);
-  assert.equal(f.run('shop.buy', { offer_id: 'ore_pack', quantity: 3 }).result.code, 'SHOP_LIMIT_REACHED'); assert.deepEqual(f.state, before);
+  assert.equal(f.run('shop.buy', { offer_id: 'ore_pack', quantity: 8 }).result.code, 'SHOP_LIMIT_REACHED'); assert.deepEqual(f.state, before);
   assert.equal(f.run('shop.buy', { offer_id: 'essence_pack', quantity: 1 }).result.code, 'INSUFFICIENT_RESOURCES'); assert.deepEqual(f.state, before);
   assert.equal(f.run('shop.buy', { offer_id: 'nope', quantity: 1 }).result.code, 'SHOP_OFFER_UNKNOWN');
   assert.equal(f.run('shop.buy', { offer_id: 'ore_pack', quantity: 3 }, 101, 2 * 3600000).result.code, 'SHOP_PURCHASED', 'new Bangkok day resets the limit');

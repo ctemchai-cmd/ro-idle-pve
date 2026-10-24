@@ -397,49 +397,49 @@
   },
   "long_term_target": "D-069: Lv70 Class2 and chapter 8 in about 240 continuous farm hours (~10 days with AFK claimed twice a day), maxed gear around 2–3 weeks, then wait for Hi-class; no fixed wait per stage",
   "shop": {
-    "rule_source": "D-063 user request 2026-10-20; offers, prices and limits are an assistant baseline to tune in TASK-041",
+    "rule_source": "D-167: Crystal exchange20/day, material packs10/day; assistant baseline gold prices +20–33%, scroll6000, crystal25000 per10; non-gold prices and grants unchanged. Batch99 maximum, actual affordable remaining offer in one command.",
     "reset": "server Asia/Bangkok day (same ticket day as daily dungeon)",
-    "max_quantity_per_command": 10,
+    "max_quantity_per_command": 99,
     "offers": [
       {
         "id": "exp_pack",
         "price": {
-          "gold": 2000
+          "gold": 2500
         },
         "grant": {
           "hero_exp": 1000
         },
-        "daily_limit": 5
+        "daily_limit": 10
       },
       {
         "id": "manual_pack",
         "price": {
-          "gold": 2500
+          "gold": 3000
         },
         "grant": {
           "skill_manual": 40
         },
-        "daily_limit": 5
+        "daily_limit": 10
       },
       {
         "id": "ore_pack",
         "price": {
-          "gold": 3000
+          "gold": 4000
         },
         "grant": {
           "refine_ore": 10
         },
-        "daily_limit": 5
+        "daily_limit": 10
       },
       {
         "id": "enchant_pack",
         "price": {
-          "gold": 4000
+          "gold": 5000
         },
         "grant": {
           "enchant_dust": 4
         },
-        "daily_limit": 5
+        "daily_limit": 10
       },
       {
         "id": "card_dust_pack",
@@ -449,7 +449,7 @@
         "grant": {
           "card_dust": 40
         },
-        "daily_limit": 3
+        "daily_limit": 10
       },
       {
         "id": "essence_pack",
@@ -459,22 +459,22 @@
         "grant": {
           "breakthrough_essence": 5
         },
-        "daily_limit": 3
+        "daily_limit": 10
       },
       {
         "id": "crystal_exchange",
         "price": {
-          "gold": 20000
+          "gold": 25000
         },
         "grant": {
           "crystal": 10
         },
-        "daily_limit": 1
+        "daily_limit": 20
       },
       {
         "id": "fire_scroll",
         "price": {
-          "gold": 5000
+          "gold": 6000
         },
         "grant": {},
         "consumable_grant": {
@@ -485,7 +485,7 @@
       {
         "id": "water_scroll",
         "price": {
-          "gold": 5000
+          "gold": 6000
         },
         "grant": {},
         "consumable_grant": {
@@ -496,7 +496,7 @@
       {
         "id": "earth_scroll",
         "price": {
-          "gold": 5000
+          "gold": 6000
         },
         "grant": {},
         "consumable_grant": {
@@ -507,7 +507,7 @@
       {
         "id": "wind_scroll",
         "price": {
-          "gold": 5000
+          "gold": 6000
         },
         "grant": {},
         "consumable_grant": {

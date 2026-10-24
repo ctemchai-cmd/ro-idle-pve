@@ -1,0 +1,35 @@
+{
+  "task_id": "TASK-139",
+  "passed": false,
+  "local_passed": true,
+  "date": "2026-10-24",
+  "status": "review",
+  "content_hash": "6d2d125d956656ed90f7e82ee0deb3bdc91025ae57b5f062863b945b741d28c6",
+  "acceptance_results": {
+    "AC-01": "passed_local",
+    "AC-02": "passed_local",
+    "AC-03": "passed_local",
+    "AC-04": "passed_local",
+    "AC-05": "passed_local",
+    "AC-06": "pending_hosted"
+  },
+  "tests": {
+    "full": 672,
+    "targeted": 29,
+    "native_HTTP_groups": 8,
+    "root_filtered_gzip_bytes": 628933,
+    "pwa_version": "80546d33a409b9f9"
+  },
+  "evidence": [
+    "plan/evidence/task-139/README.md",
+    "plan/evidence/task-139/native.json",
+    "plan/evidence/task-139/tests-full.txt",
+    "plan/evidence/task-139/build-root.txt",
+    "plan/evidence/task-139/build-filtered.txt"
+  ],
+  "limits": [
+    "Local UI uses signed synthetic in-memory persistence with actual HTTP API + SaveController; not real Supabase/Auth/RLS proof",
+    "No owner save access; no SQL/env changes or personal6173 restart",
+    "No combat balance/simulation batch"
+  ]
+}
