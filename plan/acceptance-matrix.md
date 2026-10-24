@@ -697,7 +697,7 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 
 | ID | Task | เกณฑ์ | วิธีตรวจ | สถานะ |
 | --- | --- | --- | --- | --- |
-| `T136-AC-01` | TASK-136 | Class2全rankตามunlock+40,30→70/40→80;Class1/Hiและราคา/programเดิม | Unit/actuallocal/hosted | not_run_implementation |
-| `T136-AC-02` | TASK-136 | ลดเฉพาะrankเกินและคืนทุนจริงครั้งเดียว,lowerledger/loadout/Aw/NPCคงเดิม | Unit/actuallocal/hosted | not_run_implementation |
-| `T136-AC-03` | TASK-136 | legacyprice/overflow failatomic,backup-CAS-replay/10slotsแยกจริง | Unit/actuallocal/hosted | not_run_implementation |
-| `T136-AC-04` | TASK-136 | UI320390 cap/full/next,tests/build/filtered/hostedhashตรง | Unit/actuallocal/hosted | not_run_implementation |
+| `T136-AC-01` | TASK-136 | Class2全rankตามunlock+40,30→70/40→80;Class1/Hiและราคา/programเดิม | Unit/actuallocal/hosted | passed_implementation |
+| `T136-AC-02` | TASK-136 | ลดเฉพาะrankเกินและคืนทุนจริงครั้งเดียว,lowerledger/loadout/Aw/NPCคงเดิม | Unit/actuallocal/hosted | passed_implementation |
+| `T136-AC-03` | TASK-136 | legacyprice/overflow failatomic,backup-CAS-replay/10slotsแยกจริง | Unit/actuallocal/hosted | passed_implementation |
+| `T136-AC-04` | TASK-136 | UI320390 cap/full/next,tests/build/filtered/hostedhashตรง | Unit/actuallocal/hosted | passed_implementation |

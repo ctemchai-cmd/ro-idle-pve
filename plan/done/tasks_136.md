@@ -23,11 +23,11 @@ Class2ปลด20/30/40เต็ม60/70/80; shared rank helper, UIเพดา�
 - [x] AC-01: ทุกClass2rankปลดตามunlock+40,30→70/40→80;ก่อนปลด/เพดานquoteปฏิเสธก่อนจ่าย;Class1/Hi/ราคา/programไม่เปลี่ยน
 - [x] AC-02: Lv40skill7→1คืน2100gold420manualส่วนเกินครั้งเดียว,ต่ำกว่าcapไม่เปลี่ยน,loadout/NPC/ทุนที่เหลือ/Aw-stateคงเดิม;resetภายหลังไม่คืนซ้ำ
 - [x] AC-03: ใช้actualpaid/snapshotไม่ใช่ราคาใหม่;unknownprice/overflowไม่เขียนpartial;ทุก10slotแยก/backup-CAS-replayผ่านจริง
-- [ ] AC-04: UI320/390แสดงcap/full/nextตรงsharedrules,fulltests/buildและfilteredbuildผ่าน,เว็บจริงhashตรง ไม่มีownerwrite
+- [x] AC-04: UI320/390แสดงcap/full/nextตรงsharedrules,fulltests/buildและfilteredbuildผ่าน,เว็บจริงhashตรง ไม่มีownerwrite
 
 ## วิธีตรวจและหลักฐาน
 
-T136-AC01–04: tests/game/skill-rank-caps.test.ts, actual local stack, public hosted harness; plan/evidence/task-136-review.json. ยังไม่ตรวจ.
+T136-AC01–04: tests/game/skill-rank-caps.test.ts, actual local stack, public hosted harness; plan/evidence/task-136-review.json. ครบตามหลักฐานด้านล่าง.
 
 ## Blocker / คำถาม
 
@@ -35,4 +35,4 @@ T136-AC01–04: tests/game/skill-rank-caps.test.ts, actual local stack, public h
 
 ## Review
 
-Local660tests/10focused/actualAuthAPI-SQL-mobile4กลุ่ม/10slots backup-replay/root+filteredผ่าน;mobile320ภาพตรวจแล้ว. รอsourcepush/Vercel/hostedAC04.
+Local660tests/10focused/actualAuthAPI-SQL-mobile4กลุ่ม/10slots backup-replay/root+filteredผ่าน;mobile320ภาพตรวจแล้ว. Source35f866bb8ขึ้นVercelSUCCESS/hosted4groups24bundleSHA/healthSIN1/public320390/noownerwritesผ่านแล้ว. ทุกACผ่าน done;ดูplan/evidence/task-136-review.json.

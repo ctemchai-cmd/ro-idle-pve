@@ -1,11 +1,11 @@
 # Handoff ระหว่าง agent
 
-## 24 ต.ค.2026 · Codex — TASK136 localครบ รอdeploy
+## 24 ต.ค.2026 · Codex — TASK136 ขึ้นVercelแล้ว
 
 - UserD165:Class2ปลด30เต็ม70/40เต็ม80,ลดเฉพาะrankที่เคยอัปเกินแล้วคืนทุนส่วนเกิน. Sharedhelperปลด20/30/40→เต็ม60/70/80ด้วยceil40over9;Class1/Hi explicitเดิม. Base152/Aw152program+ราคาตรงfrozenstructSHA;เปลี่ยนเฉพาะ26M0examplebuildranks/budget/trace.
 - migrateSkillCapsใช้immutable legacypriceTS(snapshotร่วมimplementationhash),ตรวจทั้งactualpaidvectorและversionก่อนคืนส่วนเกิน,คงloadout/Awstate/ทุนbase,ลดledgerพร้อมwallet. ไม่เฉลี่ย/ไม่reprice/unknownpriceหรือoverflowatomicrefusal. JSONBลำดับkeysแตกต่างไม่เปลี่ยนledgerorderแล้ว;regressionเพิ่ม. ทุก10slotsปรับเมื่อเปิดและกดbackup-migrateตามflowเดิม ไม่ownerwrite.
 - Local660/660/full119s;targeted20/rank10/M0readiness8/root+filtered626374gzip/actualAuthAPI-SQL-mobile4groupsทั้ง10slotbackup/replay/refund/laterresetผ่าน. ภาพ320ตรวจแล้ว. Contentee411890c3a51cb1ef162c64a5e29685018b57db9878a81c89179a416b53a14d/packb9a9280a/raw33108285เดิม/PWAf1df5f91e660bbe4. Scripts test_skill_caps_live.cjs และ hosted.cjs;alltemporaryservicesended.
-- TASK136review/board121of136/M4done75of85. Needsourcecommit/push→VercelSUCCESS→scripts/test_skill_caps_hosted.cjs→done122of136/AC/readiness/closurepush. Reportplan/evidence/task-136/README.md. NoSQL/env/owner/6173restart/subagents/balancebatch. Historicalfailedrunskept.local/skill-caps-debug and/private/tmp/task136*. Neverstageuseruntrackedmodernassets/task108png.
+- TASK136done/board122of136/M4done76of85. Source35f866bb8/VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/326NieaCcj7AhueggRwX2dH3bRJf /hosted4groupsAPIee411-SIN1-auth401/24bundleSHA/newcapUIcode/public320390/noownerwritesผ่านแล้ว. Reportplan/evidence/task-136/README.md. NoSQL/env/owner/6173restart/subagents/balancebatch. Historicalfailedrunskept.local/skill-caps-debug and/private/tmp/task136*. Useruntrackedmodernassets/task108pnguntouched. AlltemporaryservicesandChromeended. Closure docs push next;productliveverified.
 
 
 
