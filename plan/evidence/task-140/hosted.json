@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "scope": "Public API/bundle inspection/mobile login; actual transition behavior proved only in local native controlled transport",
+  "checks": [
+    {
+      "case": "unchanged_content_SIN1_auth401",
+      "content_hash": "6d2d125d956656ed90f7e82ee0deb3bdc91025ae57b5f062863b945b741d28c6"
+    },
+    {
+      "case": "all_bundle_SHA_challenge_two_early_null_resets_vs_old_one_pack_unchanged",
+      "files": 24,
+      "resetCount": 2
+    },
+    {
+      "case": "mobile320390_public_login_no_overflow",
+      "passed": true
+    },
+    {
+      "case": "no_owner_login_no_save_writes",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "writes": []
+}

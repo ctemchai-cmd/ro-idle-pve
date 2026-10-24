@@ -22,7 +22,7 @@ TASK-135, TASK-139 (done)
 - [x] AC-01: Story/Tower แสดงผลเก่าหนึ่งครั้ง แล้วWarning→ไฟต์ใหม่; ไม่มีผลเก่าย้อนเมื่อAPIหรือprepareช้ากว่า2100ms
 - [x] AC-02: เริ่ม/จบครั้งเดียวต่อไฟต์; แพ้3ครั้ง/รับรางวัลเดิม/คิวและข้อมูลengineไม่เปลี่ยน
 - [x] AC-03: หยุดระหว่างintroยกเลิกnextได้,เริ่มไม่สำเร็จหยุดAutoและปุ่มไม่ค้าง; UIมือถือ320390ไม่overflow
-- [ ] AC-04: meaningfulnative regression/unit/uncachedbuild+filtered/Vercel+hostedผ่าน;ไม่owner/SQL/env/6173
+- [x] AC-04: meaningfulnative regression/unit/uncachedbuild+filtered/Vercel+hostedผ่าน;ไม่owner/SQL/env/6173
 
 ## วิธีตรวจและหลักฐาน
 
@@ -31,3 +31,7 @@ T140-AC01–04: plan/evidence/task-140-review.json; actualField+nativeenginechec
 ## Blocker / คำถาม
 
 ไม่มี
+
+## ผล review
+
+Nativebefore2/after4groups,unit4,M0readiness8,uncachedroot+filteredbuild,VercelSUCCESSsourcecb4aad4f7,hosted4groupsผ่าน. ไม่แก้engine/data/SQL/env/owner.

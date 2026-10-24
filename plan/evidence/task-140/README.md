@@ -9,3 +9,5 @@
 - ภาพbefore/after320390;ตรวจafterStory390ด้วยตา. Initialharnessใช้IDสกิลสมมติผิด(AUDIT_INVALID_CANDIDATE) จึงเปลี่ยนมาเลือกexistingvalidatedauditBuild;debugเก็บ.local/auto140-debug. ไม่เปลี่ยนcriteriaหรือgameplayเพื่อให้ผ่าน.
 
 HostedตรวจpublicAPI/authgate/bundleSHA/transitionfunction/mobileloginเท่านั้น. Platformbundleอาจต่างกัน จึงparseเฉพาะchallengeที่เรียกstartทั้ง3โหมด:ก่อนawaitมีnullreset2ตัว(outcome+sheet)เทียบเก่ามีsheetตัวเดียว. Actualbehaviorอยู่nativebefore/after. สถานะเผยแพร่ดูtask-140-review.json/hosted.json.
+
+เผยแพร่แล้ว sourcecb4aad4f7/[VercelSUCCESS](https://vercel.com/chanon2/ro-idle-pve/6FxutYHiVM5cJYDvuueEqyzpLdji). hosted4groupsผ่านAPI6d2d/SIN1/auth401/24bundleSHA/newreset2/packเดิม/mobile320390/0errors-writes. TASK140done. ReloadรับUIใหม่ ไม่ต้องSQLหรือcontentmigrationใหม่.

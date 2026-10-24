@@ -2,6 +2,8 @@
 
 ## Auto Battle result transition (24 October 2026, TASK140)
 
+Sourcecb4aad4f7 is deployed on VercelSUCCESS; native before2/after4 groups, unit4, uncached root/filtered build and public hosted4 groups passed. Content/engine/pack unchanged; UI-only update needs reload.
+
 Field.challenge retires the previous outcome before opening the next Warning or awaiting its start. Otherwise the old boss/outcome satisfies intro readiness and the old victory panel returns during a slow API/pack load. Keep the Warning, existing delays, stop-on-three losses, reward/receipt rules unchanged. Native regression covers Story slow start and Tower slow preparation; see latestHANDOFF for publish status.
 
 ## Shop batches and exchange UI (24 October 2026, D167)
