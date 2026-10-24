@@ -18,3 +18,7 @@ LocalUIไม่ได้ทดสอบSupabase/RLSหรือAuthจริง
 รอบแรกมี2oracleราคาใบธาตุเก่าและtestscopeที่เทียบprojectedกับrawผิด;แก้เฉพาะสมมติฐานที่D167เปลี่ยน แล้วfullผ่าน. NativeพบCSSโหลดทีหลังทำsubmitเหลือ40pxจึงแก้specificity;พบfixtureจากรอบก่อนยังอยู่จึงresetก่อนทดสอบ. Debugเก็บใน `.local/shop139-debug` และ `/private/tmp/task139*`.
 
 Vercel source02aa13d3b statusFailed;privatebuildlogเข้าถึงไม่ได้(publicAPI403),ถามผู้ใช้แล้ว. Cleantracked-onlybuildเพิ่มอีกครั้งผ่านhash/gzip/PWAเหมือนเดิม ดูbuild-clean-tracked.txt. ยังไม่ถือว่าhostedผ่านหรือtaskdone.
+
+Retryverificationcommitc4cbc0e39ก็Failed;ยังรอerrorช่วงท้ายBuildLogsจากผู้ใช้. ไม่รันhostedharnessกับเว็บเก่าและไม่ทำเครื่องหมายdone.
+
+ผู้ใช้ส่งlogแล้ว:TS6196 Wallet typeไม่ได้ใช้ที่src/client/store.ts:11. ลบtypeที่ค้างและปิดincrementalในtsconfigสำหรับrequiredtypecheck(คงstrict/noUnusedไว้). รอบก่อนlocalใช้incrementalจึงยังไม่ใช่หลักฐานfreshtypecheck;build-root-uncached.txtและbuild-filtered-uncached.txtหลังแก้ผ่านครบ628933gzip/content6d2d/PWAเดิม. ไม่มีruntime/economyเพิ่มจากการแก้typeนี้. รอเผยแพร่/hosted.

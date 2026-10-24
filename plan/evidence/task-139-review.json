@@ -26,7 +26,10 @@
     "plan/evidence/task-139/native.json",
     "plan/evidence/task-139/tests-full.txt",
     "plan/evidence/task-139/build-root.txt",
-    "plan/evidence/task-139/build-filtered.txt"
+    "plan/evidence/task-139/build-filtered.txt",
+    "plan/evidence/task-139/build-root-uncached.txt",
+    "plan/evidence/task-139/build-filtered-uncached.txt",
+    "plan/evidence/task-139/vercel-failure.txt"
   ],
   "limits": [
     "Local UI uses signed synthetic in-memory persistence with actual HTTP API + SaveController; not real Supabase/Auth/RLS proof",
@@ -35,8 +38,30 @@
   ],
   "source_commit": "02aa13d3b",
   "vercel": {
+    "commit": "c4cbc0e39",
     "status": "failed",
-    "url": "https://vercel.com/chanon2/ro-idle-pve/2KQkVito9i9eGG2K75A5hENNfqbG",
-    "logs": "requested from user; public API403 requires authentication"
+    "url": "https://vercel.com/chanon2/ro-idle-pve/CM93Am5Rgn53h15xbBRNFf2ghZyw",
+    "logs": "User Build Logs requested via async; API403 without auth. Local root/filtered/clean-tracked builds all passed."
+  },
+  "verification_commit": "c4cbc0e39",
+  "vercel_attempts": [
+    {
+      "commit": "02aa13d3b",
+      "status": "failed",
+      "url": "https://vercel.com/chanon2/ro-idle-pve/2KQkVito9i9eGG2K75A5hENNfqbG"
+    },
+    {
+      "commit": "c4cbc0e39",
+      "status": "failed",
+      "url": "https://vercel.com/chanon2/ro-idle-pve/CM93Am5Rgn53h15xbBRNFf2ghZyw"
+    }
+  ],
+  "deployment_fix": {
+    "cause": "TS6196 unused Wallet alias in src/client/store.ts",
+    "change": "Remove unused type; disable incremental cache for required TypeScript check without relaxing unused/strict rules",
+    "root_uncached_build": "passed",
+    "filtered_uncached_build": "passed",
+    "runtime_unchanged": "same6d2dcontent/gzip628933/PWA80546d33a409b9f9",
+    "pending": "push corrected source then verify hosted"
   }
 }

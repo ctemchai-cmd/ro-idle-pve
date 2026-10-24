@@ -1,9 +1,15 @@
 # Handoff ระหว่าง agent
 
+## 24 ต.ค.2026 · Codex — TASK139 แก้VercelTS6196แล้ว รอdeployใหม่
+
+- Userส่งactualVercelbuildlogc4cbc0e:TS6196unusedWalletในsrc/client/store.ts:11. ลบaliasและปิดtsconfigincremental(คงstrict/noUnused),ไม่ใช้cachedtypecheckgateอีก. Root+cleantrackedfiltereduncachedbuildผ่านทั้งคู่content6d2d/628933gzip/PWA80546d33a409b9f9/packb9aเดิม. Type-only/config ไม่มีruntime/economyหรือownerwrite. Evidence139/build-*-uncached.txt/vercel-failure.txt.
+- ไม่ต้องรัน672tests/native8groupsซ้ำเพราะtypeerasure/runtimebundleเดิม;เดิมหลักฐานยังอยู่. ต่อ:pushfix→VercelSUCCESS→scripts/test_store_exchange_hosted.cjs→139done/125of139/M4done79of88/ACmatrix/readiness/closurepush. ไม่มีคำถามpendingแล้ว. Olderfaileddeploysและcachedbuildsด้านล่างเป็นhistory supersededด้วยfreshbuild.
+
 ## 24 ต.ค.2026 · Codex — TASK139 localผ่าน Vercelfailed/รอerrorlog
 
 - Userขอ5ข้อ:แลกเศษspacing/ลบCrystalhow-to/ร้านแพง+quota/แลกหมด/Panel. D167 Crystal20×10/day25000gold,วัสดุ10/day/ทอง2500-3000-4000-5000,scroll6000/99. Grants/nonGold/gacha/AFKเดิม,counterเดิมไม่reset. SharedshopQuote/max/apply/schema99+loader,1commandไม่loop,refsinge-flight/finally. No combatcalibration.
 - Local672TS/29focused/M0readiness8/root+filtered628933gzip/PWA80546d33a409b9f9ผ่าน;content6d2d125d956656ed90f7e82ee0deb3bdc91025ae57b5f062863b945b741d28c6/packb9a9280a/raw33108285เดิม. Native8groupsactualReact+SaveController+HTTPsignedsyntheticinmemory,notSupabase/RLS:20/99batch/oldcounter/poor/overflow/doubletap/shard10to1-1to5/320390/reject/lostresponsepassed. Screenshotsstore/shards/Tower320viewed. Noowner/keys/SQL/env/6173/agents. Alltemporary7494/7495stopped.
+- Retryverificationcommitc4cbc0e39alsoVercelFAILED https://vercel.com/chanon2/ro-idle-pve/CM93Am5Rgn53h15xbBRNFf2ghZyw;ยังรอusererrorBuildLogs ไม่มีการเดาfix/ทำdeployเพิ่ม. Latestlocalreview/HANDOFFบันทึกretryนี้ยังuncommittedเพื่อไม่triggerdeployซ้ำ. Product/source/testทั้งหมดpushedแล้ว.
 - Source02aa13d3bVercelFAILED https://vercel.com/chanon2/ro-idle-pve/2KQkVito9i9eGG2K75A5hENNfqbG. PubliclogAPI403ต้องtoken;ไม่มีCLIauth,ถามuserผ่านasyncให้ส่งท้ายBuildLogsแล้ว(คำถามpending). Cleantracked-onlycopybuildอีกครั้งผ่าน6d2d/628933/PWAเดียวกัน. Hostedharnessแก้assertstringshop_batch_limit(โดนtree-shake)เป็นmax_quantity_per_commandที่อยู่จริง. Task139review/board124of139/M4done78of88. Neederrorlog/fix→VercelSUCCESS→scripts/test_store_exchange_hosted.cjs→done125of139/M4done79of88/ACreadiness/closurepush. Noquestionpending. Initialfull669of672failed2oldscroll5000expectations+newraw-vs-projectedscopetest;fixednarrowlythen672green. Nativeinitial44pxsubmitoverriddenbylate.btnCSS→specificityfixed;subsequenttestrunservernotreset→fixture-resetfixed;allfailures.local/shop139-debug,/private/tmp preserved. Useruntrackedmodernassets/task108pnguntouched.
 
 ## 24 ต.ค.2026 · Codex — TASK137–138 ขึ้นVercelแล้ว

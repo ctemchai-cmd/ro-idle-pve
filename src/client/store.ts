@@ -8,7 +8,6 @@ import { gachaGearTier, pullCost } from '../domain/rewards/gacha.ts';
 import { cardOrigins } from '../content/card-catalog.ts';
 const loaded = loadValidatedContent(); if (!loaded.ok) throw new Error('CONTENT_UNAVAILABLE');
 const content = loaded.value;
-type Wallet = AccountState['wallet'];
 type Item = AccountState['inventory'][number];
 const labels = content.documents['strings.th.json']!.strings as unknown as Record<string, string>;
 /** "Rare 1 · Epic 2 · …" from content, so the banner cannot drift from the rolled line counts (D-062/D-068). */
