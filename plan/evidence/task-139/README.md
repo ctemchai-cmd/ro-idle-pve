@@ -16,3 +16,5 @@
 LocalUIไม่ได้ทดสอบSupabase/RLSหรือAuthจริงรอบนี้; ใช้ตัวตนจำลองแยกในloopbackเท่านั้น. ไม่อ่าน/เขียนบัญชีเจ้าของ,ไม่แก้SQL/env,ไม่restart6173,ไม่รันbalancebatch. HostedตรวจpublicAPI/SHAและmobileloginเท่านั้น; การกดร้านจริงพิสูจน์ในlocalfixture.
 
 รอบแรกมี2oracleราคาใบธาตุเก่าและtestscopeที่เทียบprojectedกับrawผิด;แก้เฉพาะสมมติฐานที่D167เปลี่ยน แล้วfullผ่าน. NativeพบCSSโหลดทีหลังทำsubmitเหลือ40pxจึงแก้specificity;พบfixtureจากรอบก่อนยังอยู่จึงresetก่อนทดสอบ. Debugเก็บใน `.local/shop139-debug` และ `/private/tmp/task139*`.
+
+Vercel source02aa13d3b statusFailed;privatebuildlogเข้าถึงไม่ได้(publicAPI403),ถามผู้ใช้แล้ว. Cleantracked-onlybuildเพิ่มอีกครั้งผ่านhash/gzip/PWAเหมือนเดิม ดูbuild-clean-tracked.txt. ยังไม่ถือว่าhostedผ่านหรือtaskdone.
