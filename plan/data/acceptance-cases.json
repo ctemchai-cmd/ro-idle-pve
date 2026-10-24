@@ -14678,16 +14678,21 @@
       "task_id": "TASK-139",
       "acceptance_id": "AC-01",
       "criterion": "แลกเศษสกิลมีtab/flow/nativeicons/quantity/spacingและปุ่ม44pxอ่านง่าย320390,รวม10→1/ย่อย1→5เดิม;กรอกผิด/เงินไม่พอ/กดย้ำไม่สร้างหลายคำสั่ง",
-      "input_setup": "Disposable seeded wallet/shop and actual shared reducers; mobile readonly/auth test user only",
+      "input_setup": "Disposable signed synthetic in-memory save; actual local HTTP API/SaveController/React; no hosted owner or Supabase/Auth/RLS interaction",
       "input_refs": [
         "plan/design/56-shop-and-exchange-ui.md"
       ],
       "parameters": {},
       "expected": "แลกเศษสกิลมีtab/flow/nativeicons/quantity/spacingและปุ่ม44pxอ่านง่าย320390,รวม10→1/ย่อย1→5เดิม;กรอกผิด/เงินไม่พอ/กดย้ำไม่สร้างหลายคำสั่ง",
       "verification": "Shared rules/unit/HTTPreceipt/mobile/hosted",
-      "status": "not_run_implementation",
+      "status": "passed_implementation",
       "evidence_refs": [
-        "plan/evidence/task-139-review.json"
+        "plan/evidence/task-139-review.json",
+        "plan/evidence/task-139/native.json",
+        "plan/evidence/task-139/hosted.json",
+        "plan/evidence/task-139/tests-full.txt",
+        "plan/evidence/task-139/build-root-uncached.txt",
+        "plan/evidence/task-139/build-filtered-uncached.txt"
       ]
     },
     {
@@ -14695,16 +14700,21 @@
       "task_id": "TASK-139",
       "acceptance_id": "AC-02",
       "criterion": "ข้อความCrystalจากAFK/หาCrystalถูกเอาออกจากร้าน/การ์ด/อุปกรณ์ทั้งหมด ไม่มีช่องว่างทิ้งไว้",
-      "input_setup": "Disposable seeded wallet/shop and actual shared reducers; mobile readonly/auth test user only",
+      "input_setup": "Disposable signed synthetic in-memory save; actual local HTTP API/SaveController/React; no hosted owner or Supabase/Auth/RLS interaction",
       "input_refs": [
         "plan/design/56-shop-and-exchange-ui.md"
       ],
       "parameters": {},
       "expected": "ข้อความCrystalจากAFK/หาCrystalถูกเอาออกจากร้าน/การ์ด/อุปกรณ์ทั้งหมด ไม่มีช่องว่างทิ้งไว้",
       "verification": "Shared rules/unit/HTTPreceipt/mobile/hosted",
-      "status": "not_run_implementation",
+      "status": "passed_implementation",
       "evidence_refs": [
-        "plan/evidence/task-139-review.json"
+        "plan/evidence/task-139-review.json",
+        "plan/evidence/task-139/native.json",
+        "plan/evidence/task-139/hosted.json",
+        "plan/evidence/task-139/tests-full.txt",
+        "plan/evidence/task-139/build-root-uncached.txt",
+        "plan/evidence/task-139/build-filtered-uncached.txt"
       ]
     },
     {
@@ -14712,16 +14722,21 @@
       "task_id": "TASK-139",
       "acceptance_id": "AC-03",
       "criterion": "Crystal20ครั้งต่อวัน×10Crystal/25000gold;แพ็กวัสดุ10ครั้ง/วัน,Gold2500/3000/4000/5000,scroll6000/99สิทธิ์;grantเดิม/nonGoldpriceเดิม/ซื้อไปแล้วไม่นับใหม่",
-      "input_setup": "Disposable seeded wallet/shop and actual shared reducers; mobile readonly/auth test user only",
+      "input_setup": "Disposable signed synthetic in-memory save; actual local HTTP API/SaveController/React; no hosted owner or Supabase/Auth/RLS interaction",
       "input_refs": [
         "plan/design/56-shop-and-exchange-ui.md"
       ],
       "parameters": {},
       "expected": "Crystal20ครั้งต่อวัน×10Crystal/25000gold;แพ็กวัสดุ10ครั้ง/วัน,Gold2500/3000/4000/5000,scroll6000/99สิทธิ์;grantเดิม/nonGoldpriceเดิม/ซื้อไปแล้วไม่นับใหม่",
       "verification": "Shared rules/unit/HTTPreceipt/mobile/hosted",
-      "status": "not_run_implementation",
+      "status": "passed_implementation",
       "evidence_refs": [
-        "plan/evidence/task-139-review.json"
+        "plan/evidence/task-139-review.json",
+        "plan/evidence/task-139/native.json",
+        "plan/evidence/task-139/hosted.json",
+        "plan/evidence/task-139/tests-full.txt",
+        "plan/evidence/task-139/build-root-uncached.txt",
+        "plan/evidence/task-139/build-filtered-uncached.txt"
       ]
     },
     {
@@ -14729,16 +14744,21 @@
       "task_id": "TASK-139",
       "acceptance_id": "AC-04",
       "criterion": "แลกทั้งหมดคิดmin(เงิน,โควตา,ขีดจำกัด,capacity)ด้วยsharedquote;1command/receipt/revision,20Crystalexchangeและ99scrollได้ในครั้งเดียว;overflow/ขาดเงิน/replay/dayrollไม่จ่ายซ้ำหรือหักบางส่วน",
-      "input_setup": "Disposable seeded wallet/shop and actual shared reducers; mobile readonly/auth test user only",
+      "input_setup": "Disposable signed synthetic in-memory save; actual local HTTP API/SaveController/React; no hosted owner or Supabase/Auth/RLS interaction",
       "input_refs": [
         "plan/design/56-shop-and-exchange-ui.md"
       ],
       "parameters": {},
       "expected": "แลกทั้งหมดคิดmin(เงิน,โควตา,ขีดจำกัด,capacity)ด้วยsharedquote;1command/receipt/revision,20Crystalexchangeและ99scrollได้ในครั้งเดียว;overflow/ขาดเงิน/replay/dayrollไม่จ่ายซ้ำหรือหักบางส่วน",
       "verification": "Shared rules/unit/HTTPreceipt/mobile/hosted",
-      "status": "not_run_implementation",
+      "status": "passed_implementation",
       "evidence_refs": [
-        "plan/evidence/task-139-review.json"
+        "plan/evidence/task-139-review.json",
+        "plan/evidence/task-139/native.json",
+        "plan/evidence/task-139/hosted.json",
+        "plan/evidence/task-139/tests-full.txt",
+        "plan/evidence/task-139/build-root-uncached.txt",
+        "plan/evidence/task-139/build-filtered-uncached.txt"
       ]
     },
     {
@@ -14746,16 +14766,21 @@
       "task_id": "TASK-139",
       "acceptance_id": "AC-05",
       "criterion": "Panelร้าน/แลกเศษ/หอคอย/ดัน/กาชา/Refine/Stats/เลือกอาชีพใช้white-blue surfacesสอดคล้อง ไม่แตะrarity/glow/ข้อมูลต่อสู้และmobileportrait",
-      "input_setup": "Disposable seeded wallet/shop and actual shared reducers; mobile readonly/auth test user only",
+      "input_setup": "Disposable signed synthetic in-memory save; actual local HTTP API/SaveController/React; no hosted owner or Supabase/Auth/RLS interaction",
       "input_refs": [
         "plan/design/56-shop-and-exchange-ui.md"
       ],
       "parameters": {},
       "expected": "Panelร้าน/แลกเศษ/หอคอย/ดัน/กาชา/Refine/Stats/เลือกอาชีพใช้white-blue surfacesสอดคล้อง ไม่แตะrarity/glow/ข้อมูลต่อสู้และmobileportrait",
       "verification": "Shared rules/unit/HTTPreceipt/mobile/hosted",
-      "status": "not_run_implementation",
+      "status": "passed_implementation",
       "evidence_refs": [
-        "plan/evidence/task-139-review.json"
+        "plan/evidence/task-139-review.json",
+        "plan/evidence/task-139/native.json",
+        "plan/evidence/task-139/hosted.json",
+        "plan/evidence/task-139/tests-full.txt",
+        "plan/evidence/task-139/build-root-uncached.txt",
+        "plan/evidence/task-139/build-filtered-uncached.txt"
       ]
     },
     {
@@ -14763,16 +14788,21 @@
       "task_id": "TASK-139",
       "acceptance_id": "AC-06",
       "criterion": "unit/actualreducerและHTTP-receipt+mobile320390interaction/pending/reject/overflow/build+filtered/hostedผ่านก่อนdone;ไม่SQL/env/owner/6173",
-      "input_setup": "Disposable seeded wallet/shop and actual shared reducers; mobile readonly/auth test user only",
+      "input_setup": "Disposable signed synthetic in-memory save; actual local HTTP API/SaveController/React; no hosted owner or Supabase/Auth/RLS interaction",
       "input_refs": [
         "plan/design/56-shop-and-exchange-ui.md"
       ],
       "parameters": {},
       "expected": "unit/actualreducerและHTTP-receipt+mobile320390interaction/pending/reject/overflow/build+filtered/hostedผ่านก่อนdone;ไม่SQL/env/owner/6173",
       "verification": "Shared rules/unit/HTTPreceipt/mobile/hosted",
-      "status": "not_run_implementation",
+      "status": "passed_implementation",
       "evidence_refs": [
-        "plan/evidence/task-139-review.json"
+        "plan/evidence/task-139-review.json",
+        "plan/evidence/task-139/native.json",
+        "plan/evidence/task-139/hosted.json",
+        "plan/evidence/task-139/tests-full.txt",
+        "plan/evidence/task-139/build-root-uncached.txt",
+        "plan/evidence/task-139/build-filtered-uncached.txt"
       ]
     }
   ]

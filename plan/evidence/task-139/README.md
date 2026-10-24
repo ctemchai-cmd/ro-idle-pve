@@ -1,6 +1,6 @@
 # TASK139 — ร้านค้า / แลกเศษสกิล / Panel
 
-ผู้ใช้ขอปรับ UI ห้าข้อตาม D167/design56. Local ผ่านแล้ว; สถานะเผยแพร่ดู `task-139-review.json` และ `hosted.json`.
+ผู้ใช้ขอปรับ UI ห้าข้อตาม D167/design56. เผยแพร่แล้ว sourcebbf0987fa/VercelSUCCESS; สถานะดู `task-139-review.json` และ `hosted.json`.
 
 - Crystal แลก20ครั้ง/วัน ครั้งละ10 ที่25,000ทอง. วัสดุทั่วไป10ครั้ง/วัน; ราคา EXP2,500/manual3,000/ore4,000/enchant5,000ทอง. ราคา Crystal ของแพ็กอื่นเดิม. ใบธาตุ6,000ทอง/99สิทธิ์. ไม่มีการรีเซ็ต counter หรือคิดราคาเก่าย้อนหลัง.
 - ปุ่ม “แลกหมด” แสดงจำนวนและราคารวมตามเงิน/โควตา/ความจุ; หนึ่งคำสั่งและหนึ่ง revision. Quote/reducer/max ใช้ `domain/progression/shop.ts` ร่วมกัน; schemaรับสูงสุด99.
@@ -22,3 +22,5 @@ Vercel source02aa13d3b statusFailed;privatebuildlogเข้าถึงไม�
 Retryverificationcommitc4cbc0e39ก็Failed;ยังรอerrorช่วงท้ายBuildLogsจากผู้ใช้. ไม่รันhostedharnessกับเว็บเก่าและไม่ทำเครื่องหมายdone.
 
 ผู้ใช้ส่งlogแล้ว:TS6196 Wallet typeไม่ได้ใช้ที่src/client/store.ts:11. ลบtypeที่ค้างและปิดincrementalในtsconfigสำหรับrequiredtypecheck(คงstrict/noUnusedไว้). รอบก่อนlocalใช้incrementalจึงยังไม่ใช่หลักฐานfreshtypecheck;build-root-uncached.txtและbuild-filtered-uncached.txtหลังแก้ผ่านครบ628933gzip/content6d2d/PWAเดิม. ไม่มีruntime/economyเพิ่มจากการแก้typeนี้. รอเผยแพร่/hosted.
+
+เผยแพร่สำเร็จ:sourcebbf0987fa [Vercel](https://vercel.com/chanon2/ro-idle-pve/2iQSqp9p1inrDchvqbMXpExtB4CG). hosted.jsonผ่าน4กลุ่ม:API6d2d/SIN1/auth401,24bundleSHA/newshop-exchangeUI/noCrystalfooter/packเดิม,mobilelogin320390/nooverflow,0pageerrors/0writes. การกดร้านจริงเป็นหลักฐานlocal8groups;ไม่เข้าownerhosted. TASK139done.

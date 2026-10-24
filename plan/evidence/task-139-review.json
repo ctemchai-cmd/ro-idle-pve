@@ -1,17 +1,17 @@
 {
   "task_id": "TASK-139",
-  "passed": false,
+  "passed": true,
   "local_passed": true,
   "date": "2026-10-24",
-  "status": "review",
+  "status": "done",
   "content_hash": "6d2d125d956656ed90f7e82ee0deb3bdc91025ae57b5f062863b945b741d28c6",
   "acceptance_results": {
-    "AC-01": "passed_local",
-    "AC-02": "passed_local",
-    "AC-03": "passed_local",
-    "AC-04": "passed_local",
-    "AC-05": "passed_local",
-    "AC-06": "pending_hosted"
+    "AC-01": "passed",
+    "AC-02": "passed",
+    "AC-03": "passed",
+    "AC-04": "passed",
+    "AC-05": "passed",
+    "AC-06": "passed"
   },
   "tests": {
     "full": 672,
@@ -19,7 +19,8 @@
     "native_HTTP_groups": 8,
     "root_filtered_gzip_bytes": 628933,
     "pwa_version": "80546d33a409b9f9",
-    "clean_tracked_build": "passed_same_hash_gzip_pwa"
+    "clean_tracked_build": "passed_same_hash_gzip_pwa",
+    "hosted_groups": 4
   },
   "evidence": [
     "plan/evidence/task-139/README.md",
@@ -29,19 +30,19 @@
     "plan/evidence/task-139/build-filtered.txt",
     "plan/evidence/task-139/build-root-uncached.txt",
     "plan/evidence/task-139/build-filtered-uncached.txt",
-    "plan/evidence/task-139/vercel-failure.txt"
+    "plan/evidence/task-139/vercel-failure.txt",
+    "plan/evidence/task-139/hosted.json"
   ],
   "limits": [
     "Local UI uses signed synthetic in-memory persistence with actual HTTP API + SaveController; not real Supabase/Auth/RLS proof",
     "No owner save access; no SQL/env changes or personal6173 restart",
     "No combat balance/simulation batch"
   ],
-  "source_commit": "02aa13d3b",
+  "source_commit": "bbf0987fa",
   "vercel": {
-    "commit": "c4cbc0e39",
-    "status": "failed",
-    "url": "https://vercel.com/chanon2/ro-idle-pve/CM93Am5Rgn53h15xbBRNFf2ghZyw",
-    "logs": "User Build Logs requested via async; API403 without auth. Local root/filtered/clean-tracked builds all passed."
+    "status": "success",
+    "url": "https://vercel.com/chanon2/ro-idle-pve/2iQSqp9p1inrDchvqbMXpExtB4CG",
+    "commit": "bbf0987fa"
   },
   "verification_commit": "c4cbc0e39",
   "vercel_attempts": [
@@ -54,6 +55,11 @@
       "commit": "c4cbc0e39",
       "status": "failed",
       "url": "https://vercel.com/chanon2/ro-idle-pve/CM93Am5Rgn53h15xbBRNFf2ghZyw"
+    },
+    {
+      "commit": "bbf0987fa",
+      "status": "success",
+      "url": "https://vercel.com/chanon2/ro-idle-pve/2iQSqp9p1inrDchvqbMXpExtB4CG"
     }
   ],
   "deployment_fix": {
@@ -62,6 +68,7 @@
     "root_uncached_build": "passed",
     "filtered_uncached_build": "passed",
     "runtime_unchanged": "same6d2dcontent/gzip628933/PWA80546d33a409b9f9",
-    "pending": "push corrected source then verify hosted"
-  }
+    "pending": "none; VercelSUCCESS and hosted4groups passed"
+  },
+  "feature_source_commit": "02aa13d3b"
 }

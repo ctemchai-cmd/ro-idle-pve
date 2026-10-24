@@ -2,6 +2,8 @@
 
 ## Shop batches and exchange UI (24 October 2026, D167)
 
+Sourcebbf0987fa is deployed on VercelSUCCESS; 672TS/nativeHTTP8groups/uncachedroot+filteredbuild/publichosted4groups passed. Required TypeScript gate now disables incremental caching (strict/noUnused unchanged); remove unused aliases before release. Local shop UI receipts use signed synthetic in-memory persistence, not new Supabase/RLS proof. No owner writes or SQL/env changes.
+
 TASK139: Crystal exchange20/day ×10Crystal at25000gold; six material packs10/day, gold EXP2500/manual3000/ore4000/enchant5000, non-gold prices unchanged. Scrolls6000gold/99day. Counter purchases remain intact across migration. Shared progression/shop.ts quotes/max/reducer validate all funds/rights/capacity before spending, max99 per command; buy-max is one command/receipt/revision with single-flight UI. Shard conversion stays10SkillBook→1Awaken and1→5, now spaced tabs/stepper/native icons/44px submit. No Crystal acquisition footer in gacha. Preserve rarity/Awaken glow and battle rules. See design56/latestHANDOFF for publish status.
 
 ## Grimtooth balance and boss sizes (24 October 2026, D166)

@@ -1,6 +1,6 @@
 # ภาพรวมแผนและความคืบหน้า
 
-[TASK139](review/tasks_139.md) Localผ่าน672TS/mobile8groups/root+filteredbuild; รอVercel/hosted สำหรับUIแลกเศษ/Panel/buymaxและCrystal20ครั้งตามD167.
+[TASK139](done/tasks_139.md) ขึ้นVercelbbf0987faแล้ว: UIแลกเศษ/Panel/buymax/Crystal20ครั้งตามD167. 672TS/nativeHTTP8groups/uncachedbuild/hosted4groupsผ่าน; แก้TS6196และปิดincrementalgateแล้ว.
 
 [TASK137](done/tasks_137.md) Grimtooth625/ตรวจAssX และ[TASK138](done/tasks_138.md) ขนาดบอสตรงการ์ดขึ้นVercel5701cde9aแล้ว:667tests/native4groups/final1680fights+trial1548/hosted4groupsผ่านตามD166.
 
@@ -16,7 +16,7 @@
 
 [TASK-129](done/tasks_129.md) วัดแล้ว14,168ไฟต์ / 32อาชีพ / 11เงื่อนไข / 1224บิลด์: [รายงาน](evidence/task-129/README.md) · [ตารางกรองได้](evidence/task-129/report.html). เก็บbaseline79ab9437ก่อนคำขอปรับAwaken TASK130; ไม่มีการปรับเกมจากอันดับอัตโนมัติ
 
-อัปเดต: 24 ตุลาคม 2026 · ระยะปัจจุบัน: **124/139 งานผ่าน done; TASK-041 บาลานซ์, TASK-058 ย้ายเซฟ และ TASK-064 อัปเกรดทันทีขึ้นVercelแล้ว/SQL007ติดตั้งแล้ว/รอcloudtimingอยู่ inprogress; TASK-062 PWAขึ้นVercelและผ่านhostedแล้ว; TASK-063 ทุกmutationลด3→1requestsขึ้นVercelผ่านแล้ว; TASK-060 เซฟเริ่ม/จบและ TASK-061 resetดันขึ้นVercelแล้ว; TASK-048/054/055/056/057 อยู่ review รอผู้ใช้ตรวจภาพ**
+อัปเดต: 24 ตุลาคม 2026 · ระยะปัจจุบัน: **125/139 งานผ่าน done; TASK-041 บาลานซ์, TASK-058 ย้ายเซฟ และ TASK-064 อัปเกรดทันทีขึ้นVercelแล้ว/SQL007ติดตั้งแล้ว/รอcloudtimingอยู่ inprogress; TASK-062 PWAขึ้นVercelและผ่านhostedแล้ว; TASK-063 ทุกmutationลด3→1requestsขึ้นVercelผ่านแล้ว; TASK-060 เซฟเริ่ม/จบและ TASK-061 resetดันขึ้นVercelแล้ว; TASK-048/054/055/056/057 อยู่ review รอผู้ใช้ตรวจภาพ**
 
 [TASK-125](done/tasks_125.md)/[TASK-128](done/tasks_128.md) ขึ้นVercel source`fe14ac635`แล้ว: **Hi-class13อาชีพ/26สกิล, Awaken152variants, Lv.70→90, บท10–12** และบัพHunterสามท่า. Spiral3hitรวม750%weapon/Rapid1050%/Claymore750%เมื่อเต็ม. 624TS/root+filteredbuild/M0/actualAuthSQL-mobile6groups/hosted4groupsผ่าน;ไม่SQL/envใหม่/ไม่เข้าบัญชีowner/ไม่รันbalancebatch. [Hi review](evidence/task-125-review.json) · [Hunter review](evidence/task-128-review.json). จบไฟต์reloadแล้วสำรองอัปเดตเซฟตามflowเดิม.
 
@@ -130,10 +130,10 @@ Q-001–Q-022 ตอบแล้ว: บัฟบวกกันไม่มี�
 | --- | ---: | --- |
 | todo | 5 | ออกแบบ/พัฒนา/ตรวจรับตามรายการด้านล่าง |
 | inprogress | 4 | TASK-041 บาลานซ์; TASK-058 ย้ายเซฟ; TASK-064 cloud timing; TASK-067 รอผู้ใช้คืนสิทธิ์แก่นพลัง |
-| review | 6 | [TASK-048](review/tasks_048.md) game shell /play รอผู้ใช้ตรวจหน้าตา (AC-08), [TASK-054](review/tasks_054.md) ภาพการต่อสู้ตรง RO รอผู้ใช้ตรวจ (AC-06), [TASK-055](review/tasks_055.md) คำขอระหว่างลองเล่น รอผู้ใช้ (AC-06), [TASK-056](review/tasks_056.md) UI D-076–078/080 อัปเดตแล้วรอผู้ใช้ตรวจภาพ (AC-06), [TASK-057](review/tasks_057.md) ทรงผม D-079 อัปเดตแล้วรอผู้ใช้ตรวจ (AC-05); [TASK-139](review/tasks_139.md) localผ่าน รอhosted |
-| done | 124 | ผ่าน review ตามหลักฐานในแต่ละงาน |
+| review | 5 | [TASK-048](review/tasks_048.md) game shell /play รอผู้ใช้ตรวจหน้าตา (AC-08), [TASK-054](review/tasks_054.md) ภาพการต่อสู้ตรง RO รอผู้ใช้ตรวจ (AC-06), [TASK-055](review/tasks_055.md) คำขอระหว่างลองเล่น รอผู้ใช้ (AC-06), [TASK-056](review/tasks_056.md) UI D-076–078/080 อัปเดตแล้วรอผู้ใช้ตรวจภาพ (AC-06), [TASK-057](review/tasks_057.md) ทรงผม D-079 อัปเดตแล้วรอผู้ใช้ตรวจ (AC-05) |
+| done | 125 | ผ่าน review ตามหลักฐานในแต่ละงาน |
 
-Progress ของกระดาน: **124/139 งานผ่าน done** ไม่รวมงานเตรียม assets ที่ทำก่อนเริ่มใช้กระดาน ตำแหน่งไฟล์เป็นสถานะจริง ID คงเดิม เมื่อย้ายไฟล์ให้อัปเดตจำนวนและลิงก์ในเอกสารนี้
+Progress ของกระดาน: **125/139 งานผ่าน done** ไม่รวมงานเตรียม assets ที่ทำก่อนเริ่มใช้กระดาน ตำแหน่งไฟล์เป็นสถานะจริง ID คงเดิม เมื่อย้ายไฟล์ให้อัปเดตจำนวนและลิงก์ในเอกสารนี้
 
 TASK-001–014 และ TASK-047 อยู่doneครบM0 TASK-015–028ผ่านแล้ว รอบภาพล่าสุด [TASK-020รอบ11](evidence/task-020-focus-impact-review.json) ผ่าน184TStests+4native/build/Chrome: focusนุ่มไร้กรอบและdamage numbersตรงnative ACTcontact/ลูกธนู-ลูกเวทย์กระทบ ภาพไม่เปลี่ยนผลcombat Runtimepack252IDs/505files/35audioรวม22.5MB
 
@@ -187,7 +187,7 @@ TASK-001–014 และ TASK-047 อยู่doneครบM0 TASK-015–028ผ�
 | M1 | แกนต่อสู้และ headless simulation | 4 | 4 |
 | M2 | วงจรเกม ภาพ และ cloud save | 7 | 7 |
 | M3 | อุปกรณ์และสกิลครบทุกสาย + game shell (TASK-048) + กติกา D-057 (TASK-049) + ย้ายเซฟ (TASK-050) + ร้านค้า/กาชาอุปกรณ์ (TASK-051) + Option สุ่ม (TASK-052) + ไอเทม/การ์ดหลากหลาย (TASK-053) + ภาพการต่อสู้ตรง RO (TASK-054) + คำขอระหว่างลองเล่น (TASK-055) | 19 | 14 |
-| M4 | โหมด บาลานซ์ ตรวจรับ และ deploy รวมย้ายเซฟcloud (058), เซฟ/รีเซ็ตดัน (059–061) PWA (062) และลดเวลาบันทึก (063) | 88 | 78 |
+| M4 | โหมด บาลานซ์ ตรวจรับ และ deploy รวมย้ายเซฟcloud (058), เซฟ/รีเซ็ตดัน (059–061) PWA (062) และลดเวลาบันทึก (063) | 88 | 79 |
 | M5 | Hi-class/Awaken:ฐานอาชีพ,เลเวล,26สกิลใหม่,เศษ/variantและเปิดจริง | 6 | 6 |
 
 TASK-001–013 และ TASK-047 ออกแบบข้อมูล/สูตร/โมดูลสถานะ/สกิลครบหกสาย/อุปกรณ์/เศรษฐกิจ/ด่าน/UX/สถาปัตยกรรม (ลำดับแกนคือ TASK-001 → 002 → 047 → ข้อมูลสกิล/ไอเทม) จากนั้น TASK-014 ตรวจรวมทั้งหมดก่อนเริ่มเขียนเกมตามความต้องการออกแบบก่อน coding งานพัฒนา TASK-015–046 มี gate นี้ใน dependency
@@ -425,4 +425,4 @@ TASK-101 correction23ต.ค.: แทนskillartเดิมด้วย19actual
 | [TASK-137](done/tasks_137.md) | M4 | GrimtoothและAssX | TASK-132, TASK-136 |
 | [TASK-138](done/tasks_138.md) | M4 | ขนาดบอสตรงการ์ด | TASK-074, TASK-091, TASK-136 |
 
-| [TASK-139](review/tasks_139.md) | M4 | ร้าน/แลกเศษ/Panelและbuymax | TASK-051, TASK-124, TASK-138 |
+| [TASK-139](done/tasks_139.md) | M4 | ร้าน/แลกเศษ/Panelและbuymax | TASK-051, TASK-124, TASK-138 |

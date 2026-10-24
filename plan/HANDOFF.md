@@ -1,9 +1,10 @@
 # Handoff ระหว่าง agent
 
-## 24 ต.ค.2026 · Codex — TASK139 แก้VercelTS6196แล้ว รอdeployใหม่
+## 24 ต.ค.2026 · Codex — TASK139 ขึ้นVercelแล้ว
 
 - Userส่งactualVercelbuildlogc4cbc0e:TS6196unusedWalletในsrc/client/store.ts:11. ลบaliasและปิดtsconfigincremental(คงstrict/noUnused),ไม่ใช้cachedtypecheckgateอีก. Root+cleantrackedfiltereduncachedbuildผ่านทั้งคู่content6d2d/628933gzip/PWA80546d33a409b9f9/packb9aเดิม. Type-only/config ไม่มีruntime/economyหรือownerwrite. Evidence139/build-*-uncached.txt/vercel-failure.txt.
-- ไม่ต้องรัน672tests/native8groupsซ้ำเพราะtypeerasure/runtimebundleเดิม;เดิมหลักฐานยังอยู่. ต่อ:pushfix→VercelSUCCESS→scripts/test_store_exchange_hosted.cjs→139done/125of139/M4done79of88/ACmatrix/readiness/closurepush. ไม่มีคำถามpendingแล้ว. Olderfaileddeploysและcachedbuildsด้านล่างเป็นhistory supersededด้วยfreshbuild.
+- Sourcebbf0987faVercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/2iQSqp9p1inrDchvqbMXpExtB4CG; hosted4groupsผ่านAPI6d2d/SIN1/auth401/24bundleSHA/newshop-shardUI/nofooter/mobile320390/0writes-errors. Task139done/125of139/M4done79of88/AC6ผ่าน. Closure docs push next;productliveverified. ไม่รัน672/native8ซ้ำเพราะtypeerasure/runtimebundleเดิม. ไม่มีคำถามpendingแล้ว. Olderfaileddeploysและcachedbuildsด้านล่างเป็นhistory supersededด้วยfreshbuild.
+- Alltemporary7494/7495/Chromeclosed;6173/owner/SQL/env/agentsไม่แตะ. Useruntrackedmodernassets/task108pnguntouched. Finalตอบแก้unusedWalletและdeployขึ้นจริงแล้ว/reloadพร้อมbackup-migrateถ้ามีแจ้ง.
 
 ## 24 ต.ค.2026 · Codex — TASK139 localผ่าน Vercelfailed/รอerrorlog
 
