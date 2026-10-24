@@ -22,7 +22,7 @@ TASK-138, TASK-140 (done)
 - [x] AC-01: HPบอสและข้อมูลย่อสูงไม่เกิน52px และลดพื้นที่ด้านบนอย่างน้อยครึ่งหนึ่งเทียบเดิมที่320390;ธาตุ/ขนาด/HPยังอ่านหรือเปิดรายละเอียดได้
 - [x] AC-02: ย้ายสถิติ/Timeline/speed/retreat/Autoเป็นแถวเดียวในdockล่าง;ปุ่มอย่างน้อย36pxและAuto/แพ้0of3ยังชัด;แถบทีม/สถานะไม่ทับกัน
 - [x] AC-03: actualnativeบน320x640/390x844เห็นwhite/yellowdamageจากengineและcaptureglyphbounds;ตรวจไม่ให้HP/controlsบังตัวเลขในตัวอย่างและเปิดปุ่มหลักได้ ไม่มีhorizontaloverflow
-- [ ] AC-04: uncachedroot+filteredbuild/M0/publichostedผ่าน;ไม่เปลี่ยนengine/สูตร/การเซฟ/ข้อมูลและไม่owner/SQL/env/6173
+- [x] AC-04: uncachedroot+filteredbuild/M0/publichostedผ่าน;ไม่เปลี่ยนengine/สูตร/การเซฟ/ข้อมูลและไม่owner/SQL/env/6173
 
 - [x] AC-05: หน้าจบStory/Tower/Dailyจัดปุ่มหลัก44px/รอง36pxเป็นกลุ่ม;แยกbodyเลื่อนกับfooterที่เห็นเสมอบน320x568/390x844;next/retry/team/exit/Stats/Timelineและlocked/pending/Autoคงcallbacksเดิม
 
@@ -33,3 +33,7 @@ T141-AC01–05:plan/evidence/task-141-review.json/nativebefore-after/build/hoste
 ## Blocker / คำถาม
 
 ไม่มี
+
+## ผลreview
+
+LocalnativeHUD3/result2(16cases),uncachedroot+filteredbuild/M0/readiness8/VercelSUCCESS3d431a78c/publichosted4groupsผ่าน. TASK142ยังต้องทำต่อ.

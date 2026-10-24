@@ -2,6 +2,8 @@
 
 ## Compact battle HUD and result actions (25 October 2026, TASK141)
 
+Source3d431a78c is live on VercelSUCCESS; nativeHUD3/result16cases2 groups/uncachedbuild/publichosted4 passed. TASK142 skill rework is separately inprogress and not yet released.
+
 Boss HP/name/compact element+size stay at the top; Stats/Timeline/speed/retreat/Auto now share one row in the lower battle-dock with the compact party/focus panels. Keep native damage/actor coordinates unchanged. Element/size compact views retain full accessible labels and armor guide interaction. ResultCard/DailyResult use a scrolling result-body and fixed result-footer: clear primary next/retry/team controls plus secondary analysis/exit buttons. Do not return the controls into the large HP panel. See latestHANDOFF for release status.
 
 ## Auto Battle result transition (24 October 2026, TASK140)

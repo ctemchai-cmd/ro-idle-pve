@@ -744,11 +744,11 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 
 | ID | Task | เกณฑ์ | วิธีตรวจ | สถานะ |
 | --- | --- | --- | --- | --- |
-| `T141-AC-01` | TASK-141 | HPบอสและข้อมูลย่อสูงไม่เกิน52px และลดพื้นที่ด้านบนอย่างน้อยครึ่งหนึ่งเทียบเดิมที่320390;ธาตุ/ขนาด/HPยังอ่านหรือเปิดรายละเอียดได้ | Native/build/hosted | not_run_implementation |
-| `T141-AC-02` | TASK-141 | ย้ายสถิติ/Timeline/speed/retreat/Autoเป็นแถวเดียวในdockล่าง;ปุ่มอย่างน้อย36pxและAuto/แพ้0of3ยังชัด;แถบทีม/สถานะไม่ทับกัน | Native/build/hosted | not_run_implementation |
-| `T141-AC-03` | TASK-141 | actualnativeบน320x640/390x844เห็นwhite/yellowdamageจากengineและcaptureglyphbounds;ตรวจไม่ให้HP/controlsบังตัวเลขในตัวอย่างและเปิดปุ่มหลักได้ ไม่มีhorizontaloverflow | Native/build/hosted | not_run_implementation |
-| `T141-AC-04` | TASK-141 | uncachedroot+filteredbuild/M0/publichostedผ่าน;ไม่เปลี่ยนengine/สูตร/การเซฟ/ข้อมูลและไม่owner/SQL/env/6173 | Native/build/hosted | not_run_implementation |
-| `T141-AC-05` | TASK-141 | หน้าจบStory/Tower/Dailyจัดปุ่มหลัก44px/รอง36pxเป็นกลุ่ม;แยกbodyเลื่อนกับfooterที่เห็นเสมอบน320x568/390x844;next/retry/team/exit/Stats/Timelineและlocked/pending/Autoคงcallbacksเดิม | Native/build/hosted | not_run_implementation |
+| `T141-AC-01` | TASK-141 | HPบอสและข้อมูลย่อสูงไม่เกิน52px และลดพื้นที่ด้านบนอย่างน้อยครึ่งหนึ่งเทียบเดิมที่320390;ธาตุ/ขนาด/HPยังอ่านหรือเปิดรายละเอียดได้ | Native/build/hosted | passed_implementation |
+| `T141-AC-02` | TASK-141 | ย้ายสถิติ/Timeline/speed/retreat/Autoเป็นแถวเดียวในdockล่าง;ปุ่มอย่างน้อย36pxและAuto/แพ้0of3ยังชัด;แถบทีม/สถานะไม่ทับกัน | Native/build/hosted | passed_implementation |
+| `T141-AC-03` | TASK-141 | actualnativeบน320x640/390x844เห็นwhite/yellowdamageจากengineและcaptureglyphbounds;ตรวจไม่ให้HP/controlsบังตัวเลขในตัวอย่างและเปิดปุ่มหลักได้ ไม่มีhorizontaloverflow | Native/build/hosted | passed_implementation |
+| `T141-AC-04` | TASK-141 | uncachedroot+filteredbuild/M0/publichostedผ่าน;ไม่เปลี่ยนengine/สูตร/การเซฟ/ข้อมูลและไม่owner/SQL/env/6173 | Native/build/hosted | passed_implementation |
+| `T141-AC-05` | TASK-141 | หน้าจบStory/Tower/Dailyจัดปุ่มหลัก44px/รอง36pxเป็นกลุ่ม;แยกbodyเลื่อนกับfooterที่เห็นเสมอบน320x568/390x844;next/retry/team/exit/Stats/Timelineและlocked/pending/Autoคงcallbacksเดิม | Native/build/hosted | passed_implementation |
 
 ## TASK-142 — บทบาทสกิลแยกกัน
 

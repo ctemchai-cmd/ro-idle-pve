@@ -10,3 +10,5 @@
 - Root/filtereduncachedbuildผ่าน630186gzip/PWA5f8a379eadd4e56a;content6d2d/packb9a9280a/raw33108285เดิม. M0/readiness8ผ่าน. Noowner/SQL/env/6173restart/balancebatch/subagents. Full672ไม่รันซ้ำกับpresentationchangeนี้.
 
 ตรวจภาพafterHUD390320และresultlose320ด้วยตา. Initialresultgeometryวัดระหว่างpopanimationจึงต่ำกว่า44px แก้harnessรอanimationfinishedแล้วผ่านจริง;debugเก็บ.local/hud141-debug. สถานะเผยแพร่ดูtask141review/hosted.json. สกิลที่ผู้ใช้สั่งเพิ่มต้องทำต่อTASK142.
+
+Source3d431a78c/VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/CNdeTxZZpvabZTKAcTWLo7D8U1xr. Hosted4groupsผ่านAPI6d2d/SIN1/auth401/24bundleSHA/compactHUD+resultfooter/mobile320390/noerrors-writes. 141done; skillwork142ยังไม่เสร็จ.
