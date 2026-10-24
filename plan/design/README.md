@@ -74,3 +74,5 @@
 - [49 · Awaken152ผลเฉพาะสกิล](49-awaken-identities.md): D160/TASK130, per-effectเจาะเกราะ/งบhitรวม/ฮีล+โล่/โบนัสตามหน้าที่; before79ab→after9ae8 และ832matched fights
 
 - [50 · Boss focus และบาลานซ์](50-boss-focus-balance.md): D161/TASK131, AoE +35% skill bucket เมื่อเหลือเป้าเดียว/periodic snapshot/ปรับ power และวัดใหม่
+
+- [51 · Assassin Cross และกรอบ DPS](51-assassin-awaken-balance.md): D162/D163/TASK132, causal ATK/uptime probes และเป้าHiDD9–11k

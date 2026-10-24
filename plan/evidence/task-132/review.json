@@ -1,0 +1,45 @@
+{
+  "task_id": "TASK-132",
+  "passed": false,
+  "stage": "local passed; hosted pending",
+  "content_hash": "0ac01fa6e97f1463cac3bacd72ae0a05249b0e728ed71541180ecfdab8470d46",
+  "local": {
+    "full_tests": 638,
+    "full_passed": 638,
+    "native_groups": 5,
+    "native_390_320": true,
+    "root_build_gzip_bytes": 623826,
+    "filtered_build_gzip_bytes": 623826,
+    "pack_bytes": 33108285,
+    "pack_hash": "b9a9280a8c7cd03a430256592591483015b3cfd0b95cf238a12ca50dea3c32bd",
+    "M0_and_readiness": "passed"
+  },
+  "balance": {
+    "actual_fights": 3338,
+    "diagnostic_fights": 224,
+    "screen_fixed_and_replays": 2986,
+    "fresh_class2_comparator_fights": 128,
+    "high_damage_jobs": 9,
+    "high_damage_job_means_in_9000_11000": 9,
+    "assassin_cross_fixed_DPS_before": 14281.685,
+    "assassin_cross_fixed_DPS_after": 10908.863,
+    "class2_assassin_gear60_DPS": 4348,
+    "class2_hunter_gear60_DPS": 4313,
+    "class2_wizard_gear60_DPS": 4299
+  },
+  "limitations": [
+    "Neutral90s boss; damage-role mean target only, not a runtime clamp",
+    "Finite candidate pool; RNG intervals do not cover build-selection uncertainty",
+    "No all-card/refine/rarity/element sweep; TASK041 stays open",
+    "Four equipped Active skills Awaken; learned passives remain base"
+  ],
+  "owner_writes": 0,
+  "SQL_or_env_changes": false,
+  "personal_preview_restarted": false,
+  "evidence": [
+    "plan/evidence/task-132/README.md",
+    "plan/evidence/task-132/diagnosis.json",
+    "plan/evidence/task-132/comparators.json",
+    "plan/evidence/task-132-native.json"
+  ]
+}

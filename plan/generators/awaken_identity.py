@@ -136,4 +136,12 @@ def identity(s,original):
   s['level_parameters']['awaken_sp']=[round(v)for v in curve(12,30)]
   s['effects'].append({'id':'awaken_sp','type':'resource_change','target':'self','resource':'sp','amount':ref('awaken_sp')})
   gains.append({'type':'sp_restore','range':[12,30],'target':'self'})
+ if id=='assassin_enchant_poison':
+  # D162/TASK132: the generic Awaken curve multiplied both ATK and uptime.
+  # Rein in that compound growth while keeping rank1, penetration, independent
+  # stacking and the original Class2 skill intact. No class-wide damage penalty.
+  maximum=original['level_parameters']['ratio'][-1]
+  duration=original['level_parameters']['duration'][-1]
+  s['level_parameters']['ratio']=curve(maximum*1.1,maximum*1.2)
+  s['level_parameters']['duration']=[round(v)for v in curve(duration*1.1,duration*1.2)]
  return gains

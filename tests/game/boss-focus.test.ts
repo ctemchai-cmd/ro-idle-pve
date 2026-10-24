@@ -4,6 +4,7 @@ import {readFileSync} from 'node:fs';
 import {gunzipSync} from 'node:zlib';
 import raw from '../../src/generated/content.json';
 import tuning from './fixtures/boss-focus-131.json';
+import tuning132 from './fixtures/assassin-balance-132.json';
 import {actor,skill,content,unwrap,type Active} from './combat-fixtures.ts';
 import {createBattle,advanceUntil,type BattleState} from '../../src/domain/combat/index.ts';
 import {resolveSkill} from '../../src/domain/build/resolve-skill.ts';
@@ -64,6 +65,8 @@ test('D161 all base changes are the declared power scales/focus only; native IDs
     expected.level_parameters[param].forEach((v:number,i:number)=>assert.ok(Math.abs(actual[i]!-v*scale)<.000001,`${original.id}:${param}:${i}`));
     expected.level_parameters[param]=actual;
    }
+   const subsequent=(tuning132.base_changes as Record<string,Record<string,number[]>>)[original.id];
+   for(const [param,values]of Object.entries(subsequent??{}))expected.level_parameters[param]=values;
    assert.deepEqual(now[group].find(s=>s.id===original.id),expected,original.id);
   }
   for(const prices of ['upgrades','hi_class_upgrades','awakened_upgrades']as const)assert.deepEqual(now[prices],old[prices]);

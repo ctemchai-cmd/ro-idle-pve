@@ -14178,6 +14178,82 @@
         "plan/evidence/task-131-review.json",
         "plan/evidence/task-131-hosted.json"
       ]
+    },
+    {
+      "id": "T132-AC-01",
+      "task_id": "TASK-132",
+      "acceptance_id": "AC-01",
+      "criterion": "มี causal ablation และ per-skill/crit/uptime/overlap จริง ระบุแหล่งที่นำ พร้อมข้อจำกัดของ marginal comparisons",
+      "input_setup": "Frozen99a55 and synthetic matched build/gear/seeds; no owner account",
+      "input_refs": [
+        "scripts/game/assassin-cause.ts"
+      ],
+      "parameters": {
+        "seeds": "22901–22916"
+      },
+      "expected": "มี causal ablation และ per-skill/crit/uptime/overlap จริง ระบุแหล่งที่นำ พร้อมข้อจำกัดของ marginal comparisons",
+      "verification": "Actual shared engine controlled ablations, fixed A/B, re-screen, regression and public browser",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-132-review.json"
+      ]
+    },
+    {
+      "id": "T132-AC-02",
+      "task_id": "TASK-132",
+      "acceptance_id": "AC-02",
+      "criterion": "ปรับเฉพาะ curve/effect ที่ระบุ ไม่มี job penalty หรือ buff cap/refresh; IDs/ราคา/ทุน/CT/ACD/SPเดิม; programอื่นนอกEP/HighCartTerminationไม่เปลี่ยน และ Awaken1ยังดีขึ้นจาก baseMax",
+      "input_setup": "Frozen99a55 and synthetic matched build/gear/seeds; no owner account",
+      "input_refs": [
+        "scripts/game/assassin-cause.ts"
+      ],
+      "parameters": {
+        "seeds": "22901–22916"
+      },
+      "expected": "ปรับเฉพาะ curve/effect ที่ระบุ ไม่มี job penalty หรือ buff cap/refresh; IDs/ราคา/ทุน/CT/ACD/SPเดิม; programอื่นนอกEP/HighCartTerminationไม่เปลี่ยน และ Awaken1ยังดีขึ้นจาก baseMax",
+      "verification": "Actual shared engine controlled ablations, fixed A/B, re-screen, regression and public browser",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-132-review.json"
+      ]
+    },
+    {
+      "id": "T132-AC-03",
+      "task_id": "TASK-132",
+      "acceptance_id": "AC-03",
+      "criterion": "fixed A/B และ candidate re-screen หลายseed/solo/pressure/ช่วงAwaken; Hi90/Common60/4ActiveAw10 สายดาเมจ9อาชีพเฉลี่ย9–11k และClass2Assassinใกล้Hunter/Wizardที่gearเท่ากัน ไม่อ้างทุกencounterสมดุล",
+      "input_setup": "Frozen99a55 and synthetic matched build/gear/seeds; no owner account",
+      "input_refs": [
+        "scripts/game/assassin-cause.ts"
+      ],
+      "parameters": {
+        "seeds": "22901–22916"
+      },
+      "expected": "fixed A/B และ candidate re-screen หลายseed/solo/pressure/ช่วงAwaken; Hi90/Common60/4ActiveAw10 สายดาเมจ9อาชีพเฉลี่ย9–11k และClass2Assassinใกล้Hunter/Wizardที่gearเท่ากัน ไม่อ้างทุกencounterสมดุล",
+      "verification": "Actual shared engine controlled ablations, fixed A/B, re-screen, regression and public browser",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-132-review.json"
+      ]
+    },
+    {
+      "id": "T132-AC-04",
+      "task_id": "TASK-132",
+      "acceptance_id": "AC-04",
+      "criterion": "regression/parity/stacking/descriptions/build/mobile/public release ผ่าน และบันทึกหลักฐาน",
+      "input_setup": "Frozen99a55 and synthetic matched build/gear/seeds; no owner account",
+      "input_refs": [
+        "scripts/game/assassin-cause.ts"
+      ],
+      "parameters": {
+        "seeds": "22901–22916"
+      },
+      "expected": "regression/parity/stacking/descriptions/build/mobile/public release ผ่าน และบันทึกหลักฐาน",
+      "verification": "Actual shared engine controlled ablations, fixed A/B, re-screen, regression and public browser",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-132-review.json"
+      ]
     }
   ]
 }
