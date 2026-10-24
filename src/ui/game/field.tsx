@@ -1,3 +1,5 @@
+import { actorSize,type MonsterSize } from '../../client/monster-size.ts';
+import { MonsterSizeBadge } from '../monster-size-badge.tsx';
 import { CardIcon } from './card-art.tsx';
 import { Icon } from '../icon.tsx';
 import { useEffect, useRef, useState, useSyncExternalStore, type ReactNode } from 'react';
@@ -94,7 +96,7 @@ function FarmField({ context, covered }: { context: GameContext; covered: boolea
 }
 
 const phaseNames: Record<string, string> = { skill_interval: 'รอคิว', casting: 'ร่าย', after_cast: 'พัก', normal_only: 'ตีปกติ', dead: 'หมดสภาพ' };
-function BossField({ context, app, running, checkpoint, outcome, retreat, statsRef, timelineRef, autoControl }: { context: GameContext; app: { session: SavedBattleSession; id: string }; running: boolean; checkpoint: unknown; outcome: string | null; retreat: (() => Promise<void>) | null; statsRef: { current: (() => void) | null }; timelineRef: { current: (() => void) | null }; autoControl?: ReactNode }) {
+export function BossField({ context, app, running, checkpoint, outcome, retreat, statsRef, timelineRef, autoControl }: { context: GameContext; app: { session: SavedBattleSession; id: string }; running: boolean; checkpoint: unknown; outcome: string | null; retreat: (() => Promise<void>) | null; statsRef: { current: (() => void) | null }; timelineRef: { current: (() => void) | null }; autoControl?: ReactNode }) {
   const { pack } = context, canvas = useRef<HTMLCanvasElement>(null), renderer = useRef<BattleRenderer | null>(null), clock = useRef(0), logical = useRef(app.session.state.game_time_ms), runningRef = useRef(running);
   const [view, setView] = useState<BattleRenderView>(() => app.session.view()), [selected, setSelected] = useState('main'), [panel, setPanel] = useState<'timeline' | 'statistics' | 'history' | null>(null), [error, setError] = useState(''), [retreating, setRetreating] = useState(false);
   const finishSent = useRef(false);
@@ -134,7 +136,8 @@ function BossField({ context, app, running, checkpoint, outcome, retreat, statsR
   return <section className="field-arena boss" aria-label="ไฟต์บอส" data-battle-id={app.id} data-game-ms={view.game_time_ms} data-terminal={view.terminal?.kind ?? ''}>
     <canvas ref={canvas} width={720} height={1100} aria-label="ทีมต่อสู้กับบอส" />
     <div className="boss-hud"><div className="boss-bar">
-      <div className="boss-name"><strong title={boss?.name}>{boss?.name.replace('บอส · ', '')}</strong>{bossActor && <ElementBadge pack={pack} element={actorElements(bossActor).armor} armor />}<span>{modeTag(app.session)}</span><time>{(view.game_time_ms / 1000).toFixed(1)}<small>/{view.time_limit_ms / 1000}s</small></time></div>
+      <div className="boss-name"><strong title={boss?.name}>{boss?.name.replace('บอส · ', '')}</strong><span>{modeTag(app.session)}</span><time>{(view.game_time_ms / 1000).toFixed(1)}<small>/{view.time_limit_ms / 1000}s</small></time></div>
+      {bossActor && <div className="boss-traits"><ElementBadge pack={pack} element={actorElements(bossActor).armor} armor /><MonsterSizeBadge size={actorSize(bossActor)} /></div>}
       <div className="bar hp"><i style={{ width: `${boss ? boss.hp / boss.max_hp * 100 : 0}%` }} /><span>{full(Math.max(0, boss?.hp ?? 0))} / {full(boss?.max_hp ?? 0)}</span></div>
     <div className="boss-tools">
       <button className="chip-btn" onClick={() => setPanel('statistics')}><Icon name="chart" /><span>สถิติ</span></button>
@@ -166,14 +169,14 @@ function BossField({ context, app, running, checkpoint, outcome, retreat, statsR
 
 /** Pre-fight warning shown before the start command; it never delays a running server battle clock. */
 function introLabel(target: ChallengeTarget, pack: AssetPack | null, context: GameContext) {
-  if (target.kind === 'tower') { const floor = towerView(context.state, target.floor, 1).floors[0]!; return { name: bossName(floor.boss), place: `หอคอย ชั้น ${target.floor}`, level: target.floor }; }
-  if (target.kind === 'daily') { const card = dailyView(context.state, Date.now()).bosses.find(b => b.id === target.boss); return { name: card ? bossName(card.enemy) : dailyNames[target.boss] ?? target.boss, place: `ดันเจี้ยนรายวัน · ${dailyNames[target.boss] ?? ''} หลอดที่ ${card?.phase ?? 1}`, level: null }; }
+  if (target.kind === 'tower') { const floor = towerView(context.state, target.floor, 1).floors[0]!; return { name: bossName(floor.boss), place: `หอคอย ชั้น ${target.floor}`, size:floor.size, level: target.floor }; }
+  if (target.kind === 'daily') { const card = dailyView(context.state, Date.now()).bosses.find(b => b.id === target.boss); return { name: card ? bossName(card.enemy) : dailyNames[target.boss] ?? target.boss, place: `ดันเจี้ยนรายวัน · ${dailyNames[target.boss] ?? ''} หลอดที่ ${card?.phase ?? 1}`, size: card?.size??null, level: null }; }
   const authored = storyBossLabel(target.id), skin = stageBossSkin(pack, target.id), info = storyStageInfo(target.id), heavy = info?.heavy_skill ? bossCastInfo(info.heavy_skill) : null;
-  return { name: skin?.label ?? authored?.name ?? '', place: `ด่าน ${target.id}`, level: authored?.level ?? null, hint: info?.heavy_cast ? `บอสร่าย "${heavy?.name ?? 'มหาวิบัติ'}"` : null };
+  return { name: skin?.label ?? authored?.name ?? '', place: `ด่าน ${target.id}`, size:authored?.size??null, level: authored?.level ?? null, hint: info?.heavy_cast ? `บอสร่าย "${heavy?.name ?? 'มหาวิบัติ'}"` : null };
 }
-function BossIntro({ label, autoControl }: { label: { name: string; place: string; level: number | null; hint?: string | null }; autoControl?: ReactNode }) {
+function BossIntro({ label, autoControl }: { label: { name: string; place: string; level: number | null; size:MonsterSize|null; hint?: string | null }; autoControl?: ReactNode }) {
   return <div className="boss-intro" role="alert" aria-label={`คำเตือน บอส ${label.name} ${label.place}`}>
-    <div className="hazard" /><div className="intro-core"><b className="warn-text">WARNING</b><span className="intro-sub">บอสปรากฏตัว!</span><strong className="intro-boss">{label.name}</strong><small>{label.place}{label.level ? ` · Lv.${label.level}` : ''}</small>{label.hint && <em className="intro-hint"><Icon name="warning" /> {label.hint}</em>}</div>{autoControl && <div className="intro-auto">{autoControl}</div>}<div className="hazard bottom" />
+    <div className="hazard" /><div className="intro-core"><b className="warn-text">WARNING</b><span className="intro-sub">บอสปรากฏตัว!</span><strong className="intro-boss">{label.name}</strong><small>{label.place}{label.level ? ` · Lv.${label.level}` : ''}</small><MonsterSizeBadge size={label.size} />{label.hint && <em className="intro-hint"><Icon name="warning" /> {label.hint}</em>}</div>{autoControl && <div className="intro-auto">{autoControl}</div>}<div className="hazard bottom" />
   </div>;
 }
 
@@ -189,7 +192,7 @@ function StageSheet({ context, close, challenge }: { context: GameContext; close
       <b>{o.id}</b><small>{o.cleared ? (farm === o.id ? 'ฟาร์มอยู่' : 'ผ่านแล้ว') : o.available ? 'บอส' : <Icon name="lock" />}</small>
     </button>)}</div>
     {stage ? <div className="stage-actions">
-      <p><b>ด่าน {stage.id}</b> · {stage.cleared ? 'ผ่านแล้ว' : 'ยังไม่ผ่าน'}</p>
+      <p><b>ด่าน {stage.id}</b> · <MonsterSizeBadge size={storyBossLabel(stage.id)?.size??null} /> · {stage.cleared ? 'ผ่านแล้ว' : 'ยังไม่ผ่าน'}</p>
       <div className="row">{stage.cleared && <button className="btn" disabled={locked || farm === stage.id} onClick={() => void submit('farm.set_stage', { stage_id: stage.id }).then(ok => { if (ok) close(); })}>{farm === stage.id ? 'กำลังฟาร์มที่นี่' : 'ฟาร์มที่ด่านนี้'}</button>}
         <button className="btn primary" disabled={locked} onClick={() => challenge(stage.id)}><Icon name="adventure" />ท้าบอส {stage.id}</button></div>
     </div> : null}

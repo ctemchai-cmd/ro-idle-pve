@@ -1,3 +1,4 @@
+import { withoutD166Curves } from './legacy-grimtooth-scope.ts';
 import { withoutD164TeamMagic } from './legacy-support-scope.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -20,7 +21,7 @@ test('D160 keeps prices, native icons and saved IDs; base differences are limite
   const file=`skills/${root}.json`as 'skills/acolyte.json',old=before.documents[file],now=raw.documents[file];
   for(const key of ['upgrades','hi_class_upgrades','awakened_upgrades']as const)assert.deepEqual(now[key],old[key],`${root}:${key}`);
   for(const key of ['skills','hi_class_skills']as const)for(const original of old[key]){
-   const actual=withoutD164TeamMagic(now[key].find(s=>s.id===original.id)!)as Record<string,any>,change=tuning131.skills.find(s=>s.id===original.id);
+   const actual=withoutD166Curves(withoutD164TeamMagic(now[key].find(s=>s.id===original.id)!))as Record<string,any>,change=tuning131.skills.find(s=>s.id===original.id);
    if(change?.focus_bonus)delete actual.single_target_damage_bonus;
    for(const param of Object.keys(change?.power_scales??{}))actual.level_parameters[param]=(original.level_parameters as Partial<Record<string,number[]>>)[param];
    for(const param of Object.keys((tuning132.base_changes as Record<string,Record<string,number[]>>)[original.id]??{}))actual.level_parameters[param]=(original.level_parameters as Partial<Record<string,number[]>>)[param];
@@ -47,6 +48,10 @@ test('D160 extra hits use a uniform +20% total direct-power budget at all ranks,
    const aw=resolveSkill(row.id,rank,content,true).definition as Active,hit=aw.effects.find(e=>e.type==='damage')!;
    assert.ok(hit.type==='damage');if(hit.type!=='damage')continue;
    assert.equal(hit.hits,gain.after);assert.ok(gain.after!>gain.before!);
+   if(row.id==='assassin_sonic_blow'){
+    const base=resolveSkill(row.id,10,content).definition as Active,hitBase=base.effects.find(e=>e.type==='damage')!;if(hitBase.type!=='damage')throw Error('SONIC');
+    assert.ok('attack_ratio'in hitBase.formula.params);assert.ok('attack_ratio'in hit.formula.params);const expected=Number(hitBase.formula.params.attack_ratio)*Number(hitBase.hits)*(1.12+.16*(rank-1)/9);assert.ok(Math.abs(Number(hit.formula.params.attack_ratio)*Number(hit.hits)-expected)<.00001);continue;
+   }
    const old=Object.values(before.documents).flatMap(d=>'awakened_variants'in d?Object.values(d.awakened_variants):[]).find(s=>s.id===row.id)!;
    const oldHit=(old as Active).effects.find(e=>e.type==='damage')!;assert.ok(oldHit.type==='damage');if(oldHit.type!=='damage')continue;
    assert.ok('attack_ratio'in oldHit.formula.params);assert.ok('attack_ratio'in hit.formula.params);

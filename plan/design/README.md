@@ -80,3 +80,7 @@
 - [52-auto-battle-and-rewards.md](52-auto-battle-and-rewards.md) — D164 คำอธิบายพลังโจมตี/รางวัลชนะ/Auto Battle
 
 D165/TASK136: ดู [เพดานสกิลและคืนทุน](53-skill-rank-caps.md); canonical capจากshared unlock+40, M0examplebuildsปรับrank/budget/traceให้legalตามD165;historicalevidenceเดิมคงเดิม.
+
+D166/TASK137: [54-grimtooth-balance.md](54-grimtooth-balance.md).
+
+D166/TASK138: [55-boss-size.md](55-boss-size.md).

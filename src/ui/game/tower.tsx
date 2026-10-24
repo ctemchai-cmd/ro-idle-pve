@@ -1,3 +1,4 @@
+import { MonsterSizeBadge } from '../monster-size-badge.tsx';
 import { Icon } from '../icon.tsx';
 import { sceneLabels, towerView } from '../../client/story.ts';
 import type { GameContext } from './shell.tsx';
@@ -20,7 +21,7 @@ export function TowerPage({ context }: { context: GameContext }) {
     <section className="tower-hero">
       <div className="tower-floor-badge"><small>ชั้น</small><b>{next.floor}</b></div>
       <div className="tower-boss">
-        <b>{name(next.boss)}{next.adaptive && <em className="tag warn" title="ต้านสถานะเพิ่มทุกครั้งที่โดน CC">ปรับตัว</em>}</b>
+        <b>{name(next.boss)}<MonsterSizeBadge size={next.size} />{next.adaptive && <em className="tag warn" title="ต้านสถานะเพิ่มทุกครั้งที่โดน CC">ปรับตัว</em>}</b>
         <ul className="tower-stats"><li><span>HP</span>{compact(next.row.hp)}</li><li><span>P.ATK</span>{full(next.row.attack)}</li><li><span>DEF</span>{full(next.row.defense)}</li></ul>
         <small className="tower-skills">{next.skills.map(id => labels[id] ?? id).join(' · ')}</small>
       </div>
@@ -34,7 +35,7 @@ export function TowerPage({ context }: { context: GameContext }) {
       <button className="btn wide tower-auto" disabled={locked} onClick={() => challenge({ kind: 'tower', floor: next.floor }, true)}><Icon name="play" /> Auto Battle</button>
     </section>
     <ol className="tower-list" aria-label="ชั้นของหอคอย">{view.floors.slice().reverse().map(floor => <li key={floor.floor} className={floor.cleared ? 'cleared' : floor.available ? 'current' : 'locked'}>
-      <span className="tower-num">{floor.floor}</span><span className="tower-name">{name(floor.boss)}<small>HP {compact(floor.row.hp)} · P.ATK {full(floor.row.attack)}</small></span>
+      <span className="tower-num">{floor.floor}</span><span className="tower-name"><span className="tower-title">{name(floor.boss)}<MonsterSizeBadge size={floor.size} /></span><small>HP {compact(floor.row.hp)} · P.ATK {full(floor.row.attack)}</small></span>
       {floor.cleared ? <button className="btn small ghost" disabled={locked} onClick={() => challenge({ kind: 'tower', floor: floor.floor })}>ท้าซ้ำ</button> : floor.available ? <em className="tag on">ชั้นถัดไป</em> : <em className="tag"><Icon name="lock" /></em>}
     </li>)}</ol>
     <p className="hint tower-crystal-note"><ResIcon pack={pack} k="crystal" /> Crystal 10 ทุก 5 ชั้น · ครั้งถัดไปชั้น {Math.ceil((highest+1)/5)*5} · ได้เฉพาะผ่านครั้งแรก</p>

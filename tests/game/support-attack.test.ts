@@ -1,3 +1,4 @@
+import { withoutD166Curves } from './legacy-grimtooth-scope.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -12,7 +13,7 @@ const ids=['knight_battle_cry','priest_impositio','merchant_loud_voice','blacksm
 const before=JSON.parse(gunzipSync(readFileSync(new URL('../../plan/evidence/task-132/content-after.json.gz',import.meta.url))).toString()) as typeof raw;
 test('D164 only six allied attack buffs gain an exact M.ATK application; all152 definitions/costs/curves/IDs otherwise remain byte-equivalent data',()=>{
  for(const root of ['swordsman','acolyte','archer','mage','thief','merchant']){
-  const key=`skills/${root}.json` as 'skills/acolyte.json',now=structuredClone(raw.documents[key]);
+  const key=`skills/${root}.json` as 'skills/acolyte.json',now=withoutD166Curves(raw.documents[key]);
   for(const row of [...now.skills,...now.hi_class_skills,...Object.values(now.awakened_variants)]){
    const s=row as unknown as SkillDefinition;
    if(s.kind!=='active')continue;

@@ -22,3 +22,7 @@ TASK-093/094: cards.jsonมี73definitions(66nativeportraits+7Puppetvariants), 
 D-127–129: slot-progress.enchant.slot_lines ราย6ช่อง, Refineflat+percent, AFK40Crystal/h และoptional gear_chance_per_million ในfrozen snapshotใหม่ (legacyไม่เติมย้อนหลัง). ดูdesign34. reward.claimรองรับclaim_ids; farm.claim collect_rewardsทำreserve+payหนึ่งtransaction.
 
 D165/TASK136: ดู [design53](../design/53-skill-rank-caps.md); canonical capจากshared unlock+40, M0examplebuildsปรับrank/budget/traceให้legalตามD165;historicalevidenceเดิมคงเดิม.
+
+D166/TASK137: [54-grimtooth-balance.md](../design/54-grimtooth-balance.md).
+
+D166/TASK138: [55-boss-size.md](../design/55-boss-size.md).

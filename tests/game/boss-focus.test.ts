@@ -1,3 +1,4 @@
+import { withoutD166Curves } from './legacy-grimtooth-scope.ts';
 import { withoutD164TeamMagic } from './legacy-support-scope.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -58,7 +59,7 @@ test('D161 interruption spends SP but cannot create a focused field; old queue t
 });
 test('D161 all base changes are the declared power scales/focus only; native IDs, CT/ACD/SP, every price and paid progression remain identical',()=>{
  const before=JSON.parse(gunzipSync(readFileSync(new URL('../../plan/evidence/task-131/content-before.json.gz',import.meta.url))).toString())as typeof raw;
- for(const root of ['swordsman','acolyte','archer','mage','thief','merchant']as const){const key=`skills/${root}.json`as 'skills/mage.json',old=before.documents[key],now=withoutD164TeamMagic(raw.documents[key]);
+ for(const root of ['swordsman','acolyte','archer','mage','thief','merchant']as const){const key=`skills/${root}.json`as 'skills/mage.json',old=before.documents[key],now=withoutD166Curves(withoutD164TeamMagic(raw.documents[key]));
   for(const group of ['skills','hi_class_skills']as const)for(const original of old[group]){const expected=structuredClone(original)as unknown as Record<string,any>,change=tuning.skills.find(r=>r.id===original.id);
    if(change?.focus_bonus)expected.single_target_damage_bonus=change.focus_bonus;
    for(const [param,scale]of Object.entries(change?.power_scales??{})){

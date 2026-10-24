@@ -1,5 +1,12 @@
 # Project context
 
+## Grimtooth balance and boss sizes (24 October 2026, D166)
+
+TASK137–138: Grimtoothbase375–625%P.ATK/Aw687.5–906.25%, unchanged1hit/AoE/weapon/focus+.35/Expose/SP/queue/prices. Grim-only High benchmark exceeded11k, so only SonicBlow Awaken direct total now112–128%ofbaseMax over6hits (still above baseMax atAw1); Sonicbase/EnchantPoison/normal/passives/crit unchanged. NewGrimHighselectedmean10934.88/neutral90s/Common60/3screen+16holdout;boundedcandidate comparison, not universal balance. See design54/latestHANDOFF for publish status.
+
+Boss size badges read cards.monster_traits before battle and actual size_* actor tags during battle; never infer from spriteScale or boss flag. Poringmedium/Whispersmall/Baphometlarge. Unknown or ambiguous tags remain unknown. Story/Tower/Daily/current cards share these values; no classification/stats/formula changes. See design55.
+
+
 ## Skill rank caps and excess-rank migration (24 October 2026, D165)
 
 TASK136: Class2 unlock20/30/40 uses rank r at unlock+ceil(40*(r−1)/9), full10 at60/70/80. Class1 keeps its global5-level schedule; explicit Hi70..88/80..89 unchanged. Shared skillRankUnlockLevels/characterSkillCap drives quotes/validation/UI/migration. Only excess current-phase ranks are reduced on backed-up version migration; keep loadout, lower ranks, Awaken flag and original base/Awaken-unlock investments. Refund verified actual excess payment once using immutable legacy-skill-prices.ts (part of implementation hash), subtract it from active ledger in the same commit; unknown history/overflow fail atomically. Preserve ledger ordering even when JSONB sorts skill keys. New UI shows max-at/next-rank levels. Updated authored examples are legal under D165; historical balance evidence stays frozen. See design53/latestHANDOFF for release status.

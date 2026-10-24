@@ -89,7 +89,13 @@ def identity(s,original):
   e=hits[0];old=e['hits'];new=old+MULTI[id];e['hits']=new
   key=e['formula']['params']['attack_ratio']['level_param']
   s['level_parameters'][key]=[round(v*old/new*1.2,6) for v in s['level_parameters'][key]]
-  gains.append({'type':'extra_hits','before':old,'after':new,'total_direct_power_multiplier':1.2,'per_hit_compensated':True})
+  if id=='assassin_sonic_blow':
+   # D166: Grimtooth's burst remains625%; restrain this follow-up's Awaken
+   # direct power, rather than nerfing Class2 or the whole character's stats.
+   base=original['level_parameters'][key][-1]*old
+   s['level_parameters'][key]=[round(base*(1.12+.16*i/9)/new,6)for i in range(10)]
+   gains.append({'type':'extra_hits','before':old,'after':new,'total_power_relative_to_base_max':[1.12,1.28],'per_hit_compensated':True})
+  else:gains.append({'type':'extra_hits','before':old,'after':new,'total_direct_power_multiplier':1.2,'per_hit_compensated':True})
  elif id in RIDERS:
   first=next(e for e in s['effects'] if e['type']=='damage');rider=RIDERS[id]
   if rider=='penetration':

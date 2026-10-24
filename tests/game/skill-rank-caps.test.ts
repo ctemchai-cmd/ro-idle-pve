@@ -1,3 +1,4 @@
+import { withoutD166Curves } from './legacy-grimtooth-scope.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import type { AccountState, SkillDefinition } from '../../src/contracts/index.ts';
@@ -81,7 +82,7 @@ test('D165 un-compacted legacy payments give same exact result as compact ledger
 
 test('D165 every authored example is legal, all skill programs/prices remain exact pre-change definitions',()=>{
  for(const root of Object.keys(prices.roots)){
-  const d=JSON.parse(readFileSync(`plan/data/skills/${root}.json`,'utf8'));
+  const d=withoutD166Curves(JSON.parse(readFileSync(`plan/data/skills/${root}.json`,'utf8')));
   // Match Python sorted-key canonical bytes used by the independent frozen guard.
   delete d.builds;
   const sort=(v:unknown):unknown=>Array.isArray(v)?v.map(sort):v&&typeof v==='object'?Object.fromEntries(Object.entries(v).sort(([a],[b])=>a<b?-1:a>b?1:0).map(([k,x])=>[k,sort(x)])):v;

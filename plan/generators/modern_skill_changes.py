@@ -27,7 +27,7 @@ def apply(skills):
   s['level_parameters']['power']=[round(v*ratio/effect['hits']/crit,6) for v in finger]
  # A spinning single-target finisher replaces poison detonation, not a second skill/instance.
  s=skills['assassin_detonate'];s['effects']=[hit()];s['level_parameters']={'power':[round(v*.7,6)for v in finger],'critical':curve(.2,.5)};s['effects'][0]['crit_chance_bonus']=ref('critical')
- s=skills['assassin_grimtooth'];s['level_parameters']['power']=curve(2.625,4.375)
+ s=skills['assassin_grimtooth'];s['level_parameters']['power']=curve(3.75,6.25)  # D166: final Grimtooth625%
  s=skills['assassin_enchant_poison'];s['level_parameters']['duration']=curve(5000,10000,True);s['effects'][0]['duration_ms']=ref('duration')
  s=skills['rogue_raid'];s['level_parameters']['critical_damage']=curve(.1,.3);s['effects'][0]['crit_damage_bonus']=ref('critical_damage')
  for sid in ['rogue_strip_armor','rogue_strip_weapon']:
