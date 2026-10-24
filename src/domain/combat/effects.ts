@@ -10,6 +10,7 @@ import { nextRandom } from './rng.ts';
 import { compareId, schedule } from './scheduler.ts';
 import { recomputeStats, sourceAlive, statusDefinition, weaponElement } from './status.ts';
 import type { StatusInstance } from './status.ts';
+import { allowsMagicalCritical, echoMultiplier, nextDamageCharge } from './action-bonuses.ts';
 
 export interface EffectPorts {
   emit(event: Omit<BattleEvent, 'at_ms' | 'phase' | 'sequence'>): void;
@@ -32,7 +33,7 @@ export class EffectPipeline {
   /** Parent action/source and effect of an emitted effect event (presentation, metrics and replay attribution). */
   private attribution(context: ProgramContext, effect: { id: string }) { return { action_id: context.action_id, source_instance_id: context.source.instance_id, effect_id: effect.id }; }
   context(self: BattleActor, skill: string, origin: ProgramContext['origin'], actionId: string): ProgramContext {
-    return { self, skill_id: skill, origin, action_id: actionId, ancestry: [], selected: {}, outcomes: [], offense: self.stats, weapon_element: weaponElement(self, this.content), pre_cost_sp: self.sp,
+    return { self, skill_id: skill, origin, action_id: actionId, ancestry: [], selected: {}, outcomes: [], offense: self.stats, weapon_element: weaponElement(self, this.content), pre_cost_sp: self.sp,allow_magical_crit:allowsMagicalCritical(self,this.content,this.state.game_time_ms),
       source: { instance_id: actionId, owner_actor_id: self.root_owner_actor_id, definition_id: skill, origin_actor_id: self.actor_id, origin_life_epoch: self.life_epoch } };
   }
   bindings(context: ProgramContext, selectors: Record<string, Selector>, locked: Record<string, string[]> = {}): Record<string, BattleActor[]> {
@@ -80,7 +81,19 @@ export class EffectPipeline {
       if (effect.type === 'revive' ? target.hp > 0 || !target.revivable : target.hp <= 0) continue;
       if (effect.when && !evaluatePredicate(effect.when, { ...context, target })) continue;
       switch (effect.type) {
-        case 'damage': this.damage(effect, context, target); break;
+        case 'damage': this.prepareAction(context);this.damage(effect, context, target); break;
+        case 'sacrifice_damage': {
+          this.prepareAction(context);
+          const powers=context.sacrifice_power??={};
+          if(powers[effect.id]===undefined){
+            const before=context.self.hp,retained=Math.max(1,Math.floor(context.self.stats.max_hp*effect.retain_hp_ratio));
+            context.self.hp=Math.min(before,retained);
+            const lost=before-context.self.hp;
+            powers[effect.id]=checked(this.power(effect.formula,context)*(1+lost/context.self.stats.max_hp*resolvedNumber(effect.hp_loss_scaling)));
+            this.ports.emit({type:'resource_change',actor_id:context.self.actor_id,target_id:context.self.actor_id,skill_id:context.skill_id,amount:-lost,detail:'hp_sacrifice',...this.attribution(context,effect)});
+          }
+          this.damage({...effect,type:'damage',formula:{id:'flat_power',params:{amount:powers[effect.id]!}}},context,target);break;
+        }
         case 'heal': {
           const amount = Math.floor(checked(this.power(effect.formula, context) * Math.max(0, 1 + context.offense.outgoing_healing_bonus) * Math.max(0, 1 + target.stats.healing_received_bonus)) + 1e-9);
           const effective = Math.min(target.stats.max_hp - target.hp, amount); target.hp += effective;
@@ -123,6 +136,18 @@ export class EffectPipeline {
       }
     }
   }
+  private prepareAction(context:ProgramContext):void{
+    if(context.action_prepared)return;context.action_prepared=true;
+    if(context.origin!=='skill')return;
+    context.echo_multiplier=echoMultiplier(context.self,context.skill_id,this.content,this.state.game_time_ms,()=>nextRandom(this.state.rng));
+    const charge=nextDamageCharge(context.self,this.content,this.state.game_time_ms);
+    if(charge){
+      context.self.statuses=context.self.statuses.filter(s=>s.instance_id!==charge.instance.instance_id);recomputeStats(context.self,this.content);
+      context.armor_override=charge.profile.armor_rule;
+      context.offense={...context.offense,crit_damage_bonus:context.offense.crit_damage_bonus+resolvedNumber(charge.profile.crit_damage_bonus)};
+      this.ports.emit({type:'status_removed',actor_id:context.self.actor_id,target_id:context.self.actor_id,skill_id:context.skill_id,detail:charge.instance.instance_id,action_id:context.action_id,source_instance_id:charge.instance.source.instance_id});
+    }
+  }
   private power(formula: { id: string; params: unknown }, context: ProgramContext) { return rawPower(formula as { id: string; params: ObjectValue }, context.offense, context.pre_cost_sp, context.event_damage); }
   private damage(effect: DamageEffect, context: ProgramContext, target: BattleActor): void {
     context = { ...context, damage_type: effect.damage_type };
@@ -132,11 +157,12 @@ export class EffectPipeline {
       crit_damage_bonus: context.offense.crit_damage_bonus + (effect.crit_damage_bonus === undefined ? 0 : resolvedNumber(effect.crit_damage_bonus)),
       penetration_percent: context.offense.penetration_percent + (effect.penetration_bonus === undefined ? 0 : resolvedNumber(effect.penetration_bonus)) } : context.offense;
     const raw = this.power(effect.formula, context);
-    for (let hit = 0; hit < effect.hits && target.hp > 0; hit++) {
+    const hits=checked(effect.hits*(context.echo_multiplier??1));
+    for (let hit = 0; hit < hits && target.hp > 0; hit++) {
       const landed = nextRandom(this.state.rng) < (effect.hit_rule === 'always' ? 1 : hitChance(context.offense, target.stats));
       context.outcomes.push({ effect_id: effect.id, target_id: target.actor_id, hit_index: hit, landed });
       if (!landed) { this.ports.emit({ type: 'miss', actor_id: context.self.actor_id, target_id: target.actor_id, skill_id: context.skill_id }); continue; }
-      const critical = effect.can_crit && (effect.critical_rule === 'always' || nextRandom(this.state.rng) < critChance(offense, target.stats));
+      const critical = (effect.can_crit||effect.damage_type==='magical'&&context.allow_magical_crit===true) && (effect.critical_rule === 'always' || nextRandom(this.state.rng) < critChance(offense, target.stats));
       const element = effect.element === 'weapon' ? context.weapon_element : effect.element;
       const defense = target.stat_blueprint.permanent_sources.filter(source => source.defense_element).at(-1)?.defense_element ?? target.tags.find(tag => tag.startsWith('element:'))?.slice(8) ?? 'neutral';
       const chart = this.content.documents['combat-rules.json']!.element_chart as unknown as { values?: Record<string, Record<string, number>>; matrix?: Record<string, Record<string, number>> };
@@ -145,7 +171,7 @@ export class EffectPipeline {
       const resistance = effect.damage_type === 'true' ? 1 : Math.max(0, 1 - elementalResistance(element, target.stats)) * (effect.damage_type === 'magical' ? Math.max(0, 1 - target.stats.magical_guard_percent) : 1);
       // A skill keeps its definition id through passives/DoT/summons. Item/card procs have item ids.
       const action = context.origin === 'normal' ? 'normal' : Object.hasOwn(this.content.skills, context.skill_id) ? 'skill' : 'other';
-      const mitigated = damageForHit(effect, raw, offense, target.stats, multiplier * resistance, critical, action);
+      const mitigated = damageForHit(context.armor_override?{...effect,armor_rule:context.armor_override}:effect, raw, offense, target.stats, multiplier * resistance, critical, action);
       this.metric(context, 'raw_damage', raw);
       const links = target.statuses.map(instance => ({ instance, ratio: statusDefinition(this.content, instance.status_id).damage_redirect ? resolvedNumber(bindStatusParams(statusDefinition(this.content, instance.status_id).damage_redirect!.ratio, instance.params)) : 0, recipient: this.actor(instance.source.origin_actor_id) }))
         .filter(link => link.ratio > 0 && link.recipient && link.recipient !== target && link.recipient.team === target.team && sourceAlive(link.instance.source, this.state.actors))
@@ -198,10 +224,15 @@ export class EffectPipeline {
       this.ports.emit({ type: 'status_resisted', actor_id: context.self.actor_id, target_id: target.actor_id, skill_id: context.skill_id, detail: effect.status_id, ...this.attribution(context, effect) }); return;
     }
     const params = Object.fromEntries(Object.entries(effect.params).map(([key, value]) => [key, resolvedNumber(value)]));
+    for(const [key,formula]of Object.entries(effect.parameter_formulas??{})){
+      if(!Object.hasOwn(params,key))throw new Error('INVALID_STATUS_PARAMETER_FORMULA');
+      params[key]=this.power(formula,context);
+    }
     if (Object.keys(params).some(key => !Object.hasOwn(definition.parameter_schema.properties, key)) || definition.parameter_schema.required.some(key => !Object.hasOwn(params, key))) throw new Error('INVALID_STATUS_PARAMS');
     for (const [key, value] of Object.entries(params)) { const rule = definition.parameter_schema.properties[key]!; if (rule.minimum !== undefined && value < rule.minimum || rule.maximum !== undefined && value > rule.maximum) throw new Error('INVALID_STATUS_PARAMS'); }
     const instance: StatusInstance = { instance_id: this.uid('status'), status_id: effect.status_id, source: structuredClone(context.source), carrier_actor_id: target.actor_id, applied_at: this.state.game_time_ms, expires_at: checked(this.state.game_time_ms + duration), params,
       offense_snapshot: structuredClone(context.offense), weapon_element_snapshot: context.weapon_element, next_tick_at: definition.periodic ? this.state.game_time_ms + definition.periodic.interval_ms : null };
+    if(context.allow_magical_crit)instance.allow_magical_crit=true;
     target.statuses.push(instance); recomputeStats(target, this.content);
     schedule(this.state, target, 'status_expiry', instance.expires_at, null, instance.instance_id);
     if (instance.next_tick_at !== null && instance.next_tick_at < instance.expires_at) schedule(this.state, target, 'status_tick', instance.next_tick_at, null, instance.instance_id);
@@ -238,7 +269,7 @@ export class EffectPipeline {
     if (!periodic || carrier.hp <= 0 || instance.expires_at <= this.state.game_time_ms) return;
     const source = this.actor(instance.source.origin_actor_id);
     if (periodic.offense === 'live_source' && (!source || !sourceAlive(instance.source, this.state.actors))) return;
-    const context: ProgramContext = { ...this.context(carrier, instance.source.definition_id, 'periodic', this.uid('tick')), source: instance.source, offense: periodic.offense === 'application_snapshot' ? instance.offense_snapshot : source!.stats, weapon_element: instance.weapon_element_snapshot };
+    const context: ProgramContext = { ...this.context(carrier, instance.source.definition_id, 'periodic', this.uid('tick')), source: instance.source, offense: periodic.offense === 'application_snapshot' ? instance.offense_snapshot : source!.stats, weapon_element: instance.weapon_element_snapshot,allow_magical_crit:periodic.offense==='application_snapshot'?instance.allow_magical_crit===true:allowsMagicalCritical(source!,this.content,this.state.game_time_ms) };
     context.selected = this.bindings(context, {}); this.program(bindStatusParams(periodic.effects, instance.params), context);
     if (scheduleNext) { instance.next_tick_at = this.state.game_time_ms + periodic.interval_ms; if (instance.next_tick_at < instance.expires_at) schedule(this.state, carrier, 'status_tick', instance.next_tick_at, null, instance.instance_id); }
   }

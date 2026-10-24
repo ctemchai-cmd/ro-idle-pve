@@ -1,0 +1,39 @@
+{
+  "task_id": "TASK-145",
+  "date": "2026-10-25",
+  "passed": false,
+  "local_passed": true,
+  "status": "review",
+  "content_hash": "dfef4021ffe5d25839c01987420fb4e7039a9b461e3f48353fc1e69004c5a9a4",
+  "pack_hash": "b954270e0ff33c97bc43e1c910bc48f06385fab60a0533625ec585c7995dc6e5",
+  "acceptance_results": {
+    "AC-01": "passed",
+    "AC-02": "passed",
+    "AC-03": "passed",
+    "AC-04": "pending_hosted"
+  },
+  "checks": {
+    "full_TS": 698,
+    "targeted": 38,
+    "native_groups": 4,
+    "M0": true,
+    "root_filtered_fresh_builds": true,
+    "starter": 304,
+    "library": 60460,
+    "modern_icons": 162,
+    "final_matched_fights": 2120,
+    "first_pass_fights": 1828,
+    "gate_risk_fights": 24
+  },
+  "evidence": [
+    "plan/evidence/task-145/README.md",
+    "plan/evidence/task-145/native.json",
+    "plan/evidence/task-145/balance.json.gz",
+    "plan/evidence/task-145/gate-risk.json"
+  ],
+  "limits": [
+    "Bounded data A/B using current engine legacy path; not an exhaustive optimum or historical binary comparison.",
+    "Support/tank contribution differs from solo DPS.",
+    "No owner,SQL,env,6173 or agents."
+  ]
+}

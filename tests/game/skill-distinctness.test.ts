@@ -1,3 +1,4 @@
+import {withoutD169Document}from'./legacy-hi-v2-scope.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -29,7 +30,7 @@ function lab(){
 test('D168 exact authored scope18 stable IDs: outside declared programs, seven new statuses, public name and Ruwach presentation all documents remain identical; every price/timing/unlock unchanged',()=>{
  let count=0;
  for(const [key,old]of Object.entries(before.documents)){
-  const now=structuredClone(raw.documents[key as keyof typeof raw.documents]) as Record<string,unknown>;
+  const now=withoutD169Document(key,raw.documents[key as keyof typeof raw.documents]) as Record<string,unknown>;
   if(key.startsWith('skills/')){assert.deepEqual(withoutD168Roles(now),old,key);count+=((now.skills as unknown[])?.length??0)+(now.hi_class_skills as unknown[])?.length;}
   else if(key==='status-effects.json'){now.statuses=(now.statuses as {id:string}[]).filter(s=>!spec.statuses.some(n=>n.id===s.id));assert.deepEqual(now,old);}
   else if(key==='strings.th.json'){(now.strings as Record<string,string>).acolyte_increase_agi='Increase Agi';assert.deepEqual(now,old);}

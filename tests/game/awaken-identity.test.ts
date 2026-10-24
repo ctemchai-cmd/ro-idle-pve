@@ -1,5 +1,6 @@
 import { withoutD166Curves } from './legacy-grimtooth-scope.ts';
 import { withoutD164TeamMagic } from './legacy-support-scope.ts';
+import hiV2 from '../../plan/generators/hi-class-v2.json';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -43,7 +44,7 @@ test('D160 keeps prices, native icons and saved IDs; base differences are limite
 });
 test('D160 extra hits use a uniform +20% total direct-power budget at all ranks, without doubling one-hit skills accidentally',()=>{
  for(const row of manifest.variants)for(const gain of row.gains){
-  if(row.id==='bard_performance_strike')continue; // D168 equal-budget4hit identity is checked separately.
+  if(row.id==='bard_performance_strike'||row.id in hiV2.updates)continue; // D168 equal-budget4hit identity is checked separately.
   if(gain.type!=='extra_hits'||!('after'in gain)||!('before'in gain))continue;
   for(let rank=1;rank<=10;rank++){
    const aw=resolveSkill(row.id,rank,content,true).definition as Active,hit=aw.effects.find(e=>e.type==='damage')!;

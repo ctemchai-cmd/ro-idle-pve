@@ -10,6 +10,7 @@ import { initializeAccount } from '../../src/domain/progression/initialize.ts';
 import type { AccountState, BattleCheckpoint } from '../../src/contracts/index.ts';
 import type { BattlePresentationEvent } from '../../src/contracts/presentation.ts';
 import { resolveStats } from '../../src/domain/math/index.ts';
+import modernBindings from '../../scripts/modern-icon-bindings.json';
 import goldens from './fixtures/hi-skill-goldens.json';
 const future = hiContent();
 const highs = future.jobs.order.filter(job => future.jobs.byId[job]!.stage === 3);
@@ -58,7 +59,8 @@ test('all26 new programs resolve every rank, spend actual SP/balls and create th
     const definition = resolveSkill(String(row.id), rank, future).definition as Active;
     assert.equal(casts[0]!.amount, definition.cost.sp);
     for (const effect of definition.effects) {
-      const type = effect.type === 'apply_status' ? 'status_applied' : effect.type === 'remove_status' ? 'status_removed' : effect.type;
+      if(effect.when){if(effect.type==='interrupt'){assert.ok(!events.some(e=>e.type==='cast_interrupt'),'idle targets cannot be interrupted');continue;}if(effect.type==='apply_status'&&['fate_physical','fate_magical'].includes(effect.status_id)&&!events.some(e=>e.effect_id===effect.id))continue;}
+      const type = effect.type==='sacrifice_damage'?'damage':effect.type === 'apply_status' ? 'status_applied' : effect.type === 'remove_status' ? 'status_removed' : effect.type;
       if (effect.type === 'apply_status' && Number(effect.chance) < 1) continue;
       assert.ok(events.some(e => e.effect_id === effect.id && e.type === type), `${row.id}:${rank}:${effect.id}`);
     }
@@ -78,20 +80,20 @@ test('1x/2x/4x and serialized continuation give identical High skill state, even
 test('78 separately stored rank1/5/10 numeric goldens match actual effect events at equal1000ATK/MATK', () => {
   assert.equal(goldens.cases.length, 78);
   for (const row of goldens.cases) {
-    const {result}=run(row.skill_id,row.rank);
+    const {result,initial}=run(row.skill_id,row.rank);
     for(const effect of row.effects){
       const events=result.events.filter(e=>e.skill_id===row.skill_id&&e.effect_id===effect.effect_id);
       if('raw_power_at_1000' in effect&&typeof effect.raw_power_at_1000==='number'){
         const own=events.filter(e=>['damage','heal','shield'].includes(e.type));assert.ok(own.length,row.skill_id);
         const definition=resolveSkill(row.skill_id,row.rank,future).definition as Active;
         const sphereFactor=Number(definition.cost.spirit_spheres)>0?1+(5-Number(definition.cost.spirit_spheres))*.01:1;
-        for(const event of own){const raw=event.type==='damage'?event.raw:event.amount!+Number(event.type==='heal'?event.detail?.split(':')[1]??0:0);const expected=event.type==='damage'?effect.raw_power_at_1000*sphereFactor:Math.floor(effect.raw_power_at_1000);assert.ok(Math.abs(raw!-expected)<.00001,`${row.skill_id}:${row.rank}:${raw}`);}
+        for(const event of own){const raw=event.type==='damage'?event.raw:event.amount!+Number(event.type==='heal'?event.detail?.split(':')[1]??0:0);const paid='sacrifice_actual_hp_factor'in effect&&effect.sacrifice_actual_hp_factor===true?-(events.find(e=>e.type==='resource_change'&&e.detail==='hp_sacrifice')?.amount??0):0;const hpFactor=1+paid/initial.actors.find(a=>a.actor_id==='caster')!.stats.max_hp;const expected=event.type==='damage'?effect.raw_power_at_1000*sphereFactor*hpFactor:Math.floor(effect.raw_power_at_1000);assert.ok(Math.abs(raw!-expected)<.00001,`${row.skill_id}:${row.rank}:${raw}`);}
       }
-      if('status_id'in effect&&effect.chance===1){const status=events.find(e=>e.type==='status_applied')!.status_change!;assert.deepEqual(status.params,effect.params);assert.equal(status.expires_at-status.applied_at,effect.duration_ms);}
+      if('status_id'in effect&&effect.chance===1){if('conditional'in effect&&effect.conditional&&!events.some(e=>e.type==='status_applied'))continue;const status=events.find(e=>e.type==='status_applied')!.status_change!;assert.deepEqual(status.params,effect.params);assert.equal(status.expires_at-status.applied_at,effect.duration_ms);}
     }
   }
 });
-test('native pack contains exact26 native skill icons,13 authentic job emblems and24 High body presets within32MiB', () => {
+test('native pack contains20user-selected modern and6native High skill icons,13 authentic job emblems and24 High body presets within32MiB', () => {
   const pack = JSON.parse(readFileSync('runtime/ro/manifest.json', 'utf8'));
   for (const job of highs) {
     const preset = pack.actor_jobs.find((j: {job_id: string}) => j.job_id === job);
@@ -99,8 +101,7 @@ test('native pack contains exact26 native skill icons,13 authentic job emblems a
     assert.equal(pack.shell.class_icons[job].asset_id, 'ui.job-' + job);
   }
   for (const row of newSkills) {
-    const p = pack.presentations[String(row.presentation_id)]; assert.ok(p.icon_meta_path.includes('/library/skills/skill_icon/'));
-    assert.equal(p.provenance.icon_basis, 'Exact local native Hi-class skill icon');
+    const p = pack.presentations[String(row.presentation_id)]; if(modernBindings.v2_entries.some(r=>r.target===row.id)){assert.equal(p.icon_meta_path,'assets/ro/skills/modern-'+row.id+'.meta.json');}else{assert.ok(p.icon_meta_path.includes('/library/skills/skill_icon/'));assert.equal(p.provenance.icon_basis,'Exact local native Hi-class skill icon');}
   }
   const raw = pack.files.reduce((n: number, f: {bytes: number}) => n + f.bytes, 0) + Buffer.byteLength(JSON.stringify(pack));
   assert.ok(raw <= 32 * 1024 * 1024, String(raw));

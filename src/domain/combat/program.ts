@@ -18,6 +18,7 @@ export function evaluatePredicate(predicate: GamePredicate, context: PredicateCo
     case 'has_tag': return context[predicate.actor]?.tags.includes(predicate.tag) ?? false;
     case 'hp_below': { const actor = context[predicate.actor]; return !!actor && actor.hp / actor.stats.max_hp < predicate.ratio; }
     case 'resource_at_least': { const actor = context[predicate.actor]; return !!actor && actor[predicate.resource] >= resolvedNumber(predicate.amount); }
+    case 'stat_compare': { const actor=context[predicate.actor];return !!actor&&(predicate.op==='gte'?actor.stats[predicate.left]>=actor.stats[predicate.right]:actor.stats[predicate.left]>actor.stats[predicate.right]); }
   }
 }
 export function resolvedNumber(value: unknown): number {
@@ -38,7 +39,7 @@ export function bindStatusParams<T>(value: T, params: Readonly<Record<string, nu
   return value;
 }
 export function selectTargets(self: BattleActor, selector: Selector, actors: readonly BattleActor[], draw: () => number, binding?: readonly string[]): BattleActor[] {
-  let eligible = actors.filter(actor => actor.targetable && (selector.team === 'allies' ? actor.team === self.team : actor.team !== self.team) && (selector.life === 'living' ? actor.hp > 0 : actor.hp <= 0)).sort((a, b) => compareId(a.actor_id, b.actor_id));
+  let eligible = actors.filter(actor => actor.targetable && (!selector.exclude_self||actor!==self)&&(!selector.actor_kind||actor.kind===selector.actor_kind)&&(selector.team === 'allies' ? actor.team === self.team : actor.team !== self.team) && (selector.life === 'living' ? actor.hp > 0 : actor.hp <= 0)).sort((a, b) => compareId(a.actor_id, b.actor_id));
   if (binding !== undefined) {
     const retained = eligible.filter(actor => binding.includes(actor.actor_id));
     if (retained.length || selector.missing === 'skip') return retained;
@@ -49,6 +50,7 @@ export function selectTargets(self: BattleActor, selector: Selector, actors: rea
     eligible.sort((a, b) => distance(a) - distance(b) || compareId(a.actor_id, b.actor_id));
   }
   if (selector.select === 'lowest_hp_percent') eligible.sort((a, b) => a.hp / a.stats.max_hp - b.hp / b.stats.max_hp || compareId(a.actor_id, b.actor_id));
+  if(selector.select==='highest_attack')eligible.sort((a,b)=>Math.max(b.stats.physical_attack,b.stats.magical_attack)-Math.max(a.stats.physical_attack,a.stats.magical_attack)||compareId(a.actor_id,b.actor_id));
   if (selector.team === 'enemies' && selector.life === 'living' && ['front_first', 'lowest_hp_percent', 'nearest'].includes(selector.select)) {
     const taunts = self.statuses.filter(status => status.status_id === 'provoke').sort((a, b) => b.applied_at - a.applied_at || compareId(b.instance_id, a.instance_id));
     for (const taunt of taunts) {
@@ -71,5 +73,10 @@ export interface ProgramContext {
   damage_type?: 'physical' | 'magical' | 'true';
   selected: Record<string, BattleActor[]>; outcomes: HitOutcome[];
   successes?: { effect_id: string; target_id: string }[];
+  allow_magical_crit?:boolean;
+  action_prepared?:boolean;
+  armor_override?:'ignore';
+  echo_multiplier?:number;
+  sacrifice_power?:Record<string,number>;
 }
 export type DamageEffect = Extract<Effect, { type: 'damage' }>;

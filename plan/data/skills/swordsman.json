@@ -3031,16 +3031,52 @@
       ],
       "level_parameters": {
         "ratio": [
-          0.18,
-          0.198889,
-          0.217778,
-          0.236667,
-          0.255556,
-          0.274444,
-          0.293333,
-          0.312222,
-          0.331111,
-          0.35
+          0.12,
+          0.134444,
+          0.148889,
+          0.163333,
+          0.177778,
+          0.192222,
+          0.206667,
+          0.221111,
+          0.235556,
+          0.25
+        ],
+        "critical": [
+          0.03,
+          0.033333,
+          0.036667,
+          0.04,
+          0.043333,
+          0.046667,
+          0.05,
+          0.053333,
+          0.056667,
+          0.06
+        ],
+        "critical_damage": [
+          0.04,
+          0.044444,
+          0.048889,
+          0.053333,
+          0.057778,
+          0.062222,
+          0.066667,
+          0.071111,
+          0.075556,
+          0.08
+        ],
+        "skill": [
+          0.03,
+          0.033333,
+          0.036667,
+          0.04,
+          0.043333,
+          0.046667,
+          0.05,
+          0.053333,
+          0.056667,
+          0.06
         ]
       },
       "presentation_id": "visual_lord_knight_aura_blade",
@@ -3083,7 +3119,7 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "attack_up",
+          "id": "attack",
           "type": "apply_status",
           "target": "self",
           "status_id": "attack_up",
@@ -3091,6 +3127,45 @@
           "params": {
             "ratio": {
               "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "critical",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "crit_up",
+          "duration_ms": 8000,
+          "params": {
+            "ratio": {
+              "level_param": "critical"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "critical_damage",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "crit_damage_up",
+          "duration_ms": 8000,
+          "params": {
+            "ratio": {
+              "level_param": "critical_damage"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "skill",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "awaken_skill_power",
+          "duration_ms": 8000,
+          "params": {
+            "ratio": {
+              "level_param": "skill"
             }
           },
           "chance": 1
@@ -3121,16 +3196,28 @@
       ],
       "level_parameters": {
         "power": [
-          1.1,
-          1.188889,
-          1.277778,
-          1.366667,
-          1.455556,
-          1.544444,
-          1.633333,
-          1.722222,
-          1.811111,
-          1.9
+          1.5,
+          1.588889,
+          1.677778,
+          1.766667,
+          1.855556,
+          1.944444,
+          2.033333,
+          2.122222,
+          2.211111,
+          2.3
+        ],
+        "pen": [
+          0.1,
+          0.111111,
+          0.122222,
+          0.133333,
+          0.144444,
+          0.155556,
+          0.166667,
+          0.177778,
+          0.188889,
+          0.2
         ]
       },
       "presentation_id": "visual_lord_knight_spiral_pierce",
@@ -3190,7 +3277,21 @@
           "hit_rule": "physical_roll",
           "can_crit": true,
           "hits": 5,
-          "armor_rule": "normal"
+          "armor_rule": "normal",
+          "penetration_bonus": {
+            "level_param": "pen"
+          }
+        },
+        {
+          "id": "interrupt",
+          "type": "interrupt",
+          "target": "foe",
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
         }
       ]
     },
@@ -3218,16 +3319,28 @@
       ],
       "level_parameters": {
         "power": [
-          1.05,
-          1.133333,
-          1.216667,
-          1.3,
-          1.383333,
-          1.466667,
-          1.55,
-          1.633333,
-          1.716667,
-          1.8
+          1.4,
+          1.511111,
+          1.622222,
+          1.733333,
+          1.844444,
+          1.955556,
+          2.066667,
+          2.177778,
+          2.288889,
+          2.4
+        ],
+        "stun": [
+          1000,
+          1111,
+          1222,
+          1333,
+          1444,
+          1556,
+          1667,
+          1778,
+          1889,
+          2000
         ]
       },
       "presentation_id": "visual_paladin_shield_chain",
@@ -3288,6 +3401,23 @@
           "can_crit": true,
           "hits": 5,
           "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "stun",
+          "duration_ms": {
+            "level_param": "stun"
+          },
+          "params": {},
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
         }
       ]
     },
@@ -5683,16 +5813,52 @@
       ],
       "level_parameters": {
         "ratio": [
-          0.385,
-          0.398611,
-          0.412222,
-          0.425833,
-          0.439444,
-          0.453056,
-          0.466667,
-          0.480278,
-          0.493889,
-          0.5075
+          0.275,
+          0.284722,
+          0.294444,
+          0.304167,
+          0.313889,
+          0.323611,
+          0.333333,
+          0.343056,
+          0.352778,
+          0.3625
+        ],
+        "critical": [
+          0.066,
+          0.068333,
+          0.070667,
+          0.073,
+          0.075333,
+          0.077667,
+          0.08,
+          0.082333,
+          0.084667,
+          0.087
+        ],
+        "critical_damage": [
+          0.088,
+          0.091111,
+          0.094222,
+          0.097333,
+          0.100444,
+          0.103556,
+          0.106667,
+          0.109778,
+          0.112889,
+          0.116
+        ],
+        "skill": [
+          0.066,
+          0.068333,
+          0.070667,
+          0.073,
+          0.075333,
+          0.077667,
+          0.08,
+          0.082333,
+          0.084667,
+          0.087
         ],
         "awaken_1": [
           0.12,
@@ -5747,7 +5913,7 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "attack_up",
+          "id": "attack",
           "type": "apply_status",
           "target": "self",
           "status_id": "attack_up",
@@ -5755,6 +5921,45 @@
           "params": {
             "ratio": {
               "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "critical",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "crit_up",
+          "duration_ms": 8800,
+          "params": {
+            "ratio": {
+              "level_param": "critical"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "critical_damage",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "crit_damage_up",
+          "duration_ms": 8800,
+          "params": {
+            "ratio": {
+              "level_param": "critical_damage"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "skill",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "awaken_skill_power",
+          "duration_ms": 8800,
+          "params": {
+            "ratio": {
+              "level_param": "skill"
             }
           },
           "chance": 1
@@ -5799,16 +6004,28 @@
       ],
       "level_parameters": {
         "power": [
-          2.09,
-          2.163889,
-          2.237778,
-          2.311667,
-          2.385556,
-          2.459444,
-          2.533333,
-          2.607222,
-          2.681111,
-          2.755
+          2.108333,
+          2.18287,
+          2.257407,
+          2.331944,
+          2.406481,
+          2.481019,
+          2.555556,
+          2.630093,
+          2.70463,
+          2.779167
+        ],
+        "pen": [
+          0.22,
+          0.227778,
+          0.235556,
+          0.243333,
+          0.251111,
+          0.258889,
+          0.266667,
+          0.274444,
+          0.282222,
+          0.29
         ]
       },
       "presentation_id": "visual_lord_knight_spiral_pierce",
@@ -5868,7 +6085,21 @@
           "hit_rule": "physical_roll",
           "can_crit": true,
           "hits": 6,
-          "armor_rule": "normal"
+          "armor_rule": "normal",
+          "penetration_bonus": {
+            "level_param": "pen"
+          }
+        },
+        {
+          "id": "interrupt",
+          "type": "interrupt",
+          "target": "foe",
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
         }
       ]
     },
@@ -5897,16 +6128,28 @@
       ],
       "level_parameters": {
         "power": [
-          1.98,
-          2.05,
-          2.12,
-          2.19,
-          2.26,
-          2.33,
-          2.4,
-          2.47,
-          2.54,
-          2.61
+          2.2,
+          2.277778,
+          2.355556,
+          2.433333,
+          2.511111,
+          2.588889,
+          2.666667,
+          2.744444,
+          2.822222,
+          2.9
+        ],
+        "stun": [
+          2200,
+          2278,
+          2356,
+          2433,
+          2511,
+          2589,
+          2667,
+          2744,
+          2822,
+          2900
         ]
       },
       "presentation_id": "visual_paladin_shield_chain",
@@ -5967,6 +6210,23 @@
           "can_crit": true,
           "hits": 6,
           "armor_rule": "normal"
+        },
+        {
+          "id": "stun",
+          "type": "apply_status",
+          "target": "foe",
+          "status_id": "stun",
+          "duration_ms": {
+            "level_param": "stun"
+          },
+          "params": {},
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
         }
       ]
     },

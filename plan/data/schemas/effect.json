@@ -88,6 +88,19 @@
                 "level_param"
               ],
               "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "status_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "status_param"
+              ],
+              "additionalProperties": false
             }
           ]
         },
@@ -109,6 +122,19 @@
                 "level_param"
               ],
               "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "status_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "status_param"
+              ],
+              "additionalProperties": false
             }
           ]
         },
@@ -128,6 +154,19 @@
               },
               "required": [
                 "level_param"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "status_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "status_param"
               ],
               "additionalProperties": false
             }
@@ -301,6 +340,16 @@
               "additionalProperties": false
             }
           ]
+        },
+        "parameter_formulas": {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": {
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "additionalProperties": {
+            "$ref": "formula-call.json"
+          }
         }
       },
       "required": [
@@ -893,6 +942,219 @@
         "type",
         "handler_id",
         "params"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "target": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "when": {
+          "$ref": "predicate.json"
+        },
+        "type": {
+          "const": "sacrifice_damage"
+        },
+        "formula": {
+          "$ref": "formula-call.json"
+        },
+        "damage_type": {
+          "enum": [
+            "physical",
+            "magical",
+            "true"
+          ]
+        },
+        "element": {
+          "enum": [
+            "neutral",
+            "water",
+            "earth",
+            "fire",
+            "wind",
+            "poison",
+            "holy",
+            "dark",
+            "ghost",
+            "undead",
+            "weapon"
+          ]
+        },
+        "hit_rule": {
+          "enum": [
+            "physical_roll",
+            "always"
+          ]
+        },
+        "can_crit": {
+          "type": "boolean"
+        },
+        "hits": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 32
+        },
+        "armor_rule": {
+          "enum": [
+            "normal",
+            "ignore"
+          ]
+        },
+        "as_reflect": {
+          "type": "boolean"
+        },
+        "critical_rule": {
+          "const": "always"
+        },
+        "crit_chance_bonus": {
+          "oneOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "object",
+              "properties": {
+                "level_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "level_param"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "status_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "status_param"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "crit_damage_bonus": {
+          "oneOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "object",
+              "properties": {
+                "level_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "level_param"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "status_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "status_param"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "penetration_bonus": {
+          "oneOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "object",
+              "properties": {
+                "level_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "level_param"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "status_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "status_param"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "retain_hp_ratio": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1
+        },
+        "hp_loss_scaling": {
+          "oneOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "object",
+              "properties": {
+                "level_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "level_param"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "target",
+        "type",
+        "formula",
+        "damage_type",
+        "element",
+        "hit_rule",
+        "can_crit",
+        "hits",
+        "armor_rule",
+        "retain_hp_ratio",
+        "hp_loss_scaling"
       ],
       "additionalProperties": false
     }

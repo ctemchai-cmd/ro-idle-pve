@@ -760,3 +760,30 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T142-AC-04` | TASK-142 | ใช้sharedengine/statuspipeline;buffindependent/noaggregatecap/normal4slot/SPcaststart/retryrulesเดิม;นอกscopebyteเท่าเดิมและprice/timing/unlockไม่เปลี่ยน | Audit/engine/native/hosted | passed_implementation |
 | `T142-AC-05` | TASK-142 | เซฟเดิมคงskillrank/slot/Awaken/paidledgerและแปลงversionผ่านbackupflow,oldreceiptsยังอ่านได้;ไม่owner/SQL/env/6173 | Audit/engine/native/hosted | passed_implementation |
 | `T142-AC-06` | TASK-142 | meaningfulactualeffects/fulltests/M0/assets/root+filteredbuild/nativeUI/hostedผ่านก่อนdone;รายงานขอบเขตไม่อ้างglobalbalanceจากแค่unit | Audit/engine/native/hosted | passed_implementation |
+
+## TASK-143 — Modern migration v2 icons
+
+| Case | Task | Criterion | Verification | Status |
+| --- | --- | --- | --- | --- |
+| `T143-AC-01` | TASK-143 | ไอคอน21รายการตรงพาธmigration-v2.txtรวมRuwach/20Hi;มีprovenance/sidecar/sourceSHAไม่เดาไฟล์ | source/schema/engine/native/build/hosted | passed_implementation |
+| `T143-AC-02` | TASK-143 | คง152logicalIDs/ต้นทุน/ranks/Awakenและmediaที่ไม่เกี่ยวข้อง;AssCross/StalkerมีpurpleVFXตามคำขอ | source/schema/engine/native/build/hosted | passed_implementation |
+| `T143-AC-03` | TASK-143 | runtimepackdependencyครบและอยู่ในbudget,assetchecks+sourcebindingtestsผ่าน | source/schema/engine/native/build/hosted | passed_implementation |
+
+## TASK-144 — Hi-class v2 composable skills
+
+| Case | Task | Criterion | Verification | Status |
+| --- | --- | --- | --- | --- |
+| `T144-AC-01` | TASK-144 | ปรับ20Hi skillsตามmigration-v2รวมAssumptio/BondFate/Aura/Spiral/Champion/HW/Professor/Stalker/WS/Creator;GospelและCartTerminationคงผลเดิมเว้นภาพ | source/schema/engine/native/build/hosted | passed_implementation |
+| `T144-AC-02` | TASK-144 | BondFateลิงก์10sเลือกเพื่อนพลังสูงสุดล็อกเป้าเพิ่มlaneสูงสุดด้วย40–60%casterMATKและฮีลทันที80%MATK/วิพร้อมเส้นเชื่อม | source/schema/engine/native/build/hosted | passed_implementation |
+| `T144-AC-03` | TASK-144 | Gateจ่าย5ballsและSPตอนเริ่มร่าย,HPถึง1%เมื่อเกิดดาเมจคิดจากเสียจริง;DoubleCastingสุ่มสูงก่อนและเฉพาะBolt;ChaseWalkตามคำตอบผู้ใช้ | source/schema/engine/native/build/hosted | passed_implementation |
+| `T144-AC-04` | TASK-144 | ทุกphase/rank/Awakenมีคำอธิบายและผลจริง;พฤติกรรมใช้typedcomposition+seededengineร่วมruntime/headless/checkpoint | source/schema/engine/native/build/hosted | passed_implementation |
+| `T144-AC-05` | TASK-144 | คงIDs/skillledger/cap/costอื่น/4slots/CC/SPrules;oldsavebackup/replay/migrationไม่reset | source/schema/engine/native/build/hosted | passed_implementation |
+
+## TASK-145 — Hi-class v2 review and release
+
+| Case | Task | Criterion | Verification | Status |
+| --- | --- | --- | --- | --- |
+| `T145-AC-01` | TASK-145 | วัดactualbefore-afterแบบboundedmatchedseed/equalbudget/bossเดียวกัน,รายงานtotalDPS/skilldamage/HPcost/supportไม่ตัดสินsupportด้วยsoloDPS | source/schema/engine/native/build/hosted | not_run_implementation |
+| `T145-AC-02` | TASK-145 | ทดสอบmechanics/invalidschemas/expiry/death/multihits/interruption/1x2x4/checkpoint/oldreceiptsพร้อมfullTSและM0 | source/schema/engine/native/build/hosted | not_run_implementation |
+| `T145-AC-03` | TASK-145 | native320390ครบภาพ/description/Link/Timeline/HPsacrifice/multihitและpurpleVFX;root+filteredbuild/assetsผ่าน | source/schema/engine/native/build/hosted | not_run_implementation |
+| `T145-AC-04` | TASK-145 | pushและVercelSUCCESSพร้อมpublichostedตรวจcontent/pack/API/bundles/mobile;ไม่owner/SQL/env/6173restart | source/schema/engine/native/build/hosted | not_run_implementation |

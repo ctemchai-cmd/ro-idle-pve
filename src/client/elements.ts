@@ -36,7 +36,7 @@ export function effectDamageElements(effects: readonly Effect[], catalog: Valida
   const elements = new Set<DamageElement>(), visited = new Set<string>();
   function walk(rows: readonly Effect[]) {
     for (const effect of rows) {
-      if (effect.type === 'damage') elements.add(effect.element);
+      if (effect.type === 'damage'||effect.type==='sacrifice_damage') elements.add(effect.element);
       else if (effect.type === 'handler') elements.add(effect.params.element);
       else if (effect.type === 'apply_status') {
         const key = `status:${effect.status_id}`; if (visited.has(key)) continue; visited.add(key);

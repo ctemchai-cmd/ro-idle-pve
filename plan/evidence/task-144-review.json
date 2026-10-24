@@ -1,0 +1,31 @@
+{
+  "task_id": "TASK-144",
+  "passed": true,
+  "status": "done",
+  "date": "2026-10-25",
+  "acceptance_results": {
+    "AC-01": "passed",
+    "AC-02": "passed",
+    "AC-03": "passed",
+    "AC-04": "passed",
+    "AC-05": "passed"
+  },
+  "checks": {
+    "targeted_final": 38,
+    "D169_groups": 15,
+    "legacy_paid_builds": 20,
+    "unchanged_authored_documents_outside_scope": 34,
+    "numeric_goldens": 78,
+    "native_groups": 4
+  },
+  "evidence": [
+    "plan/evidence/task-145/native.json",
+    "tests/game/hi-v2.test.ts",
+    "tests/game/hi-skills.test.ts",
+    "plan/design/58-hi-class-migration-v2.md"
+  ],
+  "limits": [
+    "Local mechanics scope only; full TS/build/bounded analysis/push/hosted delivery owned byTASK145.",
+    "No owner Auth/SQL/env/6173 access; old save/receipt behavior checked with synthetic actual-paid fixtures and shared migration."
+  ]
+}

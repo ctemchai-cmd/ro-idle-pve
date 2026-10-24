@@ -3115,16 +3115,40 @@
       ],
       "level_parameters": {
         "ratio": [
-          0.2,
-          0.222222,
-          0.244444,
-          0.266667,
-          0.288889,
-          0.311111,
-          0.333333,
-          0.355556,
-          0.377778,
-          0.4
+          0.1,
+          0.111111,
+          0.122222,
+          0.133333,
+          0.144444,
+          0.155556,
+          0.166667,
+          0.177778,
+          0.188889,
+          0.2
+        ],
+        "critical": [
+          0.03,
+          0.033333,
+          0.036667,
+          0.04,
+          0.043333,
+          0.046667,
+          0.05,
+          0.053333,
+          0.056667,
+          0.06
+        ],
+        "critical_damage": [
+          0.04,
+          0.044444,
+          0.048889,
+          0.053333,
+          0.057778,
+          0.062222,
+          0.066667,
+          0.071111,
+          0.075556,
+          0.08
         ]
       },
       "presentation_id": "visual_high_wizard_mystical_amplification",
@@ -3167,14 +3191,20 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "magic_up",
+          "id": "focus",
           "type": "apply_status",
           "target": "self",
-          "status_id": "magic_up",
+          "status_id": "mystical_focus",
           "duration_ms": 10000,
           "params": {
-            "ratio": {
+            "magic": {
               "level_param": "ratio"
+            },
+            "critical": {
+              "level_param": "critical"
+            },
+            "critical_damage": {
+              "level_param": "critical_damage"
             }
           },
           "chance": 1
@@ -3215,6 +3245,18 @@
           2.087223,
           2.191111,
           2.295
+        ],
+        "curse": [
+          0.1,
+          0.144444,
+          0.188889,
+          0.233333,
+          0.277778,
+          0.322222,
+          0.366667,
+          0.411111,
+          0.455556,
+          0.5
         ]
       },
       "presentation_id": "visual_high_wizard_napalm_vulcan",
@@ -3275,6 +3317,25 @@
           "can_crit": false,
           "hits": 5,
           "armor_rule": "normal"
+        },
+        {
+          "id": "curse",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "curse",
+          "duration_ms": 6000,
+          "params": {
+            "ratio": {
+              "level_param": "curse"
+            }
+          },
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
         }
       ],
       "single_target_damage_bonus": 0.35
@@ -3302,29 +3363,41 @@
         "hi_class"
       ],
       "level_parameters": {
-        "power": [
-          1.2,
-          1.288889,
-          1.377778,
-          1.466667,
-          1.555556,
-          1.644444,
-          1.733333,
-          1.822222,
-          1.911111,
-          2.0
+        "chance2": [
+          0.3,
+          0.322222,
+          0.344444,
+          0.366667,
+          0.388889,
+          0.411111,
+          0.433333,
+          0.455556,
+          0.477778,
+          0.5
         ],
-        "chance": [
-          0.25,
-          0.272222,
-          0.294444,
-          0.316667,
-          0.338889,
-          0.361111,
-          0.383333,
-          0.405556,
-          0.427778,
-          0.45
+        "chance3": [
+          0.1,
+          0.116667,
+          0.133333,
+          0.15,
+          0.166667,
+          0.183333,
+          0.2,
+          0.216667,
+          0.233333,
+          0.25
+        ],
+        "chance4": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
         ]
       },
       "presentation_id": "visual_professor_double_casting",
@@ -3367,17 +3440,20 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "double_casting",
+          "id": "echo",
           "type": "apply_status",
           "target": "self",
-          "status_id": "double_casting",
+          "status_id": "bolt_echo",
           "duration_ms": 10000,
           "params": {
-            "power_ratio": {
-              "level_param": "power"
+            "chance2": {
+              "level_param": "chance2"
             },
-            "chance": {
-              "level_param": "chance"
+            "chance3": {
+              "level_param": "chance3"
+            },
+            "chance4": {
+              "level_param": "chance4"
             }
           },
           "chance": 1
@@ -3407,29 +3483,41 @@
         "hi_class"
       ],
       "level_parameters": {
-        "sp": [
-          25,
-          28,
-          32,
-          35,
-          38,
-          42,
-          45,
-          48,
-          52,
-          55
+        "power": [
+          1.0,
+          1.066667,
+          1.133333,
+          1.2,
+          1.266667,
+          1.333333,
+          1.4,
+          1.466667,
+          1.533333,
+          1.6
         ],
-        "ratio": [
-          0.12,
-          0.14,
-          0.16,
-          0.18,
-          0.2,
-          0.22,
-          0.24,
-          0.26,
-          0.28,
-          0.3
+        "pen": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "slow": [
+          -0.15,
+          -0.166667,
+          -0.183333,
+          -0.2,
+          -0.216667,
+          -0.233333,
+          -0.25,
+          -0.266667,
+          -0.283333,
+          -0.3
         ]
       },
       "presentation_id": "visual_professor_soul_change",
@@ -3472,28 +3560,36 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "restore_sp",
-          "type": "resource_change",
-          "target": "friends",
-          "resource": "sp",
-          "amount": {
-            "level_param": "sp"
-          }
+          "id": "field",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "psychic_field",
+          "duration_ms": 6000,
+          "params": {
+            "power_ratio": {
+              "level_param": "power"
+            },
+            "penetration": {
+              "level_param": "pen"
+            }
+          },
+          "chance": 1
         },
         {
-          "id": "mana_regen_up",
+          "id": "slow",
           "type": "apply_status",
-          "target": "friends",
-          "status_id": "mana_regen_up",
-          "duration_ms": 10000,
+          "target": "foes",
+          "status_id": "slow",
+          "duration_ms": 6000,
           "params": {
             "ratio": {
-              "level_param": "ratio"
+              "level_param": "slow"
             }
           },
           "chance": 1
         }
-      ]
+      ],
+      "single_target_damage_bonus": 0.35
     }
   ],
   "hi_class_upgrades": {
@@ -5776,16 +5872,40 @@
       ],
       "level_parameters": {
         "ratio": [
-          0.44,
-          0.455556,
-          0.471111,
-          0.486667,
-          0.502222,
-          0.517778,
-          0.533333,
-          0.548889,
-          0.564444,
-          0.58
+          0.22,
+          0.227778,
+          0.235556,
+          0.243333,
+          0.251111,
+          0.258889,
+          0.266667,
+          0.274444,
+          0.282222,
+          0.29
+        ],
+        "critical": [
+          0.066,
+          0.068333,
+          0.070667,
+          0.073,
+          0.075333,
+          0.077667,
+          0.08,
+          0.082333,
+          0.084667,
+          0.087
+        ],
+        "critical_damage": [
+          0.088,
+          0.091111,
+          0.094222,
+          0.097333,
+          0.100444,
+          0.103556,
+          0.106667,
+          0.109778,
+          0.112889,
+          0.116
         ],
         "awaken_1": [
           0.12,
@@ -5840,14 +5960,20 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "magic_up",
+          "id": "focus",
           "type": "apply_status",
           "target": "self",
-          "status_id": "magic_up",
+          "status_id": "mystical_focus",
           "duration_ms": 11000,
           "params": {
-            "ratio": {
+            "magic": {
               "level_param": "ratio"
+            },
+            "critical": {
+              "level_param": "critical"
+            },
+            "critical_damage": {
+              "level_param": "critical_damage"
             }
           },
           "chance": 1
@@ -5902,6 +6028,18 @@
           3.14925,
           3.2385,
           3.32775
+        ],
+        "curse": [
+          0.55,
+          0.555556,
+          0.561111,
+          0.566667,
+          0.572222,
+          0.577778,
+          0.583333,
+          0.588889,
+          0.594444,
+          0.6
         ]
       },
       "presentation_id": "visual_high_wizard_napalm_vulcan",
@@ -5962,6 +6100,25 @@
           "can_crit": false,
           "hits": 6,
           "armor_rule": "normal"
+        },
+        {
+          "id": "curse",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "curse",
+          "duration_ms": 6600,
+          "params": {
+            "ratio": {
+              "level_param": "curse"
+            }
+          },
+          "chance": 1,
+          "when": {
+            "type": "hit_landed",
+            "effect_id": "hit",
+            "scope": "same_target",
+            "hit_index": "any"
+          }
         }
       ],
       "single_target_damage_bonus": 0.35
@@ -5990,29 +6147,41 @@
         "awakened"
       ],
       "level_parameters": {
-        "power": [
-          2.2,
-          2.277778,
-          2.355556,
-          2.433333,
-          2.511111,
-          2.588889,
-          2.666667,
-          2.744444,
-          2.822222,
-          2.9
+        "chance2": [
+          0.55,
+          0.572222,
+          0.594444,
+          0.616667,
+          0.638889,
+          0.661111,
+          0.683333,
+          0.705556,
+          0.727778,
+          0.75
         ],
-        "chance": [
-          0.495,
-          0.5125,
-          0.53,
-          0.5475,
-          0.565,
-          0.5825,
-          0.6,
-          0.6175,
-          0.635,
-          0.6525
+        "chance3": [
+          0.275,
+          0.288889,
+          0.302778,
+          0.316667,
+          0.330556,
+          0.344444,
+          0.358333,
+          0.372222,
+          0.386111,
+          0.4
+        ],
+        "chance4": [
+          0.05,
+          0.061111,
+          0.072222,
+          0.083333,
+          0.094444,
+          0.105556,
+          0.116667,
+          0.127778,
+          0.138889,
+          0.15
         ],
         "awaken_2": [
           0.12,
@@ -6067,17 +6236,20 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "double_casting",
+          "id": "echo",
           "type": "apply_status",
           "target": "self",
-          "status_id": "double_casting",
-          "duration_ms": 11000,
+          "status_id": "bolt_echo",
+          "duration_ms": 10000,
           "params": {
-            "power_ratio": {
-              "level_param": "power"
+            "chance2": {
+              "level_param": "chance2"
             },
-            "chance": {
-              "level_param": "chance"
+            "chance3": {
+              "level_param": "chance3"
+            },
+            "chance4": {
+              "level_param": "chance4"
             }
           },
           "chance": 1
@@ -6121,41 +6293,41 @@
         "awakened"
       ],
       "level_parameters": {
-        "sp": [
-          61,
-          63,
-          65,
-          67,
-          69,
-          71,
-          73,
-          75,
-          78,
-          80
+        "power": [
+          1.76,
+          1.822222,
+          1.884444,
+          1.946667,
+          2.008889,
+          2.071111,
+          2.133333,
+          2.195556,
+          2.257778,
+          2.32
         ],
-        "ratio": [
-          0.33,
-          0.341667,
-          0.353333,
-          0.365,
-          0.376667,
-          0.388333,
-          0.4,
-          0.411667,
-          0.423333,
-          0.435
+        "pen": [
+          0.15,
+          0.166667,
+          0.183333,
+          0.2,
+          0.216667,
+          0.233333,
+          0.25,
+          0.266667,
+          0.283333,
+          0.3
         ],
-        "awaken_sp": [
-          20,
-          22,
-          24,
-          27,
-          29,
-          31,
-          33,
-          36,
-          38,
-          40
+        "slow": [
+          -0.33,
+          -0.341667,
+          -0.353333,
+          -0.365,
+          -0.376667,
+          -0.388333,
+          -0.4,
+          -0.411667,
+          -0.423333,
+          -0.435
         ]
       },
       "presentation_id": "visual_professor_soul_change",
@@ -6198,37 +6370,36 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "restore_sp",
-          "type": "resource_change",
-          "target": "friends",
-          "resource": "sp",
-          "amount": {
-            "level_param": "sp"
-          }
-        },
-        {
-          "id": "mana_regen_up",
+          "id": "field",
           "type": "apply_status",
-          "target": "friends",
-          "status_id": "mana_regen_up",
-          "duration_ms": 11000,
+          "target": "foes",
+          "status_id": "psychic_field",
+          "duration_ms": 6000,
           "params": {
-            "ratio": {
-              "level_param": "ratio"
+            "power_ratio": {
+              "level_param": "power"
+            },
+            "penetration": {
+              "level_param": "pen"
             }
           },
           "chance": 1
         },
         {
-          "id": "awaken_sp",
-          "type": "resource_change",
-          "target": "friends",
-          "resource": "sp",
-          "amount": {
-            "level_param": "awaken_sp"
-          }
+          "id": "slow",
+          "type": "apply_status",
+          "target": "foes",
+          "status_id": "slow",
+          "duration_ms": 6000,
+          "params": {
+            "ratio": {
+              "level_param": "slow"
+            }
+          },
+          "chance": 1
         }
-      ]
+      ],
+      "single_target_damage_bonus": 0.35
     }
   },
   "awakened_upgrades": {

@@ -10,3 +10,4 @@ Object.assign(statusNames,{crit_damage_up:'เพิ่มดาเมจคร�
 Object.assign(statusNames,{awaken_skill_power:'เพิ่มดาเมจสกิล',awaken_penetration:'เจาะเกราะ',awaken_healing_received:'เพิ่มการรับฮีล'});
 Object.assign(statusNames,{blessing_attributes:'STR / INT / DEX',skill_power_up:'ดาเมจสกิล / พลังฮีล',normal_power_up:'ดาเมจตีปกติ',endure_focus:'ต้าน CC / ขัดร่าย',intimidated:'ลด P.ATK / M.ATK',dance_ward:'ดาเมจที่ได้รับ',evasion_up:'เพิ่มการหลบ',armor_break:'ลด DEF / MDEF'});
 Object.assign(statNames,{interrupt_resistance:'ต้านขัดร่าย',armor_break_percent:'ลด DEF / MDEF',normal_damage_bonus:'ดาเมจตีปกติ',skill_damage_bonus:'ดาเมจสกิล'});
+Object.assign(statusNames,{fate_physical:'สายสัมพันธ์ P.ATK',fate_magical:'สายสัมพันธ์ M.ATK',mystical_focus:'สมาธิเวท',bolt_echo:'เสก Bolt ซ้ำ',psychic_field:'คลื่นพลังจิต',chase_charge:'สกิลถัดไป Ignore DEF/MDEF',curse:'คำสาป · ดาเมจที่ได้รับ'});

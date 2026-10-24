@@ -88,3 +88,5 @@ D166/TASK138: [55-boss-size.md](55-boss-size.md).
 D167/TASK139: [ร้าน/แลกเศษ/Panel](56-shop-and-exchange-ui.md).
 
 - [57 บทบาทสกิลแยกกัน](57-distinct-skill-roles.md) — D168/TASK142: Blessing+ASPD/Ruwach/18identityprograms; stable IDs/costs/timing/ledger.
+
+- [58 Hi-class migration v2](58-hi-class-migration-v2.md) — D169/TASK143–145:21modernicons/20Hiskills,typedlink/charge/echo/sacrificeและboundedreview.

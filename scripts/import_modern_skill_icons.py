@@ -18,14 +18,15 @@ def main():
  if actual!=[(r['name'],r['path'],r['note'])for r in mapping['entries']]:raise ValueError('Suggestion changed: explicitly reconcile modern-icon-bindings.json first')
  manifest=json.loads(importer.MANIFEST.read_text());manifest['providers']['local_modern']={'kind':'local','base_url':'local:///','documentation_url':'assets/modern/suggestion-migrate.txt'}
  docs={p:json.loads(p.read_text())for p in(ROOT/'plan/data/presentations').glob('*.json')}
- visuals={r['id']:r for doc in docs.values()for r in doc['presentations']}
- rows={s['id']:visuals[s['presentation_id']]for p in(ROOT/'plan/data/skills').glob('*.json')for s in json.loads(p.read_text())['skills']}
+ visuals={r['id']:r for doc in docs.values()for r in doc['presentations']+doc.get('hi_class_presentations',[])}
+ rows={s['id']:visuals[s['presentation_id']]for p in(ROOT/'plan/data/skills').glob('*.json')for s in (lambda d:d['skills']+d.get('hi_class_skills',[]))(json.loads(p.read_text()))}
  shell_path=ROOT/'src/renderer/shell-visuals.json';shell=json.loads(shell_path.read_text());selected=[];refs={}
- all_entries=mapping['entries']+mapping.get('additional_entries',[])
+ # Explicit later selections override the original source without rewriting its history.
+ all_entries=list({r['target']:r for r in mapping['entries']+mapping.get('additional_entries',[])+mapping.get('v2_entries',[])}.values())
  for r in all_entries:
   target=r['target'];category='skills'if r['kind']=='skill'else'ui'
   if r['kind']=='skill'and target not in rows:raise ValueError('Unknown logical skill: '+target)
-  selected.append({'slug':'modern-'+target,'name':r['name']+' modern icon','game_id':target,'game_name':'User-provided RO Idle presentation','game_tag':'user_provided_modern','category':category,'kind':'skill_icon'if r['kind']=='skill'else'resource_icon','extension':'webp','provider':'local_modern','tags':['modern','user_selected',target],'source_path':r['path'],'image_path':r['path'],'page_url':'assets/modern/suggestion-migrate.txt'})
+  selected.append({'slug':'modern-'+target,'name':r['name']+' modern icon','game_id':target,'game_name':'User-provided RO Idle presentation','game_tag':'user_provided_modern','category':category,'kind':'skill_icon'if r['kind']=='skill'else'resource_icon','extension':'webp','provider':'local_modern','tags':['modern','user_selected',target],'source_path':r['path'],'image_path':r['path'],'page_url':r.get('page_url','assets/modern/suggestion-migrate.txt')})
   refs[target]={'asset_id':category+'.modern-'+target,'meta_path':category+'/modern-'+target+'.meta.json'}
  manifest['icons']=[v for v in manifest['icons']if v.get('provider')!='local_modern']+selected
  if args.check:
@@ -38,7 +39,8 @@ def main():
   else:
    try:meta=importer.read_cached(entry)
    except(OSError,ValueError):meta,_=importer.import_one(entry,refresh=True)
-   meta['annotations']['selection']='Selected local modern art,23October2026; exact skill/resource choices from suggestion-migrate.txt; additional elemental illustrations selected by Codex per design37. Not independently verified native RO'
+   if entry['game_id'] in {r['target']for r in mapping.get('v2_entries',[])} or 'selection'not in meta['annotations']:
+    meta['annotations']['selection']='Selected local modern art; exact choices from '+entry['source']['page_url']+'; additional elemental illustrations per design37. Not independently verified native RO'
    if entry['category']=='skills':meta['annotations']['logical_skill_id']=entry['game_id']
    importer.write_json(importer.sidecar_path(importer.ASSET_ROOT/entry['path']),meta)
  def bind(skill,source):
@@ -46,7 +48,8 @@ def main():
   if args.check:
    if any(rows[skill][k]!=v for k,v in expected.items()):raise ValueError('Presentation mapping mismatch: '+skill)
   else:
-   rows[skill].update(expected);rows[skill]['provenance']['icon_basis']='User-selected modern art in suggestion-migrate.txt'+('; shares '+source if skill!=source else'')+'; VFX/audio configured separately'
+   if any(rows[skill][k]!=v for k,v in expected.items()) or source in {r['target']for r in mapping.get('v2_entries',[])}:
+    rows[skill].update(expected);rows[skill]['provenance']['icon_basis']='User-selected modern art in '+next(r.get('page_url','assets/modern/suggestion-migrate.txt')for r in all_entries if r['target']==source)+('; shares '+source if skill!=source else'')+'; VFX/audio configured separately'
  for r in all_entries:
   if r['kind']=='skill':bind(r['target'],r['target'])
   else:

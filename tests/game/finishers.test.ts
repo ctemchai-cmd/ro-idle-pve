@@ -32,7 +32,7 @@ test('stale catch-up cannot replay an old ultimate; buffers remain bounded under
 });
 test('all configured large attacks exist in current content and represent all six class trees',()=>{
  const roots=new Set<string>(),tree=content.documents['progression.json']!.class_tree as unknown as Record<string,string[]>;
- for(const[id,p]of Object.entries(FINISHER_PROFILES)){const s=resolveSkill(id,1,content).definition as SkillDefinition;assert.equal(s.kind,'active');if(s.kind!=='active')throw Error('ACTIVE');assert.ok(s.effects.some(e=>e.type==='damage'||e.type==='handler'),id);const root=Object.keys(tree).find(root=>s.class_id===root||tree[root]!.includes(s.class_id))!;roots.add(root);assert.ok(p.hold>=750&&p.hold<=1000&&p.shake<=5);assert.match(p.color,/^#[a-f\d]{6}$/i);}
+ for(const[id,p]of Object.entries(FINISHER_PROFILES)){const s=resolveSkill(id,1,content).definition as SkillDefinition;assert.equal(s.kind,'active');if(s.kind!=='active')throw Error('ACTIVE');assert.ok(s.effects.some(e=>(e.type==='damage'||e.type==='sacrifice_damage')||e.type==='handler'),id);const root=content.jobs.byId[s.class_id]?.root??Object.keys(tree).find(root=>s.class_id===root||tree[root]!.includes(s.class_id));assert.ok(root,id);roots.add(root);assert.ok(p.hold>=750&&p.hold<=1000&&p.shake<=5);assert.match(p.color,/^#[a-f\d]{6}$/i);}
  assert.equal(roots.size,6);
 });
 test('actual resolved Asura interruption produces no finisher, successful Asura produces exactly one',()=>{

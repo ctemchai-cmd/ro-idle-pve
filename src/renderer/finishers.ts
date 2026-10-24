@@ -5,6 +5,11 @@ interface Profile { style: Style; color: string; shake: number; priority: number
 /** Authored RO-inspired emphasis layered over the native effects; no damage or skill rules. */
 export const FINISHER_PROFILES: Readonly<Record<string, Profile>> = {
   monk_asura: { style: 'fist', color: '#ffd56a', shake: 5, priority: 3, hold: 1000, title: 'ASURA STRIKE' },
+  champion_chain_crush_combo:{style:'fist',color:'#ffad69',shake:4,priority:3,hold:950,title:'GATE OF HELL'},
+  champion_palm_strike:{style:'fist',color:'#ffe0aa',shake:2.5,priority:2,hold:850,title:'DRAGON TIGER COMBO'},
+  lord_knight_spiral_pierce:{style:'volley',color:'#a7d9ff',shake:2.5,priority:2,hold:800},
+  paladin_shield_chain:{style:'holy',color:'#fff0b7',shake:2.5,priority:2,hold:800},
+  stalker_full_strip:{style:'slash',color:'#cf9dff',shake:2,priority:1,hold:750},
   monk_finger_offensive: { style: 'fist', color: '#ffe9a1', shake: 2.5, priority: 1, hold: 750 },
   knight_brandish: { style: 'slash', color: '#99d8ff', shake: 3, priority: 1, hold: 750 },
   crusader_grand_cross: { style: 'holy', color: '#fff0a9', shake: 3, priority: 2, hold: 850 },

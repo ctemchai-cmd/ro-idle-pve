@@ -8,6 +8,7 @@ import { drawProjectile, isFocusedDamage, projectileLifetime, projectilePoint, t
 import { alignProjectiles, attackContactMs, visualImpactMs } from './impact-timing.ts';
 import { drawSpiritSpheres } from './spirit-spheres.ts';
 import { drawHealingAura } from './healing-aura.ts';
+import { statusLinks, drawStatusLinks, drawStatusFields, type StatusLink } from './status-links.ts';
 import { locateSkillVisual } from './asset-locator.ts';
 import { FinisherEffects, type FinisherFrame } from './finishers.ts';
 import { MultiHitNumbers, multiHitOrdinals, MULTI_HIT_FALLBACK_MS, type MultiHitFrame } from './multi-hit-numbers.ts';
@@ -30,7 +31,7 @@ export class BattleRenderer {
   private readonly animation: ActorAnimation;
   private readonly finishers = new FinisherEffects();
   private readonly multiHitNumbers = new MultiHitNumbers();
-  frameStats = { totals: [] as MultiHitFrame[], finishers: [] as FinisherFrame[], camera: [0,0] as readonly [number,number], healing_auras: [] as string[], damage: [] as { source: string; target: string; amount: number; critical: boolean; sequence: number; at_ms: number }[], incoming: [] as { source: string; target: string; amount: number; sequence: number }[], projectiles: [] as { source: string; target: string; shape: string }[], shouts: [] as { actor: string; skill: string }[], impacts: [] as { target: string; meta: string }[] };
+  frameStats = { fields:[] as string[],links:[] as StatusLink[],totals: [] as MultiHitFrame[], finishers: [] as FinisherFrame[], camera: [0,0] as readonly [number,number], healing_auras: [] as string[], damage: [] as { source: string; target: string; amount: number; critical: boolean; sequence: number; at_ms: number }[], incoming: [] as { source: string; target: string; amount: number; sequence: number }[], projectiles: [] as { source: string; target: string; shape: string }[], shouts: [] as { actor: string; skill: string }[], impacts: [] as { target: string; meta: string }[] };
   private frameTime = 0;
   private statusImages = new Map<string, HTMLImageElement | null>();
   /** Hide ambient-farm status icons without changing the shared combat state. */
@@ -162,9 +163,12 @@ export class BattleRenderer {
     const camera=this.showFinishers&&this.showFinisherTitles?this.finishers.shake(wallMs,this.motion):[0,0] as const;
     context.save(); context.translate((width - worldWidth * zoom) / 2+camera[0], (height - worldHeight * zoom) / 2+camera[1]); context.scale(zoom, zoom);
     this.drawnLayers = 0;
-    this.frameStats = { totals: [], finishers: [], camera, damage: [], incoming: [], projectiles: [], shouts: [], impacts: [], healing_auras: [] };
+    this.frameStats = { fields:[] as string[],links:[] as StatusLink[],totals: [], finishers: [], camera, damage: [], incoming: [], projectiles: [], shouts: [], impacts: [], healing_auras: [] };
     const appearances = this.scene.actors;
     this.lastView = view;
+    this.frameStats.links=statusLinks(view.actors,a=>this.point(a),view.game_time_ms);
+    drawStatusLinks(context,this.frameStats.links,presentationMs,this.motion);
+    this.frameStats.fields=drawStatusFields(context,view.actors,a=>this.point(a),presentationMs,this.motion);
     for (const actor of view.actors.filter(row => row.summon_of)) this.drawSummon(context, actor, presentationMs);
     for (const actor of view.actors.slice().sort((a, b) => this.point(a)[1] - this.point(b)[1])) {
       const appearance = appearances.find(row => row.actor_id === actor.actor_id), parts = this.pack.actors.get(actor.actor_id); if (!appearance || !parts) continue;

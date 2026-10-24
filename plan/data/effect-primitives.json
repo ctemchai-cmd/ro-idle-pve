@@ -51,6 +51,11 @@
       "id": "handler",
       "schema": "schemas/effect.json",
       "result": "validated ordered effect intents"
+    },
+    {
+      "id": "sacrifice_damage",
+      "schema": "schemas/effect.json",
+      "result": "pay caster HP once per effect/root at resolve then emit ordinary physical/magical damage; never self-kill or refund SP; no incoming-damage proc"
     }
   ],
   "handler_registry": [
@@ -92,5 +97,13 @@
     "limit_reached": "diagnostic failure, never silently truncate buff stacks"
   },
   "snapshot": "caster offense and pre-cost resources at cast start; status carries application offense snapshot; defense live per hit",
-  "special_effect_lifecycle": "shield independent pools; summoned actors not roster members and do not prevent party defeat; revive restarts next unspent SI, no refund or replay of spent slot"
+  "special_effect_lifecycle": "shield independent pools; summoned actors not roster members and do not prevent party defeat; revive restarts next unspent SI, no refund or replay of spent slot",
+  "special_contracts_d169": {
+    "selector": "highest max(P.ATK,M.ATK), optional exclude_self/actor_kind; actor_id ties",
+    "parameter_formulas": "registry-only nonnegative snapshot raw power to declared numeric status params; no JS evaluation",
+    "damage_charge": "oldest eligible charge per resolved damaging skill, whole root action; normals/periodic/proc do not consume",
+    "skill_echo": "descending tier conditional roll once per instance/root; add extra repeat counts between independent applications; Bolt whitelist only",
+    "magic_critical": "optional cast and periodic status snapshot flag, absent false",
+    "visual_link": "presentation color from live status source to recipient"
+  }
 }

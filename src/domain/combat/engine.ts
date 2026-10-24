@@ -8,6 +8,7 @@ import { fixedSpCost } from '../math/combat-modifiers.ts';
 import { emptyMetrics } from './model.ts';
 import type { BattleEvent, BattleInput, BattleState, BattleStep, ModeRespawn, PureModePolicy, RunLimits } from './model.ts';
 import { EffectPipeline } from './effects.ts';
+import { allowsMagicalCritical } from './action-bonuses.ts';
 import type { ProgramContext } from './program.ts';
 import { recomputeStats, statusDefinition, statusRestriction, weaponElement } from './status.ts';
 import { compareId, compareTimer, schedule } from './scheduler.ts';
@@ -71,7 +72,7 @@ export function createBattle(input: BattleInput, content: ValidatedContent, seed
       for (const id of assigned) {
         const definition = source.resolved_skills[id!]!.definition;
         if (definition.kind === 'active') for (const effect of [...definition.start_effects, ...definition.effects]) {
-          if (!['damage', 'heal', 'shield', 'apply_status', 'remove_status', 'resource_change', 'interrupt', 'revive', 'handler', 'summon'].includes(effect.type)) throw new Error('UNKNOWN_EFFECT_TYPE');
+          if (!['damage','sacrifice_damage', 'heal', 'shield', 'apply_status', 'remove_status', 'resource_change', 'interrupt', 'revive', 'handler', 'summon'].includes(effect.type)) throw new Error('UNKNOWN_EFFECT_TYPE');
         }
       }
       const blueprint = attachLearnedPassives(source.stat_blueprint, source.actor_id, source.resolved_skills);
@@ -268,7 +269,7 @@ export function advanceUntil(input: BattleState, toGameMs: number, content: Vali
     // Periodic effects inherit this application snapshot, without reapplying it.
     const focused = skill.single_target_damage_bonus !== undefined && state.actors.filter(a => a.team !== actor.team && a.targetable && a.hp > 0).length === 1;
     const offense = focused ? { ...cast.offense_snapshot, skill_damage_bonus: (cast.offense_snapshot.skill_damage_bonus ?? 0) + numeric(skill.single_target_damage_bonus!) } : cast.offense_snapshot;
-    const context = { ...pipeline.context(actor, skill.id, 'skill', cast.token), offense, pre_cost_sp: cast.pre_cost.sp, weapon_element: cast.weapon_element_snapshot, selected };
+    const context = { ...pipeline.context(actor, skill.id, 'skill', cast.token), offense, pre_cost_sp: cast.pre_cost.sp, weapon_element: cast.weapon_element_snapshot, selected,allow_magical_crit:cast.allow_magical_crit===true };
     context.source.origin_life_epoch = originEpoch;
     pipeline.program(skill.effects, context); pipeline.event('cast_resolve', actor, context);
     if (actor.hp > 0 && actor.cast === cast) resume(actor, numeric(skill.timing.after_cast_ms));
@@ -302,13 +303,14 @@ export function advanceUntil(input: BattleState, toGameMs: number, content: Vali
     const cast: CastState = { token: `cast_${actor.actor_id}_${actor.life_epoch}_${state.event_sequence}`, skill_id: skill.id, skill_level: actor.resolved_skills[skill.id]!.level, used_slot_index: index,
       started_at: state.game_time_ms, ends_at: state.game_time_ms + duration, interruptible: skill.timing.interruptible, pre_cost: pre, offense_snapshot: structuredClone(actor.stats), resolved_skill: skill,
       target_bindings: {}, weapon_element_snapshot: weaponElement(actor, content) };
+    if(allowsMagicalCritical(actor,content,state.game_time_ms))cast.allow_magical_crit=true;
     // Resolve only cast-start bindings now; other selectors must not consume RNG early.
     const initial = targets(actor, { ...skill, selectors: Object.fromEntries(Object.entries(skill.selectors).filter(([, selector]) => selector.phase === 'cast_start')) });
     for (const [key, selector] of Object.entries(skill.selectors)) if (selector.phase === 'cast_start') cast.target_bindings[key] = (initial[key] ?? []).map(row => row.actor_id);
     actor.cast = cast; actor.action_phase = 'casting'; actor.phase_started_at = state.game_time_ms; actor.phase_duration_ms = duration; actor.phase_speed_snapshot = actor.stats.cast_speed; actor.phase_ready_at = cast.ends_at;
     if (actor.spatial) actor.spatial.moving = false;
     emit({ type: 'cast_start', actor_id: actor.actor_id, skill_id: skill.id, amount: spent, cast_duration_ms: duration, action_id: cast.token });
-    const context = { ...pipeline.context(actor, skill.id, 'skill', cast.token), offense: cast.offense_snapshot, pre_cost_sp: cast.pre_cost.sp, weapon_element: cast.weapon_element_snapshot, selected: initial };
+    const context = { ...pipeline.context(actor, skill.id, 'skill', cast.token), offense: cast.offense_snapshot, pre_cost_sp: cast.pre_cost.sp, weapon_element: cast.weapon_element_snapshot, selected: initial,allow_magical_crit:cast.allow_magical_crit===true };
     pipeline.program(skill.start_effects, context); pipeline.event('cast_start', actor, context);
     if (actor.cast === cast) { if (duration === 0) resolve(actor, cast); else schedule(state, actor, 'cast_complete', cast.ends_at, cast.token); }
   }

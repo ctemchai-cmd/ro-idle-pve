@@ -787,9 +787,10 @@ dialog.sheet.card-upgrade-sheet { height: 92dvh; }
 
 /* D138: preserve user source pixels; recolor the green thief family only in presentation. */
 .game-root img[src*="/ui/modern-"] { image-rendering:auto; }
-.game-root img[src*="/skills/modern-thief_"]:not([src*="modern-thief_envenom"]),
-.game-root img[src*="/skills/modern-assassin_"],
-.game-root img[src*="/skills/modern-rogue_"]:not([src*="modern-rogue_strip_armor"]) { filter:hue-rotate(160deg); }
+:is(.game-root,.skill-preview,.skill-information-dialog) img[src*="/skills/modern-thief_"]:not([src*="modern-thief_envenom"]),
+:is(.game-root,.skill-preview,.skill-information-dialog) img[src*="/skills/modern-assassin_"],
+:is(.game-root,.skill-preview,.skill-information-dialog) img[src*="/skills/modern-rogue_"]:not([src*="modern-rogue_strip_armor"]),
+:is(.game-root,.skill-preview,.skill-information-dialog) img[src*="/skills/modern-stalker_"] { filter:hue-rotate(160deg); }
 /* D138: card summoning is presentation over one confirmed receipt. */
 .card-summon-stage{position:relative;isolation:isolate;overflow:hidden;min-height:246px;display:grid;justify-items:center;align-content:end;padding:18px 12px 16px;border-radius:22px;background:radial-gradient(ellipse at 50% 35%,#9bc5ff 0,#e6f1ff 48%,#f8fbff 80%);color:#21416f}
 .card-summon-stage h2{margin:4px 0;font-size:23px;letter-spacing:-.4px}.card-summon-stage p{margin:0;color:#6681a6;font-size:12px}.summon-caption{font-size:9px;letter-spacing:2.2px;font-weight:800;color:#5a7caa;margin-top:10px}

@@ -140,6 +140,9 @@ def program(effects, selectors, event=None, phase="cast_resolve", status_context
                 require(p["actor"] in event_bindings(event), "event_context")
         if effect["type"] == "apply_status":
             require(effect["status_id"] in STATUSES, "unknown_status")
+            for key,call in effect.get("parameter_formulas",{}).items():
+                require(key in effect["params"] and key in STATUSES[effect["status_id"]]["parameter_schema"]["properties"], "status_parameter_formula")
+                require(call["id"]in["physical_power","magical_power","healing_power","flat_power"],"status_parameter_formula")
             status = STATUSES[effect["status_id"]]
             require(not list(Draft202012Validator(status["parameter_schema"]).iter_errors(effect["params"])), "status_params")
             require(0 <= effect["chance"] <= 1, "probability")
@@ -153,13 +156,13 @@ def program(effects, selectors, event=None, phase="cast_resolve", status_context
                 require(template["source_death"] == "remove", "status_lifecycle")
             if template["periodic"]:
                 program(template["periodic"]["effects"], {}, status_context=True, actor_ids=actor_ids)
-        if effect["type"] in ["damage", "heal", "shield"]:
+        if effect["type"] in ["damage", "sacrifice_damage", "heal", "shield"]:
             fid = effect["formula"]["id"]
             if fid == "event_damage_power":
                 require(event in ["damage_received", "damage_dealt"], "event_context")
             allowed = {"heal": ["healing_power", "physical_power", "flat_power"], "shield": ["healing_power", "physical_power", "flat_power"],
                        "damage": ["physical_power", "magical_power", "flat_power", "sp_burst_power", "event_damage_power"]}
-            require(fid in allowed[effect["type"]], "formula_result_type")
+            require(fid in allowed["damage" if effect["type"]=="sacrifice_damage"else effect["type"]], "formula_result_type")
         if target in selectors:
             require((effect["type"] == "revive") == (selectors[target]["life"] == "dead"), "target_life")
         elif effect["type"] == "revive":

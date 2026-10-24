@@ -3291,16 +3291,28 @@
       ],
       "level_parameters": {
         "ratio": [
-          0.16,
+          0.3,
+          0.322222,
+          0.344444,
+          0.366667,
+          0.388889,
+          0.411111,
+          0.433333,
+          0.455556,
+          0.477778,
+          0.5
+        ],
+        "pen": [
+          0.1,
+          0.111111,
+          0.122222,
+          0.133333,
+          0.144444,
+          0.155556,
+          0.166667,
           0.177778,
-          0.195556,
-          0.213333,
-          0.231111,
-          0.248889,
-          0.266667,
-          0.284444,
-          0.302222,
-          0.32
+          0.188889,
+          0.2
         ]
       },
       "presentation_id": "visual_whitesmith_maximum_overthrust",
@@ -3343,7 +3355,7 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "attack_up",
+          "id": "physical",
           "type": "apply_status",
           "target": "friends",
           "status_id": "attack_up",
@@ -3356,7 +3368,7 @@
           "chance": 1
         },
         {
-          "id": "support_magic_up",
+          "id": "magical",
           "type": "apply_status",
           "target": "friends",
           "status_id": "magic_up",
@@ -3364,6 +3376,19 @@
           "params": {
             "ratio": {
               "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "penetration",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "awaken_penetration",
+          "duration_ms": 10000,
+          "params": {
+            "ratio": {
+              "level_param": "pen"
             }
           },
           "chance": 1
@@ -3528,16 +3553,28 @@
           0.5
         ],
         "guard": [
-          0.08,
-          0.088889,
-          0.097778,
-          0.106667,
-          0.115556,
-          0.124444,
-          0.133333,
-          0.142222,
-          0.151111,
-          0.16
+          0.15,
+          0.161111,
+          0.172222,
+          0.183333,
+          0.194444,
+          0.205556,
+          0.216667,
+          0.227778,
+          0.238889,
+          0.25
+        ],
+        "shield": [
+          1.5,
+          1.611111,
+          1.722222,
+          1.833333,
+          1.944444,
+          2.055556,
+          2.166667,
+          2.277778,
+          2.388889,
+          2.5
         ]
       },
       "presentation_id": "visual_creator_full_chemical_protection",
@@ -3589,7 +3626,7 @@
           "permission": "cleanse"
         },
         {
-          "id": "cc_resistance_up",
+          "id": "control",
           "type": "apply_status",
           "target": "friends",
           "status_id": "cc_resistance_up",
@@ -3602,7 +3639,7 @@
           "chance": 1
         },
         {
-          "id": "guard_up",
+          "id": "guard",
           "type": "apply_status",
           "target": "friends",
           "status_id": "guard_up",
@@ -3613,6 +3650,22 @@
             }
           },
           "chance": 1
+        },
+        {
+          "id": "shield",
+          "type": "shield",
+          "target": "friends",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "shield"
+              },
+              "flat_power": 0
+            }
+          },
+          "duration_ms": 10000,
+          "dispelable": true
         }
       ]
     }
@@ -6205,16 +6258,28 @@
       ],
       "level_parameters": {
         "ratio": [
-          0.352,
-          0.364444,
-          0.376889,
-          0.389333,
-          0.401778,
-          0.414222,
-          0.426667,
-          0.439111,
-          0.451556,
-          0.464
+          0.55,
+          0.569444,
+          0.588889,
+          0.608333,
+          0.627778,
+          0.647222,
+          0.666667,
+          0.686111,
+          0.705556,
+          0.725
+        ],
+        "pen": [
+          0.22,
+          0.227778,
+          0.235556,
+          0.243333,
+          0.251111,
+          0.258889,
+          0.266667,
+          0.274444,
+          0.282222,
+          0.29
         ],
         "awaken_1": [
           0.08,
@@ -6269,7 +6334,7 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "attack_up",
+          "id": "physical",
           "type": "apply_status",
           "target": "friends",
           "status_id": "attack_up",
@@ -6282,7 +6347,7 @@
           "chance": 1
         },
         {
-          "id": "support_magic_up",
+          "id": "magical",
           "type": "apply_status",
           "target": "friends",
           "status_id": "magic_up",
@@ -6290,6 +6355,19 @@
           "params": {
             "ratio": {
               "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "penetration",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "awaken_penetration",
+          "duration_ms": 11000,
+          "params": {
+            "ratio": {
+              "level_param": "pen"
             }
           },
           "chance": 1
@@ -6500,16 +6578,28 @@
           0.725
         ],
         "guard": [
-          0.176,
-          0.182222,
-          0.188444,
-          0.194667,
-          0.200889,
-          0.207111,
-          0.213333,
-          0.219556,
-          0.225778,
-          0.232
+          0.275,
+          0.284722,
+          0.294444,
+          0.304167,
+          0.313889,
+          0.323611,
+          0.333333,
+          0.343056,
+          0.352778,
+          0.3625
+        ],
+        "shield": [
+          2.75,
+          2.847222,
+          2.944444,
+          3.041667,
+          3.138889,
+          3.236111,
+          3.333333,
+          3.430556,
+          3.527778,
+          3.625
         ],
         "awaken_2": [
           0.06,
@@ -6573,7 +6663,7 @@
           "permission": "cleanse"
         },
         {
-          "id": "cc_resistance_up",
+          "id": "control",
           "type": "apply_status",
           "target": "friends",
           "status_id": "cc_resistance_up",
@@ -6586,7 +6676,7 @@
           "chance": 1
         },
         {
-          "id": "guard_up",
+          "id": "guard",
           "type": "apply_status",
           "target": "friends",
           "status_id": "guard_up",
@@ -6597,6 +6687,22 @@
             }
           },
           "chance": 1
+        },
+        {
+          "id": "shield",
+          "type": "shield",
+          "target": "friends",
+          "formula": {
+            "id": "physical_power",
+            "params": {
+              "attack_ratio": {
+                "level_param": "shield"
+              },
+              "flat_power": 0
+            }
+          },
+          "duration_ms": 11000,
+          "dispelable": true
         },
         {
           "id": "awaken_2",

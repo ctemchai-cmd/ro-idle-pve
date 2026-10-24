@@ -29,6 +29,8 @@ export interface ActorRenderView {
 export interface StatusRenderInstance {
   instance_id: string; status_id: string; name: string; source_actor_id: string;
   applied_at: number | null; expires_at: number; description: string;
+  link_color?:string;
+  field_color?:string;
 }
 export interface StatusRenderGroup {
   id: string; name: string; polarity: 'buff' | 'debuff'; icon_skill_id: string | null;

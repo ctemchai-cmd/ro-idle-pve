@@ -237,6 +237,162 @@
           "additionalProperties": false
         }
       ]
+    },
+    "allows_magical_crit": {
+      "type": "boolean"
+    },
+    "visual_link": {
+      "type": "object",
+      "properties": {
+        "color": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        }
+      },
+      "required": [
+        "color"
+      ],
+      "additionalProperties": false
+    },
+    "damage_charge": {
+      "type": "object",
+      "properties": {
+        "origins": {
+          "const": [
+            "skill"
+          ]
+        },
+        "armor_rule": {
+          "const": "ignore"
+        },
+        "crit_damage_bonus": {
+          "oneOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "object",
+              "properties": {
+                "level_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "level_param"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "status_param": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_]*$"
+                }
+              },
+              "required": [
+                "status_param"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        }
+      },
+      "required": [
+        "origins",
+        "armor_rule",
+        "crit_damage_bonus"
+      ],
+      "additionalProperties": false
+    },
+    "skill_echo": {
+      "type": "object",
+      "properties": {
+        "skill_ids": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
+          }
+        },
+        "tiers": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {
+            "type": "object",
+            "properties": {
+              "multiplier": {
+                "type": "integer",
+                "minimum": 2,
+                "maximum": 4
+              },
+              "chance": {
+                "oneOf": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "level_param": {
+                        "type": "string",
+                        "pattern": "^[a-z][a-z0-9_]*$"
+                      }
+                    },
+                    "required": [
+                      "level_param"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "status_param": {
+                        "type": "string",
+                        "pattern": "^[a-z][a-z0-9_]*$"
+                      }
+                    },
+                    "required": [
+                      "status_param"
+                    ],
+                    "additionalProperties": false
+                  }
+                ]
+              }
+            },
+            "required": [
+              "multiplier",
+              "chance"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "skill_ids",
+        "tiers"
+      ],
+      "additionalProperties": false
+    },
+    "visual_field": {
+      "type": "object",
+      "properties": {
+        "color": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        }
+      },
+      "required": [
+        "color"
+      ],
+      "additionalProperties": false
     }
   },
   "required": [

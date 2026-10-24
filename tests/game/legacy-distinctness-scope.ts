@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { gunzipSync } from 'node:zlib';
 import spec from '../../plan/generators/skill-distinctness.json';
+import { withoutD169Hi } from './legacy-hi-v2-scope.ts';
 const frozen = JSON.parse(gunzipSync(readFileSync(new URL('../../plan/evidence/task-142/authored-before.json.gz', import.meta.url))).toString()) as Record<string, string>;
 const originals = Object.entries(frozen).filter(([path]) => /^plan\/data\/skills\/.+\.json$/.test(path)).flatMap(([, text]) => {
   const d = JSON.parse(text); return [...d.skills, ...d.hi_class_skills, ...Object.values(d.awakened_variants)];
@@ -8,7 +9,7 @@ const originals = Object.entries(frozen).filter(([path]) => /^plan\/data\/skills
 /** Historical guards restore only D168's declared fields. The new scope test independently
  * checks all authored documents against this frozen input; extra edits are never hidden. */
 export function withoutD168Roles<T>(value: T): T {
-  const copy = structuredClone(value);
+  const copy = withoutD169Hi(value);
   function visit(node: unknown): void {
     if (!node || typeof node !== 'object') return;
     if (Array.isArray(node)) { node.forEach(visit); return; }

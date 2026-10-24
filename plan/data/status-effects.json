@@ -1461,6 +1461,485 @@
       "triggers": [],
       "periodic": null,
       "weapon_element": null
+    },
+    {
+      "id": "fate_physical",
+      "polarity": "buff",
+      "tags": [
+        "hot"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number",
+            "minimum": 0
+          },
+          "power_ratio": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "amount",
+          "power_ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": false,
+      "dispelable": true,
+      "source_death": "remove",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [
+        {
+          "id": "linked_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": {
+            "status_param": "amount"
+          }
+        }
+      ],
+      "triggers": [],
+      "periodic": {
+        "interval_ms": 1000,
+        "tick_on_apply": true,
+        "offense": "application_snapshot",
+        "mitigation": "live_target",
+        "effects": [
+          {
+            "id": "heal_tick",
+            "type": "heal",
+            "target": "self",
+            "formula": {
+              "id": "healing_power",
+              "params": {
+                "attack_ratio": {
+                  "status_param": "power_ratio"
+                },
+                "flat_power": 0
+              }
+            }
+          }
+        ]
+      },
+      "weapon_element": null,
+      "visual_link": {
+        "color": "#ffd47c"
+      }
+    },
+    {
+      "id": "fate_magical",
+      "polarity": "buff",
+      "tags": [
+        "hot"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number",
+            "minimum": 0
+          },
+          "power_ratio": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "amount",
+          "power_ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": false,
+      "dispelable": true,
+      "source_death": "remove",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [
+        {
+          "id": "linked_attack",
+          "stat": "magical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": {
+            "status_param": "amount"
+          }
+        }
+      ],
+      "triggers": [],
+      "periodic": {
+        "interval_ms": 1000,
+        "tick_on_apply": true,
+        "offense": "application_snapshot",
+        "mitigation": "live_target",
+        "effects": [
+          {
+            "id": "heal_tick",
+            "type": "heal",
+            "target": "self",
+            "formula": {
+              "id": "healing_power",
+              "params": {
+                "attack_ratio": {
+                  "status_param": "power_ratio"
+                },
+                "flat_power": 0
+              }
+            }
+          }
+        ]
+      },
+      "weapon_element": null,
+      "visual_link": {
+        "color": "#ffd47c"
+      }
+    },
+    {
+      "id": "mystical_focus",
+      "polarity": "buff",
+      "tags": [
+        "stat_buff"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "magic": {
+            "type": "number",
+            "minimum": 0
+          },
+          "critical": {
+            "type": "number",
+            "minimum": 0
+          },
+          "critical_damage": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "magic",
+          "critical",
+          "critical_damage"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": false,
+      "dispelable": true,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [
+        {
+          "id": "magic",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": {
+            "status_param": "magic"
+          }
+        },
+        {
+          "id": "critical",
+          "stat": "crit_chance_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "status_param": "critical"
+          }
+        },
+        {
+          "id": "critical_damage",
+          "stat": "crit_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "status_param": "critical_damage"
+          }
+        }
+      ],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null,
+      "allows_magical_crit": true
+    },
+    {
+      "id": "bolt_echo",
+      "polarity": "buff",
+      "tags": [
+        "stat_buff"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "chance2": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "chance3": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "chance4": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        },
+        "required": [
+          "chance2",
+          "chance3",
+          "chance4"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": false,
+      "dispelable": true,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null,
+      "skill_echo": {
+        "skill_ids": [
+          "mage_fire_bolt",
+          "mage_cold_bolt",
+          "mage_lightning_bolt",
+          "rogue_copy_mage_fire_bolt"
+        ],
+        "tiers": [
+          {
+            "multiplier": 4,
+            "chance": {
+              "status_param": "chance4"
+            }
+          },
+          {
+            "multiplier": 3,
+            "chance": {
+              "status_param": "chance3"
+            }
+          },
+          {
+            "multiplier": 2,
+            "chance": {
+              "status_param": "chance2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "psychic_field",
+      "polarity": "debuff",
+      "tags": [
+        "damage_over_time"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "power_ratio": {
+            "type": "number",
+            "minimum": 0
+          },
+          "penetration": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "power_ratio",
+          "penetration"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": true,
+      "dispelable": false,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [],
+      "triggers": [],
+      "periodic": {
+        "interval_ms": 1000,
+        "tick_on_apply": true,
+        "offense": "application_snapshot",
+        "mitigation": "live_target",
+        "effects": [
+          {
+            "id": "psychic_tick",
+            "type": "damage",
+            "target": "self",
+            "formula": {
+              "id": "magical_power",
+              "params": {
+                "attack_ratio": {
+                  "status_param": "power_ratio"
+                },
+                "flat_power": 0
+              }
+            },
+            "damage_type": "magical",
+            "element": "neutral",
+            "hit_rule": "always",
+            "can_crit": false,
+            "hits": 1,
+            "armor_rule": "normal",
+            "penetration_bonus": {
+              "status_param": "penetration"
+            }
+          },
+          {
+            "id": "pulse_interrupt",
+            "type": "interrupt",
+            "target": "self"
+          }
+        ]
+      },
+      "weapon_element": null,
+      "visual_field": {
+        "color": "#bc93ff"
+      }
+    },
+    {
+      "id": "chase_charge",
+      "polarity": "buff",
+      "tags": [
+        "stat_buff"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "critical_damage": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "critical_damage"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": false,
+      "dispelable": true,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null,
+      "damage_charge": {
+        "origins": [
+          "skill"
+        ],
+        "armor_rule": "ignore",
+        "crit_damage_bonus": {
+          "status_param": "critical_damage"
+        }
+      }
+    },
+    {
+      "id": "curse",
+      "polarity": "debuff",
+      "tags": [
+        "stat_debuff"
+      ],
+      "parameter_schema": {
+        "type": "object",
+        "properties": {
+          "ratio": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "ratio"
+        ],
+        "additionalProperties": false
+      },
+      "stacking": {
+        "admission": "independent",
+        "max_instances": null,
+        "magnitude_cap": null,
+        "expiry": "per_instance"
+      },
+      "restrictions": [],
+      "cleanseable": true,
+      "dispelable": false,
+      "source_death": "persist",
+      "target_death": "remove",
+      "battle_end": "remove",
+      "remove_on_hp_damage": false,
+      "modifiers": [
+        {
+          "id": "vulnerability",
+          "stat": "damage_taken_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "status_param": "ratio"
+          }
+        }
+      ],
+      "triggers": [],
+      "periodic": null,
+      "weapon_element": null
     }
   ],
   "target_override_rule": "most recently applied living hostile provoke source wins, application_id breaks ties; self/all/random/dead selectors unaffected; after source death fall through to next valid instance",

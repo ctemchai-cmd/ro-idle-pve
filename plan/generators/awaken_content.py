@@ -50,6 +50,8 @@ apply_distinctness() # D168 roles override generic scaling after every regenerat
 roles=load(R/'plan/generators/skill-distinctness.json')['updates']
 for entry in index:
  if entry['id'] in roles:entry['gains']=[{'type':'composed_role','role':roles[entry['id']]['role'],'definition_source':'plan/generators/skill-distinctness.json'}]
+from hi_class_v2 import apply as apply_hi_v2
+apply_hi_v2() # D169 explicit Hi roles run after D168.
 args=argparse.ArgumentParser();args.add_argument('--evidence-task',type=int);task=args.parse_args().evidence_task
 # Historical review evidence is immutable during later balance regeneration.
 if task:

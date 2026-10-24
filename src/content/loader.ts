@@ -53,6 +53,7 @@ export function validateContent(raw: unknown): Result<ValidatedContent> {
   for (const id of Object.keys(actors)) validator.actorIds.add(id);
   for (const name of CLASS_ROOTS) register(`skills/${name}.json`, 'skills', skills, 'skill');
   register('enemies.json', 'skills', skills, 'skill');
+  for(const id of Object.keys(skills))validator.skillIds.add(id);
   for (const file of ['equipment.json', 'cards.json']) register(file, 'definitions', items, 'item');
   for (const row of rows) attempt(row.location, () => validator.definition(row.kind, row.value, row.location));
   for (const name of CLASS_ROOTS) {
@@ -126,7 +127,8 @@ export function validateContent(raw: unknown): Result<ValidatedContent> {
     const formulas = list(bundle.documents['formula-registry.json']!.formulas).map(row => String(object(row).id));
     demand(canonical(formulas.slice().sort()) === canonical(['physical_power', 'magical_power', 'healing_power', 'flat_power', 'sp_burst_power', 'event_damage_power'].sort()), 'formula_registry', docAt('formula-registry.json'));
     const effects = list(bundle.documents['effect-primitives.json']!.effects).map(row => String(object(row).id));
-    demand(canonical(effects.slice().sort()) === canonical(['damage', 'heal', 'apply_status', 'shield', 'resource_change', 'remove_status', 'interrupt', 'summon', 'revive', 'handler'].sort()), 'effect_registry', docAt('effect-primitives.json'));
+    const legacyEffects=['damage','heal','apply_status','shield','resource_change','remove_status','interrupt','summon','revive','handler'];
+    demand(new Set(effects).size===effects.length&&legacyEffects.every(id=>effects.includes(id))&&effects.every(id=>[...legacyEffects,'sacrifice_damage'].includes(id)), 'effect_registry', docAt('effect-primitives.json'));
     const handlers = list(bundle.documents['effect-primitives.json']!.handler_registry).map(row => String(object(row).id));
     demand(canonical(handlers) === canonical(['detonate_own_status']), 'handler_registry', docAt('effect-primitives.json'));
   });

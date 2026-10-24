@@ -6,28 +6,28 @@
   "scope": "M0 JSON Schema and semantic/independent arithmetic review, not runtime simulation",
   "input_sha256": {
     "plan/data/stat-definitions.json": "2caf9a4de40d9c4a072c6fcca031bc46d5d3f6a8c45719a2e6611bb0038b9dbe",
-    "plan/data/status-effects.json": "0c4e6a57c0990f9318074597a68c8a031c532f8617d9ebda2ca77ff99a09f058",
-    "plan/data/effect-primitives.json": "d0da135a6b91756c77cdcc4e976e031b5c7134f25e12e4fa1e4ede989dbebcc6",
+    "plan/data/status-effects.json": "536caec858cf2acbcfdf704a6c8447496661e3df0763c6332819c69d2a36a4ee",
+    "plan/data/effect-primitives.json": "4398b64f99edb03d75f0e2a8b7bd29b90773c4cf6db0415373d133d0c8ded6fe",
     "plan/data/formula-registry.json": "ed2975ebe44959fe0010a0c8978a29ef2facb7dedc75fe503cda5ec6bc32918b",
     "plan/data/composition-cases.json": "1d9466b629619f29f4d98cc775b372fbcc8c466c987b00814f2b1f22c843bf2a",
     "plan/data/combat-rules.json": "d334c77231415651674d97faa80d9286165497c6abe6e4a1330e7c16ba11ad93",
     "plan/data/schemas/account-state.json": "f2b05ee2cfb4de997b4dfdcdc0a7b107cd856b71f54f835a5fc0a47f88308369",
-    "plan/data/schemas/battle-checkpoint.json": "52d7048014807d6c1101e38eca86f8495e47186c8564ecf10aefd77606b06858",
+    "plan/data/schemas/battle-checkpoint.json": "971ba88d4de17b2c8d6239bd650d53e872f33cfc0b1f99be8a7335fdc78dbf5a",
     "plan/data/schemas/command.json": "e3bdd219b62ce8a82bf6f624948a0a8245f50f8e65884bff94c001474e3de1f6",
     "plan/data/schemas/common.json": "a1e6f0140cd31dc4fa361b1447331c0ea8daa667c965bbfc5497da86d38fd2bd",
-    "plan/data/schemas/effect.json": "04d616e3029648c26d1c912dee9ebd3a88adaedf23a3185421bb2f7282868ccb",
+    "plan/data/schemas/effect.json": "d517c5e5f90a115ec6d6dc08f5c9eb5ebe76ef72de1b3291fd667179f81bfc79",
     "plan/data/schemas/formula-call.json": "5bcee1d3bbb36d98dc0cfd861e348c078fe3da3a3e56be31d89213e3b2297eb8",
     "plan/data/schemas/item.json": "0c6ee1d78c636ba75b43b38bb680d192d878ca9155deddbac966f740b223047e",
     "plan/data/schemas/modifier.json": "95b0c37c91d6b5d05f09a4855afffd1bc8d74fbcf4b66252e2d8cbd9d65d9e52",
     "plan/data/schemas/patch.json": "cedfbd99b2d91cc477c8a19efa585b2a7371b7e4e729932b071c0efd790fe082",
-    "plan/data/schemas/predicate.json": "7393bdb160e272412112e8ca1d934b0b2cd086b99fc35a4569f604187fde13d0",
+    "plan/data/schemas/predicate.json": "9b1d5fd6ccc553fb3d1233b7f9c4abdb27e9ffec311c9d0ed44875959a0aa172",
     "plan/data/schemas/receipt.json": "df318b5e82e1a3073e2f2e7138415ee83e7720bd4909f626b8727f05f9a4a40a",
-    "plan/data/schemas/selector.json": "c0593a4f50b3baaa11c87ef229900d5c6ae93036cf7848ced1f31341501946bc",
+    "plan/data/schemas/selector.json": "71d0b7a74c63674669832da96b07b6733846e8bdeb7ce8d1ec46f4a8f9b0c9f1",
     "plan/data/schemas/simulation-scenario.json": "27db3d11711f2bf3f56188510319b8a68b9284565aded730ea84ccfebd4f71b7",
     "plan/data/schemas/skill.json": "bbe2a5ea65f535c09242cdb9d0c85978de5a02a47f42a6be98147685c2796758",
-    "plan/data/schemas/status.json": "d998199e6e2fb6f7a74f399a7a55bf0d4fe2489bf7615225de8107ab910cbc15",
+    "plan/data/schemas/status.json": "a32345a7fd828bb02d354d29ea02848e08391d7f05c4211e80953d6164724e03",
     "plan/data/schemas/trigger.json": "1ed3a2e32dc1e135d80339750b21ae8f16b7d981caf0a2ef041c5d8a5c5e9017",
-    "plan/checks/composition.py": "99c5cb7e3975e2828d78456e8021fa8cc79231dad741d53b9e009cfced3697a3",
+    "plan/checks/composition.py": "99ff39e268695a3ebc84c7b423924b7dbd98f770cbe3450152d304ff80216281",
     "plan/design/15-combat-baseline.md": "3fc95fe2465fa149dbd311df8f95fdf2fd5f82c83a4c6ae9c128352fca9fd63c",
     "plan/design/16-composition-baseline.md": "b620a6b7970e6020cf37cd99dd89d1846fe62bcf4c0784cf189a89bd38c443ed",
     "plan/data/class-status-effects.json": "24c2e62418ba644bfaed3326b1eae50399d25768283d26dea7e82740b3c4857a"
@@ -543,6 +543,104 @@
     },
     {
       "case_id": "status_evasion_up",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {
+          "ratio": 0
+        }
+      }
+    },
+    {
+      "case_id": "status_fate_physical",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {
+          "amount": 0,
+          "power_ratio": 0
+        }
+      }
+    },
+    {
+      "case_id": "status_fate_magical",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {
+          "amount": 0,
+          "power_ratio": 0
+        }
+      }
+    },
+    {
+      "case_id": "status_mystical_focus",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {
+          "magic": 0,
+          "critical": 0,
+          "critical_damage": 0
+        }
+      }
+    },
+    {
+      "case_id": "status_bolt_echo",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {
+          "chance2": 0,
+          "chance3": 0,
+          "chance4": 0
+        }
+      }
+    },
+    {
+      "case_id": "status_psychic_field",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {
+          "power_ratio": 0,
+          "penetration": 0
+        }
+      }
+    },
+    {
+      "case_id": "status_chase_charge",
+      "acceptance": [
+        "AC-01",
+        "AC-02"
+      ],
+      "passed": true,
+      "result": {
+        "template_bound_with": {
+          "critical_damage": 0
+        }
+      }
+    },
+    {
+      "case_id": "status_curse",
       "acceptance": [
         "AC-01",
         "AC-02"
@@ -1348,7 +1446,7 @@
       }
     }
   ],
-  "total": 118,
+  "total": 125,
   "passed": true,
   "manual_review": [
     {

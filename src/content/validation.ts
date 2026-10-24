@@ -31,6 +31,7 @@ export class ContentValidator {
   readonly statuses: Record<string, ObjectValue> = Object.create(null);
   readonly stats: Record<string, ObjectValue> = Object.create(null);
   readonly actorIds = new Set<string>();
+  readonly skillIds = new Set<string>();
   constructor(schemas: Record<string, ObjectValue>) {
     for (const [name, schema] of Object.entries(schemas)) {
       if (schema.$id !== `https://ro-idle.local/schemas/${name}.json`) throw new TypeError(`Invalid local schema ID: ${name}`);
@@ -155,6 +156,10 @@ export class ContentValidator {
         const status = this.statuses[text(effect.status_id)];
         demand(status, 'unknown_status', at, text(effect.status_id));
         const params = obj(effect.params);
+        for(const [key,call]of Object.entries(obj(effect.parameter_formulas??{}))){
+          demand(Object.hasOwn(params,key)&&Object.hasOwn(obj(obj(status.parameter_schema).properties),key),'status_parameter_formula',at,key);
+          demand(['physical_power','magical_power','healing_power','flat_power'].includes(text(obj(call).id)),'status_parameter_formula',at,key);
+        }
         demand(this.ajv.validate(obj(status.parameter_schema), params), 'status_params', { ...at, path: `${at.path}/params` }, JSON.stringify(this.ajv.errors));
         demand(Number(effect.chance) >= 0 && Number(effect.chance) <= 1, 'probability', at);
         const template = obj(this.resolve(status, undefined, params, at));
@@ -166,10 +171,10 @@ export class ContentValidator {
         }
         if (template.periodic) this.program(arr(obj(template.periodic).effects), {}, at);
       }
-      if (['damage', 'heal', 'shield'].includes(type)) {
+      if (['damage','sacrifice_damage', 'heal', 'shield'].includes(type)) {
         const formula = obj(effect.formula);
         if (formula.id === 'event_damage_power') demand(['damage_received', 'damage_dealt'].includes(event ?? ''), 'event_context', at);
-        const allowed = type === 'damage' ? ['physical_power', 'magical_power', 'flat_power', 'sp_burst_power', 'event_damage_power'] : ['healing_power', 'physical_power', 'flat_power'];
+        const allowed = ['damage','sacrifice_damage'].includes(type) ? ['physical_power', 'magical_power', 'flat_power', 'sp_burst_power', 'event_damage_power'] : ['healing_power', 'physical_power', 'flat_power'];
         demand(allowed.includes(text(formula.id)), 'formula_result_type', at);
       }
       if (Object.hasOwn(selectors, target)) {
@@ -235,6 +240,11 @@ export class ContentValidator {
       if (value.periodic && obj(value.periodic).offense === 'live_source') demand(value.source_death === 'remove', 'status_lifecycle', location);
       const params = Object.fromEntries(Object.entries(properties).map(([key, prop]) => [key, obj(prop).minimum ?? Math.min(0, Number(obj(prop).maximum ?? 0))])) as ObjectValue;
       const template = obj(this.resolve(value, undefined, params, location));
+      if(value.skill_echo){
+        const echo=obj(value.skill_echo),tiers=arr(echo.tiers).map(obj),ordered=tiers.map(t=>Number(t.multiplier));
+        demand(ordered.every((m,i)=>i===0||m<ordered[i-1]!), 'echo_tier_order',location);
+        if(this.skillIds.size)for(const id of arr(echo.skill_ids))demand(this.skillIds.has(text(id)),'unknown_echo_skill',location,text(id));
+      }
       this.modifiers(arr(template.modifiers), location); this.triggers(arr(template.triggers), location);
       if (template.periodic) this.program(arr(obj(template.periodic).effects), {}, location);
     }

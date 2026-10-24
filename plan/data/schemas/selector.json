@@ -21,7 +21,8 @@
         "lowest_hp_percent",
         "all",
         "random_n",
-        "nearest"
+        "nearest",
+        "highest_attack"
       ]
     },
     "count": {
@@ -42,6 +43,16 @@
       "enum": [
         "skip",
         "reselect_once"
+      ]
+    },
+    "exclude_self": {
+      "type": "boolean"
+    },
+    "actor_kind": {
+      "enum": [
+        "party",
+        "enemy",
+        "summon"
       ]
     }
   },

@@ -3102,16 +3102,16 @@
       ],
       "level_parameters": {
         "ratio": [
-          0.14,
-          0.155556,
-          0.171111,
-          0.186667,
-          0.202222,
-          0.217778,
-          0.233333,
-          0.248889,
-          0.264444,
-          0.28
+          0.5,
+          0.555556,
+          0.611111,
+          0.666667,
+          0.722222,
+          0.777778,
+          0.833333,
+          0.888889,
+          0.944444,
+          1.0
         ]
       },
       "presentation_id": "visual_high_priest_assumptio",
@@ -3154,10 +3154,23 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "guard_up",
+          "id": "physical",
           "type": "apply_status",
           "target": "friends",
-          "status_id": "guard_up",
+          "status_id": "defense_up",
+          "duration_ms": 10000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "magical",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "magic_defense_up",
           "duration_ms": 10000,
           "params": {
             "ratio": {
@@ -3191,29 +3204,29 @@
         "hi_class"
       ],
       "level_parameters": {
-        "power": [
-          3.5,
-          3.777778,
-          4.055556,
-          4.333333,
-          4.611111,
-          4.888889,
-          5.166667,
-          5.444444,
-          5.722222,
-          6.0
+        "link": [
+          0.4,
+          0.422222,
+          0.444444,
+          0.466667,
+          0.488889,
+          0.511111,
+          0.533333,
+          0.555556,
+          0.577778,
+          0.6
         ],
-        "guard": [
-          0.1,
-          0.108889,
-          0.117778,
-          0.126667,
-          0.135556,
-          0.144444,
-          0.153333,
-          0.162222,
-          0.171111,
-          0.18
+        "heal": [
+          0.8,
+          0.8,
+          0.8,
+          0.8,
+          0.8,
+          0.8,
+          0.8,
+          0.8,
+          0.8,
+          0.8
         ]
       },
       "presentation_id": "visual_high_priest_basilica",
@@ -3251,47 +3264,86 @@
           "count": null,
           "phase": "cast_resolve",
           "missing": "skip"
+        },
+        "fate": {
+          "team": "allies",
+          "life": "living",
+          "select": "highest_attack",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip",
+          "exclude_self": true,
+          "actor_kind": "party"
         }
       },
       "start_effects": [],
       "effects": [
         {
-          "id": "shield",
-          "type": "shield",
-          "target": "friends",
-          "formula": {
-            "id": "healing_power",
-            "params": {
-              "attack_ratio": {
-                "level_param": "power"
-              },
-              "flat_power": 0
-            }
-          },
-          "duration_ms": 6000,
-          "dispelable": true
-        },
-        {
-          "id": "guard_up",
+          "id": "physical",
           "type": "apply_status",
-          "target": "friends",
-          "status_id": "guard_up",
-          "duration_ms": 6000,
+          "target": "fate",
+          "status_id": "fate_physical",
+          "duration_ms": 10000,
           "params": {
-            "ratio": {
-              "level_param": "guard"
+            "amount": 0,
+            "power_ratio": {
+              "level_param": "heal"
             }
           },
-          "chance": 1
+          "parameter_formulas": {
+            "amount": {
+              "id": "magical_power",
+              "params": {
+                "attack_ratio": {
+                  "level_param": "link"
+                },
+                "flat_power": 0
+              }
+            }
+          },
+          "chance": 1,
+          "when": {
+            "type": "stat_compare",
+            "actor": "target",
+            "left": "physical_attack",
+            "right": "magical_attack",
+            "op": "gte"
+          }
         },
         {
-          "id": "cleanse",
-          "type": "remove_status",
-          "target": "friends",
-          "polarity": "debuff",
-          "tags": [],
-          "max_instances": null,
-          "permission": "cleanse"
+          "id": "magical",
+          "type": "apply_status",
+          "target": "fate",
+          "status_id": "fate_magical",
+          "duration_ms": 10000,
+          "params": {
+            "amount": 0,
+            "power_ratio": {
+              "level_param": "heal"
+            }
+          },
+          "parameter_formulas": {
+            "amount": {
+              "id": "magical_power",
+              "params": {
+                "attack_ratio": {
+                  "level_param": "link"
+                },
+                "flat_power": 0
+              }
+            }
+          },
+          "chance": 1,
+          "when": {
+            "type": "not",
+            "condition": {
+              "type": "stat_compare",
+              "actor": "target",
+              "left": "physical_attack",
+              "right": "magical_attack",
+              "op": "gte"
+            }
+          }
         }
       ]
     },
@@ -3319,28 +3371,16 @@
       ],
       "level_parameters": {
         "power": [
-          5.5,
-          5.888889,
-          6.277778,
-          6.666667,
-          7.055556,
-          7.444444,
-          7.833333,
-          8.222222,
-          8.611111,
-          9.0
-        ],
-        "stun": [
-          1000,
-          1089,
-          1178,
-          1267,
-          1356,
-          1444,
-          1533,
-          1622,
-          1711,
-          1800
+          0.916667,
+          0.981481,
+          1.046296,
+          1.111111,
+          1.175926,
+          1.240741,
+          1.305556,
+          1.37037,
+          1.435185,
+          1.5
         ]
       },
       "presentation_id": "visual_champion_palm_strike",
@@ -3399,19 +3439,9 @@
           "element": "weapon",
           "hit_rule": "physical_roll",
           "can_crit": true,
-          "hits": 1,
-          "armor_rule": "normal"
-        },
-        {
-          "id": "stun",
-          "type": "apply_status",
-          "target": "foe",
-          "status_id": "stun",
-          "duration_ms": {
-            "level_param": "stun"
-          },
-          "params": {},
-          "chance": 1
+          "hits": 6,
+          "armor_rule": "normal",
+          "crit_chance_bonus": 0.5
         }
       ]
     },
@@ -3439,23 +3469,23 @@
       ],
       "level_parameters": {
         "power": [
-          1.5,
-          1.622222,
-          1.744444,
-          1.866667,
-          1.988889,
-          2.111111,
-          2.233333,
-          2.355556,
-          2.477778,
-          2.6
+          5.0,
+          5.333333,
+          5.666667,
+          6.0,
+          6.333333,
+          6.666667,
+          7.0,
+          7.333333,
+          7.666667,
+          8.0
         ]
       },
       "presentation_id": "visual_champion_chain_crush_combo",
       "kind": "active",
       "cost": {
         "sp": 58,
-        "spirit_spheres": 3
+        "spirit_spheres": 5
       },
       "timing": {
         "cast_ms": 600,
@@ -3492,7 +3522,7 @@
       "effects": [
         {
           "id": "hit",
-          "type": "damage",
+          "type": "sacrifice_damage",
           "target": "foe",
           "formula": {
             "id": "physical_power",
@@ -3507,8 +3537,10 @@
           "element": "weapon",
           "hit_rule": "physical_roll",
           "can_crit": true,
-          "hits": 5,
-          "armor_rule": "normal"
+          "hits": 1,
+          "armor_rule": "normal",
+          "retain_hp_ratio": 0.01,
+          "hp_loss_scaling": 1
         }
       ]
     }
@@ -5824,16 +5856,16 @@
       ],
       "level_parameters": {
         "ratio": [
-          0.308,
-          0.318889,
-          0.329778,
-          0.340667,
-          0.351556,
-          0.362444,
-          0.373333,
-          0.384222,
-          0.395111,
-          0.406
+          1.1,
+          1.138889,
+          1.177778,
+          1.216667,
+          1.255556,
+          1.294444,
+          1.333333,
+          1.372222,
+          1.411111,
+          1.45
         ],
         "awaken_recovery": [
           0.3,
@@ -5888,11 +5920,24 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "guard_up",
+          "id": "physical",
           "type": "apply_status",
           "target": "friends",
-          "status_id": "guard_up",
-          "duration_ms": 11000,
+          "status_id": "defense_up",
+          "duration_ms": 10000,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "magical",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "magic_defense_up",
+          "duration_ms": 10000,
           "params": {
             "ratio": {
               "level_param": "ratio"
@@ -5939,41 +5984,41 @@
         "awakened"
       ],
       "level_parameters": {
-        "power": [
-          6.6,
-          6.833333,
-          7.066667,
-          7.3,
-          7.533333,
-          7.766667,
-          8.0,
-          8.233333,
-          8.466667,
-          8.7
+        "link": [
+          0.66,
+          0.683333,
+          0.706667,
+          0.73,
+          0.753333,
+          0.776667,
+          0.8,
+          0.823333,
+          0.846667,
+          0.87
         ],
-        "guard": [
-          0.198,
-          0.205,
-          0.212,
-          0.219,
-          0.226,
-          0.233,
-          0.24,
-          0.247,
-          0.254,
-          0.261
+        "heal": [
+          0.88,
+          0.911111,
+          0.942222,
+          0.973333,
+          1.004444,
+          1.035556,
+          1.066667,
+          1.097778,
+          1.128889,
+          1.16
         ],
-        "awaken_recovery": [
-          0.3,
-          0.333333,
-          0.366667,
-          0.4,
-          0.433333,
-          0.466667,
-          0.5,
-          0.533333,
-          0.566667,
-          0.6
+        "cleanse": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          3,
+          3,
+          3
         ]
       },
       "presentation_id": "visual_high_priest_basilica",
@@ -6011,60 +6056,97 @@
           "count": null,
           "phase": "cast_resolve",
           "missing": "skip"
+        },
+        "fate": {
+          "team": "allies",
+          "life": "living",
+          "select": "highest_attack",
+          "count": null,
+          "phase": "cast_resolve",
+          "missing": "skip",
+          "exclude_self": true,
+          "actor_kind": "party"
         }
       },
       "start_effects": [],
       "effects": [
         {
-          "id": "shield",
-          "type": "shield",
-          "target": "friends",
-          "formula": {
-            "id": "healing_power",
-            "params": {
-              "attack_ratio": {
-                "level_param": "power"
-              },
-              "flat_power": 0
-            }
-          },
-          "duration_ms": 6000,
-          "dispelable": true
-        },
-        {
-          "id": "guard_up",
+          "id": "physical",
           "type": "apply_status",
-          "target": "friends",
-          "status_id": "guard_up",
-          "duration_ms": 6600,
+          "target": "fate",
+          "status_id": "fate_physical",
+          "duration_ms": 10000,
           "params": {
-            "ratio": {
-              "level_param": "guard"
+            "amount": 0,
+            "power_ratio": {
+              "level_param": "heal"
             }
           },
-          "chance": 1
+          "parameter_formulas": {
+            "amount": {
+              "id": "magical_power",
+              "params": {
+                "attack_ratio": {
+                  "level_param": "link"
+                },
+                "flat_power": 0
+              }
+            }
+          },
+          "chance": 1,
+          "when": {
+            "type": "stat_compare",
+            "actor": "target",
+            "left": "physical_attack",
+            "right": "magical_attack",
+            "op": "gte"
+          }
         },
         {
-          "id": "cleanse",
+          "id": "magical",
+          "type": "apply_status",
+          "target": "fate",
+          "status_id": "fate_magical",
+          "duration_ms": 10000,
+          "params": {
+            "amount": 0,
+            "power_ratio": {
+              "level_param": "heal"
+            }
+          },
+          "parameter_formulas": {
+            "amount": {
+              "id": "magical_power",
+              "params": {
+                "attack_ratio": {
+                  "level_param": "link"
+                },
+                "flat_power": 0
+              }
+            }
+          },
+          "chance": 1,
+          "when": {
+            "type": "not",
+            "condition": {
+              "type": "stat_compare",
+              "actor": "target",
+              "left": "physical_attack",
+              "right": "magical_attack",
+              "op": "gte"
+            }
+          }
+        },
+        {
+          "id": "cleanse_link",
           "type": "remove_status",
-          "target": "friends",
+          "target": "fate",
           "polarity": "debuff",
           "tags": [],
-          "max_instances": null,
-          "permission": "cleanse"
-        },
-        {
-          "id": "awaken_recovery",
-          "type": "apply_status",
-          "target": "friends",
-          "status_id": "regeneration",
-          "duration_ms": 5000,
-          "params": {
-            "power_ratio": {
-              "level_param": "awaken_recovery"
-            }
+          "max_instances": {
+            "level_param": "cleanse"
           },
-          "chance": 1
+          "permission": "cleanse"
         }
       ]
     },
@@ -6093,28 +6175,28 @@
       ],
       "level_parameters": {
         "power": [
-          9.9,
-          10.25,
-          10.6,
-          10.95,
-          11.3,
-          11.65,
-          12.0,
-          12.35,
-          12.7,
-          13.05
+          1.65,
+          1.708333,
+          1.766667,
+          1.825,
+          1.883333,
+          1.941667,
+          2.0,
+          2.058333,
+          2.116667,
+          2.175
         ],
-        "stun": [
-          1980,
-          2050,
-          2120,
-          2190,
-          2260,
-          2330,
-          2400,
-          2470,
-          2540,
-          2610
+        "critical_damage": [
+          0.2,
+          0.222222,
+          0.244444,
+          0.266667,
+          0.288889,
+          0.311111,
+          0.333333,
+          0.355556,
+          0.377778,
+          0.4
         ],
         "awaken_2": [
           0.12,
@@ -6169,19 +6251,6 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "awaken_2",
-          "type": "apply_status",
-          "target": "self",
-          "status_id": "awaken_penetration",
-          "duration_ms": 5000,
-          "params": {
-            "ratio": {
-              "level_param": "awaken_2"
-            }
-          },
-          "chance": 1
-        },
-        {
           "id": "hit",
           "type": "damage",
           "target": "foe",
@@ -6198,21 +6267,24 @@
           "element": "weapon",
           "hit_rule": "physical_roll",
           "can_crit": true,
-          "hits": 1,
+          "hits": 6,
           "armor_rule": "normal",
-          "penetration_bonus": {
-            "level_param": "awaken_2"
+          "crit_chance_bonus": 0.5,
+          "crit_damage_bonus": {
+            "level_param": "critical_damage"
           }
         },
         {
-          "id": "stun",
+          "id": "awaken_2",
           "type": "apply_status",
-          "target": "foe",
-          "status_id": "stun",
-          "duration_ms": {
-            "level_param": "stun"
+          "target": "self",
+          "status_id": "awaken_penetration",
+          "duration_ms": 5000,
+          "params": {
+            "ratio": {
+              "level_param": "awaken_2"
+            }
           },
-          "params": {},
           "chance": 1
         }
       ]
@@ -6242,23 +6314,35 @@
       ],
       "level_parameters": {
         "power": [
-          2.86,
-          2.961111,
-          3.062222,
-          3.163333,
-          3.264444,
-          3.365556,
-          3.466667,
-          3.567778,
-          3.668889,
-          3.77
+          8.8,
+          9.111111,
+          9.422222,
+          9.733333,
+          10.044444,
+          10.355556,
+          10.666667,
+          10.977778,
+          11.288889,
+          11.6
+        ],
+        "pen": [
+          0.2,
+          0.216667,
+          0.233333,
+          0.25,
+          0.266667,
+          0.283333,
+          0.3,
+          0.316667,
+          0.333333,
+          0.35
         ]
       },
       "presentation_id": "visual_champion_chain_crush_combo",
       "kind": "active",
       "cost": {
         "sp": 58,
-        "spirit_spheres": 3
+        "spirit_spheres": 5
       },
       "timing": {
         "cast_ms": 600,
@@ -6295,7 +6379,7 @@
       "effects": [
         {
           "id": "hit",
-          "type": "damage",
+          "type": "sacrifice_damage",
           "target": "foe",
           "formula": {
             "id": "physical_power",
@@ -6310,8 +6394,13 @@
           "element": "weapon",
           "hit_rule": "physical_roll",
           "can_crit": true,
-          "hits": 6,
-          "armor_rule": "normal"
+          "hits": 1,
+          "armor_rule": "normal",
+          "retain_hp_ratio": 0.01,
+          "hp_loss_scaling": 1,
+          "penetration_bonus": {
+            "level_param": "pen"
+          }
         }
       ]
     }

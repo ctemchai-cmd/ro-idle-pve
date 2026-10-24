@@ -31,8 +31,9 @@ test('every152 Awaken variants keeps its ID/native icon, adds a functional effec
   const id=String(row.id),base=resolveSkill(id,10,future).definition as SkillDefinition,first=resolveSkill(id,1,future,true).definition as SkillDefinition;
   assert.equal(first.id,base.id);assert.equal(first.presentation_id,base.presentation_id);assert.ok(first.tags.includes('awakened'));
   if(first.kind==='active'&&base.kind==='active'){
-   const richer=first.effects.length>base.effects.length||first.effects.some(e=>{
-    const old=base.effects.find(b=>b.id===e.id);return e.type==='damage'&&old?.type==='damage'&&Number(e.hits)>Number(old.hits)||e.type==='summon'&&old?.type==='summon'&&Number(e.duration_ms)>Number(old.duration_ms);
+   // D169 also enables previously zero local/profile capabilities (armor-ignore/crit/echo tiers).
+   const richer=first.effects.length>base.effects.length||Object.entries(base.level_parameters).some(([key,values])=>values.at(-1)===0&&Number(first.level_parameters[key]?.[0])>0)||first.effects.some(e=>{
+    const old=base.effects.find(b=>b.id===e.id);return ('penetration_bonus'in e&&!('penetration_bonus'in(old??{})))||('crit_damage_bonus'in e&&!('crit_damage_bonus'in(old??{})))||e.type==='damage'&&old?.type==='damage'&&Number(e.hits)>Number(old.hits)||e.type==='summon'&&old?.type==='summon'&&Number(e.duration_ms)>Number(old.duration_ms);
    });assert.ok(richer,id);assert.deepEqual(first.timing,base.timing);
   }
   else if(first.kind==='passive'&&base.kind==='passive')assert.ok(first.modifiers.length>base.modifiers.length);
@@ -115,14 +116,13 @@ test('new receipt schema accepts unchanged historical8-resource receipts while n
  const old=JSON.parse(JSON.stringify(fresh.receipt));delete old.result.resource_delta.awakening_shard;
  const validator=new ContentValidator(structuredClone(future.schemas)as unknown as Record<string,ObjectValue>);validator.shape('receipt',old as Json,{source:'historical receipt',path:''});
 });
-test('Professor Double Casting follows skill hits at most once per root cast; follow-up damage never recurses',()=>{
+test('Professor Double Casting repeats only Bolt hit programs once per root, never creates proc casts or recursion',()=>{
  const buff=structuredClone(resolveSkill('professor_double_casting',10,future).definition)as Active;
  const bolt=structuredClone(resolveSkill('mage_fire_bolt',10,future).definition)as Active;
  const damage=bolt.effects.find(e=>e.type==='damage')!;if(damage.type!=='damage')throw Error('DAMAGE_REQUIRED');damage.hits=5;damage.target='foes';
  const caster=actor('caster','player',[buff,bolt]);caster.stat_blueprint.derived_offsets.max_sp=2000;
  const initial=unwrap(createBattle({actors:[caster,...['boss','add1','add2'].map(id=>actor(id,'enemy'))],mode:{kind:'story',ref:'echo-rule',time_limit_ms:90000,ticket_day:null,daily_phase:null,daily_current_hp:null,reserved_phase_keys:[]}},future,17));
- const applied=structuredClone(unwrap(advanceUntil(initial,2500,future)).state)as BattleCheckpoint;
- const status=applied.actors.find(a=>a.actor_id==='caster')!.statuses.find(s=>s.status_id==='double_casting')!;assert.ok(status);status.params.chance=1; // Isolate trigger policy from its separately checked authored RNG probability.
+ const applied=structuredClone(unwrap(advanceUntil(initial,2500,future)).state)as BattleCheckpoint,status=applied.actors.find(a=>a.actor_id==='caster')!.statuses.find(s=>s.status_id==='bolt_echo')!;assert.ok(status);status.params.chance4=0;status.params.chance3=1;status.params.chance2=0;
  const result=unwrap(advanceUntil(applied,12000,future)),hits=result.events.filter(e=>e.type==='damage'&&e.skill_id==='mage_fire_bolt');
- assert.equal(hits.length,15);const echo=result.events.filter(e=>e.type==='damage'&&e.effect_id==='echo');assert.equal(echo.length,1);assert.equal(echo[0]!.origin,'proc');assert.equal(echo[0]!.action_id,hits[0]!.action_id);
+ assert.equal(hits.length,45);assert.ok(hits.every(e=>e.origin==='skill'));assert.equal(result.events.filter(e=>e.type==='proc'&&e.skill_id==='professor_double_casting').length,0);assert.equal(result.events.filter(e=>e.type==='cast_start'&&e.skill_id==='mage_fire_bolt').length,1);
 });

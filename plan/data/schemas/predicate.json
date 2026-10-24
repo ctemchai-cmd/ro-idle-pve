@@ -251,6 +251,48 @@
         "scope"
       ],
       "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "stat_compare"
+        },
+        "actor": {
+          "enum": [
+            "self",
+            "target",
+            "event_source",
+            "event_target"
+          ]
+        },
+        "left": {
+          "enum": [
+            "physical_attack",
+            "magical_attack"
+          ]
+        },
+        "right": {
+          "enum": [
+            "physical_attack",
+            "magical_attack"
+          ]
+        },
+        "op": {
+          "enum": [
+            "gt",
+            "gte"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "actor",
+        "left",
+        "right",
+        "op"
+      ],
+      "additionalProperties": false
     }
   ]
 }
