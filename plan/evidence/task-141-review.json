@@ -1,0 +1,37 @@
+{
+  "task_id": "TASK-141",
+  "passed": false,
+  "local_passed": true,
+  "status": "review",
+  "date": "2026-10-25",
+  "content_hash": "6d2d125d956656ed90f7e82ee0deb3bdc91025ae57b5f062863b945b741d28c6",
+  "acceptance_results": {
+    "AC-01": "passed_local",
+    "AC-02": "passed_local",
+    "AC-03": "passed_local",
+    "AC-04": "pending_hosted",
+    "AC-05": "passed_local"
+  },
+  "tests": {
+    "native_HUD_groups": 3,
+    "result_native_groups": 2,
+    "result_cases": 16,
+    "hp_old_px": 178,
+    "hp_new_px": 50.59375,
+    "root_filtered_gzip_bytes": 630186,
+    "pwa_version": "5f8a379eadd4e56a"
+  },
+  "evidence": [
+    "plan/evidence/task-141/README.md",
+    "plan/evidence/task-141/before.json",
+    "plan/evidence/task-141/native.json",
+    "plan/evidence/task-141/results.json",
+    "plan/evidence/task-141/build-root.txt",
+    "plan/evidence/task-141/build-filtered.txt"
+  ],
+  "limits": [
+    "Actual UI/native renderer/high-HP synthetic engine target; synthetic result callbacks, no new Auth/API/SQL proof",
+    "No owner/SQL/env/6173 restart or balance batch",
+    "Visibility claims bounded to measured native scenes; no universal guarantee for arbitrary actor positions"
+  ]
+}

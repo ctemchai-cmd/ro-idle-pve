@@ -739,3 +739,24 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T140-AC-02` | TASK-140 | เริ่ม/จบครั้งเดียวต่อไฟต์; แพ้3ครั้ง/รับรางวัลเดิม/คิวและข้อมูลengineไม่เปลี่ยน | Native/unit/build/hosted | passed_implementation |
 | `T140-AC-03` | TASK-140 | หยุดระหว่างintroยกเลิกnextได้,เริ่มไม่สำเร็จหยุดAutoและปุ่มไม่ค้าง; UIมือถือ320390ไม่overflow | Native/unit/build/hosted | passed_implementation |
 | `T140-AC-04` | TASK-140 | meaningfulnative regression/unit/uncachedbuild+filtered/Vercel+hostedผ่าน;ไม่owner/SQL/env/6173 | Native/unit/build/hosted | passed_implementation |
+
+## TASK-141 — HUDบอสและพื้นที่ดาเมจ
+
+| ID | Task | เกณฑ์ | วิธีตรวจ | สถานะ |
+| --- | --- | --- | --- | --- |
+| `T141-AC-01` | TASK-141 | HPบอสและข้อมูลย่อสูงไม่เกิน52px และลดพื้นที่ด้านบนอย่างน้อยครึ่งหนึ่งเทียบเดิมที่320390;ธาตุ/ขนาด/HPยังอ่านหรือเปิดรายละเอียดได้ | Native/build/hosted | not_run_implementation |
+| `T141-AC-02` | TASK-141 | ย้ายสถิติ/Timeline/speed/retreat/Autoเป็นแถวเดียวในdockล่าง;ปุ่มอย่างน้อย36pxและAuto/แพ้0of3ยังชัด;แถบทีม/สถานะไม่ทับกัน | Native/build/hosted | not_run_implementation |
+| `T141-AC-03` | TASK-141 | actualnativeบน320x640/390x844เห็นwhite/yellowdamageจากengineและcaptureglyphbounds;ตรวจไม่ให้HP/controlsบังตัวเลขในตัวอย่างและเปิดปุ่มหลักได้ ไม่มีhorizontaloverflow | Native/build/hosted | not_run_implementation |
+| `T141-AC-04` | TASK-141 | uncachedroot+filteredbuild/M0/publichostedผ่าน;ไม่เปลี่ยนengine/สูตร/การเซฟ/ข้อมูลและไม่owner/SQL/env/6173 | Native/build/hosted | not_run_implementation |
+| `T141-AC-05` | TASK-141 | หน้าจบStory/Tower/Dailyจัดปุ่มหลัก44px/รอง36pxเป็นกลุ่ม;แยกbodyเลื่อนกับfooterที่เห็นเสมอบน320x568/390x844;next/retry/team/exit/Stats/Timelineและlocked/pending/Autoคงcallbacksเดิม | Native/build/hosted | not_run_implementation |
+
+## TASK-142 — บทบาทสกิลแยกกัน
+
+| ID | Task | เกณฑ์ | วิธีตรวจ | สถานะ |
+| --- | --- | --- | --- | --- |
+| `T142-AC-01` | TASK-142 | BlessingรวมASPDของIncreaseAGIและแยกแกนบัฟจากImpo;RuwachHolyMATKโจมตี+ลดDEF/MDEFพร้อมicon/effectถูกชนิด | Audit/engine/native/hosted | not_run_implementation |
+| `T142-AC-02` | TASK-142 | auditทั้ง152base/Awakenและแก้กลุ่มซ้ำจริงให้มีบทบาทต่างกัน รวมEndure/AutoGuard;sharedancestry/copyspell/pairedhealsต้องระบุเหตุผลหรือแยกจังหวะโดยคงidentity | Audit/engine/native/hosted | not_run_implementation |
+| `T142-AC-03` | TASK-142 | ทุกrank1–10มีความก้าวหน้าและAwaken1ดีกว่าbaseMaxในผลหลักรวม;อธิบายP.ATK/M.ATK/DEF-MDEF/เป้าหมาย/ระยะเวลา/CCให้ตรงจริง | Audit/engine/native/hosted | not_run_implementation |
+| `T142-AC-04` | TASK-142 | ใช้sharedengine/statuspipeline;buffindependent/noaggregatecap/normal4slot/SPcaststart/retryrulesเดิม;นอกscopebyteเท่าเดิมและprice/timing/unlockไม่เปลี่ยน | Audit/engine/native/hosted | not_run_implementation |
+| `T142-AC-05` | TASK-142 | เซฟเดิมคงskillrank/slot/Awaken/paidledgerและแปลงversionผ่านbackupflow,oldreceiptsยังอ่านได้;ไม่owner/SQL/env/6173 | Audit/engine/native/hosted | not_run_implementation |
+| `T142-AC-06` | TASK-142 | meaningfulactualeffects/fulltests/M0/assets/root+filteredbuild/nativeUI/hostedผ่านก่อนdone;รายงานขอบเขตไม่อ้างglobalbalanceจากแค่unit | Audit/engine/native/hosted | not_run_implementation |

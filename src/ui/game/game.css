@@ -882,3 +882,80 @@ dialog.gacha-reveal-sheet{height:92dvh}.gacha-reveal-sheet .sheet-body{height:10
 .class-card.on,.class-card[aria-checked=true] { background:#edf4ff; border-color:var(--blue); }
 
 .tower-auto { width:100%; justify-content:center; }
+
+/* Compact battle HUD: reserve the centre of the arena for actors and native damage digits. */
+.boss .boss-bar { padding:5px 7px; border-radius:10px; }
+.boss .boss-name { gap:5px; margin-bottom:3px; min-height:20px; line-height:1.2; }
+.boss .boss-name strong { font-size:12px; }
+.boss .boss-name>span { font-size:9px; flex:none; }
+.boss .boss-name time { font-size:10px; white-space:nowrap; flex:none; }
+.boss .boss-name time small { font-size:8px; }
+.boss .boss-traits { flex:none; gap:4px; margin:0; }
+.boss .boss-traits .element-badge.compact { padding:1px; background:transparent; }
+.element-badge.compact>.element-label { display:none; }
+.boss .boss-traits .element-glyph { width:14px; height:14px; }
+.boss .boss-traits .monster-size.compact { padding:2px 4px; font-size:9px; }
+.boss-health { display:flex; align-items:center; gap:6px; min-height:11px; }
+.boss .boss-health .bar { height:5px; flex:1; }
+.boss-hp-value { flex:none; font-size:9px; line-height:1.2; font-variant-numeric:tabular-nums; color:#e8f0ff; }
+.boss .boss-status-panel { height:32px; margin-top:2px; }
+.boss .boss-status-panel:empty { display:none; }
+.boss .boss-cast { padding:4px 6px; margin-top:3px; font-size:10px; border-radius:8px; }
+.boss .boss-cast p { gap:2px 4px; line-height:1.2; }
+.boss .boss-cast b { max-width:60%; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+.boss .boss-cast small { font-size:9px; line-height:1.2; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.boss .boss-cast .cast-track { height:3px; margin-top:2px; }
+.battle-dock { position:absolute; z-index:6; left:8px; right:8px; bottom:calc(var(--bar-h) + var(--safe-bottom) + 8px); display:grid; gap:4px; }
+.battle-dock>.focus-status-panel { position:static; min-width:0; }
+.battle-dock .focus-elements { padding-bottom:2px; gap:4px; }
+.battle-dock .boss-tools { display:flex; gap:4px; margin:0; padding:0; border:0; }
+.battle-dock .boss-tools .chip-btn { width:36px; min-width:36px; min-height:36px; padding:0; border-radius:10px; background:rgba(15,25,55,.64); }
+.battle-dock .boss-tools .chip-btn>span { display:none; }
+.battle-dock .boss-tools .chip-btn.speed { width:42px; gap:2px; margin-left:0; }
+.battle-dock .boss-tools .chip-btn.speed>span { display:inline; font-size:10px; }
+.battle-dock .boss-tools .ui-icon { width:15px; height:15px; }
+.battle-dock .boss-auto-row { margin-left:auto; padding:0; min-width:0; }
+.battle-dock .auto-battle-control { gap:4px; }
+.battle-dock .auto-battle-control .btn { min-height:36px; padding:0 8px; gap:3px; font-size:10px; border-radius:10px; box-shadow:none; }
+.battle-dock .auto-battle-control>small { font-size:9px; color:#fff; text-shadow:0 1px 2px #162b43; }
+.auto-short { display:none; }
+.battle-dock .auto-label,.battle-dock .auto-failure-label { display:none; }
+.battle-dock .auto-short { display:inline; }
+.battle-dock>.party-strip { position:static; gap:4px; min-width:0; }
+.battle-dock .party-card { min-width:0; padding:4px 5px; gap:2px; border-radius:9px; }
+.battle-dock .party-name { display:flex; align-items:center; gap:3px; min-width:0; font-size:10px; line-height:1.2; white-space:nowrap; overflow:hidden; }
+.battle-dock .party-card>small { font-size:9px; line-height:1.2; }
+.battle-dock .party-card .bar.hp { height:3px; }
+.battle-dock .party-card .bar.sp { height:2px; }
+.battle-dock .status-signals { height:14px; }
+.battle-dock .status-signal { width:14px; height:14px; }
+.battle-dock .status-signal img,.battle-dock .status-signal .ui-icon { width:11px; height:11px; }
+
+/* Keep the next action visible while long battle summaries scroll above it. */
+.result-layer { padding:12px; }
+.result-card { display:flex; flex-direction:column; width:min(100%,360px); max-height:min(78dvh,600px); overflow:hidden; padding:0; border:1px solid #d4e1f5; border-radius:18px; background:#fff; }
+.result-body { min-height:0; overflow-y:auto; overscroll-behavior:contain; padding:16px 14px 12px; }
+.result-mark { display:grid; place-items:center; width:34px; height:34px; margin:0 auto 8px; border-radius:50%; background:#eaf1fd; color:#6884ad; }
+.result-mark .ui-icon { width:20px; height:20px; }
+.result-card.win .result-mark { background:#fff3d8; color:#c48d25; }
+.result-card h2 { font-size:20px; line-height:1.35; }
+.result-card.win h2 { color:#a67820; text-shadow:none; }
+.result-card p { font-size:12px; margin:5px 0 10px; }
+.result-card .result-reward { gap:5px; margin:10px 0 7px; }
+.result-card .result-reward:empty { display:none; }
+.result-card .result-reward>span { padding:4px 7px; border-radius:8px; font-size:12px; font-weight:600; }
+.result-card .result-collected { font-size:10px; }
+.result-card .debrief { margin-top:12px; text-align:left; }
+.result-footer { flex:none; padding:10px 12px 12px; border-top:1px solid var(--line); background:#f6f9ff; }
+.result-primary-actions { display:flex; gap:8px; }
+.result-primary-actions:empty { display:none; }
+.result-primary-actions>.btn { flex:1; min-width:0; min-height:44px; padding:0 9px; font-size:13px; box-shadow:none; }
+.result-primary-actions>.btn .ui-icon { width:17px; height:17px; }
+.result-primary-actions>.btn>span { display:flex; align-items:center; gap:7px; }
+.result-primary-actions>.btn small { padding-left:7px; border-left:1px solid #ffffff59; font-size:11px; font-weight:400; }
+.result-secondary-actions { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:4px; margin-top:8px; }
+.result-secondary-actions>.btn { min-width:0; min-height:36px; padding:0 3px; gap:4px; border:0; font-size:10px; color:var(--ink-2); box-shadow:none; white-space:nowrap; }
+.result-secondary-actions .ui-icon { width:14px; height:14px; flex:none; }
+.result-auto .auto-battle-control { justify-content:space-between; margin:0 0 8px; }
+.result-auto .auto-battle-control .btn { min-height:36px; font-size:12px; padding:0 10px; box-shadow:none; }
+.result-auto .auto-battle-control>small { color:var(--ink-2); }

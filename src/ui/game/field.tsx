@@ -136,16 +136,8 @@ export function BossField({ context, app, running, checkpoint, outcome, retreat,
   return <section className="field-arena boss" aria-label="ไฟต์บอส" data-battle-id={app.id} data-game-ms={view.game_time_ms} data-terminal={view.terminal?.kind ?? ''}>
     <canvas ref={canvas} width={720} height={1100} aria-label="ทีมต่อสู้กับบอส" />
     <div className="boss-hud"><div className="boss-bar">
-      <div className="boss-name"><strong title={boss?.name}>{boss?.name.replace('บอส · ', '')}</strong><span>{modeTag(app.session)}</span><time>{(view.game_time_ms / 1000).toFixed(1)}<small>/{view.time_limit_ms / 1000}s</small></time></div>
-      {bossActor && <div className="boss-traits"><ElementBadge pack={pack} element={actorElements(bossActor).armor} armor /><MonsterSizeBadge size={actorSize(bossActor)} /></div>}
-      <div className="bar hp"><i style={{ width: `${boss ? boss.hp / boss.max_hp * 100 : 0}%` }} /><span>{full(Math.max(0, boss?.hp ?? 0))} / {full(boss?.max_hp ?? 0)}</span></div>
-    <div className="boss-tools">
-      <button className="chip-btn" onClick={() => setPanel('statistics')}><Icon name="chart" /><span>สถิติ</span></button>
-      <button className="chip-btn" onClick={() => setPanel(outcome ? 'history' : 'timeline')}><Icon name="timeline" /><span>Timeline</span></button>
-      <SpeedButton />
-      {retreat && !outcome && <button className="chip-btn danger" disabled={retreating} onClick={() => { setRetreating(true); void retreat().finally(() => setRetreating(false)); }}><Icon name="retreat" /><span>{retreating ? 'กำลังถอย…' : 'ถอยทัพ'}</span></button>}
-    </div>
-      {autoControl && <div className="boss-auto-row">{autoControl}</div>}
+      <div className="boss-name"><strong title={boss?.name}>{boss?.name.replace('บอส · ', '')}</strong>{bossActor && <div className="boss-traits"><ElementBadge pack={pack} element={actorElements(bossActor).armor} armor compact /><MonsterSizeBadge size={actorSize(bossActor)} compact /></div>}<span>{modeTag(app.session)}</span><time>{(view.game_time_ms / 1000).toFixed(1)}<small>/{view.time_limit_ms / 1000}s</small></time></div>
+      <div className="boss-health"><div className="bar hp"><i style={{ width: `${boss ? boss.hp / boss.max_hp * 100 : 0}%` }} /></div><span className="boss-hp-value" title={`${full(Math.max(0,boss?.hp??0))} / ${full(boss?.max_hp??0)}`} aria-label={`HP บอส ${full(Math.max(0,boss?.hp??0))} จาก ${full(boss?.max_hp??0)}`}>{compact(Math.max(0,boss?.hp??0))} / {compact(boss?.max_hp??0)}</span></div>
     </div>
       <div className="boss-status-panel">{boss && <CombatStatusStrip actor={boss} actors={view.actors} pack={pack} now={view.game_time_ms} />}</div>
       {boss?.cast && (() => { const info = bossCastInfo(boss.cast.skill_id), progress = Math.min(1, Math.max(0, (view.game_time_ms - boss.phase_started_at) / Math.max(1, boss.phase_duration_ms)));
@@ -157,12 +149,22 @@ export function BossField({ context, app, running, checkpoint, outcome, retreat,
     </div>
     {view.terminal && !outcome && running && <p className="field-toast">กำลังยืนยันผลไฟต์…</p>}
     {error && <p className="field-toast danger" role="alert">{error}</p>}
+    <div className="battle-dock">
+    {focused && <div className="focus-status-panel">{focusActor && <div className="focus-elements" aria-label={`ธาตุของ ${focused.name}`}><ElementBadge pack={pack} element={actorElements(focusActor).armor} armor /><span className="weapon-element">อาวุธ · <ElementBadge pack={pack} element={actorElements(focusActor).weapon} /></span></div>}<CombatStatusStrip key={focused.actor_id} actor={focused} actors={view.actors} pack={pack} now={view.game_time_ms} focus /></div>}
+    <div className="boss-tools" role="toolbar" aria-label="ควบคุมการต่อสู้">
+      <button className="chip-btn" aria-label="สถิติการต่อสู้" title="สถิติ" onClick={() => setPanel('statistics')}><Icon name="chart" /><span>สถิติ</span></button>
+      <button className="chip-btn" aria-label="Timeline สกิล" title="Timeline" onClick={() => setPanel(outcome ? 'history' : 'timeline')}><Icon name="timeline" /><span>Timeline</span></button>
+      <SpeedButton />
+      {retreat && !outcome && <button className="chip-btn danger" aria-label={retreating?'กำลังถอยทัพ':'ถอยทัพ'} title="ถอยทัพ" disabled={retreating} onClick={() => { setRetreating(true); void retreat().finally(() => setRetreating(false)); }}><Icon name="retreat" /><span>{retreating ? 'กำลังถอย…' : 'ถอยทัพ'}</span></button>}
+      {autoControl && <div className="boss-auto-row">{autoControl}</div>}
+    </div>
+
     <div className="party-strip" role="group" aria-label="ทีมในไฟต์">{party.map(a => <button key={a.actor_id} className={`party-card ${selected === a.actor_id ? 'on' : ''} ${a.hp <= 0 ? 'down' : ''}`} aria-pressed={selected === a.actor_id} onClick={() => setSelected(a.actor_id)}>
-      <span className="party-name"><ClassIcon pack={pack} job={context.state.roster.find(r => r.character_id === a.actor_id)?.job_id ?? 'swordsman'} size={15} />{a.name.split(' · ')[0]}</span><small>{phaseNames[a.phase]}</small>
+      <span className="party-name"><ClassIcon pack={pack} job={context.state.roster.find(r => r.character_id === a.actor_id)?.job_id ?? 'swordsman'} size={13} />{a.name.split(' · ')[0]}</span><small>{phaseNames[a.phase]}</small>
       <span className="bar hp thin"><i style={{ width: `${a.hp / a.max_hp * 100}%` }} /></span><span className="bar sp thin"><i style={{ width: `${a.sp / a.max_sp * 100}%` }} /></span>
       <StatusSignals actor={a} pack={pack} />
     </button>)}</div>
-    {focused && <div className="focus-status-panel">{focusActor && <div className="focus-elements" aria-label={`ธาตุของ ${focused.name}`}><ElementBadge pack={pack} element={actorElements(focusActor).armor} armor /><span className="weapon-element">อาวุธ · <ElementBadge pack={pack} element={actorElements(focusActor).weapon} /></span></div>}<CombatStatusStrip key={focused.actor_id} actor={focused} actors={view.actors} pack={pack} now={view.game_time_ms} focus /></div>}
+    </div>
     {panel && <Sheet title={panel === 'history' ? 'Timeline ย้อนหลัง' : panel === 'timeline' ? 'Timeline สกิล' : 'สถิติการต่อสู้'} onClose={() => setPanel(null)} className="tall">{panel === 'history' ? <BattleHistory session={app.session} pack={pack!} /> : panel === 'timeline' ? <SkillTimeline session={app.session} pack={pack!} view={view} clock={clock} /> : <BattleStatistics report={app.session.statistics()} actors={view.actors} labels={app.session.scene.skill_labels} />}</Sheet>}
   </section>;
 }
@@ -252,41 +254,50 @@ function DailyResult({ context, outcome, close, challenge, stats, timeline, sess
   async function claimAll() { if(claims.length) await context.submitWhenReady('reward.claim', { claim_ids: claims.map(c=>c.claim_id) }); }
   const total: Partial<Record<keyof Wallet, number>> = {}; for (const claim of claims) for (const [k, n] of Object.entries(claim.resource_vector) as [keyof Wallet, number][]) total[k] = (total[k] ?? 0) + n;
   return <div className="result-layer" role="dialog" aria-label="ผลดันเจี้ยนรายวัน"><div className={`result-card ${claims.length ? 'win' : 'lose'}`}>
-    <h2>{claims.length ? `ทำลายได้ ${claims.length} หลอด!` : outcome.code === 'DAILY_DEFEATED' ? 'ทีมพ่ายแพ้' : 'หมดเวลา'}</h2>
-    <p>{card ? `ตอนนี้หลอดที่ ${card.phase} เหลือ ${compact(card.hp)} HP · เหลือสิทธิ์วันนี้ ${card.attempts_left}/${card.attempts}` : ''}</p>
-    {claims.length > 0 && <div className="result-reward">{(Object.entries(total) as [keyof Wallet, number][]).filter(([, n]) => n > 0).map(([k, n]) => <span key={k}><ResIcon pack={pack} k={k} />{full(n)}</span>)}</div>}
-    {session && <Debrief session={session} />}
-    <div className="row">
-      {claims.length > 0 && <button className="btn primary" disabled={locked} onClick={() => void claimAll()}>รับกล่อง {claims.length}</button>}
-      {!claims.length && card && card.attempts_left > 0 && <button className="btn primary" disabled={locked} onClick={() => { close(); challenge({ kind: 'daily', boss: outcome.stage }); }}>ท้าอีกครั้ง ({card.attempts_left})</button>}
+    <div className="result-body"><span className="result-mark" aria-hidden="true"><Icon name={claims.length?'check':'warning'}/></span>
+      <h2>{claims.length ? `ทำลายได้ ${claims.length} หลอด!` : outcome.code === 'DAILY_DEFEATED' ? 'ทีมพ่ายแพ้' : 'หมดเวลา'}</h2>
+      <p>{card ? `ตอนนี้หลอดที่ ${card.phase} เหลือ ${compact(card.hp)} HP · เหลือสิทธิ์วันนี้ ${card.attempts_left}/${card.attempts}` : ''}</p>
+      {claims.length > 0 && <div className="result-reward">{(Object.entries(total) as [keyof Wallet, number][]).filter(([, n]) => n > 0).map(([k, n]) => <span key={k}><ResIcon pack={pack} k={k} />{full(n)}</span>)}</div>}
+      {session && <Debrief session={session} />}
+    </div>
+    <div className="result-footer"><div className="result-primary-actions">
+      {claims.length > 0 && <button className="btn primary" disabled={locked} onClick={() => void claimAll()}><Icon name="gift"/>รับกล่อง {claims.length}</button>}
+      {!claims.length && card && card.attempts_left > 0 && <button className="btn primary" disabled={locked} onClick={() => { close(); challenge({ kind: 'daily', boss: outcome.stage }); }}><Icon name="play"/>ท้าอีกครั้ง ({card.attempts_left})</button>}
+    </div><div className="result-secondary-actions">
       {session && <button className="btn ghost" onClick={timeline} aria-label="Timeline ย้อนหลัง"><Icon name="timeline" /><span>Timeline</span></button>}
       <button className="btn ghost" onClick={stats}><Icon name="chart" /><span>สถิติ</span></button>
-      <button className="btn ghost" onClick={() => { close(); go('daily'); }}>กลับดันเจี้ยน</button>
-    </div>
+      <button className="btn ghost" aria-label="กลับดันเจี้ยน" onClick={() => { close(); go('daily'); }}><Icon name="retreat"/><span>กลับดันเจี้ยน</span></button>
+    </div></div>
   </div></div>;
 }
-function ResultCard({ context, outcome, close, challenge, stats, timeline, session, autoControl, autoRunning, autoMessage }: { context: GameContext; outcome: Outcome; close: () => void; challenge: (target: ChallengeTarget) => void; stats: () => void; timeline: () => void; session?: SavedBattleSession; autoControl?: ReactNode; autoRunning: boolean; autoMessage: string }) {
+export function ResultCard({ context, outcome, close, challenge, stats, timeline, session, autoControl, autoRunning, autoMessage }: { context: GameContext; outcome: Outcome; close: () => void; challenge: (target: ChallengeTarget) => void; stats: () => void; timeline: () => void; session?: SavedBattleSession; autoControl?: ReactNode; autoRunning: boolean; autoMessage: string }) {
   if (outcome.kind === 'daily') return <DailyResult context={context} outcome={outcome} close={close} challenge={challenge} stats={stats} timeline={timeline} session={session} />;
   const { state, pack, locked, go } = context, tower = outcome.kind === 'tower', won = outcome.code.endsWith('_WON');
   const pending = hasPendingProgressRewards(state), resources = outcome.resources ?? {}, itemCount = outcome.itemCount ?? 0;
   const story = storyOptions(state).find(s => s.available && !s.cleared), next: ChallengeTarget | null = tower ? { kind: 'tower', floor: state.tower.highest_cleared_floor + 1 } : story ? { kind: 'story', id: story.id } : null;
   const retry: ChallengeTarget = tower ? { kind: 'tower', floor: Number(outcome.stage) } : { kind: 'story', id: outcome.stage };
   return <div className="result-layer" role="dialog" aria-label="ผลการต่อสู้"><div className={`result-card ${won ? 'win' : 'lose'}`}>
-    <h2>{won ? 'ชนะแล้ว!' : outcome.code.endsWith('_TIME_LIMIT') ? 'หมดเวลา' : 'ทีมพ่ายแพ้'}</h2>
-    <p>{won ? tower ? `ผ่านหอคอยชั้น ${outcome.stage}` : `ผ่านด่าน ${outcome.stage}` : 'ทีมพ่ายแพ้หรือหมดเวลา'}</p>
-    {session && <Debrief session={session} />}
-    <div className="result-reward" aria-label="รางวัลที่ได้รับ">{(Object.entries(resources) as [keyof Wallet, number][]).filter(([, n]) => n > 0).map(([k, n]) => <span key={k}><ResIcon pack={pack} k={k} />{full(n)}</span>)}{itemCount ? <span><Icon name="gift" /> {itemCount}</span> : null}</div>
-    {won && (Object.values(resources).some(n => Number(n) > 0) || itemCount > 0) && <small className="result-collected"><Icon name="check" /> รับรางวัลแล้ว</small>}
-    {pending && <p className="result-pending" role="status">ยังรับรางวัลบางส่วนไม่ได้ · ตรวจพื้นที่กระเป๋า</p>}
-    {autoControl}{autoMessage && <p className="auto-message" role="status">{autoMessage}</p>}
-    <div className="row">
-      {!autoRunning && won && next && <button className="btn primary" disabled={locked || pending} onClick={() => { close(); challenge(next); }}>{next.kind === 'tower' ? `ท้าชั้น ${next.floor}` : `ท้าด่าน ${next.kind === 'story' ? next.id : ''}`}</button>}
-      {pending && <button className="btn" onClick={() => { close(); go('backpack'); }}>จัดกระเป๋า</button>}
-      {!autoRunning && !won && <button className="btn" onClick={() => { close(); go('team'); }}>ปรับทีม</button>}
-      {!autoRunning && !won && <button className="btn primary" disabled={locked} onClick={() => { close(); challenge(retry); }}>ลองใหม่</button>}
-      {session && <button className="btn ghost" onClick={timeline} aria-label="Timeline ย้อนหลัง"><Icon name="timeline" /><span>Timeline</span></button>}
-      <button className="btn ghost" onClick={stats}><Icon name="chart" /><span>สถิติ</span></button>
-      {tower ? <button className="btn ghost" onClick={() => { close(); go('tower'); }}>กลับหอคอย</button> : <button className="btn ghost" onClick={close}>กลับไปฟาร์ม</button>}
+    <div className="result-body"><span className="result-mark" aria-hidden="true"><Icon name={won?'check':'warning'}/></span>
+      <h2>{won ? 'ชนะแล้ว!' : outcome.code.endsWith('_TIME_LIMIT') ? 'หมดเวลา' : 'ทีมพ่ายแพ้'}</h2>
+      <p>{won ? tower ? `ผ่านหอคอยชั้น ${outcome.stage}` : `ผ่านด่าน ${outcome.stage}` : 'ทีมพ่ายแพ้หรือหมดเวลา'}</p>
+      <div className="result-reward" aria-label="รางวัลที่ได้รับ">{(Object.entries(resources) as [keyof Wallet, number][]).filter(([, n]) => n > 0).map(([k, n]) => <span key={k}><ResIcon pack={pack} k={k} />{full(n)}</span>)}{itemCount ? <span><Icon name="gift" /> {itemCount}</span> : null}</div>
+      {won && (Object.values(resources).some(n => Number(n) > 0) || itemCount > 0) && <small className="result-collected"><Icon name="check" /> รับรางวัลแล้ว</small>}
+      {session && <Debrief session={session} />}
+      {pending && <p className="result-pending" role="status">ยังรับรางวัลบางส่วนไม่ได้ · ตรวจพื้นที่กระเป๋า</p>}
+      {autoMessage && <p className="auto-message" role="status">{autoMessage}</p>}
+    </div>
+    <div className="result-footer">{autoControl && <div className="result-auto">{autoControl}</div>}
+      <div className="result-primary-actions">
+        {!autoRunning && won && next && <button className="btn primary" aria-label={next.kind==='tower'?`ท้าชั้น ${next.floor}`:`ท้าด่าน ${next.kind==='story'?next.id:''}`} disabled={locked || pending} onClick={() => { close(); challenge(next); }}><Icon name="play"/><span>{tower?'ชั้นถัดไป':'ด่านถัดไป'}<small>{next.kind==='tower'?next.floor:next.kind==='story'?next.id:''}</small></span></button>}
+        {pending && <button className="btn" onClick={() => { close(); go('backpack'); }}><Icon name="gift"/>จัดกระเป๋า</button>}
+        {!autoRunning && !won && <button className="btn" onClick={() => { close(); go('team'); }}><Icon name="team"/>ปรับทีม</button>}
+        {!autoRunning && !won && <button className="btn primary" disabled={locked} onClick={() => { close(); challenge(retry); }}><Icon name="play"/>ลองใหม่</button>}
+      </div>
+      <div className="result-secondary-actions">
+        {session && <button className="btn ghost" onClick={timeline} aria-label="Timeline ย้อนหลัง"><Icon name="timeline" /><span>Timeline</span></button>}
+        <button className="btn ghost" onClick={stats}><Icon name="chart" /><span>สถิติ</span></button>
+        {tower ? <button className="btn ghost" onClick={() => { close(); go('tower'); }}><Icon name="retreat"/><span>กลับหอคอย</span></button> : <button className="btn ghost" onClick={close}><Icon name="retreat"/><span>กลับไปฟาร์ม</span></button>}
+      </div>
     </div>
   </div></div>;
 }
@@ -368,8 +379,8 @@ export function Field({ context, covered, save, request, consumeRequest }: { con
   const showBoss = boss && (active?.battle_id === boss.id || outcome?.id === boss.id), bossIcon = iconUrl(pack, 'ui_icons', 'boss'), chest = iconUrl(pack, 'feature_icons', 'afk_chest'), mapIcon = iconUrl(pack, 'ui_icons', 'stage');
   const mode = auto?.mode ?? boss?.session.initial.mode.kind;
   const autoControl = mode === 'daily' ? null : <div className="auto-battle-control" data-auto-running={!!auto}>
-    <button className={`btn small ${auto ? 'auto-on' : 'ghost'}`} aria-label={auto ? 'หยุด Auto Battle' : 'เริ่ม Auto Battle'} disabled={!auto && (locked && !active || starting)} onClick={() => auto ? stopAuto('หยุด Auto โดยผู้เล่น') : startAuto(mode === 'tower' ? 'tower' : 'story')}><Icon name={auto ? 'pause' : 'play'} />{auto ? 'หยุด Auto' : 'Auto Battle'}</button>
-    {auto && <small>แพ้ {auto.failures}/{AUTO_LOSS_LIMIT}</small>}
+    <button className={`btn small ${auto ? 'auto-on' : 'ghost'}`} aria-label={auto ? 'หยุด Auto Battle' : 'เริ่ม Auto Battle'} disabled={!auto && (locked && !active || starting)} onClick={() => auto ? stopAuto('หยุด Auto โดยผู้เล่น') : startAuto(mode === 'tower' ? 'tower' : 'story')}><Icon name={auto ? 'pause' : 'play'} /><span className="auto-label">{auto ? 'หยุด Auto' : 'Auto Battle'}</span><span className="auto-short" aria-hidden="true">Auto</span></button>
+    {auto && <small><span className="auto-failure-label">แพ้ </span>{auto.failures}/{AUTO_LOSS_LIMIT}</small>}
   </div>;
   return <div className={`field ${covered ? 'covered' : ''}`} data-auto-mode={auto?.mode ?? ''} data-auto-failures={auto?.failures ?? 0}>
     {showBoss ? <BossField key={boss.id} context={context} app={boss} running={online && active?.battle_id === boss.id} checkpoint={active?.battle_id === boss.id ? battle?.payload : null} outcome={outcome?.id === boss.id ? outcome.code : null} retreat={active?.battle_id === boss.id ? async () => { stopAuto('หยุด Auto · ถอยทัพ'); await context.submitWhenReady('battle.retreat', { battle_id: active.battle_id, requested_game_ms: boss.session.state.game_time_ms }); } : null} statsRef={statsRef} timelineRef={timelineRef} autoControl={autoControl} /> : <FarmField context={context} covered={covered} />}

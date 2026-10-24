@@ -322,3 +322,5 @@ D146เพิ่มเติม:ผู้ใช้ยืนยันกาชา
 - D-166 (24 ต.ค.2026): ผู้ใช้อนุมัติGrimtooth625%P.ATKเต็ม และอนุญาตลดสกิลอื่นถ้าAssXโกงDPSเกินกรอบเดิม9–11k;ขอแสดงขนาดบอสเพราะมีการ์ดตีขนาด. TASK137–138ตรวจtargetedsharedengine/seedและUIขนาดจริง ไม่แก้buffcapหรือserverowner.
 
 - D-167 (24 ต.ค.2026): ผู้ใช้ขอจัดUIแลกเศษสกิล/เอาCrystalhow-toออก/เพิ่มโควตาและราคาในร้าน/Crystal20ครั้ง/buymax/Panelเข้าธีม. TASK139ใช้20แลก×10Crystal/25000goldและแพ็กทั่วไป10ครั้งเป็นassistantbaseline,sharedbatch99+quote+singleflight;ไม่ปรับgacha/AFK/battleหรือรีเซ็ตสิทธิ์เก่า.
+
+D168 — 25ต.ค.2026:ผู้ใช้ให้แยกสกิลที่บทบาทซ้ำกัน เช่นEndure/AutoGuardและBlessing/Impo. รวมIncreaseAGIในBlessing เปลี่ยนช่องเดิมเป็นRuwachโจมตี+ลดเกราะกาย/เวท. ตัวเลข/กลไกส่วนที่ไม่ได้ระบุเป็นassistantbaselineต้องออกแบบและตรวจactualeffects;ไม่อ้างว่าเป็นสูตรROต้นฉบับ.
