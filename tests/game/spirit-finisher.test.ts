@@ -64,5 +64,5 @@ test('the skill page reads new power and multi-hit counts from the same definiti
   monk.job_id = 'monk'; monk.level = 70; monk.skill_levels = { ...monk.skill_levels, ...Object.fromEntries(ids.map(id => [id, 10])) };
   const options = characterSkillOptions(monk, state).skills;
   for (const [id, count] of [['monk_triple_attack', 3], ['monk_finger_offensive', 5]] as const) assert.ok(options.find(s => s.id === id)!.effects.some(text => text.includes(`× ${count} ครั้ง`)));
-  assert.ok(options.find(s => s.id === 'monk_asura')!.effects.some(text => text.includes('984.38% ATK') && text.includes('2,047.5% SP')));
+  assert.ok(options.find(s => s.id === 'monk_asura')!.effects.some(text => text.includes('984.38% P.ATK') && text.includes('2,047.5% SP')));
 });

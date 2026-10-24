@@ -22,7 +22,7 @@ export function battleStatusViews(state: BattleState): Record<string, Details> {
       const key = `${skillId}:${polarity}`, skill = content.skills[skillId];
       const group = groups.get(key) ?? { id: key, name: skill ? labels[String(skill.name_key)] ?? skillId : instance.name, polarity, icon_skill_id: skill ? skillId : null, stacks: 0, next_expiry_at: instance.expires_at, instances: [] };
       group.instances = [...group.instances, instance]; group.next_expiry_at = Math.min(group.next_expiry_at, instance.expires_at);
-      // One Blessing applies ATK and MATK: count repeated applications, not its two effects.
+      // One Blessing applies P.ATK and M.ATK: count repeated applications, not its two effects.
       const counts = new Map<string, number>(); for (const row of group.instances) counts.set(row.status_id, (counts.get(row.status_id) ?? 0) + 1);
       group.stacks = Math.max(...counts.values()); groups.set(key, group);
     };
@@ -32,7 +32,7 @@ export function battleStatusViews(state: BattleState): Record<string, Details> {
       const parts = definition.modifiers.map(m => { const value = typeof m.value === 'number' ? m.value : status.params[m.value.status_param] ?? 0; return `${statNames[m.stat] ?? m.stat} ${value >= 0 ? '+' : ''}${m.op === 'add_percent' || units[m.stat] === 'ratio' ? percent(value) : value.toLocaleString('th-TH')}`; });
       if (actor.hp > 0 && definition.periodic?.effects.some(e => e.type === 'heal')) healingAura = true;
       if (definition.periodic) parts.push(`ทำงานทุก ${definition.periodic.interval_ms / 1000}s`);
-      if (status.params.power_ratio !== undefined) parts.push(`${percent(status.params.power_ratio)} ${definition.periodic?.effects.some(e => e.formula?.id === 'physical_power') ? 'P.ATK' : 'MATK'}`);
+      if (status.params.power_ratio !== undefined) parts.push(`${percent(status.params.power_ratio)} ${definition.periodic?.effects.some(e => e.formula?.id === 'physical_power') ? 'P.ATK' : 'M.ATK'}`);
       if (definition.restrictions.includes('no_normal_attack')) parts.push('หยุดการโจมตีและใช้สกิล');
       else if (definition.restrictions.includes('no_new_skill')) parts.push('ใช้สกิลไม่ได้');
       if (status.status_id === 'provoke') parts.push('บังคับโจมตีผู้ยั่วยุ');

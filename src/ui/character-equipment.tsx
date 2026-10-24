@@ -9,7 +9,7 @@ import { GearGrowth } from './gear-growth.tsx';
 import { SlotProgress } from './slot-progress.tsx';
 import './equipment.css';
 const names:Record<string,string>={main:'คุณ',npc_swordsman:'ไคล์',npc_acolyte:'ลูเมน',npc_archer:'อารี',npc_mage:'เรน',npc_thief:'นิกซ์',npc_merchant:'มิโล'};
-const statLabels:Partial<Record<keyof CombatStats,string>>={physical_attack:'ATK',magical_attack:'MATK',max_hp:'HP',max_sp:'SP',physical_defense:'DEF',magical_defense:'MDEF',attack_speed:'ASPD',cast_speed:'CSPD',dex:'DEX',agi:'AGI'};
+const statLabels:Partial<Record<keyof CombatStats,string>>={physical_attack:'P.ATK',magical_attack:'M.ATK',max_hp:'HP',max_sp:'SP',physical_defense:'DEF',magical_defense:'MDEF',attack_speed:'ASPD',cast_speed:'CSPD',dex:'DEX',agi:'AGI'};
 const time=(n:number)=>(n/1000).toLocaleString('th-TH',{maximumFractionDigits:2})+'s';
 const value=(n:number)=>n.toLocaleString('th-TH',{maximumFractionDigits:2});
 

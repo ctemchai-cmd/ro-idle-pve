@@ -13,7 +13,7 @@ export function legacyClass2Source(file: string): Buffer {
     // D161's exact power/focus changes have their own frozen arithmetic and A/B
     // tests. Restore only those skill rows for historical asset-only scope checks.
     const baseline=JSON.parse(gunzipSync(readFileSync(new URL('../../plan/evidence/task-131/authored-before.json.gz',import.meta.url))).toString())as Record<string,string>;
-    for(const s of [...tuning131.skills,{id:'assassin_enchant_poison'}]){
+    for(const s of [...tuning131.skills,...'assassin_enchant_poison knight_battle_cry priest_impositio merchant_loud_voice blacksmith_weapon_perfection bard_battle_song'.split(' ').map(id=>({id}))]){
       const pattern=new RegExp('^    \\{\\n      "id": "'+s.id+'"[\\s\\S]*?\\n    \\}','m'),original=baseline['plan/data/'+file]!.match(pattern)?.[0];
       if(original)bytes=Buffer.from(bytes.toString().replace(pattern,original));
     }

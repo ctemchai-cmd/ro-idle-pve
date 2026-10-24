@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "case": "manual_stop_cancels_intro_before_any_start_command",
+      "passed": true
+    },
+    {
+      "case": "Story_three_or_more_wins_atomic_rewards_frontier_stop_reload",
+      "wins": 3,
+      "commands": [
+        "battle.start_story",
+        "battle.finish",
+        "battle.start_story",
+        "battle.finish",
+        "battle.start_story",
+        "battle.finish"
+      ],
+      "passed": true
+    },
+    {
+      "case": "Tower_frontier_continues_and_manual_stop_keeps_current_result",
+      "floor": 2,
+      "passed": true
+    },
+    {
+      "case": "Three_confirmed_losses_stop_exactly_same_floor_no_fourth",
+      "starts": 3,
+      "finishes": 3,
+      "passed": true
+    },
+    {
+      "case": "Full_bag_victory_commits_then_auto_recovers_same_fixed_card_after_room",
+      "passed": true
+    },
+    {
+      "case": "Lost_finish_response_reconciles_same_UUID_paid_once_auto_remains_off",
+      "passed": true
+    },
+    {
+      "case": "Actual_shared_native_skill_details_Impo_Loud_explicit_both_attacks_320",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "command_count": 21
+}

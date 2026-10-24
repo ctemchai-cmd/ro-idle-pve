@@ -825,3 +825,22 @@ dialog.gacha-reveal-sheet{height:92dvh}.gacha-reveal-sheet .sheet-body{height:10
 .save-slot-return { position:fixed; z-index:10; top:12px; right:max(12px,calc((100vw - 430px)/2 + 12px)); font-size:12px; }
 .slot-onboarding .onboarding { padding-top:60px; }
 .hud-slot { color:#6482aa; font-size:10px; white-space:nowrap; }
+
+/* Auto Battle: small controls remain available during intro, combat and settlement. */
+.auto-battle-control { display: flex; align-items: center; justify-content: center; gap: 9px; min-width: 0; }
+.auto-battle-control > small { font-size: 11px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.auto-battle-control .btn { min-height: 34px; gap: 5px; white-space: nowrap; }
+.auto-battle-control .auto-on { color: #fff; background: #4778c6; border-color: #6c9cdf; }
+.boss-auto-row { padding-top: 6px; }
+.boss-auto-row .auto-battle-control { justify-content: flex-end; }
+.boss-auto-row .btn.ghost { color: #dbeaff; border-color: #6681a6; }
+.field-auto-start { position: absolute; z-index: 5; top: calc(var(--hud-h) + var(--safe-top) + 62px); right: 10px; display: grid; gap: 5px; max-width: calc(100% - 20px); }
+.field-auto-start .auto-battle-control { padding: 3px 7px; border-radius: 12px; background: rgba(247, 251, 255, .94); box-shadow: var(--shadow); }
+.field-auto-start > small { max-width: 220px; color: #243e65; padding: 4px 7px; border-radius: 8px; background: rgba(255,255,255,.94); font-size: 11px; }
+.intro-auto { position: absolute; z-index: 1; bottom: calc(var(--bar-h) + var(--safe-bottom) + 76px); left: 0; right: 0; color: #fff; }
+.result-card .auto-battle-control { margin: 10px 0; }
+.result-collected { display: inline-flex; align-items: center; gap: 4px; color: #31815b; }
+.result-collected .ui-icon { width: 15px; height: 15px; }
+.result-card .auto-message, .result-card .result-pending { margin: 7px 0 12px; font-size: 12px; }
+.result-card .result-pending { color: #a85f27; }
+.tower-auto { margin-top: 7px; }

@@ -41,7 +41,7 @@ test('all Sanctuary ranks are pure HoT with twice the song tick coefficient and 
       assert.ok(Math.abs(Number(effect.params.power_ratio) - Number(hot.params.power_ratio) * 2) < .000003, '2x within authored six-decimal rounding');
     }
     const details = previewSkillDetails('priest_sanctuary', rank);
-    assert.equal(details.effects.length, 1); assert.match(details.effects[0]!, /MATK ทุก 1s · 6s · เริ่มทันที/);
+    assert.equal(details.effects.length, 1); assert.match(details.effects[0]!, /M\.ATK ทุก 1s · 6s · เริ่มทันที/);
   }
   const status = content.statuses.sanctuary_regeneration!;
   assert.equal((status.periodic as { tick_on_apply: boolean }).tick_on_apply, true);

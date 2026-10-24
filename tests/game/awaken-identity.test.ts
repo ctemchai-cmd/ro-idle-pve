@@ -1,3 +1,4 @@
+import { withoutD164TeamMagic } from './legacy-support-scope.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -19,7 +20,7 @@ test('D160 keeps prices, native icons and saved IDs; base differences are limite
   const file=`skills/${root}.json`as 'skills/acolyte.json',old=before.documents[file],now=raw.documents[file];
   for(const key of ['upgrades','hi_class_upgrades','awakened_upgrades']as const)assert.deepEqual(now[key],old[key],`${root}:${key}`);
   for(const key of ['skills','hi_class_skills']as const)for(const original of old[key]){
-   const actual=structuredClone(now[key].find(s=>s.id===original.id)!)as Record<string,any>,change=tuning131.skills.find(s=>s.id===original.id);
+   const actual=withoutD164TeamMagic(now[key].find(s=>s.id===original.id)!)as Record<string,any>,change=tuning131.skills.find(s=>s.id===original.id);
    if(change?.focus_bonus)delete actual.single_target_damage_bonus;
    for(const param of Object.keys(change?.power_scales??{}))actual.level_parameters[param]=(original.level_parameters as Partial<Record<string,number[]>>)[param];
    for(const param of Object.keys((tuning132.base_changes as Record<string,Record<string,number[]>>)[original.id]??{}))actual.level_parameters[param]=(original.level_parameters as Partial<Record<string,number[]>>)[param];

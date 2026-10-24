@@ -611,6 +611,19 @@
             }
           },
           "chance": 1
+        },
+        {
+          "id": "support_magic_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "magic_up",
+          "duration_ms": 5500,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
         }
       ]
     },
@@ -4453,6 +4466,19 @@
           "type": "apply_status",
           "target": "friends",
           "status_id": "attack_up",
+          "duration_ms": 6050,
+          "params": {
+            "ratio": {
+              "level_param": "ratio"
+            }
+          },
+          "chance": 1
+        },
+        {
+          "id": "support_magic_up",
+          "type": "apply_status",
+          "target": "friends",
+          "status_id": "magic_up",
           "duration_ms": 6050,
           "params": {
             "ratio": {

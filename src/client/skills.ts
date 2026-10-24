@@ -24,7 +24,7 @@ function summaries(definition:SkillDefinition,level:number,learnedSkills?:Battle
 }
 function skillNotes(definition:SkillDefinition):string[]{
  const effects=definition.kind==='active'?[...definition.start_effects,...definition.effects]:definition.triggers.flatMap(t=>t.effects),notes:string[]=[];
- if(effects.some(e=>e.type==='resource_change'&&e.resource==='spirit_spheres'))notes.push('ถือบอลได้สูงสุด 5 ลูก · โบนัส ATK คิดจากลูกที่เหลือหลังใช้สกิล');
+ if(effects.some(e=>e.type==='resource_change'&&e.resource==='spirit_spheres'))notes.push('ถือบอลได้สูงสุด 5 ลูก · โบนัส P.ATK คิดจากลูกที่เหลือหลังใช้สกิล');
  if(definition.kind==='active'&&Number(definition.cost.spirit_spheres)>0)notes.push('หัก SP/บอลเมื่อเริ่มร่าย · ถูกขัดไม่คืน');
  if(effects.some(e=>e.type==='apply_status'&&e.status_id==='provoke'))notes.push('ดึงตีปกติและสกิลเดี่ยวเข้าผู้ยั่วยุที่ยังมีชีวิต · ไม่รวมท่าหมู่/สุ่มเป้า');
  if(effects.some(e=>e.type==='apply_status'&&typeof content.statuses[e.status_id]?.weapon_element==='string'))notes.push('ธาตุอาวุธมีผลกับตีปกติ/สกิลตามอาวุธ · ไม่เปลี่ยนสกิลธาตุตายตัวหรือเกราะ');
@@ -46,14 +46,14 @@ export function effectDescriptions(effects: readonly Effect[], resolved_skills?:
  return effects.map(effect=>{
   let text='';
   if('formula'in effect){const f=effect.formula;
-   if(f.id==='physical_power'||f.id==='magical_power'||f.id==='healing_power')text=`${effect.type==='heal'?'ฟื้น HP':effect.type==='shield'?'สร้างโล่':f.id==='physical_power'?'กายภาพ':'เวท'} ${percent(f.params.attack_ratio)} ${f.id==='physical_power'?effect.type==='heal'?'P.ATK':'ATK':'MATK'}${Number(f.params.flat_power)?' + '+number(f.params.flat_power):''}`;
+   if(f.id==='physical_power'||f.id==='magical_power'||f.id==='healing_power')text=`${effect.type==='heal'?'ฟื้น HP':effect.type==='shield'?'สร้างโล่':f.id==='physical_power'?'กายภาพ':'เวท'} ${percent(f.params.attack_ratio)} ${f.id==='physical_power'?'P.ATK':'M.ATK'}${Number(f.params.flat_power)?' + '+number(f.params.flat_power):''}`;
    else if(f.id==='event_damage_power')text=`ดาเมจเพิ่มเติม ${percent(f.params.ratio)} ของดาเมจที่เกิดขึ้น`;
    else if(f.id==='flat_power')text=`${effect.type==='heal'?'ฟื้น HP':effect.type==='shield'?'โล่':'ดาเมจ'} ${number(f.params.amount)}`;
-   else if(f.id==='sp_burst_power')text=`พลังโจมตี ${percent(f.params.attack_ratio)} ATK + ${percent(f.params.sp_ratio)} SP`;
+   else if(f.id==='sp_burst_power')text=`ดาเมจกายภาพ ${percent(f.params.attack_ratio)} P.ATK + ${percent(f.params.sp_ratio)} SP`;
    else text='ผลต่อเนื่องตามพลังของสกิล';
   }else if(effect.type==='apply_status'){const ratio=effect.params.ratio;text=(statusNames[effect.status_id]??effect.status_id)+(typeof ratio==='number'?' '+percent(ratio):'');
    const status=content.statuses[effect.status_id] as unknown as {triggers?:Trigger[];periodic?:{interval_ms:number;tick_on_apply:boolean;effects:{type:string;formula?:{id:string}}[]}|null},tick=status?.periodic?.effects.find(e=>e.type==='heal'||e.type==='damage');
-   if(tick&&typeof effect.params.power_ratio==='number')text+=` ${percent(effect.params.power_ratio)} ${tick.formula?.id==='physical_power'?'P.ATK':'MATK'} ทุก ${number(status.periodic!.interval_ms/1000)}s`;
+   if(tick&&typeof effect.params.power_ratio==='number')text+=` ${percent(effect.params.power_ratio)} ${tick.formula?.id==='physical_power'?'P.ATK':'M.ATK'} ทุก ${number(status.periodic!.interval_ms/1000)}s`;
    text+=' · '+number(Number(effect.duration_ms)/1000)+'s';
    if(tick&&status.periodic?.tick_on_apply)text+=' · เริ่มทันที';
    if(status.triggers?.length){const triggers=bindStatusParams(status.triggers,effect.params as Record<string,number>);for(const trigger of triggers){const simple=trigger.effects.filter(e=>['damage','heal','resource_change'].includes(e.type));if(simple.length)text+=` · ${trigger.event==='damage_dealt'?'เมื่อสกิลโดน':trigger.event==='damage_received'?'เมื่อรับดาเมจ':'เมื่อตีปกติโดน'} ${percent(trigger.chance)} · ${effectDescriptions(simple,resolved_skills,true).join(' / ')}${trigger.limit_scope==='per_root_action'?' · สูงสุด 1 ครั้ง/สกิล':''}`;}}
@@ -64,14 +64,14 @@ export function effectDescriptions(effects: readonly Effect[], resolved_skills?:
   else if(effect.type==='remove_status')text=`ล้าง${effect.polarity==='buff'?'บัฟ':effect.polarity==='debuff'?'ดีบัฟ':'สถานะ'}${effect.max_instances===null?'ทั้งหมด':'สูงสุด '+number(effect.max_instances)+' ชั้น'}${effect.tags.length?' · '+effect.tags.map(tag=>statusNames[tag]??tag).join(' / '):''}`;
   else if(effect.type==='resource_change'){
    const bonus=effect.resource==='spirit_spheres'?percent(heldResourceModifiers({sp:0,spirit_spheres:1,resolved_skills},content).filter(m=>m.stat==='physical_attack').reduce((n,m)=>n+Number(m.value),0)):'';
-   text=effect.resource==='spirit_spheres'?(compact?`บอล ${Number(effect.amount)>=0?'+':''}${number(effect.amount)} ลูก · ATK +${bonus}/ลูก`:`เพิ่ม Spirit Sphere ${number(effect.amount)} ลูก (สูงสุด 5) · บอลที่ถือเพิ่ม ATK ${bonus} ต่อลูก · เมื่อใช้บอล โบนัสคิดจากลูกที่เหลือหลังหัก`):`SP ${Number(effect.amount)>=0?'+':''}${number(effect.amount)}`;
+   text=effect.resource==='spirit_spheres'?(compact?`บอล ${Number(effect.amount)>=0?'+':''}${number(effect.amount)} ลูก · P.ATK +${bonus}/ลูก`:`เพิ่ม Spirit Sphere ${number(effect.amount)} ลูก (สูงสุด 5) · บอลที่ถือเพิ่ม P.ATK ${bonus} ต่อลูก · เมื่อใช้บอล โบนัสคิดจากลูกที่เหลือหลังหัก`):`SP ${Number(effect.amount)>=0?'+':''}${number(effect.amount)}`;
   }
   else if(effect.type==='summon'){
    const actors=content.documents['summon-actors.json']!.actors as unknown as {id:string;action:{interval_ms:number;effects:{type:string}[]}}[],helper=actors.find(a=>a.id===effect.actor_definition_id);
    const roles=helper?[...(helper.action.effects.some(e=>e.type==='damage')?['โจมตี']:[]),...(helper.action.effects.some(e=>e.type==='heal')?['ฮีล']:[])].join('+'):'';
    text=`ผู้ช่วย ${number(Number(effect.duration_ms)/1000)}s · สูงสุด ${effect.max_owned} ตัว`+(roles?` · ${roles}ทุก ${number(helper!.action.interval_ms/1000)}s`:'')+(typeof effect.power_scale==='number'?` · พลัง ${percent(effect.power_scale)}`:'');
   }
-  else if(effect.type==='handler'&&effect.handler_id==='detonate_own_status')text=`ระเบิด${statusNames[String(effect.params.status_id)]??effect.params.status_id}ของตัวเอง ${typeof effect.params.attack_ratio_per_instance==='number'?[...(Number(effect.params.power_per_instance)?[number(effect.params.power_per_instance)]:[]),`${percent(effect.params.attack_ratio_per_instance)} ATK`].join(' + '):number(effect.params.power_per_instance)} ต่อชั้น`;
+  else if(effect.type==='handler'&&effect.handler_id==='detonate_own_status')text=`ระเบิด${statusNames[String(effect.params.status_id)]??effect.params.status_id}ของตัวเอง ${typeof effect.params.attack_ratio_per_instance==='number'?[...(Number(effect.params.power_per_instance)?[number(effect.params.power_per_instance)]:[]),`${percent(effect.params.attack_ratio_per_instance)} P.ATK`].join(' + '):number(effect.params.power_per_instance)} ต่อชั้น`;
   else text='กลไกเฉพาะอาชีพ';
   if(effect.type==='damage'&&Number(effect.hits)>1)text+=` × ${number(effect.hits)} ครั้ง`;
   if(effect.type==='damage') {

@@ -42,7 +42,7 @@ export function StatsPage({ context }: { context: GameContext }) {
     </div></section>
     <details className="stat-panel extra-stats"><summary><span>Additional Stats</span><small>{extra.filter(k => (current.stats[k] ?? 0) || (preview.stats[k] ?? 0)).length} ค่าที่มีผล</small></summary><div className="stat-grid small">
       {extra.map(k => <p key={k} className={!(current.stats[k] ?? 0) && !(preview.stats[k] ?? 0) ? 'zero' : ''}><span>{statLabels[k]}</span><Diff before={(current.stats[k] ?? 0)} after={(preview.stats[k] ?? 0)} keyName={k} /></p>)}
-    </div><details className="stat-bonus-notes"><summary>โบนัสทุก 10 แต้ม</summary><p>STR ATK+5 · AGI หลบ+1% · VIT HP+50 · INT MATK+8 · DEX แม่น+1% · LUK คริ+1%</p></details></details>
+    </div><details className="stat-bonus-notes"><summary>โบนัสทุก 10 แต้ม</summary><p>STR P.ATK+5 · AGI หลบ+1% · VIT HP+50 · INT M.ATK+8 · DEX แม่น+1% · LUK คริ+1%</p></details></details>
     <section className="alloc">
       <Radar value={total(actor.primary_stats)} draft={total(draft)} max={max} />
       <div className="alloc-rows">{primaries.map(k => <div key={k} className="alloc-row">

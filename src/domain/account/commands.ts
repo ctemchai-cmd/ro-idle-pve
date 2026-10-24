@@ -1,3 +1,4 @@
+import { collectProgressRewards } from '../progression/auto-rewards.ts';
 import { claimRewards } from '../progression/claim-rewards.ts';
 import { preparedScroll, validateSupplies } from '../build/consumables.ts';
 import { grantConsumables, prepareConsumable, consumePreparedForTeam } from '../progression/consumables.ts';
@@ -8,7 +9,7 @@ import { createBattle, advanceUntil, restoreBattle, serializeBattle } from '../c
 import { AccountCreationRules } from './creation.ts';
 import { calculateBattleCredit } from './protocol.ts';
 import { applySkillCommand, validateCharacterSkills, compileCharacterSkills, type SkillCommand } from '../progression/skills.ts';
-import { storyStage, storyBoss, storyFarmSnapshot, canChallenge, storyReleaseLock } from '../modes/story.ts';
+import { storyStage, storyBoss, storyFarmSnapshot, canChallenge, storyReleaseLock, storyStages } from '../modes/story.ts';
 import { storyParty, storyInput } from '../build/story.ts';
 import { towerBoss, towerCanChallenge, towerRow, towerStageRef } from '../modes/tower.ts';
 import { bangkokDay, dailyBoss, dailyBossActor, dailyChest, dailyRecord, dailyRef, dailyUnlocked, modePolicy, parseDailyRef, type DailyBossId } from '../modes/daily.ts';
@@ -244,9 +245,14 @@ export class AccountCommandRules extends AccountCreationRules {
             if (next.value.state.mode.ref!==stage.id) reject('BATTLE_CONTEXT_MISMATCH');
             const result=next.value.state.terminal_result;
             if (result.kind==='victory'&&!state.story.cleared_stage_ids.includes(stage.id)) {
+              const automatic = command.type === 'battle.finish' && command.params.collect_rewards === true;
+              if (automatic) collectProgressRewards(state, this.content);
               state=reserveCurrent(state,`farm_${command.request_id}`);
               state.story.cleared_stage_ids.push(stage.id);
-              const selected=state.story.selected_farm_stage??stage.id; selectFarm(state,selected);
+              const stages = storyStages(this.content), previousStage = stages[stages.findIndex(s => s.id === stage.id) - 1]?.id ?? null;
+              const farming = state.story.selected_farm_stage;
+              const selected=automatic && (farming === null || farming === previousStage) ? stage.id : farming ?? stage.id;
+              selectFarm(state,selected);
               const limit=Number((this.content.documents['save-contracts.json']!.farm as unknown as {queue_limit:number}).queue_limit);
               if(state.pending_rewards.length>=limit)reject('PENDING_REWARDS_FULL');
               state.pending_rewards.push({claim_id:`story_${stage.id}`,kind:'story',resource_vector:{...Object.fromEntries(Object.keys(state.wallet).map(k=>[k,0])),...stage.first_clear_reward}as AccountState['wallet'],items:[],content_version:this.versions.content_version,reserved_at:time.server_at,source_keys:[`story:${stage.id}`,`battle:${pointer!.battle_id}`],status:'pending'});
@@ -276,6 +282,7 @@ export class AccountCommandRules extends AccountCreationRules {
             battleWrite={kind:'delete',battle_id:pointer!.battle_id};code=result.kind==='victory'?'TOWER_WON':result.kind==='time_limit'?'TOWER_TIME_LIMIT':'TOWER_DEFEATED';
           }
           if (command.type === 'battle.finish' && state.active_battle) reject('BATTLE_CONTEXT_MISMATCH');
+          if (command.type === 'battle.finish' && command.params.collect_rewards && ['STORY_WON', 'TOWER_WON'].includes(code)) collectProgressRewards(state, this.content);
         }
       } else if (command.type.startsWith('slot.') || command.type.startsWith('card.')) code = applySlotCommand(state, command as SlotCommand, this.content, time.battle_seed === undefined ? null : nextRandom({ state: time.battle_seed >>> 0, draw_count: 0 }));
       else if (command.type === 'equipment.fuse' || command.type === 'equipment.tier_up') { const rng = { state: (time.battle_seed ?? 0) >>> 0, draw_count: 0 }; code = applyGearUpgrade(state, command as GearUpgradeCommand, this.content, time.battle_seed === undefined ? null : () => nextRandom(rng)); }

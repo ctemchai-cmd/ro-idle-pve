@@ -31,7 +31,8 @@ import { characterSkillIconIds } from '../../client/skills.ts';
 import { inventoryView } from '../../client/equipment.ts';
 
 export type View = 'home' | 'backpack' | 'team' | 'buddy' | 'skills' | 'stats' | 'dungeon' | 'tower' | 'daily' | 'store';
-export type ChallengeTarget = { kind: 'story'; id: string } | { kind: 'tower'; floor: number } | { kind: 'daily'; boss: string };
+export type { ChallengeTarget } from '../../client/auto-battle.ts';
+import type { ChallengeTarget } from '../../client/auto-battle.ts';
 export interface GameContext {
   state: AccountState; pack: AssetPack | null; locked: boolean; busy: boolean; submit: Submit; latest: () => AccountState | undefined;
   /** Waits for the current writer, then submits one intent. */
@@ -42,7 +43,7 @@ export interface GameContext {
   lastCreated: () => string[];
   toast: (text: string) => void; go: (view: View, characterId?: string) => void; characterId: string; selectCharacter: (id: string) => void;
   /** Starts a boss challenge from any page: returns home, plays the intro and opens the fight. */
-  challenge: (target: ChallengeTarget) => void;
+  challenge: (target: ChallengeTarget, automatic?: boolean) => void;
 }
 const views: readonly View[] = ['home', 'backpack', 'team', 'buddy', 'skills', 'stats', 'dungeon', 'tower', 'daily', 'store'];
 /** Portrait-only product (D-052): a phone held sideways sees a rotate prompt, never a landscape layout. */
@@ -106,7 +107,7 @@ function ConnectedGame({ auth, scope, selection, chooseSave }: { auth: AuthContr
     toast(reasonText.WRITER_NOT_READY!); return false;
   }, [controller, submit, toast]);
   const active = state?.active_battle;
-  const [request, setRequest] = useState<(ChallengeTarget & { at: number }) | null>(null);
+  const [request, setRequest] = useState<(ChallengeTarget & { at: number; automatic?: boolean }) | null>(null);
   async function toggleSound() {
     if (!pack) return;
     try { if (!pack.currentScene) throw new Error('SCENE_NOT_READY'); await pack.enableAudio(!sound, pack.currentScene); setSound(pack.soundEnabled); } catch { toast('เปิดเสียงไม่สำเร็จ ลองกดอีกครั้ง'); }
@@ -123,7 +124,7 @@ function ConnectedGame({ auth, scope, selection, chooseSave }: { auth: AuthContr
     return <div className="game-root">{slotReturn}<div className="game-splash" role="status"><div className="splash-logo">RO <span>Idle</span></div><p>{save.status === 'incompatible' ? 'มีเกมรุ่นใหม่ กรุณาโหลดหน้าใหม่' : save.status === 'offline' ? 'ขาดการเชื่อมต่อ · รอเชื่อมต่อเพื่อโหลดเซฟ' : 'กำลังโหลดเซฟ…'}</p>{(save.status === 'offline' || save.status === 'error') && <button className="btn primary" onClick={() => void controller.reconnect()}>เชื่อมต่อใหม่</button>}</div></div>;
   }
   const characterId = state.roster.some(a => a.character_id === route.character) ? route.character : 'main';
-  const context: GameContext = { state, pack, locked: !ready || busy || !!active, busy: !ready || busy, submit, submitWhenReady, lastCode: () => controller.snapshot.lastReceipt?.result.code ?? null, lastCreated: () => [...(controller.snapshot.lastReceipt?.result.created_instance_ids ?? [])], latest: () => controller.snapshot.checkpoint?.save.state as AccountState | undefined, toast, go, characterId, selectCharacter: id => go(route.view, id) , challenge: target => { setRequest({ ...target, at: Date.now() }); go('home'); } };
+  const context: GameContext = { state, pack, locked: !ready || busy || !!active, busy: !ready || busy, submit, submitWhenReady, lastCode: () => controller.snapshot.lastReceipt?.result.code ?? null, lastCreated: () => [...(controller.snapshot.lastReceipt?.result.created_instance_ids ?? [])], latest: () => controller.snapshot.checkpoint?.save.state as AccountState | undefined, toast, go, characterId, selectCharacter: id => go(route.view, id) , challenge: (target, automatic) => { setRequest({ ...target, automatic, at: Date.now() }); go('home'); } };
   const tab: Tab | null = route.view === 'home' ? null : route.view === 'skills' || route.view === 'stats' ? 'buddy' : route.view === 'tower' || route.view === 'daily' ? 'dungeon' : route.view;
   return <SaveRecoveryProvider value={{status:save.status,pending:!!save.pending,retry:()=>void controller.reconnect()}}><div className="game-root">
     <div className="game-frame">

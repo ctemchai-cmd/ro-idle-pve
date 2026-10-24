@@ -37,7 +37,7 @@ test('actual sole endow names Fire/6.5s/team and scope; Enchant Poison only clai
   const endow = option('sage_fire_endow'), poison = option('assassin_enchant_poison');
   assert.equal(endow.targetNote, 'ฝ่ายเรา · ทั้งหมด'); assert.match(endow.effects.join(' '), /6.5s.*อาวุธธาตุไฟ/);
   assert.match(endow.notes!.join(' '), /ตีปกติ\/สกิลตามอาวุธ.*ไม่เปลี่ยนสกิลธาตุตายตัวหรือเกราะ/);
-  assert.match(poison.effects.join(' '), /เพิ่มพลังโจมตี/); assert.ok(!poison.effects.join(' ').includes('เปลี่ยนธาตุ'));
+  assert.match(poison.effects.join(' '), /เพิ่ม P\.ATK/); assert.ok(!poison.effects.join(' ').includes('เปลี่ยนธาตุ'));
   const endows = Object.values(content.statuses).filter(s => typeof s.weapon_element === 'string');
   assert.deepEqual(endows.map(s => s.id), ['fire_endow']);
 });

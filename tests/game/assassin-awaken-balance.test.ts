@@ -1,3 +1,4 @@
+import { withoutD164TeamMagic } from './legacy-support-scope.ts';
 import test from'node:test';
 import assert from'node:assert/strict';
 import {readFileSync}from'node:fs';
@@ -9,7 +10,7 @@ import {EffectPipeline}from'../../src/domain/combat/effects.ts';
 import {actor,battle,checkpoint,content,type Active}from'./combat-fixtures.ts';
 const previous=JSON.parse(gunzipSync(readFileSync(new URL('../../plan/evidence/task-132/content-before.json.gz',import.meta.url))).toString())as typeof raw;
 test('D163 only Enchant Poison base/Awaken ATK-duration and High Cart Termination power change; all prices, sources, CT/ACD/SP and other programs remain exact',()=>{
- for(const root of ['swordsman','acolyte','archer','mage','thief','merchant']as const){const key=`skills/${root}.json`as'skills/thief.json',now=structuredClone(raw.documents[key])as any,old=previous.documents[key];
+ for(const root of ['swordsman','acolyte','archer','mage','thief','merchant']as const){const key=`skills/${root}.json`as'skills/thief.json',now=withoutD164TeamMagic(raw.documents[key])as any,old=previous.documents[key];
   if(root==='thief'){now.skills.find((s:{id:string})=>s.id==='assassin_enchant_poison').level_parameters.ratio=old.skills.find(s=>s.id==='assassin_enchant_poison')!.level_parameters.ratio;
    now.awakened_variants.assassin_enchant_poison.level_parameters.ratio=old.awakened_variants.assassin_enchant_poison.level_parameters.ratio;now.awakened_variants.assassin_enchant_poison.level_parameters.duration=old.awakened_variants.assassin_enchant_poison.level_parameters.duration;}
   if(root==='merchant'){const prior=previous.documents['skills/merchant.json'];now.hi_class_skills.find((s:{id:string})=>s.id==='whitesmith_cart_termination').level_parameters.power=prior.hi_class_skills.find(s=>s.id==='whitesmith_cart_termination')!.level_parameters.power;now.awakened_variants.whitesmith_cart_termination.level_parameters.power=prior.awakened_variants.whitesmith_cart_termination.level_parameters.power;}

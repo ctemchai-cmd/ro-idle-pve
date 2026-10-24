@@ -76,3 +76,5 @@
 - [50 · Boss focus และบาลานซ์](50-boss-focus-balance.md): D161/TASK131, AoE +35% skill bucket เมื่อเหลือเป้าเดียว/periodic snapshot/ปรับ power และวัดใหม่
 
 - [51 · Assassin Cross และกรอบ DPS](51-assassin-awaken-balance.md): D162/D163/TASK132, causal ATK/uptime probes และเป้าHiDD9–11k
+
+- [52-auto-battle-and-rewards.md](52-auto-battle-and-rewards.md) — D164 คำอธิบายพลังโจมตี/รางวัลชนะ/Auto Battle

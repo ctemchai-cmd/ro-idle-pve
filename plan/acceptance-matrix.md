@@ -666,3 +666,29 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T132-AC-02` | TASK-132 | ปรับเฉพาะ curve/effect ที่ระบุ ไม่มี job penalty หรือ buff cap/refresh; IDs/ราคา/ทุน/CT/ACD/SPเดิม; programอื่นนอกEP/HighCartTerminationไม่เปลี่ยน และ Awaken1ยังดีขึ้นจาก baseMax | actual ablation / fixed A-B / tests / browser | passed_implementation |
 | `T132-AC-03` | TASK-132 | fixed A/B และ candidate re-screen หลายseed/solo/pressure/ช่วงAwaken; Hi90/Common60/4ActiveAw10 สายดาเมจ9อาชีพเฉลี่ย9–11k และClass2Assassinใกล้Hunter/Wizardที่gearเท่ากัน ไม่อ้างทุกencounterสมดุล | actual ablation / fixed A-B / tests / browser | passed_implementation |
 | `T132-AC-04` | TASK-132 | regression/parity/stacking/descriptions/build/mobile/public release ผ่าน และบันทึกหลักฐาน | actual ablation / fixed A-B / tests / browser | passed_implementation |
+
+## TASK-133 — คำอธิบาย P.ATK/M.ATK และ Impo/Loud บัฟเวท
+
+| ID | Task | เกณฑ์ | วิธีตรวจ | สถานะ |
+| --- | --- | --- | --- | --- |
+| `T133-AC-01` | TASK-133 | คำอธิบาย shared ของทุกสกิล/ทุก rank/Timeline ระบุ P.ATK หรือ M.ATK ตามสูตรจริง ไม่มี ATK หรือพลังโจมตีที่กำกวม | Shared tests/local/hosted browser | not_run_implementation |
+| `T133-AC-02` | TASK-133 | Impositio และ Loud Voice เพิ่ม M.ATK เท่ากับ P.ATK ในทุก rank รวม Awaken; ค่าเดิม/เวลา/ราคา/ทุน/คิว/independent stacking คงเดิม | Shared tests/local/hosted browser | not_run_implementation |
+| `T133-AC-03` | TASK-133 | ตรวจ actual engine ว่า stats ทั้งสองเพิ่ม/ซ้อน/หมดตามเวลา และ UI มือถือแสดงผลตรง program; regression/build ผ่าน | Shared tests/local/hosted browser | not_run_implementation |
+
+## TASK-134 — รับรางวัล Story/Tower อัตโนมัติในผลไฟต์
+
+| ID | Task | เกณฑ์ | วิธีตรวจ | สถานะ |
+| --- | --- | --- | --- | --- |
+| `T134-AC-01` | TASK-134 | Story/Tower ชนะครั้งแรกจ่ายรางวัลทันทีใน battle finish เดียวพร้อม receipt/revision เดียว; ไม่มีปุ่มรับรางวัลและไม่ต้องเปิด AFK | Shared tests/local/hosted browser | not_run_implementation |
+| `T134-AC-02` | TASK-134 | Story first clear ปิดและจ่ายช่วงฟาร์มเดิมอย่างถูกต้อง ย้าย frontier farm ใน commit เดียวโดยเคารพจุดเก่าที่ผู้เล่นเลือก; ไม่จ่ายซ้ำเมื่อ replay/reload/แพ้ | Shared tests/local/hosted browser | not_run_implementation |
+| `T134-AC-03` | TASK-134 | กระเป๋าเต็มไม่ทำผลไฟต์ค้างหรือรางวัลหาย: เก็บรางวัลชิ้นของไว้เป็น pending ที่กู้รับอัตโนมัติเมื่อมีพื้นที่; Auto หยุดพร้อมสาเหตุ | Shared tests/local/hosted browser | not_run_implementation |
+| `T134-AC-04` | TASK-134 | Actual Auth/API/SQL/mobile/reload/response-loss proof และ tests/build ผ่าน; daily/AFKปกติยังคง flow เดิม | Shared tests/local/hosted browser | not_run_implementation |
+
+## TASK-135 — Auto Battle ด่านและหอคอยจนแพ้ครบกำหนด
+
+| ID | Task | เกณฑ์ | วิธีตรวจ | สถานะ |
+| --- | --- | --- | --- | --- |
+| `T135-AC-01` | TASK-135 | เริ่ม/หยุด Auto ได้ใน Story และ Tower; ชนะแล้วรอ confirmed settlement ก่อนเข้าสู่ด่านหรือชั้นถัดไป อิง frontier จริง | Shared tests/local/hosted browser | not_run_implementation |
+| `T135-AC-02` | TASK-135 | แพ้/หมดเวลาทำ retry ด่านเดิมตามจำนวนที่ยืนยันและ reset ตัวนับเมื่อชนะ; receipt เดิม/ rerender ไม่ทำ retry ซ้ำ | Shared tests/local/hosted browser | not_run_implementation |
+| `T135-AC-03` | TASK-135 | กดหยุดยกเลิกการเริ่มไฟต์ถัดไปทันที ปล่อยไฟต์ปัจจุบันจบ; เปลี่ยนหน้า/เซฟ/reload/เน็ตขาด/กระเป๋าเต็ม/error หยุดอย่างชัดเจน ไม่เกิด background command loop | Shared tests/local/hosted browser | not_run_implementation |
+| `T135-AC-04` | TASK-135 | ใช้ combat engine เดิม/ความเร็ว1x2x4เดิม และ UI ปุ่มไม่ล้น320/390; actual browser/API/SQLหลายชนะ-แพ้/หยุด-ฟื้นเน็ต/reloadผ่าน | Shared tests/local/hosted browser | not_run_implementation |

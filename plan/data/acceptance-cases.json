@@ -14258,6 +14258,193 @@
         "plan/evidence/task-132-review.json",
         "plan/evidence/task-132-hosted.json"
       ]
+    },
+    {
+      "id": "T133-AC-01",
+      "task_id": "TASK-133",
+      "acceptance_id": "AC-01",
+      "criterion": "คำอธิบาย shared ของทุกสกิล/ทุก rank/Timeline ระบุ P.ATK หรือ M.ATK ตามสูตรจริง ไม่มี ATK หรือพลังโจมตีที่กำกวม",
+      "input_setup": "Disposable shared engine/Auth/API/SQL account; no owner state",
+      "input_refs": [
+        "plan/design/52-auto-battle-and-rewards.md"
+      ],
+      "parameters": {},
+      "expected": "คำอธิบาย shared ของทุกสกิล/ทุก rank/Timeline ระบุ P.ATK หรือ M.ATK ตามสูตรจริง ไม่มี ATK หรือพลังโจมตีที่กำกวม",
+      "verification": "Shared rule tests, real local stack/mobile and public hosted proof",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-133-review.json"
+      ]
+    },
+    {
+      "id": "T133-AC-02",
+      "task_id": "TASK-133",
+      "acceptance_id": "AC-02",
+      "criterion": "Impositio และ Loud Voice เพิ่ม M.ATK เท่ากับ P.ATK ในทุก rank รวม Awaken; ค่าเดิม/เวลา/ราคา/ทุน/คิว/independent stacking คงเดิม",
+      "input_setup": "Disposable shared engine/Auth/API/SQL account; no owner state",
+      "input_refs": [
+        "plan/design/52-auto-battle-and-rewards.md"
+      ],
+      "parameters": {},
+      "expected": "Impositio และ Loud Voice เพิ่ม M.ATK เท่ากับ P.ATK ในทุก rank รวม Awaken; ค่าเดิม/เวลา/ราคา/ทุน/คิว/independent stacking คงเดิม",
+      "verification": "Shared rule tests, real local stack/mobile and public hosted proof",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-133-review.json"
+      ]
+    },
+    {
+      "id": "T133-AC-03",
+      "task_id": "TASK-133",
+      "acceptance_id": "AC-03",
+      "criterion": "ตรวจ actual engine ว่า stats ทั้งสองเพิ่ม/ซ้อน/หมดตามเวลา และ UI มือถือแสดงผลตรง program; regression/build ผ่าน",
+      "input_setup": "Disposable shared engine/Auth/API/SQL account; no owner state",
+      "input_refs": [
+        "plan/design/52-auto-battle-and-rewards.md"
+      ],
+      "parameters": {},
+      "expected": "ตรวจ actual engine ว่า stats ทั้งสองเพิ่ม/ซ้อน/หมดตามเวลา และ UI มือถือแสดงผลตรง program; regression/build ผ่าน",
+      "verification": "Shared rule tests, real local stack/mobile and public hosted proof",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-133-review.json"
+      ]
+    },
+    {
+      "id": "T134-AC-01",
+      "task_id": "TASK-134",
+      "acceptance_id": "AC-01",
+      "criterion": "Story/Tower ชนะครั้งแรกจ่ายรางวัลทันทีใน battle finish เดียวพร้อม receipt/revision เดียว; ไม่มีปุ่มรับรางวัลและไม่ต้องเปิด AFK",
+      "input_setup": "Disposable shared engine/Auth/API/SQL account; no owner state",
+      "input_refs": [
+        "plan/design/52-auto-battle-and-rewards.md"
+      ],
+      "parameters": {},
+      "expected": "Story/Tower ชนะครั้งแรกจ่ายรางวัลทันทีใน battle finish เดียวพร้อม receipt/revision เดียว; ไม่มีปุ่มรับรางวัลและไม่ต้องเปิด AFK",
+      "verification": "Shared rule tests, real local stack/mobile and public hosted proof",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-134-review.json"
+      ]
+    },
+    {
+      "id": "T134-AC-02",
+      "task_id": "TASK-134",
+      "acceptance_id": "AC-02",
+      "criterion": "Story first clear ปิดและจ่ายช่วงฟาร์มเดิมอย่างถูกต้อง ย้าย frontier farm ใน commit เดียวโดยเคารพจุดเก่าที่ผู้เล่นเลือก; ไม่จ่ายซ้ำเมื่อ replay/reload/แพ้",
+      "input_setup": "Disposable shared engine/Auth/API/SQL account; no owner state",
+      "input_refs": [
+        "plan/design/52-auto-battle-and-rewards.md"
+      ],
+      "parameters": {},
+      "expected": "Story first clear ปิดและจ่ายช่วงฟาร์มเดิมอย่างถูกต้อง ย้าย frontier farm ใน commit เดียวโดยเคารพจุดเก่าที่ผู้เล่นเลือก; ไม่จ่ายซ้ำเมื่อ replay/reload/แพ้",
+      "verification": "Shared rule tests, real local stack/mobile and public hosted proof",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-134-review.json"
+      ]
+    },
+    {
+      "id": "T134-AC-03",
+      "task_id": "TASK-134",
+      "acceptance_id": "AC-03",
+      "criterion": "กระเป๋าเต็มไม่ทำผลไฟต์ค้างหรือรางวัลหาย: เก็บรางวัลชิ้นของไว้เป็น pending ที่กู้รับอัตโนมัติเมื่อมีพื้นที่; Auto หยุดพร้อมสาเหตุ",
+      "input_setup": "Disposable shared engine/Auth/API/SQL account; no owner state",
+      "input_refs": [
+        "plan/design/52-auto-battle-and-rewards.md"
+      ],
+      "parameters": {},
+      "expected": "กระเป๋าเต็มไม่ทำผลไฟต์ค้างหรือรางวัลหาย: เก็บรางวัลชิ้นของไว้เป็น pending ที่กู้รับอัตโนมัติเมื่อมีพื้นที่; Auto หยุดพร้อมสาเหตุ",
+      "verification": "Shared rule tests, real local stack/mobile and public hosted proof",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-134-review.json"
+      ]
+    },
+    {
+      "id": "T134-AC-04",
+      "task_id": "TASK-134",
+      "acceptance_id": "AC-04",
+      "criterion": "Actual Auth/API/SQL/mobile/reload/response-loss proof และ tests/build ผ่าน; daily/AFKปกติยังคง flow เดิม",
+      "input_setup": "Disposable shared engine/Auth/API/SQL account; no owner state",
+      "input_refs": [
+        "plan/design/52-auto-battle-and-rewards.md"
+      ],
+      "parameters": {},
+      "expected": "Actual Auth/API/SQL/mobile/reload/response-loss proof และ tests/build ผ่าน; daily/AFKปกติยังคง flow เดิม",
+      "verification": "Shared rule tests, real local stack/mobile and public hosted proof",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-134-review.json"
+      ]
+    },
+    {
+      "id": "T135-AC-01",
+      "task_id": "TASK-135",
+      "acceptance_id": "AC-01",
+      "criterion": "เริ่ม/หยุด Auto ได้ใน Story และ Tower; ชนะแล้วรอ confirmed settlement ก่อนเข้าสู่ด่านหรือชั้นถัดไป อิง frontier จริง",
+      "input_setup": "Disposable shared engine/Auth/API/SQL account; no owner state",
+      "input_refs": [
+        "plan/design/52-auto-battle-and-rewards.md"
+      ],
+      "parameters": {},
+      "expected": "เริ่ม/หยุด Auto ได้ใน Story และ Tower; ชนะแล้วรอ confirmed settlement ก่อนเข้าสู่ด่านหรือชั้นถัดไป อิง frontier จริง",
+      "verification": "Shared rule tests, real local stack/mobile and public hosted proof",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-135-review.json"
+      ]
+    },
+    {
+      "id": "T135-AC-02",
+      "task_id": "TASK-135",
+      "acceptance_id": "AC-02",
+      "criterion": "แพ้/หมดเวลาทำ retry ด่านเดิมตามจำนวนที่ยืนยันและ reset ตัวนับเมื่อชนะ; receipt เดิม/ rerender ไม่ทำ retry ซ้ำ",
+      "input_setup": "Disposable shared engine/Auth/API/SQL account; no owner state",
+      "input_refs": [
+        "plan/design/52-auto-battle-and-rewards.md"
+      ],
+      "parameters": {},
+      "expected": "แพ้/หมดเวลาทำ retry ด่านเดิมตามจำนวนที่ยืนยันและ reset ตัวนับเมื่อชนะ; receipt เดิม/ rerender ไม่ทำ retry ซ้ำ",
+      "verification": "Shared rule tests, real local stack/mobile and public hosted proof",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-135-review.json"
+      ]
+    },
+    {
+      "id": "T135-AC-03",
+      "task_id": "TASK-135",
+      "acceptance_id": "AC-03",
+      "criterion": "กดหยุดยกเลิกการเริ่มไฟต์ถัดไปทันที ปล่อยไฟต์ปัจจุบันจบ; เปลี่ยนหน้า/เซฟ/reload/เน็ตขาด/กระเป๋าเต็ม/error หยุดอย่างชัดเจน ไม่เกิด background command loop",
+      "input_setup": "Disposable shared engine/Auth/API/SQL account; no owner state",
+      "input_refs": [
+        "plan/design/52-auto-battle-and-rewards.md"
+      ],
+      "parameters": {},
+      "expected": "กดหยุดยกเลิกการเริ่มไฟต์ถัดไปทันที ปล่อยไฟต์ปัจจุบันจบ; เปลี่ยนหน้า/เซฟ/reload/เน็ตขาด/กระเป๋าเต็ม/error หยุดอย่างชัดเจน ไม่เกิด background command loop",
+      "verification": "Shared rule tests, real local stack/mobile and public hosted proof",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-135-review.json"
+      ]
+    },
+    {
+      "id": "T135-AC-04",
+      "task_id": "TASK-135",
+      "acceptance_id": "AC-04",
+      "criterion": "ใช้ combat engine เดิม/ความเร็ว1x2x4เดิม และ UI ปุ่มไม่ล้น320/390; actual browser/API/SQLหลายชนะ-แพ้/หยุด-ฟื้นเน็ต/reloadผ่าน",
+      "input_setup": "Disposable shared engine/Auth/API/SQL account; no owner state",
+      "input_refs": [
+        "plan/design/52-auto-battle-and-rewards.md"
+      ],
+      "parameters": {},
+      "expected": "ใช้ combat engine เดิม/ความเร็ว1x2x4เดิม และ UI ปุ่มไม่ล้น320/390; actual browser/API/SQLหลายชนะ-แพ้/หยุด-ฟื้นเน็ต/reloadผ่าน",
+      "verification": "Shared rule tests, real local stack/mobile and public hosted proof",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-135-review.json"
+      ]
     }
   ]
 }

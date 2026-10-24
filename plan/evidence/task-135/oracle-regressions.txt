@@ -1,0 +1,45 @@
+✔ action bonuses join the existing outgoing bucket; legacy defaults, mitigation, crit and element stay shared (2.620292ms)
+✔ skill identity follows active, passive and periodic programs; normal origin takes precedence (1.377042ms)
+✔ event-damage card proc receives already boosted hit once, without a second skill multiplier (1.497792ms)
+✔ damage bonuses cannot multiply healing, shielding, CC duration or SP regeneration (1.951333ms)
+✔ ATK detonation consumes own poison only and shares outgoing math once (1.567625ms)
+✔ summon snapshots bonus ratios once without duplicating primary milestones or inheriting later buffs (7.104167ms)
+✔ all 126 skill definitions match 378 authored numeric goldens without running encounters (71.831875ms)
+✔ fractional gear roles survive rarity rounding; options and cards stay separate from item rarity (1.858458ms)
+✔ flat monster cards also provide proportional growth for late-game ATK, HP and SP (0.145583ms)
+✔ content migration preserves investments, instances, old rolls, slot progress, cursor and pending rewards (484.72775ms)
+✔ all Sanctuary ranks are pure HoT with twice the song tick coefficient and independently authored goldens (26.29375ms)
+✔ six equal MATK ticks begin exactly at cast resolve, then each second, with no expiry or burst heal (6.723959ms)
+✔ incoming/outgoing heal bonuses and independent caster stacks apply equally to the immediate and later ticks (2.724792ms)
+✔ interrupting Sanctuary spends SP but creates no HoT or immediate heal (1.892709ms)
+✔ 1x/2x/4x chunks and a serialized mid-HoT checkpoint produce identical events, RNG and state (46.631833ms)
+✔ T034 AC-01: all 19 tree skills match the 57 M0 golden cases (summon actor/limit/duration included) (15.135ms)
+✔ T034 AC-01: every Active executes every effect at every level 1-10, summoned plants act, and no battle touches the wallet (950.019542ms)
+✔ T034 AC-01: every Passive changes stats at every level 1-10 (8.466625ms)
+✔ T034 AC-01: Blacksmith/Alchemist skill pages offer only learnable root+branch skills, each with effect text and a pack visual (48.655584ms)
+✔ T034 AC-02: Hell Plant keeps at most 2 alive, lives 6500 ms with ticks at +1000..+6000, the oldest is replaced, and damage is credited to the owner once (16.688ms)
+✔ T034 AC-02: Healing Plant keeps 1 alive and heals the lowest-HP ally; owner death removes every plant immediately (7.167042ms)
+✔ T034 AC-02: Blacksmith buffs raise P.ATK/M.ATK and attack speed of the party (D164) (431.738ms)
+✔ T034 AC-03: dry catalog trace of all four builds reproduces the M0 queue estimate (permanent Passives only) (1308.454167ms)
+✔ T034 AC-03: real fights follow the dry first cycle where no self-haste exists, plants stay bounded and never become a fifth party member (1309.1235ms)
+✔ T034 AC-04: same seed/build gives identical state/RNG/source metrics in server, client session and runner; plants act once per tick (1021.295417ms)
+✔ the nine raw-intent reference cases at levels1/4/10 match the shipped spenders (12.936958ms)
+✔ D-093 highest-level spenders compensate preparation through their own power, without changing costs or hit rules (0.350208ms)
+✔ D-093 actual cast snapshots use only remaining spheres and pre-cost SP; power enters the shared pipeline exactly once (7.999334ms)
+✔ stronger finishers still skip without spheres and never deal their damage or refund costs after interruption (13.467291ms)
+✔ the skill page reads new power and multi-hit counts from the same definitions (41.386416ms)
+✔ all support curves scale from their original values once and damage curves do not compound (18.351458ms)
+✔ single heal and shield use the shared role increase including flat shield power (2.199208ms)
+✔ guard, DEF and HP skills gain power while independent stacking and expiry remain intact (2.390375ms)
+✔ offensive and defensive support buffs change only authored power, leaving their timing and speed values intact (1.603834ms)
+✔ Healing Plant inherits shared heal power without changing lifetime, cadence or ownership (3.235042ms)
+✔ primary stat cards keep their RO stat and add proportional late-game power without rerolling instances (0.222458ms)
+✔ all ten weapon families independently increase same-budget builds at tiers20/40/60 without card sources (22.651209ms)
+ℹ tests 37
+ℹ suites 0
+ℹ pass 37
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6813.849584

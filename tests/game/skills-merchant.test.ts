@@ -94,7 +94,7 @@ test('T034 AC-02: Healing Plant keeps 1 alive and heals the lowest-HP ally; owne
   evidence.healing_plant = { plants: plants.length, owner_death_despawned: alive.length };
 });
 
-test('T034 AC-02: Blacksmith buffs raise physical attack / attack speed of the party and leave magic untouched', () => {
+test('T034 AC-02: Blacksmith buffs raise P.ATK/M.ATK and attack speed of the party (D164)', () => {
   const smith = buildActor(build('blacksmith_weaponsmith'), 'smith', 'front_1');
   const { events, initial } = run([smith, probe('p_ally', 'player', 'back_1'), probe('e_idle', 'enemy', 'front_1')], 15000);
   const before = unwrap(restoreBattle(initial, content)).actors.find(actor => actor.actor_id === 'p_ally')!.stats;
@@ -103,7 +103,7 @@ test('T034 AC-02: Blacksmith buffs raise physical attack / attack speed of the p
   const adrenaline = applied('aspd_up'), perfection = events.find(event => event.type === 'status_applied' && event.target_id === 'p_ally' && event.skill_id === 'blacksmith_weapon_perfection')!;
   const fast = sample(adrenaline.at_ms), strong = sample(perfection.at_ms);
   assert.ok(Math.abs(fast.attack_speed - before.attack_speed * (1 + adrenaline.status_change!.params.ratio!)) < 1e-6, `aspd ${before.attack_speed} -> ${fast.attack_speed}`);
-  assert.ok(strong.physical_attack > before.physical_attack && strong.magical_attack === before.magical_attack, 'weapon perfection is physical only');
+  assert.ok(strong.physical_attack > before.physical_attack && strong.magical_attack > before.magical_attack, 'weapon perfection raises both attacks');
   evidence.blacksmith = { attack_speed: [before.attack_speed, fast.attack_speed], physical_attack: [before.physical_attack, strong.physical_attack], magical_attack: [before.magical_attack, strong.magical_attack] };
 });
 

@@ -7,7 +7,7 @@ import type { AssetPack } from '../renderer/pack.ts';
 import { ItemImage } from './equipment-image.tsx';
 import './gear-growth.css';
 const names:Record<string,string>={main:'คุณ',npc_swordsman:'ไคล์',npc_acolyte:'ลูเมน',npc_archer:'อารี',npc_mage:'เรน',npc_thief:'นิกซ์',npc_merchant:'มิโล'};
-const stats:Record<string,string>={physical_attack:'ATK',magical_attack:'MATK',physical_defense:'DEF',magical_defense:'MDEF',max_hp:'HP',max_sp:'SP'};
+const stats:Record<string,string>={physical_attack:'P.ATK',magical_attack:'M.ATK',physical_defense:'DEF',magical_defense:'MDEF',max_hp:'HP',max_sp:'SP'};
 const reasons:Record<string,string>={ITEM_EQUIPPED:'ถอดชิ้นนี้ก่อนนำไปผสม',ITEM_LOCKED:'ปลดล็อกก่อนนำไปผสม',TRAINING_WEAPON_RESTRICTED:'อาวุธฝึกหัดผสมไม่ได้',RARITY_MAX_REACHED:'Supreme เป็น rarity สูงสุดแล้ว',TIER_MAX_REACHED:'ถึง Tier สูงสุดของรุ่นนี้แล้ว',NOT_ENOUGH_MATCHING_EQUIPMENT:'ต้องมีของว่างที่ไม่ล็อก 3 ชิ้น ชนิด / Tier / rarity เดียวกัน',ITEM_LEVEL_REQUIRED:'ผู้สวมต้องมีเลเวลถึง Tier ถัดไปก่อน',BUILD_LOCKED_DURING_BATTLE:'จบหรือออกจากไฟต์ก่อนพัฒนาของ'};
 const number=(n:number)=>n.toLocaleString('th-TH',{maximumFractionDigits:2}),seconds=(n:number)=>number(n/1000)+'s';
 const cost=(p:Partial<AccountState['wallet']>)=>Object.entries(p).filter(([,n])=>n).map(([k,n])=>`${k==='gold'?'ทอง':k==='refine_ore'?'แร่':k} ${number(n!)}`).join(' · ')||'ฟรี';

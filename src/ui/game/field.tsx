@@ -1,6 +1,7 @@
 import { CardIcon } from './card-art.tsx';
 import { Icon } from '../icon.tsx';
-import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
+import { useEffect, useRef, useState, useSyncExternalStore, type ReactNode } from 'react';
+import { AUTO_LOSS_LIMIT, continueAuto, newAutoRun, nextAutoTarget, pendingProgressCollection, hasPendingProgressRewards, type AutoMode, type AutoRun } from '../../client/auto-battle.ts';
 import type { ActorRenderView, BattleRenderView } from '../../contracts/presentation.ts';
 import { SavedBattleSession, battleDebrief, bossCastInfo, dailyNames, dailyView, storyBossLabel, storyOptions, storyPresentationKey, storyStageInfo, towerView } from '../../client/story.ts';
 import { FarmWaveSession, farmSceneStage } from '../../client/farm-scene.ts';
@@ -30,7 +31,7 @@ function stageBossSkin(pack: AssetPack | null, stageId: string) {
   const info = storyStageInfo(stageId);
   return pack && info && !info.last && info.enemy_identity!=='definition' ? bossSkin(pack.index, info.chapter, info.index) : null;
 }
-type Outcome = { id: string; code: string; stage: string; kind: 'story' | 'tower' | 'daily' };
+type Outcome = { id: string; code: string; stage: string; kind: 'story' | 'tower' | 'daily'; resources?: Partial<Wallet>; itemCount?: number };
 const OUTCOMES = ['STORY_WON', 'STORY_DEFEATED', 'STORY_TIME_LIMIT', 'TOWER_WON', 'TOWER_DEFEATED', 'TOWER_TIME_LIMIT', 'DAILY_FINISHED', 'DAILY_DEFEATED'];
 /** Boss-bar tag per mode: story stage, tower floor, or the daily phase being fought (it changes mid-fight). */
 const modeTag = (session: SavedBattleSession) => { const mode = session.state.mode; return mode.kind === 'tower' ? `ชั้น ${mode.ref}` : mode.kind === 'daily' ? `หลอดที่ ${mode.daily_phase}` : mode.ref; };
@@ -93,7 +94,7 @@ function FarmField({ context, covered }: { context: GameContext; covered: boolea
 }
 
 const phaseNames: Record<string, string> = { skill_interval: 'รอคิว', casting: 'ร่าย', after_cast: 'พัก', normal_only: 'ตีปกติ', dead: 'หมดสภาพ' };
-function BossField({ context, app, running, checkpoint, outcome, retreat, statsRef, timelineRef }: { context: GameContext; app: { session: SavedBattleSession; id: string }; running: boolean; checkpoint: unknown; outcome: string | null; retreat: (() => Promise<void>) | null; statsRef: { current: (() => void) | null }; timelineRef: { current: (() => void) | null } }) {
+function BossField({ context, app, running, checkpoint, outcome, retreat, statsRef, timelineRef, autoControl }: { context: GameContext; app: { session: SavedBattleSession; id: string }; running: boolean; checkpoint: unknown; outcome: string | null; retreat: (() => Promise<void>) | null; statsRef: { current: (() => void) | null }; timelineRef: { current: (() => void) | null }; autoControl?: ReactNode }) {
   const { pack } = context, canvas = useRef<HTMLCanvasElement>(null), renderer = useRef<BattleRenderer | null>(null), clock = useRef(0), logical = useRef(app.session.state.game_time_ms), runningRef = useRef(running);
   const [view, setView] = useState<BattleRenderView>(() => app.session.view()), [selected, setSelected] = useState('main'), [panel, setPanel] = useState<'timeline' | 'statistics' | 'history' | null>(null), [error, setError] = useState(''), [retreating, setRetreating] = useState(false);
   const finishSent = useRef(false);
@@ -101,7 +102,7 @@ function BossField({ context, app, running, checkpoint, outcome, retreat, statsR
     if (!view.terminal || !running || document.hidden || finishSent.current) return;
     finishSent.current = true;
     // Persisted UUID/receipt recovery belongs to SaveController; never submit a second finish intent on a rerender.
-    void context.submitWhenReady('battle.finish', { battle_id: app.id }).then(ok => { if (!ok) setError('ยังยืนยันผลไฟต์ไม่ได้ กรุณาเชื่อมต่อเซฟอีกครั้ง'); });
+    void context.submitWhenReady('battle.finish', { battle_id: app.id, collect_rewards: true }).then(ok => { if (!ok) setError('ยังยืนยันผลไฟต์ไม่ได้ กรุณาเชื่อมต่อเซฟอีกครั้ง'); });
   }, [view.terminal, running, app.id, context.submitWhenReady]);
   // D-067: flash who cancelled a boss cast (stun/freeze/silence/interrupt) — read from the same engine events the renderer gets.
   const [cut, setCut] = useState<{ by: string; at: number } | null>(null);
@@ -141,6 +142,7 @@ function BossField({ context, app, running, checkpoint, outcome, retreat, statsR
       <SpeedButton />
       {retreat && !outcome && <button className="chip-btn danger" disabled={retreating} onClick={() => { setRetreating(true); void retreat().finally(() => setRetreating(false)); }}><Icon name="retreat" /><span>{retreating ? 'กำลังถอย…' : 'ถอยทัพ'}</span></button>}
     </div>
+      {autoControl && <div className="boss-auto-row">{autoControl}</div>}
     </div>
       <div className="boss-status-panel">{boss && <CombatStatusStrip actor={boss} actors={view.actors} pack={pack} now={view.game_time_ms} />}</div>
       {boss?.cast && (() => { const info = bossCastInfo(boss.cast.skill_id), progress = Math.min(1, Math.max(0, (view.game_time_ms - boss.phase_started_at) / Math.max(1, boss.phase_duration_ms)));
@@ -169,9 +171,9 @@ function introLabel(target: ChallengeTarget, pack: AssetPack | null, context: Ga
   const authored = storyBossLabel(target.id), skin = stageBossSkin(pack, target.id), info = storyStageInfo(target.id), heavy = info?.heavy_skill ? bossCastInfo(info.heavy_skill) : null;
   return { name: skin?.label ?? authored?.name ?? '', place: `ด่าน ${target.id}`, level: authored?.level ?? null, hint: info?.heavy_cast ? `บอสร่าย "${heavy?.name ?? 'มหาวิบัติ'}"` : null };
 }
-function BossIntro({ label }: { label: { name: string; place: string; level: number | null; hint?: string | null } }) {
+function BossIntro({ label, autoControl }: { label: { name: string; place: string; level: number | null; hint?: string | null }; autoControl?: ReactNode }) {
   return <div className="boss-intro" role="alert" aria-label={`คำเตือน บอส ${label.name} ${label.place}`}>
-    <div className="hazard" /><div className="intro-core"><b className="warn-text">WARNING</b><span className="intro-sub">บอสปรากฏตัว!</span><strong className="intro-boss">{label.name}</strong><small>{label.place}{label.level ? ` · Lv.${label.level}` : ''}</small>{label.hint && <em className="intro-hint"><Icon name="warning" /> {label.hint}</em>}</div><div className="hazard bottom" />
+    <div className="hazard" /><div className="intro-core"><b className="warn-text">WARNING</b><span className="intro-sub">บอสปรากฏตัว!</span><strong className="intro-boss">{label.name}</strong><small>{label.place}{label.level ? ` · Lv.${label.level}` : ''}</small>{label.hint && <em className="intro-hint"><Icon name="warning" /> {label.hint}</em>}</div>{autoControl && <div className="intro-auto">{autoControl}</div>}<div className="hazard bottom" />
   </div>;
 }
 
@@ -260,21 +262,25 @@ function DailyResult({ context, outcome, close, challenge, stats, timeline, sess
     </div>
   </div></div>;
 }
-function ResultCard({ context, outcome, close, challenge, stats, timeline, session }: { context: GameContext; outcome: Outcome; close: () => void; challenge: (target: ChallengeTarget) => void; stats: () => void; timeline: () => void; session?: SavedBattleSession }) {
+function ResultCard({ context, outcome, close, challenge, stats, timeline, session, autoControl, autoRunning, autoMessage }: { context: GameContext; outcome: Outcome; close: () => void; challenge: (target: ChallengeTarget) => void; stats: () => void; timeline: () => void; session?: SavedBattleSession; autoControl?: ReactNode; autoRunning: boolean; autoMessage: string }) {
   if (outcome.kind === 'daily') return <DailyResult context={context} outcome={outcome} close={close} challenge={challenge} stats={stats} timeline={timeline} session={session} />;
-  const { state, pack, submit, locked, go } = context, tower = outcome.kind === 'tower', won = outcome.code.endsWith('_WON'), claim = state.pending_rewards.find(c => c.kind === outcome.kind && c.source_keys.includes(`${outcome.kind}:${outcome.stage}`));
+  const { state, pack, locked, go } = context, tower = outcome.kind === 'tower', won = outcome.code.endsWith('_WON');
+  const pending = hasPendingProgressRewards(state), resources = outcome.resources ?? {}, itemCount = outcome.itemCount ?? 0;
   const story = storyOptions(state).find(s => s.available && !s.cleared), next: ChallengeTarget | null = tower ? { kind: 'tower', floor: state.tower.highest_cleared_floor + 1 } : story ? { kind: 'story', id: story.id } : null;
   const retry: ChallengeTarget = tower ? { kind: 'tower', floor: Number(outcome.stage) } : { kind: 'story', id: outcome.stage };
   return <div className="result-layer" role="dialog" aria-label="ผลการต่อสู้"><div className={`result-card ${won ? 'win' : 'lose'}`}>
     <h2>{won ? 'ชนะแล้ว!' : outcome.code.endsWith('_TIME_LIMIT') ? 'หมดเวลา' : 'ทีมพ่ายแพ้'}</h2>
-    <p>{won ? tower ? `ผ่านหอคอยชั้น ${outcome.stage}${claim ? '' : ' (เคยผ่านแล้ว ไม่มีรางวัลซ้ำ)'}` : `ผ่านด่าน ${outcome.stage}` : 'ทีมพ่ายแพ้หรือหมดเวลา'}</p>
+    <p>{won ? tower ? `ผ่านหอคอยชั้น ${outcome.stage}` : `ผ่านด่าน ${outcome.stage}` : 'ทีมพ่ายแพ้หรือหมดเวลา'}</p>
     {session && <Debrief session={session} />}
-    {claim && <div className="result-reward">{(Object.entries(claim.resource_vector) as [keyof Wallet, number][]).filter(([, n]) => n > 0).map(([k, n]) => <span key={k}><ResIcon pack={pack} k={k} />{full(n)}</span>)}{claim.items.length ? <span><Icon name="gift" /> {claim.items.length}</span> : null}</div>}
+    <div className="result-reward" aria-label="รางวัลที่ได้รับ">{(Object.entries(resources) as [keyof Wallet, number][]).filter(([, n]) => n > 0).map(([k, n]) => <span key={k}><ResIcon pack={pack} k={k} />{full(n)}</span>)}{itemCount ? <span><Icon name="gift" /> {itemCount}</span> : null}</div>
+    {won && (Object.values(resources).some(n => Number(n) > 0) || itemCount > 0) && <small className="result-collected"><Icon name="check" /> รับรางวัลแล้ว</small>}
+    {pending && <p className="result-pending" role="status">ยังรับรางวัลบางส่วนไม่ได้ · ตรวจพื้นที่กระเป๋า</p>}
+    {autoControl}{autoMessage && <p className="auto-message" role="status">{autoMessage}</p>}
     <div className="row">
-      {claim && <button className="btn primary" disabled={locked} onClick={() => void submit('reward.claim', { claim_id: claim.claim_id })}>รับรางวัล</button>}
-      {!claim && won && next && <button className="btn primary" disabled={locked} onClick={() => { close(); challenge(next); }}>{next.kind === 'tower' ? `ท้าชั้น ${next.floor}` : `ท้าด่าน ${next.kind === 'story' ? next.id : ''}`}</button>}
-      {!won && <button className="btn" onClick={() => { close(); go('team'); }}>ปรับทีม</button>}
-      {!won && <button className="btn primary" disabled={locked} onClick={() => { close(); challenge(retry); }}>ลองใหม่</button>}
+      {!autoRunning && won && next && <button className="btn primary" disabled={locked || pending} onClick={() => { close(); challenge(next); }}>{next.kind === 'tower' ? `ท้าชั้น ${next.floor}` : `ท้าด่าน ${next.kind === 'story' ? next.id : ''}`}</button>}
+      {pending && <button className="btn" onClick={() => { close(); go('backpack'); }}>จัดกระเป๋า</button>}
+      {!autoRunning && !won && <button className="btn" onClick={() => { close(); go('team'); }}>ปรับทีม</button>}
+      {!autoRunning && !won && <button className="btn primary" disabled={locked} onClick={() => { close(); challenge(retry); }}>ลองใหม่</button>}
       {session && <button className="btn ghost" onClick={timeline} aria-label="Timeline ย้อนหลัง"><Icon name="timeline" /><span>Timeline</span></button>}
       <button className="btn ghost" onClick={stats}><Icon name="chart" /><span>สถิติ</span></button>
       {tower ? <button className="btn ghost" onClick={() => { close(); go('tower'); }}>กลับหอคอย</button> : <button className="btn ghost" onClick={close}>กลับไปฟาร์ม</button>}
@@ -282,60 +288,94 @@ function ResultCard({ context, outcome, close, challenge, stats, timeline, sessi
   </div></div>;
 }
 
-export function Field({ context, covered, save, request, consumeRequest }: { context: GameContext; covered: boolean; save: SaveSnapshot; request: (ChallengeTarget & { at: number }) | null; consumeRequest: () => void }) {
-  // A clock acknowledgement's brief 'loading' refresh must not count as offline.
+export function Field({ context, covered, save, request, consumeRequest }: { context: GameContext; covered: boolean; save: SaveSnapshot; request: (ChallengeTarget & { at: number; automatic?: boolean }) | null; consumeRequest: () => void }) {
   const { state, pack, submit, locked } = context, active = state.active_battle, battle = save.checkpoint?.battle, online = !['offline', 'error', 'read_only', 'incompatible', 'signed_out'].includes(save.status);
   const [boss, setBoss] = useState<{ session: SavedBattleSession; id: string } | null>(null), [outcome, setOutcome] = useState<Outcome | null>(null), [sheet, setSheet] = useState<'stage' | 'farm' | null>(null), [starting, setStarting] = useState(false), [intro, setIntro] = useState<{ label: ReturnType<typeof introLabel>; at: number } | null>(null);
+  const [auto, setAuto] = useState<AutoRun | null>(null), autoRef = useRef<AutoRun | null>(null), epoch = useRef(0), [autoMessage, setAutoMessage] = useState('');
+  const [continuation, setContinuation] = useState<{ target: ChallengeTarget; at: number; epoch: number } | null>(null);
+  const mounted = useRef(true), startingRef = useRef(false), coveredRef = useRef(covered), collectionInFlight = useRef(false), collectionAttempt = useRef(''); coveredRef.current = covered;
   const handled = useRef<string | null>(null), now = useNow(1000), statsRef = useRef<(() => void) | null>(null), timelineRef = useRef<(() => void) | null>(null);
+  function updateAuto(value: AutoRun | null) { autoRef.current = value; setAuto(value); }
+  function stopAuto(message = '') { if (startingRef.current) setIntro(null); epoch.current++; updateAuto(null); setContinuation(null); setAutoMessage(message); }
+  async function challenge(target: ChallengeTarget, automatic = false) {
+    if (startingRef.current || (automatic && !autoRef.current)) return;
+    if (!automatic) stopAuto();
+    const token = epoch.current; startingRef.current = true; setSheet(null); setStarting(true); setIntro({ label: introLabel(target, pack, context), at: Date.now() });
+    try {
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      if (!mounted.current) return;
+      if (automatic && (token !== epoch.current || !autoRef.current || coveredRef.current || document.hidden)) { setIntro(null); return; }
+      const ok = target.kind === 'tower' ? await submit('battle.start_tower', { floor: target.floor }) : target.kind === 'daily' ? await submit('battle.start_daily', { boss_id: target.boss }) : await submit('battle.start_story', { stage_id: target.id });
+      if (!ok) { setIntro(null); if (automatic) stopAuto('หยุด Auto · ยังเริ่มไฟต์ไม่ได้'); }
+    } finally { startingRef.current = false; if (mounted.current) setStarting(false); }
+  }
+  function startAuto(mode: AutoMode, initial?: ChallengeTarget) {
+    const current = context.latest() ?? state;
+    if (hasPendingProgressRewards(current)) { setAutoMessage('รับรางวัลที่ค้างให้เรียบร้อยก่อน · ตรวจพื้นที่กระเป๋า'); return; }
+    const target = initial ?? nextAutoTarget(current, mode);
+    if (!target) { setAutoMessage('ผ่านด่านที่เปิดอยู่ครบแล้ว'); return; }
+    epoch.current++; updateAuto({ ...newAutoRun(mode), lastBattleId: outcome?.id ?? null }); setAutoMessage('');
+    if (!current.active_battle) void challenge(target, true);
+  }
+  useEffect(() => { mounted.current = true; return () => { mounted.current = false; epoch.current++; autoRef.current = null; }; }, []);
   useEffect(() => {
     if (!active || !battle || !pack || boss?.id === active.battle_id) return; let disposed = false;
-    void (async () => { try { const session = new SavedBattleSession(battle.payload, state, id => stageBossSkin(pack, id)); await pack.prepare(session.scene, session.view().actors.flatMap(a => a.slots.filter((id): id is string => id !== null))); if (pack.soundEnabled) await pack.enableAudio(true, session.scene).catch(() => {}); if (!disposed) { setOutcome(null); setBoss({ session, id: active.battle_id }); } } catch { if (!disposed) context.toast('ยังเตรียมไฟต์บอสไม่ได้ ลองเชื่อมต่อใหม่'); } })();
+    void (async () => { try { const session = new SavedBattleSession(battle.payload, state, id => stageBossSkin(pack, id)); await pack.prepare(session.scene, session.view().actors.flatMap(a => a.slots.filter((id): id is string => id !== null))); if (pack.soundEnabled) await pack.enableAudio(true, session.scene).catch(() => {}); if (!disposed) { setOutcome(null); setBoss({ session, id: active.battle_id }); } } catch { if (!disposed) { context.toast('ยังเตรียมไฟต์บอสไม่ได้ ลองเชื่อมต่อใหม่'); stopAuto('หยุด Auto · เตรียมภาพไม่สำเร็จ'); } } })();
     return () => { disposed = true; };
   }, [active?.battle_id, !!battle, pack]);
   useEffect(() => {
     const r = save.lastReceipt; if (!r || handled.current === r.request_id) return; handled.current = r.request_id;
     if (!OUTCOMES.includes(r.result.code) || !r.result.battle_id || boss?.id !== r.result.battle_id) return;
-    const mode = boss.session.initial.mode, kind = mode.kind, stage = kind === 'daily' ? mode.ref.split('@')[0]! : mode.ref; setOutcome({ id: r.result.battle_id, code: r.result.code, stage, kind });
-    if (kind !== 'story') return;
-    // Farm follows the newest cleared stage while the player was farming the previous frontier; older picks are respected.
-    if (r.result.code !== 'STORY_WON') return;
-    const order = storyOptions(state), at = order.findIndex(o => o.id === stage), previous = order[at - 1]?.id ?? null, farming = state.story.selected_farm_stage;
-    if (farming !== stage && (farming === null || farming === previous)) void context.submitWhenReady('farm.set_stage', { stage_id: stage }).then(ok => { if (ok) context.toast(`ย้ายจุดฟาร์มไปด่าน ${stage} อัตโนมัติ`); });
+    const mode = boss.session.initial.mode, kind = mode.kind, stage = kind === 'daily' ? mode.ref.split('@')[0]! : mode.ref;
+    setOutcome({ id: r.result.battle_id, code: r.result.code, stage, kind, resources: r.result.resource_delta, itemCount: r.result.created_instance_ids.length });
   }, [save.lastReceipt, boss]);
-  async function challenge(target: ChallengeTarget) {
-    setSheet(null); if (starting) return; setStarting(true); setIntro({ label: introLabel(target, pack, context), at: Date.now() });
-    try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      const ok = target.kind === 'tower' ? await submit('battle.start_tower', { floor: target.floor }) : target.kind === 'daily' ? await submit('battle.start_daily', { boss_id: target.boss }) : await submit('battle.start_story', { stage_id: target.id });
-      if (!ok) setIntro(null);
-    } finally { setStarting(false); }
-  }
-  // Challenges started from other pages (Tower/Daily) arrive here so the intro and fight share one flow.
-  useEffect(() => { if (!request) return; consumeRequest(); const { at: _at, ...target } = request; void challenge(target as ChallengeTarget); }, [request?.at]);
-  // Keep the warning up until the boss scene is ready (at least ~2s), with a safety cap if preparation fails.
   useEffect(() => {
-    if (!intro) return; const ready = !!boss && active?.battle_id === boss.id;
+    if (!outcome || !auto || auto.lastBattleId === outcome.id) return;
+    const current = context.latest() ?? state;
+    if (hasPendingProgressRewards(current)) { stopAuto('หยุด Auto · รางวัลรอพื้นที่กระเป๋า'); return; }
+    const decision = continueAuto(auto, outcome, nextAutoTarget(current, auto.mode)); updateAuto(decision.run);
+    if (decision.target) { setContinuation({ target: decision.target, at: Date.now() + 1800, epoch: epoch.current }); setAutoMessage(outcome.code.endsWith('_WON') ? 'กำลังไปไฟต์ถัดไป…' : `ลองใหม่ · แพ้ ${decision.run!.failures}/${AUTO_LOSS_LIMIT}`); }
+    else if (decision.reason) stopAuto(decision.reason === 'loss_limit' ? `หยุด Auto · แพ้ครบ ${AUTO_LOSS_LIMIT} ครั้ง` : decision.reason === 'complete' ? 'ผ่านด่านที่เปิดอยู่ครบแล้ว' : 'หยุด Auto');
+  }, [outcome, auto?.lastBattleId, auto?.mode]);
+  useEffect(() => {
+    if (!continuation || !autoRef.current || covered || !online || document.hidden || save.status !== 'ready' || save.pending || active || startingRef.current) return;
+    const timer = setTimeout(() => { if (epoch.current !== continuation.epoch || !autoRef.current) return; setContinuation(null); void challenge(continuation.target, true); }, Math.max(0, continuation.at - Date.now()));
+    return () => clearTimeout(timer);
+  }, [continuation, covered, online, save.status, !!save.pending, active?.battle_id, starting]);
+  useEffect(() => { if (autoRef.current && (covered || !online)) stopAuto(covered ? 'หยุด Auto · เปลี่ยนหน้า' : 'หยุด Auto · ตรวจการเชื่อมต่อเซฟ'); }, [covered, online]);
+  useEffect(() => { const hide = () => { if (document.hidden && autoRef.current) stopAuto('หยุด Auto · พักหน้าจอ'); }; document.addEventListener('visibilitychange', hide); return () => document.removeEventListener('visibilitychange', hide); }, []);
+  // Recover deferred fixed claims once space is available. No AFK clock polling or repeated failed intents.
+  useEffect(() => {
+    if (covered || !online || document.hidden || save.status !== 'ready' || save.pending || active || collectionInFlight.current) return;
+    const current = context.latest() ?? state, ids = pendingProgressCollection(current); if (!ids.length) return;
+    const key = `${ids.join(',')}:${current.inventory.length}:${JSON.stringify(current.wallet)}`; if (collectionAttempt.current === key) return;
+    collectionAttempt.current = key; collectionInFlight.current = true;
+    void context.submitWhenReady('reward.claim', { claim_ids: ids }).then(ok => { if (!ok) stopAuto('หยุด Auto · ตรวจรางวัลค้าง'); }).finally(() => { collectionInFlight.current = false; });
+  }, [state.pending_rewards, state.inventory.length, save.status, covered, online, active?.battle_id]);
+  useEffect(() => { if (!request) return; consumeRequest(); const { at: _at, automatic, ...target } = request; if (automatic && target.kind !== 'daily') startAuto(target.kind, target); else void challenge(target as ChallengeTarget); }, [request?.at]);
+  useEffect(() => {
+    if (!intro) return; const ready = !!boss && (active?.battle_id === boss.id || outcome?.id === boss.id);
     const timer = setTimeout(() => setIntro(null), ready ? Math.max(0, 2100 - (Date.now() - intro.at)) : 9000);
     return () => clearTimeout(timer);
-  }, [intro, boss?.id, active?.battle_id]);
-  const options = storyOptions(state), next = options.find(s => s.available && !s.cleared), waiting=options.find(s=>!s.cleared&&s.release_locked)?.release_locked, waitingName=waiting==='hi_class'?'Hi-class':waiting==='awakening'?'Awaken':null, farmStage = farmSceneStage(state), mapName = mapNames[(farmStage.background as { name?: string }).name ?? ''] ?? 'ทุ่งหญ้า';
+  }, [intro, boss?.id, active?.battle_id, outcome?.id]);
+  const options = storyOptions(state), next = options.find(s => s.available && !s.cleared), waiting = options.find(s => !s.cleared && s.release_locked)?.release_locked, waitingName = waiting === 'hi_class' ? 'Hi-class' : waiting === 'awakening' ? 'Awaken' : null, farmStage = farmSceneStage(state), mapName = mapNames[(farmStage.background as { name?: string }).name ?? ''] ?? 'ทุ่งหญ้า';
   const snapshot = state.farm.rate_snapshot, elapsed = snapshot ? Math.min(FARM_CAP_MS, Math.max(0, now - Date.parse(state.farm.reserved_through))) : 0;
   const showBoss = boss && (active?.battle_id === boss.id || outcome?.id === boss.id), bossIcon = iconUrl(pack, 'ui_icons', 'boss'), chest = iconUrl(pack, 'feature_icons', 'afk_chest'), mapIcon = iconUrl(pack, 'ui_icons', 'stage');
-  return <div className={`field ${covered ? 'covered' : ''}`}>
-    {showBoss ? <BossField key={boss.id} context={context} app={boss} running={online && active?.battle_id === boss.id} checkpoint={active?.battle_id === boss.id ? battle?.payload : null} outcome={outcome?.id === boss.id ? outcome.code : null} retreat={active?.battle_id === boss.id ? async () => { await context.submitWhenReady('battle.retreat', { battle_id: active.battle_id, requested_game_ms: boss.session.state.game_time_ms }); } : null} statsRef={statsRef} timelineRef={timelineRef} /> : <FarmField context={context} covered={covered} />}
+  const mode = auto?.mode ?? boss?.session.initial.mode.kind;
+  const autoControl = mode === 'daily' ? null : <div className="auto-battle-control" data-auto-running={!!auto}>
+    <button className={`btn small ${auto ? 'auto-on' : 'ghost'}`} aria-label={auto ? 'หยุด Auto Battle' : 'เริ่ม Auto Battle'} disabled={!auto && (locked && !active || starting)} onClick={() => auto ? stopAuto('หยุด Auto โดยผู้เล่น') : startAuto(mode === 'tower' ? 'tower' : 'story')}><Icon name={auto ? 'pause' : 'play'} />{auto ? 'หยุด Auto' : 'Auto Battle'}</button>
+    {auto && <small>แพ้ {auto.failures}/{AUTO_LOSS_LIMIT}</small>}
+  </div>;
+  return <div className={`field ${covered ? 'covered' : ''}`} data-auto-mode={auto?.mode ?? ''} data-auto-failures={auto?.failures ?? 0}>
+    {showBoss ? <BossField key={boss.id} context={context} app={boss} running={online && active?.battle_id === boss.id} checkpoint={active?.battle_id === boss.id ? battle?.payload : null} outcome={outcome?.id === boss.id ? outcome.code : null} retreat={active?.battle_id === boss.id ? async () => { stopAuto('หยุด Auto · ถอยทัพ'); await context.submitWhenReady('battle.retreat', { battle_id: active.battle_id, requested_game_ms: boss.session.state.game_time_ms }); } : null} statsRef={statsRef} timelineRef={timelineRef} autoControl={autoControl} /> : <FarmField context={context} covered={covered} />}
     {!covered && !showBoss && <>
-      <button className="stage-chip" onClick={() => setSheet('stage')} aria-label="เปิดแผนที่และเลือกด่าน">
-        {mapIcon && <img src={mapIcon} alt="" />}<span><small>{mapName}</small><b>ฟาร์ม {farmStage.id}</b></span>
-      </button>
-      <button className={`afk-chest ${state.pending_rewards.length ? 'has-reward' : ''}`} aria-label="รางวัลฟาร์มอัตโนมัติ" onClick={() => setSheet('farm')}>
-        {chest ? <img src={chest} alt="" /> : <Icon name="gift" />}<time>{snapshot ? duration(elapsed) : 'AFK'}</time>{!!state.pending_rewards.length && <i className="dot">{state.pending_rewards.length}</i>}
-      </button>
-      <button className="challenge-btn" disabled={locked || starting || !next} aria-label={next ? `ท้าบอสด่าน ${next.id}` : waitingName?`รอ ${waitingName}`:'ผ่านครบทุกด่านแล้ว'} onClick={() => next && void challenge({ kind: 'story', id: next.id })}>
-        <span className="challenge-ring">{bossIcon ? <img src={bossIcon} alt="" /> : <Icon name="adventure" />}</span><b>{starting ? 'กำลังเข้า…' : next ? 'ท้าบอส' : waitingName??'ครบแล้ว'}</b>{next && <small>{next.id}</small>}
-      </button>
+      <button className="stage-chip" onClick={() => { stopAuto(); setSheet('stage'); }} aria-label="เปิดแผนที่และเลือกด่าน">{mapIcon && <img src={mapIcon} alt="" />}<span><small>{mapName}</small><b>ฟาร์ม {farmStage.id}</b></span></button>
+      <div className="field-auto-start">{autoControl}{autoMessage && <small role="status">{autoMessage}</small>}</div>
+      <button className={`afk-chest ${state.pending_rewards.length ? 'has-reward' : ''}`} aria-label="รางวัลฟาร์มอัตโนมัติ" onClick={() => { stopAuto(); setSheet('farm'); }}>{chest ? <img src={chest} alt="" /> : <Icon name="gift" />}<time>{snapshot ? duration(elapsed) : 'AFK'}</time>{!!state.pending_rewards.length && <i className="dot">{state.pending_rewards.length}</i>}</button>
+      <button className="challenge-btn" disabled={locked || starting || !next} aria-label={next ? `ท้าบอสด่าน ${next.id}` : waitingName ? `รอ ${waitingName}` : 'ผ่านครบทุกด่านแล้ว'} onClick={() => next && void challenge({ kind: 'story', id: next.id })}><span className="challenge-ring">{bossIcon ? <img src={bossIcon} alt="" /> : <Icon name="adventure" />}</span><b>{starting ? 'กำลังเข้า…' : next ? 'ท้าบอส' : waitingName ?? 'ครบแล้ว'}</b>{next && <small>{next.id}</small>}</button>
     </>}
-    {intro && !covered && <BossIntro label={intro.label} />}
-    {outcome && showBoss && !covered && <ResultCard context={context} outcome={outcome} session={boss.session} close={() => { setOutcome(null); setBoss(null); }} challenge={target => void challenge(target)} stats={() => statsRef.current?.()} timeline={() => timelineRef.current?.()} />}
+    {intro && !covered && <BossIntro label={intro.label} autoControl={auto ? autoControl : null} />}
+    {outcome && showBoss && !covered && !intro && <ResultCard context={context} outcome={outcome} session={boss.session} close={() => { stopAuto(); setOutcome(null); setBoss(null); }} challenge={target => void challenge(target)} stats={() => { stopAuto('หยุด Auto · ดูสถิติ'); statsRef.current?.(); }} timeline={() => { stopAuto('หยุด Auto · ดู Timeline'); timelineRef.current?.(); }} autoControl={autoControl} autoRunning={!!auto} autoMessage={autoMessage} />}
     {sheet === 'stage' && <StageSheet context={context} close={() => setSheet(null)} challenge={id => void challenge({ kind: 'story', id })} />}
     {sheet === 'farm' && <FarmSheet context={context} close={() => setSheet(null)} />}
   </div>;
