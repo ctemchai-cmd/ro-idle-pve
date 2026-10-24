@@ -1582,10 +1582,11 @@
     "job_bonus_rule_source": "D-061 user request 2026-10-20: different starting stats so party members do not cast in lockstep; values are an assistant baseline (24 points each) to tune in TASK-041"
   },
   "skill_cap_contract": {
-    "rule": "min(skill_definition_max, 1 + floor((character_level - 1)/5))",
+    "rule": "Explicit rank_unlock_levels first; Class2 unlock20/30/40: rank r at unlock+ceil(40*(r-1)/(max-1)); Class1 retains 1+floor((character_level-1)/5)",
     "automatic_skill_upgrade": false,
     "definition_owner": "TASK-003–008",
-    "future_awaken_cap_owner": "future_content"
+    "future_awaken_cap_owner": "future_content",
+    "migration": "D165: trim only excess current-phase ranks, refund verified actual legacy investments once, retain loadout/awakening and lower-rank ledger"
   },
   "system_unlocks": [
     {

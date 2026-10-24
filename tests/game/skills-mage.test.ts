@@ -85,7 +85,7 @@ test('T032 AC-02: Storm Gust frost field ticks at +1000..+4000 ms (never at its 
 });
 
 // --- AC-03 ------------------------------------------------------------------------------------------
-test('T032 AC-03: dry catalog trace of all four builds reproduces the M0 queue estimate (Sage Auto-bolt cast speed 179.2, cycle 6978 ms after the D-061 job bonus)', () => {
+test('T032 AC-03: dry catalog trace of all four builds reproduces the M0 queue estimate (Sage Auto-bolt cast speed 179.2, current D165 legal-rank cycle)', () => {
   evidence.dry_trace = checkDryTraces('mage', tree.builds);
   assert.equal(build('sage_auto_bolt').queue_estimate.cycle_ms, 6866); // D-061 job bonus (was 7344)
 });

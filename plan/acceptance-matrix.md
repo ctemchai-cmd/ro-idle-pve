@@ -692,3 +692,12 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T135-AC-02` | TASK-135 | แพ้/หมดเวลาทำ retry ด่านเดิมตามจำนวนที่ยืนยันและ reset ตัวนับเมื่อชนะ; receipt เดิม/ rerender ไม่ทำ retry ซ้ำ | Shared tests/local/hosted browser | passed_implementation |
 | `T135-AC-03` | TASK-135 | กดหยุดยกเลิกการเริ่มไฟต์ถัดไปทันที ปล่อยไฟต์ปัจจุบันจบ; เปลี่ยนหน้า/เซฟ/reload/เน็ตขาด/กระเป๋าเต็ม/error หยุดอย่างชัดเจน ไม่เกิด background command loop | Shared tests/local/hosted browser | passed_implementation |
 | `T135-AC-04` | TASK-135 | ใช้ combat engine เดิม/ความเร็ว1x2x4เดิม และ UI ปุ่มไม่ล้น320/390; actual browser/API/SQLหลายชนะ-แพ้/หยุด-ฟื้นเน็ต/reloadผ่าน | Shared tests/local/hosted browser | passed_implementation |
+
+## TASK-136 — เพดานสกิลและคืนทุนส่วนเกิน
+
+| ID | Task | เกณฑ์ | วิธีตรวจ | สถานะ |
+| --- | --- | --- | --- | --- |
+| `T136-AC-01` | TASK-136 | Class2全rankตามunlock+40,30→70/40→80;Class1/Hiและราคา/programเดิม | Unit/actuallocal/hosted | not_run_implementation |
+| `T136-AC-02` | TASK-136 | ลดเฉพาะrankเกินและคืนทุนจริงครั้งเดียว,lowerledger/loadout/Aw/NPCคงเดิม | Unit/actuallocal/hosted | not_run_implementation |
+| `T136-AC-03` | TASK-136 | legacyprice/overflow failatomic,backup-CAS-replay/10slotsแยกจริง | Unit/actuallocal/hosted | not_run_implementation |
+| `T136-AC-04` | TASK-136 | UI320390 cap/full/next,tests/build/filtered/hostedhashตรง | Unit/actuallocal/hosted | not_run_implementation |

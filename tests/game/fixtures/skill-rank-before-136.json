@@ -1,0 +1,2103 @@
+{
+  "scope": "Immutable pre-D165 authored examples/program guards; not current legal builds",
+  "builds": {
+    "swordsman": [
+      {
+        "id": "knight_striker",
+        "job_id": "knight",
+        "level": 70,
+        "role": "single-target sustained physical damage",
+        "primary_stats": {
+          "str": 50,
+          "agi": 30,
+          "vit": 20,
+          "int": 1,
+          "dex": 20,
+          "luk": 1
+        },
+        "spent_status_points": 258,
+        "unspent_status_points": 418,
+        "active_slots": [
+          "knight_twohand_quicken",
+          "knight_pierce",
+          "swordsman_bash",
+          "knight_brandish"
+        ],
+        "skill_levels": {
+          "swordsman_bash": 10,
+          "swordsman_provoke": 1,
+          "swordsman_magnum_break": 1,
+          "swordsman_endure": 1,
+          "swordsman_sword_mastery": 10,
+          "knight_pierce": 10,
+          "knight_twohand_quicken": 10,
+          "knight_brandish": 10,
+          "knight_battle_cry": 1,
+          "knight_counter_stance": 1,
+          "knight_veteran": 10,
+          "knight_weapon_drill": 10
+        },
+        "automatic_passives": [
+          "swordsman_sword_mastery",
+          "knight_veteran",
+          "knight_weapon_drill"
+        ],
+        "paid_upgrade_budget": {
+          "gold": 27000,
+          "skill_manual": 5400
+        },
+        "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+        "queue_estimate": {
+          "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+          "si_ms": 1084,
+          "cycle_ms": 7459,
+          "starts": [
+            {
+              "skill_id": "knight_twohand_quicken",
+              "start_ms": 1084,
+              "resolve_ms": 1235,
+              "acd_end_ms": 1724
+            },
+            {
+              "skill_id": "knight_pierce",
+              "start_ms": 2808,
+              "resolve_ms": 3072,
+              "acd_end_ms": 3674
+            },
+            {
+              "skill_id": "swordsman_bash",
+              "start_ms": 4758,
+              "resolve_ms": 4758,
+              "acd_end_ms": 5134
+            },
+            {
+              "skill_id": "knight_brandish",
+              "start_ms": 6218,
+              "resolve_ms": 6707,
+              "acd_end_ms": 7459
+            }
+          ],
+          "fixed_sp_per_cycle": 98,
+          "job_bonus": "D-061 job bonus included in primary stats"
+        }
+      },
+      {
+        "id": "knight_counter_tank",
+        "job_id": "knight",
+        "level": 70,
+        "role": "provoke plus reactive counter damage",
+        "primary_stats": {
+          "str": 30,
+          "agi": 1,
+          "vit": 60,
+          "int": 1,
+          "dex": 20,
+          "luk": 1
+        },
+        "spent_status_points": 289,
+        "unspent_status_points": 387,
+        "active_slots": [
+          "swordsman_provoke",
+          "knight_counter_stance",
+          "swordsman_endure",
+          "knight_battle_cry"
+        ],
+        "skill_levels": {
+          "swordsman_bash": 1,
+          "swordsman_provoke": 10,
+          "swordsman_magnum_break": 1,
+          "swordsman_endure": 10,
+          "swordsman_sword_mastery": 10,
+          "knight_pierce": 1,
+          "knight_twohand_quicken": 1,
+          "knight_brandish": 1,
+          "knight_battle_cry": 10,
+          "knight_counter_stance": 10,
+          "knight_veteran": 10,
+          "knight_weapon_drill": 10
+        },
+        "automatic_passives": [
+          "swordsman_sword_mastery",
+          "knight_veteran",
+          "knight_weapon_drill"
+        ],
+        "paid_upgrade_budget": {
+          "gold": 24750,
+          "skill_manual": 4950
+        },
+        "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+        "queue_estimate": {
+          "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+          "si_ms": 1370,
+          "cycle_ms": 7813,
+          "starts": [
+            {
+              "skill_id": "swordsman_provoke",
+              "start_ms": 1370,
+              "resolve_ms": 1370,
+              "acd_end_ms": 1709
+            },
+            {
+              "skill_id": "knight_counter_stance",
+              "start_ms": 3079,
+              "resolve_ms": 3079,
+              "acd_end_ms": 3681
+            },
+            {
+              "skill_id": "swordsman_endure",
+              "start_ms": 5051,
+              "resolve_ms": 5051,
+              "acd_end_ms": 5427
+            },
+            {
+              "skill_id": "knight_battle_cry",
+              "start_ms": 6797,
+              "resolve_ms": 7136,
+              "acd_end_ms": 7813
+            }
+          ],
+          "fixed_sp_per_cycle": 78,
+          "job_bonus": "D-061 job bonus included in primary stats"
+        }
+      },
+      {
+        "id": "crusader_guardian",
+        "job_id": "crusader",
+        "level": 70,
+        "role": "redirect and team defense",
+        "primary_stats": {
+          "str": 1,
+          "agi": 1,
+          "vit": 60,
+          "int": 25,
+          "dex": 25,
+          "luk": 1
+        },
+        "spent_status_points": 288,
+        "unspent_status_points": 388,
+        "active_slots": [
+          "swordsman_provoke",
+          "crusader_devotion",
+          "crusader_auto_guard",
+          "crusader_defender"
+        ],
+        "skill_levels": {
+          "swordsman_bash": 1,
+          "swordsman_provoke": 10,
+          "swordsman_magnum_break": 1,
+          "swordsman_endure": 1,
+          "swordsman_sword_mastery": 10,
+          "crusader_holy_cross": 1,
+          "crusader_auto_guard": 10,
+          "crusader_devotion": 10,
+          "crusader_grand_cross": 1,
+          "crusader_defender": 10,
+          "crusader_faith": 10,
+          "crusader_reflect": 10
+        },
+        "automatic_passives": [
+          "swordsman_sword_mastery",
+          "crusader_faith",
+          "crusader_reflect"
+        ],
+        "paid_upgrade_budget": {
+          "gold": 27000,
+          "skill_manual": 5400
+        },
+        "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+        "queue_estimate": {
+          "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+          "si_ms": 1355,
+          "cycle_ms": 8495,
+          "starts": [
+            {
+              "skill_id": "swordsman_provoke",
+              "start_ms": 1355,
+              "resolve_ms": 1355,
+              "acd_end_ms": 1663
+            },
+            {
+              "skill_id": "crusader_devotion",
+              "start_ms": 3018,
+              "resolve_ms": 3394,
+              "acd_end_ms": 4077
+            },
+            {
+              "skill_id": "crusader_auto_guard",
+              "start_ms": 5432,
+              "resolve_ms": 5501,
+              "acd_end_ms": 5979
+            },
+            {
+              "skill_id": "crusader_defender",
+              "start_ms": 7334,
+              "resolve_ms": 7744,
+              "acd_end_ms": 8495
+            }
+          ],
+          "fixed_sp_per_cycle": 106,
+          "job_bonus": "D-061 job bonus included in primary stats"
+        }
+      },
+      {
+        "id": "crusader_holy_striker",
+        "job_id": "crusader",
+        "level": 70,
+        "role": "holy burst with personal mitigation",
+        "primary_stats": {
+          "str": 60,
+          "agi": 1,
+          "vit": 1,
+          "int": 20,
+          "dex": 30,
+          "luk": 1
+        },
+        "spent_status_points": 289,
+        "unspent_status_points": 387,
+        "active_slots": [
+          "crusader_holy_cross",
+          "crusader_grand_cross",
+          "crusader_auto_guard",
+          "swordsman_bash"
+        ],
+        "skill_levels": {
+          "swordsman_bash": 10,
+          "swordsman_provoke": 1,
+          "swordsman_magnum_break": 1,
+          "swordsman_endure": 1,
+          "swordsman_sword_mastery": 10,
+          "crusader_holy_cross": 10,
+          "crusader_auto_guard": 10,
+          "crusader_devotion": 1,
+          "crusader_grand_cross": 10,
+          "crusader_defender": 1,
+          "crusader_faith": 10,
+          "crusader_reflect": 10
+        },
+        "automatic_passives": [
+          "swordsman_sword_mastery",
+          "crusader_faith",
+          "crusader_reflect"
+        ],
+        "paid_upgrade_budget": {
+          "gold": 27000,
+          "skill_manual": 5400
+        },
+        "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+        "queue_estimate": {
+          "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+          "si_ms": 1340,
+          "cycle_ms": 8605,
+          "starts": [
+            {
+              "skill_id": "crusader_holy_cross",
+              "start_ms": 1340,
+              "resolve_ms": 1668,
+              "acd_end_ms": 2225
+            },
+            {
+              "skill_id": "crusader_grand_cross",
+              "start_ms": 3565,
+              "resolve_ms": 4286,
+              "acd_end_ms": 5072
+            },
+            {
+              "skill_id": "crusader_auto_guard",
+              "start_ms": 6412,
+              "resolve_ms": 6478,
+              "acd_end_ms": 6937
+            },
+            {
+              "skill_id": "swordsman_bash",
+              "start_ms": 8277,
+              "resolve_ms": 8277,
+              "acd_end_ms": 8605
+            }
+          ],
+          "fixed_sp_per_cycle": 112,
+          "job_bonus": "D-061 job bonus included in primary stats"
+        }
+      }
+    ],
+    "acolyte": [
+      {
+        "id": "priest_healer",
+        "job_id": "priest",
+        "level": 70,
+        "role": "burst healing and shields",
+        "primary_stats": {
+          "str": 1,
+          "agi": 1,
+          "vit": 20,
+          "int": 60,
+          "dex": 40,
+          "luk": 1
+        },
+        "spent_status_points": 328,
+        "unspent_status_points": 348,
+        "active_slots": [
+          "acolyte_heal",
+          "priest_sanctuary",
+          "priest_kyrie",
+          "priest_magnificat"
+        ],
+        "skill_levels": {
+          "acolyte_heal": 10,
+          "acolyte_blessing": 1,
+          "acolyte_holy_light": 1,
+          "acolyte_increase_agi": 1,
+          "acolyte_meditation": 10,
+          "priest_sanctuary": 10,
+          "priest_impositio": 1,
+          "priest_magnificat": 10,
+          "priest_resurrection": 1,
+          "priest_kyrie": 10,
+          "priest_healing_art": 10,
+          "priest_spirit_recovery": 10
+        },
+        "automatic_passives": [
+          "acolyte_meditation",
+          "priest_healing_art",
+          "priest_spirit_recovery"
+        ],
+        "paid_upgrade_budget": {
+          "gold": 27000,
+          "skill_manual": 5400
+        },
+        "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+        "queue_estimate": {
+          "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+          "si_ms": 1328,
+          "cycle_ms": 9256,
+          "starts": [
+            {
+              "skill_id": "acolyte_heal",
+              "start_ms": 1328,
+              "resolve_ms": 1657,
+              "acd_end_ms": 2041
+            },
+            {
+              "skill_id": "priest_sanctuary",
+              "start_ms": 3369,
+              "resolve_ms": 3862,
+              "acd_end_ms": 4410
+            },
+            {
+              "skill_id": "priest_kyrie",
+              "start_ms": 5738,
+              "resolve_ms": 6231,
+              "acd_end_ms": 6833
+            },
+            {
+              "skill_id": "priest_magnificat",
+              "start_ms": 8161,
+              "resolve_ms": 8654,
+              "acd_end_ms": 9256
+            }
+          ],
+          "fixed_sp_per_cycle": 140,
+          "job_bonus": "D-061 job bonus included in primary stats"
+        }
+      },
+      {
+        "id": "priest_buffer",
+        "job_id": "priest",
+        "level": 70,
+        "role": "offense and SP support",
+        "primary_stats": {
+          "str": 1,
+          "agi": 1,
+          "vit": 20,
+          "int": 45,
+          "dex": 50,
+          "luk": 1
+        },
+        "spent_status_points": 293,
+        "unspent_status_points": 383,
+        "active_slots": [
+          "acolyte_blessing",
+          "priest_impositio",
+          "priest_magnificat",
+          "acolyte_heal"
+        ],
+        "skill_levels": {
+          "acolyte_heal": 10,
+          "acolyte_blessing": 10,
+          "acolyte_holy_light": 1,
+          "acolyte_increase_agi": 1,
+          "acolyte_meditation": 10,
+          "priest_sanctuary": 1,
+          "priest_impositio": 10,
+          "priest_magnificat": 10,
+          "priest_resurrection": 1,
+          "priest_kyrie": 1,
+          "priest_healing_art": 10,
+          "priest_spirit_recovery": 10
+        },
+        "automatic_passives": [
+          "acolyte_meditation",
+          "priest_healing_art",
+          "priest_spirit_recovery"
+        ],
+        "paid_upgrade_budget": {
+          "gold": 24750,
+          "skill_manual": 4950
+        },
+        "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+        "queue_estimate": {
+          "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+          "si_ms": 1299,
+          "cycle_ms": 8344,
+          "starts": [
+            {
+              "skill_id": "acolyte_blessing",
+              "start_ms": 1299,
+              "resolve_ms": 1531,
+              "acd_end_ms": 1944
+            },
+            {
+              "skill_id": "priest_impositio",
+              "start_ms": 3243,
+              "resolve_ms": 3579,
+              "acd_end_ms": 4043
+            },
+            {
+              "skill_id": "priest_magnificat",
+              "start_ms": 5342,
+              "resolve_ms": 5806,
+              "acd_end_ms": 6374
+            },
+            {
+              "skill_id": "acolyte_heal",
+              "start_ms": 7673,
+              "resolve_ms": 7983,
+              "acd_end_ms": 8344
+            }
+          ],
+          "fixed_sp_per_cycle": 112,
+          "job_bonus": "D-061 job bonus included in primary stats"
+        }
+      },
+      {
+        "id": "monk_finisher",
+        "job_id": "monk",
+        "level": 70,
+        "role": "sphere-funded SP burst",
+        "primary_stats": {
+          "str": 50,
+          "agi": 1,
+          "vit": 1,
+          "int": 35,
+          "dex": 30,
+          "luk": 1
+        },
+        "spent_status_points": 278,
+        "unspent_status_points": 398,
+        "active_slots": [
+          "monk_call_spirits",
+          "monk_asura",
+          "acolyte_heal",
+          "monk_triple_attack"
+        ],
+        "skill_levels": {
+          "acolyte_heal": 10,
+          "acolyte_blessing": 1,
+          "acolyte_holy_light": 1,
+          "acolyte_increase_agi": 1,
+          "acolyte_meditation": 10,
+          "monk_call_spirits": 10,
+          "monk_triple_attack": 10,
+          "monk_finger_offensive": 1,
+          "monk_asura": 10,
+          "monk_steel_body": 1,
+          "monk_iron_fist": 10,
+          "monk_spirit_combo": 10
+        },
+        "automatic_passives": [
+          "acolyte_meditation",
+          "monk_iron_fist",
+          "monk_spirit_combo"
+        ],
+        "paid_upgrade_budget": {
+          "gold": 27000,
+          "skill_manual": 5400
+        },
+        "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+        "queue_estimate": {
+          "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+          "si_ms": 1358,
+          "cycle_ms": 9274,
+          "starts": [
+            {
+              "skill_id": "monk_call_spirits",
+              "start_ms": 1358,
+              "resolve_ms": 1606,
+              "acd_end_ms": 2040
+            },
+            {
+              "skill_id": "monk_asura",
+              "start_ms": 3398,
+              "resolve_ms": 4203,
+              "acd_end_ms": 5194
+            },
+            {
+              "skill_id": "acolyte_heal",
+              "start_ms": 6552,
+              "resolve_ms": 6924,
+              "acd_end_ms": 7358
+            },
+            {
+              "skill_id": "monk_triple_attack",
+              "start_ms": 8716,
+              "resolve_ms": 8809,
+              "acd_end_ms": 9274
+            }
+          ],
+          "fixed_sp_per_cycle": 60,
+          "job_bonus": "D-061 job bonus included in primary stats"
+        }
+      },
+      {
+        "id": "monk_steel_tank",
+        "job_id": "monk",
+        "level": 70,
+        "role": "provoke and guard with emergency healing",
+        "primary_stats": {
+          "str": 1,
+          "agi": 1,
+          "vit": 60,
+          "int": 30,
+          "dex": 25,
+          "luk": 1
+        },
+        "spent_status_points": 303,
+        "unspent_status_points": 373,
+        "active_slots": [
+          "monk_steel_body",
+          "monk_call_spirits",
+          "acolyte_heal",
+          "acolyte_blessing"
+        ],
+        "skill_levels": {
+          "acolyte_heal": 10,
+          "acolyte_blessing": 10,
+          "acolyte_holy_light": 1,
+          "acolyte_increase_agi": 1,
+          "acolyte_meditation": 10,
+          "monk_call_spirits": 10,
+          "monk_triple_attack": 1,
+          "monk_finger_offensive": 1,
+          "monk_asura": 1,
+          "monk_steel_body": 10,
+          "monk_iron_fist": 10,
+          "monk_spirit_combo": 10
+        },
+        "automatic_passives": [
+          "acolyte_meditation",
+          "monk_iron_fist",
+          "monk_spirit_combo"
+        ],
+        "paid_upgrade_budget": {
+          "gold": 24750,
+          "skill_manual": 4950
+        },
+        "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+        "queue_estimate": {
+          "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+          "si_ms": 1373,
+          "cycle_ms": 9063,
+          "starts": [
+            {
+              "skill_id": "monk_steel_body",
+              "start_ms": 1373,
+              "resolve_ms": 1766,
+              "acd_end_ms": 2552
+            },
+            {
+              "skill_id": "monk_call_spirits",
+              "start_ms": 3925,
+              "resolve_ms": 4187,
+              "acd_end_ms": 4646
+            },
+            {
+              "skill_id": "acolyte_heal",
+              "start_ms": 6019,
+              "resolve_ms": 6412,
+              "acd_end_ms": 6871
+            },
+            {
+              "skill_id": "acolyte_blessing",
+              "start_ms": 8244,
+              "resolve_ms": 8539,
+              "acd_end_ms": 9063
+            }
+          ],
+          "fixed_sp_per_cycle": 95,
+          "job_bonus": "D-061 job bonus included in primary stats"
+        }
+      }
+    ],
+    "archer": [
+      {
+        "id": "bard_support",
+        "job_id": "bard",
+        "level": 70,
+        "role": "gradual team recovery and attack-speed songs",
+        "primary_stats": {
+          "str": 1,
+          "agi": 1,
+          "vit": 25,
+          "int": 50,
+          "dex": 40,
+          "luk": 1
+        },
+        "spent_status_points": 283,
+        "unspent_status_points": 393,
+        "active_slots": [
+          "bard_battle_song",
+          "bard_healing_song",
+          "bard_dissonance",
+          "archer_double_strafe"
+        ],
+        "skill_levels": {
+          "archer_double_strafe": 10,
+          "archer_concentration": 1,
+          "archer_arrow_shower": 1,
+          "archer_crippling_shot": 1,
+          "archer_vulture_eye": 10,
+          "bard_performance_strike": 1,
+          "bard_healing_song": 10,
+          "bard_battle_song": 10,
+          "bard_dissonance": 10,
+          "bard_encore": 1,
+          "bard_music_lesson": 10,
+          "bard_breathing": 10
+        },
+        "automatic_passives": [
+          "archer_vulture_eye",
+          "bard_music_lesson",
+          "bard_breathing"
+        ],
+        "paid_upgrade_budget": {
+          "gold": 27000,
+          "skill_manual": 5400
+        },
+        "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+        "queue_estimate": {
+          "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+          "si_ms": 1272,
+          "cycle_ms": 8777,
+          "starts": [
+            {
+              "skill_id": "bard_battle_song",
+              "start_ms": 1272,
+              "resolve_ms": 1733,
+              "acd_end_ms": 2384
+            },
+            {
+              "skill_id": "bard_healing_song",
+              "start_ms": 3656,
+              "resolve_ms": 4090,
+              "acd_end_ms": 4741
+            },
+            {
+              "skill_id": "bard_dissonance",
+              "start_ms": 6013,
+              "resolve_ms": 6501,
+              "acd_end_ms": 7179
+            },
+            {
+              "skill_id": "archer_double_strafe",
+              "start_ms": 8451,
+              "resolve_ms": 8451,
+              "acd_end_ms": 8777
+            }
+          ],
+          "fixed_sp_per_cycle": 130,
+          "job_bonus": "D-061 job bonus included in primary stats"
+        }
+      },
+      {
+        "id": "bard_disruptor",
+        "job_id": "bard",
+        "level": 70,
+        "role": "team debuffs and timed group control",
+        "primary_stats": {
+          "str": 1,
+          "agi": 25,
+          "vit": 1,
+          "int": 35,
+          "dex": 55,
+          "luk": 1
+        },
+        "spent_status_points": 292,
+        "unspent_status_points": 384,
+        "active_slots": [
+          "bard_dissonance",
+          "bard_encore",
+          "bard_performance_strike",
+          "bard_healing_song"
+        ],
+        "skill_levels": {
+          "archer_double_strafe": 1,
+          "archer_concentration": 1,
+          "archer_arrow_shower": 1,
+          "archer_crippling_shot": 1,
+          "archer_vulture_eye": 10,
+          "bard_performance_strike": 10,
+          "bard_healing_song": 10,
+          "bard_battle_song": 1,
+          "bard_dissonance": 10,
+          "bard_encore": 10,
+          "bard_music_lesson": 10,
+          "bard_breathing": 10
+        },
+        "automatic_passives": [
+          "archer_vulture_eye",
+          "bard_music_lesson",
+          "bard_breathing"
+        ],
+        "paid_upgrade_budget": {
+          "gold": 29250,
+          "skill_manual": 5850
+        },
+        "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+        "queue_estimate": {
+          "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+          "si_ms": 1030,
+          "cycle_ms": 7938,
+          "starts": [
+            {
+              "skill_id": "bard_dissonance",
+              "start_ms": 1030,
+              "resolve_ms": 1473,
+              "acd_end_ms": 2089
+            },
+            {
+              "skill_id": "bard_encore",
+              "start_ms": 3119,
+              "resolve_ms": 3661,
+              "acd_end_ms": 4301
+            },
+            {
+              "skill_id": "bard_performance_strike",
+              "start_ms": 5331,
+              "resolve_ms": 5504,
+              "acd_end_ms": 5923
+            },
+            {
+              "skill_id": "bard_healing_song",
+              "start_ms": 6953,
+              "resolve_ms": 7347,
+              "acd_end_ms": 7938
+            }
+          ],
+          "fixed_sp_per_cycle": 144,
+          "job_bonus": "D-061 job bonus included in primary stats"
+        }
+      },
+      {
+        "id": "dancer_support",
+        "job_id": "dancer",
+        "level": 70,
+        "role": "gradual team recovery and attack-speed songs",
+        "primary_stats": {
+          "str": 1,
+          "agi": 1,
+          "vit": 25,
+          "int": 50,
+          "dex": 40,
+          "luk": 1
+        },
+        "spent_status_points": 283,
+        "unspent_status_points": 393,
+        "active_slots": [
+          "dancer_battle_song",
+          "dancer_healing_song",
+          "dancer_dissonance",
+          "archer_double_strafe"
+        ],
+        "skill_levels": {
+          "archer_double_strafe": 10,
+          "archer_concentration": 1,
+          "archer_arrow_shower": 1,
+          "archer_crippling_shot": 1,
+          "archer_vulture_eye": 10,
+          "dancer_performance_strike": 1,
+          "dancer_healing_song": 10,
+          "dancer_battle_song": 10,
+          "dancer_dissonance": 10,
+          "dancer_encore": 1,
+          "dancer_music_lesson": 10,
+          "dancer_breathing": 10
+        },
+        "automatic_passives": [
+          "archer_vulture_eye",
+          "dancer_music_lesson",
+          "dancer_breathing"
+        ],
+        "paid_upgrade_budget": {
+          "gold": 27000,
+          "skill_manual": 5400
+        },
+        "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+        "queue_estimate": {
+          "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+          "si_ms": 1272,
+          "cycle_ms": 8777,
+          "starts": [
+            {
+              "skill_id": "dancer_battle_song",
+              "start_ms": 1272,
+              "resolve_ms": 1733,
+              "acd_end_ms": 2384
+            },
+            {
+              "skill_id": "dancer_healing_song",
+              "start_ms": 3656,
+              "resolve_ms": 4090,
+              "acd_end_ms": 4741
+            },
+            {
+              "skill_id": "dancer_dissonance",
+              "start_ms": 6013,
+              "resolve_ms": 6501,
+              "acd_end_ms": 7179
+            },
+            {
+              "skill_id": "archer_double_strafe",
+              "start_ms": 8451,
+              "resolve_ms": 8451,
+              "acd_end_ms": 8777
+            }
+          ],
+          "fixed_sp_per_cycle": 130,
+          "job_bonus": "D-061 job bonus included in primary stats"
+        }
+      },
+      {
+        "id": "dancer_disruptor",
+        "job_id": "dancer",
+        "level": 70,
+        "role": "team debuffs and timed group control",
+        "primary_stats": {
+          "str": 1,
+          "agi": 25,
+          "vit": 1,
+          "int": 35,
+          "dex": 55,
+          "luk": 1
+        },
+        "spent_status_points": 292,
+        "unspent_status_points": 384,
+        "active_slots": [
+          "dancer_dissonance",
+          "dancer_encore",
+          "dancer_performance_strike",
+          "dancer_healing_song"
+        ],
+        "skill_levels": {
+          "archer_double_strafe": 1,
+          "archer_concentration": 1,
+          "archer_arrow_shower": 1,
+          "archer_crippling_shot": 1,
+          "archer_vulture_eye": 10,
+          "dancer_performance_strike": 10,
+          "dancer_healing_song": 10,
+          "dancer_battle_song": 1,
+          "dancer_dissonance": 10,
+          "dancer_encore": 10,
+          "dancer_music_lesson": 10,
+          "dancer_breathing": 10
+        },
+        "automatic_passives": [
+          "archer_vulture_eye",
+          "dancer_music_lesson",
+          "dancer_breathing"
+        ],
+        "paid_upgrade_budget": {
+          "gold": 29250,
+          "skill_manual": 5850
+        },
+        "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+        "queue_estimate": {
+          "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+          "si_ms": 1030,
+          "cycle_ms": 7938,
+          "starts": [
+            {
+              "skill_id": "dancer_dissonance",
+              "start_ms": 1030,
+              "resolve_ms": 1473,
+              "acd_end_ms": 2089
+            },
+            {
+              "skill_id": "dancer_encore",
+              "start_ms": 3119,
+              "resolve_ms": 3661,
+              "acd_end_ms": 4301
+            },
+            {
+              "skill_id": "dancer_performance_strike",
+              "start_ms": 5331,
+              "resolve_ms": 5504,
+              "acd_end_ms": 5923
+            },
+            {
+              "skill_id": "dancer_healing_song",
+              "start_ms": 6953,
+              "resolve_ms": 7347,
+              "acd_end_ms": 7938
+            }
+          ],
+          "fixed_sp_per_cycle": 144,
+          "job_bonus": "D-061 job bonus included in primary stats"
+        }
+      },
+      {
+        "id": "hunter_sniper",
+        "job_id": "hunter",
+        "level": 70,
+        "role": "single-target hits and marks",
+        "primary_stats": {
+          "str": 30,
+          "agi": 35,
+          "vit": 1,
+          "int": 1,
+          "dex": 50,
+          "luk": 1
+        },
+        "spent_status_points": 278,
+        "unspent_status_points": 398,
+        "active_slots": [
+          "hunter_hunters_mark",
+          "archer_concentration",
+          "hunter_rapid_fire",
+          "archer_double_strafe"
+        ],
+        "skill_levels": {
+          "archer_double_strafe": 10,
+          "archer_concentration": 10,
+          "archer_arrow_shower": 1,
+          "archer_crippling_shot": 1,
+          "archer_vulture_eye": 10,
+          "hunter_blitz_beat": 1,
+          "hunter_hunters_mark": 10,
+          "hunter_ankle_snare": 1,
+          "hunter_claymore": 1,
+          "hunter_rapid_fire": 10,
+          "hunter_falcon": 10,
+          "hunter_steel_crow": 10
+        },
+        "automatic_passives": [
+          "archer_vulture_eye",
+          "hunter_falcon",
+          "hunter_steel_crow"
+        ],
+        "paid_upgrade_budget": {
+          "gold": 24750,
+          "skill_manual": 4950
+        },
+        "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+        "queue_estimate": {
+          "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+          "si_ms": 971,
+          "cycle_ms": 5971,
+          "starts": [
+            {
+              "skill_id": "hunter_hunters_mark",
+              "start_ms": 971,
+              "resolve_ms": 1078,
+              "acd_end_ms": 1506
+            },
+            {
+              "skill_id": "archer_concentration",
+              "start_ms": 2477,
+              "resolve_ms": 2584,
+              "acd_end_ms": 2932
+            },
+            {
+              "skill_id": "hunter_rapid_fire",
+              "start_ms": 3903,
+              "resolve_ms": 4171,
+              "acd_end_ms": 4679
+            },
+            {
+              "skill_id": "archer_double_strafe",
+              "start_ms": 5650,
+              "resolve_ms": 5650,
+              "acd_end_ms": 5971
+            }
+          ],
+          "fixed_sp_per_cycle": 98,
+          "job_bonus": "D-061 job bonus included in primary stats"
+        }
+      },
+      {
+        "id": "hunter_trapper",
+        "job_id": "hunter",
+        "level": 70,
+        "role": "area pressure and CC",
+        "primary_stats": {
+          "str": 40,
+          "agi": 1,
+          "vit": 20,
+          "int": 1,
+          "dex": 50,
+          "luk": 1
+        },
+        "spent_status_points": 269,
+        "unspent_status_points": 407,
+        "active_slots": [
+          "hunter_ankle_snare",
+          "hunter_claymore",
+          "hunter_blitz_beat",
+          "archer_arrow_shower"
+        ],
+        "skill_levels": {
+          "archer_double_strafe": 1,
+          "archer_concentration": 1,
+          "archer_arrow_shower": 10,
+          "archer_crippling_shot": 1,
+          "archer_vulture_eye": 10,
+          "hunter_blitz_beat": 10,
+          "hunter_hunters_mark": 1,
+          "hunter_ankle_snare": 10,
+          "hunter_claymore": 10,
+          "hunter_rapid_fire": 1,
+          "hunter_falcon": 10,
+          "hunter_steel_crow": 10
+        },
+        "automatic_passives": [
+          "archer_vulture_eye",
+          "hunter_falcon",
+          "hunter_steel_crow"
+        ],
+        "paid_upgrade_budget": {
+          "gold": 27000,
+          "skill_manual": 5400
+        },
+        "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+        "queue_estimate": {
+          "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+          "si_ms": 1245,
+          "cycle_ms": 8135,
+          "starts": [
+            {
+              "skill_id": "hunter_ankle_snare",
+              "start_ms": 1245,
+              "resolve_ms": 1593,
+              "acd_end_ms": 2128
+            },
+            {
+              "skill_id": "hunter_claymore",
+              "start_ms": 3373,
+              "resolve_ms": 3801,
+              "acd_end_ms": 4336
+            },
+            {
+              "skill_id": "hunter_blitz_beat",
+              "start_ms": 5581,
+              "resolve_ms": 5768,
+              "acd_end_ms": 6222
+            },
+            {
+              "skill_id": "archer_arrow_shower",
+              "start_ms": 7467,
+              "resolve_ms": 7681,
+              "acd_end_ms": 8135
+            }
+          ],
+          "fixed_sp_per_cycle": 128,
+          "job_bonus": "D-061 job bonus included in primary stats"
+        }
+      }
+    ],
+    "mage": [
+      {
+        "id": "wizard_artillery",
+        "job_id": "wizard",
+        "level": 70,
+        "role": "area burst",
+        "primary_stats": {
+          "str": 1,
+          "agi": 1,
+          "vit": 1,
+          "int": 60,
+          "dex": 45,
+          "luk": 1
+        },
+        "spent_status_points": 324,
+        "unspent_status_points": 352,
+        "active_slots": [
+          "wizard_meteor",
+          "wizard_heavens_drive",
+          "wizard_jupitel",
+          "mage_fire_bolt"
+        ],
+        "skill_levels": {
+          "mage_fire_bolt": 10,
+          "mage_cold_bolt": 1,
+          "mage_lightning_bolt": 1,
+          "mage_soul_strike": 1,
+          "mage_sp_recovery": 10,
+          "wizard_storm_gust": 1,
+          "wizard_jupitel": 10,
+          "wizard_meteor": 10,
+          "wizard_quagmire": 1,
+          "wizard_heavens_drive": 10,
+          "wizard_amplified_magic": 10,
+          "wizard_frost_control": 10
+        },
+        "automatic_passives": [
+          "mage_sp_recovery",
+          "wizard_amplified_magic",
+          "wizard_frost_control"
+        ],
+        "paid_upgrade_budget": {
+          "gold": 27000,
+          "skill_manual": 5400
+        },
+        "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+        "queue_estimate": {
+          "assumptions": "temporary Active buffs excluded; learned permanent Passives included; no gear, sufficient resources assumed. Actual SP/spheres/CC/procs require engine later",
+          "attack_speed_rating": 114.75,
+          "cast_speed_rating": 193.75,
+          "si_ms": 1308,
+          "cycle_ms": 9854,
+          "starts": [
+            {
+              "skill_id": "wizard_meteor",
+              "start_ms": 1308,
+              "resolve_ms": 2341,
+              "acd_end_ms": 3012
+            },
+            {
+              "skill_id": "wizard_heavens_drive",
+              "start_ms": 4320,
+              "resolve_ms": 4991,
+              "acd_end_ms": 5559
+            },
+            {
+              "skill_id": "wizard_jupitel",
+              "start_ms": 6867,
+              "resolve_ms": 7358,
+              "acd_end_ms": 7797
+            },
+            {
+              "skill_id": "mage_fire_bolt",
+              "start_ms": 9105,
+              "resolve_ms": 9518,
+              "acd_end_ms": 9854
+            }
+          ],
+          "fixed_sp_per_cycle": 146,
+          "job_bonus": "D-061 job bonus included in primary stats"
+        }
+      },
+      {
+        "id": "wizard_controller",
+        "job_id": "wizard",
+        "level": 70,
+        "role": "periodic freeze and slowdown",
+        "primary_stats": {
+          "str": 1,
+          "agi": 1,
+          "vit": 20,
+          "int": 45,
+          "dex": 50,
+          "luk": 1
+        },
+        "spent_status_points": 293,
+        "unspent_status_points": 383,
+        "active_slots": [
+          "wizard_quagmire",
+          "wizard_storm_gust",
+          "wizard_jupitel",
+          "mage_cold_bolt"
+        ],
+        "skill_levels": {
+          "mage_fire_bolt": 1,
+          "mage_cold_bolt": 10,
+          "mage_lightning_bolt": 1,
+          "mage_soul_strike": 1,
+          "mage_sp_recovery": 10,
+          "wizard_storm_gust": 10,
+          "wizard_jupitel": 10,
+          "wizard_meteor": 1,
+          "wizard_quagmire": 10,
+          "wizard_heavens_drive": 1,
+          "wizard_amplified_magic": 10,
+          "wizard_frost_control": 10
+        },
+        "automatic_passives": [
+          "mage_sp_recovery",
+          "wizard_amplified_magic",
+          "wizard_frost_control"
+        ],
+        "paid_upgrade_budget": {
+          "gold": 27000,
+          "skill_manual": 5400
+        },
+        "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+        "queue_estimate": {
+          "assumptions": "temporary Active buffs excluded; learned permanent Passives included; no gear, sufficient resources assumed. Actual SP/spheres/CC/procs require engine later",
+          "attack_speed_rating": 116,
+          "cast_speed_rating": 197.5,
+          "si_ms": 1294,
+          "cycle_ms": 9434,
+          "starts": [
+            {
+              "skill_id": "wizard_quagmire",
+              "start_ms": 1294,
+              "resolve_ms": 1801,
+              "acd_end_ms": 2358
+            },
+            {
+              "skill_id": "wizard_storm_gust",
+              "start_ms": 3652,
+              "resolve_ms": 4564,
+              "acd_end_ms": 5172
+            },
+            {
+              "skill_id": "wizard_jupitel",
+              "start_ms": 6466,
+              "resolve_ms": 6948,
+              "acd_end_ms": 7379
+            },
+            {
+              "skill_id": "mage_cold_bolt",
+              "start_ms": 8673,
+              "resolve_ms": 9104,
+              "acd_end_ms": 9434
+            }
+          ],
+          "fixed_sp_per_cycle": 138,
+          "job_bonus": "D-061 job bonus included in primary stats"
+        }
+      },
+      {
+        "id": "sage_auto_bolt",
+        "job_id": "sage",
+        "level": 70,
+        "role": "normal attacks fund passive bolts",
+        "primary_stats": {
+          "str": 1,
+          "agi": 45,
+          "vit": 1,
+          "int": 45,
+          "dex": 25,
+          "luk": 1
+        },
+        "spent_status_points": 282,
+        "unspent_status_points": 394,
+        "active_slots": [
+          "sage_fire_endow",
+          "sage_psychic_bolt",
+          "sage_spell_breaker",
+          "mage_soul_strike"
+        ],
+        "skill_levels": {
+          "mage_fire_bolt": 1,
+          "mage_cold_bolt": 1,
+          "mage_lightning_bolt": 1,
+          "mage_soul_strike": 10,
+          "mage_sp_recovery": 10,
+          "sage_fire_endow": 10,
+          "sage_spell_breaker": 10,
+          "sage_dispel": 1,
+          "sage_psychic_bolt": 10,
+          "sage_magic_barrier": 1,
+          "sage_auto_bolt": 10,
+          "sage_wisdom": 10
+        },
+        "automatic_passives": [
+          "mage_sp_recovery",
+          "sage_auto_bolt",
+          "sage_wisdom"
+        ],
+        "paid_upgrade_budget": {
+          "gold": 27000,
+          "skill_manual": 5400
+        },
+        "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+        "queue_estimate": {
+          "assumptions": "temporary Active buffs excluded; learned permanent Passives included; no gear, sufficient resources assumed. Actual SP/spheres/CC/procs require engine later",
+          "attack_speed_rating": 153.75,
+          "cast_speed_rating": 179.20000000000002,
+          "si_ms": 976,
+          "cycle_ms": 6866,
+          "starts": [
+            {
+              "skill_id": "sage_fire_endow",
+              "start_ms": 976,
+              "resolve_ms": 1367,
+              "acd_end_ms": 1926
+            },
+            {
+              "skill_id": "sage_psychic_bolt",
+              "start_ms": 2902,
+              "resolve_ms": 3321,
+              "acd_end_ms": 3768
+            },
+            {
+              "skill_id": "sage_spell_breaker",
+              "start_ms": 4744,
+              "resolve_ms": 4744,
+              "acd_end_ms": 5191
+            },
+            {
+              "skill_id": "mage_soul_strike",
+              "start_ms": 6167,
+              "resolve_ms": 6447,
+              "acd_end_ms": 6866
+            }
+          ],
+          "fixed_sp_per_cycle": 110,
+          "job_bonus": "D-061 job bonus included in primary stats"
+        }
+      },
+      {
+        "id": "sage_anti_magic",
+        "job_id": "sage",
+        "level": 70,
+        "role": "enemy buff removal and team protection",
+        "primary_stats": {
+          "str": 1,
+          "agi": 1,
+          "vit": 30,
+          "int": 40,
+          "dex": 50,
+          "luk": 1
+        },
+        "spent_status_points": 298,
+        "unspent_status_points": 378,
+        "active_slots": [
+          "sage_magic_barrier",
+          "sage_dispel",
+          "sage_spell_breaker",
+          "sage_fire_endow"
+        ],
+        "skill_levels": {
+          "mage_fire_bolt": 1,
+          "mage_cold_bolt": 1,
+          "mage_lightning_bolt": 1,
+          "mage_soul_strike": 1,
+          "mage_sp_recovery": 10,
+          "sage_fire_endow": 10,
+          "sage_spell_breaker": 10,
+          "sage_dispel": 10,
+          "sage_psychic_bolt": 1,
+          "sage_magic_barrier": 10,
+          "sage_auto_bolt": 10,
+          "sage_wisdom": 10
+        },
+        "automatic_passives": [
+          "mage_sp_recovery",
+          "sage_auto_bolt",
+          "sage_wisdom"
+        ],
+        "paid_upgrade_budget": {
+          "gold": 29250,
+          "skill_manual": 5850
+        },
+        "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+        "queue_estimate": {
+          "assumptions": "temporary Active buffs excluded; learned permanent Passives included; no gear, sufficient resources assumed. Actual SP/spheres/CC/procs require engine later",
+          "attack_speed_rating": 116,
+          "cast_speed_rating": 219.8,
+          "si_ms": 1294,
+          "cycle_ms": 7726,
+          "starts": [
+            {
+              "skill_id": "sage_magic_barrier",
+              "start_ms": 1294,
+              "resolve_ms": 1681,
+              "acd_end_ms": 2205
+            },
+            {
+              "skill_id": "sage_dispel",
+              "start_ms": 3499,
+              "resolve_ms": 3499,
+              "acd_end_ms": 4000
+            },
+            {
+              "skill_id": "sage_spell_breaker",
+              "start_ms": 5294,
+              "resolve_ms": 5294,
+              "acd_end_ms": 5658
+            },
+            {
+              "skill_id": "sage_fire_endow",
+              "start_ms": 6952,
+              "resolve_ms": 7271,
+              "acd_end_ms": 7726
+            }
+          ],
+          "fixed_sp_per_cycle": 138,
+          "job_bonus": "D-061 job bonus included in primary stats"
+        }
+      }
+    ],
+    "thief": [
+      {
+        "id": "assassin_critical",
+        "job_id": "assassin",
+        "level": 70,
+        "role": "personal multi-hit burst",
+        "primary_stats": {
+          "str": 45,
+          "agi": 35,
+          "vit": 1,
+          "int": 1,
+          "dex": 1,
+          "luk": 35
+        },
+        "spent_status_points": 272,
+        "unspent_status_points": 404,
+        "active_slots": [
+          "thief_quick_step",
+          "assassin_enchant_poison",
+          "assassin_sonic_blow",
+          "thief_backstab"
+        ],
+        "skill_levels": {
+          "thief_envenom": 1,
+          "thief_quick_step": 10,
+          "thief_sand_attack": 1,
+          "thief_backstab": 10,
+          "thief_double_attack": 10,
+          "assassin_sonic_blow": 10,
+          "assassin_enchant_poison": 10,
+          "assassin_venom_dust": 1,
+          "assassin_detonate": 1,
+          "assassin_grimtooth": 1,
+          "assassin_katar_mastery": 10,
+          "assassin_poison_edge": 10
+        },
+        "automatic_passives": [
+          "thief_double_attack",
+          "assassin_katar_mastery",
+          "assassin_poison_edge"
+        ],
+        "paid_upgrade_budget": {
+          "gold": 24750,
+          "skill_manual": 4950
+        },
+        "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+        "queue_estimate": {
+          "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+          "si_ms": 1042,
+          "cycle_ms": 8464,
+          "starts": [
+            {
+              "skill_id": "thief_quick_step",
+              "start_ms": 1042,
+              "resolve_ms": 1042,
+              "acd_end_ms": 1609
+            },
+            {
+              "skill_id": "assassin_enchant_poison",
+              "start_ms": 2651,
+              "resolve_ms": 3029,
+              "acd_end_ms": 3831
+            },
+            {
+              "skill_id": "assassin_sonic_blow",
+              "start_ms": 4873,
+              "resolve_ms": 5345,
+              "acd_end_ms": 6289
+            },
+            {
+              "skill_id": "thief_backstab",
+              "start_ms": 7331,
+              "resolve_ms": 7662,
+              "acd_end_ms": 8464
+            }
+          ],
+          "fixed_sp_per_cycle": 104,
+          "job_bonus": "D-061 job bonus included in primary stats"
+        }
+      },
+      {
+        "id": "assassin_venom",
+        "job_id": "assassin",
+        "level": 70,
+        "role": "own poison application and detonation",
+        "primary_stats": {
+          "str": 55,
+          "agi": 25,
+          "vit": 1,
+          "int": 1,
+          "dex": 35,
+          "luk": 1
+        },
+        "spent_status_points": 292,
+        "unspent_status_points": 384,
+        "active_slots": [
+          "thief_envenom",
+          "assassin_venom_dust",
+          "assassin_detonate",
+          "assassin_sonic_blow"
+        ],
+        "skill_levels": {
+          "thief_envenom": 10,
+          "thief_quick_step": 1,
+          "thief_sand_attack": 1,
+          "thief_backstab": 1,
+          "thief_double_attack": 10,
+          "assassin_sonic_blow": 10,
+          "assassin_enchant_poison": 1,
+          "assassin_venom_dust": 10,
+          "assassin_detonate": 10,
+          "assassin_grimtooth": 1,
+          "assassin_katar_mastery": 10,
+          "assassin_poison_edge": 10
+        },
+        "automatic_passives": [
+          "thief_double_attack",
+          "assassin_katar_mastery",
+          "assassin_poison_edge"
+        ],
+        "paid_upgrade_budget": {
+          "gold": 27000,
+          "skill_manual": 5400
+        },
+        "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+        "queue_estimate": {
+          "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+          "si_ms": 1053,
+          "cycle_ms": 8038,
+          "starts": [
+            {
+              "skill_id": "thief_envenom",
+              "start_ms": 1053,
+              "resolve_ms": 1149,
+              "acd_end_ms": 1564
+            },
+            {
+              "skill_id": "assassin_venom_dust",
+              "start_ms": 2617,
+              "resolve_ms": 3032,
+              "acd_end_ms": 3733
+            },
+            {
+              "skill_id": "assassin_detonate",
+              "start_ms": 4786,
+              "resolve_ms": 5264,
+              "acd_end_ms": 6029
+            },
+            {
+              "skill_id": "assassin_sonic_blow",
+              "start_ms": 7082,
+              "resolve_ms": 7401,
+              "acd_end_ms": 8038
+            }
+          ],
+          "fixed_sp_per_cycle": 124,
+          "job_bonus": "D-061 job bonus included in primary stats"
+        }
+      },
+      {
+        "id": "rogue_stripper",
+        "job_id": "rogue",
+        "level": 70,
+        "role": "weaken enemies for entire team",
+        "primary_stats": {
+          "str": 30,
+          "agi": 1,
+          "vit": 40,
+          "int": 1,
+          "dex": 50,
+          "luk": 1
+        },
+        "spent_status_points": 298,
+        "unspent_status_points": 378,
+        "active_slots": [
+          "rogue_strip_armor",
+          "rogue_strip_weapon",
+          "rogue_expose",
+          "rogue_intimidate"
+        ],
+        "skill_levels": {
+          "thief_envenom": 1,
+          "thief_quick_step": 1,
+          "thief_sand_attack": 1,
+          "thief_backstab": 1,
+          "thief_double_attack": 10,
+          "rogue_strip_armor": 10,
+          "rogue_strip_weapon": 10,
+          "rogue_expose": 10,
+          "rogue_intimidate": 10,
+          "rogue_raid": 1,
+          "rogue_dodge": 10,
+          "rogue_dirty_tricks": 10,
+          "rogue_copy_swordsman_bash": 1,
+          "rogue_copy_acolyte_heal": 1,
+          "rogue_copy_archer_double_strafe": 1,
+          "rogue_copy_mage_fire_bolt": 1,
+          "rogue_copy_merchant_cart_revolution": 1
+        },
+        "automatic_passives": [
+          "thief_double_attack",
+          "rogue_dodge",
+          "rogue_dirty_tricks"
+        ],
+        "paid_upgrade_budget": {
+          "gold": 29250,
+          "skill_manual": 5850
+        },
+        "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+        "queue_estimate": {
+          "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+          "si_ms": 1227,
+          "cycle_ms": 7697,
+          "starts": [
+            {
+              "skill_id": "rogue_strip_armor",
+              "start_ms": 1227,
+              "resolve_ms": 1445,
+              "acd_end_ms": 1881
+            },
+            {
+              "skill_id": "rogue_strip_weapon",
+              "start_ms": 3108,
+              "resolve_ms": 3351,
+              "acd_end_ms": 3812
+            },
+            {
+              "skill_id": "rogue_expose",
+              "start_ms": 5039,
+              "resolve_ms": 5282,
+              "acd_end_ms": 5767
+            },
+            {
+              "skill_id": "rogue_intimidate",
+              "start_ms": 6994,
+              "resolve_ms": 7188,
+              "acd_end_ms": 7697
+            }
+          ],
+          "fixed_sp_per_cycle": 126,
+          "job_bonus": "D-061 job bonus included in primary stats"
+        }
+      },
+      {
+        "id": "rogue_support_copy",
+        "job_id": "rogue",
+        "level": 70,
+        "role": "team debuffs and one copied heal",
+        "primary_stats": {
+          "str": 1,
+          "agi": 1,
+          "vit": 25,
+          "int": 45,
+          "dex": 45,
+          "luk": 1
+        },
+        "spent_status_points": 282,
+        "unspent_status_points": 394,
+        "active_slots": [
+          "rogue_strip_armor",
+          "rogue_expose",
+          "rogue_copy_acolyte_heal",
+          "rogue_intimidate"
+        ],
+        "skill_levels": {
+          "thief_envenom": 1,
+          "thief_quick_step": 1,
+          "thief_sand_attack": 1,
+          "thief_backstab": 1,
+          "thief_double_attack": 10,
+          "rogue_strip_armor": 10,
+          "rogue_strip_weapon": 1,
+          "rogue_expose": 10,
+          "rogue_intimidate": 10,
+          "rogue_raid": 1,
+          "rogue_dodge": 10,
+          "rogue_dirty_tricks": 10,
+          "rogue_copy_swordsman_bash": 1,
+          "rogue_copy_acolyte_heal": 10,
+          "rogue_copy_archer_double_strafe": 1,
+          "rogue_copy_mage_fire_bolt": 1,
+          "rogue_copy_merchant_cart_revolution": 1
+        },
+        "automatic_passives": [
+          "thief_double_attack",
+          "rogue_dodge",
+          "rogue_dirty_tricks"
+        ],
+        "paid_upgrade_budget": {
+          "gold": 29250,
+          "skill_manual": 5850
+        },
+        "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+        "queue_estimate": {
+          "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+          "si_ms": 1240,
+          "cycle_ms": 7625,
+          "starts": [
+            {
+              "skill_id": "rogue_strip_armor",
+              "start_ms": 1240,
+              "resolve_ms": 1454,
+              "acd_end_ms": 1882
+            },
+            {
+              "skill_id": "rogue_expose",
+              "start_ms": 3122,
+              "resolve_ms": 3360,
+              "acd_end_ms": 3836
+            },
+            {
+              "skill_id": "rogue_copy_acolyte_heal",
+              "start_ms": 5076,
+              "resolve_ms": 5362,
+              "acd_end_ms": 5695
+            },
+            {
+              "skill_id": "rogue_intimidate",
+              "start_ms": 6935,
+              "resolve_ms": 7126,
+              "acd_end_ms": 7625
+            }
+          ],
+          "fixed_sp_per_cycle": 119,
+          "job_bonus": "D-061 job bonus included in primary stats"
+        }
+      }
+    ],
+    "merchant": [
+      {
+        "id": "blacksmith_hammer",
+        "job_id": "blacksmith",
+        "level": 70,
+        "role": "heavy area damage and armor break",
+        "primary_stats": {
+          "str": 60,
+          "agi": 1,
+          "vit": 25,
+          "int": 1,
+          "dex": 30,
+          "luk": 1
+        },
+        "spent_status_points": 303,
+        "unspent_status_points": 373,
+        "active_slots": [
+          "blacksmith_meltdown",
+          "blacksmith_hammer_fall",
+          "blacksmith_cart_crash",
+          "merchant_mammonite"
+        ],
+        "skill_levels": {
+          "merchant_mammonite": 10,
+          "merchant_cart_revolution": 1,
+          "merchant_loud_voice": 1,
+          "merchant_first_aid": 1,
+          "merchant_trading_stamina": 10,
+          "blacksmith_hammer_fall": 10,
+          "blacksmith_adrenaline": 1,
+          "blacksmith_weapon_perfection": 1,
+          "blacksmith_meltdown": 10,
+          "blacksmith_cart_crash": 10,
+          "blacksmith_weapon_research": 10,
+          "blacksmith_tempering": 10
+        },
+        "automatic_passives": [
+          "merchant_trading_stamina",
+          "blacksmith_weapon_research",
+          "blacksmith_tempering"
+        ],
+        "paid_upgrade_budget": {
+          "gold": 27000,
+          "skill_manual": 5400
+        },
+        "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+        "queue_estimate": {
+          "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+          "si_ms": 1370,
+          "cycle_ms": 9484,
+          "starts": [
+            {
+              "skill_id": "blacksmith_meltdown",
+              "start_ms": 1370,
+              "resolve_ms": 1701,
+              "acd_end_ms": 2330
+            },
+            {
+              "skill_id": "blacksmith_hammer_fall",
+              "start_ms": 3700,
+              "resolve_ms": 4097,
+              "acd_end_ms": 4759
+            },
+            {
+              "skill_id": "blacksmith_cart_crash",
+              "start_ms": 6129,
+              "resolve_ms": 6691,
+              "acd_end_ms": 7419
+            },
+            {
+              "skill_id": "merchant_mammonite",
+              "start_ms": 8789,
+              "resolve_ms": 8922,
+              "acd_end_ms": 9484
+            }
+          ],
+          "fixed_sp_per_cycle": 134,
+          "job_bonus": "D-061 job bonus included in primary stats"
+        }
+      },
+      {
+        "id": "blacksmith_weaponsmith",
+        "job_id": "blacksmith",
+        "level": 70,
+        "role": "physical team support",
+        "primary_stats": {
+          "str": 35,
+          "agi": 1,
+          "vit": 35,
+          "int": 1,
+          "dex": 45,
+          "luk": 1
+        },
+        "spent_status_points": 272,
+        "unspent_status_points": 404,
+        "active_slots": [
+          "blacksmith_adrenaline",
+          "blacksmith_weapon_perfection",
+          "merchant_loud_voice",
+          "blacksmith_meltdown"
+        ],
+        "skill_levels": {
+          "merchant_mammonite": 1,
+          "merchant_cart_revolution": 1,
+          "merchant_loud_voice": 10,
+          "merchant_first_aid": 1,
+          "merchant_trading_stamina": 10,
+          "blacksmith_hammer_fall": 1,
+          "blacksmith_adrenaline": 10,
+          "blacksmith_weapon_perfection": 10,
+          "blacksmith_meltdown": 10,
+          "blacksmith_cart_crash": 1,
+          "blacksmith_weapon_research": 10,
+          "blacksmith_tempering": 10
+        },
+        "automatic_passives": [
+          "merchant_trading_stamina",
+          "blacksmith_weapon_research",
+          "blacksmith_tempering"
+        ],
+        "paid_upgrade_budget": {
+          "gold": 27000,
+          "skill_manual": 5400
+        },
+        "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+        "queue_estimate": {
+          "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+          "si_ms": 1325,
+          "cycle_ms": 8815,
+          "starts": [
+            {
+              "skill_id": "blacksmith_adrenaline",
+              "start_ms": 1325,
+              "resolve_ms": 1671,
+              "acd_end_ms": 2305
+            },
+            {
+              "skill_id": "blacksmith_weapon_perfection",
+              "start_ms": 3630,
+              "resolve_ms": 4005,
+              "acd_end_ms": 4581
+            },
+            {
+              "skill_id": "merchant_loud_voice",
+              "start_ms": 5906,
+              "resolve_ms": 6165,
+              "acd_end_ms": 6655
+            },
+            {
+              "skill_id": "blacksmith_meltdown",
+              "start_ms": 7980,
+              "resolve_ms": 8268,
+              "acd_end_ms": 8815
+            }
+          ],
+          "fixed_sp_per_cycle": 130,
+          "job_bonus": "D-061 job bonus included in primary stats"
+        }
+      },
+      {
+        "id": "alchemist_chemist",
+        "job_id": "alchemist",
+        "level": 70,
+        "role": "chemical area damage",
+        "primary_stats": {
+          "str": 1,
+          "agi": 1,
+          "vit": 25,
+          "int": 60,
+          "dex": 35,
+          "luk": 1
+        },
+        "spent_status_points": 322,
+        "unspent_status_points": 354,
+        "active_slots": [
+          "alchemist_demonstration",
+          "alchemist_acid_terror",
+          "alchemist_hell_plant",
+          "alchemist_potion_pitcher"
+        ],
+        "skill_levels": {
+          "merchant_mammonite": 1,
+          "merchant_cart_revolution": 1,
+          "merchant_loud_voice": 1,
+          "merchant_first_aid": 1,
+          "merchant_trading_stamina": 10,
+          "alchemist_acid_terror": 10,
+          "alchemist_potion_pitcher": 10,
+          "alchemist_hell_plant": 10,
+          "alchemist_bio_cannibalize": 1,
+          "alchemist_demonstration": 10,
+          "alchemist_learning_potion": 10,
+          "alchemist_chemical_expertise": 10
+        },
+        "automatic_passives": [
+          "merchant_trading_stamina",
+          "alchemist_learning_potion",
+          "alchemist_chemical_expertise"
+        ],
+        "paid_upgrade_budget": {
+          "gold": 29250,
+          "skill_manual": 5850
+        },
+        "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+        "queue_estimate": {
+          "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+          "si_ms": 1355,
+          "cycle_ms": 9833,
+          "starts": [
+            {
+              "skill_id": "alchemist_demonstration",
+              "start_ms": 1355,
+              "resolve_ms": 1874,
+              "acd_end_ms": 2566
+            },
+            {
+              "skill_id": "alchemist_acid_terror",
+              "start_ms": 3921,
+              "resolve_ms": 4354,
+              "acd_end_ms": 4873
+            },
+            {
+              "skill_id": "alchemist_hell_plant",
+              "start_ms": 6228,
+              "resolve_ms": 6863,
+              "acd_end_ms": 7613
+            },
+            {
+              "skill_id": "alchemist_potion_pitcher",
+              "start_ms": 8968,
+              "resolve_ms": 9314,
+              "acd_end_ms": 9833
+            }
+          ],
+          "fixed_sp_per_cycle": 146,
+          "job_bonus": "D-061 job bonus included in primary stats"
+        }
+      },
+      {
+        "id": "alchemist_gardener",
+        "job_id": "alchemist",
+        "level": 70,
+        "role": "bounded plants with supporting heals",
+        "primary_stats": {
+          "str": 1,
+          "agi": 1,
+          "vit": 30,
+          "int": 50,
+          "dex": 40,
+          "luk": 1
+        },
+        "spent_status_points": 298,
+        "unspent_status_points": 378,
+        "active_slots": [
+          "alchemist_hell_plant",
+          "alchemist_bio_cannibalize",
+          "alchemist_potion_pitcher",
+          "merchant_loud_voice"
+        ],
+        "skill_levels": {
+          "merchant_mammonite": 1,
+          "merchant_cart_revolution": 1,
+          "merchant_loud_voice": 10,
+          "merchant_first_aid": 1,
+          "merchant_trading_stamina": 10,
+          "alchemist_acid_terror": 1,
+          "alchemist_potion_pitcher": 10,
+          "alchemist_hell_plant": 10,
+          "alchemist_bio_cannibalize": 10,
+          "alchemist_demonstration": 1,
+          "alchemist_learning_potion": 10,
+          "alchemist_chemical_expertise": 10
+        },
+        "automatic_passives": [
+          "merchant_trading_stamina",
+          "alchemist_learning_potion",
+          "alchemist_chemical_expertise"
+        ],
+        "paid_upgrade_budget": {
+          "gold": 27000,
+          "skill_manual": 5400
+        },
+        "equipment_budget": "no gear assumed in queue trace; standardized gear snapshots owned by TASK-009/011",
+        "queue_estimate": {
+          "assumptions": "unbuffed timing only; sufficient resources assumed, actual SP/spheres/CC/procs must use engine later",
+          "si_ms": 1340,
+          "cycle_ms": 9624,
+          "starts": [
+            {
+              "skill_id": "alchemist_hell_plant",
+              "start_ms": 1340,
+              "resolve_ms": 1957,
+              "acd_end_ms": 2686
+            },
+            {
+              "skill_id": "alchemist_bio_cannibalize",
+              "start_ms": 4026,
+              "resolve_ms": 4643,
+              "acd_end_ms": 5372
+            },
+            {
+              "skill_id": "alchemist_potion_pitcher",
+              "start_ms": 6712,
+              "resolve_ms": 7049,
+              "acd_end_ms": 7554
+            },
+            {
+              "skill_id": "merchant_loud_voice",
+              "start_ms": 8894,
+              "resolve_ms": 9147,
+              "acd_end_ms": 9624
+            }
+          ],
+          "fixed_sp_per_cycle": 136,
+          "job_bonus": "D-061 job bonus included in primary stats"
+        }
+      }
+    ]
+  },
+  "skill_cap_contract": {
+    "rule": "min(skill_definition_max, 1 + floor((character_level - 1)/5))",
+    "automatic_skill_upgrade": false,
+    "definition_owner": "TASK-003–008",
+    "future_awaken_cap_owner": "future_content"
+  },
+  "skill_program_sha256": {
+    "swordsman": "cacbf3c8d61f3e21209fc5f459a03ae20738d330148ba196ad246f5947c757a9",
+    "acolyte": "83ed837073c641e7b535043994cab7df5b55f33ca2ff7b91f198278d6d1e27b1",
+    "archer": "ea047bf6eb851414f7227dc816a44caa0fc207e0d48bbb85c9bec35cc774229c",
+    "mage": "e4ffd9076659209ad8df159b557dd71dd96a4056e34ef95d638963938e3a3e93",
+    "thief": "4518a82f4efd11d95bf6bb87329e49e88be7b8047279fb8b35d5955749f5e367",
+    "merchant": "3e00247cb3ba4fbcf59e02ae26f692d5e2984b6438b14d4901e79d1f6155eb87"
+  }
+}

@@ -1,5 +1,10 @@
 # Project context
 
+## Skill rank caps and excess-rank migration (24 October 2026, D165)
+
+TASK136: Class2 unlock20/30/40 uses rank r at unlock+ceil(40*(r−1)/9), full10 at60/70/80. Class1 keeps its global5-level schedule; explicit Hi70..88/80..89 unchanged. Shared skillRankUnlockLevels/characterSkillCap drives quotes/validation/UI/migration. Only excess current-phase ranks are reduced on backed-up version migration; keep loadout, lower ranks, Awaken flag and original base/Awaken-unlock investments. Refund verified actual excess payment once using immutable legacy-skill-prices.ts (part of implementation hash), subtract it from active ledger in the same commit; unknown history/overflow fail atomically. Preserve ledger ordering even when JSONB sorts skill keys. New UI shows max-at/next-rank levels. Updated authored examples are legal under D165; historical balance evidence stays frozen. See design53/latestHANDOFF for release status.
+
+
 ## Released Hi-class/Awaken and Hunter (24 October 2026)
 
 TASK123–125 and128 are done. Sourcefe14ac635 is live on Vercel (SUCCESS; public health/artifacts/native/mobile verified): source enables13 High jobs/26 new skills, level70 promotion preserving the build, cap90/gate80, individual max-skill Awaken resetting rank1, new shards/conversion and chapters10–12. Class3/Artifact/Pet/Rune remain closed. Real disposable Auth/API/Postgres/mobile320390 migration/old receipts/response-loss/daily shards/reload/slot isolation passed; 624 TS checks and root/filtered builds passed. Hosted4groups passed with32 jobs/152 skills/new content hash/pack, native Champion/Sniper90/Hunter750 and no owner login or writes. Older cap70/preparation statements below are historical.

@@ -7,6 +7,7 @@ import { legacyOptionSeed, rollItemOptions } from '../build/item-options.ts';
 import { nextRandom } from '../../content/random.ts';
 import { dailyUnlocked } from '../modes/daily.ts';
 import { cardRarity, migrateCardRarity } from '../build/card-rarity.ts';
+import { migrateSkillCaps } from '../progression/skill-cap-migration.ts';
 
 export interface SaveMigration { state: AccountState; changes: string[] }
 const canonicalPool = (pool: readonly string[]) => [...pool].sort().join(',');
@@ -93,5 +94,6 @@ export function migrateAccountState(input: unknown, content: ValidatedContent): 
       changes.push(`${actor.character_id}: unspent status ${actor.unspent_status_points} -> ${total - invested}`); actor.unspent_status_points = total - invested;
     }
   }
+  migrateSkillCaps(state,content,changes);
   return { state, changes };
 }

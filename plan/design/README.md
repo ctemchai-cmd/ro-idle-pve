@@ -78,3 +78,5 @@
 - [51 · Assassin Cross และกรอบ DPS](51-assassin-awaken-balance.md): D162/D163/TASK132, causal ATK/uptime probes และเป้าHiDD9–11k
 
 - [52-auto-battle-and-rewards.md](52-auto-battle-and-rewards.md) — D164 คำอธิบายพลังโจมตี/รางวัลชนะ/Auto Battle
+
+D165/TASK136: ดู [เพดานสกิลและคืนทุน](53-skill-rank-caps.md); canonical capจากshared unlock+40, M0examplebuildsปรับrank/budget/traceให้legalตามD165;historicalevidenceเดิมคงเดิม.

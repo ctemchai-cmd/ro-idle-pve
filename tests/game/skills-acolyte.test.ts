@@ -94,10 +94,12 @@ test('T030 AC-02: Monk spheres never exceed 5, Asura spends all current SP + 5 s
 
 test('T030 AC-02: Steel Body Lv10 trades 30% attack speed for 70% guard (D-104) and pulls enemies onto the Monk', () => {
   const tank = buildActor(build('monk_steel_tank'), 'monk', 'back_1');
+  // Explicit max-rank engine probe; the saved Lv50 example now correctly uses D165's lower legal cap.
+  tank.resolved_skills.monk_steel_body = resolved('monk_steel_body', 10) as never;
   const { events } = run([tank, probe('p_front', 'player', 'front_1', [], true), probe('e_boss', 'enemy', 'front_1', [], true)], 30000, 1, checkpoint => { checkpoint.actors.find(row => row.actor_id === 'e_boss')!.stats.physical_attack = 120; });
   const resolve = events.find(event => event.type === 'cast_resolve' && event.actor_id === 'monk' && event.skill_id === 'monk_steel_body')!;
-  const during = run([buildActor(build('monk_steel_tank'), 'monk', 'back_1'), probe('p_front', 'player', 'front_1', [], true), probe('e_boss', 'enemy', 'front_1', [], true)], resolve.at_ms + 1).state.actors.find(row => row.actor_id === 'monk')!;
-  const before = run([buildActor(build('monk_steel_tank'), 'monk', 'back_1'), probe('p_front', 'player', 'front_1', [], true), probe('e_boss', 'enemy', 'front_1', [], true)], 1).state.actors.find(row => row.actor_id === 'monk')!;
+  const during = run([structuredClone(tank), probe('p_front', 'player', 'front_1', [], true), probe('e_boss', 'enemy', 'front_1', [], true)], resolve.at_ms + 1).state.actors.find(row => row.actor_id === 'monk')!;
+  const before = run([structuredClone(tank), probe('p_front', 'player', 'front_1', [], true), probe('e_boss', 'enemy', 'front_1', [], true)], 1).state.actors.find(row => row.actor_id === 'monk')!;
   assert.ok(Math.abs(during.stats.guard_percent - before.stats.guard_percent - .4 * 1.75) < 1e-9, `guard ${during.stats.guard_percent}`);
   assert.ok(Math.abs(during.stats.attack_speed - before.stats.attack_speed * .7) < 1e-6, `aspd ${before.stats.attack_speed} -> ${during.stats.attack_speed}`);
   const normals = (from: number, to: number) => events.filter(event => event.type === 'normal_attack' && event.actor_id === 'e_boss' && event.at_ms >= from && event.at_ms < to);

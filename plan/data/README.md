@@ -20,3 +20,5 @@ D-120/TASK-091: `combat-rules.json.element_chart` ใช้ROO Global10×10จ�
 TASK-093/094: cards.jsonมี73definitions(66nativeportraits+7Puppetvariants), OriginAngeling/DevilingMVPoverride; economy.jsonเพิ่ม4element_scrolls/50goldและshopgrants, account-state optionalbattle_supplies และcommand consumable.prepare. ดูdesign31และ33. ค่าราคา/พลังPuppetเป็นauthoredbaseline; frozenv3mapnormalizeโดยไม่รีโรลpool/chance/RNG.
 
 D-127–129: slot-progress.enchant.slot_lines ราย6ช่อง, Refineflat+percent, AFK40Crystal/h และoptional gear_chance_per_million ในfrozen snapshotใหม่ (legacyไม่เติมย้อนหลัง). ดูdesign34. reward.claimรองรับclaim_ids; farm.claim collect_rewardsทำreserve+payหนึ่งtransaction.
+
+D165/TASK136: ดู [design53](../design/53-skill-rank-caps.md); canonical capจากshared unlock+40, M0examplebuildsปรับrank/budget/traceให้legalตามD165;historicalevidenceเดิมคงเดิม.

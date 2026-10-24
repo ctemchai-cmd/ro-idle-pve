@@ -59,7 +59,7 @@ test('D138 all-rank utility changes and exact descriptions use resolved definiti
   const intimidate=active('rogue_intimidate',lv).effects[0]!;if(intimidate.type==='apply_status')assert.equal(intimidate.duration_ms,lv===1?3000:6000);
   assert.equal(active('alchemist_hell_plant',lv).effects[0]!.type,'summon');
  }
- const state=initializeAccount(content,{root_job_id:'mage',gender:'male'},'2026-10-23T00:00:00Z','2026-10-23',1),main=state.roster[0]!;main.job_id='sage';main.level=70;main.skill_levels={...main.skill_levels,sage_spell_breaker:10,sage_psychic_bolt:10,sage_magic_barrier:10,sage_dispel:10};
+ const state=initializeAccount(content,{root_job_id:'mage',gender:'male'},'2026-10-23T00:00:00Z','2026-10-23',1),main=state.roster[0]!;main.job_id='professor';main.level=80;main.skill_levels={...main.skill_levels,sage_spell_breaker:10,sage_psychic_bolt:10,sage_magic_barrier:10,sage_dispel:10};
  main.active_slots=['sage_spell_breaker','sage_psychic_bolt','sage_magic_barrier','sage_dispel'];
  const options=characterSkillOptions(main,state).skills;assert.ok(options.find(s=>s.id==='sage_spell_breaker')!.effects.some(t=>t.includes('เมื่อขัดร่ายสำเร็จ')));assert.ok(options.find(s=>s.id==='sage_psychic_bolt')!.effects.some(t=>t.includes('คริเสมอ')));assert.equal(options.find(s=>s.id==='sage_magic_barrier')!.name,'Voice Breaker');
 });

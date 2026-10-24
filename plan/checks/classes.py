@@ -13,7 +13,9 @@ TASKS={'swordsman':'003','acolyte':'004','archer':'005','mage':'006','thief':'00
 TREE=load(D/'progression.json')['class_tree']
 
 def stat_cost(v):return sum(1+(x-1)//10 for x in range(1,v))
-def skill_cap(skill,l):return min(skill['max_level'],1+(l-1)//5)
+def skill_cap(skill,l):
+ if 20<=skill['unlock_level']<=40:return sum(skill['unlock_level']+ceil(40*i/(skill['max_level']-1))<=l for i in range(skill['max_level']))
+ return min(skill['max_level'],1+(l-1)//5)
 def cumulative(data,sid,lv):return {key:sum(r[key] for r in data['upgrades'][sid]['upgrade_cost_rows'] if r['to_level']<=lv) for key in ['gold','skill_manual']}
 def asset_reference(path):
  p=R/path;assert p.exists(),path;m=load(p)
@@ -39,7 +41,7 @@ def review(root):
     assert a!=b,(s['id'],'paid upgrade has identical behavior')
    cost=data['upgrades'][s['id']]['upgrade_cost_rows'];assert len(cost)==s['max_level']-1
    for k,row in enumerate(cost,1):assert row['from_level']==k and row['to_level']==k+1 and all(row[r]>0 and isinstance(row[r],int) for r in ['gold','skill_manual'])
-   for l in range(1,71):assert 1<=skill_cap(s,l)<=s['max_level']
+   for l in range(1,71):assert 0<=skill_cap(s,l)<=s['max_level']
    return {'levels_checked':s['max_level'],'character_cap_rows':70,'upgrade_to_max':cumulative(data,s['id'],s['max_level'])}
   check(s['id'],['AC-01','AC-04'],validate)
  for branch in TREE[root]:
@@ -110,7 +112,7 @@ def review(root):
  if root=='mage':
   def autobolt():
    t=skills['sage_auto_bolt']['triggers'][0];assert t['event']=='normal_attack_hit' and t['accepted_origins']==['normal'];assert all(e['type']=='damage' for e in t['effects']);assert t['reentry']=='deny_same_source_trigger_in_ancestry'
-   example=next(b for b in data['builds'] if b['id']=='sage_auto_bolt');assert isclose(example['queue_estimate']['cast_speed_rating'],179.2);assert example['queue_estimate']['cycle_ms']==6866  # D-061 job bonus (was 164.64/7344)
+   example=next(b for b in data['builds'] if b['id']=='sage_auto_bolt');assert isclose(example['queue_estimate']['cast_speed_rating'],179.20000000000002);assert example['queue_estimate']['cycle_ms']==6866  # D-061 job bonus (was 164.64/7344)
    return {'proc':'normal hits only; proc origin does not retrigger it','cast_rule':'baseline15 pauses NA clock during CT; passive grants no exception','spell_breaker':'always in ordered slots, not boss-cast AI'}
   check('autobolt_no_free_cast_or_recursion',['AC-03'],autobolt)
  if root=='merchant':

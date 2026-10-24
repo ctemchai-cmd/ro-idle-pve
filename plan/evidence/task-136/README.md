@@ -1,0 +1,13 @@
+# TASK136 — D165 เพดานสกิลและคืนส่วนเกิน
+
+Class2 96สกิล ปลด20/30/40 เต็ม60/70/80; rank r ที่ unlock+ceil(40×(r−1)/9). Class1/full46 และHi explicit70..88/80..89เดิม. ค่าใช้สกิล/ผล/ราคาคงเดิมทั้ง152×base/Aw;frozen scope guardตรวจ exact structural SHA หกroot.
+
+Legacy save migrationลดเฉพาะcurrentphaseที่เกินcap คงloadout/skillsอื่น/Awstate/ทุนbase. คืนold actualpaidจากsnapshotที่ตรวจทั้งversionและยอดตรงก่อนแยก ไม่หารเฉลี่ยหรือใช้ราคาใหม่. Lv40/ปลด40/skill7→1คืน2100gold420manual;อีกตัวอย่าง70/ปลด40/Aw10→7คืน54000gold135shards คงbase4500gold900manual+ค่าปลุก. Lowerpaidledgerลดตามจริงทำให้resetภายหลังคืนซ้ำไม่ได้. Noledgerไม่ให้refund;unverifiedprice/overflowปฏิเสธatomic. ราคาarchiveเป็นTSเพื่อร่วมimplementationhash.
+
+M0 examples26บิลด์ปรับเฉพาะrank/budget/dryqueueตามกติกาใหม่;originalเก็บfixtureก่อน136. HistoricalDPS/evidenceไม่ถูกlabelใหม่หรือrerunbalance. Historicalscopeguardsrestoreเฉพาะnewcontract/buildsที่มีdedicatedguardใหม่. SteelBodymax-probeใช้rank10โดยตรง ส่วนsavedexampleใช้capจริง.
+
+Validation: full660/660, targeted20/20, rank/migration10/10, M0/readiness8ผ่าน;root+filtered(no source library/private/evidence) build626374gzip/1649files/PWAf1df5f91e660bbe4ตรงกัน. Content ee411890c3a51cb1ef162c64a5e29685018b57db9878a81c89179a416b53a14d;packb9a9280a8c7cd03a430256592591483015b3cfd0b95cf238a12ca50dea3c32bd/raw33108285ไม่เปลี่ยน. Runtime/simulation/1x2x4/autoเดิม.
+
+Real isolatedAuth/Postgres/PostgREST/API/Chromeผ่าน4กลุ่ม:1mobilepreview+backup+CAS+replay,2skills320390/reload,3ทั้ง10slots/backupscope,4APIovercapreject+laterresetremaining600gold120manual. ส่วนเกินในfixtureรวม57900gold780manual135shards;retainsNPCbase/Awunlock. ภาพ320ตรวจด้วยตาแล้ว. Hosted: pending. ไม่แตะowner/privateenv/SQL/env/6173/5173/ไม่ใช้subagent. Authบัญชีทิ้งและDBส่วนตัวถูกลบเมื่อtestจบ.
+
+Failure history retained: first full624/658failed34เพราะoldexamplecapsและoldscopeguard;ปรับfixturesให้legalและเก็บhistoricalguardอย่างแคบ,second658/659failedSteelBodyprobeที่สร้างactorใหม่สองครั้งโดยยังเป็นlegalrankต่ำ;แก้ให้ทั้งสามprobeใช้explicitrank10,final660pass. LocalAuthround1พบledgerorderต่างหลังJSONBเรียงskillkeys:แก้จริงให้replaceledgerในตำแหน่งเดิม+canonical-order regression. Round2setupHISTORY failedแบบไม่ระบุSQLcode(เพิ่มdiagnosticแล้ว);round3ใช้Priestสกิลปลด30แต่oracleคิดปลด40:แก้fixtureเป็นKyrie40,ไม่แก้เกมเพื่อให้ผ่าน. ล้มเหลวเก็บ.local/skill-caps-debug/และ/private/tmp/task136-*logs.

@@ -34,7 +34,15 @@ function pay(state:AccountState,cost:Partial<Wallet>){
 }
 export function allowedSkill(actor: Character, definition: SkillDefinition, content: ValidatedContent) { return jobAllowsSkill(content.jobs, actor, definition.class_id); }
 export function characterSkillCap(actor: Character, definition: SkillDefinition): number {
- return definition.rank_unlock_levels ? Math.min(definition.max_level, definition.rank_unlock_levels.filter(level => level <= actor.level).length) : Math.min(definition.max_level, 1 + Math.floor((actor.level - 1) / 5));
+ return skillRankUnlockLevels(definition).filter(level => level <= actor.level).length;
+}
+/** Rank requirements are shared by progression, save migration and the UI. */
+export function skillRankUnlockLevels(definition: SkillDefinition): number[] {
+ if(definition.rank_unlock_levels)return [...definition.rank_unlock_levels];
+ const spread=definition.class_id!=='enemy'&&definition.unlock_level>=20&&definition.unlock_level<=40;
+ return Array.from({length:definition.max_level},(_,i)=>spread
+  ? definition.unlock_level+Math.ceil(40*i/Math.max(1,definition.max_level-1))
+  : 1+5*i);
 }
 export function skillQuote(actor: Character, id: string, target: number, content: ValidatedContent): Partial<Wallet> {
  const definition = content.skills[id] as unknown as SkillDefinition | undefined;

@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs';
 import {gunzipSync} from 'node:zlib';
+import rankBefore136 from './fixtures/skill-rank-before-136.json';
 import tuning131 from './fixtures/boss-focus-131.json';
 import sanctuaryBefore127 from './fixtures/sanctuary-before-127.json';
 import hunterBefore128 from './fixtures/hunter-before-128.json';
@@ -13,6 +14,10 @@ export function legacyClass2Source(file: string): Buffer {
     // D161's exact power/focus changes have their own frozen arithmetic and A/B
     // tests. Restore only those skill rows for historical asset-only scope checks.
     const baseline=JSON.parse(gunzipSync(readFileSync(new URL('../../plan/evidence/task-131/authored-before.json.gz',import.meta.url))).toString())as Record<string,string>;
+    // D165 only updates authored example ranks/budgets/traces; old asset scope retains the original example block.
+    const buildPattern=/"builds": \[[\s\S]*?\n  \]/;
+    const oldBuilds=baseline['plan/data/'+file]!.match(buildPattern)?.[0];
+    if(oldBuilds)bytes=Buffer.from(bytes.toString().replace(buildPattern,oldBuilds));
     for(const s of [...tuning131.skills,...'assassin_enchant_poison knight_battle_cry priest_impositio merchant_loud_voice blacksmith_weapon_perfection bard_battle_song'.split(' ').map(id=>({id}))]){
       const pattern=new RegExp('^    \\{\\n      "id": "'+s.id+'"[\\s\\S]*?\\n    \\}','m'),original=baseline['plan/data/'+file]!.match(pattern)?.[0];
       if(original)bytes=Buffer.from(bytes.toString().replace(pattern,original));
@@ -33,6 +38,7 @@ export function legacyClass2Source(file: string): Buffer {
   const value = JSON.parse(bytes.toString('utf8'));
   if (file === 'progression.json') {
     delete value.hi_class;
+    value.skill_cap_contract=rankBefore136.skill_cap_contract;
     // The original Class2 contract remains explicitly frozen; live release has its own gate tests.
     value.release.id = 'class2-v1'; value.release.level_cap = 70; value.release.enabled_job_stages = [1, 2];
     value.release.future_job_stages[0].enabled = false;
