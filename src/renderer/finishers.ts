@@ -2,7 +2,7 @@ import type { ActorRenderView, BattlePresentationEvent } from '../contracts/pres
 
 type Style = 'fist' | 'slash' | 'holy' | 'meteor' | 'earth' | 'arcane' | 'volley' | 'blast';
 interface Profile { style: Style; color: string; shake: number; priority: number; hold: number; title?: string }
-/** Authored RO-inspired emphasis layered over the native effects; no damage or skill rules. */
+/** Titles and subtle camera emphasis only; skill imagery comes from actual native assets. */
 export const FINISHER_PROFILES: Readonly<Record<string, Profile>> = {
   monk_asura: { style: 'fist', color: '#ffd56a', shake: 5, priority: 3, hold: 1000, title: 'ASURA STRIKE' },
   champion_chain_crush_combo:{style:'fist',color:'#ffad69',shake:4,priority:3,hold:950,title:'GATE OF HELL'},
@@ -25,8 +25,8 @@ export const FINISHER_PROFILES: Readonly<Record<string, Profile>> = {
   blacksmith_cart_crash: { style: 'slash', color: '#ffc76b', shake: 4, priority: 2, hold: 850 },
   alchemist_acid_terror: { style: 'blast', color: '#bded81', shake: 2.5, priority: 1, hold: 750 },
 };
-interface Cue { key: string; skill: string; source: string; target: string; at: number; profile: Profile; started?: number }
-export interface FinisherFrame { skill: string; source: string; target: string; at_ms: number; age_ms: number; title: boolean }
+interface Cue { key: string; skill: string; source: string; target: string; at: number; profile: Profile; started?: number; titleY?: number }
+export interface FinisherFrame { skill: string; source: string; target: string; at_ms: number; age_ms: number; title: boolean; titleY?:number }
 export const FINISHER_LIMITS = { pending: 12, active: 3, seen: 1024, staleGameMs: 1600, impactMs: 420, shakeMs: 180 } as const;
 /** Below the upper HUD, closer to the combatants on a portrait battlefield. */
 export const FINISHER_TITLE_Y = .4;
@@ -60,45 +60,15 @@ export class FinisherEffects {
     return [Math.sin(age * .19) * power, Math.sin(age * .27 + 1) * power * .65];
   }
   frames(wallMs: number, motion: boolean, titles = true): FinisherFrame[] {
-    return this.active.flatMap((c,i) => (i === 0 && titles) || (i < 2 && motion && wallMs - c.started! < FINISHER_LIMITS.impactMs) ? [{ skill:c.skill,source:c.source,target:c.target,at_ms:c.at,age_ms:wallMs-c.started!,title:i===0&&titles }] : []);
+    return this.active.flatMap((c,i) => (i === 0 && titles) || (i < 2 && motion && wallMs - c.started! < FINISHER_LIMITS.impactMs) ? [{ skill:c.skill,source:c.source,target:c.target,at_ms:c.at,age_ms:wallMs-c.started!,title:i===0&&titles,titleY:c.titleY }] : []);
   }
-  drawImpacts(ctx: CanvasRenderingContext2D, actors: readonly ActorRenderView[], point: (actor: ActorRenderView) => readonly [number,number], wallMs: number, motion: boolean): void {
-    if (!motion) return;
-    for (const cue of this.active.slice(0,2)) {
-      const age=wallMs-cue.started!; if (age>=FINISHER_LIMITS.impactMs) continue;
-      const target=actors.find(a=>a.actor_id===cue.target),source=actors.find(a=>a.actor_id===cue.source); if(!target||!source)continue;
-      const [tx,ty]=point(target),[sx,sy]=point(source),p=age/FINISHER_LIMITS.impactMs,r=30+130*p,alpha=(1-p)**1.5;
-      ctx.save();ctx.translate(tx,ty);ctx.globalAlpha=alpha;ctx.lineCap='round';
-      ctx.save();ctx.scale(1,.3);ctx.strokeStyle=cue.profile.color;ctx.lineWidth=5*(1-p)+1;ctx.beginPath();ctx.arc(0,0,r,0,Math.PI*2);ctx.stroke();ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(0,0,r*.72,0,Math.PI*2);ctx.stroke();ctx.restore();
-      ctx.translate(0,-40);ctx.globalCompositeOperation='screen';
-      const glow=ctx.createRadialGradient(0,0,2,0,0,r*.8);glow.addColorStop(0,'#fffbe9bb');glow.addColorStop(.25,cue.profile.color+'85');glow.addColorStop(1,cue.profile.color+'00');ctx.fillStyle=glow;ctx.fillRect(-r,-r,r*2,r*2);
-      ctx.strokeStyle=cue.profile.color;ctx.fillStyle=cue.profile.color;ctx.lineWidth=3;
-      const style=cue.profile.style;
-      if(style==='fist'){
-        // Lens-like radial streaks echo the local MO_EXTREMITYFIST mapping, without claiming native reconstruction.
-        for(let i=0;i<16;i++){const a=i*Math.PI/8+.12,inner=15+45*p,outer=inner+25+(i%3)*18+40*(1-p);ctx.beginPath();ctx.moveTo(Math.cos(a)*inner,Math.sin(a)*inner);ctx.lineTo(Math.cos(a)*outer,Math.sin(a)*outer);ctx.stroke();}
-        ctx.save();ctx.globalAlpha*=Math.max(0,1-age/160);ctx.strokeStyle='#ffc45a';ctx.lineWidth=18*(1-p)+1;ctx.beginPath();ctx.moveTo(sx-tx,sy-ty);ctx.lineTo(0,0);ctx.stroke();ctx.strokeStyle='#fffbea';ctx.lineWidth=8*(1-p)+1;ctx.stroke();ctx.restore();ctx.globalCompositeOperation='source-over';ctx.fillStyle='#fffce6';ctx.beginPath();for(let i=0;i<8;i++){const a=i*Math.PI/4-Math.PI/2,rr=i%2?12+10*p:65*(1-p)+20;const x=Math.cos(a)*rr,y=Math.sin(a)*rr;i?ctx.lineTo(x,y):ctx.moveTo(x,y);}ctx.closePath();ctx.fill();
-      }else if(style==='slash'){
-        ctx.lineWidth=9*(1-p)+2;for(const sign of[-1,1]){ctx.beginPath();ctx.moveTo(-75*(1+p),sign*45);ctx.quadraticCurveTo(0,-sign*35,75*(1+p),-sign*45);ctx.stroke();}
-      }else if(style==='holy'){
-        ctx.fillRect(-8,-105,16,190);ctx.fillRect(-65,-40,130,13);for(let i=0;i<8;i++){const a=i*Math.PI/4;ctx.beginPath();ctx.moveTo(Math.cos(a)*45,Math.sin(a)*45);ctx.lineTo(Math.cos(a)*r,Math.sin(a)*r);ctx.stroke();}
-      }else if(style==='earth'){
-        ctx.globalCompositeOperation='source-over';for(let i=0;i<7;i++){const x=(i-3)*25,y=-18-Math.sin(i*1.7)*22-45*Math.sin(p*Math.PI);ctx.fillStyle=i%2?'#8d7056':cue.profile.color;ctx.beginPath();ctx.moveTo(x-13,40);ctx.lineTo(x-9,y);ctx.lineTo(x+5,y-16);ctx.lineTo(x+15,40);ctx.closePath();ctx.fill();}
-      }else if(style==='arcane'){
-        for(let i=0;i<3;i++){ctx.save();ctx.rotate(i*Math.PI/3+p*.8);ctx.beginPath();ctx.ellipse(0,0,r*.8,r*.24,0,0,Math.PI*2);ctx.stroke();ctx.restore();}
-      }else if(style==='volley'){
-        for(let i=0;i<7;i++){const x=(i-3)*18;ctx.beginPath();ctx.moveTo(x-32,-75-30*p);ctx.lineTo(x+10,25);ctx.lineTo(x,18);ctx.moveTo(x+10,25);ctx.lineTo(x+13,14);ctx.stroke();}
-      }else{
-        for(let i=0;i<12;i++){const a=i*2.399963,radius=30+100*p;ctx.save();ctx.translate(Math.cos(a)*radius,Math.sin(a)*radius);ctx.rotate(a+p);ctx.fillRect(-4,-9,8,18);ctx.restore();}if(style==='meteor'){ctx.strokeStyle='#fff3c2';ctx.lineWidth=8*(1-p)+1;ctx.beginPath();ctx.moveTo(-60,-125);ctx.lineTo(10,15);ctx.stroke();}
-      }
-      ctx.restore();
-    }
-  }
-  drawTitle(ctx: CanvasRenderingContext2D, width: number, height: number, labels: Readonly<Record<string,string>>, actors: readonly ActorRenderView[], wallMs: number, motion: boolean): void {
+  drawTitle(ctx: CanvasRenderingContext2D, width: number, height: number, labels: Readonly<Record<string,string>>, actors: readonly ActorRenderView[], wallMs: number, motion: boolean, avoid:readonly{top:number;bottom:number}[]=[]): void {
     const cue=this.active[0];if(!cue)return;
     const age=wallMs-cue.started!,text=cue.profile.title??(labels[cue.skill]??cue.skill).toUpperCase(),name=actors.find(a=>a.actor_id===cue.source)?.name.split(' · ')[0]??'';
     const alpha=Math.min(1,(cue.profile.hold-age)/180),scale=motion?1+Math.max(0,1-age/130)*.07:1;
-    ctx.save();ctx.translate(width/2,height*FINISHER_TITLE_Y);ctx.scale(scale,scale);ctx.globalAlpha=alpha;ctx.textAlign='center';ctx.textBaseline='middle';
+    // Choose once per banner; large native digits keep their band and the title stays still.
+    cue.titleY??=[FINISHER_TITLE_Y,.58,.72,.84].find(y=>!avoid.some(r=>r.top<y+45/height&&r.bottom>y-35/height))??.84;
+    ctx.save();ctx.translate(width/2,height*cue.titleY);ctx.scale(scale,scale);ctx.globalAlpha=alpha;ctx.textAlign='center';ctx.textBaseline='middle';
     const max=width*.86;ctx.font='900 42px ROThai, sans-serif';const measured=ctx.measureText(text).width;if(measured>max)ctx.font=`900 ${42*max/measured}px ROThai, sans-serif`;
     const w=Math.min(max+32,ctx.measureText(text).width+50);const shade=ctx.createLinearGradient(-w/2,0,w/2,0);shade.addColorStop(0,'#12243d00');shade.addColorStop(.25,'#12243dbb');shade.addColorStop(.75,'#12243dbb');shade.addColorStop(1,'#12243d00');ctx.fillStyle=shade;ctx.fillRect(-w/2,-29,w,70);
     ctx.lineJoin='round';ctx.lineWidth=7;ctx.strokeStyle='#192637';ctx.strokeText(text,0,0);ctx.lineWidth=1.5;ctx.strokeStyle='#fff8e4';ctx.fillStyle=cue.profile.color;ctx.fillText(text,0,0);ctx.strokeText(text,0,0);

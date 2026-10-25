@@ -246,7 +246,7 @@
     },
     "assassin_sonic_blow": {
       "special_sfx": [],
-      "hue_rotate_deg": 160
+      "hue_rotate_deg": 50
     },
     "assassin_enchant_poison": {
       "special_sfx": [],
@@ -262,7 +262,7 @@
     },
     "assassin_grimtooth": {
       "special_sfx": [],
-      "hue_rotate_deg": 160
+      "hue_rotate_deg": 0
     },
     "assassin_katar_mastery": {
       "special_sfx": [],
@@ -286,7 +286,7 @@
     },
     "rogue_raid": {
       "special_sfx": [],
-      "hue_rotate_deg": 160
+      "hue_rotate_deg": 0
     },
     "rogue_dodge": {
       "special_sfx": [],
@@ -323,11 +323,11 @@
     },
     "assassin_cross_soul_destroyer": {
       "special_sfx": [],
-      "hue_rotate_deg": 160
+      "hue_rotate_deg": 50
     },
     "assassin_cross_meteor_assault": {
       "special_sfx": [],
-      "hue_rotate_deg": 160
+      "hue_rotate_deg": 0
     },
     "stalker_chase_walk": {
       "special_sfx": [],
@@ -335,7 +335,7 @@
     },
     "stalker_full_strip": {
       "special_sfx": [],
-      "hue_rotate_deg": 160
+      "hue_rotate_deg": 0
     },
     "lord_knight_aura_blade": {
       "special_sfx": []
@@ -408,7 +408,7 @@
           "color": "#ff6a1f"
         }
       ],
-      "hue_rotate_deg": 265
+      "hue_rotate_deg": 270
     },
     "professor_double_casting": {
       "special_sfx": []
@@ -489,7 +489,11 @@
       "start_ms": 0,
       "lead_ms": 0,
       "stagger_ms": 0,
-      "lift": 10
+      "lift": 10,
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
     },
     "visual_wizard_meteor": {
       "meta": "library/effects/keyframe_effect_atlas/firehit1--4a19f438bcb6.meta.json",
@@ -497,7 +501,11 @@
       "start_ms": 0,
       "lead_ms": 0,
       "stagger_ms": 0,
-      "lift": 0
+      "lift": 0,
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
     },
     "visual_wizard_heavens_drive": {
       "meta": "library/effects/keyframe_effect_atlas/earthhit--367ca955bed5.meta.json",
@@ -505,7 +513,11 @@
       "start_ms": 0,
       "lead_ms": 0,
       "stagger_ms": 0,
-      "lift": 0
+      "lift": 0,
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
     },
     "visual_acolyte_holy_light": {
       "meta": "library/effects/keyframe_effect_atlas/holyhit--2386bcc47988.meta.json",
@@ -561,7 +573,11 @@
       "start_ms": 0,
       "lead_ms": 0,
       "stagger_ms": 90,
-      "lift": 0
+      "lift": 0,
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
     },
     "visual_merchant_loud_voice": {
       "meta": "library/effects/keyframe_effect_atlas/loud--564cc9489f39.meta.json",
@@ -585,7 +601,11 @@
       "start_ms": 0,
       "lead_ms": 0,
       "stagger_ms": 0,
-      "lift": 0
+      "lift": 0,
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
     },
     "visual_crusader_holy_cross": {
       "meta": "library/effects/keyframe_effect_atlas/holy_cross--7ff94dbbc6de.meta.json",
@@ -601,7 +621,11 @@
       "start_ms": 0,
       "lead_ms": 0,
       "stagger_ms": 0,
-      "lift": 0
+      "lift": 0,
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
     },
     "visual_blacksmith_hammer_fall": {
       "meta": "library/effects/keyframe_effect_atlas/crashearth--24881554d209.meta.json",
@@ -641,7 +665,11 @@
       "start_ms": 0,
       "lead_ms": 0,
       "stagger_ms": 0,
-      "lift": 0
+      "lift": 0,
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
     },
     "visual_assassin_detonate": {
       "meta": "library/effects/keyframe_effect_atlas/new_rollingcutter_count_01--c628c32658a3.meta.json",
@@ -650,7 +678,10 @@
       "lead_ms": 0,
       "stagger_ms": 0,
       "lift": 0,
-      "duration_ms": 850
+      "duration_ms": 850,
+      "native_only": true,
+      "once_per_action": true,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
     },
     "visual_assassin_cross_soul_destroyer": {
       "meta": "library/effects/keyframe_effect_atlas/sonicblow--8ff63a20bc32.meta.json",
@@ -658,16 +689,55 @@
       "start_ms": 0,
       "lead_ms": 0,
       "stagger_ms": 0,
-      "lift": 0
+      "lift": 0,
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
     },
     "visual_assassin_cross_meteor_assault": {
-      "meta": "library/effects/keyframe_effect_atlas/new_rollingcutter_count_01--c628c32658a3.meta.json",
-      "scale": 0.7,
+      "meta": "library/effects/effect_texture/purpleslash--0139e39f3eba.meta.json",
+      "scale": 1,
       "start_ms": 0,
       "lead_ms": 0,
       "stagger_ms": 0,
-      "lift": 0,
-      "duration_ms": 850
+      "lift": 35,
+      "duration_ms": 500,
+      "native_only": true,
+      "once_per_action": true,
+      "basis": "Native RO purpleslash.tga, referenced by ASC_METEORASSAULT406.2D placement adapted; same real slash art reused for Grimtooth/Raid.",
+      "texture_layers": [
+        {
+          "meta": "library/effects/effect_texture/purpleslash--0139e39f3eba.meta.json",
+          "delay_ms": 0,
+          "duration_ms": 500,
+          "count": 3,
+          "interval_ms": 0,
+          "alpha": 1,
+          "fade_in": true,
+          "fade_out": true,
+          "from": [
+            0,
+            -40
+          ],
+          "to": [
+            0,
+            -40
+          ],
+          "size": [
+            170,
+            70
+          ],
+          "end_size": [
+            220,
+            90
+          ],
+          "angle": -20,
+          "spread": 15,
+          "radial": false,
+          "additive": true
+        }
+      ]
     },
     "visual_lord_knight_spiral_pierce": {
       "meta": "library/effects/keyframe_effect_atlas/pierce--4b6786ce5550.meta.json",
@@ -675,7 +745,11 @@
       "start_ms": 0,
       "lead_ms": 0,
       "stagger_ms": 0,
-      "lift": 0
+      "lift": 0,
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
     },
     "visual_paladin_shield_chain": {
       "meta": "library/effects/keyframe_effect_atlas/holy_cross--7ff94dbbc6de.meta.json",
@@ -683,7 +757,11 @@
       "start_ms": 0,
       "lead_ms": 0,
       "stagger_ms": 0,
-      "lift": 0
+      "lift": 0,
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
     },
     "visual_whitesmith_cart_termination": {
       "meta": "library/effects/keyframe_effect_atlas/new_axetornado--acee97518f02.meta.json",
@@ -691,15 +769,943 @@
       "start_ms": 0,
       "lead_ms": 0,
       "stagger_ms": 90,
-      "lift": 0
+      "lift": 0,
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
     },
     "visual_high_wizard_napalm_vulcan": {
-      "meta": "library/effects/keyframe_effect_atlas/firehit1--4a19f438bcb6.meta.json",
-      "scale": 0.55,
+      "meta": "library/effects/keyframe_effect_atlas/holyhit--2386bcc47988.meta.json",
+      "scale": 0.85,
       "start_ms": 0,
       "lead_ms": 0,
       "stagger_ms": 0,
-      "lift": 10
+      "lift": 10,
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_knight_battle_cry": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/loud--564cc9489f39.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_knight_counter_stance": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/concentration--6ff559979ba2.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_crusader_devotion": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/asum--9df8c2aba2e2.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_crusader_grand_cross": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/holy_cross--7ff94dbbc6de.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_crusader_defender": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/concentration--6ff559979ba2.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_lord_knight_aura_blade": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/enc_fire--3e179071887e.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_paladin_gospel": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/sanctuary--db20ff4546ed.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_priest_magnificat": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/holyhit--2386bcc47988.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_priest_resurrection": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/holyhit--2386bcc47988.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_priest_kyrie": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/holyhit--2386bcc47988.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_monk_finger_offensive": {
+      "scale": 0.9,
+      "start_ms": 60,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 35,
+      "meta": "library/effects/effect_texture/blue_ivy--f23bd420b8bd.meta.json",
+      "native_only": true,
+      "once_per_action": false,
+      "duration_ms": 420,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art.",
+      "texture_layers": [
+        {
+          "meta": "library/effects/effect_texture/blue_ivy--f23bd420b8bd.meta.json",
+          "delay_ms": 0,
+          "duration_ms": 420,
+          "count": 1,
+          "interval_ms": 0,
+          "alpha": 1,
+          "fade_in": true,
+          "fade_out": true,
+          "from": [
+            0,
+            -40
+          ],
+          "to": [
+            0,
+            -40
+          ],
+          "size": [
+            36,
+            120
+          ],
+          "end_size": [
+            36,
+            120
+          ],
+          "angle": 0,
+          "spread": 0,
+          "radial": false,
+          "additive": true
+        }
+      ]
+    },
+    "visual_monk_asura": {
+      "scale": 1,
+      "start_ms": 200,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 35,
+      "meta": "library/effects/effect_texture/lens1--066dd9853776.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 650,
+      "basis": "RO MO_EXTREMITYFIST271 hitEffect266 actual lens1.tga and source24copies/550ms/100ms delay/10x150/.8alpha. 3D attachment adapted to deterministic2D radial placement. Gate is explicit reuse for custom HP-sacrifice punch.",
+      "texture_layers": [
+        {
+          "meta": "library/effects/effect_texture/lens1--066dd9853776.meta.json",
+          "delay_ms": 100,
+          "duration_ms": 550,
+          "count": 24,
+          "interval_ms": 0,
+          "alpha": 0.8,
+          "fade_in": true,
+          "fade_out": true,
+          "from": [
+            0,
+            -40
+          ],
+          "to": [
+            0,
+            -40
+          ],
+          "size": [
+            10,
+            150
+          ],
+          "end_size": [
+            10,
+            150
+          ],
+          "angle": 0,
+          "spread": 14,
+          "radial": true,
+          "additive": true
+        }
+      ]
+    },
+    "visual_monk_steel_body": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/concentration--6ff559979ba2.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_high_priest_assumptio": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/asum--9df8c2aba2e2.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1700,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_high_priest_basilica": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/holyhit--2386bcc47988.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art.",
+      "link_texture_meta": "library/effects/effect_texture/lens1--066dd9853776.meta.json",
+      "persistent": true
+    },
+    "visual_champion_palm_strike": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/hit--21a32708b074.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_champion_chain_crush_combo": {
+      "scale": 1,
+      "start_ms": 200,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 35,
+      "meta": "library/effects/effect_texture/lens1--066dd9853776.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 650,
+      "basis": "RO MO_EXTREMITYFIST271 hitEffect266 actual lens1.tga and source24copies/550ms/100ms delay/10x150/.8alpha. 3D attachment adapted to deterministic2D radial placement. Gate is explicit reuse for custom HP-sacrifice punch.",
+      "texture_layers": [
+        {
+          "meta": "library/effects/effect_texture/lens1--066dd9853776.meta.json",
+          "delay_ms": 100,
+          "duration_ms": 550,
+          "count": 24,
+          "interval_ms": 0,
+          "alpha": 0.8,
+          "fade_in": true,
+          "fade_out": true,
+          "from": [
+            0,
+            -40
+          ],
+          "to": [
+            0,
+            -40
+          ],
+          "size": [
+            10,
+            150
+          ],
+          "end_size": [
+            10,
+            150
+          ],
+          "angle": 0,
+          "spread": 14,
+          "radial": true,
+          "additive": true
+        }
+      ]
+    },
+    "visual_hunter_ankle_snare": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/concentration--6ff559979ba2.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_hunter_rapid_fire": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/arrowstorm--d2aa6744c4c7.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_bard_battle_song": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/concentration--6ff559979ba2.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_bard_dissonance": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/loud--564cc9489f39.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_bard_encore": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/spell--4452e4591d09.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_dancer_battle_song": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/concentration--6ff559979ba2.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_dancer_dissonance": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/concentration--6ff559979ba2.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_dancer_encore": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/loud--564cc9489f39.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_sniper_falcon_assault": {
+      "scale": 1,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 10,
+      "meta": "library/effects/sprite_effect_atlas/soul_falcon--5efd75c6706e.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1500,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art.",
+      "texture_layers": [
+        {
+          "meta": "library/effects/sprite_effect_atlas/soul_falcon--5efd75c6706e.meta.json",
+          "delay_ms": 0,
+          "duration_ms": 1500,
+          "count": 1,
+          "interval_ms": 0,
+          "alpha": 1,
+          "fade_in": true,
+          "fade_out": true,
+          "from": [
+            0,
+            -160
+          ],
+          "to": [
+            0,
+            -30
+          ],
+          "size": [
+            130,
+            100
+          ],
+          "end_size": [
+            130,
+            100
+          ],
+          "angle": 0,
+          "spread": 0,
+          "radial": false,
+          "additive": false
+        }
+      ]
+    },
+    "visual_sniper_sharpshooting": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/arrowstorm--d2aa6744c4c7.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_clown_arrow_vulcan": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/arrowstorm--d2aa6744c4c7.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_clown_marionette_control": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/spell--4452e4591d09.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_gypsy_tarot_card_of_fate": {
+      "scale": 0.85,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/spell--4452e4591d09.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1000,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art.",
+      "texture_layers": [
+        {
+          "meta": "library/effects/effect_texture/tarot09--fcc81ec72531.meta.json",
+          "delay_ms": 0,
+          "duration_ms": 1000,
+          "count": 1,
+          "interval_ms": 0,
+          "alpha": 1,
+          "fade_in": true,
+          "fade_out": true,
+          "from": [
+            0,
+            -80
+          ],
+          "to": [
+            0,
+            -130
+          ],
+          "size": [
+            85,
+            125
+          ],
+          "end_size": [
+            85,
+            125
+          ],
+          "angle": 0,
+          "spread": 0,
+          "radial": false,
+          "additive": false
+        }
+      ]
+    },
+    "visual_gypsy_moonlit_water_mill": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/sanctuary--db20ff4546ed.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art.",
+      "persistent": true
+    },
+    "visual_wizard_storm_gust": {
+      "scale": 0.85,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/stormgust--2283a43eceda.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 2000,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_wizard_quagmire": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/earthhit--367ca955bed5.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_sage_dispel": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/spell--4452e4591d09.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_sage_psychic_bolt": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/lightning--fcff45f78f47.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_sage_magic_barrier": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/spell--4452e4591d09.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_high_wizard_mystical_amplification": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/spell--4452e4591d09.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_professor_double_casting": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/spell--4452e4591d09.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_professor_soul_change": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/new_psychicwave_bottom--5396091ec2af.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art.",
+      "persistent": true
+    },
+    "visual_assassin_venom_dust": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/poisonreact--14aefc9abc8e.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_assassin_grimtooth": {
+      "scale": 1,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 35,
+      "meta": "library/effects/effect_texture/purpleslash--0139e39f3eba.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 500,
+      "basis": "Native RO purpleslash.tga, referenced by ASC_METEORASSAULT406.2D placement adapted; same real slash art reused for Grimtooth/Raid.",
+      "texture_layers": [
+        {
+          "meta": "library/effects/effect_texture/purpleslash--0139e39f3eba.meta.json",
+          "delay_ms": 0,
+          "duration_ms": 500,
+          "count": 3,
+          "interval_ms": 0,
+          "alpha": 1,
+          "fade_in": true,
+          "fade_out": true,
+          "from": [
+            0,
+            -40
+          ],
+          "to": [
+            0,
+            -40
+          ],
+          "size": [
+            170,
+            70
+          ],
+          "end_size": [
+            220,
+            90
+          ],
+          "angle": -20,
+          "spread": 15,
+          "radial": false,
+          "additive": true
+        }
+      ]
+    },
+    "visual_rogue_expose": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/poisonreact--14aefc9abc8e.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_rogue_intimidate": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/poisonreact--14aefc9abc8e.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_rogue_raid": {
+      "scale": 1,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 35,
+      "meta": "library/effects/effect_texture/purpleslash--0139e39f3eba.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 500,
+      "basis": "Native RO purpleslash.tga, referenced by ASC_METEORASSAULT406.2D placement adapted; same real slash art reused for Grimtooth/Raid.",
+      "texture_layers": [
+        {
+          "meta": "library/effects/effect_texture/purpleslash--0139e39f3eba.meta.json",
+          "delay_ms": 0,
+          "duration_ms": 500,
+          "count": 3,
+          "interval_ms": 0,
+          "alpha": 1,
+          "fade_in": true,
+          "fade_out": true,
+          "from": [
+            0,
+            -40
+          ],
+          "to": [
+            0,
+            -40
+          ],
+          "size": [
+            170,
+            70
+          ],
+          "end_size": [
+            220,
+            90
+          ],
+          "angle": -20,
+          "spread": 15,
+          "radial": false,
+          "additive": true
+        }
+      ]
+    },
+    "visual_stalker_chase_walk": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/poisonreact--14aefc9abc8e.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_stalker_full_strip": {
+      "scale": 0.9,
+      "start_ms": 300,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 40,
+      "meta": "library/effects/keyframe_effect_atlas/strip_armor--cad99e561f17.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1500,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art.",
+      "texture_layers": [
+        {
+          "meta": "library/effects/effect_texture/purpleslash--0139e39f3eba.meta.json",
+          "delay_ms": 0,
+          "duration_ms": 500,
+          "count": 1,
+          "interval_ms": 0,
+          "alpha": 1,
+          "fade_in": true,
+          "fade_out": true,
+          "from": [
+            0,
+            -40
+          ],
+          "to": [
+            0,
+            -40
+          ],
+          "size": [
+            160,
+            65
+          ],
+          "end_size": [
+            160,
+            65
+          ],
+          "angle": 0,
+          "spread": 0,
+          "radial": false,
+          "additive": true
+        }
+      ]
+    },
+    "visual_blacksmith_weapon_perfection": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/concentration--6ff559979ba2.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_blacksmith_meltdown": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/enc_fire--3e179071887e.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_alchemist_acid_terror": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/poison--62f136563853.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_alchemist_hell_plant": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/poisonreact--14aefc9abc8e.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_alchemist_bio_cannibalize": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/concentration--6ff559979ba2.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_alchemist_demonstration": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/claymore--cf7d4cdafb1b.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_whitesmith_maximum_overthrust": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/enc_fire--3e179071887e.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_creator_acid_demonstration": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/firehit1--4a19f438bcb6.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+    },
+    "visual_creator_full_chemical_protection": {
+      "scale": 0.75,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "lift": 0,
+      "meta": "library/effects/keyframe_effect_atlas/concentration--6ff559979ba2.meta.json",
+      "native_only": true,
+      "once_per_action": true,
+      "duration_ms": 1300,
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
     }
   }
 }

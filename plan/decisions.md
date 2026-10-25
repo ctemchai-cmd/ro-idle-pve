@@ -326,3 +326,7 @@ D146เพิ่มเติม:ผู้ใช้ยืนยันกาชา
 D168 — 25ต.ค.2026:ผู้ใช้ให้แยกสกิลที่บทบาทซ้ำกัน เช่นEndure/AutoGuardและBlessing/Impo. รวมIncreaseAGIในBlessing เปลี่ยนช่องเดิมเป็นRuwachโจมตี+ลดเกราะกาย/เวท. ตัวเลข/กลไกส่วนที่ไม่ได้ระบุเป็นassistantbaselineต้องออกแบบและตรวจactualeffects;ไม่อ้างว่าเป็นสูตรROต้นฉบับ.
 
 D169 —25ต.ค.2026:ผู้ใช้ระบุmigration-v2.txtปรับไอคอน21และHi20สกิล. DoubleCastingสุ่มx4→x3→x2หยุดที่ตัวแรกติด;BondFate10sล็อกเพื่อนสูงสุด/ฮีลทันที;GateHPเหลือ1%คิดactualsacrifice/maxHP. KeepstableIDs/ledger/capsแม้ชื่อPalm→DragonTiger/Chain→Gate/Basilica→Bond/SoulChange→PsychicWave. Numericอื่นassistantbaselineต้องactualreview145;ChaseWalkเสริมสกิลโจมตีถัดไปทั้งท่า ตีปกติไม่กิน.
+
+## D170 — Native ultimate assets and larger numbers (25 October2026)
+
+Accepteduserintent: larger damage numbers; allmajor skills must use real local assets. Implement underdesign59/TASK146, presentationonly, no balance or save changes.

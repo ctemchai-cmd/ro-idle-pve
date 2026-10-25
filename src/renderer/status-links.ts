@@ -1,3 +1,4 @@
+import type { NativeAsset } from './native.mjs';
 import type { ActorRenderView } from '../contracts/presentation.ts';
 export interface StatusLink {source:string;target:string;color:string;from:readonly[number,number];to:readonly[number,number]}
 /** Reads resolved status targets, never chooses a recipient or calculates power. */
@@ -13,9 +14,9 @@ export function statusLinks(actors:readonly ActorRenderView[],point:(actor:Actor
  }
  return links;
 }
-export function drawStatusLinks(ctx:CanvasRenderingContext2D,links:readonly StatusLink[],gameMs:number,motion:boolean):void{
+export function drawStatusLinks(ctx:CanvasRenderingContext2D,links:readonly StatusLink[],gameMs:number,motion:boolean,texture?:NativeAsset):void{
  ctx.save();ctx.lineWidth=2;ctx.globalAlpha=.7;
- for(const link of links){const[a,b]=[link.from,link.to],wave=motion?Math.sin(gameMs/420)*7:0;ctx.strokeStyle=link.color;ctx.shadowColor=link.color;ctx.shadowBlur=6;
+ for(const link of links){const[a,b]=[link.from,link.to];if(texture){const dx=b[0]-a[0],dy=b[1]-a[1];ctx.save();ctx.translate((a[0]+b[0])/2,(a[1]+b[1])/2);ctx.rotate(Math.atan2(dy,dx)-Math.PI/2);ctx.globalAlpha=motion?.65+.15*Math.sin(gameMs/420):.75;ctx.drawImage(texture.image,-4,-Math.hypot(dx,dy)/2,8,Math.hypot(dx,dy));ctx.restore();continue;}const wave=motion?Math.sin(gameMs/420)*7:0;ctx.strokeStyle=link.color;ctx.shadowColor=link.color;ctx.shadowBlur=6;
   ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.quadraticCurveTo((a[0]+b[0])/2,(a[1]+b[1])/2+wave,b[0],b[1]);ctx.stroke();
   ctx.fillStyle=link.color;for(const p of[a,b]){ctx.beginPath();ctx.arc(p[0],p[1],3,0,Math.PI*2);ctx.fill();}
  }

@@ -1,5 +1,6 @@
 import type { CombatVisuals, ImpactEffect, ProjectileSpec } from '../contracts/assets.ts';
 import type { BattlePresentationEvent } from '../contracts/presentation.ts';
+import { nativeImpactProfile } from './native-impact.ts';
 
 export interface ProjectileCue { at_ms: number; source_id: string; target_id: string; spec: ProjectileSpec; from?: readonly [number, number] }
 export function validateCombatVisuals(value: CombatVisuals, skillIds: readonly string[], presentationIds?: readonly string[]): void {
@@ -16,6 +17,7 @@ export function validateCombatVisuals(value: CombatVisuals, skillIds: readonly s
     }
   }
   for (const [id, impact] of Object.entries(value.impacts ?? {})) {
+    nativeImpactProfile(impact);
     if (presentationIds && !presentationIds.includes(id)) fail();
     if (!impact?.meta?.endsWith('.meta.json') || !(impact.scale > 0 && impact.scale <= 3)) fail();
     if (impact.duration_ms !== undefined && (!Number.isInteger(impact.duration_ms) || impact.duration_ms < 1 || impact.duration_ms > 10000)) fail();

@@ -1,4 +1,4 @@
-import type { ImpactEffect, RuntimeAssetIndex, RuntimeRecipe } from '../contracts/assets.ts';
+import type { RuntimeAssetIndex, RuntimeRecipe } from '../contracts/assets.ts';
 import type { ActorAppearance, BattleScene } from '../contracts/presentation.ts';
 import { locateAsset, locateSkillVisual, prepareAssetLookup } from './asset-locator.ts';
 import type { ActorParts, NativeAsset, NativeMeta } from './native.mjs';
@@ -6,6 +6,7 @@ import { BattleAudio, type AudioLevels } from './audio.ts';
 import { wardrobeRefs, type WardrobeTiers } from './shell.ts';
 import { validateCombatVisuals } from './projectiles.ts';
 import { presetSwing } from './actor-animation.ts';
+import { nativeImpactProfile, type LoadedNativeImpact } from './native-impact.ts';
 
 async function json<T>(url: string, init?: RequestInit): Promise<T> { const response = await fetch(url, init); if (!response.ok) throw new Error(`ASSET_HTTP_${response.status}:${url}`); return response.json() as Promise<T>; }
 export class AssetPack {
@@ -14,7 +15,7 @@ export class AssetPack {
   readonly visuals = new Map<string, { recipe: RuntimeRecipe; native: NativeAsset | null; sound_paths: readonly string[] }>();
   readonly icons = new Map<string, string>();
   /** Native per-hit STR effect by skill id (resolved through the skill's presentation id). */
-  readonly impacts = new Map<string, { config: ImpactEffect; asset: NativeAsset }>();
+  readonly impacts = new Map<string, LoadedNativeImpact>();
   background: NativeAsset | null = null;
   /** Last prepared scene; lets the shell switch music with the visible field. */
   currentScene: BattleScene | null = null;
@@ -79,7 +80,11 @@ export class AssetPack {
         this.icons.set(id, await this.iconUrl(visual.icon.id));
         this.visuals.set(id, { recipe: visual.recipe, native: visual.nativeEffect ? await this.asset(visual.nativeEffect.id) : null, sound_paths: visual.sounds.map(sound => sound.id) });
         const impact = this.index.combat_visuals.impacts?.[this.index.skills[id]!.presentation_id];
-        if (impact) this.impacts.set(id, { config: impact, asset: await this.asset(impact.meta) });
+        if (impact) {
+          const config=nativeImpactProfile(impact),refs=[...new Set([config.meta,...(config.texture_layers??[]).map(l=>l.meta),...(config.link_texture_meta?[config.link_texture_meta]:[])])];
+          const textures=new Map(await Promise.all(refs.map(async ref=>[ref,await this.asset(ref)] as const)));
+          this.impacts.set(id,{config,asset:textures.get(config.meta)!,textures});
+        }
       }
     });
     // Independent media do not need to wait for numbers → font → background → actors.

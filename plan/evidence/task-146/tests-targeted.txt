@@ -1,0 +1,28 @@
+✔ finisher follows successful damage only, never charge/interruption/miss/normal/proc/zero (0.865875ms)
+✔ visual contact gates first successful hit; multihit/AoE/receipt replay make one cue per action (0.155333ms)
+✔ a successful shield-absorbed hit still lands; quiet farm retains impact without title (0.081375ms)
+✔ 1×/2×/4× preserve impact time and keep Asura title readable for the same wall duration (0.132375ms)
+✔ shake stays subtle/bounded, expires quickly, and reduced motion keeps only static title (0.217792ms)
+✔ stale catch-up cannot replay an old ultimate; buffers remain bounded under repeated events (0.800959ms)
+✔ all configured large attacks exist in current content and represent all six class trees (1.077ms)
+✔ actual resolved Asura interruption produces no finisher, successful Asura produces exactly one (5.896083ms)
+✔ one cast shows100→200→300 at the actual visual contacts, without counting a frame twice (1.053541ms)
+✔ single-hit skills, normal attacks, periodic damage, procs and healing have no yellow total (0.111541ms)
+✔ totals separate targets and casters; a new cast replaces the old counter without inheriting its sum (0.205708ms)
+✔ a single-hit area attack never becomes multi-hit by adding up different victims (0.107292ms)
+✔ replayed events are deduplicated and fully absorbed hits add zero, with no artificial damage (0.069ms)
+✔ final sum holds then fades; reduced motion uses engine times and still shows the correct total (0.076708ms)
+✔ multi-hit ordinals preserve hit indices and only identify direct hits of one skill on one target (0.096375ms)
+✔ D170 all69 major active skills cover every Class2 andHigh profession with complete native SHA-verified media, no unrelated gameplay change (36.842792ms)
+✔ D170 native texture configuration rejects bad lifetimes, absent art references, excessive draws and malformed coordinates (2.421125ms)
+✔ impacts are native STR effects shipped in the pack, keyed by presentation so copies share them (19.90775ms)
+✔ fire/cold bolts fall from the sky onto the target; Lightning Bolt and Arrow Shower use their native strike instead of fake projectiles (0.474875ms)
+✔ damage numbers arc up then fall to one side while shrinking, faster than the old 1.1 s rise (0.134167ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1025.815709

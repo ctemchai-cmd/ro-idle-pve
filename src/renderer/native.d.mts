@@ -11,6 +11,7 @@ export interface NativeAsset { meta: NativeMeta; image: HTMLImageElement }
 export interface ActorParts { body: NativeAsset; head?: NativeAsset; weapon?: NativeAsset; headgear?: NativeAsset; garment?: NativeAsset; shield?: NativeAsset; attackIndex?: number; attackVariants?: readonly number[]; releaseFrame?: number }
 export function drawActor(context: CanvasRenderingContext2D, parts: ActorParts, state: string, elapsed: number, x: number, y: number, facing?: string, scale?: number): number;
 export function drawEffect(context: CanvasRenderingContext2D, asset: NativeAsset, elapsed: number, x: number, y: number, scale?: number): number;
+export function drawParts(context: CanvasRenderingContext2D, asset: NativeAsset, frame: NativeFrame | null, offset?: number[]): number;
 export function drawProcedural(context: CanvasRenderingContext2D, recipe: { family: string; color: string; duration_ms: number }, elapsed: number, x: number, y: number): number;
 export function frameAt(action: NativeAction, elapsed: number, loop?: boolean): { index: number; frame: NativeFrame | null };
 export function actionFor(meta: NativeMeta, state?: string): NativeAction | undefined;

@@ -3,6 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { projectilePoint, validateCombatVisuals } from '../../src/renderer/projectiles.ts';
+import {nativeImpactProfile,nativeImpactDuration} from '../../src/renderer/native-impact.ts';
 import { NUMBER_FLIGHT_MS, numberFlight } from '../../src/renderer/damage-numbers.ts';
 import type { RuntimeAssetIndex } from '../../src/contracts/assets.ts';
 const index = JSON.parse(readFileSync('runtime/ro/manifest.json', 'utf8')) as RuntimeAssetIndex;
@@ -14,8 +15,9 @@ test('impacts are native STR effects shipped in the pack, keyed by presentation 
   for (const id of ['visual_mage_fire_bolt', 'visual_mage_cold_bolt', 'visual_mage_lightning_bolt', 'visual_acolyte_holy_light', 'visual_swordsman_bash', 'visual_archer_arrow_shower']) assert.ok(impacts[id], id);
   for (const [id, impact] of Object.entries(impacts)) {
     const meta = JSON.parse(readFileSync('assets/ro/' + impact.meta, 'utf8')) as { effect?: { max_key: number; fps: number }; missing_dependencies?: unknown[] };
-    assert.ok(meta.effect && !meta.missing_dependencies?.length, `${id}: complete keyframe effect`);
-    assert.ok(impact.start_ms < meta.effect!.max_key / meta.effect!.fps * 1000, `${id}: impact moment inside the effect`);
+    const native=nativeImpactProfile(impact);assert.ok((meta.effect||native.texture_layers?.length)&&!meta.missing_dependencies?.length, `${id}: complete native image program`);
+    assert.ok(impact.start_ms<nativeImpactDuration(native,{meta,image:null} as never),`${id}: impact moment inside the effect`);
+    for(const layer of native.texture_layers??[])assert.ok(index.files.some(file=>file.path===layer.meta),`${id}: actual texture dependency`);
     assert.ok(index.files.some(file => file.path === impact.meta), `${id}: sidecar in the runtime pack`);
   }
   assert.equal(index.skills.rogue_copy_mage_fire_bolt!.presentation_id, index.skills.mage_fire_bolt!.presentation_id);
