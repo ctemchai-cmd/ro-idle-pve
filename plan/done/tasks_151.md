@@ -15,8 +15,8 @@ TASK-146, TASK-149
 4. ตรวจBase/Awaken/borrowedenemy/expiry/interrupt/position/1x2x4/native320390/boundedcost;assetintegrity/build/publicVercel
 
 ## เกณฑ์ตรวจรับ
-- [ ] AC-01: catalogทุกสกิลมีclassificationชัด;สนามต่อเนื่องอ่านstatussource/type/expiryจริง ไม่ใช้timerเดา;แสดงครบผล/ตำแหน่งจริง/ซ้อนหลายเป้าไม่คูณภาพ/ไม่มีผลไม่สร้างสนาม;Base/Aw/borrowedenemyและreducedmotionผ่าน;engine/stat/saveSHAเดิม
-- [ ] AC-02: nativeภาพตรงหน้าที่พร้อมsource/ขอบเขตvisualreview;เพลงใช้textureตามmappingจริง;static/mobile320390/boundedcostไม่บังตัวเลข;โหลดก่อนdraw;runtime32MiB/initialไม่โต/JSONและmediaมีค่าเดิมทุกไฟล์/sourcechecks/build/hostedผ่าน
+- [x] AC-01: catalogทุกสกิลมีclassificationชัด;สนามต่อเนื่องอ่านstatussource/type/expiryจริง ไม่ใช้timerเดา;แสดงครบผล/ตำแหน่งจริง/ซ้อนหลายเป้าไม่คูณภาพ/ไม่มีผลไม่สร้างสนาม;Base/Aw/borrowedenemyและreducedmotionผ่าน;engine/stat/saveSHAเดิม
+- [x] AC-02: nativeภาพตรงหน้าที่พร้อมsource/ขอบเขตvisualreview;เพลงใช้textureตามmappingจริง;static/mobile320390/boundedcostไม่บังตัวเลข;โหลดก่อนdraw;runtime32MiB/initialไม่โต/JSONและmediaมีค่าเดิมทุกไฟล์/sourcechecks/build/hostedผ่าน
 
 ## วิธีตรวจและหลักฐาน
 Typed projection+actual shared engine;native Canvas/drawImage traces/mobile captures;allsidecarsJSON equality/mediaSHA;source30460460/build/publicread-only. plan/evidence/task-151-review.json.
@@ -27,3 +27,7 @@ Typed projection+actual shared engine;native Canvas/drawImage traces/mobile capt
 ## ผลตรวจlocal
 
 34focused/native7groups(20Base-Awสนาม+8เพลง+6instant)/23mobilecaptures/1x2x4/source30460460/packcheckผ่าน. ทุก894sidecarJSON.parseเท่าต้นฉบับ/ทุกmediaSHAเดิม. Floorblackmattekeyทำครั้งเดียวตอนprepare;glow/songringใช้additiveไม่มีกรอบดำ. ขนาดinitial1600070ต่ำกว่า1621492. รอrootbuildและpublicreleaseก่อนdone.
+
+## ผลส่งมอบ releaseสุดท้าย
+
+Source753561d54/VercelSUCCESS. Publichosted4groupsผ่าน;150actualnativeheal320390พุ่งขวาบน→โค้งตก→ย่อส่วน,151native6scenes/20refsSHA/พื้นโปร่งใสและsymbolsสีเดิม. Gamecontent2c85เดิม/packcb126. TASKนี้doneตามเกณฑ์ล่าสุด.

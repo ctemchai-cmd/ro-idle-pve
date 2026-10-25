@@ -1,18 +1,42 @@
-✔ one cast shows100→200→300 at the actual visual contacts, without counting a frame twice (4.650916ms)
-✔ single-hit skills, normal attacks, periodic damage, procs and healing have no yellow total (0.481958ms)
-✔ totals separate targets and casters; a new cast replaces the old counter without inheriting its sum (0.953625ms)
-✔ a single-hit area attack never becomes multi-hit by adding up different victims (0.609708ms)
-✔ replayed events are deduplicated and fully absorbed hits add zero, with no artificial damage (0.238084ms)
-✔ final sum holds then fades; reduced motion uses engine times and still shows the correct total (0.377166ms)
-✔ multi-hit ordinals preserve hit indices and only identify direct hits of one skill on one target (0.223041ms)
-✔ impacts are native STR effects shipped in the pack, keyed by presentation so copies share them (52.508958ms)
-✔ fire/cold bolts fall from the sky onto the target; Lightning Bolt and Arrow Shower use their native strike instead of fake projectiles (0.504916ms)
-✔ numbers pop upward then drift upper-left consistently while shrinking and fading (0.204417ms)
-ℹ tests 10
+✔ 152prepared player and8borrowed enemy skill IDs resolve icon/recipe/audio plus native StormGust (50.821792ms)
+✔ every selected asset resolves distinct metadata/media paths (18.406458ms)
+✔ unknown IDs and traversal do not fall back to external or guessed files (0.621583ms)
+✔ immutable pack lookup agrees with the uncached resolver for every ID and metadata path (246.843ms)
+✔ a browser bundle cannot silently use an asset pack from another release (37.419375ms)
+✔ all ten real ground skills and their Awaken variants project one field from the actual application and lifetime (56.003791ms)
+✔ target copies and independent recasts merge visually, retain later expiry and identify a new application; sources remain separate (2.093708ms)
+✔ unrelated Awaken boons cannot extend a field, and future/removed statuses cannot invent one (1.738917ms)
+✔ a real interrupted Storm Gust has neither a periodic status nor a ground field (0.721791ms)
+✔ borrowed enemy fields use their real presentation and retain the enemy as their source (0.985ms)
+✔ invalid ground references, unknown presentations, status filters and shape parameters fail before rendering (2.939875ms)
+✔ catalog covers every authored skill; all deployed sidecars parse exactly like source, unchanged media hashes and gameplay, within original size budgets (664.091125ms)
+✔ ACT attack event sets contact/release: sword500ms, bow700ms (release pose, not the draw sound), rod500ms, rod500ms (4.99775ms)
+✔ projectiles wait for the native release pose, retain travel/stagger, and never mutate pack definitions (0.531625ms)
+✔ fast attack speed plays the swing faster so the release still lands inside it; slow attacks keep the native clip (0.343042ms)
+✔ monk fists cycle 3 native poses; weapon jobs keep the one attack their overlay draws; skills keep the preset swing (22.824333ms)
+✔ one cast shows100→200→300 at the actual visual contacts, without counting a frame twice (1.119375ms)
+✔ single-hit skills, normal attacks, periodic damage, procs and healing have no yellow total (0.124125ms)
+✔ totals separate targets and casters; a new cast replaces the old counter without inheriting its sum (0.208083ms)
+✔ a single-hit area attack never becomes multi-hit by adding up different victims (0.110208ms)
+✔ replayed events are deduplicated and fully absorbed hits add zero, with no artificial damage (0.074541ms)
+✔ final sum holds then fades; reduced motion uses engine times and still shows the correct total (0.075708ms)
+✔ multi-hit ordinals preserve hit indices and only identify direct hits of one skill on one target (0.094625ms)
+✔ D170 all69 major active skills cover every Class2 andHigh profession with complete native SHA-verified media, no unrelated gameplay change (76.646ms)
+✔ D170 native texture configuration rejects bad lifetimes, absent art references, excessive draws and malformed coordinates (2.667542ms)
+✔ eight actual base/Awaken song programs produce one aura at the living performer, with real status lifetime and no view mutation (52.523166ms)
+✔ recipient copies, independent same-caster stacks and simultaneous songs merge only visually; a second performer remains separate (2.218708ms)
+✔ future status applications, removed statuses and instant performance strikes cannot invent a persistent aura (1.431208ms)
+✔ actual interrupted Healing Song emits no status and no aura (1.1915ms)
+✔ bad native aura references, dimensions, timing, style and unknown skills reject before drawing (3.7285ms)
+✔ gameplay source documents/schemas remain byte-identical, native pixels match their source checksums, initial profile remains1.62MB and pack fits32MiB (10.707916ms)
+✔ impacts are native STR effects shipped in the pack, keyed by presentation so copies share them (42.92675ms)
+✔ fire/cold bolts fall from the sky onto the target; Lightning Bolt and Arrow Shower use their native strike instead of fake projectiles (0.570042ms)
+✔ numbers launch quickly upper-right, arc down from their peak, and shrink before fading (0.297ms)
+ℹ tests 34
 ℹ suites 0
-ℹ pass 10
+ℹ pass 34
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 266.228375
+ℹ duration_ms 1899.257667

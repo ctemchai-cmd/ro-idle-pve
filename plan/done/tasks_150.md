@@ -14,8 +14,8 @@ TASK-146, TASK-149
 3. บันทึก source asset evidence;build/push/publicVercel
 
 ## เกณฑ์ตรวจรับ
-- [ ] AC-01: ทุกชนิดพุ่งเร็วขวาบนแล้วโค้งลง/ย่อส่วน650ms ไม่อิง parity/facing;เป้าเดินไม่ลากเลข;ผลรวมไม่รีเซ็ตพิกัดเมื่อยอดเพิ่ม;สี/ขนาด/focus/amount/impact timing/reducedmotion ยังถูกต้อง และไม่เปลี่ยนผล engine ทุกspeed
-- [ ] AC-02: รายงานแอสเซ็ตพื้นระบุ source path/status/renderer และแยกไอคอนอย่างถูกต้อง;native320390/build/gameplay unchanged/packตาม151/public release ผ่าน
+- [x] AC-01: ทุกชนิดพุ่งเร็วขวาบนแล้วโค้งลง/ย่อส่วน650ms ไม่อิง parity/facing;เป้าเดินไม่ลากเลข;ผลรวมไม่รีเซ็ตพิกัดเมื่อยอดเพิ่ม;สี/ขนาด/focus/amount/impact timing/reducedmotion ยังถูกต้อง และไม่เปลี่ยนผล engine ทุกspeed
+- [x] AC-02: รายงานแอสเซ็ตพื้นระบุ source path/status/renderer และแยกไอคอนอย่างถูกต้อง;native320390/build/gameplay unchanged/packตาม151/public release ผ่าน
 
 ## วิธีตรวจและหลักฐาน
 Focused TS + actual native renderer captures and draw bounds; source metadata audit; build; hosted public artifacts/read-only. plan/evidence/task-150-review.json.
@@ -39,3 +39,7 @@ Focused TS + actual native renderer captures and draw bounds; source metadata au
 ## คำแก้การเคลื่อนที่ล่าสุด
 
 ผู้ใช้ยืนยันวิถีเด้งสูงไปขวาบนแล้วโค้งตกลงพร้อมย่อส่วน ไม่ใช่driftเส้นตรง.650ms/peak44%/fixedright. ต้องตรวจarcใหม่ก่อนdone. Source8caaเป็นทิศตรงก่อนคำแก้นี้.
+
+## ผลส่งมอบ releaseสุดท้าย
+
+Source753561d54/VercelSUCCESS. Publichosted4groupsผ่าน;150actualnativeheal320390พุ่งขวาบน→โค้งตก→ย่อส่วน,151native6scenes/20refsSHA/พื้นโปร่งใสและsymbolsสีเดิม. Gamecontent2c85เดิม/packcb126. TASKนี้doneตามเกณฑ์ล่าสุด.

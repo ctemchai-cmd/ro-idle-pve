@@ -1,5 +1,12 @@
 # Handoff ระหว่าง agent
 
+## 25 ต.ค.2026 · Codex — TASK150 FINAL CURVE + TASK151 native ground effects LIVE / complete
+
+- Source753561d5447a79f2e5ef4864666b67152facf056 VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/Fyv3US7CHQMaTi7xTsGQnwMS13dJ.150hosted4PASS actualnativeheal320390 QUICKupper-right→fallingarc+shrink,24bundleSHA/APIhealthSIN1/auth401/content2c85/packcb126.151hosted4PASS6actualpublicnativescenes(Sanct,Quag,Meteor,Bardheal,Dancerluck,Wave)/20refsSHA/transparentmudcorners/additivering/originalsymbolcolors/24bundles/0errors-writes. BOTHdone,137/151done/M4 91/100. No remaining150/151work. Earlier4abfb(left)/8caa(straight-right) superseded by this latest user-described trajectory.
+- Local34focusedTS/native1504+GIF14frames/native1517groups20Base-Awfields+8songs+6instant/23mobilecaptures/realengine1x2x4/source30460460/fullsourcepackverify/M0/root+filteredbuildpassed. FourfieldsCPU4xp954ms(boundedeffectrenderonly,notphysicalAndroidFPS). Runtime894IDs1673files/packcb126d18cd433b3d0c0e9bb1727235abc59269f5eb9e04ec3f8e524f148586fc/raw33455593<33554432/initial1600070<1621492. Everyruntime sidecarJSON.parse equal source and everymediaSHA equal;metadataencodingcompact/safeintegerspreservesnegative0/bigfloat/arrays/specialstrings. Sourcepixels/keyframes/gameplay/status/save unchanged. No balancebatch.
+- Fieldconfigby presentation/statuswhitelist→oneper source-skill/actualexpiry/anchoredbbox/recastrelocation/staticreducedmotion. Native floordecals+STR/ACT,preparedcachednearblackmatteformud andadditiveglow. Song symbolsfromactualframeworktextures. Clear2Dadaptation provenance;notexactclientfield/rangeimplementation. OwnVite7505andallChromeclosed. Noowner/AuthSQL/env/6173/agents. Userunselectedmodernassets/task108pnguntouched. Closure documents verified results;olderreview/inprogress tasksremain.
+
+
 ## 25 ต.ค.2026 · Codex — ACTIVE150 final curved numbers +151 native fields LOCAL COMPLETE
 
 - Latest user: numbers QUICK upper-right launch→falling arc+shrink;notstraightdrift.150review reopened after8caa(straight-right)live.650ms/apex286ms/dx64/height62/size1.25→.6;yellowfirstimpacthalfarc/holdterminal/latesthitbounce+fade,minsize.8. Native1504PASS withGIF14frames200x200/264kB,allkinds/odd-even/movingtarget/staticreducedmotion/engine1x2x4. `scripts/test_number_flight_hosted.cjs`updatedassertpeak-andfall,NOTYETRUNlatest. Neverclaim8caaasfinalcurve.

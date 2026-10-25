@@ -823,12 +823,12 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 
 | Case | Task | Expected | Verification | Status |
 | --- | --- | --- | --- | --- |
-| `T150-AC-01` | TASK-150 | design63/AC01 | Native/flight/engine parity | not_run_implementation |
-| `T150-AC-02` | TASK-150 | design63/AC02 | Ground audit/build/public | not_run_implementation |
+| `T150-AC-01` | TASK-150 | design63/AC01 | Native/flight/engine parity | passed_implementation |
+| `T150-AC-02` | TASK-150 | design63/AC02 | Ground audit/build/public | passed_implementation |
 
 ## TASK-151 — พื้นสกิลnative
 
 | Case | Task | Expected | Verification | Status |
 | --- | --- | --- | --- | --- |
-| `T151-AC-01` | TASK-151 | design64/AC01 | actual status/native fields | not_run_implementation |
-| `T151-AC-02` | TASK-151 | design64/AC02 | native/lossless/assets/build/public | not_run_implementation |
+| `T151-AC-01` | TASK-151 | design64/AC01 | actual status/native fields | passed_implementation |
+| `T151-AC-02` | TASK-151 | design64/AC02 | native/lossless/assets/build/public | passed_implementation |

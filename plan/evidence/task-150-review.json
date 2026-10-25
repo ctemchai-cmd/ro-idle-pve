@@ -1,11 +1,11 @@
 {
   "task_id": "TASK-150",
   "date": "2026-10-25",
-  "passed": false,
-  "status": "review",
+  "passed": true,
+  "status": "done",
   "acceptance_results": {
-    "AC-01": "local curved flight passed, public pending",
-    "AC-02": "local passed, public pending"
+    "AC-01": "passed",
+    "AC-02": "passed"
   },
   "content_hash": "2c85fdd28e0530de6d807cd095e0e779d3b7edc5f0aa0603df219b5f59c1438c",
   "pack_hash": "cb126d18cd433b3d0c0e9bb1727235abc59269f5eb9e04ec3f8e524f148586fc",
@@ -29,22 +29,30 @@
     "number_flight_ms": 650,
     "arc_preview_frames": 14,
     "asset_changes_owned_by_TASK151": true,
-    "filtered_build": true
+    "filtered_build": true,
+    "hosted_groups": 4,
+    "public_bundle_SHA": 24,
+    "actual_public_native_curved_heal_pages": 2
   },
   "evidence": [
     "plan/evidence/task-150/native.json",
     "plan/evidence/task-150/hosted.json",
-    "plan/evidence/task-150/targeted.txt",
-    "plan/evidence/task-150/build.txt",
-    "plan/evidence/task-150/ground-assets.json"
+    "plan/evidence/task-150/arc-preview.gif",
+    "plan/evidence/task-151/build.txt",
+    "plan/evidence/task-151/filtered-build.txt",
+    "plan/evidence/task-151/focused.txt",
+    "plan/evidence/task-151/packcheck.txt"
   ],
   "limits": [
     "Ground assets audited locally; no new ground/song asset binding in this task. Current song aura is genuine texture composition, not exact original-client field.",
     "Native cases cover controlled presentation events; speed parity uses real shared engine. Not physical-phone FPS certification.",
     "No owner/AuthSQL/env/6173/agents or balance batch."
   ],
-  "pending": [
-    "public curved flight release"
-  ],
-  "local_passed": true
+  "local_passed": true,
+  "source_commit": "753561d5447a79f2e5ef4864666b67152facf056",
+  "deployment": {
+    "state": "SUCCESS",
+    "url": "https://vercel.com/chanon2/ro-idle-pve/Fyv3US7CHQMaTi7xTsGQnwMS13dJ"
+  },
+  "hosted": "plan/evidence/task-150/hosted.json"
 }

@@ -1,11 +1,8 @@
 {
   "task_id": "TASK-151",
-  "passed": false,
-  "status": "review",
+  "passed": true,
+  "status": "done",
   "local_passed": true,
-  "pending": [
-    "public release"
-  ],
   "content_hash": "2c85fdd28e0530de6d807cd095e0e779d3b7edc5f0aa0603df219b5f59c1438c",
   "pack_hash": "cb126d18cd433b3d0c0e9bb1727235abc59269f5eb9e04ec3f8e524f148586fc",
   "checks": {
@@ -27,11 +24,25 @@
     "initial_profile_bytes": 1600070,
     "M0": true,
     "root_build": true,
-    "filtered_build": true
+    "filtered_build": true,
+    "hosted_groups": 4,
+    "public_bundle_SHA": 24,
+    "actual_public_native_scenes": 6,
+    "public_native_source_files": 40
   },
   "limits": [
     "2D native texture/STR placement and field footprints are adapted, not pixel-identical original-client ground rendering. No added range/physics.",
     "Black-matte interpretation occurs in a cached render surface; source media and metadata keyframe values remain unchanged.",
     "CPU4x is bounded field-render work, not physical-phone/full-UI FPS certification. No owner/AuthSQL/env/6173/agents or balance batch."
-  ]
+  ],
+  "source_commit": "753561d5447a79f2e5ef4864666b67152facf056",
+  "deployment": {
+    "state": "SUCCESS",
+    "url": "https://vercel.com/chanon2/ro-idle-pve/Fyv3US7CHQMaTi7xTsGQnwMS13dJ"
+  },
+  "acceptance_results": {
+    "AC-01": "passed",
+    "AC-02": "passed"
+  },
+  "hosted": "plan/evidence/task-151/hosted.json"
 }
