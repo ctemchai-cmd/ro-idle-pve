@@ -2,7 +2,7 @@
 
 ## Performer song auras (25 October2026,D173/TASK149)
 
-Local18focused/native5/rootbuild/source30460460passed; latestHANDOFF for release. Renderer-only performance_auras config selects8 Bard/Dancer songIDs, including inherited High/Awaken. Actualstatus source/expiry→one ringperlivingperformer,notperrecipient/stack. Native32pxpriest_angel_ring (transparent center) +64pxain_note_01 only; blue/pink tint,underactors/followsinterpolatedposition/staticreducedmotion. No gameplayrange/channel/stat changes. prepareloads2texturesonlywhenpreparedsongs;initialprofilemustexcludeperformance_aurasunlessinitialskillsneedthem. Packc622/raw33546959<32MiB/initial1621492unchanged. See design62.
+Source6c2fbf464 live/VercelSUCCESS;18focused/native5/rootbuild/source30460460/publichosted4 passed. Renderer-only performance_auras config selects8 Bard/Dancer songIDs, including inherited High/Awaken. Actualstatus source/expiry→one ringperlivingperformer,notperrecipient/stack. Native32pxpriest_angel_ring (transparent center) +64pxain_note_01 only; blue/pink tint,underactors/followsinterpolatedposition/staticreducedmotion. No gameplayrange/channel/stat changes. prepareloads2texturesonlywhenpreparedsongs;initialprofilemustexcludeperformance_aurasunlessinitialskillsneedthem. Packc622/raw33546959<32MiB/initial1621492unchanged. See design62.
 
 ## Lv80/100 gear and Hi cap100 (25 October2026,D172/TASK148)
 

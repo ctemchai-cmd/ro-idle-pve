@@ -1,5 +1,11 @@
 # Handoff ระหว่าง agent
 
+## 25 ต.ค.2026 · Codex — TASK149 complete / native song auras live
+
+- Source6c2fbf4642e2bd92695871736ead6deca2d20fc9 VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/4A1WmZ8NcPM1jFSyFCgqHhNA71yf. Publichosted4PASS healthSIN1/auth401/content2c85unchanged/8songbindings+4nativefilesSHA/24bundles/actualpublicCanvasBard320-Dancer390ring2note3/0errors-writes.149done;135/149done/M4 89/98.18focused/native5/rootbuild/source30460460/M0passed. No remaining149work.
+- 8explicitBard/Dancer stable songIDs;nativepriest_angel_ring32px(transparentcenter)+ain_note_01_64px, blue/pink tint. Onegroundaura perlivingperformer fromactualstatussource+expiry,recipient/stackdedupvisualonly,positioninterpolatedsameasactor,staticreducedmotion. Actual16base/AwClass2/High+2simultaneousperformers/1x2x4engineimmutabilitypassed;bounded4aurasCPU4xp951ms—notfullUIphysicalAndroidclaim. No addedrange/channel/stats/skill/savechanges.
+- LazyAssetPackprepare2texturesonlyforsongskills. Packc622ce21bdc5f73f0921f7ef823e6f74ff8977e39bb1ff501322f32da0c5b98f/raw33546959<33554432/879assets1643files/initial1621492unchanged;buildinitialprofileexcludesperformance_aurasunlessitsinitialskillsneedit. Source2metareviewnotesonly/pixelsunchanged. Allgameplaydoc/schemaSHA/content2c85same, nofull707/balancebatchrerun. No SQL/env/owner/6173/agents. OwnVite7503andbrowsersclosed. Userunselectedmodernassets/task108pnguntouched. Closure documents these verified results; oldreview/inprogress unchanged.
+
 ## 25 ต.ค.2026 · Codex — TASK149 local complete / publish next
 
 - User asksBard/Dancer songaura.149review/134of149/M4 88of98. AllchangesUNCOMMITTEDHEAD6d490b0da.18focused/native5/rootbuild/M0/source30460460passed;16base/Awaken Class2/High+actual2singers,liveexpiry/movement/staticreducedmotion/1x2x4immutability;bounded4auraCPU4xp951ms. No full707/balancebatch;allgameplaydoc/schemaSHA/content2c85unchanged.

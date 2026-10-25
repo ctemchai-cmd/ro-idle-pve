@@ -1,11 +1,11 @@
 {
   "task_id": "TASK-149",
   "date": "2026-10-25",
-  "passed": false,
-  "status": "review",
+  "passed": true,
+  "status": "done",
   "acceptance_results": {
     "AC-01": "passed",
-    "AC-02": "awaiting_hosted"
+    "AC-02": "passed"
   },
   "local_passed": true,
   "content_hash": "2c85fdd28e0530de6d807cd095e0e779d3b7edc5f0aa0603df219b5f59c1438c",
@@ -32,12 +32,26 @@
     "pack_bytes": 33546959,
     "M0": true,
     "root_build": true,
-    "gameplay_SHA_unchanged": true
+    "gameplay_SHA_unchanged": true,
+    "hosted_groups": 4,
+    "hosted_bundle_SHA": 24,
+    "actual_public_Canvas_pages": 2
   },
   "evidence": [
     "plan/evidence/task-149/native.json",
     "plan/evidence/task-149/targeted.txt",
     "plan/evidence/task-149/build.txt",
     "plan/evidence/task-149/gameplay-before.json"
+  ],
+  "source_commit": "6c2fbf4642e2bd92695871736ead6deca2d20fc9",
+  "deployment": {
+    "state": "SUCCESS",
+    "url": "https://vercel.com/chanon2/ro-idle-pve/4A1WmZ8NcPM1jFSyFCgqHhNA71yf"
+  },
+  "hosted": "plan/evidence/task-149/hosted.json",
+  "limits": [
+    "Native texture composition is an explicit adaptation, not exact original RO song field reproduction.",
+    "Bounded renderer-only cost/emulated mobile sizes, not physical-phone full-UI FPS certification.",
+    "No gameplay/source-data changes, owner login/save writes, SQL/env/6173/agents or balance batch."
   ]
 }

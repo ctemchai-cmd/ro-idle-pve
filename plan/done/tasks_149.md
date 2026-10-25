@@ -16,7 +16,7 @@ TASK-146, TASK-148
 
 ## เกณฑ์ตรวจรับ
 - [x] AC-01: เพลง8ท่าอ่านactualsource/status/expiry;หลายคนได้บัฟไม่คูณวง,คนร่ายสองคนมีวงแยก,ร่ายซ้ำไม่ทำให้วงซ้อน;ไม่มีสถานะหรือร่ายถูกขัดไม่มีวง;ตามตำแหน่งและหายเมื่อหมดผล/ผู้ร่ายตาย;รองรับbase/Awaken/Hiและ1x2x4/reducedmotionโดยไม่เปลี่ยนengine
-- [ ] AC-02: ใช้เฉพาะnativepriest_angel_ring/ain_note_01จริงที่ตรวจภาพแล้ว;วงอยู่ใต้ตัวละคร/ไม่บังตัวเลข,มือถือ320390และbounded draw costผ่าน;สองassetเตรียมก่อนbattleไม่โหลดระหว่างframe/initialprofileเดิม;sourceintegrity/32MiB/build/push/Vercel-publicผ่าน;ทุกgameplaySHAเดิม
+- [x] AC-02: ใช้เฉพาะnativepriest_angel_ring/ain_note_01จริงที่ตรวจภาพแล้ว;วงอยู่ใต้ตัวละคร/ไม่บังตัวเลข,มือถือ320390และbounded draw costผ่าน;สองassetเตรียมก่อนbattleไม่โหลดระหว่างframe/initialprofileเดิม;sourceintegrity/32MiB/build/push/Vercel-publicผ่าน;ทุกgameplaySHAเดิม
 
 ## วิธีตรวจและหลักฐาน
 Pure status projection with actual immutable engine status view; actual Canvas/native texture drawImage captures and selected visual review at320390. Focused TS, source assets, build, publicread-only verification. Report plan/evidence/task-149-review.json.
@@ -27,3 +27,7 @@ Pure status projection with actual immutable engine status view; actual Canvas/n
 ## ผลตรวจ local
 
 18focusedTS/native5groups(16base-Aw/จริง2performers/movement-expiry/reducedmotion/1x2x4/boundedCPU4x4aurasp951ms)/source30460460/M0/rootbuildผ่าน. Gameplay/contenthash2c85เดิม;initial1621492เดิม;packc622raw33546959<32MiB. รอpublicVercelก่อนAC02.
+
+## ผลส่งมอบ
+
+Source6c2fbf464/VercelSUCCESS. Publichosted4groupsผ่านAPI/SIN1/contentเดิม/auth401/8songbindings+4sourcefileSHA/24bundleSHA/actualpublicCanvasBard320-Dancer390วงและโน้ตจริง/0errors-writes.18focused/native5/rootbuild/source30460460ผ่าน. TASK149done.
