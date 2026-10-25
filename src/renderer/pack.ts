@@ -7,6 +7,7 @@ import { wardrobeRefs, type WardrobeTiers } from './shell.ts';
 import { validateCombatVisuals } from './projectiles.ts';
 import { presetSwing } from './actor-animation.ts';
 import { nativeImpactProfile, type LoadedNativeImpact } from './native-impact.ts';
+import { performanceAuraConfig, type LoadedPerformanceAura } from './performance-aura.ts';
 
 async function json<T>(url: string, init?: RequestInit): Promise<T> { const response = await fetch(url, init); if (!response.ok) throw new Error(`ASSET_HTTP_${response.status}:${url}`); return response.json() as Promise<T>; }
 export class AssetPack {
@@ -16,6 +17,8 @@ export class AssetPack {
   readonly icons = new Map<string, string>();
   /** Native per-hit STR effect by skill id (resolved through the skill's presentation id). */
   readonly impacts = new Map<string, LoadedNativeImpact>();
+  performanceAura: LoadedPerformanceAura | null = null;
+  private performanceAuraReady: Promise<void> | null = null;
   background: NativeAsset | null = null;
   /** Last prepared scene; lets the shell switch music with the visible field. */
   currentScene: BattleScene | null = null;
@@ -68,6 +71,8 @@ export class AssetPack {
     return { body, ...(head ? { head } : {}), ...(weapon ? { weapon } : {}), ...(headgear ? { headgear } : {}), ...(garment ? { garment } : {}), ...presetSwing(preset) };
   }
   async prepare(scene: BattleScene, skillIds: readonly string[]): Promise<void> {
+    const aura = performanceAuraConfig(this.index.combat_visuals);
+    if (aura && skillIds.some(id => Object.hasOwn(aura.skills, id))) this.performanceAuraReady ??= Promise.all([this.asset(aura.ring_meta), this.asset(aura.note_meta)]).then(([ring, note]) => { this.performanceAura = { config: aura, ring, note }; });
     this.fontReady ??= (async () => { const fontLocation = locateAsset(this.index, this.index.font.id); const font = new FontFace('ROThai', `url("${fontLocation.mediaUrl}")`); await font.load(); document.fonts.add(font); })();
     const visuals = [...new Set(skillIds)].map(async id => {
       if (Object.hasOwn(scene.enemy_recipes, id)) {
@@ -90,6 +95,7 @@ export class AssetPack {
     // Independent media do not need to wait for numbers → font → background → actors.
     // Existing per-pack promises still deduplicate shared atlas/image requests.
     await Promise.all([
+      this.performanceAuraReady,
       this.asset(this.index.combat_visuals.numbers.meta).then(asset => { this.numberFont = asset; }),
       this.asset(this.index.combat_visuals.numbers.critical_meta).then(asset => { this.criticalFont = asset; }),
       this.fontReady,

@@ -338,3 +338,7 @@ Accepteduserintent: larger damage numbers; allmajor skills must use real local a
 ## D172 — 25 ตุลาคม 2026 · ของ80/100และเพดาน100
 
 ผู้ใช้ขอของ80/100และตอบยืนยันขยายเพดานตัวละคร100. ใช้บท11Lv80/12Lv100, Class2cap70/Class3ยังปิด,สกิลและAwakenเดิม. [design61](design/61-high-gear-and-level100.md).
+
+## D173 — 25 ตุลาคม 2026 · ออร่าเพลง
+
+ผู้ใช้ขอวงออร่าเพลงBard/Dancer. วงใต้ผู้ร่ายและnativeโน้ตตามสถานะจริง/รวมstackเพื่อการแสดงผล;ไม่มีrange/channelหรือบัฟเพิ่ม. [design62](design/62-performance-auras.md).

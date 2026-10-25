@@ -94,3 +94,5 @@ D167/TASK139: [ร้าน/แลกเศษ/Panel](56-shop-and-exchange-ui.md
 - [60 — ระดับอุปกรณ์ตามด่านฟาร์ม](60-farm-gear-levels.md): D171/TASK147.
 
 - [61 — ของ80/100และHi cap100](61-high-gear-and-level100.md): D172/TASK148.
+
+- [62 — วงออร่าเพลงBard/Dancer](62-performance-auras.md): D173/TASK149.

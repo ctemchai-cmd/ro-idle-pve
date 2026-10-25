@@ -1,11 +1,13 @@
 import type { CombatVisuals, ImpactEffect, ProjectileSpec } from '../contracts/assets.ts';
 import type { BattlePresentationEvent } from '../contracts/presentation.ts';
 import { nativeImpactProfile } from './native-impact.ts';
+import { performanceAuraConfig } from './performance-aura.ts';
 
 export interface ProjectileCue { at_ms: number; source_id: string; target_id: string; spec: ProjectileSpec; from?: readonly [number, number] }
 export function validateCombatVisuals(value: CombatVisuals, skillIds: readonly string[], presentationIds?: readonly string[]): void {
   const fail = () => { throw new Error('INVALID_COMBAT_VISUALS'); };
   if (!value || value.schema_version !== 1 || !value.numbers || !value.normal_attacks || !value.skills) fail();
+  performanceAuraConfig(value, skillIds);
   if (!value.numbers.meta?.endsWith('.meta.json') || !value.numbers.critical_meta?.endsWith('.meta.json') || !Number.isInteger(value.numbers.critical_frame) || value.numbers.critical_frame < 0 || value.numbers.digit_frames?.length !== 10 || value.numbers.digit_frames.some(frame => !Number.isInteger(frame) || frame < 0)) fail();
   for (const id of Object.keys(value.skills)) if (!skillIds.includes(id)) fail();
   for (const row of Object.values(value.skills)) if (row.hue_rotate_deg !== undefined && (!Number.isFinite(row.hue_rotate_deg) || Math.abs(row.hue_rotate_deg) > 360)) fail();

@@ -811,3 +811,10 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T148-AC-01` | TASK-148 | design61/AC01 | Typed/native/build/public | passed_implementation |
 | `T148-AC-02` | TASK-148 | design61/AC02 | Typed/native/build/public | passed_implementation |
 | `T148-AC-03` | TASK-148 | design61/AC03 | Typed/native/build/public | passed_implementation |
+
+## TASK-149 — วงออร่าเพลง
+
+| Case | Task | Expected | Verification | Status |
+| --- | --- | --- | --- | --- |
+| `T149-AC-01` | TASK-149 | design62/AC01 | Native/status/build/public | not_run_implementation |
+| `T149-AC-02` | TASK-149 | design62/AC02 | Native/status/build/public | not_run_implementation |

@@ -9,6 +9,7 @@ import { drawProjectile, isFocusedDamage, projectileLifetime, projectilePoint, t
 import { alignProjectiles, attackContactMs, visualImpactMs } from './impact-timing.ts';
 import { drawSpiritSpheres } from './spirit-spheres.ts';
 import { drawHealingAura } from './healing-aura.ts';
+import { drawPerformanceAura, performanceAuras, type PerformanceAura } from './performance-aura.ts';
 import { statusLinks, drawStatusLinks, type StatusLink } from './status-links.ts';
 import { locateSkillVisual } from './asset-locator.ts';
 import { FinisherEffects, type FinisherFrame } from './finishers.ts';
@@ -30,7 +31,7 @@ export class BattleRenderer {
   private readonly animation: ActorAnimation;
   private readonly finishers = new FinisherEffects();
   private readonly multiHitNumbers = new MultiHitNumbers();
-  frameStats = { numberBounds:[] as NumberDrawBounds[],fields:[] as string[],links:[] as StatusLink[],totals: [] as MultiHitFrame[], finishers: [] as FinisherFrame[], camera: [0,0] as readonly [number,number], healing_auras: [] as string[], damage: [] as { source: string; target: string; amount: number; critical: boolean; sequence: number; at_ms: number }[], incoming: [] as { source: string; target: string; amount: number; sequence: number }[], projectiles: [] as { source: string; target: string; shape: string }[], shouts: [] as { actor: string; skill: string }[], impacts: [] as { target: string; meta: string }[] };
+  frameStats = { performance_auras:[] as PerformanceAura[],numberBounds:[] as NumberDrawBounds[],fields:[] as string[],links:[] as StatusLink[],totals: [] as MultiHitFrame[], finishers: [] as FinisherFrame[], camera: [0,0] as readonly [number,number], healing_auras: [] as string[], damage: [] as { source: string; target: string; amount: number; critical: boolean; sequence: number; at_ms: number }[], incoming: [] as { source: string; target: string; amount: number; sequence: number }[], projectiles: [] as { source: string; target: string; shape: string }[], shouts: [] as { actor: string; skill: string }[], impacts: [] as { target: string; meta: string }[] };
   private frameTime = 0;
   private statusImages = new Map<string, HTMLImageElement | null>();
   /** Hide ambient-farm status icons without changing the shared combat state. */
@@ -162,9 +163,17 @@ export class BattleRenderer {
     const camera=this.showFinishers&&this.showFinisherTitles?this.finishers.shake(wallMs,this.motion):[0,0] as const;
     context.save(); context.translate((width - worldWidth * zoom) / 2+camera[0], (height - worldHeight * zoom) / 2+camera[1]); context.scale(zoom, zoom);
     this.drawnLayers = 0;
-    this.frameStats = { numberBounds:[] as NumberDrawBounds[],fields:[] as string[],links:[] as StatusLink[],totals: [], finishers: [], camera, damage: [], incoming: [], projectiles: [], shouts: [], impacts: [], healing_auras: [] };
+    this.frameStats = { performance_auras:[],numberBounds:[] as NumberDrawBounds[],fields:[] as string[],links:[] as StatusLink[],totals: [], finishers: [], camera, damage: [], incoming: [], projectiles: [], shouts: [], impacts: [], healing_auras: [] };
     const appearances = this.scene.actors;
     this.lastView = view;
+    if (this.pack.performanceAura) {
+      this.frameStats.performance_auras = performanceAuras(view.actors, view.game_time_ms, this.pack.performanceAura.config);
+      for (const aura of this.frameStats.performance_auras) {
+        const source = view.actors.find(a => a.actor_id === aura.source)!;
+        const [x, y] = this.point(source);
+        this.drawnLayers += drawPerformanceAura(context, this.pack.performanceAura, aura, presentationMs, this.motion, x, y);
+      }
+    }
     this.frameStats.links=statusLinks(view.actors,a=>this.point(a),view.game_time_ms);
     const linkProfile=this.pack.impacts.get('high_priest_basilica');
     drawStatusLinks(context,this.frameStats.links,presentationMs,this.motion,linkProfile?.config.link_texture_meta?linkProfile.textures.get(linkProfile.config.link_texture_meta):undefined);

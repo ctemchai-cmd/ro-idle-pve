@@ -185,7 +185,7 @@ def build(output=OUT, data_root=DATA, ro_root=RO):
     # The initial download profile is a budget scenario; other jobs/genders stay lazy.
     combat_visuals = read(COMBAT_VISUALS)
     # Per-skill native impacts load lazily with their skill; only the first-battle skills count as initial.
-    initial_refs = collect_refs({key: value for key, value in combat_visuals.items() if key != 'impacts'})
+    initial_refs = collect_refs({key: value for key, value in combat_visuals.items() if key not in ['impacts', 'performance_auras']})
     initial_skills = []
     for job in docs['actor-presentations.json']['jobs']:
         if job['job_id'] in ['swordsman', 'acolyte', 'archer', 'mage']:
@@ -200,6 +200,9 @@ def build(output=OUT, data_root=DATA, ro_root=RO):
                     for recipe in selected_recipes:
                         if recipe['skill_id'] == recipe_id:
                             initial_refs |= collect_refs([recipe['icon'], recipe.get('native_effect')])
+    aura = combat_visuals.get('performance_auras', {})
+    if set(initial_skills).intersection(aura.get('skills', {})):
+        initial_refs |= collect_refs(aura)
     first_stage = docs['stages.json']['stages'][0]
     initial_refs |= collect_refs(first_stage['background']) | collect_refs(prepared['font'])
     first_enemies = {row['definition_id'] for row in first_stage['encounter']}

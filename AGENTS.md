@@ -1,5 +1,9 @@
 # Project context
 
+## Performer song auras (25 October2026,D173/TASK149)
+
+Local18focused/native5/rootbuild/source30460460passed; latestHANDOFF for release. Renderer-only performance_auras config selects8 Bard/Dancer songIDs, including inherited High/Awaken. Actualstatus source/expiry→one ringperlivingperformer,notperrecipient/stack. Native32pxpriest_angel_ring (transparent center) +64pxain_note_01 only; blue/pink tint,underactors/followsinterpolatedposition/staticreducedmotion. No gameplayrange/channel/stat changes. prepareloads2texturesonlywhenpreparedsongs;initialprofilemustexcludeperformance_aurasunlessinitialskillsneedthem. Packc622/raw33546959<32MiB/initial1621492unchanged. See design62.
+
 ## Lv80/100 gear and Hi cap100 (25 October2026,D172/TASK148)
 
 User explicitly confirmed character cap100. Class2 stays70/High100/gate80→local100; no gate90/100/Class3. Six36-item tiers now1/20/40/60/80/100, chapter11→80/12→100,1–10unchanged. Gacha highest-clearedchapter,drop rates/cards/old144gear/skills unchanged. New items continue40→60 stat deltas, options80=3/100=3.5, same-family genuine icons and explicit wardrobe.tier_aliases80/100→60; no extra media. Higher gear needs newdrop/gacha, tierup remainsdisabled. Migration retains valid lower frozen gear pool for unpaid time, then existingfarm.claim/set_stage settlesoldwindow before newpool; preservecursor/RNG/allinvestments. Sourcec058aceb1 live/VercelSUCCESS;707TS/27targeted/39scope/native4/root-filtered/assets/publichosted4 passed. See latestHANDOFF/design61.

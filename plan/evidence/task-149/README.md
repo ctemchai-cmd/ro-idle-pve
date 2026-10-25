@@ -1,0 +1,7 @@
+# TASK149 — ออร่าเพลงBard/Dancer
+
+Native priest_angel_ring.bmp32×32 (transparent center) + ain_note_01.tga64×64;วงบาง2ชั้น+3โน้ต,blueBard/pinkDancer tint. ทั้งหมดเป็นdrawImageจากsourceจริง/ไม่มีวาดวงหรือโน้ตทดแทนด้วยgeometry. Ringfollowsactualsourcepoint/readliveinstances;รวมrecipient/stackเป็นหนึ่งวงต่อผู้ร่ายแต่ไม่รวมผลบัฟในengine.
+
+18focusedTSผ่าน; actualChrome5groups:16base/Awakenที่Bard/Dancer/Clown/Gypsy,actual2singersในฉากเดียว10native draws,ตำแหน่ง/expiry/reducedmotion/engineimmutable/speed1x2x4,CPU4x4auras20native draw90framesp951ms,0errors-writes. เป็นbounded renderer-work ไม่ใช่physicalAndroid/fullUI FPS. มือถือ320390และduet390ตรวจภาพด้วยตาแล้ว. เริ่มใช้lexdivina_ringพบcenteropaqueไม่ใช่closedring;เปลี่ยนpriest_angel_ringที่holetransparentก่อนfinalตรวจ. Initialmovementharnessต้องขยับprevious_xด้วยเพราะpositioninterpolation;reportfieldjobแก้เป็นf.job. native-failed.pngเป็นdebugภาพเก่า ไม่ใช่final.
+
+304starter/60460library(9knownmissingนอกpack)/M0/typecheck/rootbuildผ่าน. ไม่รันbalancebatch/full707ซ้ำเพราะทุกgameplaydoc/schema/SHA/enginecontent2c85เหมือนเดิม. Packc622ce21bdc5f73f0921f7ef823e6f74ff8977e39bb1ff501322f32da0c5b98f/raw33546959<33554432,2newtinytextures/initial1621492unchanged;assetsloadedonlyforpreparedsongskills. วงคือpresentation ไม่เพิ่มrange/channel/stat/save. ไม่มีowner/AuthSQL/env/6173/agents. รอpublicdeployment.

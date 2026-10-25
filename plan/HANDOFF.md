@@ -1,5 +1,11 @@
 # Handoff ระหว่าง agent
 
+## 25 ต.ค.2026 · Codex — TASK149 local complete / publish next
+
+- User asksBard/Dancer songaura.149review/134of149/M4 88of98. AllchangesUNCOMMITTEDHEAD6d490b0da.18focused/native5/rootbuild/M0/source30460460passed;16base/Awaken Class2/High+actual2singers,liveexpiry/movement/staticreducedmotion/1x2x4immutability;bounded4auraCPU4xp951ms. No full707/balancebatch;allgameplaydoc/schemaSHA/content2c85unchanged.
+- 8explicitstable songIDs inrenderercombat_visuals.performance_auras,deriveowner/statuslifetime→onecastercircle;nativepriest_angel_ring32pxtransparentcenter+ain_note_01_64px;blueBard/pinkDancer. Ringatfeetbeforeactors/notesnativeonly. Copytargets/recastsmergedvisuallyonly;sourcealive/laststatusend/missedCC/interrupttruth. AssetPack prepares2texturesonlywithsongskills;initialprofilebuilderexcludesauraunlessinitialskillsneedit. Packc622ce21bdc5f73f0921f7ef823e6f74ff8977e39bb1ff501322f32da0c5b98f/raw33546959/initial1621492unchanged. Source2metadatareviewonly+selected4files;pixelsunchanged. Firstlexringhadopaquecenter,replacedbeforefinal.
+- OwnVite7503CLOSED/browsersclosed. Needexplicitstageours inclnewrenderer module/test/scripts149evidence/task/design/newruntime4files/source2sidecars+validation/manifest. Pushoriginmain,awaitVercelSUCCESS,run scripts/test_performance_auras_hosted.cjs(written/syntaxchecked):publicactualCanvasBard/Dancer/4sourceSHA/24bundles/healthSIN1/auth401/noownerwrites. Then149done135of149/M4 89of98/readiness/closurepush. NoSQL/env/owner/6173/agents. Userunselectedmodernassets/task108pnguntouched.
+
 ## 25 ต.ค.2026 · Codex — TASK148 complete / gear80–100 and High100 live
 
 - Sourcec058aceb1a944a8343541c197ee7d3c9f257cb97 live/VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/FttZuVHBqSYPnHzuLxKrPk2bzgMt. Publichosted4groupsPASShealthSIN1/auth401/newcontent2c85/newpackb1e9/24bundleSHA+gear80-100-cap100/wardrobealiases/32MiB/login320390/0errors-writes.707fullTS/27targeted/39scope/nativeFarm2+Gear2/root-filteredM0/assets30460460passed.148done/134of148/M4 88of97. No remaining148work.
