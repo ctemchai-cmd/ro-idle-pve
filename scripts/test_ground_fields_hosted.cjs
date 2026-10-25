@@ -35,7 +35,7 @@ const root = path.resolve(__dirname, '..'), out = path.join(root, 'plan/evidence
       const original = CanvasRenderingContext2D.prototype.drawImage, sources = new WeakMap(), inspected = new WeakSet(); window.ground151 = { draws: [], mattes: [] };
       CanvasRenderingContext2D.prototype.drawImage = function (...args) {
         original.apply(this, args); const image = args[0], src = image?.src || sources.get(image) || '';
-        if (!['magic_ring_a_s', 'quagmire_out', 'meteor2', 'all_ground', 'idun_apple', 'heart_2'].some(s => src.includes(s))) return;
+        if (!['magic_green', 'pok2--0221e261ee77', 'magic_ring_a_s', 'quagmire_out', 'meteor2', 'all_ground', 'idun_apple', 'heart_2'].some(s => src.includes(s))) return;
         if (!this.canvas.clientWidth) sources.set(this.canvas, src);
         else {
           window.ground151.draws.push({ src, filter: this.filter, blend: this.globalCompositeOperation, alpha: this.globalAlpha });
@@ -48,11 +48,12 @@ const root = path.resolve(__dirname, '..'), out = path.join(root, 'plan/evidence
       };
     });
     const rows = [];
-    for (const [width, job, id, needle] of [[320, 'priest', 'priest_sanctuary', 'magic_ring_a_s'], [390, 'wizard', 'wizard_quagmire', 'quagmire_out'], [390, 'wizard', 'wizard_meteor', 'meteor2'], [320, 'bard', 'bard_healing_song', 'idun_apple'], [390, 'dancer', 'dancer_battle_song', 'heart_2'], [390, 'professor', 'professor_soul_change', 'magic_ring_a_s']]) {
+    for (const [width, job, id, needle] of [[320, 'priest', 'priest_sanctuary', task === 'task-153' ? 'magic_green' : 'magic_ring_a_s'], [390, 'wizard', 'wizard_quagmire', 'quagmire_out'], [390, 'wizard', 'wizard_meteor', 'meteor2'], [320, 'bard', 'bard_healing_song', 'idun_apple'], [390, 'dancer', 'dancer_battle_song', 'heart_2'], [390, 'professor', 'professor_soul_change', 'magic_ring_a_s']]) {
       await page.setViewportSize({ width, height: 844 }); await page.goto(base + `/skill-preview?job=${job}&skill=${id}&rank=10`);
       await page.locator('.skill-preview[data-ready="true"]').waitFor({ timeout: 30000 });
       await page.waitForFunction(needle => window.ground151.draws.some(d => d.src.includes(needle)), needle, { timeout: 20000 });
       const painted = await page.evaluate(() => window.ground151);
+      if (id === 'priest_sanctuary' && task === 'task-153') { assert(painted.draws.some(d => d.src.includes('pok2--0221e261ee77')), 'MISSING_WHITE_GROUND'); assert(!painted.draws.some(d => d.src.includes('magic_ring_a_s')), 'GENERIC_RUNE_RETURNED'); }
       if (id === 'wizard_quagmire') assert(painted.mattes.length && painted.mattes.every(a => a.every(alpha => alpha === 0)), 'BLACK_GROUND_BOX');
       if (job === 'bard' || job === 'dancer') { assert(painted.draws.some(d => d.src.includes('all_ground') && d.blend === 'lighter'), 'OPAQUE_SONG_BOX'); assert(painted.draws.filter(d => d.src.includes(needle)).every(d => d.filter === 'none'), 'SONG_SYMBOL_RECOLORED'); }
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));

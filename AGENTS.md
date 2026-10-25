@@ -2,6 +2,8 @@
 
 ## Card confirmations and clearer ground effects (26 October2026,D177/TASK153)
 
+Source4af88856e live/VercelSUCCESS;24focused/nativeUI4+ground7+number4/hosted8/rootbuild/M0passed. No remaining153work.
+
 SharedCardSalvageButton requires explicit confirmation of the exact instance in CardSheet and Buddy;locked/equipped cards cannot salvage,one pendingcommand,cancel/Escape no command. NestedSheetcancel stops propagation so parentstaysopen. Gacharesultsrepeatlast1/10pull with latestcost/stock/space and existingreceipt;retainoldresultsduringwait/failure. No new payment/save rules.
 
 NumbersretainD176sizes/620ms/paintedorigin/rightfall,raiseheight78→100. Bard/Dancernativeellipse covers allcurrentlivingnon-summonteammates atinterpolatedfeet withcornermargin/min420×260;nativeall_groundcrop9,8,110,74/alpha.28,notesremainatperformer. No gameplayrangechanges. SanctuarySTR83isgenuine;genericrunefloorreplacedwithground319magic_green+nativeGroundEffectpok2.tga5×5softwhitetiles(2Dadaptation,notexact3Dclient). Groundfloor_tiles refs lazyloaded/cached. Keepotherfields/actualstatuses/expiry/staticreducedmotion unchanged. Pack896/1677/raw33466791<32MiB/initial1600070. See latestHANDOFF/design66 forrelease status.

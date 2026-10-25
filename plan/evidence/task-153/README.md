@@ -7,3 +7,5 @@ Sanctuary STR83 was genuine; previousgenericrunicfloor was an adaptation. This p
 Commands: RO_EVIDENCE_TASK=task-153 RO_PREVIEW_URL=http://127.0.0.1:7507 node scripts/test_number_flight.cjs (reportnumber-native.json); correspondingtest_ground_fields.cjs (ground-native.json); test_card_actions_native.cjs (ui.json). Historic150/151/152evidence untouched.
 
 Local discovered nestedcancelbubbling fixed in Sheet:stopPropagation avoids closing the parent on Escape. Build and publicrelease evidence added after deployment.
+
+Released source4af88856e/VercelSUCCESS. ground-hosted4PASS(44nativefilesSHA/24bundles/6actualnativescenes/newUI markers) and number-hosted4PASS(actualnativegreen320390higherarc). Noownerwrites. Publicold-oraclefailure retained;newSanctuaryoraclechecksrealmagic_green+whitepok2andnorune. TASK153done.

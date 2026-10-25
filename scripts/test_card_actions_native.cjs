@@ -44,7 +44,7 @@ try{
   await page.setViewportSize({width:count===1?320:390,height:844});
   await mount('store');await page.getByRole('tab',{name:'สุ่มการ์ด',exact:true}).click();await page.getByRole('button',{name:new RegExp('^สุ่ม '+count+' ')}).click();assert.equal((await snapshot()).calls.length,1);await page.evaluate(()=>window.card153.release());
   const result=page.getByRole('dialog',{name:`ได้รับการ์ด ${count} ใบ`,exact:true});await result.waitFor();const before=await snapshot(),oldIds=before.state.inventory.map(i=>i.instance_id);
-  await page.screenshot({animations:'disabled',path:path.join(out,`repeat-${count}-390.png`)});
+  await page.screenshot({animations:'disabled',path:path.join(out,`repeat-${count}-${count===1?320:390}.png`)});
   const again=result.getByRole('button',{name:new RegExp('^สุ่มอีก '+count+' ใบ')});assert(await again.isVisible());assert(await again.evaluate(b=>{const r=b.getBoundingClientRect();return r.top>=0&&r.bottom<=innerHeight&&r.height>=44;}));
   await again.evaluate(b=>{b.click();b.click()});assert.equal((await snapshot()).calls.length,2);assert(await result.getByRole('button',{name:'กำลังสุ่ม…'}).isDisabled());assert.equal(await result.locator('.gacha-card').count(),count);
   await page.evaluate(()=>window.card153.release(false));await again.waitFor();assert.deepEqual((await snapshot()).state,before.state);assert.equal(await result.locator('.gacha-card').count(),count);

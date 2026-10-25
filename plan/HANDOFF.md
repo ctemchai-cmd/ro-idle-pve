@@ -1,5 +1,12 @@
 # Handoff ระหว่าง agent
 
+## 26 ต.ค.2026 · Codex — TASK153 complete / card actions + field clarity LIVE
+
+- Source4af88856e750715b5492b4d67d8e560a196b3e01/VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/B8mkixjyAX8sn6ZtsSjqdme5rG5L. Publicground4PASS6actualmobileScenes/22refs44filesSHA/24bundleSHA+newUI markers;publicnumbers4PASSnativegreen320390higherarc/rightfall/shrink/0errors-writes.153done;139/153/M4 93/102. No remaining153work. Local24focusedTS/UI4(actualReact+reducers320390)+ground7+number4/source30460460/rootbuild/M0passed. Productsource unchangedafterpush;closureonlyevidence/docs/testoracle.
+- CardSheet+Buddy explicitexactinstanceconfirm/quote/cancel/locked/equipped/single-flight;SheetEscapeonlyclosesactivechild. Resultsrepeat1/10withlatestcost/space/oldresultsretainedonfailure. Numberheight100only(otherD176unchanged);songellipsemin420×260coversinterpolatedlivingnonsummonteam+corners/nativecrop+notesatsource. SanctuaryrealSTR83+ground319magic_green/nativepok2.tga25whitegreentiles;oldgenericruneout,explicit2Dadaptation. Runtime0c036dd504237db1a6866108932f6fb2e5eb43e4f349559f8051b39044584b88/896IDs1677files/raw33466791<32MiB/initial1600070same/content2c85same/allgameplaySHA/mediaunchanged. NoSQL/env/owner/6173/agents/balancebatch. OwnVite7507/Chromeclosed.
+- PublicharnessfirststillwaitedoldSanctuaryrune;correctedoracletoexplicitnewmagic_green+pok2/norune,retainedpre-new-sanctuary-oracle-hosted.json,thenpassed. No productfixneeded. Existingground/nativeharnessacceptsboundedRO_EVIDENCE_TASK=task-153anddoesnotoverwrite151. NewUIharnessscripts/test_card_actions_native.cjs.Memoryonly,notnewSQL/Authproof. Unselecteduserassets/task108pnguntouched.
+
+
 ## 26 ต.ค.2026 · Codex — ACTIVE153 local complete / publish next
 
 - Userrequests salvageconfirm+repeatcardpull plus highernumbers/teamcoveringsongs/whiteSanctuary.153review/design66/D177.24focusedTS/native4number+7ground+4actualReactUI320390/source30460460/rootbuild/M0passed. SharedCardSalvageButton atCardSheet+Buddy,explicitexactinstance/cancel/locked/equipped/single-flight. SheetstopPropagationfixnestedEscape. Resultrepeat1/10useslatestcost/space/single-flight;oldresultsstayduringfailure. No domain/cost/save changes.
