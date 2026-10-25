@@ -16,11 +16,15 @@ export function StorePage({ context }: { context: GameContext }) {
   const { state, pack, submit, locked, go } = context, [section, setSection] = useState<Section>('shop'), [revealed, setRevealed] = useState<string[]>([]), [openCardId,setOpenCardId]=useState<string|null>(null);
   const [scrollCharacterId,setScrollCharacterId]=useState(context.characterId);
   const [revealOpen,setRevealOpen]=useState(false),[skip,setSkip]=useState(false),[pulling,setPulling]=useState(false),pullGate=useRef(false);
+  const [lastCardCount,setLastCardCount]=useState<1|10>(1);
   const openCard=state.inventory.find(item=>item.kind==='card'&&item.instance_id===openCardId);
   const view = storeView(state, Date.now());
   async function pull(pool: 'card_v1' | 'equipment_v1', count: 1 | 10) {
-    if(pullGate.current)return;pullGate.current=true;setPulling(true);setRevealed([]);setSkip(false);
-    try { if(await submit('gacha.pull',{pool_id:pool,count})) {setRevealed(context.lastCreated());setRevealOpen(pool==='card_v1');} }
+    const price=pool==='card_v1'?view.cards:view.gear;
+    if(pullGate.current||locked||!canPay(state.wallet,count===10?price.cost10:price.cost1)||state.inventory.length+count>500)return;
+    pullGate.current=true;setPulling(true);
+    try { if(await submit('gacha.pull',{pool_id:pool,count})) {setSkip(false);setRevealed(context.lastCreated());setRevealOpen(pool==='card_v1');if(pool==='card_v1')setLastCardCount(count);} }
+    catch {context.toast('สุ่มไม่สำเร็จ ลองใหม่อีกครั้ง');}
     finally {pullGate.current=false;setPulling(false);}
   }
   const buyGate=useRef(false),[buying,setBuying]=useState<string|null>(null);
@@ -60,13 +64,16 @@ export function StorePage({ context }: { context: GameContext }) {
         <ul className="gacha-odds">{data.odds.map(row => <li key={row.id} className={`rarity-${row.id}`}><span>{rarityLabels[row.id] ?? row.id}</span><b>{row.percent}%</b></li>)}</ul>
         {!card && <p className="hint">ได้ของ Tier ตามบทที่ผ่านล่าสุด · Rare+ มี Option สุ่ม ({optionLineSummary()} แถว)</p>}
         <div className="row two">
-          <button className="btn" disabled={locked || pulling || !canPay(state.wallet, data.cost1)} onClick={() => void pull(pool, 1)}>สุ่ม 1 <CostChips pack={pack} cost={data.cost1} wallet={state.wallet} /></button>
+          <button className="btn" disabled={locked || pulling || !canPay(state.wallet, data.cost1) || state.inventory.length + 1 > 500} onClick={() => void pull(pool, 1)}>สุ่ม 1 <CostChips pack={pack} cost={data.cost1} wallet={state.wallet} /></button>
           <button className="btn primary" disabled={locked || pulling || !canPay(state.wallet, data.cost10) || state.inventory.length + 10 > 500} onClick={() => void pull(pool, 10)}>สุ่ม 10 <CostChips pack={pack} cost={data.cost10} wallet={state.wallet} /></button>
         </div>
         {results.length > 0 && !revealOpen && resultGrid}
       </section>; })()}
     {revealOpen&&results.length>0&&<Sheet title={`ได้รับการ์ด ${results.length} ใบ`} className="tall gacha-reveal-sheet" onClose={()=>setRevealOpen(false)}>
-      <div className="summon-results-scroll">{resultGrid}</div><div className="summon-result-actions"><button className="btn ghost" onClick={()=>setSkip(true)}>ข้ามเอฟเฟกต์</button><button className="btn primary" onClick={()=>setRevealOpen(false)}>รับทั้งหมด</button></div>
+      <div className="summon-results-scroll">{resultGrid}</div><div className="summon-result-actions">
+        <button className="btn ghost small" disabled={pulling} onClick={()=>setSkip(true)}>ข้ามเอฟเฟกต์</button><button className="btn ghost small" onClick={()=>setRevealOpen(false)}>เสร็จสิ้น</button>
+        <button className="btn primary summon-again" disabled={locked||pulling||!canPay(state.wallet,lastCardCount===10?view.cards.cost10:view.cards.cost1)||state.inventory.length+lastCardCount>500} onClick={()=>void pull('card_v1',lastCardCount)}>{pulling?'กำลังสุ่ม…':`สุ่มอีก ${lastCardCount} ใบ`}<CostChips pack={pack} cost={lastCardCount===10?view.cards.cost10:view.cards.cost1} wallet={state.wallet}/></button>
+      </div>
     </Sheet>}
     {openCard?.kind==='card'&&<CardSheet context={context} card={cardView(openCard,state)} close={()=>setOpenCardId(null)}/>}
   </div>;

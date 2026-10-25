@@ -102,3 +102,5 @@ D167/TASK139: [ร้าน/แลกเศษ/Panel](56-shop-and-exchange-ui.md
 - [64 — พื้นสกิลnative](64-native-ground-fields.md): D175/TASK151.
 
 - [65 — ขนาดและแรงเด้งเลข](65-number-impact.md): D176/TASK152.
+
+- [66-card-actions-and-field-clarity.md](66-card-actions-and-field-clarity.md): D177/TASK153 ยืนยันย่อย/สุ่มต่อ/พื้นแสงและวงเพลงครอบทีม

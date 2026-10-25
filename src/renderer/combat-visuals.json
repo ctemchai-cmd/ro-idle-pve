@@ -1711,12 +1711,12 @@
     "ring_meta": "library/effects/effect_texture/all_ground--57abef5c9725.meta.json",
     "note_meta": "library/effects/effect_texture/melody_b--f30d80e2856a.meta.json",
     "ring_size": [
-      260,
-      160
+      420,
+      260
     ],
     "note_size": 46,
     "period_ms": 4200,
-    "alpha": 0.38,
+    "alpha": 0.28,
     "styles": {
       "bard": {
         "hue_rotate_deg": 190,
@@ -1758,7 +1758,13 @@
       "dancer_dissonance": "dancer",
       "dancer_encore": "dancer"
     },
-    "basis": "D175 native melody_a/b, idun_apple, lens_w, spell_01 and heart_2 from RO song-framework mappings; native ring composes the 2D area, original symbol colors preserved. Not a pixel-identical 3D client field."
+    "basis": "D175 native melody_a/b, idun_apple, lens_w, spell_01 and heart_2 from RO song-framework mappings; native ring composes the 2D area, original symbol colors preserved. Not a pixel-identical 3D client field.",
+    "ring_bounds": [
+      9,
+      8,
+      110,
+      74
+    ]
   },
   "ground_fields": {
     "visual_priest_sanctuary": {
@@ -1773,13 +1779,19 @@
       "lead_ms": 0,
       "stagger_ms": 0,
       "native_only": true,
-      "basis": "D175 real local RO media, projected from actual status lifetime; 2D area placement is adapted, not added gameplay range.",
-      "floor_meta": "library/effects/effect_texture/magic_ring_a_s--541bc30a6750.meta.json",
+      "basis": "D177 Sanctuary STR83 + actual EF_BOTTOM_SANC319 magic_green texture; native GroundEffect pok2.tga white surface. Adapted 5x5 2D tiles, not exact original 3D geometry.",
+      "floor_tiles": {
+        "columns": 5,
+        "rows": 5,
+        "surface_meta": "library/effects/effect_texture/pok2--0221e261ee77.meta.json",
+        "surface_alpha": 0.58
+      },
+      "floor_meta": "library/effects/effect_texture/magic_green--0c6d7c539bfa.meta.json",
       "floor_size": [
-        210,
-        125
+        260,
+        160
       ],
-      "floor_alpha": 0.32,
+      "floor_alpha": 0.28,
       "floor_additive": true
     },
     "visual_wizard_storm_gust": {

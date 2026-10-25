@@ -1,5 +1,12 @@
 # Project context
 
+## Card confirmations and clearer ground effects (26 October2026,D177/TASK153)
+
+SharedCardSalvageButton requires explicit confirmation of the exact instance in CardSheet and Buddy;locked/equipped cards cannot salvage,one pendingcommand,cancel/Escape no command. NestedSheetcancel stops propagation so parentstaysopen. Gacharesultsrepeatlast1/10pull with latestcost/stock/space and existingreceipt;retainoldresultsduringwait/failure. No new payment/save rules.
+
+NumbersretainD176sizes/620ms/paintedorigin/rightfall,raiseheight78→100. Bard/Dancernativeellipse covers allcurrentlivingnon-summonteammates atinterpolatedfeet withcornermargin/min420×260;nativeall_groundcrop9,8,110,74/alpha.28,notesremainatperformer. No gameplayrangechanges. SanctuarySTR83isgenuine;genericrunefloorreplacedwithground319magic_green+nativeGroundEffectpok2.tga5×5softwhitetiles(2Dadaptation,notexact3Dclient). Groundfloor_tiles refs lazyloaded/cached. Keepotherfields/actualstatuses/expiry/staticreducedmotion unchanged. Pack896/1677/raw33466791<32MiB/initial1600070. See latestHANDOFF/design66 forrelease status.
+
+
 ## Number impact tuning (25 October2026,D176/TASK152)
 
 Source120558a4b live/VercelSUCCESS;10TS/native4/60beforeafter/hosted4/rootbuild passed. Retain NumberDrawBounds.origin (painted world origin after clamp) on first actual paint for hit/heal/total, so shrink never releases a viewport edge and pulls the number left. Renderer-only: CSSheight34damage/43crit-total/30heal/27incoming;26%pop over110ms;620ms rightward falling arc,height78/dx76,44%apex/size1.25→.6 unchanged. Keep native bitmap/colors/focus/values,first-impact total path and staticreducedmotion. Larger/stronger visual impact changes no combat power or assets. Existing number harnesses accept bounded RO_EVIDENCE_TASK=task-152 to preserve historical evidence. See design65/latestHANDOFF for release status.

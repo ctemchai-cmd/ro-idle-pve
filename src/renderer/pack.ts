@@ -85,7 +85,7 @@ export class AssetPack {
     const visuals = [...new Set(skillIds)].map(async id => {
       const field = ground[this.index.skills[id]?.presentation_id ?? ''];
       if (field) {
-        const refs = [...new Set([field.meta, ...(field.texture_layers ?? []).map(l => l.meta), ...(field.floor_meta ? [field.floor_meta] : [])])];
+        const refs = [...new Set([field.meta, ...(field.texture_layers ?? []).map(l => l.meta), ...(field.floor_meta ? [field.floor_meta] : []), ...(field.floor_tiles ? [field.floor_tiles.surface_meta] : [])])];
         const textures = new Map(await Promise.all(refs.map(async ref => [ref, await this.asset(ref)] as const)));
         const floor = field.floor_meta ? textures.get(field.floor_meta)!.image : undefined;
         this.groundFields.set(id, { config: field, asset: textures.get(field.meta)!, textures, ...(floor ? { floorImage: field.floor_black_key ? blackKeyTexture(floor) : floor } : {}) });

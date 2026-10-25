@@ -1,10 +1,17 @@
 """D175: explicit native floor bindings. Run after older D170 major-effect authoring."""
 import json
+import argparse
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 RO = ROOT / 'assets/ro'
-OUT = ROOT / 'plan/evidence/task-151'
+parser = argparse.ArgumentParser()
+parser.add_argument('--evidence-task', default='task-151')
+args = parser.parse_args()
+if not re.fullmatch(r'task-\d{3}', args.evidence_task):
+    raise ValueError('Invalid evidence task')
+OUT = ROOT / 'plan/evidence' / args.evidence_task
 FILE = ROOT / 'src/renderer/combat-visuals.json'
 value = json.loads(FILE.read_text())
 RING = 'library/effects/effect_texture/priest_angel_ring--abc8d5b4fa0c.meta.json'
@@ -15,6 +22,8 @@ FIRE_RING = 'library/effects/effect_texture/floor_cast--0726bf4aa541.meta.json'
 CROSS = 'library/effects/effect_texture/cross_old--f85b1ae938d3.meta.json'
 TRAP = 'library/items/world_item_atlas/asset--3f955a83a507.meta.json'
 METEOR = 'library/effects/keyframe_effect_atlas/meteor2--1b45e3ebdf39.meta.json'
+SANCTUARY_LIGHT = 'library/effects/effect_texture/magic_green--0c6d7c539bfa.meta.json'
+GROUND_LIGHT = 'library/effects/effect_texture/pok2--0221e261ee77.meta.json'
 
 def layer(meta, width, height, *, count=1, spread=0, at=(0, 0)):
     return dict(meta=meta, delay_ms=0, duration_ms=1200, count=count, interval_ms=0, alpha=.7,
@@ -44,7 +53,11 @@ for skill, profile in bindings.items():
     if skill == 'hunter_ankle_snare':
         continue
     meta, size, alpha, additive = MAGIC, [210, 125], .32, True
-    if skill in ['wizard_quagmire', 'assassin_venom_dust']:
+    if skill == 'priest_sanctuary':
+        meta, size, alpha, additive = SANCTUARY_LIGHT, [260, 160], .28, True
+        profile['floor_tiles'] = dict(columns=5, rows=5, surface_meta=GROUND_LIGHT, surface_alpha=.58)
+        profile['basis'] = 'D177 Sanctuary STR83 + actual EF_BOTTOM_SANC319 magic_green texture; native GroundEffect pok2.tga white surface. Adapted 5x5 2D tiles, not exact original 3D geometry.'
+    elif skill in ['wizard_quagmire', 'assassin_venom_dust']:
         meta, size, alpha, additive = MUD, [210, 130], .65, False
         profile['floor_black_key'] = True
     elif skill == 'alchemist_demonstration':
@@ -67,6 +80,9 @@ for profile in value['impacts'].values():
 
 aura = value['performance_auras']
 aura['ring_meta'] = GROUND_RING
+aura['ring_size'] = [420, 260]
+aura['ring_bounds'] = [9, 8, 110, 74]
+aura['alpha'] = .28
 aura['note_meta'] = 'library/effects/effect_texture/melody_b--f30d80e2856a.meta.json'
 aura['styles'] = {
     'bard': dict(hue_rotate_deg=190, note_meta=aura['note_meta']),
@@ -93,7 +109,7 @@ for skill in skills:
     rows.append(dict(skill_id=sid, presentation_id=presentation, kind=skill['kind'], role=role))
 OUT.mkdir(exist_ok=True)
 (OUT / 'ground-catalog.json').write_text(json.dumps({'scope': 'Every authored player/Hi/enemy skill; passive/non-ground attacks are explicitly excluded, no invented field duration.', 'skills': rows}, indent=2) + '\n')
-refs = {METEOR, RING, CROSS, TRAP, GROUND_RING, MAGIC, MUD, FIRE_RING}
+refs = {METEOR, RING, CROSS, TRAP, GROUND_RING, MAGIC, MUD, FIRE_RING, SANCTUARY_LIGHT, GROUND_LIGHT}
 refs.update(p['meta'] for p in bindings.values())
 refs.update(s['note_meta'] for s in aura['styles'].values())
 audit = []

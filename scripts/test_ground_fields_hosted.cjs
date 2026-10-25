@@ -1,7 +1,8 @@
 // Read-only public release checks. Never log in or access the owner's saves.
 const fs = require('node:fs'), path = require('node:path'), assert = require('node:assert/strict'), { createHash } = require('node:crypto');
 const { chromium } = require('/private/tmp/ro-idle-browser-check/node_modules/playwright-core');
-const root = path.resolve(__dirname, '..'), out = path.join(root, 'plan/evidence/task-151'), base = 'https://ro-idle-pve.vercel.app';
+const task = process.env.RO_EVIDENCE_TASK || 'task-151'; assert(/^task-\d{3}$/.test(task));
+const root = path.resolve(__dirname, '..'), out = path.join(root, 'plan/evidence/' + task), base = 'https://ro-idle-pve.vercel.app';
 (async () => {
   let browser, failure; const checks = [], errors = [], writes = [];
   try {
@@ -25,6 +26,7 @@ const root = path.resolve(__dirname, '..'), out = path.join(root, 'plan/evidence
     const version = await (await fetch(base + '/content-version.json', { cache: 'no-store' })).json(), files = version.build_files.filter(f => /^dist\/assets\/.*\.(js|css)$/.test(f.path)), sources = [];
     for (const file of files) { const r = await fetch(base + '/' + file.path.replace(/^dist\//, '')), bytes = Buffer.from(await r.arrayBuffer()); assert(r.ok); assert.equal(createHash('sha256').update(bytes).digest('hex'), file.sha256); sources.push(bytes.toString()); }
     for (const marker of ['INVALID_GROUND_FIELD', 'GROUND_FLOOR_NOT_PREPARED', 'floor_black_key', 'numberOrigin']) assert(sources.join('\n').includes(marker), marker);
+    if (task === 'task-153') for (const marker of ['floor_tiles', 'ring_bounds', 'salvage-card-summary', 'summon-again', 'ยืนยันย่อยการ์ด', 'สุ่มอีก']) assert(sources.join('\n').includes(marker), marker);
     checks.push({ case: 'all_public_bundle_SHA_new_ground_adapter_and_curved_numbers', files: files.length });
     browser = await chromium.launch({ headless: true, executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' });
     const page = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });

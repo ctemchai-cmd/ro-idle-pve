@@ -3,12 +3,25 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import visuals from '../../src/renderer/combat-visuals.json';
-import {performanceAuraConfig,performanceAuras} from '../../src/renderer/performance-aura.ts';
+import {performanceAuraConfig,performanceAuras,performanceAuraArea} from '../../src/renderer/performance-aura.ts';
 import {battleRenderView} from '../../src/client/story.ts';
 import {resolveSkill} from '../../src/domain/build/resolve-skill.ts';
 import {actor,battle,step,skill,content,type Active} from './combat-fixtures.ts';
 import type {ActorRenderView} from '../../src/contracts/presentation.ts';
 const config=performanceAuraConfig(visuals,Object.keys(content.skills))!;
+test('song footprint covers spread diagonal teammates with body margin, follows their points, excludes enemies/dead/summons',()=>{
+ const {view}=actual('bard_healing_song'),source=view.actors.find(a=>a.actor_id==='singer')!;
+ const positions=[[100,300],[400,300],[100,650],[400,650]];
+ const actors=positions.map((_,i)=>({...structuredClone(source),actor_id:i?'friend'+i:'singer'}));
+ actors.push({...structuredClone(source),actor_id:'dead',hp:0},{...structuredClone(source),actor_id:'summon',summon_of:'singer'},{...structuredClone(source),actor_id:'enemy',team:'enemy'});
+ const point=(a:ActorRenderView)=>positions[actors.indexOf(a)] as [number,number]??[2000,2000];
+ const area=performanceAuraArea(actors,'singer',config.ring_size,point)!;
+ assert(area.width>=420&&area.height>=260);
+ for(const[x,y]of positions)assert(Math.hypot((Math.abs(x!-area.x)+40)/(area.width/2),(Math.abs(y!-area.y)+28)/(area.height/2))<=1.0000001);
+ const moved=performanceAuraArea(actors,'singer',config.ring_size,a=>{const[x,y]=point(a);return[x+55,y+80];})!;
+ assert.equal(moved.x,area.x+55);assert.equal(moved.y,area.y+80);assert.equal(moved.width,area.width);
+ assert.equal(performanceAuraArea(actors,'dead',config.ring_size,point),undefined);
+});
 function actual(id:string,awakened=false){
  const definition=resolveSkill(id,10,content,awakened).definition as Active;
  for(let seed=1;seed<=20;seed++){

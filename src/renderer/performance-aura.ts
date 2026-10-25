@@ -4,6 +4,7 @@ import type { NativeAsset } from './native.mjs';
 export interface PerformanceAuraConfig {
   ring_meta: string; note_meta: string;
   ring_size: readonly [number, number]; note_size: number;
+  ring_bounds?: readonly [number, number, number, number];
   period_ms: number; alpha: number;
   styles: Readonly<Record<string, { hue_rotate_deg: number; note_meta?: string; note_size?: number; note_additive?: boolean }>>;
   skills: Readonly<Record<string, string>>;
@@ -19,6 +20,7 @@ export function performanceAuraConfig(visuals: object, skillIds?: readonly strin
   if (!value) return null;
   if (!value.ring_meta?.endsWith('.meta.json') || !value.note_meta?.endsWith('.meta.json') ||
       !Array.isArray(value.ring_size) || value.ring_size.length !== 2 || !value.ring_size.every(n => Number.isFinite(n) && n > 0 && n <= 600) ||
+      value.ring_bounds !== undefined && (!Array.isArray(value.ring_bounds) || value.ring_bounds.length !== 4 || value.ring_bounds.some(n => !Number.isFinite(n) || n < 0) || value.ring_bounds[2] <= 0 || value.ring_bounds[3] <= 0) ||
       !Number.isFinite(value.note_size) || value.note_size <= 0 || value.note_size > 100 ||
       !Number.isFinite(value.period_ms) || value.period_ms < 600 || value.period_ms > 10000 ||
       !Number.isFinite(value.alpha) || value.alpha <= 0 || value.alpha > 1 ||
@@ -52,25 +54,41 @@ export function performanceAuras(actors: readonly ActorRenderView[], gameMs: num
 }
 /** Genuine bitmaps only: a ground ring and three notes. Virtual presentation
  * time drives motion; reduced-motion keeps a static indication of the effect. */
-export function drawPerformanceAura(ctx: CanvasRenderingContext2D, loaded: LoadedPerformanceAura, aura: PerformanceAura, presentationMs: number, motion: boolean, x: number, y: number): number {
+export interface PerformanceAuraArea { x: number; y: number; width: number; height: number }
+/** Display footprint only: include all living teammates at their interpolated feet.
+ * Expanding the ellipse for diagonal corners prevents bbox corners escaping it. */
+export function performanceAuraArea(actors: readonly ActorRenderView[], sourceId: string, minimum: readonly [number, number], point: (actor: ActorRenderView) => readonly [number, number]): PerformanceAuraArea | undefined {
+  const source = actors.find(a => a.actor_id === sourceId && a.hp > 0); if (!source) return undefined;
+  const points = actors.filter(a => a.team === source.team && a.hp > 0 && !a.summon_of).map(point);
+  if (!points.length) points.push(point(source));
+  const xs = points.map(p => p[0]), ys = points.map(p => p[1]);
+  const left = Math.min(...xs), right = Math.max(...xs), top = Math.min(...ys), bottom = Math.max(...ys);
+  const x = (left + right) / 2, y = (top + bottom) / 2;
+  const a = Math.max(minimum[0] / 2, (right - left) / 2 + 64), b = Math.max(minimum[1] / 2, (bottom - top) / 2 + 48);
+  const grow = Math.max(1, ...points.map(p => Math.hypot((Math.abs(p[0] - x) + 40) / a, (Math.abs(p[1] - y) + 28) / b)));
+  return { x, y, width: 2 * a * grow, height: 2 * b * grow };
+}
+export function drawPerformanceAura(ctx: CanvasRenderingContext2D, loaded: LoadedPerformanceAura, aura: PerformanceAura, presentationMs: number, motion: boolean, x: number, y: number, area?: PerformanceAuraArea): number {
   const p = loaded.config, age = aura.started_at === null ? 1000 : Math.max(0, presentationMs - aura.started_at);
   const fade = Math.min(1, age / 220, Math.max(0, aura.expires_at - presentationMs) / 350);
   if (fade <= 0) return 0;
-  const phase = motion ? presentationMs / p.period_ms * 2 * Math.PI : 0, pulse = motion ? 1 + .035 * Math.sin(phase * 2) : 1;
-  const [width, height] = p.ring_size;
-  ctx.save(); ctx.translate(x, y + 3); ctx.globalCompositeOperation = 'lighter';
+  const phase = motion ? presentationMs / p.period_ms * 2 * Math.PI : 0, pulse = motion ? 1 + .0175 * (1 + Math.sin(phase * 2)) : 1;
+  const [width, height] = area ? [area.width, area.height] : p.ring_size;
+  ctx.save(); ctx.translate(area?.x ?? x, (area?.y ?? y) + 3); ctx.globalCompositeOperation = 'lighter';
   const hue = p.styles[aura.style]!.hue_rotate_deg; if (hue) ctx.filter = `sepia(1) saturate(4) hue-rotate(${hue}deg)`;
   ctx.globalAlpha = p.alpha * fade;
-  ctx.drawImage(loaded.ring.image, -width * pulse / 2, -height * pulse / 2, width * pulse, height * pulse);
+  const crop = p.ring_bounds ?? [0, 0, loaded.ring.image.width, loaded.ring.image.height];
+  ctx.drawImage(loaded.ring.image, ...crop, -width * pulse / 2, -height * pulse / 2, width * pulse, height * pulse);
   ctx.globalAlpha = p.alpha * fade * .28;
-  ctx.drawImage(loaded.ring.image, -width * .46, -height * .46, width * .92, height * .92);
+  ctx.drawImage(loaded.ring.image, ...crop, -width * .46, -height * .46, width * .92, height * .92);
+  ctx.restore(); ctx.save(); ctx.translate(x, y + 3);
   const style = p.styles[aura.style]!, note = style.note_meta ? loaded.notes.get(style.note_meta) : loaded.note, noteSize = style.note_size ?? p.note_size;
   if (!note) throw Error('PERFORMANCE_TEXTURE_NOT_PREPARED');
   // Native song symbols keep their original colors; only the shared ring is tinted.
   ctx.filter = 'none';
   ctx.globalCompositeOperation = style.note_additive ? 'lighter' : 'source-over';
   for (let i = 0; i < 3; i++) {
-    const angle = phase + i * 2 * Math.PI / 3, dx = Math.cos(angle) * width * .22, dy = Math.sin(angle) * height * .09 - 14;
+    const angle = phase + i * 2 * Math.PI / 3, dx = Math.cos(angle) * 58, dy = Math.sin(angle) * 15 - 14;
     ctx.globalAlpha = fade * (.6 + .22 * Math.sin(angle));
     ctx.drawImage(note.image, dx - noteSize / 2, dy - noteSize, noteSize, noteSize);
   }

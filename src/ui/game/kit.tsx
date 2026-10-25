@@ -100,7 +100,7 @@ export const lookOf = (a: AccountState['roster'][number], state?: AccountState):
 export function Sheet({ title, onClose, children, className = '' }: { title: ReactNode; onClose: () => void; children: ReactNode; className?: string }) {
   const ref = useRef<HTMLDialogElement>(null), titleId = useId();
   useEffect(() => { const node = ref.current!, opener = document.activeElement; if (!node.open) node.showModal(); return () => { if (node.open) node.close(); if (opener instanceof HTMLElement && opener.isConnected) opener.focus(); }; }, []);
-  return <dialog ref={ref} aria-labelledby={titleId} className={`sheet ${className}`} onCancel={e => { e.preventDefault(); onClose(); }} onClick={e => { if (e.target === e.currentTarget) onClose(); }}>
+  return <dialog ref={ref} aria-labelledby={titleId} className={`sheet ${className}`} onCancel={e => { e.preventDefault(); e.stopPropagation(); onClose(); }} onClick={e => { if (e.target === e.currentTarget) { e.stopPropagation(); onClose(); } }}>
     <div className="sheet-body"><header className="sheet-head"><h2 id={titleId}>{title}</h2><button className="icon-btn" autoFocus aria-label="ปิด" onClick={onClose}><Icon name="close" /></button></header><SaveNotice />{children}</div>
   </dialog>;
 }

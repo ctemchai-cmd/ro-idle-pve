@@ -839,3 +839,11 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | --- | --- | --- | --- | --- |
 | `T152-AC-01` | TASK-152 | design65/AC01 | native comparison/flight | passed_implementation |
 | `T152-AC-02` | TASK-152 | design65/AC02 | existing checks/build/public | passed_implementation |
+
+## TASK-153 — ยืนยันย่อย/สุ่มต่อและพื้นออร่า
+
+| Case | Task | Expected | Verification | Status |
+| --- | --- | --- | --- | --- |
+| `T153-AC-01` | TASK-153 | design66/AC01 | native/UI/source/build/public | not_run_implementation |
+| `T153-AC-02` | TASK-153 | design66/AC02 | native/UI/source/build/public | not_run_implementation |
+| `T153-AC-03` | TASK-153 | design66/AC03 | native/UI/source/build/public | not_run_implementation |

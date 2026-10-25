@@ -1,5 +1,12 @@
 # Handoff ระหว่าง agent
 
+## 26 ต.ค.2026 · Codex — ACTIVE153 local complete / publish next
+
+- Userrequests salvageconfirm+repeatcardpull plus highernumbers/teamcoveringsongs/whiteSanctuary.153review/design66/D177.24focusedTS/native4number+7ground+4actualReactUI320390/source30460460/rootbuild/M0passed. SharedCardSalvageButton atCardSheet+Buddy,explicitexactinstance/cancel/locked/equipped/single-flight. SheetstopPropagationfixnestedEscape. Resultrepeat1/10useslatestcost/space/single-flight;oldresultsstayduringfailure. No domain/cost/save changes.
+- Numberheight78→100only,620ms/rightfall/focus/paintedoriginunchanged. Songellipseactualinterpolatedlivingteam/non-summon+cornermargin/min420×260,croppednative ring9,8,110,74,notesstayatperformer. Sanctuarygenericruneout;actualground319magic_green+nativeGroundEffectpok2.tga25softwhitetiles plusrealSTR83;2Dadaptation,nottheexact3Dclient. Pack0c036dd504237db1a6866108932f6fb2e5eb43e4f349559f8051b39044584b88/896IDs1677files/raw33466791<32MiB/initial1600070same/content2c85same. Twoexistingnativetexturesselected,noimagebyteschanged.
+- ALL153UNCOMMITTEDHEAD5f8cbe602. OwnVite7507CLOSED/browsersclosed. Noowner/AuthSQL/env/6173restart/agents/balancebatch. Unselecteduserassets/task108pnguntouched. NEXT explicitstageonlyours,pushoriginmain,awaitVercelSUCCESS,RO_EVIDENCE_TASK=task-153 node scripts/test_ground_fields_hosted.cjs plusnumberhosted(copysavedreporttopreventoverwriting);then153done139/153/M4 93/102/closurepush. PublicgroundscriptalsochecksnewUIbundlemarkers. Runtimepack changes requirecontent:generatebeforeanynativepreview(expectedpackhash);neverrunbuilderwhileChromeharnessactive.
+
+
 ## 25 ต.ค.2026 · Codex — TASK152 complete / larger punchier numbers live
 
 - Source120558a4b22b8c667a229b55d91f9a39ed0550b4/VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/4MAG5hsVRt76QekQ6xZ5Se6VefCf. Hosted4PASS24bundleSHA/newsize+numberPlacedmarker/actualnativeheal320390birth46.08/45.15px/rightfallingarc/0errors-writes.10existingTS/native4(+both-edge24/696all4kinds+yellow)/60beforeafter/rootbuild/M0passed.152done;138/152/M4 92/101. No remaining152work.

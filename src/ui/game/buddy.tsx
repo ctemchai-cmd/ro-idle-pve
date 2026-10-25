@@ -1,11 +1,12 @@
 import { OwnerBadge } from './owner-badge.tsx';
 import { CardIcon } from './card-art.tsx';
+import { CardSalvageButton } from './card-salvage.tsx';
 import { Icon } from '../icon.tsx';
 import { useMemo, useState } from 'react';
 import type { CombatStats, Modifier } from '../../contracts/index.ts';
 import { effectiveLevelCap, levelQuote,jobChangePlan, rosterData as data, type Character } from '../../client/roster.ts';
 import { equipmentData, equipmentPreview, equipmentUpgradeHints, inventoryView, itemModifiers, itemOptions, rarityLabels, rarityRank, slotLabels, weaponLabels, type EquipmentSlot } from '../../client/equipment.ts';
-import { cardInventory, cardStatUnits, slotEnchantLines, refineModifiers, nextRefineChance, nextRefinePityBonus, refinePercent, slotsData, refundEnchant, salvageCardsQuote, slotChangePreview, slotUpgradeQuote, socketCapacity, socketUnlockRefine, socketUnlockHint } from '../../client/slots.ts';
+import { cardInventory, cardStatUnits, slotEnchantLines, refineModifiers, nextRefineChance, nextRefinePityBonus, refinePercent, slotsData, refundEnchant, slotChangePreview, slotUpgradeQuote, socketCapacity, socketUnlockRefine, socketUnlockHint } from '../../client/slots.ts';
 import type { GameContext } from './shell.tsx';
 import { ClassIcon } from './class-icon.tsx';
 import { SkillCatalogSheet } from './skill-catalog.tsx';
@@ -13,7 +14,7 @@ import { orderedCharacters } from './character-nav.tsx';
 import { CardGrade } from './card-grade.tsx';
 import { EquipmentCards } from './equipment-cards.tsx';
 import { EquipmentProgress } from './equipment-progress.tsx';
-import { ActorCanvas, CostChips, Diff, ItemIcon, PageHeader, Sheet, canPay, friendNames, iconUrl, jobNames, lookOf, reasonText, resourceNames, seconds, statLabels, type Wallet } from './kit.tsx';
+import { ActorCanvas, CostChips, Diff, ItemIcon, PageHeader, Sheet, canPay, friendNames, iconUrl, jobNames, lookOf, reasonText, seconds, statLabels, type Wallet } from './kit.tsx';
 
 const leftSlots: EquipmentSlot[] = ['weapon', 'armor', 'accessory'], rightSlots: EquipmentSlot[] = ['head', 'garment', 'shoes'];
 type ItemRow = ReturnType<typeof inventoryView>[number];
@@ -95,7 +96,7 @@ function UpgradeSheet({ context, actor, slot, close }: { context: GameContext; a
             {cardPreview&&<StatChanges before={cardPreview.before} after={cardPreview.after}/>}
             {card.owner&&<p className="hint">ย้ายจาก <OwnerBadge state={state} characterId={card.owner.character_id} pack={pack}/> · ช่องเดิมจะว่าง</p>}
             {card.price?<div className="row"><CostChips cost={card.price} wallet={state.wallet} pack={pack}/><button className="btn small" disabled={locked||!canPay(state.wallet,card.price)} onClick={()=>void submit('card.upgrade',{card_instance_id:card.item.instance_id,target_level:card.item.level+1})}>อัปการ์ด Lv.{card.item.level+1}</button></div>:<p className="hint">การ์ดระดับสูงสุดแล้ว</p>}
-            <div className="row"><button className="btn small ghost" disabled={locked} onClick={()=>void submit('equipment.lock',{item_instance_id:card.item.instance_id,locked:!card.item.locked})}>{card.item.locked?'ปลดล็อก':'ล็อก'}</button><button className="btn small ghost danger" disabled={locked||card.item.locked||!!card.owner} onClick={()=>void submit('card.salvage',{instance_ids:[card.item.instance_id]})}>ย่อย ({Object.entries(salvageCardsQuote([card.item])).map(([k,n])=>`${resourceNames[k as keyof Wallet]??k} ${n}`).join(' · ')})</button></div>
+            <div className="row"><button className="btn small ghost" disabled={locked} onClick={()=>void submit('equipment.lock',{item_instance_id:card.item.instance_id,locked:!card.item.locked})}>{card.item.locked?'ปลดล็อก':'ล็อก'}</button><CardSalvageButton context={context} instanceId={card.item.instance_id} className="btn small ghost danger"/></div>
           </div></details>
         </>:<p className="hint">ยังไม่ได้เลือกการ์ด</p>}
       </footer>

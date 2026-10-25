@@ -1,7 +1,8 @@
 // Native floor effects + real shared-engine statuses. No owner, Auth, or writes.
 const fs = require('node:fs'), path = require('node:path'), assert = require('node:assert/strict');
 const { chromium } = require('/private/tmp/ro-idle-browser-check/node_modules/playwright-core');
-const out = path.resolve(__dirname, '../plan/evidence/task-151'), base = process.env.RO_PREVIEW_URL;
+const task = process.env.RO_EVIDENCE_TASK || 'task-151'; assert(/^task-\d{3}$/.test(task));
+const out = path.resolve(__dirname, '../plan/evidence/' + task), base = process.env.RO_PREVIEW_URL;
 assert(base && new URL(base).hostname === '127.0.0.1');
 (async () => {
   let browser, page, failure; const checks = [], errors = [], writes = [];

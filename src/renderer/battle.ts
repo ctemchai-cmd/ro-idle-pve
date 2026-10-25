@@ -9,7 +9,7 @@ import { drawProjectile, isFocusedDamage, projectileLifetime, projectilePoint, t
 import { alignProjectiles, attackContactMs, visualImpactMs } from './impact-timing.ts';
 import { drawSpiritSpheres } from './spirit-spheres.ts';
 import { drawHealingAura } from './healing-aura.ts';
-import { drawPerformanceAura, performanceAuras, type PerformanceAura } from './performance-aura.ts';
+import { drawPerformanceAura, performanceAuras, performanceAuraArea, type PerformanceAura } from './performance-aura.ts';
 import { GroundFieldRenderer, type GroundFieldFrame } from './ground-fields.ts';
 import { statusLinks, drawStatusLinks, type StatusLink } from './status-links.ts';
 import { locateSkillVisual } from './asset-locator.ts';
@@ -176,7 +176,8 @@ export class BattleRenderer {
       for (const aura of this.frameStats.performance_auras) {
         const source = view.actors.find(a => a.actor_id === aura.source)!;
         const [x, y] = this.point(source);
-        this.drawnLayers += drawPerformanceAura(context, this.pack.performanceAura, aura, presentationMs, this.motion, x, y);
+        const area = performanceAuraArea(view.actors, aura.source, this.pack.performanceAura.config.ring_size, actor => this.point(actor));
+        this.drawnLayers += drawPerformanceAura(context, this.pack.performanceAura, aura, presentationMs, this.motion, x, y, area);
       }
     }
     this.frameStats.links=statusLinks(view.actors,a=>this.point(a),view.game_time_ms);

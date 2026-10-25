@@ -7,7 +7,7 @@ export type NumberKind = 'damage' | 'heal' | 'incoming' | 'total';
 export const NUMBER_FLIGHT_MS = 620;
 export function numberFlight(elapsed: number): { dx: number; dy: number; size: number; alpha: number } {
   const p = Math.min(1, Math.max(0, elapsed / NUMBER_FLIGHT_MS)), arc = p / (.44 * 2);
-  return { dx: 76 * p, dy: -4 * 78 * arc * (1 - arc), size: 1.25 - .65 * p, alpha: p < .7 ? 1 : Math.max(0, 1 - (p - .7) / .3) };
+  return { dx: 76 * p, dy: -4 * 100 * arc * (1 - arc), size: 1.25 - .65 * p, alpha: p < .7 ? 1 : Math.max(0, 1 - (p - .7) / .3) };
 }
 export const NUMBER_CSS_HEIGHT = { damage:34, critical:43, total:43, heal:30, incoming:27 } as const;
 export interface NumberDrawBounds {kind:NumberKind;critical:boolean;left:number;top:number;width:number;height:number;origin:readonly[number,number]}

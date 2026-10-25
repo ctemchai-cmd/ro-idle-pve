@@ -10,6 +10,7 @@ export interface GroundFieldProfile extends NativeImpactProfile {
   floor_additive?: boolean;
   floor_black_key?: boolean;
   floor_hue_rotate_deg?: number;
+  floor_tiles?: { columns: number; rows: number; surface_meta: string; surface_alpha: number };
 }
 export interface LoadedGroundField extends LoadedNativeImpact { config: GroundFieldProfile; floorImage?: HTMLImageElement | HTMLCanvasElement }
 export interface GroundField {
@@ -32,6 +33,8 @@ export function groundFieldProfiles(visuals: object, presentationIds?: readonly 
     if (p.floor_meta !== undefined && (!p.floor_meta.endsWith('.meta.json') || !Array.isArray(p.floor_size) || p.floor_size.length !== 2 ||
         p.floor_size.some(n => !Number.isFinite(n) || n <= 0 || n > 600) || !Number.isFinite(p.floor_alpha) || p.floor_alpha! <= 0 || p.floor_alpha! > 1 ||
         typeof p.floor_additive !== 'boolean' || p.floor_black_key !== undefined && typeof p.floor_black_key !== 'boolean' || p.floor_hue_rotate_deg !== undefined && (!Number.isFinite(p.floor_hue_rotate_deg) || Math.abs(p.floor_hue_rotate_deg) > 360))) throw Error('INVALID_GROUND_FLOOR');
+    if (p.floor_tiles && (!p.floor_meta || ![p.floor_tiles.columns, p.floor_tiles.rows].every(n => Number.isSafeInteger(n) && n > 0 && n <= 7) ||
+        !p.floor_tiles.surface_meta?.endsWith('.meta.json') || !Number.isFinite(p.floor_tiles.surface_alpha) || p.floor_tiles.surface_alpha <= 0 || p.floor_tiles.surface_alpha > 1)) throw Error('INVALID_GROUND_TILES');
   }
   return profiles;
 }
@@ -83,7 +86,20 @@ export class GroundFieldRenderer {
         const fade = motion ? Math.min(1, Math.max(0, presentationMs - field.applied_at) / 160, Math.max(0, field.expires_at - presentationMs) / 250) : 1;
         ctx.save(); ctx.globalAlpha *= p.floor_alpha! * fade; ctx.globalCompositeOperation = p.floor_additive ? 'lighter' : 'source-over';
         ctx.imageSmoothingEnabled = true; if (p.floor_hue_rotate_deg) ctx.filter = `hue-rotate(${p.floor_hue_rotate_deg}deg)`;
-        ctx.drawImage(floor, origin.point[0] - width / 2, origin.point[1] - height / 2, width, height); ctx.restore(); native_draws++;
+        if (p.floor_tiles) {
+          const tiles = p.floor_tiles, surface = native.textures.get(tiles.surface_meta)?.image;
+          if (!surface) throw Error('GROUND_TILE_NOT_PREPARED');
+          const w = width / tiles.columns, h = height / tiles.rows;
+          for (let row = 0; row < tiles.rows; row++) for (let col = 0; col < tiles.columns; col++) {
+            const x = origin.point[0] - width / 2 + col * w, y = origin.point[1] - height / 2 + row * h;
+            ctx.globalAlpha = tiles.surface_alpha * fade;
+            ctx.drawImage(surface, x, y, w, h);
+            ctx.globalAlpha = p.floor_alpha! * fade;
+            ctx.drawImage(floor, x + w * .08, y + h * .68, w * .84, h * .18);
+            native_draws += 2;
+          }
+        } else { ctx.drawImage(floor, origin.point[0] - width / 2, origin.point[1] - height / 2, width, height); native_draws++; }
+        ctx.restore();
       }
       native_draws += drawNativeImpact(ctx, native, elapsed, origin.point[0], origin.point[1] - p.lift);
       frames.push({ ...field, origin: origin.point, meta: p.meta, native_draws });
