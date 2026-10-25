@@ -808,6 +808,6 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 
 | Case | Task | Expected | Verification | Status |
 | --- | --- | --- | --- | --- |
-| `T148-AC-01` | TASK-148 | design61/AC01 | Typed/native/build/public | not_run_implementation |
-| `T148-AC-02` | TASK-148 | design61/AC02 | Typed/native/build/public | not_run_implementation |
-| `T148-AC-03` | TASK-148 | design61/AC03 | Typed/native/build/public | not_run_implementation |
+| `T148-AC-01` | TASK-148 | design61/AC01 | Typed/native/build/public | passed_implementation |
+| `T148-AC-02` | TASK-148 | design61/AC02 | Typed/native/build/public | passed_implementation |
+| `T148-AC-03` | TASK-148 | design61/AC03 | Typed/native/build/public | passed_implementation |
