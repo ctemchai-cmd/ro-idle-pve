@@ -1,7 +1,9 @@
-# D174 — ทิศตัวเลขและหลักฐานสกิลพื้น
+# D174 — วิถีเลข RO แบบเด้งโค้ง
 
-ทุก floating number ใช้การเด้งขึ้น120ms แล้ว drift ขวาบนตาม presentation clock, ไม่มี sequence parity/facing/random direction. อายุ800msสำหรับ hit/heal,ฐานขนาดและสีnativeเดิม พร้อมpop/shrinkร่วมกัน. เก็บจุดกำเนิดตอนแสดงครั้งแรก ไม่ตามการเดิน/เปลี่ยนcastphaseของเป้า. Motion off คงเลขนิ่ง.
+คำอธิบายสุดท้ายของผู้ใช้: พุ่งเร็วไปทางขวาบนแล้วโค้งตกลง พร้อมย่อส่วน แบบเดิมแต่ไม่สลับซ้าย/ขวา. ไม่ใช่driftเส้นตรง. Lifetime650ms,apex44%(286ms),height62world,dx64world,size1.25→.6. ตัวเลขdamage/critical/heal/incomingใช้วิถีร่วมกัน ไม่อิงsequence/facing/RNG. ตรึงจุดโดนรวมcastbaseline;เป้าเดินไม่ลากเลข. Font/color/criticalbackground/focus/ค่าจริง/visualcontactเดิม. Reducedmotionคงนิ่ง.
 
-Multi-hit total คงเงื่อนไขเฉพาะ direct skill หลายHit/หนึ่งaction/หนึ่งtarget/ผู้โฟกัส. ใช้ first impact เป็นจุดเริ่ม drift ที่ช้ากว่า hitครึ่งหนึ่ง, latest impact เป็นจังหวะเด้ง/เวลาคงยอดและfade;ยอดใหม่จึงไม่ย้อนขวา. เก็บoriginต่อsource/action/targetแล้วทิ้งเมื่อหมดผล. ไม่แก้ damage/engine/เหตุการณ์/save/content.
+Multi-hit total ยังคงเฉพาะdirectหลายHit/หนึ่งaction/หนึ่งtarget/ผู้โฟกัส. Firstimpactเป็นต้นวิถีครึ่งระยะ;ยอดเพิ่มไม่รีเซ็ตพิกัด. Latestimpactควบคุมbounce/hold/fade,ขนาดขั้นต่ำ80%เพื่ออ่านยอดที่ยังสะสมได้. จบวิถีแล้วคงตำแหน่งปลายจนfade. ไม่เพิ่ม/รวม damageเองจากการdraw.
 
-Ground assets audit อยู่ evidence150: native Sanctuary/Storm Gust/Quagmire เป็นSTRจริง. `appleidun/poembragi/serviceforyou/whistle/humming/fortunekiss`32pxที่ชื่อเกี่ยวกับเพลงเป็นภาพสัญลักษณ์ มีตัวอักษรSP/FLEE/HIT/CRI จึงไม่ควรขยายเป็นพื้นวง. Source effect table `277_ground` ชี้ FUNC DissonanceEffects.forEach;ไม่ได้ให้คลิปพื้นเพลงสำเร็จ. วงD173คือการประกอบnative priest_angel_ring+ain_note_01อย่างเปิดเผย ไม่อ้างว่าเป็นoriginalsongfield. ข้อสรุปเฉพาะคลังและmappingที่ตรวจ ไม่ใช่อ้างว่าROไม่มีพื้นเพลง.
+ประวัติ:source4abfbเป็นซ้ายบน,source8caaเป็นdriftขวาบน ก่อนผู้ใช้แก้เป็นวิถีโค้ง. ผลตรวจเก่าไม่ใช้ปิดเกณฑ์การเคลื่อนไหวล่าสุด. หลักฐานล่าสุดnative4groups/34focusedรวม151และGIF14framesมาจากrendererจริง. งานนี้ไม่แก้engine/stat/save. D175/TASK151เป็นเจ้าของassetpackที่เปลี่ยนร่วมreleaseเพราะผู้ใช้ขอพื้นทั้งหมด.
+
+Ground auditเดิมในevidence150: Sanctuary/StormGust/QuagmireมีnativeSTR. ภาพ32pxappleidun/poembragi/serviceforyou/whistle/humming/fortunekissเป็นstatussymbolไม่ใช่พื้น. งานใช้nativefloorsและactualsongtexturesครบติดตามdesign64/TASK151.

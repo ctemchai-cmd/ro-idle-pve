@@ -5,14 +5,14 @@ export interface PerformanceAuraConfig {
   ring_meta: string; note_meta: string;
   ring_size: readonly [number, number]; note_size: number;
   period_ms: number; alpha: number;
-  styles: Readonly<Record<string, { hue_rotate_deg: number }>>;
+  styles: Readonly<Record<string, { hue_rotate_deg: number; note_meta?: string; note_size?: number; note_additive?: boolean }>>;
   skills: Readonly<Record<string, string>>;
 }
 export interface PerformanceAura {
   source: string; style: string; skills: string[];
   started_at: number | null; expires_at: number;
 }
-export interface LoadedPerformanceAura { config: PerformanceAuraConfig; ring: NativeAsset; note: NativeAsset }
+export interface LoadedPerformanceAura { config: PerformanceAuraConfig; ring: NativeAsset; note: NativeAsset; notes: ReadonlyMap<string, NativeAsset> }
 /** Rendering config only; never extends the gameplay/status contract. */
 export function performanceAuraConfig(visuals: object, skillIds?: readonly string[]): PerformanceAuraConfig | null {
   const value = (visuals as { performance_auras?: PerformanceAuraConfig }).performance_auras;
@@ -22,7 +22,7 @@ export function performanceAuraConfig(visuals: object, skillIds?: readonly strin
       !Number.isFinite(value.note_size) || value.note_size <= 0 || value.note_size > 100 ||
       !Number.isFinite(value.period_ms) || value.period_ms < 600 || value.period_ms > 10000 ||
       !Number.isFinite(value.alpha) || value.alpha <= 0 || value.alpha > 1 ||
-      !value.styles || !Object.keys(value.styles).length || Object.values(value.styles).some(s => !Number.isFinite(s.hue_rotate_deg)) ||
+      !value.styles || !Object.keys(value.styles).length || Object.values(value.styles).some(s => !Number.isFinite(s.hue_rotate_deg) || s.note_meta !== undefined && !s.note_meta.endsWith('.meta.json') || s.note_additive !== undefined && typeof s.note_additive !== 'boolean' || s.note_size !== undefined && (!Number.isFinite(s.note_size) || s.note_size <= 0 || s.note_size > 100)) ||
       !value.skills || Object.entries(value.skills).some(([id, style]) => !Object.hasOwn(value.styles, style) || skillIds && !skillIds.includes(id))) throw Error('INVALID_PERFORMANCE_AURA');
   return value;
 }
@@ -58,16 +58,21 @@ export function drawPerformanceAura(ctx: CanvasRenderingContext2D, loaded: Loade
   if (fade <= 0) return 0;
   const phase = motion ? presentationMs / p.period_ms * 2 * Math.PI : 0, pulse = motion ? 1 + .035 * Math.sin(phase * 2) : 1;
   const [width, height] = p.ring_size;
-  ctx.save(); ctx.translate(x, y + 3); ctx.globalCompositeOperation = 'source-over';
+  ctx.save(); ctx.translate(x, y + 3); ctx.globalCompositeOperation = 'lighter';
   const hue = p.styles[aura.style]!.hue_rotate_deg; if (hue) ctx.filter = `sepia(1) saturate(4) hue-rotate(${hue}deg)`;
   ctx.globalAlpha = p.alpha * fade;
   ctx.drawImage(loaded.ring.image, -width * pulse / 2, -height * pulse / 2, width * pulse, height * pulse);
   ctx.globalAlpha = p.alpha * fade * .28;
   ctx.drawImage(loaded.ring.image, -width * .46, -height * .46, width * .92, height * .92);
+  const style = p.styles[aura.style]!, note = style.note_meta ? loaded.notes.get(style.note_meta) : loaded.note, noteSize = style.note_size ?? p.note_size;
+  if (!note) throw Error('PERFORMANCE_TEXTURE_NOT_PREPARED');
+  // Native song symbols keep their original colors; only the shared ring is tinted.
+  ctx.filter = 'none';
+  ctx.globalCompositeOperation = style.note_additive ? 'lighter' : 'source-over';
   for (let i = 0; i < 3; i++) {
     const angle = phase + i * 2 * Math.PI / 3, dx = Math.cos(angle) * width * .22, dy = Math.sin(angle) * height * .09 - 14;
     ctx.globalAlpha = fade * (.6 + .22 * Math.sin(angle));
-    ctx.drawImage(loaded.note.image, dx - p.note_size / 2, dy - p.note_size, p.note_size, p.note_size);
+    ctx.drawImage(note.image, dx - noteSize / 2, dy - noteSize, noteSize, noteSize);
   }
   ctx.restore(); return 5;
 }

@@ -45,16 +45,17 @@ const root = path.resolve(__dirname, '..'), out = path.join(root, 'plan/evidence
     for (const width of [320, 390]) {
       await page.setViewportSize({ width, height: 844 }); await page.goto(base + '/skill-preview?job=acolyte&skill=acolyte_heal&rank=10');
       await page.locator('.skill-preview[data-ready="true"]').waitFor({ timeout: 30000 });
-      await page.waitForFunction(() => { const a = window.numberFlight150; return a.length && a.at(-1).at - a[0].at > 620; }, {}, { timeout: 20000 });
+      await page.waitForFunction(() => { const a = window.numberFlight150; return a.length && a.at(-1).at - a[0].at > 560; }, {}, { timeout: 20000 });
       const samples = await page.evaluate(() => {
         const all = window.numberFlight150, first = all[0], rows = all.filter(r => r.id === first.id && r.at - first.at < 750);
-        return [0, 120, 300, 600].map(age => rows.reduce((a, b) => Math.abs(b.at - first.at - age) < Math.abs(a.at - first.at - age) ? b : a));
+        return [0, 120, 280, 550].map(age => rows.reduce((a, b) => Math.abs(b.at - first.at - age) < Math.abs(a.at - first.at - age) ? b : a));
       });
-      for (let i = 1; i < samples.length; i++) assert(samples[i].x > samples[i - 1].x && samples[i].y < samples[i - 1].y, JSON.stringify(samples));
+      for (let i = 1; i < samples.length; i++) assert(samples[i].x > samples[i - 1].x, JSON.stringify(samples));
+      assert(samples[1].y < samples[0].y && samples[2].y < samples[1].y && samples[3].y > samples[2].y + 10, 'NO_FALLING_ARC:' + JSON.stringify(samples));
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
-      rows.push({ width, samples, native_green_digits_upper_right: true }); await page.screenshot({ path: path.join(out, 'hosted-heal-' + width + '.png') });
+      rows.push({ width, samples, native_green_digits_upper_right_falling_arc: true }); await page.screenshot({ path: path.join(out, 'hosted-heal-' + width + '.png') });
     }
-    checks.push({ case: 'actual_public_native_green_digits_upper_right_mobile320390', rows });
+    checks.push({ case: 'actual_public_native_green_digits_upper_right_falling_arc_mobile320390', rows });
     assert(!errors.length && !writes.length); checks.push({ case: 'no_browser_errors_or_HTTP_writes', passed: true });
   } catch (e) { failure = String(e.stack || e); }
   finally {

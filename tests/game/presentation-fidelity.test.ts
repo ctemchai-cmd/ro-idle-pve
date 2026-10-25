@@ -36,13 +36,15 @@ test('fire/cold bolts fall from the sky onto the target; Lightning Bolt and Arro
   assert.deepEqual(index.combat_visuals.skills.mage_lightning_bolt!.special_sfx, []); assert.deepEqual(index.combat_visuals.skills.archer_arrow_shower!.special_sfx, []);
 });
 
-test('numbers pop upward then drift upper-right consistently while shrinking and fading', () => {
-  assert.ok(NUMBER_FLIGHT_MS <= 900);
+test('numbers launch quickly upper-right, arc down from their peak, and shrink before fading', () => {
+  assert.ok(NUMBER_FLIGHT_MS <= 700);
   const at = numberFlight;
   assert.ok(at(120).dy < -20, 'quick upward pop');assert.ok(Math.abs(at(0).dx)<.001);
-  for(let ms=100;ms<=NUMBER_FLIGHT_MS;ms+=50){assert.ok(at(ms).dx>at(ms-50).dx,'never drifts left');assert.ok(at(ms).dy<at(ms-50).dy,'continues upward');}
+  for(let ms=100;ms<=NUMBER_FLIGHT_MS;ms+=50)assert.ok(at(ms).dx>at(ms-50).dx,'always flies right');
+  const peak=at(NUMBER_FLIGHT_MS*.44);assert.ok(peak.dy < -60);
+  assert.ok(at(120).dy < at(0).dy && at(500).dy > peak.dy+25 && at(NUMBER_FLIGHT_MS).dy>0,'fast launch then a clear falling arc');
   assert.ok(at(0).size > at(NUMBER_FLIGHT_MS / 2).size && at(NUMBER_FLIGHT_MS / 2).size > at(NUMBER_FLIGHT_MS).size, 'shrinks');
-  assert.ok(at(NUMBER_FLIGHT_MS).dx > 30 && at(NUMBER_FLIGHT_MS).dy < -50);
+  assert.ok(at(NUMBER_FLIGHT_MS).dx > 50 && at(NUMBER_FLIGHT_MS).size <= .61);
   assert.equal(at(100).alpha, 1); assert.equal(at(NUMBER_FLIGHT_MS).alpha, 0);
-  assert.deepEqual(at(-50),at(0));assert.ok(at(1400).dx>at(800).dx,'long-lived multi-hit totals keep drifting instead of restarting per hit');
+  assert.deepEqual(at(-50),at(0));assert.deepEqual(at(1400),at(800),'multi-hit totals can hold the completed arc without restarting per hit');
 });

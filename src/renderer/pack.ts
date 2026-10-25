@@ -8,6 +8,8 @@ import { validateCombatVisuals } from './projectiles.ts';
 import { presetSwing } from './actor-animation.ts';
 import { nativeImpactProfile, type LoadedNativeImpact } from './native-impact.ts';
 import { performanceAuraConfig, type LoadedPerformanceAura } from './performance-aura.ts';
+import { groundFieldProfiles, type LoadedGroundField } from './ground-fields.ts';
+import { blackKeyTexture } from './native-textures.ts';
 
 async function json<T>(url: string, init?: RequestInit): Promise<T> { const response = await fetch(url, init); if (!response.ok) throw new Error(`ASSET_HTTP_${response.status}:${url}`); return response.json() as Promise<T>; }
 export class AssetPack {
@@ -17,6 +19,7 @@ export class AssetPack {
   readonly icons = new Map<string, string>();
   /** Native per-hit STR effect by skill id (resolved through the skill's presentation id). */
   readonly impacts = new Map<string, LoadedNativeImpact>();
+  readonly groundFields = new Map<string, LoadedGroundField>();
   performanceAura: LoadedPerformanceAura | null = null;
   private performanceAuraReady: Promise<void> | null = null;
   background: NativeAsset | null = null;
@@ -71,10 +74,22 @@ export class AssetPack {
     return { body, ...(head ? { head } : {}), ...(weapon ? { weapon } : {}), ...(headgear ? { headgear } : {}), ...(garment ? { garment } : {}), ...presetSwing(preset) };
   }
   async prepare(scene: BattleScene, skillIds: readonly string[]): Promise<void> {
+    const ground = groundFieldProfiles(this.index.combat_visuals);
     const aura = performanceAuraConfig(this.index.combat_visuals);
-    if (aura && skillIds.some(id => Object.hasOwn(aura.skills, id))) this.performanceAuraReady ??= Promise.all([this.asset(aura.ring_meta), this.asset(aura.note_meta)]).then(([ring, note]) => { this.performanceAura = { config: aura, ring, note }; });
+    if (aura && skillIds.some(id => Object.hasOwn(aura.skills, id))) this.performanceAuraReady ??= (async () => {
+      const refs = [...new Set([aura.ring_meta, aura.note_meta, ...Object.values(aura.styles).flatMap(s => s.note_meta ? [s.note_meta] : [])])];
+      const notes = new Map(await Promise.all(refs.map(async ref => [ref, await this.asset(ref)] as const)));
+      this.performanceAura = { config: aura, ring: notes.get(aura.ring_meta)!, note: notes.get(aura.note_meta)!, notes };
+    })();
     this.fontReady ??= (async () => { const fontLocation = locateAsset(this.index, this.index.font.id); const font = new FontFace('ROThai', `url("${fontLocation.mediaUrl}")`); await font.load(); document.fonts.add(font); })();
     const visuals = [...new Set(skillIds)].map(async id => {
+      const field = ground[this.index.skills[id]?.presentation_id ?? ''];
+      if (field) {
+        const refs = [...new Set([field.meta, ...(field.texture_layers ?? []).map(l => l.meta), ...(field.floor_meta ? [field.floor_meta] : [])])];
+        const textures = new Map(await Promise.all(refs.map(async ref => [ref, await this.asset(ref)] as const)));
+        const floor = field.floor_meta ? textures.get(field.floor_meta)!.image : undefined;
+        this.groundFields.set(id, { config: field, asset: textures.get(field.meta)!, textures, ...(floor ? { floorImage: field.floor_black_key ? blackKeyTexture(floor) : floor } : {}) });
+      }
       if (Object.hasOwn(scene.enemy_recipes, id)) {
         const recipe = this.index.recipes.find(row => row.skill_id === scene.enemy_recipes[id]);
         if (!recipe?.ready) throw new Error(`MISSING_ENEMY_RECIPE:${id}`);

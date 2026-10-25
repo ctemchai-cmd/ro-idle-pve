@@ -98,3 +98,5 @@ D167/TASK139: [ร้าน/แลกเศษ/Panel](56-shop-and-exchange-ui.md
 - [62 — วงออร่าเพลงBard/Dancer](62-performance-auras.md): D173/TASK149.
 
 - [63 — ตัวเลขและสกิลพื้น](63-number-flight-and-ground-assets.md): D174/TASK150.
+
+- [64 — พื้นสกิลnative](64-native-ground-fields.md): D175/TASK151.

@@ -349,3 +349,9 @@ Accepteduserintent: larger damage numbers; allmajor skills must use real local a
 ผู้ใช้ยืนยันทิศเดียวทุกตัวเลข;เอาการสลับตามHitออก. เลขรวมยังเด้งเมื่อยอดเพิ่มแต่ไม่เริ่มทางลอยใหม่. ดูdesign63/TASK150. ตรวจสกิลพื้นจากsourceจริง แยกไอคอนบัฟออกจากเอฟเฟกต์. ไม่เปลี่ยนengine/บาลานซ์.
 
 ผู้ใช้แก้คำตอบล่าสุดเป็นขวาบน;ทิศซ้ายบนในsource4abfbถูกแทนในการแก้ถัดไป. พื้นทั้งหมดติดตามTASK151.
+
+## D175 — Native ground effects (25 ตุลาคม2026)
+
+ผู้ใช้ยืนยันพื้นทั้งหมด. ตรวจcatalog/ใช้nativeSTRและsongtexturesจริง พร้อมdurationจากactualstatuses. SourceRO songsเป็นground+hovertexture composition. รักษางบ32MiBด้วยlosslessruntimeJSONencoding ไม่ลดภาพ/เสียงหรือแก้engine. ดูdesign64/TASK151.
+
+D174ล่าสุด: ผู้ใช้ขอวิถีเด้งเร็วไปขวาบนแล้วโค้งตกลงพร้อมย่อส่วน650ms ตามลักษณะเดิม;เปิด150reviewตรวจarcใหม่ก่อนปิด.

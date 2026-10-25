@@ -433,7 +433,8 @@
       "start_ms": 0,
       "lead_ms": 0,
       "stagger_ms": 0,
-      "lift": 0
+      "lift": 0,
+      "native_only": true
     },
     "visual_swordsman_provoke": {
       "meta": "library/effects/keyframe_effect_atlas/provoke--13708f6fb033.meta.json",
@@ -496,16 +497,16 @@
       "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
     },
     "visual_wizard_meteor": {
-      "meta": "library/effects/keyframe_effect_atlas/firehit1--4a19f438bcb6.meta.json",
-      "scale": 0.9,
+      "meta": "library/effects/keyframe_effect_atlas/meteor2--1b45e3ebdf39.meta.json",
+      "scale": 0.75,
       "start_ms": 0,
       "lead_ms": 0,
       "stagger_ms": 0,
       "lift": 0,
       "native_only": true,
       "once_per_action": true,
-      "duration_ms": 1300,
-      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
+      "duration_ms": 1700,
+      "basis": "D175 native meteor2 STR from the local client; original keyframes/media, adapted 2D target placement."
     },
     "visual_wizard_heavens_drive": {
       "meta": "library/effects/keyframe_effect_atlas/earthhit--367ca955bed5.meta.json",
@@ -633,7 +634,8 @@
       "start_ms": 0,
       "lead_ms": 0,
       "stagger_ms": 0,
-      "lift": 0
+      "lift": 0,
+      "native_only": true
     },
     "visual_priest_sanctuary": {
       "meta": "library/effects/keyframe_effect_atlas/sanctuary--db20ff4546ed.meta.json",
@@ -1030,8 +1032,7 @@
       "once_per_action": true,
       "duration_ms": 1300,
       "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art.",
-      "link_texture_meta": "library/effects/effect_texture/lens1--066dd9853776.meta.json",
-      "persistent": true
+      "link_texture_meta": "library/effects/effect_texture/lens1--066dd9853776.meta.json"
     },
     "visual_champion_palm_strike": {
       "scale": 0.75,
@@ -1319,8 +1320,7 @@
       "native_only": true,
       "once_per_action": true,
       "duration_ms": 1300,
-      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art.",
-      "persistent": true
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
     },
     "visual_wizard_storm_gust": {
       "scale": 0.85,
@@ -1416,8 +1416,7 @@
       "native_only": true,
       "once_per_action": true,
       "duration_ms": 1300,
-      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art.",
-      "persistent": true
+      "basis": "D170 native local RO media; explicit role adaptation where original client mapping has no ready clip. No procedural replacement art."
     },
     "visual_assassin_venom_dust": {
       "scale": 0.75,
@@ -1709,8 +1708,8 @@
     }
   },
   "performance_auras": {
-    "ring_meta": "library/effects/effect_texture/priest_angel_ring--abc8d5b4fa0c.meta.json",
-    "note_meta": "library/effects/effect_texture/ain_note_01--47c11f2bd164.meta.json",
+    "ring_meta": "library/effects/effect_texture/all_ground--57abef5c9725.meta.json",
+    "note_meta": "library/effects/effect_texture/melody_b--f30d80e2856a.meta.json",
     "ring_size": [
       260,
       160
@@ -1720,22 +1719,350 @@
     "alpha": 0.38,
     "styles": {
       "bard": {
-        "hue_rotate_deg": 190
+        "hue_rotate_deg": 190,
+        "note_meta": "library/effects/effect_texture/melody_b--f30d80e2856a.meta.json"
+      },
+      "bard_healing": {
+        "hue_rotate_deg": 190,
+        "note_meta": "library/effects/effect_texture/idun_apple--19b59a96a342.meta.json",
+        "note_size": 36
+      },
+      "bard_dissonance": {
+        "hue_rotate_deg": 190,
+        "note_meta": "library/effects/effect_texture/lens_w--4e5f4b092e79.meta.json",
+        "note_size": 38,
+        "note_additive": true
+      },
+      "bard_casting": {
+        "hue_rotate_deg": 190,
+        "note_meta": "library/effects/effect_texture/spell_01--325346a0eb93.meta.json",
+        "note_size": 38
       },
       "dancer": {
-        "hue_rotate_deg": 300
+        "hue_rotate_deg": 300,
+        "note_meta": "library/effects/effect_texture/melody_a--5c6d782a6877.meta.json"
+      },
+      "dancer_fortune": {
+        "hue_rotate_deg": 300,
+        "note_meta": "library/effects/effect_texture/heart_2--857a34afb0bb.meta.json",
+        "note_size": 38
       }
     },
     "skills": {
-      "bard_healing_song": "bard",
+      "bard_healing_song": "bard_healing",
       "bard_battle_song": "bard",
-      "bard_dissonance": "bard",
-      "bard_encore": "bard",
+      "bard_dissonance": "bard_dissonance",
+      "bard_encore": "bard_casting",
       "dancer_healing_song": "dancer",
-      "dancer_battle_song": "dancer",
+      "dancer_battle_song": "dancer_fortune",
       "dancer_dissonance": "dancer",
       "dancer_encore": "dancer"
     },
-    "basis": "D173: real local RO priest_angel_ring.bmp and ain_rhapsody_cast/ain_note_01.tga composed as a ground performance aura, not an exact original song field. One aura per living performer while its actual statuses remain; does not imply range or channeling."
+    "basis": "D175 native melody_a/b, idun_apple, lens_w, spell_01 and heart_2 from RO song-framework mappings; native ring composes the 2D area, original symbol colors preserved. Not a pixel-identical 3D client field."
+  },
+  "ground_fields": {
+    "visual_priest_sanctuary": {
+      "meta": "library/effects/keyframe_effect_atlas/sanctuary--db20ff4546ed.meta.json",
+      "status_ids": [
+        "sanctuary_regeneration"
+      ],
+      "anchor": "targets",
+      "scale": 0.65,
+      "lift": 0,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "native_only": true,
+      "basis": "D175 real local RO media, projected from actual status lifetime; 2D area placement is adapted, not added gameplay range.",
+      "floor_meta": "library/effects/effect_texture/magic_ring_a_s--541bc30a6750.meta.json",
+      "floor_size": [
+        210,
+        125
+      ],
+      "floor_alpha": 0.32,
+      "floor_additive": true
+    },
+    "visual_wizard_storm_gust": {
+      "meta": "library/effects/keyframe_effect_atlas/stormgust--2283a43eceda.meta.json",
+      "status_ids": [
+        "frost_field"
+      ],
+      "anchor": "targets",
+      "scale": 0.7,
+      "lift": 0,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "native_only": true,
+      "basis": "D175 real local RO media, projected from actual status lifetime; 2D area placement is adapted, not added gameplay range.",
+      "floor_meta": "library/effects/effect_texture/magic_ring_a_s--541bc30a6750.meta.json",
+      "floor_size": [
+        210,
+        125
+      ],
+      "floor_alpha": 0.32,
+      "floor_additive": true
+    },
+    "visual_wizard_quagmire": {
+      "meta": "library/effects/keyframe_effect_atlas/quagmire--0591bb5c4b4a.meta.json",
+      "status_ids": [
+        "slow",
+        "armor_break"
+      ],
+      "anchor": "targets",
+      "scale": 0.9,
+      "lift": 0,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "native_only": true,
+      "basis": "D175 real local RO media, projected from actual status lifetime; 2D area placement is adapted, not added gameplay range.",
+      "floor_black_key": true,
+      "floor_meta": "library/effects/effect_texture/quagmire_out--53f3c198e18e.meta.json",
+      "floor_size": [
+        210,
+        130
+      ],
+      "floor_alpha": 0.65,
+      "floor_additive": false
+    },
+    "visual_assassin_venom_dust": {
+      "meta": "library/effects/keyframe_effect_atlas/venomdust--b822977c3fce.meta.json",
+      "status_ids": [
+        "venom"
+      ],
+      "anchor": "targets",
+      "scale": 0.65,
+      "lift": 0,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "native_only": true,
+      "basis": "D175 real local RO media, projected from actual status lifetime; 2D area placement is adapted, not added gameplay range.",
+      "floor_black_key": true,
+      "floor_meta": "library/effects/effect_texture/quagmire_out--53f3c198e18e.meta.json",
+      "floor_size": [
+        210,
+        130
+      ],
+      "floor_alpha": 0.65,
+      "floor_additive": false
+    },
+    "visual_alchemist_demonstration": {
+      "meta": "library/effects/keyframe_effect_atlas/firewall--f494e22d2110.meta.json",
+      "status_ids": [
+        "chemical_burn"
+      ],
+      "anchor": "targets",
+      "scale": 0.7,
+      "lift": 0,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "native_only": true,
+      "basis": "D175 real local RO media, projected from actual status lifetime; 2D area placement is adapted, not added gameplay range.",
+      "floor_meta": "library/effects/effect_texture/floor_cast--0726bf4aa541.meta.json",
+      "floor_size": [
+        240,
+        140
+      ],
+      "floor_alpha": 0.65,
+      "floor_additive": true
+    },
+    "visual_alchemist_potion_pitcher": {
+      "meta": "library/effects/keyframe_effect_atlas/sanctuary--db20ff4546ed.meta.json",
+      "status_ids": [
+        "regeneration"
+      ],
+      "anchor": "targets",
+      "scale": 0.35,
+      "lift": 0,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "native_only": true,
+      "basis": "D175 real local RO media, projected from actual status lifetime; 2D area placement is adapted, not added gameplay range.",
+      "floor_meta": "library/effects/effect_texture/all_ground--57abef5c9725.meta.json",
+      "floor_size": [
+        150,
+        90
+      ],
+      "floor_alpha": 0.55,
+      "floor_additive": true
+    },
+    "visual_professor_soul_change": {
+      "meta": "library/effects/keyframe_effect_atlas/new_psychicwave_bottom--5396091ec2af.meta.json",
+      "status_ids": [
+        "psychic_field"
+      ],
+      "anchor": "targets",
+      "scale": 0.75,
+      "lift": 0,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "native_only": true,
+      "basis": "D175 real local RO media, projected from actual status lifetime; 2D area placement is adapted, not added gameplay range.",
+      "floor_meta": "library/effects/effect_texture/magic_ring_a_s--541bc30a6750.meta.json",
+      "floor_size": [
+        210,
+        125
+      ],
+      "floor_alpha": 0.32,
+      "floor_additive": true,
+      "floor_hue_rotate_deg": 40
+    },
+    "visual_gypsy_moonlit_water_mill": {
+      "meta": "library/effects/keyframe_effect_atlas/sanctuary--db20ff4546ed.meta.json",
+      "status_ids": [
+        "guard_up"
+      ],
+      "anchor": "targets",
+      "scale": 0.55,
+      "lift": 0,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "native_only": true,
+      "basis": "D175 real local RO media, projected from actual status lifetime; 2D area placement is adapted, not added gameplay range.",
+      "floor_meta": "library/effects/effect_texture/all_ground--57abef5c9725.meta.json",
+      "floor_size": [
+        150,
+        90
+      ],
+      "floor_alpha": 0.55,
+      "floor_additive": true,
+      "floor_hue_rotate_deg": 280
+    },
+    "visual_paladin_gospel": {
+      "meta": "library/effects/effect_texture/priest_angel_ring--abc8d5b4fa0c.meta.json",
+      "status_ids": [
+        "guard_up",
+        "physical_regeneration"
+      ],
+      "anchor": "source",
+      "scale": 1,
+      "lift": 0,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "native_only": true,
+      "basis": "D175 real local RO media, projected from actual status lifetime; 2D area placement is adapted, not added gameplay range.",
+      "texture_layers": [
+        {
+          "meta": "library/effects/effect_texture/priest_angel_ring--abc8d5b4fa0c.meta.json",
+          "delay_ms": 0,
+          "duration_ms": 1200,
+          "count": 1,
+          "interval_ms": 0,
+          "alpha": 0.7,
+          "fade_in": false,
+          "fade_out": false,
+          "from": [
+            0,
+            0
+          ],
+          "to": [
+            0,
+            0
+          ],
+          "size": [
+            260,
+            160
+          ],
+          "end_size": [
+            260,
+            160
+          ],
+          "angle": 0,
+          "spread": 0,
+          "radial": false,
+          "additive": false
+        },
+        {
+          "meta": "library/effects/effect_texture/cross_old--f85b1ae938d3.meta.json",
+          "delay_ms": 0,
+          "duration_ms": 1200,
+          "count": 4,
+          "interval_ms": 0,
+          "alpha": 0.7,
+          "fade_in": false,
+          "fade_out": false,
+          "from": [
+            0,
+            -10
+          ],
+          "to": [
+            0,
+            -10
+          ],
+          "size": [
+            34,
+            50
+          ],
+          "end_size": [
+            34,
+            50
+          ],
+          "angle": 0,
+          "spread": 48,
+          "radial": false,
+          "additive": false
+        }
+      ],
+      "floor_meta": "library/effects/effect_texture/all_ground--57abef5c9725.meta.json",
+      "floor_size": [
+        290,
+        170
+      ],
+      "floor_alpha": 0.55,
+      "floor_additive": true
+    },
+    "visual_hunter_ankle_snare": {
+      "meta": "library/items/world_item_atlas/asset--3f955a83a507.meta.json",
+      "status_ids": [
+        "stun"
+      ],
+      "anchor": "targets",
+      "scale": 1,
+      "lift": 0,
+      "start_ms": 0,
+      "lead_ms": 0,
+      "stagger_ms": 0,
+      "native_only": true,
+      "basis": "D175 real local RO media, projected from actual status lifetime; 2D area placement is adapted, not added gameplay range.",
+      "texture_layers": [
+        {
+          "meta": "library/items/world_item_atlas/asset--3f955a83a507.meta.json",
+          "delay_ms": 0,
+          "duration_ms": 1200,
+          "count": 1,
+          "interval_ms": 0,
+          "alpha": 0.7,
+          "fade_in": false,
+          "fade_out": false,
+          "from": [
+            0,
+            5
+          ],
+          "to": [
+            0,
+            5
+          ],
+          "size": [
+            90,
+            35
+          ],
+          "end_size": [
+            90,
+            35
+          ],
+          "angle": 0,
+          "spread": 0,
+          "radial": false,
+          "additive": false
+        }
+      ]
+    }
   }
 }

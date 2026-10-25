@@ -47,7 +47,8 @@ assert(base && new URL(base).hostname === '127.0.0.1');
               samples.push({ age, center: center(b), bounds: b });
               if (b.left < 0 || b.left + b.width > innerWidth) throw Error('NUMBER_CLIPPED');
             }
-            for (let i = 1; i < samples.length; i++) if (!(samples[i].center[0] > samples[i - 1].center[0] && samples[i].center[1] < samples[i - 1].center[1])) throw Error('NOT_UPPER_RIGHT:' + kind + JSON.stringify(samples));
+            for (let i = 1; i < samples.length; i++) if (!(samples[i].center[0] > samples[i - 1].center[0])) throw Error('NOT_RIGHT_ARC:' + kind + JSON.stringify(samples));
+            if (!(samples[1].center[1] < samples[0].center[1] && samples[2].center[1] < samples[1].center[1] && samples[3].center[1] > samples[2].center[1] + 10 && samples[3].bounds.height < samples[1].bounds.height)) throw Error('NO_FAST_FALLING_SHRINK_ARC:' + kind);
             if (JSON.stringify(v) !== before) throw Error('VIEW_MUTATION'); variants.push(samples);
           }
           if (JSON.stringify(variants[0]) !== JSON.stringify(variants[1])) throw Error('PARITY_DIRECTION:' + kind);
@@ -67,7 +68,7 @@ assert(base && new URL(base).hostname === '127.0.0.1');
           if (t === 1300) { const target = v.actors.find(a => a.actor_id === 'target_0'); target.spatial.x += 180; target.spatial.previous_x += 180; }
           r.draw(v, t, t); const b = r.frameStats.numberBounds.find(b => b.kind === 'total'); totals.push({ t, center: center(b), ...r.frameStats.totals[0] });
         }
-        for (let i = 1; i < totals.length; i++) if (!(totals[i].center[0] > totals[i - 1].center[0])) throw Error('TOTAL_RESTARTS_LEFT');
+        for (let i = 1; i < totals.length; i++) if (!(totals[i].center[0] >= totals[i - 1].center[0])) throw Error('TOTAL_RESTARTS_LEFT');
         if (totals[0].amount !== 12345 || totals[2].amount !== 24690 || totals.some(t => t.started_at_ms !== 1000)) throw Error('WRONG_TOTAL');
         const unfocused = p.renderer(); unfocused.selected = 'ally_2'; unfocused.accept(hits); unfocused.draw(v, 1400, 1400);
         if (unfocused.frameStats.numberBounds.length) throw Error('FOCUS_FILTER_LOST');
@@ -76,7 +77,7 @@ assert(base && new URL(base).hostname === '127.0.0.1');
       });
       checks.push({ case: 'native_all_number_kinds_and_total_' + width, ...rows });
       // Four native number kinds in one scene, captured at two ages for visual comparison.
-      for (const age of [120, 600]) {
+      for (const age of [120, 300, 600]) {
         await page.evaluate(age => {
           const p = window.number150, r = p.renderer(), v = p.view('target_0');
           const ids = ['target_0', 'ally_1', 'caster', 'ally_2'];
@@ -101,6 +102,18 @@ assert(base && new URL(base).hostname === '127.0.0.1');
       return { speeds: [1, 2, 4], identical_engine_events_state_rng: true };
     });
     checks.push({ case: 'shared_engine_speed_parity_renderer_read_only', ...parity });
+    const dir = fs.mkdtempSync('/private/tmp/ro150-arc-'); let clip;
+    for (let age = 0; age <= 650; age += 50) {
+      const bounds = await page.evaluate(age => {
+        const p = window.number150;
+        if (!age) { const v = p.view('target_0'); v.actors = v.actors.filter(a => a.actor_id === 'target_0'); const r = p.renderer(); r.accept([{ ...p.event(99), amount: 1234 }]); p.arc = { r, v }; }
+        p.arc.r.draw(p.arc.v, 1000 + age, age); return p.arc.r.frameStats.numberBounds[0] ?? null;
+      }, age);
+      if (!clip) clip = { x: Math.max(0, Math.floor(bounds.left + bounds.width / 2 - 85)), y: Math.max(0, Math.floor(bounds.top + bounds.height / 2 - 80)), width: 200, height: 200 };
+      await page.screenshot({ path: path.join(dir, String(age).padStart(3, '0') + '.png'), clip });
+    }
+    require('node:child_process').execFileSync('python3', ['-c', "from PIL import Image;from pathlib import Path;import sys;f=[Image.open(p).convert('RGB').quantize(colors=128) for p in sorted(Path(sys.argv[1]).glob('*.png'))];f[0].save(sys.argv[2],save_all=True,append_images=f[1:],duration=[50]*(len(f)-1)+[200],loop=0)", dir, path.join(out, 'arc-preview.gif')]);
+    fs.rmSync(dir, { recursive: true });
     assert(!errors.length && !writes.length); checks.push({ case: 'no_browser_errors_or_HTTP_writes', passed: true });
   } catch (e) { failure = String(e.stack || e); await page?.screenshot({ path: path.join(out, 'native-failed.png') }).catch(() => {}); }
   finally {

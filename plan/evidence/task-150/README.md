@@ -1,5 +1,5 @@
-# TASK150 — ตัวเลขเด้งแล้วลอยขวาบน
+# TASK150 — วิถีโค้งเร็วขวาบน
 
-ผู้ใช้แก้ทิศล่าสุดเป็นขวาบนหลังsource4abfb(ซ้าย)ขึ้นเว็บแล้ว. รอบใหม่10focusedTS/native4groups/rootbuildผ่าน: ทุกชนิด/Hitคู่คี่/เป้าเดิน/ยอดรวมเพิ่ม/focus/reducedmotion/320390/1x2x4ผลengineตรงกัน. Nativecontrolledpresentationevents;speedparityใช้engineจริง. Groundauditเดิมในground-assets.json;พื้นทั้งหมดทำต่อTASK151. ไม่เพิ่มassetใน150.
+ผู้ใช้แก้คำอธิบายล่าสุดเป็นพุ่งเร็วขวาบนแล้วโค้งตกลงพร้อมย่อส่วน.650ms/peak286ms/size1.25→.6. GIF14framesจากnative rendererอยู่arc-preview.gif. Native4groupsผ่าน320390/allkinds/odd-even/เป้าเดิน/reducedmotion/yellowยอดจริง/engine1x2x4. 34focusedTSเป็นชุดร่วม151. ไม่มีgameplaychange;assetpack additionsเป็นของ151.
 
-Content2c85/packc622/initial1621492/raw33546959เดิม. ไม่owner/AuthSQL/env/6173/agents. รอhostedทิศขวาบนก่อนปิด150. หลักฐานซ้ายบนก่อนแก้เป็นประวัติ ไม่ใช้ปิดงานรอบขวาบน.
+source8caaเคยผ่านhostedสำหรับdriftขวาบน เป็นประวัติก่อนคำแก้curve. ต้องตรวจhostedcurveก่อนปิดงานล่าสุด.

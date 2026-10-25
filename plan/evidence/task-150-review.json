@@ -4,20 +4,17 @@
   "passed": false,
   "status": "review",
   "acceptance_results": {
-    "AC-01": "pending upper-right",
-    "AC-02": "pending release"
+    "AC-01": "local curved flight passed, public pending",
+    "AC-02": "local passed, public pending"
   },
   "content_hash": "2c85fdd28e0530de6d807cd095e0e779d3b7edc5f0aa0603df219b5f59c1438c",
-  "pack_hash": "c622ce21bdc5f73f0921f7ef823e6f74ff8977e39bb1ff501322f32da0c5b98f",
+  "pack_hash": "cb126d18cd433b3d0c0e9bb1727235abc59269f5eb9e04ec3f8e524f148586fc",
   "checks": {
-    "focused_TS": 10,
+    "focused_TS": 34,
     "native_groups": 4,
-    "hosted_groups": 4,
-    "public_bundle_SHA": 24,
     "root_build": true,
     "M0": true,
     "gameplay_SHA_unchanged": true,
-    "pack_unchanged": true,
     "native_widths": [
       320,
       390
@@ -28,7 +25,11 @@
       4
     ],
     "browser_errors": 0,
-    "HTTP_writes": 0
+    "HTTP_writes": 0,
+    "number_flight_ms": 650,
+    "arc_preview_frames": 14,
+    "asset_changes_owned_by_TASK151": true,
+    "filtered_build": true
   },
   "evidence": [
     "plan/evidence/task-150/native.json",
@@ -43,6 +44,7 @@
     "No owner/AuthSQL/env/6173/agents or balance batch."
   ],
   "pending": [
-    "right-direction public proof"
-  ]
+    "public curved flight release"
+  ],
+  "local_passed": true
 }

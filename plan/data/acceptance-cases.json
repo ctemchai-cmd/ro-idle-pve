@@ -15517,14 +15517,14 @@
       "id": "T150-AC-01",
       "task_id": "TASK-150",
       "acceptance_id": "AC-01",
-      "criterion": "All floating numbers pop and drift upper-right, fixed hit origins, stable multi-hit drift, preserved actual values/focus/timing/reducedmotion/speed parity",
+      "criterion": "All floating numbers launch fast upper-right then arc down while shrinking, fixed hit origins, stable multi-hit drift, preserved actual values/focus/timing/reducedmotion/speed parity",
       "input_setup": "Actual Canvas/native pack + seeded shared engine; read-only public artifacts, no owner",
       "input_refs": [
         "plan/review/tasks_150.md",
         "plan/design/63-number-flight-and-ground-assets.md"
       ],
       "parameters": {},
-      "expected": "All floating numbers pop and drift upper-right, fixed hit origins, stable multi-hit drift, preserved actual values/focus/timing/reducedmotion/speed parity",
+      "expected": "All floating numbers launch fast upper-right then arc down while shrinking, fixed hit origins, stable multi-hit drift, preserved actual values/focus/timing/reducedmotion/speed parity",
       "verification": "Focused TS/native320390/engine parity/source metadata/build/hosted",
       "status": "not_run_implementation",
       "evidence_refs": [
@@ -15535,18 +15535,54 @@
       "id": "T150-AC-02",
       "task_id": "TASK-150",
       "acceptance_id": "AC-02",
-      "criterion": "Ground asset source audit separates STR/native effect textures from status icons; native320390/build/unchanged content and pack/public release",
+      "criterion": "Ground asset source audit separates STR/native effect textures from status icons; native320390/build/unchanged gameplay, verified native pack with additions owned by TASK151/public release",
       "input_setup": "Actual Canvas/native pack + seeded shared engine; read-only public artifacts, no owner",
       "input_refs": [
         "plan/review/tasks_150.md",
         "plan/design/63-number-flight-and-ground-assets.md"
       ],
       "parameters": {},
-      "expected": "Ground asset source audit separates STR/native effect textures from status icons; native320390/build/unchanged content and pack/public release",
+      "expected": "Ground asset source audit separates STR/native effect textures from status icons; native320390/build/unchanged gameplay, verified native pack with additions owned by TASK151/public release",
       "verification": "Focused TS/native320390/engine parity/source metadata/build/hosted",
       "status": "not_run_implementation",
       "evidence_refs": [
         "plan/evidence/task-150-review.json"
+      ]
+    },
+    {
+      "id": "T151-AC-01",
+      "task_id": "TASK-151",
+      "acceptance_id": "AC-01",
+      "criterion": "All ground skill roles catalogued; continuous fields follow actual statuses/expiry/anchors/dedup/recast/Base-Aw/enemy/reducedmotion; engine unchanged",
+      "input_setup": "Actual shared engine/native pack/Canvas mobile320390/all sidecar semantic equality/source/media checks;no owner",
+      "input_refs": [
+        "plan/review/tasks_151.md",
+        "plan/design/64-native-ground-fields.md"
+      ],
+      "parameters": {},
+      "expected": "All ground skill roles catalogued; continuous fields follow actual statuses/expiry/anchors/dedup/recast/Base-Aw/enemy/reducedmotion; engine unchanged",
+      "verification": "FocusedTS/engine/native/mobile/source/build/public",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-151-review.json"
+      ]
+    },
+    {
+      "id": "T151-AC-02",
+      "task_id": "TASK-151",
+      "acceptance_id": "AC-02",
+      "criterion": "Reviewed native art/source mappings, mobile and bounded cost, lossless sidecar/media preservation, pack32MiB initial not larger, source/build/public proof",
+      "input_setup": "Actual shared engine/native pack/Canvas mobile320390/all sidecar semantic equality/source/media checks;no owner",
+      "input_refs": [
+        "plan/review/tasks_151.md",
+        "plan/design/64-native-ground-fields.md"
+      ],
+      "parameters": {},
+      "expected": "Reviewed native art/source mappings, mobile and bounded cost, lossless sidecar/media preservation, pack32MiB initial not larger, source/build/public proof",
+      "verification": "FocusedTS/engine/native/mobile/source/build/public",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-151-review.json"
       ]
     }
   ]

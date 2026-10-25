@@ -10,6 +10,7 @@ import { alignProjectiles, attackContactMs, visualImpactMs } from './impact-timi
 import { drawSpiritSpheres } from './spirit-spheres.ts';
 import { drawHealingAura } from './healing-aura.ts';
 import { drawPerformanceAura, performanceAuras, type PerformanceAura } from './performance-aura.ts';
+import { GroundFieldRenderer, type GroundFieldFrame } from './ground-fields.ts';
 import { statusLinks, drawStatusLinks, type StatusLink } from './status-links.ts';
 import { locateSkillVisual } from './asset-locator.ts';
 import { FinisherEffects, type FinisherFrame } from './finishers.ts';
@@ -32,7 +33,8 @@ export class BattleRenderer {
   private readonly finishers = new FinisherEffects();
   private readonly multiHitNumbers = new MultiHitNumbers();
   private readonly totalOrigins = new Map<string, readonly [number, number]>();
-  frameStats = { performance_auras:[] as PerformanceAura[],numberBounds:[] as NumberDrawBounds[],fields:[] as string[],links:[] as StatusLink[],totals: [] as MultiHitFrame[], finishers: [] as FinisherFrame[], camera: [0,0] as readonly [number,number], healing_auras: [] as string[], damage: [] as { source: string; target: string; amount: number; critical: boolean; sequence: number; at_ms: number }[], incoming: [] as { source: string; target: string; amount: number; sequence: number }[], projectiles: [] as { source: string; target: string; shape: string }[], shouts: [] as { actor: string; skill: string }[], impacts: [] as { target: string; meta: string }[] };
+  private readonly ground = new GroundFieldRenderer();
+  frameStats = { ground_fields:[] as GroundFieldFrame[],performance_auras:[] as PerformanceAura[],numberBounds:[] as NumberDrawBounds[],fields:[] as string[],links:[] as StatusLink[],totals: [] as MultiHitFrame[], finishers: [] as FinisherFrame[], camera: [0,0] as readonly [number,number], healing_auras: [] as string[], damage: [] as { source: string; target: string; amount: number; critical: boolean; sequence: number; at_ms: number }[], incoming: [] as { source: string; target: string; amount: number; sequence: number }[], projectiles: [] as { source: string; target: string; shape: string }[], shouts: [] as { actor: string; skill: string }[], impacts: [] as { target: string; meta: string }[] };
   private frameTime = 0;
   private statusImages = new Map<string, HTMLImageElement | null>();
   /** Hide ambient-farm status icons without changing the shared combat state. */
@@ -81,7 +83,7 @@ export class BattleRenderer {
       const impact = event.type === 'cast_resolve' ? this.pack.impacts.get(event.skill_id ?? '') ?? null : null;
       const launch = { specs, contact, damaging, impact: impact?.config ?? null };
       launches.set(key(event), launch);
-      if (impact) {
+      if (impact && !this.pack.groundFields.has(event.skill_id ?? '')) {
         // One native burst per (target, hit); targets reached only by heals/statuses get one at the resolve.
         const reached = new Map<string, number>();
         for (const row of events) if (key(row) === key(event) && row.target_id && ['damage', 'miss', 'heal', 'status_applied'].includes(row.type)) {
@@ -164,9 +166,11 @@ export class BattleRenderer {
     const camera=this.showFinishers&&this.showFinisherTitles?this.finishers.shake(wallMs,this.motion):[0,0] as const;
     context.save(); context.translate((width - worldWidth * zoom) / 2+camera[0], (height - worldHeight * zoom) / 2+camera[1]); context.scale(zoom, zoom);
     this.drawnLayers = 0;
-    this.frameStats = { performance_auras:[],numberBounds:[] as NumberDrawBounds[],fields:[] as string[],links:[] as StatusLink[],totals: [], finishers: [], camera, damage: [], incoming: [], projectiles: [], shouts: [], impacts: [], healing_auras: [] };
+    this.frameStats = { ground_fields:[],performance_auras:[],numberBounds:[] as NumberDrawBounds[],fields:[] as string[],links:[] as StatusLink[],totals: [], finishers: [], camera, damage: [], incoming: [], projectiles: [], shouts: [], impacts: [], healing_auras: [] };
     const appearances = this.scene.actors;
     this.lastView = view;
+    this.frameStats.ground_fields = this.ground.draw(context, view.actors, view.game_time_ms, presentationMs, this.motion, this.pack.groundFields, actor => this.point(actor));
+    this.frameStats.fields = [...new Set(this.frameStats.ground_fields.flatMap(f => f.targets))];
     if (this.pack.performanceAura) {
       this.frameStats.performance_auras = performanceAuras(view.actors, view.game_time_ms, this.pack.performanceAura.config);
       for (const aura of this.frameStats.performance_auras) {
@@ -178,7 +182,6 @@ export class BattleRenderer {
     this.frameStats.links=statusLinks(view.actors,a=>this.point(a),view.game_time_ms);
     const linkProfile=this.pack.impacts.get('high_priest_basilica');
     drawStatusLinks(context,this.frameStats.links,presentationMs,this.motion,linkProfile?.config.link_texture_meta?linkProfile.textures.get(linkProfile.config.link_texture_meta):undefined);
-    for(const actor of view.actors){if(actor.hp<=0)continue;for(const group of actor.statuses??[]){const native=group.icon_skill_id?this.pack.impacts.get(group.icon_skill_id):null;if(!native?.config.persistent)continue;const instance=group.instances.find(s=>s.expires_at>view.game_time_ms&&(s.applied_at===null||s.applied_at<=view.game_time_ms));if(!instance)continue;const [fx,fy]=this.point(actor),length=nativeImpactDuration(native.config,native.asset);if(length>0&&this.motion){context.save();const hue=this.pack.index.combat_visuals.skills[group.icon_skill_id!]?.hue_rotate_deg;if(hue)context.filter='hue-rotate('+hue+'deg)';drawNativeImpact(context,native,(presentationMs-(instance.applied_at??0))%length,fx,fy-native.config.lift);context.restore();this.frameStats.fields.push(actor.actor_id);}}}
     for (const actor of view.actors.filter(row => row.summon_of)) this.drawSummon(context, actor, presentationMs);
     for (const actor of view.actors.slice().sort((a, b) => this.point(a)[1] - this.point(b)[1])) {
       const appearance = appearances.find(row => row.actor_id === actor.actor_id), parts = this.pack.actors.get(actor.actor_id); if (!appearance || !parts) continue;
@@ -193,7 +196,7 @@ export class BattleRenderer {
       }
       const motion = this.animation.offset(state, elapsed, actor.actor_id, this.motion);
       const sphereTime = this.motion ? presentationMs : 0;
-      if (actor.hp > 0 && actor.healing_aura && !actor.statuses?.some(g=>g.icon_skill_id&&this.pack.impacts.get(g.icon_skill_id)?.config.native_only)) { drawHealingAura(context, sphereTime, x, y, 32 * appearance.scale); this.frameStats.healing_auras.push(actor.actor_id); }
+      if (actor.hp > 0 && actor.healing_aura && !actor.statuses?.some(g=>g.icon_skill_id&&(this.pack.impacts.get(g.icon_skill_id)?.config.native_only || this.pack.groundFields.has(g.icon_skill_id) || Object.hasOwn(this.pack.performanceAura?.config.skills ?? {},g.icon_skill_id)))) { drawHealingAura(context, sphereTime, x, y, 32 * appearance.scale); this.frameStats.healing_auras.push(actor.actor_id); }
       if (actor.hp > 0) drawSpiritSpheres(context, actor.spirit_spheres ?? 0, sphereTime, false, x, y);
       this.drawnLayers += drawActor(context, parts, state, elapsed, x + motion.x * (facing === 'left' ? -1 : 1), y + motion.y, facing, appearance.scale);
       if (actor.hp > 0) drawSpiritSpheres(context, actor.spirit_spheres ?? 0, sphereTime, true, x, y);
@@ -245,7 +248,7 @@ export class BattleRenderer {
         continue;
       }
       if (event.type === 'cast_resolve' && event.skill_id && this.motion) {
-        const visual = this.pack.visuals.get(event.skill_id); if (!visual || this.pack.impacts.has(event.skill_id)) continue;
+        const visual = this.pack.visuals.get(event.skill_id); if (!visual || this.pack.impacts.has(event.skill_id) || this.pack.groundFields.has(event.skill_id)) continue;
         // Target effects are positioned from actual resulting hit/heal/status events.
         for (const id of cue.targets) {
           const target = view.actors.find(row => row.actor_id === id); if (!target) continue; const [tx, ty] = this.point(target);
@@ -273,7 +276,8 @@ export class BattleRenderer {
       const pop = this.motion ? Math.sin(Math.PI * Math.min(1, total.age_ms / 160)) * 8 : 0;
       context.save(); context.globalAlpha = total.alpha;
       // A separate band above the white numbers' upward flight keeps the running total readable.
-      if(this.numbers)this.frameStats.numberBounds.push(this.numbers.draw(context, total.amount, false, x + flight.dx * .5, Math.max(40, y - (156+68/numberWorldToCss)) + flight.dy * .5 - pop, this.motion ? total.age_ms : 140, 'total', 1.08));
+      const size = this.motion ? Math.max(.8, numberFlight(presentationMs - total.started_at_ms).size) : 1;
+      if(this.numbers)this.frameStats.numberBounds.push(this.numbers.draw(context, total.amount, false, x + flight.dx * .5, Math.max(40, y - (156+68/numberWorldToCss)) + flight.dy * .5 - pop, this.motion ? total.age_ms : 140, 'total', 1.08 * size));
       context.restore();
     }
     for (const key of this.totalOrigins.keys()) if (!activeTotalKeys.has(key)) this.totalOrigins.delete(key);

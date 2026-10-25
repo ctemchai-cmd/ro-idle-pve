@@ -7,8 +7,8 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 from pathlib import Path
-import shutil
 
 ROOT = Path(__file__).resolve().parents[1]
 RO = ROOT / 'assets/ro'
@@ -17,6 +17,7 @@ DATA = ROOT / 'plan/data'
 COMBAT_VISUALS = ROOT / 'src/renderer/combat-visuals.json'
 # Presentation-only shell icons and ambient farm skins; never gameplay data.
 SHELL_VISUALS = ROOT / 'src/renderer/shell-visuals.json'
+SIDECAR_ENCODING = 'compact-json-safe-integers-v1'
 
 def read(path):
     return json.loads(Path(path).read_text())
@@ -26,6 +27,24 @@ def sha(data):
 
 def encoded(data):
     return json.dumps(data, ensure_ascii=False, sort_keys=True, separators=(',', ':'), allow_nan=False).encode()
+
+def compact_metadata(value):
+    """Same JSON.parse values; integral JSON numbers have no float/int distinction.
+
+    Preserve negative zero, large floats, array order, fields and STR special strings.
+    This touches generated runtime bytes only, never the source sidecar or media.
+    """
+    if isinstance(value, dict):
+        return {k: compact_metadata(v) for k, v in value.items()}
+    if isinstance(value, list):
+        return [compact_metadata(v) for v in value]
+    if type(value) is float and value.is_integer() and abs(value) <= 9007199254740991 and not (value == 0 and math.copysign(1, value) < 0):
+        return int(value)
+    return value
+
+def runtime_payload(path, ro_root=RO):
+    source = ro_root / path
+    return encoded(compact_metadata(read(source))) if path.endswith('.meta.json') else source.read_bytes()
 
 def walk(value):
     yield value
@@ -92,6 +111,7 @@ def selection(data_root=DATA):
         recipe_ids.add(actor['presentation']['skill_id'])
     # Only asset-bearing data participates: changing a skill price leaves this hash unchanged.
     signature = {
+        'sidecar_encoding': SIDECAR_ENCODING,
         'meta_refs': sorted(refs), 'recipe_ids': sorted(recipe_ids), 'combat_visuals': read(COMBAT_VISUALS), 'shell_visuals': read(SHELL_VISUALS),
         'actors': documents['actor-presentations.json']['jobs'],
         'stage_scenery': [{'id': s['id'], 'background': s['background'], 'music': s['music']} for s in documents['stages.json']['stages']],
@@ -168,7 +188,7 @@ def build(output=OUT, data_root=DATA, ro_root=RO):
     files = {}
     by_meta = {}
     def include(path):
-        payload = (ro_root / path).read_bytes()
+        payload = runtime_payload(path, ro_root)
         files[path] = {'path': path, 'bytes': len(payload), 'sha256': sha(payload)}
     for ref in sorted(refs):
         meta, media_ref = resolve_asset(ref, ro_root)
@@ -185,7 +205,7 @@ def build(output=OUT, data_root=DATA, ro_root=RO):
     # The initial download profile is a budget scenario; other jobs/genders stay lazy.
     combat_visuals = read(COMBAT_VISUALS)
     # Per-skill native impacts load lazily with their skill; only the first-battle skills count as initial.
-    initial_refs = collect_refs({key: value for key, value in combat_visuals.items() if key not in ['impacts', 'performance_auras']})
+    initial_refs = collect_refs({key: value for key, value in combat_visuals.items() if key not in ['impacts', 'performance_auras', 'ground_fields']})
     initial_skills = []
     for job in docs['actor-presentations.json']['jobs']:
         if job['job_id'] in ['swordsman', 'acolyte', 'archer', 'mage']:
@@ -194,6 +214,7 @@ def build(output=OUT, data_root=DATA, ro_root=RO):
                 if skill['class_id'] == job['job_id'] and skill['kind'] == 'active' and skill['unlock_level'] == 1:
                     initial_skills.append(skill['id'])
                     initial_refs |= collect_refs(combat_visuals.get('impacts', {}).get(skill['presentation_id']))
+                    initial_refs |= collect_refs(combat_visuals.get('ground_fields', {}).get(skill['presentation_id']))
                     visual = presentations[skill['presentation_id']]
                     initial_refs.add(relative_ref(visual['icon_meta_path']))
                     recipe_id = visual['visual'].get('reference_skill_id')
@@ -214,7 +235,7 @@ def build(output=OUT, data_root=DATA, ro_root=RO):
         record = by_meta[ref]
         initial_files |= {record['meta_path'], record['media_path']}
     index = {
-        'schema_version': 1, 'asset_selection_hash': selection_hash,
+        'schema_version': 1, 'sidecar_encoding': SIDECAR_ENCODING, 'asset_selection_hash': selection_hash,
         'assets': records, 'files': [files[k] for k in sorted(files)],
         'actor_jobs': docs['actor-presentations.json']['jobs'],
         'skills': skills, 'presentations': presentations,
@@ -250,7 +271,7 @@ def build(output=OUT, data_root=DATA, ro_root=RO):
         target = payload_root / ref
         target.parent.mkdir(parents=True, exist_ok=True)
         if not target.exists() or sha(target.read_bytes()) != files[ref]['sha256']:
-            shutil.copyfile(ro_root / ref, target)
+            target.write_bytes(runtime_payload(ref, ro_root))
     # No stale payload is allowed to inflate later source uploads.
     for target in payload_root.rglob('*'):
         if target.is_file() and str(target.relative_to(payload_root)) not in files:
@@ -279,7 +300,8 @@ def verify(output=OUT, data_root=DATA, *, artifact_only=False, ro_root=RO):
             raise ValueError('Pack payload changed: ' + row['path'])
         if not artifact_only:
             source = ro_root / relative_ref(row['path'])
-            if not source.is_file() or sha(source.read_bytes()) != row['sha256']:
+            source_bytes = runtime_payload(row['path'], ro_root) if source.is_file() and index.get('sidecar_encoding') == SIDECAR_ENCODING else source.read_bytes() if source.is_file() else b''
+            if not source.is_file() or sha(source_bytes) != row['sha256']:
                 raise ValueError('Selected local source changed; rebuild pack: ' + row['path'])
     if not artifact_only:
         prepared = read(ro_root / 'prepared/game-pack.json')
