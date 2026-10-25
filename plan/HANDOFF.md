@@ -1,5 +1,11 @@
 # Handoff ระหว่าง agent
 
+## 25 ต.ค.2026 · Codex — ACTIVE TASK152 larger/punchier numbers, LOCAL native passed
+
+- Userwantsnumbersslightlybigger+strongerpop.152review/design65/D176;137/152done/M4 91/101. BeforeHEADd891bcc4d. Onlydamage-numbers.ts tuning:CSS30/38/38/26/24→34/43/43/30/27,pop18%140ms→26%110ms,flight650→620ms/dx64→76/height62→78;same.44apex/size1.25→.6/rightfall/focus/colors/totals.10existingTS/native4groups/60manualnativebefore-after320390passed;birth>=18%/reading>=8%,40msvertical+31%horizontal+24%. GIFnew152captured. Noasset/gameplay/packchanges(packcb126/content2c85same),noowner/SQL/env/6173/agents/balancebatch.
+- Existingnative+hostednumberharnessnowaccept RO_EVIDENCE_TASK=task-152(regexbounded);noold150evidenceoverwritten. OwnVite7506CLOSED/browsersclosed. ALL152UNCOMMITTED. M0/freshrootbuild PASSED. NEXT explicitstageours,push/VercelSUCCESS,RO_EVIDENCE_TASK=task-152 node scripts/test_number_flight_hosted.cjs,then152done/closurepush. Nofilteredbuildneeded(build/packpipelineunchanged). Unselecteduserassets/task108pnguntouched.
+
+
 ## 25 ต.ค.2026 · Codex — TASK150 FINAL CURVE + TASK151 native ground effects LIVE / complete
 
 - Source753561d5447a79f2e5ef4864666b67152facf056 VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/Fyv3US7CHQMaTi7xTsGQnwMS13dJ.150hosted4PASS actualnativeheal320390 QUICKupper-right→fallingarc+shrink,24bundleSHA/APIhealthSIN1/auth401/content2c85/packcb126.151hosted4PASS6actualpublicnativescenes(Sanct,Quag,Meteor,Bardheal,Dancerluck,Wave)/20refsSHA/transparentmudcorners/additivering/originalsymbolcolors/24bundles/0errors-writes. BOTHdone,137/151done/M4 91/100. No remaining150/151work. Earlier4abfb(left)/8caa(straight-right) superseded by this latest user-described trajectory.

@@ -355,3 +355,7 @@ Accepteduserintent: larger damage numbers; allmajor skills must use real local a
 ผู้ใช้ยืนยันพื้นทั้งหมด. ตรวจcatalog/ใช้nativeSTRและsongtexturesจริง พร้อมdurationจากactualstatuses. SourceRO songsเป็นground+hovertexture composition. รักษางบ32MiBด้วยlosslessruntimeJSONencoding ไม่ลดภาพ/เสียงหรือแก้engine. ดูdesign64/TASK151.
 
 D174ล่าสุด: ผู้ใช้ขอวิถีเด้งเร็วไปขวาบนแล้วโค้งตกลงพร้อมย่อส่วน650ms ตามลักษณะเดิม;เปิด150reviewตรวจarcใหม่ก่อนปิด.
+
+## D176 — ขยายเลขและเพิ่มแรงเด้ง (25ตุลาคม2026)
+
+ผู้ใช้ขอใหญ่ขึ้นอีกนิดและเด้งแรงขึ้น. Baseglyphประมาณ+13%,popแรงขึ้น,วิถี620ms/height78/dx76. คงโค้งตกขวา/ย่อส่วน ไม่เพิ่มcombatpower. ดูdesign65/TASK152.

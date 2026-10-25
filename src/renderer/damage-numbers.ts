@@ -2,18 +2,18 @@ import type { NativeAsset } from './native.mjs';
 
 /** `incoming` is damage a party member takes (red, as RO shows it on your own characters). */
 export type NumberKind = 'damage' | 'heal' | 'incoming' | 'total';
-/** A quick upper-right launch, then a falling arc while shrinking. Every kind
- * neither hit order nor facing may reverse it. Presentation time only. */
-export const NUMBER_FLIGHT_MS = 650;
+/** A quick upper-right launch, then a falling arc while shrinking.
+ * Hit order and facing never reverse it. Presentation time only. */
+export const NUMBER_FLIGHT_MS = 620;
 export function numberFlight(elapsed: number): { dx: number; dy: number; size: number; alpha: number } {
   const p = Math.min(1, Math.max(0, elapsed / NUMBER_FLIGHT_MS)), arc = p / (.44 * 2);
-  return { dx: 64 * p, dy: -4 * 62 * arc * (1 - arc), size: 1.25 - .65 * p, alpha: p < .7 ? 1 : Math.max(0, 1 - (p - .7) / .3) };
+  return { dx: 76 * p, dy: -4 * 78 * arc * (1 - arc), size: 1.25 - .65 * p, alpha: p < .7 ? 1 : Math.max(0, 1 - (p - .7) / .3) };
 }
-export const NUMBER_CSS_HEIGHT = { damage:30, critical:38, total:38, heal:26, incoming:24 } as const;
+export const NUMBER_CSS_HEIGHT = { damage:34, critical:43, total:43, heal:30, incoming:27 } as const;
 export interface NumberDrawBounds {kind:NumberKind;critical:boolean;left:number;top:number;width:number;height:number}
 /** Stable CSS size even when a portrait canvas squeezes a large world into320px. */
 export function readableNumberScale(height:number,width:number,worldToCss:number,viewportWidth:number,kind:NumberKind,critical:boolean,size:number,pop:number):number {
-  const desired=NUMBER_CSS_HEIGHT[critical?'critical':kind]*(1+pop*.18)*size;
+  const desired=NUMBER_CSS_HEIGHT[critical?'critical':kind]*(1+pop*.26)*size;
   return Math.min(desired/height,viewportWidth*.70/width)/Math.max(.0001,worldToCss);
 }
 /** Native bitmap digits, cached as whole strings so a frame doesn't rebuild text. */
@@ -40,7 +40,7 @@ export class DamageNumbers {
   /** `kind: true` is the older heal flag. `size` multiplies the base glyph scale (flight shrink). */
   draw(context: CanvasRenderingContext2D, amount: number, critical: boolean, x: number, y: number, elapsed: number, kind: NumberKind | boolean = 'damage', size = 1): NumberDrawBounds {
     const resolvedKind=kind===true?'heal':kind===false?'damage':kind;
-    const image = this.text(amount, critical, resolvedKind), pop = Math.max(0, 1 - elapsed / 140);
+    const image = this.text(amount, critical, resolvedKind), pop = Math.max(0, 1 - elapsed / 110);
     const matrix=context.getTransform(),cssWidth=context.canvas.clientWidth||context.canvas.width,ratio=cssWidth/context.canvas.width;
     const worldToCss=Math.hypot(matrix.a,matrix.b)*ratio;
     const scale=readableNumberScale(image.height,image.width,worldToCss,cssWidth,resolvedKind,critical,size,pop);

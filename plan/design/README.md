@@ -100,3 +100,5 @@ D167/TASK139: [ร้าน/แลกเศษ/Panel](56-shop-and-exchange-ui.md
 - [63 — ตัวเลขและสกิลพื้น](63-number-flight-and-ground-assets.md): D174/TASK150.
 
 - [64 — พื้นสกิลnative](64-native-ground-fields.md): D175/TASK151.
+
+- [65 — ขนาดและแรงเด้งเลข](65-number-impact.md): D176/TASK152.

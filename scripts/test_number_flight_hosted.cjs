@@ -1,7 +1,8 @@
 // Verify the built public product and actual native number motion, without owner access.
 const fs = require('node:fs'), path = require('node:path'), assert = require('node:assert/strict'), { createHash } = require('node:crypto');
 const { chromium } = require('/private/tmp/ro-idle-browser-check/node_modules/playwright-core');
-const root = path.resolve(__dirname, '..'), out = path.join(root, 'plan/evidence/task-150'), base = 'https://ro-idle-pve.vercel.app';
+const evidenceTask = process.env.RO_EVIDENCE_TASK || 'task-150'; assert(/^task-\d{3}$/.test(evidenceTask));
+const root = path.resolve(__dirname, '..'), out = path.join(root, 'plan/evidence', evidenceTask), base = 'https://ro-idle-pve.vercel.app';
 (async () => {
   let browser, failure; const checks = [], errors = [], writes = [];
   try {
@@ -21,6 +22,7 @@ const root = path.resolve(__dirname, '..'), out = path.join(root, 'plan/evidence
       assert(response.ok); assert.equal(createHash('sha256').update(bytes).digest('hex'), file.sha256); sources.push(bytes.toString());
     }
     for (const marker of ['numberOrigin', 'started_at_ms', 'totalOrigins']) assert(sources.join('\n').includes(marker), marker);
+    if (evidenceTask === 'task-152') assert(/damage:34,critical:43,total:43,heal:30,incoming:27/.test(sources.join('\n')), 'OLD_NUMBER_SIZE');
     checks.push({ case: 'all_public_bundle_SHA_and_new_number_flight_adapter', files: files.length });
     browser = await chromium.launch({ headless: true, executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' });
     const page = await browser.newPage({ viewport: { width: 320, height: 844 }, isMobile: true, hasTouch: true });
@@ -37,7 +39,7 @@ const root = path.resolve(__dirname, '..'), out = path.join(root, 'plan/evidence
         }
         const key = ids.get(image); if (!key) return;
         const t = this.getTransform(), ratio = this.canvas.clientWidth / this.canvas.width;
-        window.numberFlight150.push({ id: key, at: performance.now(), x: t.e * ratio, y: t.f * ratio, alpha: this.globalAlpha });
+        window.numberFlight150.push({ id: key, at: performance.now(), x: t.e * ratio, y: t.f * ratio, height: Math.hypot(t.c, t.d) * Math.abs(args[4]) * ratio, alpha: this.globalAlpha });
         if (window.numberFlight150.length > 2000) window.numberFlight150.shift();
       };
     });
@@ -52,6 +54,7 @@ const root = path.resolve(__dirname, '..'), out = path.join(root, 'plan/evidence
       });
       for (let i = 1; i < samples.length; i++) assert(samples[i].x > samples[i - 1].x, JSON.stringify(samples));
       assert(samples[1].y < samples[0].y && samples[2].y < samples[1].y && samples[3].y > samples[2].y + 10, 'NO_FALLING_ARC:' + JSON.stringify(samples));
+      if (evidenceTask === 'task-152') assert(Math.max(...samples.map(s => s.height)) > 38.5, 'OLD_NATIVE_HEAL_SIZE');
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
       rows.push({ width, samples, native_green_digits_upper_right_falling_arc: true }); await page.screenshot({ path: path.join(out, 'hosted-heal-' + width + '.png') });
     }
