@@ -47,7 +47,7 @@ assert(base && new URL(base).hostname === '127.0.0.1');
               samples.push({ age, center: center(b), bounds: b });
               if (b.left < 0 || b.left + b.width > innerWidth) throw Error('NUMBER_CLIPPED');
             }
-            for (let i = 1; i < samples.length; i++) if (!(samples[i].center[0] < samples[i - 1].center[0] && samples[i].center[1] < samples[i - 1].center[1])) throw Error('NOT_UPPER_LEFT:' + kind + JSON.stringify(samples));
+            for (let i = 1; i < samples.length; i++) if (!(samples[i].center[0] > samples[i - 1].center[0] && samples[i].center[1] < samples[i - 1].center[1])) throw Error('NOT_UPPER_RIGHT:' + kind + JSON.stringify(samples));
             if (JSON.stringify(v) !== before) throw Error('VIEW_MUTATION'); variants.push(samples);
           }
           if (JSON.stringify(variants[0]) !== JSON.stringify(variants[1])) throw Error('PARITY_DIRECTION:' + kind);
@@ -67,7 +67,7 @@ assert(base && new URL(base).hostname === '127.0.0.1');
           if (t === 1300) { const target = v.actors.find(a => a.actor_id === 'target_0'); target.spatial.x += 180; target.spatial.previous_x += 180; }
           r.draw(v, t, t); const b = r.frameStats.numberBounds.find(b => b.kind === 'total'); totals.push({ t, center: center(b), ...r.frameStats.totals[0] });
         }
-        for (let i = 1; i < totals.length; i++) if (!(totals[i].center[0] < totals[i - 1].center[0])) throw Error('TOTAL_RESTARTS_RIGHT');
+        for (let i = 1; i < totals.length; i++) if (!(totals[i].center[0] > totals[i - 1].center[0])) throw Error('TOTAL_RESTARTS_LEFT');
         if (totals[0].amount !== 12345 || totals[2].amount !== 24690 || totals.some(t => t.started_at_ms !== 1000)) throw Error('WRONG_TOTAL');
         const unfocused = p.renderer(); unfocused.selected = 'ally_2'; unfocused.accept(hits); unfocused.draw(v, 1400, 1400);
         if (unfocused.frameStats.numberBounds.length) throw Error('FOCUS_FILTER_LOST');

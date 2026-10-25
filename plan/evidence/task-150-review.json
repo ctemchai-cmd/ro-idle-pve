@@ -1,17 +1,48 @@
 {
   "task_id": "TASK-150",
+  "date": "2026-10-25",
   "passed": false,
   "status": "review",
-  "local": "10 focused TS; native4groups all kinds/odd-even/moving target/multi sum/reduced motion/mobile320390;1x2x4 same engine;0writes/errors",
-  "pending": [
-    "public hosted"
-  ],
+  "acceptance_results": {
+    "AC-01": "pending upper-right",
+    "AC-02": "pending release"
+  },
+  "content_hash": "2c85fdd28e0530de6d807cd095e0e779d3b7edc5f0aa0603df219b5f59c1438c",
+  "pack_hash": "c622ce21bdc5f73f0921f7ef823e6f74ff8977e39bb1ff501322f32da0c5b98f",
   "checks": {
     "focused_TS": 10,
     "native_groups": 4,
+    "hosted_groups": 4,
+    "public_bundle_SHA": 24,
     "root_build": true,
     "M0": true,
     "gameplay_SHA_unchanged": true,
-    "pack_unchanged": true
-  }
+    "pack_unchanged": true,
+    "native_widths": [
+      320,
+      390
+    ],
+    "speeds": [
+      1,
+      2,
+      4
+    ],
+    "browser_errors": 0,
+    "HTTP_writes": 0
+  },
+  "evidence": [
+    "plan/evidence/task-150/native.json",
+    "plan/evidence/task-150/hosted.json",
+    "plan/evidence/task-150/targeted.txt",
+    "plan/evidence/task-150/build.txt",
+    "plan/evidence/task-150/ground-assets.json"
+  ],
+  "limits": [
+    "Ground assets audited locally; no new ground/song asset binding in this task. Current song aura is genuine texture composition, not exact original-client field.",
+    "Native cases cover controlled presentation events; speed parity uses real shared engine. Not physical-phone FPS certification.",
+    "No owner/AuthSQL/env/6173/agents or balance batch."
+  ],
+  "pending": [
+    "right-direction public proof"
+  ]
 }

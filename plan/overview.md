@@ -1,6 +1,6 @@
 # ภาพรวมแผนและความคืบหน้า
 
-[TASK150](review/tasks_150.md): ตัวเลขเด้งแล้วลอยซ้ายบน/ตรวจแอสเซ็ตสกิลพื้น ผ่านnative4/10focused อยู่reviewรอbuild/hosted · D174/design63.
+[TASK150](review/tasks_150.md): ตัวเลขเด้งแล้วลอยขวาบน/ตรวจแอสเซ็ตสกิลพื้น ผู้ใช้แก้ทิศเป็นขวาบน;กำลังตรวจรอบใหม่ · D174/design63.
 
 [TASK149](done/tasks_149.md) ขึ้นVercel source`6c2fbf464`แล้ว:วงออร่าเพลงBard/Dancerจากnativeassets/statusจริง,blue/pink+โน้ต/ตามคนร่าย/หมดผลแล้วหาย.18focused/native5/rootbuild/hosted4groupsผ่าน;gameplayเดิม/initialdownloadเดิม. [ผลตรวจ](evidence/task-149-review.json).
 

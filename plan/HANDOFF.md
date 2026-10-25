@@ -1,5 +1,9 @@
 # Handoff ระหว่าง agent
 
+## 25 ต.ค.2026 · Codex — ACTIVE user correction upper-right + all ground effects
+
+- User answered optional clarification: ALL ground effects and direction is UPPER-RIGHT, not left. Source4abfb(left) had shipped/hostedpassed before correction;150reopenedreview and flight/tests/docs changedright. Neednewnative/build/hosted.151willownall-groundnativecoverage. No owner/SQL/env/6173/agents. Old150proof is historicaluntilreplaced.
+
 ## 25 ต.ค.2026 · Codex — TASK150 local complete / publish next
 
 - User asks allnumberspopupthenupper-left;renderer-only commonflight fordamage/critical/heal/incoming andslowtotaldrift, noHitparity. Contactoriginfixedagainsttargetmovement/castphase. Totalfirstimpactdrift/latestimpactbounceholdfade;stableactualsum/focus/reducedmotion.10focused/native4groups/mobile320390/real1x2x4unchangedengine/rootbuild/M0passed. Content2c85/packc622/initial1621492/raw33546959allunchanged;noasset/gameplay/source-data changes.
