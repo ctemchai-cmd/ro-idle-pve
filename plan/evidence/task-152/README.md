@@ -5,3 +5,5 @@ Nativebefore/after60samples320390/5kinds×3ages×2versions. Firstpop>=18%larger,
 Nativecomparison is a manual browser capture with the frozen before-damage-numbers.ts and current module, same1234/font/assets/canvas;not a balance or physical-phone FPS test. See size-impact-comparison.json/compare-*.png/arc-preview.gif/native.json. Build/publicpending.
 
 Hosted8eaพบedgeclampย้อนตอนเลขย่อ;แก้retain actualpaintedoriginครั้งแรกสำหรับhit/heal/total. Native4ผ่านทั้งขอบ24/696world/320390ทุกชนิด+totalและrootbuildรอบแก้ผ่าน. pre-edge-fix-hosted.jsonคือรายงานก่อนแก้. รอpublicรอบแก้.
+
+Finalsource120558a4b22b8c667a229b55d91f9a39ed0550b4/VercelSUCCESS. Hosted4groups/24bundleSHA/nativegreen320390height46.08/45.15pxและrightfallingtrajectoryผ่าน;edgesไม่ย้อน.0errors/writes.152done.

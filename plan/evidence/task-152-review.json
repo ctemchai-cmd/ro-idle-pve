@@ -1,11 +1,8 @@
 {
   "task_id": "TASK-152",
-  "passed": false,
-  "status": "review",
+  "passed": true,
+  "status": "done",
   "local_passed": true,
-  "pending": [
-    "public edge-fix release"
-  ],
   "checks": {
     "existing_TS": 10,
     "native_groups": 4,
@@ -15,8 +12,24 @@
     "root_build": true,
     "M0": true,
     "edge_clamp_origin_fixed": true,
-    "native_both_edges_all_kinds_and_totals": true
+    "native_both_edges_all_kinds_and_totals": true,
+    "hosted_groups": 4,
+    "public_bundle_SHA": 24,
+    "public_heal_birth_heights": [
+      46.07625051064216,
+      45.15386008064516
+    ]
   },
   "content_hash": "2c85fdd28e0530de6d807cd095e0e779d3b7edc5f0aa0603df219b5f59c1438c",
-  "pack_hash": "cb126d18cd433b3d0c0e9bb1727235abc59269f5eb9e04ec3f8e524f148586fc"
+  "pack_hash": "cb126d18cd433b3d0c0e9bb1727235abc59269f5eb9e04ec3f8e524f148586fc",
+  "source_commit": "120558a4b22b8c667a229b55d91f9a39ed0550b4",
+  "deployment": {
+    "state": "SUCCESS",
+    "url": "https://vercel.com/chanon2/ro-idle-pve/4MAG5hsVRt76QekQ6xZ5Se6VefCf"
+  },
+  "acceptance_results": {
+    "AC-01": "passed",
+    "AC-02": "passed"
+  },
+  "hosted": "plan/evidence/task-152/hosted.json"
 }

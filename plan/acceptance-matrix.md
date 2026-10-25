@@ -837,5 +837,5 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 
 | Case | Task | Expected | Verification | Status |
 | --- | --- | --- | --- | --- |
-| `T152-AC-01` | TASK-152 | design65/AC01 | native comparison/flight | not_run_implementation |
-| `T152-AC-02` | TASK-152 | design65/AC02 | existing checks/build/public | not_run_implementation |
+| `T152-AC-01` | TASK-152 | design65/AC01 | native comparison/flight | passed_implementation |
+| `T152-AC-02` | TASK-152 | design65/AC02 | existing checks/build/public | passed_implementation |

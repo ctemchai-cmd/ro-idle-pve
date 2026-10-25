@@ -14,8 +14,8 @@ TASK-150, TASK-151
 3. BuildและตรวจVercelจริงก่อนdone
 
 ## เกณฑ์ตรวจรับ
-- [ ] AC-01: เลข4หลักที่ต้นและช่วงอ่านเพิ่มขนาดอย่างเห็นได้ชัดทุกชนิด;แรงเริ่มพุ่ง/จุดสูงสุดมากขึ้น และยังโค้งตกขวา/ย่อส่วน;focus/amount/สี/ตัวเลขรวม/reducedmotion/1x2x4เดิมผ่านnative320390และภาพเทียบ
-- [ ] AC-02: gameplaySHA/packเดิม,existingTS/native/build/publicผ่าน โดยไม่มีownerwrites/SQL/env/6173restart
+- [x] AC-01: เลข4หลักที่ต้นและช่วงอ่านเพิ่มขนาดอย่างเห็นได้ชัดทุกชนิด;แรงเริ่มพุ่ง/จุดสูงสุดมากขึ้น และยังโค้งตกขวา/ย่อส่วน;focus/amount/สี/ตัวเลขรวม/reducedmotion/1x2x4เดิมผ่านnative320390และภาพเทียบ
+- [x] AC-02: gameplaySHA/packเดิม,existingTS/native/build/publicผ่าน โดยไม่มีownerwrites/SQL/env/6173restart
 
 ## วิธีตรวจและหลักฐาน
 Native bitmap before/after bounds and captures;existing number-flight harness with isolated evidence destination;focused TS/rootbuild/public read-only. plan/evidence/task-152-review.json.
@@ -30,3 +30,7 @@ Native bitmap before/after bounds and captures;existing number-flight harness wi
 ## ผลตรวจเว็บรอบแรกและแก้ไข
 
 Source8eaขึ้นเว็บแล้วแต่hostedพบedgeclampย้อนซ้ายระหว่างย่อ. แก้retainedoriginจากตำแหน่งที่paintจริงและเพิ่มedgechecks;ยังไม่ปิดACจนhostedรอบแก้ผ่าน.
+
+## ผลส่งมอบ
+
+Source120558a4b/VercelSUCCESS. Hosted4groups/24bundleSHA/nativeheal320390height46.08/45.15px และxไม่ย้อนผ่าน.10TS/native4/60comparison/rootbuild/M0ผ่าน. TASK152done.

@@ -2,7 +2,7 @@
 
 ## Number impact tuning (25 October2026,D176/TASK152)
 
-Renderer-only: CSSheight34damage/43crit-total/30heal/27incoming;26%pop over110ms;620ms rightward falling arc,height78/dx76,44%apex/size1.25→.6 unchanged. Keep native bitmap/colors/focus/values,first-impact total path and staticreducedmotion. Larger/stronger visual impact changes no combat power or assets. Existing number harnesses accept bounded RO_EVIDENCE_TASK=task-152 to preserve historical evidence. See design65/latestHANDOFF for release status.
+Source120558a4b live/VercelSUCCESS;10TS/native4/60beforeafter/hosted4/rootbuild passed. Retain NumberDrawBounds.origin (painted world origin after clamp) on first actual paint for hit/heal/total, so shrink never releases a viewport edge and pulls the number left. Renderer-only: CSSheight34damage/43crit-total/30heal/27incoming;26%pop over110ms;620ms rightward falling arc,height78/dx76,44%apex/size1.25→.6 unchanged. Keep native bitmap/colors/focus/values,first-impact total path and staticreducedmotion. Larger/stronger visual impact changes no combat power or assets. Existing number harnesses accept bounded RO_EVIDENCE_TASK=task-152 to preserve historical evidence. See design65/latestHANDOFF for release status.
 
 ## Native ground fields (25 October2026,D175/TASK151)
 

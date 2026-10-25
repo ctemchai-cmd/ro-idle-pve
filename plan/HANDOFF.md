@@ -1,5 +1,11 @@
 # Handoff ระหว่าง agent
 
+## 25 ต.ค.2026 · Codex — TASK152 complete / larger punchier numbers live
+
+- Source120558a4b22b8c667a229b55d91f9a39ed0550b4/VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/4MAG5hsVRt76QekQ6xZ5Se6VefCf. Hosted4PASS24bundleSHA/newsize+numberPlacedmarker/actualnativeheal320390birth46.08/45.15px/rightfallingarc/0errors-writes.10existingTS/native4(+both-edge24/696all4kinds+yellow)/60beforeafter/rootbuild/M0passed.152done;138/152/M4 92/101. No remaining152work.
+- CSS34normal/43crit-total/30heal/27incoming;26%pop110ms;620ms/dx76/height78/.44apex/same1.25→.6shrink. About21%birth/8–15%reading increase,31%vertical/24%horizontal at40ms. Firsthosted8ea caught edgeclamp reverse;fixedretainactuallypaintedworldorigin from NumberDrawBounds.origin perfirstvisiblecue/total (numberPlaced),not rawout-of-boundsanchor. Nativefonts/colors/focus/values/impacttiming/staticreducedmotion/1x2x4 preserved. AllgameplaySHA/content2c85/packcb126unchanged. Noasset/SQL/env/owner/6173/agents/balancebatch. OwnVite7506/Chromeclosed. Unselecteduserassets/task108pnguntouched. Historicalfailedpubliccaptureinpre-edge-fix-hosted.json;currenthosted.jsonpass. Closure docs only;oldinprogress/reviewunchanged.
+
+
 ## 25 ต.ค.2026 · Codex — ACTIVE152 edge clamp correction after hosted check
 
 - Source8ea2ef9c1e80f93ce602ffc918ec59d94727d16a/VercelSUCCESS gave larger/punchier numbers;hostedcaughtleft-edgeheal reversing x71→66 asfontshrinks. Fixedrendererretainactualpaintedworldoriginatfirstpaint(hit/heal/yellow),notrawout-of-boundsorigin. NumberDrawBounds nowincludesorigin tuple, Cue.numberPlaced tracksfirstactualvisiblepaint. Noengine/assetchanges. Addedboth-edge24/696world checks for4kinds+totalsat320390;native4passed+10TS. Existing60before/after size comparisonstillvalid(componentpixelsunchangedbyoriginreturn).
