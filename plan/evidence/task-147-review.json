@@ -1,11 +1,11 @@
 {
   "task_id": "TASK-147",
   "date": "2026-10-25",
-  "passed": false,
-  "status": "review",
+  "passed": true,
+  "status": "done",
   "acceptance_results": {
     "AC-01": "passed",
-    "AC-02": "awaiting_hosted"
+    "AC-02": "passed"
   },
   "local_passed": true,
   "content_hash": "dfef4021ffe5d25839c01987420fb4e7039a9b461e3f48353fc1e69004c5a9a4",
@@ -22,11 +22,23 @@
     "typecheck": true,
     "M0": true,
     "root_build": true,
-    "gameplay_pack_unchanged": true
+    "gameplay_pack_unchanged": true,
+    "hosted_groups": 3,
+    "hosted_bundle_SHA": 24
   },
   "evidence": [
     "plan/evidence/task-147/native.json",
     "plan/evidence/task-147/build.txt",
     "plan/evidence/task-147/targeted.txt"
+  ],
+  "source_commit": "87e10995f595965a97c6fbd298d40c3ee0fd8aa7",
+  "deployment": {
+    "state": "SUCCESS",
+    "url": "https://vercel.com/chanon2/ro-idle-pve/4798ZxTm5AE8kqcaJgfimYFiRudB"
+  },
+  "hosted": "plan/evidence/task-147/hosted.json",
+  "limits": [
+    "Local Field uses synthetic account/packnull; public checks verify artifacts and anonymous login shell, not owner authenticated gameplay.",
+    "No owner save/AuthSQL/env/6173/assets/gameplay changes."
   ]
 }

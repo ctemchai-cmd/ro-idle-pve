@@ -801,5 +801,5 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 
 | Case | Task | Expected | Verification | Status |
 | --- | --- | --- | --- | --- |
-| `T147-AC-01` | TASK-147 | design60/AC01 | Native/all stages actual pool | not_run_implementation |
-| `T147-AC-02` | TASK-147 | design60/AC02 | Mobile/build/public | not_run_implementation |
+| `T147-AC-01` | TASK-147 | design60/AC01 | Native/all stages actual pool | passed_implementation |
+| `T147-AC-02` | TASK-147 | design60/AC02 | Mobile/build/public | passed_implementation |

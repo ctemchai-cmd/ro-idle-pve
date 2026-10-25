@@ -2,7 +2,7 @@
 
 ## Farm gear labels (25 October2026,D171/TASK147)
 
-Local330stage/native320390/build passed; release status latestHANDOFF. Read gear table via stage.farm_rate_chapter; card tier/boss level are separate. Home/AFKuse frozen snapshot.gear_tier so old accrual remains accurately described. Stage sheet hasselectedlevel and foldable allchapter ranges, read-only even ifchapterlocked. No rate/pool/save changes. See design60.
+Source87e10995f live/VercelSUCCESS;330stage/native320390/13targeted/rootbuild/publichosted3 passed. Read gear table via stage.farm_rate_chapter; card tier/boss level are separate. Home/AFKuse frozen snapshot.gear_tier so old accrual remains accurately described. Stage sheet hasselectedlevel and foldable allchapter ranges, read-only even ifchapterlocked. No rate/pool/save changes. See design60.
 
 ## Native major skill effects / readable numbers (25 October2026,D170/TASK146)
 

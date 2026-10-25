@@ -1,5 +1,10 @@
 # Handoff ระหว่าง agent
 
+## 25 ต.ค.2026 · Codex — TASK147 complete / farm equipment levels live
+
+- Source87e10995f595965a97c6fbd298d40c3ee0fd8aa7 VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/4798ZxTm5AE8kqcaJgfimYFiRudB. Publichosted3groupsPASS health/SIN1/auth401/content-packunchanged/24bundleSHA-feature/login320390/0errors-writes. Native2groups/330actualfarm-pools/14profiles incllegacy/no-farm/selectstage/13targeted/typecheck/M0/rootbuild passed. No newbalancebatch/full700rerunneededforUIonly.
+- 147done;133/147done/M4 87/96. Mapfoldable12chaptertable+selectedlevel,homeandAFKfrozen snapshot.gear_tier. Currentgear1–2Lv1/3Lv20/4–5Lv40/6–12Lv60;readsourceviafarm_rate_chapter,nevercardtier. Contentdfef/pack44f4unchanged. Publictestdoesnotloginowner;localactualFieldsynthetic/packnull. Noowner/SQL/env/assets/6173/agents. OwnVite7501andbrowsersclosed. Useruntrackedmodernassets/task108pnguntouched. Noremaining147productwork;oldreviewtasksunchanged.
+
 ## 25 ต.ค.2026 · Codex — TASK147 local passed / publish next
 
 - User asks farm stage→gear level labels. TASK147review/design60/D171;132of147done,M4 86of96. Sourceonlyclient-story/Field/CSS/sharedchevron. All330stage levels equal actualfarm snapshots/36itempool; native2groups14profiles320390 inclfrozenlegacy/no-farm/selectfarm;13targeted/typecheck/M0/rootbuild passed. Contentdfef/pack44f4unchanged; no rates/gameplay/save/SQL/env/assets/owner/6173/agents. OwnVite7501closed.

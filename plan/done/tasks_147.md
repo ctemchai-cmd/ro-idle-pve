@@ -16,7 +16,7 @@ TASK-115, TASK-125, TASK-146
 
 ## เกณฑ์ตรวจรับ
 - [x] AC-01: ระดับตรง actual farm snapshot/pool ครบ330ด่าน; หน้าด่านระบุด่านที่เลือก/ตารางทุกบท, หน้าแรกและAFKใช้ระดับ frozen snapshot; ไม่เดาระดับเมื่อไม่มีข้อมูล/ไม่ปะปนการ์ด
-- [ ] AC-02: มือถือ320/390ไม่ล้นแนวนอน เปิดปิดตาราง/เลือกฟาร์ม/AFKได้; ไม่มี API เพิ่มจากการดูข้อมูล; build/typecheck และ Vercel public proof ผ่าน; content/pack/สูตรเดิม
+- [x] AC-02: มือถือ320/390ไม่ล้นแนวนอน เปิดปิดตาราง/เลือกฟาร์ม/AFKได้; ไม่มี API เพิ่มจากการดูข้อมูล; build/typecheck และ Vercel public proof ผ่าน; content/pack/สูตรเดิม
 
 ## วิธีตรวจและหลักฐาน
 Native Chrome actual Field + synthetic isolated account and captured commands; all330 stages compared with shared storyFarmSnapshot and definition_pool. Build, content/pack hash audit, public deployment health/bundle and native read-only browser.
@@ -29,3 +29,7 @@ Native Chrome actual Field + synthetic isolated account and captured commands; a
 ## ผลตรวจรอบ local
 
 Native2groups:330actualsnapshot/pool,320390รวม14profilecases/frozenlegacy/no-farm/เลือกฟาร์มผ่าน;13targeted/typecheck/M0/rootbuildผ่าน. Contentdfefและpack44f4เดิม. รอpush/Vercel/publichostedก่อนปิดAC02.
+
+## ผลตรวจรับและส่งมอบ
+
+Source87e10995f ขึ้นVercelSUCCESS; publichosted3groupsผ่านAPI/SIN1/auth401/content-packเดิม/24bundleSHA+feature/login320390/noerror-nowrite. Native2groups/330actualpools/14profiles/13targeted/rootbuildผ่าน. TASK147done.
