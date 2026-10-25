@@ -326,6 +326,19 @@ dialog.sheet::backdrop { background: rgba(10, 22, 50, .45); backdrop-filter: blu
 .stage-cell.cleared { background: #effaf3; border-color: #9fdcb5; } .stage-cell.open { background: #fff6e5; border-color: #ffc56b; } .stage-cell.locked { opacity: .45; }
 .stage-cell.farming { box-shadow: inset 0 0 0 2px var(--green); } .stage-cell.picked { border-color: var(--blue); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(40, 100, 220, .25); }
 .stage-actions { margin-top: 12px; padding: 12px; border-radius: 14px; background: var(--panel-2); } .stage-actions p { margin: 0 0 8px; font-size: 13px; }
+.farm-gear-label { margin: 4px 0 8px; color: var(--ink-2); font-size: 12px; }
+.farm-gear-label b, .stage-chip .stage-gear-level { color: var(--blue-2); }
+.farm-gear-guide { margin: 0 0 10px; font-size: 12px; color: var(--ink-2); }
+.farm-gear-guide summary { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 40px; cursor: pointer; list-style: none; }
+.farm-gear-guide summary::-webkit-details-marker { display: none; }
+.farm-gear-guide summary b { color: var(--blue-2); }
+.farm-gear-guide summary small { display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+.farm-gear-guide summary svg { width: 14px; height: 14px; transition: transform .15s; }
+.farm-gear-guide[open] summary svg { transform: rotate(180deg); }
+.farm-gear-guide table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.farm-gear-guide th, .farm-gear-guide td { padding: 6px 10px; text-align: left; border-bottom: 1px solid var(--line); }
+.farm-gear-guide th:last-child, .farm-gear-guide td:last-child { text-align: right; }
+.farm-gear-guide tr[data-selected-chapter='true'] { color: var(--blue-2); background: var(--panel-2); font-weight: 700; }
 
 /* Pages */
 .page-layer { display: flex; flex-direction: column; position: absolute; z-index: 20; left: 0; right: 0; top: calc(var(--hud-h) + var(--safe-top)); bottom: calc(var(--bar-h) + var(--safe-bottom)); overflow-y: auto; overscroll-behavior: contain; background: linear-gradient(180deg, rgba(232, 243, 255, .97), rgba(244, 249, 255, .99) 40%); border-radius: 22px 22px 0 0; box-shadow: 0 -4px 20px rgba(30, 60, 120, .18); }

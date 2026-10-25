@@ -26,6 +26,21 @@ export function storyStageInfo(id:string){const stage=storyStage(id,content);if(
 /** Presentation label of a stage boss for intros; definition IDs stay the gameplay reference. */
 export function storyBossLabel(id:string){const stage=storyStage(id,content);if(!stage)return null;const boss=storyBoss(stage);return{size:definitionSize(boss.definition_id),name:boss.definition_id.split('_').map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(' '),level:boss.level};}
 export function storyOptions(state:AccountState){return storyStages(content).map(stage=>({id:stage.id,chapter:stage.chapter,cleared:state.story.cleared_stage_ids.includes(stage.id),available:canChallenge(stage,state,content),release_locked:storyReleaseLock(stage,content)}));}
+/** Equipment follows the stage's farm-rate table; card tiers and boss levels are separate. */
+export function storyGearLevel(stageId:string):number|null{
+ const stage=storyStage(stageId,content);
+ const gear=content.documents['loot.json']!.gear as unknown as {tier_by_chapter:Record<string,number>};
+ return stage?gear.tier_by_chapter[String(stage.farm_rate_chapter)]??null:null;
+}
+export function storyGearRanges(){
+ const ranges:{chapter:number;first:string;last:string;level:number|null}[]=[];
+ for(const stage of storyStages(content)){
+  const level=storyGearLevel(stage.id),previous=ranges.at(-1);
+  if(previous&&previous.chapter===stage.chapter&&previous.level===level)previous.last=stage.id;
+  else ranges.push({chapter:stage.chapter,first:stage.id,last:stage.id,level});
+ }
+ return ranges;
+}
 const friends:Record<string,string>={main:'คุณ',npc_swordsman:'ไคล์',npc_acolyte:'ลูเมน',npc_archer:'อารี',npc_mage:'เรน',npc_thief:'นิกซ์',npc_merchant:'มิโล'};
 function title(job:string){return job.charAt(0).toUpperCase()+job.slice(1);}
 /** Shared scene labels for every presentation session built from this content. */

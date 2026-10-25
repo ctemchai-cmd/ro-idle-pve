@@ -796,3 +796,10 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T146-AC-02` | TASK-146 | design59/TASK146AC02 | Native/checksum/replay/build/hosted | passed_implementation |
 | `T146-AC-03` | TASK-146 | design59/TASK146AC03 | Native/checksum/replay/build/hosted | passed_implementation |
 | `T146-AC-04` | TASK-146 | design59/TASK146AC04 | Native/checksum/replay/build/hosted | passed_implementation |
+
+## TASK-147 — ระดับอุปกรณ์ฟาร์ม
+
+| Case | Task | Expected | Verification | Status |
+| --- | --- | --- | --- | --- |
+| `T147-AC-01` | TASK-147 | design60/AC01 | Native/all stages actual pool | not_run_implementation |
+| `T147-AC-02` | TASK-147 | design60/AC02 | Mobile/build/public | not_run_implementation |

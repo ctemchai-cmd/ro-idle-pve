@@ -5,7 +5,7 @@ import { Icon } from '../icon.tsx';
 import { useEffect, useRef, useState, useSyncExternalStore, type ReactNode } from 'react';
 import { AUTO_LOSS_LIMIT, continueAuto, newAutoRun, nextAutoTarget, pendingProgressCollection, hasPendingProgressRewards, type AutoMode, type AutoRun } from '../../client/auto-battle.ts';
 import type { ActorRenderView, BattleRenderView } from '../../contracts/presentation.ts';
-import { SavedBattleSession, battleDebrief, bossCastInfo, dailyNames, dailyView, storyBossLabel, storyOptions, storyPresentationKey, storyStageInfo, towerView } from '../../client/story.ts';
+import { SavedBattleSession, battleDebrief, bossCastInfo, dailyNames, dailyView, storyBossLabel, storyGearLevel, storyGearRanges, storyOptions, storyPresentationKey, storyStageInfo, towerView } from '../../client/story.ts';
 import { FarmWaveSession, farmSceneStage } from '../../client/farm-scene.ts';
 import type { SaveSnapshot } from '../../client/save-controller.ts';
 import { BattleRenderer } from '../../renderer/battle.ts';
@@ -28,6 +28,7 @@ import { actorElements } from '../../client/elements.ts';
 import { ElementBadge } from '../element-badge.tsx';
 
 const FARM_CAP_MS = 12 * 3600 * 1000;
+const GEAR_RANGES = storyGearRanges();
 /** Boss look per stage (D-056): pooled mini-boss skins, except the chapter-final stage keeps its authored boss. */
 function stageBossSkin(pack: AssetPack | null, stageId: string) {
   const info = storyStageInfo(stageId);
@@ -189,12 +190,17 @@ function StageSheet({ context, close, challenge }: { context: GameContext; close
   const gate=options.find(o=>o.chapter===chapter)?.release_locked;
   return <Sheet title="แผนที่การผจญภัย" onClose={close}>
     <div className="chapter-tabs" role="tablist">{chapters.map(c => { const open = options.some(o => o.chapter === c && (o.available||o.release_locked)); return <button key={c} role="tab" aria-selected={chapter === c} disabled={!open} onClick={() => { setChapter(c); setPicked(null); }}>บท {c}</button>; })}</div>
+    <details className="farm-gear-guide">
+      <summary><span>ดรอปอุปกรณ์ <b>{GEAR_RANGES.filter(r=>r.chapter===chapter).map(r=>r.level===null?'—':`Lv.${r.level}`).join(' / ')}</b></span><small>ดูทุกบท <Icon name="chevron-down" /></small></summary>
+      <table aria-label="ระดับอุปกรณ์ที่ดรอปจากการฟาร์ม"><thead><tr><th scope="col">ฟาร์มด่าน</th><th scope="col">อุปกรณ์</th></tr></thead><tbody>{GEAR_RANGES.map(r=><tr key={r.first} data-selected-chapter={r.chapter===chapter}><td>{r.first}{r.last!==r.first?` – ${r.last}`:''}</td><td>{r.level===null?'—':`Lv.${r.level}`}</td></tr>)}</tbody></table>
+    </details>
     {gate&&<p className="chapter-release-gate" role="status"><Icon name="lock" /><b>รอ {gate==='hi_class'?'Hi-class':'Awaken'}</b></p>}
     <div className="stage-grid">{options.filter(o => o.chapter === chapter).map(o => <button key={o.id} className={`stage-cell ${o.cleared ? 'cleared' : o.available ? 'open' : 'locked'} ${picked === o.id ? 'picked' : ''} ${farm === o.id ? 'farming' : ''}`} disabled={!o.available} onClick={() => setPicked(o.id)}>
       <b>{o.id}</b><small>{o.cleared ? (farm === o.id ? 'ฟาร์มอยู่' : 'ผ่านแล้ว') : o.available ? 'บอส' : <Icon name="lock" />}</small>
     </button>)}</div>
     {stage ? <div className="stage-actions">
       <p><b>ด่าน {stage.id}</b> · <MonsterSizeBadge size={storyBossLabel(stage.id)?.size??null} /> · {stage.cleared ? 'ผ่านแล้ว' : 'ยังไม่ผ่าน'}</p>
+      <p className="farm-gear-label">ฟาร์มดรอปอุปกรณ์ <b>{storyGearLevel(stage.id)===null?'—':`Lv.${storyGearLevel(stage.id)}`}</b></p>
       <div className="row">{stage.cleared && <button className="btn" disabled={locked || farm === stage.id} onClick={() => void submit('farm.set_stage', { stage_id: stage.id }).then(ok => { if (ok) close(); })}>{farm === stage.id ? 'กำลังฟาร์มที่นี่' : 'ฟาร์มที่ด่านนี้'}</button>}
         <button className="btn primary" disabled={locked} onClick={() => challenge(stage.id)}><Icon name="adventure" />ท้าบอส {stage.id}</button></div>
     </div> : null}
@@ -225,6 +231,7 @@ function FarmSheet({ context, close }: { context: GameContext; close: () => void
   const ready = (snapshot && elapsed >= 1000) || state.pending_rewards.length > 0;
   return <Sheet title="รางวัล AFK" onClose={close}>
     {snapshot ? <div className="afk-progress"><div className="afk-time"><b>{duration(elapsed)}</b><small>/ 12:00:00 · ฟาร์ม {snapshot.stage_id}</small></div><span className="bar gold"><i style={{ width: `${elapsed / FARM_CAP_MS * 100}%` }} /></span>
+      <p className="farm-gear-label" data-farm-gear-level={snapshot.gear_tier}>ดรอปอุปกรณ์ <b>Lv.{snapshot.gear_tier}</b></p>
       <div className="rate-chips">{rates.map(([k, n]) => <span key={k} title={`${resourceNames[k]} ต่อชั่วโมง`}><ResIcon pack={pack} k={k} />{compact(n)}<small>/ชม.</small></span>)}</div></div>
       : <p className="hint">ผ่านด่าน 1-1 เพื่อเริ่มฟาร์มอัตโนมัติ</p>}
     {snapshot?.card_drops?<div className="farm-card-rates"><b>การ์ด {(snapshot.card_drops.chance_per_million/10000).toLocaleString('th-TH',{maximumFractionDigits:2})}% / รอบ 5 นาที</b>
@@ -385,7 +392,7 @@ export function Field({ context, covered, save, request, consumeRequest }: { con
   return <div className={`field ${covered ? 'covered' : ''}`} data-auto-mode={auto?.mode ?? ''} data-auto-failures={auto?.failures ?? 0}>
     {showBoss ? <BossField key={boss.id} context={context} app={boss} running={online && active?.battle_id === boss.id} checkpoint={active?.battle_id === boss.id ? battle?.payload : null} outcome={outcome?.id === boss.id ? outcome.code : null} retreat={active?.battle_id === boss.id ? async () => { stopAuto('หยุด Auto · ถอยทัพ'); await context.submitWhenReady('battle.retreat', { battle_id: active.battle_id, requested_game_ms: boss.session.state.game_time_ms }); } : null} statsRef={statsRef} timelineRef={timelineRef} autoControl={autoControl} /> : <FarmField context={context} covered={covered} />}
     {!covered && !showBoss && <>
-      <button className="stage-chip" onClick={() => { stopAuto(); setSheet('stage'); }} aria-label="เปิดแผนที่และเลือกด่าน">{mapIcon && <img src={mapIcon} alt="" />}<span><small>{mapName}</small><b>ฟาร์ม {farmStage.id}</b></span></button>
+      <button className="stage-chip" onClick={() => { stopAuto(); setSheet('stage'); }} aria-label="เปิดแผนที่และเลือกด่าน">{mapIcon && <img src={mapIcon} alt="" />}<span><small>{mapName}</small><b>ฟาร์ม {farmStage.id}</b>{snapshot&&<small className="stage-gear-level">อุปกรณ์ Lv.{snapshot.gear_tier}</small>}</span></button>
       <div className="field-auto-start">{autoControl}{autoMessage && <small role="status">{autoMessage}</small>}</div>
       <button className={`afk-chest ${state.pending_rewards.length ? 'has-reward' : ''}`} aria-label="รางวัลฟาร์มอัตโนมัติ" onClick={() => { stopAuto(); setSheet('farm'); }}>{chest ? <img src={chest} alt="" /> : <Icon name="gift" />}<time>{snapshot ? duration(elapsed) : 'AFK'}</time>{!!state.pending_rewards.length && <i className="dot">{state.pending_rewards.length}</i>}</button>
       <button className="challenge-btn" disabled={locked || starting || !next} aria-label={next ? `ท้าบอสด่าน ${next.id}` : waitingName ? `รอ ${waitingName}` : 'ผ่านครบทุกด่านแล้ว'} onClick={() => next && void challenge({ kind: 'story', id: next.id })}><span className="challenge-ring">{bossIcon ? <img src={bossIcon} alt="" /> : <Icon name="adventure" />}</span><b>{starting ? 'กำลังเข้า…' : next ? 'ท้าบอส' : waitingName ?? 'ครบแล้ว'}</b>{next && <small>{next.id}</small>}</button>

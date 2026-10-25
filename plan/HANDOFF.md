@@ -1,5 +1,10 @@
 # Handoff ระหว่าง agent
 
+## 25 ต.ค.2026 · Codex — TASK147 local passed / publish next
+
+- User asks farm stage→gear level labels. TASK147review/design60/D171;132of147done,M4 86of96. Sourceonlyclient-story/Field/CSS/sharedchevron. All330stage levels equal actualfarm snapshots/36itempool; native2groups14profiles320390 inclfrozenlegacy/no-farm/selectfarm;13targeted/typecheck/M0/rootbuild passed. Contentdfef/pack44f4unchanged; no rates/gameplay/save/SQL/env/assets/owner/6173/agents. OwnVite7501closed.
+- Map showsselectedstagelevel+foldable12chapterranges; home/AFKshowfrozen snapshotgear_tier; no APIfor viewing. Needexplicitstageours/commit/pushorigin/VercelSUCCESS then scripts/test_farm_gear_hosted.cjs (written/syntaxchecked); doNOT mark147done beforepublicproof. Publictest verifies health/SIN1/auth401/artifactSHA/features/login320390, notownerField. LocalUIusesactualFieldsyntheticstate/packnull. Existinguseruntrackedmodernassets/task108pnguntouched.
+
 ## 25 ต.ค.2026 · Codex — TASK146 complete / larger native digits and major VFX live
 
 - Userrequestfulfilled.Sourcebaf761bddeb7adf59de15c3b35da9e72381c75e9 VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/GeaDLxpDkioWS3XUVGDUzbNi5t9P. Publichosted4groupsPASS:API/SIN1/auth401/69nativebindings/30originalmediaSHA/24bundleSHA/7actualCanvas320390pages;realAsuraLens,Asum,PsychicWave,FalconACT,Tarot09,PurpleSlash,Bardbuffart observed through drawImage instrumentation;large digitsAsura44pxpeakCSS;0errors-writes. Noowner/AuthSQL/env/6173/agents. OwnVite7500CLOSED/browsersclosed.

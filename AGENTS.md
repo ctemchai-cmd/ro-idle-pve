@@ -1,5 +1,9 @@
 # Project context
 
+## Farm gear labels (25 October2026,D171/TASK147)
+
+Local330stage/native320390/build passed; release status latestHANDOFF. Read gear table via stage.farm_rate_chapter; card tier/boss level are separate. Home/AFKuse frozen snapshot.gear_tier so old accrual remains accurately described. Stage sheet hasselectedlevel and foldable allchapter ranges, read-only even ifchapterlocked. No rate/pool/save changes. See design60.
+
 ## Native major skill effects / readable numbers (25 October2026,D170/TASK146)
 
 Sourcebaf761bdd live/VercelSUCCESS;700full/20finalfocused/native3/runtime2/root-filtered/publichosted4 passed.69explicit major actives cover26Class2/High professions: all26Hi,Class2unlock>=30,existingmajors/Finger/SG/GC. Runtime source69bindings in scripts/build_native_major_effects.py, frozen146before and native-bindings.json. No root-based fallback; buffs/control/heals use role-appropriate native media. Scoped effects are nativeSTR/real texture/ACT only, not procedural particle/projectile/finisher replacements. Titles/shake remain; banner chooses a free band once. ActualAsura lens1/source271 (24copies/550ms),Tarot09,FalconACT,AsumSTR/PsychicWavefield; missing/custom mappings explicitly reuse native art, not claims of exact original-client behavior. Native-purple texture uses0deg, Sonic50deg (old160 turns purple green). Generic renderer/native-impact.ts validates/plays profiles, pack prepares all dependencies, no game mechanics branches. Preserve source pixels/keyframes and per-meta selected-state visual_review notes.

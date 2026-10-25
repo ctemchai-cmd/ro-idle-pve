@@ -330,3 +330,7 @@ D169 —25ต.ค.2026:ผู้ใช้ระบุmigration-v2.txtปรั�
 ## D170 — Native ultimate assets and larger numbers (25 October2026)
 
 Accepteduserintent: larger damage numbers; allmajor skills must use real local assets. Implement underdesign59/TASK146, presentationonly, no balance or save changes.
+
+## D171 — 25 ตุลาคม 2026 · ระดับอุปกรณ์ฟาร์ม
+
+ผู้ใช้ขอระบุว่าฟาร์มด่านใดได้อุปกรณ์เลเวลใด. UIใช้gear tableตามfarm_rate_chapterและ frozen snapshot ของ AFK; ตารางทุกบทพับได้. ดู [design60](design/60-farm-gear-levels.md). ไม่มีการเปลี่ยนดรอป/บาลานซ์.
