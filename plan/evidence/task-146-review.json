@@ -1,16 +1,16 @@
 {
   "task_id": "TASK-146",
   "date": "2026-10-25",
-  "passed": false,
+  "passed": true,
   "local_passed": true,
-  "status": "review",
+  "status": "done",
   "content_hash": "dfef4021ffe5d25839c01987420fb4e7039a9b461e3f48353fc1e69004c5a9a4",
   "pack_hash": "44f4d505efddec0e5c9bc689fc6597dcec582b7fd80703f0caa5629fcb7998b1",
   "acceptance_results": {
     "AC-01": "passed",
     "AC-02": "passed",
     "AC-03": "passed",
-    "AC-04": "pending_release"
+    "AC-04": "passed"
   },
   "checks": {
     "full_TS": 700,
@@ -28,7 +28,12 @@
     "initial_profile_raw_bytes": 1621492,
     "source_starter": 304,
     "source_library": 60460,
-    "gameplay_hashes_identical": true
+    "gameplay_hashes_identical": true,
+    "root_filtered_uncached_builds": true,
+    "hosted_groups": 4,
+    "hosted_native_media_SHA": 30,
+    "hosted_bundle_SHA": 24,
+    "hosted_Canvas_pages": 7
   },
   "evidence": [
     "plan/evidence/task-146/README.md",
@@ -41,5 +46,11 @@
     "Native art reuse/adaptations are recorded; not exact reproduction of every original client effect.",
     "Bounded effect stress and emulated viewports, not a full physical-phone certification.",
     "No owner/AuthSQL/env/6173/agents; no balance change."
-  ]
+  ],
+  "hosted": "plan/evidence/task-146/hosted.json",
+  "source_commit": "baf761bddeb7adf59de15c3b35da9e72381c75e9",
+  "deployment": {
+    "state": "SUCCESS",
+    "url": "https://vercel.com/chanon2/ro-idle-pve/GeaDLxpDkioWS3XUVGDUzbNi5t9P"
+  }
 }

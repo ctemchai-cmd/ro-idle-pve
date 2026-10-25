@@ -19,10 +19,14 @@ TASK-145, TASK-141
 - [x] AC-01: ตัวเลขออก/คริ/ฮีล/รับ/ยอดรวมอ่านชัดที่320/390โดยไม่ถูกย่อตามarena; คงสี/focus/ผลรวมและไม่ล้นด้านข้าง
 - [x] AC-02: ครบexplicit catalogท่าใหญ่ทุกClass2+Hi; ทุกeffectมีasset/meta/SHAจริง; scopedpathไม่วาดproceduralshape/projectile/finisherburstแทนassets
 - [x] AC-03: nativeคลิปเห็นจริงหลายจังหวะ,ชนdamagecontact,ขัดก่อนปล่อยไม่มีเอฟเฟกต์,1x2x4/reducedmotion/expiry/performanceผ่าน; engine/contentgameplayเหมือนเดิม
-- [ ] AC-04: dependencycomplete runtimeภายใต้budgetที่วัดชัด,starter/library/build/root-filteredผ่าน;push/VercelSUCCESS/publichostedผ่าน
+- [x] AC-04: dependencycomplete runtimeภายใต้budgetที่วัดชัด,starter/library/build/root-filteredผ่าน;push/VercelSUCCESS/publichostedผ่าน
 
 ## วิธีตรวจและหลักฐาน
 T146-AC01..04: local metadata/checksum audit, actual shared React/Canvas/engine browser viewport320390, replayและscope checks, assets/build/publicread-only hosted. รายงานplan/evidence/task-146-review.json.
 
 ## Blocker / คำถาม
 ไม่มี. ไม่restart6173/ไม่owner Auth-save/ไม่SQL-env/ไม่agents.
+
+## ผลตรวจและส่งมอบ
+
+Sourcebaf761bdd/VercelSUCCESS.700full+20finalfocused/native3/runtime2/M0/root-filtered/starter304-library60460ผ่าน. Publichosted4groupsผ่าน69bindings/30nativeMediaSHA/24bundleSHA/7actualCanvasmobilepages/0errors-writes. สูตรและcontenthashเดิม;ไม่SQL/env/owner/6173/agents. ดูevidence146README/review/native/runtime/hosted.

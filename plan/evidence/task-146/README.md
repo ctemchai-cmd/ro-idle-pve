@@ -1,6 +1,6 @@
 # TASK146 — Readable RO numbers and real native major effects
 
-User request: larger damage digits, every major skill uses real local assets. D170/design59. Local implementation complete; public release proof is separate.
+User request: larger damage digits, every major skill uses real local assets. D170/design59. Released sourcebaf761bdd on VercelSUCCESS. Public hosted4groups passed.
 
 ## What changed
 
@@ -27,4 +27,6 @@ Runtime raw 33,540,731 /33,554,432bytes;877assets/1639files. First profile remai
 
 ## Evidence
 
-native-bindings.json records each skill, role adaptation and original media SHA. native.json/native-details.json record actual casts and pixel checks. runtime.json records seeded parity/interruption and rendering stress. number-comparison320390, four major-gallery images and individual/mobile screenshots show the reviewed states. hosted.json will record public deployment verification.
+native-bindings.json records each skill, role adaptation and original media SHA. native.json/native-details.json record actual casts and pixel checks. runtime.json records seeded parity/interruption and rendering stress. number-comparison320390, four major-gallery images and individual/mobile screenshots show the reviewed states. hosted.json records public69bindings/30native media SHA/24bundleSHA/seven actual Canvas mobile pages/no errors or writes.
+
+Production: https://ro-idle-pve.vercel.app/ · deployment https://vercel.com/chanon2/ro-idle-pve/GeaDLxpDkioWS3XUVGDUzbNi5t9P

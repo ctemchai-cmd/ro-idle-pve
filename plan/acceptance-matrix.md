@@ -792,7 +792,7 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 
 | Case | Task | Criterion | Method | Status |
 | --- | --- | --- | --- | --- |
-| `T146-AC-01` | TASK-146 | design59/TASK146AC01 | Native/checksum/replay/build/hosted | not_run_implementation |
-| `T146-AC-02` | TASK-146 | design59/TASK146AC02 | Native/checksum/replay/build/hosted | not_run_implementation |
-| `T146-AC-03` | TASK-146 | design59/TASK146AC03 | Native/checksum/replay/build/hosted | not_run_implementation |
-| `T146-AC-04` | TASK-146 | design59/TASK146AC04 | Native/checksum/replay/build/hosted | not_run_implementation |
+| `T146-AC-01` | TASK-146 | design59/TASK146AC01 | Native/checksum/replay/build/hosted | passed_implementation |
+| `T146-AC-02` | TASK-146 | design59/TASK146AC02 | Native/checksum/replay/build/hosted | passed_implementation |
+| `T146-AC-03` | TASK-146 | design59/TASK146AC03 | Native/checksum/replay/build/hosted | passed_implementation |
+| `T146-AC-04` | TASK-146 | design59/TASK146AC04 | Native/checksum/replay/build/hosted | passed_implementation |
