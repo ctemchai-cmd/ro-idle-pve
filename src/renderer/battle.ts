@@ -15,7 +15,7 @@ import { locateSkillVisual } from './asset-locator.ts';
 import { FinisherEffects, type FinisherFrame } from './finishers.ts';
 import { MultiHitNumbers, multiHitOrdinals, MULTI_HIT_FALLBACK_MS, type MultiHitFrame } from './multi-hit-numbers.ts';
 
-interface Cue { event: BattlePresentationEvent; duration: number; delay: number; targets: readonly string[] }
+interface Cue { event: BattlePresentationEvent; duration: number; delay: number; targets: readonly string[]; numberOrigin?: readonly [number, number] }
 export class BattleRenderer {
   private cues: Cue[] = [];
   private projectiles: (ProjectileCue & {nativeOnly?:boolean})[] = [];
@@ -31,6 +31,7 @@ export class BattleRenderer {
   private readonly animation: ActorAnimation;
   private readonly finishers = new FinisherEffects();
   private readonly multiHitNumbers = new MultiHitNumbers();
+  private readonly totalOrigins = new Map<string, readonly [number, number]>();
   frameStats = { performance_auras:[] as PerformanceAura[],numberBounds:[] as NumberDrawBounds[],fields:[] as string[],links:[] as StatusLink[],totals: [] as MultiHitFrame[], finishers: [] as FinisherFrame[], camera: [0,0] as readonly [number,number], healing_auras: [] as string[], damage: [] as { source: string; target: string; amount: number; critical: boolean; sequence: number; at_ms: number }[], incoming: [] as { source: string; target: string; amount: number; sequence: number }[], projectiles: [] as { source: string; target: string; shape: string }[], shouts: [] as { actor: string; skill: string }[], impacts: [] as { target: string; meta: string }[] };
   private frameTime = 0;
   private statusImages = new Map<string, HTMLImageElement | null>();
@@ -117,7 +118,7 @@ export class BattleRenderer {
       if (['cast_resolve', 'cast_interrupt', 'death'].includes(event.type)) this.pack.stopSound(castChannel);
       if (event.type === 'terminal') for (const actor of this.scene.actors) this.pack.stopSound(`cast:${actor.actor_id}`);
       if (['damage', 'heal', 'miss', 'status_applied', 'cast_interrupt', 'cast_resolve'].includes(event.type)) {
-        this.cues.push({ event, delay, duration: delay + (event.type === 'cast_resolve' ? this.pack.visuals.get(event.skill_id ?? '')?.recipe.duration_ms ?? 600 : event.type === 'damage' ? NUMBER_FLIGHT_MS : 1100), targets: event.type === 'cast_resolve' ? [...new Set(events.filter(value => value.at_ms === event.at_ms && value.actor_id === event.actor_id && value.skill_id === event.skill_id && value.target_id).map(value => value.target_id!))] : [] });
+        this.cues.push({ event, delay, duration: delay + (event.type === 'cast_resolve' ? this.pack.visuals.get(event.skill_id ?? '')?.recipe.duration_ms ?? 600 : event.type === 'damage' || event.type === 'heal' ? NUMBER_FLIGHT_MS : 1100), targets: event.type === 'cast_resolve' ? [...new Set(events.filter(value => value.at_ms === event.at_ms && value.actor_id === event.actor_id && value.skill_id === event.skill_id && value.target_id).map(value => value.target_id!))] : [] });
       }
       if (event.type === 'cast_resolve' && event.skill_id) {
         const visual = this.pack.visuals.get(event.skill_id), sound = visual?.sound_paths[0]; if (sound) this.sounds.push({ ref: sound, at: event.at_ms + delay, base: event.at_ms });
@@ -221,17 +222,23 @@ export class BattleRenderer {
     for (const cue of this.cues) {
       const event = cue.event, elapsed = presentationMs - event.at_ms - (this.motion ? cue.delay : 0); if (elapsed < 0) continue;
       const actor = view.actors.find(row => row.actor_id === (event.target_id ?? event.actor_id)); if (!actor) continue;
-      const [x, y] = this.point(actor);
+      // A floating number leaves its contact point; a moving target must not drag it sideways.
+      if (!cue.numberOrigin && (event.type === 'damage' || event.type === 'heal')) {
+        const [nx, ny] = this.point(actor);
+        cue.numberOrigin = [nx, ny - (event.type === 'heal' ? 110 : actor.cast ? 105 : 100)];
+      }
+      const [x, y] = cue.numberOrigin ?? this.point(actor);
       if (event.type === 'heal' && (event.amount ?? 0) > 0) {
-        context.save(); context.globalAlpha = Math.max(0, 1 - elapsed / 1100); if(this.numbers)this.frameStats.numberBounds.push(this.numbers.draw(context, event.amount!, false, x, y - 110 - (this.motion ? elapsed / 30 : 0), this.motion ? elapsed : 140, true)); context.restore(); continue;
+        const flight = this.motion ? numberFlight(elapsed) : { dx: 0, dy: 0, size: 1, alpha: 1 };
+        context.save(); context.globalAlpha = flight.alpha; if(this.numbers)this.frameStats.numberBounds.push(this.numbers.draw(context, event.amount!, false, x + flight.dx, y + flight.dy, this.motion ? elapsed : 140, 'heal', flight.size)); context.restore(); continue;
       }
       if (event.type === 'damage') {
         // Outgoing numbers follow the focused actor; any hit a party member takes shows in red on that member.
         const focused = isFocusedDamage(event, this.selected), incoming = !focused && actor.team === 'player' && (event.amount ?? 0) > 0;
         if (!focused && !incoming) continue;
-        const critical = event.detail === 'critical', flight = this.motion ? numberFlight(elapsed, event.sequence % 2 ? 1 : -1) : { dx: 0, dy: 0, size: 1, alpha: 1 };
+        const critical = event.detail === 'critical', flight = this.motion ? numberFlight(elapsed) : { dx: 0, dy: 0, size: 1, alpha: 1 };
         context.save(); context.globalAlpha = flight.alpha;
-        if(this.numbers)this.frameStats.numberBounds.push(this.numbers.draw(context, event.amount!, critical, x + flight.dx, y - (actor.cast ? 105 : 100) - (event.hit_index ?? 0) % 2 * numberLine + flight.dy, this.motion ? elapsed : 140, incoming ? 'incoming' : 'damage', flight.size));
+        if(this.numbers)this.frameStats.numberBounds.push(this.numbers.draw(context, event.amount!, critical, x + flight.dx, y - (event.hit_index ?? 0) % 2 * numberLine + flight.dy, this.motion ? elapsed : 140, incoming ? 'incoming' : 'damage', flight.size));
         context.restore();
         if (focused) this.frameStats.damage.push({ source: event.actor_id, target: actor.actor_id, amount: event.amount!, critical, sequence: event.sequence, at_ms: event.at_ms + (this.motion ? cue.delay : 0) });
         else this.frameStats.incoming.push({ source: event.actor_id, target: actor.actor_id, amount: event.amount!, sequence: event.sequence });
@@ -257,14 +264,19 @@ export class BattleRenderer {
       context.save(); context.globalAlpha = Math.max(0, 1 - elapsed / cue.duration); context.font = 'bold 20px ROThai, sans-serif'; context.textAlign = 'center'; context.lineWidth = 4; context.strokeStyle = '#26352f'; const yy = y - (event.type === 'cast_interrupt' || event.type === 'status_applied' ? 135 : 100 + event.sequence % 3 * 18) - (this.motion ? elapsed / 24 : 0); context.strokeText(text, x + (event.sequence % 3 - 1) * 20, yy); context.fillStyle = color; context.fillText(text, x + (event.sequence % 3 - 1) * 20, yy); context.restore();
     }
     this.frameStats.totals = this.multiHitNumbers.frames(presentationMs, this.selected, this.motion);
+    const activeTotalKeys = new Set<string>();
     for (const total of this.frameStats.totals) {
       const target = view.actors.find(actor => actor.actor_id === total.target); if (!target) continue;
-      const [x, y] = this.point(target), pop = this.motion ? Math.sin(Math.PI * Math.min(1, total.age_ms / 160)) * 8 : 0;
+      const key = JSON.stringify([total.source, total.action, total.target]); activeTotalKeys.add(key);
+      if (!this.totalOrigins.has(key)) this.totalOrigins.set(key, this.point(target));
+      const [x, y] = this.totalOrigins.get(key)!, flight = this.motion ? numberFlight(presentationMs - total.started_at_ms) : { dx: 0, dy: 0 };
+      const pop = this.motion ? Math.sin(Math.PI * Math.min(1, total.age_ms / 160)) * 8 : 0;
       context.save(); context.globalAlpha = total.alpha;
       // A separate band above the white numbers' upward flight keeps the running total readable.
-      if(this.numbers)this.frameStats.numberBounds.push(this.numbers.draw(context, total.amount, false, x, Math.max(40, y - (156+68/numberWorldToCss)) - pop, this.motion ? total.age_ms : 140, 'total', 1.08));
+      if(this.numbers)this.frameStats.numberBounds.push(this.numbers.draw(context, total.amount, false, x + flight.dx * .5, Math.max(40, y - (156+68/numberWorldToCss)) + flight.dy * .5 - pop, this.motion ? total.age_ms : 140, 'total', 1.08));
       context.restore();
     }
+    for (const key of this.totalOrigins.keys()) if (!activeTotalKeys.has(key)) this.totalOrigins.delete(key);
     for (const actor of view.actors) { if (actor.summon_of) continue; const [x, y] = this.point(actor); this.label(context, actor, x, y, presentationMs); }
     context.restore();
     if(this.showFinishers){if(this.showFinisherTitles)this.finishers.drawTitle(context,width,height,this.scene.skill_labels,view.actors,wallMs,this.motion,this.frameStats.numberBounds.map(b=>({top:b.top/(this.canvas.clientHeight||height),bottom:(b.top+b.height)/(this.canvas.clientHeight||height)})));this.frameStats.finishers=this.finishers.frames(wallMs,this.motion,this.showFinisherTitles);}

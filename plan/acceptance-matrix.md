@@ -818,3 +818,10 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | --- | --- | --- | --- | --- |
 | `T149-AC-01` | TASK-149 | design62/AC01 | Native/status/build/public | passed_implementation |
 | `T149-AC-02` | TASK-149 | design62/AC02 | Native/status/build/public | passed_implementation |
+
+## TASK-150 — ตัวเลขและแอสเซ็ตพื้น
+
+| Case | Task | Expected | Verification | Status |
+| --- | --- | --- | --- | --- |
+| `T150-AC-01` | TASK-150 | design63/AC01 | Native/flight/engine parity | not_run_implementation |
+| `T150-AC-02` | TASK-150 | design63/AC02 | Ground audit/build/public | not_run_implementation |

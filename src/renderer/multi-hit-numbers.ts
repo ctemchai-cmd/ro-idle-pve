@@ -6,7 +6,7 @@ export const MULTI_HIT_FADE_MS = 400;
 export const MULTI_HIT_FALLBACK_MS = 90;
 export interface MultiHitFrame {
   source: string; target: string; skill: string; action: string;
-  amount: number; hits: number; at_ms: number; age_ms: number; alpha: number;
+  amount: number; hits: number; at_ms: number; started_at_ms: number; age_ms: number; alpha: number;
 }
 interface TimedHit { event: BattlePresentationEvent; impact_ms: number }
 
@@ -48,7 +48,7 @@ export class MultiHitNumbers {
       if (amount <= 0 || age >= MULTI_HIT_HOLD_MS + MULTI_HIT_FADE_MS) continue;
       const started = motion ? due[0]!.impact_ms : due[0]!.event.at_ms;
       const previous = visible.get(event.target_id!);
-      if (!previous || started >= previous.started) visible.set(event.target_id!, { started, frame: { source: event.actor_id, target: event.target_id!, skill: event.skill_id!, action: event.action_id!, amount, hits: due.length, at_ms: at, age_ms: age, alpha: Math.min(1, (MULTI_HIT_HOLD_MS + MULTI_HIT_FADE_MS - age) / MULTI_HIT_FADE_MS) } });
+      if (!previous || started >= previous.started) visible.set(event.target_id!, { started, frame: { source: event.actor_id, target: event.target_id!, skill: event.skill_id!, action: event.action_id!, amount, hits: due.length, at_ms: at, started_at_ms: started, age_ms: age, alpha: Math.min(1, (MULTI_HIT_HOLD_MS + MULTI_HIT_FADE_MS - age) / MULTI_HIT_FADE_MS) } });
     }
     return [...visible.values()].map(row => row.frame);
   }

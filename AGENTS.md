@@ -1,5 +1,9 @@
 # Project context
 
+## Floating number direction (25 October2026,D174/TASK150)
+
+All hit/critical/heal/incoming numbers use numberFlight: pop upward then drift upper-left; no sequence parity/facing/random direction. Freeze origin at first visible contact, including cast-phase baseline, so a walking target does not drag the number. Multi-hit totals use started_at_ms (first actual visual contact) for slower continuous drift, latest hit for bounce/hold/fade; do not reset flight on each increment. Keep bitmap fonts/colors/size targets/focus/actual totals/impact delay and reduced-motion static. Renderer-only: content/pack/engine unchanged. Ground audit150 separates real Sanctuary/StormGust/Quagmire STR from six32pxsong status symbols; D173song circle remains an explicit native-texture composition, not a claimed original ground-song clip. See design63/latestHANDOFF for release status.
+
 ## Performer song auras (25 October2026,D173/TASK149)
 
 Source6c2fbf464 live/VercelSUCCESS;18focused/native5/rootbuild/source30460460/publichosted4 passed. Renderer-only performance_auras config selects8 Bard/Dancer songIDs, including inherited High/Awaken. Actualstatus source/expiry→one ringperlivingperformer,notperrecipient/stack. Native32pxpriest_angel_ring (transparent center) +64pxain_note_01 only; blue/pink tint,underactors/followsinterpolatedposition/staticreducedmotion. No gameplayrange/channel/stat changes. prepareloads2texturesonlywhenpreparedsongs;initialprofilemustexcludeperformance_aurasunlessinitialskillsneedthem. Packc622/raw33546959<32MiB/initial1621492unchanged. See design62.

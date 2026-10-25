@@ -96,3 +96,5 @@ D167/TASK139: [ร้าน/แลกเศษ/Panel](56-shop-and-exchange-ui.md
 - [61 — ของ80/100และHi cap100](61-high-gear-and-level100.md): D172/TASK148.
 
 - [62 — วงออร่าเพลงBard/Dancer](62-performance-auras.md): D173/TASK149.
+
+- [63 — ตัวเลขและสกิลพื้น](63-number-flight-and-ground-assets.md): D174/TASK150.

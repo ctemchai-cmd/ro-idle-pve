@@ -7,7 +7,7 @@ const hit=(sequence:number,overrides:Partial<BattlePresentationEvent>={}):Battle
 test('one cast shows100→200→300 at the actual visual contacts, without counting a frame twice',()=>{
  const numbers=new MultiHitNumbers();for(let i=1;i<=3;i++)numbers.queue(hit(i),1000+i*130);
  assert.deepEqual(numbers.frames(1129,'mage'),[]);
- for(const [at,amount]of[[1130,100],[1260,200],[1390,300]] as const){const frame=numbers.frames(at,'mage')[0]!;assert.equal(frame.amount,amount);assert.equal(frame.at_ms,at);assert.equal(frame.age_ms,0);assert.equal(numbers.frames(at,'mage')[0]!.amount,amount);}
+ for(const [at,amount]of[[1130,100],[1260,200],[1390,300]] as const){const frame=numbers.frames(at,'mage')[0]!;assert.equal(frame.amount,amount);assert.equal(frame.at_ms,at);assert.equal(frame.started_at_ms,1130,'flight origin stays at first impact when the displayed sum increases');assert.equal(frame.age_ms,0);assert.equal(numbers.frames(at,'mage')[0]!.amount,amount);}
 });
 test('single-hit skills, normal attacks, periodic damage, procs and healing have no yellow total',()=>{
  const numbers=new MultiHitNumbers();numbers.queue(hit(1),1000);

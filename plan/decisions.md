@@ -342,3 +342,8 @@ Accepteduserintent: larger damage numbers; allmajor skills must use real local a
 ## D173 — 25 ตุลาคม 2026 · ออร่าเพลง
 
 ผู้ใช้ขอวงออร่าเพลงBard/Dancer. วงใต้ผู้ร่ายและnativeโน้ตตามสถานะจริง/รวมstackเพื่อการแสดงผล;ไม่มีrange/channelหรือบัฟเพิ่ม. [design62](design/62-performance-auras.md).
+
+
+## D174 — ตัวเลขเด้งแล้วลอยซ้ายบน (25 ตุลาคม2026)
+
+ผู้ใช้ยืนยันทิศเดียวทุกตัวเลข;เอาการสลับตามHitออก. เลขรวมยังเด้งเมื่อยอดเพิ่มแต่ไม่เริ่มทางลอยใหม่. ดูdesign63/TASK150. ตรวจสกิลพื้นจากsourceจริง แยกไอคอนบัฟออกจากเอฟเฟกต์. ไม่เปลี่ยนengine/บาลานซ์.

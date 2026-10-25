@@ -1,0 +1,18 @@
+✔ one cast shows100→200→300 at the actual visual contacts, without counting a frame twice (4.650916ms)
+✔ single-hit skills, normal attacks, periodic damage, procs and healing have no yellow total (0.481958ms)
+✔ totals separate targets and casters; a new cast replaces the old counter without inheriting its sum (0.953625ms)
+✔ a single-hit area attack never becomes multi-hit by adding up different victims (0.609708ms)
+✔ replayed events are deduplicated and fully absorbed hits add zero, with no artificial damage (0.238084ms)
+✔ final sum holds then fades; reduced motion uses engine times and still shows the correct total (0.377166ms)
+✔ multi-hit ordinals preserve hit indices and only identify direct hits of one skill on one target (0.223041ms)
+✔ impacts are native STR effects shipped in the pack, keyed by presentation so copies share them (52.508958ms)
+✔ fire/cold bolts fall from the sky onto the target; Lightning Bolt and Arrow Shower use their native strike instead of fake projectiles (0.504916ms)
+✔ numbers pop upward then drift upper-left consistently while shrinking and fading (0.204417ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 266.228375

@@ -2,11 +2,13 @@ import type { NativeAsset } from './native.mjs';
 
 /** `incoming` is damage a party member takes (red, as RO shows it on your own characters). */
 export type NumberKind = 'damage' | 'heal' | 'incoming' | 'total';
-/** RO-style flight: the number pops large, arcs up and falls back to one side while it shrinks; presentation only. */
+/** Pop upward, then drift upper-left. The same path serves every number kind;
+ * neither hit order nor facing may reverse it. Presentation time only. */
 export const NUMBER_FLIGHT_MS = 800;
-export function numberFlight(elapsed: number, side: number): { dx: number; dy: number; size: number; alpha: number } {
-  const p = Math.min(1, Math.max(0, elapsed / NUMBER_FLIGHT_MS)), peak = .45, arc = (p / (2 * peak)) * (1 - p / (2 * peak));
-  return { dx: side * 42 * p, dy: -4 * 56 * arc, size: 1.25 - .45 * p, alpha: p < .7 ? 1 : Math.max(0, 1 - (p - .7) / .3) };
+export function numberFlight(elapsed: number): { dx: number; dy: number; size: number; alpha: number } {
+  const time = Math.max(0, elapsed), p = Math.min(1, time / NUMBER_FLIGHT_MS);
+  const lift = 1 - (1 - Math.min(1, time / 120)) ** 3, drift = Math.max(0, time - 80) / NUMBER_FLIGHT_MS;
+  return { dx: -48 * drift, dy: -24 * lift - 36 * drift, size: 1.25 - .45 * p, alpha: p < .7 ? 1 : Math.max(0, 1 - (p - .7) / .3) };
 }
 export const NUMBER_CSS_HEIGHT = { damage:30, critical:38, total:38, heal:26, incoming:24 } as const;
 export interface NumberDrawBounds {kind:NumberKind;critical:boolean;left:number;top:number;width:number;height:number}

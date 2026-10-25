@@ -15512,6 +15512,42 @@
       "evidence_refs": [
         "plan/evidence/task-149-review.json"
       ]
+    },
+    {
+      "id": "T150-AC-01",
+      "task_id": "TASK-150",
+      "acceptance_id": "AC-01",
+      "criterion": "All floating numbers pop and drift upper-left, fixed hit origins, stable multi-hit drift, preserved actual values/focus/timing/reducedmotion/speed parity",
+      "input_setup": "Actual Canvas/native pack + seeded shared engine; read-only public artifacts, no owner",
+      "input_refs": [
+        "plan/review/tasks_150.md",
+        "plan/design/63-number-flight-and-ground-assets.md"
+      ],
+      "parameters": {},
+      "expected": "All floating numbers pop and drift upper-left, fixed hit origins, stable multi-hit drift, preserved actual values/focus/timing/reducedmotion/speed parity",
+      "verification": "Focused TS/native320390/engine parity/source metadata/build/hosted",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-150-review.json"
+      ]
+    },
+    {
+      "id": "T150-AC-02",
+      "task_id": "TASK-150",
+      "acceptance_id": "AC-02",
+      "criterion": "Ground asset source audit separates STR/native effect textures from status icons; native320390/build/unchanged content and pack/public release",
+      "input_setup": "Actual Canvas/native pack + seeded shared engine; read-only public artifacts, no owner",
+      "input_refs": [
+        "plan/review/tasks_150.md",
+        "plan/design/63-number-flight-and-ground-assets.md"
+      ],
+      "parameters": {},
+      "expected": "Ground asset source audit separates STR/native effect textures from status icons; native320390/build/unchanged content and pack/public release",
+      "verification": "Focused TS/native320390/engine parity/source metadata/build/hosted",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-150-review.json"
+      ]
     }
   ]
 }
