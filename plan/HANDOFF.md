@@ -1,5 +1,11 @@
 # Handoff ระหว่าง agent
 
+## 25 ต.ค.2026 · Codex — ACTIVE152 edge clamp correction after hosted check
+
+- Source8ea2ef9c1e80f93ce602ffc918ec59d94727d16a/VercelSUCCESS gave larger/punchier numbers;hostedcaughtleft-edgeheal reversing x71→66 asfontshrinks. Fixedrendererretainactualpaintedworldoriginatfirstpaint(hit/heal/yellow),notrawout-of-boundsorigin. NumberDrawBounds nowincludesorigin tuple, Cue.numberPlaced tracksfirstactualvisiblepaint. Noengine/assetchanges. Addedboth-edge24/696world checks for4kinds+totalsat320390;native4passed+10TS. Existing60before/after size comparisonstillvalid(componentpixelsunchangedbyoriginreturn).
+- CorrectionsUNCOMMITTEDHEAD8ea2ef9c1;152review. NewhostedscriptrequiresnumberPlaced+newsizebundleandactualhealheight>38.5px. pre-edge-fix-hosted.jsonpreservesfirstfinding. OwnVite7506CLOSED/browsersclosed. NEXTfreshrootbuild,explicitstageonlycorrection/report/docs,commit/push,separateVercelSUCCESS thenRO_EVIDENCE_TASK=task-152 node scripts/test_number_flight_hosted.cjs;152done138/152/M4 92/101onlyafterpublicpass. Noowner/SQL/env/6173/agents/asset/balancebatch.
+
+
 ## 25 ต.ค.2026 · Codex — ACTIVE TASK152 larger/punchier numbers, LOCAL native passed
 
 - Userwantsnumbersslightlybigger+strongerpop.152review/design65/D176;137/152done/M4 91/101. BeforeHEADd891bcc4d. Onlydamage-numbers.ts tuning:CSS30/38/38/26/24→34/43/43/30/27,pop18%140ms→26%110ms,flight650→620ms/dx64→76/height62→78;same.44apex/size1.25→.6/rightfall/focus/colors/totals.10existingTS/native4groups/60manualnativebefore-after320390passed;birth>=18%/reading>=8%,40msvertical+31%horizontal+24%. GIFnew152captured. Noasset/gameplay/packchanges(packcb126/content2c85same),noowner/SQL/env/6173/agents/balancebatch.

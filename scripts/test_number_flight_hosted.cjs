@@ -22,7 +22,10 @@ const root = path.resolve(__dirname, '..'), out = path.join(root, 'plan/evidence
       assert(response.ok); assert.equal(createHash('sha256').update(bytes).digest('hex'), file.sha256); sources.push(bytes.toString());
     }
     for (const marker of ['numberOrigin', 'started_at_ms', 'totalOrigins']) assert(sources.join('\n').includes(marker), marker);
-    if (evidenceTask === 'task-152') assert(/damage:34,critical:43,total:43,heal:30,incoming:27/.test(sources.join('\n')), 'OLD_NUMBER_SIZE');
+    if (evidenceTask === 'task-152') {
+      assert(/damage:34,critical:43,total:43,heal:30,incoming:27/.test(sources.join('\n')), 'OLD_NUMBER_SIZE');
+      assert(sources.join('\n').includes('numberPlaced'), 'OLD_EDGE_ANCHOR');
+    }
     checks.push({ case: 'all_public_bundle_SHA_and_new_number_flight_adapter', files: files.length });
     browser = await chromium.launch({ headless: true, executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' });
     const page = await browser.newPage({ viewport: { width: 320, height: 844 }, isMobile: true, hasTouch: true });

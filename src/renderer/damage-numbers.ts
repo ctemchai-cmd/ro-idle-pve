@@ -10,7 +10,7 @@ export function numberFlight(elapsed: number): { dx: number; dy: number; size: n
   return { dx: 76 * p, dy: -4 * 78 * arc * (1 - arc), size: 1.25 - .65 * p, alpha: p < .7 ? 1 : Math.max(0, 1 - (p - .7) / .3) };
 }
 export const NUMBER_CSS_HEIGHT = { damage:34, critical:43, total:43, heal:30, incoming:27 } as const;
-export interface NumberDrawBounds {kind:NumberKind;critical:boolean;left:number;top:number;width:number;height:number}
+export interface NumberDrawBounds {kind:NumberKind;critical:boolean;left:number;top:number;width:number;height:number;origin:readonly[number,number]}
 /** Stable CSS size even when a portrait canvas squeezes a large world into320px. */
 export function readableNumberScale(height:number,width:number,worldToCss:number,viewportWidth:number,kind:NumberKind,critical:boolean,size:number,pop:number):number {
   const desired=NUMBER_CSS_HEIGHT[critical?'critical':kind]*(1+pop*.26)*size;
@@ -56,6 +56,6 @@ export class DamageNumbers {
       context.drawImage(this.criticalFont.image, rect[0]!, rect[1]!, rect[2]!, rect[3]!, -bw / 2, -bh / 2, bw, bh);
     }
     context.drawImage(image, -w / 2, -h / 2, w, h); context.restore();
-    return{kind:resolvedKind,critical,left:(matrix.a*x+matrix.c*y+matrix.e)*ratio-w*worldToCss/2,top:(matrix.b*x+matrix.d*y+matrix.f)*ratio-h*worldToCss/2,width:w*worldToCss,height:h*worldToCss};
+    return{kind:resolvedKind,critical,left:(matrix.a*x+matrix.c*y+matrix.e)*ratio-w*worldToCss/2,top:(matrix.b*x+matrix.d*y+matrix.f)*ratio-h*worldToCss/2,width:w*worldToCss,height:h*worldToCss,origin:[x,y]};
   }
 }

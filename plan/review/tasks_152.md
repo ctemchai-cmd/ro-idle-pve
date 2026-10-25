@@ -26,3 +26,7 @@ Native bitmap before/after bounds and captures;existing number-flight harness wi
 ## ผลตรวจlocal
 
 10existingTS/native4groups/60before-after samplesผ่าน. Firstpop>=18%ทุกชนิด,ช่วงอ่าน>=8%,vertical40ms+31%/horizontal+24%,วิถีเดิมเร็วขึ้น620ms. ActualgameplaySHA/packcb126เดิม. รอbuild/publicก่อนdone.
+
+## ผลตรวจเว็บรอบแรกและแก้ไข
+
+Source8eaขึ้นเว็บแล้วแต่hostedพบedgeclampย้อนซ้ายระหว่างย่อ. แก้retainedoriginจากตำแหน่งที่paintจริงและเพิ่มedgechecks;ยังไม่ปิดACจนhostedรอบแก้ผ่าน.

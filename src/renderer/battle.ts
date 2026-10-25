@@ -16,7 +16,7 @@ import { locateSkillVisual } from './asset-locator.ts';
 import { FinisherEffects, type FinisherFrame } from './finishers.ts';
 import { MultiHitNumbers, multiHitOrdinals, MULTI_HIT_FALLBACK_MS, type MultiHitFrame } from './multi-hit-numbers.ts';
 
-interface Cue { event: BattlePresentationEvent; duration: number; delay: number; targets: readonly string[]; numberOrigin?: readonly [number, number] }
+interface Cue { event: BattlePresentationEvent; duration: number; delay: number; targets: readonly string[]; numberOrigin?: readonly [number, number]; numberPlaced?: boolean }
 export class BattleRenderer {
   private cues: Cue[] = [];
   private projectiles: (ProjectileCue & {nativeOnly?:boolean})[] = [];
@@ -233,7 +233,15 @@ export class BattleRenderer {
       const [x, y] = cue.numberOrigin ?? this.point(actor);
       if (event.type === 'heal' && (event.amount ?? 0) > 0) {
         const flight = this.motion ? numberFlight(elapsed) : { dx: 0, dy: 0, size: 1, alpha: 1 };
-        context.save(); context.globalAlpha = flight.alpha; if(this.numbers)this.frameStats.numberBounds.push(this.numbers.draw(context, event.amount!, false, x + flight.dx, y + flight.dy, this.motion ? elapsed : 140, 'heal', flight.size)); context.restore(); continue;
+        context.save(); context.globalAlpha = flight.alpha;
+        if(this.numbers) {
+          const bounds = this.numbers.draw(context, event.amount!, false, x + flight.dx, y + flight.dy, this.motion ? elapsed : 140, 'heal', flight.size);
+          // Start at the actually painted (viewport-clamped) position. Shrinking
+          // must not release an edge clamp and pull the number back to the left.
+          if (!cue.numberPlaced) { cue.numberOrigin = [bounds.origin[0] - flight.dx, y]; cue.numberPlaced = true; }
+          this.frameStats.numberBounds.push(bounds);
+        }
+        context.restore(); continue;
       }
       if (event.type === 'damage') {
         // Outgoing numbers follow the focused actor; any hit a party member takes shows in red on that member.
@@ -241,7 +249,11 @@ export class BattleRenderer {
         if (!focused && !incoming) continue;
         const critical = event.detail === 'critical', flight = this.motion ? numberFlight(elapsed) : { dx: 0, dy: 0, size: 1, alpha: 1 };
         context.save(); context.globalAlpha = flight.alpha;
-        if(this.numbers)this.frameStats.numberBounds.push(this.numbers.draw(context, event.amount!, critical, x + flight.dx, y - (event.hit_index ?? 0) % 2 * numberLine + flight.dy, this.motion ? elapsed : 140, incoming ? 'incoming' : 'damage', flight.size));
+        if(this.numbers) {
+          const bounds = this.numbers.draw(context, event.amount!, critical, x + flight.dx, y - (event.hit_index ?? 0) % 2 * numberLine + flight.dy, this.motion ? elapsed : 140, incoming ? 'incoming' : 'damage', flight.size);
+          if (!cue.numberPlaced) { cue.numberOrigin = [bounds.origin[0] - flight.dx, y]; cue.numberPlaced = true; }
+          this.frameStats.numberBounds.push(bounds);
+        }
         context.restore();
         if (focused) this.frameStats.damage.push({ source: event.actor_id, target: actor.actor_id, amount: event.amount!, critical, sequence: event.sequence, at_ms: event.at_ms + (this.motion ? cue.delay : 0) });
         else this.frameStats.incoming.push({ source: event.actor_id, target: actor.actor_id, amount: event.amount!, sequence: event.sequence });
@@ -271,13 +283,18 @@ export class BattleRenderer {
     for (const total of this.frameStats.totals) {
       const target = view.actors.find(actor => actor.actor_id === total.target); if (!target) continue;
       const key = JSON.stringify([total.source, total.action, total.target]); activeTotalKeys.add(key);
-      if (!this.totalOrigins.has(key)) this.totalOrigins.set(key, this.point(target));
+      const firstTotalFrame = !this.totalOrigins.has(key);
+      if (firstTotalFrame) this.totalOrigins.set(key, this.point(target));
       const [x, y] = this.totalOrigins.get(key)!, flight = this.motion ? numberFlight(presentationMs - total.started_at_ms) : { dx: 0, dy: 0 };
       const pop = this.motion ? Math.sin(Math.PI * Math.min(1, total.age_ms / 160)) * 8 : 0;
       context.save(); context.globalAlpha = total.alpha;
       // A separate band above the white numbers' upward flight keeps the running total readable.
       const size = this.motion ? Math.max(.8, numberFlight(presentationMs - total.started_at_ms).size) : 1;
-      if(this.numbers)this.frameStats.numberBounds.push(this.numbers.draw(context, total.amount, false, x + flight.dx * .5, Math.max(40, y - (156+68/numberWorldToCss)) + flight.dy * .5 - pop, this.motion ? total.age_ms : 140, 'total', 1.08 * size));
+      if(this.numbers) {
+        const bounds = this.numbers.draw(context, total.amount, false, x + flight.dx * .5, Math.max(40, y - (156+68/numberWorldToCss)) + flight.dy * .5 - pop, this.motion ? total.age_ms : 140, 'total', 1.08 * size);
+        if (firstTotalFrame) this.totalOrigins.set(key, [bounds.origin[0] - flight.dx * .5, y]);
+        this.frameStats.numberBounds.push(bounds);
+      }
       context.restore();
     }
     for (const key of this.totalOrigins.keys()) if (!activeTotalKeys.has(key)) this.totalOrigins.delete(key);

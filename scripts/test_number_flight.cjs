@@ -53,6 +53,15 @@ assert(base && new URL(base).hostname === '127.0.0.1');
             if (JSON.stringify(v) !== before) throw Error('VIEW_MUTATION'); variants.push(samples);
           }
           if (JSON.stringify(variants[0]) !== JSON.stringify(variants[1])) throw Error('PARITY_DIRECTION:' + kind);
+          for (const edge of [24, 696]) {
+            const e = p.event(25, kind), r = p.renderer(), v = p.view(e.target_id), target = v.actors.find(a => a.actor_id === e.target_id);
+            target.spatial.x = edge; target.spatial.previous_x = edge; r.accept([e]); let last = -Infinity;
+            for (const age of [0, 120, 280, 550]) {
+              r.draw(v, 1000 + age, age); const b = r.frameStats.numberBounds[0], x = center(b)[0];
+              if (x + .001 < last || b.left < 0 || b.left + b.width > innerWidth) throw Error('EDGE_CLAMP_REVERSES_NUMBER:' + kind + ':' + edge);
+              last = x;
+            }
+          }
           // Moving or changing cast phase cannot drag an existing number away from its contact point.
           const e = p.event(22, kind), r = p.renderer(), v = p.view(e.target_id); r.accept([e]); r.draw(v, 1000, 0);
           const target = v.actors.find(a => a.actor_id === e.target_id); target.spatial.x += 180; target.spatial.previous_x += 180; target.phase = 'casting';
@@ -61,7 +70,7 @@ assert(base && new URL(base).hostname === '127.0.0.1');
           const still = p.renderer(); still.motion = false; still.accept([e]); const sv = p.view(e.target_id), frames = [];
           for (const t of [1000, 1300, 1600]) { still.draw(sv, t, t); frames.push(still.frameStats.numberBounds[0]); }
           if (frames.some(b => JSON.stringify(b) !== JSON.stringify(frames[0]))) throw Error('REDUCED_MOTION_MOVES');
-          rows.push({ kind, samples: variants[0], same_odd_even: true, moving_target_origin_fixed: true, reduced_motion_static: true });
+          rows.push({ kind, samples: variants[0], same_odd_even: true, moving_target_origin_fixed: true, reduced_motion_static: true, edges_do_not_reverse: true });
         }
         const r = p.renderer(), v = p.view('target_0'), hits = [0, 1].map((hit_index) => ({ ...p.event(30 + hit_index), at_ms: 1000 + hit_index * 200, origin: 'skill', skill_id: 'mage_fire_bolt', action_id: 'flight-test', effect_id: 'bolt', hit_index }));
         r.accept(hits); const totals = [];
@@ -71,6 +80,14 @@ assert(base && new URL(base).hostname === '127.0.0.1');
         }
         for (let i = 1; i < totals.length; i++) if (!(totals[i].center[0] >= totals[i - 1].center[0])) throw Error('TOTAL_RESTARTS_LEFT');
         if (totals[0].amount !== 12345 || totals[2].amount !== 24690 || totals.some(t => t.started_at_ms !== 1000)) throw Error('WRONG_TOTAL');
+        for (const edge of [24, 696]) {
+          const edgeRenderer = p.renderer(), edgeView = p.view('target_0'), target = edgeView.actors.find(a => a.actor_id === 'target_0');
+          target.spatial.x = edge; target.spatial.previous_x = edge; edgeRenderer.accept(hits); let last = -Infinity;
+          for (const t of [1000, 1120, 1300, 1450, 1800, 2300]) {
+            edgeRenderer.draw(edgeView, t, t); const b = edgeRenderer.frameStats.numberBounds.find(b => b.kind === 'total'), x = center(b)[0];
+            if (x + .001 < last || b.left < 0 || b.left + b.width > innerWidth) throw Error('EDGE_CLAMP_REVERSES_TOTAL'); last = x;
+          }
+        }
         const unfocused = p.renderer(); unfocused.selected = 'ally_2'; unfocused.accept(hits); unfocused.draw(v, 1400, 1400);
         if (unfocused.frameStats.numberBounds.length) throw Error('FOCUS_FILTER_LOST');
         if (p.painted.some(n => n.kind !== 'total' && n.amount !== 12345)) throw Error('AMOUNT_CHANGED');
