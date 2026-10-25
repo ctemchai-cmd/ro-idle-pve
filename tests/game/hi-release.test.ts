@@ -5,16 +5,16 @@ import { progressionData } from '../../src/domain/progression/characters.ts';
 import { storyStage, storyReleaseLock } from '../../src/domain/modes/story.ts';
 import { dailyBoss, dailyChest } from '../../src/domain/modes/daily.ts';
 import { SkillPreviewSession } from '../../src/client/skill-preview.ts';
-test('actual release opens13 High jobs,26 skills,152 Awaken variants, cap90 and chapters10–12; future systems remain closed', () => {
+test('actual release opens13 High jobs,26 skills,152 Awaken variants, cap100 and chapters10–12; future systems remain closed', () => {
   const p = progressionData(content);
-  assert.equal(p.promotion.hi_class_enabled, true); assert.equal(p.release.level_cap, 90);
+  assert.equal(p.promotion.hi_class_enabled, true); assert.equal(p.release.level_cap, 100);
   assert.deepEqual(p.release.enabled_job_stages, [1,2,3]);
   const release = content.documents['progression.json']!.release as unknown as { excluded_features: string[] };
   for (const id of ['artifact', 'pet', 'rune']) assert.ok(release.excluded_features.includes(id));
   assert.ok(!release.excluded_features.includes('awakening')); assert.equal(p.promotion.class3_enabled, false);
   assert.equal(content.jobs.order.length, 32);
   assert.equal(Object.values(content.skills).filter(s => (s.tags as string[]).includes('hi_class')).length, 26);
-  assert.equal(p.progression.level_rows.at(-1)!.level, 90); assert.deepEqual(p.progression.breakthrough_gates.map(g => g.at_level), [20,40,60,80]);
+  assert.equal(p.progression.level_rows.at(-1)!.level, 100); assert.deepEqual(p.progression.breakthrough_gates.map(g => g.at_level), [20,40,60,80]);
   for (const id of ['10-1', '11-1', '12-1']) assert.equal(storyReleaseLock(storyStage(id,content)!,content), null);
   assert.equal(dailyChest(dailyBoss('essence',content),1,9).awakening_shard,2);
   const preview = new SkillPreviewSession({ job: 'sniper', skill: 'sniper_sharpshooting', rank: 10 });

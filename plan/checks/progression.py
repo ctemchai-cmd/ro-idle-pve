@@ -45,7 +45,7 @@ def review() -> dict:
         check("AC-01", f"milestone-{expected['level']}", actual["leveling_cost_to_reach"] == {"hero_exp": expected["hero_exp"], "gold": expected["gold_leveling"]} and actual["total_status_points"] == expected["status_points"], actual["leveling_cost_to_reach"])
     check("AC-01", "class2-independent-of-breakthrough", data["promotion"]["class2_min_level"] == 20 and data["promotion"]["requires_breakthrough_020"] is False, "Lv.20 may promote while local cap remains 20")
     hi = data["promotion"]["hi_class_enabled"]
-    check("AC-01", "future-cap-without-gate70", gates[-1]["unlocks_local_cap"] == 80 and release["level_cap"] == (90 if hi else 70) and (not hi or data["hi_class"]["minimum_level"] == 70 and data["hi_class"]["breakthrough_gates"][0]["at_level"] == 80), "Class2 table ends70; Hi continues70–90 through gate80, never gate70")
+    check("AC-01", "future-cap-without-gate70", gates[-1]["unlocks_local_cap"] == 80 and release["level_cap"] == (100 if hi else 70) and (not hi or data["hi_class"]["minimum_level"] == 70 and data["hi_class"]["breakthrough_gates"][0]["at_level"] == 80), "Class2 table ends70; Hi continues70–90 through gate80, never gate70")
     check("AC-01", "resource-source-not-after-required-gate", next(r for r in data["resources"] if r["id"] == "breakthrough_essence")["first_source"] == "farm_cleared_1-5", "essence available before any required promotion/breakthrough encounter")
     start_case = data["reference_cases"]["four_characters_at_level4"]
     actual_start = {k: 4*rows[3]["leveling_cost_to_reach"][k] for k in ["hero_exp", "gold"]}

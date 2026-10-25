@@ -23,7 +23,7 @@ export function storyBoss(stage:StoryStage){const boss=stage.encounter.find(a=>a
 export function storyFarmSnapshot(stage:StoryStage,state:AccountState,content:ValidatedContent):NonNullable<AccountState['farm']['rate_snapshot']>{
  const rates=content.documents['economy.json']!.rates as unknown as {chapter:number;per_hour:Partial<AccountState['wallet']>}[];
  const rate=rates.find(r=>r.chapter===stage.farm_rate_chapter);if(!rate)throw new Error('FARM_RATE_MISSING');
- const gear=content.documents['loot.json']!.gear as unknown as {tier_by_chapter:Record<string,1|20|40|60>;rarity_weights:NonNullable<AccountState['farm']['rate_snapshot']>['rarity_weights']};
+ const gear=content.documents['loot.json']!.gear as unknown as {tier_by_chapter:Record<string,NonNullable<AccountState['farm']['rate_snapshot']>['gear_tier']>;rarity_weights:NonNullable<AccountState['farm']['rate_snapshot']>['rarity_weights']};
  const tier=gear.tier_by_chapter[String(stage.farm_rate_chapter)]!;
  const perHour={...Object.fromEntries(Object.keys(state.wallet).map(k=>[k,0])),...rate.per_hour}as AccountState['wallet'];
  const restrictions=(content.documents['economy.json']!.farm as unknown as {rate_restrictions:Record<string,string>}).rate_restrictions;

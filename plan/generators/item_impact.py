@@ -4,8 +4,8 @@ from pathlib import Path
 import json
 
 POLICY = json.loads(Path(__file__).with_name('build-impact-spec.json').read_text())
-POWER = {1: .025, 20: .045, 40: .07, 60: .10, 80: .13}
-GUARD = {1: .01, 20: .02, 40: .03, 60: .04, 80: .05}
+POWER = {1: .025, 20: .045, 40: .07, 60: .10, 80: .13, 100: .16}
+GUARD = {1: .01, 20: .02, 40: .03, 60: .04, 80: .05, 100: .06}
 
 def card_power(row):
     """Uniform semantic power rules for every card, including future catalog entries."""

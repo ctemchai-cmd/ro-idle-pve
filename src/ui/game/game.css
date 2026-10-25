@@ -334,7 +334,7 @@ dialog.sheet::backdrop { background: rgba(10, 22, 50, .45); backdrop-filter: blu
 .farm-gear-guide summary b { color: var(--blue-2); }
 .farm-gear-guide summary small { display: flex; align-items: center; gap: 4px; white-space: nowrap; }
 .farm-gear-guide summary svg { width: 14px; height: 14px; transition: transform .15s; }
-.farm-gear-guide[open] summary svg { transform: rotate(180deg); }
+.farm-gear-guide[open] summary svg { transform: scaleY(-1); }
 .farm-gear-guide table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
 .farm-gear-guide th, .farm-gear-guide td { padding: 6px 10px; text-align: left; border-bottom: 1px solid var(--line); }
 .farm-gear-guide th:last-child, .farm-gear-guide td:last-child { text-align: right; }

@@ -55,7 +55,7 @@ def pity():
  return {'worst_bronze_draw_sequence_pulls_10_20_30':[out[9],out[19],out[29]],'counters_after_gold':[gold,bronze],'10pull_order':'same sequential algorithm, one atomic receipt'}
 check('pity_boundary_sequence',['AC-04'],pity)
 def tier_source():
- available=set(load('equipment.json')['weapon_compatibility'].values());assert len(available)==10;assert set(loot['gear']['tier_by_chapter'].values())=={1,20,40,60};return {'random_drop_not_required_for_class2_weapon':True,'future_tiers_in_pool':False}
+ available=set(load('equipment.json')['weapon_compatibility'].values());assert len(available)==10;assert set(loot['gear']['tier_by_chapter'].values())=={1,20,40,60,80,100};return {'random_drop_not_required_for_class2_weapon':True,'high_tiers_in_pool':[80,100]}
 check('no_unobtainable_class_weapon',['AC-01','AC-03'],tier_source)
 passed=all(r['passed'] for r in rows);inputs=[D/n for n in ['economy.json','loot.json','gacha.json','equipment.json','cards.json','slot-progress.json','progression.json']]+[Path(__file__)]
 report={'task_id':'TASK-010','reviewer':'Codex self-review','review_round':1,'review_date':'2026-10-19','scope':'M0 budget/rate/pity/quantization arithmetic; not accelerated full-game simulation','input_sha256':{str(p.relative_to(R)):hashlib.sha256(p.read_bytes()).hexdigest() for p in inputs},'checks':rows,'passed':passed}

@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""D-068 (user, 20 Oct 2026): item and card variety, generated from one table (TASK-053).
+"""D172 now appends active Lv80/100 gear through high_gear.apply; cards are preserved.
+
+Historical D068 (20 Oct 2026) generator description follows:
 
 Keeps the reviewed 60 standard equipment definitions and 18 Bronze-era cards byte-for-byte (saves reference their IDs)
 and appends, per tier 1/20/40/60:
@@ -105,7 +107,7 @@ def extrapolate(defs):  # Lv.80 numbers continue the 40→60 step of every stand
   n40, n60 = tier_numbers(defs, 40), tier_numbers(defs, 60); return {k: n60[k] + (n60[k] - n40[k]) for k in n60}
 
 def build(equipment, cards_doc, strings, icons):
-  base = [d for d in equipment['definitions'] if d['id'].count('_') == 2 and d['id'].split('_')[-1].isdigit()]
+  base = [d for d in equipment['definitions'] if d['id'].count('_') == 2 and d['id'].split('_')[-1].isdigit() and d['tier_level'] in TIERS]
   pres_base = [p for p in equipment['presentations'] if p['id'] in {f"visual_{d['id']}" for d in base}]
   defs, pres, future, names = list(base), list(pres_base), [], {}
   def icon(ro_id):
@@ -133,11 +135,12 @@ def build(equipment, cards_doc, strings, icons):
   from item_impact import apply_roles
   apply_roles(defs)
   apply_roles(future)
-  from card_catalog import build as build_card_catalog
-  cards_doc, card_names = build_card_catalog(cards_doc)
-  names.update(card_names)
+  # Card identities/traits are owned by card_catalog and story expansion. Gear
+  # regeneration must preserve their complete current document unchanged (D172).
   equipment = {**equipment, 'definitions': defs, 'presentations': pres, 'future_definitions': future}
   strings = {**strings, 'strings': {**strings['strings'], **names}}
+  from high_gear import apply as apply_high_gear
+  equipment, strings = apply_high_gear(equipment, strings)
   return equipment, cards_doc, strings
 
 def main():

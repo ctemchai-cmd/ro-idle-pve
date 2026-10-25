@@ -1,0 +1,35 @@
+✔ D151330 stages keep all180 released rows and old programs/actors/rates/power data byte-identical (29.069458ms)
+✔ D151 former release gates remain explicit; current release opens10–12 with High/Awaken (753.630708ms)
+✔ D151 enemy90 checkpoint/native profiles are valid; party schema supports100 and rejects101 (Class2 stays70) (228.259334ms)
+✔ D151 new borrowed StormGust/HolyCross run shared effects identically at1x2x4 and preserve legacy farm economics (73.13025ms)
+✔ actual release opens13 High jobs,26 skills,152 Awaken variants, cap100 and chapters10–12; future systems remain closed (348.744708ms)
+✔ D172 preserves all144 existing gear, card/skill/enemy/stage/economy programs and adds exactly72 complete higher-level items (13.881875ms)
+✔ D172 all330 farm stages, seeded actual drops and gacha use11→80/12→100; cards/rates/RNG are unchanged (120.269667ms)
+✔ D172 actual command90→100 charges the exact old formulas, grants manual points only and rejects101/Class2>70 (130.271083ms)
+✔ D172 all13 High jobs wear only compatible Lv80/100 equipment at the required level; actual level100 checkpoint restores (225.14625ms)
+✔ D172 selected runtime reuses genuine same-family icons/wardrobe at80/100 within32MiB and keeps initial download unchanged (5.549ms)
+✔ a committed boss-start receipt releases the pending gate even when the next checkpoint requires migration (521.039459ms)
+✔ absent old/current-version intents refused by the version gate are archived before migration and never replayed on new rules (797.390917ms)
+✔ uncertain receipt/network failures keep the original intent; retry can settle it before migration (357.651625ms)
+✔ a version refusal on a live write transitions to the migration preview instead of keeping saving/pending locked (384.753584ms)
+✔ a migration preview older than the recovered receipt cannot discard its pending revision barrier (379.027125ms)
+✔ a storage failure cannot silently drop a version-refused pending intent or strand saving (442.446417ms)
+✔ a checkpoint version validation error after a possible commit is not mistaken for a server refusal (394.042375ms)
+✔ T040 AC-01: export → reset → restore brings back the same characters, NPCs, items and slot progress (379.869041ms)
+✔ T040 AC-02: an older signed save is previewed then migrated with a backup; unsupported or broken saves are never changed (1096.562416ms)
+✔ T040 AC-03 + D-085: new game clears daily dungeons; restore guards AFK/shop/daily counters and restores once (1291.62325ms)
+✔ T040 AC-03/04: a quarantined save is recovered only from its signed tip; a healthy save refuses recovery (372.862208ms)
+✔ T040 AC-04: the client only sends maintenance writes the server asked for, and shows nothing until the receipt (0.477875ms)
+✔ D-085: migrating an already-reset locked game clears only carried daily progress, with backup; unlocked games retain it (710.134833ms)
+✔ T040 AC-05: compatibility matrix — current/older/newer/unknown/cost-version fixtures migrate, reject or refund exactly (714.023417ms)
+✔ 21Oct daily clock incident refunds one Essence attempt with signed backup; retries cannot refund twice (359.454125ms)
+✔ daily clock repair without an affected historical retreat does not change quota or create a backup (481.194125ms)
+✔ D172 older chapter11/12 saves reserve frozen Lv60 loot once before installing80/100 and preserve all actor investments (1105.936125ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 27
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12672.247583

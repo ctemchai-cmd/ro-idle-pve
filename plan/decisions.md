@@ -334,3 +334,7 @@ Accepteduserintent: larger damage numbers; allmajor skills must use real local a
 ## D171 — 25 ตุลาคม 2026 · ระดับอุปกรณ์ฟาร์ม
 
 ผู้ใช้ขอระบุว่าฟาร์มด่านใดได้อุปกรณ์เลเวลใด. UIใช้gear tableตามfarm_rate_chapterและ frozen snapshot ของ AFK; ตารางทุกบทพับได้. ดู [design60](design/60-farm-gear-levels.md). ไม่มีการเปลี่ยนดรอป/บาลานซ์.
+
+## D172 — 25 ตุลาคม 2026 · ของ80/100และเพดาน100
+
+ผู้ใช้ขอของ80/100และตอบยืนยันขยายเพดานตัวละคร100. ใช้บท11Lv80/12Lv100, Class2cap70/Class3ยังปิด,สกิลและAwakenเดิม. [design61](design/61-high-gear-and-level100.md).

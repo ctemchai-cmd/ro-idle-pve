@@ -6,13 +6,13 @@
   "scope": "M0 budget/rate/pity/quantization arithmetic; not accelerated full-game simulation",
   "input_sha256": {
     "plan/data/economy.json": "66b339afb758cefa2a0fc999314d879c73852a5967b1e205887fd55c3a2b62cd",
-    "plan/data/loot.json": "de7a154fc66a6df13819f8431bde947b54a8fc693521002429c5b7c145d78407",
+    "plan/data/loot.json": "21a5ec668fee57ec56bae66f84efb6c3ec85942bf18d566416e979216feb657c",
     "plan/data/gacha.json": "555625ea9a36f145bd2a3afa192349d82bb8731134130fb25c43998db398046a",
-    "plan/data/equipment.json": "19a3eadb1abc81969eb559460b699173fcc6afbe35464e26feedd7b1ef4b1252",
+    "plan/data/equipment.json": "ee6ce82a991d98a99d40ec7e661b3de3b8d0a629e78d91cd8d9ea500e53cb344",
     "plan/data/cards.json": "dd64b738b78a3da73c1a42bb89c1e5c0c7f1bd61e196524e0ff078483a91f130",
     "plan/data/slot-progress.json": "f38f3fe6956c4902cf7e0f15d078cc8460a4f00fe36289952760d5d2f151a8fe",
-    "plan/data/progression.json": "de62993d8f52e6c92c0d7b91a71502ac465a8ebc0db540206df064a33c85e9e8",
-    "plan/checks/economy.py": "46c294d495c3a126add74855b91e33a3d6f06ba5f43f535058630ec60394ceb3"
+    "plan/data/progression.json": "b71651df93c8114d5a65c62ff339904e46a1191e8584faf8f4eb575253013417",
+    "plan/checks/economy.py": "7ac56794255881c69a4a8537454211a6f85ff7abce9c5a41f909b32754e76884"
   },
   "checks": [
     {
@@ -190,7 +190,10 @@
       "passed": true,
       "result": {
         "random_drop_not_required_for_class2_weapon": true,
-        "future_tiers_in_pool": false
+        "high_tiers_in_pool": [
+          80,
+          100
+        ]
       }
     }
   ],

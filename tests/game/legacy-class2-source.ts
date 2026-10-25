@@ -55,6 +55,14 @@ export function legacyClass2Source(file: string): Buffer {
   }
   else if(file==='daily-bosses.json')for(const boss of value.bosses)delete boss.hi_class_awakening_reward;
   else {
+    // D172 appends two tested equipment tiers. Normalize only these named additions
+    // for older byte-scope oracles; high-gear.test.ts checks all144 old definitions.
+    const original=JSON.parse(gunzipSync(readFileSync(new URL('../../plan/evidence/task-148/before-authored.json.gz',import.meta.url))).toString()).equipment;
+    value.definitions=value.definitions.filter((row:{tier_level:number})=>row.tier_level<=60);
+    const ids=new Set(value.definitions.map((row:{presentation_id:string})=>row.presentation_id));
+    value.presentations=value.presentations.filter((row:{id:string})=>ids.has(row.id));
+    value.future_definitions=original.future_definitions;value.future_tiers=original.future_tiers;
+    delete value.random_options.tier_scale['80'];delete value.random_options.tier_scale['100'];
     const progression = JSON.parse(readFileSync(new URL('../../plan/data/progression.json', import.meta.url), 'utf8'));
     for (const row of progression.hi_class.job_advancements) delete value.weapon_compatibility[row.job_id];
   }

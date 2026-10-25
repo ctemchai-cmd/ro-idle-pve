@@ -21,12 +21,12 @@ for catalog in [e,cards]:
    return {'schema':'valid','icon_asset_id':m['id'],'tier':item['tier_level']}
   check(item['id'],['AC-01','AC-04'],validate)
 def coverage():
- for tier in [1,20,40,60]:
+ for tier in [1,20,40,60,80,100]:
   defs=[d for d in e['definitions'] if d['tier_level']==tier];assert len(defs)==36;assert len([d for d in defs if d['slot']=='weapon'])==20;assert len({d['slot'] for d in defs})==6  # D-068 variants
  for root,branches in load(D/'progression.json')['class_tree'].items():
   for job in [root,*branches]:assert e['weapon_compatibility'][job] in {d['weapon_type'] for d in e['definitions'] if d['slot']=='weapon'}
- assert not any(d['tier_level']>70 for d in e['definitions']);assert 3**(len(e['rarities'])-1)==729
- return {'tiers':[1,20,40,60],'job_compatibility_count':len(e['weapon_compatibility']),'common_to_supreme_inputs':729}
+ assert not any(d['tier_level']>100 for d in e['definitions']);assert 3**(len(e['rarities'])-1)==729
+ return {'tiers':[1,20,40,60,80,100],'job_compatibility_count':len(e['weapon_compatibility']),'common_to_supreme_inputs':729}
 check('coverage_and_rarity',['AC-01','AC-02'],coverage)
 def fusion_negative():
  base={'instance_id':'a','definition_id':'equipment_sword_20','rarity_id':'common','locked':False,'equipped':False,'training':False}

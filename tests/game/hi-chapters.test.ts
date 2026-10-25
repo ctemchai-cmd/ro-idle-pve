@@ -40,11 +40,11 @@ test('D151 former release gates remain explicit; current release opens10–12 wi
  assert.equal((content.documents['progression.json']!.release as {level_cap:number}).level_cap,70);
  assert.doesNotThrow(()=>new AccountCommandRules(content).validateAccount(state));
 });
-test('D151 enemy90 checkpoint/native profiles are valid; prepared party schema stays bounded at90 (released progression still70)',()=>{
+test('D151 enemy90 checkpoint/native profiles are valid; party schema supports100 and rejects101 (Class2 stays70)',()=>{
  for(const id of['10-10','10-20','10-30','10-40','10-50','11-10','11-20','11-30','11-40','11-50','12-10','12-20','12-30','12-40','12-50']){
   const stage=storyStage(id,content)!,input=storyInput(stage,storyBoss(stage),[{...actor('p','player'),spatial:{x:220,y:400,move_speed:120,radius:18,normal_range:80}}],content),state=unwrap(createBattle(input,content,17));
   assert.equal(state.actors.filter(a=>a.team==='enemy').length,1);assert.ok(restoreBattle(serializeBattle(state),content).ok,id);
-  const bad=serializeBattle(state);bad.actors.find(a=>a.kind==='party')!.stat_blueprint.level=91;assert.equal(restoreBattle(bad,content).ok,false);
+  const bad=serializeBattle(state);bad.actors.find(a=>a.kind==='party')!.stat_blueprint.level=101;assert.equal(restoreBattle(bad,content).ok,false);
  }
  const enemies=content.documents['enemies.json']!.actors as unknown as {id:string;active_slots:(string|null)[];presentation:{meta_path:string}}[];
  assert.equal(enemies.length,61);
@@ -66,5 +66,5 @@ test('D151 new borrowed StormGust/HolyCross run shared effects identically at1x2
   assert.ok(!interrupted.events.some(e=>e.type==='damage'&&e.skill_id===id),id+' interrupted cast has no effect');
  }
  const state=initial(),a=storyFarmSnapshot(storyStage('9-50',content)!,state,content);
- for(const id of['10-1','11-1','12-1']){const b=storyFarmSnapshot(storyStage(id,content)!,state,content);assert.deepEqual(b.per_hour,a.per_hour);assert.equal(b.gear_tier,60);assert.equal(b.card_drops!.chance_per_million,20000);}
+ for(const id of['10-1','11-1','12-1']){const b=storyFarmSnapshot(storyStage(id,content)!,state,content);assert.deepEqual(b.per_hour,a.per_hour);assert.equal(b.gear_tier,id.startsWith('11-')?80:id.startsWith('12-')?100:60);assert.equal(b.card_drops!.chance_per_million,20000);}
 });

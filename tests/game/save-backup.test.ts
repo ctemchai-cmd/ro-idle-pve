@@ -13,6 +13,7 @@ import { backupCompat, backupFile, backupRelation, parseBackupFile, saveSummary 
 import { SaveController, SaveProtocolError, type SavePorts, type SaveBackup } from '../../src/client/save-controller.ts';
 import { content } from './combat-fixtures.ts';
 import { dailyBoss, dailyPhaseStats } from '../../src/domain/modes/daily.ts';
+import { cardRarity } from '../../src/domain/build/card-rarity.ts';
 
 const rules = new AccountCommandRules(), key = 'k'.repeat(48), id = '11111111-1111-4111-8111-111111111111', other = '99999999-9999-4999-8999-999999999999';
 const sha = (value: unknown) => createHash('sha256').update(rules.canonical(value)).digest('hex');
@@ -299,4 +300,26 @@ test('daily clock repair without an affected historical retreat does not change 
  const f=stack(state);f.advance(24*hour);
  const result=await f.send('backup.restore_request',{checkpoint_id:'daily-clock:essence:2026-10-21',signature:'daily-clock-incident-2026-10-21'});
  assert.equal(result.status,200);assert.equal(result.body.receipt?.outcome,'rejected');assert.equal(result.body.receipt?.result.code,'DAILY_CLOCK_NOT_AFFECTED');assert.deepEqual(f.state,state);assert.equal(f.backups.length,0);
+});
+
+// D172 uses the real maintenance/receipt path against an actual pre-update signed state.
+test('D172 older chapter11/12 saves reserve frozen Lv60 loot once before installing80/100 and preserve all actor investments', async()=>{
+ const {readFileSync}=await import('node:fs'),{gunzipSync}=await import('node:zlib'),{validateContent}=await import('../../src/content/loader.ts'),{reserveFarm}=await import('../../src/domain/rewards/farm.ts');
+ const loaded=validateContent(JSON.parse(gunzipSync(readFileSync(new URL('../../plan/evidence/task-148/before-content.json.gz',import.meta.url))).toString()));assert(loaded.ok);const old=loaded.value;
+ for(const chapter of[11,12]){
+  const state=initializeAccount(old,{root_job_id:'acolyte',gender:'male'},new Date(start).toISOString(),'2026-10-20',17),main=state.roster[0]!;
+  Object.assign(main,{job_id:'champion',level:90,local_cap:100,completed_gate_ids:[20,40,60,80],unspent_status_points:1050});
+  state.story.cleared_stage_ids=storyStages(old).map(s=>s.id);state.story.selected_farm_stage=chapter+'-1';state.farm.rate_snapshot=storyFarmSnapshot(storyStage(chapter+'-1',old)!,state,old);
+  state.inventory.push({kind:'equipment',instance_id:'oldknuckle',definition_id:'equipment_knuckle_60',rarity_id:'epic',locked:true,training:false,options:[{id:'opt_crit',roll:500}]});main.equipment.weapon='oldknuckle';main.slot_progress.weapon.refine=5;main.slot_progress.weapon.refine_failures=3;
+  const card=Object.values(old.items).find(i=>i.kind==='card'&&i.slot==='weapon')!;state.inventory.push({kind:'card',instance_id:'oldcard',definition_id:String(card.id),rarity_id:cardRarity(String(card.id),old),locked:true,level:3});main.slot_progress.weapon.cards[0]='oldcard';
+  const snapshot=structuredClone(state),f=stack(state,{content_hash:old.manifest.content_hash,content_version:old.manifest.content_version,rules_version:old.manifest.rules_version});f.advance(hour);
+  const uuid='14800000-1111-4111-8111-111111111111',first=await f.send('save.migrate',{from_revision:1,from_content_hash:old.manifest.content_hash},1,uuid);
+  assert.equal(first.body.receipt?.result.code,'SAVE_MIGRATED',String(first.body.code));assert.equal(f.backups.length,1);assert.deepEqual(f.backups[0]!.state,snapshot);
+  assert.deepEqual(f.state.roster,snapshot.roster);assert.deepEqual(f.state.inventory,snapshot.inventory);assert.deepEqual(f.state.wallet,snapshot.wallet);assert.deepEqual(f.state.paid_ledger,snapshot.paid_ledger);assert.equal(f.state.farm.rate_snapshot!.gear_tier,60);assert.deepEqual(f.state.farm,snapshot.farm);assert.deepEqual(f.state.pending_rewards,snapshot.pending_rewards);
+  const frozen=structuredClone(f.state),replayed=await f.send('save.migrate',{from_revision:1,from_content_hash:old.manifest.content_hash},1,uuid);assert.deepEqual(replayed.body.receipt,first.body.receipt);assert.deepEqual(f.state,frozen);assert.equal(f.save.revision,2);assert.equal(f.backups.length,1);rules.validateAccount(f.state);
+  const until=f.now+1000,expected=reserveFarm(snapshot,start,until,new Date(until).toISOString(),'irrelevant',old),claimId='14800000-2222-4222-8222-222222222222';
+  const claim=await f.send('farm.claim',{},2,claimId);assert.equal(claim.body.receipt?.result.code,'FARM_RESERVED');assert.equal(f.state.farm.rate_snapshot!.gear_tier,chapter===11?80:100);
+  const drops=f.state.pending_rewards.flatMap(r=>r.items).filter(i=>i.kind==='equipment');assert(drops.length>0&&drops.every(i=>content.items[i.definition_id]!.tier_level===60));assert.deepEqual(drops.map(i=>i.definition_id),expected.pending_rewards.flatMap(r=>r.items).filter(i=>i.kind==='equipment').map(i=>i.definition_id));
+  const claimed=structuredClone(f.state);assert.deepEqual((await f.send('farm.claim',{},2,claimId)).body.receipt,claim.body.receipt);assert.deepEqual(f.state,claimed);assert.equal(f.save.revision,3);
+ }
 });

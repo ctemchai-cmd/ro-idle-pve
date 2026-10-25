@@ -1,5 +1,9 @@
 # Project context
 
+## Lv80/100 gear and Hi cap100 (25 October2026,D172/TASK148)
+
+User explicitly confirmed character cap100. Class2 stays70/High100/gate80→local100; no gate90/100/Class3. Six36-item tiers now1/20/40/60/80/100, chapter11→80/12→100,1–10unchanged. Gacha highest-clearedchapter,drop rates/cards/old144gear/skills unchanged. New items continue40→60 stat deltas, options80=3/100=3.5, same-family genuine icons and explicit wardrobe.tier_aliases80/100→60; no extra media. Higher gear needs newdrop/gacha, tierup remainsdisabled. Migration retains valid lower frozen gear pool for unpaid time, then existingfarm.claim/set_stage settlesoldwindow before newpool; preservecursor/RNG/allinvestments. Release status latestHANDOFF/design61.
+
 ## Farm gear labels (25 October2026,D171/TASK147)
 
 Source87e10995f live/VercelSUCCESS;330stage/native320390/13targeted/rootbuild/publichosted3 passed. Read gear table via stage.farm_rate_chapter; card tier/boss level are separate. Home/AFKuse frozen snapshot.gear_tier so old accrual remains accurately described. Stage sheet hasselectedlevel and foldable allchapter ranges, read-only even ifchapterlocked. No rate/pool/save changes. See design60.

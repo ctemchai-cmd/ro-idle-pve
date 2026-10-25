@@ -5,10 +5,10 @@
   "review_round": 1,
   "scope": "M0 schema, metadata refs, ownership contract, hand arithmetic and invalid fusion cases; not game inventory execution",
   "input_sha256": {
-    "plan/data/equipment.json": "19a3eadb1abc81969eb559460b699173fcc6afbe35464e26feedd7b1ef4b1252",
+    "plan/data/equipment.json": "ee6ce82a991d98a99d40ec7e661b3de3b8d0a629e78d91cd8d9ea500e53cb344",
     "plan/data/cards.json": "dd64b738b78a3da73c1a42bb89c1e5c0c7f1bd61e196524e0ff078483a91f130",
     "plan/data/slot-progress.json": "f38f3fe6956c4902cf7e0f15d078cc8460a4f00fe36289952760d5d2f151a8fe",
-    "plan/checks/equipment.py": "78203df99adc4cca8a953bc2953d4ba5eac3c49a3f82fb8c28732574919ad67a"
+    "plan/checks/equipment.py": "3fc1e4c5d4f993bd6a4d8cc795b34f8df5b725ce7ffbe11cb70ea1f44daee13e"
   },
   "checks": [
     {
@@ -1884,6 +1884,942 @@
       }
     },
     {
+      "case_id": "equipment_sword_80",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.52f51a60efb111b7",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_bow_80",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.a36225de14d3b666",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_staff_80",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.2aa2f8a358566060",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_book_80",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.2e67de2491577ed3",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_knuckle_80",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.c2fd131ff9371d95",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_axe_80",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.0ae9613d3f0f2e69",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_mace_80",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.fcc98ad46a6c81e1",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_dagger_80",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.61ce96f1e0182f4d",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_whip_80",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.ac6f7a5b4ff25c33",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_instrument_80",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.891c9faa97b328ad",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_head_80",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.8f9b7e709a30619f",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_armor_80",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.ef12615648165116",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_garment_80",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.0ad8751f8cd326b0",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_shoes_80",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.107e108191f23896",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_accessory_80",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.5cf5814c042efa28",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_sword_80_b",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.6958ebebd1d1b78b",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_dagger_80_b",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.9776c6f0138f7630",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_axe_80_b",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.1a318906800d3497",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_bow_80_b",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.e1ce8ee9ea038991",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_knuckle_80_b",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.503c43cdc79ad211",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_whip_80_b",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.2d3cfbfbe08f260e",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_instrument_80_b",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.245344c0cb87b0f7",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_staff_80_b",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.23cbae6357681495",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_mace_80_b",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.db13420f7e9d0bcb",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_book_80_b",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.810b5bbe0a525d2d",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_head_80_helm",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.6a51d57f10f79a20",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_head_80_circlet",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.e2c9448074e95c17",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_armor_80_robe",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.f956cfa8840f8854",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_armor_80_suit",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.648be7cfc355b2c1",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_garment_80_cape",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.17641373a0344c68",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_garment_80_manteau",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.46d4ff41f6b45413",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_shoes_80_boots",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.eae15b1660274ebd",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_shoes_80_sandals",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.ba4f02d1b505ee75",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_accessory_80_power",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.978eccc0e9adb05f",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_accessory_80_wisdom",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.1b8cfdfb46883d69",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_accessory_80_rosary",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.5336be8178d589da",
+        "tier": 80
+      }
+    },
+    {
+      "case_id": "equipment_sword_100",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.52f51a60efb111b7",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_bow_100",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.a36225de14d3b666",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_staff_100",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.2aa2f8a358566060",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_book_100",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.2e67de2491577ed3",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_knuckle_100",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.c2fd131ff9371d95",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_axe_100",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.0ae9613d3f0f2e69",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_mace_100",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.fcc98ad46a6c81e1",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_dagger_100",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.61ce96f1e0182f4d",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_whip_100",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.ac6f7a5b4ff25c33",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_instrument_100",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.891c9faa97b328ad",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_head_100",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.8f9b7e709a30619f",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_armor_100",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.ef12615648165116",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_garment_100",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.0ad8751f8cd326b0",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_shoes_100",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.107e108191f23896",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_accessory_100",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.5cf5814c042efa28",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_sword_100_b",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.6958ebebd1d1b78b",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_dagger_100_b",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.9776c6f0138f7630",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_axe_100_b",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.1a318906800d3497",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_bow_100_b",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.e1ce8ee9ea038991",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_knuckle_100_b",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.503c43cdc79ad211",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_whip_100_b",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.2d3cfbfbe08f260e",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_instrument_100_b",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.245344c0cb87b0f7",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_staff_100_b",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.23cbae6357681495",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_mace_100_b",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.db13420f7e9d0bcb",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_book_100_b",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.810b5bbe0a525d2d",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_head_100_helm",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.6a51d57f10f79a20",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_head_100_circlet",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.e2c9448074e95c17",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_armor_100_robe",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.f956cfa8840f8854",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_armor_100_suit",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.648be7cfc355b2c1",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_garment_100_cape",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.17641373a0344c68",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_garment_100_manteau",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.46d4ff41f6b45413",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_shoes_100_boots",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.eae15b1660274ebd",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_shoes_100_sandals",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.ba4f02d1b505ee75",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_accessory_100_power",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.978eccc0e9adb05f",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_accessory_100_wisdom",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.1b8cfdfb46883d69",
+        "tier": 100
+      }
+    },
+    {
+      "case_id": "equipment_accessory_100_rosary",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.5336be8178d589da",
+        "tier": 100
+      }
+    },
+    {
       "case_id": "card_weapon_1",
       "acceptance": [
         "AC-01",
@@ -2844,7 +3780,9 @@
           1,
           20,
           40,
-          60
+          60,
+          80,
+          100
         ],
         "job_compatibility_count": 32,
         "common_to_supreme_inputs": 729

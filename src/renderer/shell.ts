@@ -18,6 +18,8 @@ export interface ShellVisuals {
   };
   boss_pools?: { chapters: Readonly<Record<string, readonly FarmSkin[]>> };
   wardrobe?: {
+    /** Explicit reuse of an existing equipment family's art; does not affect stats. */
+    tier_aliases?: Readonly<Record<string, number>>;
     job_class_sprite: Readonly<Record<string, string>>;
     head: Readonly<Record<string, Readonly<Record<'male' | 'female', { asset_id: string; meta_path: string }>>>>;
     garment: Readonly<Record<string, { folder: string; rows: Readonly<Record<string, { asset_id: string; meta_path: string }>> }>>;
@@ -34,8 +36,10 @@ export interface WardrobeTiers { head_tier?: number | null; garment_tier?: numbe
 export function wardrobeRefs(index: RuntimeAssetIndex, job: string, gender: string, tiers: WardrobeTiers): { headgear: string | null; garment: string | null } {
   const wardrobe = shellVisuals(index).wardrobe, sex = gender === 'female' ? 'female' : 'male';
   if (!wardrobe) return { headgear: null, garment: null };
-  const head = tiers.head_tier ? wardrobe.head[String(tiers.head_tier)]?.[sex]?.asset_id ?? null : null;
-  const sprite = wardrobe.job_class_sprite[job], garment = tiers.garment_tier && sprite ? wardrobe.garment[String(tiers.garment_tier)]?.rows[`${sprite}|${sex}`]?.asset_id ?? null : null;
+  const headRows = tiers.head_tier ? wardrobe.head[String(tiers.head_tier)] ?? wardrobe.head[String(wardrobe.tier_aliases?.[String(tiers.head_tier)])] : undefined;
+  const garmentRows = tiers.garment_tier ? wardrobe.garment[String(tiers.garment_tier)] ?? wardrobe.garment[String(wardrobe.tier_aliases?.[String(tiers.garment_tier)])] : undefined;
+  const head = headRows?.[sex]?.asset_id ?? null;
+  const sprite = wardrobe.job_class_sprite[job], garment = sprite ? garmentRows?.rows[`${sprite}|${sex}`]?.asset_id ?? null : null;
   return { headgear: head, garment };
 }
 export function shellVisuals(index: RuntimeAssetIndex): ShellVisuals {

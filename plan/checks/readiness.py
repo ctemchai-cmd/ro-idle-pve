@@ -42,7 +42,7 @@ def graph():
  return {'task_count':len(tasks),'cycles':0,'all_implementation_tasks_wait_for_014':True,'added_after_m0':[n for n in tasks if n>47]}
 check('task_graph_and_implementation_gate',['AC-03'],graph)
 def decisions():
- p=load(D/'progression.json');r=load(D/'combat-rules.json');statuses=list(c.STATUSES.values());hi=p['promotion']['hi_class_enabled'];assert p['release']['level_cap']==(90 if hi else 70);assert p['promotion']['class2_min_level']==20
+ p=load(D/'progression.json');r=load(D/'combat-rules.json');statuses=list(c.STATUSES.values());hi=p['promotion']['hi_class_enabled'];assert p['release']['level_cap']==(100 if hi else 70);assert p['promotion']['class2_min_level']==20
  if hi:
   assert p['hi_class']['minimum_level']==70 and p['release']['enabled_job_stages']==[1,2,3]
   assert 'awakening'not in p['release']['excluded_features'] and all(x in p['release']['excluded_features']for x in ['artifact','pet','rune']) and not p['promotion']['class3_enabled']

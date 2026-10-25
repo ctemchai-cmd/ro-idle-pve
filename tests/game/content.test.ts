@@ -19,7 +19,7 @@ const location = { source: 'negative fixture', definition_id: 'fixture_bash', pa
 test('all release catalogs load, are immutable, and expose gameplay counts', () => {
   const result = loadValidatedContent(); assert.ok(result.ok);
   assert.equal(Object.keys(result.value.skills).length, 171); //152 player +19 enemy programs
-  assert.equal(Object.keys(result.value.items).length, 217); // D-122: 144 equipment + 73 cards
+  assert.equal(Object.keys(result.value.items).length, 289); // D172: 216 equipment + 73 unchanged cards
   assert.equal(Object.keys(result.value.statuses).length, 48);
   for(const id of ['awaken_skill_power','awaken_penetration','awaken_healing_received'])assert.ok(result.value.statuses[id]);
   assert.throws(() => { (result.value.skills['swordsman_bash'] as unknown as ObjectValue).id = 'corrupted'; }, TypeError);

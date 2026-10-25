@@ -1,7 +1,7 @@
 // Actual Field UI and actual farm pools. Synthetic account only; no Auth/SQL/owner requests.
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const {chromium}=require('/private/tmp/ro-idle-browser-check/node_modules/playwright-core');
-const root=path.resolve(__dirname,'..'),out=path.join(root,'plan/evidence/task-147'),base=process.env.RO_PREVIEW_URL;
+const root=path.resolve(__dirname,'..'),task=process.env.RO_GEAR_EVIDENCE_TASK||'147',out=path.join(root,'plan/evidence/task-'+task),base=process.env.RO_PREVIEW_URL;assert(['147','148'].includes(task));
 assert(base&&new URL(base).hostname==='127.0.0.1');
 (async()=>{let browser,page,failure;const checks=[],errors=[],writes=[];try{
  browser=await chromium.launch({headless:true,executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});
@@ -26,10 +26,10 @@ assert(base&&new URL(base).hostname==='127.0.0.1');
   }};
   return{stages:stages.length,mismatches,ranges:storyGearRanges(),unknown:storyGearLevel('missing-stage')};
  });
- assert.equal(parity.stages,330);assert.deepEqual(parity.mismatches,[]);assert.equal(parity.unknown,null);assert.equal(parity.ranges.length,12);checks.push({case:'330_actual_snapshot_and_36_definition_pool_levels',...parity});
+ assert.equal(parity.stages,330);assert.deepEqual(parity.mismatches,[]);assert.equal(parity.unknown,null);assert.equal(parity.ranges.length,12);if(task==='148')assert.deepEqual(parity.ranges.slice(-2).map(r=>r.level),[80,100]);checks.push({case:'330_actual_snapshot_and_36_definition_pool_levels',...parity});
  const rows=[];for(const[width,height]of[[320,640],[390,844]]){
   await page.setViewportSize({width,height});
-  for(const[stageId,level,legacy]of[['1-1',1,false],['2-1',1,false],['3-1',20,false],['4-1',40,false],['6-1',60,false],['12-50',60,false],['2-1',20,true]]){
+  for(const[stageId,level,legacy]of[['1-1',1,false],['2-1',1,false],['3-1',20,false],['4-1',40,false],['6-1',60,false],['11-1',parity.ranges.find(r=>r.chapter===11).level,false],['12-50',parity.ranges.find(r=>r.chapter===12).level,false],['2-1',20,true]]){
    await page.evaluate(([id,legacy])=>window.farmGearTest.mount(id,legacy),[stageId,legacy]);const host=page.locator('#farm-gear-native');
    await host.locator('.stage-chip').waitFor();assert((await host.locator('.stage-chip').innerText()).includes('อุปกรณ์ Lv.'+level));
    await host.getByRole('button',{name:'รางวัลฟาร์มอัตโนมัติ',exact:true}).click();await host.getByRole('heading',{name:'รางวัล AFK',exact:true}).waitFor();assert.equal(await host.locator('.farm-gear-label').getAttribute('data-farm-gear-level'),String(level));await host.getByRole('button',{name:'ปิด',exact:true}).click();
@@ -43,5 +43,5 @@ assert(base&&new URL(base).hostname==='127.0.0.1');
   await page.evaluate(()=>window.farmGearTest.mount(null));await host.locator('.stage-chip').waitFor();assert.equal(await host.locator('.stage-gear-level').count(),0);await host.getByRole('button',{name:'รางวัลฟาร์มอัตโนมัติ',exact:true}).click();assert.equal(await host.locator('.farm-gear-label').count(),0);assert((await host.locator('.hint').innerText()).includes('1-1'));await host.getByRole('button',{name:'ปิด',exact:true}).click();
  }
  assert(!errors.length&&!writes.length,JSON.stringify({errors,writes}));checks.push({case:'native_Field_mobile_frozen_profile_no_farm_table_navigation',rows,no_extra_HTTP_writes:true});await page.evaluate(()=>window.farmGearTest.root.unmount());
- }catch(e){failure=String(e.stack||e);await page?.screenshot({path:path.join(out,'failed.png')}).catch(()=>{});}finally{await browser?.close();const report={passed:!failure&&checks.length===2,checks,errors,writes,failure,scope:'Actual Field and shared farm pools with isolated synthetic state; no owner Auth/API/SQL writes'};fs.writeFileSync(path.join(out,'native.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({passed:report.passed,checks:checks.length,failure}));if(!report.passed)process.exitCode=1;}
+ }catch(e){failure=String(e.stack||e);await page?.screenshot({path:path.join(out,'failed.png')}).catch(()=>{});}finally{await browser?.close();const report={passed:!failure&&checks.length===2,checks,errors,writes,failure,scope:'Actual Field and shared farm pools with isolated synthetic state; no owner Auth/API/SQL writes'};fs.writeFileSync(path.join(out,task==='148'?'farm-native.json':'native.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({passed:report.passed,checks:checks.length,failure}));if(!report.passed)process.exitCode=1;}
 })();

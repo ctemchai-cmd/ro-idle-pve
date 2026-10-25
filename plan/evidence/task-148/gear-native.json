@@ -1,0 +1,93 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "case": "actual_Buddy_native_art_locked100_at80_upgrade_to100_then_equip_options9_to10_5percent",
+      "rows": [
+        {
+          "width": 390,
+          "height": 844,
+          "images": [
+            {
+              "loaded": true,
+              "src": "http://127.0.0.1:7502/ro/b1e9fcd985ea9fba1ea0c2ed5aaac7b1ae5b3e1dc8e035794a5f468f7762c288/library/items/item_icon/asset--c2fd131ff937.webp"
+            }
+          ],
+          "calls": [
+            {
+              "type": "equipment.equip",
+              "params": {
+                "character_id": "main",
+                "slot": "weapon",
+                "item_instance_id": "knuckle80"
+              },
+              "code": "EQUIPMENT_ASSIGNED"
+            },
+            {
+              "type": "character.level_up",
+              "params": {
+                "character_id": "main",
+                "target_level": 100
+              },
+              "code": "CHARACTER_LEVELLED"
+            },
+            {
+              "type": "equipment.equip",
+              "params": {
+                "character_id": "main",
+                "slot": "weapon",
+                "item_instance_id": "knuckle100"
+              },
+              "code": "EQUIPMENT_ASSIGNED"
+            }
+          ]
+        },
+        {
+          "width": 320,
+          "height": 740,
+          "images": [
+            {
+              "loaded": true,
+              "src": "http://127.0.0.1:7502/ro/b1e9fcd985ea9fba1ea0c2ed5aaac7b1ae5b3e1dc8e035794a5f468f7762c288/library/items/item_icon/asset--c2fd131ff937.webp"
+            }
+          ],
+          "calls": [
+            {
+              "type": "equipment.equip",
+              "params": {
+                "character_id": "main",
+                "slot": "weapon",
+                "item_instance_id": "knuckle80"
+              },
+              "code": "EQUIPMENT_ASSIGNED"
+            },
+            {
+              "type": "character.level_up",
+              "params": {
+                "character_id": "main",
+                "target_level": 100
+              },
+              "code": "CHARACTER_LEVELLED"
+            },
+            {
+              "type": "equipment.equip",
+              "params": {
+                "character_id": "main",
+                "slot": "weapon",
+                "item_instance_id": "knuckle100"
+              },
+              "code": "EQUIPMENT_ASSIGNED"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "case": "no_owner_login_no_HTTP_commands_no_browser_errors",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "writes": [],
+  "scope": "Actual UI/native pack and shared account reducers, synthetic in-memory state; no Auth/SQL/live save writes"
+}

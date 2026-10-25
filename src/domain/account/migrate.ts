@@ -74,7 +74,17 @@ export function migrateAccountState(input: unknown, content: ValidatedContent): 
     const stage = state.story.selected_farm_stage ? storyStage(state.story.selected_farm_stage, content) : undefined;
     // Accrual already reserved stays paid; future accrual uses the current rate table.
     if (!stage) { state.farm.rate_snapshot = null; changes.push('farm rate cleared until a stage is selected'); }
-    else if (state.farm.rate_snapshot.content_version !== content.manifest.content_version || state.farm.rate_snapshot.rules_version !== content.manifest.rules_version || canonicalPool(state.farm.rate_snapshot.definition_pool) !== canonicalPool(storyFarmSnapshot(stage, state, content).definition_pool)) { const hadCards = !!state.farm.rate_snapshot.card_drops; state.farm.rate_snapshot = storyFarmSnapshot(stage, state, content); if (!hadCards) delete state.farm.rate_snapshot.card_drops; changes.push(`farm rate refreshed for ${stage.id}`); } // D-068: a new drop catalogue refreshes the pool
+    else {
+      const frozen = state.farm.rate_snapshot, current = storyFarmSnapshot(stage, state, content);
+      // D172: a higher tier starts after the next frozen window is settled by
+      // farm.claim/set_stage. Preserve its cursor, draws and old earned gear.
+      const keepFrozenUpgrade = frozen.gear_tier < current.gear_tier && frozen.definition_pool.length > 0 && frozen.definition_pool.every(id => content.items[id]?.kind === 'equipment' && content.items[id]!.tier_level === frozen.gear_tier);
+      if (!keepFrozenUpgrade && (frozen.content_version !== content.manifest.content_version || frozen.rules_version !== content.manifest.rules_version || canonicalPool(frozen.definition_pool) !== canonicalPool(current.definition_pool))) {
+        const hadCards = !!frozen.card_drops; state.farm.rate_snapshot = current;
+        if (!hadCards) delete state.farm.rate_snapshot.card_drops;
+        changes.push(`farm rate refreshed for ${stage.id}`);
+      }
+    }
   }
   for (const actor of state.roster) {
     // D-099 corrects RO card slots. Cards already live in inventory: release only the incompatible assignment.
