@@ -18,7 +18,7 @@ CSSปุ่มClassicเงินอมฟ้า/bevel/pressed/selected/danger/
 
 ## เกณฑ์ตรวจรับ
 - [x] AC-01: ปุ่มทั่วไป/primary/danger/icon/tab/battleใช้skinClassicและสถานะชัดเจน
-- [ ] AC-02: mobile320390/pressed/focus/disabled/nativeหน้าจอจริง/rootbuild/publicผ่าน;ไม่แก้combat/save
+- [x] AC-02: mobile320390/pressed/focus/disabled/nativeหน้าจอจริง/rootbuild/publicผ่าน;ไม่แก้combat/save
 
 ## วิธีตรวจ
 Evidence task-158/review,localnativeและpublicrelease.
@@ -27,4 +27,4 @@ Evidence task-158/review,localnativeและpublicrelease.
 ไม่มี;ผู้ใช้ยืนยันเป้าปรับการ์ดเป็นผลรวมที่น่าเลือกตามบทบาท.
 
 ## ผลตรวจ
-Localผ่านตามreviewและevidence159;รอpublicrelease.
+Localผ่านตามreviewและevidence159;VercelSUCCESS source849ad9ceb/public4groups/24bundleSHAผ่าน.

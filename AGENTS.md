@@ -2,7 +2,7 @@
 
 ## Classic buttons and card role balance (26 October2026,D182–183/TASK158–159)
 
-Local748TS/new8/native3/audit480/rootbuild/M0passed;158–159review awaitingpublic. ClassicCSSbuttons retain mobilehitareas/nativeicons,4pxsilver-bluebevel/insetpressed/focus/disabled. Cardauthoring auto-derivedgrowth now.3ofold;79/80poweradjusted withutility/specialistbaselines,all80identities/73art/rarity/slots/price/rates/ownedinvestments/packunchanged. Abysmalrootbonusraw.15→.07,Impraw.15→.07,AndreATK%35→10.5;Pupa80flat+4.2%HP+2.5guard/Peco9%HP+3.5receivedheal. MVPutilityaddedordinarycombatstats,nonewautorevive. No skill/enemy/formula/schema/SQL/env/ownerwrites. See design71–72/evidence159/latestHANDOFFforrelease.
+Source849ad9ceb live/VercelSUCCESS;748TS/new8/native3/audit480/rootbuild/M0/public4groups24bundleSHApassed;158–159complete. ClassicCSSbuttons retain mobilehitareas/nativeicons,4pxsilver-bluebevel/insetpressed/focus/disabled. Cardauthoring auto-derivedgrowth now.3ofold;79/80poweradjusted withutility/specialistbaselines,all80identities/73art/rarity/slots/price/rates/ownedinvestments/packunchanged. Abysmalrootbonusraw.15→.07,Impraw.15→.07,AndreATK%35→10.5;Pupa80flat+4.2%HP+2.5guard/Peco9%HP+3.5receivedheal. MVPutilityaddedordinarycombatstats,nonewautorevive. No skill/enemy/formula/schema/SQL/env/ownerwrites. See design71–72/evidence159/latestHANDOFFforrelease.
 
 ## Card layer, slot info and filters (26 October2026,D181/TASK157)
 

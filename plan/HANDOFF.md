@@ -1,5 +1,12 @@
 # Handoff ระหว่าง agent
 
+## 26 ต.ค.2026 · Codex — TASK158–159 COMPLETE / Classic buttons and card balance LIVE
+
+- Source849ad9cebfc9cbd6e4eab17577af1d78e7380f11 live/VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/8uryahdtZsoAwNwGYX2yVy4o9S5r. Public4groupsPASS newcontentdcf03142aa5cfc839f905b4956c2534882064720209df335eb3a50a709d381ee/pack798a928unchanged/SIN1/anonymous401/24bundleSHA/login320390/ClassicCSSstates+battlespeedcontrast/0errors-writes. Bothdone145/159/M4 99/108.
+- Full748/748(new8mechanical),nativeactualReact3groups/14CardSheets/shop/buttons320390/rootbuild/M0/generatorcheckPASS.79/80poweradjusted;identities/73art/rarity/slots/rates/costs/ownedlevels/locks/ledger/skills/enemies/formulas/schemasunchanged. Auto-growth.3 fixesflatconversionoutliers;AGI/evade/status/specialist/MVPutilityhavebaselineuse,HProlesdiffer. GTBnew7.2%HP+13.5%magicguardLv1;KahoPATKbaselinefitsphysicalproc. NoSQL/env/owner/6173restart/globalclassDPSbatch.
+- Audit480cases=80×Lv1/5×3budgets;8skill/healseeds+32normal realhit/crit/proc. ClosurefixONLYauditreport:useeventamounts/actualHP,notHPdelta(whichFreezeclampdistortedMarina),typedphysical_rollandCSVLF;no productchangeafterlivevalidatedsource. Script+strictpass;CSV/gzipregenerated. Boundedper-action/statchecks,notfullfightDPSoruniversalbalance. Evidence159summary/CSV/allroles explainchanges;oldexactscopeoraclesrestoreonlydeclaredpowerfieldsfrombeforegz,actualnewbehaviortested.
+- ClassicCSSsilver-bluebevel/4px/insetpress/focus/disabled,existingmobilehitareas/nativeart/framelessskillsretained;notclaimedoriginalbitmapskin. OwnVite7513/browsersclosed. Userassets/modern/migration-v2.txt/unselectedmodern/task108pnguntouched. No remaining158/159work.
+
 ## 26 ต.ค.2026 · Codex — TASK158–159 LOCAL COMPLETE / publish next
 
 - UserrequestsClassicbuttonsandcardbalance;confirmedATK/Abysmaloutliers,weakAGI/evade/status/specialistandPupaHPgap.79/80cardsadjusted(75explicit),auto-growth.3ofold;generators/specstayreproducible. Sharedengine/schema unchanged. All80IDs/73art/slot/rarity/rates/cost/ownedinvestments/packunchanged798a928. Newcontentdcf03142aa5cfc839f905b4956c2534882064720209df335eb3a50a709d381ee.

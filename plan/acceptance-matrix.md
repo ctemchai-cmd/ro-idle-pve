@@ -884,14 +884,14 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 
 | Case | Task | Input | Method | Status |
 | --- | --- | --- | --- | --- |
-| `T158-AC-01` | TASK-158 | design/AC01 | native/build/public | not_run_implementation |
-| `T158-AC-02` | TASK-158 | design/AC02 | native/build/public | not_run_implementation |
+| `T158-AC-01` | TASK-158 | design/AC01 | native/build/public | ผ่านlocal/hosted4groups · [review](evidence/task-158-review.json) |
+| `T158-AC-02` | TASK-158 | design/AC02 | native/build/public | ผ่านlocal/hosted4groups · [review](evidence/task-158-review.json) |
 
 ## TASK-159 — บาลานซ์การ์ดตามบทบาทและความหายาก
 
 | Case | Task | Input | Method | Status |
 | --- | --- | --- | --- | --- |
-| `T159-AC-01` | TASK-159 | design/AC01 | native/build/public | not_run_implementation |
-| `T159-AC-02` | TASK-159 | design/AC02 | native/build/public | not_run_implementation |
-| `T159-AC-03` | TASK-159 | design/AC03 | native/build/public | not_run_implementation |
-| `T159-AC-04` | TASK-159 | design/AC04 | native/build/public | not_run_implementation |
+| `T159-AC-01` | TASK-159 | design/AC01 | native/build/public | ผ่านlocal/hosted4groups · [review](evidence/task-159-review.json) |
+| `T159-AC-02` | TASK-159 | design/AC02 | native/build/public | ผ่านlocal/hosted4groups · [review](evidence/task-159-review.json) |
+| `T159-AC-03` | TASK-159 | design/AC03 | native/build/public | ผ่านlocal/hosted4groups · [review](evidence/task-159-review.json) |
+| `T159-AC-04` | TASK-159 | design/AC04 | native/build/public | ผ่านlocal/hosted4groups · [review](evidence/task-159-review.json) |
