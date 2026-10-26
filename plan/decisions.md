@@ -395,3 +395,5 @@ UIของD184ผู้ใช้ยืนยันแล้ว;เปลี่�
 ## D186 — 26ตุลาคม2026
 
 ปุ่มปรับทีมบนผลแพ้ให้เปิดหน้าสกิลแทนหน้าจัดทีม;คงactorselectionและclose/Autoเดิม. Design75/TASK162.
+
+D187/TASK163:ผู้ใช้ยืนยันTowerเพิ่มCrystal+materials+EXP;typed additive schedule/firstclear once/preserveoldpending/progress/no retrogrant. [design76](design/76-tower-rewards.md)

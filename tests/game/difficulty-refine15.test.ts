@@ -22,8 +22,8 @@ test('D142 Story every5stages respects growth profiles and chapter boundaries ne
  const first=stages[0]!.encounter[0]!.resolved_base;assert.equal(first.max_hp,328);assert.equal(first.physical_attack,4050);
 });
 
-test('D142 Tower ordinary and magic power grow10% fromone polynomial; unchangedHP/DEF/rewards/speed and100+floors',()=>{
- for(const f of [1,10,21,100,101,1000]){const row=towerRow(f,content),boss=towerBoss(f,content);assert.equal(row.attack,Math.ceil((220+44*f+11*f*f)/20));assert.equal(row.hp,600+100*f+8*f*f+2*f**3);assert.equal(row.defense,5+3*f);assert.equal(row.gold,100+15*f);assert.equal(boss.resolved_base.physical_attack,row.attack);assert.equal(boss.resolved_base.magical_attack,row.attack);assert.equal(boss.resolved_base.attack_speed,100);}
+test('D142 Tower ordinary and magic power grow10% fromone polynomial; unchangedHP/DEF/speed (D187 rewards separate) and100+floors',()=>{
+ for(const f of [1,10,21,100,101,1000]){const row=towerRow(f,content),boss=towerBoss(f,content);assert.equal(row.attack,Math.ceil((220+44*f+11*f*f)/20));assert.equal(row.hp,600+100*f+8*f*f+2*f**3);assert.equal(row.defense,5+3*f);assert.equal(boss.resolved_base.physical_attack,row.attack);assert.equal(boss.resolved_base.magical_attack,row.attack);assert.equal(boss.resolved_base.attack_speed,100);}
 });
 
 test('D141 exact15rank chances/old prices/new costs and gradualpity are shared and display half-percent accurately',()=>{

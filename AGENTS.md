@@ -1,5 +1,9 @@
 # Project context
 
+## Tower rewards (D187/TASK163)
+
+Local implementation: typed additive reward_schedule in tower.json; every floor gold/EXP + rotating manual/ore/dust;5/10/20 bonuses yield50/100/200Crystal and0/1/2fixed-instance cards. First100=1940000gold/1525000EXP/1504manual/1963ore/1051dust/2000Crystal/15cards. Shared generator/command/UI; firstclear only, no reset/retrogrant, old pending rewards and frontier preserved. Enemy curves/card pool/tier/pity/AFK/SQL/env/pack unchanged. See design76/latestHANDOFF/review163 for release status.
+
 ## Defeat opens skills (26 October2026,D186/TASK162)
 
 Source8b7babc63 live/VercelSUCCESS;native2groups16resultmodes320390/rootbuild/M0/public4groups24bundleSHApassed;162done. ResultCardปรับทีม closesoutcome then go(skills) instead ofteam;Shell.go keepscurrentactor. Preserveclose/Auto/retry/label/icon/layout/rewards/Daily. Allfivefingerprints/packunchanged. See design75/latestHANDOFF.

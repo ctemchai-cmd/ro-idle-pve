@@ -1,0 +1,46 @@
+{
+  "task_id": "TASK-163",
+  "passed": false,
+  "status": "review",
+  "local_passed": true,
+  "acceptance_results": {
+    "AC-01": "passed",
+    "AC-02": "passed",
+    "AC-03": "passed",
+    "AC-04": "awaiting_public"
+  },
+  "checks": {
+    "full_TS_tests": 752,
+    "failures": 0,
+    "native_cases": 11,
+    "mobile_widths": [
+      320,
+      390
+    ],
+    "authored_rows": 100,
+    "root_build": true,
+    "M0": true,
+    "firstclear_atomic_all_resources": true,
+    "full_bag_fixed_pending": true,
+    "duplicate_terminal_replay_no_payment": true,
+    "migration_preserves_old_frontier_pending_wallet": true,
+    "enemy_stats_skills_unchanged": true,
+    "pack_unchanged": true,
+    "owner_access": false,
+    "SQL_env_changes": false
+  },
+  "content_hash": "659b53b29ec53c0ef9b75b485a03690456f83ccee9102c01550b8d7269cb9d73",
+  "pack_hash": "798a9283e77bb46a773e3f7e0324b7bd7855e305760179ce158a8b625fd74244",
+  "evidence": [
+    "task-163/native.json",
+    "task-163/budget.json",
+    "task-163/scope.json",
+    "task-163/tower-before.json",
+    "task-163/source-edits.json"
+  ],
+  "limitations": [
+    "No owner login or hosted save writes; shared command/migration fixtures and actual React local memory.",
+    "No retroactive payment to previously cleared floors.",
+    "No class DPS calibration; Tower enemy stats unchanged."
+  ]
+}

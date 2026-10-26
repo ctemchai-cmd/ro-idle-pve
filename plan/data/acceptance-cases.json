@@ -16106,6 +16106,78 @@
       "evidence_refs": [
         "plan/evidence/task-162-review.json"
       ]
+    },
+    {
+      "id": "T163-AC-01",
+      "task_id": "TASK-163",
+      "acceptance_id": "AC-01",
+      "criterion": "Shared rewards/authored100 rows/budget/safe schema/stats unchanged",
+      "input_setup": "Disposable command and React fixtures, frozen tower-before, schedule arithmetic",
+      "input_refs": [
+        "plan/review/tasks_163.md",
+        "plan/design/76-tower-rewards.md"
+      ],
+      "parameters": {},
+      "expected": "Shared rewards/authored100 rows/budget/safe schema/stats unchanged",
+      "verification": "unit/shared commands/migration/native/build/public",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-163-review.json"
+      ]
+    },
+    {
+      "id": "T163-AC-02",
+      "task_id": "TASK-163",
+      "acceptance_id": "AC-02",
+      "criterion": "Atomic firstclear/auto/replay/retry/full inventory",
+      "input_setup": "Disposable command and React fixtures, frozen tower-before, schedule arithmetic",
+      "input_refs": [
+        "plan/review/tasks_163.md",
+        "plan/design/76-tower-rewards.md"
+      ],
+      "parameters": {},
+      "expected": "Atomic firstclear/auto/replay/retry/full inventory",
+      "verification": "unit/shared commands/migration/native/build/public",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-163-review.json"
+      ]
+    },
+    {
+      "id": "T163-AC-03",
+      "task_id": "TASK-163",
+      "acceptance_id": "AC-03",
+      "criterion": "Migration retains old pending rewards/frontier/no retroactive grant",
+      "input_setup": "Disposable command and React fixtures, frozen tower-before, schedule arithmetic",
+      "input_refs": [
+        "plan/review/tasks_163.md",
+        "plan/design/76-tower-rewards.md"
+      ],
+      "parameters": {},
+      "expected": "Migration retains old pending rewards/frontier/no retroactive grant",
+      "verification": "unit/shared commands/migration/native/build/public",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-163-review.json"
+      ]
+    },
+    {
+      "id": "T163-AC-04",
+      "task_id": "TASK-163",
+      "acceptance_id": "AC-04",
+      "criterion": "Mobile320390/native icons/M0/full tests/build/public/pack unchanged",
+      "input_setup": "Disposable command and React fixtures, frozen tower-before, schedule arithmetic",
+      "input_refs": [
+        "plan/review/tasks_163.md",
+        "plan/design/76-tower-rewards.md"
+      ],
+      "parameters": {},
+      "expected": "Mobile320390/native icons/M0/full tests/build/public/pack unchanged",
+      "verification": "unit/shared commands/migration/native/build/public",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-163-review.json"
+      ]
     }
   ]
 }

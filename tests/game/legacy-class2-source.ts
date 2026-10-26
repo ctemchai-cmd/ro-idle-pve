@@ -1,3 +1,4 @@
+import {legacyTowerDocumentBytes} from './legacy-tower-rewards-scope.ts';
 import { readFileSync } from 'node:fs';
 import {createHash} from 'node:crypto';
 import {assertD179File} from './legacy-magic-card-scope.ts';
@@ -9,6 +10,7 @@ import sanctuaryBefore127 from './fixtures/sanctuary-before-127.json';
 import hunterBefore128 from './fixtures/hunter-before-128.json';
 /** Frozen scope checks retain all historical bytes except separately tested D154/D157 changes. */
 export function legacyClass2Source(file: string): Buffer {
+  if(file==='tower.json')return legacyTowerDocumentBytes('plan/data/'+file);
   let bytes = readFileSync(new URL(`../../plan/data/${file}`, import.meta.url));
   if(['cards.json','gacha.json','strings.th.json'].includes(file)){
     const old=readFileSync(new URL(`../../plan/evidence/task-155/before-${file}`,import.meta.url));

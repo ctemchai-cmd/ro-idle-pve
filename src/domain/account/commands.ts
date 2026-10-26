@@ -268,7 +268,7 @@ export class AccountCommandRules extends AccountCreationRules {
               const items:AccountState['inventory']=[],rng={state:(time.battle_seed??floor)>>>0,draw_count:0};
               for(let n=0;n<row.bronze_card_count;n++){const definition_id=gachaCardDefinition(nextRandom(rng),this.content,gachaCardTier(state,this.content));items.push({instance_id:`tower_${floor}_card_${n}`,definition_id,kind:'card',rarity_id:cardRarity(definition_id,this.content),locked:false,level:1});}
               state.tower.highest_cleared_floor=floor;
-              state.pending_rewards.push({claim_id:`tower_${floor}`,kind:'tower',resource_vector:{...Object.fromEntries(Object.keys(state.wallet).map(k=>[k,0])),gold:row.gold,crystal:row.crystal}as AccountState['wallet'],items,content_version:this.versions.content_version,reserved_at:time.server_at,source_keys:[`tower:${floor}`,`battle:${pointer!.battle_id}`],status:'pending'});
+              state.pending_rewards.push({claim_id:`tower_${floor}`,kind:'tower',resource_vector:{...Object.fromEntries(Object.keys(state.wallet).map(k=>[k,0])),...(row.reward_resources??{gold:row.gold,crystal:row.crystal})}as AccountState['wallet'],items,content_version:this.versions.content_version,reserved_at:time.server_at,source_keys:[`tower:${floor}`,`battle:${pointer!.battle_id}`],status:'pending'});
             }
             state.active_battle=null;state.daily_objectives.battle_finished=true;
             battleWrite={kind:'delete',battle_id:pointer!.battle_id};code=result.kind==='victory'?'TOWER_WON':result.kind==='time_limit'?'TOWER_TIME_LIMIT':'TOWER_DEFEATED';

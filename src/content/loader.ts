@@ -4,6 +4,7 @@ import { arrayAt, canonical, freeze, isObject, objectAt } from './value.ts';
 import { ContentValidator, demand, InvalidContent } from './validation.ts';
 import { createJobCatalog, type JobCatalog } from './jobs.ts';
 import { projectContentDocuments } from './extensions.ts';
+import { validateTowerRewardSchedule } from './tower-rewards.ts';
 
 const object = (value: Json | undefined) => objectAt(value, 'content');
 const list = (value: Json | undefined) => arrayAt(value, 'content');
@@ -190,6 +191,8 @@ export function validateContent(raw: unknown): Result<ValidatedContent> {
     for (const value of list(bundle.documents['gacha.json']!.definitions)) demand(items[String(value)]?.kind === 'card', 'unknown_item', docAt('gacha.json'));
   });
   attempt(docAt('tower.json'), () => {
+    const schedule = bundle.documents['tower.json']!.reward_schedule;
+    if (schedule !== undefined) validateTowerRewardSchedule(schedule);
     const generator = object(bundle.documents['tower.json']!.generator);
     for (const id of list(generator.template_cycle)) demand(String(id) in actors, 'unknown_actor', docAt('tower.json'));
     for (const queue of list(generator.skill_cycle)) for (const id of list(queue)) demand(skills[String(id)]?.kind === 'active', 'unknown_skill', docAt('tower.json'));

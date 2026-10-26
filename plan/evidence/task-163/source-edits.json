@@ -1,0 +1,40 @@
+{
+  "src/content/loader.ts": [
+    {
+      "before": "",
+      "after": "import { validateTowerRewardSchedule } from './tower-rewards.ts';\n"
+    },
+    {
+      "before": "",
+      "after": "    const schedule = bundle.documents['tower.json']!.reward_schedule;\n    if (schedule !== undefined) validateTowerRewardSchedule(schedule);\n"
+    }
+  ],
+  "src/domain/modes/tower.ts": [
+    {
+      "before": "",
+      "after": "import { scheduledTowerRewards, type TowerRewardSchedule } from '../../content/tower-rewards.ts';\n"
+    },
+    {
+      "before": "export interface TowerRow { floor: number; hp: number; attack: number; defense: number; definition_id: string; gold: number; crystal: number; bronze_card_count: number }\n",
+      "after": "export interface TowerRow { floor: number; hp: number; attack: number; defense: number; definition_id: string; gold: number; crystal: number; bronze_card_count: number; reward_resources?: Partial<AccountState['wallet']> }\n"
+    },
+    {
+      "before": "",
+      "after": "  reward_schedule?: TowerRewardSchedule;\n"
+    },
+    {
+      "before": "  return { floor, hp: curve(g.hp), attack: curve(g.attack), defense: curve(g.defense), definition_id: g.template_cycle[(floor - 1) % g.template_cycle.length]!,\n",
+      "after": "  const row = { floor, hp: curve(g.hp), attack: curve(g.attack), defense: curve(g.defense), definition_id: g.template_cycle[(floor - 1) % g.template_cycle.length]!,\n"
+    },
+    {
+      "before": "",
+      "after": "  const schedule = towerData(content).reward_schedule;\n  if (!schedule) return row; // Frozen legacy content/receipts retain the original schedule.\n  const reward = scheduledTowerRewards(floor, schedule);\n  return { ...row, gold: reward.resources.gold ?? 0, crystal: reward.resources.crystal ?? 0, bronze_card_count: reward.card_count, reward_resources: reward.resources };\n"
+    }
+  ],
+  "src/domain/account/commands.ts": [
+    {
+      "before": "              state.pending_rewards.push({claim_id:`tower_${floor}`,kind:'tower',resource_vector:{...Object.fromEntries(Object.keys(state.wallet).map(k=>[k,0])),gold:row.gold,crystal:row.crystal}as AccountState['wallet'],items,content_version:this.versions.content_version,reserved_at:time.server_at,source_keys:[`tower:${floor}`,`battle:${pointer!.battle_id}`],status:'pending'});\n",
+      "after": "              state.pending_rewards.push({claim_id:`tower_${floor}`,kind:'tower',resource_vector:{...Object.fromEntries(Object.keys(state.wallet).map(k=>[k,0])),...(row.reward_resources??{gold:row.gold,crystal:row.crystal})}as AccountState['wallet'],items,content_version:this.versions.content_version,reserved_at:time.server_at,source_keys:[`tower:${floor}`,`battle:${pointer!.battle_id}`],status:'pending'});\n"
+    }
+  ]
+}

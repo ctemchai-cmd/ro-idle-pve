@@ -1,5 +1,9 @@
 # Handoff ระหว่าง agent
 
+## TASK163 — Tower reward implementation
+
+UserconfirmedCrystal+materials+EXP. D187/design76;typed schedule plus UIpreview/puremath/serverreward/100authoredrows. Native11cases320390/752TS/M0/rootbuild/generator pass;163review/public release pending. Newcontent659b53b/pack798a928unchanged. Old frontier/pending/wallet retained, no retrogrant. No owner/SQL/env/6173restart/newmedia/class balance. OwnVite7518 for native, close before finish. Preserveuserassets migration-v2/unselectedmodern/task108png.
+
 ## TASK162 COMPLETE / Tower rewards next
 
 Source8b7babc63 live/VercelSUCCESS/public4groups24bundleSHA/login320390PASS.162done148/162/M4 102/111. UserconfirmedTowerrewardsCrystal+materials+EXP,notdirectAwakenshards. TASK163next;noownerwrites/SQL/env/6173restart.

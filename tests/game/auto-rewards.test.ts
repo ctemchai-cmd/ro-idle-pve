@@ -6,6 +6,7 @@ import { AccountCommandRules, type CommandTime } from '../../src/domain/account/
 import { initializeAccount } from '../../src/domain/progression/initialize.ts';
 import { storyStages } from '../../src/domain/modes/story.ts';
 import { buildAccount, treeData } from './class-skills.ts';
+import { towerRow } from '../../src/domain/modes/tower.ts';
 import { collectProgressRewards } from '../../src/domain/progression/auto-rewards.ts';
 import { pendingProgressCollection } from '../../src/client/auto-battle.ts';
 import { content, actor, unwrap } from './combat-fixtures.ts';
@@ -39,16 +40,23 @@ test('D164 losses/timeout grant nothing and legacy absent collect flag preserves
  }
  const legacy=fixture();legacy.run('battle.start_story',{stage_id:'1-1'});const result=legacy.run('battle.finish',{battle_id:legacy.state.active_battle!.battle_id},30000);assert.equal(result.receipt.result.code,'STORY_WON');assert.equal(legacy.state.pending_rewards.filter(c=>c.kind==='story').length,1);assert.equal(result.receipt.result.resource_delta.gold,0);
 });
-test('D164 Tower immediate reward is atomic, includes real fixed card instances and first-clear only',()=>{
- const f=fixture();f.state.story.cleared_stage_ids=storyStages(content).slice(0,20).map(s=>s.id);f.state.tower.highest_cleared_floor=9;
- const before=f.state.inventory.length,wallet=f.state.wallet.gold;f.run('battle.start_tower',{floor:10});const revision=f.revision,result=f.finish();assert.equal(result.receipt.result.code,'TOWER_WON');assert.equal(f.revision,revision+1);assert.equal(f.state.tower.highest_cleared_floor,10);assert.equal(f.state.wallet.gold,wallet+250);assert.equal(result.receipt.result.resource_delta.crystal,10);assert.equal(f.state.inventory.length,before+1);assert.equal(result.receipt.result.created_instance_ids.length,1);assert.equal(f.state.pending_rewards.length,0);
- const saved=structuredClone(f.state.wallet);f.run('battle.start_tower',{floor:10});assert.equal(f.finish().receipt.result.code,'TOWER_WON');assert.deepEqual(f.state.wallet,saved);assert.equal(f.state.inventory.length,before+1);
+test('D164/D187 Tower immediate reward includes every resource and seeded cards, one revision, replay/duplicate finish never pays twice',()=>{
+ for(const floor of [10,20]){
+  const f=fixture();f.state.story.cleared_stage_ids=storyStages(content).slice(0,20).map(s=>s.id);f.state.tower.highest_cleared_floor=floor-1;
+  const row=towerRow(floor,content),before=f.state.inventory.length,wallet=structuredClone(f.state.wallet),pity=structuredClone(f.state.gacha);
+  f.run('battle.start_tower',{floor});const battle_id=f.state.active_battle!.battle_id,revision=f.revision,result=f.finish();
+  assert.equal(result.receipt.result.code,'TOWER_WON');assert.equal(f.revision,revision+1);assert.equal(f.state.tower.highest_cleared_floor,floor);
+  for(const key of Object.keys(wallet) as (keyof typeof wallet)[]){const amount=row.reward_resources![key]??0;assert.equal(result.receipt.result.resource_delta[key],amount,key);assert.equal(f.state.wallet[key],wallet[key]+amount,key);}
+  assert.equal(f.state.inventory.length,before+row.bronze_card_count);assert.equal(result.receipt.result.created_instance_ids.length,row.bronze_card_count);assert.equal(f.state.pending_rewards.length,0);assert.deepEqual(f.state.gacha,pity);
+  const saved=structuredClone(f.state.wallet);assert.equal(f.run('battle.finish',{battle_id,collect_rewards:true}).receipt.outcome,'rejected');assert.deepEqual(f.state.wallet,saved);
+  f.run('battle.start_tower',{floor});assert.equal(f.finish().receipt.result.code,'TOWER_WON');assert.deepEqual(f.state.wallet,saved);assert.equal(f.state.inventory.length,before+row.bronze_card_count);
+ }
 });
 test('D164 full inventory never rolls back victory: fixed Tower card stays pending and auto-collects exactly once after room is freed',()=>{
  const f=fixture();f.state.story.cleared_stage_ids=storyStages(content).slice(0,20).map(s=>s.id);f.state.tower.highest_cleared_floor=9;fullBag(f.state);
  f.run('battle.start_tower',{floor:10});const revision=f.revision,result=f.finish();assert.equal(result.receipt.result.code,'TOWER_WON');assert.equal(f.revision,revision+1);assert.equal(f.state.active_battle,null);assert.equal(f.state.tower.highest_cleared_floor,10);assert.equal(f.state.pending_rewards.length,1);
- const reward=structuredClone(f.state.pending_rewards[0]!);assert.equal(reward.items.length,1);assert.deepEqual(pendingProgressCollection(f.state),[]);
- f.state.inventory.pop();assert.deepEqual(pendingProgressCollection(f.state),[reward.claim_id]);const paid=f.run('reward.claim',{claim_ids:[reward.claim_id]});assert.equal(paid.receipt.result.code,'REWARD_CLAIMED');assert.equal(f.state.pending_rewards.length,0);assert.deepEqual(f.state.inventory.at(-1),reward.items[0]);assert.equal(paid.receipt.result.resource_delta.gold,250);
+ const reward=structuredClone(f.state.pending_rewards[0]!);assert.equal(reward.items.length,1);for(const[k,n]of Object.entries(towerRow(10,content).reward_resources!))assert.equal(reward.resource_vector[k as keyof typeof reward.resource_vector],n);assert.deepEqual(pendingProgressCollection(f.state),[]);
+ f.state.inventory.pop();assert.deepEqual(pendingProgressCollection(f.state),[reward.claim_id]);const paid=f.run('reward.claim',{claim_ids:[reward.claim_id]});assert.equal(paid.receipt.result.code,'REWARD_CLAIMED');assert.equal(f.state.pending_rewards.length,0);assert.deepEqual(f.state.inventory.at(-1),reward.items[0]);assert.equal(paid.receipt.result.resource_delta.gold,12000);
  assert.equal(f.run('reward.claim',{claim_ids:[reward.claim_id]}).receipt.outcome,'rejected');
 });
 test('D164 gold-only Story reward can be collected with a full bag; daily chests are never silently consumed',()=>{

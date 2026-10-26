@@ -1,3 +1,4 @@
+import {withoutD187Source} from './legacy-tower-rewards-scope.ts';
 import raw from '../../src/generated/content.json';
 import{withoutD179Document,withoutD179Schema}from'./legacy-magic-card-scope.ts';
 import test from 'node:test';
@@ -27,6 +28,7 @@ import type { RuntimeAssetIndex } from '../../src/contracts/assets.ts';
 
 const before = unwrap(validateContent(JSON.parse(gunzipSync(readFileSync(new URL('../../plan/evidence/task-148/before-content.json.gz', import.meta.url))).toString())));
 const legacyRaw=structuredClone(raw) as any;legacyRaw.documents=Object.fromEntries(Object.entries(raw.documents).map(([k,v])=>[k,withoutD179Document(k,v)]));legacyRaw.schemas=Object.fromEntries(Object.entries(raw.schemas).map(([k,v])=>[k,withoutD179Schema(k,v)]));legacyRaw.manifest.document_versions['cards.json']=legacyRaw.documents['cards.json'].content_version;
+legacyRaw.manifest.document_versions['tower.json']=legacyRaw.documents['tower.json'].content_version;
 const legacyMagic=unwrap(validateContent(legacyRaw));
 const at='2026-10-25T00:00:00.000Z',data=progressionData(content),rules=new AccountCommandRules(content);
 const initial=()=>initializeAccount(content,{root_job_id:'acolyte',gender:'male'},at,'2026-10-25',17);
@@ -72,5 +74,5 @@ test('D172 selected runtime reuses genuine same-family icons/wardrobe at80/100 w
 test('D172 implementation scope leaves every other combat/math/skill/domain source byte-identical to the frozen prior commit',()=>{
  const baseline=JSON.parse(readFileSync(new URL('../../plan/evidence/task-148/before-sha.json',import.meta.url),'utf8'));
  const allowed=new Set(['src/domain/account/migrate.ts','src/domain/modes/story.ts','src/domain/build/equipment.ts','src/domain/combat/effects.ts','src/content/validation.ts','src/contracts/index.ts']); // D179 tested additive item profiles now extend these two modules.
- for(const [file,expected]of Object.entries(baseline.implementation_sources))if(!allowed.has(file))assert.equal(createHash('sha256').update(readFileSync(file)).digest('hex'),expected,file);
+ for(const [file,expected]of Object.entries(baseline.implementation_sources))if(!allowed.has(file))assert.equal(createHash('sha256').update(withoutD187Source(file)).digest('hex'),expected,file);
 });

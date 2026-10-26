@@ -30,5 +30,5 @@ test('D142 original130StoryHP/physical/heavy power is no higher thanTASK109 andp
 test('D142 Tower lowers attack about12%, preserves every other field andcontinues afterfloor100',()=>{
  for(const r of Object.values(content.documents['tower.json']!.floor_rows as unknown as {floor:number;attack:number}[])){assert.equal(r.attack,Math.ceil((220+44*r.floor+11*r.floor*r.floor)/20));assert.ok(r.attack<before.tower_attack[r.floor]);}
  assert.equal(towerRow(21,content).attack,300);assert.equal(towerRow(101,content).attack,5844);
- const tower=read('plan/data/tower.json');delete tower.generator.attack;for(const r of tower.floor_rows)delete r.attack;assert.equal(sha(tower),before.tower_other_sha256);
+ const tower=read('plan/data/tower.json'),oldRewards=read('plan/evidence/task-163/tower-before.json');delete tower.reward_schedule;tower.content_version=oldRewards.content_version;for(const r of tower.floor_rows){const old=oldRewards.floor_rows.find((x:{floor:number})=>x.floor===r.floor);for(const k of ['gold','crystal','bronze_card_count'])r[k]=old[k];delete r.reward_resources;}delete tower.generator.attack;for(const r of tower.floor_rows)delete r.attack;assert.equal(sha(tower),before.tower_other_sha256);
 });

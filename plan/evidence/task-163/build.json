@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "commands": [
+    "npm run build",
+    "bash scripts/m0_checks.sh",
+    "npm test",
+    "python3 plan/generators/tower.py --check"
+  ],
+  "TS_tests": 752,
+  "failures": 0,
+  "native_cases": 11,
+  "public_pending": true,
+  "private_log_contents_included": false
+}

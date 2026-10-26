@@ -57,6 +57,6 @@ test('AFK40Crystal/h caps at480 per12h, fractional claims preserve carry; frozen
 test('gear50% roll stays independent of card attempts, legacy100% draw order retained, all scrolls6000gold (D167) and Tower milestones unchanged',()=>{
  const base=initial();base.farm.rate_snapshot=storyFarmSnapshot(storyStage('1-1',content)!,base,content);const profile=base.farm.rate_snapshot!.card_drops!;profile.chance_per_million=1000000;
  const counts=[];for(const chance of[0,500000,1000000]){const s=structuredClone(base);s.farm.rate_snapshot!.gear_chance_per_million=chance;const r=reserveFarm(s,at,at+43200000,new Date(at+43200000).toISOString(),'drops',content);counts.push(r.pending_rewards[0]!.items.filter(i=>i.kind==='equipment').length);assert.equal(r.pending_rewards[0]!.items.filter(i=>i.kind==='card').length,144);assert.deepEqual(r,reserveFarm(s,at,at+43200000,new Date(at+43200000).toISOString(),'drops',content));}assert.equal(counts[0],0);assert.ok(counts[1]!>50&&counts[1]!<95);assert.equal(counts[2],144);
- for(const n of[4,5,6,10,105])assert.equal(towerRow(n,content).crystal,n%5===0?10:0);
+ for(const n of[4,5,6,10,105])assert.equal(towerRow(n,content).crystal,n%20===0?200:n%10===0?100:n%5===0?50:0);
  const economy=content.documents['economy.json'] as unknown as{shop:{offers:{id:string;price:{gold?:number}}[]}};assert.ok(economy.shop.offers.filter(o=>o.id.endsWith('_scroll')).every(o=>o.price.gold===6000));
 });

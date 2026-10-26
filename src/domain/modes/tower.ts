@@ -1,15 +1,17 @@
 import type { AccountState, CombatStats } from '../../contracts/index.ts';
 import type { ValidatedContent } from '../../content/model.ts';
 import type { StoryStage } from './story.ts';
+import { scheduledTowerRewards, type TowerRewardSchedule } from '../../content/tower-rewards.ts';
 
 type Boss = StoryStage['encounter'][number];
-export interface TowerRow { floor: number; hp: number; attack: number; defense: number; definition_id: string; gold: number; crystal: number; bronze_card_count: number }
+export interface TowerRow { floor: number; hp: number; attack: number; defense: number; definition_id: string; gold: number; crystal: number; bronze_card_count: number; reward_resources?: Partial<AccountState['wallet']> }
 interface Polynomial { base: number; linear: number; quadratic?: number; cubic?: number; divisor?: number }
 interface TowerData {
   unlocks_after: string; authored_initial_rows: number; time_limit_ms: number; resets: boolean; first_clear_only: boolean; element: string; position: string;
   common_base: Pick<CombatStats, 'str' | 'agi' | 'vit' | 'int' | 'dex' | 'luk' | 'attack_speed' | 'cast_speed' | 'max_sp'>;
   generator: { hp: Polynomial; attack: Polynomial; defense: Polynomial; template_cycle: string[]; skill_cycle: string[][]; adaptive_cc_every: number; reward_gold: Polynomial; crystal_every: number; crystal_amount: number; bronze_card_every: number };
   floor_rows: TowerRow[];
+  reward_schedule?: TowerRewardSchedule;
 }
 export const towerData = (content: ValidatedContent) => content.documents['tower.json'] as unknown as TowerData;
 const safe = (value: number) => { if (!Number.isSafeInteger(value) || value < 0) throw new RangeError('TOWER_FLOOR_OVERFLOW'); return value; };
@@ -23,8 +25,12 @@ export function towerRow(floor: number, content: ValidatedContent): TowerRow {
     const numerator = safe(row.base + row.linear * floor + (row.quadratic ?? 0) * floor * floor + (row.cubic ?? 0) * floor * floor * floor);
     return safe(Math.ceil(numerator / divisor));
   };
-  return { floor, hp: curve(g.hp), attack: curve(g.attack), defense: curve(g.defense), definition_id: g.template_cycle[(floor - 1) % g.template_cycle.length]!,
+  const row = { floor, hp: curve(g.hp), attack: curve(g.attack), defense: curve(g.defense), definition_id: g.template_cycle[(floor - 1) % g.template_cycle.length]!,
     gold: curve(g.reward_gold), crystal: floor % g.crystal_every === 0 ? g.crystal_amount : 0, bronze_card_count: floor % g.bronze_card_every === 0 ? 1 : 0 };
+  const schedule = towerData(content).reward_schedule;
+  if (!schedule) return row; // Frozen legacy content/receipts retain the original schedule.
+  const reward = scheduledTowerRewards(floor, schedule);
+  return { ...row, gold: reward.resources.gold ?? 0, crystal: reward.resources.crystal ?? 0, bronze_card_count: reward.card_count, reward_resources: reward.resources };
 }
 export function towerUnlocked(state: AccountState, content: ValidatedContent) { return state.story.cleared_stage_ids.includes(towerData(content).unlocks_after); }
 /** A floor can be fought once its predecessor is cleared; cleared floors may be replayed without rewards. */

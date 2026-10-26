@@ -1,3 +1,4 @@
+import {legacyTowerDocumentBytes} from './legacy-tower-rewards-scope.ts';
 import{withoutD180Document,mvpMagicIds}from'./legacy-mvp-magic-scope.ts';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -26,12 +27,12 @@ export function withoutD179Schema<T>(key:string,value:T):T{
 export function assertD179File(file:string,expected:unknown){
  const match=/^plan\/data\/(cards|gacha|strings\.th)\.json$/.exec(file),schema=/^plan\/data\/schemas\/(item|battle-checkpoint)\.json$/.exec(file);
  if(match||schema){const key=match?.[1]??schema![1]!,beforeFile=`plan/evidence/task-155/before-${schema?'schema-':''}${key}.json`,old=readFileSync(beforeFile);assert.equal(createHash('sha256').update(old).digest('hex'),expected,file+' frozen historical SHA');const actual=JSON.parse(readFileSync(file,'utf8'));assert.deepEqual(schema?withoutD179Schema(key,actual):withoutD179Document(key+'.json',actual),JSON.parse(old.toString()),file+' only named D179 additions');}
- else assert.equal(createHash('sha256').update(readFileSync(file)).digest('hex'),expected,file);
+ else assert.equal(createHash('sha256').update(file==='plan/data/tower.json'?legacyTowerDocumentBytes(file):readFileSync(file)).digest('hex'),expected,file);
 }
 export function assertD179Media(file:string,expected:string){
  const rows=[...JSON.parse(readFileSync('plan/evidence/task-155/lossless.json','utf8')).entries,...JSON.parse(readFileSync('plan/evidence/task-156/lossless.json','utf8')).entries],row=rows.find((r:any)=>'assets/ro/'+r.path===file);
  if(row){assert.equal(row.before_sha,expected,file+' original bytes');assert.equal(createHash('sha256').update(readFileSync(file)).digest('hex'),row.after_sha,file+' exact-RGBA recompression');}
- else assert.equal(createHash('sha256').update(readFileSync(file)).digest('hex'),expected,file);
+ else assert.equal(createHash('sha256').update(file==='plan/data/tower.json'?legacyTowerDocumentBytes(file):readFileSync(file)).digest('hex'),expected,file);
 }
 export function withoutD179FarmCards<T>(value:T):T{
  const c=structuredClone(value) as any;if(!c)return c;

@@ -1,0 +1,1089 @@
+{
+  "schema_version": 1,
+  "content_version": "tower-v2",
+  "unlocks_after": "2-10",
+  "authored_initial_rows": 100,
+  "has_gameplay_floor_cap": false,
+  "first_clear_only": true,
+  "resets": false,
+  "time_limit_ms": 40000,
+  "generator": {
+    "hp": {
+      "base": 600,
+      "linear": 100,
+      "quadratic": 8,
+      "cubic": 2
+    },
+    "attack": {
+      "base": 220,
+      "linear": 44,
+      "quadratic": 11,
+      "divisor": 20
+    },
+    "defense": {
+      "base": 5,
+      "linear": 3
+    },
+    "template_cycle": [
+      "poring",
+      "wolf",
+      "golem",
+      "drake",
+      "baphomet"
+    ],
+    "skill_cycle": [
+      [
+        "enemy_bite",
+        "enemy_guard"
+      ],
+      [
+        "enemy_sonic_blow",
+        "enemy_enrage",
+        "enemy_bite"
+      ],
+      [
+        "enemy_guard",
+        "enemy_hammer_fall",
+        "enemy_quake"
+      ],
+      [
+        "enemy_cold_bolt",
+        "enemy_armor_break",
+        "enemy_sonic_blow",
+        "enemy_guard"
+      ],
+      [
+        "enemy_firestorm",
+        "enemy_lightning_bolt",
+        "enemy_enrage",
+        "enemy_sonic_blow"
+      ]
+    ],
+    "adaptive_cc_every": 20,
+    "reward_gold": {
+      "base": 100,
+      "linear": 15
+    },
+    "crystal_every": 5,
+    "crystal_amount": 10,
+    "bronze_card_every": 10,
+    "card_pool": "gacha.card_v1"
+  },
+  "floor_rows": [
+    {
+      "floor": 1,
+      "hp": 710,
+      "attack": 14,
+      "defense": 8,
+      "definition_id": "poring",
+      "gold": 115,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 2,
+      "hp": 848,
+      "attack": 18,
+      "defense": 11,
+      "definition_id": "wolf",
+      "gold": 130,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 3,
+      "hp": 1026,
+      "attack": 23,
+      "defense": 14,
+      "definition_id": "golem",
+      "gold": 145,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 4,
+      "hp": 1256,
+      "attack": 29,
+      "defense": 17,
+      "definition_id": "drake",
+      "gold": 160,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 5,
+      "hp": 1550,
+      "attack": 36,
+      "defense": 20,
+      "definition_id": "baphomet",
+      "gold": 175,
+      "crystal": 10,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 6,
+      "hp": 1920,
+      "attack": 44,
+      "defense": 23,
+      "definition_id": "poring",
+      "gold": 190,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 7,
+      "hp": 2378,
+      "attack": 54,
+      "defense": 26,
+      "definition_id": "wolf",
+      "gold": 205,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 8,
+      "hp": 2936,
+      "attack": 64,
+      "defense": 29,
+      "definition_id": "golem",
+      "gold": 220,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 9,
+      "hp": 3606,
+      "attack": 76,
+      "defense": 32,
+      "definition_id": "drake",
+      "gold": 235,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 10,
+      "hp": 4400,
+      "attack": 88,
+      "defense": 35,
+      "definition_id": "baphomet",
+      "gold": 250,
+      "crystal": 10,
+      "bronze_card_count": 1
+    },
+    {
+      "floor": 11,
+      "hp": 5330,
+      "attack": 102,
+      "defense": 38,
+      "definition_id": "poring",
+      "gold": 265,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 12,
+      "hp": 6408,
+      "attack": 117,
+      "defense": 41,
+      "definition_id": "wolf",
+      "gold": 280,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 13,
+      "hp": 7646,
+      "attack": 133,
+      "defense": 44,
+      "definition_id": "golem",
+      "gold": 295,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 14,
+      "hp": 9056,
+      "attack": 150,
+      "defense": 47,
+      "definition_id": "drake",
+      "gold": 310,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 15,
+      "hp": 10650,
+      "attack": 168,
+      "defense": 50,
+      "definition_id": "baphomet",
+      "gold": 325,
+      "crystal": 10,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 16,
+      "hp": 12440,
+      "attack": 187,
+      "defense": 53,
+      "definition_id": "poring",
+      "gold": 340,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 17,
+      "hp": 14438,
+      "attack": 208,
+      "defense": 56,
+      "definition_id": "wolf",
+      "gold": 355,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 18,
+      "hp": 16656,
+      "attack": 229,
+      "defense": 59,
+      "definition_id": "golem",
+      "gold": 370,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 19,
+      "hp": 19106,
+      "attack": 252,
+      "defense": 62,
+      "definition_id": "drake",
+      "gold": 385,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 20,
+      "hp": 21800,
+      "attack": 275,
+      "defense": 65,
+      "definition_id": "baphomet",
+      "gold": 400,
+      "crystal": 10,
+      "bronze_card_count": 1
+    },
+    {
+      "floor": 21,
+      "hp": 24750,
+      "attack": 300,
+      "defense": 68,
+      "definition_id": "poring",
+      "gold": 415,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 22,
+      "hp": 27968,
+      "attack": 326,
+      "defense": 71,
+      "definition_id": "wolf",
+      "gold": 430,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 23,
+      "hp": 31466,
+      "attack": 353,
+      "defense": 74,
+      "definition_id": "golem",
+      "gold": 445,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 24,
+      "hp": 35256,
+      "attack": 381,
+      "defense": 77,
+      "definition_id": "drake",
+      "gold": 460,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 25,
+      "hp": 39350,
+      "attack": 410,
+      "defense": 80,
+      "definition_id": "baphomet",
+      "gold": 475,
+      "crystal": 10,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 26,
+      "hp": 43760,
+      "attack": 440,
+      "defense": 83,
+      "definition_id": "poring",
+      "gold": 490,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 27,
+      "hp": 48498,
+      "attack": 472,
+      "defense": 86,
+      "definition_id": "wolf",
+      "gold": 505,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 28,
+      "hp": 53576,
+      "attack": 504,
+      "defense": 89,
+      "definition_id": "golem",
+      "gold": 520,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 29,
+      "hp": 59006,
+      "attack": 538,
+      "defense": 92,
+      "definition_id": "drake",
+      "gold": 535,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 30,
+      "hp": 64800,
+      "attack": 572,
+      "defense": 95,
+      "definition_id": "baphomet",
+      "gold": 550,
+      "crystal": 10,
+      "bronze_card_count": 1
+    },
+    {
+      "floor": 31,
+      "hp": 70970,
+      "attack": 608,
+      "defense": 98,
+      "definition_id": "poring",
+      "gold": 565,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 32,
+      "hp": 77528,
+      "attack": 645,
+      "defense": 101,
+      "definition_id": "wolf",
+      "gold": 580,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 33,
+      "hp": 84486,
+      "attack": 683,
+      "defense": 104,
+      "definition_id": "golem",
+      "gold": 595,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 34,
+      "hp": 91856,
+      "attack": 722,
+      "defense": 107,
+      "definition_id": "drake",
+      "gold": 610,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 35,
+      "hp": 99650,
+      "attack": 762,
+      "defense": 110,
+      "definition_id": "baphomet",
+      "gold": 625,
+      "crystal": 10,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 36,
+      "hp": 107880,
+      "attack": 803,
+      "defense": 113,
+      "definition_id": "poring",
+      "gold": 640,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 37,
+      "hp": 116558,
+      "attack": 846,
+      "defense": 116,
+      "definition_id": "wolf",
+      "gold": 655,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 38,
+      "hp": 125696,
+      "attack": 889,
+      "defense": 119,
+      "definition_id": "golem",
+      "gold": 670,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 39,
+      "hp": 135306,
+      "attack": 934,
+      "defense": 122,
+      "definition_id": "drake",
+      "gold": 685,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 40,
+      "hp": 145400,
+      "attack": 979,
+      "defense": 125,
+      "definition_id": "baphomet",
+      "gold": 700,
+      "crystal": 10,
+      "bronze_card_count": 1
+    },
+    {
+      "floor": 41,
+      "hp": 155990,
+      "attack": 1026,
+      "defense": 128,
+      "definition_id": "poring",
+      "gold": 715,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 42,
+      "hp": 167088,
+      "attack": 1074,
+      "defense": 131,
+      "definition_id": "wolf",
+      "gold": 730,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 43,
+      "hp": 178706,
+      "attack": 1123,
+      "defense": 134,
+      "definition_id": "golem",
+      "gold": 745,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 44,
+      "hp": 190856,
+      "attack": 1173,
+      "defense": 137,
+      "definition_id": "drake",
+      "gold": 760,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 45,
+      "hp": 203550,
+      "attack": 1224,
+      "defense": 140,
+      "definition_id": "baphomet",
+      "gold": 775,
+      "crystal": 10,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 46,
+      "hp": 216800,
+      "attack": 1276,
+      "defense": 143,
+      "definition_id": "poring",
+      "gold": 790,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 47,
+      "hp": 230618,
+      "attack": 1330,
+      "defense": 146,
+      "definition_id": "wolf",
+      "gold": 805,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 48,
+      "hp": 245016,
+      "attack": 1384,
+      "defense": 149,
+      "definition_id": "golem",
+      "gold": 820,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 49,
+      "hp": 260006,
+      "attack": 1440,
+      "defense": 152,
+      "definition_id": "drake",
+      "gold": 835,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 50,
+      "hp": 275600,
+      "attack": 1496,
+      "defense": 155,
+      "definition_id": "baphomet",
+      "gold": 850,
+      "crystal": 10,
+      "bronze_card_count": 1
+    },
+    {
+      "floor": 51,
+      "hp": 291810,
+      "attack": 1554,
+      "defense": 158,
+      "definition_id": "poring",
+      "gold": 865,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 52,
+      "hp": 308648,
+      "attack": 1613,
+      "defense": 161,
+      "definition_id": "wolf",
+      "gold": 880,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 53,
+      "hp": 326126,
+      "attack": 1673,
+      "defense": 164,
+      "definition_id": "golem",
+      "gold": 895,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 54,
+      "hp": 344256,
+      "attack": 1734,
+      "defense": 167,
+      "definition_id": "drake",
+      "gold": 910,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 55,
+      "hp": 363050,
+      "attack": 1796,
+      "defense": 170,
+      "definition_id": "baphomet",
+      "gold": 925,
+      "crystal": 10,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 56,
+      "hp": 382520,
+      "attack": 1859,
+      "defense": 173,
+      "definition_id": "poring",
+      "gold": 940,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 57,
+      "hp": 402678,
+      "attack": 1924,
+      "defense": 176,
+      "definition_id": "wolf",
+      "gold": 955,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 58,
+      "hp": 423536,
+      "attack": 1989,
+      "defense": 179,
+      "definition_id": "golem",
+      "gold": 970,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 59,
+      "hp": 445106,
+      "attack": 2056,
+      "defense": 182,
+      "definition_id": "drake",
+      "gold": 985,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 60,
+      "hp": 467400,
+      "attack": 2123,
+      "defense": 185,
+      "definition_id": "baphomet",
+      "gold": 1000,
+      "crystal": 10,
+      "bronze_card_count": 1
+    },
+    {
+      "floor": 61,
+      "hp": 490430,
+      "attack": 2192,
+      "defense": 188,
+      "definition_id": "poring",
+      "gold": 1015,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 62,
+      "hp": 514208,
+      "attack": 2262,
+      "defense": 191,
+      "definition_id": "wolf",
+      "gold": 1030,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 63,
+      "hp": 538746,
+      "attack": 2333,
+      "defense": 194,
+      "definition_id": "golem",
+      "gold": 1045,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 64,
+      "hp": 564056,
+      "attack": 2405,
+      "defense": 197,
+      "definition_id": "drake",
+      "gold": 1060,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 65,
+      "hp": 590150,
+      "attack": 2478,
+      "defense": 200,
+      "definition_id": "baphomet",
+      "gold": 1075,
+      "crystal": 10,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 66,
+      "hp": 617040,
+      "attack": 2552,
+      "defense": 203,
+      "definition_id": "poring",
+      "gold": 1090,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 67,
+      "hp": 644738,
+      "attack": 2628,
+      "defense": 206,
+      "definition_id": "wolf",
+      "gold": 1105,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 68,
+      "hp": 673256,
+      "attack": 2704,
+      "defense": 209,
+      "definition_id": "golem",
+      "gold": 1120,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 69,
+      "hp": 702606,
+      "attack": 2782,
+      "defense": 212,
+      "definition_id": "drake",
+      "gold": 1135,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 70,
+      "hp": 732800,
+      "attack": 2860,
+      "defense": 215,
+      "definition_id": "baphomet",
+      "gold": 1150,
+      "crystal": 10,
+      "bronze_card_count": 1
+    },
+    {
+      "floor": 71,
+      "hp": 763850,
+      "attack": 2940,
+      "defense": 218,
+      "definition_id": "poring",
+      "gold": 1165,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 72,
+      "hp": 795768,
+      "attack": 3021,
+      "defense": 221,
+      "definition_id": "wolf",
+      "gold": 1180,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 73,
+      "hp": 828566,
+      "attack": 3103,
+      "defense": 224,
+      "definition_id": "golem",
+      "gold": 1195,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 74,
+      "hp": 862256,
+      "attack": 3186,
+      "defense": 227,
+      "definition_id": "drake",
+      "gold": 1210,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 75,
+      "hp": 896850,
+      "attack": 3270,
+      "defense": 230,
+      "definition_id": "baphomet",
+      "gold": 1225,
+      "crystal": 10,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 76,
+      "hp": 932360,
+      "attack": 3355,
+      "defense": 233,
+      "definition_id": "poring",
+      "gold": 1240,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 77,
+      "hp": 968798,
+      "attack": 3442,
+      "defense": 236,
+      "definition_id": "wolf",
+      "gold": 1255,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 78,
+      "hp": 1006176,
+      "attack": 3529,
+      "defense": 239,
+      "definition_id": "golem",
+      "gold": 1270,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 79,
+      "hp": 1044506,
+      "attack": 3618,
+      "defense": 242,
+      "definition_id": "drake",
+      "gold": 1285,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 80,
+      "hp": 1083800,
+      "attack": 3707,
+      "defense": 245,
+      "definition_id": "baphomet",
+      "gold": 1300,
+      "crystal": 10,
+      "bronze_card_count": 1
+    },
+    {
+      "floor": 81,
+      "hp": 1124070,
+      "attack": 3798,
+      "defense": 248,
+      "definition_id": "poring",
+      "gold": 1315,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 82,
+      "hp": 1165328,
+      "attack": 3890,
+      "defense": 251,
+      "definition_id": "wolf",
+      "gold": 1330,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 83,
+      "hp": 1207586,
+      "attack": 3983,
+      "defense": 254,
+      "definition_id": "golem",
+      "gold": 1345,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 84,
+      "hp": 1250856,
+      "attack": 4077,
+      "defense": 257,
+      "definition_id": "drake",
+      "gold": 1360,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 85,
+      "hp": 1295150,
+      "attack": 4172,
+      "defense": 260,
+      "definition_id": "baphomet",
+      "gold": 1375,
+      "crystal": 10,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 86,
+      "hp": 1340480,
+      "attack": 4268,
+      "defense": 263,
+      "definition_id": "poring",
+      "gold": 1390,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 87,
+      "hp": 1386858,
+      "attack": 4366,
+      "defense": 266,
+      "definition_id": "wolf",
+      "gold": 1405,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 88,
+      "hp": 1434296,
+      "attack": 4464,
+      "defense": 269,
+      "definition_id": "golem",
+      "gold": 1420,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 89,
+      "hp": 1482806,
+      "attack": 4564,
+      "defense": 272,
+      "definition_id": "drake",
+      "gold": 1435,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 90,
+      "hp": 1532400,
+      "attack": 4664,
+      "defense": 275,
+      "definition_id": "baphomet",
+      "gold": 1450,
+      "crystal": 10,
+      "bronze_card_count": 1
+    },
+    {
+      "floor": 91,
+      "hp": 1583090,
+      "attack": 4766,
+      "defense": 278,
+      "definition_id": "poring",
+      "gold": 1465,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 92,
+      "hp": 1634888,
+      "attack": 4869,
+      "defense": 281,
+      "definition_id": "wolf",
+      "gold": 1480,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 93,
+      "hp": 1687806,
+      "attack": 4973,
+      "defense": 284,
+      "definition_id": "golem",
+      "gold": 1495,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 94,
+      "hp": 1741856,
+      "attack": 5078,
+      "defense": 287,
+      "definition_id": "drake",
+      "gold": 1510,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 95,
+      "hp": 1797050,
+      "attack": 5184,
+      "defense": 290,
+      "definition_id": "baphomet",
+      "gold": 1525,
+      "crystal": 10,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 96,
+      "hp": 1853400,
+      "attack": 5291,
+      "defense": 293,
+      "definition_id": "poring",
+      "gold": 1540,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 97,
+      "hp": 1910918,
+      "attack": 5400,
+      "defense": 296,
+      "definition_id": "wolf",
+      "gold": 1555,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 98,
+      "hp": 1969616,
+      "attack": 5509,
+      "defense": 299,
+      "definition_id": "golem",
+      "gold": 1570,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 99,
+      "hp": 2029506,
+      "attack": 5620,
+      "defense": 302,
+      "definition_id": "drake",
+      "gold": 1585,
+      "crystal": 0,
+      "bronze_card_count": 0
+    },
+    {
+      "floor": 100,
+      "hp": 2090600,
+      "attack": 5731,
+      "defense": 305,
+      "definition_id": "baphomet",
+      "gold": 1600,
+      "crystal": 10,
+      "bronze_card_count": 1
+    }
+  ],
+  "extension": "same numeric generator for any next safe integer floor; validate finite/safe results instead of overflow; no authored 100-floor victory cap",
+  "claim_key": "account_id+tower_floor once; replay cannot reset first clears",
+  "common_base": {
+    "str": 1,
+    "agi": 1,
+    "vit": 1,
+    "int": 1,
+    "dex": 1,
+    "luk": 1,
+    "attack_speed": 100,
+    "cast_speed": 100,
+    "max_sp": 100
+  },
+  "element": "neutral",
+  "position": "front_1"
+}
