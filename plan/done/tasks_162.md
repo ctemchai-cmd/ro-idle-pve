@@ -18,7 +18,7 @@ TASK-141, TASK-161 (done).
 
 ## เกณฑ์ตรวจรับ
 - [x] AC-01:Story/Towerแพ้กดปรับทีมcloseแล้วgo(skills);existingresultcallbacks16modesผ่าน320390
-- [ ] AC-02:rootbuild/M0/publicผ่าน;fivefingerprints/packเดิมและnoownerwrites
+- [x] AC-02:rootbuild/M0/publicผ่าน;fivefingerprints/packเดิมและnoownerwrites
 
 ## วิธีตรวจ
 Design75/existingresultnative+publicharnessboundedtask162.
@@ -27,4 +27,4 @@ Design75/existingresultnative+publicharnessboundedtask162.
 ไม่มี;ผู้ใช้กำหนดปลายทางชัดเจน.
 
 ## ผลตรวจ
-Localnative2groups/16cases/rootbuild/M0ผ่าน,fingerprintsเดิม;รอpublicrelease.
+Localnative2groups/16cases/rootbuild/M0ผ่าน,fingerprintsเดิม;public4groupsผ่าน/VercelSUCCESS source8b7babc63.

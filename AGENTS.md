@@ -2,7 +2,7 @@
 
 ## Defeat opens skills (26 October2026,D186/TASK162)
 
-Localnative2groups16resultmodes320390/rootbuild/M0passed;162review awaitingpublic. ResultCardปรับทีม closesoutcome then go(skills) instead ofteam;Shell.go keepscurrentactor. Preserveclose/Auto/retry/label/icon/layout/rewards/Daily. Allfivefingerprints/packunchanged. See design75/latestHANDOFF.
+Source8b7babc63 live/VercelSUCCESS;native2groups16resultmodes320390/rootbuild/M0/public4groups24bundleSHApassed;162done. ResultCardปรับทีม closesoutcome then go(skills) instead ofteam;Shell.go keepscurrentactor. Preserveclose/Auto/retry/label/icon/layout/rewards/Daily. Allfivefingerprints/packunchanged. See design75/latestHANDOFF.
 
 ## Classic palette on approved Modern UI (26 October2026,D185/TASK161)
 
