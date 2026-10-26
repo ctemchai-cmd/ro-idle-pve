@@ -870,3 +870,12 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T156-AC-01` | TASK-156 | design69/AC01 | data/engine/native/build/public | passed_implementation |
 | `T156-AC-02` | TASK-156 | design69/AC02 | data/engine/native/build/public | passed_implementation |
 | `T156-AC-03` | TASK-156 | design69/AC03 | data/engine/native/build/public | passed_implementation |
+
+## TASK-157 — Card layer / equipped descriptions
+
+| Case | Task | Expected | Verification | Status |
+| --- | --- | --- | --- | --- |
+| `T157-AC-01` | TASK-157 | design70/AC01 | native/build/public | not_run_implementation |
+| `T157-AC-02` | TASK-157 | design70/AC02 | native/build/public | not_run_implementation |
+| `T157-AC-03` | TASK-157 | design70/AC03 | native/build/public | not_run_implementation |
+| `T157-AC-04` | TASK-157 | design70/AC04 | native/build/public | not_run_implementation |

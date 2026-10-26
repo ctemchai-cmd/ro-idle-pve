@@ -1,5 +1,11 @@
 # Handoff ระหว่าง agent
 
+## 26 ต.ค.2026 · Codex — TASK157 LOCAL COMPLETE / publish next
+
+- Userrequests cardbadgeunderinspector,installedcardeffects inBuddySlotSheet,andsix-slotcardfilters. LocalactualReact/native320390:bulk6/equipped2/single4PASS;rootbuild/M0passed. Screenshotsvisuallyreviewed;ownVite7512/browsersclosed,6173untouched. TASK157review,142/157done/M4 96/106.
+- Bagcellstackingcontext+opaquefooterz2;BuddysharedcardViewactor/slot/order/Lv/effects+scroll/fixedactions;Backpack6slots/All+RarityAND/filteredselectall/clearselection;AddCardweapon-armorcompatibilitychecked. Allfivegameplayfingerprintsandpackunchanged86f219/798a928. NoSQL/env/ownerwrites/balancebatch/assets.
+- NEXT explicitstageours/pushoriginmain/awaitVercelSUCCESS/public scripts/test_card_ui_hosted.cjs then157done143/157/M4 97/106. Publicchecksartifact/login/syntheticCSS,localmemoryprovesactualReact. Usermodernmigration-v2/unselectedmodern/task108pngmustremainunstaged.
+
 ## 26 ต.ค.2026 · Codex — TASK156 COMPLETE / two Legendary MATK cards live
 
 - Source4611a0f391e1d73f18a39f626d0259836aba8fab live/VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/E9o67yHPEDXuA9fBEerR1mKMK7C5. Public4groups PASS API/SIN1/content86f219/anonymous401,4newnativeimage+sidecarSHA,24bundleSHA/newMVP+existingbulkfeatures,login320390/0errors-writes. No product changes after tested source;closure only records release and142/156done/M4 96/105. No remaining156work.

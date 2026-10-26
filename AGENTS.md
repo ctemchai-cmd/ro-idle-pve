@@ -1,5 +1,9 @@
 # Project context
 
+## Card layer, slot info and filters (26 October2026,D181/TASK157)
+
+Local12nativegroups320390/rootbuild/M0 passed;157review awaitingpublic. Bagcell isolation:isolate +opaque sticky bulkfooterz2 fixes escaped z1/3badges;dialogs retain native top-layer. Buddy SlotSheet reads selectedactor/slot opened cards via current cardView;scrollcontent/fixedactions,emptygear hides dormantcards. Backpackcardtab six-slot/All AND rarityfilter;select-all only visiblefreecards,filterchanges clearselection. AddCard retains actualslot compatibility. No content/engine/schema/implementation/pack changes;noSQL/env/ownerwrites. See design70/latestHANDOFF forrelease.
+
 ## Two MVP magic cards (26 October2026,D180/TASK156)
 
 Source4611a0f39 live/VercelSUCCESS;public4groups/4newnativefiles/24bundleSHA/login320390/0errors-writes. TASK156complete. Fallen Bishop4441/shoes/MVP Legendary: rawMATK25%/MaxSP-15%;TimeHolder4625/weapon/MVP Legendary: rawMATK20%/SPcost+10%. Existingrarity/level rules makeLv1+45%MATK/-8.33%SP and+36%MATK/+5.56%SPcost. Bothgenuine ROart300×400 and primaryverifiedMVPs. All78priorcards/rates/price/pity/engine/schemas untouched; existingD179frozenpoolmigration settlesoldAFK before new80pool. No newbalancebatch/SQL/env/owner access. Full740/focused17/native5/root-filtered/M0/source311+60460+6926 pass. Runtimepack903/1691/raw33545187<32MiB/initial1577418;70staticRGBAexactrecompressionssave52172bytes,288sharedsidecarsupdatedonlyfileSHA/bytes. Runtimepresentationprojection omitsunusedprovenance/icon_asset_id ONLY;sourceauthoringandALLsource/runtimesidecarsretain theirfields/JSON.parsevalues, visual/audio/recipe unchanged. Contract resolvesiconsbymetapath;sourceprovenancechecks stay atauthoring. See design69/latestHANDOFF forrelease.

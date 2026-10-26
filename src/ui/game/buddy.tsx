@@ -6,7 +6,7 @@ import { useMemo, useState } from 'react';
 import type { CombatStats, Modifier } from '../../contracts/index.ts';
 import { effectiveLevelCap, levelQuote,jobChangePlan, rosterData as data, type Character } from '../../client/roster.ts';
 import { equipmentData, equipmentPreview, equipmentUpgradeHints, inventoryView, itemModifiers, itemOptions, rarityLabels, rarityRank, slotLabels, weaponLabels, type EquipmentSlot } from '../../client/equipment.ts';
-import { cardInventory, cardStatUnits, slotEnchantLines, refineModifiers, nextRefineChance, nextRefinePityBonus, refinePercent, slotsData, refundEnchant, slotChangePreview, slotUpgradeQuote, socketCapacity, socketUnlockRefine, socketUnlockHint } from '../../client/slots.ts';
+import { cardInventory, cardView, cardStatUnits, slotEnchantLines, refineModifiers, nextRefineChance, nextRefinePityBonus, refinePercent, slotsData, refundEnchant, slotChangePreview, slotUpgradeQuote, socketCapacity, socketUnlockRefine, socketUnlockHint } from '../../client/slots.ts';
 import type { GameContext } from './shell.tsx';
 import { ClassIcon } from './class-icon.tsx';
 import { SkillCatalogSheet } from './skill-catalog.tsx';
@@ -126,15 +126,33 @@ function ChangeSheet({ context, actor, slot, upgradeId, close }: { context: Game
   </Sheet>;
 }
 
+function EquippedCardInfo({ context, actor, slot }: { context: GameContext; actor: Character; slot: EquipmentSlot }) {
+  const { state, pack } = context, progress = actor.slot_progress[slot];
+  const cards = progress.cards.slice(0, socketCapacity(progress.refine)).flatMap((id, index) => {
+    const item = id ? state.inventory.find(i => i.instance_id === id) : undefined;
+    return item?.kind === 'card' ? [{ index, card: cardView(item, state) }] : [];
+  });
+  if (!cards.length) return null;
+  return <section className="equipped-card-info" aria-label="การ์ดที่สวมใส่">
+    <h3>การ์ดที่สวมใส่</h3><ol className="equipped-card-list">{cards.map(({ index, card }) => <li key={card.item.instance_id} className="equipped-card-row" data-equipped-card={card.item.instance_id}>
+      <span className={`equipped-card-thumb rarity-${card.item.rarity_id}`}><CardIcon card={card} pack={pack}/></span>
+      <div className="equipped-card-copy"><div className="equipped-card-title"><b>{card.name}</b><small>{index + 1} · {rarityLabels[card.item.rarity_id]} · Lv.{card.item.level}</small></div>
+        <ul className="card-effects">{[...card.modifiers.map(modifierText), ...card.effects].map((text, i) => <li key={i}>{text}</li>)}</ul>
+      </div>
+    </li>)}</ol>
+  </section>;
+}
 function SlotSheet({ context, actor, slot, close, open }: { context: GameContext; actor: Character; slot: EquipmentSlot; close: () => void; open: (s: 'upgrade' | 'change') => void }) {
   const { state, pack } = context, row = inventoryView(state, actor.character_id).find(r => r.item.instance_id === actor.equipment[slot]), progress = actor.slot_progress[slot];
-  return <Sheet title={slotLabels[slot]} onClose={close}>
+  return <Sheet title={slotLabels[slot]} onClose={close} className="slot-info-sheet">
+    <div className="slot-info-content">
     <div className="slot-summary">
       <span className={`icon-frame big rarity-${row?.item.rarity_id ?? 'none'}`}>{row ? <ItemIcon id={row.iconId} pack={pack} /> : <span className="gear-empty">ว่าง</span>}<EquipmentCards state={state} characterId={actor.character_id} slot={slot} /><EquipmentProgress state={state} characterId={actor.character_id} slot={slot} /></span>
       <div><b>{row?.name ?? 'ยังไม่ได้สวม'}</b>{row && <small>{rarityLabels[row.item.rarity_id]} · Lv.{row.definition.required_level}</small>}{row && <small className="mods">{itemModifiers(row.item).map(modifierText).join(' · ')}</small>}{row && <OptionLines item={row.item} />}</div>
     </div>
     <ul className="slot-facts"><li><span>Refine</span><b>+{progress.refine}</b></li><li><span>Enchant</span><b>{progress.enchant.line_id ? `${slotEnchantLines(slot)[progress.enchant.line_id]?.label??progress.enchant.line_id} Lv.${progress.enchant.level}` : '—'}</b></li><li><span>การ์ด</span><b>{progress.cards.filter(Boolean).length} / {socketCapacity(progress.refine)}</b></li></ul>
-    <div className="row two"><button className="btn primary" onClick={() => open('upgrade')}><Icon name="upgrade" /> อัปเกรด</button><button className="btn" onClick={() => open('change')}>⇄ เปลี่ยน</button></div>
+    {row && <EquippedCardInfo context={context} actor={actor} slot={slot}/>}</div>
+    <div className="row two slot-info-actions"><button className="btn primary" onClick={() => open('upgrade')}><Icon name="upgrade" /> อัปเกรด</button><button className="btn" onClick={() => open('change')}>⇄ เปลี่ยน</button></div>
   </Sheet>;
 }
 

@@ -51,12 +51,13 @@ export function BackpackPage({ context }: { context: GameContext }) {
   const { state, pack, submit, locked, go } = context, [filter, setFilter] = useState<Filter>('all'), [open, setOpen] = useState<string | null>(null), [bulk, setBulk] = useState<string[] | null>(null);
   const [confirmCards, setConfirmCards] = useState<string[] | null>(null), cardMode = filter === 'card';
   const [inspectedCard, setInspectedCard] = useState<string | null>(null);
+  const [cardSlot, setCardSlot] = useState<EquipmentSlot | null>(null);
   // Rarity/Level filters (user request, 20 Oct 2026): none picked = all; they narrow the grid and "select all" for salvage.
   const [rarities, setRarities] = useState<string[]>([]), [levels, setLevels] = useState<number[]>([]);
   const gear = useMemo(() => inventoryView(state, 'main').sort((a, b) => b.definition.required_level - a.definition.required_level || (rarityRank[b.item.rarity_id] ?? 0) - (rarityRank[a.item.rarity_id] ?? 0)), [state]);
   const cards = useMemo(() => equipmentSlots.flatMap(s => cardInventory(state, s)).sort((a, b) => (rarityRank[b.item.rarity_id] ?? 0) - (rarityRank[a.item.rarity_id] ?? 0) || b.item.level - a.item.level), [state]);
-  const narrowed = rarities.length > 0 || levels.length > 0, matches = (g: {item:{rarity_id:string};definition:{tier_level:number}}) => (!rarities.length || rarities.includes(g.item.rarity_id)) && (!levels.length || levels.includes(g.definition.tier_level));
-  const slotGear = filter === 'card' ? [] : gear.filter(g => filter === 'all' || g.slot === filter), shownGear = slotGear.filter(matches), shownCards = filter === 'card' || (filter === 'all'&&!levels.length) ? cards.filter(c=>!rarities.length||rarities.includes(c.item.rarity_id)) : [];
+  const narrowed = rarities.length > 0 || levels.length > 0 || (cardMode && cardSlot !== null), matches = (g: {item:{rarity_id:string};definition:{tier_level:number}}) => (!rarities.length || rarities.includes(g.item.rarity_id)) && (!levels.length || levels.includes(g.definition.tier_level));
+  const slotGear = filter === 'card' ? [] : gear.filter(g => filter === 'all' || g.slot === filter), shownGear = slotGear.filter(matches), shownCards = filter === 'card' || (filter === 'all'&&!levels.length) ? cards.filter(c=>(!cardMode||!cardSlot||c.definition.slot===cardSlot)&&(!rarities.length||rarities.includes(c.item.rarity_id))) : [];
   const filterItems=[...slotGear,...(filter==='card'||filter==='all'?cards:[])];
   const presentRarities = [...new Set(filterItems.map(g => g.item.rarity_id))].sort((a, b) => (rarityRank[a] ?? 0) - (rarityRank[b] ?? 0)), presentLevels = [...new Set(slotGear.map(g => g.definition.tier_level))].sort((a, b) => a - b);
   const toggle = <T,>(list: T[], value: T) => list.includes(value) ? list.filter(x => x !== value) : [...list, value];
@@ -67,12 +68,13 @@ export function BackpackPage({ context }: { context: GameContext }) {
   const filters: [Filter, string][] = [['all', 'ทั้งหมด'], ...equipmentSlots.map(s => [s, slotLabels[s]] as [Filter, string]), ['card', 'การ์ด']];
   return <div className="page backpack-page">
     <PageHeader title="กระเป๋า" sub={`${state.inventory.length} / ${equipmentData.inventory_capacity} ช่อง${state.inventory.length >= equipmentData.inventory_capacity ? ' · เต็ม' : ''}`} onBack={() => go('home')} right={<button className={`btn small ${bulk ? 'primary' : 'ghost'}`} disabled={locked && !bulk} onClick={() => setBulk(bulk ? null : [])}>{bulk ? 'เสร็จ' : cardMode ? 'ย่อยหลายใบ' : 'ย่อยหลายชิ้น'}</button>} />
-    <div className="filter-row" role="tablist">{filters.map(([id, label]) => <button key={id} role="tab" aria-selected={filter === id} className={`chip ${filter === id ? 'on' : ''}`} onClick={() => {setFilter(id);if(id==='card')setLevels([]);if(bulk)setBulk([]);}}>{label}</button>)}</div>
+    <div className="filter-row" role="tablist">{filters.map(([id, label]) => <button key={id} role="tab" aria-selected={filter === id} className={`chip ${filter === id ? 'on' : ''}`} onClick={() => {setFilter(id);setCardSlot(null);if(id==='card')setLevels([]);if(bulk)setBulk([]);}}>{label}</button>)}</div>
+    {cardMode && cards.length > 0 && <div className="filter-row sub card-slot-filter" role="group" aria-label="กรองการ์ดตามช่องสวมใส่">{[null, ...equipmentSlots].map(slot => <button key={slot ?? 'all'} className={`chip small ${cardSlot === slot ? 'on' : ''}`} aria-pressed={cardSlot === slot} onClick={() => {setCardSlot(slot);setInspectedCard(null);if(bulk)setBulk([]);}}>{slot ? slotLabels[slot] : 'ทั้งหมด'}</button>)}</div>}
     {filterItems.length > 0 && <div className="filter-row sub" role="group" aria-label="กรองตาม Rarity และ Level">
       {presentRarities.map(r => <button key={r} aria-pressed={rarities.includes(r)} className={`chip small rarity-chip rarity-${r} ${rarities.includes(r) ? 'on' : ''}`} onClick={() => {setRarities(toggle(rarities, r));if(bulk)setBulk([]);}}>{rarityLabels[r] ?? r}</button>)}
       {filter!=='card'&&<span className="filter-gap" aria-hidden="true" />}
       {(filter==='card'?[]:presentLevels).map(l => <button key={l} aria-pressed={levels.includes(l)} className={`chip small ${levels.includes(l) ? 'on' : ''}`} onClick={() => {setLevels(toggle(levels, l));if(bulk)setBulk([]);}}>Lv{l}</button>)}
-      {narrowed && <button className="chip small ghost" onClick={() => { setRarities([]); setLevels([]);if(bulk)setBulk([]); }}>ล้างตัวกรอง</button>}
+      {narrowed && <button className="chip small ghost" onClick={() => { setRarities([]); setLevels([]);setCardSlot(null);setInspectedCard(null);if(bulk)setBulk([]); }}>ล้างตัวกรอง</button>}
     </div>}
     <VirtualGrid items={[...shownGear.map(g => ({ kind: 'gear' as const, g })), ...shownCards.map(c => ({ kind: 'card' as const, c })), ...Array.from({ length: Math.max(0, 20 - shownGear.length - shownCards.length) }, (_, i) => ({ kind: 'empty' as const, i }))]} renderItem={row => {
       if (row.kind === 'empty') return <span key={`empty${row.i}`} className="bag-cell empty" aria-hidden="true" />;
