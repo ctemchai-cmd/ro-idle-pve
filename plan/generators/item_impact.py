@@ -11,15 +11,16 @@ def card_power(row):
     """Uniform semantic power rules for every card, including future catalog entries."""
     result = deepcopy(row)
     factor = POLICY['power_multiplier']
+    growth_factor = POLICY.get('card_growth_multiplier', 1)
     growth = {}
     for modifier in list(result['modifiers']):
         stat = modifier['stat']
         reference = POLICY['card_flat_stat_reference'].get(stat)
         if modifier['op'] == 'add_flat' and reference and modifier['value'] > 0:
-            growth[stat] = growth.get(stat, 0) + modifier['value'] / reference * factor
+            growth[stat] = growth.get(stat, 0) + modifier['value'] / reference * factor * growth_factor
         elif modifier['op'] == 'add_flat' and modifier['value'] > 0 and stat in POLICY.get('card_primary_growth', {}):
             for derived, coefficient in POLICY['card_primary_growth'][stat].items():
-                growth[derived] = growth.get(derived, 0) + modifier['value'] * coefficient / POLICY['card_flat_stat_reference'][derived] * factor
+                growth[derived] = growth.get(derived, 0) + modifier['value'] * coefficient / POLICY['card_flat_stat_reference'][derived] * factor * growth_factor
         elif modifier['op'] == 'add_flat' and stat in ('outgoing_physical_bonus', 'outgoing_magical_bonus', 'outgoing_true_bonus', 'outgoing_healing_bonus'):
             modifier['value'] = round(modifier['value'] * factor, 6)
     for stat, value in growth.items():

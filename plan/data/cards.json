@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "content_version": "cards-ro-v6-mvp-magic",
+  "content_version": "cards-ro-v7-role-budget",
   "definitions": [
     {
       "id": "card_weapon_1",
@@ -16,21 +16,28 @@
           "stat": "physical_attack",
           "op": "add_flat",
           "bucket": "derived",
-          "value": 8
+          "value": 10
         },
         {
           "id": "crit_chance_bonus",
           "stat": "crit_chance_bonus",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.005
+          "value": 0.02
+        },
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
         },
         {
           "id": "impact_physical_attack",
           "stat": "physical_attack",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.14
+          "value": 0.0525
         }
       ],
       "triggers": [],
@@ -57,7 +64,7 @@
           "stat": "physical_attack",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.0875
+          "value": 0.02625
         }
       ],
       "triggers": [
@@ -110,7 +117,21 @@
           "stat": "crit_chance_bonus",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.03
+          "value": 0.06
+        },
+        {
+          "id": "balance_crit_damage_bonus",
+          "stat": "crit_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.1
+        },
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.04
         }
       ],
       "triggers": [],
@@ -137,7 +158,7 @@
           "stat": "max_sp",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.4375
+          "value": 0.13125
         }
       ],
       "triggers": [],
@@ -157,21 +178,21 @@
           "stat": "int",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 2
+          "value": 3
         },
         {
           "id": "impact_magical_attack",
           "stat": "magical_attack",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.105
+          "value": 0.04725
         },
         {
           "id": "impact_max_sp",
           "stat": "max_sp",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.14
+          "value": 0.063
         }
       ],
       "triggers": [],
@@ -191,7 +212,7 @@
           "stat": "max_sp",
           "op": "add_flat",
           "bucket": "derived",
-          "value": 50
+          "value": 40
         },
         {
           "id": "int",
@@ -212,7 +233,7 @@
           "stat": "max_sp",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.875
+          "value": 0.21
         }
       ],
       "triggers": [],
@@ -232,14 +253,28 @@
           "stat": "luk",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 2
+          "value": 3
         },
         {
           "id": "evasion_bonus",
           "stat": "evasion_bonus",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.005
+          "value": 0.0125
+        },
+        {
+          "id": "balance_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.035
+        },
+        {
+          "id": "balance_hit_bonus",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.015
         }
       ],
       "triggers": [],
@@ -259,7 +294,7 @@
           "stat": "str",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 1
+          "value": 3
         },
         {
           "id": "physical_attack",
@@ -269,11 +304,18 @@
           "value": 5
         },
         {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.015
+        },
+        {
           "id": "impact_physical_attack",
           "stat": "physical_attack",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.1225
+          "value": 0.05775
         }
       ],
       "triggers": [],
@@ -293,21 +335,28 @@
           "stat": "int",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 1
+          "value": 3
+        },
+        {
+          "id": "balance_outgoing_healing_bonus",
+          "stat": "outgoing_healing_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.02625
         },
         {
           "id": "impact_magical_attack",
           "stat": "magical_attack",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.0525
+          "value": 0.04725
         },
         {
           "id": "impact_max_sp",
           "stat": "max_sp",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.07
+          "value": 0.063
         }
       ],
       "triggers": [],
@@ -327,7 +376,7 @@
           "stat": "evasion_bonus",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.04
+          "value": 0.06
         },
         {
           "id": "ghost_resistance",
@@ -335,6 +384,13 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": -0.1
+        },
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.02
         }
       ],
       "triggers": [],
@@ -354,7 +410,14 @@
           "stat": "evasion_bonus",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.025
+          "value": 0.035
+        },
+        {
+          "id": "balance_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.03
         }
       ],
       "triggers": [],
@@ -382,6 +445,20 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.01
+        },
+        {
+          "id": "balance_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.04
+        },
+        {
+          "id": "balance_magical_guard_percent",
+          "stat": "magical_guard_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.015
         }
       ],
       "triggers": [],
@@ -401,7 +478,21 @@
           "stat": "hp_regen_percent",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.001
+          "value": 0.0025
+        },
+        {
+          "id": "balance_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.04
+        },
+        {
+          "id": "balance_healing_received_bonus",
+          "stat": "healing_received_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.035
         }
       ],
       "triggers": [],
@@ -421,28 +512,35 @@
           "stat": "str",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 1
+          "value": 3
         },
         {
           "id": "vit",
           "stat": "vit",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 1
+          "value": 3
+        },
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.02
         },
         {
           "id": "impact_physical_attack",
           "stat": "physical_attack",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.035
+          "value": 0.0315
         },
         {
           "id": "impact_max_hp",
           "stat": "max_hp",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.035
+          "value": 0.0315
         }
       ],
       "triggers": [],
@@ -462,14 +560,21 @@
           "stat": "max_hp",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.03
+          "value": 0.07
         },
         {
           "id": "agi",
           "stat": "agi",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 1
+          "value": 2
+        },
+        {
+          "id": "balance_guard_percent",
+          "stat": "guard_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.015
         }
       ],
       "triggers": [],
@@ -489,14 +594,21 @@
           "stat": "str",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 2
+          "value": 4
+        },
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
         },
         {
           "id": "impact_physical_attack",
           "stat": "physical_attack",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.07
+          "value": 0.042
         }
       ],
       "triggers": [],
@@ -516,14 +628,28 @@
           "stat": "dex",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 2
+          "value": 4
+        },
+        {
+          "id": "balance_hit_bonus",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.02
+        },
+        {
+          "id": "balance_skill_damage_bonus",
+          "stat": "skill_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
         },
         {
           "id": "impact_physical_attack",
           "stat": "physical_attack",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.035
+          "value": 0.021
         }
       ],
       "triggers": [],
@@ -543,14 +669,21 @@
           "stat": "agi",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 1
+          "value": 3
         },
         {
           "id": "evasion_bonus",
           "stat": "evasion_bonus",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.01
+          "value": 0.025
+        },
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
         }
       ],
       "triggers": [],
@@ -570,7 +703,7 @@
           "stat": "vit",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 1
+          "value": 2
         },
         {
           "id": "max_hp",
@@ -580,11 +713,18 @@
           "value": 40
         },
         {
+          "id": "balance_guard_percent",
+          "stat": "guard_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.015
+        },
+        {
           "id": "impact_max_hp",
           "stat": "max_hp",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.105
+          "value": 0.042
         }
       ],
       "triggers": [],
@@ -604,21 +744,35 @@
           "stat": "luk",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 1
+          "value": 3
         },
         {
           "id": "crit_chance_bonus",
           "stat": "crit_chance_bonus",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.01
+          "value": 0.015
         },
         {
           "id": "evasion_bonus",
           "stat": "evasion_bonus",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.003
+          "value": 0.01
+        },
+        {
+          "id": "balance_crit_damage_bonus",
+          "stat": "crit_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.06
+        },
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.03
         }
       ],
       "triggers": [],
@@ -638,14 +792,21 @@
           "stat": "max_hp",
           "op": "add_flat",
           "bucket": "derived",
-          "value": 120
+          "value": 80
+        },
+        {
+          "id": "balance_guard_percent",
+          "stat": "guard_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
         },
         {
           "id": "impact_max_hp",
           "stat": "max_hp",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.21
+          "value": 0.042
         }
       ],
       "triggers": [],
@@ -665,14 +826,21 @@
           "stat": "vit",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 2
+          "value": 3
+        },
+        {
+          "id": "balance_healing_received_bonus",
+          "stat": "healing_received_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.04
         },
         {
           "id": "impact_max_hp",
           "stat": "max_hp",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.07
+          "value": 0.0315
         }
       ],
       "triggers": [],
@@ -692,14 +860,21 @@
           "stat": "agi",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 1
+          "value": 3
         },
         {
           "id": "evasion_bonus",
           "stat": "evasion_bonus",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.01
+          "value": 0.015
+        },
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
         }
       ],
       "triggers": [],
@@ -719,7 +894,7 @@
           "stat": "dex",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 1
+          "value": 3
         },
         {
           "id": "physical_attack",
@@ -729,11 +904,18 @@
           "value": 3
         },
         {
+          "id": "balance_hit_bonus",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
+        },
+        {
           "id": "impact_physical_attack",
           "stat": "physical_attack",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.07
+          "value": 0.0315
         }
       ],
       "triggers": [],
@@ -747,7 +929,15 @@
       "weapon_type": null,
       "tier_level": 20,
       "required_level": 20,
-      "modifiers": [],
+      "modifiers": [
+        {
+          "id": "balance_skill_damage_bonus",
+          "stat": "skill_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.03
+        }
+      ],
       "triggers": [
         {
           "id": "matched_bonus",
@@ -778,7 +968,7 @@
               "formula": {
                 "id": "event_damage_power",
                 "params": {
-                  "ratio": 0.14
+                  "ratio": 0.13125
                 }
               },
               "damage_type": "true",
@@ -809,7 +999,15 @@
       "weapon_type": null,
       "tier_level": 20,
       "required_level": 20,
-      "modifiers": [],
+      "modifiers": [
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
+        }
+      ],
       "triggers": [
         {
           "id": "matched_bonus",
@@ -840,7 +1038,7 @@
               "formula": {
                 "id": "event_damage_power",
                 "params": {
-                  "ratio": 0.14
+                  "ratio": 0.13125
                 }
               },
               "damage_type": "true",
@@ -885,6 +1083,13 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.03
+        },
+        {
+          "id": "balance_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.05
         }
       ],
       "triggers": [],
@@ -904,7 +1109,21 @@
           "stat": "agi",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 2
+          "value": 4
+        },
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.035
+        },
+        {
+          "id": "balance_hit_bonus",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.015
         }
       ],
       "triggers": [],
@@ -925,6 +1144,13 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.04
+        },
+        {
+          "id": "balance_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.03
         }
       ],
       "triggers": [],
@@ -944,7 +1170,14 @@
           "stat": "max_hp",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.05
+          "value": 0.09
+        },
+        {
+          "id": "balance_healing_received_bonus",
+          "stat": "healing_received_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.035
         }
       ],
       "triggers": [],
@@ -964,14 +1197,21 @@
           "stat": "str",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 3
+          "value": 5
+        },
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
         },
         {
           "id": "impact_physical_attack",
           "stat": "physical_attack",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.105
+          "value": 0.0525
         }
       ],
       "triggers": [],
@@ -994,11 +1234,18 @@
           "value": 5
         },
         {
+          "id": "balance_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.04
+        },
+        {
           "id": "impact_physical_defense",
           "stat": "physical_defense",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.0875
+          "value": 0.02625
         }
       ],
       "triggers": [],
@@ -1019,14 +1266,28 @@
           "stat": "dex",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 3
+          "value": 5
+        },
+        {
+          "id": "balance_skill_damage_bonus",
+          "stat": "skill_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
+        },
+        {
+          "id": "balance_hit_bonus",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.02
         },
         {
           "id": "impact_physical_attack",
           "stat": "physical_attack",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.0525
+          "value": 0.02625
         }
       ],
       "triggers": [],
@@ -1053,7 +1314,7 @@
           "stat": "physical_attack",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.35
+          "value": 0.105
         }
       ],
       "triggers": [],
@@ -1073,14 +1334,21 @@
           "stat": "vit",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 3
+          "value": 5
+        },
+        {
+          "id": "balance_physical_defense",
+          "stat": "physical_defense",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.04
         },
         {
           "id": "impact_max_hp",
           "stat": "max_hp",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.105
+          "value": 0.0525
         }
       ],
       "triggers": [],
@@ -1100,7 +1368,14 @@
           "stat": "evasion_bonus",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.04
+          "value": 0.035
+        },
+        {
+          "id": "balance_skill_damage_bonus",
+          "stat": "skill_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
         }
       ],
       "triggers": [],
@@ -1123,11 +1398,18 @@
           "value": 5
         },
         {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
+        },
+        {
           "id": "impact_physical_attack",
           "stat": "physical_attack",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.0875
+          "value": 0.02625
         }
       ],
       "triggers": [
@@ -1160,7 +1442,7 @@
               "formula": {
                 "id": "event_damage_power",
                 "params": {
-                  "ratio": 0.175
+                  "ratio": 0.105
                 }
               },
               "damage_type": "true",
@@ -1191,12 +1473,34 @@
       "weapon_type": null,
       "tier_level": 40,
       "required_level": 40,
-      "modifiers": [],
+      "modifiers": [
+        {
+          "id": "balance_magical_attack",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.04
+        },
+        {
+          "id": "balance_sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.1
+        },
+        {
+          "id": "balance_outgoing_healing_bonus",
+          "stat": "outgoing_healing_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.04375
+        }
+      ],
       "triggers": [
         {
           "id": "undead_find",
           "event": "damage_dealt",
-          "chance": 0.05,
+          "chance": 0.12,
           "accepted_origins": [
             "normal",
             "skill"
@@ -1216,9 +1520,9 @@
               "type": "apply_status",
               "target": "self",
               "status_id": "attack_up",
-              "duration_ms": 5000,
+              "duration_ms": 8000,
               "params": {
-                "ratio": 0.03
+                "ratio": 0.06
               },
               "chance": 1
             }
@@ -1251,11 +1555,25 @@
           "value": 1
         },
         {
+          "id": "balance_physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.045
+        },
+        {
+          "id": "balance_hit_bonus",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
+        },
+        {
           "id": "impact_physical_attack",
           "stat": "physical_attack",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.035
+          "value": 0.0105
         }
       ],
       "triggers": [],
@@ -1276,6 +1594,20 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 1
+        },
+        {
+          "id": "balance_magical_attack",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.055
+        },
+        {
+          "id": "balance_sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.05
         }
       ],
       "triggers": [],
@@ -1295,7 +1627,14 @@
           "stat": "neutral_resistance",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.1
+          "value": 0.08
+        },
+        {
+          "id": "balance_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.02
         }
       ],
       "triggers": [],
@@ -1325,25 +1664,39 @@
           "value": 5
         },
         {
+          "id": "balance_magical_attack",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.03
+        },
+        {
+          "id": "balance_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.035
+        },
+        {
           "id": "impact_magical_attack",
           "stat": "magical_attack",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.0525
+          "value": 0.01575
         },
         {
           "id": "impact_max_sp",
           "stat": "max_sp",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.07
+          "value": 0.021
         },
         {
           "id": "impact_physical_defense",
           "stat": "physical_defense",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.0875
+          "value": 0.02625
         }
       ],
       "triggers": [],
@@ -1372,6 +1725,20 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.01
+        },
+        {
+          "id": "balance_magical_attack",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.035
+        },
+        {
+          "id": "balance_max_sp",
+          "stat": "max_sp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.04
         }
       ],
       "triggers": [],
@@ -1391,14 +1758,14 @@
           "stat": "max_sp",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.1
+          "value": 0.15
         },
         {
           "id": "sp_regen_percent",
           "stat": "sp_regen_percent",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.05
+          "value": 0.12
         }
       ],
       "triggers": [],
@@ -1418,14 +1785,14 @@
           "stat": "max_hp",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.05
+          "value": 0.065
         },
         {
           "id": "max_sp",
           "stat": "max_sp",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.05
+          "value": 0.065
         }
       ],
       "triggers": [],
@@ -1439,7 +1806,15 @@
       "weapon_type": null,
       "tier_level": 40,
       "required_level": 40,
-      "modifiers": [],
+      "modifiers": [
+        {
+          "id": "balance_physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.025
+        }
+      ],
       "triggers": [
         {
           "id": "matched_bonus",
@@ -1470,7 +1845,7 @@
               "formula": {
                 "id": "event_damage_power",
                 "params": {
-                  "ratio": 0.175
+                  "ratio": 0.14875
                 }
               },
               "damage_type": "true",
@@ -1514,7 +1889,21 @@
           "stat": "cast_speed",
           "op": "add_percent",
           "bucket": "derived",
-          "value": -0.1
+          "value": -0.04
+        },
+        {
+          "id": "balance_max_sp",
+          "stat": "max_sp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.04
+        },
+        {
+          "id": "balance_sp_cost_percent",
+          "stat": "sp_cost_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": -0.025
         }
       ],
       "triggers": [],
@@ -1542,6 +1931,13 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.01
+        },
+        {
+          "id": "balance_physical_defense",
+          "stat": "physical_defense",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.045
         }
       ],
       "triggers": [],
@@ -1561,7 +1957,14 @@
           "stat": "attack_speed",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.06
+          "value": 0.07
+        },
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.02
         }
       ],
       "triggers": [],
@@ -1582,6 +1985,13 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.0525
+        },
+        {
+          "id": "balance_magical_attack",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.07
         }
       ],
       "triggers": [
@@ -1638,7 +2048,15 @@
       "weapon_type": null,
       "tier_level": 60,
       "required_level": 60,
-      "modifiers": [],
+      "modifiers": [
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
+        }
+      ],
       "triggers": [
         {
           "id": "matched_bonus",
@@ -1669,7 +2087,7 @@
               "formula": {
                 "id": "event_damage_power",
                 "params": {
-                  "ratio": 0.2625
+                  "ratio": 0.1225
                 }
               },
               "damage_type": "true",
@@ -1714,6 +2132,27 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.4
+        },
+        {
+          "id": "balance_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.08
+        },
+        {
+          "id": "balance_healing_received_bonus",
+          "stat": "healing_received_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.06
+        },
+        {
+          "id": "balance_sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.06
         }
       ],
       "triggers": [],
@@ -1734,6 +2173,13 @@
           "op": "add_percent",
           "bucket": "derived",
           "value": 0.08
+        },
+        {
+          "id": "balance_magical_guard_percent",
+          "stat": "magical_guard_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.06
         }
       ],
       "triggers": [
@@ -1798,7 +2244,7 @@
           "stat": "magical_guard_percent",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.25
+          "value": 0.075
         },
         {
           "id": "sp_cost_percent",
@@ -1806,6 +2252,13 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.25
+        },
+        {
+          "id": "balance_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.04
         }
       ],
       "triggers": [],
@@ -1825,7 +2278,7 @@
           "stat": "outgoing_physical_bonus",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.1225
+          "value": 0.09625
         }
       ],
       "triggers": [
@@ -1881,12 +2334,20 @@
       "weapon_type": null,
       "tier_level": 60,
       "required_level": 60,
-      "modifiers": [],
+      "modifiers": [
+        {
+          "id": "balance_outgoing_magical_bonus",
+          "stat": "outgoing_magical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.0875
+        }
+      ],
       "triggers": [
         {
           "id": "gust_on_hit",
           "event": "normal_attack_hit",
-          "chance": 0.03,
+          "chance": 0.04,
           "accepted_origins": [
             "normal"
           ],
@@ -1911,7 +2372,7 @@
               "formula": {
                 "id": "magical_power",
                 "params": {
-                  "attack_ratio": 1.05,
+                  "attack_ratio": 1.4,
                   "flat_power": 0.0
                 }
               },
@@ -1967,7 +2428,22 @@
       "weapon_type": null,
       "tier_level": 60,
       "required_level": 60,
-      "modifiers": [],
+      "modifiers": [
+        {
+          "id": "balance_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.07
+        },
+        {
+          "id": "balance_guard_percent",
+          "stat": "guard_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.035
+        }
+      ],
       "triggers": [
         {
           "id": "freeze_when_hit",
@@ -2020,6 +2496,20 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.15
+        },
+        {
+          "id": "balance_attack_speed",
+          "stat": "attack_speed",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.05
+        },
+        {
+          "id": "balance_evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
         }
       ],
       "triggers": [],
@@ -2046,7 +2536,7 @@
           "stat": "guard_percent",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.05
+          "value": 0.075
         },
         {
           "id": "move_speed_percent",
@@ -2054,6 +2544,13 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.05
+        },
+        {
+          "id": "balance_hp_regen_percent",
+          "stat": "hp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.0015
         }
       ],
       "triggers": [],
@@ -2074,6 +2571,13 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": -0.03
+        },
+        {
+          "id": "balance_physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.045
         }
       ],
       "triggers": [
@@ -2105,7 +2609,7 @@
               "formula": {
                 "id": "physical_power",
                 "params": {
-                  "attack_ratio": 0.2625,
+                  "attack_ratio": 0.14,
                   "flat_power": 0.0
                 }
               },
@@ -2135,14 +2639,14 @@
           "stat": "luk",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 2
+          "value": 5
         },
         {
           "id": "max_hp",
           "stat": "max_hp",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.02
+          "value": 0.065
         }
       ],
       "triggers": [],
@@ -2172,11 +2676,18 @@
           "value": 8
         },
         {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.02
+        },
+        {
           "id": "impact_physical_attack",
           "stat": "physical_attack",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.21
+          "value": 0.063
         }
       ],
       "triggers": [],
@@ -2196,14 +2707,21 @@
           "stat": "agi",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 2
+          "value": 5
         },
         {
           "id": "evasion_bonus",
           "stat": "evasion_bonus",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.02
+          "value": 0.04
+        },
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.035
         }
       ],
       "triggers": [],
@@ -2226,11 +2744,25 @@
           "value": 5
         },
         {
+          "id": "balance_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.045
+        },
+        {
+          "id": "balance_healing_received_bonus",
+          "stat": "healing_received_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.04
+        },
+        {
           "id": "impact_magical_defense",
           "stat": "magical_defense",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.0875
+          "value": 0.02625
         }
       ],
       "triggers": [],
@@ -2336,6 +2868,13 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": -0.1
+        },
+        {
+          "id": "balance_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.025
         }
       ],
       "triggers": [],
@@ -2353,14 +2892,14 @@
         {
           "id": "max_hp",
           "stat": "max_hp",
-          "value": 0.04,
+          "value": 0.06,
           "op": "add_percent",
           "bucket": "derived"
         },
         {
           "id": "magical_defense",
           "stat": "magical_defense",
-          "value": 0.03,
+          "value": 0.05,
           "op": "add_percent",
           "bucket": "derived"
         }
@@ -2394,7 +2933,7 @@
         {
           "id": "guard_percent",
           "stat": "guard_percent",
-          "value": 0.01,
+          "value": 0.025,
           "op": "add_flat",
           "bucket": "bonus"
         }
@@ -2414,16 +2953,23 @@
         {
           "id": "magical_guard_percent",
           "stat": "magical_guard_percent",
-          "value": 0.03,
+          "value": 0.05,
           "op": "add_flat",
           "bucket": "bonus"
         },
         {
           "id": "max_sp",
           "stat": "max_sp",
-          "value": 0.02,
+          "value": 0.055,
           "op": "add_percent",
           "bucket": "derived"
+        },
+        {
+          "id": "balance_magical_defense",
+          "stat": "magical_defense",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.035
         }
       ],
       "triggers": [],
@@ -2437,7 +2983,15 @@
       "weapon_type": null,
       "tier_level": 40,
       "required_level": 40,
-      "modifiers": [],
+      "modifiers": [
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.035
+        }
+      ],
       "triggers": [
         {
           "id": "matched_bonus",
@@ -2500,7 +3054,15 @@
       "weapon_type": null,
       "tier_level": 40,
       "required_level": 40,
-      "modifiers": [],
+      "modifiers": [
+        {
+          "id": "balance_attack_speed",
+          "stat": "attack_speed",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.025
+        }
+      ],
       "triggers": [
         {
           "id": "matched_bonus",
@@ -2577,6 +3139,13 @@
           "value": 0.03,
           "op": "add_percent",
           "bucket": "derived"
+        },
+        {
+          "id": "balance_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.045
         }
       ],
       "triggers": [],
@@ -2594,7 +3163,7 @@
         {
           "id": "max_hp",
           "stat": "max_hp",
-          "value": 0.02,
+          "value": 0.04,
           "op": "add_percent",
           "bucket": "derived"
         },
@@ -2604,6 +3173,13 @@
           "value": 0.02,
           "op": "add_flat",
           "bucket": "bonus"
+        },
+        {
+          "id": "balance_attack_speed",
+          "stat": "attack_speed",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.025
         }
       ],
       "triggers": [],
@@ -2637,7 +3213,7 @@
           "stat": "magical_attack",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.21
+          "value": 0.063
         }
       ],
       "triggers": [],
@@ -2655,7 +3231,7 @@
         {
           "id": "int",
           "stat": "int",
-          "value": 1,
+          "value": 2,
           "op": "add_flat",
           "bucket": "primary"
         },
@@ -2664,14 +3240,14 @@
           "stat": "magical_attack",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.0525
+          "value": 0.0315
         },
         {
           "id": "impact_max_sp",
           "stat": "max_sp",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.07
+          "value": 0.042
         }
       ],
       "triggers": [],
@@ -2687,7 +3263,7 @@
             "normal",
             "periodic"
           ],
-          "penetration_bonus": 0.105
+          "penetration_bonus": 0.0875
         }
       ]
     },
@@ -2703,7 +3279,7 @@
         {
           "id": "magical_attack",
           "stat": "magical_attack",
-          "value": 0.15,
+          "value": 0.08,
           "op": "add_percent",
           "bucket": "derived"
         },
@@ -2732,7 +3308,7 @@
           "stat": "outgoing_magical_bonus",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.175
+          "value": 0.0875
         }
       ],
       "triggers": [],
@@ -2752,7 +3328,7 @@
           "stat": "outgoing_magical_bonus",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.2625
+          "value": 0.1225
         }
       ],
       "triggers": [],
@@ -2772,7 +3348,7 @@
           "stat": "magical_attack",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.25
+          "value": 0.14
         },
         {
           "id": "max_sp",
@@ -2799,7 +3375,7 @@
           "stat": "magical_attack",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.2
+          "value": 0.12
         },
         {
           "id": "sp_cost_percent",
@@ -3864,7 +4440,7 @@
   "gacha_duplicates": "always distinct card instances so several characters can equip copies; user may consume only unequipped unlocked instances into card_dust for upgrades",
   "resolve_rule": "Fixed monster rarity multiplier × instance level. Migrated legacy_quality retains its old power/salvage floor if stronger, never multiplies again.",
   "free_remove_outside_battle": true,
-  "catalog_basis": "D-099 RO identities; D-109 fixed rarity; D-122 distinct Puppet variants; D179 five magic cards with typed conditional bonuses; D180 two Legendary MATK/SP tradeoff cards",
+  "catalog_basis": "D-099 RO identities; D-109 fixed rarity; D-122 Puppet variants; D179–180 magic identities; D183 role budgets and useful utility/specialist baselines",
   "origins": {
     "card_weapon_1": {
       "ro_item_id": 4029,

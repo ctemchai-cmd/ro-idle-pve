@@ -91,8 +91,8 @@ test('Healing Plant inherits shared heal power without changing lifetime, cadenc
 test('primary stat cards keep their RO stat and add proportional late-game power without rerolling instances', () => {
   const card = (id: string) => ({ kind: 'card' as const, instance_id: 'qa_' + id, definition_id: id, rarity_id: 'bronze' as const, level: 1, locked: false });
   const elder = resolvedCardModifiers(card('card_head_2'), content);
-  assert.equal(elder.find(m => m.stat === 'int')!.value, 2); close(Number(elder.find(m => m.stat === 'magical_attack')!.value), .105); close(Number(elder.find(m => m.stat === 'max_sp')!.value), .14);
-  const picky = resolvedCardModifiers(card('card_armor_2'), content); close(Number(picky.find(m => m.stat === 'physical_attack' && m.op === 'add_percent')!.value), .1225);
+  assert.equal(elder.find(m => m.stat === 'int')!.value, 3); close(Number(elder.find(m => m.stat === 'magical_attack')!.value), .04725); close(Number(elder.find(m => m.stat === 'max_sp')!.value), .063);
+  const picky = resolvedCardModifiers(card('card_armor_2'), content); close(Number(picky.find(m => m.stat === 'physical_attack' && m.op === 'add_percent')!.value), .05775);
 });
 test('all ten weapon families independently increase same-budget builds at tiers20/40/60 without card sources', () => {
   const roots = { sword: 'swordsman', bow: 'archer', staff: 'mage', book: 'mage', knuckle: 'acolyte', axe: 'merchant', mace: 'merchant', dagger: 'thief', instrument: 'archer', whip: 'archer' } as const;

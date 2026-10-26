@@ -65,10 +65,10 @@ test('Marc/Marduk/Deviruchi resist only their status; hard CC still interrupts P
 test('Maya reflects magical only; normalized proc cannot recursively reflect itself',()=>{
  for(const[type,count]of [['physical',0],['magical',1]]as const){const input=withCard('card_maya');input.stat_blueprint.permanent_sources[0]!.triggers[0]!.chance=1;const state=checkpoint(battle([input,actor('b','enemy')])),events:{type:string}[]=[];const p=new EffectPipeline(state,content,{emit:e=>events.push(e),metric:()=>{},interrupt:()=>{},revive:()=>{}}),c=p.context(state.actors[1]!,'hit','skill','root');c.selected={target:[state.actors[0]!]};p.program([damage(type)],c);p.drain();assert.equal(events.filter(e=>e.type==='proc').length,count);}
 });
-test('Moonlight changes motion only, with identical virtual-time integration across frame chunks',()=>{
+test('Moonlight preserves motion integration with D183 tempo/evasion bonuses, with identical virtual-time integration across frame chunks',()=>{
  const run=(hasCard:boolean)=>{const a=hasCard?withCard('card_moonlight_flower'):actor('a','player'),b=actor('b','enemy');a.normal_attack_enabled=true;a.spatial={x:100,y:100,radius:10,normal_range:25,move_speed:100};b.spatial={x:900,y:100,radius:10,normal_range:25,move_speed:0};return unwrap(createBattle({actors:[a,b],arena:{width:1000,height:300,step_ms:50},mode:{kind:'story',ref:'motion-card',time_limit_ms:90000,ticket_day:null,daily_phase:null,daily_current_hp:null,reserved_phase_keys:[]}},content,1));};
  const before=run(false),initial=run(true),plain=step(before,1000),whole=step(initial,1000),split=step(step(initial,333).state,1000);
- assert.ok(whole.state.actors[0]!.spatial!.x>plain.state.actors[0]!.spatial!.x);assert.deepEqual(whole.state,split.state);assert.equal(initial.actors[0]!.phase_ready_at,before.actors[0]!.phase_ready_at);assert.equal(initial.actors[0]!.stats.attack_speed,before.actors[0]!.stats.attack_speed);
+ assert.ok(whole.state.actors[0]!.spatial!.x>plain.state.actors[0]!.spatial!.x);assert.deepEqual(whole.state,split.state);assert(initial.actors[0]!.stats.attack_speed>before.actors[0]!.stats.attack_speed);assert(initial.actors[0]!.stats.evasion_bonus>before.actors[0]!.stats.evasion_bonus);
 });
 test('Osiris improves the existing revive recovery without adding a revive or replaying its old cast',()=>{
  const revive=skill('revive',1000,0,0);revive.selectors={dead:{team:'allies',life:'dead',select:'front_first',count:null,phase:'cast_resolve',missing:'skip'}};revive.effects=[{id:'revive',type:'revive',target:'dead',hp_ratio:.3,sp_ratio:.5}];

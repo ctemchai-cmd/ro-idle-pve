@@ -76,7 +76,7 @@ test('D179 Necromancer is real pre-mitigation magical penetration, scales once a
  for(const type of['physical','true'] as const)assert.equal(hit(a,type).damage,hit(without,type).damage);
  for(const origin of['proc','reflect','system','transfer'] as const)assert.equal(hit(a,'magical',origin).damage,hit(without,'magical',origin).damage);
  assert.equal(hit(a,'magical','skill','mage_fire_bolt',3,-12).damage,hit(without,'magical','skill','mage_fire_bolt',3,-12).damage);
- for(let level=1;level<=5;level++){const c=card('card_necromancer',level);assert.equal(resolvedItemCombatBonuses(c,content)[0]!.penetration_bonus,.105*cardPowerMultiplier(c,content));}
+ for(let level=1;level<=5;level++){const c=card('card_necromancer',level);assert.equal(resolvedItemCombatBonuses(c,content)[0]!.penetration_bonus,.0875*cardPowerMultiplier(c,content));}
  assert(resolvedItemCombatBonuses(card('card_necromancer',5),content)[0]!.penetration_bonus!>resolvedItemCombatBonuses(card('card_necromancer'),content)[0]!.penetration_bonus!);
 });
 test('D179 repeated instances add within existing buckets and generic profile filters match without RNG or mutations',()=>{
@@ -114,5 +114,5 @@ test('D179 all five new identities are reachable in actual gacha at the fixed mo
 });
 test('D179 descriptions use current rarity/level, broad magic damage and actual penetration; no Bolt wording remains',()=>{
  for(const id of ids)for(const level of[1,5]){const view=cardView(card(id,level),equipped().state),text=JSON.stringify(view);assert(!/Cold Bolt|Fire Bolt/.test(text));assert(!/undefined|NaN/.test(text));}
- const mods=resolvedCardModifiers(card('card_imp'),content);assert.equal(mods.length,1);assert.equal(mods[0]!.stat,'outgoing_magical_bonus');assert.equal(Number(mods[0]!.value),.2625*cardPowerMultiplier(card('card_imp'),content));
+ const mods=resolvedCardModifiers(card('card_imp'),content);assert.equal(mods.length,1);assert.equal(mods[0]!.stat,'outgoing_magical_bonus');assert.equal(Number(mods[0]!.value),.1225*cardPowerMultiplier(card('card_imp'),content));
 });

@@ -879,3 +879,19 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T157-AC-02` | TASK-157 | design70/AC02 | native/build/public | ผ่านlocalnative/build/M0/public4groups · [review](evidence/task-157-review.json) |
 | `T157-AC-03` | TASK-157 | design70/AC03 | native/build/public | ผ่านlocalnative/build/M0/public4groups · [review](evidence/task-157-review.json) |
 | `T157-AC-04` | TASK-157 | design70/AC04 | native/build/public | ผ่านlocalnative/build/M0/public4groups · [review](evidence/task-157-review.json) |
+
+## TASK-158 — ปุ่มสไตล์ RO Classic
+
+| Case | Task | Input | Method | Status |
+| --- | --- | --- | --- | --- |
+| `T158-AC-01` | TASK-158 | design/AC01 | native/build/public | not_run_implementation |
+| `T158-AC-02` | TASK-158 | design/AC02 | native/build/public | not_run_implementation |
+
+## TASK-159 — บาลานซ์การ์ดตามบทบาทและความหายาก
+
+| Case | Task | Input | Method | Status |
+| --- | --- | --- | --- | --- |
+| `T159-AC-01` | TASK-159 | design/AC01 | native/build/public | not_run_implementation |
+| `T159-AC-02` | TASK-159 | design/AC02 | native/build/public | not_run_implementation |
+| `T159-AC-03` | TASK-159 | design/AC03 | native/build/public | not_run_implementation |
+| `T159-AC-04` | TASK-159 | design/AC04 | native/build/public | not_run_implementation |

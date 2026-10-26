@@ -1,5 +1,11 @@
 # Handoff ระหว่าง agent
 
+## 26 ต.ค.2026 · Codex — TASK158–159 LOCAL COMPLETE / publish next
+
+- UserrequestsClassicbuttonsandcardbalance;confirmedATK/Abysmaloutliers,weakAGI/evade/status/specialistandPupaHPgap.79/80cardsadjusted(75explicit),auto-growth.3ofold;generators/specstayreproducible. Sharedengine/schema unchanged. All80IDs/73art/slot/rarity/rates/cost/ownedinvestments/packunchanged798a928. Newcontentdcf03142aa5cfc839f905b4956c2534882064720209df335eb3a50a709d381ee.
+- Full748/748,new8/focused16,actualReactnative3groups320390/14cardSheets+shop+buttonstates,480auditcases(80×2×3/8matchedseedspereffect),rootbuild/M0/generatorcheckPASS. Nativebuttons-speedcontrastfixedaftervisualreview;ClassicskinCSSrecreationnotbitmapasset. Historicalscopeoraclesrestorespecificpowerfieldsfromfrozen159before,actualnewmechanicstestedseparately. No fullclassDPSbatch/ownerSQL/env/6173restart. OwnVite7513/browsersCLOSED.
+- ALLUNCOMMITTEDHEAD695bff77e.158/159review;143/159done/M4 97/108. NEXT stageONLYours(notusermodernmigration-v2/unselectedmodern/task108png),commit/pushoriginmain/awaitVercelSUCCESS/run scripts/test_card_balance_hosted.cjs,thenbothdone145/159/M4 99/108. Evidence159README/summary/CSV/auditgz/beforegz. Needfinalstrictcheckafterauditscriptgzipchange;no productchangeaftertestedrootbuild.
+
 ## 26 ต.ค.2026 · Codex — TASK157 COMPLETE / card filters and equipped effects live
 
 - Sourceff8ed2e689513cacfca885ee5bbb8d470d309903 live/VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/4AYvDtGDvzxE4xmePuVrtDRUCoso. Public4groupsPASSAPI/SIN1/content86f219/pack798a928/anonymous401/24bundleSHA/newmarkers/login320390/actualdeployedCSSbadgecoverage+opaquefooter+scroll/fixedactions. ActualReactbehaviorlocalmemory:bulk6/equipped2/single4;rootbuild/M0passed. NoownerAuth/writes/SQL/env/assets/6173restart/balancebatch.

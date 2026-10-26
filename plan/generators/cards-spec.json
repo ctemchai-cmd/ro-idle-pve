@@ -22,20 +22,27 @@
           "stat": "physical_attack",
           "op": "add_flat",
           "bucket": "derived",
-          "value": 8
+          "value": 10
         },
         {
           "id": "crit_chance_bonus",
           "stat": "crit_chance_bonus",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.005
+          "value": 0.02
+        },
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4029&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: normal attacker: crit+normal damage vs universal Andre; native RO identity retained, idle numbers adapted.",
       "rarity_id": "uncommon",
       "source_level": 25,
       "strength_class": "strong"
@@ -116,13 +123,27 @@
           "stat": "crit_chance_bonus",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.03
+          "value": 0.06
+        },
+        {
+          "id": "balance_crit_damage_bonus",
+          "stat": "crit_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.1
+        },
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.04
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4086&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: crit build: chance+severity+normal attacks; native RO identity retained, idle numbers adapted.",
       "rarity_id": "uncommon",
       "source_level": 29,
       "strength_class": "strong"
@@ -170,13 +191,13 @@
           "stat": "int",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 2
+          "value": 3
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4052&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: INT hybrid caster; native RO identity retained, idle numbers adapted.",
       "rarity_id": "common",
       "source_level": 20,
       "strength_class": "weak"
@@ -197,7 +218,7 @@
           "stat": "max_sp",
           "op": "add_flat",
           "bucket": "derived",
-          "value": 50
+          "value": 40
         },
         {
           "id": "int",
@@ -217,7 +238,7 @@
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4269&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: SP burst tradeoff; remove 131% SP growth; native RO identity retained, idle numbers adapted.",
       "rarity_id": "rare",
       "source_level": 75,
       "strength_class": "elite"
@@ -238,20 +259,34 @@
           "stat": "luk",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 2
+          "value": 3
         },
         {
           "id": "evasion_bonus",
           "stat": "evasion_bonus",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.005
+          "value": 0.0125
+        },
+        {
+          "id": "balance_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.035
+        },
+        {
+          "id": "balance_hit_bonus",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.015
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4001&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: fortune/evasion with useful survival baseline; native RO identity retained, idle numbers adapted.",
       "rarity_id": "common",
       "source_level": 1,
       "strength_class": "weak"
@@ -272,7 +307,7 @@
           "stat": "str",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 1
+          "value": 3
         },
         {
           "id": "physical_attack",
@@ -280,12 +315,19 @@
           "op": "add_flat",
           "bucket": "derived",
           "value": 5
+        },
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.015
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4008&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: physical starter hybrid; native RO identity retained, idle numbers adapted.",
       "rarity_id": "common",
       "source_level": 3,
       "strength_class": "weak"
@@ -306,13 +348,20 @@
           "stat": "int",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 1
+          "value": 3
+        },
+        {
+          "id": "balance_outgoing_healing_bonus",
+          "stat": "outgoing_healing_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.015
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4023&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: INT and healing hybrid; native RO identity retained, idle numbers adapted.",
       "rarity_id": "common",
       "source_level": 9,
       "strength_class": "weak"
@@ -333,7 +382,7 @@
           "stat": "evasion_bonus",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.04
+          "value": 0.06
         },
         {
           "id": "ghost_resistance",
@@ -341,12 +390,19 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": -0.1
+        },
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.02
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4102&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: evasion with normal attack baseline and ghost weakness; native RO identity retained, idle numbers adapted.",
       "rarity_id": "uncommon",
       "source_level": 34,
       "strength_class": "strong"
@@ -367,13 +423,20 @@
           "stat": "evasion_bonus",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.025
+          "value": 0.035
+        },
+        {
+          "id": "balance_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.03
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4015&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: starter evasion+HP; native RO identity retained, idle numbers adapted.",
       "rarity_id": "common",
       "source_level": 5,
       "strength_class": "weak"
@@ -402,12 +465,26 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.01
+        },
+        {
+          "id": "balance_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.04
+        },
+        {
+          "id": "balance_magical_guard_percent",
+          "stat": "magical_guard_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.015
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4056&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: wind counter with non-wind survival; native RO identity retained, idle numbers adapted.",
       "rarity_id": "uncommon",
       "source_level": 21,
       "strength_class": "strong"
@@ -428,13 +505,27 @@
           "stat": "hp_regen_percent",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.001
+          "value": 0.0025
+        },
+        {
+          "id": "balance_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.04
+        },
+        {
+          "id": "balance_healing_received_bonus",
+          "stat": "healing_received_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.035
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4038&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: steady self regen and received healing; native RO identity retained, idle numbers adapted.",
       "rarity_id": "common",
       "source_level": 15,
       "strength_class": "weak"
@@ -455,20 +546,27 @@
           "stat": "str",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 1
+          "value": 3
         },
         {
           "id": "vit",
           "stat": "vit",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 1
+          "value": 3
+        },
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.02
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4186&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: STR/VIT bruiser; native RO identity retained, idle numbers adapted.",
       "rarity_id": "uncommon",
       "source_level": 21,
       "strength_class": "strong"
@@ -489,20 +587,27 @@
           "stat": "max_hp",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.03
+          "value": 0.07
         },
         {
           "id": "agi",
           "stat": "agi",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 1
+          "value": 2
+        },
+        {
+          "id": "balance_guard_percent",
+          "stat": "guard_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.015
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4097&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: HP with AGI and small mitigation; native RO identity retained, idle numbers adapted.",
       "rarity_id": "uncommon",
       "source_level": 31,
       "strength_class": "strong"
@@ -523,13 +628,20 @@
           "stat": "str",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 2
+          "value": 4
+        },
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4028&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: STR normal attacker; native RO identity retained, idle numbers adapted.",
       "rarity_id": "common",
       "source_level": 11,
       "strength_class": "weak"
@@ -550,13 +662,27 @@
           "stat": "dex",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 2
+          "value": 4
+        },
+        {
+          "id": "balance_hit_bonus",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.02
+        },
+        {
+          "id": "balance_skill_damage_bonus",
+          "stat": "skill_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4034&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: DEX skill accuracy; native RO identity retained, idle numbers adapted.",
       "rarity_id": "common",
       "source_level": 14,
       "strength_class": "weak"
@@ -577,20 +703,27 @@
           "stat": "agi",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 1
+          "value": 3
         },
         {
           "id": "evasion_bonus",
           "stat": "evasion_bonus",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.01
+          "value": 0.025
+        },
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4051&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: AGI/evasion with normal damage; native RO identity retained, idle numbers adapted.",
       "rarity_id": "uncommon",
       "source_level": 21,
       "strength_class": "strong"
@@ -611,7 +744,7 @@
           "stat": "vit",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 1
+          "value": 2
         },
         {
           "id": "max_hp",
@@ -619,12 +752,19 @@
           "op": "add_flat",
           "bucket": "derived",
           "value": 40
+        },
+        {
+          "id": "balance_guard_percent",
+          "stat": "guard_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.015
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4002&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: weapon tank alternative; native RO identity retained, idle numbers adapted.",
       "rarity_id": "common",
       "source_level": 2,
       "strength_class": "weak"
@@ -645,27 +785,41 @@
           "stat": "luk",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 1
+          "value": 3
         },
         {
           "id": "crit_chance_bonus",
           "stat": "crit_chance_bonus",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.01
+          "value": 0.015
         },
         {
           "id": "evasion_bonus",
           "stat": "evasion_bonus",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.003
+          "value": 0.01
+        },
+        {
+          "id": "balance_crit_damage_bonus",
+          "stat": "crit_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.06
+        },
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.03
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4006&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: crit starter; native RO identity retained, idle numbers adapted.",
       "rarity_id": "common",
       "source_level": 3,
       "strength_class": "weak"
@@ -686,13 +840,20 @@
           "stat": "max_hp",
           "op": "add_flat",
           "bucket": "derived",
-          "value": 120
+          "value": 80
+        },
+        {
+          "id": "balance_guard_percent",
+          "stat": "guard_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4003&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: flat starter HP plus modest scaling and guard; native RO identity retained, idle numbers adapted.",
       "rarity_id": "common",
       "source_level": 2,
       "strength_class": "weak"
@@ -713,13 +874,20 @@
           "stat": "vit",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 2
+          "value": 3
+        },
+        {
+          "id": "balance_healing_received_bonus",
+          "stat": "healing_received_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.04
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4022&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: VIT and healing received; native RO identity retained, idle numbers adapted.",
       "rarity_id": "common",
       "source_level": 16,
       "strength_class": "weak"
@@ -740,20 +908,27 @@
           "stat": "agi",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 1
+          "value": 3
         },
         {
           "id": "evasion_bonus",
           "stat": "evasion_bonus",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.01
+          "value": 0.015
+        },
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4009&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: AGI normal attacker with dodge; native RO identity retained, idle numbers adapted.",
       "rarity_id": "common",
       "source_level": 4,
       "strength_class": "weak"
@@ -774,7 +949,7 @@
           "stat": "dex",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 1
+          "value": 3
         },
         {
           "id": "physical_attack",
@@ -782,12 +957,19 @@
           "op": "add_flat",
           "bucket": "derived",
           "value": 3
+        },
+        {
+          "id": "balance_hit_bonus",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4021&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: DEX accuracy starter; native RO identity retained, idle numbers adapted.",
       "rarity_id": "common",
       "source_level": 9,
       "strength_class": "weak"
@@ -802,7 +984,15 @@
       "source_slot": "weapon",
       "slot": "weapon",
       "tier": 20,
-      "modifiers": [],
+      "modifiers": [
+        {
+          "id": "balance_skill_damage_bonus",
+          "stat": "skill_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.03
+        }
+      ],
       "triggers": [
         {
           "id": "matched_bonus",
@@ -833,7 +1023,7 @@
               "formula": {
                 "id": "event_damage_power",
                 "params": {
-                  "ratio": 0.08
+                  "ratio": 0.075
                 }
               },
               "damage_type": "true",
@@ -856,7 +1046,7 @@
       ],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4035&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: conditional bonus with smaller root-hit burst and useful unmatched baseline; native RO identity retained, idle numbers adapted.",
       "rarity_id": "common",
       "source_level": 14,
       "strength_class": "weak"
@@ -871,7 +1061,15 @@
       "source_slot": "weapon",
       "slot": "weapon",
       "tier": 20,
-      "modifiers": [],
+      "modifiers": [
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
+        }
+      ],
       "triggers": [
         {
           "id": "matched_bonus",
@@ -902,7 +1100,7 @@
               "formula": {
                 "id": "event_damage_power",
                 "params": {
-                  "ratio": 0.08
+                  "ratio": 0.075
                 }
               },
               "damage_type": "true",
@@ -925,7 +1123,7 @@
       ],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4069&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: conditional bonus with smaller root-hit burst and useful unmatched baseline; native RO identity retained, idle numbers adapted.",
       "rarity_id": "uncommon",
       "source_level": 24,
       "strength_class": "strong"
@@ -954,12 +1152,19 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.03
+        },
+        {
+          "id": "balance_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.05
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4105&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: freeze immunity plus general HP; native RO identity retained, idle numbers adapted.",
       "rarity_id": "uncommon",
       "source_level": 36,
       "strength_class": "strong"
@@ -980,13 +1185,27 @@
           "stat": "agi",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 2
+          "value": 4
+        },
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.035
+        },
+        {
+          "id": "balance_hit_bonus",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.015
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4027&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: AGI normal attacker; native RO identity retained, idle numbers adapted.",
       "rarity_id": "common",
       "source_level": 11,
       "strength_class": "weak"
@@ -1008,12 +1227,19 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.04
+        },
+        {
+          "id": "balance_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.03
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4058&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ต้นฉบับลดดาเมจDemiHumanในshield; เกม6ช่องไม่มีshieldจึงใส่armorและแปลงเป็นguardขนาดเล็กสำหรับPvE",
+      "adaptation": "D183: general mitigation and HP; native RO identity retained, idle numbers adapted.",
       "rarity_id": "uncommon",
       "source_level": 22,
       "strength_class": "strong"
@@ -1034,13 +1260,20 @@
           "stat": "max_hp",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.05
+          "value": 0.09
+        },
+        {
+          "id": "balance_healing_received_bonus",
+          "stat": "healing_received_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.035
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4031&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: percentage HP and healing vs flat Pupa; native RO identity retained, idle numbers adapted.",
       "rarity_id": "common",
       "source_level": 19,
       "strength_class": "weak"
@@ -1061,13 +1294,20 @@
           "stat": "str",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 3
+          "value": 5
+        },
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4079&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: STR normal attacker; native RO identity retained, idle numbers adapted.",
       "rarity_id": "uncommon",
       "source_level": 26,
       "strength_class": "strong"
@@ -1089,12 +1329,19 @@
           "op": "add_flat",
           "bucket": "derived",
           "value": 5
+        },
+        {
+          "id": "balance_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.04
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4098&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: wind armor with general HP baseline; native RO identity retained, idle numbers adapted.",
       "defense_element": "wind",
       "rarity_id": "uncommon",
       "source_level": 33,
@@ -1116,13 +1363,27 @@
           "stat": "dex",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 3
+          "value": 5
+        },
+        {
+          "id": "balance_skill_damage_bonus",
+          "stat": "skill_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
+        },
+        {
+          "id": "balance_hit_bonus",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.02
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4064&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: DEX skill accuracy; native RO identity retained, idle numbers adapted.",
       "rarity_id": "uncommon",
       "source_level": 23,
       "strength_class": "strong"
@@ -1170,13 +1431,20 @@
           "stat": "vit",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 3
+          "value": 5
+        },
+        {
+          "id": "balance_physical_defense",
+          "stat": "physical_defense",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.04
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4078&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: VIT+DEF defensive alternative; native RO identity retained, idle numbers adapted.",
       "rarity_id": "uncommon",
       "source_level": 26,
       "strength_class": "strong"
@@ -1197,13 +1465,20 @@
           "stat": "evasion_bonus",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.04
+          "value": 0.035
+        },
+        {
+          "id": "balance_skill_damage_bonus",
+          "stat": "skill_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4044&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ต้นฉบับให้Hiding; เกมไม่มีปุ่มHiding จึงใช้โบนัสหลบเพื่อบทบาทหลีกเลี่ยงการโจมตี ไม่อ้างว่ามีสกิลHiding",
+      "adaptation": "D183: dodge with skill baseline; native RO identity retained, idle numbers adapted.",
       "rarity_id": "common",
       "source_level": 18,
       "strength_class": "weak"
@@ -1225,6 +1500,13 @@
           "op": "add_flat",
           "bucket": "derived",
           "value": 5
+        },
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
         }
       ],
       "triggers": [
@@ -1257,7 +1539,7 @@
               "formula": {
                 "id": "event_damage_power",
                 "params": {
-                  "ratio": 0.1
+                  "ratio": 0.06
                 }
               },
               "damage_type": "true",
@@ -1280,7 +1562,7 @@
       ],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4126&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: conditional bonus with smaller root-hit burst and useful unmatched baseline; native RO identity retained, idle numbers adapted.",
       "rarity_id": "rare",
       "source_level": 52,
       "strength_class": "elite"
@@ -1295,12 +1577,34 @@
       "source_slot": "accessory",
       "slot": "accessory",
       "tier": 40,
-      "modifiers": [],
+      "modifiers": [
+        {
+          "id": "balance_magical_attack",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.04
+        },
+        {
+          "id": "balance_sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.1
+        },
+        {
+          "id": "balance_outgoing_healing_bonus",
+          "stat": "outgoing_healing_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
+        }
+      ],
       "triggers": [
         {
           "id": "undead_find",
           "event": "damage_dealt",
-          "chance": 0.05,
+          "chance": 0.12,
           "accepted_origins": [
             "normal",
             "skill"
@@ -1320,9 +1624,9 @@
               "type": "apply_status",
               "target": "self",
               "status_id": "attack_up",
-              "duration_ms": 5000,
+              "duration_ms": 8000,
               "params": {
-                "ratio": 0.03
+                "ratio": 0.06
               },
               "chance": 1
             }
@@ -1331,7 +1635,7 @@
       ],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4190&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ต้นฉบับหาไอเทมจากUndead; เกมไม่มีไอเทมกดใช้ จึงแปลงเป็นพลังโจมตีชั่วคราวจากการต่อสู้กับUndead แทนการใส่โบนัสเวทที่ไม่เกี่ยวข้อง",
+      "adaptation": "D183: caster sustain with additional undead hunting proc; native RO identity retained, idle numbers adapted.",
       "rarity_id": "rare",
       "source_level": 53,
       "strength_class": "elite"
@@ -1360,12 +1664,26 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 1
+        },
+        {
+          "id": "balance_physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.045
+        },
+        {
+          "id": "balance_hit_bonus",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4122&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: blind immunity plus physical accuracy; native RO identity retained, idle numbers adapted.",
       "rarity_id": "rare",
       "source_level": 46,
       "strength_class": "elite"
@@ -1387,12 +1705,26 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 1
+        },
+        {
+          "id": "balance_magical_attack",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.055
+        },
+        {
+          "id": "balance_sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.05
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4112&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: silence immunity plus caster sustain; native RO identity retained, idle numbers adapted.",
       "rarity_id": "uncommon",
       "source_level": 40,
       "strength_class": "strong"
@@ -1413,13 +1745,20 @@
           "stat": "neutral_resistance",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.1
+          "value": 0.08
+        },
+        {
+          "id": "balance_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.02
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4133&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: neutral specialization with HP baseline; native RO identity retained, idle numbers adapted.",
       "rarity_id": "rare",
       "source_level": 52,
       "strength_class": "elite"
@@ -1448,12 +1787,26 @@
           "op": "add_flat",
           "bucket": "derived",
           "value": 5
+        },
+        {
+          "id": "balance_magical_attack",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.03
+        },
+        {
+          "id": "balance_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.035
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4141&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: undead armor plus caster/HP baseline; native RO identity retained, idle numbers adapted.",
       "defense_element": "undead",
       "rarity_id": "rare",
       "source_level": 58,
@@ -1483,12 +1836,26 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.01
+        },
+        {
+          "id": "balance_magical_attack",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.035
+        },
+        {
+          "id": "balance_max_sp",
+          "stat": "max_sp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.04
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4116&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: dark counter with caster baseline; native RO identity retained, idle numbers adapted.",
       "rarity_id": "rare",
       "source_level": 47,
       "strength_class": "elite"
@@ -1509,20 +1876,20 @@
           "stat": "max_sp",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.1
+          "value": 0.15
         },
         {
           "id": "sp_regen_percent",
           "stat": "sp_regen_percent",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.05
+          "value": 0.12
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4100&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: SP sustain vs burst Incubus; native RO identity retained, idle numbers adapted.",
       "rarity_id": "uncommon",
       "source_level": 33,
       "strength_class": "strong"
@@ -1543,20 +1910,20 @@
           "stat": "max_hp",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.05
+          "value": 0.065
         },
         {
           "id": "max_sp",
           "stat": "max_sp",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.05
+          "value": 0.065
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4107&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: balanced HP+SP; native RO identity retained, idle numbers adapted.",
       "rarity_id": "uncommon",
       "source_level": 38,
       "strength_class": "strong"
@@ -1571,7 +1938,15 @@
       "source_slot": "weapon",
       "slot": "weapon",
       "tier": 40,
-      "modifiers": [],
+      "modifiers": [
+        {
+          "id": "balance_physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.025
+        }
+      ],
       "triggers": [
         {
           "id": "matched_bonus",
@@ -1602,7 +1977,7 @@
               "formula": {
                 "id": "event_damage_power",
                 "params": {
-                  "ratio": 0.1
+                  "ratio": 0.085
                 }
               },
               "damage_type": "true",
@@ -1625,7 +2000,7 @@
       ],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4065&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: conditional bonus with smaller root-hit burst and useful unmatched baseline; native RO identity retained, idle numbers adapted.",
       "rarity_id": "rare",
       "source_level": 60,
       "strength_class": "elite"
@@ -1653,13 +2028,27 @@
           "stat": "cast_speed",
           "op": "add_percent",
           "bucket": "derived",
-          "value": -0.1
+          "value": -0.04
+        },
+        {
+          "id": "balance_max_sp",
+          "stat": "max_sp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.04
+        },
+        {
+          "id": "balance_sp_cost_percent",
+          "stat": "sp_cost_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": -0.025
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4077&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: cast safety plus SP efficiency, smaller CSPD tradeoff; native RO identity retained, idle numbers adapted.",
       "rarity_id": "uncommon",
       "source_level": 26,
       "strength_class": "strong"
@@ -1688,12 +2077,19 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.01
+        },
+        {
+          "id": "balance_physical_defense",
+          "stat": "physical_defense",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.045
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4081&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: earth counter plus general DEF; native RO identity retained, idle numbers adapted.",
       "rarity_id": "uncommon",
       "source_level": 26,
       "strength_class": "strong"
@@ -1714,13 +2110,20 @@
           "stat": "attack_speed",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.06
+          "value": 0.07
+        },
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.02
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4142&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: tempo and normal attacker; native RO identity retained, idle numbers adapted.",
       "rarity_id": "legendary",
       "source_level": 72,
       "strength_class": "mvp"
@@ -1742,6 +2145,13 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.03
+        },
+        {
+          "id": "balance_magical_attack",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.07
         }
       ],
       "triggers": [
@@ -1790,7 +2200,7 @@
       ],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4168&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: magic counter with useful MATK baseline; native RO identity retained, idle numbers adapted.",
       "rarity_id": "legendary",
       "source_level": 80,
       "strength_class": "mvp"
@@ -1805,7 +2215,15 @@
       "source_slot": "weapon",
       "slot": "weapon",
       "tier": 60,
-      "modifiers": [],
+      "modifiers": [
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
+        }
+      ],
       "triggers": [
         {
           "id": "matched_bonus",
@@ -1836,7 +2254,7 @@
               "formula": {
                 "id": "event_damage_power",
                 "params": {
-                  "ratio": 0.15
+                  "ratio": 0.07
                 }
               },
               "damage_type": "true",
@@ -1859,7 +2277,7 @@
       ],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4140&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: conditional bonus with smaller root-hit burst and useful unmatched baseline; native RO identity retained, idle numbers adapted.",
       "rarity_id": "rare",
       "source_level": 79,
       "strength_class": "elite"
@@ -1888,12 +2306,33 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.4
+        },
+        {
+          "id": "balance_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.08
+        },
+        {
+          "id": "balance_healing_received_bonus",
+          "stat": "healing_received_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.06
+        },
+        {
+          "id": "balance_sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.06
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4144&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: revive specialty plus HP/healing/SP sustain in ordinary fights; native RO identity retained, idle numbers adapted.",
       "rarity_id": "legendary",
       "source_level": 78,
       "strength_class": "mvp"
@@ -1915,6 +2354,13 @@
           "op": "add_percent",
           "bucket": "derived",
           "value": 0.08
+        },
+        {
+          "id": "balance_magical_guard_percent",
+          "stat": "magical_guard_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.06
         }
       ],
       "triggers": [
@@ -1965,7 +2411,7 @@
       ],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4146&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: magic reflect with magic mitigation; native RO identity retained, idle numbers adapted.",
       "rarity_id": "legendary",
       "source_level": 81,
       "strength_class": "mvp"
@@ -1986,7 +2432,7 @@
           "stat": "magical_guard_percent",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.25
+          "value": 0.075
         },
         {
           "id": "sp_cost_percent",
@@ -1994,12 +2440,19 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.25
+        },
+        {
+          "id": "balance_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.04
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4128&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: magic mitigation and HP baseline with SP tradeoff; triple-Lv5 below full immunity, native identity retained.",
       "rarity_id": "legendary",
       "source_level": 64,
       "strength_class": "mvp"
@@ -2020,7 +2473,7 @@
           "stat": "outgoing_physical_bonus",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.07
+          "value": 0.055
         }
       ],
       "triggers": [
@@ -2068,7 +2521,7 @@
       ],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4305&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: physical damage plus native Magnum proc; native RO identity retained, idle numbers adapted.",
       "rarity_id": "legendary",
       "source_level": 97,
       "strength_class": "mvp"
@@ -2083,12 +2536,20 @@
       "source_slot": "weapon",
       "slot": "weapon",
       "tier": 60,
-      "modifiers": [],
+      "modifiers": [
+        {
+          "id": "balance_outgoing_magical_bonus",
+          "stat": "outgoing_magical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.05
+        }
+      ],
       "triggers": [
         {
           "id": "gust_on_hit",
           "event": "normal_attack_hit",
-          "chance": 0.03,
+          "chance": 0.04,
           "accepted_origins": [
             "normal"
           ],
@@ -2113,7 +2574,7 @@
               "formula": {
                 "id": "magical_power",
                 "params": {
-                  "attack_ratio": 0.6,
+                  "attack_ratio": 0.8,
                   "flat_power": 0
                 }
               },
@@ -2161,7 +2622,7 @@
       ],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4318&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: magic auto proc/freeze with general magic damage; native RO identity retained, idle numbers adapted.",
       "rarity_id": "legendary",
       "source_level": 77,
       "strength_class": "mvp"
@@ -2176,7 +2637,22 @@
       "source_slot": "armor",
       "slot": "armor",
       "tier": 60,
-      "modifiers": [],
+      "modifiers": [
+        {
+          "id": "balance_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.07
+        },
+        {
+          "id": "balance_guard_percent",
+          "stat": "guard_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.035
+        }
+      ],
       "triggers": [
         {
           "id": "freeze_when_hit",
@@ -2214,7 +2690,7 @@
       ],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4324&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: freeze counter with general tank baseline; native RO identity retained, idle numbers adapted.",
       "rarity_id": "legendary",
       "source_level": 73,
       "strength_class": "mvp"
@@ -2236,12 +2712,26 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.15
+        },
+        {
+          "id": "balance_attack_speed",
+          "stat": "attack_speed",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.05
+        },
+        {
+          "id": "balance_evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4131&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: mobility/tempo/evasion rather than movement only; native RO identity retained, idle numbers adapted.",
       "rarity_id": "legendary",
       "source_level": 67,
       "strength_class": "mvp"
@@ -2269,7 +2759,7 @@
           "stat": "guard_percent",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.05
+          "value": 0.075
         },
         {
           "id": "move_speed_percent",
@@ -2277,12 +2767,19 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": 0.05
+        },
+        {
+          "id": "balance_hp_regen_percent",
+          "stat": "hp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.0015
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4123&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ต้นฉบับEndureและHPลด; เกมไม่มีhit walk delay จึงใช้การเดินและลดดาเมจเล็กน้อยแลกHP ไม่อ้างcopyสถานะEndurePC",
+      "adaptation": "D183: sustained tank with HP tradeoff; native RO identity retained, idle numbers adapted.",
       "rarity_id": "legendary",
       "source_level": 65,
       "strength_class": "mvp"
@@ -2304,6 +2801,13 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": -0.03
+        },
+        {
+          "id": "balance_physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.045
         }
       ],
       "triggers": [
@@ -2335,7 +2839,7 @@
               "formula": {
                 "id": "physical_power",
                 "params": {
-                  "attack_ratio": 0.15,
+                  "attack_ratio": 0.08,
                   "flat_power": 0
                 }
               },
@@ -2351,7 +2855,7 @@
       ],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4147&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "ชื่อ ภาพ ช่อง และจุดเด่นอ้างอิง RO; ตัวเลขและ proc ปรับสำหรับ idle/quality/level ไม่ใช่สูตร PC ทั้งหมด",
+      "adaptation": "D183: splash normal attacker with physical baseline; native RO identity retained, idle numbers adapted.",
       "rarity_id": "legendary",
       "source_level": 81,
       "strength_class": "mvp"
@@ -2372,20 +2876,20 @@
           "stat": "luk",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 2
+          "value": 5
         },
         {
           "id": "max_hp",
           "stat": "max_hp",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.02
+          "value": 0.065
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4197&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "จุดเด่นอ้างอิง RO; normalize ตัวเลขกับ quality/level ของเกม idle",
+      "adaptation": "D183: fortune tank; native RO identity retained, idle numbers adapted.",
       "rarity_id": "epic",
       "source_level": 2,
       "strength_class": "mini"
@@ -2414,12 +2918,19 @@
           "op": "add_flat",
           "bucket": "derived",
           "value": 8
+        },
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.02
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4183&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "จุดเด่นอ้างอิง RO; normalize ตัวเลขกับ quality/level ของเกม idle",
+      "adaptation": "D183: physical normal attacker; native RO identity retained, idle numbers adapted.",
       "rarity_id": "epic",
       "source_level": 24,
       "strength_class": "mini"
@@ -2440,20 +2951,27 @@
           "stat": "agi",
           "op": "add_flat",
           "bucket": "primary",
-          "value": 2
+          "value": 5
         },
         {
           "id": "evasion_bonus",
           "stat": "evasion_bonus",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.02
+          "value": 0.04
+        },
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.035
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4179&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "จุดเด่นอ้างอิง RO; normalize ตัวเลขกับ quality/level ของเกม idle",
+      "adaptation": "D183: evasion and normal attacker; native RO identity retained, idle numbers adapted.",
       "rarity_id": "epic",
       "source_level": 8,
       "strength_class": "mini"
@@ -2475,12 +2993,26 @@
           "op": "add_flat",
           "bucket": "derived",
           "value": 5
+        },
+        {
+          "id": "balance_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.045
+        },
+        {
+          "id": "balance_healing_received_bonus",
+          "stat": "healing_received_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.04
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4054&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "จุดเด่นอ้างอิง RO; normalize ตัวเลขกับ quality/level ของเกม idle",
+      "adaptation": "D183: holy armor plus general survival/healing; native RO identity retained, idle numbers adapted.",
       "defense_element": "holy",
       "rarity_id": "legendary",
       "source_level": 20,
@@ -2596,12 +3128,19 @@
           "op": "add_flat",
           "bucket": "bonus",
           "value": -0.1
+        },
+        {
+          "id": "balance_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.025
         }
       ],
       "triggers": [],
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4174&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/pre-re/item_db_etc.yml",
-      "adaptation": "จุดเด่นอ้างอิง RO; normalize ตัวเลขกับ quality/level ของเกม idle",
+      "adaptation": "D183: neutral counter plus HP baseline, elemental weaknesses retained; native RO identity retained, idle numbers adapted.",
       "rarity_id": "legendary",
       "source_level": 31,
       "strength_class": "mvp",
@@ -2622,14 +3161,14 @@
         {
           "id": "max_hp",
           "stat": "max_hp",
-          "value": 0.04,
+          "value": 0.06,
           "op": "add_percent",
           "bucket": "derived"
         },
         {
           "id": "magical_defense",
           "stat": "magical_defense",
-          "value": 0.03,
+          "value": 0.05,
           "op": "add_percent",
           "bucket": "derived"
         }
@@ -2637,7 +3176,7 @@
       "triggers": [],
       "reference_url": "https://roglobal.com/news/347",
       "reference_database": "https://rooccompanion.com/card/card-angeling-puppet-i/",
-      "adaptation": "Puppet guard/HP role mapped to max HP and MDEF; does not change armor element. Values and slot mapping are authored for this idle game, not exact Origin formulas.",
+      "adaptation": "D183: HP/MDEF tank; native RO identity retained, idle numbers adapted.",
       "rarity_id": "rare",
       "source_level": 20,
       "strength_class": "mvp",
@@ -2675,7 +3214,7 @@
         {
           "id": "guard_percent",
           "stat": "guard_percent",
-          "value": 0.01,
+          "value": 0.025,
           "op": "add_flat",
           "bucket": "bonus"
         }
@@ -2683,7 +3222,7 @@
       "triggers": [],
       "reference_url": "https://roglobal.com/news/347",
       "reference_database": "https://rooccompanion.com/card/card-deviling-puppet-i/",
-      "adaptation": "Origin PvE offense/defense theme adapted to existing percentage stats; no neutral armor or real Deviling weaknesses. Values and slot mapping are authored for this idle game, not exact Origin formulas.",
+      "adaptation": "D183: hybrid offense and mitigation; native RO identity retained, idle numbers adapted.",
       "rarity_id": "rare",
       "source_level": 31,
       "strength_class": "mvp",
@@ -2707,22 +3246,29 @@
         {
           "id": "magical_guard_percent",
           "stat": "magical_guard_percent",
-          "value": 0.03,
+          "value": 0.05,
           "op": "add_flat",
           "bucket": "bonus"
         },
         {
           "id": "max_sp",
           "stat": "max_sp",
-          "value": 0.02,
+          "value": 0.055,
           "op": "add_percent",
           "bucket": "derived"
+        },
+        {
+          "id": "balance_magical_defense",
+          "stat": "magical_defense",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.035
         }
       ],
       "triggers": [],
       "reference_url": "https://roglobal.com/news/347",
       "reference_database": "https://rooccompanion.com/card/card-golden-thief-bug-puppet-i/",
-      "adaptation": "Origin magic-reduction/backwear theme mapped to garment; no real-card SP penalty or magic immunity. Values and slot mapping are authored for this idle game, not exact Origin formulas.",
+      "adaptation": "D183: magic survival and SP; native RO identity retained, idle numbers adapted.",
       "rarity_id": "rare",
       "source_level": 64,
       "strength_class": "mvp",
@@ -2740,7 +3286,15 @@
       "source_slot": "shoes",
       "slot": "accessory",
       "tier": 40,
-      "modifiers": [],
+      "modifiers": [
+        {
+          "id": "balance_normal_damage_bonus",
+          "stat": "normal_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.035
+        }
+      ],
       "triggers": [
         {
           "id": "matched_bonus",
@@ -2795,7 +3349,7 @@
       ],
       "reference_url": "https://roglobal.com/news/347",
       "reference_database": "https://rooccompanion.com/card/card-eddga-puppet-i/",
-      "adaptation": "Origin large-target damage theme; mapped facewear to accessory. Shared event damage bonus on physical/magical hits. Values and slot mapping are authored for this idle game, not exact Origin formulas.",
+      "adaptation": "D183: large-target bonus with normal baseline; native RO identity retained, idle numbers adapted.",
       "rarity_id": "rare",
       "source_level": 65,
       "strength_class": "mvp",
@@ -2813,7 +3367,15 @@
       "source_slot": "shoes",
       "slot": "accessory",
       "tier": 40,
-      "modifiers": [],
+      "modifiers": [
+        {
+          "id": "balance_attack_speed",
+          "stat": "attack_speed",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.025
+        }
+      ],
       "triggers": [
         {
           "id": "matched_bonus",
@@ -2868,7 +3430,7 @@
       ],
       "reference_url": "https://roglobal.com/news/347",
       "reference_database": "https://rooccompanion.com/card/card-moonlight-flower-puppet-i/",
-      "adaptation": "Origin small-target damage theme; mapped facewear to accessory. Does not give real-card movement speed. Values and slot mapping are authored for this idle game, not exact Origin formulas.",
+      "adaptation": "D183: small-target bonus with tempo baseline; native RO identity retained, idle numbers adapted.",
       "rarity_id": "rare",
       "source_level": 67,
       "strength_class": "mvp",
@@ -2900,12 +3462,19 @@
           "value": 0.03,
           "op": "add_percent",
           "bucket": "derived"
+        },
+        {
+          "id": "balance_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.045
         }
       ],
       "triggers": [],
       "reference_url": "https://roglobal.com/news/347",
       "reference_database": "https://rooccompanion.com/card/card-baphomet-puppet-i/",
-      "adaptation": "Origin PDEF/costume theme mapped to armor; PvP-only stats omitted in this single-player game, no splash attack. Values and slot mapping are authored for this idle game, not exact Origin formulas.",
+      "adaptation": "D183: DEF/SP plus useful HP baseline; native RO identity retained, idle numbers adapted.",
       "rarity_id": "rare",
       "source_level": 81,
       "strength_class": "mvp",
@@ -2927,7 +3496,7 @@
         {
           "id": "max_hp",
           "stat": "max_hp",
-          "value": 0.02,
+          "value": 0.04,
           "op": "add_percent",
           "bucket": "derived"
         },
@@ -2937,12 +3506,19 @@
           "value": 0.02,
           "op": "add_flat",
           "bucket": "bonus"
+        },
+        {
+          "id": "balance_attack_speed",
+          "stat": "attack_speed",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.025
         }
       ],
       "triggers": [],
       "reference_url": "https://roglobal.com/news/347",
       "reference_database": "https://rooccompanion.com/card/card-doppelganger-puppet-i/",
-      "adaptation": "Origin defensive mouthwear theme mapped to head; current prototype uses HP/critical defense instead of a new size-conditional incoming formula. No real-card ASPD bonus. Values and slot mapping are authored for this idle game, not exact Origin formulas.",
+      "adaptation": "D183: HP/crit resistance with tempo; native RO identity retained, idle numbers adapted.",
       "rarity_id": "rare",
       "source_level": 72,
       "strength_class": "mvp",
@@ -3000,7 +3576,7 @@
         {
           "id": "int",
           "stat": "int",
-          "value": 1,
+          "value": 2,
           "op": "add_flat",
           "bucket": "primary"
         }
@@ -3016,7 +3592,7 @@
             "normal",
             "periodic"
           ],
-          "penetration_bonus": 0.06
+          "penetration_bonus": 0.05
         }
       ],
       "grade": "normal",
@@ -3025,7 +3601,7 @@
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4440&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/re/item_db_etc.yml",
       "monster_reference": "https://github.com/rathena/rathena/blob/master/db/pre-re/mob_db.yml",
-      "adaptation": "D179 RO identity/art/slot/theme. Numeric power adapted for idle/card rarity/level; no exact PC formula claim. Necromancer combat Boss class does not imply field Mini identity. Siroma/Imp improve damage only, not cast timing."
+      "adaptation": "D183: INT and magic penetration; native RO identity retained, idle numbers adapted."
     },
     {
       "id": "card_agav",
@@ -3042,7 +3618,7 @@
         {
           "id": "magical_attack",
           "stat": "magical_attack",
-          "value": 0.15,
+          "value": 0.08,
           "op": "add_percent",
           "bucket": "derived"
         },
@@ -3060,7 +3636,7 @@
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4409&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/re/item_db_etc.yml",
       "monster_reference": "https://github.com/rathena/rathena/blob/master/db/pre-re/mob_db.yml",
-      "adaptation": "D179 RO identity/art/slot/theme. Numeric power adapted for idle/card rarity/level; no exact PC formula claim. Necromancer combat Boss class does not imply field Mini identity. Siroma/Imp improve damage only, not cast timing."
+      "adaptation": "D183: MATK armor with DEF tradeoff; native RO identity retained, idle numbers adapted."
     },
     {
       "id": "card_siroma",
@@ -3079,7 +3655,7 @@
           "stat": "outgoing_magical_bonus",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.1
+          "value": 0.05
         }
       ],
       "grade": "normal",
@@ -3088,7 +3664,7 @@
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4416&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/re/item_db_etc.yml",
       "monster_reference": "https://github.com/rathena/rathena/blob/master/db/pre-re/mob_db.yml",
-      "adaptation": "D179 user revision: generic magical damage instead of Bolt-specific damage; reduced raw bonus10%/15% before existing1.75/rarity/level. RO identity/art/slot retained; numeric effect is an idle adaptation, not exact PC behavior. No cast-speed change."
+      "adaptation": "D183: general magical damage, lower than Rare Imp; native RO identity retained, idle numbers adapted."
     },
     {
       "id": "card_imp",
@@ -3107,7 +3683,7 @@
           "stat": "outgoing_magical_bonus",
           "op": "add_flat",
           "bucket": "bonus",
-          "value": 0.15
+          "value": 0.07
         }
       ],
       "grade": "normal",
@@ -3116,7 +3692,7 @@
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4433&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/re/item_db_etc.yml",
       "monster_reference": "https://github.com/rathena/rathena/blob/master/db/pre-re/mob_db.yml",
-      "adaptation": "D179 user revision: generic magical damage instead of Bolt-specific damage; reduced raw bonus10%/15% before existing1.75/rarity/level. RO identity/art/slot retained; numeric effect is an idle adaptation, not exact PC behavior. No cast-speed change."
+      "adaptation": "D183: general magical damage without healing bonus; native RO identity retained, idle numbers adapted."
     },
     {
       "id": "card_fallen_bishop",
@@ -3137,7 +3713,7 @@
           "stat": "magical_attack",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.25
+          "value": 0.14
         },
         {
           "id": "max_sp",
@@ -3151,7 +3727,7 @@
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4441&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/re/item_db_etc.yml",
       "monster_reference": "https://github.com/rathena/rathena/blob/master/db/pre-re/mob_db.yml",
-      "adaptation": "D180 genuine RO MVP identity/art/slot and MATK/SP tradeoff. Idle values follow existing fixed Legendary rarity/levels; no race-specific multiplier, CT change or new combat rule. Fallen Bishop25%MATK/-15%SP raw; Time Holder20%MATK/+10%SPcost raw, before existing rarity/level."
+      "adaptation": "D183: MATK/healing with SP tradeoff; native RO identity retained, idle numbers adapted."
     },
     {
       "id": "card_time_holder",
@@ -3172,7 +3748,7 @@
           "stat": "magical_attack",
           "op": "add_percent",
           "bucket": "derived",
-          "value": 0.2
+          "value": 0.12
         },
         {
           "id": "sp_cost_percent",
@@ -3186,7 +3762,7 @@
       "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4625&itemSeq=5",
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/re/item_db_etc.yml",
       "monster_reference": "https://github.com/rathena/rathena/blob/master/db/re/mob_db.yml",
-      "adaptation": "D180 genuine RO MVP identity/art/slot and MATK/SP tradeoff. Idle values follow existing fixed Legendary rarity/levels; no race-specific multiplier, CT change or new combat rule. Fallen Bishop25%MATK/-15%SP raw; Time Holder20%MATK/+10%SPcost raw, before existing rarity/level."
+      "adaptation": "D183: MATK/healing with SP cost tradeoff; native RO identity retained, idle numbers adapted."
     }
   ],
   "monster_traits": {

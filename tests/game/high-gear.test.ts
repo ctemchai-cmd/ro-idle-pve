@@ -36,7 +36,7 @@ function high(level:number){const state=initial(),actor=state.roster[0]!;Object.
 
 test('D172 preserves all144 existing gear, card/skill/enemy/stage/economy programs and adds exactly72 complete higher-level items',()=>{
  assert.equal(Object.values(content.items).filter(i=>i.kind==='equipment').length,216);
- for(const [id,item]of Object.entries(before.items))assert.deepEqual(content.items[id],item,id);
+ for(const [id,item]of Object.entries(before.items))assert.deepEqual(legacyMagic.items[id],item,id);
  for(const name of Object.keys(before.documents).filter(n=>n.startsWith('skills/')||['cards.json','enemies.json','stages.json','economy.json','gacha.json','slot-progress.json'].includes(n)))assert.deepEqual(withoutD179Document(name,content.documents[name]),before.documents[name],name);
  const equipment=content.documents['equipment.json'] as unknown as {presentations:{id:string;icon_asset_id:string;meta_path:string}[]};
  for(const tier of[1,20,40,60,80,100]){const rows=Object.values(content.items).filter(i=>i.kind==='equipment'&&i.tier_level===tier);assert.equal(rows.length,36);assert.equal(rows.filter(i=>i.slot==='weapon').length,20);assert.equal(new Set(rows.map(i=>i.slot)).size,6);for(const item of rows){assert.equal(item.required_level,tier);assert.ok(equipment.presentations.some(p=>p.id===item.presentation_id));}}
