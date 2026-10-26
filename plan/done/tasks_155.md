@@ -20,10 +20,13 @@ TASK-073, TASK-077, TASK-078, TASK-153 (done). TASK154แยกUIreleaseได�
 ## เกณฑ์ตรวจรับ
 - [x] AC-01:5ใบจริงครบข้อมูล/ภาพ/ข้อความ/pools;73ใบเก่าและrateคงเดิม;oldAFK/pending/ledgerไม่สูญหาย
 - [x] AC-02:MATK/penetration/ดาเมจเวทส่งผลจริงเฉพาะเงื่อนไข/scaleถูก/stack/Aw/checkpoint;schemaผิดreject;ไม่มีRNGหรือhitเพิ่ม
-- [ ] AC-03:ภาพlossless/RGBAเดิม/pack32MiB/initialbudget;targeted/native320390/root-filteredbuild/publicผ่าน ไม่มีownerwrites
+- [x] AC-03:ภาพlossless/RGBAเดิม/pack32MiB/initialbudget;targeted/native320390/root-filteredbuild/publicผ่าน ไม่มีownerwrites
 
 ## วิธีตรวจและหลักฐาน
 T155-AC01..03/design68;plan/evidence/task-155-review.json. Realnative/engine+isolatedAPI whereapplicable ไม่อ้างวัดbalanceครบทุกบิลด์.
 
 ## Blocker / คำถาม
 ผู้ใช้ตอบแล้ว:ผสมMAtk/เจาะเวท;คำขอล่าสุดเปลี่ยนเสริมเฉพาะสกิลเป็นดาเมจเวททั่วไป.
+
+## ผลตรวจรับ
+Source`cd75cf1e1` ขึ้นVercelSUCCESS;full730/final11/native11/source309+60460+6926/root-filtered/M0/public4groups(24bundleSHA/10nativefiles/login320390/0errors-writes)ผ่าน. ภาพ/คำอธิบายเป็นการ์ดเวททั่วไปตามคำขอล่าสุด. ดูevidence155/READMEและreview.json.

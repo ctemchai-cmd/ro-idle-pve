@@ -859,6 +859,6 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 
 | Case | Task | Expected | Verification | Status |
 | --- | --- | --- | --- | --- |
-| `T155-AC-01` | TASK-155 | design68/AC01 | data/engine/native/build/public | not_run_implementation |
-| `T155-AC-02` | TASK-155 | design68/AC02 | data/engine/native/build/public | not_run_implementation |
-| `T155-AC-03` | TASK-155 | design68/AC03 | data/engine/native/build/public | not_run_implementation |
+| `T155-AC-01` | TASK-155 | design68/AC01 | data/engine/native/build/public | passed_implementation |
+| `T155-AC-02` | TASK-155 | design68/AC02 | data/engine/native/build/public | passed_implementation |
+| `T155-AC-03` | TASK-155 | design68/AC03 | data/engine/native/build/public | passed_implementation |

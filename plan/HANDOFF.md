@@ -1,5 +1,12 @@
 # Handoff ระหว่าง agent
 
+## 26 ต.ค.2026 · Codex — TASK155 COMPLETE / magic cards live
+
+- Sourcecd75cf1e1546cf0a5a6f7369485b0b83b17a09af is live/VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/46pt1wWbT7JHjdjxLxHGDeEfFBTC. Public4groups PASS: API/SIN1/contentcb342/anonymous401,10 actual new portrait+sidecarSHA,24bundleSHA/newcard+bulk features,login320390/0errors-writes. First hosted tool used wrong unhashed path; corrected to pack.base_url (actual game already correct), retained failure, rerun passed. No app changes after tested source.
+- TASK155done141/155/M4 95/104; TASK154alreadydone/live. User latest change fulfilled: Siroma/Imp general magical damage instead of Bolt specialization, raw10%/15% before existing1.75/rarity/level (currentLv1 21.875%/39.375%); no heal/PATK/CT. Scaraba/Agav MATK, Necro true magic-onlyMDEFpen. Five genuine RO illustrations. All73old cards/rates/programs unchanged; frozen unpaid card catalog settles before newpool. Optional typedprofiles/sharedengine/local-schema-refguard documented design68.
+- Full730/final11mechanics(native actual heal/gacha/oldcontentAFK+nonempty pending/actual-paid refundable ledger included)/native11/source309+60460+6926/root+filtered+M0 allpass. Lossless70media/80meta/220160savedRGBAexact; new5portraits300×400. Pack8210ff63c4c82ff7ffe8b389c07ad950750711c4a839029b3b5855fe4b179f2a/raw33523292<32MiB/initial1579562. Contentcb34277417fa0009a378f5ce945deb45b0e53bdf90ba76437c60bd2b33933ddb. No balancebatch or newSQL/Auth proof claimed; no owner save reads/writes, env/SQL changes, agents or6173restart. OwnVite7510/browsersclosed. Userassets/modern/migration-v2.txt remains modified and unstaged; unrelated modernassets/task108png untouched.
+- Closure records the verified release, corrected public harness and final passing M0/141done board. No required155 work remains. Older review/inprogress tasks stay unchanged.
+
 ## 26 ต.ค.2026 · Codex — TASK155 local complete, publish next
 
 - Latest user explicitly replaces Bolt-specific card damage with general magical damage. Siroma/Imp now use existing outgoing_magical_bonus, raw10%/15% before central1.75/rarity/level; Lv1 effects21.875%/39.375%. No extra heal/PATK/CT. Scaraba4505/Necromancer4440/Agav4409 +Siroma4416/Imp4433 are five genuine native portraits, slot/fixed-rarity/monster data documented in design68. All73 old cards/programs/rates unchanged; no new balance batch.
