@@ -909,3 +909,10 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | --- | --- | --- | --- | --- |
 | `T161-AC-01` | TASK-161 | design74/AC01 | native320390 | ผ่านnative/build/M0/public4groups · [review](evidence/task-161-review.json) |
 | `T161-AC-02` | TASK-161 | design74/AC02 | build/M0/public | ผ่านnative/build/M0/public4groups · [review](evidence/task-161-review.json) |
+
+## TASK-162 — Defeat to skills
+
+| Case | Task | Input | Method | Status |
+| --- | --- | --- | --- | --- |
+| `T162-AC-01` | TASK-162 | design75/AC01 | native320390 | not_run_implementation |
+| `T162-AC-02` | TASK-162 | design75/AC02 | build/M0/public | not_run_implementation |

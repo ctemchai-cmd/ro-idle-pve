@@ -391,3 +391,7 @@ D174ล่าสุด: ผู้ใช้ขอวิถีเด้งเร�
 ## D185 — 26ตุลาคม2026
 
 UIของD184ผู้ใช้ยืนยันแล้ว;เปลี่ยนเฉพาะสีเป็นROClassicwhite/silver/blue/navy. ไม่ย้อนbevelและคงsemanticcolors. Design74/TASK161.
+
+## D186 — 26ตุลาคม2026
+
+ปุ่มปรับทีมบนผลแพ้ให้เปิดหน้าสกิลแทนหน้าจัดทีม;คงactorselectionและclose/Autoเดิม. Design75/TASK162.

@@ -1,5 +1,9 @@
 # Project context
 
+## Defeat opens skills (26 October2026,D186/TASK162)
+
+Localnative2groups16resultmodes320390/rootbuild/M0passed;162review awaitingpublic. ResultCardปรับทีม closesoutcome then go(skills) instead ofteam;Shell.go keepscurrentactor. Preserveclose/Auto/retry/label/icon/layout/rewards/Daily. Allfivefingerprints/packunchanged. See design75/latestHANDOFF.
+
 ## Classic palette on approved Modern UI (26 October2026,D185/TASK161)
 
 LatestuserconfirmedD184UIandrequestedROClassiccolors. Source0f1dbe68e live/VercelSUCCESS;native3groups320390/rootbuild/M0/public4groups24bundleSHApassed;161complete. Onlybrand/controlcolorvalueschanged:white/silver/softblue/navyedges,primaryandbattle-speedblueinsteadgold. KeepD18412/8corners/spacing/type/hitareas/shadowgeometry/noinset/reducedmotion;do notrestoreD182bevel. Rarity/resourcegold/danger/HPsemanticsretained. Allfivegameplayfingerprints/packunchanged. See design74/evidence161/latestHANDOFFforrelease.

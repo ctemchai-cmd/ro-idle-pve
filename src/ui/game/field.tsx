@@ -297,7 +297,7 @@ export function ResultCard({ context, outcome, close, challenge, stats, timeline
       <div className="result-primary-actions">
         {!autoRunning && won && next && <button className="btn primary" aria-label={next.kind==='tower'?`ท้าชั้น ${next.floor}`:`ท้าด่าน ${next.kind==='story'?next.id:''}`} disabled={locked || pending} onClick={() => { close(); challenge(next); }}><Icon name="play"/><span>{tower?'ชั้นถัดไป':'ด่านถัดไป'}<small>{next.kind==='tower'?next.floor:next.kind==='story'?next.id:''}</small></span></button>}
         {pending && <button className="btn" onClick={() => { close(); go('backpack'); }}><Icon name="gift"/>จัดกระเป๋า</button>}
-        {!autoRunning && !won && <button className="btn" onClick={() => { close(); go('team'); }}><Icon name="team"/>ปรับทีม</button>}
+        {!autoRunning && !won && <button className="btn" onClick={() => { close(); go('skills'); }}><Icon name="team"/>ปรับทีม</button>}
         {!autoRunning && !won && <button className="btn primary" disabled={locked} onClick={() => { close(); challenge(retry); }}><Icon name="play"/>ลองใหม่</button>}
       </div>
       <div className="result-secondary-actions">
