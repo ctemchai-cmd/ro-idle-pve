@@ -895,3 +895,10 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T159-AC-02` | TASK-159 | design/AC02 | native/build/public | ผ่านlocal/hosted4groups · [review](evidence/task-159-review.json) |
 | `T159-AC-03` | TASK-159 | design/AC03 | native/build/public | ผ่านlocal/hosted4groups · [review](evidence/task-159-review.json) |
 | `T159-AC-04` | TASK-159 | design/AC04 | native/build/public | ผ่านlocal/hosted4groups · [review](evidence/task-159-review.json) |
+
+## TASK-160 — IdleAdventure controls
+
+| Case | Task | Input | Method | Status |
+| --- | --- | --- | --- | --- |
+| `T160-AC-01` | TASK-160 | design73/AC01 | native320390 | not_run_implementation |
+| `T160-AC-02` | TASK-160 | design73/AC02 | build/M0/public | not_run_implementation |

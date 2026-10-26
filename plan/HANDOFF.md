@@ -1,5 +1,11 @@
 # Handoff ระหว่าง agent
 
+## 26 ต.ค.2026 · Codex — TASK160 LOCAL COMPLETE / Idle Adventure button style
+
+- LatestuserrequestsROIdleAdventure;earlierModernClassicpivotnowexplicitIdleAdventure. InspectedactualreferenceCardSelection/Stats(sourceURLsinDesign73),CSSonlysoftblue/goldmain/blueactive/coraldanger/12px8px/noinsetortextemboss/lowshadow. Existingmobileareas/layout/nativeart/framelessskills/cardraritiesretained;darkbattlecontrastandfocus/press/disabled/reducedmotion. Noassets/data/combat/save/SQL/env/owner/6173restart. Allfivefingerprintsunchangeddcf031/798a928.
+- ActualReactnative3groupsPASS320390/80inventory/14CardSheets/shop/controlstates/0errors-writes;rootbuild/M0PASS. buttons-idle320/shop-idle320/Pupa320visuallyreviewed. OwnVite7514/browsersclosed. HarnessesacceptboundedRO_EVIDENCE_TASK=task-160andkeep159outputs/defaultoracle. No full748/balancebatchforCSSwork.
+- ALLUNCOMMITTEDHEADa53daaa59.160review;145/160done/M4 99/109. NEXT explicitstageours(notusermodernmigration-v2/unselectedmodern/task108png),commit/pushoriginmain/awaitVercelSUCCESS/runRO_EVIDENCE_TASK=task-160 node scripts/test_card_balance_hosted.cjs;then160done146/160/M4 100/109/closurepush. Publiccheckslogin/bundleSHA/CSSfixtures;actualReactlocalmemory,notownerlogin.
+
 ## 26 ต.ค.2026 · Codex — TASK158–159 COMPLETE / Classic buttons and card balance LIVE
 
 - Source849ad9cebfc9cbd6e4eab17577af1d78e7380f11 live/VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/8uryahdtZsoAwNwGYX2yVy4o9S5r. Public4groupsPASS newcontentdcf03142aa5cfc839f905b4956c2534882064720209df335eb3a50a709d381ee/pack798a928unchanged/SIN1/anonymous401/24bundleSHA/login320390/ClassicCSSstates+battlespeedcontrast/0errors-writes. Bothdone145/159/M4 99/108.

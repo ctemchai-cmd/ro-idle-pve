@@ -1,5 +1,9 @@
 # Project context
 
+## Idle Adventure controls (26 October2026,D184/TASK160)
+
+User rejectedD182XP-likebevel and selectedROIdleAdventure aslatestreference. Localnative3groups320390/rootbuild/M0passed;160review awaitingpublic. Primarysoftgold/secondarylightblue/selectedblue/coraldestructive/12pxbuttons8pxtabs/singlelowshadow/noinsetor3Dtext;darkbattletoolsgoldselectedspeed. Preservehitareas/layout/type/nativeicons/framelessskills/rarityandallgameplayfivefingerprints/pack. Reducedmotionstatic. CSSinterpretation,notcopiednativebitmaps. See design73/evidence160/latestHANDOFFforrelease.
+
 ## Classic buttons and card role balance (26 October2026,D182–183/TASK158–159)
 
 Source849ad9ceb live/VercelSUCCESS;748TS/new8/native3/audit480/rootbuild/M0/public4groups24bundleSHApassed;158–159complete. ClassicCSSbuttons retain mobilehitareas/nativeicons,4pxsilver-bluebevel/insetpressed/focus/disabled. Cardauthoring auto-derivedgrowth now.3ofold;79/80poweradjusted withutility/specialistbaselines,all80identities/73art/rarity/slots/price/rates/ownedinvestments/packunchanged. Abysmalrootbonusraw.15→.07,Impraw.15→.07,AndreATK%35→10.5;Pupa80flat+4.2%HP+2.5guard/Peco9%HP+3.5receivedheal. MVPutilityaddedordinarycombatstats,nonewautorevive. No skill/enemy/formula/schema/SQL/env/ownerwrites. See design71–72/evidence159/latestHANDOFFforrelease.

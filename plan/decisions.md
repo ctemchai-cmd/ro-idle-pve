@@ -383,3 +383,7 @@ D174ล่าสุด: ผู้ใช้ขอวิถีเด้งเร�
 ## D182–183 — 26ตุลาคม2026
 
 ปุ่มCSSสไตล์Classicแต่คงmobileUX;ตรวจและปรับcardpowerทั้ง80ตามrole/rarityและคำยืนยันผู้ใช้. ลดATK/damageoutliers เติมAGI/หลบ/status/conditional/HPutility;ไม่บังคับทุกใบเท่ากัน. Design71–72/TASK158–159.
+
+## D184 — 26ตุลาคม2026
+
+ผู้ใช้แก้ทิศทางปุ่มจากClassicbevelที่ดูXP เป็นModernและล่าสุดยึดROIdleAdventure:softblue/goldprimary/rounded/nohardbevel. Design73/TASK160;UI-only.
