@@ -18,7 +18,7 @@ primaryblue/navytext,secondarywhite-blue,selectedblue/darkbattleblue. Keepshape1
 
 ## เกณฑ์ตรวจรับ
 - [x] AC-01:blueclassicpaletteบนshapeD184เดิม;shop/cards/states/mobile320390อ่านง่าย
-- [ ] AC-02:rootbuild/M0/publicผ่าน;fivefingerprints/packเดิมและnoownerwrites
+- [x] AC-02:rootbuild/M0/publicผ่าน;fivefingerprints/packเดิมและnoownerwrites
 
 ## วิธีตรวจ
 Design74/nativeexistingharnessboundedtask161/build/M0/hosted+fingerprintcompare.
@@ -27,4 +27,4 @@ Design74/nativeexistingharnessboundedtask161/build/M0/hosted+fingerprintcompare.
 ไม่มี;ผู้ใช้ยืนยันUIเดิมแล้วและขอเปลี่ยนสีชัดเจน.
 
 ## ผลตรวจ
-Localnative3groups320390/rootbuild/M0ผ่าน;CSSdiffเฉพาะสี ทุกgameplayfingerprint/packเดิม รอpublicrelease.
+Localnative3groups320390/rootbuild/M0ผ่าน;CSSdiffเฉพาะสี ทุกgameplayfingerprint/packเดิม VercelSUCCESS source0f1dbe68e/public4groups/24bundleSHAผ่าน.

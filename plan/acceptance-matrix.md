@@ -907,5 +907,5 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 
 | Case | Task | Input | Method | Status |
 | --- | --- | --- | --- | --- |
-| `T161-AC-01` | TASK-161 | design74/AC01 | native320390 | not_run_implementation |
-| `T161-AC-02` | TASK-161 | design74/AC02 | build/M0/public | not_run_implementation |
+| `T161-AC-01` | TASK-161 | design74/AC01 | native320390 | ผ่านnative/build/M0/public4groups · [review](evidence/task-161-review.json) |
+| `T161-AC-02` | TASK-161 | design74/AC02 | build/M0/public | ผ่านnative/build/M0/public4groups · [review](evidence/task-161-review.json) |

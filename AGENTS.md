@@ -2,7 +2,7 @@
 
 ## Classic palette on approved Modern UI (26 October2026,D185/TASK161)
 
-LatestuserconfirmedD184UIandrequestedROClassiccolors. Localnative3groups320390/rootbuild/M0passed;161review awaitingpublic. Onlybrand/controlcolorvalueschanged:white/silver/softblue/navyedges,primaryandbattle-speedblueinsteadgold. KeepD18412/8corners/spacing/type/hitareas/shadowgeometry/noinset/reducedmotion;do notrestoreD182bevel. Rarity/resourcegold/danger/HPsemanticsretained. Allfivegameplayfingerprints/packunchanged. See design74/evidence161/latestHANDOFFforrelease.
+LatestuserconfirmedD184UIandrequestedROClassiccolors. Source0f1dbe68e live/VercelSUCCESS;native3groups320390/rootbuild/M0/public4groups24bundleSHApassed;161complete. Onlybrand/controlcolorvalueschanged:white/silver/softblue/navyedges,primaryandbattle-speedblueinsteadgold. KeepD18412/8corners/spacing/type/hitareas/shadowgeometry/noinset/reducedmotion;do notrestoreD182bevel. Rarity/resourcegold/danger/HPsemanticsretained. Allfivegameplayfingerprints/packunchanged. See design74/evidence161/latestHANDOFFforrelease.
 
 ## Idle Adventure controls (26 October2026,D184/TASK160)
 
