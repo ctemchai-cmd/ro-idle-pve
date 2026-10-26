@@ -30,3 +30,5 @@ T154-AC01/02;nativeactualReactพร้อมsharedreducerในmemoryและe
 ## ผลตรวจlocal
 
 BulkUI4groupsและsingle-card/gachaเดิม4groups320390ผ่าน. 500ใบrender102cell/confirm8preview/เลือกครบ500/1command+1syntheticrevisionและผงรวมตรงreducer. Cancel/Escape/failed/liveprotectedchange/filterresetผ่าน. Existingatomic slot-progression testsผ่าน. รอbuild/publicก่อนdone.
+
+ผู้ใช้เสริมระหว่างrelease:แถบข้อมูลย่อใบที่แตะล่าสุด/ขยายรายละเอียดได้โดยselectionไม่เปลี่ยน;ต้องตรวจnativeและbuildรอบนี้ก่อนdone. c71dcd2abมีbulkพื้นฐานแต่ยังไม่ใช่ผลล่าสุดจนปล่อยpatchนี้.

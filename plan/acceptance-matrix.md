@@ -854,3 +854,11 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | --- | --- | --- | --- | --- |
 | `T154-AC-01` | TASK-154 | design67/AC01 | UI/TS/build/public | not_run_implementation |
 | `T154-AC-02` | TASK-154 | design67/AC02 | UI/TS/build/public | not_run_implementation |
+
+## TASK-155 — การ์ดเวทผสม
+
+| Case | Task | Expected | Verification | Status |
+| --- | --- | --- | --- | --- |
+| `T155-AC-01` | TASK-155 | design68/AC01 | data/engine/native/build/public | not_run_implementation |
+| `T155-AC-02` | TASK-155 | design68/AC02 | data/engine/native/build/public | not_run_implementation |
+| `T155-AC-03` | TASK-155 | design68/AC03 | data/engine/native/build/public | not_run_implementation |

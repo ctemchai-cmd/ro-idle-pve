@@ -106,3 +106,5 @@ D167/TASK139: [ร้าน/แลกเศษ/Panel](56-shop-and-exchange-ui.md
 - [66-card-actions-and-field-clarity.md](66-card-actions-and-field-clarity.md): D177/TASK153 ยืนยันย่อย/สุ่มต่อ/พื้นแสงและวงเพลงครอบทีม
 
 - [67-bulk-card-salvage.md](67-bulk-card-salvage.md): D178/TASK154 ย่อยการ์ดหลายใบ
+
+- [68-magic-card-options.md](68-magic-card-options.md): D179/TASK155 การ์ดเวทผสม

@@ -1,0 +1,4669 @@
+{
+  "schema_version": 1,
+  "content_version": "cards-ro-v4",
+  "definitions": [
+    {
+      "id": "card_weapon_1",
+      "name_key": "card_weapon_1",
+      "kind": "card",
+      "slot": "weapon",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 8
+        },
+        {
+          "id": "crit_chance_bonus",
+          "stat": "crit_chance_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.005
+        },
+        {
+          "id": "impact_physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.14
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_weapon_1"
+    },
+    {
+      "id": "card_weapon_2",
+      "name_key": "card_weapon_2",
+      "kind": "card",
+      "slot": "weapon",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 5
+        },
+        {
+          "id": "impact_physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.0875
+        }
+      ],
+      "triggers": [
+        {
+          "id": "freeze_on_hit",
+          "event": "normal_attack_hit",
+          "chance": 0.05,
+          "accepted_origins": [
+            "normal"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {
+            "foes": {
+              "team": "enemies",
+              "life": "living",
+              "select": "all",
+              "count": null,
+              "phase": "event",
+              "missing": "skip"
+            }
+          },
+          "effects": [
+            {
+              "id": "freeze",
+              "type": "apply_status",
+              "target": "event_target",
+              "status_id": "freeze",
+              "duration_ms": 1000,
+              "params": {},
+              "chance": 1
+            }
+          ]
+        }
+      ],
+      "presentation_id": "visual_card_weapon_2"
+    },
+    {
+      "id": "card_weapon_3",
+      "name_key": "card_weapon_3",
+      "kind": "card",
+      "slot": "weapon",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "crit_chance_bonus",
+          "stat": "crit_chance_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.03
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_weapon_3"
+    },
+    {
+      "id": "card_head_1",
+      "name_key": "card_head_1",
+      "kind": "card",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 25
+        },
+        {
+          "id": "impact_max_sp",
+          "stat": "max_sp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.4375
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_head_1"
+    },
+    {
+      "id": "card_head_2",
+      "name_key": "card_head_2",
+      "kind": "card",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "int",
+          "stat": "int",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 2
+        },
+        {
+          "id": "impact_magical_attack",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.105
+        },
+        {
+          "id": "impact_max_sp",
+          "stat": "max_sp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.14
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_head_2"
+    },
+    {
+      "id": "card_head_3",
+      "name_key": "card_head_3",
+      "kind": "card",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 50
+        },
+        {
+          "id": "int",
+          "stat": "int",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": -1
+        },
+        {
+          "id": "sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": -0.05
+        },
+        {
+          "id": "impact_max_sp",
+          "stat": "max_sp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.875
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_head_3"
+    },
+    {
+      "id": "card_armor_1",
+      "name_key": "card_armor_1",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "luk",
+          "stat": "luk",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 2
+        },
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.005
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_armor_1"
+    },
+    {
+      "id": "card_armor_2",
+      "name_key": "card_armor_2",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "str",
+          "stat": "str",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 1
+        },
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 5
+        },
+        {
+          "id": "impact_physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.1225
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_armor_2"
+    },
+    {
+      "id": "card_armor_3",
+      "name_key": "card_armor_3",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "int",
+          "stat": "int",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 1
+        },
+        {
+          "id": "impact_magical_attack",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.0525
+        },
+        {
+          "id": "impact_max_sp",
+          "stat": "max_sp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.07
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_armor_3"
+    },
+    {
+      "id": "card_garment_1",
+      "name_key": "card_garment_1",
+      "kind": "card",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.04
+        },
+        {
+          "id": "ghost_resistance",
+          "stat": "ghost_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": -0.1
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_garment_1"
+    },
+    {
+      "id": "card_garment_2",
+      "name_key": "card_garment_2",
+      "kind": "card",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.025
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_garment_2"
+    },
+    {
+      "id": "card_garment_3",
+      "name_key": "card_garment_3",
+      "kind": "card",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "wind_resistance",
+          "stat": "wind_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.08
+        },
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.01
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_garment_3"
+    },
+    {
+      "id": "card_shoes_1",
+      "name_key": "card_shoes_1",
+      "kind": "card",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "hp_regen_percent",
+          "stat": "hp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.001
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_shoes_1"
+    },
+    {
+      "id": "card_shoes_2",
+      "name_key": "card_shoes_2",
+      "kind": "card",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "str",
+          "stat": "str",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 1
+        },
+        {
+          "id": "vit",
+          "stat": "vit",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 1
+        },
+        {
+          "id": "impact_physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.035
+        },
+        {
+          "id": "impact_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.035
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_shoes_2"
+    },
+    {
+      "id": "card_shoes_3",
+      "name_key": "card_shoes_3",
+      "kind": "card",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.03
+        },
+        {
+          "id": "agi",
+          "stat": "agi",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 1
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_shoes_3"
+    },
+    {
+      "id": "card_accessory_1",
+      "name_key": "card_accessory_1",
+      "kind": "card",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "str",
+          "stat": "str",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 2
+        },
+        {
+          "id": "impact_physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.07
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_accessory_1"
+    },
+    {
+      "id": "card_accessory_2",
+      "name_key": "card_accessory_2",
+      "kind": "card",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "dex",
+          "stat": "dex",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 2
+        },
+        {
+          "id": "impact_physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.035
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_accessory_2"
+    },
+    {
+      "id": "card_accessory_3",
+      "name_key": "card_accessory_3",
+      "kind": "card",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "agi",
+          "stat": "agi",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 1
+        },
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.01
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_accessory_3"
+    },
+    {
+      "id": "card_fabre",
+      "name_key": "card_fabre",
+      "kind": "card",
+      "slot": "weapon",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "vit",
+          "stat": "vit",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 1
+        },
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 40
+        },
+        {
+          "id": "impact_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.105
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_fabre"
+    },
+    {
+      "id": "card_lunatic",
+      "name_key": "card_lunatic",
+      "kind": "card",
+      "slot": "weapon",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "luk",
+          "stat": "luk",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 1
+        },
+        {
+          "id": "crit_chance_bonus",
+          "stat": "crit_chance_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.01
+        },
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.003
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_lunatic"
+    },
+    {
+      "id": "card_pupa",
+      "name_key": "card_pupa",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 120
+        },
+        {
+          "id": "impact_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.21
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_pupa"
+    },
+    {
+      "id": "card_spore",
+      "name_key": "card_spore",
+      "kind": "card",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "vit",
+          "stat": "vit",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 2
+        },
+        {
+          "id": "impact_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.07
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_spore"
+    },
+    {
+      "id": "card_chonchon",
+      "name_key": "card_chonchon",
+      "kind": "card",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "agi",
+          "stat": "agi",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 1
+        },
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.01
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_chonchon"
+    },
+    {
+      "id": "card_rocker",
+      "name_key": "card_rocker",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 1,
+      "required_level": 1,
+      "modifiers": [
+        {
+          "id": "dex",
+          "stat": "dex",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 1
+        },
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 3
+        },
+        {
+          "id": "impact_physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.07
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_rocker"
+    },
+    {
+      "id": "card_hydra",
+      "name_key": "card_hydra",
+      "kind": "card",
+      "slot": "weapon",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [],
+      "triggers": [
+        {
+          "id": "matched_bonus",
+          "event": "damage_dealt",
+          "chance": 1,
+          "accepted_origins": [
+            "normal",
+            "skill"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {
+            "foes": {
+              "team": "enemies",
+              "life": "living",
+              "select": "all",
+              "count": null,
+              "phase": "event",
+              "missing": "skip"
+            }
+          },
+          "effects": [
+            {
+              "id": "bonus_hit",
+              "type": "damage",
+              "target": "event_target",
+              "formula": {
+                "id": "event_damage_power",
+                "params": {
+                  "ratio": 0.14
+                }
+              },
+              "damage_type": "true",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "ignore"
+            }
+          ],
+          "when": {
+            "type": "has_tag",
+            "actor": "event_target",
+            "tag": "race_demihuman"
+          },
+          "accepted_damage_types": [
+            "physical"
+          ]
+        }
+      ],
+      "presentation_id": "visual_card_hydra"
+    },
+    {
+      "id": "card_drainliar",
+      "name_key": "card_drainliar",
+      "kind": "card",
+      "slot": "weapon",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [],
+      "triggers": [
+        {
+          "id": "matched_bonus",
+          "event": "damage_dealt",
+          "chance": 1,
+          "accepted_origins": [
+            "normal",
+            "skill"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {
+            "foes": {
+              "team": "enemies",
+              "life": "living",
+              "select": "all",
+              "count": null,
+              "phase": "event",
+              "missing": "skip"
+            }
+          },
+          "effects": [
+            {
+              "id": "bonus_hit",
+              "type": "damage",
+              "target": "event_target",
+              "formula": {
+                "id": "event_damage_power",
+                "params": {
+                  "ratio": 0.14
+                }
+              },
+              "damage_type": "true",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "ignore"
+            }
+          ],
+          "when": {
+            "type": "has_tag",
+            "actor": "event_target",
+            "tag": "element_water"
+          },
+          "accepted_damage_types": [
+            "physical"
+          ]
+        }
+      ],
+      "presentation_id": "visual_card_drainliar"
+    },
+    {
+      "id": "card_marc",
+      "name_key": "card_marc",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "freeze_resistance",
+          "stat": "freeze_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 1
+        },
+        {
+          "id": "water_resistance",
+          "stat": "water_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.03
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_marc"
+    },
+    {
+      "id": "card_kukre",
+      "name_key": "card_kukre",
+      "kind": "card",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "agi",
+          "stat": "agi",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 2
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_kukre"
+    },
+    {
+      "id": "card_thara_frog",
+      "name_key": "card_thara_frog",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "guard_percent",
+          "stat": "guard_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.04
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_thara_frog"
+    },
+    {
+      "id": "card_pecopeco",
+      "name_key": "card_pecopeco",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.05
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_pecopeco"
+    },
+    {
+      "id": "card_mantis",
+      "name_key": "card_mantis",
+      "kind": "card",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "str",
+          "stat": "str",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 3
+        },
+        {
+          "id": "impact_physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.105
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_mantis"
+    },
+    {
+      "id": "card_dokebi",
+      "name_key": "card_dokebi",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 5
+        },
+        {
+          "id": "impact_physical_defense",
+          "stat": "physical_defense",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.0875
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_dokebi",
+      "defense_element": "wind"
+    },
+    {
+      "id": "card_zerom",
+      "name_key": "card_zerom",
+      "kind": "card",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "dex",
+          "stat": "dex",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 3
+        },
+        {
+          "id": "impact_physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.0525
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_zerom"
+    },
+    {
+      "id": "card_andre",
+      "name_key": "card_andre",
+      "kind": "card",
+      "slot": "weapon",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 20
+        },
+        {
+          "id": "impact_physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.35
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_andre"
+    },
+    {
+      "id": "card_savage",
+      "name_key": "card_savage",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "vit",
+          "stat": "vit",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 3
+        },
+        {
+          "id": "impact_max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.105
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_savage"
+    },
+    {
+      "id": "card_smokie",
+      "name_key": "card_smokie",
+      "kind": "card",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.04
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_smokie"
+    },
+    {
+      "id": "card_minorous",
+      "name_key": "card_minorous",
+      "kind": "card",
+      "slot": "weapon",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 5
+        },
+        {
+          "id": "impact_physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.0875
+        }
+      ],
+      "triggers": [
+        {
+          "id": "matched_bonus",
+          "event": "damage_dealt",
+          "chance": 1,
+          "accepted_origins": [
+            "normal",
+            "skill"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {
+            "foes": {
+              "team": "enemies",
+              "life": "living",
+              "select": "all",
+              "count": null,
+              "phase": "event",
+              "missing": "skip"
+            }
+          },
+          "effects": [
+            {
+              "id": "bonus_hit",
+              "type": "damage",
+              "target": "event_target",
+              "formula": {
+                "id": "event_damage_power",
+                "params": {
+                  "ratio": 0.175
+                }
+              },
+              "damage_type": "true",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "ignore"
+            }
+          ],
+          "when": {
+            "type": "has_tag",
+            "actor": "event_target",
+            "tag": "size_large"
+          },
+          "accepted_damage_types": [
+            "physical"
+          ]
+        }
+      ],
+      "presentation_id": "visual_card_minorous"
+    },
+    {
+      "id": "card_wraith",
+      "name_key": "card_wraith",
+      "kind": "card",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [],
+      "triggers": [
+        {
+          "id": "undead_find",
+          "event": "damage_dealt",
+          "chance": 0.05,
+          "accepted_origins": [
+            "normal",
+            "skill"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "when": {
+            "type": "has_tag",
+            "actor": "event_target",
+            "tag": "race_undead"
+          },
+          "selectors": {},
+          "effects": [
+            {
+              "id": "found_power",
+              "type": "apply_status",
+              "target": "self",
+              "status_id": "attack_up",
+              "duration_ms": 5000,
+              "params": {
+                "ratio": 0.03
+              },
+              "chance": 1
+            }
+          ]
+        }
+      ],
+      "presentation_id": "visual_card_wraith"
+    },
+    {
+      "id": "card_deviruchi",
+      "name_key": "card_deviruchi",
+      "kind": "card",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "str",
+          "stat": "str",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 1
+        },
+        {
+          "id": "blind_resistance",
+          "stat": "blind_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 1
+        },
+        {
+          "id": "impact_physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.035
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_deviruchi"
+    },
+    {
+      "id": "card_marduk",
+      "name_key": "card_marduk",
+      "kind": "card",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "silence_resistance",
+          "stat": "silence_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 1
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_marduk"
+    },
+    {
+      "id": "card_raydric",
+      "name_key": "card_raydric",
+      "kind": "card",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "neutral_resistance",
+          "stat": "neutral_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.1
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_raydric"
+    },
+    {
+      "id": "card_evil_druid",
+      "name_key": "card_evil_druid",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "int",
+          "stat": "int",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 1
+        },
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 5
+        },
+        {
+          "id": "impact_magical_attack",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.0525
+        },
+        {
+          "id": "impact_max_sp",
+          "stat": "max_sp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.07
+        },
+        {
+          "id": "impact_physical_defense",
+          "stat": "physical_defense",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.0875
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_evil_druid",
+      "defense_element": "undead"
+    },
+    {
+      "id": "card_isis",
+      "name_key": "card_isis",
+      "kind": "card",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "dark_resistance",
+          "stat": "dark_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.12
+        },
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.01
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_isis"
+    },
+    {
+      "id": "card_sohee",
+      "name_key": "card_sohee",
+      "kind": "card",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.1
+        },
+        {
+          "id": "sp_regen_percent",
+          "stat": "sp_regen_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.05
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_sohee"
+    },
+    {
+      "id": "card_verit",
+      "name_key": "card_verit",
+      "kind": "card",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.05
+        },
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.05
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_verit"
+    },
+    {
+      "id": "card_kaho",
+      "name_key": "card_kaho",
+      "kind": "card",
+      "slot": "weapon",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [],
+      "triggers": [
+        {
+          "id": "matched_bonus",
+          "event": "damage_dealt",
+          "chance": 1,
+          "accepted_origins": [
+            "normal",
+            "skill"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {
+            "foes": {
+              "team": "enemies",
+              "life": "living",
+              "select": "all",
+              "count": null,
+              "phase": "event",
+              "missing": "skip"
+            }
+          },
+          "effects": [
+            {
+              "id": "bonus_hit",
+              "type": "damage",
+              "target": "event_target",
+              "formula": {
+                "id": "event_damage_power",
+                "params": {
+                  "ratio": 0.175
+                }
+              },
+              "damage_type": "true",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "ignore"
+            }
+          ],
+          "when": {
+            "type": "has_tag",
+            "actor": "event_target",
+            "tag": "element_earth"
+          },
+          "accepted_damage_types": [
+            "physical"
+          ]
+        }
+      ],
+      "presentation_id": "visual_card_kaho"
+    },
+    {
+      "id": "card_phen",
+      "name_key": "card_phen",
+      "kind": "card",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "interrupt_resistance",
+          "stat": "interrupt_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.5
+        },
+        {
+          "id": "cast_speed",
+          "stat": "cast_speed",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": -0.1
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_phen"
+    },
+    {
+      "id": "card_hode",
+      "name_key": "card_hode",
+      "kind": "card",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "earth_resistance",
+          "stat": "earth_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.12
+        },
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.01
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_hode"
+    },
+    {
+      "id": "card_doppelganger",
+      "name_key": "card_doppelganger",
+      "kind": "card",
+      "slot": "weapon",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "attack_speed",
+          "stat": "attack_speed",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.06
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_doppelganger"
+    },
+    {
+      "id": "card_dark_lord",
+      "name_key": "card_dark_lord",
+      "kind": "card",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "outgoing_magical_bonus",
+          "stat": "outgoing_magical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.0525
+        }
+      ],
+      "triggers": [
+        {
+          "id": "meteor_when_hit",
+          "event": "damage_received",
+          "chance": 0.06,
+          "accepted_origins": [
+            "normal",
+            "skill"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {
+            "foes": {
+              "team": "enemies",
+              "life": "living",
+              "select": "all",
+              "count": null,
+              "phase": "event",
+              "missing": "skip"
+            }
+          },
+          "effects": [
+            {
+              "id": "meteor",
+              "type": "damage",
+              "target": "foes",
+              "formula": {
+                "id": "magical_power",
+                "params": {
+                  "attack_ratio": 2.1,
+                  "flat_power": 0.0
+                }
+              },
+              "damage_type": "magical",
+              "element": "fire",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
+            }
+          ]
+        }
+      ],
+      "presentation_id": "visual_card_dark_lord"
+    },
+    {
+      "id": "card_abysmal_knight",
+      "name_key": "card_abysmal_knight",
+      "kind": "card",
+      "slot": "weapon",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [],
+      "triggers": [
+        {
+          "id": "matched_bonus",
+          "event": "damage_dealt",
+          "chance": 1,
+          "accepted_origins": [
+            "normal",
+            "skill"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {
+            "foes": {
+              "team": "enemies",
+              "life": "living",
+              "select": "all",
+              "count": null,
+              "phase": "event",
+              "missing": "skip"
+            }
+          },
+          "effects": [
+            {
+              "id": "bonus_hit",
+              "type": "damage",
+              "target": "event_target",
+              "formula": {
+                "id": "event_damage_power",
+                "params": {
+                  "ratio": 0.2625
+                }
+              },
+              "damage_type": "true",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "ignore"
+            }
+          ],
+          "when": {
+            "type": "has_tag",
+            "actor": "event_target",
+            "tag": "boss"
+          },
+          "accepted_damage_types": [
+            "physical"
+          ]
+        }
+      ],
+      "presentation_id": "visual_card_abysmal_knight"
+    },
+    {
+      "id": "card_osiris",
+      "name_key": "card_osiris",
+      "kind": "card",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "revive_hp_bonus",
+          "stat": "revive_hp_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.4
+        },
+        {
+          "id": "revive_sp_bonus",
+          "stat": "revive_sp_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.4
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_osiris"
+    },
+    {
+      "id": "card_maya",
+      "name_key": "card_maya",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.08
+        }
+      ],
+      "triggers": [
+        {
+          "id": "reflect_magic",
+          "event": "damage_received",
+          "chance": 0.3,
+          "accepted_origins": [
+            "normal",
+            "skill"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {
+            "foes": {
+              "team": "enemies",
+              "life": "living",
+              "select": "all",
+              "count": null,
+              "phase": "event",
+              "missing": "skip"
+            }
+          },
+          "effects": [
+            {
+              "id": "reflect",
+              "type": "damage",
+              "target": "event_source",
+              "formula": {
+                "id": "event_damage_power",
+                "params": {
+                  "ratio": 0.35
+                }
+              },
+              "damage_type": "true",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "ignore"
+            }
+          ],
+          "accepted_damage_types": [
+            "magical"
+          ]
+        }
+      ],
+      "presentation_id": "visual_card_maya"
+    },
+    {
+      "id": "card_golden_thief_bug",
+      "name_key": "card_golden_thief_bug",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "magical_guard_percent",
+          "stat": "magical_guard_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.25
+        },
+        {
+          "id": "sp_cost_percent",
+          "stat": "sp_cost_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.25
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_golden_thief_bug"
+    },
+    {
+      "id": "card_turtle_general",
+      "name_key": "card_turtle_general",
+      "kind": "card",
+      "slot": "weapon",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "outgoing_physical_bonus",
+          "stat": "outgoing_physical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.1225
+        }
+      ],
+      "triggers": [
+        {
+          "id": "magnum_on_hit",
+          "event": "normal_attack_hit",
+          "chance": 0.05,
+          "accepted_origins": [
+            "normal"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {
+            "foes": {
+              "team": "enemies",
+              "life": "living",
+              "select": "all",
+              "count": null,
+              "phase": "event",
+              "missing": "skip"
+            }
+          },
+          "effects": [
+            {
+              "id": "magnum",
+              "type": "damage",
+              "target": "foes",
+              "formula": {
+                "id": "physical_power",
+                "params": {
+                  "attack_ratio": 0.6125,
+                  "flat_power": 0.0
+                }
+              },
+              "damage_type": "physical",
+              "element": "fire",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
+            }
+          ]
+        }
+      ],
+      "presentation_id": "visual_card_turtle_general"
+    },
+    {
+      "id": "card_stormy_knight",
+      "name_key": "card_stormy_knight",
+      "kind": "card",
+      "slot": "weapon",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [],
+      "triggers": [
+        {
+          "id": "gust_on_hit",
+          "event": "normal_attack_hit",
+          "chance": 0.03,
+          "accepted_origins": [
+            "normal"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {
+            "foes": {
+              "team": "enemies",
+              "life": "living",
+              "select": "all",
+              "count": null,
+              "phase": "event",
+              "missing": "skip"
+            }
+          },
+          "effects": [
+            {
+              "id": "gust",
+              "type": "damage",
+              "target": "foes",
+              "formula": {
+                "id": "magical_power",
+                "params": {
+                  "attack_ratio": 1.05,
+                  "flat_power": 0.0
+                }
+              },
+              "damage_type": "magical",
+              "element": "water",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
+            }
+          ]
+        },
+        {
+          "id": "freeze_on_hit",
+          "event": "normal_attack_hit",
+          "chance": 0.05,
+          "accepted_origins": [
+            "normal"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {
+            "foes": {
+              "team": "enemies",
+              "life": "living",
+              "select": "all",
+              "count": null,
+              "phase": "event",
+              "missing": "skip"
+            }
+          },
+          "effects": [
+            {
+              "id": "freeze",
+              "type": "apply_status",
+              "target": "event_target",
+              "status_id": "freeze",
+              "duration_ms": 1000,
+              "params": {},
+              "chance": 1
+            }
+          ]
+        }
+      ],
+      "presentation_id": "visual_card_stormy_knight"
+    },
+    {
+      "id": "card_garm",
+      "name_key": "card_garm",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [],
+      "triggers": [
+        {
+          "id": "freeze_when_hit",
+          "event": "damage_received",
+          "chance": 0.1,
+          "accepted_origins": [
+            "normal",
+            "skill"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {
+            "foes": {
+              "team": "enemies",
+              "life": "living",
+              "select": "all",
+              "count": null,
+              "phase": "event",
+              "missing": "skip"
+            }
+          },
+          "effects": [
+            {
+              "id": "freeze",
+              "type": "apply_status",
+              "target": "event_source",
+              "status_id": "freeze",
+              "duration_ms": 1500,
+              "params": {},
+              "chance": 1
+            }
+          ]
+        }
+      ],
+      "presentation_id": "visual_card_garm"
+    },
+    {
+      "id": "card_moonlight_flower",
+      "name_key": "card_moonlight_flower",
+      "kind": "card",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "move_speed_percent",
+          "stat": "move_speed_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.15
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_moonlight_flower"
+    },
+    {
+      "id": "card_eddga",
+      "name_key": "card_eddga",
+      "kind": "card",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": -0.1
+        },
+        {
+          "id": "guard_percent",
+          "stat": "guard_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.05
+        },
+        {
+          "id": "move_speed_percent",
+          "stat": "move_speed_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.05
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_eddga"
+    },
+    {
+      "id": "card_baphomet",
+      "name_key": "card_baphomet",
+      "kind": "card",
+      "slot": "weapon",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "hit_bonus",
+          "stat": "hit_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": -0.03
+        }
+      ],
+      "triggers": [
+        {
+          "id": "splash_on_hit",
+          "event": "normal_attack_hit",
+          "chance": 1,
+          "accepted_origins": [
+            "normal"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {
+            "foes": {
+              "team": "enemies",
+              "life": "living",
+              "select": "all",
+              "count": null,
+              "phase": "event",
+              "missing": "skip"
+            }
+          },
+          "effects": [
+            {
+              "id": "splash",
+              "type": "damage",
+              "target": "foes",
+              "formula": {
+                "id": "physical_power",
+                "params": {
+                  "attack_ratio": 0.2625,
+                  "flat_power": 0.0
+                }
+              },
+              "damage_type": "physical",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "normal"
+            }
+          ]
+        }
+      ],
+      "presentation_id": "visual_card_baphomet"
+    },
+    {
+      "id": "card_mastering",
+      "name_key": "card_mastering",
+      "kind": "card",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "luk",
+          "stat": "luk",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 2
+        },
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.02
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_mastering"
+    },
+    {
+      "id": "card_vagabond_wolf",
+      "name_key": "card_vagabond_wolf",
+      "kind": "card",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "str",
+          "stat": "str",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 2
+        },
+        {
+          "id": "physical_attack",
+          "stat": "physical_attack",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 8
+        },
+        {
+          "id": "impact_physical_attack",
+          "stat": "physical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.21
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_vagabond_wolf"
+    },
+    {
+      "id": "card_dragon_fly",
+      "name_key": "card_dragon_fly",
+      "kind": "card",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "agi",
+          "stat": "agi",
+          "op": "add_flat",
+          "bucket": "primary",
+          "value": 2
+        },
+        {
+          "id": "evasion_bonus",
+          "stat": "evasion_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.02
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_dragon_fly"
+    },
+    {
+      "id": "card_angeling",
+      "name_key": "card_angeling",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "op": "add_flat",
+          "bucket": "derived",
+          "value": 5
+        },
+        {
+          "id": "impact_magical_defense",
+          "stat": "magical_defense",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.0875
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_angeling",
+      "defense_element": "holy"
+    },
+    {
+      "id": "card_ghostring",
+      "name_key": "card_ghostring",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "healing_received_bonus",
+          "stat": "healing_received_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": -0.05
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_ghostring",
+      "defense_element": "ghost"
+    },
+    {
+      "id": "card_deviling",
+      "name_key": "card_deviling",
+      "kind": "card",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "neutral_resistance",
+          "stat": "neutral_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.1
+        },
+        {
+          "id": "water_resistance",
+          "stat": "water_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": -0.1
+        },
+        {
+          "id": "earth_resistance",
+          "stat": "earth_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": -0.1
+        },
+        {
+          "id": "fire_resistance",
+          "stat": "fire_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": -0.1
+        },
+        {
+          "id": "wind_resistance",
+          "stat": "wind_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": -0.1
+        },
+        {
+          "id": "poison_resistance",
+          "stat": "poison_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": -0.1
+        },
+        {
+          "id": "holy_resistance",
+          "stat": "holy_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": -0.1
+        },
+        {
+          "id": "dark_resistance",
+          "stat": "dark_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": -0.1
+        },
+        {
+          "id": "ghost_resistance",
+          "stat": "ghost_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": -0.1
+        },
+        {
+          "id": "undead_resistance",
+          "stat": "undead_resistance",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": -0.1
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_deviling"
+    },
+    {
+      "id": "card_angeling_puppet",
+      "name_key": "card_angeling_puppet",
+      "kind": "card",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "value": 0.04,
+          "op": "add_percent",
+          "bucket": "derived"
+        },
+        {
+          "id": "magical_defense",
+          "stat": "magical_defense",
+          "value": 0.03,
+          "op": "add_percent",
+          "bucket": "derived"
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_angeling_puppet"
+    },
+    {
+      "id": "card_deviling_puppet",
+      "name_key": "card_deviling_puppet",
+      "kind": "card",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "outgoing_physical_bonus",
+          "stat": "outgoing_physical_bonus",
+          "value": 0.035,
+          "op": "add_flat",
+          "bucket": "bonus"
+        },
+        {
+          "id": "outgoing_magical_bonus",
+          "stat": "outgoing_magical_bonus",
+          "value": 0.035,
+          "op": "add_flat",
+          "bucket": "bonus"
+        },
+        {
+          "id": "guard_percent",
+          "stat": "guard_percent",
+          "value": 0.01,
+          "op": "add_flat",
+          "bucket": "bonus"
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_deviling_puppet"
+    },
+    {
+      "id": "card_golden_thief_bug_puppet",
+      "name_key": "card_golden_thief_bug_puppet",
+      "kind": "card",
+      "slot": "garment",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "magical_guard_percent",
+          "stat": "magical_guard_percent",
+          "value": 0.03,
+          "op": "add_flat",
+          "bucket": "bonus"
+        },
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "value": 0.02,
+          "op": "add_percent",
+          "bucket": "derived"
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_golden_thief_bug_puppet"
+    },
+    {
+      "id": "card_eddga_puppet",
+      "name_key": "card_eddga_puppet",
+      "kind": "card",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [],
+      "triggers": [
+        {
+          "id": "matched_bonus",
+          "event": "damage_dealt",
+          "chance": 1,
+          "accepted_origins": [
+            "normal",
+            "skill"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {
+            "foes": {
+              "team": "enemies",
+              "life": "living",
+              "select": "all",
+              "count": null,
+              "phase": "event",
+              "missing": "skip"
+            }
+          },
+          "effects": [
+            {
+              "id": "bonus_hit",
+              "type": "damage",
+              "target": "event_target",
+              "formula": {
+                "id": "event_damage_power",
+                "params": {
+                  "ratio": 0.0525
+                }
+              },
+              "damage_type": "true",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "ignore"
+            }
+          ],
+          "when": {
+            "type": "has_tag",
+            "actor": "event_target",
+            "tag": "size_large"
+          },
+          "accepted_damage_types": [
+            "physical",
+            "magical"
+          ]
+        }
+      ],
+      "presentation_id": "visual_card_eddga_puppet"
+    },
+    {
+      "id": "card_moonlight_flower_puppet",
+      "name_key": "card_moonlight_flower_puppet",
+      "kind": "card",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [],
+      "triggers": [
+        {
+          "id": "matched_bonus",
+          "event": "damage_dealt",
+          "chance": 1,
+          "accepted_origins": [
+            "normal",
+            "skill"
+          ],
+          "limit_scope": "per_root_action",
+          "limit_count": 1,
+          "reentry": "deny_same_source_trigger_in_ancestry",
+          "selectors": {
+            "foes": {
+              "team": "enemies",
+              "life": "living",
+              "select": "all",
+              "count": null,
+              "phase": "event",
+              "missing": "skip"
+            }
+          },
+          "effects": [
+            {
+              "id": "bonus_hit",
+              "type": "damage",
+              "target": "event_target",
+              "formula": {
+                "id": "event_damage_power",
+                "params": {
+                  "ratio": 0.0525
+                }
+              },
+              "damage_type": "true",
+              "element": "neutral",
+              "hit_rule": "always",
+              "can_crit": false,
+              "hits": 1,
+              "armor_rule": "ignore"
+            }
+          ],
+          "when": {
+            "type": "has_tag",
+            "actor": "event_target",
+            "tag": "size_small"
+          },
+          "accepted_damage_types": [
+            "physical",
+            "magical"
+          ]
+        }
+      ],
+      "presentation_id": "visual_card_moonlight_flower_puppet"
+    },
+    {
+      "id": "card_baphomet_puppet",
+      "name_key": "card_baphomet_puppet",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "value": 0.04,
+          "op": "add_percent",
+          "bucket": "derived"
+        },
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "value": 0.03,
+          "op": "add_percent",
+          "bucket": "derived"
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_baphomet_puppet"
+    },
+    {
+      "id": "card_doppelganger_puppet",
+      "name_key": "card_doppelganger_puppet",
+      "kind": "card",
+      "slot": "head",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "max_hp",
+          "stat": "max_hp",
+          "value": 0.02,
+          "op": "add_percent",
+          "bucket": "derived"
+        },
+        {
+          "id": "crit_resistance",
+          "stat": "crit_resistance",
+          "value": 0.02,
+          "op": "add_flat",
+          "bucket": "bonus"
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_doppelganger_puppet"
+    }
+  ],
+  "presentations": [
+    {
+      "id": "visual_card_weapon_1",
+      "icon_asset_id": "items.card-4029",
+      "meta_path": "assets/ro/items/card-4029.meta.json",
+      "illustration_asset_id": "items.card-4029",
+      "illustration_meta_path": "assets/ro/items/card-4029.meta.json",
+      "symbol_asset_id": "items.card-4029",
+      "symbol_meta_path": "assets/ro/items/card-4029.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_weapon_2",
+      "icon_asset_id": "items.card-4055",
+      "meta_path": "assets/ro/items/card-4055.meta.json",
+      "illustration_asset_id": "items.card-4055",
+      "illustration_meta_path": "assets/ro/items/card-4055.meta.json",
+      "symbol_asset_id": "items.card-4055",
+      "symbol_meta_path": "assets/ro/items/card-4055.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_weapon_3",
+      "icon_asset_id": "items.card-4086",
+      "meta_path": "assets/ro/items/card-4086.meta.json",
+      "illustration_asset_id": "items.card-4086",
+      "illustration_meta_path": "assets/ro/items/card-4086.meta.json",
+      "symbol_asset_id": "items.card-4086",
+      "symbol_meta_path": "assets/ro/items/card-4086.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_head_1",
+      "icon_asset_id": "items.card-4010",
+      "meta_path": "assets/ro/items/card-4010.meta.json",
+      "illustration_asset_id": "items.card-4010",
+      "illustration_meta_path": "assets/ro/items/card-4010.meta.json",
+      "symbol_asset_id": "items.card-4010",
+      "symbol_meta_path": "assets/ro/items/card-4010.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_head_2",
+      "icon_asset_id": "items.card-4052",
+      "meta_path": "assets/ro/items/card-4052.meta.json",
+      "illustration_asset_id": "items.card-4052",
+      "illustration_meta_path": "assets/ro/items/card-4052.meta.json",
+      "symbol_asset_id": "items.card-4052",
+      "symbol_meta_path": "assets/ro/items/card-4052.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_head_3",
+      "icon_asset_id": "items.card-4269",
+      "meta_path": "assets/ro/items/card-4269.meta.json",
+      "illustration_asset_id": "items.card-4269",
+      "illustration_meta_path": "assets/ro/items/card-4269.meta.json",
+      "symbol_asset_id": "items.card-4269",
+      "symbol_meta_path": "assets/ro/items/card-4269.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_armor_1",
+      "icon_asset_id": "items.card-4001",
+      "meta_path": "assets/ro/items/card-4001.meta.json",
+      "illustration_asset_id": "items.card-4001",
+      "illustration_meta_path": "assets/ro/items/card-4001.meta.json",
+      "symbol_asset_id": "items.card-4001",
+      "symbol_meta_path": "assets/ro/items/card-4001.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_armor_2",
+      "icon_asset_id": "items.card-4008",
+      "meta_path": "assets/ro/items/card-4008.meta.json",
+      "illustration_asset_id": "items.card-4008",
+      "illustration_meta_path": "assets/ro/items/card-4008.meta.json",
+      "symbol_asset_id": "items.card-4008",
+      "symbol_meta_path": "assets/ro/items/card-4008.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_armor_3",
+      "icon_asset_id": "items.card-4023",
+      "meta_path": "assets/ro/items/card-4023.meta.json",
+      "illustration_asset_id": "items.card-4023",
+      "illustration_meta_path": "assets/ro/items/card-4023.meta.json",
+      "symbol_asset_id": "items.card-4023",
+      "symbol_meta_path": "assets/ro/items/card-4023.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_garment_1",
+      "icon_asset_id": "items.card-4102",
+      "meta_path": "assets/ro/items/card-4102.meta.json",
+      "illustration_asset_id": "items.card-4102",
+      "illustration_meta_path": "assets/ro/items/card-4102.meta.json",
+      "symbol_asset_id": "items.card-4102",
+      "symbol_meta_path": "assets/ro/items/card-4102.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_garment_2",
+      "icon_asset_id": "items.card-4015",
+      "meta_path": "assets/ro/items/card-4015.meta.json",
+      "illustration_asset_id": "items.card-4015",
+      "illustration_meta_path": "assets/ro/items/card-4015.meta.json",
+      "symbol_asset_id": "items.card-4015",
+      "symbol_meta_path": "assets/ro/items/card-4015.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_garment_3",
+      "icon_asset_id": "items.card-4056",
+      "meta_path": "assets/ro/items/card-4056.meta.json",
+      "illustration_asset_id": "items.card-4056",
+      "illustration_meta_path": "assets/ro/items/card-4056.meta.json",
+      "symbol_asset_id": "items.card-4056",
+      "symbol_meta_path": "assets/ro/items/card-4056.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_shoes_1",
+      "icon_asset_id": "items.card-4038",
+      "meta_path": "assets/ro/items/card-4038.meta.json",
+      "illustration_asset_id": "items.card-4038",
+      "illustration_meta_path": "assets/ro/items/card-4038.meta.json",
+      "symbol_asset_id": "items.card-4038",
+      "symbol_meta_path": "assets/ro/items/card-4038.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_shoes_2",
+      "icon_asset_id": "items.card-4186",
+      "meta_path": "assets/ro/items/card-4186.meta.json",
+      "illustration_asset_id": "items.card-4186",
+      "illustration_meta_path": "assets/ro/items/card-4186.meta.json",
+      "symbol_asset_id": "items.card-4186",
+      "symbol_meta_path": "assets/ro/items/card-4186.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_shoes_3",
+      "icon_asset_id": "items.card-4097",
+      "meta_path": "assets/ro/items/card-4097.meta.json",
+      "illustration_asset_id": "items.card-4097",
+      "illustration_meta_path": "assets/ro/items/card-4097.meta.json",
+      "symbol_asset_id": "items.card-4097",
+      "symbol_meta_path": "assets/ro/items/card-4097.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_accessory_1",
+      "icon_asset_id": "items.card-4028",
+      "meta_path": "assets/ro/items/card-4028.meta.json",
+      "illustration_asset_id": "items.card-4028",
+      "illustration_meta_path": "assets/ro/items/card-4028.meta.json",
+      "symbol_asset_id": "items.card-4028",
+      "symbol_meta_path": "assets/ro/items/card-4028.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_accessory_2",
+      "icon_asset_id": "items.card-4034",
+      "meta_path": "assets/ro/items/card-4034.meta.json",
+      "illustration_asset_id": "items.card-4034",
+      "illustration_meta_path": "assets/ro/items/card-4034.meta.json",
+      "symbol_asset_id": "items.card-4034",
+      "symbol_meta_path": "assets/ro/items/card-4034.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_accessory_3",
+      "icon_asset_id": "items.card-4051",
+      "meta_path": "assets/ro/items/card-4051.meta.json",
+      "illustration_asset_id": "items.card-4051",
+      "illustration_meta_path": "assets/ro/items/card-4051.meta.json",
+      "symbol_asset_id": "items.card-4051",
+      "symbol_meta_path": "assets/ro/items/card-4051.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_fabre",
+      "icon_asset_id": "items.card-4002",
+      "meta_path": "assets/ro/items/card-4002.meta.json",
+      "illustration_asset_id": "items.card-4002",
+      "illustration_meta_path": "assets/ro/items/card-4002.meta.json",
+      "symbol_asset_id": "items.card-4002",
+      "symbol_meta_path": "assets/ro/items/card-4002.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_lunatic",
+      "icon_asset_id": "items.card-4006",
+      "meta_path": "assets/ro/items/card-4006.meta.json",
+      "illustration_asset_id": "items.card-4006",
+      "illustration_meta_path": "assets/ro/items/card-4006.meta.json",
+      "symbol_asset_id": "items.card-4006",
+      "symbol_meta_path": "assets/ro/items/card-4006.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_pupa",
+      "icon_asset_id": "items.card-4003",
+      "meta_path": "assets/ro/items/card-4003.meta.json",
+      "illustration_asset_id": "items.card-4003",
+      "illustration_meta_path": "assets/ro/items/card-4003.meta.json",
+      "symbol_asset_id": "items.card-4003",
+      "symbol_meta_path": "assets/ro/items/card-4003.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_spore",
+      "icon_asset_id": "items.card-4022",
+      "meta_path": "assets/ro/items/card-4022.meta.json",
+      "illustration_asset_id": "items.card-4022",
+      "illustration_meta_path": "assets/ro/items/card-4022.meta.json",
+      "symbol_asset_id": "items.card-4022",
+      "symbol_meta_path": "assets/ro/items/card-4022.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_chonchon",
+      "icon_asset_id": "items.card-4009",
+      "meta_path": "assets/ro/items/card-4009.meta.json",
+      "illustration_asset_id": "items.card-4009",
+      "illustration_meta_path": "assets/ro/items/card-4009.meta.json",
+      "symbol_asset_id": "items.card-4009",
+      "symbol_meta_path": "assets/ro/items/card-4009.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_rocker",
+      "icon_asset_id": "items.card-4021",
+      "meta_path": "assets/ro/items/card-4021.meta.json",
+      "illustration_asset_id": "items.card-4021",
+      "illustration_meta_path": "assets/ro/items/card-4021.meta.json",
+      "symbol_asset_id": "items.card-4021",
+      "symbol_meta_path": "assets/ro/items/card-4021.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_hydra",
+      "icon_asset_id": "items.card-4035",
+      "meta_path": "assets/ro/items/card-4035.meta.json",
+      "illustration_asset_id": "items.card-4035",
+      "illustration_meta_path": "assets/ro/items/card-4035.meta.json",
+      "symbol_asset_id": "items.card-4035",
+      "symbol_meta_path": "assets/ro/items/card-4035.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_drainliar",
+      "icon_asset_id": "items.card-4069",
+      "meta_path": "assets/ro/items/card-4069.meta.json",
+      "illustration_asset_id": "items.card-4069",
+      "illustration_meta_path": "assets/ro/items/card-4069.meta.json",
+      "symbol_asset_id": "items.card-4069",
+      "symbol_meta_path": "assets/ro/items/card-4069.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_marc",
+      "icon_asset_id": "items.card-4105",
+      "meta_path": "assets/ro/items/card-4105.meta.json",
+      "illustration_asset_id": "items.card-4105",
+      "illustration_meta_path": "assets/ro/items/card-4105.meta.json",
+      "symbol_asset_id": "items.card-4105",
+      "symbol_meta_path": "assets/ro/items/card-4105.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_kukre",
+      "icon_asset_id": "items.card-4027",
+      "meta_path": "assets/ro/items/card-4027.meta.json",
+      "illustration_asset_id": "items.card-4027",
+      "illustration_meta_path": "assets/ro/items/card-4027.meta.json",
+      "symbol_asset_id": "items.card-4027",
+      "symbol_meta_path": "assets/ro/items/card-4027.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_thara_frog",
+      "icon_asset_id": "items.card-4058",
+      "meta_path": "assets/ro/items/card-4058.meta.json",
+      "illustration_asset_id": "items.card-4058",
+      "illustration_meta_path": "assets/ro/items/card-4058.meta.json",
+      "symbol_asset_id": "items.card-4058",
+      "symbol_meta_path": "assets/ro/items/card-4058.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_pecopeco",
+      "icon_asset_id": "items.card-4031",
+      "meta_path": "assets/ro/items/card-4031.meta.json",
+      "illustration_asset_id": "items.card-4031",
+      "illustration_meta_path": "assets/ro/items/card-4031.meta.json",
+      "symbol_asset_id": "items.card-4031",
+      "symbol_meta_path": "assets/ro/items/card-4031.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_mantis",
+      "icon_asset_id": "items.card-4079",
+      "meta_path": "assets/ro/items/card-4079.meta.json",
+      "illustration_asset_id": "items.card-4079",
+      "illustration_meta_path": "assets/ro/items/card-4079.meta.json",
+      "symbol_asset_id": "items.card-4079",
+      "symbol_meta_path": "assets/ro/items/card-4079.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_dokebi",
+      "icon_asset_id": "items.card-4098",
+      "meta_path": "assets/ro/items/card-4098.meta.json",
+      "illustration_asset_id": "items.card-4098",
+      "illustration_meta_path": "assets/ro/items/card-4098.meta.json",
+      "symbol_asset_id": "items.card-4098",
+      "symbol_meta_path": "assets/ro/items/card-4098.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_zerom",
+      "icon_asset_id": "items.card-4064",
+      "meta_path": "assets/ro/items/card-4064.meta.json",
+      "illustration_asset_id": "items.card-4064",
+      "illustration_meta_path": "assets/ro/items/card-4064.meta.json",
+      "symbol_asset_id": "items.card-4064",
+      "symbol_meta_path": "assets/ro/items/card-4064.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_andre",
+      "icon_asset_id": "items.card-4043",
+      "meta_path": "assets/ro/items/card-4043.meta.json",
+      "illustration_asset_id": "items.card-4043",
+      "illustration_meta_path": "assets/ro/items/card-4043.meta.json",
+      "symbol_asset_id": "items.card-4043",
+      "symbol_meta_path": "assets/ro/items/card-4043.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_savage",
+      "icon_asset_id": "items.card-4078",
+      "meta_path": "assets/ro/items/card-4078.meta.json",
+      "illustration_asset_id": "items.card-4078",
+      "illustration_meta_path": "assets/ro/items/card-4078.meta.json",
+      "symbol_asset_id": "items.card-4078",
+      "symbol_meta_path": "assets/ro/items/card-4078.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_smokie",
+      "icon_asset_id": "items.card-4044",
+      "meta_path": "assets/ro/items/card-4044.meta.json",
+      "illustration_asset_id": "items.card-4044",
+      "illustration_meta_path": "assets/ro/items/card-4044.meta.json",
+      "symbol_asset_id": "items.card-4044",
+      "symbol_meta_path": "assets/ro/items/card-4044.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_minorous",
+      "icon_asset_id": "items.card-4126",
+      "meta_path": "assets/ro/items/card-4126.meta.json",
+      "illustration_asset_id": "items.card-4126",
+      "illustration_meta_path": "assets/ro/items/card-4126.meta.json",
+      "symbol_asset_id": "items.card-4126",
+      "symbol_meta_path": "assets/ro/items/card-4126.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_wraith",
+      "icon_asset_id": "items.card-4190",
+      "meta_path": "assets/ro/items/card-4190.meta.json",
+      "illustration_asset_id": "items.card-4190",
+      "illustration_meta_path": "assets/ro/items/card-4190.meta.json",
+      "symbol_asset_id": "items.card-4190",
+      "symbol_meta_path": "assets/ro/items/card-4190.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_deviruchi",
+      "icon_asset_id": "items.card-4122",
+      "meta_path": "assets/ro/items/card-4122.meta.json",
+      "illustration_asset_id": "items.card-4122",
+      "illustration_meta_path": "assets/ro/items/card-4122.meta.json",
+      "symbol_asset_id": "items.card-4122",
+      "symbol_meta_path": "assets/ro/items/card-4122.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_marduk",
+      "icon_asset_id": "items.card-4112",
+      "meta_path": "assets/ro/items/card-4112.meta.json",
+      "illustration_asset_id": "items.card-4112",
+      "illustration_meta_path": "assets/ro/items/card-4112.meta.json",
+      "symbol_asset_id": "items.card-4112",
+      "symbol_meta_path": "assets/ro/items/card-4112.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_raydric",
+      "icon_asset_id": "items.card-4133",
+      "meta_path": "assets/ro/items/card-4133.meta.json",
+      "illustration_asset_id": "items.card-4133",
+      "illustration_meta_path": "assets/ro/items/card-4133.meta.json",
+      "symbol_asset_id": "items.card-4133",
+      "symbol_meta_path": "assets/ro/items/card-4133.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_evil_druid",
+      "icon_asset_id": "items.card-4141",
+      "meta_path": "assets/ro/items/card-4141.meta.json",
+      "illustration_asset_id": "items.card-4141",
+      "illustration_meta_path": "assets/ro/items/card-4141.meta.json",
+      "symbol_asset_id": "items.card-4141",
+      "symbol_meta_path": "assets/ro/items/card-4141.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_isis",
+      "icon_asset_id": "items.card-4116",
+      "meta_path": "assets/ro/items/card-4116.meta.json",
+      "illustration_asset_id": "items.card-4116",
+      "illustration_meta_path": "assets/ro/items/card-4116.meta.json",
+      "symbol_asset_id": "items.card-4116",
+      "symbol_meta_path": "assets/ro/items/card-4116.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_sohee",
+      "icon_asset_id": "items.card-4100",
+      "meta_path": "assets/ro/items/card-4100.meta.json",
+      "illustration_asset_id": "items.card-4100",
+      "illustration_meta_path": "assets/ro/items/card-4100.meta.json",
+      "symbol_asset_id": "items.card-4100",
+      "symbol_meta_path": "assets/ro/items/card-4100.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_verit",
+      "icon_asset_id": "items.card-4107",
+      "meta_path": "assets/ro/items/card-4107.meta.json",
+      "illustration_asset_id": "items.card-4107",
+      "illustration_meta_path": "assets/ro/items/card-4107.meta.json",
+      "symbol_asset_id": "items.card-4107",
+      "symbol_meta_path": "assets/ro/items/card-4107.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_kaho",
+      "icon_asset_id": "items.card-4065",
+      "meta_path": "assets/ro/items/card-4065.meta.json",
+      "illustration_asset_id": "items.card-4065",
+      "illustration_meta_path": "assets/ro/items/card-4065.meta.json",
+      "symbol_asset_id": "items.card-4065",
+      "symbol_meta_path": "assets/ro/items/card-4065.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_phen",
+      "icon_asset_id": "items.card-4077",
+      "meta_path": "assets/ro/items/card-4077.meta.json",
+      "illustration_asset_id": "items.card-4077",
+      "illustration_meta_path": "assets/ro/items/card-4077.meta.json",
+      "symbol_asset_id": "items.card-4077",
+      "symbol_meta_path": "assets/ro/items/card-4077.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_hode",
+      "icon_asset_id": "items.card-4081",
+      "meta_path": "assets/ro/items/card-4081.meta.json",
+      "illustration_asset_id": "items.card-4081",
+      "illustration_meta_path": "assets/ro/items/card-4081.meta.json",
+      "symbol_asset_id": "items.card-4081",
+      "symbol_meta_path": "assets/ro/items/card-4081.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_doppelganger",
+      "icon_asset_id": "items.card-4142",
+      "meta_path": "assets/ro/items/card-4142.meta.json",
+      "illustration_asset_id": "items.card-4142",
+      "illustration_meta_path": "assets/ro/items/card-4142.meta.json",
+      "symbol_asset_id": "items.card-4142",
+      "symbol_meta_path": "assets/ro/items/card-4142.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_dark_lord",
+      "icon_asset_id": "items.card-4168",
+      "meta_path": "assets/ro/items/card-4168.meta.json",
+      "illustration_asset_id": "items.card-4168",
+      "illustration_meta_path": "assets/ro/items/card-4168.meta.json",
+      "symbol_asset_id": "items.card-4168",
+      "symbol_meta_path": "assets/ro/items/card-4168.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_abysmal_knight",
+      "icon_asset_id": "items.card-4140",
+      "meta_path": "assets/ro/items/card-4140.meta.json",
+      "illustration_asset_id": "items.card-4140",
+      "illustration_meta_path": "assets/ro/items/card-4140.meta.json",
+      "symbol_asset_id": "items.card-4140",
+      "symbol_meta_path": "assets/ro/items/card-4140.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_osiris",
+      "icon_asset_id": "items.card-4144",
+      "meta_path": "assets/ro/items/card-4144.meta.json",
+      "illustration_asset_id": "items.card-4144",
+      "illustration_meta_path": "assets/ro/items/card-4144.meta.json",
+      "symbol_asset_id": "items.card-4144",
+      "symbol_meta_path": "assets/ro/items/card-4144.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_maya",
+      "icon_asset_id": "items.card-4146",
+      "meta_path": "assets/ro/items/card-4146.meta.json",
+      "illustration_asset_id": "items.card-4146",
+      "illustration_meta_path": "assets/ro/items/card-4146.meta.json",
+      "symbol_asset_id": "items.card-4146",
+      "symbol_meta_path": "assets/ro/items/card-4146.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_golden_thief_bug",
+      "icon_asset_id": "items.card-4128",
+      "meta_path": "assets/ro/items/card-4128.meta.json",
+      "illustration_asset_id": "items.card-4128",
+      "illustration_meta_path": "assets/ro/items/card-4128.meta.json",
+      "symbol_asset_id": "items.card-4128",
+      "symbol_meta_path": "assets/ro/items/card-4128.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_turtle_general",
+      "icon_asset_id": "items.card-4305",
+      "meta_path": "assets/ro/items/card-4305.meta.json",
+      "illustration_asset_id": "items.card-4305",
+      "illustration_meta_path": "assets/ro/items/card-4305.meta.json",
+      "symbol_asset_id": "items.card-4305",
+      "symbol_meta_path": "assets/ro/items/card-4305.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_stormy_knight",
+      "icon_asset_id": "items.card-4318",
+      "meta_path": "assets/ro/items/card-4318.meta.json",
+      "illustration_asset_id": "items.card-4318",
+      "illustration_meta_path": "assets/ro/items/card-4318.meta.json",
+      "symbol_asset_id": "items.card-4318",
+      "symbol_meta_path": "assets/ro/items/card-4318.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_garm",
+      "icon_asset_id": "items.card-4324",
+      "meta_path": "assets/ro/items/card-4324.meta.json",
+      "illustration_asset_id": "items.card-4324",
+      "illustration_meta_path": "assets/ro/items/card-4324.meta.json",
+      "symbol_asset_id": "items.card-4324",
+      "symbol_meta_path": "assets/ro/items/card-4324.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_moonlight_flower",
+      "icon_asset_id": "items.card-4131",
+      "meta_path": "assets/ro/items/card-4131.meta.json",
+      "illustration_asset_id": "items.card-4131",
+      "illustration_meta_path": "assets/ro/items/card-4131.meta.json",
+      "symbol_asset_id": "items.card-4131",
+      "symbol_meta_path": "assets/ro/items/card-4131.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_eddga",
+      "icon_asset_id": "items.card-4123",
+      "meta_path": "assets/ro/items/card-4123.meta.json",
+      "illustration_asset_id": "items.card-4123",
+      "illustration_meta_path": "assets/ro/items/card-4123.meta.json",
+      "symbol_asset_id": "items.card-4123",
+      "symbol_meta_path": "assets/ro/items/card-4123.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_baphomet",
+      "icon_asset_id": "items.card-4147",
+      "meta_path": "assets/ro/items/card-4147.meta.json",
+      "illustration_asset_id": "items.card-4147",
+      "illustration_meta_path": "assets/ro/items/card-4147.meta.json",
+      "symbol_asset_id": "items.card-4147",
+      "symbol_meta_path": "assets/ro/items/card-4147.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_mastering",
+      "icon_asset_id": "items.card-4197",
+      "meta_path": "assets/ro/items/card-4197.meta.json",
+      "illustration_asset_id": "items.card-4197",
+      "illustration_meta_path": "assets/ro/items/card-4197.meta.json",
+      "symbol_asset_id": "items.card-4197",
+      "symbol_meta_path": "assets/ro/items/card-4197.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_vagabond_wolf",
+      "icon_asset_id": "items.card-4183",
+      "meta_path": "assets/ro/items/card-4183.meta.json",
+      "illustration_asset_id": "items.card-4183",
+      "illustration_meta_path": "assets/ro/items/card-4183.meta.json",
+      "symbol_asset_id": "items.card-4183",
+      "symbol_meta_path": "assets/ro/items/card-4183.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_dragon_fly",
+      "icon_asset_id": "items.card-4179",
+      "meta_path": "assets/ro/items/card-4179.meta.json",
+      "illustration_asset_id": "items.card-4179",
+      "illustration_meta_path": "assets/ro/items/card-4179.meta.json",
+      "symbol_asset_id": "items.card-4179",
+      "symbol_meta_path": "assets/ro/items/card-4179.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_angeling",
+      "icon_asset_id": "items.card-4054",
+      "meta_path": "assets/ro/items/card-4054.meta.json",
+      "illustration_asset_id": "items.card-4054",
+      "illustration_meta_path": "assets/ro/items/card-4054.meta.json",
+      "symbol_asset_id": "items.card-4054",
+      "symbol_meta_path": "assets/ro/items/card-4054.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_ghostring",
+      "icon_asset_id": "items.card-4047",
+      "meta_path": "assets/ro/items/card-4047.meta.json",
+      "illustration_asset_id": "items.card-4047",
+      "illustration_meta_path": "assets/ro/items/card-4047.meta.json",
+      "symbol_asset_id": "items.card-4047",
+      "symbol_meta_path": "assets/ro/items/card-4047.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_deviling",
+      "icon_asset_id": "items.card-4174",
+      "meta_path": "assets/ro/items/card-4174.meta.json",
+      "illustration_asset_id": "items.card-4174",
+      "illustration_meta_path": "assets/ro/items/card-4174.meta.json",
+      "symbol_asset_id": "items.card-4174",
+      "symbol_meta_path": "assets/ro/items/card-4174.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_angeling_puppet",
+      "icon_asset_id": "items.card-4054",
+      "meta_path": "assets/ro/items/card-4054.meta.json",
+      "illustration_asset_id": "items.card-4054",
+      "illustration_meta_path": "assets/ro/items/card-4054.meta.json",
+      "symbol_asset_id": "items.card-4054",
+      "symbol_meta_path": "assets/ro/items/card-4054.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_deviling_puppet",
+      "icon_asset_id": "items.card-4174",
+      "meta_path": "assets/ro/items/card-4174.meta.json",
+      "illustration_asset_id": "items.card-4174",
+      "illustration_meta_path": "assets/ro/items/card-4174.meta.json",
+      "symbol_asset_id": "items.card-4174",
+      "symbol_meta_path": "assets/ro/items/card-4174.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_golden_thief_bug_puppet",
+      "icon_asset_id": "items.card-4128",
+      "meta_path": "assets/ro/items/card-4128.meta.json",
+      "illustration_asset_id": "items.card-4128",
+      "illustration_meta_path": "assets/ro/items/card-4128.meta.json",
+      "symbol_asset_id": "items.card-4128",
+      "symbol_meta_path": "assets/ro/items/card-4128.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_eddga_puppet",
+      "icon_asset_id": "items.card-4123",
+      "meta_path": "assets/ro/items/card-4123.meta.json",
+      "illustration_asset_id": "items.card-4123",
+      "illustration_meta_path": "assets/ro/items/card-4123.meta.json",
+      "symbol_asset_id": "items.card-4123",
+      "symbol_meta_path": "assets/ro/items/card-4123.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_moonlight_flower_puppet",
+      "icon_asset_id": "items.card-4131",
+      "meta_path": "assets/ro/items/card-4131.meta.json",
+      "illustration_asset_id": "items.card-4131",
+      "illustration_meta_path": "assets/ro/items/card-4131.meta.json",
+      "symbol_asset_id": "items.card-4131",
+      "symbol_meta_path": "assets/ro/items/card-4131.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_baphomet_puppet",
+      "icon_asset_id": "items.card-4147",
+      "meta_path": "assets/ro/items/card-4147.meta.json",
+      "illustration_asset_id": "items.card-4147",
+      "illustration_meta_path": "assets/ro/items/card-4147.meta.json",
+      "symbol_asset_id": "items.card-4147",
+      "symbol_meta_path": "assets/ro/items/card-4147.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_doppelganger_puppet",
+      "icon_asset_id": "items.card-4142",
+      "meta_path": "assets/ro/items/card-4142.meta.json",
+      "illustration_asset_id": "items.card-4142",
+      "illustration_meta_path": "assets/ro/items/card-4142.meta.json",
+      "symbol_asset_id": "items.card-4142",
+      "symbol_meta_path": "assets/ro/items/card-4142.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    }
+  ],
+  "level_multipliers": [
+    1,
+    1.25,
+    1.5,
+    1.75,
+    2
+  ],
+  "rarities": [
+    {
+      "id": "common",
+      "multiplier": 1,
+      "salvage_card_dust": 20,
+      "rank": 0,
+      "enabled": true
+    },
+    {
+      "id": "uncommon",
+      "multiplier": 1.25,
+      "salvage_card_dust": 40,
+      "rank": 1,
+      "enabled": true
+    },
+    {
+      "id": "rare",
+      "multiplier": 1.5,
+      "salvage_card_dust": 80,
+      "rank": 2,
+      "enabled": true
+    },
+    {
+      "id": "epic",
+      "multiplier": 1.65,
+      "salvage_card_dust": 120,
+      "rank": 3,
+      "enabled": true
+    },
+    {
+      "id": "legendary",
+      "multiplier": 1.8,
+      "salvage_card_dust": 200,
+      "rank": 4,
+      "enabled": true
+    },
+    {
+      "id": "immortal",
+      "multiplier": 2.1,
+      "salvage_card_dust": 300,
+      "rank": 5,
+      "enabled": false
+    },
+    {
+      "id": "supreme",
+      "multiplier": 2.5,
+      "salvage_card_dust": 400,
+      "rank": 6,
+      "enabled": false
+    }
+  ],
+  "rarity_is_equipment_rarity": true,
+  "level_cost_rows": [
+    {
+      "from": 1,
+      "to": 2,
+      "gold": 500,
+      "card_dust": 20
+    },
+    {
+      "from": 2,
+      "to": 3,
+      "gold": 1000,
+      "card_dust": 40
+    },
+    {
+      "from": 3,
+      "to": 4,
+      "gold": 2000,
+      "card_dust": 80
+    },
+    {
+      "from": 4,
+      "to": 5,
+      "gold": 4000,
+      "card_dust": 160
+    }
+  ],
+  "progression_owner": "card_instance_id; assigned to character equipment slot; not shared globally per definition",
+  "gacha_duplicates": "always distinct card instances so several characters can equip copies; user may consume only unequipped unlocked instances into card_dust for upgrades",
+  "resolve_rule": "Fixed monster rarity multiplier × instance level. Migrated legacy_quality retains its old power/salvage floor if stronger, never multiplies again.",
+  "free_remove_outside_battle": true,
+  "catalog_basis": "D-099 RO identities; D-109 fixed rarity; D-122 Origin boss overrides and distinct Puppet variants",
+  "origins": {
+    "card_weapon_1": {
+      "ro_item_id": 4029,
+      "monster_id": 1013,
+      "monster_name": "Wolf",
+      "grade": "normal",
+      "source_slot": "weapon",
+      "rarity_id": "uncommon",
+      "source_level": 25,
+      "strength_class": "strong"
+    },
+    "card_weapon_2": {
+      "ro_item_id": 4055,
+      "monster_id": 1141,
+      "monster_name": "Marina",
+      "grade": "normal",
+      "source_slot": "weapon",
+      "rarity_id": "uncommon",
+      "source_level": 21,
+      "strength_class": "strong"
+    },
+    "card_weapon_3": {
+      "ro_item_id": 4086,
+      "monster_id": 1028,
+      "monster_name": "Soldier Skeleton",
+      "grade": "normal",
+      "source_slot": "weapon",
+      "rarity_id": "uncommon",
+      "source_level": 29,
+      "strength_class": "strong"
+    },
+    "card_head_1": {
+      "ro_item_id": 4010,
+      "monster_id": 1010,
+      "monster_name": "Willow",
+      "grade": "normal",
+      "source_slot": "head",
+      "rarity_id": "common",
+      "source_level": 4,
+      "strength_class": "weak"
+    },
+    "card_head_2": {
+      "ro_item_id": 4052,
+      "monster_id": 1033,
+      "monster_name": "Elder Willow",
+      "grade": "normal",
+      "source_slot": "head",
+      "rarity_id": "common",
+      "source_level": 20,
+      "strength_class": "weak"
+    },
+    "card_head_3": {
+      "ro_item_id": 4269,
+      "monster_id": 1374,
+      "monster_name": "Incubus",
+      "grade": "normal",
+      "source_slot": "head",
+      "rarity_id": "rare",
+      "source_level": 75,
+      "strength_class": "elite"
+    },
+    "card_armor_1": {
+      "ro_item_id": 4001,
+      "monster_id": 1002,
+      "monster_name": "Poring",
+      "grade": "normal",
+      "source_slot": "armor",
+      "rarity_id": "common",
+      "source_level": 1,
+      "strength_class": "weak"
+    },
+    "card_armor_2": {
+      "ro_item_id": 4008,
+      "monster_id": 1049,
+      "monster_name": "Picky",
+      "grade": "normal",
+      "source_slot": "armor",
+      "rarity_id": "common",
+      "source_level": 3,
+      "strength_class": "weak"
+    },
+    "card_armor_3": {
+      "ro_item_id": 4023,
+      "monster_id": 1107,
+      "monster_name": "Baby Desert Wolf",
+      "grade": "normal",
+      "source_slot": "armor",
+      "rarity_id": "common",
+      "source_level": 9,
+      "strength_class": "weak"
+    },
+    "card_garment_1": {
+      "ro_item_id": 4102,
+      "monster_id": 1179,
+      "monster_name": "Whisper",
+      "grade": "normal",
+      "source_slot": "garment",
+      "rarity_id": "uncommon",
+      "source_level": 34,
+      "strength_class": "strong"
+    },
+    "card_garment_2": {
+      "ro_item_id": 4015,
+      "monster_id": 1009,
+      "monster_name": "Condor",
+      "grade": "normal",
+      "source_slot": "garment",
+      "rarity_id": "common",
+      "source_level": 5,
+      "strength_class": "weak"
+    },
+    "card_garment_3": {
+      "ro_item_id": 4056,
+      "monster_id": 1114,
+      "monster_name": "Dustiness",
+      "grade": "normal",
+      "source_slot": "garment",
+      "rarity_id": "uncommon",
+      "source_level": 21,
+      "strength_class": "strong"
+    },
+    "card_shoes_1": {
+      "ro_item_id": 4038,
+      "monster_id": 1015,
+      "monster_name": "Zombie",
+      "grade": "normal",
+      "source_slot": "shoes",
+      "rarity_id": "common",
+      "source_level": 15,
+      "strength_class": "weak"
+    },
+    "card_shoes_2": {
+      "ro_item_id": 4186,
+      "monster_id": 1254,
+      "monster_name": "Raggler",
+      "grade": "normal",
+      "source_slot": "shoes",
+      "rarity_id": "uncommon",
+      "source_level": 21,
+      "strength_class": "strong"
+    },
+    "card_shoes_3": {
+      "ro_item_id": 4097,
+      "monster_id": 1146,
+      "monster_name": "Matyr",
+      "grade": "normal",
+      "source_slot": "shoes",
+      "rarity_id": "uncommon",
+      "source_level": 31,
+      "strength_class": "strong"
+    },
+    "card_accessory_1": {
+      "ro_item_id": 4028,
+      "monster_id": 1175,
+      "monster_name": "Tarou",
+      "grade": "normal",
+      "source_slot": "accessory",
+      "rarity_id": "common",
+      "source_level": 11,
+      "strength_class": "weak"
+    },
+    "card_accessory_2": {
+      "ro_item_id": 4034,
+      "monster_id": 1024,
+      "monster_name": "Wormtail",
+      "grade": "normal",
+      "source_slot": "accessory",
+      "rarity_id": "common",
+      "source_level": 14,
+      "strength_class": "weak"
+    },
+    "card_accessory_3": {
+      "ro_item_id": 4051,
+      "monster_id": 1057,
+      "monster_name": "Yoyo",
+      "grade": "normal",
+      "source_slot": "accessory",
+      "rarity_id": "uncommon",
+      "source_level": 21,
+      "strength_class": "strong"
+    },
+    "card_fabre": {
+      "ro_item_id": 4002,
+      "monster_id": 1007,
+      "monster_name": "Fabre",
+      "grade": "normal",
+      "source_slot": "weapon",
+      "rarity_id": "common",
+      "source_level": 2,
+      "strength_class": "weak"
+    },
+    "card_lunatic": {
+      "ro_item_id": 4006,
+      "monster_id": 1063,
+      "monster_name": "Lunatic",
+      "grade": "normal",
+      "source_slot": "weapon",
+      "rarity_id": "common",
+      "source_level": 3,
+      "strength_class": "weak"
+    },
+    "card_pupa": {
+      "ro_item_id": 4003,
+      "monster_id": 1008,
+      "monster_name": "Pupa",
+      "grade": "normal",
+      "source_slot": "armor",
+      "rarity_id": "common",
+      "source_level": 2,
+      "strength_class": "weak"
+    },
+    "card_spore": {
+      "ro_item_id": 4022,
+      "monster_id": 1014,
+      "monster_name": "Spore",
+      "grade": "normal",
+      "source_slot": "accessory",
+      "rarity_id": "common",
+      "source_level": 16,
+      "strength_class": "weak"
+    },
+    "card_chonchon": {
+      "ro_item_id": 4009,
+      "monster_id": 1011,
+      "monster_name": "Chonchon",
+      "grade": "normal",
+      "source_slot": "shoes",
+      "rarity_id": "common",
+      "source_level": 4,
+      "strength_class": "weak"
+    },
+    "card_rocker": {
+      "ro_item_id": 4021,
+      "monster_id": 1052,
+      "monster_name": "Rocker",
+      "grade": "normal",
+      "source_slot": "armor",
+      "rarity_id": "common",
+      "source_level": 9,
+      "strength_class": "weak"
+    },
+    "card_hydra": {
+      "ro_item_id": 4035,
+      "monster_id": 1068,
+      "monster_name": "Hydra",
+      "grade": "normal",
+      "source_slot": "weapon",
+      "rarity_id": "common",
+      "source_level": 14,
+      "strength_class": "weak"
+    },
+    "card_drainliar": {
+      "ro_item_id": 4069,
+      "monster_id": 1111,
+      "monster_name": "Drainliar",
+      "grade": "normal",
+      "source_slot": "weapon",
+      "rarity_id": "uncommon",
+      "source_level": 24,
+      "strength_class": "strong"
+    },
+    "card_marc": {
+      "ro_item_id": 4105,
+      "monster_id": 1045,
+      "monster_name": "Marc",
+      "grade": "normal",
+      "source_slot": "armor",
+      "rarity_id": "uncommon",
+      "source_level": 36,
+      "strength_class": "strong"
+    },
+    "card_kukre": {
+      "ro_item_id": 4027,
+      "monster_id": 1070,
+      "monster_name": "Kukre",
+      "grade": "normal",
+      "source_slot": "accessory",
+      "rarity_id": "common",
+      "source_level": 11,
+      "strength_class": "weak"
+    },
+    "card_thara_frog": {
+      "ro_item_id": 4058,
+      "monster_id": 1034,
+      "monster_name": "Thara Frog",
+      "grade": "normal",
+      "source_slot": "shield",
+      "rarity_id": "uncommon",
+      "source_level": 22,
+      "strength_class": "strong"
+    },
+    "card_pecopeco": {
+      "ro_item_id": 4031,
+      "monster_id": 1019,
+      "monster_name": "Peco Peco",
+      "grade": "normal",
+      "source_slot": "armor",
+      "rarity_id": "common",
+      "source_level": 19,
+      "strength_class": "weak"
+    },
+    "card_mantis": {
+      "ro_item_id": 4079,
+      "monster_id": 1139,
+      "monster_name": "Mantis",
+      "grade": "normal",
+      "source_slot": "accessory",
+      "rarity_id": "uncommon",
+      "source_level": 26,
+      "strength_class": "strong"
+    },
+    "card_dokebi": {
+      "ro_item_id": 4098,
+      "monster_id": 1110,
+      "monster_name": "Dokebi",
+      "grade": "normal",
+      "source_slot": "armor",
+      "rarity_id": "uncommon",
+      "source_level": 33,
+      "strength_class": "strong"
+    },
+    "card_zerom": {
+      "ro_item_id": 4064,
+      "monster_id": 1178,
+      "monster_name": "Zerom",
+      "grade": "normal",
+      "source_slot": "accessory",
+      "rarity_id": "uncommon",
+      "source_level": 23,
+      "strength_class": "strong"
+    },
+    "card_andre": {
+      "ro_item_id": 4043,
+      "monster_id": 1095,
+      "monster_name": "Andre",
+      "grade": "normal",
+      "source_slot": "weapon",
+      "rarity_id": "common",
+      "source_level": 17,
+      "strength_class": "weak"
+    },
+    "card_savage": {
+      "ro_item_id": 4078,
+      "monster_id": 1166,
+      "monster_name": "Savage",
+      "grade": "normal",
+      "source_slot": "armor",
+      "rarity_id": "uncommon",
+      "source_level": 26,
+      "strength_class": "strong"
+    },
+    "card_smokie": {
+      "ro_item_id": 4044,
+      "monster_id": 1056,
+      "monster_name": "Smokie",
+      "grade": "normal",
+      "source_slot": "accessory",
+      "rarity_id": "common",
+      "source_level": 18,
+      "strength_class": "weak"
+    },
+    "card_minorous": {
+      "ro_item_id": 4126,
+      "monster_id": 1149,
+      "monster_name": "Minorous",
+      "grade": "normal",
+      "source_slot": "weapon",
+      "rarity_id": "rare",
+      "source_level": 52,
+      "strength_class": "elite"
+    },
+    "card_wraith": {
+      "ro_item_id": 4190,
+      "monster_id": 1192,
+      "monster_name": "Wraith",
+      "grade": "normal",
+      "source_slot": "accessory",
+      "rarity_id": "rare",
+      "source_level": 53,
+      "strength_class": "elite"
+    },
+    "card_deviruchi": {
+      "ro_item_id": 4122,
+      "monster_id": 1109,
+      "monster_name": "Deviruchi",
+      "grade": "normal",
+      "source_slot": "head",
+      "rarity_id": "rare",
+      "source_level": 46,
+      "strength_class": "elite"
+    },
+    "card_marduk": {
+      "ro_item_id": 4112,
+      "monster_id": 1140,
+      "monster_name": "Marduk",
+      "grade": "normal",
+      "source_slot": "head",
+      "rarity_id": "uncommon",
+      "source_level": 40,
+      "strength_class": "strong"
+    },
+    "card_raydric": {
+      "ro_item_id": 4133,
+      "monster_id": 1163,
+      "monster_name": "Raydric",
+      "grade": "normal",
+      "source_slot": "garment",
+      "rarity_id": "rare",
+      "source_level": 52,
+      "strength_class": "elite"
+    },
+    "card_evil_druid": {
+      "ro_item_id": 4141,
+      "monster_id": 1117,
+      "monster_name": "Evil Druid",
+      "grade": "normal",
+      "source_slot": "armor",
+      "rarity_id": "rare",
+      "source_level": 58,
+      "strength_class": "elite"
+    },
+    "card_isis": {
+      "ro_item_id": 4116,
+      "monster_id": 1029,
+      "monster_name": "Isis",
+      "grade": "normal",
+      "source_slot": "garment",
+      "rarity_id": "rare",
+      "source_level": 47,
+      "strength_class": "elite"
+    },
+    "card_sohee": {
+      "ro_item_id": 4100,
+      "monster_id": 1170,
+      "monster_name": "Sohee",
+      "grade": "normal",
+      "source_slot": "shoes",
+      "rarity_id": "uncommon",
+      "source_level": 33,
+      "strength_class": "strong"
+    },
+    "card_verit": {
+      "ro_item_id": 4107,
+      "monster_id": 1032,
+      "monster_name": "Verit",
+      "grade": "normal",
+      "source_slot": "shoes",
+      "rarity_id": "uncommon",
+      "source_level": 38,
+      "strength_class": "strong"
+    },
+    "card_kaho": {
+      "ro_item_id": 4065,
+      "monster_id": 1072,
+      "monster_name": "Kaho",
+      "grade": "normal",
+      "source_slot": "weapon",
+      "rarity_id": "rare",
+      "source_level": 60,
+      "strength_class": "elite"
+    },
+    "card_phen": {
+      "ro_item_id": 4077,
+      "monster_id": 1158,
+      "monster_name": "Phen",
+      "grade": "normal",
+      "source_slot": "accessory",
+      "rarity_id": "uncommon",
+      "source_level": 26,
+      "strength_class": "strong"
+    },
+    "card_hode": {
+      "ro_item_id": 4081,
+      "monster_id": 1127,
+      "monster_name": "Hode",
+      "grade": "normal",
+      "source_slot": "garment",
+      "rarity_id": "uncommon",
+      "source_level": 26,
+      "strength_class": "strong"
+    },
+    "card_doppelganger": {
+      "ro_item_id": 4142,
+      "monster_id": 1046,
+      "monster_name": "Doppelganger",
+      "grade": "mvp",
+      "source_slot": "weapon",
+      "rarity_id": "legendary",
+      "source_level": 72,
+      "strength_class": "mvp"
+    },
+    "card_dark_lord": {
+      "ro_item_id": 4168,
+      "monster_id": 1272,
+      "monster_name": "Dark Lord",
+      "grade": "mvp",
+      "source_slot": "shoes",
+      "rarity_id": "legendary",
+      "source_level": 80,
+      "strength_class": "mvp"
+    },
+    "card_abysmal_knight": {
+      "ro_item_id": 4140,
+      "monster_id": 1219,
+      "monster_name": "Abysmal Knight",
+      "grade": "normal",
+      "source_slot": "weapon",
+      "rarity_id": "rare",
+      "source_level": 79,
+      "strength_class": "elite"
+    },
+    "card_osiris": {
+      "ro_item_id": 4144,
+      "monster_id": 1038,
+      "monster_name": "Osiris",
+      "grade": "mvp",
+      "source_slot": "accessory",
+      "rarity_id": "legendary",
+      "source_level": 78,
+      "strength_class": "mvp"
+    },
+    "card_maya": {
+      "ro_item_id": 4146,
+      "monster_id": 1147,
+      "monster_name": "Maya",
+      "grade": "mvp",
+      "source_slot": "shield",
+      "rarity_id": "legendary",
+      "source_level": 81,
+      "strength_class": "mvp"
+    },
+    "card_golden_thief_bug": {
+      "ro_item_id": 4128,
+      "monster_id": 1086,
+      "monster_name": "Golden Thief Bug",
+      "grade": "mvp",
+      "source_slot": "shield",
+      "rarity_id": "legendary",
+      "source_level": 64,
+      "strength_class": "mvp"
+    },
+    "card_turtle_general": {
+      "ro_item_id": 4305,
+      "monster_id": 1312,
+      "monster_name": "Turtle General",
+      "grade": "mvp",
+      "source_slot": "weapon",
+      "rarity_id": "legendary",
+      "source_level": 97,
+      "strength_class": "mvp"
+    },
+    "card_stormy_knight": {
+      "ro_item_id": 4318,
+      "monster_id": 1251,
+      "monster_name": "Stormy Knight",
+      "grade": "mvp",
+      "source_slot": "weapon",
+      "rarity_id": "legendary",
+      "source_level": 77,
+      "strength_class": "mvp"
+    },
+    "card_garm": {
+      "ro_item_id": 4324,
+      "monster_id": 1252,
+      "monster_name": "Hatii",
+      "grade": "mvp",
+      "source_slot": "armor",
+      "rarity_id": "legendary",
+      "source_level": 73,
+      "strength_class": "mvp"
+    },
+    "card_moonlight_flower": {
+      "ro_item_id": 4131,
+      "monster_id": 1150,
+      "monster_name": "Moonlight Flower",
+      "grade": "mvp",
+      "source_slot": "shoes",
+      "rarity_id": "legendary",
+      "source_level": 67,
+      "strength_class": "mvp"
+    },
+    "card_eddga": {
+      "ro_item_id": 4123,
+      "monster_id": 1115,
+      "monster_name": "Eddga",
+      "grade": "mvp",
+      "source_slot": "shoes",
+      "rarity_id": "legendary",
+      "source_level": 65,
+      "strength_class": "mvp"
+    },
+    "card_baphomet": {
+      "ro_item_id": 4147,
+      "monster_id": 1039,
+      "monster_name": "Baphomet",
+      "grade": "mvp",
+      "source_slot": "weapon",
+      "rarity_id": "legendary",
+      "source_level": 81,
+      "strength_class": "mvp"
+    },
+    "card_mastering": {
+      "ro_item_id": 4197,
+      "monster_id": 1090,
+      "monster_name": "Mastering",
+      "grade": "mini",
+      "source_slot": "garment",
+      "rarity_id": "epic",
+      "source_level": 2,
+      "strength_class": "mini"
+    },
+    "card_vagabond_wolf": {
+      "ro_item_id": 4183,
+      "monster_id": 1092,
+      "monster_name": "Vagabond Wolf",
+      "grade": "mini",
+      "source_slot": "garment",
+      "rarity_id": "epic",
+      "source_level": 24,
+      "strength_class": "mini"
+    },
+    "card_dragon_fly": {
+      "ro_item_id": 4179,
+      "monster_id": 1091,
+      "monster_name": "Dragon Fly",
+      "grade": "mini",
+      "source_slot": "garment",
+      "rarity_id": "epic",
+      "source_level": 8,
+      "strength_class": "mini"
+    },
+    "card_angeling": {
+      "ro_item_id": 4054,
+      "monster_id": 1096,
+      "monster_name": "Angeling",
+      "grade": "mvp",
+      "source_slot": "armor",
+      "rarity_id": "legendary",
+      "source_level": 20,
+      "strength_class": "mvp"
+    },
+    "card_ghostring": {
+      "ro_item_id": 4047,
+      "monster_id": 1120,
+      "monster_name": "Ghostring",
+      "grade": "mini",
+      "source_slot": "armor",
+      "rarity_id": "epic",
+      "source_level": 18,
+      "strength_class": "mini"
+    },
+    "card_deviling": {
+      "ro_item_id": 4174,
+      "monster_id": 1582,
+      "monster_name": "Deviling",
+      "grade": "mvp",
+      "source_slot": "garment",
+      "rarity_id": "legendary",
+      "source_level": 31,
+      "strength_class": "mvp"
+    },
+    "card_angeling_puppet": {
+      "ro_item_id": 4054,
+      "monster_id": 1096,
+      "monster_name": "Angeling",
+      "grade": "mvp",
+      "source_slot": "armor",
+      "rarity_id": "rare",
+      "source_level": 20,
+      "strength_class": "mvp",
+      "variant": "puppet",
+      "parent_card_id": "card_angeling"
+    },
+    "card_deviling_puppet": {
+      "ro_item_id": 4174,
+      "monster_id": 1582,
+      "monster_name": "Deviling",
+      "grade": "mvp",
+      "source_slot": "garment",
+      "rarity_id": "rare",
+      "source_level": 31,
+      "strength_class": "mvp",
+      "variant": "puppet",
+      "parent_card_id": "card_deviling"
+    },
+    "card_golden_thief_bug_puppet": {
+      "ro_item_id": 4128,
+      "monster_id": 1086,
+      "monster_name": "Golden Thief Bug",
+      "grade": "mvp",
+      "source_slot": "shield",
+      "rarity_id": "rare",
+      "source_level": 64,
+      "strength_class": "mvp",
+      "variant": "puppet",
+      "parent_card_id": "card_golden_thief_bug"
+    },
+    "card_eddga_puppet": {
+      "ro_item_id": 4123,
+      "monster_id": 1115,
+      "monster_name": "Eddga",
+      "grade": "mvp",
+      "source_slot": "shoes",
+      "rarity_id": "rare",
+      "source_level": 65,
+      "strength_class": "mvp",
+      "variant": "puppet",
+      "parent_card_id": "card_eddga"
+    },
+    "card_moonlight_flower_puppet": {
+      "ro_item_id": 4131,
+      "monster_id": 1150,
+      "monster_name": "Moonlight Flower",
+      "grade": "mvp",
+      "source_slot": "shoes",
+      "rarity_id": "rare",
+      "source_level": 67,
+      "strength_class": "mvp",
+      "variant": "puppet",
+      "parent_card_id": "card_moonlight_flower"
+    },
+    "card_baphomet_puppet": {
+      "ro_item_id": 4147,
+      "monster_id": 1039,
+      "monster_name": "Baphomet",
+      "grade": "mvp",
+      "source_slot": "weapon",
+      "rarity_id": "rare",
+      "source_level": 81,
+      "strength_class": "mvp",
+      "variant": "puppet",
+      "parent_card_id": "card_baphomet"
+    },
+    "card_doppelganger_puppet": {
+      "ro_item_id": 4142,
+      "monster_id": 1046,
+      "monster_name": "Doppelganger",
+      "grade": "mvp",
+      "source_slot": "weapon",
+      "rarity_id": "rare",
+      "source_level": 72,
+      "strength_class": "mvp",
+      "variant": "puppet",
+      "parent_card_id": "card_doppelganger"
+    }
+  },
+  "monster_traits": {
+    "poring": {
+      "ro_monster_id": 1002,
+      "race": "plant",
+      "size": "medium"
+    },
+    "fabre": {
+      "ro_monster_id": 1007,
+      "race": "insect",
+      "size": "small"
+    },
+    "lunatic": {
+      "ro_monster_id": 1063,
+      "race": "brute",
+      "size": "small"
+    },
+    "wolf": {
+      "ro_monster_id": 1013,
+      "race": "brute",
+      "size": "medium"
+    },
+    "ork_warrior": {
+      "ro_monster_id": 1023,
+      "race": "demihuman",
+      "size": "medium"
+    },
+    "golem": {
+      "ro_monster_id": 1040,
+      "race": "formless",
+      "size": "large"
+    },
+    "eddga": {
+      "ro_monster_id": 1115,
+      "race": "brute",
+      "size": "large"
+    },
+    "drake": {
+      "ro_monster_id": 1112,
+      "race": "undead",
+      "size": "medium"
+    },
+    "phreeoni": {
+      "ro_monster_id": 1159,
+      "race": "brute",
+      "size": "large"
+    },
+    "osiris": {
+      "ro_monster_id": 1038,
+      "race": "undead",
+      "size": "medium"
+    },
+    "baphomet": {
+      "ro_monster_id": 1039,
+      "race": "demon",
+      "size": "large"
+    },
+    "ghoul": {
+      "ro_monster_id": 1036,
+      "race": "undead",
+      "size": "medium"
+    },
+    "doppelganger": {
+      "ro_monster_id": 1046,
+      "race": "demon",
+      "size": "medium"
+    },
+    "jakk": {
+      "ro_monster_id": 1130,
+      "race": "formless",
+      "size": "medium"
+    },
+    "khalitzburg": {
+      "ro_monster_id": 1132,
+      "race": "undead",
+      "size": "large"
+    },
+    "orc_zombie": {
+      "ro_monster_id": 1153,
+      "race": "undead",
+      "size": "medium"
+    },
+    "raydric": {
+      "ro_monster_id": 1163,
+      "race": "demihuman",
+      "size": "large"
+    },
+    "whisper": {
+      "ro_monster_id": 1179,
+      "race": "demon",
+      "size": "small"
+    },
+    "orc_lord": {
+      "ro_monster_id": 1190,
+      "race": "demihuman",
+      "size": "large"
+    },
+    "wraith": {
+      "ro_monster_id": 1192,
+      "race": "undead",
+      "size": "large"
+    },
+    "penomena": {
+      "ro_monster_id": 1216,
+      "race": "fish",
+      "size": "medium"
+    },
+    "dark_frame": {
+      "ro_monster_id": 1260,
+      "race": "demon",
+      "size": "medium"
+    },
+    "dark_lord": {
+      "ro_monster_id": 1272,
+      "race": "demon",
+      "size": "large"
+    },
+    "ancient_mummy": {
+      "ro_monster_id": 1297,
+      "race": "undead",
+      "size": "medium"
+    },
+    "dracula": {
+      "ro_monster_id": 1389,
+      "race": "demon",
+      "size": "large"
+    },
+    "isis": {
+      "ro_monster_id": 1029,
+      "race": "demon",
+      "size": "large"
+    },
+    "thara_frog": {
+      "ro_monster_id": 1034,
+      "race": "fish",
+      "size": "medium"
+    },
+    "hunter_fly": {
+      "ro_monster_id": 1035,
+      "race": "insect",
+      "size": "small"
+    },
+    "obeaune": {
+      "ro_monster_id": 1044,
+      "race": "fish",
+      "size": "medium"
+    },
+    "mistress": {
+      "ro_monster_id": 1059,
+      "race": "insect",
+      "size": "small"
+    },
+    "vadon": {
+      "ro_monster_id": 1066,
+      "race": "fish",
+      "size": "small"
+    },
+    "hydra": {
+      "ro_monster_id": 1068,
+      "race": "plant",
+      "size": "small"
+    },
+    "sword_fish": {
+      "ro_monster_id": 1069,
+      "race": "fish",
+      "size": "large"
+    },
+    "kukre": {
+      "ro_monster_id": 1070,
+      "race": "fish",
+      "size": "small"
+    },
+    "golden_bug": {
+      "ro_monster_id": 1086,
+      "race": "insect",
+      "size": "large"
+    },
+    "andre": {
+      "ro_monster_id": 1095,
+      "race": "insect",
+      "size": "small"
+    },
+    "angeling": {
+      "ro_monster_id": 1096,
+      "race": "angel",
+      "size": "medium"
+    },
+    "deniro": {
+      "ro_monster_id": 1105,
+      "race": "insect",
+      "size": "small"
+    },
+    "deviace": {
+      "ro_monster_id": 1108,
+      "race": "fish",
+      "size": "medium"
+    },
+    "dokebi": {
+      "ro_monster_id": 1110,
+      "race": "demon",
+      "size": "small"
+    },
+    "ghostring": {
+      "ro_monster_id": 1120,
+      "race": "demon",
+      "size": "medium"
+    },
+    "marduk": {
+      "ro_monster_id": 1140,
+      "race": "demihuman",
+      "size": "large"
+    },
+    "marina": {
+      "ro_monster_id": 1141,
+      "race": "plant",
+      "size": "small"
+    },
+    "marse": {
+      "ro_monster_id": 1144,
+      "race": "fish",
+      "size": "small"
+    },
+    "matyr": {
+      "ro_monster_id": 1146,
+      "race": "brute",
+      "size": "medium"
+    },
+    "maya": {
+      "ro_monster_id": 1147,
+      "race": "insect",
+      "size": "large"
+    },
+    "moonlight": {
+      "ro_monster_id": 1150,
+      "race": "demon",
+      "size": "medium"
+    },
+    "pasana": {
+      "ro_monster_id": 1154,
+      "race": "demihuman",
+      "size": "medium"
+    },
+    "pharaoh": {
+      "ro_monster_id": 1157,
+      "race": "demihuman",
+      "size": "large"
+    },
+    "piere": {
+      "ro_monster_id": 1160,
+      "race": "insect",
+      "size": "small"
+    },
+    "plankton": {
+      "ro_monster_id": 1161,
+      "race": "plant",
+      "size": "small"
+    },
+    "sohee": {
+      "ro_monster_id": 1170,
+      "race": "demon",
+      "size": "medium"
+    },
+    "vitata": {
+      "ro_monster_id": 1176,
+      "race": "insect",
+      "size": "small"
+    },
+    "mimic": {
+      "ro_monster_id": 1191,
+      "race": "formless",
+      "size": "medium"
+    },
+    "knight_of_windstorm": {
+      "ro_monster_id": 1251,
+      "race": "formless",
+      "size": "large"
+    },
+    "merman": {
+      "ro_monster_id": 1264,
+      "race": "demihuman",
+      "size": "medium"
+    },
+    "turtle_general": {
+      "ro_monster_id": 1312,
+      "race": "brute",
+      "size": "large"
+    },
+    "amon_ra": {
+      "ro_monster_id": 1511,
+      "race": "demihuman",
+      "size": "large"
+    },
+    "deviling": {
+      "ro_monster_id": 1582,
+      "race": "demon",
+      "size": "medium"
+    },
+    "randgris": {
+      "ro_monster_id": 1751,
+      "race": "angel",
+      "size": "large"
+    },
+    "kraken": {
+      "ro_monster_id": 2202,
+      "race": "fish",
+      "size": "large"
+    }
+  },
+  "legacy_qualities": {
+    "bronze": {
+      "multiplier": 1,
+      "salvage_card_dust": 20
+    },
+    "silver": {
+      "multiplier": 1.25,
+      "salvage_card_dust": 40
+    },
+    "gold": {
+      "multiplier": 1.5,
+      "salvage_card_dust": 80
+    }
+  },
+  "rarity_policy": {
+    "version": "card_rarity_v3",
+    "basis": "D-109 user: weak gray/strong green/Elite blue/Mini purple/MVP gold. Fixed by monster identity, not rolled per copy. Normal strength cutoffs <=20/<=45/>45 use rAthena pre-re source levels; these color tiers are authored for this game.",
+    "source": "https://raw.githubusercontent.com/rathena/rathena/master/db/pre-re/mob_db.yml",
+    "source_sha256": "4f045e32eb176c695cb11e94a68013867a437072aef0cee7438313826dc54e12",
+    "release_max": "legendary",
+    "future_only": [
+      "immortal",
+      "supreme"
+    ],
+    "variant_rules": {
+      "puppet": {
+        "rarity_id": "rare",
+        "basis": "D-122: separate Puppet I definition, blue/pale portrait, distinct supporting effects; retains source MVP identity without Legendary full-boss power."
+      }
+    },
+    "classification_overrides": {
+      "card_angeling": "mvp",
+      "card_deviling": "mvp"
+    }
+  }
+}

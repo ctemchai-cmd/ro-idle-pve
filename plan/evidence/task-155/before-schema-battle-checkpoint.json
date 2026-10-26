@@ -1,0 +1,2972 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ro-idle.local/schemas/battle-checkpoint.json",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "content_hash": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rules_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rng_version": {
+      "const": "lcg32-v1"
+    },
+    "initial_seed": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4294967295
+    },
+    "rng": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
+        },
+        "draw_count": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "state",
+        "draw_count"
+      ],
+      "additionalProperties": false
+    },
+    "game_time_ms": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "phase": {
+      "const": 7
+    },
+    "checkpoint_barrier": {
+      "const": true
+    },
+    "event_sequence": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "mode": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "enum": [
+            "story",
+            "tower",
+            "daily"
+          ]
+        },
+        "ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "time_limit_ms": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "ticket_day": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "string",
+              "minLength": 1
+            }
+          ]
+        },
+        "daily_phase": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            }
+          ]
+        },
+        "daily_current_hp": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          ]
+        },
+        "reserved_phase_keys": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "kind",
+        "ref",
+        "time_limit_ms",
+        "ticket_day",
+        "daily_phase",
+        "daily_current_hp",
+        "reserved_phase_keys"
+      ],
+      "additionalProperties": false
+    },
+    "actors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "actor_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "party",
+              "enemy",
+              "summon",
+              "pet"
+            ]
+          },
+          "owner_actor_id": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "minLength": 1
+              }
+            ]
+          },
+          "life_epoch": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "build_hash": {
+            "type": "string",
+            "minLength": 1
+          },
+          "position": {
+            "type": "string",
+            "minLength": 1
+          },
+          "team": {
+            "enum": [
+              "player",
+              "enemy"
+            ]
+          },
+          "targetable": {
+            "type": "boolean"
+          },
+          "counts_for_terminal": {
+            "type": "boolean"
+          },
+          "stats": {
+            "type": "object",
+            "properties": {
+              "str": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "agi": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "vit": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "int": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "dex": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "luk": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "physical_attack": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "magical_attack": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "max_hp": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9007199254740991
+              },
+              "max_sp": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "physical_defense": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "magical_defense": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "attack_speed": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 9007199254740991
+              },
+              "cast_speed": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 9007199254740991
+              },
+              "hit_bonus": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "evasion_bonus": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "crit_chance_bonus": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "crit_damage_bonus": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "crit_resistance": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "control_accuracy": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "control_resistance": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "outgoing_physical_bonus": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "outgoing_magical_bonus": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "outgoing_true_bonus": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "damage_taken_bonus": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "guard_percent": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "armor_break_percent": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "penetration_percent": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "outgoing_healing_bonus": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "healing_received_bonus": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "sp_regen_percent": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "hp_regen_percent": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "flat_damage_reduction": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "flat_penetration": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "flat_sp_regen": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "flat_hp_regen": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "neutral_resistance": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "water_resistance": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "earth_resistance": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "fire_resistance": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "wind_resistance": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "poison_resistance": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "holy_resistance": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "dark_resistance": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "ghost_resistance": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "undead_resistance": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "freeze_resistance": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "silence_resistance": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "blind_resistance": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "magical_guard_percent": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "sp_cost_percent": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "interrupt_resistance": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "move_speed_percent": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "revive_hp_bonus": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "revive_sp_bonus": {
+                "type": "number",
+                "minimum": -9007199254740991,
+                "maximum": 9007199254740991
+              },
+              "skill_damage_bonus": {
+                "type": "number",
+                "description": "D-103 optional for legacy checkpoints; missing is zero. Added to the existing outgoing damage bucket only for this action family."
+              },
+              "normal_damage_bonus": {
+                "type": "number",
+                "description": "D-103 optional for legacy checkpoints; missing is zero. Added to the existing outgoing damage bucket only for this action family."
+              }
+            },
+            "required": [
+              "str",
+              "agi",
+              "vit",
+              "int",
+              "dex",
+              "luk",
+              "physical_attack",
+              "magical_attack",
+              "max_hp",
+              "max_sp",
+              "physical_defense",
+              "magical_defense",
+              "attack_speed",
+              "cast_speed",
+              "hit_bonus",
+              "evasion_bonus",
+              "crit_chance_bonus",
+              "crit_damage_bonus",
+              "crit_resistance",
+              "control_accuracy",
+              "control_resistance",
+              "outgoing_physical_bonus",
+              "outgoing_magical_bonus",
+              "outgoing_true_bonus",
+              "damage_taken_bonus",
+              "guard_percent",
+              "armor_break_percent",
+              "penetration_percent",
+              "outgoing_healing_bonus",
+              "healing_received_bonus",
+              "sp_regen_percent",
+              "hp_regen_percent",
+              "flat_damage_reduction",
+              "flat_penetration",
+              "flat_sp_regen",
+              "flat_hp_regen",
+              "neutral_resistance",
+              "water_resistance",
+              "earth_resistance",
+              "fire_resistance",
+              "wind_resistance",
+              "poison_resistance",
+              "holy_resistance",
+              "dark_resistance",
+              "ghost_resistance",
+              "undead_resistance",
+              "freeze_resistance",
+              "silence_resistance",
+              "blind_resistance",
+              "magical_guard_percent",
+              "sp_cost_percent",
+              "interrupt_resistance",
+              "move_speed_percent",
+              "revive_hp_bonus",
+              "revive_sp_bonus"
+            ],
+            "additionalProperties": false
+          },
+          "hp": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "sp": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "spirit_spheres": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "active_slots": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "string",
+                  "minLength": 1
+                }
+              ]
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          "rotation_cursor": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          },
+          "action_phase": {
+            "enum": [
+              "skill_interval",
+              "casting",
+              "after_cast",
+              "normal_only",
+              "dead"
+            ]
+          },
+          "phase_ready_at": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              }
+            ]
+          },
+          "normal_clock": {
+            "type": "object",
+            "properties": {
+              "due_at": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  }
+                ]
+              },
+              "remaining_ms": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "paused_for_cast": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "due_at",
+              "remaining_ms",
+              "paused_for_cast"
+            ],
+            "additionalProperties": false
+          },
+          "cast": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "token": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "skill_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "skill_level": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 10
+                  },
+                  "ends_at": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "used_slot_index": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 3
+                  },
+                  "interruptible": {
+                    "type": "boolean"
+                  },
+                  "pre_cost": {
+                    "type": "object",
+                    "properties": {
+                      "sp": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 9007199254740991
+                      },
+                      "spirit_spheres": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 5
+                      }
+                    },
+                    "required": [
+                      "sp",
+                      "spirit_spheres"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "offense_snapshot": {
+                    "type": "object",
+                    "properties": {
+                      "str": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 9007199254740991
+                      },
+                      "agi": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 9007199254740991
+                      },
+                      "vit": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 9007199254740991
+                      },
+                      "int": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 9007199254740991
+                      },
+                      "dex": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 9007199254740991
+                      },
+                      "luk": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 9007199254740991
+                      },
+                      "physical_attack": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 9007199254740991
+                      },
+                      "magical_attack": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 9007199254740991
+                      },
+                      "max_hp": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 9007199254740991
+                      },
+                      "max_sp": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 9007199254740991
+                      },
+                      "physical_defense": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 9007199254740991
+                      },
+                      "magical_defense": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 9007199254740991
+                      },
+                      "attack_speed": {
+                        "type": "number",
+                        "minimum": 1,
+                        "maximum": 9007199254740991
+                      },
+                      "cast_speed": {
+                        "type": "number",
+                        "minimum": 1,
+                        "maximum": 9007199254740991
+                      },
+                      "hit_bonus": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "evasion_bonus": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "crit_chance_bonus": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "crit_damage_bonus": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "crit_resistance": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "control_accuracy": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "control_resistance": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "outgoing_physical_bonus": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "outgoing_magical_bonus": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "outgoing_true_bonus": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "damage_taken_bonus": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "guard_percent": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "armor_break_percent": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "penetration_percent": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "outgoing_healing_bonus": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "healing_received_bonus": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "sp_regen_percent": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "hp_regen_percent": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "flat_damage_reduction": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "flat_penetration": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "flat_sp_regen": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "flat_hp_regen": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "neutral_resistance": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "water_resistance": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "earth_resistance": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "fire_resistance": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "wind_resistance": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "poison_resistance": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "holy_resistance": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "dark_resistance": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "ghost_resistance": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "undead_resistance": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "freeze_resistance": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "silence_resistance": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "blind_resistance": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "magical_guard_percent": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "sp_cost_percent": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "interrupt_resistance": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "move_speed_percent": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "revive_hp_bonus": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "revive_sp_bonus": {
+                        "type": "number",
+                        "minimum": -9007199254740991,
+                        "maximum": 9007199254740991
+                      },
+                      "skill_damage_bonus": {
+                        "type": "number",
+                        "description": "D-103 optional for legacy checkpoints; missing is zero. Added to the existing outgoing damage bucket only for this action family."
+                      },
+                      "normal_damage_bonus": {
+                        "type": "number",
+                        "description": "D-103 optional for legacy checkpoints; missing is zero. Added to the existing outgoing damage bucket only for this action family."
+                      }
+                    },
+                    "required": [
+                      "str",
+                      "agi",
+                      "vit",
+                      "int",
+                      "dex",
+                      "luk",
+                      "physical_attack",
+                      "magical_attack",
+                      "max_hp",
+                      "max_sp",
+                      "physical_defense",
+                      "magical_defense",
+                      "attack_speed",
+                      "cast_speed",
+                      "hit_bonus",
+                      "evasion_bonus",
+                      "crit_chance_bonus",
+                      "crit_damage_bonus",
+                      "crit_resistance",
+                      "control_accuracy",
+                      "control_resistance",
+                      "outgoing_physical_bonus",
+                      "outgoing_magical_bonus",
+                      "outgoing_true_bonus",
+                      "damage_taken_bonus",
+                      "guard_percent",
+                      "armor_break_percent",
+                      "penetration_percent",
+                      "outgoing_healing_bonus",
+                      "healing_received_bonus",
+                      "sp_regen_percent",
+                      "hp_regen_percent",
+                      "flat_damage_reduction",
+                      "flat_penetration",
+                      "flat_sp_regen",
+                      "flat_hp_regen",
+                      "neutral_resistance",
+                      "water_resistance",
+                      "earth_resistance",
+                      "fire_resistance",
+                      "wind_resistance",
+                      "poison_resistance",
+                      "holy_resistance",
+                      "dark_resistance",
+                      "ghost_resistance",
+                      "undead_resistance",
+                      "freeze_resistance",
+                      "silence_resistance",
+                      "blind_resistance",
+                      "magical_guard_percent",
+                      "sp_cost_percent",
+                      "interrupt_resistance",
+                      "move_speed_percent",
+                      "revive_hp_bonus",
+                      "revive_sp_bonus"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "resolved_skill": {
+                    "$ref": "skill.json"
+                  },
+                  "started_at": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "target_bindings": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  },
+                  "weapon_element_snapshot": {
+                    "enum": [
+                      "neutral",
+                      "water",
+                      "earth",
+                      "fire",
+                      "wind",
+                      "poison",
+                      "holy",
+                      "dark",
+                      "ghost",
+                      "undead"
+                    ]
+                  },
+                  "allow_magical_crit": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "token",
+                  "skill_id",
+                  "skill_level",
+                  "ends_at",
+                  "used_slot_index",
+                  "interruptible",
+                  "pre_cost",
+                  "offense_snapshot",
+                  "resolved_skill",
+                  "started_at",
+                  "target_bindings",
+                  "weapon_element_snapshot"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "statuses": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "instance_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "status_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "source": {
+                  "type": "object",
+                  "properties": {
+                    "instance_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "owner_actor_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "definition_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "origin_actor_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "origin_life_epoch": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    }
+                  },
+                  "required": [
+                    "instance_id",
+                    "owner_actor_id",
+                    "definition_id",
+                    "origin_actor_id",
+                    "origin_life_epoch"
+                  ],
+                  "additionalProperties": false
+                },
+                "carrier_actor_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "applied_at": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "expires_at": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "params": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "number",
+                    "minimum": -9007199254740991,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "offense_snapshot": {
+                  "type": "object",
+                  "properties": {
+                    "str": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "agi": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "vit": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "int": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "dex": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "luk": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "physical_attack": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "magical_attack": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "max_hp": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 9007199254740991
+                    },
+                    "max_sp": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "physical_defense": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "magical_defense": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    },
+                    "attack_speed": {
+                      "type": "number",
+                      "minimum": 1,
+                      "maximum": 9007199254740991
+                    },
+                    "cast_speed": {
+                      "type": "number",
+                      "minimum": 1,
+                      "maximum": 9007199254740991
+                    },
+                    "hit_bonus": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "evasion_bonus": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "crit_chance_bonus": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "crit_damage_bonus": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "crit_resistance": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "control_accuracy": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "control_resistance": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "outgoing_physical_bonus": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "outgoing_magical_bonus": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "outgoing_true_bonus": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "damage_taken_bonus": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "guard_percent": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "armor_break_percent": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "penetration_percent": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "outgoing_healing_bonus": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "healing_received_bonus": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "sp_regen_percent": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "hp_regen_percent": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "flat_damage_reduction": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "flat_penetration": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "flat_sp_regen": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "flat_hp_regen": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "neutral_resistance": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "water_resistance": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "earth_resistance": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "fire_resistance": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "wind_resistance": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "poison_resistance": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "holy_resistance": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "dark_resistance": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "ghost_resistance": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "undead_resistance": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "freeze_resistance": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "silence_resistance": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "blind_resistance": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "magical_guard_percent": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "sp_cost_percent": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "interrupt_resistance": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "move_speed_percent": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "revive_hp_bonus": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "revive_sp_bonus": {
+                      "type": "number",
+                      "minimum": -9007199254740991,
+                      "maximum": 9007199254740991
+                    },
+                    "skill_damage_bonus": {
+                      "type": "number",
+                      "description": "D-103 optional for legacy checkpoints; missing is zero. Added to the existing outgoing damage bucket only for this action family."
+                    },
+                    "normal_damage_bonus": {
+                      "type": "number",
+                      "description": "D-103 optional for legacy checkpoints; missing is zero. Added to the existing outgoing damage bucket only for this action family."
+                    }
+                  },
+                  "required": [
+                    "str",
+                    "agi",
+                    "vit",
+                    "int",
+                    "dex",
+                    "luk",
+                    "physical_attack",
+                    "magical_attack",
+                    "max_hp",
+                    "max_sp",
+                    "physical_defense",
+                    "magical_defense",
+                    "attack_speed",
+                    "cast_speed",
+                    "hit_bonus",
+                    "evasion_bonus",
+                    "crit_chance_bonus",
+                    "crit_damage_bonus",
+                    "crit_resistance",
+                    "control_accuracy",
+                    "control_resistance",
+                    "outgoing_physical_bonus",
+                    "outgoing_magical_bonus",
+                    "outgoing_true_bonus",
+                    "damage_taken_bonus",
+                    "guard_percent",
+                    "armor_break_percent",
+                    "penetration_percent",
+                    "outgoing_healing_bonus",
+                    "healing_received_bonus",
+                    "sp_regen_percent",
+                    "hp_regen_percent",
+                    "flat_damage_reduction",
+                    "flat_penetration",
+                    "flat_sp_regen",
+                    "flat_hp_regen",
+                    "neutral_resistance",
+                    "water_resistance",
+                    "earth_resistance",
+                    "fire_resistance",
+                    "wind_resistance",
+                    "poison_resistance",
+                    "holy_resistance",
+                    "dark_resistance",
+                    "ghost_resistance",
+                    "undead_resistance",
+                    "freeze_resistance",
+                    "silence_resistance",
+                    "blind_resistance",
+                    "magical_guard_percent",
+                    "sp_cost_percent",
+                    "interrupt_resistance",
+                    "move_speed_percent",
+                    "revive_hp_bonus",
+                    "revive_sp_bonus"
+                  ],
+                  "additionalProperties": false
+                },
+                "next_tick_at": {
+                  "oneOf": [
+                    {
+                      "type": "null"
+                    },
+                    {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    }
+                  ]
+                },
+                "weapon_element_snapshot": {
+                  "enum": [
+                    "neutral",
+                    "water",
+                    "earth",
+                    "fire",
+                    "wind",
+                    "poison",
+                    "holy",
+                    "dark",
+                    "ghost",
+                    "undead"
+                  ]
+                },
+                "allow_magical_crit": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "instance_id",
+                "status_id",
+                "source",
+                "carrier_actor_id",
+                "applied_at",
+                "expires_at",
+                "params",
+                "offense_snapshot",
+                "next_tick_at",
+                "weapon_element_snapshot"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "shields": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "instance_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "source": {
+                  "type": "object",
+                  "properties": {
+                    "instance_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "owner_actor_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "definition_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "origin_actor_id": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "origin_life_epoch": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 9007199254740991
+                    }
+                  },
+                  "required": [
+                    "instance_id",
+                    "owner_actor_id",
+                    "definition_id",
+                    "origin_actor_id",
+                    "origin_life_epoch"
+                  ],
+                  "additionalProperties": false
+                },
+                "carrier_actor_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "expires_at": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "remaining": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "dispelable": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "instance_id",
+                "source",
+                "carrier_actor_id",
+                "expires_at",
+                "remaining",
+                "dispelable"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "summon_expires_at": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              }
+            ]
+          },
+          "stat_blueprint": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "enum": [
+                  "character",
+                  "fixed"
+                ]
+              },
+              "level": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 120
+              },
+              "job_id": {
+                "oneOf": [
+                  {
+                    "type": "null"
+                  },
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                ]
+              },
+              "allocated_primary": {
+                "type": "object",
+                "properties": {
+                  "str": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "agi": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "vit": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "int": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "dex": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "luk": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "required": [
+                  "str",
+                  "agi",
+                  "vit",
+                  "int",
+                  "dex",
+                  "luk"
+                ],
+                "additionalProperties": false
+              },
+              "derived_offsets": {
+                "type": "object",
+                "properties": {
+                  "physical_attack": {
+                    "type": "number",
+                    "minimum": -9007199254740991,
+                    "maximum": 9007199254740991
+                  },
+                  "magical_attack": {
+                    "type": "number",
+                    "minimum": -9007199254740991,
+                    "maximum": 9007199254740991
+                  },
+                  "max_hp": {
+                    "type": "number",
+                    "minimum": -9007199254740991,
+                    "maximum": 9007199254740991
+                  },
+                  "max_sp": {
+                    "type": "number",
+                    "minimum": -9007199254740991,
+                    "maximum": 9007199254740991
+                  },
+                  "physical_defense": {
+                    "type": "number",
+                    "minimum": -9007199254740991,
+                    "maximum": 9007199254740991
+                  },
+                  "magical_defense": {
+                    "type": "number",
+                    "minimum": -9007199254740991,
+                    "maximum": 9007199254740991
+                  },
+                  "attack_speed": {
+                    "type": "number",
+                    "minimum": -9007199254740991,
+                    "maximum": 9007199254740991
+                  },
+                  "cast_speed": {
+                    "type": "number",
+                    "minimum": -9007199254740991,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "required": [
+                  "physical_attack",
+                  "magical_attack",
+                  "max_hp",
+                  "max_sp",
+                  "physical_defense",
+                  "magical_defense",
+                  "attack_speed",
+                  "cast_speed"
+                ],
+                "additionalProperties": false
+              },
+              "permanent_sources": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "source": {
+                      "type": "object",
+                      "properties": {
+                        "instance_id": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "owner_actor_id": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "definition_id": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "origin_actor_id": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "origin_life_epoch": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 9007199254740991
+                        }
+                      },
+                      "required": [
+                        "instance_id",
+                        "owner_actor_id",
+                        "definition_id",
+                        "origin_actor_id",
+                        "origin_life_epoch"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "modifiers": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "modifier.json"
+                      }
+                    },
+                    "triggers": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "trigger.json"
+                      }
+                    },
+                    "defense_element": {
+                      "enum": [
+                        "neutral",
+                        "water",
+                        "earth",
+                        "fire",
+                        "wind",
+                        "poison",
+                        "holy",
+                        "dark",
+                        "ghost",
+                        "undead"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "source",
+                    "modifiers",
+                    "triggers"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "weapon_element": {
+                "enum": [
+                  "neutral",
+                  "water",
+                  "earth",
+                  "fire",
+                  "wind",
+                  "poison",
+                  "holy",
+                  "dark",
+                  "ghost",
+                  "undead"
+                ]
+              }
+            },
+            "required": [
+              "kind",
+              "level",
+              "job_id",
+              "allocated_primary",
+              "derived_offsets",
+              "permanent_sources",
+              "weapon_element"
+            ],
+            "additionalProperties": false
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "resolved_skills": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "level": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 10
+                },
+                "definition": {
+                  "$ref": "skill.json"
+                }
+              },
+              "required": [
+                "level",
+                "definition"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "phase_started_at": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "phase_duration_ms": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "phase_speed_snapshot": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "revivable": {
+            "type": "boolean"
+          },
+          "root_owner_actor_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "action_policy": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "const": "rotation"
+                  },
+                  "normal_attack_enabled": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "normal_attack_enabled"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "const": "periodic"
+                  },
+                  "interval_ms": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "next_tick_at": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "source": {
+                    "type": "object",
+                    "properties": {
+                      "instance_id": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "owner_actor_id": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "definition_id": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "origin_actor_id": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "origin_life_epoch": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 9007199254740991
+                      }
+                    },
+                    "required": [
+                      "instance_id",
+                      "owner_actor_id",
+                      "definition_id",
+                      "origin_actor_id",
+                      "origin_life_epoch"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "selectors": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "$ref": "selector.json"
+                    }
+                  },
+                  "effects": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                      "$ref": "effect.json"
+                    }
+                  }
+                },
+                "required": [
+                  "kind",
+                  "interval_ms",
+                  "next_tick_at",
+                  "source",
+                  "selectors",
+                  "effects"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "spatial": {
+            "type": "object",
+            "properties": {
+              "x": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 10000
+              },
+              "y": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 10000
+              },
+              "previous_x": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 10000
+              },
+              "previous_y": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 10000
+              },
+              "updated_at": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "move_speed": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1000
+              },
+              "radius": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 100
+              },
+              "normal_range": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 10000
+              },
+              "target_id": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "moving": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "x",
+              "y",
+              "previous_x",
+              "previous_y",
+              "updated_at",
+              "move_speed",
+              "radius",
+              "normal_range",
+              "target_id",
+              "moving"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "actor_id",
+          "kind",
+          "owner_actor_id",
+          "life_epoch",
+          "build_hash",
+          "position",
+          "team",
+          "targetable",
+          "counts_for_terminal",
+          "stats",
+          "hp",
+          "sp",
+          "spirit_spheres",
+          "active_slots",
+          "rotation_cursor",
+          "action_phase",
+          "phase_ready_at",
+          "normal_clock",
+          "cast",
+          "statuses",
+          "shields",
+          "summon_expires_at",
+          "stat_blueprint",
+          "tags",
+          "resolved_skills",
+          "phase_started_at",
+          "phase_duration_ms",
+          "phase_speed_snapshot",
+          "revivable",
+          "root_owner_actor_id",
+          "action_policy"
+        ],
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "party"
+                }
+              },
+              "required": [
+                "kind"
+              ]
+            },
+            "then": {
+              "properties": {
+                "stat_blueprint": {
+                  "properties": {
+                    "level": {
+                      "maximum": 100
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "minItems": 1
+    },
+    "pending_events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "event_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sequence": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "due_ms": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "kind": {
+            "enum": [
+              "phase_ready",
+              "normal_attack",
+              "cast_complete",
+              "status_expiry",
+              "status_tick",
+              "shield_expiry",
+              "summon_expiry",
+              "summon_tick",
+              "resource_regen",
+              "battle_start",
+              "motion_tick"
+            ]
+          },
+          "actor_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "life_epoch": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "cast_token": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "minLength": 1
+              }
+            ]
+          },
+          "source_instance_id": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string",
+                "minLength": 1
+              }
+            ]
+          }
+        },
+        "required": [
+          "event_id",
+          "sequence",
+          "due_ms",
+          "kind",
+          "actor_id",
+          "life_epoch",
+          "cast_token",
+          "source_instance_id"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "properties": {
+        "team": {
+          "type": "object",
+          "properties": {
+            "player": {
+              "type": "object",
+              "properties": {
+                "raw_damage": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "hp_damage": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "absorbed": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "overkill": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "effective_heal": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "overheal": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "shield_created": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "shield_absorbed": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "sp_spent": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "sp_skips": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "sphere_skips": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "casts_started": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "casts_resolved": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "casts_interrupted": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "normal_attacks": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "cc_applied": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "cc_resisted": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "alive_time_ms": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "sp_restored": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "sp_wasted": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "sphere_gained": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "sphere_wasted": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "cc_blocked_actor_ms": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "cc_instance_ms": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "skill_interval_ms": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "cast_time_ms": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "after_cast_time_ms": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "control_wait_ms": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "damage_received": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Actual incoming HP loss / shield absorption credited to recipient; optional for legacy M0 fixtures. New engine battles initialize zero."
+                },
+                "shield_damage_received": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Actual incoming HP loss / shield absorption credited to recipient; optional for legacy M0 fixtures. New engine battles initialize zero."
+                }
+              },
+              "required": [
+                "raw_damage",
+                "hp_damage",
+                "absorbed",
+                "overkill",
+                "effective_heal",
+                "overheal",
+                "shield_created",
+                "shield_absorbed",
+                "sp_spent",
+                "sp_skips",
+                "sphere_skips",
+                "casts_started",
+                "casts_resolved",
+                "casts_interrupted",
+                "normal_attacks",
+                "cc_applied",
+                "cc_resisted",
+                "alive_time_ms",
+                "sp_restored",
+                "sp_wasted",
+                "sphere_gained",
+                "sphere_wasted",
+                "cc_blocked_actor_ms",
+                "cc_instance_ms",
+                "skill_interval_ms",
+                "cast_time_ms",
+                "after_cast_time_ms",
+                "control_wait_ms"
+              ],
+              "additionalProperties": false
+            },
+            "enemy": {
+              "type": "object",
+              "properties": {
+                "raw_damage": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "hp_damage": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "absorbed": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "overkill": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "effective_heal": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "overheal": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "shield_created": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "shield_absorbed": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "sp_spent": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "sp_skips": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "sphere_skips": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "casts_started": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "casts_resolved": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "casts_interrupted": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "normal_attacks": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "cc_applied": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "cc_resisted": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "alive_time_ms": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "sp_restored": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "sp_wasted": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "sphere_gained": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "sphere_wasted": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "cc_blocked_actor_ms": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "cc_instance_ms": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "skill_interval_ms": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "cast_time_ms": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "after_cast_time_ms": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "control_wait_ms": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "damage_received": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Actual incoming HP loss / shield absorption credited to recipient; optional for legacy M0 fixtures. New engine battles initialize zero."
+                },
+                "shield_damage_received": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 9007199254740991,
+                  "description": "Actual incoming HP loss / shield absorption credited to recipient; optional for legacy M0 fixtures. New engine battles initialize zero."
+                }
+              },
+              "required": [
+                "raw_damage",
+                "hp_damage",
+                "absorbed",
+                "overkill",
+                "effective_heal",
+                "overheal",
+                "shield_created",
+                "shield_absorbed",
+                "sp_spent",
+                "sp_skips",
+                "sphere_skips",
+                "casts_started",
+                "casts_resolved",
+                "casts_interrupted",
+                "normal_attacks",
+                "cc_applied",
+                "cc_resisted",
+                "alive_time_ms",
+                "sp_restored",
+                "sp_wasted",
+                "sphere_gained",
+                "sphere_wasted",
+                "cc_blocked_actor_ms",
+                "cc_instance_ms",
+                "skill_interval_ms",
+                "cast_time_ms",
+                "after_cast_time_ms",
+                "control_wait_ms"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "player",
+            "enemy"
+          ],
+          "additionalProperties": false
+        },
+        "actors": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "raw_damage": {
+                "type": "number",
+                "minimum": 0
+              },
+              "hp_damage": {
+                "type": "number",
+                "minimum": 0
+              },
+              "absorbed": {
+                "type": "number",
+                "minimum": 0
+              },
+              "overkill": {
+                "type": "number",
+                "minimum": 0
+              },
+              "effective_heal": {
+                "type": "number",
+                "minimum": 0
+              },
+              "overheal": {
+                "type": "number",
+                "minimum": 0
+              },
+              "shield_created": {
+                "type": "number",
+                "minimum": 0
+              },
+              "shield_absorbed": {
+                "type": "number",
+                "minimum": 0
+              },
+              "sp_spent": {
+                "type": "number",
+                "minimum": 0
+              },
+              "sp_skips": {
+                "type": "number",
+                "minimum": 0
+              },
+              "sphere_skips": {
+                "type": "number",
+                "minimum": 0
+              },
+              "casts_started": {
+                "type": "number",
+                "minimum": 0
+              },
+              "casts_resolved": {
+                "type": "number",
+                "minimum": 0
+              },
+              "casts_interrupted": {
+                "type": "number",
+                "minimum": 0
+              },
+              "normal_attacks": {
+                "type": "number",
+                "minimum": 0
+              },
+              "cc_applied": {
+                "type": "number",
+                "minimum": 0
+              },
+              "cc_resisted": {
+                "type": "number",
+                "minimum": 0
+              },
+              "alive_time_ms": {
+                "type": "number",
+                "minimum": 0
+              },
+              "sp_restored": {
+                "type": "number",
+                "minimum": 0
+              },
+              "sp_wasted": {
+                "type": "number",
+                "minimum": 0
+              },
+              "sphere_gained": {
+                "type": "number",
+                "minimum": 0
+              },
+              "sphere_wasted": {
+                "type": "number",
+                "minimum": 0
+              },
+              "cc_blocked_actor_ms": {
+                "type": "number",
+                "minimum": 0
+              },
+              "cc_instance_ms": {
+                "type": "number",
+                "minimum": 0
+              },
+              "skill_interval_ms": {
+                "type": "number",
+                "minimum": 0
+              },
+              "cast_time_ms": {
+                "type": "number",
+                "minimum": 0
+              },
+              "after_cast_time_ms": {
+                "type": "number",
+                "minimum": 0
+              },
+              "control_wait_ms": {
+                "type": "number",
+                "minimum": 0
+              },
+              "damage_received": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 9007199254740991,
+                "description": "Actual incoming HP loss / shield absorption credited to recipient; optional for legacy M0 fixtures. New engine battles initialize zero."
+              },
+              "shield_damage_received": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 9007199254740991,
+                "description": "Actual incoming HP loss / shield absorption credited to recipient; optional for legacy M0 fixtures. New engine battles initialize zero."
+              }
+            },
+            "required": [
+              "raw_damage",
+              "hp_damage",
+              "absorbed",
+              "overkill",
+              "effective_heal",
+              "overheal",
+              "shield_created",
+              "shield_absorbed",
+              "sp_spent",
+              "sp_skips",
+              "sphere_skips",
+              "casts_started",
+              "casts_resolved",
+              "casts_interrupted",
+              "normal_attacks",
+              "cc_applied",
+              "cc_resisted",
+              "alive_time_ms",
+              "sp_restored",
+              "sp_wasted",
+              "sphere_gained",
+              "sphere_wasted",
+              "cc_blocked_actor_ms",
+              "cc_instance_ms",
+              "skill_interval_ms",
+              "cast_time_ms",
+              "after_cast_time_ms",
+              "control_wait_ms"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "skills": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "raw_damage": {
+                "type": "number",
+                "minimum": 0
+              },
+              "hp_damage": {
+                "type": "number",
+                "minimum": 0
+              },
+              "absorbed": {
+                "type": "number",
+                "minimum": 0
+              },
+              "overkill": {
+                "type": "number",
+                "minimum": 0
+              },
+              "effective_heal": {
+                "type": "number",
+                "minimum": 0
+              },
+              "overheal": {
+                "type": "number",
+                "minimum": 0
+              },
+              "shield_created": {
+                "type": "number",
+                "minimum": 0
+              },
+              "shield_absorbed": {
+                "type": "number",
+                "minimum": 0
+              },
+              "sp_spent": {
+                "type": "number",
+                "minimum": 0
+              },
+              "sp_skips": {
+                "type": "number",
+                "minimum": 0
+              },
+              "sphere_skips": {
+                "type": "number",
+                "minimum": 0
+              },
+              "casts_started": {
+                "type": "number",
+                "minimum": 0
+              },
+              "casts_resolved": {
+                "type": "number",
+                "minimum": 0
+              },
+              "casts_interrupted": {
+                "type": "number",
+                "minimum": 0
+              },
+              "normal_attacks": {
+                "type": "number",
+                "minimum": 0
+              },
+              "cc_applied": {
+                "type": "number",
+                "minimum": 0
+              },
+              "cc_resisted": {
+                "type": "number",
+                "minimum": 0
+              },
+              "alive_time_ms": {
+                "type": "number",
+                "minimum": 0
+              },
+              "sp_restored": {
+                "type": "number",
+                "minimum": 0
+              },
+              "sp_wasted": {
+                "type": "number",
+                "minimum": 0
+              },
+              "sphere_gained": {
+                "type": "number",
+                "minimum": 0
+              },
+              "sphere_wasted": {
+                "type": "number",
+                "minimum": 0
+              },
+              "cc_blocked_actor_ms": {
+                "type": "number",
+                "minimum": 0
+              },
+              "cc_instance_ms": {
+                "type": "number",
+                "minimum": 0
+              },
+              "skill_interval_ms": {
+                "type": "number",
+                "minimum": 0
+              },
+              "cast_time_ms": {
+                "type": "number",
+                "minimum": 0
+              },
+              "after_cast_time_ms": {
+                "type": "number",
+                "minimum": 0
+              },
+              "control_wait_ms": {
+                "type": "number",
+                "minimum": 0
+              },
+              "damage_received": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 9007199254740991,
+                "description": "Actual incoming HP loss / shield absorption credited to recipient; optional for legacy M0 fixtures. New engine battles initialize zero."
+              },
+              "shield_damage_received": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 9007199254740991,
+                "description": "Actual incoming HP loss / shield absorption credited to recipient; optional for legacy M0 fixtures. New engine battles initialize zero."
+              }
+            },
+            "required": [
+              "raw_damage",
+              "hp_damage",
+              "absorbed",
+              "overkill",
+              "effective_heal",
+              "overheal",
+              "shield_created",
+              "shield_absorbed",
+              "sp_spent",
+              "sp_skips",
+              "sphere_skips",
+              "casts_started",
+              "casts_resolved",
+              "casts_interrupted",
+              "normal_attacks",
+              "cc_applied",
+              "cc_resisted",
+              "alive_time_ms",
+              "sp_restored",
+              "sp_wasted",
+              "sphere_gained",
+              "sphere_wasted",
+              "cc_blocked_actor_ms",
+              "cc_instance_ms",
+              "skill_interval_ms",
+              "cast_time_ms",
+              "after_cast_time_ms",
+              "control_wait_ms"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "team",
+        "actors",
+        "skills"
+      ],
+      "additionalProperties": false
+    },
+    "terminal_result": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "enum": [
+                "victory",
+                "defeat",
+                "time_limit",
+                "retreated",
+                "diagnostic"
+              ]
+            },
+            "at_game_ms": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "reason_key": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "kind",
+            "at_game_ms",
+            "reason_key"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "trigger_activations": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 9007199254740991
+      }
+    },
+    "timing": {
+      "description": "Optional explicit encounter timing profile; omitted checkpoints use release baseline 1500ms for both intervals. Stored for deterministic resume/replay.",
+      "type": "object",
+      "properties": {
+        "skill_interval_base_ms": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60000
+        },
+        "normal_attack_base_ms": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60000
+        }
+      },
+      "required": [
+        "skill_interval_base_ms",
+        "normal_attack_base_ms"
+      ],
+      "additionalProperties": false
+    },
+    "arena": {
+      "type": "object",
+      "properties": {
+        "width": {
+          "type": "number",
+          "minimum": 100,
+          "maximum": 10000
+        },
+        "height": {
+          "type": "number",
+          "minimum": 100,
+          "maximum": 10000
+        },
+        "step_ms": {
+          "const": 50
+        }
+      },
+      "required": [
+        "width",
+        "height",
+        "step_ms"
+      ],
+      "additionalProperties": false,
+      "description": "Optional shared spatial simulation. All actors require spatial profiles. Legacy checkpoints without arena retain abstract targeting. Fixed 50ms movement ticks; normal attacks require range; skills ignore range."
+    }
+  },
+  "required": [
+    "schema_version",
+    "content_hash",
+    "rules_version",
+    "rng_version",
+    "initial_seed",
+    "rng",
+    "game_time_ms",
+    "phase",
+    "checkpoint_barrier",
+    "event_sequence",
+    "mode",
+    "actors",
+    "pending_events",
+    "metrics",
+    "terminal_result",
+    "trigger_activations"
+  ],
+  "additionalProperties": false
+}

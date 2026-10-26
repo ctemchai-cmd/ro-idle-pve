@@ -367,3 +367,7 @@ D174ล่าสุด: ผู้ใช้ขอวิถีเด้งเร�
 ## D178 — 26 ตุลาคม 2026
 
 ผู้ใช้ขอย่อยการ์ดหลายใบ;ใช้batchcommandเดิมผ่านselection+sharedconfirmในกระเป๋า. รายละเอียดdesign67/TASK154.
+
+## D179 — 26 ตุลาคม2026
+
+ผู้ใช้รู้สึกการ์ดMAtkน้อย;ตรวจพบ3positiveMAtkvs13PATKและยืนยันผสมgenericMAtk/เจาะMDef/โบนัสสกิล. Authored5cardbaselineและtypedprofilesตามdesign68/TASK155.

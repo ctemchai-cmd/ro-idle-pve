@@ -50,6 +50,7 @@ function GearSheet({ context, row, close }: { context: GameContext; row: Gear; c
 export function BackpackPage({ context }: { context: GameContext }) {
   const { state, pack, submit, locked, go } = context, [filter, setFilter] = useState<Filter>('all'), [open, setOpen] = useState<string | null>(null), [bulk, setBulk] = useState<string[] | null>(null);
   const [confirmCards, setConfirmCards] = useState<string[] | null>(null), cardMode = filter === 'card';
+  const [inspectedCard, setInspectedCard] = useState<string | null>(null);
   // Rarity/Level filters (user request, 20 Oct 2026): none picked = all; they narrow the grid and "select all" for salvage.
   const [rarities, setRarities] = useState<string[]>([]), [levels, setLevels] = useState<number[]>([]);
   const gear = useMemo(() => inventoryView(state, 'main').sort((a, b) => b.definition.required_level - a.definition.required_level || (rarityRank[b.item.rarity_id] ?? 0) - (rarityRank[a.item.rarity_id] ?? 0)), [state]);
@@ -61,7 +62,8 @@ export function BackpackPage({ context }: { context: GameContext }) {
   const toggle = <T,>(list: T[], value: T) => list.includes(value) ? list.filter(x => x !== value) : [...list, value];
   const free = (cardMode ? shownCards : shownGear).filter(g => !g.owner && !g.item.locked), bulkItems = state.inventory.filter(i => bulk?.includes(i.instance_id)), openGear = gear.find(g => g.item.instance_id === open), openCard = cards.find(c => c.item.instance_id === open);
   const allPicked = free.length > 0 && free.every(g => bulk?.includes(g.item.instance_id));
-  const tap = (id: string, selectable: boolean) => { if (!bulk) { setOpen(id); return; } if (selectable) setBulk(bulk.includes(id) ? bulk.filter(x => x !== id) : [...bulk, id]); };
+  const focusedCard = cardMode && bulk ? shownCards.find(c => c.item.instance_id === inspectedCard) : undefined;
+  const tap = (id: string, selectable: boolean) => { if (!bulk) { setOpen(id); return; } if (cardMode) setInspectedCard(id); if (selectable) setBulk(bulk.includes(id) ? bulk.filter(x => x !== id) : [...bulk, id]); };
   const filters: [Filter, string][] = [['all', 'ทั้งหมด'], ...equipmentSlots.map(s => [s, slotLabels[s]] as [Filter, string]), ['card', 'การ์ด']];
   return <div className="page backpack-page">
     <PageHeader title="กระเป๋า" sub={`${state.inventory.length} / ${equipmentData.inventory_capacity} ช่อง${state.inventory.length >= equipmentData.inventory_capacity ? ' · เต็ม' : ''}`} onBack={() => go('home')} right={<button className={`btn small ${bulk ? 'primary' : 'ghost'}`} disabled={locked && !bulk} onClick={() => setBulk(bulk ? null : [])}>{bulk ? 'เสร็จ' : cardMode ? 'ย่อยหลายใบ' : 'ย่อยหลายชิ้น'}</button>} />
@@ -82,7 +84,14 @@ export function BackpackPage({ context }: { context: GameContext }) {
       </button>;
     }} />
     {!shownGear.length && !shownCards.length && <p className="hint center">ยังไม่มีของในหมวดนี้</p>}
-    {bulk && <footer className="bulk-bar"><span>เลือก {bulk.length} {cardMode?'ใบ':'ชิ้น'}<small>{bulk.length ? quoteText(cardMode ? salvageCardsQuote(bulkItems) : itemSalvageQuote(bulkItems)) : `0 ${cardMode?'ใบ':'ชิ้น'}`}</small></span>
+    {bulk && <footer className={`bulk-bar ${cardMode?'card-bulk-bar':''}`}>
+      {focusedCard && <section className="card-bulk-info" aria-label="ข้อมูลการ์ดที่แตะล่าสุด" aria-live="polite">
+        <span className={`card-bulk-thumb rarity-${focusedCard.item.rarity_id}`}><CardIcon card={focusedCard} pack={pack}/></span>
+        <div><b>{focusedCard.name}</b><small>{rarityLabels[focusedCard.item.rarity_id]} · Lv.{focusedCard.item.level} · {slotLabels[focusedCard.definition.slot as EquipmentSlot]}{bulk.includes(focusedCard.item.instance_id)?' · เลือกแล้ว':''}</small>
+          <details key={focusedCard.item.instance_id}><summary><span>{[...focusedCard.modifiers.map(modifierText),...focusedCard.effects].join(' · ')}</span><Icon name="chevron-down"/></summary><ul className="card-effects">{[...focusedCard.modifiers.map(modifierText),...focusedCard.effects].map((text,i)=><li key={i}>{text}</li>)}</ul></details>
+        </div>
+      </section>}
+      <span>เลือก {bulk.length} {cardMode?'ใบ':'ชิ้น'}<small>{bulk.length ? quoteText(cardMode ? salvageCardsQuote(bulkItems) : itemSalvageQuote(bulkItems)) : `0 ${cardMode?'ใบ':'ชิ้น'}`}</small></span>
       <button className="btn ghost small" disabled={!free.length} onClick={() => setBulk(allPicked ? [] : free.map(g => g.item.instance_id))}>{allPicked ? 'ล้างที่เลือก' : `${narrowed ? 'เลือกที่กรอง' : 'เลือกทั้งหมด'} (${free.length})`}</button>
       <button className="btn danger small" disabled={locked || !bulk.length} onClick={() => cardMode ? setConfirmCards([...bulk]) : void submit('equipment.salvage', { instance_ids: bulk }).then(ok => { if (ok) setBulk([]); })}>ย่อย</button></footer>}
     {confirmCards && <CardSalvageConfirmation context={context} instanceIds={confirmCards} onClose={() => setConfirmCards(null)} onSalvaged={() => setBulk([])}/>}
