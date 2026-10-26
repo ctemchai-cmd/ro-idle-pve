@@ -7,3 +7,7 @@ Typed schedule validation/pure calculation + authored Python100row parity, runti
 Native actualReact11cases (5floors ×320390 +manual/Auto intents) pass, native resource media loaded/nooverflow/noerrors/writes. Visually reviewedfloor1/20at320; Auto button spans panel width. Screenshots in this folder. This is disposable memory UI, not ownerPostgres. Command tests cover immediate all9resource deltas/10+20cards/pity unchanged/single revision/duplicate terminal/replay/fullinventory/fixedpending claim, migration preserves old rewards. Historical scope checks reverse only declared reward fields/source edits using frozenbefore and source-edits; they continue to check unrelated bytes.
 
 Fulltests/rootbuild/M0/public release results tracked in task-163-review.json. No new class balance batch. Pack remains798a928, raw33545187/initial1577418.
+
+Final product752/752 tests pass. Subsequent fixture-only fix replaces static evidence JSON imports with runtime readFile (review files excluded on Vercel); strict+10focused+filteredbuild pass. No product or reward rule change in e2b88a17c.
+
+Release e2b88a17ccb5e9459b77268608d0e3b74b8a1f2f VercelSUCCESS. Public4groups pass: content659b53b/API SIN1/anonymous401/24bundles SHA/native pack unchanged/mobile login320390/no owner Auth or writes. See hosted.json. Dedicated Vite7518/browsers closed; personal6173 untouched.

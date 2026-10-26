@@ -21,7 +21,7 @@ TASK-035, TASK-134, TASK-139, TASK-162 (done).
 - [x] AC-01:shared/authored100rows/budget/scope/invalid/overflowผ่าน
 - [x] AC-02:firstclear/auto/replay/pending/terminal retriesผ่าน
 - [x] AC-03:migrationไม่ย้อนหลังหรือแก้pendingเก่า
-- [ ] AC-04:mobile320390/M0/fullTS/build/hostedผ่าน
+- [x] AC-04:mobile320390/M0/fullTS/build/hostedผ่าน
 
 ## วิธีตรวจ
 Tests/evidence/design76;ไม่แตะownerAuthหรือSQL.
@@ -30,4 +30,4 @@ Tests/evidence/design76;ไม่แตะownerAuthหรือSQL.
 ไม่มี;ผู้ใช้ยืนยันCrystal+materials+EXP.
 
 ## ผลตรวจ
-752TS/11nativecases320390/M0/rootbuild/generatorผ่าน;รอVercel/publicก่อนdone.
+752TS/11nativecases320390/M0/rootbuild/generatorผ่าน;VercelSUCCESS sourcee2b88a17c/public4groups24bundleSHAผ่าน.

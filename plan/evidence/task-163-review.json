@@ -1,13 +1,13 @@
 {
   "task_id": "TASK-163",
-  "passed": false,
-  "status": "review",
+  "passed": true,
+  "status": "done",
   "local_passed": true,
   "acceptance_results": {
     "AC-01": "passed",
     "AC-02": "passed",
     "AC-03": "passed",
-    "AC-04": "awaiting_public"
+    "AC-04": "passed"
   },
   "checks": {
     "full_TS_tests": 752,
@@ -27,7 +27,12 @@
     "enemy_stats_skills_unchanged": true,
     "pack_unchanged": true,
     "owner_access": false,
-    "SQL_env_changes": false
+    "SQL_env_changes": false,
+    "filtered_build": true,
+    "fixture_only_typecheck": true,
+    "fixture_scope_tests": 10,
+    "public_groups": 4,
+    "public_bundle_SHA": 24
   },
   "content_hash": "659b53b29ec53c0ef9b75b485a03690456f83ccee9102c01550b8d7269cb9d73",
   "pack_hash": "798a9283e77bb46a773e3f7e0324b7bd7855e305760179ce158a8b625fd74244",
@@ -42,5 +47,7 @@
     "No owner login or hosted save writes; shared command/migration fixtures and actual React local memory.",
     "No retroactive payment to previously cleared floors.",
     "No class DPS calibration; Tower enemy stats unchanged."
-  ]
+  ],
+  "source_commit": "e2b88a17ccb5e9459b77268608d0e3b74b8a1f2f",
+  "deployment": "https://vercel.com/chanon2/ro-idle-pve/3Q2ZphtEBh98cFC4577oRtdcqzAS"
 }

@@ -921,7 +921,7 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 
 | Case | Task | Input | Method | Status |
 | --- | --- | --- | --- | --- |
-| `T163-AC-01` | TASK-163 | design76/AC01 | shared commands/mobile/build/public | not_run_implementation |
-| `T163-AC-02` | TASK-163 | design76/AC02 | shared commands/mobile/build/public | not_run_implementation |
-| `T163-AC-03` | TASK-163 | design76/AC03 | shared commands/mobile/build/public | not_run_implementation |
-| `T163-AC-04` | TASK-163 | design76/AC04 | shared commands/mobile/build/public | not_run_implementation |
+| `T163-AC-01` | TASK-163 | design76/AC01 | shared commands/mobile/build/public | passed_implementation |
+| `T163-AC-02` | TASK-163 | design76/AC02 | shared commands/mobile/build/public | passed_implementation |
+| `T163-AC-03` | TASK-163 | design76/AC03 | shared commands/mobile/build/public | passed_implementation |
+| `T163-AC-04` | TASK-163 | design76/AC04 | shared commands/mobile/build/public | passed_implementation |
