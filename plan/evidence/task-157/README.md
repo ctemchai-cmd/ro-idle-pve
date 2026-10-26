@@ -10,4 +10,4 @@ Local actual React/nativeart 320/390 ผ่าน 12 กลุ่ม: bulk6, equ
 
 ภาพ `slot-filter-*`, `slot-cards-*`, `layer-after-*` ตรวจสายตาแล้ว. ความล้มเหลวระหว่างพัฒนาเป็นharness: รอsheetanimationก่อนวัดfooterและใช้ชื่อslotจริง ศีรษะ/ชุดเกราะ;ไม่ใช่การเปลี่ยนเกณฑ์product. เก็บpre-animation-wait-native.json/ภาพfailedไว้ตามจริง.
 
-รอVercel/publicartifactและCSSmobileก่อนปิดAC04. Publicharnessใช้login+CSSfixture;ไม่ได้อ้างว่าเข้าบัญชีowner. ไม่แก้power/rates/commands/save/SQL/env/assets.
+VercelSUCCESS source`ff8ed2e689513cacfca885ee5bbb8d470d309903` ([deployment](https://vercel.com/chanon2/ro-idle-pve/4AYvDtGDvzxE4xmePuVrtDRUCoso));public4groupsผ่าน API/SIN1/content+packเดิม/24bundleSHA/login320390/opaquefooterhit-testและscrollfixedactions. AC01–04ผ่านทั้งหมด. Publicharnessใช้login+CSSfixture;ไม่ได้อ้างว่าเข้าบัญชีowner. ไม่แก้power/rates/commands/save/SQL/env/assets.

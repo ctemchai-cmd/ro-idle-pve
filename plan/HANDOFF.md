@@ -1,5 +1,11 @@
 # Handoff ระหว่าง agent
 
+## 26 ต.ค.2026 · Codex — TASK157 COMPLETE / card filters and equipped effects live
+
+- Sourceff8ed2e689513cacfca885ee5bbb8d470d309903 live/VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/4AYvDtGDvzxE4xmePuVrtDRUCoso. Public4groupsPASSAPI/SIN1/content86f219/pack798a928/anonymous401/24bundleSHA/newmarkers/login320390/actualdeployedCSSbadgecoverage+opaquefooter+scroll/fixedactions. ActualReactbehaviorlocalmemory:bulk6/equipped2/single4;rootbuild/M0passed. NoownerAuth/writes/SQL/env/assets/6173restart/balancebatch.
+- BackpackcardtabfiltersAll+sixslots ANDRarity,select-allonlyvisiblefreecards,slotchangesclearbulkselection;AddCardstillactualslotcompatible. Buddytapgearshowsnativeinstalledcards/order/currentLv/rarity/effects/sharedcardView,scrollbody/fixedactions;emptygear/dormantsocket/NPCcaseschecked. Bagcellisolation+opaquefooterz2fixbadgeleak. Allgameplayfivefingerprintsandpackunchanged.
+-157done143/157/M4 97/106;no remaining157work. OwnVite7512/browsersclosed. Usermodernmigration-v2/unselectedmodern/task108pngremainuntouched/unstaged. Closureonlydocs/evidence/logwhitespacenormalization;no productchangesaftertestedsource.
+
 ## 26 ต.ค.2026 · Codex — TASK157 LOCAL COMPLETE / publish next
 
 - Userrequests cardbadgeunderinspector,installedcardeffects inBuddySlotSheet,andsix-slotcardfilters. LocalactualReact/native320390:bulk6/equipped2/single4PASS;rootbuild/M0passed. Screenshotsvisuallyreviewed;ownVite7512/browsersclosed,6173untouched. TASK157review,142/157done/M4 96/106.

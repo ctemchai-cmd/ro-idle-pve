@@ -2,7 +2,7 @@
 
 ## Card layer, slot info and filters (26 October2026,D181/TASK157)
 
-Local12nativegroups320390/rootbuild/M0 passed;157review awaitingpublic. Bagcell isolation:isolate +opaque sticky bulkfooterz2 fixes escaped z1/3badges;dialogs retain native top-layer. Buddy SlotSheet reads selectedactor/slot opened cards via current cardView;scrollcontent/fixedactions,emptygear hides dormantcards. Backpackcardtab six-slot/All AND rarityfilter;select-all only visiblefreecards,filterchanges clearselection. AddCard retains actualslot compatibility. No content/engine/schema/implementation/pack changes;noSQL/env/ownerwrites. See design70/latestHANDOFF forrelease.
+Sourceff8ed2e68 live/VercelSUCCESS;local12nativegroups320390/rootbuild/M0/public4groups+24bundleSHApassed.157complete. Bagcell isolation:isolate +opaque sticky bulkfooterz2 fixes escaped z1/3badges;dialogs retain native top-layer. Buddy SlotSheet reads selectedactor/slot opened cards via current cardView;scrollcontent/fixedactions,emptygear hides dormantcards. Backpackcardtab six-slot/All AND rarityfilter;select-all only visiblefreecards,filterchanges clearselection. AddCard retains actualslot compatibility. No content/engine/schema/implementation/pack changes;noSQL/env/ownerwrites. See design70/latestHANDOFF forrelease.
 
 ## Two MVP magic cards (26 October2026,D180/TASK156)
 

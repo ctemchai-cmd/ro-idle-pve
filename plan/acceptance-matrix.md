@@ -875,7 +875,7 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 
 | Case | Task | Expected | Verification | Status |
 | --- | --- | --- | --- | --- |
-| `T157-AC-01` | TASK-157 | design70/AC01 | native/build/public | not_run_implementation |
-| `T157-AC-02` | TASK-157 | design70/AC02 | native/build/public | not_run_implementation |
-| `T157-AC-03` | TASK-157 | design70/AC03 | native/build/public | not_run_implementation |
-| `T157-AC-04` | TASK-157 | design70/AC04 | native/build/public | not_run_implementation |
+| `T157-AC-01` | TASK-157 | design70/AC01 | native/build/public | ผ่านlocalnative/build/M0/public4groups · [review](evidence/task-157-review.json) |
+| `T157-AC-02` | TASK-157 | design70/AC02 | native/build/public | ผ่านlocalnative/build/M0/public4groups · [review](evidence/task-157-review.json) |
+| `T157-AC-03` | TASK-157 | design70/AC03 | native/build/public | ผ่านlocalnative/build/M0/public4groups · [review](evidence/task-157-review.json) |
+| `T157-AC-04` | TASK-157 | design70/AC04 | native/build/public | ผ่านlocalnative/build/M0/public4groups · [review](evidence/task-157-review.json) |

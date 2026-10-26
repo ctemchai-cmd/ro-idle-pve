@@ -21,7 +21,7 @@ TASK-154, TASK-156 (done).
 - [x] AC-01:เลข/grade/owner/selectionไม่ทะลุpanelขณะย่อย,scroll/expand/confirm/cancelเดิม
 - [x] AC-02:การ์ดในSlotSheetตรงactor/slot/order/level/effects;empty/locked/NPC/longtextและfooterถูกต้อง
 - [x] AC-03:กรองช่องการ์ด6ส่วน/All+Rarity/select-all/clear/emptyและAddCardเฉพาะslot;gearfilterเดิม
-- [ ] AC-04:native/regression/rootbuild/M0/publicผ่าน,content/packเดิม ไม่มีownerwrites
+- [x] AC-04:native/regression/rootbuild/M0/publicผ่าน,content/packเดิม ไม่มีownerwrites
 
 ## วิธีตรวจ
 T157-AC01..04/design70;nativehit-testingและactualReact/disposablememory,review/evidence157.
@@ -30,4 +30,4 @@ T157-AC01..04/design70;nativehit-testingและactualReact/disposablememory,re
 ไม่มี;ผู้ใช้ขอทั้งสามส่วนชัดเจน.
 
 ## ผลตรวจ
-Local native12groups/rootbuild/M0ผ่าน;content/packเดิม. รอpublicreleaseตามreview157.
+Local native12groups/rootbuild/M0ผ่าน;content/packเดิม. VercelSUCCESS sourceff8ed2e68/public4groups/24bundleSHA/login320390/CSSfixtureผ่าน;ไม่มีownerwrites.
