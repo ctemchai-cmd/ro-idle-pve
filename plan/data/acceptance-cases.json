@@ -15674,6 +15674,42 @@
       "evidence_refs": [
         "plan/evidence/task-153-review.json"
       ]
+    },
+    {
+      "id": "T154-AC-01",
+      "task_id": "TASK-154",
+      "acceptance_id": "AC-01",
+      "criterion": "Card multi-select/filtered select-all excludes protected cards, clears hidden selections, shows count/dust/confirmation/upgraded warning",
+      "input_setup": "ActualReact320390 syntheticmemory/sharedreducer and existing atomic command tests;publicread-only",
+      "input_refs": [
+        "plan/review/tasks_154.md",
+        "plan/design/67-bulk-card-salvage.md"
+      ],
+      "parameters": {},
+      "expected": "Card multi-select/filtered select-all excludes protected cards, clears hidden selections, shows count/dust/confirmation/upgraded warning",
+      "verification": "Native/UI/TS/build/public perdesign67",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-154-review.json"
+      ]
+    },
+    {
+      "id": "T154-AC-02",
+      "task_id": "TASK-154",
+      "acceptance_id": "AC-02",
+      "criterion": "One batch command up to500, cancel zero, single-flight/failure/live-state protection; existing single-card/atomic tests/mobile/build/public",
+      "input_setup": "ActualReact320390 syntheticmemory/sharedreducer and existing atomic command tests;publicread-only",
+      "input_refs": [
+        "plan/review/tasks_154.md",
+        "plan/design/67-bulk-card-salvage.md"
+      ],
+      "parameters": {},
+      "expected": "One batch command up to500, cancel zero, single-flight/failure/live-state protection; existing single-card/atomic tests/mobile/build/public",
+      "verification": "Native/UI/TS/build/public perdesign67",
+      "status": "not_run_implementation",
+      "evidence_refs": [
+        "plan/evidence/task-154-review.json"
+      ]
     }
   ]
 }

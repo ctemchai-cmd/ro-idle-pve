@@ -104,3 +104,5 @@ D167/TASK139: [ร้าน/แลกเศษ/Panel](56-shop-and-exchange-ui.md
 - [65 — ขนาดและแรงเด้งเลข](65-number-impact.md): D176/TASK152.
 
 - [66-card-actions-and-field-clarity.md](66-card-actions-and-field-clarity.md): D177/TASK153 ยืนยันย่อย/สุ่มต่อ/พื้นแสงและวงเพลงครอบทีม
+
+- [67-bulk-card-salvage.md](67-bulk-card-salvage.md): D178/TASK154 ย่อยการ์ดหลายใบ

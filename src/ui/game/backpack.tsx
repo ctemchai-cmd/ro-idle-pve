@@ -5,7 +5,7 @@ import { useMemo, useState } from 'react';
 import { VirtualGrid } from './virtual-grid.tsx';
 import type { Modifier } from '../../contracts/index.ts';
 import { equipmentData, equipmentSlots, inventoryView, itemModifiers, itemSalvageQuote, rarityLabels, rarityRank, slotLabels, type EquipmentSlot } from '../../client/equipment.ts';
-import { cardInventory } from '../../client/slots.ts';
+import { cardInventory, salvageCardsQuote } from '../../client/slots.ts';
 import { gearGrowthOptions } from '../../client/gear-upgrades.ts';
 import type { GameContext } from './shell.tsx';
 import { CostChips, ItemIcon, PageHeader, Sheet, canPay, friendNames, jobNames, reasonText, resourceNames, statLabels, type Wallet } from './kit.tsx';
@@ -13,6 +13,7 @@ import { OptionLines, StatChanges, modifierText } from './buddy.tsx';
 import { ClassIcon } from './class-icon.tsx';
 import { CardGrade } from './card-grade.tsx';
 import { CardSheet } from './card-sheet.tsx';
+import { CardSalvageConfirmation } from './card-salvage.tsx';
 import { EquipmentCards } from './equipment-cards.tsx';
 import { EquipmentProgress } from './equipment-progress.tsx';
 
@@ -48,6 +49,7 @@ function GearSheet({ context, row, close }: { context: GameContext; row: Gear; c
 
 export function BackpackPage({ context }: { context: GameContext }) {
   const { state, pack, submit, locked, go } = context, [filter, setFilter] = useState<Filter>('all'), [open, setOpen] = useState<string | null>(null), [bulk, setBulk] = useState<string[] | null>(null);
+  const [confirmCards, setConfirmCards] = useState<string[] | null>(null), cardMode = filter === 'card';
   // Rarity/Level filters (user request, 20 Oct 2026): none picked = all; they narrow the grid and "select all" for salvage.
   const [rarities, setRarities] = useState<string[]>([]), [levels, setLevels] = useState<number[]>([]);
   const gear = useMemo(() => inventoryView(state, 'main').sort((a, b) => b.definition.required_level - a.definition.required_level || (rarityRank[b.item.rarity_id] ?? 0) - (rarityRank[a.item.rarity_id] ?? 0)), [state]);
@@ -57,31 +59,33 @@ export function BackpackPage({ context }: { context: GameContext }) {
   const filterItems=[...slotGear,...(filter==='card'||filter==='all'?cards:[])];
   const presentRarities = [...new Set(filterItems.map(g => g.item.rarity_id))].sort((a, b) => (rarityRank[a] ?? 0) - (rarityRank[b] ?? 0)), presentLevels = [...new Set(slotGear.map(g => g.definition.tier_level))].sort((a, b) => a - b);
   const toggle = <T,>(list: T[], value: T) => list.includes(value) ? list.filter(x => x !== value) : [...list, value];
-  const free = shownGear.filter(g => !g.owner && !g.item.locked), bulkItems = state.inventory.filter(i => bulk?.includes(i.instance_id)), openGear = gear.find(g => g.item.instance_id === open), openCard = cards.find(c => c.item.instance_id === open);
+  const free = (cardMode ? shownCards : shownGear).filter(g => !g.owner && !g.item.locked), bulkItems = state.inventory.filter(i => bulk?.includes(i.instance_id)), openGear = gear.find(g => g.item.instance_id === open), openCard = cards.find(c => c.item.instance_id === open);
+  const allPicked = free.length > 0 && free.every(g => bulk?.includes(g.item.instance_id));
   const tap = (id: string, selectable: boolean) => { if (!bulk) { setOpen(id); return; } if (selectable) setBulk(bulk.includes(id) ? bulk.filter(x => x !== id) : [...bulk, id]); };
   const filters: [Filter, string][] = [['all', 'ทั้งหมด'], ...equipmentSlots.map(s => [s, slotLabels[s]] as [Filter, string]), ['card', 'การ์ด']];
   return <div className="page backpack-page">
-    <PageHeader title="กระเป๋า" sub={`${state.inventory.length} / ${equipmentData.inventory_capacity} ช่อง${state.inventory.length >= equipmentData.inventory_capacity ? ' · เต็ม' : ''}`} onBack={() => go('home')} right={<button className={`btn small ${bulk ? 'primary' : 'ghost'}`} onClick={() => setBulk(bulk ? null : [])}>{bulk ? 'เสร็จ' : 'ย่อยหลายชิ้น'}</button>} />
-    <div className="filter-row" role="tablist">{filters.map(([id, label]) => <button key={id} role="tab" aria-selected={filter === id} className={`chip ${filter === id ? 'on' : ''}`} onClick={() => {setFilter(id);if(id==='card')setLevels([]);}}>{label}</button>)}</div>
+    <PageHeader title="กระเป๋า" sub={`${state.inventory.length} / ${equipmentData.inventory_capacity} ช่อง${state.inventory.length >= equipmentData.inventory_capacity ? ' · เต็ม' : ''}`} onBack={() => go('home')} right={<button className={`btn small ${bulk ? 'primary' : 'ghost'}`} disabled={locked && !bulk} onClick={() => setBulk(bulk ? null : [])}>{bulk ? 'เสร็จ' : cardMode ? 'ย่อยหลายใบ' : 'ย่อยหลายชิ้น'}</button>} />
+    <div className="filter-row" role="tablist">{filters.map(([id, label]) => <button key={id} role="tab" aria-selected={filter === id} className={`chip ${filter === id ? 'on' : ''}`} onClick={() => {setFilter(id);if(id==='card')setLevels([]);if(bulk)setBulk([]);}}>{label}</button>)}</div>
     {filterItems.length > 0 && <div className="filter-row sub" role="group" aria-label="กรองตาม Rarity และ Level">
-      {presentRarities.map(r => <button key={r} aria-pressed={rarities.includes(r)} className={`chip small rarity-chip rarity-${r} ${rarities.includes(r) ? 'on' : ''}`} onClick={() => setRarities(toggle(rarities, r))}>{rarityLabels[r] ?? r}</button>)}
+      {presentRarities.map(r => <button key={r} aria-pressed={rarities.includes(r)} className={`chip small rarity-chip rarity-${r} ${rarities.includes(r) ? 'on' : ''}`} onClick={() => {setRarities(toggle(rarities, r));if(bulk)setBulk([]);}}>{rarityLabels[r] ?? r}</button>)}
       {filter!=='card'&&<span className="filter-gap" aria-hidden="true" />}
-      {(filter==='card'?[]:presentLevels).map(l => <button key={l} aria-pressed={levels.includes(l)} className={`chip small ${levels.includes(l) ? 'on' : ''}`} onClick={() => setLevels(toggle(levels, l))}>Lv{l}</button>)}
-      {narrowed && <button className="chip small ghost" onClick={() => { setRarities([]); setLevels([]); }}>ล้างตัวกรอง</button>}
+      {(filter==='card'?[]:presentLevels).map(l => <button key={l} aria-pressed={levels.includes(l)} className={`chip small ${levels.includes(l) ? 'on' : ''}`} onClick={() => {setLevels(toggle(levels, l));if(bulk)setBulk([]);}}>Lv{l}</button>)}
+      {narrowed && <button className="chip small ghost" onClick={() => { setRarities([]); setLevels([]);if(bulk)setBulk([]); }}>ล้างตัวกรอง</button>}
     </div>}
     <VirtualGrid items={[...shownGear.map(g => ({ kind: 'gear' as const, g })), ...shownCards.map(c => ({ kind: 'card' as const, c })), ...Array.from({ length: Math.max(0, 20 - shownGear.length - shownCards.length) }, (_, i) => ({ kind: 'empty' as const, i }))]} renderItem={row => {
       if (row.kind === 'empty') return <span key={`empty${row.i}`} className="bag-cell empty" aria-hidden="true" />;
       if (row.kind === 'gear') { const g = row.g, selectable = !g.owner && !g.item.locked, picked = bulk?.includes(g.item.instance_id); return <button key={g.item.instance_id} data-id={g.item.instance_id} className={`bag-cell rarity-${g.item.rarity_id} ${picked ? 'picked' : ''} ${bulk && !selectable ? 'dim' : ''}`} aria-label={`${g.name} ${rarityLabels[g.item.rarity_id]}${g.owner ? ' สวมอยู่' : ''}`} onClick={() => tap(g.item.instance_id, selectable)}>
         <ItemIcon id={g.iconId} pack={pack} />{g.owner && <><span className="gear-owner-mark"><OwnerBadge state={state} characterId={g.owner.character_id} pack={pack} compact/></span><EquipmentCards state={state} characterId={g.owner.character_id} slot={g.owner.slot} /><EquipmentProgress state={state} characterId={g.owner.character_id} slot={g.owner.slot} /></>}{g.item.locked && <i className="lock-mark"><Icon name="lock" /></i>}<small>Lv{g.definition.tier_level}</small>{picked && <i className="check"><Icon name="check" /></i>}
       </button>; }
-      const c = row.c; return <button key={c.item.instance_id} className={`bag-cell card rarity-${c.item.rarity_id} ${bulk ? 'dim' : ''}`} data-card-grade={c.origin?.grade} data-card-rarity={c.item.rarity_id} aria-label={`${c.name} ${rarityLabels[c.item.rarity_id]} การ์ด`} onClick={() => { if (!bulk) setOpen(c.item.instance_id); }}>
-        <span className="card-art"><CardIcon card={c} pack={pack} /></span>{c.origin?.grade!=='normal'||c.item.rarity_id==='rare'?<CardGrade grade={c.origin?.grade} rarity={c.item.rarity_id} variant={c.origin?.variant} />:null}{c.owner && <span className="gear-owner-mark"><OwnerBadge state={state} characterId={c.owner.character_id} pack={pack} compact/></span>}{c.item.locked && <i className="lock-mark"><Icon name="lock" /></i>}<small aria-label={`ระดับการ์ด ${c.item.level}`}>{c.item.level}</small>
+      const c = row.c, selectable = cardMode && !c.owner && !c.item.locked, picked = !!bulk?.includes(c.item.instance_id); return <button key={c.item.instance_id} className={`bag-cell card rarity-${c.item.rarity_id} ${picked ? 'picked' : ''} ${bulk && !selectable ? 'dim' : ''}`} data-id={c.item.instance_id} data-card-grade={c.origin?.grade} data-card-rarity={c.item.rarity_id} aria-pressed={bulk ? picked : undefined} disabled={!!bulk && !selectable} aria-label={`${c.name} ${rarityLabels[c.item.rarity_id]} การ์ด${c.owner?' ใส่อยู่':''}${c.item.locked?' ล็อกอยู่':''}`} onClick={() => tap(c.item.instance_id, selectable)}>
+        <span className="card-art"><CardIcon card={c} pack={pack} /></span>{c.origin?.grade!=='normal'||c.item.rarity_id==='rare'?<CardGrade grade={c.origin?.grade} rarity={c.item.rarity_id} variant={c.origin?.variant} />:null}{c.owner && <span className="gear-owner-mark"><OwnerBadge state={state} characterId={c.owner.character_id} pack={pack} compact/></span>}{c.item.locked && <i className="lock-mark"><Icon name="lock" /></i>}<small aria-label={`ระดับการ์ด ${c.item.level}`}>{c.item.level}</small>{picked && <i className="check"><Icon name="check"/></i>}
       </button>;
     }} />
     {!shownGear.length && !shownCards.length && <p className="hint center">ยังไม่มีของในหมวดนี้</p>}
-    {bulk && <footer className="bulk-bar"><span>เลือก {bulk.length} ชิ้น<small>{bulk.length ? quoteText(itemSalvageQuote(bulkItems)) : '0 ชิ้น'}</small></span>
-      <button className="btn ghost small" onClick={() => setBulk(free.map(g => g.item.instance_id))}>{narrowed ? 'เลือกที่กรอง' : 'เลือกทั้งหมด'} ({free.length})</button>
-      <button className="btn danger small" disabled={locked || !bulk.length} onClick={() => void submit('equipment.salvage', { instance_ids: bulk }).then(ok => { if (ok) setBulk([]); })}>ย่อย</button></footer>}
+    {bulk && <footer className="bulk-bar"><span>เลือก {bulk.length} {cardMode?'ใบ':'ชิ้น'}<small>{bulk.length ? quoteText(cardMode ? salvageCardsQuote(bulkItems) : itemSalvageQuote(bulkItems)) : `0 ${cardMode?'ใบ':'ชิ้น'}`}</small></span>
+      <button className="btn ghost small" disabled={!free.length} onClick={() => setBulk(allPicked ? [] : free.map(g => g.item.instance_id))}>{allPicked ? 'ล้างที่เลือก' : `${narrowed ? 'เลือกที่กรอง' : 'เลือกทั้งหมด'} (${free.length})`}</button>
+      <button className="btn danger small" disabled={locked || !bulk.length} onClick={() => cardMode ? setConfirmCards([...bulk]) : void submit('equipment.salvage', { instance_ids: bulk }).then(ok => { if (ok) setBulk([]); })}>ย่อย</button></footer>}
+    {confirmCards && <CardSalvageConfirmation context={context} instanceIds={confirmCards} onClose={() => setConfirmCards(null)} onSalvaged={() => setBulk([])}/>}
     {openGear && <GearSheet context={context} row={openGear} close={() => setOpen(null)} />}
     {openCard && <CardSheet context={context} card={openCard} close={() => setOpen(null)} />}
   </div>;

@@ -1,7 +1,8 @@
 // Actual React card/gacha screens + shared reducers in disposable browser memory.
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
 const {chromium}=require('/private/tmp/ro-idle-browser-check/node_modules/playwright-core');
-const out=path.resolve(__dirname,'../plan/evidence/task-153'),base=process.env.RO_PREVIEW_URL;
+const evidenceTask=process.env.RO_EVIDENCE_TASK||'task-153';assert(/^task-\d{3}$/.test(evidenceTask));
+const out=path.resolve(__dirname,'../plan/evidence',evidenceTask),base=process.env.RO_PREVIEW_URL;
 assert(base&&new URL(base).hostname==='127.0.0.1');
 (async()=>{let browser,page,failure;const checks=[],errors=[],writes=[];
 try{
