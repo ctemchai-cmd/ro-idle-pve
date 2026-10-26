@@ -1,5 +1,9 @@
 # Project context
 
+## Classic palette on approved Modern UI (26 October2026,D185/TASK161)
+
+LatestuserconfirmedD184UIandrequestedROClassiccolors. Localnative3groups320390/rootbuild/M0passed;161review awaitingpublic. Onlybrand/controlcolorvalueschanged:white/silver/softblue/navyedges,primaryandbattle-speedblueinsteadgold. KeepD18412/8corners/spacing/type/hitareas/shadowgeometry/noinset/reducedmotion;do notrestoreD182bevel. Rarity/resourcegold/danger/HPsemanticsretained. Allfivegameplayfingerprints/packunchanged. See design74/evidence161/latestHANDOFFforrelease.
+
 ## Idle Adventure controls (26 October2026,D184/TASK160)
 
 User rejectedD182XP-likebevel and selectedROIdleAdventure aslatestreference. Source39a3f4f66 live/VercelSUCCESS;native3groups320390/rootbuild/M0/public4groups24bundleSHApassed;160complete. Primarysoftgold/secondarylightblue/selectedblue/coraldestructive/12pxbuttons8pxtabs/singlelowshadow/noinsetor3Dtext;darkbattletoolsgoldselectedspeed. Preservehitareas/layout/type/nativeicons/framelessskills/rarityandallgameplayfivefingerprints/pack. Reducedmotionstatic. CSSinterpretation,notcopiednativebitmaps. See design73/evidence160/latestHANDOFFforrelease.

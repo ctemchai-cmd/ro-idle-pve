@@ -4,7 +4,7 @@
   --ink: #1d2a48; --ink-2: #55658a; --ink-3: #8a97b5; --line: rgba(120, 150, 205, .32);
   --panel: rgba(255, 255, 255, .9); --panel-2: #f3f7ff; --glass: rgba(255, 255, 255, .72);
   --sky-1: #eaf4ff; --sky-2: #d4e7ff; --sky-3: #b9d6fb;
-  --blue: #2f7bf6; --blue-2: #1e5fd8; --gold: #f5b53d; --gold-2: #e08e12; --green: #22a565; --red: #e5484d; --purple: #8b5cf6;
+  --blue: #4775ad; --blue-2: #365d91; --gold: #f5b53d; --gold-2: #e08e12; --green: #22a565; --red: #e5484d; --purple: #8b5cf6;
   --r-common: #98a3b3; --r-uncommon: #3fae5a; --r-rare: #3b82f6; --r-epic: #9b5cf6; --r-legendary: #f39c12; --r-immortal: #ef4444; --r-supreme: #ec4899;
   --shadow: 0 6px 18px rgba(30, 60, 120, .16); --shadow-strong: 0 10px 30px rgba(20, 40, 90, .28);
   --font: ROThai, 'Noto Sans Thai', 'Sukhumvit Set', system-ui, -apple-system, sans-serif;
@@ -980,22 +980,22 @@ dialog.gacha-reveal-sheet{height:92dvh}.gacha-reveal-sheet .sheet-body{height:10
 .card-bulk-bar{display:grid;grid-template-columns:minmax(0,1fr) auto auto}.card-bulk-bar>span{min-width:0}.card-bulk-info{grid-column:1/-1;display:flex;align-items:flex-start;gap:8px;padding-bottom:8px;border-bottom:1px solid #dce6f2;min-width:0}.card-bulk-info .card-bulk-thumb{width:34px;aspect-ratio:3/4;flex:none;overflow:hidden;border:1px solid var(--rarity,#c1cfe3);border-radius:4px;margin:0}.card-bulk-thumb img{display:block;width:100%;height:100%;object-fit:cover}.card-bulk-info>div{min-width:0;flex:1}.card-bulk-info b{display:block;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.card-bulk-info small{display:block;font-size:10px;margin:2px 0 3px}.card-bulk-info summary{display:flex;align-items:center;gap:5px;cursor:pointer;font-size:11px;font-weight:400;list-style:none}.card-bulk-info summary::-webkit-details-marker{display:none}.card-bulk-info summary span{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;margin:0;flex:1}.card-bulk-info summary svg{width:14px;height:14px;flex:none}.card-bulk-info .card-effects{margin:6px 0 0;max-height:18dvh;overflow:auto;font-size:11px;font-weight:400}.card-bulk-info details[open] summary span{display:none}
 .slot-info-sheet .sheet-body{display:flex;flex-direction:column;overflow:hidden}.slot-info-sheet .sheet-head,.slot-info-actions{flex:none}.slot-info-content{min-height:0;overflow-y:auto;overscroll-behavior:contain}.slot-info-actions{padding-top:10px}.equipped-card-info{margin:12px 0 2px}.equipped-card-info h3{font-size:12px;color:var(--ink-2);margin:0 0 8px}.equipped-card-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}.equipped-card-row{display:flex;align-items:flex-start;gap:8px;padding:0 0 10px;border-bottom:1px solid var(--line)}.equipped-card-row:last-child{padding-bottom:0;border-bottom:0}.equipped-card-thumb{width:30px;aspect-ratio:3/4;flex:none;border:1px solid var(--rarity,#c1cfe3);border-radius:4px;overflow:hidden}.equipped-card-thumb img{display:block;width:100%;height:100%;object-fit:cover}.equipped-card-copy{min-width:0;flex:1}.equipped-card-title{display:flex;align-items:baseline;flex-wrap:wrap;gap:2px 6px;font-size:12px}.equipped-card-title b{overflow-wrap:anywhere}.equipped-card-title small{font-size:10px;color:var(--ink-2);white-space:nowrap}.equipped-card-copy .card-effects{margin:4px 0 0;font-size:11px;line-height:1.45}
 
-/* RO Idle Adventure-inspired controls: soft blue surfaces and warm gold actions. */
+/* Idle Adventure control geometry with the RO Classic white/silver/blue palette. */
 :root .game-root :is(.btn,.chip,.icon-btn,.back-btn,.character-nav button,.chip-btn,.seg button,.chapter-tabs button,.statistics-tabs button,.statistics-toolbar button,.gender-toggle button) {
-  --ro-control-bg:#edf6ff; --ro-control-edge:#c4daee; --ro-control-ink:#3d5c7b; --ro-control-pressed:#dcecfb;
+  --ro-control-bg:#f4f7fc; --ro-control-edge:#b4c8e2; --ro-control-ink:#3c5575; --ro-control-pressed:#e3ecf8;
   border:1px solid var(--ro-control-edge); border-radius:12px;
   background:var(--ro-control-bg); color:var(--ro-control-ink); font-weight:600;
   box-shadow:0 2px 5px #355d8a0d; text-shadow:none; transform:none;
   transition:background-color .12s,border-color .12s,box-shadow .12s;
 }
 :root .game-root .btn.primary {
-  --ro-control-bg:linear-gradient(180deg,#ffe4a0,#f1c366); --ro-control-edge:#e6ba62; --ro-control-ink:#644414; --ro-control-pressed:#edbf66;
+  --ro-control-bg:linear-gradient(180deg,#deebff,#b7d0ef); --ro-control-edge:#86a8d3; --ro-control-ink:#254b7c; --ro-control-pressed:#a8c4e8;
   color:var(--ro-control-ink); border-color:var(--ro-control-edge);
-  background:var(--ro-control-bg); box-shadow:0 3px 8px #ad79201a;
+  background:var(--ro-control-bg); box-shadow:0 3px 8px #365f971a;
 }
 :root .game-root :is(.chip,.seg button,.chapter-tabs button,.statistics-tabs button,.statistics-toolbar button,.gender-toggle button) { border-radius:8px; box-shadow:none; }
 :root .game-root :is(.chip.on,.chip[aria-selected='true'],.chip-btn.speed.on,.seg button[aria-selected='true'],.chapter-tabs button[aria-selected='true'],.statistics-tabs button[aria-pressed='true'],.statistics-toolbar button[aria-pressed='true'],.gender-toggle button.on) {
-  --ro-control-bg:#3d75b2; --ro-control-edge:#3d75b2; --ro-control-ink:#fff; --ro-control-pressed:#34669d;
+  --ro-control-bg:#4a72a4; --ro-control-edge:#4a72a4; --ro-control-ink:#fff; --ro-control-pressed:#3d6090;
   color:var(--ro-control-ink); border-color:var(--ro-control-edge); background:var(--ro-control-bg); box-shadow:none;
 }
 :root .game-root :is(.btn.danger,.btn.danger-outline,.chip-btn.danger) {
@@ -1011,7 +1011,7 @@ dialog.gacha-reveal-sheet{height:92dvh}.gacha-reveal-sheet .sheet-body{height:10
   color:var(--ro-control-ink); background:var(--ro-control-bg); border-color:var(--ro-control-edge); box-shadow:none;
 }
 :root .game-root .boss-tools .chip-btn.speed.on {
-  --ro-control-bg:#e7bf73; --ro-control-edge:#edcb8b; --ro-control-ink:#594015; --ro-control-pressed:#d9ac59;
+  --ro-control-bg:#bfd5f1; --ro-control-edge:#d3e2f5; --ro-control-ink:#274b78; --ro-control-pressed:#aec7e8;
   color:var(--ro-control-ink); background:var(--ro-control-bg); border-color:var(--ro-control-edge);
 }
 :root .game-root .boss-tools .chip-btn.danger {

@@ -387,3 +387,7 @@ D174ล่าสุด: ผู้ใช้ขอวิถีเด้งเร�
 ## D184 — 26ตุลาคม2026
 
 ผู้ใช้แก้ทิศทางปุ่มจากClassicbevelที่ดูXP เป็นModernและล่าสุดยึดROIdleAdventure:softblue/goldprimary/rounded/nohardbevel. Design73/TASK160;UI-only.
+
+## D185 — 26ตุลาคม2026
+
+UIของD184ผู้ใช้ยืนยันแล้ว;เปลี่ยนเฉพาะสีเป็นROClassicwhite/silver/blue/navy. ไม่ย้อนbevelและคงsemanticcolors. Design74/TASK161.

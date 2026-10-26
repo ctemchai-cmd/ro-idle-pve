@@ -902,3 +902,10 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | --- | --- | --- | --- | --- |
 | `T160-AC-01` | TASK-160 | design73/AC01 | native320390 | ผ่านnative/build/M0/public4groups · [review](evidence/task-160-review.json) |
 | `T160-AC-02` | TASK-160 | design73/AC02 | build/M0/public | ผ่านnative/build/M0/public4groups · [review](evidence/task-160-review.json) |
+
+## TASK-161 — Classic palette, Modern UI
+
+| Case | Task | Input | Method | Status |
+| --- | --- | --- | --- | --- |
+| `T161-AC-01` | TASK-161 | design74/AC01 | native320390 | not_run_implementation |
+| `T161-AC-02` | TASK-161 | design74/AC02 | build/M0/public | not_run_implementation |
