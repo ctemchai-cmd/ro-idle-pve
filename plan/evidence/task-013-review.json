@@ -5,23 +5,23 @@
   "review_date": "2026-10-19",
   "scope": "M0 schemas/graph/hand protocol-time-refund oracles and manual contract review. No database/API implementation or runtime performance evidence.",
   "input_sha256": {
-    "plan/data/module-contracts.json": "90ad2173ec20605d8a837dd75f35d3fa5f5be9188f1e9e0cabd48c46921f4b42",
+    "plan/data/module-contracts.json": "e610c53ff7a2b3c5057d643ba104f82d853a7f01975667ac0daf7923c9ac31f4",
     "plan/data/save-contracts.json": "143e0e6429ba18f8825b1a51029fa8caf6d1a3af64b36a73cf0547f1c14b4b39",
     "plan/data/quality-budgets.json": "40429f4655a2e767af8c2ac587bf54494c654efd770a0bf57cc5e6171de189fd",
-    "plan/data/account-initial-case.json": "5efdce2ca724f920c65b7be5eb900b77135780d9b75112d38e7e340ae316aa4b",
+    "plan/data/account-initial-case.json": "145564c1df0a6443f462c27eac0f3d0819db79f905151c4de0f22a1c147609f3",
     "plan/data/architecture-cases.json": "4a297bd305166f50b62abdd899e2bcaa5e9ca5555c15120773e62e3d473b63b6",
-    "plan/data/ui-flows.json": "efa594077d1a0b4579f50a0fa92dedcbbfd512d42c5abf5e8334987ab4c67400",
+    "plan/data/ui-flows.json": "317ffb1444db962f20d63b0541d99257ebab596231842b465a93a213690141fd",
     "plan/data/battle-initial-case.json": "6712a917110ba4dac46ed2bff4e565602777c6f5da7b1a388ffb9f7a7a5c1dcd",
     "plan/data/simulation-initial-case.json": "50c246994ad9f2b2192dd8f16a1a405604efed42b440f8a38433db3ab8fc1e68",
     "plan/data/simulation-contracts.json": "bfd81576dd6dacdbad8b4358092f8146e70ff8de7cfbe04bf9c19c9763fe494a",
     "plan/data/combat-rules.json": "d334c77231415651674d97faa80d9286165497c6abe6e4a1330e7c16ba11ad93",
-    "plan/data/schemas/command.json": "0f975565bc8f94d84d802081a775f179799c30737967d4045e481bb66fec5117",
-    "plan/data/schemas/account-state.json": "c31c2f7c1d01684a812618d6dbb13f0fcd9738481aa764a7afc9e8498a66e312",
+    "plan/data/schemas/command.json": "2fe3867e0a5b01a859fc86d37456d0b2ec865c137707f36df24f52d9bbd5eeaf",
+    "plan/data/schemas/account-state.json": "6d57acbe2626a6c2c5dccab59e4ef333b7321597a5f77e58335704872ea57df8",
     "plan/data/schemas/receipt.json": "df318b5e82e1a3073e2f2e7138415ee83e7720bd4909f626b8727f05f9a4a40a",
     "plan/data/schemas/battle-checkpoint.json": "69e4a162e3c77c314f6e28dc353048abf47f18478952afcc016129be7165060b",
     "plan/data/schemas/simulation-scenario.json": "27db3d11711f2bf3f56188510319b8a68b9284565aded730ea84ccfebd4f71b7",
     "plan/design/11-technical-architecture.md": "28eec32ae8b7abcc1667cb939d4b5be1470ecc937c1c4a1eb9f7bb0b0719269a",
-    "plan/checks/architecture.py": "55f0656e976954cebcb07d626325e041b19d999ac79de98982652d54c69c0753"
+    "plan/checks/architecture.py": "73fe1a13eceebcc3fc78da5c2405f482947690658356104b9c0cf4de94451758"
   },
   "checks": [
     {
@@ -133,8 +133,8 @@
       ],
       "passed": true,
       "result": {
-        "UI_durable_actions": 42,
-        "typed_command_shapes_validated": 42,
+        "UI_durable_actions": 45,
+        "typed_command_shapes_validated": 45,
         "account_id_in_payload": false,
         "examples_scope": "shape examples, business-precondition fixtures owned by implementation tasks"
       }
@@ -348,8 +348,8 @@
       "passed": true,
       "result": {
         "numeric_budgets": 17,
-        "initial_fixture_bytes": 10175,
-        "500_items_136_active_investments_bytes": 138861,
+        "initial_fixture_bytes": 10270,
+        "500_items_136_active_investments_bytes": 138956,
         "measurement_profiles": "progression reference profiles + stated warmup/network/cache",
         "performance_measurement": "not performed; owners TASK-018/019/022/042"
       }

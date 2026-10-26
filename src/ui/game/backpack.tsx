@@ -1,3 +1,4 @@
+import {EquipmentCrafting} from './crafting.tsx';
 import { OwnerBadge } from './owner-badge.tsx';
 import { CardIcon } from './card-art.tsx';
 import { Icon } from '../icon.tsx';
@@ -32,6 +33,7 @@ function GearSheet({ context, row, close }: { context: GameContext; row: Gear; c
   return <Sheet title={row.name} onClose={close}>
     <div className="slot-summary"><span className={`icon-frame big rarity-${row.item.rarity_id}`}><ItemIcon id={row.iconId} pack={pack} />{row.owner && <><EquipmentCards state={state} characterId={row.owner.character_id} slot={row.owner.slot} /><EquipmentProgress state={state} characterId={row.owner.character_id} slot={row.owner.slot} /></>}</span>
       <div><b>{rarityLabels[row.item.rarity_id]} · {slotLabels[row.slot]} · Lv.{row.definition.required_level}</b><small className="mods">{itemModifiers(row.item).map(modifierText).join(' · ')}</small><OptionLines item={row.item} /><small>{row.owner ? <>สวมโดย <OwnerBadge state={state} characterId={row.owner.character_id} pack={pack}/></> : 'ยังไม่มีคนสวม'}{row.item.locked && <> · <Icon name="lock" /> ล็อก</>}{row.item.training ? ' · อาวุธฝึกหัด' : ''}</small></div></div>
+    <EquipmentCrafting context={context} itemId={id}/>
     <div className="action-grid">
       <button className={`btn ${mode === 'equip' ? 'primary' : ''}`} onClick={() => setMode(mode === 'equip' ? null : 'equip')}>สวมให้…</button>
       <button className="btn" disabled={locked} onClick={() => void submit('equipment.lock', { item_instance_id: id, locked: !row.item.locked })}>{row.item.locked ? 'ปลดล็อก' : 'ล็อก'}</button>
@@ -68,6 +70,7 @@ export function BackpackPage({ context }: { context: GameContext }) {
   const filters: [Filter, string][] = [['all', 'ทั้งหมด'], ...equipmentSlots.map(s => [s, slotLabels[s]] as [Filter, string]), ['card', 'การ์ด']];
   return <div className="page backpack-page">
     <PageHeader title="กระเป๋า" sub={`${state.inventory.length} / ${equipmentData.inventory_capacity} ช่อง${state.inventory.length >= equipmentData.inventory_capacity ? ' · เต็ม' : ''}`} onBack={() => go('home')} right={<button className={`btn small ${bulk ? 'primary' : 'ghost'}`} disabled={locked && !bulk} onClick={() => setBulk(bulk ? null : [])}>{bulk ? 'เสร็จ' : cardMode ? 'ย่อยหลายใบ' : 'ย่อยหลายชิ้น'}</button>} />
+    {state.equipment_crafting?.pending_roll&&<button className="btn crafting-resume" onClick={()=>setOpen(state.equipment_crafting!.pending_roll!.item_instance_id)}>เลือกผลรีโรลที่ค้างอยู่</button>}
     <div className="filter-row" role="tablist">{filters.map(([id, label]) => <button key={id} role="tab" aria-selected={filter === id} className={`chip ${filter === id ? 'on' : ''}`} onClick={() => {setFilter(id);setCardSlot(null);if(id==='card')setLevels([]);if(bulk)setBulk([]);}}>{label}</button>)}</div>
     {cardMode && cards.length > 0 && <div className="filter-row sub card-slot-filter" role="group" aria-label="กรองการ์ดตามช่องสวมใส่">{[null, ...equipmentSlots].map(slot => <button key={slot ?? 'all'} className={`chip small ${cardSlot === slot ? 'on' : ''}`} aria-pressed={cardSlot === slot} onClick={() => {setCardSlot(slot);setInspectedCard(null);if(bulk)setBulk([]);}}>{slot ? slotLabels[slot] : 'ทั้งหมด'}</button>)}</div>}
     {filterItems.length > 0 && <div className="filter-row sub" role="group" aria-label="กรองตาม Rarity และ Level">

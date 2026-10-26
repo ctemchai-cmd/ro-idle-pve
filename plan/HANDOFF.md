@@ -1,5 +1,12 @@
 # Handoff ระหว่าง agent
 
+## 27 ต.ค.2026 — ACTIVE TASK164–168 / workshop and Hi hierarchy
+
+All UNCOMMITTED atop c5d97efae. User confirmed only stones/shop beforeEvents; progressiveAw ranks earlier→earlier cap; Gate1200–2500beforeHP knowingly accepted~26kDPS boundedChampion; Hi normalLv1 must exceedClass2Aw1 byrole. Implemented crafting3commands/persistentpaidpending/options+rarity,shop3optionstones×8k/2rarity×20k/day,Awcap80/85/90/95/98/100+actualexcessrefund,Fingerunchanged72cases(+29%Aw1/+70%Aw10effective),Gate12–25/Aw27.5–36.25,Hi23/26skillcurves+Chaseskillpower. New config/postprocessor/audit roles/goldens/design77–81/inprogress164–168. No ownerSQL/env/Auth/save/6173restart/agents. Preserve usermigration-v2/unselectedmodern/task108png. Select ONLYmoderncraft-resources9/13 and derived32pxstones; pack6b3001/905/1695/raw33552995<32MiB/initial1577418.
+
+Final766/766TS/native11groups320390/43refundcases/strict/M0/root+filteredbuild/assets/generator allPASS. Filtered source excludesassets/evidence/privateenv and produces identical a4bf5a73 content/6b3001pack/cc1c5d495538cf08PWA.164–168review/publicpending. OwnVite7519PID70919closing. NEXT explicitstage/pushoriginmain/VercelSUCCESS/publicRO_EVIDENCE_TASK=task-164 node scripts/test_compact_boss_hosted.cjs→5done154/168 M4108/117. Known random-seed save-test assumption fixed: receipt victory1reward/defeat0, exact2writes+replaystate retained; no productmechanicchange. Do NOTrun defaultaudit-hi-hierarchy (overwritesbefore);afterRO_HIERARCHY_PHASE=after. Update source-afterhashiftrackedsourcechanged. Fulldetailsdesigns/evidence scripts/tests. No current userquestionspending.
+
+
 ## TASK163 COMPLETE / Tower rewards LIVE
 
 Sourcee2b88a17ccb5e9459b77268608d0e3b74b8a1f2f live/VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/3Q2ZphtEBh98cFC4577oRtdcqzAS. Public4groups/24bundleSHA/API SIN1/auth401/login320390/noerrors-writesPASS.752TS/11native/M0/root+filteredbuild/generatorPASS.163done149/163/M4 103/112. Content659b53b/pack798a928unchanged. FirstclearTowerreward schedule/budget/design76, oldfrontier/pending kept/no retrogrant. No remaining163work. OwnVite7518/browsersCLOSED;noowner/SQL/env/6173restart/newmedia/classbalance. Preserveuserassets migration-v2/unselectedmodern/task108png. Fixture-only releasefix uses runtime readFile for reviewJSON excluded onVercel;strict+10focused+filteredbuildpass, no productchangeafter752tests.

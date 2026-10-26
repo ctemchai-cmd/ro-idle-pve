@@ -34,10 +34,16 @@ function pay(state:AccountState,cost:Partial<Wallet>){
 }
 export function allowedSkill(actor: Character, definition: SkillDefinition, content: ValidatedContent) { return jobAllowsSkill(content.jobs, actor, definition.class_id); }
 export function characterSkillCap(actor: Character, definition: SkillDefinition): number {
- return skillRankUnlockLevels(definition).filter(level => level <= actor.level).length;
+ const awakened=skillIsAwakened(actor,definition.id),cap=skillRankUnlockLevels(definition,awakened).filter(level => level <= actor.level).length;
+ return awakened?Math.max(1,cap):cap; // Existing Awaken rank1 survives a later rank-gate correction.
 }
 /** Rank requirements are shared by progression, save migration and the UI. */
-export function skillRankUnlockLevels(definition: SkillDefinition): number[] {
+export function skillRankUnlockLevels(definition: SkillDefinition,awakened=false): number[] {
+ if(awakened){
+  const start=Math.max(70,skillRankUnlockLevels(definition).at(-1)!);
+  const unlock=definition.unlock_level,finish=unlock>=80?100:unlock>=70?98:unlock>=40?95:unlock>=30?90:unlock>=20?85:80;
+  return Array.from({length:definition.max_level},(_,i)=>start+Math.ceil((finish-start)*i/Math.max(1,definition.max_level-1)));
+ }
  if(definition.rank_unlock_levels)return [...definition.rank_unlock_levels];
  const spread=definition.class_id!=='enemy'&&definition.unlock_level>=20&&definition.unlock_level<=40;
  return Array.from({length:definition.max_level},(_,i)=>spread

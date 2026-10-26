@@ -28,3 +28,5 @@ D166/TASK137: [54-grimtooth-balance.md](../design/54-grimtooth-balance.md).
 D166/TASK138: [55-boss-size.md](../design/55-boss-size.md).
 
 D167/TASK139: [ร้าน/แลกเศษ/Panel](../design/56-shop-and-exchange-ui.md).
+
+D188–192/TASK164–168: equipment.crafting and economy.shop.crafting_grant use optionalaccount.equipment_crafting (separate wallet); three schema commands forroll/decide/rarity. Awakenrankcaps live in sharedskills.ts, excessactualpaidrefund follows existingbackup migration. GatecurvesD191 and explicit23Hi parameter overridesD192 regenerate throughhi_class_v2.py→hi_finisher_hierarchy.py; nativeIDs/costs/Class2programs remain. See designs77–81.

@@ -1,3 +1,4 @@
+import {CraftingIcon} from './crafting.tsx';
 import { ScrollIcon } from './scroll-icon.tsx';
 import { CardIcon } from './card-art.tsx';
 import { CardGrade } from './card-grade.tsx';
@@ -42,8 +43,8 @@ export function StorePage({ context }: { context: GameContext }) {
     <PageHeader title="ร้านค้า" sub={`รีเซ็ตสิทธิ์ซื้อทุกวัน 00:00 (เวลาไทย) · วันนี้ ${view.day}`} onBack={() => go('home')} />
     <div className="seg store-seg" role="tablist">{([['shop', 'ร้านค้า'], ['scrolls', 'ใบธาตุ'], ['cards', 'สุ่มการ์ด'], ['gear', 'สุ่มอุปกรณ์']] as [Section, string][]).map(([id, label]) => <button key={id} role="tab" aria-selected={section === id} className={section === id ? 'on' : ''} onClick={() => { setSection(id); setRevealed([]); }}>{label}</button>)}</div>
     {(section === 'shop'||section === 'scrolls') && <div className="shop-grid">{view.offers.filter(offer=>(section==='scrolls')===!!offer.scroll).map(offer => <article key={offer.id} data-offer={offer.id} className={`shop-offer ${offer.left ? '' : 'sold-out'}`}>
-      <div className="shop-grant">{offer.scroll&&<ScrollIcon pack={pack} element={offer.scroll.element} />}{(Object.entries(offer.grant) as [keyof Wallet, number][]).map(([k, n]) => <span key={k}><ResIcon pack={pack} k={k} /><b>{full(n)}</b></span>)}</div>
-      <b className="shop-name">{offer.name}</b>{offer.scroll&&<small>หนึ่งไฟต์ · ในคลัง {view.scrolls.find(row=>row.id===offer.id)?.stock??0}</small>}<small>เหลือวันนี้ {offer.left}/{offer.daily_limit}</small>
+      <div className="shop-grant">{offer.crafting.map(c=><span key={c.id}><CraftingIcon pack={pack} kind={c.id}/><b>{c.count}</b></span>)}{offer.scroll&&<ScrollIcon pack={pack} element={offer.scroll.element} />}{(Object.entries(offer.grant) as [keyof Wallet, number][]).map(([k, n]) => <span key={k}><ResIcon pack={pack} k={k} /><b>{full(n)}</b></span>)}</div>
+      <b className="shop-name">{offer.name}</b>{offer.crafting.map(c=><small key={c.id}>ในคลัง {full(c.stock)}</small>)}{offer.scroll&&<small>หนึ่งไฟต์ · ในคลัง {view.scrolls.find(row=>row.id===offer.id)?.stock??0}</small>}<small>เหลือวันนี้ {offer.left}/{offer.daily_limit}</small>
       <div className="shop-unit-price"><span>ต่อครั้ง</span>{(Object.entries(offer.price)as[keyof Wallet,number][]).map(([k,n])=><strong key={k}><ResIcon pack={pack} k={k}/>{full(n)}</strong>)}</div>
       <div className="shop-actions"><button className="btn small" aria-label={`แลก ${offer.name} 1 ครั้ง`} disabled={locked||!!buying||!offer.maxQuantity} onClick={()=>void buy(offer.id,1)}>{buying===offer.id?'กำลังแลก…':'แลก 1'}</button><button className="btn primary small" aria-label={`แลกทั้งหมด ${offer.name} ${offer.maxQuantity} ครั้ง`} disabled={locked||!!buying||!offer.maxQuantity} onClick={()=>void buy(offer.id,offer.maxQuantity)}>แลกหมด <b>×{offer.maxQuantity}</b></button></div>
       <small className="shop-batch-cost" aria-label={`ราคารวม ${offer.name}`}>{offer.maxPrice?<>รวม {(Object.entries(offer.maxPrice)as[keyof Wallet,number][]).map(([k,n])=><span key={k}><ResIcon pack={pack} k={k}/>{compact(n)}</span>)}</>:offer.left?'เงินไม่พอ':'ครบโควตาวันนี้'}</small>

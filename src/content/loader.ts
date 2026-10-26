@@ -76,13 +76,23 @@ export function validateContent(raw: unknown): Result<ValidatedContent> {
     const params=object(object(buy!.properties).params),quantity=object(object(params.properties).quantity);
     demand(Number.isSafeInteger(shop.max_quantity_per_command)&&Number(shop.max_quantity_per_command)>=1&&Number(shop.max_quantity_per_command)<=Number(quantity.maximum),'shop_batch_limit',at);
     const seen=new Set<string>();
-    for(const value of offers){const offer=object(value),id=String(offer.id),price=object(offer.price),grant=object(offer.grant),consumables=object(offer.consumable_grant??{});
+    for(const value of offers){const offer=object(value),id=String(offer.id),price=object(offer.price),grant=object(offer.grant),consumables=object(offer.consumable_grant??{}),crafting=object(offer.crafting_grant??{});
       demand(/^[a-z][a-z0-9_]*$/.test(id)&&!seen.has(id),'shop_offer_id',at);seen.add(id);
       demand(Number.isSafeInteger(offer.daily_limit)&&Number(offer.daily_limit)>=1,'shop_daily_limit',at);
       for(const vector of[price,grant])for(const[key,amount]of Object.entries(vector))demand(resources.has(key)&&Number.isSafeInteger(amount)&&Number(amount)>=0,'shop_resource_amount',at);
-      demand(Object.values(price).some(n=>Number(n)>0)&&([...Object.values(grant),...Object.values(consumables)].some(n=>Number(n)>0)),'shop_empty_offer',at);
+      demand(Object.values(price).some(n=>Number(n)>0)&&([...Object.values(grant),...Object.values(consumables),...Object.values(crafting)].some(n=>Number(n)>0)),'shop_empty_offer',at);
       for(const amount of Object.values(consumables))demand(Number.isSafeInteger(amount)&&Number(amount)>0,'shop_consumable_amount',at);
+      for(const[key,n]of Object.entries(crafting))demand(['option_stone','rarity_stone'].includes(key)&&Number.isSafeInteger(n)&&Number(n)>0,'shop_crafting_amount',at);
     }
+  });
+  attempt(docAt('equipment.json'),()=>{
+    const value=bundle.documents['equipment.json']!.crafting;if(value===undefined)return;
+    const rules=object(value),at={source:'equipment.json',path:'/crafting'},materials=object(rules.materials),cost=object(rules.option_roll_cost);
+    demand(canonical(Object.keys(materials).sort())===canonical(['option_stone','rarity_stone']),'crafting_materials',at);
+    demand(Number.isSafeInteger(cost.option_stone)&&Number(cost.option_stone)>0,'crafting_roll_cost',at);
+    const rarity=list(bundle.documents['equipment.json']!.rarities).map(object),steps=list(rules.rarity_steps);
+    demand(steps.length===rarity.length-1,'crafting_rarity_steps',at);
+    steps.forEach((v,i)=>{const s=object(v);demand(s.from===rarity[i]!.id&&s.to===rarity[i+1]!.id&&['stones','gold'].every(k=>Number.isSafeInteger(s[k])&&Number(s[k])>0),'crafting_rarity_step',at);});
   });
   attempt(docAt('slot-progress.json'), () => {
     const slots = bundle.documents['slot-progress.json']!, refine = object(object(slots.refine).per_step_modifiers), enchant = object(object(slots.enchant).slot_lines);

@@ -8,11 +8,12 @@ import type{AccountState}from'../../src/contracts/index.ts';
 import type{CommandCommit,ReceiptRecord,SaveContext}from'../../src/contracts/save.ts';
 import{content}from'./combat-fixtures.ts';
 export const SHOP_TEST_OWNER='11111111-0139-4139-8139-111111111111';
-export function shopBatchFixture(mode='funded',now=new Date().toISOString()){
+export function shopBatchFixture(mode='funded',now=new Date().toISOString(),prepare?:(state:AccountState)=>void){
  const rules=new AccountCommandRules(content),day=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Bangkok'}).format(new Date(now)),state=initializeAccount(content,{root_job_id:'swordsman',gender:'male'},now,day,139),key=randomBytes(48).toString('base64url');
  Object.assign(state.wallet,{gold:mode==='poor'?52000:2000000,skill_manual:1000,awakening_shard:30,crystal:100});
  state.shop={day,purchases:mode==='partial'?{crystal_exchange:1}:mode==='soldout'?{crystal_exchange:20}:{}};
  if(mode==='overflow'){state.battle_supplies!.stock.fire_scroll=Number.MAX_SAFE_INTEGER-2;state.wallet.crystal=Number.MAX_SAFE_INTEGER-5;}
+ prepare?.(state);
  const hash=(v:unknown)=>createHash('sha256').update(canonical(v)).digest('hex'),signature=(revision:number,stateHash:string)=>createHmac('sha256',key).update(canonical({account_id:SHOP_TEST_OWNER,revision,state_hash:stateHash,content_hash:rules.versions.content_hash,schema_version:1,key_version:1})).digest('base64url');
  let context:SaveContext={server_at:now,save:{account_id:SHOP_TEST_OWNER,revision:1,schema_version:1,...rules.versions,state_hash:hash(state),state,updated_at:now},history:{account_id:SHOP_TEST_OWNER,revision:1,state:structuredClone(state),state_hash:hash(state),signature:signature(1,hash(state)),key_version:1,created_at:now},battle:null};
  const receipts=new Map<string,ReceiptRecord>();let writes=0;

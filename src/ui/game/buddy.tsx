@@ -1,3 +1,4 @@
+import {EquipmentCrafting} from './crafting.tsx';
 import { OwnerBadge } from './owner-badge.tsx';
 import { CardIcon } from './card-art.tsx';
 import { CardSalvageButton } from './card-salvage.tsx';
@@ -150,6 +151,7 @@ function SlotSheet({ context, actor, slot, close, open }: { context: GameContext
       <span className={`icon-frame big rarity-${row?.item.rarity_id ?? 'none'}`}>{row ? <ItemIcon id={row.iconId} pack={pack} /> : <span className="gear-empty">ว่าง</span>}<EquipmentCards state={state} characterId={actor.character_id} slot={slot} /><EquipmentProgress state={state} characterId={actor.character_id} slot={slot} /></span>
       <div><b>{row?.name ?? 'ยังไม่ได้สวม'}</b>{row && <small>{rarityLabels[row.item.rarity_id]} · Lv.{row.definition.required_level}</small>}{row && <small className="mods">{itemModifiers(row.item).map(modifierText).join(' · ')}</small>}{row && <OptionLines item={row.item} />}</div>
     </div>
+    {row&&<EquipmentCrafting context={context} itemId={row.item.instance_id}/>}
     <ul className="slot-facts"><li><span>Refine</span><b>+{progress.refine}</b></li><li><span>Enchant</span><b>{progress.enchant.line_id ? `${slotEnchantLines(slot)[progress.enchant.line_id]?.label??progress.enchant.line_id} Lv.${progress.enchant.level}` : '—'}</b></li><li><span>การ์ด</span><b>{progress.cards.filter(Boolean).length} / {socketCapacity(progress.refine)}</b></li></ul>
     {row && <EquippedCardInfo context={context} actor={actor} slot={slot}/>}</div>
     <div className="row two slot-info-actions"><button className="btn primary" onClick={() => open('upgrade')}><Icon name="upgrade" /> อัปเกรด</button><button className="btn" onClick={() => open('change')}>⇄ เปลี่ยน</button></div>

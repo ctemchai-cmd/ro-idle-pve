@@ -1860,10 +1860,15 @@
           "critical_damage": {
             "type": "number",
             "minimum": 0
+          },
+          "skill_power": {
+            "type": "number",
+            "minimum": 0
           }
         },
         "required": [
-          "critical_damage"
+          "critical_damage",
+          "skill_power"
         ],
         "additionalProperties": false
       },
@@ -1880,7 +1885,17 @@
       "target_death": "remove",
       "battle_end": "remove",
       "remove_on_hp_damage": false,
-      "modifiers": [],
+      "modifiers": [
+        {
+          "id": "next_skill_power",
+          "stat": "skill_damage_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": {
+            "status_param": "skill_power"
+          }
+        }
+      ],
       "triggers": [],
       "periodic": null,
       "weapon_element": null,

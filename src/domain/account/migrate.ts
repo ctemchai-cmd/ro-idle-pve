@@ -1,3 +1,4 @@
+import {emptyCrafting} from '../progression/equipment-crafting.ts';
 import type { AccountState } from '../../contracts/index.ts';
 import type { ValidatedContent } from '../../content/model.ts';
 import { cardCapacity } from '../progression/slots.ts';
@@ -33,6 +34,7 @@ function keepFrozenCardCatalog(frozen:FarmSnapshot,current:FarmSnapshot,content:
  */
 export function migrateAccountState(input: unknown, content: ValidatedContent): SaveMigration {
   const state = structuredClone(input) as AccountState, changes: string[] = [], data = progressionData(content);
+  if(!state.equipment_crafting){state.equipment_crafting=emptyCrafting();changes.push('equipment crafting empty stock added');}
   // The new currency starts at zero everywhere, including frozen unpaid snapshots
   // and actual-paid ledgers. Never price old investments or grant shards retroactively.
   for(const vector of [state.wallet,state.farm.remainders,...state.pending_rewards.map(r=>r.resource_vector),...state.paid_ledger.map(r=>r.paid_resources),...(state.farm.rate_snapshot?[state.farm.rate_snapshot.per_hour]:[])]){

@@ -14,5 +14,8 @@ def apply():
  assert seen==set(spec['updates'])
  p=R/'plan/data/status-effects.json';d=json.loads(p.read_text());ids={s['id']for s in spec['statuses']};d['statuses']=[s for s in d['statuses']if s['id']not in ids]+copy.deepcopy(spec['statuses']);p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n')
  p=R/'plan/data/strings.th.json';d=json.loads(p.read_text());d['strings'].update(spec['names']);p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n')
+ if (R/'plan/generators/hi-finisher-hierarchy.json').exists():
+  from hi_finisher_hierarchy import apply as apply_hierarchy
+  apply_hierarchy()
  return seen
 if __name__=='__main__':print('D169 explicit Hi v2 applied',len(apply()))

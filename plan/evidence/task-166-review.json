@@ -1,0 +1,48 @@
+{
+  "task_id": "TASK-166",
+  "passed": false,
+  "status": "review",
+  "local_passed": true,
+  "acceptance_results": {
+    "AC-01": "passed",
+    "AC-02": "passed",
+    "AC-03": "not_run_hosted"
+  },
+  "checks": {
+    "passed": true,
+    "full_TS_tests": 766,
+    "failures": 0,
+    "native_groups": 11,
+    "mobile_widths": [
+      320,
+      390
+    ],
+    "root_build": true,
+    "source_asset_check": true,
+    "generator_reproducible": true,
+    "M0": true,
+    "expanded_Aw_refund_cases": 43,
+    "signed_memory_API_UUID_replay": true,
+    "owner_access": false,
+    "SQL_env_changes": false,
+    "content_hash": "a4bf5a73d6d875971907c21fa78104590bd419b68333caf73846f722c2b8b200",
+    "pack_hash": "6b3001aef85634b686f8296eb99ce5612b50794c8b59e13c1c54f6995e0daf7c",
+    "pack_bytes": 33552995,
+    "initial_bytes": 1577418,
+    "fixture_note": "A historical save/replay test assumed its random-seeded starter always won. It now asserts reward count from the actual terminal receipt (victory1/defeat0); exact post-finish/replay state equality and two writes remain mandatory. No product combat behavior changed for this fixture.",
+    "filtered_build": true,
+    "strict_typecheck": true
+  },
+  "evidence": [
+    "task-166/README.md",
+    "task-164/local-validation.json",
+    "task-164/native.json"
+  ],
+  "limitations": [
+    "Bounded ability/role probes, not exhaustive global class DPS calibration.",
+    "No owner login, Supabase save reads/writes or SQL/env changes.",
+    "Hosted deployment verification pending."
+  ],
+  "content_hash": "a4bf5a73d6d875971907c21fa78104590bd419b68333caf73846f722c2b8b200",
+  "pack_hash": "6b3001aef85634b686f8296eb99ce5612b50794c8b59e13c1c54f6995e0daf7c"
+}

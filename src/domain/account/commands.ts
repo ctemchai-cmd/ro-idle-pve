@@ -1,3 +1,4 @@
+import {applyCraftingCommand,protectPendingOption,validateCrafting,type CraftingCommand} from '../progression/equipment-crafting.ts';
 import { applyShopPurchase } from '../progression/shop.ts';
 import { collectProgressRewards } from '../progression/auto-rewards.ts';
 import { claimRewards } from '../progression/claim-rewards.ts';
@@ -42,7 +43,7 @@ export interface CommandProposal { state: AccountState; receipt: Receipt; battle
 export class AccountCommandRules extends AccountCreationRules {
   buildInputs(state:AccountState){return Object.fromEntries(state.roster.map(actor=>{const prepared=preparedScroll(state,actor.character_id,this.content);return[actor.character_id,{actor,items:boundItemInstances(actor,state),...(prepared?{prepared_scroll:prepared.id}:{})}];}));}
   get leaseMs() { return Number((this.content.documents['save-contracts.json']!.battle_protocol as unknown as { lease_ms: number }).lease_ms); }
-  supports(type: Command['type']) { return ['farm.claim', 'reward.claim', 'battle.advance', 'battle.finish', 'battle.retreat', 'party.set', 'character.level_up', 'character.breakthrough', 'character.allocate_status', 'character.reset_build', 'character.change_job', 'skill.upgrade', 'skill.set_loadout', 'skill.awaken', 'skill.convert_shards', 'battle.start_story', 'farm.set_stage', 'equipment.equip', 'equipment.equip_upgrades', 'equipment.unequip', 'equipment.lock', 'equipment.salvage', 'equipment.purchase_weapon', 'slot.refine', 'slot.enchant', 'slot.change_enchant', 'card.assign', 'card.unassign', 'card.upgrade', 'card.salvage', 'equipment.fuse', 'equipment.tier_up', 'battle.start_tower', 'battle.start_daily', 'gacha.pull', 'consumable.prepare', 'shop.buy', 'daily.objective_claim'].includes(type); }
+  supports(type: Command['type']) { return ['equipment.option_roll','equipment.option_decide','equipment.rarity_up','farm.claim', 'reward.claim', 'battle.advance', 'battle.finish', 'battle.retreat', 'party.set', 'character.level_up', 'character.breakthrough', 'character.allocate_status', 'character.reset_build', 'character.change_job', 'skill.upgrade', 'skill.set_loadout', 'skill.awaken', 'skill.convert_shards', 'battle.start_story', 'farm.set_stage', 'equipment.equip', 'equipment.equip_upgrades', 'equipment.unequip', 'equipment.lock', 'equipment.salvage', 'equipment.purchase_weapon', 'slot.refine', 'slot.enchant', 'slot.change_enchant', 'card.assign', 'card.unassign', 'card.upgrade', 'card.salvage', 'equipment.fuse', 'equipment.tier_up', 'battle.start_tower', 'battle.start_daily', 'gacha.pull', 'consumable.prepare', 'shop.buy', 'daily.objective_claim'].includes(type); }
   /** TASK-040 (D-064): maintenance proposals. The API proves integrity/ownership and supplies time, ids and seed. */
   migrateSave(stored: unknown): { state: AccountState; changes: string[] } { const migrated = migrateAccountState(stored, this.content); return { state: this.validateAccount(migrated.state), changes: migrated.changes }; }
   restoreSave(restored: unknown, current: AccountState | null, nowMs: number): AccountState { return this.validateAccount(guardRestore(this.validateAccount(restored), current, bangkokDay(nowMs), bangkokDay(nowMs - 86400000))); }
@@ -66,7 +67,7 @@ export class AccountCommandRules extends AccountCreationRules {
     if (members.filter(a => a.kind === 'main').length !== 1 || new Set(members.filter(a => a.kind === 'npc').map(a => a.root_job_id)).size !== 3) throw new Error('INVALID_TEAM');
     if (s.roster.some(a => Object.values(a.equipment).some(id => id !== null && !itemIds.includes(id)))) throw new Error('INVALID_EQUIPMENT_REFERENCE');
     validateProgression(s, this.content);
-    validateInventory(s, this.content);
+    validateInventory(s, this.content);validateCrafting(s,this.content);
     validateSupplies(s, this.content);
     for (const actor of s.roster) validateCharacterSkills(actor, this.content);
     return s;
@@ -105,6 +106,7 @@ export class AccountCommandRules extends AccountCreationRules {
     const today = bangkokDay(time.now_ms);
     if (state.daily_objectives.day !== today) state.daily_objectives = { day: today, farm_claimed: false, battle_finished: false, claimed: false };
     try {
+      protectPendingOption(state,command);
       if (command.type === 'daily.objective_claim') {
         const objective = this.content.documents['economy.json']!.daily_objective as unknown as { crystal: number; unlocks_after: string };
         if (!state.story.cleared_stage_ids.includes(objective.unlocks_after)) reject('DAILY_OBJECTIVE_LOCKED');
@@ -278,6 +280,7 @@ export class AccountCommandRules extends AccountCreationRules {
         }
       } else if (command.type.startsWith('slot.') || command.type.startsWith('card.')) code = applySlotCommand(state, command as SlotCommand, this.content, time.battle_seed === undefined ? null : nextRandom({ state: time.battle_seed >>> 0, draw_count: 0 }));
       else if (command.type === 'equipment.fuse' || command.type === 'equipment.tier_up') { const rng = { state: (time.battle_seed ?? 0) >>> 0, draw_count: 0 }; code = applyGearUpgrade(state, command as GearUpgradeCommand, this.content, time.battle_seed === undefined ? null : () => nextRandom(rng)); }
+      else if (['equipment.option_roll','equipment.option_decide','equipment.rarity_up'].includes(command.type)) { const rng={state:(time.battle_seed??0)>>>0,draw_count:0};code=applyCraftingCommand(state,command as CraftingCommand,this.content,time.battle_seed===undefined?null:()=>nextRandom(rng)); }
       else if (command.type.startsWith('equipment.')) code = applyEquipmentCommand(state, command as EquipmentCommand, this.content);
       else if (command.type === 'skill.upgrade' || command.type === 'skill.set_loadout' || command.type === 'skill.awaken' || command.type === 'skill.convert_shards') code = applySkillCommand(state, command as SkillCommand, this.content);
       else if (command.type === 'party.set' || command.type.startsWith('character.')) code = applyRosterCommand(state, command as RosterCommand, this.content);

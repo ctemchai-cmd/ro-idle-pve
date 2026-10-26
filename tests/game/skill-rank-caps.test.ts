@@ -61,7 +61,7 @@ test('D165 partial rank trim preserves lower-rank actual investment and later re
 });
 test('D165 Awaken is retained; only excess Awaken ranks refund shards, base max and awakening payment remain refundable',()=>{
  const f=fixture(70,'lord_knight');paid(f.state,f.a,'knight_counter_stance',10);paid(f.state,f.a,'knight_counter_stance',10,true);const before=structuredClone(f.state),m=migrateAccountState(f.state,content);
- assert.equal(m.state.roster[0]!.skill_levels.knight_counter_stance,7);assert.deepEqual(m.state.roster[0]!.awakened_skills,['knight_counter_stance']);assert.deepEqual(m.state.paid_ledger.find(r=>r.feature_id==='skill'),before.paid_ledger[0]);assert.equal(m.state.wallet.awakening_shard-before.wallet.awakening_shard,135);assert.equal(m.state.wallet.gold-before.wallet.gold,54000);assert.doesNotThrow(()=>rules.validateAccount(m.state));
+ assert.equal(m.state.roster[0]!.skill_levels.knight_counter_stance,1);assert.deepEqual(m.state.roster[0]!.awakened_skills,['knight_counter_stance']);assert.deepEqual(m.state.paid_ledger.find(r=>r.feature_id==='skill'),before.paid_ledger[0]);assert.equal(m.state.wallet.awakening_shard-before.wallet.awakening_shard,270);assert.equal(m.state.wallet.gold-before.wallet.gold,108000);assert.doesNotThrow(()=>rules.validateAccount(m.state));
  assert.deepEqual(migrateAccountState(m.state,content).state,m.state);
 });
 test('D165 exact legacy prices are used even when current tables change; unknown version/mismatched actual-paid/overflow reject without mutating input',()=>{

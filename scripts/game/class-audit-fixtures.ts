@@ -159,7 +159,10 @@ export function auditFixture(build:AuditBuild,condition:AuditCase,content:Valida
     if(actor.active_slots.length!==4)throw new Error('AUDIT_REQUIRES_FOUR_SLOTS');
     if(awaken)for(const skill_id of slots){
       applySkillCommand(state,{type:'skill.awaken',params:{character_id:id,skill_id},request_id:request()}as SkillCommand,content);
-      if(awaken>1)upgrade(id,skill_id,awaken);
+      // condition.awaken is the requested upper bound; old case IDs stay stable,
+      // while live fixtures always obey D190's current per-character rank caps.
+      const target=Math.min(awaken,characterSkillCap(actor,content.skills[skill_id] as unknown as SkillDefinition));
+      if(target>1)upgrade(id,skill_id,target);
     }
     const compatibility=content.documents['equipment.json']!.weapon_compatibility as Record<string,string>;
     for(const slot of ['weapon','head','armor','garment','shoes','accessory']as const){

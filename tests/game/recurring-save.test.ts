@@ -185,7 +185,9 @@ test('terminal-only start + finish writes twice; a lost finish response reconcil
  const b = new SaveController(p.ports); await b.start(id);
  assert.equal(b.snapshot.status, 'ready'); assert.equal(b.snapshot.pending, null); assert.equal(f.writes, 2); assert.deepEqual(f.context.save!.state, after);
  assert.deepEqual((await f.server.command(identity, finish)).body, { receipt: f.receipts.get(finish.request_id)!.receipt }); assert.equal(f.writes, 2);
- assert.equal((f.context.save!.state as AccountState).pending_rewards.filter(c => c.kind === 'story').length, 1); b.dispose();
+ // The real server chooses a random combat seed; a legitimate defeat grants no Story reward. Replay must preserve the terminal outcome and its exact reward count.
+ const terminalCode=f.receipts.get(finish.request_id)!.receipt.result.code;assert.ok(['STORY_WON','STORY_DEFEATED','STORY_TIME_LIMIT'].includes(terminalCode));
+ assert.equal((f.context.save!.state as AccountState).pending_rewards.filter(c => c.kind === 'story').length, terminalCode==='STORY_WON'?1:0); b.dispose();
 });
 
 test('D-127 ten fixed reward bundles pay in one commit, including original-UUID response-loss replay', async()=>{

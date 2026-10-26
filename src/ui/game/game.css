@@ -1034,3 +1034,24 @@ dialog.gacha-reveal-sheet{height:92dvh}.gacha-reveal-sheet .sheet-body{height:10
 @media (prefers-reduced-motion:reduce) {
   :root .game-root :is(.btn,.chip,.icon-btn,.back-btn,.character-nav button,.chip-btn,.seg button,.chapter-tabs button,.statistics-tabs button,.statistics-toolbar button,.gender-toggle button) { transition:none; }
 }
+
+/* Equipment workshop: existing native icons and Classic palette. */
+.crafting-open { margin:8px 0; }
+.crafting-sheet .sheet-body { display:flex; flex-direction:column; min-height:0; overflow:hidden; }
+.crafting-body { overflow:auto; min-height:0; padding-bottom:12px; }
+.crafting-item,.crafting-stock,.crafting-cost { display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; }
+.crafting-item { justify-content:space-between; margin-bottom:12px; }
+.crafting-stock { font-size:12px; margin-bottom:12px; }
+.crafting-stock>span,.crafting-cost>span { display:inline-flex; align-items:center; gap:5px; }
+.crafting-lines { display:grid; gap:7px; margin-top:12px; }
+.crafting-line { display:flex; align-items:center; gap:10px; border:1px solid var(--line); border-radius:10px; padding:12px; color:var(--ink); background:var(--glass); text-align:left; min-height:44px; }
+.crafting-line.on { border-color:var(--blue); background:#e3edfc; }
+.crafting-line>span { color:var(--muted); font-size:11px; }
+.crafting-compare { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:12px 0; }
+.crafting-compare>div { display:grid; gap:6px; border-radius:10px; background:#edf3fc; padding:10px; overflow-wrap:anywhere; }
+.crafting-compare strong { font-size:13px; }
+.crafting-compare small,.crafting-result>small { color:var(--muted); }
+.crafting-rarity { display:flex; align-items:center; justify-content:center; gap:16px; padding:22px 0 12px; }
+.crafting-footer { flex-shrink:0; padding-top:12px; border-top:1px solid var(--line); background:var(--glass); }
+.crafting-footer>.wide { width:100%; }
+.crafting-resume { width:100%; position:sticky; top:0; z-index:2; background:#e6edff; }

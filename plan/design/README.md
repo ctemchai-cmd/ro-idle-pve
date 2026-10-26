@@ -108,3 +108,9 @@ D167/TASK139: [ร้าน/แลกเศษ/Panel](56-shop-and-exchange-ui.md
 - [67-bulk-card-salvage.md](67-bulk-card-salvage.md): D178/TASK154 ย่อยการ์ดหลายใบ
 
 - [68-magic-card-options.md](68-magic-card-options.md): D179/TASK155 การ์ดเวทผสม
+
+- [77 Equipment crafting](77-equipment-crafting.md) — D188/TASK164.
+- [78 Daily stone shop](78-crafting-shop.md) — D189/TASK165.
+- [79 Awaken rank progression](79-awaken-rank-progression.md) — D190/TASK166.
+- [80 Gate power](80-gate-power.md) — D191/TASK167.
+- [81 Hi finisher hierarchy](81-hi-finisher-hierarchy.md) — D192/TASK168.

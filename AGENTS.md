@@ -1,3 +1,11 @@
+## Workshop, Awaken gates and Hi hierarchy — 27 October2026 (D188–192/TASK164–168)
+
+Current work is locally implemented; see newest HANDOFF for publication status. Stones use optional account.equipment_crafting stock (not wallet): one paid reroll persists exact original/replacement until choose, old option remains active, reload/close never rerolls or charges again; pending gear cannot be destroyed. Rarity+1 is100%, keeps instance/Tier/existing options/slot progress, adds only new lines; costs1/1/2/4/12/30stones plus2k/4k/8k/16k/40k/100kgold. Tier-up stays retired. Daily shop option3×8kgold/rarity2×20kgold, existing offers/counters intact. Two selected32px source-derived icons; no Event mode/SQL/env/owner mutation.
+
+Awaken rank1 atmax(70,baseMaxUnlock); cap10Class1=80/Class2unlock20=85,30=90,40=95/Hi70=98,80=100. Shared quote/UI/migration; backed-up update trims/refunds only excess actual-paid Aw ranks once, retaining flags/loadout/base/unlock investments. Finger unchanged:72matched percast casesAw1~+29%,Aw10~+70%effective. User explicitly accepted Gate1200–2500%beforeactualHPfactor (Aw2750–3625%) despite boundedChampiondummyDPS~9.9k→26.3k; do not silently restoreold10kbudget or nerfFinger. HP/cost/queue mechanics retained.
+
+User also explicitly confirmed Hi normalLv1 should beat Class2Aw1 byrole. Config hi-finisher-hierarchy.json/postprocessor afterD169 adjusts23/26Hi skills;26named application comparisons,one qualitative Mysticalfocus comparison. Neutral/equalstats/HP10k/SP500 probes,not globalclassDPS/universalranking (highSPAsura can still win). Chase generic skill_damage_bonus40–70%/Aw77–101.5%, normals unaffected, whole next damaging action snapshots then consumesonecharge. Class2programs/costs/times/elements/nativeIDs unchanged. Historical scope guards restore only declared fields; actual new behavior/goldens checked separately. See designs77–81/evidence164–168/newestHANDOFF. Keep unselected modern assets and user's migration-v2 draft unstaged.
+
 # Project context
 
 ## Tower rewards (D187/TASK163)

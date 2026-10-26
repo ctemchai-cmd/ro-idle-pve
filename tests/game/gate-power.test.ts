@@ -1,0 +1,9 @@
+import{withoutHierarchyDocument}from'./legacy-workshop-scope.ts';
+import test from 'node:test';import assert from 'node:assert/strict';import{readFileSync}from'node:fs';import{gunzipSync}from'node:zlib';
+import spec from '../../plan/generators/hi-class-v2.json';import{content}from'./combat-fixtures.ts';import{resolveSkill}from'../../src/domain/build/resolve-skill.ts';
+const before=JSON.parse(gunzipSync(readFileSync('plan/evidence/task-167/before.json.gz')).toString()),old=JSON.parse(before['plan/data/skills/acolyte.json']),id='champion_chain_crush_combo';
+test('D191 only two Gate power curves change, normal1200→2500% before HP and Awaken2750→3625%, all cost/HP/pen/timing and other skills exact',()=>{
+ const now=withoutHierarchyDocument('skills/acolyte.json',JSON.parse(readFileSync('plan/data/skills/acolyte.json','utf8'))); const s=now.hi_class_skills.find((s:any)=>s.id===id);assert.deepEqual(s.level_parameters.power,spec.updates[id].base.level_parameters.power);assert.deepEqual(now.awakened_variants[id].level_parameters.power,spec.updates[id].awakened.level_parameters.power);
+ for(const[aw,start,end]of [[false,12,25],[true,27.5,36.25]]as const)for(let rank=1;rank<=10;rank++){const d=resolveSkill(id,rank,content,aw).definition as any,e=d.effects[0];assert.equal(e.formula.params.attack_ratio,Math.round((start+(end-start)*(rank-1)/9)*1e6)/1e6);assert.equal(e.retain_hp_ratio,.01);assert.equal(e.hp_loss_scaling,1);assert.equal(e.hits,1);assert.deepEqual(d.cost,{sp:58,spirit_spheres:5});assert.deepEqual(d.timing,{cast_ms:600,after_cast_ms:1300,interruptible:true});}
+ s.level_parameters.power=old.hi_class_skills.find((r:any)=>r.id===id).level_parameters.power;now.awakened_variants[id].level_parameters.power=old.awakened_variants[id].level_parameters.power;assert.deepEqual(now,old);
+});

@@ -17,8 +17,8 @@ export function migrateSkillCaps(state:AccountState,content:ValidatedContent,cha
   const cap=characterSkillCap(actor,definition);if(level<=cap)continue;
   // This migration owns the newly scaled Class2 skills, not arbitrary corruption.
   const legacy=prices.roots[actor.root_job_id];
-  if(!legacy.skill_ids.includes(id)||cap<1)throw Error('SKILL_CAP_MIGRATION_UNSUPPORTED');
   const awakened=skillIsAwakened(actor,id),feature=awakened?'skill_awaken':'skill';
+  if((!awakened&&!legacy.skill_ids.includes(id))||cap<1)throw Error('SKILL_CAP_MIGRATION_UNSUPPORTED');
   const rows=state.paid_ledger.filter(r=>r.character_id===actor.character_id&&r.feature_id===feature&&r.skill_id===id&&r.refund_state==='active');
   const paid=vector({}),refund=vector({}),expected=vector(awakened?prices.awaken_unlock:{});
   const table=awakened?prices.awakened:prices.base,version=awakened?prices.awakened.cost_version:legacy.cost_version;

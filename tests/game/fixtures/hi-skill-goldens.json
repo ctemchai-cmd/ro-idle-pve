@@ -9,14 +9,14 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foe",
-          "raw_power_at_1000": 4500.0,
+          "raw_power_at_1000": 8276.403999999999,
           "hits": 1
         },
         {
           "effect_id": "soul",
           "type": "damage",
           "target": "foe",
-          "raw_power_at_1000": 1500.0,
+          "raw_power_at_1000": 2758.802,
           "hits": 1
         }
       ]
@@ -29,14 +29,14 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foe",
-          "raw_power_at_1000": 5833.333,
+          "raw_power_at_1000": 10728.671999999999,
           "hits": 1
         },
         {
           "effect_id": "soul",
           "type": "damage",
           "target": "foe",
-          "raw_power_at_1000": 1944.444,
+          "raw_power_at_1000": 3576.223,
           "hits": 1
         }
       ]
@@ -49,14 +49,14 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foe",
-          "raw_power_at_1000": 7500.0,
+          "raw_power_at_1000": 13794.008,
           "hits": 1
         },
         {
           "effect_id": "soul",
           "type": "damage",
           "target": "foe",
-          "raw_power_at_1000": 2500.0,
+          "raw_power_at_1000": 4598.002,
           "hits": 1
         }
       ]
@@ -69,7 +69,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foes",
-          "raw_power_at_1000": 3800.0,
+          "raw_power_at_1000": 8174.226000000001,
           "hits": 1
         },
         {
@@ -91,7 +91,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foes",
-          "raw_power_at_1000": 4955.556,
+          "raw_power_at_1000": 10659.956,
           "hits": 1
         },
         {
@@ -113,7 +113,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foes",
-          "raw_power_at_1000": 6400.0,
+          "raw_power_at_1000": 13767.117,
           "hits": 1
         },
         {
@@ -137,7 +137,8 @@
           "target": "self",
           "status_id": "chase_charge",
           "params": {
-            "critical_damage": 0
+            "critical_damage": 0,
+            "skill_power": 0.4
           },
           "duration_ms": 5500,
           "chance": 1
@@ -154,7 +155,8 @@
           "target": "self",
           "status_id": "chase_charge",
           "params": {
-            "critical_damage": 0
+            "critical_damage": 0,
+            "skill_power": 0.533333
           },
           "duration_ms": 7500,
           "chance": 1
@@ -171,7 +173,8 @@
           "target": "self",
           "status_id": "chase_charge",
           "params": {
-            "critical_damage": 0
+            "critical_damage": 0,
+            "skill_power": 0.7
           },
           "duration_ms": 10000,
           "chance": 1
@@ -186,7 +189,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foe",
-          "raw_power_at_1000": 6000.0,
+          "raw_power_at_1000": 10451.106,
           "hits": 1
         },
         {
@@ -223,7 +226,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foe",
-          "raw_power_at_1000": 7777.777999999999,
+          "raw_power_at_1000": 13547.73,
           "hits": 1
         },
         {
@@ -260,7 +263,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foe",
-          "raw_power_at_1000": 10000.0,
+          "raw_power_at_1000": 17418.510000000002,
           "hits": 1
         },
         {
@@ -299,107 +302,7 @@
           "target": "self",
           "status_id": "attack_up",
           "params": {
-            "ratio": 0.12
-          },
-          "duration_ms": 8000,
-          "chance": 1
-        },
-        {
-          "effect_id": "critical",
-          "type": "apply_status",
-          "target": "self",
-          "status_id": "crit_up",
-          "params": {
-            "ratio": 0.03
-          },
-          "duration_ms": 8000,
-          "chance": 1
-        },
-        {
-          "effect_id": "critical_damage",
-          "type": "apply_status",
-          "target": "self",
-          "status_id": "crit_damage_up",
-          "params": {
-            "ratio": 0.04
-          },
-          "duration_ms": 8000,
-          "chance": 1
-        },
-        {
-          "effect_id": "skill",
-          "type": "apply_status",
-          "target": "self",
-          "status_id": "awaken_skill_power",
-          "params": {
-            "ratio": 0.03
-          },
-          "duration_ms": 8000,
-          "chance": 1
-        }
-      ]
-    },
-    {
-      "skill_id": "lord_knight_aura_blade",
-      "rank": 5,
-      "effects": [
-        {
-          "effect_id": "attack",
-          "type": "apply_status",
-          "target": "self",
-          "status_id": "attack_up",
-          "params": {
-            "ratio": 0.177778
-          },
-          "duration_ms": 8000,
-          "chance": 1
-        },
-        {
-          "effect_id": "critical",
-          "type": "apply_status",
-          "target": "self",
-          "status_id": "crit_up",
-          "params": {
-            "ratio": 0.043333
-          },
-          "duration_ms": 8000,
-          "chance": 1
-        },
-        {
-          "effect_id": "critical_damage",
-          "type": "apply_status",
-          "target": "self",
-          "status_id": "crit_damage_up",
-          "params": {
-            "ratio": 0.057778
-          },
-          "duration_ms": 8000,
-          "chance": 1
-        },
-        {
-          "effect_id": "skill",
-          "type": "apply_status",
-          "target": "self",
-          "status_id": "awaken_skill_power",
-          "params": {
-            "ratio": 0.043333
-          },
-          "duration_ms": 8000,
-          "chance": 1
-        }
-      ]
-    },
-    {
-      "skill_id": "lord_knight_aura_blade",
-      "rank": 10,
-      "effects": [
-        {
-          "effect_id": "attack",
-          "type": "apply_status",
-          "target": "self",
-          "status_id": "attack_up",
-          "params": {
-            "ratio": 0.25
+            "ratio": 0.24
           },
           "duration_ms": 8000,
           "chance": 1
@@ -440,6 +343,106 @@
       ]
     },
     {
+      "skill_id": "lord_knight_aura_blade",
+      "rank": 5,
+      "effects": [
+        {
+          "effect_id": "attack",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "attack_up",
+          "params": {
+            "ratio": 0.355556
+          },
+          "duration_ms": 8000,
+          "chance": 1
+        },
+        {
+          "effect_id": "critical",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "crit_up",
+          "params": {
+            "ratio": 0.086666
+          },
+          "duration_ms": 8000,
+          "chance": 1
+        },
+        {
+          "effect_id": "critical_damage",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "crit_damage_up",
+          "params": {
+            "ratio": 0.115556
+          },
+          "duration_ms": 8000,
+          "chance": 1
+        },
+        {
+          "effect_id": "skill",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "awaken_skill_power",
+          "params": {
+            "ratio": 0.086666
+          },
+          "duration_ms": 8000,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "skill_id": "lord_knight_aura_blade",
+      "rank": 10,
+      "effects": [
+        {
+          "effect_id": "attack",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "attack_up",
+          "params": {
+            "ratio": 0.5
+          },
+          "duration_ms": 8000,
+          "chance": 1
+        },
+        {
+          "effect_id": "critical",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "crit_up",
+          "params": {
+            "ratio": 0.12
+          },
+          "duration_ms": 8000,
+          "chance": 1
+        },
+        {
+          "effect_id": "critical_damage",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "crit_damage_up",
+          "params": {
+            "ratio": 0.16
+          },
+          "duration_ms": 8000,
+          "chance": 1
+        },
+        {
+          "effect_id": "skill",
+          "type": "apply_status",
+          "target": "self",
+          "status_id": "awaken_skill_power",
+          "params": {
+            "ratio": 0.12
+          },
+          "duration_ms": 8000,
+          "chance": 1
+        }
+      ]
+    },
+    {
       "skill_id": "lord_knight_spiral_pierce",
       "rank": 1,
       "effects": [
@@ -447,7 +450,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foe",
-          "raw_power_at_1000": 1500.0,
+          "raw_power_at_1000": 2090.22,
           "hits": 5
         },
         {
@@ -466,7 +469,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foe",
-          "raw_power_at_1000": 1855.556,
+          "raw_power_at_1000": 2585.68,
           "hits": 5
         },
         {
@@ -485,7 +488,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foe",
-          "raw_power_at_1000": 2300.0,
+          "raw_power_at_1000": 3205.0040000000004,
           "hits": 5
         },
         {
@@ -504,7 +507,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foe",
-          "raw_power_at_1000": 1400.0,
+          "raw_power_at_1000": 2090.221,
           "hits": 5
         },
         {
@@ -527,7 +530,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foe",
-          "raw_power_at_1000": 1844.444,
+          "raw_power_at_1000": 2753.783,
           "hits": 5
         },
         {
@@ -550,7 +553,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foe",
-          "raw_power_at_1000": 2400.0,
+          "raw_power_at_1000": 3583.236,
           "hits": 5
         },
         {
@@ -575,7 +578,7 @@
           "target": "friends",
           "status_id": "guard_up",
           "params": {
-            "ratio": 0.1
+            "ratio": 0.2
           },
           "duration_ms": 8000,
           "chance": 1
@@ -603,7 +606,7 @@
           "target": "friends",
           "status_id": "guard_up",
           "params": {
-            "ratio": 0.144444
+            "ratio": 0.288888
           },
           "duration_ms": 8000,
           "chance": 1
@@ -631,7 +634,7 @@
           "target": "friends",
           "status_id": "guard_up",
           "params": {
-            "ratio": 0.2
+            "ratio": 0.4
           },
           "duration_ms": 8000,
           "chance": 1
@@ -657,7 +660,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foe",
-          "raw_power_at_1000": 6380.0,
+          "raw_power_at_1000": 10450.006,
           "hits": 1
         },
         {
@@ -679,7 +682,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foe",
-          "raw_power_at_1000": 8335.556,
+          "raw_power_at_1000": 13653.074,
           "hits": 1
         },
         {
@@ -701,7 +704,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foe",
-          "raw_power_at_1000": 10780.0,
+          "raw_power_at_1000": 17656.907,
           "hits": 1
         },
         {
@@ -725,7 +728,7 @@
           "target": "friends",
           "status_id": "attack_up",
           "params": {
-            "ratio": 0.3
+            "ratio": 0.6
           },
           "duration_ms": 10000,
           "chance": 1
@@ -736,7 +739,7 @@
           "target": "friends",
           "status_id": "magic_up",
           "params": {
-            "ratio": 0.3
+            "ratio": 0.6
           },
           "duration_ms": 10000,
           "chance": 1
@@ -747,7 +750,7 @@
           "target": "friends",
           "status_id": "awaken_penetration",
           "params": {
-            "ratio": 0.1
+            "ratio": 0.25
           },
           "duration_ms": 10000,
           "chance": 1
@@ -764,7 +767,7 @@
           "target": "friends",
           "status_id": "attack_up",
           "params": {
-            "ratio": 0.388889
+            "ratio": 0.733333
           },
           "duration_ms": 10000,
           "chance": 1
@@ -775,7 +778,7 @@
           "target": "friends",
           "status_id": "magic_up",
           "params": {
-            "ratio": 0.388889
+            "ratio": 0.733333
           },
           "duration_ms": 10000,
           "chance": 1
@@ -786,7 +789,7 @@
           "target": "friends",
           "status_id": "awaken_penetration",
           "params": {
-            "ratio": 0.144444
+            "ratio": 0.338889
           },
           "duration_ms": 10000,
           "chance": 1
@@ -803,7 +806,7 @@
           "target": "friends",
           "status_id": "attack_up",
           "params": {
-            "ratio": 0.5
+            "ratio": 0.9
           },
           "duration_ms": 10000,
           "chance": 1
@@ -814,7 +817,7 @@
           "target": "friends",
           "status_id": "magic_up",
           "params": {
-            "ratio": 0.5
+            "ratio": 0.9
           },
           "duration_ms": 10000,
           "chance": 1
@@ -825,7 +828,7 @@
           "target": "friends",
           "status_id": "awaken_penetration",
           "params": {
-            "ratio": 0.2
+            "ratio": 0.45
           },
           "duration_ms": 10000,
           "chance": 1
@@ -840,7 +843,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foe",
-          "raw_power_at_1000": 1955.0,
+          "raw_power_at_1000": 4650.8,
           "hits": 5
         },
         {
@@ -864,7 +867,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foe",
-          "raw_power_at_1000": 2521.666,
+          "raw_power_at_1000": 5998.857,
           "hits": 5
         },
         {
@@ -888,7 +891,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foe",
-          "raw_power_at_1000": 3230.0,
+          "raw_power_at_1000": 7683.9310000000005,
           "hits": 5
         },
         {
@@ -1032,7 +1035,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foe",
-          "raw_power_at_1000": 1250.0,
+          "raw_power_at_1000": 3049.2,
           "hits": 5
         }
       ]
@@ -1045,7 +1048,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foe",
-          "raw_power_at_1000": 1583.333,
+          "raw_power_at_1000": 3862.319,
           "hits": 5
         }
       ]
@@ -1058,7 +1061,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foe",
-          "raw_power_at_1000": 2000.0,
+          "raw_power_at_1000": 4878.72,
           "hits": 5
         }
       ]
@@ -1071,7 +1074,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foes",
-          "raw_power_at_1000": 3800.0,
+          "raw_power_at_1000": 11293.333999999999,
           "hits": 1
         }
       ]
@@ -1084,7 +1087,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foes",
-          "raw_power_at_1000": 4955.556,
+          "raw_power_at_1000": 14727.565999999999,
           "hits": 1
         }
       ]
@@ -1097,7 +1100,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foes",
-          "raw_power_at_1000": 6400.0,
+          "raw_power_at_1000": 19020.352,
           "hits": 1
         }
       ]
@@ -1151,7 +1154,7 @@
           "target": "friends",
           "status_id": "attack_up",
           "params": {
-            "ratio": 0.14
+            "ratio": 0.294
           },
           "duration_ms": 10000,
           "chance": 1
@@ -1162,7 +1165,7 @@
           "target": "friends",
           "status_id": "magic_up",
           "params": {
-            "ratio": 0.14
+            "ratio": 0.294
           },
           "duration_ms": 10000,
           "chance": 1
@@ -1179,7 +1182,7 @@
           "target": "friends",
           "status_id": "attack_up",
           "params": {
-            "ratio": 0.202222
+            "ratio": 0.424666
           },
           "duration_ms": 10000,
           "chance": 1
@@ -1190,7 +1193,7 @@
           "target": "friends",
           "status_id": "magic_up",
           "params": {
-            "ratio": 0.202222
+            "ratio": 0.424666
           },
           "duration_ms": 10000,
           "chance": 1
@@ -1207,7 +1210,7 @@
           "target": "friends",
           "status_id": "attack_up",
           "params": {
-            "ratio": 0.28
+            "ratio": 0.588
           },
           "duration_ms": 10000,
           "chance": 1
@@ -1218,7 +1221,7 @@
           "target": "friends",
           "status_id": "magic_up",
           "params": {
-            "ratio": 0.28
+            "ratio": 0.588
           },
           "duration_ms": 10000,
           "chance": 1
@@ -1233,7 +1236,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foe",
-          "raw_power_at_1000": 4500.0,
+          "raw_power_at_1000": 4869.702,
           "hits": 1
         },
         {
@@ -1275,7 +1278,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foe",
-          "raw_power_at_1000": 5833.333,
+          "raw_power_at_1000": 6312.576,
           "hits": 1
         },
         {
@@ -1317,7 +1320,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foe",
-          "raw_power_at_1000": 7500.0,
+          "raw_power_at_1000": 8116.17,
           "hits": 1
         },
         {
@@ -1359,7 +1362,7 @@
           "effect_id": "heal",
           "type": "heal",
           "target": "friends",
-          "raw_power_at_1000": 1200.0,
+          "raw_power_at_1000": 8500.0,
           "hits": 1
         },
         {
@@ -1383,7 +1386,7 @@
           "effect_id": "heal",
           "type": "heal",
           "target": "friends",
-          "raw_power_at_1000": 1555.556,
+          "raw_power_at_1000": 10944.444000000001,
           "hits": 1
         },
         {
@@ -1407,7 +1410,7 @@
           "effect_id": "heal",
           "type": "heal",
           "target": "friends",
-          "raw_power_at_1000": 2000.0,
+          "raw_power_at_1000": 14000.0,
           "hits": 1
         },
         {
@@ -1433,7 +1436,7 @@
           "target": "friends",
           "status_id": "defense_up",
           "params": {
-            "ratio": 0.5
+            "ratio": 2.0
           },
           "duration_ms": 10000,
           "chance": 1
@@ -1444,7 +1447,7 @@
           "target": "friends",
           "status_id": "magic_defense_up",
           "params": {
-            "ratio": 0.5
+            "ratio": 2.0
           },
           "duration_ms": 10000,
           "chance": 1
@@ -1461,7 +1464,7 @@
           "target": "friends",
           "status_id": "defense_up",
           "params": {
-            "ratio": 0.722222
+            "ratio": 2.888888
           },
           "duration_ms": 10000,
           "chance": 1
@@ -1472,7 +1475,7 @@
           "target": "friends",
           "status_id": "magic_defense_up",
           "params": {
-            "ratio": 0.722222
+            "ratio": 2.888888
           },
           "duration_ms": 10000,
           "chance": 1
@@ -1489,7 +1492,7 @@
           "target": "friends",
           "status_id": "defense_up",
           "params": {
-            "ratio": 1.0
+            "ratio": 4.0
           },
           "duration_ms": 10000,
           "chance": 1
@@ -1500,7 +1503,7 @@
           "target": "friends",
           "status_id": "magic_defense_up",
           "params": {
-            "ratio": 1.0
+            "ratio": 4.0
           },
           "duration_ms": 10000,
           "chance": 1
@@ -1517,8 +1520,8 @@
           "target": "fate",
           "status_id": "fate_physical",
           "params": {
-            "amount": 400.0,
-            "power_ratio": 0.8
+            "amount": 1200.0,
+            "power_ratio": 1.6
           },
           "duration_ms": 10000,
           "chance": 1,
@@ -1530,8 +1533,8 @@
           "target": "fate",
           "status_id": "fate_magical",
           "params": {
-            "amount": 400.0,
-            "power_ratio": 0.8
+            "amount": 1200.0,
+            "power_ratio": 1.6
           },
           "duration_ms": 10000,
           "chance": 1,
@@ -1549,8 +1552,8 @@
           "target": "fate",
           "status_id": "fate_physical",
           "params": {
-            "amount": 488.889,
-            "power_ratio": 0.8
+            "amount": 1466.667,
+            "power_ratio": 1.6
           },
           "duration_ms": 10000,
           "chance": 1,
@@ -1562,8 +1565,8 @@
           "target": "fate",
           "status_id": "fate_magical",
           "params": {
-            "amount": 488.889,
-            "power_ratio": 0.8
+            "amount": 1466.667,
+            "power_ratio": 1.6
           },
           "duration_ms": 10000,
           "chance": 1,
@@ -1581,8 +1584,8 @@
           "target": "fate",
           "status_id": "fate_physical",
           "params": {
-            "amount": 600.0,
-            "power_ratio": 0.8
+            "amount": 1800.0,
+            "power_ratio": 1.6
           },
           "duration_ms": 10000,
           "chance": 1,
@@ -1594,8 +1597,8 @@
           "target": "fate",
           "status_id": "fate_magical",
           "params": {
-            "amount": 600.0,
-            "power_ratio": 0.8
+            "amount": 1800.0,
+            "power_ratio": 1.6
           },
           "duration_ms": 10000,
           "chance": 1,
@@ -1611,7 +1614,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foe",
-          "raw_power_at_1000": 916.667,
+          "raw_power_at_1000": 2978.447,
           "hits": 6
         }
       ]
@@ -1624,7 +1627,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foe",
-          "raw_power_at_1000": 1175.926,
+          "raw_power_at_1000": 3820.835,
           "hits": 6
         }
       ]
@@ -1637,7 +1640,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foe",
-          "raw_power_at_1000": 1500.0,
+          "raw_power_at_1000": 4873.821000000001,
           "hits": 6
         }
       ]
@@ -1650,7 +1653,7 @@
           "effect_id": "hit",
           "type": "sacrifice_damage",
           "target": "foe",
-          "raw_power_at_1000": 5000.0,
+          "raw_power_at_1000": 12000.0,
           "hits": 1,
           "sacrifice_actual_hp_factor": true
         }
@@ -1664,7 +1667,7 @@
           "effect_id": "hit",
           "type": "sacrifice_damage",
           "target": "foe",
-          "raw_power_at_1000": 6333.333,
+          "raw_power_at_1000": 17777.778000000002,
           "hits": 1,
           "sacrifice_actual_hp_factor": true
         }
@@ -1678,7 +1681,7 @@
           "effect_id": "hit",
           "type": "sacrifice_damage",
           "target": "foe",
-          "raw_power_at_1000": 8000.0,
+          "raw_power_at_1000": 25000.0,
           "hits": 1,
           "sacrifice_actual_hp_factor": true
         }
@@ -1694,7 +1697,7 @@
           "target": "self",
           "status_id": "mystical_focus",
           "params": {
-            "magic": 0.1,
+            "magic": 0.45,
             "critical": 0.03,
             "critical_damage": 0.04
           },
@@ -1713,7 +1716,7 @@
           "target": "self",
           "status_id": "mystical_focus",
           "params": {
-            "magic": 0.144444,
+            "magic": 0.605556,
             "critical": 0.043333,
             "critical_damage": 0.057778
           },
@@ -1732,7 +1735,7 @@
           "target": "self",
           "status_id": "mystical_focus",
           "params": {
-            "magic": 0.2,
+            "magic": 0.8,
             "critical": 0.06,
             "critical_damage": 0.08
           },
@@ -1749,7 +1752,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foes",
-          "raw_power_at_1000": 1360.0,
+          "raw_power_at_1000": 3290.2239999999997,
           "hits": 5
         },
         {
@@ -1774,7 +1777,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foes",
-          "raw_power_at_1000": 1775.555,
+          "raw_power_at_1000": 4295.568,
           "hits": 5
         },
         {
@@ -1799,7 +1802,7 @@
           "effect_id": "hit",
           "type": "damage",
           "target": "foes",
-          "raw_power_at_1000": 2295.0,
+          "raw_power_at_1000": 5552.252,
           "hits": 5
         },
         {
@@ -1826,9 +1829,9 @@
           "target": "self",
           "status_id": "bolt_echo",
           "params": {
-            "chance2": 0.3,
-            "chance3": 0.1,
-            "chance4": 0
+            "chance2": 0.6,
+            "chance3": 0.3,
+            "chance4": 0.0
           },
           "duration_ms": 10000,
           "chance": 1
@@ -1845,9 +1848,9 @@
           "target": "self",
           "status_id": "bolt_echo",
           "params": {
-            "chance2": 0.388889,
-            "chance3": 0.166667,
-            "chance4": 0
+            "chance2": 0.644444,
+            "chance3": 0.366667,
+            "chance4": 0.0
           },
           "duration_ms": 10000,
           "chance": 1
@@ -1864,9 +1867,9 @@
           "target": "self",
           "status_id": "bolt_echo",
           "params": {
-            "chance2": 0.5,
-            "chance3": 0.25,
-            "chance4": 0
+            "chance2": 0.7,
+            "chance3": 0.45,
+            "chance4": 0.0
           },
           "duration_ms": 10000,
           "chance": 1
@@ -1883,7 +1886,7 @@
           "target": "foes",
           "status_id": "psychic_field",
           "params": {
-            "power_ratio": 1.0,
+            "power_ratio": 2.542359,
             "penetration": 0
           },
           "duration_ms": 6000,
@@ -1912,7 +1915,7 @@
           "target": "foes",
           "status_id": "psychic_field",
           "params": {
-            "power_ratio": 1.266667,
+            "power_ratio": 3.220322,
             "penetration": 0
           },
           "duration_ms": 6000,
@@ -1941,7 +1944,7 @@
           "target": "foes",
           "status_id": "psychic_field",
           "params": {
-            "power_ratio": 1.6,
+            "power_ratio": 4.067774,
             "penetration": 0
           },
           "duration_ms": 6000,

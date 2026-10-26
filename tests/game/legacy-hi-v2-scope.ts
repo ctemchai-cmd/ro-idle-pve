@@ -1,3 +1,4 @@
+import{withoutHierarchySkillTree}from'./legacy-workshop-scope.ts';
 import{withoutD172Document}from'./legacy-high-gear-scope.ts';
 import{readFileSync}from'node:fs';import{gunzipSync}from'node:zlib';
 import spec from'../../plan/generators/hi-class-v2.json';import bindings from'../../scripts/modern-icon-bindings.json';
@@ -6,7 +7,7 @@ const all=Object.values(frozen.documents).filter((d:any)=>d.hi_class_skills)as a
 /** Restore only explicitly authorized D169 fields for historical guards. New tests
  * independently assert literal mechanics, costs and all other source documents. */
 export function withoutD169Hi<T>(value:T):T{
- const copy=structuredClone(value);
+ const copy=withoutHierarchySkillTree(value);
  function visit(n:any){if(!n||typeof n!=='object')return;if(Array.isArray(n)){n.forEach(visit);return;}
   const patch=spec.updates[n.id as keyof typeof spec.updates];if(patch&&n.level_parameters){const aw=n.tags.includes('awakened'),d=all.find(d=>d.hi_class_skills.some((s:any)=>s.id===n.id)),old=aw?d.awakened_variants[n.id]:d.hi_class_skills.find((s:any)=>s.id===n.id);for(const k of Object.keys(aw?patch.awakened:patch.base)){if(k in old)n[k]=structuredClone(old[k]);else delete n[k];}}
   Object.values(n).forEach(visit);

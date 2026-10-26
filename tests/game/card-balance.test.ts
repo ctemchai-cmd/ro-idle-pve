@@ -1,3 +1,4 @@
+import {withoutWorkshopDocument,withoutWorkshopPack} from './legacy-workshop-scope.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -20,8 +21,8 @@ function input(ids:string[]=[],level=1){const a=actor('a','player');a.stat_bluep
 const stats=(ids:string[]=[],level=1)=>resolveStats(input(ids,level).stat_blueprint,content);
 test('D183 changes only card power fields and authoring growth policy; all80 identities/art/slots/rarities/costs and all non-card gameplay stay exact',()=>{
  const before=beforeD183['plan/data/cards.json'];assert.deepEqual(withoutD183Document('cards.json',content.documents['cards.json']),before);
- for(const p of['gacha','loot','equipment','slot-progress','economy','progression','strings.th'])assert.deepEqual(JSON.parse(readFileSync('plan/data/'+p+'.json','utf8')),beforeD183['plan/data/'+p+'.json'],p);
- assert.deepEqual(JSON.parse(readFileSync('runtime/ro/manifest.json','utf8')),beforeD183['runtime/ro/manifest.json']);
+ for(const p of['gacha','loot','equipment','slot-progress','economy','progression','strings.th'])assert.deepEqual(withoutWorkshopDocument(p+'.json',JSON.parse(readFileSync('plan/data/'+p+'.json','utf8'))),beforeD183['plan/data/'+p+'.json'],p);
+ assert.deepEqual(withoutWorkshopPack(JSON.parse(readFileSync('runtime/ro/manifest.json','utf8'))),beforeD183['runtime/ro/manifest.json']);
  const policy=JSON.parse(readFileSync('plan/generators/build-impact-spec.json','utf8'));assert.equal(policy.card_growth_multiplier,.3);delete policy.card_growth_multiplier;assert.deepEqual(policy,beforeD183['plan/generators/build-impact-spec.json']);
 });
 test('D183 single Lv1 generic attack budgets are meaningful without the prior35–45% outliers; flat bonuses still grow at Lv5',()=>{

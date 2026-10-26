@@ -2935,6 +2935,231 @@
         "content_hash"
       ],
       "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "equipment.option_roll"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "item_instance_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "option_index": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 4
+            },
+            "expected_option": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120
+                },
+                "roll": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000
+                }
+              },
+              "required": [
+                "id",
+                "roll"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "item_instance_id",
+            "option_index",
+            "expected_option"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "equipment.option_decide"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "item_instance_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "accept": {
+              "type": "boolean"
+            },
+            "roll_id": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "required": [
+            "item_instance_id",
+            "accept",
+            "roll_id"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "equipment.rarity_up"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "item_instance_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "expected_rarity": {
+              "enum": [
+                "common",
+                "uncommon",
+                "rare",
+                "epic",
+                "legendary",
+                "immortal",
+                "supreme"
+              ]
+            }
+          },
+          "required": [
+            "item_instance_id",
+            "expected_rarity"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
     }
   ]
 }

@@ -1,3 +1,4 @@
+import {workshopBytes} from './legacy-workshop-scope.ts';
 import{withoutD180Document}from'./legacy-mvp-magic-scope.ts';
 import bundle from '../../src/generated/content.json';
 // D179 mechanical checks, not a balance calibration or owner-save operation.
@@ -50,7 +51,7 @@ test('D179 adds exactly5 real identities; all73 prior definitions, presentations
  assert.equal(cards.definitions.length,78);assert.deepEqual(cards.definitions.filter((d:any)=>!ids.includes(d.id)),old.definitions);
  for(const key of['presentations','origins','monster_traits'])if(Array.isArray(old[key]))for(const row of old[key])assert.deepEqual(cards[key].find((r:any)=>r.id===row.id),row);else for(const[id,value]of Object.entries(old[key]))assert.deepEqual(cards[key][id],value);
  for(const[key,value]of Object.entries(old))if(!['definitions','presentations','origins','monster_traits','content_version','catalog_basis'].includes(key))assert.deepEqual(cards[key],value,key);
- const unchanged=JSON.parse(readFileSync('plan/evidence/task-155/unchanged-before.json','utf8'));for(const[file,sha]of Object.entries(unchanged))assert.equal(createHash('sha256').update(readFileSync(file)).digest('hex'),sha,file);
+ const unchanged=JSON.parse(readFileSync('plan/evidence/task-155/unchanged-before.json','utf8'));for(const[file,sha]of Object.entries(unchanged))assert.equal(createHash('sha256').update(workshopBytes(file)).digest('hex'),sha,file);
  for(const id of ids){const d=content.items[id]!;assert.equal(d.kind,'card');assert(d.presentation_id);assert.equal((d as unknown as ItemDefinition).triggers.length,0);}
 });
 test('D179 equipped Scaraba/Agav raise actual M.ATK; general magic-damage cards leave M.ATK and healing power alone',()=>{

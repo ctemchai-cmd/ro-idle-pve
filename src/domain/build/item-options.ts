@@ -12,8 +12,8 @@ export const optionRules = (content: ValidatedContent) => content.documents['equ
  * D-062 random option lines rolled when an item is created (drop, fusion, gacha). `draw` must be a
  * server-owned deterministic RNG; each line costs two draws (pool pick, value roll). Stats never repeat on one item.
  */
-export function rollItemOptions(rarity: EquipmentItem['rarity_id'], draw: () => number, content: ValidatedContent): ItemOptions {
-  const rules = optionRules(content), lines = rules.lines_by_rarity[rarity] ?? 0, picked: ItemOption[] = [], used = new Set<string>();
+export function rollItemOptions(rarity: EquipmentItem['rarity_id'], draw: () => number, content: ValidatedContent, selection?: { count: number; excluded_stats: readonly string[] }): ItemOptions {
+  const rules = optionRules(content), lines = selection?.count ?? rules.lines_by_rarity[rarity] ?? 0, picked: ItemOption[] = [], used = new Set<string>(selection?.excluded_stats);
   for (let line = 0; line < lines; line++) {
     const pool = rules.pool.filter(row => !rules.unique_stat_per_item || !used.has(row.stat)), total = pool.reduce((sum, row) => sum + row.weight, 0);
     if (!pool.length || total <= 0) break;

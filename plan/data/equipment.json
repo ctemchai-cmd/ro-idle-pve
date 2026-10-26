@@ -8931,5 +8931,58 @@
     ]
   },
   "future_definitions": [],
-  "build_impact_note": "D-103: authored role modifiers and two damage options; old rolls, base stats, rarity, costs and ownership unchanged. Trial balance, not PCRO values."
+  "build_impact_note": "D-103: authored role modifiers and two damage options; old rolls, base stats, rarity, costs and ownership unchanged. Trial balance, not PCRO values.",
+  "crafting": {
+    "materials": {
+      "option_stone": {
+        "name": "หินรีโรลออปชัน",
+        "icon": "option_stone"
+      },
+      "rarity_stone": {
+        "name": "หินเลื่อน Rarity",
+        "icon": "rarity_stone"
+      }
+    },
+    "option_roll_cost": {
+      "option_stone": 1
+    },
+    "rarity_steps": [
+      {
+        "from": "common",
+        "to": "uncommon",
+        "stones": 1,
+        "gold": 2000
+      },
+      {
+        "from": "uncommon",
+        "to": "rare",
+        "stones": 1,
+        "gold": 4000
+      },
+      {
+        "from": "rare",
+        "to": "epic",
+        "stones": 2,
+        "gold": 8000
+      },
+      {
+        "from": "epic",
+        "to": "legendary",
+        "stones": 4,
+        "gold": 16000
+      },
+      {
+        "from": "legendary",
+        "to": "immortal",
+        "stones": 12,
+        "gold": 40000
+      },
+      {
+        "from": "immortal",
+        "to": "supreme",
+        "stones": 30,
+        "gold": 100000
+      }
+    ]
+  }
 }
