@@ -1,3 +1,4 @@
+import{withoutD180Document}from'./legacy-mvp-magic-scope.ts';
 import bundle from '../../src/generated/content.json';
 // D179 mechanical checks, not a balance calibration or owner-save operation.
 import test from 'node:test';
@@ -45,7 +46,7 @@ function hit(a=actor('a','player'),type:'magical'|'physical'|'true'='magical',or
  p.program([effect],c);p.drain();return{damage:state.actors[1]!.stats.max_hp-state.actors[1]!.hp,state,before,events};
 }
 test('D179 adds exactly5 real identities; all73 prior definitions, presentations, origins and monster traits are unchanged',()=>{
- const cards=content.documents['cards.json'] as any;
+ const cards=withoutD180Document('cards.json',content.documents['cards.json']) as any;
  assert.equal(cards.definitions.length,78);assert.deepEqual(cards.definitions.filter((d:any)=>!ids.includes(d.id)),old.definitions);
  for(const key of['presentations','origins','monster_traits'])if(Array.isArray(old[key]))for(const row of old[key])assert.deepEqual(cards[key].find((r:any)=>r.id===row.id),row);else for(const[id,value]of Object.entries(old[key]))assert.deepEqual(cards[key][id],value);
  for(const[key,value]of Object.entries(old))if(!['definitions','presentations','origins','monster_traits','content_version','catalog_basis'].includes(key))assert.deepEqual(cards[key],value,key);

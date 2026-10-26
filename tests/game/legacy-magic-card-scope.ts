@@ -1,3 +1,4 @@
+import{withoutD180Document,mvpMagicIds}from'./legacy-mvp-magic-scope.ts';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
@@ -6,13 +7,13 @@ const frozen=(name:string)=>JSON.parse(readFileSync(`plan/evidence/task-155/befo
 /** Historical renderer/gear checks keep their original oracle. Remove only the
  * five explicitly tested D179 additions, never unrelated existing definitions. */
 export function withoutD179Document<T>(key:string,value:T):T{
- const c=structuredClone(value) as any;
+ const c=withoutD180Document(key,value) as any;
  if(key==='cards.json'){
   c.definitions=c.definitions.filter((r:any)=>!magicCardIds.includes(r.id));c.presentations=c.presentations.filter((r:any)=>!magicCardIds.some(id=>r.id===`visual_${id}`));
   for(const id of magicCardIds)delete c.origins[id];for(const id of['horn_scaraba','necromancer','agav','siroma','imp'])delete c.monster_traits[id];
   const old=frozen('cards');c.content_version=old.content_version;c.catalog_basis=old.catalog_basis;
  }
- if(key==='gacha.json'){const old=frozen('gacha');c.definitions=c.definitions.filter((id:string)=>!magicCardIds.includes(id));for(const id of magicCardIds)delete c.definition_weights[id];c.definition_choice=old.definition_choice;}
+ if(key==='gacha.json'){const old=frozen('gacha');c.definitions=c.definitions.filter((id:string)=>![...magicCardIds,...mvpMagicIds].includes(id));for(const id of magicCardIds)delete c.definition_weights[id];c.definition_choice=old.definition_choice;}
  if(key==='strings.th.json')for(const id of magicCardIds)delete c.strings[id];
  return c;
 }
@@ -28,12 +29,12 @@ export function assertD179File(file:string,expected:unknown){
  else assert.equal(createHash('sha256').update(readFileSync(file)).digest('hex'),expected,file);
 }
 export function assertD179Media(file:string,expected:string){
- const audit=JSON.parse(readFileSync('plan/evidence/task-155/lossless.json','utf8')),row=audit.entries.find((r:any)=>'assets/ro/'+r.path===file);
+ const rows=[...JSON.parse(readFileSync('plan/evidence/task-155/lossless.json','utf8')).entries,...JSON.parse(readFileSync('plan/evidence/task-156/lossless.json','utf8')).entries],row=rows.find((r:any)=>'assets/ro/'+r.path===file);
  if(row){assert.equal(row.before_sha,expected,file+' original bytes');assert.equal(createHash('sha256').update(readFileSync(file)).digest('hex'),row.after_sha,file+' exact-RGBA recompression');}
  else assert.equal(createHash('sha256').update(readFileSync(file)).digest('hex'),expected,file);
 }
 export function withoutD179FarmCards<T>(value:T):T{
  const c=structuredClone(value) as any;if(!c)return c;
- c.definition_pool=c.definition_pool.filter((id:string)=>!magicCardIds.includes(id));
- for(const id of magicCardIds){delete c.definition_weights[id];if(c.definition_rarities)delete c.definition_rarities[id];}return c;
+ c.definition_pool=c.definition_pool.filter((id:string)=>![...magicCardIds,...mvpMagicIds].includes(id));
+ for(const id of [...magicCardIds,...mvpMagicIds]){delete c.definition_weights[id];if(c.definition_rarities)delete c.definition_rarities[id];}return c;
 }

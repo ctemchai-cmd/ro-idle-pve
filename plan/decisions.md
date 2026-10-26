@@ -371,3 +371,7 @@ D174ล่าสุด: ผู้ใช้ขอวิถีเด้งเร�
 ## D179 — 26 ตุลาคม2026
 
 ผู้ใช้รู้สึกการ์ดMAtkน้อย;ตรวจพบ3positiveMAtkvs13PATK. ยืนยันผสมMAtk/เจาะMDef และคำขอล่าสุดเปลี่ยนโบนัสเฉพาะBoltเป็นดาเมจเวททั่วไป. Siroma/Impใช้outgoing_magical_bonusเดิมพร้อมลดrawเหลือ10%/15%ก่อนpower/rarity/level. Authored5cardbaselineและtypedprofilesตามdesign68/TASK155.
+
+## D180 — 26 ตุลาคม2026
+
+ผู้ใช้ขอเพิ่มการ์ดเวทอีก2ใบและเน้นระดับสูงพร้อมเทียบPAtk/MAtk. เลือกFallen Bishop4441/Time Holder4625,Legendary/MATK-SPtradeoffจากRO ตามdesign69/TASK156. ไม่แก้78เก่าหรือเพิ่มrates.

@@ -6,9 +6,9 @@
   "scope": "M0 schema, metadata refs, ownership contract, hand arithmetic and invalid fusion cases; not game inventory execution",
   "input_sha256": {
     "plan/data/equipment.json": "ee6ce82a991d98a99d40ec7e661b3de3b8d0a629e78d91cd8d9ea500e53cb344",
-    "plan/data/cards.json": "1728a478b0ebdf1cb9b459b6ccb5a7fda058594d074eacbc7ffe2bc378786734",
+    "plan/data/cards.json": "e7d4f4111b985a5d8df37dbac6eccbe6fb1f2e327bf9437594ec07258a7a8f08",
     "plan/data/slot-progress.json": "f38f3fe6956c4902cf7e0f15d078cc8460a4f00fe36289952760d5d2f151a8fe",
-    "plan/checks/equipment.py": "408a6c8d77f0b3f81f789944f752e27f207b183b5a87d7cd86a7a1e1870c677f"
+    "plan/checks/equipment.py": "a76746ebadd8ff4e6cae7457132801d72466916f4179b80cbba18d8b2a4998e7"
   },
   "checks": [
     {
@@ -3834,6 +3834,32 @@
       }
     },
     {
+      "case_id": "card_fallen_bishop",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.card-4441",
+        "tier": 60
+      }
+    },
+    {
+      "case_id": "card_time_holder",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.card-4625",
+        "tier": 60
+      }
+    },
+    {
       "case_id": "coverage_and_rarity",
       "acceptance": [
         "AC-01",
@@ -3914,11 +3940,11 @@
       ],
       "passed": true,
       "result": {
-        "definitions": 78,
+        "definitions": 80,
         "source_grades": {
           "normal": 54,
           "mini": 4,
-          "mvp": 20
+          "mvp": 22
         },
         "card_instance_level_max": 5,
         "max_upgrade_dust": 300,

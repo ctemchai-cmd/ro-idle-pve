@@ -31,10 +31,10 @@ function pipeline(id?:string,overrides:Modifier[]=[]){const state=checkpoint(bat
 const damage=(type:'physical'|'magical'|'true'='physical',element='neutral'):Effect=>({id:'hit',type:'damage',target:'target',formula:{id:'flat_power',params:{amount:1000}},damage_type:type,element:element as 'neutral',hit_rule:'always',can_crit:false,hits:1,armor_rule:'normal'});
 function incoming(f:ReturnType<typeof pipeline>,effect:Effect){const c=f.p.context(f.state.actors[1]!,'test','skill','root');c.selected={target:[f.state.actors[0]!]};f.p.program([effect],c);f.p.drain();return f.state.actors[0]!.stats.max_hp-f.state.actors[0]!.hp;}
 
-test('78 RO definitions with71 native portraits preserve all 60 legacy IDs, correct slots, exact art IDs and distinct source grades',()=>{
- const origins=cardOrigins(content),defs=Object.values(content.items).filter(i=>i.kind==='card');assert.equal(defs.length,78);assert.equal(new Set(spec.cards.map((c:{ro_item_id:number})=>c.ro_item_id)).size,71);
+test('80 RO definitions with73 native portraits preserve all 60 legacy IDs, correct slots, exact art IDs and distinct source grades',()=>{
+ const origins=cardOrigins(content),defs=Object.values(content.items).filter(i=>i.kind==='card');assert.equal(defs.length,80);assert.equal(new Set(spec.cards.map((c:{ro_item_id:number})=>c.ro_item_id)).size,73);
  const legacy=JSON.parse(readFileSync('plan/evidence/task-073-legacy-ids.json','utf8')) as string[];assert.equal(legacy.length,60);assert.ok(legacy.every(id=>content.items[id]?.kind==='card'));
- assert.deepEqual(Object.values(origins).reduce((r,o)=>(r[o.grade]++,r),{normal:0,mini:0,mvp:0}),{normal:54,mini:4,mvp:20});
+ assert.deepEqual(Object.values(origins).reduce((r,o)=>(r[o.grade]++,r),{normal:0,mini:0,mvp:0}),{normal:54,mini:4,mvp:22});
  for(const row of spec.cards){const d=content.items[row.id]!;assert.equal(d.slot,row.slot);assert.equal(origins[row.id]!.ro_item_id,row.ro_item_id);const meta=JSON.parse(readFileSync(`assets/ro/items/card-${row.ro_item_id}.meta.json`,'utf8'));assert.equal(meta.id,`items.card-${row.ro_item_id}`);assert.equal(meta.kind,'card_illustration');assert.equal(meta.file.width,300);assert.equal(meta.file.height,400);}
  for(const[id,slot]of Object.entries({card_zerom:'accessory',card_andre:'weapon',card_lunatic:'weapon',card_raydric:'garment',card_sohee:'shoes',card_maya:'armor'}))assert.equal(content.items[id]!.slot,slot);
  assert.equal(origins.card_abysmal_knight!.grade,'normal');assert.equal(origins.card_garm!.monster_name,'Hatii');
@@ -90,7 +90,7 @@ test('Hydra target bonus requires a physical hit against the matching race; its 
 test('farm profile improves stage chance/quality, gates Mini/MVP, retains earlier cards and favors current tiers',()=>{
  const stages=storyStages(content),origins=cardOrigins(content);let chance=0;
  for(let i=0;i<stages.length;i++){const s=farming(stages[i]!.id),p=s.farm.rate_snapshot!.card_drops!;assert.ok(p.chance_per_million>=chance);chance=p.chance_per_million;assert.equal(Object.keys(p.definition_rarities!).length,p.definition_pool.length);assert.ok(p.definition_pool.every(id=>origins[id]!.grade==='normal'||stages[i]!.chapter>=(origins[id]!.variant==='puppet'?3:origins[id]!.grade==='mini'?2:6)));}
- const first=farming().farm.rate_snapshot!.card_drops!,last=farming(stages.at(-1)!.id).farm.rate_snapshot!.card_drops!;assert.equal(first.chance_per_million,10000);assert.equal(last.chance_per_million,20000);assert.equal(last.definition_rarities!.card_baphomet,'legendary');assert.equal(last.definition_pool.length,78);assert.ok(last.definition_pool.some(id=>origins[id]!.grade==='mvp'));assert.throws(()=>farmCardProfile(1,1,-1,130,content));
+ const first=farming().farm.rate_snapshot!.card_drops!,last=farming(stages.at(-1)!.id).farm.rate_snapshot!.card_drops!;assert.equal(first.chance_per_million,10000);assert.equal(last.chance_per_million,20000);assert.equal(last.definition_rarities!.card_baphomet,'legendary');assert.equal(last.definition_pool.length,80);assert.ok(last.definition_pool.some(id=>origins[id]!.grade==='mvp'));assert.throws(()=>farmCardProfile(1,1,-1,130,content));
  assert.equal(weightedChoice(['a','b'],{a:9,b:1},.8999),'a');assert.equal(weightedChoice(['a','b'],{a:9,b:1},.9),'b');assert.throws(()=>weightedChoice(['a'],{a:1},1));
  let draws=0;assert.equal(farmCardDrop(first,()=>{draws++;return .9;},content),null);assert.equal(draws,1);assert.ok(farmCardDrop(first,()=>0,content));
 });

@@ -28,15 +28,15 @@ function fixture(mutate: (state: AccountState) => void = () => {}, startIso = '2
 }
 
 // --- TASK-037 card gacha -------------------------------------------------------------------------------
-test('T037 AC-01: D109 fixed monster cards use all78 identities at50/25/20/2/3 for 100/1000 crystal, with no pet/artifact outcomes', () => {
+test('T037 AC-01: D109 fixed monster cards use all80 identities at50/25/20/2/3 for 100/1000 crystal, with no pet/artifact outcomes', () => {
   const pool = content.documents['gacha.json'] as unknown as { definitions: string[]; quality_weights: Record<string, number>; disabled_pools: string[] };
-  assert.equal(pool.definitions.length, 78); assert.deepEqual(pool.quality_weights, {common:500000,uncommon:250000,rare:200000,epic:20000,legendary:30000,immortal:0,supreme:0});
+  assert.equal(pool.definitions.length, 80); assert.deepEqual(pool.quality_weights, {common:500000,uncommon:250000,rare:200000,epic:20000,legendary:30000,immortal:0,supreme:0});
   assert.deepEqual(pullCost('card_v1', 1, content), { crystal: 100 }); assert.deepEqual(pullCost('card_v1', 10, content), { crystal: 1000 });
   const draws = () => { let n = 0; return () => (n++ * 0.137) % 1; };
   const early = fixture().state, items = pullCards(early, 10, draws(), 'probe', content);
   assert.ok(items.every(item => item.kind === 'card' && pool.definitions.includes(item.definition_id) ), 'all cards come from the fixed-monster catalog');
   const late = fixture(s => { s.story.cleared_stage_ids = storyStages(content).filter(st => st.chapter <= 5).map(st => st.id); }).state, lateItems = pullCards(late, 10, draws(), 'late', content);
-  assert.deepEqual(lateItems.map(i=>[i.definition_id,i.rarity_id]),items.map(i=>[i.definition_id,i.rarity_id]),'card gacha uses all78 identities; equipment tier remains gear-only'); assert.deepEqual(pool.disabled_pools, ['pet', 'artifact']);
+  assert.deepEqual(lateItems.map(i=>[i.definition_id,i.rarity_id]),items.map(i=>[i.definition_id,i.rarity_id]),'card gacha uses all80 identities; equipment tier remains gear-only'); assert.deepEqual(pool.disabled_pools, ['pet', 'artifact']);
 });
 
 test('T037 AC-02: a pull debits crystal, adds cards and moves pity atomically; 99 crystal changes nothing', () => {

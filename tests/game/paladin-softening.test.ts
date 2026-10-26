@@ -17,7 +17,7 @@ test('D142 all7Paladin mappings are exact source bytes in exported metadata andr
  for(const[id,n]of Object.entries(choices)){
   const path=`assets/modern/skill/paladin/${n}.webp`,source=readFileSync(path),meta=read(`assets/ro/skills/modern-${id}.meta.json`);
   assert.equal(mapping.find((r:{target:string})=>r.target===id).path,path);assert.equal(meta.source.local_path,path);assert.equal(meta.file.sha256,hash(source));assert.deepEqual(readFileSync('assets/ro/'+meta.file.path),source);assert.equal(meta.visual_review.status,'reviewed_static');
-  const asset=pack.assets[pack.presentations[pack.skills[id].presentation_id].icon_asset_id],file=pack.files.find((f:{path:string})=>f.path===asset.media_path);assert.equal(file.sha256,hash(source));
+  const presentation=pack.presentations[pack.skills[id].presentation_id],asset=Object.values(pack.assets).find((a:any)=>a.meta_path===presentation.icon_meta_path.replace('assets/ro/','')) as any,file=pack.files.find((f:{path:string})=>f.path===asset.media_path);assert.equal(file.sha256,hash(source));
  }
  for(const[p,digest]of Object.entries(before.all_player_skill_documents_sha256))assert.equal(sha(JSON.parse(legacyClass2Source(p).toString())),digest,p);
 });

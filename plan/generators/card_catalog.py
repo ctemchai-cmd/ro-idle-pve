@@ -20,4 +20,4 @@ def build(previous):
         for key in ['variant', 'parent_card_id']:
             if key in row: origins[cid][key] = row[key]
         names[cid] = row['name']
-    return {**previous, 'content_version': 'cards-ro-v5-magic', 'catalog_basis': 'D-099 RO identities; D-109 fixed rarity; D-122 distinct Puppet variants; D179 five magic cards with typed conditional bonuses', 'definitions': definitions, 'presentations': presentations, 'origins': origins, 'monster_traits': {**previous.get('monster_traits', {}), **spec['monster_traits']}, 'rarity_policy': spec['rarity_policy']}, names
+    return {**previous, 'content_version': 'cards-ro-v6-mvp-magic', 'catalog_basis': 'D-099 RO identities; D-109 fixed rarity; D-122 distinct Puppet variants; D179 five magic cards with typed conditional bonuses; D180 two Legendary MATK/SP tradeoff cards', 'definitions': definitions, 'presentations': presentations, 'origins': origins, 'monster_traits': {**previous.get('monster_traits', {}), **spec['monster_traits']}, 'rarity_policy': spec['rarity_policy']}, names

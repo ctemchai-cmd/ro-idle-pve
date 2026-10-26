@@ -72,7 +72,7 @@ def content_refs():
   for value in c.walk(data):
    if isinstance(value,(int,float)) and not isinstance(value,bool):assert math.isfinite(value) and abs(value)<=9007199254740991,(file,value)
  golden=load(D/'skill-program-cases.json')['cases'];assert len(golden)==378 and {r['skill_id'] for r in golden}=={s['id'] for s in skilldefs}
- return {'skills':126,'builds':26,'equipment':144,'cards':78,'golden_raw_intents':378,'notes':'golden fixtures not executed TS battles; manifest implementation not built'}
+ return {'skills':126,'builds':26,'equipment':144,'cards':80,'golden_raw_intents':378,'notes':'golden fixtures not executed TS battles; manifest implementation not built'}
 check('complete_content_refs_names_versions',['AC-02','AC-03'],content_refs)
 def actor_assets():
  progression=load(D/'progression.json');actors=load(D/'actor-presentations.json');jobs=actors['jobs'];expected={x for root,bs in progression['class_tree'].items() for x in [root,*bs]};hi=progression['promotion']['hi_class_enabled']
@@ -88,8 +88,8 @@ def actor_assets():
     if ref:assert asset_reference('assets/ro/'+ref['meta'])['id']==ref['id']
    count+=1
  assert count==(60 if hi else 36)
- cards=load(D/'cards.json');symbols={asset_reference(x['symbol_meta_path'])['file']['sha256'] for x in cards['presentations']};assert len(symbols)==71
- return {'jobs':len(jobs),'presets':count,'card_portrait_media':71,'scope':'selected sidecar/media integrity only, not new visual review or runtime closure pack'}
+ cards=load(D/'cards.json');symbols={asset_reference(x['symbol_meta_path'])['file']['sha256'] for x in cards['presentations']};assert len(symbols)==73
+ return {'jobs':len(jobs),'presets':count,'card_portrait_media':73,'scope':'selected sidecar/media integrity only, not new visual review or runtime closure pack'}
 check('actor_and_presentation_references',['AC-03'],actor_assets)
 def matrix():
  cases=load(D/'acceptance-cases.json')['cases'];assert len({r['id'] for r in cases})==len(cases)

@@ -862,3 +862,11 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T155-AC-01` | TASK-155 | design68/AC01 | data/engine/native/build/public | passed_implementation |
 | `T155-AC-02` | TASK-155 | design68/AC02 | data/engine/native/build/public | passed_implementation |
 | `T155-AC-03` | TASK-155 | design68/AC03 | data/engine/native/build/public | passed_implementation |
+
+## TASK-156 — การ์ดเวท MVP
+
+| Case | Task | Expected | Verification | Status |
+| --- | --- | --- | --- | --- |
+| `T156-AC-01` | TASK-156 | design69/AC01 | data/engine/native/build/public | not_run_implementation |
+| `T156-AC-02` | TASK-156 | design69/AC02 | data/engine/native/build/public | not_run_implementation |
+| `T156-AC-03` | TASK-156 | design69/AC03 | data/engine/native/build/public | not_run_implementation |

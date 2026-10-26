@@ -28,6 +28,16 @@ def sha(data):
 def encoded(data):
     return json.dumps(data, ensure_ascii=False, sort_keys=True, separators=(',', ':'), allow_nan=False).encode()
 
+def runtime_presentations(presentations):
+    """The renderer resolves icons by meta path; authoring provenance stays in source.
+
+    These two fields are not part of RuntimeAssetIndex.SkillPresentation. Keep
+    every actual visual/audio/recipe field, and never alter source sidecars.
+    """
+    return {key: {field: value for field, value in row.items()
+                  if field not in ('provenance', 'icon_asset_id')}
+            for key, row in presentations.items()}
+
 def compact_metadata(value):
     """Same JSON.parse values; integral JSON numbers have no float/int distinction.
 
@@ -238,7 +248,7 @@ def build(output=OUT, data_root=DATA, ro_root=RO):
         'schema_version': 1, 'sidecar_encoding': SIDECAR_ENCODING, 'asset_selection_hash': selection_hash,
         'assets': records, 'files': [files[k] for k in sorted(files)],
         'actor_jobs': docs['actor-presentations.json']['jobs'],
-        'skills': skills, 'presentations': presentations,
+        'skills': skills, 'presentations': runtime_presentations(presentations),
         'combat_visuals': read(COMBAT_VISUALS), 'shell': shell,
         'recipes': selected_recipes, 'audio_events': prepared['audio_events'], 'font': prepared['font'],
         'initial_profile': {'id': 'four_class1_male_first_story_muted', 'files': sorted(initial_files), 'skill_ids': sorted(initial_skills), 'music': 'lazy after user enables audio'},

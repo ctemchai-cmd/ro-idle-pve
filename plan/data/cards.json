@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "content_version": "cards-ro-v5-magic",
+  "content_version": "cards-ro-v6-mvp-magic",
   "definitions": [
     {
       "id": "card_weapon_1",
@@ -2757,6 +2757,60 @@
       ],
       "triggers": [],
       "presentation_id": "visual_card_imp"
+    },
+    {
+      "id": "card_fallen_bishop",
+      "name_key": "card_fallen_bishop",
+      "kind": "card",
+      "slot": "shoes",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.25
+        },
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": -0.15
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_fallen_bishop"
+    },
+    {
+      "id": "card_time_holder",
+      "name_key": "card_time_holder",
+      "kind": "card",
+      "slot": "weapon",
+      "weapon_type": null,
+      "tier_level": 60,
+      "required_level": 60,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.2
+        },
+        {
+          "id": "sp_cost_percent",
+          "stat": "sp_cost_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.1
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_time_holder"
     }
   ],
   "presentations": [
@@ -3695,6 +3749,30 @@
       "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
       "card_face_style": "native_ro_card",
       "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_fallen_bishop",
+      "icon_asset_id": "items.card-4441",
+      "meta_path": "assets/ro/items/card-4441.meta.json",
+      "illustration_asset_id": "items.card-4441",
+      "illustration_meta_path": "assets/ro/items/card-4441.meta.json",
+      "symbol_asset_id": "items.card-4441",
+      "symbol_meta_path": "assets/ro/items/card-4441.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_time_holder",
+      "icon_asset_id": "items.card-4625",
+      "meta_path": "assets/ro/items/card-4625.meta.json",
+      "illustration_asset_id": "items.card-4625",
+      "illustration_meta_path": "assets/ro/items/card-4625.meta.json",
+      "symbol_asset_id": "items.card-4625",
+      "symbol_meta_path": "assets/ro/items/card-4625.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
     }
   ],
   "level_multipliers": [
@@ -3786,7 +3864,7 @@
   "gacha_duplicates": "always distinct card instances so several characters can equip copies; user may consume only unequipped unlocked instances into card_dust for upgrades",
   "resolve_rule": "Fixed monster rarity multiplier × instance level. Migrated legacy_quality retains its old power/salvage floor if stronger, never multiplies again.",
   "free_remove_outside_battle": true,
-  "catalog_basis": "D-099 RO identities; D-109 fixed rarity; D-122 distinct Puppet variants; D179 five magic cards with typed conditional bonuses",
+  "catalog_basis": "D-099 RO identities; D-109 fixed rarity; D-122 distinct Puppet variants; D179 five magic cards with typed conditional bonuses; D180 two Legendary MATK/SP tradeoff cards",
   "origins": {
     "card_weapon_1": {
       "ro_item_id": 4029,
@@ -4581,6 +4659,26 @@
       "rarity_id": "rare",
       "source_level": 76,
       "strength_class": "elite"
+    },
+    "card_fallen_bishop": {
+      "ro_item_id": 4441,
+      "monster_id": 1871,
+      "monster_name": "Fallen Bishop Hibram",
+      "grade": "mvp",
+      "source_slot": "shoes",
+      "rarity_id": "legendary",
+      "source_level": 80,
+      "strength_class": "mvp"
+    },
+    "card_time_holder": {
+      "ro_item_id": 4625,
+      "monster_id": 3074,
+      "monster_name": "Time Holder",
+      "grade": "mvp",
+      "source_slot": "weapon",
+      "rarity_id": "legendary",
+      "source_level": 170,
+      "strength_class": "mvp"
     }
   },
   "monster_traits": {
@@ -4913,6 +5011,16 @@
       "ro_monster_id": 1837,
       "race": "demon",
       "size": "small"
+    },
+    "fallen_bishop": {
+      "ro_monster_id": 1871,
+      "race": "demon",
+      "size": "medium"
+    },
+    "time_holder": {
+      "ro_monster_id": 3074,
+      "race": "demon",
+      "size": "large"
     }
   },
   "legacy_qualities": {

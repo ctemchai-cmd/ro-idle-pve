@@ -18,11 +18,11 @@ const at='2026-10-22T00:00:00.000Z',base=Date.parse(at),origins=cardOrigins(cont
 const state=()=>initializeAccount(content,{root_job_id:'swordsman',gender:'male'},at,'2026-10-22',1);
 const card=(id:string,rarity:CardItem['rarity_id']=cardRarity(id,content),level=1):CardItem=>({instance_id:'c_'+id,definition_id:id,kind:'card',rarity_id:rarity,level,locked:false});
 test('D109 fixed monster catalog uses five item rarities; Mini/MVP overrides source level and Elite is not MVP',()=>{
- assert.deepEqual(CARD_RARITIES,['common','uncommon','rare','epic','legendary','immortal','supreme']);assert.equal(Object.keys(origins).length,78);
+ assert.deepEqual(CARD_RARITIES,['common','uncommon','rare','epic','legendary','immortal','supreme']);assert.equal(Object.keys(origins).length,80);
  for(const[id,o]of Object.entries(origins)){const expected=o.variant==='puppet'?'rare':o.grade==='mvp'?'legendary':o.grade==='mini'?'epic':o.source_level<=20?'common':o.source_level<=45?'uncommon':'rare';assert.equal(cardRarity(id,content),expected);assert.ok(!['immortal','supreme'].includes(o.rarity_id));}
  assert.equal(cardRarity('card_armor_1',content),'common');assert.equal(cardRarity('card_weapon_1',content),'uncommon');assert.equal(cardRarity('card_abysmal_knight',content),'rare');assert.equal(origins.card_abysmal_knight!.grade,'normal');assert.equal(cardRarity('card_mastering',content),'epic');assert.equal(cardRarity('card_baphomet',content),'legendary');
 });
-test('all78 ×3 legacy qualities ×5 levels retain the old power floor once, with a strict increasing current rarity curve',()=>{
+test('all80 ×3 legacy qualities ×5 levels retain the old power floor once, with a strict increasing current rarity curve',()=>{
  const old={bronze:1,silver:1.25,gold:1.5},levels=[1,1.25,1.5,1.75,2],data=content.documents['cards.json'] as unknown as {rarities:{id:string;multiplier:number}[]};let previous=0;
  for(const r of data.rarities){assert.ok(r.multiplier>previous);previous=r.multiplier;}
  for(const id of Object.keys(origins))for(const quality of ['bronze','silver','gold']as const)for(let lv=1;lv<=5;lv++){
@@ -30,10 +30,10 @@ test('all78 ×3 legacy qualities ×5 levels retain the old power floor once, wit
   assert.equal(cardPowerMultiplier(before,content),old[quality]*levels[lv-1]!);assert.equal(cardPowerMultiplier(after,content),Math.max(old[quality],rarity.multiplier)*levels[lv-1]!);assert.ok(cardRarityDust(after,content)>=({bronze:20,silver:40,gold:80})[quality]);assert.deepEqual(migrateCardRarity(after,content),after);
  }
 });
-test('migration retains234 owned cards, pending payloads, assignments, levels, locks, wallet and ledger, without input mutation',()=>{
+test('migration retains240 owned cards, pending payloads, assignments, levels, locks, wallet and ledger, without input mutation',()=>{
  const original=state();for(const id of Object.keys(origins))for(const q of ['bronze','silver','gold']as const)original.inventory.push({...card(id,q,5),instance_id:id+'_'+q,locked:q==='gold'});
  original.roster[0]!.slot_progress.weapon.refine=5;original.roster[0]!.slot_progress.weapon.cards[0]='card_weapon_1_gold';const zero=Object.fromEntries(Object.keys(original.wallet).map(k=>[k,0]))as AccountState['wallet'];original.pending_rewards.push({claim_id:'old_reward',kind:'farm',resource_vector:zero,items:[card('card_armor_1','gold',5)],content_version:content.manifest.content_version,reserved_at:at,source_keys:['prior'],status:'pending'});
- const before=structuredClone(original),next=migrateAccountState(original,content).state;assert.deepEqual(original,before);assert.equal(next.inventory.length,234);assert.deepEqual(next.roster,original.roster);assert.deepEqual(next.wallet,original.wallet);assert.deepEqual(next.paid_ledger,original.paid_ledger);assert.equal(next.pending_rewards[0]!.items[0]!.rarity_id,'common');
+ const before=structuredClone(original),next=migrateAccountState(original,content).state;assert.deepEqual(original,before);assert.equal(next.inventory.length,240);assert.deepEqual(next.roster,original.roster);assert.deepEqual(next.wallet,original.wallet);assert.deepEqual(next.paid_ledger,original.paid_ledger);assert.equal(next.pending_rewards[0]!.items[0]!.rarity_id,'common');
  for(const item of next.inventory){if(item.kind!=='card')throw Error('CARD');const previous=before.inventory.find(i=>i.instance_id===item.instance_id)!;assert.equal(item.level,previous.kind==='card'?previous.level:0);assert.equal(item.locked,previous.locked);assert.equal(item.rarity_id,cardRarity(item.definition_id,content));assert.equal(cardRarityDust(item,content)>=20,true);}
  assert.deepEqual(migrateAccountState(next,content).state,next);assert.doesNotThrow(()=>new AccountCommandRules().validateAccount(next));
 });

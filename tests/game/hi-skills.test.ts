@@ -101,7 +101,7 @@ test('native pack contains20user-selected modern and6native High skill icons,13 
     assert.equal(pack.shell.class_icons[job].asset_id, 'ui.job-' + job);
   }
   for (const row of newSkills) {
-    const p = pack.presentations[String(row.presentation_id)]; if(modernBindings.v2_entries.some(r=>r.target===row.id)){assert.equal(p.icon_meta_path,'assets/ro/skills/modern-'+row.id+'.meta.json');}else{assert.ok(p.icon_meta_path.includes('/library/skills/skill_icon/'));assert.equal(p.provenance.icon_basis,'Exact local native Hi-class skill icon');}
+    const p = pack.presentations[String(row.presentation_id)]; if(modernBindings.v2_entries.some(r=>r.target===row.id)){assert.equal(p.icon_meta_path,'assets/ro/skills/modern-'+row.id+'.meta.json');}else{assert.ok(p.icon_meta_path.includes('/library/skills/skill_icon/'));const root=content.jobs.byId[String(row.class_id)]!.root,d=JSON.parse(readFileSync('plan/data/presentations/'+root+'.json','utf8')),source=[...d.presentations,...d.hi_class_presentations??[]].find((r:any)=>r.id===p.id);assert.equal(source.provenance.icon_basis,'Exact local native Hi-class skill icon');assert.equal(p.provenance,undefined);}
   }
   const raw = pack.files.reduce((n: number, f: {bytes: number}) => n + f.bytes, 0) + Buffer.byteLength(JSON.stringify(pack));
   assert.ok(raw <= 32 * 1024 * 1024, String(raw));

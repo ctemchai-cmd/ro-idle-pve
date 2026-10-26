@@ -3117,6 +3117,76 @@
       "reference_database": "https://github.com/rathena/rathena/blob/master/db/re/item_db_etc.yml",
       "monster_reference": "https://github.com/rathena/rathena/blob/master/db/pre-re/mob_db.yml",
       "adaptation": "D179 user revision: generic magical damage instead of Bolt-specific damage; reduced raw bonus10%/15% before existing1.75/rarity/level. RO identity/art/slot retained; numeric effect is an idle adaptation, not exact PC behavior. No cast-speed change."
+    },
+    {
+      "id": "card_fallen_bishop",
+      "name": "การ์ด Fallen Bishop Hibram",
+      "ro_item_id": 4441,
+      "monster_id": 1871,
+      "monster_name": "Fallen Bishop Hibram",
+      "grade": "mvp",
+      "source_slot": "shoes",
+      "slot": "shoes",
+      "tier": 60,
+      "rarity_id": "legendary",
+      "source_level": 80,
+      "strength_class": "mvp",
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.25
+        },
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": -0.15
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4441&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/re/item_db_etc.yml",
+      "monster_reference": "https://github.com/rathena/rathena/blob/master/db/pre-re/mob_db.yml",
+      "adaptation": "D180 genuine RO MVP identity/art/slot and MATK/SP tradeoff. Idle values follow existing fixed Legendary rarity/levels; no race-specific multiplier, CT change or new combat rule. Fallen Bishop25%MATK/-15%SP raw; Time Holder20%MATK/+10%SPcost raw, before existing rarity/level."
+    },
+    {
+      "id": "card_time_holder",
+      "name": "การ์ด Time Holder",
+      "ro_item_id": 4625,
+      "monster_id": 3074,
+      "monster_name": "Time Holder",
+      "grade": "mvp",
+      "source_slot": "weapon",
+      "slot": "weapon",
+      "tier": 60,
+      "rarity_id": "legendary",
+      "source_level": 170,
+      "strength_class": "mvp",
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.2
+        },
+        {
+          "id": "sp_cost_percent",
+          "stat": "sp_cost_percent",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.1
+        }
+      ],
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4625&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/re/item_db_etc.yml",
+      "monster_reference": "https://github.com/rathena/rathena/blob/master/db/re/mob_db.yml",
+      "adaptation": "D180 genuine RO MVP identity/art/slot and MATK/SP tradeoff. Idle values follow existing fixed Legendary rarity/levels; no race-specific multiplier, CT change or new combat rule. Fallen Bishop25%MATK/-15%SP raw; Time Holder20%MATK/+10%SPcost raw, before existing rarity/level."
     }
   ],
   "monster_traits": {
@@ -3199,6 +3269,16 @@
       "ro_monster_id": 1837,
       "race": "demon",
       "size": "small"
+    },
+    "fallen_bishop": {
+      "ro_monster_id": 1871,
+      "race": "demon",
+      "size": "medium"
+    },
+    "time_holder": {
+      "ro_monster_id": 3074,
+      "race": "demon",
+      "size": "large"
     }
   },
   "rarity_policy": {
