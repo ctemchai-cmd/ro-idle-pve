@@ -20,10 +20,13 @@ TASK-155 (done);ใช้compiler/migrationเดิม.
 ## เกณฑ์ตรวจรับ
 - [x] AC-01:2MVPจริงครบชื่อช่องภาพ/80cards/73portraits,78เก่า+raterulesคงเดิม,gacha/farm/oldAFKปลอดภัย
 - [x] AC-02:MATK/SPtradeoff/ระดับ/stack/heal/physicalแยก/description/checkpointตรงกฎเดิม
-- [ ] AC-03:losslesspixel/source/native320390/32MiB/root-filteredbuild/M0/publicผ่าน ไม่มีownerwrites
+- [x] AC-03:losslesspixel/source/native320390/32MiB/root-filteredbuild/M0/publicผ่าน ไม่มีownerwrites
 
 ## วิธีตรวจ
 T156-AC01..03;tests/game/mvp-magic-cards.test.ts, native/hosted harness,sourcechecksและreview/evidence156.
 
 ## Blocker / คำถาม
 ไม่มีคำถามค้าง;ผู้ใช้ขอเพิ่ม2ใบและระดับสูงแล้ว.
+
+## ผลตรวจรับ
+Source`4611a0f39` live/VercelSUCCESS;740full/17focused/native5/source311+60460+6926/root-filtered/M0/public4groups(4newnativefiles/24bundleSHA/login320390/0errors-writes)ผ่าน. ทุกACผ่าน;ดูevidence156/READMEและreview.json.

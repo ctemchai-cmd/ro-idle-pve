@@ -1,5 +1,12 @@
 # Handoff ระหว่าง agent
 
+## 26 ต.ค.2026 · Codex — TASK156 COMPLETE / two Legendary MATK cards live
+
+- Source4611a0f391e1d73f18a39f626d0259836aba8fab live/VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/E9o67yHPEDXuA9fBEerR1mKMK7C5. Public4groups PASS API/SIN1/content86f219/anonymous401,4newnativeimage+sidecarSHA,24bundleSHA/newMVP+existingbulkfeatures,login320390/0errors-writes. No product changes after tested source;closure only records release and142/156done/M4 96/105. No remaining156work.
+- User asked +2magiccards/highrarity/comparePAtk-MAtk. Before78 directPATK13/MATK6;Epic1/0 andLegendary0/0, butTurtle22.05%physical vsDarkLord9.45%magic+counter. AddedtrueRO MVP FallenBishop4441(shoes) andTimeHolder4625(weapon),Legendary/Tier60. ActualLv1MATK+45%/maxSP−8.33% andMATK+36%/SPcost+5.56%,existingrarity/level rules. All78oldcards/rates/pity/prices/skills/enemies/gear unchanged;oldAFK78pool preserveduntilfirstclaim/setstage then80pool. No newengine/schema/SQL/env/owneraccess/balancebatch.
+- Full740/740,focused17(8newD180),native5/actualsource311+60460+6926/lossless70/root+filtered/M0passed. Newnative300×400portraits/4CardSheets320390;contact+FallenBishop320visuallyreviewed. Lossless70media/288sharedmeta save52172bytes;runtimepresentationdropsONLYunusedauthoringprovenance/icon_asset_id,save46431,allvisual/audio/recipe preserved/sourceauthoring+ALLsidecarfields intact. Pack798a9283e77bb46a773e3f7e0324b7bd7855e305760179ce158a8b625fd74244/903assets1691files/raw33545187<33554432/initial1577418. Content86f219123b6198695c6658f3f0f5796d7e25730290ac10a11c770a065f9d6d65.
+- OwnVite7511/browsersclosed;6173untouched. Userassets/modern/migration-v2.txt remainsmodified/unstaged;unselectedmodernassets/task108pnguntouched. Closure report/docs/hostedproof accompany this note;olderinprogress/reviewtasks unchanged.
+
 ## 26 ต.ค.2026 · Codex — TASK156 LOCAL COMPLETE / ready publish
 
 - Final740/740 testsPASS;focused17(incl8newD180mechanics+manifestprojection)/native5(actual2cardSheets320390,0errors/writes)/root+filteredbuild/M0/source311+60460+6926/lossless70sourceRGBA allPASS. ActualMAtkcarddamage+heal/physicalsame/SPcostrealcast.at_ms/1x2x4/checkpoint/stack/gacha2draws/farmchapter6gate/old78poolmigration checked. No newbalancebatch/SQL/env/owneraccess. NativeFallenBishop320/2portraitcontact manuallyreviewed. OwnVite7511/browsersclosed.

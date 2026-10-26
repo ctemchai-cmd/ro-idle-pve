@@ -1,7 +1,7 @@
 {
   "task_id": "TASK-156",
-  "passed": false,
-  "status": "review",
+  "passed": true,
+  "status": "done",
   "local_passed": true,
   "checks": {
     "full_TS": 740,
@@ -18,13 +18,22 @@
     "shared_sidecars": 288,
     "RGBA_identical": true,
     "owner_writes": false,
-    "balance_batch": false
+    "balance_batch": false,
+    "public_hosted_groups": 4,
+    "public_bundle_SHA": 24,
+    "public_new_native_file_SHA": 4
   },
   "content_hash": "86f219123b6198695c6658f3f0f5796d7e25730290ac10a11c770a065f9d6d65",
   "pack_hash": "798a9283e77bb46a773e3f7e0324b7bd7855e305760179ce158a8b625fd74244",
   "acceptance_results": {
-    "AC-01": "local_passed",
-    "AC-02": "local_passed",
-    "AC-03": "awaiting_hosted"
-  }
+    "AC-01": "passed",
+    "AC-02": "passed",
+    "AC-03": "passed"
+  },
+  "source_commit": "4611a0f391e1d73f18a39f626d0259836aba8fab",
+  "deployment": {
+    "state": "SUCCESS",
+    "url": "https://vercel.com/chanon2/ro-idle-pve/E9o67yHPEDXuA9fBEerR1mKMK7C5"
+  },
+  "hosted": "plan/evidence/task-156/hosted.json"
 }
