@@ -1,12 +1,12 @@
 {
   "task_id": "TASK-164",
-  "passed": false,
-  "status": "review",
+  "passed": true,
+  "status": "done",
   "local_passed": true,
   "acceptance_results": {
     "AC-01": "passed",
     "AC-02": "passed",
-    "AC-03": "not_run_hosted"
+    "AC-03": "passed"
   },
   "checks": {
     "passed": true,
@@ -33,18 +33,24 @@
     "filtered_build": true,
     "strict_typecheck": true,
     "post_description_focused_tests": 48,
-    "charge_description_all20ranks": true
+    "charge_description_all20ranks": true,
+    "public_groups": 4,
+    "public_bundle_SHA": 24,
+    "API_region": "sin1",
+    "hosted_owner_writes": 0
   },
   "evidence": [
     "task-164/README.md",
     "task-164/local-validation.json",
-    "task-164/native.json"
+    "task-164/native.json",
+    "task-164/hosted.json",
+    "task-164/deployment.json"
   ],
   "limitations": [
-    "Bounded ability/role probes, not exhaustive global class DPS calibration.",
-    "No owner login, Supabase save reads/writes or SQL/env changes.",
     "Hosted deployment verification pending."
   ],
   "content_hash": "a4bf5a73d6d875971907c21fa78104590bd419b68333caf73846f722c2b8b200",
-  "pack_hash": "6b3001aef85634b686f8296eb99ce5612b50794c8b59e13c1c54f6995e0daf7c"
+  "pack_hash": "6b3001aef85634b686f8296eb99ce5612b50794c8b59e13c1c54f6995e0daf7c",
+  "source_commit": "2ca70bf367e8abcf0772837c7d1cbdcd20133b0b",
+  "deployment": "https://vercel.com/chanon2/ro-idle-pve/5iVYrGJk9efugy38ZWGGnFLRnThy"
 }

@@ -21,10 +21,13 @@ Optionalaccount.equipment_craftingรองรับเซฟเก่า; initi
 ## เกณฑ์ตรวจรับ
 - [x] AC-01: atomic exactcost/guard/RNG/options/rare100%/oldrandomstream unchanged
 - [x] AC-02: pending reload/receipt retries/no duplicate payments/slot isolation
-- [ ] AC-03: migration defaults/preservesold/real native320390/pack/build/public
+- [x] AC-03: migration defaults/preservesold/real native320390/pack/build/public
 
 ## วิธีตรวจ
 Disposablecommand/nativefixturesและevidenceเฉพาะงาน.
 
 ## Blocker / คำถาม
 ไม่มี;ผู้ใช้กำหนดขอบเขตแล้ว.
+
+## ผลตรวจรับ
+Source `2ca70bf36` VercelSUCCESS;766TS+48finalfocused/native11/root+filtered/M0/public4groupsผ่าน. [ผลตรวจ](../evidence/task-164-review.json).

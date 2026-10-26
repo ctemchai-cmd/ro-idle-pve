@@ -1,5 +1,12 @@
 # Handoff ระหว่าง agent
 
+## 27 ต.ค.2026 — TASK164–168 COMPLETE / workshop and Hi hierarchy LIVE
+
+Source2ca70bf367e8abcf0772837c7d1cbdcd20133b0b live/VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/5iVYrGJk9efugy38ZWGGnFLRnThy. Public4groups/API SIN1/anon401/24bundleSHA/2stoneSHA/login320390/0errors-writesPASS.766fullTS+48finalfocused(nativeChasedescription20ranks)/native11/43Awrefundcases/72Fingerpercast/96Gatecandidatefights/26Hirolecomparisons/independent78goldens/root+filtered/M0/assets/generatorPASS. AllfiveDONE154/168/M4108/117. Contenta4bf5a73d6d875971907c21fa78104590bd419b68333caf73846f722c2b8b200/pack6b3001aef85634b686f8296eb99ce5612b50794c8b59e13c1c54f6995e0daf7c/raw33552995<32MiB/initial1577418/PWA07c6a4fb2f820811. No remaining164–168work. Finaldescription-only followup addsChaseskillbonus fromactualmodifier;no subsequentgameplaychanges.
+
+D188–192/design77–81:paidpendingreroll/keepold-decide,100%oneRaritystep/Tierretained,option3×8k/rarity2×20kdaily,Awcap80/85/90/95/98/100 actualexcessrefund,Gate12–25beforeactualHPfactor useracceptedhighpower,Hi23/26skills adjusted withboundedrolefloorsNormalHi1>Class2Aw1. Fingerunchanged~29%Aw1/~70%Aw10effective. Gatebenchmark9.9k→26.3k isnotglobalbalance;highSPAsura/element/timing can change rankings. Events deferred. NoSQL/env/ownerAuth/savewrites/6173restart/agents. OwnVite7519PID70919andbrowsersCLOSED. Preserveuserassets/modern/migration-v2.txt/unselectedmodern/task108png. Onlymoderncraft9/13selected32pxrenditions. Backup-update after finishingcurrentbattle;no automaticowner migration claimed.
+
+
 ## 27 ต.ค.2026 — ACTIVE TASK164–168 / workshop and Hi hierarchy
 
 All UNCOMMITTED atop c5d97efae. User confirmed only stones/shop beforeEvents; progressiveAw ranks earlier→earlier cap; Gate1200–2500beforeHP knowingly accepted~26kDPS boundedChampion; Hi normalLv1 must exceedClass2Aw1 byrole. Implemented crafting3commands/persistentpaidpending/options+rarity,shop3optionstones×8k/2rarity×20k/day,Awcap80/85/90/95/98/100+actualexcessrefund,Fingerunchanged72cases(+29%Aw1/+70%Aw10effective),Gate12–25/Aw27.5–36.25,Hi23/26skillcurves+Chaseskillpower. New config/postprocessor/audit roles/goldens/design77–81/inprogress164–168. No ownerSQL/env/Auth/save/6173restart/agents. Preserve usermigration-v2/unselectedmodern/task108png. Select ONLYmoderncraft-resources9/13 and derived32pxstones; pack6b3001/905/1695/raw33552995<32MiB/initial1577418.

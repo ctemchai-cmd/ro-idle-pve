@@ -21,10 +21,13 @@ FingerbaseMax5×255.9375%=1279.6875%P.ATK;Aw1หกhitรวม1689.1878% (+32%)
 ## เกณฑ์ตรวจรับ
 - [x] AC-01: rankall152/quotes/UI/fullschedule/baseunchanged
 - [x] AC-02: actual-paidAwakenrefundallroots/Class1/Class2/Hi/idempotent/unknown/overflow
-- [ ] AC-03: Fingeractualengine/matched/percast plus320390/fullTS/build/public
+- [x] AC-03: Fingeractualengine/matched/percast plus320390/fullTS/build/public
 
 ## วิธีตรวจ
 Disposablecommand/nativefixturesและevidenceเฉพาะงาน.
 
 ## Blocker / คำถาม
 ไม่มี;ผู้ใช้กำหนดขอบเขตแล้ว.
+
+## ผลตรวจรับ
+Source `2ca70bf36` VercelSUCCESS;766TS+48finalfocused/native11/root+filtered/M0/public4groupsผ่าน. [ผลตรวจ](../evidence/task-166-review.json).

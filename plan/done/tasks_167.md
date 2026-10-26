@@ -19,10 +19,13 @@ Gateปกติ1200–2500%ก่อนHP/Awakenขยายตามฐาน�
 ## เกณฑ์ตรวจรับ
 - [x] AC-01:20ranks/scope/programเดิมผ่าน
 - [x] AC-02:actualHP/interruptและboundedA/Bผ่าน
-- [ ] AC-03:mobile/full/build/publicผ่าน
+- [x] AC-03:mobile/full/build/publicผ่าน
 
 ## วิธีตรวจ
 Design80/unit/native/audit/evidence167.
 
 ## Blocker / คำถาม
 ไม่มี;ผู้ใช้ยืนยันก่อนHPและยอมแรงมากขึ้น.
+
+## ผลตรวจรับ
+Source `2ca70bf36` VercelSUCCESS;766TS+48finalfocused/native11/root+filtered/M0/public4groupsผ่าน. [ผลตรวจ](../evidence/task-167-review.json).

@@ -930,38 +930,38 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 
 | Case | Task | Input | Method | Status |
 | --- | --- | --- | --- | --- |
-| `T164-AC-01` | TASK-164 | design77/AC01 | commands/native/build/public | not_run_implementation |
-| `T164-AC-02` | TASK-164 | design77/AC02 | commands/native/build/public | not_run_implementation |
-| `T164-AC-03` | TASK-164 | design77/AC03 | commands/native/build/public | not_run_implementation |
+| `T164-AC-01` | TASK-164 | design77/AC01 | commands/native/build/public | passed_implementation |
+| `T164-AC-02` | TASK-164 | design77/AC02 | commands/native/build/public | passed_implementation |
+| `T164-AC-03` | TASK-164 | design77/AC03 | commands/native/build/public | passed_implementation |
 
 ## TASK-165 — ร้านหินรายวัน
 
 | Case | Task | Input | Method | Status |
 | --- | --- | --- | --- | --- |
-| `T165-AC-01` | TASK-165 | design78/AC01 | commands/native/build/public | not_run_implementation |
-| `T165-AC-02` | TASK-165 | design78/AC02 | commands/native/build/public | not_run_implementation |
-| `T165-AC-03` | TASK-165 | design78/AC03 | commands/native/build/public | not_run_implementation |
+| `T165-AC-01` | TASK-165 | design78/AC01 | commands/native/build/public | passed_implementation |
+| `T165-AC-02` | TASK-165 | design78/AC02 | commands/native/build/public | passed_implementation |
+| `T165-AC-03` | TASK-165 | design78/AC03 | commands/native/build/public | passed_implementation |
 
 ## TASK-166 — ทยอยอัป Awaken และตรวจ Finger
 
 | Case | Task | Input | Method | Status |
 | --- | --- | --- | --- | --- |
-| `T166-AC-01` | TASK-166 | design79/AC01 | commands/native/build/public | not_run_implementation |
-| `T166-AC-02` | TASK-166 | design79/AC02 | commands/native/build/public | not_run_implementation |
-| `T166-AC-03` | TASK-166 | design79/AC03 | commands/native/build/public | not_run_implementation |
+| `T166-AC-01` | TASK-166 | design79/AC01 | commands/native/build/public | passed_implementation |
+| `T166-AC-02` | TASK-166 | design79/AC02 | commands/native/build/public | passed_implementation |
+| `T166-AC-03` | TASK-166 | design79/AC03 | commands/native/build/public | passed_implementation |
 
 ## TASK-167 — Gate damage
 
 | Case | Task | Input | Method | Status |
 | --- | --- | --- | --- | --- |
-| `T167-AC-01` | TASK-167 | design80/AC01 | mechanics/native/build/public | not_run_implementation |
-| `T167-AC-02` | TASK-167 | design80/AC02 | mechanics/native/build/public | not_run_implementation |
-| `T167-AC-03` | TASK-167 | design80/AC03 | mechanics/native/build/public | not_run_implementation |
+| `T167-AC-01` | TASK-167 | design80/AC01 | mechanics/native/build/public | passed_implementation |
+| `T167-AC-02` | TASK-167 | design80/AC02 | mechanics/native/build/public | passed_implementation |
+| `T167-AC-03` | TASK-167 | design80/AC03 | mechanics/native/build/public | passed_implementation |
 
 ## TASK-168 — Hi-class hierarchy
 
 | Case | Task | Input | Method | Status |
 | --- | --- | --- | --- | --- |
-| `T168-AC-01` | TASK-168 | design81/AC01 | mechanics/native/build/public | not_run_implementation |
-| `T168-AC-02` | TASK-168 | design81/AC02 | mechanics/native/build/public | not_run_implementation |
-| `T168-AC-03` | TASK-168 | design81/AC03 | mechanics/native/build/public | not_run_implementation |
+| `T168-AC-01` | TASK-168 | design81/AC01 | mechanics/native/build/public | passed_implementation |
+| `T168-AC-02` | TASK-168 | design81/AC02 | mechanics/native/build/public | passed_implementation |
+| `T168-AC-03` | TASK-168 | design81/AC03 | mechanics/native/build/public | passed_implementation |

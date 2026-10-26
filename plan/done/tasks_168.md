@@ -19,10 +19,13 @@ Data-drivenexplicitcurves/Chaseskillpowergenericstatus;sharedapplicationmetrics/
 ## เกณฑ์ตรวจรับ
 - [x] AC-01:26skills/13jobs/rolefloors/scopeผ่าน
 - [x] AC-02:allranks/Aw/Chase/goldens/mechanicsผ่าน
-- [ ] AC-03:mobile/full/build/publicผ่าน
+- [x] AC-03:mobile/full/build/publicผ่าน
 
 ## วิธีตรวจ
 Design81/boundedengineprobes/normalizationเฉพาะpatch164/168/native.
 
 ## Blocker / คำถาม
 ไม่มี;ผู้ใช้ยืนยันHiLv1.
+
+## ผลตรวจรับ
+Source `2ca70bf36` VercelSUCCESS;766TS+48finalfocused/native11/root+filtered/M0/public4groupsผ่าน. [ผลตรวจ](../evidence/task-168-review.json).

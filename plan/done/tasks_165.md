@@ -21,10 +21,13 @@ TASK-139, TASK-163 (done).
 ## เกณฑ์ตรวจรับ
 - [x] AC-01: exactoffers/oldoffers/quote/max/overflow/no partial purchase
 - [x] AC-02: Bangkokreset/2saves/reload/one revision/retry
-- [ ] AC-03: nativeStore320390/icons/cost/stock/M0/build/public
+- [x] AC-03: nativeStore320390/icons/cost/stock/M0/build/public
 
 ## วิธีตรวจ
 Disposablecommand/nativefixturesและevidenceเฉพาะงาน.
 
 ## Blocker / คำถาม
 ไม่มี;ผู้ใช้กำหนดขอบเขตแล้ว.
+
+## ผลตรวจรับ
+Source `2ca70bf36` VercelSUCCESS;766TS+48finalfocused/native11/root+filtered/M0/public4groupsผ่าน. [ผลตรวจ](../evidence/task-165-review.json).
