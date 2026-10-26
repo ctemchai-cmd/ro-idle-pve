@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import before from '../../plan/evidence/task-163/tower-before.json';
+import { readFileSync } from 'node:fs';
 import raw from '../../src/generated/content.json';
 import { content } from './combat-fixtures.ts';
 import { towerData, towerRow, towerBoss } from '../../src/domain/modes/tower.ts';
@@ -9,6 +9,7 @@ import { validateContent } from '../../src/content/loader.ts';
 import { migrateAccountState } from '../../src/domain/account/migrate.ts';
 import { initializeAccount } from '../../src/domain/progression/initialize.ts';
 import type { AccountState } from '../../src/contracts/index.ts';
+const before = JSON.parse(readFileSync('plan/evidence/task-163/tower-before.json','utf8')) as ReturnType<typeof towerData> & {content_version:string};
 
 test('D187 exact milestones/rotation, cumulative first100 budget, safe continuation beyond authored floors', () => {
   const totals: Record<string, number> = { cards: 0 };

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import before from '../../plan/evidence/task-163/tower-before.json';
-import edits from '../../plan/evidence/task-163/source-edits.json';
+const before = JSON.parse(readFileSync('plan/evidence/task-163/tower-before.json','utf8')) as {content_version:string;floor_rows:{floor:number;gold:number;crystal:number;bronze_card_count:number}[]};
+const edits = JSON.parse(readFileSync('plan/evidence/task-163/source-edits.json','utf8')) as Record<string,{before:string;after:string}[]>;
 
 /** Restore only the declared reward fields for earlier exact-scope oracles.
  * Actual reward programs, transaction semantics and migration have D187 tests. */
