@@ -1,5 +1,10 @@
 # Project context
 
+## Bulk card selection/details (26 October2026,D178/TASK154)
+
+Source45f39a9a1 live/VercelSUCCESS;bulk4(incl500)/single4/11atomicTS/rootbuild/M0/hosted3passed. Cardtab→ย่อยหลายใบ;manual/select-allofvisiblefilter/clear. Locked/equippeddisabled;filter/tabchangesclearhiddenselection. SharedconfirmationfreezesIDs,revalidateswholebatch,showsrarities/8previews/upgradedcount/dust;oneexistingcard.salvagecommandmax500/single-flight/cancel0. A compactfooterinspector showslasttappedcardart/name/rarity/level/slot/two-lineeffects;expanddetailswithoutselectionchange. 500cardcase102mountedcells/8preview. No newDB/save/economy rules. TASK155magiccardoptionsisinprogress,neverclaimnewcardslivebeforeactualrelease.
+
+
 ## Card confirmations and clearer ground effects (26 October2026,D177/TASK153)
 
 Source4af88856e live/VercelSUCCESS;24focused/nativeUI4+ground7+number4/hosted8/rootbuild/M0passed. No remaining153work.

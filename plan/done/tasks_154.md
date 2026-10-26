@@ -18,8 +18,8 @@ TASK-027, TASK-153 (done)
 4. Rootbuild/M0/push/publicก่อนdone
 
 ## เกณฑ์ตรวจรับ
-- [ ] AC-01: เลือก/ยกเลิก/เลือกทั้งหมดที่กรองได้ตามจริง;ล็อกและใส่อยู่เลือกไม่ได้;เปลี่ยนfilterไม่ย่อยของซ่อน;แสดงใบ/ผงรวม/ยืนยันพร้อมเตือนการ์ดอัปเลเวล
-- [ ] AC-02: Cancelไม่ส่งคำสั่ง;ยืนยัน500ใบเป็น1command;กดย้ำไม่ซ้ำ/failedคงselection/เปลี่ยนstateแล้วป้องกันpartial;single-cardเดิม/TS/mobile/build/publicผ่าน ไม่มีownerwrites
+- [x] AC-01: เลือก/ยกเลิก/เลือกทั้งหมดที่กรองได้ตามจริง;ล็อกและใส่อยู่เลือกไม่ได้;เปลี่ยนfilterไม่ย่อยของซ่อน;แสดงใบ/ผงรวม/ยืนยันพร้อมเตือนการ์ดอัปเลเวล
+- [x] AC-02: Cancelไม่ส่งคำสั่ง;ยืนยัน500ใบเป็น1command;กดย้ำไม่ซ้ำ/failedคงselection/เปลี่ยนstateแล้วป้องกันpartial;single-cardเดิม/TS/mobile/build/publicผ่าน ไม่มีownerwrites
 
 ## วิธีตรวจและหลักฐาน
 T154-AC01/02;nativeactualReactพร้อมsharedreducerในmemoryและexisting slot-progression.test.ts;strictbuild/read-onlypublic. plan/evidence/task-154-review.json.
@@ -32,3 +32,7 @@ T154-AC01/02;nativeactualReactพร้อมsharedreducerในmemoryและe
 BulkUI4groupsและsingle-card/gachaเดิม4groups320390ผ่าน. 500ใบrender102cell/confirm8preview/เลือกครบ500/1command+1syntheticrevisionและผงรวมตรงreducer. Cancel/Escape/failed/liveprotectedchange/filterresetผ่าน. Existingatomic slot-progression testsผ่าน. รอbuild/publicก่อนdone.
 
 ผู้ใช้เสริมระหว่างrelease:แถบข้อมูลย่อใบที่แตะล่าสุด/ขยายรายละเอียดได้โดยselectionไม่เปลี่ยน;ต้องตรวจnativeและbuildรอบนี้ก่อนdone. c71dcd2abมีbulkพื้นฐานแต่ยังไม่ใช่ผลล่าสุดจนปล่อยpatchนี้.
+
+## ผลส่งมอบ
+
+Source45f39a9a1/VercelSUCCESS;bulk4groupsincllatestinfo+500,single4regression,11atomicTS,rootbuild/M0/public3groups24bundleSHA/login320390ผ่าน. Publicharnessเดิมใช้ชื่อปุ่มauthผิด;แก้เป็นเข้าสู่บัญชีตามproductและตรวจผ่านโดยไม่มีproductfix. TASK154done.
