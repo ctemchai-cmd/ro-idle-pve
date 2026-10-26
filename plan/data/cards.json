@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "content_version": "cards-ro-v4",
+  "content_version": "cards-ro-v5-magic",
   "definitions": [
     {
       "id": "card_weapon_1",
@@ -2608,6 +2608,155 @@
       ],
       "triggers": [],
       "presentation_id": "visual_card_doppelganger_puppet"
+    },
+    {
+      "id": "card_scaraba",
+      "name_key": "card_scaraba",
+      "kind": "card",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "value": 12,
+          "op": "add_flat",
+          "bucket": "derived"
+        },
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "value": -0.01,
+          "op": "add_percent",
+          "bucket": "derived"
+        },
+        {
+          "id": "impact_magical_attack",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.21
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_scaraba"
+    },
+    {
+      "id": "card_necromancer",
+      "name_key": "card_necromancer",
+      "kind": "card",
+      "slot": "weapon",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "int",
+          "stat": "int",
+          "value": 1,
+          "op": "add_flat",
+          "bucket": "primary"
+        },
+        {
+          "id": "impact_magical_attack",
+          "stat": "magical_attack",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.0525
+        },
+        {
+          "id": "impact_max_sp",
+          "stat": "max_sp",
+          "op": "add_percent",
+          "bucket": "derived",
+          "value": 0.07
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_necromancer",
+      "combat_bonuses": [
+        {
+          "id": "magic_mdef_penetration",
+          "damage_types": [
+            "magical"
+          ],
+          "origins": [
+            "skill",
+            "normal",
+            "periodic"
+          ],
+          "penetration_bonus": 0.105
+        }
+      ]
+    },
+    {
+      "id": "card_agav",
+      "name_key": "card_agav",
+      "kind": "card",
+      "slot": "armor",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "value": 0.15,
+          "op": "add_percent",
+          "bucket": "derived"
+        },
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "value": -5,
+          "op": "add_flat",
+          "bucket": "derived"
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_agav"
+    },
+    {
+      "id": "card_siroma",
+      "name_key": "card_siroma",
+      "kind": "card",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 20,
+      "required_level": 20,
+      "modifiers": [
+        {
+          "id": "outgoing_magical_bonus",
+          "stat": "outgoing_magical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.175
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_siroma"
+    },
+    {
+      "id": "card_imp",
+      "name_key": "card_imp",
+      "kind": "card",
+      "slot": "accessory",
+      "weapon_type": null,
+      "tier_level": 40,
+      "required_level": 40,
+      "modifiers": [
+        {
+          "id": "outgoing_magical_bonus",
+          "stat": "outgoing_magical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.2625
+        }
+      ],
+      "triggers": [],
+      "presentation_id": "visual_card_imp"
     }
   ],
   "presentations": [
@@ -3486,6 +3635,66 @@
       "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
       "card_face_style": "native_ro_card",
       "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_scaraba",
+      "icon_asset_id": "items.card-4505",
+      "meta_path": "assets/ro/items/card-4505.meta.json",
+      "illustration_asset_id": "items.card-4505",
+      "illustration_meta_path": "assets/ro/items/card-4505.meta.json",
+      "symbol_asset_id": "items.card-4505",
+      "symbol_meta_path": "assets/ro/items/card-4505.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_necromancer",
+      "icon_asset_id": "items.card-4440",
+      "meta_path": "assets/ro/items/card-4440.meta.json",
+      "illustration_asset_id": "items.card-4440",
+      "illustration_meta_path": "assets/ro/items/card-4440.meta.json",
+      "symbol_asset_id": "items.card-4440",
+      "symbol_meta_path": "assets/ro/items/card-4440.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_agav",
+      "icon_asset_id": "items.card-4409",
+      "meta_path": "assets/ro/items/card-4409.meta.json",
+      "illustration_asset_id": "items.card-4409",
+      "illustration_meta_path": "assets/ro/items/card-4409.meta.json",
+      "symbol_asset_id": "items.card-4409",
+      "symbol_meta_path": "assets/ro/items/card-4409.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_siroma",
+      "icon_asset_id": "items.card-4416",
+      "meta_path": "assets/ro/items/card-4416.meta.json",
+      "illustration_asset_id": "items.card-4416",
+      "illustration_meta_path": "assets/ro/items/card-4416.meta.json",
+      "symbol_asset_id": "items.card-4416",
+      "symbol_meta_path": "assets/ro/items/card-4416.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
+    },
+    {
+      "id": "visual_card_imp",
+      "icon_asset_id": "items.card-4433",
+      "meta_path": "assets/ro/items/card-4433.meta.json",
+      "illustration_asset_id": "items.card-4433",
+      "illustration_meta_path": "assets/ro/items/card-4433.meta.json",
+      "symbol_asset_id": "items.card-4433",
+      "symbol_meta_path": "assets/ro/items/card-4433.meta.json",
+      "basis": "Native RO cardbmp keyed by RO item ID, retained locally; no skill icon substitution",
+      "card_face_style": "native_ro_card",
+      "illustration_basis": "Card-specific illustration; ragassets client export"
     }
   ],
   "level_multipliers": [
@@ -3577,7 +3786,7 @@
   "gacha_duplicates": "always distinct card instances so several characters can equip copies; user may consume only unequipped unlocked instances into card_dust for upgrades",
   "resolve_rule": "Fixed monster rarity multiplier × instance level. Migrated legacy_quality retains its old power/salvage floor if stronger, never multiplies again.",
   "free_remove_outside_battle": true,
-  "catalog_basis": "D-099 RO identities; D-109 fixed rarity; D-122 Origin boss overrides and distinct Puppet variants",
+  "catalog_basis": "D-099 RO identities; D-109 fixed rarity; D-122 distinct Puppet variants; D179 five magic cards with typed conditional bonuses",
   "origins": {
     "card_weapon_1": {
       "ro_item_id": 4029,
@@ -4322,6 +4531,56 @@
       "strength_class": "mvp",
       "variant": "puppet",
       "parent_card_id": "card_doppelganger"
+    },
+    "card_scaraba": {
+      "ro_item_id": 4505,
+      "monster_id": 2083,
+      "monster_name": "One-Horned Scaraba",
+      "grade": "normal",
+      "source_slot": "accessory",
+      "rarity_id": "rare",
+      "source_level": 130,
+      "strength_class": "elite"
+    },
+    "card_necromancer": {
+      "ro_item_id": 4440,
+      "monster_id": 1870,
+      "monster_name": "Necromancer",
+      "grade": "normal",
+      "source_slot": "weapon",
+      "rarity_id": "rare",
+      "source_level": 88,
+      "strength_class": "elite"
+    },
+    "card_agav": {
+      "ro_item_id": 4409,
+      "monster_id": 1769,
+      "monster_name": "Agav",
+      "grade": "normal",
+      "source_slot": "armor",
+      "rarity_id": "rare",
+      "source_level": 73,
+      "strength_class": "elite"
+    },
+    "card_siroma": {
+      "ro_item_id": 4416,
+      "monster_id": 1776,
+      "monster_name": "Siroma",
+      "grade": "normal",
+      "source_slot": "accessory",
+      "rarity_id": "uncommon",
+      "source_level": 42,
+      "strength_class": "strong"
+    },
+    "card_imp": {
+      "ro_item_id": 4433,
+      "monster_id": 1837,
+      "monster_name": "Imp",
+      "grade": "normal",
+      "source_slot": "accessory",
+      "rarity_id": "rare",
+      "source_level": 76,
+      "strength_class": "elite"
     }
   },
   "monster_traits": {
@@ -4629,6 +4888,31 @@
       "ro_monster_id": 2202,
       "race": "fish",
       "size": "large"
+    },
+    "horn_scaraba": {
+      "ro_monster_id": 2083,
+      "race": "insect",
+      "size": "small"
+    },
+    "necromancer": {
+      "ro_monster_id": 1870,
+      "race": "undead",
+      "size": "medium"
+    },
+    "agav": {
+      "ro_monster_id": 1769,
+      "race": "demihuman",
+      "size": "medium"
+    },
+    "siroma": {
+      "ro_monster_id": 1776,
+      "race": "formless",
+      "size": "small"
+    },
+    "imp": {
+      "ro_monster_id": 1837,
+      "race": "demon",
+      "size": "small"
     }
   },
   "legacy_qualities": {

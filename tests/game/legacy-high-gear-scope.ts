@@ -1,3 +1,4 @@
+import{withoutD179Document,withoutD179Schema}from'./legacy-magic-card-scope.ts';
 import {readFileSync} from 'node:fs';
 import {gunzipSync} from 'node:zlib';
 const frozen=JSON.parse(gunzipSync(readFileSync(new URL('../../plan/evidence/task-148/before-authored.json.gz',import.meta.url))).toString());
@@ -5,7 +6,7 @@ export const beforeD172=JSON.parse(gunzipSync(readFileSync(new URL('../../plan/e
 /** Normalize only D172's named additions for historical scope checks. New actual
  * command/pool/level/migration tests independently verify those additions. */
 export function withoutD172Document<T>(key:string,value:T):T{
- const copy=structuredClone(value) as any;
+ const copy=withoutD179Document(key,value) as any;
  if(key==='equipment.json'){
   copy.definitions=copy.definitions.filter((r:any)=>r.tier_level<=60);
   const ids=new Set(copy.definitions.map((r:any)=>r.presentation_id));copy.presentations=copy.presentations.filter((r:any)=>ids.has(r.id));
@@ -24,7 +25,7 @@ export function withoutD172Document<T>(key:string,value:T):T{
  return copy;
 }
 export function withoutD172Schemas<T>(value:T):T{
- const copy=structuredClone(value) as any;
+ const copy=Object.fromEntries(Object.entries(value as Record<string,unknown>).map(([key,v])=>[key,withoutD179Schema(key,v)])) as any;
  copy['account-state'].properties.roster.items.properties.level.maximum=90;
  for(const branch of copy['account-state'].properties.farm.properties.rate_snapshot.oneOf)if(branch.properties)branch.properties.gear_tier.enum=branch.properties.gear_tier.enum.filter((n:number)=>n<=60);
  copy.item.properties.tier_level.enum=copy.item.properties.tier_level.enum.filter((n:number)=>n<=60);copy.item.properties.required_level.maximum=70;

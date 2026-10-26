@@ -8,9 +8,23 @@ import { nextRandom } from '../../content/random.ts';
 import { dailyUnlocked } from '../modes/daily.ts';
 import { cardRarity, migrateCardRarity } from '../build/card-rarity.ts';
 import { migrateSkillCaps } from '../progression/skill-cap-migration.ts';
+import { canonical } from '../../content/value.ts';
 
 export interface SaveMigration { state: AccountState; changes: string[] }
 const canonicalPool = (pool: readonly string[]) => [...pool].sort().join(',');
+type FarmSnapshot=NonNullable<AccountState['farm']['rate_snapshot']>;
+/** A catalog extension starts after the already-earned window is settled.
+ * Only identical payout rules and intact old definitions/weights qualify. */
+function keepFrozenCardCatalog(frozen:FarmSnapshot,current:FarmSnapshot,content:ValidatedContent):boolean{
+ const old=frozen.card_drops,next=current.card_drops;if(!old||!next||next.definition_pool.length<=old.definition_pool.length)return false;
+ const {content_version:_oldContent,rules_version:_oldRules,card_drops:_oldCards,...oldPayout}=frozen;
+ const {content_version:_newContent,rules_version:_newRules,card_drops:_newCards,...newPayout}=current;
+ if(canonical(oldPayout)!==canonical(newPayout))return false;
+ const {definition_pool:_oldPool,definition_weights:_oldWeights,definition_rarities:_oldRarities,...oldCardRules}=old;
+ const {definition_pool:_newPool,definition_weights:_newWeights,definition_rarities:_newRarities,...newCardRules}=next;
+ if(canonical(oldCardRules)!==canonical(newCardRules))return false;
+ return old.definition_pool.length>0&&old.definition_pool.every(id=>content.items[id]?.kind==='card'&&next.definition_pool.includes(id)&&old.definition_weights[id]===next.definition_weights[id]&&old.definition_rarities?.[id]===next.definition_rarities?.[id]);
+}
 /**
  * Carries a saved account across a content/rules change (TASK-040 slice, D-058).
  * It never invents progress: it fills new defaults, refunds what no longer fits the
@@ -79,7 +93,7 @@ export function migrateAccountState(input: unknown, content: ValidatedContent): 
       // D172: a higher tier starts after the next frozen window is settled by
       // farm.claim/set_stage. Preserve its cursor, draws and old earned gear.
       const keepFrozenUpgrade = frozen.gear_tier < current.gear_tier && frozen.definition_pool.length > 0 && frozen.definition_pool.every(id => content.items[id]?.kind === 'equipment' && content.items[id]!.tier_level === frozen.gear_tier);
-      if (!keepFrozenUpgrade && (frozen.content_version !== content.manifest.content_version || frozen.rules_version !== content.manifest.rules_version || canonicalPool(frozen.definition_pool) !== canonicalPool(current.definition_pool))) {
+      if (!keepFrozenUpgrade && !keepFrozenCardCatalog(frozen,current,content) && (frozen.content_version !== content.manifest.content_version || frozen.rules_version !== content.manifest.rules_version || canonicalPool(frozen.definition_pool) !== canonicalPool(current.definition_pool))) {
         const hadCards = !!frozen.card_drops; state.farm.rate_snapshot = current;
         if (!hadCards) delete state.farm.rate_snapshot.card_drops;
         changes.push(`farm rate refreshed for ${stage.id}`);

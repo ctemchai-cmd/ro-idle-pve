@@ -1,3 +1,4 @@
+import{assertD179File}from'./legacy-magic-card-scope.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -68,7 +69,7 @@ test('bad native aura references, dimensions, timing, style and unknown skills r
 });
 test('gameplay source documents/schemas remain byte-identical, native pixels match their source checksums, initial profile remains1.62MB and pack fits32MiB',()=>{
  const before=JSON.parse(readFileSync('plan/evidence/task-149/gameplay-before.json','utf8'));
- for(const[file,sha]of Object.entries(before))assert.equal(createHash('sha256').update(readFileSync(file)).digest('hex'),sha,file);
+ for(const[file,sha]of Object.entries(before))assertD179File(file,sha);
  for(const ref of[config.ring_meta,config.note_meta]){const meta=JSON.parse(readFileSync('assets/ro/'+ref,'utf8')),bytes=readFileSync('assets/ro/library/'+meta.file.path);assert.equal(createHash('sha256').update(bytes).digest('hex'),meta.file.sha256);}
  const pack=JSON.parse(readFileSync('runtime/ro/manifest.json','utf8'));assert(pack.sizes.initial_profile_raw_bytes<=1621492,'D175 lossless runtime metadata encoding may reduce the initial profile');assert(pack.sizes.media_and_sidecar_bytes+pack.sizes.manifest_bytes<33554432);
 });

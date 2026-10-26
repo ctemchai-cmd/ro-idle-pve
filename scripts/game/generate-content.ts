@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { compile } from 'json-schema-to-typescript';
 import type { JSONSchema4 } from 'json-schema';
 import { canonical, isObject } from '../../src/content/value.ts';
+import { localSchemaReference } from '../../src/content/schema-ref.ts';
 import { engineProjection } from './content-projection.ts';
 
 export const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
@@ -21,15 +22,15 @@ for (const file of files) {
   else documents[file.replace('plan/data/', '')] = value;
 }
 // Resolve only local refs; the type generator must never fetch remote schemas.
-function localSchema(value: unknown): unknown {
-  if (Array.isArray(value)) return value.map(localSchema);
+function localSchema(value: unknown, name: string): unknown {
+  if (Array.isArray(value)) return value.map(child => localSchema(child, name));
   if (!isObject(value)) return value;
   return Object.fromEntries(Object.entries(value).filter(([key]) => key !== '$id' && key !== '$schema').map(([key, child]) => {
     if (key === '$ref') {
-      if (typeof child !== 'string' || !/^[a-z-]+\.json$/.test(child)) throw new Error(`Unregistered schema ref ${String(child)}`);
-      return [key, `#/$defs/${child.slice(0, -5)}`];
+      const ref = localSchemaReference(child, schemas, name);
+      return [key, `#/$defs/${ref.schema}${ref.fragment}`];
     }
-    return [key, localSchema(child)];
+    return [key, localSchema(child, name)];
   }));
 }
 await mkdir(path.join(root, 'src/generated'), { recursive: true });
@@ -37,7 +38,7 @@ const typeSchema = {
   type: 'object', additionalProperties: false,
   properties: Object.fromEntries(Object.keys(schemas).map(key => [key.replaceAll('-', '_'), { $ref: `#/$defs/${key}` }])),
   required: Object.keys(schemas).map(key => key.replaceAll('-', '_')),
-  $defs: Object.fromEntries(Object.entries(schemas).map(([key, value]) => [key, localSchema(value)])),
+  $defs: Object.fromEntries(Object.entries(schemas).map(([key, value]) => [key, localSchema(value, key)])),
 };
 const types = await compile(typeSchema as JSONSchema4, 'GameContracts', { bannerComment: '/* Generated from plan/data/schemas. Do not edit. */', style: { singleQuote: true }, unknownAny: true });
 await writeFile(path.join(root, 'src/generated/contracts.d.ts'), types);

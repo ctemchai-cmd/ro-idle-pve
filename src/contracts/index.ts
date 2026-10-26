@@ -6,6 +6,7 @@ export type BattleCheckpoint = GameContracts['battle_checkpoint'];
 export type Scenario = GameContracts['simulation_scenario'];
 export type SkillDefinition = GameContracts['skill'];
 export type ItemDefinition = GameContracts['item'];
+export type CombatBonus = NonNullable<ItemDefinition['combat_bonuses']>[number];
 export type StatusDefinition = GameContracts['status'];
 export type Effect = GameContracts['effect'];
 export type Modifier = GameContracts['modifier'];

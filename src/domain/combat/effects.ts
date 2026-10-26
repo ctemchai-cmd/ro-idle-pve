@@ -11,6 +11,7 @@ import { compareId, schedule } from './scheduler.ts';
 import { recomputeStats, sourceAlive, statusDefinition, weaponElement } from './status.ts';
 import type { StatusInstance } from './status.ts';
 import { allowsMagicalCritical, echoMultiplier, nextDamageCharge } from './action-bonuses.ts';
+import { conditionalCombatBonuses } from './conditional-bonuses.ts';
 
 export interface EffectPorts {
   emit(event: Omit<BattleEvent, 'at_ms' | 'phase' | 'sequence'>): void;
@@ -152,10 +153,15 @@ export class EffectPipeline {
   private damage(effect: DamageEffect, context: ProgramContext, target: BattleActor): void {
     context = { ...context, damage_type: effect.damage_type };
     // Per-effect bonuses never mutate the actor, its cast snapshot or the next hit program.
-    const offense = effect.crit_chance_bonus || effect.crit_damage_bonus || effect.penetration_bonus ? { ...context.offense,
+    let offense = effect.crit_chance_bonus || effect.crit_damage_bonus || effect.penetration_bonus ? { ...context.offense,
       crit_chance_bonus: context.offense.crit_chance_bonus + (effect.crit_chance_bonus === undefined ? 0 : resolvedNumber(effect.crit_chance_bonus)),
       crit_damage_bonus: context.offense.crit_damage_bonus + (effect.crit_damage_bonus === undefined ? 0 : resolvedNumber(effect.crit_damage_bonus)),
       penetration_percent: context.offense.penetration_percent + (effect.penetration_bonus === undefined ? 0 : resolvedNumber(effect.penetration_bonus)) } : context.offense;
+    const bonus=conditionalCombatBonuses(context.self.stat_blueprint.permanent_sources,effect.damage_type,context.origin,context.skill_id);
+    if(bonus.damage||bonus.penetration){
+      const lane=effect.damage_type==='magical'?'outgoing_magical_bonus':effect.damage_type==='physical'?'outgoing_physical_bonus':'outgoing_true_bonus';
+      offense={...offense,[lane]:checked(offense[lane]+bonus.damage),penetration_percent:checked(offense.penetration_percent+bonus.penetration)};
+    }
     const raw = this.power(effect.formula, context);
     const hits=checked(effect.hits*(context.echo_multiplier??1));
     for (let hit = 0; hit < hits && target.hp > 0; hit++) {

@@ -149,8 +149,8 @@ Q-001–Q-022 ตอบแล้ว: บัฟบวกกันไม่มี�
 | สถานะ | จำนวนไฟล์ tasks_*.md | งานปัจจุบัน |
 | --- | ---: | --- |
 | todo | 5 | ออกแบบ/พัฒนา/ตรวจรับตามรายการด้านล่าง |
-| inprogress | 5 | TASK-041 บาลานซ์; TASK-058 ย้ายเซฟ; TASK-064 cloud timing; TASK-067 รอผู้ใช้คืนสิทธิ์แก่นพลัง |
-| review | 5 |    [TASK-048](review/tasks_048.md) game shell /play รอผู้ใช้ตรวจหน้าตา (AC-08), [TASK-054](review/tasks_054.md) ภาพการต่อสู้ตรง RO รอผู้ใช้ตรวจ (AC-06), [TASK-055](review/tasks_055.md) คำขอระหว่างลองเล่น รอผู้ใช้ (AC-06), [TASK-056](review/tasks_056.md) UI D-076–078/080 อัปเดตแล้วรอผู้ใช้ตรวจภาพ (AC-06), [TASK-057](review/tasks_057.md) ทรงผม D-079 อัปเดตแล้วรอผู้ใช้ตรวจ (AC-05) |
+| inprogress | 4 | TASK-041 บาลานซ์; TASK-058 ย้ายเซฟ; TASK-064 cloud timing; TASK-067 รอผู้ใช้คืนสิทธิ์แก่นพลัง |
+| review | 6 |    [TASK-048](review/tasks_048.md) game shell /play รอผู้ใช้ตรวจหน้าตา (AC-08), [TASK-054](review/tasks_054.md) ภาพการต่อสู้ตรง RO รอผู้ใช้ตรวจ (AC-06), [TASK-055](review/tasks_055.md) คำขอระหว่างลองเล่น รอผู้ใช้ (AC-06), [TASK-056](review/tasks_056.md) UI D-076–078/080 อัปเดตแล้วรอผู้ใช้ตรวจภาพ (AC-06), [TASK-057](review/tasks_057.md) ทรงผม D-079 อัปเดตแล้วรอผู้ใช้ตรวจ (AC-05) |
 | done | 140 | ผ่าน review ตามหลักฐานในแต่ละงาน |
 
 Progress ของกระดาน: **140/155 งานผ่าน done** ไม่รวมงานเตรียม assets ที่ทำก่อนเริ่มใช้กระดาน ตำแหน่งไฟล์เป็นสถานะจริง ID คงเดิม เมื่อย้ายไฟล์ให้อัปเดตจำนวนและลิงก์ในเอกสารนี้
@@ -480,4 +480,4 @@ TASK147done: source`87e10995f` VercelSUCCESS; หน้าแรก/AFK/แผ�
 
 [TASK154](done/tasks_154.md): ย่อยการ์ดหลายใบ/เลือกตามfilter/ยืนยันรวม · D178/design67.
 
-[TASK155](inprogress/tasks_155.md): การ์ดเวท5ใบ/MATK+MDefpen+Boltbonus · D179/design68.
+[TASK155](review/tasks_155.md): การ์ดเวท5ใบ/M.ATK+เจาะMDEF+ดาเมจเวททั่วไป (ตามคำขอล่าสุด) · D179/design68.

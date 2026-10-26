@@ -1,4 +1,6 @@
 import { readFileSync } from 'node:fs';
+import {createHash} from 'node:crypto';
+import {assertD179File} from './legacy-magic-card-scope.ts';
 import {gunzipSync} from 'node:zlib';
 import roleSpec from '../../plan/generators/skill-distinctness.json';
 import rankBefore136 from './fixtures/skill-rank-before-136.json';
@@ -8,6 +10,10 @@ import hunterBefore128 from './fixtures/hunter-before-128.json';
 /** Frozen scope checks retain all historical bytes except separately tested D154/D157 changes. */
 export function legacyClass2Source(file: string): Buffer {
   let bytes = readFileSync(new URL(`../../plan/data/${file}`, import.meta.url));
+  if(['cards.json','gacha.json','strings.th.json'].includes(file)){
+    const old=readFileSync(new URL(`../../plan/evidence/task-155/before-${file}`,import.meta.url));
+    assertD179File('plan/data/'+file,createHash('sha256').update(old).digest('hex'));bytes=old;
+  }
   if (file.startsWith('skills/')) {
     const roleBefore=JSON.parse(gunzipSync(readFileSync(new URL('../../plan/evidence/task-142/authored-before.json.gz',import.meta.url))).toString())as Record<string,string>;
     for(const id of Object.keys(roleSpec.updates)){

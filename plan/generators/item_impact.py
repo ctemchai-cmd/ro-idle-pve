@@ -24,6 +24,10 @@ def card_power(row):
             modifier['value'] = round(modifier['value'] * factor, 6)
     for stat, value in growth.items():
         result['modifiers'].append({'id': 'impact_'+stat, 'stat': stat, 'op': 'add_percent', 'bucket': 'derived', 'value': round(value, 6)})
+    for bonus in result.get('combat_bonuses', []):
+        for key in ('damage_bonus', 'penetration_bonus'):
+            if key in bonus:
+                bonus[key] = round(bonus[key] * factor, 6)
     for trigger in result['triggers']:
         for effect in trigger['effects']:
             if effect['type'] == 'damage':

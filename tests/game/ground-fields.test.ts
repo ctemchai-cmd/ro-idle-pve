@@ -1,3 +1,4 @@
+import{assertD179File}from'./legacy-magic-card-scope.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -83,7 +84,7 @@ test('catalog covers every authored skill; all deployed sidecars parse exactly l
   const catalog = JSON.parse(readFileSync('plan/evidence/task-151/ground-catalog.json', 'utf8'));
   assert.deepEqual(catalog.skills.map((s: any) => s.skill_id).sort(), Object.keys(content.skills).sort());
   const before = JSON.parse(readFileSync('plan/evidence/task-151/gameplay-before.json', 'utf8'));
-  for (const [file, sha] of Object.entries(before)) assert.equal(createHash('sha256').update(readFileSync(file)).digest('hex'), sha, file);
+  for (const [file, sha] of Object.entries(before)) assertD179File(file,sha);
   const pack = JSON.parse(readFileSync('runtime/ro/manifest.json', 'utf8')); assert.equal(pack.sidecar_encoding, 'compact-json-safe-integers-v1');
   for (const row of pack.files) {
     const bytes = readFileSync('runtime/ro/payload/' + row.path), source = readFileSync('assets/ro/' + row.path);

@@ -1,4 +1,5 @@
 import test from 'node:test';
+import {withoutD179FarmCards} from './legacy-magic-card-scope.ts';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
@@ -37,7 +38,7 @@ test('D150 appends50 connected stages with five distinct named bosses, preserves
 
 test('D150 expansion keeps old actual card profiles, gear/currency rates, migration state and dailychapter9 serializable',()=>{
  const state=initial(),stages=storyStages(content);
- assert.equal(sha(canonical(stages.slice(0,130).map(s=>storyFarmSnapshot(s,state,content).card_drops))),baseline.card_profiles_sha256);
+ assert.equal(sha(canonical(stages.slice(0,130).map(s=>withoutD179FarmCards(storyFarmSnapshot(s,state,content).card_drops)))),baseline.card_profiles_sha256);
  const economy=content.documents['economy.json']!.rates as unknown as {chapter:number;per_hour:object}[];
  assert.deepEqual(economy.slice(0,8),baseline.rates);assert.deepEqual(economy[8]!.per_hour,economy[7]!.per_hour);
  for(const s of expansion()){const f=storyFarmSnapshot(s,state,content);assert.equal(f.gear_tier,60);assert.equal(f.card_drops!.chance_per_million,20000);assert.equal(f.definition_pool.length,36);}

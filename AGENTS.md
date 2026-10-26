@@ -1,5 +1,9 @@
 # Project context
 
+## Magic cards (26 October2026,D179/TASK155)
+
+Local complete, awaiting publish verification. Five real RO portraits/IDs: Scaraba4505 accessory/Rare, Necromancer4440 weapon/Rare, Agav4409 armor/Rare, Siroma4416 accessory/Uncommon, Imp4433 accessory/Rare. User latest request replaces Bolt-only bonuses with general magical damage: raw10%/15% before existing1.75/cardrarity/level, using existing outgoing_magical_bonus, no heal/CT/PATK bonus. Necro optional typed combat_bonuses are frozen per permanent source and add magic-only MDEFpenetration before mitigation; no extra proc/hit/RNG. All73 old cards/rates unchanged. Frozen unpaid old card catalog stays until farm.claim/set_stage settles it then installs expanded pool. Lossless method6 recompression70 static media/80 sidecars saves220160bytes with identicalRGBA/geometry/timing/provenance. New5 portraits keep actual art300×400. Pack901/1687/raw33523292<32MiB/initial1579562. Full730/final11mechanical/native11/root-filtered/source309+60460+6926 passed. No balancebatch/SQL/env/owner writes. See design68/latestHANDOFF for final release.
+
 ## Bulk card selection/details (26 October2026,D178/TASK154)
 
 Source45f39a9a1 live/VercelSUCCESS;bulk4(incl500)/single4/11atomicTS/rootbuild/M0/hosted3passed. Cardtab→ย่อยหลายใบ;manual/select-allofvisiblefilter/clear. Locked/equippeddisabled;filter/tabchangesclearhiddenselection. SharedconfirmationfreezesIDs,revalidateswholebatch,showsrarities/8previews/upgradedcount/dust;oneexistingcard.salvagecommandmax500/single-flight/cancel0. A compactfooterinspector showslasttappedcardart/name/rarity/level/slot/two-lineeffects;expanddetailswithoutselectionchange. 500cardcase102mountedcells/8preview. No newDB/save/economy rules. TASK155magiccardoptionsisinprogress,neverclaimnewcardslivebeforeactualrelease.

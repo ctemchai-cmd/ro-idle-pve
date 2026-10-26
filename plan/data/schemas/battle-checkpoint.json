@@ -1805,6 +1805,13 @@
                         "ghost",
                         "undead"
                       ]
+                    },
+                    "combat_bonuses": {
+                      "type": "array",
+                      "maxItems": 32,
+                      "items": {
+                        "$ref": "item.json#/$defs/combat_bonus"
+                      }
                     }
                   },
                   "required": [

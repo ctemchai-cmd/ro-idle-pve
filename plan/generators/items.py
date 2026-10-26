@@ -150,7 +150,7 @@ def main():
   equipment, cards_doc, strings = build(load('equipment.json'), load('cards.json'), load('strings.th.json'), icons)
   rules = equipment['random_options']; rules['lines_by_rarity'] = {**rules['lines_by_rarity'], 'immortal': 4, 'supreme': 5}
   gacha = load('gacha.json'); gacha['definitions'] = [c['id'] for c in cards_doc['definitions']]; gacha['definition_weights'] = {c['id']: 1000 if cards_doc['origins'][c['id']].get('variant') == 'puppet' else {'normal':1000,'mini':100,'mvp':10}[cards_doc['origins'][c['id']]['grade']] for c in cards_doc['definitions']}
-  gacha['definition_choice'] = "D-109: choose rarity then a matching fixed-monster card among all73 definitions, independent of equipment tier. Farm/Tower retain chapter/tier pools. Original MVP Legendary, Mini Epic, Puppet I Rare."
+  gacha['definition_choice'] = f"D-109: choose rarity then a matching fixed-monster card among all{len(cards_doc['definitions'])} definitions, independent of equipment tier. Farm/Tower retain chapter/tier pools. Original MVP Legendary, Mini Epic, Puppet I Rare."
   loot = load('loot.json'); loot['gear']['definition_choice'] = 'uniform among the 36 definitions (20 weapons, 3 head/armor/garment/shoes, 4 accessories) of the stage tier; no class-specific armor'
   out = {'equipment.json': equipment, 'cards.json': cards_doc, 'strings.th.json': strings, 'gacha.json': gacha, 'loot.json': loot}
   text = {k: json.dumps(v, ensure_ascii=False, indent=2) + '\n' for k, v in out.items()}

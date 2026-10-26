@@ -3,6 +3,7 @@ import type { ValidateFunction } from 'ajv';
 import type { ContentIssue, DefinitionLocation } from './model.ts';
 import { arrayAt, canonical, isObject, objectAt } from './value.ts';
 import type { Json, ObjectValue } from './value.ts';
+import { localSchemaReference } from './schema-ref.ts';
 
 export type SchemaKind = 'skill' | 'item' | 'status' | 'patch' | 'modifier' | 'selector' | 'trigger' | 'effect' | 'command' | 'account-state' | 'receipt' | 'battle-checkpoint' | 'simulation-scenario';
 export class InvalidContent extends Error {
@@ -35,7 +36,7 @@ export class ContentValidator {
   constructor(schemas: Record<string, ObjectValue>) {
     for (const [name, schema] of Object.entries(schemas)) {
       if (schema.$id !== `https://ro-idle.local/schemas/${name}.json`) throw new TypeError(`Invalid local schema ID: ${name}`);
-      for (const node of walk(schema)) if (isObject(node) && '$ref' in node && !/^[a-z-]+\.json$/.test(text(node.$ref))) throw new TypeError(`Remote/unregistered schema ref: ${text(node.$ref)}`);
+      for (const node of walk(schema)) if (isObject(node) && '$ref' in node) localSchemaReference(node.$ref,schemas,name);
       this.ajv.addSchema(schema);
     }
   }
@@ -232,6 +233,12 @@ export class ContentValidator {
     } else if (kind === 'item') {
       demand((value.slot === 'weapon' && value.kind === 'equipment') === (value.weapon_type !== null), 'weapon_kind', location);
       this.modifiers(arr(value.modifiers), location); this.triggers(arr(value.triggers), location);
+      const bonuses = arr(value.combat_bonuses ?? []); unique(bonuses, location);
+      for (const [index, bonus] of bonuses.map(obj).entries()) {
+        const at = { ...location, path: location.path + `/combat_bonuses/${index}` };
+        demand(Number(bonus.damage_bonus ?? 0) > 0 || Number(bonus.penetration_bonus ?? 0) > 0, 'combat_bonus_no_effect', at);
+        for (const id of arr(bonus.skill_ids ?? [])) demand(this.skillIds.has(text(id)), 'unknown_combat_bonus_skill', at, text(id));
+      }
     } else {
       const schema = obj(value.parameter_schema), properties = obj(schema.properties);
       demand(schema.additionalProperties === false && canonical([...arr(schema.required)].sort()) === canonical(Object.keys(properties).sort()), 'status_params', location);

@@ -2949,6 +2949,174 @@
       "variant": "puppet",
       "parent_card_id": "card_doppelganger",
       "art_basis": "Reuse original native RO illustration with a presentation-only pale treatment, not a claim of authentic Origin Puppet artwork."
+    },
+    {
+      "id": "card_scaraba",
+      "name": "การ์ด Scaraba",
+      "ro_item_id": 4505,
+      "monster_id": 2083,
+      "monster_name": "One-Horned Scaraba",
+      "source_level": 130,
+      "slot": "accessory",
+      "tier": 20,
+      "rarity_id": "rare",
+      "strength_class": "elite",
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "value": 12,
+          "op": "add_flat",
+          "bucket": "derived"
+        },
+        {
+          "id": "max_sp",
+          "stat": "max_sp",
+          "value": -0.01,
+          "op": "add_percent",
+          "bucket": "derived"
+        }
+      ],
+      "grade": "normal",
+      "source_slot": "accessory",
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4505&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/re/item_db_etc.yml",
+      "monster_reference": "https://github.com/rathena/rathena/blob/master/db/re/mob_db.yml",
+      "adaptation": "D179 RO identity/art/slot/theme. Numeric power adapted for idle/card rarity/level; no exact PC formula claim. Necromancer combat Boss class does not imply field Mini identity. Siroma/Imp improve damage only, not cast timing."
+    },
+    {
+      "id": "card_necromancer",
+      "name": "การ์ด Necromancer",
+      "ro_item_id": 4440,
+      "monster_id": 1870,
+      "monster_name": "Necromancer",
+      "source_level": 88,
+      "slot": "weapon",
+      "tier": 40,
+      "rarity_id": "rare",
+      "strength_class": "elite",
+      "modifiers": [
+        {
+          "id": "int",
+          "stat": "int",
+          "value": 1,
+          "op": "add_flat",
+          "bucket": "primary"
+        }
+      ],
+      "combat_bonuses": [
+        {
+          "id": "magic_mdef_penetration",
+          "damage_types": [
+            "magical"
+          ],
+          "origins": [
+            "skill",
+            "normal",
+            "periodic"
+          ],
+          "penetration_bonus": 0.06
+        }
+      ],
+      "grade": "normal",
+      "source_slot": "weapon",
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4440&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/re/item_db_etc.yml",
+      "monster_reference": "https://github.com/rathena/rathena/blob/master/db/pre-re/mob_db.yml",
+      "adaptation": "D179 RO identity/art/slot/theme. Numeric power adapted for idle/card rarity/level; no exact PC formula claim. Necromancer combat Boss class does not imply field Mini identity. Siroma/Imp improve damage only, not cast timing."
+    },
+    {
+      "id": "card_agav",
+      "name": "การ์ด Agav",
+      "ro_item_id": 4409,
+      "monster_id": 1769,
+      "monster_name": "Agav",
+      "source_level": 73,
+      "slot": "armor",
+      "tier": 40,
+      "rarity_id": "rare",
+      "strength_class": "elite",
+      "modifiers": [
+        {
+          "id": "magical_attack",
+          "stat": "magical_attack",
+          "value": 0.15,
+          "op": "add_percent",
+          "bucket": "derived"
+        },
+        {
+          "id": "physical_defense",
+          "stat": "physical_defense",
+          "value": -5,
+          "op": "add_flat",
+          "bucket": "derived"
+        }
+      ],
+      "grade": "normal",
+      "source_slot": "armor",
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4409&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/re/item_db_etc.yml",
+      "monster_reference": "https://github.com/rathena/rathena/blob/master/db/pre-re/mob_db.yml",
+      "adaptation": "D179 RO identity/art/slot/theme. Numeric power adapted for idle/card rarity/level; no exact PC formula claim. Necromancer combat Boss class does not imply field Mini identity. Siroma/Imp improve damage only, not cast timing."
+    },
+    {
+      "id": "card_siroma",
+      "name": "การ์ด Siroma",
+      "ro_item_id": 4416,
+      "monster_id": 1776,
+      "monster_name": "Siroma",
+      "source_level": 42,
+      "slot": "accessory",
+      "tier": 20,
+      "rarity_id": "uncommon",
+      "strength_class": "strong",
+      "modifiers": [
+        {
+          "id": "outgoing_magical_bonus",
+          "stat": "outgoing_magical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.1
+        }
+      ],
+      "grade": "normal",
+      "source_slot": "accessory",
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4416&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/re/item_db_etc.yml",
+      "monster_reference": "https://github.com/rathena/rathena/blob/master/db/pre-re/mob_db.yml",
+      "adaptation": "D179 user revision: generic magical damage instead of Bolt-specific damage; reduced raw bonus10%/15% before existing1.75/rarity/level. RO identity/art/slot retained; numeric effect is an idle adaptation, not exact PC behavior. No cast-speed change."
+    },
+    {
+      "id": "card_imp",
+      "name": "การ์ด Imp",
+      "ro_item_id": 4433,
+      "monster_id": 1837,
+      "monster_name": "Imp",
+      "source_level": 76,
+      "slot": "accessory",
+      "tier": 40,
+      "rarity_id": "rare",
+      "strength_class": "elite",
+      "modifiers": [
+        {
+          "id": "outgoing_magical_bonus",
+          "stat": "outgoing_magical_bonus",
+          "op": "add_flat",
+          "bucket": "bonus",
+          "value": 0.15
+        }
+      ],
+      "grade": "normal",
+      "source_slot": "accessory",
+      "triggers": [],
+      "reference_url": "https://ro.gnjoy.com/guide/runemidgarts/itemview.asp?ID=4433&itemSeq=5",
+      "reference_database": "https://github.com/rathena/rathena/blob/master/db/re/item_db_etc.yml",
+      "monster_reference": "https://github.com/rathena/rathena/blob/master/db/pre-re/mob_db.yml",
+      "adaptation": "D179 user revision: generic magical damage instead of Bolt-specific damage; reduced raw bonus10%/15% before existing1.75/rarity/level. RO identity/art/slot retained; numeric effect is an idle adaptation, not exact PC behavior. No cast-speed change."
     }
   ],
   "monster_traits": {
@@ -3006,6 +3174,31 @@
       "ro_monster_id": 1039,
       "race": "demon",
       "size": "large"
+    },
+    "horn_scaraba": {
+      "ro_monster_id": 2083,
+      "race": "insect",
+      "size": "small"
+    },
+    "necromancer": {
+      "ro_monster_id": 1870,
+      "race": "undead",
+      "size": "medium"
+    },
+    "agav": {
+      "ro_monster_id": 1769,
+      "race": "demihuman",
+      "size": "medium"
+    },
+    "siroma": {
+      "ro_monster_id": 1776,
+      "race": "formless",
+      "size": "small"
+    },
+    "imp": {
+      "ro_monster_id": 1837,
+      "race": "demon",
+      "size": "small"
     }
   },
   "rarity_policy": {

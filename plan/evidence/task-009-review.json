@@ -6,9 +6,9 @@
   "scope": "M0 schema, metadata refs, ownership contract, hand arithmetic and invalid fusion cases; not game inventory execution",
   "input_sha256": {
     "plan/data/equipment.json": "ee6ce82a991d98a99d40ec7e661b3de3b8d0a629e78d91cd8d9ea500e53cb344",
-    "plan/data/cards.json": "dd64b738b78a3da73c1a42bb89c1e5c0c7f1bd61e196524e0ff078483a91f130",
+    "plan/data/cards.json": "1728a478b0ebdf1cb9b459b6ccb5a7fda058594d074eacbc7ffe2bc378786734",
     "plan/data/slot-progress.json": "f38f3fe6956c4902cf7e0f15d078cc8460a4f00fe36289952760d5d2f151a8fe",
-    "plan/checks/equipment.py": "3fc1e4c5d4f993bd6a4d8cc795b34f8df5b725ce7ffbe11cb70ea1f44daee13e"
+    "plan/checks/equipment.py": "408a6c8d77f0b3f81f789944f752e27f207b183b5a87d7cd86a7a1e1870c677f"
   },
   "checks": [
     {
@@ -3769,6 +3769,71 @@
       }
     },
     {
+      "case_id": "card_scaraba",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.card-4505",
+        "tier": 20
+      }
+    },
+    {
+      "case_id": "card_necromancer",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.card-4440",
+        "tier": 40
+      }
+    },
+    {
+      "case_id": "card_agav",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.card-4409",
+        "tier": 40
+      }
+    },
+    {
+      "case_id": "card_siroma",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.card-4416",
+        "tier": 20
+      }
+    },
+    {
+      "case_id": "card_imp",
+      "acceptance": [
+        "AC-01",
+        "AC-04"
+      ],
+      "passed": true,
+      "result": {
+        "schema": "valid",
+        "icon_asset_id": "items.card-4433",
+        "tier": 40
+      }
+    },
+    {
       "case_id": "coverage_and_rarity",
       "acceptance": [
         "AC-01",
@@ -3849,9 +3914,9 @@
       ],
       "passed": true,
       "result": {
-        "definitions": 73,
+        "definitions": 78,
         "source_grades": {
-          "normal": 49,
+          "normal": 54,
           "mini": 4,
           "mvp": 20
         },

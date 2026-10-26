@@ -3,7 +3,7 @@ import type { AccountState, Effect } from '../contracts/index.ts';
 import { loadValidatedContent } from './content.ts';
 import { applySlotCommand, slotData, cardData, cardCapacity, upgradeQuote, enchantRefund, cardSalvageQuote, refineChance, refinePityBonus, type SlotCommand } from '../domain/progression/slots.ts';
 import { assignedOwner, itemDefinition, type EquipmentSlot, type InventoryItem } from '../domain/progression/equipment.ts';
-import { resolvedCardModifiers, resolvedCardTriggers } from '../domain/build/equipment.ts';
+import { resolvedCardModifiers, resolvedCardTriggers, resolvedItemCombatBonuses } from '../domain/build/equipment.ts';
 import { cardOrigins } from '../content/card-catalog.ts';
 import { effectDescriptions } from './skills.ts';
 import { equipmentStats } from './equipment.ts';
@@ -42,6 +42,12 @@ type CardItem = Extract<InventoryItem,{kind:'card'}>;
 export const cardOrigin = (id:string) => cardOrigins(content)[id] ?? null;
 function cardEffects(item:CardItem):string[]{
  const definition=itemDefinition(item,content),result=definition.defense_element?[`เปลี่ยนธาตุเกราะเป็น${elements[definition.defense_element]??definition.defense_element}`]:[];
+ for(const bonus of resolvedItemCombatBonuses(item,content)){
+  const scope=bonus.skill_ids?.map(id=>labels[String(content.skills[id]!.name_key)]??id).join('/')??bonus.damage_types.map(t=>t==='magical'?'เวท':t==='physical'?'กายภาพ':'จริง').join('/');
+  const percent=(n:number)=>(n*100).toLocaleString('th-TH',{maximumFractionDigits:2})+'%';
+  if(bonus.damage_bonus)result.push(`${scope}: ดาเมจ +${percent(bonus.damage_bonus)}`);
+  if(bonus.penetration_bonus)result.push(`${scope}: เจาะ${bonus.damage_types.length===1&&bonus.damage_types[0]==='magical'?'เกราะเวท':'เกราะ'} ${percent(bonus.penetration_bonus)}`);
+ }
  for(const trigger of resolvedCardTriggers(item,content)){
   const event=trigger.event==='normal_attack_hit'?'โจมตีปกติโดน':trigger.event==='damage_received'?'รับดาเมจ':trigger.event==='damage_dealt'?'ทำดาเมจ':'เข้าเงื่อนไข';
   const kind=trigger.accepted_damage_types?.map(t=>t==='physical'?'กายภาพ':t==='magical'?'เวท':'จริง').join('/');
