@@ -18,7 +18,7 @@ primaryทอง/secondaryฟ้าอ่อน/selectedblue/corners12/softshado
 
 ## เกณฑ์ตรวจรับ
 - [x] AC-01:shop/cards/controlstates320390/primarygold/blue/danger/focus/disabled/press/darkbattleอ่านง่าย ไม่มีhardbevel
-- [ ] AC-02:rootbuild/M0/publicผ่าน;content/engine/schema/implementation/packเดิมและnoownerwrites
+- [x] AC-02:rootbuild/M0/publicผ่าน;content/engine/schema/implementation/packเดิมและnoownerwrites
 
 ## วิธีตรวจ
 Design73/evidence160/native+publicactualCSS/rootbuild/M0/fingerprintcompare.
@@ -27,4 +27,4 @@ Design73/evidence160/native+publicactualCSS/rootbuild/M0/fingerprintcompare.
 ไม่มี;คำขอล่าสุดกำหนดROIdleAdventureชัดเจน.
 
 ## ผลตรวจ
-Localnative3groups/14CardSheets/shop+states320390/rootbuild/M0ผ่าน,ทุกgameplayfingerprint/packเดิม;รอpublicrelease.
+Localnative3groups/14CardSheets/shop+states320390/rootbuild/M0ผ่าน,ทุกgameplayfingerprint/packเดิม;VercelSUCCESS source39a3f4f66/public4groups/24bundleSHAผ่าน.

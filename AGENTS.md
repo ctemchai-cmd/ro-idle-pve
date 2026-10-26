@@ -2,7 +2,7 @@
 
 ## Idle Adventure controls (26 October2026,D184/TASK160)
 
-User rejectedD182XP-likebevel and selectedROIdleAdventure aslatestreference. Localnative3groups320390/rootbuild/M0passed;160review awaitingpublic. Primarysoftgold/secondarylightblue/selectedblue/coraldestructive/12pxbuttons8pxtabs/singlelowshadow/noinsetor3Dtext;darkbattletoolsgoldselectedspeed. Preservehitareas/layout/type/nativeicons/framelessskills/rarityandallgameplayfivefingerprints/pack. Reducedmotionstatic. CSSinterpretation,notcopiednativebitmaps. See design73/evidence160/latestHANDOFFforrelease.
+User rejectedD182XP-likebevel and selectedROIdleAdventure aslatestreference. Source39a3f4f66 live/VercelSUCCESS;native3groups320390/rootbuild/M0/public4groups24bundleSHApassed;160complete. Primarysoftgold/secondarylightblue/selectedblue/coraldestructive/12pxbuttons8pxtabs/singlelowshadow/noinsetor3Dtext;darkbattletoolsgoldselectedspeed. Preservehitareas/layout/type/nativeicons/framelessskills/rarityandallgameplayfivefingerprints/pack. Reducedmotionstatic. CSSinterpretation,notcopiednativebitmaps. See design73/evidence160/latestHANDOFFforrelease.
 
 ## Classic buttons and card role balance (26 October2026,D182–183/TASK158–159)
 
