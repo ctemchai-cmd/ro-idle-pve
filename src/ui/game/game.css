@@ -1058,3 +1058,7 @@ dialog.gacha-reveal-sheet{height:92dvh}.gacha-reveal-sheet .sheet-body{height:10
 
 /* Exact refund preview for the selected character; current Classic palette. */
 .character-reset-refund{list-style:none;padding:0;margin:14px 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.character-reset-refund li{display:grid;grid-template-columns:20px minmax(0,1fr);gap:4px 6px;align-items:center;padding:10px;border-radius:10px;background:var(--surface-soft,#edf4fd);font-size:12px}.character-reset-refund li .res-icon{grid-row:span 2}.character-reset-refund li b{color:var(--brand,#3d70b2);font-size:14px}.character-reset-sheet .level-jump small{display:flex;gap:4px;align-items:center}
+
+/* A refused finish stays readable and actionable within a portrait viewport. */
+.field-toast.field-finish-error { width:calc(100% - 24px); max-width:340px; white-space:normal; display:flex; flex-direction:column; align-items:center; gap:8px; text-align:center; }
+.field-finish-error .btn { flex-shrink:0; max-width:100%; white-space:normal; }

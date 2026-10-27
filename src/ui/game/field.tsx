@@ -154,8 +154,8 @@ export function BossField({ context, app, running, checkpoint, outcome, retreat,
         </div>; })()}
       {cut && <p className="boss-cut" role="status"><Icon name="lightning" /> ขัดสำเร็จ!{cut.by ? ` · ${cut.by}` : ''}</p>}
     </div>
-    {view.terminal && !outcome && running && <p className="field-toast">กำลังยืนยันผลไฟต์…</p>}
-    {error && !outcome && <div className="field-toast danger" role="alert"><span>{error}</span>{view.terminal&&<button className="btn small" disabled={context.busy} onClick={()=>void confirmFinish()}>ลองยืนยันผลอีกครั้ง</button>}</div>}
+    {view.terminal && !outcome && running && !error && <p className="field-toast">กำลังยืนยันผลไฟต์…</p>}
+    {error && !outcome && <div className="field-toast danger field-finish-error" role="alert"><span>{error}</span>{view.terminal&&<button className="btn small" disabled={context.busy} onClick={()=>void confirmFinish()}>ลองยืนยันผลอีกครั้ง</button>}</div>}
     <div className="battle-dock">
     {focused && <div className="focus-status-panel">{focusActor && <div className="focus-elements" aria-label={`ธาตุของ ${focused.name}`}><ElementBadge pack={pack} element={actorElements(focusActor).armor} armor /><span className="weapon-element">อาวุธ · <ElementBadge pack={pack} element={actorElements(focusActor).weapon} /></span></div>}<CombatStatusStrip key={focused.actor_id} actor={focused} actors={view.actors} pack={pack} now={view.game_time_ms} focus /></div>}
     <div className="boss-tools" role="toolbar" aria-label="ควบคุมการต่อสู้">
