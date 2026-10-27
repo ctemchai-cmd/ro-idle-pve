@@ -168,7 +168,7 @@ export function createRecurringHandlers(store: Pick<ReturnType<typeof createSave
         if (save.schema_version !== 1) return fail('UPDATE_REQUIRED', 409);
         if (current(save)) return fail('SAVE_ALREADY_CURRENT', 409);
         if (command.params.from_revision !== save.revision || command.params.from_content_hash !== save.content_hash) return fail('MIGRATION_SOURCE_MISMATCH', 409);
-        try { next = rules.migrateSave(save.state).state; } catch { return fail('MIGRATION_UNSUPPORTED', 409); }
+        try { next = rules.migrateSave(save.state, {account_id:accountId,now_ms:nowMs}).state; } catch { return fail('MIGRATION_UNSUPPORTED', 409); }
         previous = save.state as AccountState; reason = 'migration'; code = 'SAVE_MIGRATED';
       } else if (command.type === 'account.reset') {
         if (!live) return whole ? fail('CONTENT_VERSION_MISMATCH', 409) : fail('SAVE_INTEGRITY_FAILED', 503);
@@ -179,14 +179,14 @@ export function createRecurringHandlers(store: Pick<ReturnType<typeof createSave
           if (whole) return fail('RECOVERY_NOT_NEEDED', 409);
           const source = recoverySource(context, accountId);
           if (!source || source.checkpoint_id !== command.params.checkpoint_id || source.signature !== command.params.signature) return fail('RECOVERY_SOURCE_INVALID', 409);
-          let state: unknown = source.state; if (source.content_hash !== rules.versions.content_hash) { try { state = rules.migrateSave(state).state; } catch { return fail('MIGRATION_UNSUPPORTED', 409); } }
+          let state: unknown = source.state; if (source.content_hash !== rules.versions.content_hash) { try { state = rules.migrateSave(state, {account_id:accountId,now_ms:nowMs}).state; } catch { return fail('MIGRATION_UNSUPPORTED', 409); } }
           next = rules.restoreSave(state, null, nowMs); previous = null; reason = 'quarantine'; code = 'SAVE_RECOVERED';
         } else if (kind === 'backup') {
           if (!live) return whole ? fail('CONTENT_VERSION_MISMATCH', 409) : fail('SAVE_INTEGRITY_FAILED', 503);
           const rows = await store.listBackups(identity), row = rows.find(candidate => candidate.backup_id === ref);
           if (!row || row.backup_id !== restorable(rows)) return fail('BACKUP_NOT_RESTORABLE', 409);
           if (!row.signature || row.signature !== command.params.signature || row.account_id !== accountId || sha(row.state) !== row.state_hash || !signed(row.signature, accountId, row.revision, row.state_hash, row.content_hash, row.schema_version)) return fail('BACKUP_SIGNATURE_INVALID', 409);
-          let state: unknown = row.state; if (row.content_hash !== rules.versions.content_hash) { try { state = rules.migrateSave(state).state; } catch { return fail('MIGRATION_UNSUPPORTED', 409); } }
+          let state: unknown = row.state; if (row.content_hash !== rules.versions.content_hash) { try { state = rules.migrateSave(state, {account_id:accountId,now_ms:nowMs}).state; } catch { return fail('MIGRATION_UNSUPPORTED', 409); } }
           next = rules.restoreSave(state, live, nowMs); reason = 'restore'; code = 'BACKUP_RESTORED';
         } else if (kind === 'daily-clock' && command.params.checkpoint_id === 'daily-clock:essence:2026-10-21' && command.params.signature === 'daily-clock-incident-2026-10-21') {
           // One explicitly requested incident correction, through the existing signed backup-before-write restore transaction.
@@ -222,7 +222,7 @@ export function createRecurringHandlers(store: Pick<ReturnType<typeof createSave
         // TASK-040: an older signed save is offered a previewed, backed-up migration; a newer schema is never touched.
         if (code === 'CONTENT_VERSION_MISMATCH' && save) {
           if (save.schema_version !== 1) return fail('UPDATE_REQUIRED', 409);
-          try { const migrated = rules.migrateSave(save.state); return { status: 409, body: { code: 'SAVE_MIGRATION_REQUIRED', migration: { from_revision: save.revision, from_content_hash: save.content_hash, server_content_hash: rules.versions.content_hash, changes: migrated.changes.slice(0, 40), before: summary(save.state), after: saveSummary(migrated.state) } } }; }
+          try { const migrated = rules.migrateSave(save.state, {account_id:identity.account_id,now_ms:Date.parse(context!.server_at)}); return { status: 409, body: { code: 'SAVE_MIGRATION_REQUIRED', migration: { from_revision: save.revision, from_content_hash: save.content_hash, server_content_hash: rules.versions.content_hash, changes: migrated.changes.slice(0, 40), before: summary(save.state), after: saveSummary(migrated.state) } } }; }
           catch { return fail('MIGRATION_UNSUPPORTED', 409); }
         }
         if (code === 'SAVE_INTEGRITY_FAILED' && context) { const source = recoverySource(context, identity.account_id); return { status: 503, body: { code, recovery: source ? { checkpoint_id: source.checkpoint_id, signature: source.signature, revision: source.revision, summary: summary(source.state) } : null } }; }

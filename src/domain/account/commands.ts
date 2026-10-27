@@ -2,6 +2,7 @@ import {applyCraftingCommand,protectPendingOption,validateCrafting,type Crafting
 import { applyShopPurchase } from '../progression/shop.ts';
 import { collectProgressRewards } from '../progression/auto-rewards.ts';
 import { claimRewards } from '../progression/claim-rewards.ts';
+import { unpaidDailyClaims, validateDailyQuota } from '../progression/daily-quota.ts';
 import { preparedScroll, validateSupplies } from '../build/consumables.ts';
 import { prepareConsumable, consumePreparedForTeam } from '../progression/consumables.ts';
 import type { AccountState, Command, Receipt } from '../../contracts/index.ts';
@@ -45,7 +46,7 @@ export class AccountCommandRules extends AccountCreationRules {
   get leaseMs() { return Number((this.content.documents['save-contracts.json']!.battle_protocol as unknown as { lease_ms: number }).lease_ms); }
   supports(type: Command['type']) { return ['character.reset_level','equipment.option_roll','equipment.option_decide','equipment.rarity_up','farm.claim', 'reward.claim', 'battle.advance', 'battle.finish', 'battle.retreat', 'party.set', 'character.level_up', 'character.breakthrough', 'character.allocate_status', 'character.reset_build', 'character.change_job', 'skill.upgrade', 'skill.set_loadout', 'skill.awaken', 'skill.convert_shards', 'battle.start_story', 'farm.set_stage', 'equipment.equip', 'equipment.equip_upgrades', 'equipment.unequip', 'equipment.lock', 'equipment.salvage', 'equipment.purchase_weapon', 'slot.refine', 'slot.enchant', 'slot.change_enchant', 'card.assign', 'card.unassign', 'card.upgrade', 'card.salvage', 'equipment.fuse', 'equipment.tier_up', 'battle.start_tower', 'battle.start_daily', 'gacha.pull', 'consumable.prepare', 'shop.buy', 'daily.objective_claim'].includes(type); }
   /** TASK-040 (D-064): maintenance proposals. The API proves integrity/ownership and supplies time, ids and seed. */
-  migrateSave(stored: unknown): { state: AccountState; changes: string[] } { const migrated = migrateAccountState(stored, this.content); return { state: this.validateAccount(migrated.state), changes: migrated.changes }; }
+  migrateSave(stored: unknown, context?: { account_id: string; now_ms: number }): { state: AccountState; changes: string[] } { const migrated = migrateAccountState(stored, this.content, context); return { state: this.validateAccount(migrated.state), changes: migrated.changes }; }
   restoreSave(restored: unknown, current: AccountState | null, nowMs: number): AccountState { return this.validateAccount(guardRestore(this.validateAccount(restored), current, bangkokDay(nowMs), bangkokDay(nowMs - 86400000))); }
   resetSave(current: AccountState, params: { root_job_id: AccountState['roster'][number]['root_job_id']; gender: 'male' | 'female' }, serverAt: string, nowMs: number, seed: number): AccountState {
     const fresh = initializeAccount(this.content, params, serverAt, bangkokDay(nowMs), seed);
@@ -69,6 +70,7 @@ export class AccountCommandRules extends AccountCreationRules {
     validateProgression(s, this.content);
     validateInventory(s, this.content);validateCrafting(s,this.content);
     validateSupplies(s, this.content);
+    validateDailyQuota(s);
     for (const actor of s.roster) validateCharacterSkills(actor, this.content);
     return s;
   }
@@ -93,7 +95,7 @@ export class AccountCommandRules extends AccountCreationRules {
         const phase = Number(key); if (!Number.isSafeInteger(phase) || record!.rewarded_phases.includes(phase)) continue;
         if (state.pending_rewards.length >= queueLimit()) reject('PENDING_REWARDS_FULL');
         record!.rewarded_phases.push(phase);
-        state.pending_rewards.push({ claim_id: `daily_${id}_${day}_${phase}`, kind: 'daily', resource_vector: { ...Object.fromEntries(Object.keys(state.wallet).map(k => [k, 0])), ...dailyChest(dailyBoss(id, this.content), phase,record!.chapter_snapshot) } as AccountState['wallet'], items: [], content_version: this.versions.content_version, reserved_at: time.server_at, source_keys: [`daily:${id}:${day}:${phase}`, `battle:${pointer0()?.battle_id ?? 'retreat'}`], status: 'pending' });
+        state.pending_rewards.push({ claim_id: `daily_${id}_${day}_${phase}`, kind: 'daily', daily_attempt: { boss_id:id, ticket_day:day, battle_id:pointer0()!.battle_id, charged:false }, resource_vector: { ...Object.fromEntries(Object.keys(state.wallet).map(k => [k, 0])), ...dailyChest(dailyBoss(id, this.content), phase,record!.chapter_snapshot) } as AccountState['wallet'], items: [], content_version: this.versions.content_version, reserved_at: time.server_at, source_keys: [`daily:${id}:${day}:${phase}`, `battle:${pointer0()?.battle_id ?? 'retreat'}`], status: 'pending' });
       }
     };
     const pointer0 = () => previous.active_battle;
@@ -141,9 +143,10 @@ export class AccountCommandRules extends AccountCreationRules {
         if (state.pending_rewards.length >= queueLimit() - 1) reject('PENDING_REWARDS_FULL');
         if (!time.account_id || !time.battle_id || time.battle_seed===undefined || !time.build_hashes) throw new Error('SERVER_BATTLE_CONTEXT_REQUIRED');
         const id = command.params.boss_id as DailyBossId, boss = dailyBoss(id, this.content), day = bangkokDay(time.now_ms), record = structuredClone(dailyRecord(state, id, day, this.content));
-        // The attempt is reserved by this receipt before any combat; retreat/disconnect/loss never refunds it.
+        // Rights are paid atomically with the first reward collection, never at entry.
         if (record.attempts_used >= boss.attempts_per_day) reject('DAILY_NO_ATTEMPTS');
-        record.attempts_used++;
+        if (unpaidDailyClaims(state,id,day).length) reject('DAILY_REWARDS_PENDING');
+        record.quota_policy = 'reward_claim_v1';
         const yesterday = bangkokDay(time.now_ms - 86400000);
         state.daily_records = [...state.daily_records.filter(row => !(row.boss_id === id && row.ticket_day === day) && row.ticket_day >= yesterday), record] as AccountState['daily_records']; // today + yesterday (≤ 6 rows)
         const compiled = Object.fromEntries(state.team.map(p => [p.character_id, compileCharacterSkills(state.roster.find(a => a.character_id === p.character_id)!, this.content)]));

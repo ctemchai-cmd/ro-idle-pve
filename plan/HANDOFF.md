@@ -1,6 +1,22 @@
 # Handoff ระหว่าง agent
 
 
+## TASK172 LOCAL COMPLETE / publish next
+
+Final793/793 TS +10new/53targeted/native5actualReact320390/root+filtered/M0/strict allPASS. Source pins exact, no more product changes needed. Content2a62c0f086ce1d9f423c9d37b1907a7375bf10ed652daca916d3ec36e64ceff8/pack6b3001unchanged/PWAa975f483ec0ae9a1/gzip659532; filtered build identical (Python PATH explicit pyenv3.12.10, Apple shim fails outside root). OwnVite7522PID85698/browsersCLOSED, personal6173 untouched.172review;157/172done/M4111/121. Need push46allowlistedpaths /private/tmp/ro-172-allowlist.json, VercelSUCCESS/publicRO_EVIDENCE_TASK=task-172 node scripts/test_compact_boss_hosted.cjs→172done158/172/M4112/121closurepush. No owner credentials/SQL/env/DBread/write. User's slot1 Champion100 quota is returned only after they complete backed-up version migration; no direct refund executed by agent. Nativepending320 reviewed, exact3/3beforeclaim2/3after/10boxes1command. All older checkpoint notes below historical.
+
+
+
+## ACTIVE TASK172 — quota paid only on actual reward collection
+
+User requested no quota loss before rewards; first save Champion100 quota reset. Implemented D196/design85/172inprogress,157/172done/M4111/121. Newstart noincrement; typedoptionalrecord.quota_policy andpending.daily_attempt; claimpreflight unique run,markremaining siblingspaid atomically. Pendingunpaid sameboss/day blocksnewrun; DailyPagecollectbutton,3/3beforeclaim2/3after. Oldmetadatafreeclaims prepaid. Legacyactive oldpolicy refund1 onmigration; specifically authorized slot1UIDc37edad4-ec3c-4541-8cba-194bd21e285c/mainChampion100/day2026-10-28 oldrecords→0once;recordmarkerpreventsrepeat. Server-contextpassedtomigration inAPIpreview/commit/restores; no owner read/login/SQL/env. User must clicknormalbackup-update; neverclaimquotaalreadywritten. Keepallphase/HP/rewarded/wallet/otheractors/saves. Skills/engine/assets unchanged.
+
+Localnew10tests (8dailyquota+2signedAPI),53targetedrecheckPASS. Newnative5groups320390actualReact/fullbounds/failure-retry/multiboxonequota passed; screenshotpending320 visuallyreviewed. Firstnative failedNodefsfixturethenwrapper/asyncfixturewait; fixed browserdata injection/wrapper+await busy, no product workaround. Firstfull791had8oldexpectations/scopeguards; updatedoldquota0expectations andexactD196normalizerbeforeD195. Finalfull793running /private/tmp/ro-172-full-final.log/session57128. RootbuildPASScontent2a62c0f086ce1d9f423c9d37b1907a7375bf10ed652daca916d3ec36e64ceff8/pack6b3001unchanged/PWAa975f483ec0ae9a1/gzip659532. FilteredVercelcopy/private/tmp/ro-172-vercel buildrunning /private/tmp/ro-172-filtered-build.log/session44622. OwnVite7522session99480 staysrunning; close aftervalidation, don'ttouch6173. Need full+filtered pass, review/evidence, explicitstage/pushorigin/VercelSUCCESS/publicRO_EVIDENCE_TASK=task-172 harness, then172done158/172/M4112/121closurepush/finalThai reloadslot1backup-update(noSQL).
+
+Alluncommittedat3ec8fa926. Newfiles daily-quota.ts progression, daily-quota-migration.ts account, daily-fixtures.ts test, daily-quota.test.ts, legacy-daily-quota-scope.ts, scripts/test_daily_quota_native.cjs, plans/evidence172. Source-after172 pins8changedproductfiles;refreshIFproductchanges. Preserveuserassets/modern/migration-v2.txt/unselectedmodern/task108png. Publicharnessnowbounded172 includesnewmarkers. Needarchive171newscopechain onlyapprovedschema2fields/dailyreservationstring/savecontracts3strings. No productchangesneededunlessfailure.
+
+
+
 ## TASK170–171 COMPLETE / Break resources and character reset LIVE — 27 October2026
 
 Source `b5b16546ae1d65f1a6ba39522bc87e5954e9381a`, [Vercel SUCCESS](https://vercel.com/chanon2/ro-idle-pve/AoiS7zcQjmEdGeTd6rU8B2Djq2jY). Both done; board157/171, M4 111/120. No remaining170/171work or pending questions. User confirmed chosen actor resets Lv1/Class1 with full level/Break/status/skill/Awaken refunds, keeping gear/cards/Refine/Enchant. Feature delivered; owner's characters were NOT reset by the agent.

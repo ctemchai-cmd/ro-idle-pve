@@ -50,7 +50,7 @@ export function dailyRecord(state: AccountState, id: DailyBossId, day: string, c
   const found = state.daily_records.find(row => row.boss_id === id && row.ticket_day === day);
   if (found) return found;
   const chapter = highestClearedChapter(state, content);
-  return { boss_id: id, ticket_day: day, attempts_used: 0, phase: 1, current_hp: dailyPhaseStats(dailyBoss(id, content), 1, chapter).hp, rewarded_phases: [], chapter_snapshot: chapter };
+  return { boss_id: id, ticket_day: day, attempts_used: 0, quota_policy: 'reward_claim_v1', phase: 1, current_hp: dailyPhaseStats(dailyBoss(id, content), 1, chapter).hp, rewarded_phases: [], chapter_snapshot: chapter };
 }
 export const dailyRef = (id: DailyBossId, chapter: number) => `${id}@${chapter}`;
 export function parseDailyRef(ref: string) { const [id, chapter] = ref.split('@'); return { id: id as DailyBossId, chapter: Number(chapter) }; }

@@ -213,7 +213,7 @@ test('T040 AC-03 + D-085: new game clears daily dungeons; restore guards AFK/sho
   const before = f.state.wallet.gold, claim = await f.send('farm.claim', {}), rate = f.state.farm.rate_snapshot!.per_hour.gold;
   const paid = f.state.pending_rewards.filter(c => c.kind === 'farm').reduce((n, c) => n + c.resource_vector.gold, 0) - (structuredClone(f.backups.at(-2)!.state) as AccountState).pending_rewards.filter(c => c.kind === 'farm').reduce((n, c) => n + c.resource_vector.gold, 0);
   assert.equal(claim.body.receipt?.result.code, 'FARM_RESERVED'); assert.ok(paid <= Math.ceil(rate * (3 * hour + 10000) / hour) && paid >= Math.floor(rate * 3), `only the 3h post-reset window is paid, not the 8h since the old cursor (${paid})`);
-  assert.equal(f.state.daily_records.find(r => r.boss_id === 'treasury')!.attempts_used, 1, 'restore keeps the spent attempt'); assert.equal(f.state.shop.purchases.ore_pack, 5); assert.equal(f.state.wallet.gold, before, 'nothing paid before reward.claim');
+  assert.equal(f.state.daily_records.find(r => r.boss_id === 'treasury')!.attempts_used, 0, 'an unrewarded attempt remains free after restore'); assert.equal(f.state.shop.purchases.ore_pack, 5); assert.equal(f.state.wallet.gold, before, 'nothing paid before reward.claim');
   assert.equal((await f.send('backup.restore_request', { checkpoint_id: `backup:${target.backup_id}`, signature: target.signature })).body.code, 'BACKUP_NOT_RESTORABLE', 'a reset backup restores once (no spend/gacha reroll)');
   // Ownership: a different account cannot use these rows; the same request id replays without a second write.
   const stranger = stack(progressed(), {}, other); await stranger.send('account.reset', { root_job_id: 'mage', gender: 'female', confirm: 'RESET' });
@@ -258,7 +258,7 @@ test('D-085: migrating an already-reset locked game clears only carried daily pr
     assert.equal((await f.send('save.migrate', { from_revision: 1, from_content_hash: OLD })).body.receipt?.result.code, 'SAVE_MIGRATED');
     assert.deepEqual(f.backups[0]!.state, before, 'exact pre-repair signed state retained');
     assert.deepEqual(kept(f.state), kept(before), 'characters/equipment/wallet/Story/Tower/farm/team untouched');
-    assert.deepEqual(f.state.daily_records, unlocked ? before.daily_records : []);
+    assert.deepEqual(f.state.daily_records, unlocked ? before.daily_records.map(r=>({...r,quota_policy:'reward_claim_v1'})) : []);
     assert.equal((await f.checkpoint()).status, 200);
   }
 });
@@ -322,4 +322,21 @@ test('D172 older chapter11/12 saves reserve frozen Lv60 loot once before install
   const drops=f.state.pending_rewards.flatMap(r=>r.items).filter(i=>i.kind==='equipment');assert(drops.length>0&&drops.every(i=>content.items[i.definition_id]!.tier_level===60));assert.deepEqual(drops.map(i=>i.definition_id),expected.pending_rewards.flatMap(r=>r.items).filter(i=>i.kind==='equipment').map(i=>i.definition_id));
   const claimed=structuredClone(f.state);assert.deepEqual((await f.send('farm.claim',{},2,claimId)).body.receipt,claim.body.receipt);assert.deepEqual(f.state,claimed);assert.equal(f.save.revision,3);
  }
+});
+
+test('D196 signed backup migration restores authorized slot1 Champion100 quota once without touching rewards/world', async()=>{
+ const {characterResetFixture}=await import('./character-reset-fixtures.ts');const target='c37edad4-ec3c-4541-8cba-194bd21e285c';
+ for(const account of[target,other]){
+  const state=characterResetFixture('champion').state;state.daily_records=[{boss_id:'essence',ticket_day:'2026-10-28',attempts_used:3,phase:9,current_hp:1234,rewarded_phases:[1,2,3,4,5,6,7,8],chapter_snapshot:2}];
+  const f=stack(state,{content_hash:OLD},account);f.advance(Date.parse('2026-10-28T05:00:00Z')-f.now);const preview=await f.checkpoint();assert.equal(preview.body.code,'SAVE_MIGRATION_REQUIRED');assert.equal(f.backups.length,0);assert.equal(f.state.daily_records[0]!.attempts_used,3);
+  const command=migrateCommand(f),result=await f.api.command(f.identity,command);assert.equal(result.status,200);assert.equal((result.body as {receipt:Receipt}).receipt.result.code,'SAVE_MIGRATED');assert.equal(f.backups.length,1);assert.deepEqual(f.backups[0]!.state,state);assert.equal(f.state.daily_records[0]!.attempts_used,account===target?0:3);assert.equal(f.state.daily_records[0]!.phase,9);assert.equal(f.state.daily_records[0]!.current_hp,1234);assert.deepEqual(kept(f.state),kept(state));
+  const after=structuredClone(f.state);assert.deepEqual(await f.api.command(f.identity,command),result);assert.equal(f.backups.length,1);assert.deepEqual(f.state,after);
+ }
+});
+
+test('D196 lost reward response replays original signed receipt and charges the run once', async()=>{
+ const {unlocked}=await import('./daily-fixtures.ts');const f=stack(unlocked());assert.equal((await f.send('battle.start_daily',{boss_id:'treasury'})).body.receipt?.result.code,'DAILY_STARTED');assert.equal(f.state.daily_records[0]!.attempts_used,0);
+ f.advance(60000);assert.equal((await f.send('battle.finish',{battle_id:f.state.active_battle!.battle_id})).body.receipt?.result.code,'DAILY_FINISHED');assert.equal(f.state.daily_records[0]!.attempts_used,0);
+ const command=f.command('reward.claim',{claim_ids:f.state.pending_rewards.map(c=>c.claim_id)}),result=await f.api.command(f.identity,command);assert.equal((result.body as {receipt:Receipt}).receipt.outcome,'committed');assert.equal(f.state.daily_records[0]!.attempts_used,1);const after=structuredClone(f.state),revision=f.save.revision;
+ assert.deepEqual(await f.api.command(f.identity,command),result);assert.deepEqual(f.state,after);assert.equal(f.save.revision,revision);assert.equal(f.state.daily_records[0]!.attempts_used,1);
 });

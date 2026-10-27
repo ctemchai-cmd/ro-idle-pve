@@ -130,7 +130,7 @@
     }
   ],
   "day_rate_snapshot": "highest cleared chapter, minimum2, at first entry per boss+server Bangkok date; no progress-based re-snapshot that day",
-  "attempt_reservation": "consume once in StartDaily receipt before combat, no refund on retreat/disconnect/loss",
+  "attempt_reservation": "entry reserves no spent quota; first successful reward claim per run consumes one attempt atomically; no reward means no charge; pending unpaid run blocks another same boss/day until collection",
   "partial_damage": "retain committed phase/current HP between attempts; new party starts full HP/SP",
   "reward_claim_key": "account_id+boss_id+ticket_day+phase, once",
   "day_boundary": "battle belongs to start ticket_day; finish writes only that archived day and its pending chests, never new day attempt/HP; new day starts phase1 and0attempts, each has own IDs",

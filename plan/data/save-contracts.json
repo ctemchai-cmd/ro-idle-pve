@@ -114,7 +114,7 @@
     "ticket_wall_max_ms": 180000,
     "checkpoint": "full virtual state after timestamp barrier; server recomputes requested interval, browser only predicts",
     "offline": "No offline boss simulation; reconnect/refresh retreat. A pending finish intent reconciles its original receipt before recovery.",
-    "daily_abort": "Attempt stays spent. Manual retreat may submit requested_game_ms bounded by DB elapsed × max speed for shared replay/partial HP/chests; reconnect without a time claim preserves the stored start only. Finished attempts carry HP/chests across rounds in their Bangkok ticket day.",
+    "daily_abort": "No quota spent before actual reward collection. Preserve committed phase/HP/chests in the ticket day; manual retreat may submit bounded played time. Unpaid pending reward batch remains claimable after reload; first successful collection charges one right per run.",
     "story_tower_abort": "no reward/unlock; free new attempt full team HP/SP",
     "speed_multipliers": [
       1,
@@ -170,8 +170,8 @@
     {
       "mode": "daily",
       "refresh": "abort ticket",
-      "durable": "spent attempt and last committed phase/HP/chests in ticket day",
-      "attempt_refund": "none",
+      "durable": "last committed phase/HP/chests in ticket day; received rewards and quota charged atomically",
+      "attempt_refund": "no reward means no charge; old active prepaid reservation refunded on migration",
       "transient": "party HP/SP/events cleared; boss progress retained"
     },
     {

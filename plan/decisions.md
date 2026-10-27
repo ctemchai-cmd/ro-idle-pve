@@ -412,3 +412,5 @@ D193/TASK169 — ผู้ใช้ขอหินre-roll/Rarityจากด่�
 
 D194/TASK170 — Breakร้านทอง5000→20/20day+AFKเพิ่มเล็กน้อย,frozen/purchasesเดิม.
 D195/TASK171 — ผู้ใช้ยืนยันรีเซ็ตLv1/Class1คืนทุนlevel/Break/skill/Awaken/Statusเก็บgear/cards/slots. Legacyoldprefixarchive+futureactualledger/sharedquote/confirmation/CAS.
+
+D196/TASK172: ผู้ใช้ขอหักสิทธิ์ดันเมื่อรับรางวัลสำเร็จ; คืนสิทธิ์เซฟแรก Champion100 วันนี้โดยไม่เปลี่ยนความก้าวหน้า/รางวัลเดิม. [design85](design/85-daily-quota-on-reward.md)

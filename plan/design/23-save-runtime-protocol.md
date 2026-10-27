@@ -88,3 +88,5 @@ Maintenance UI offers “ตรวจผลรายการค้าง” whi
 
 
 22ต.ค.2026 D-127–129: กติกา reward batch / Refineflat+percent / Enchantรายslot / CrystalAFKและgearchance ใช้ [design34](34-reward-slot-economy-tuning.md) และcanonicaldataล่าสุดเหนือค่าตัวอย่างเก่า
+
+D196/TASK172 supersedes entry-spend daily semantics: quota is charged once per run with the first received reward in the same atomic reward.claim transaction. Typed pending daily_attempt tracks siblings and retains claimability after reload; old prepaid claims remain prepaid. Legacy active entry reservations refund when a backed-up content migration ends that fight. See design85 for the authorized slot1 Champion100 28Oct correction and exact scope.

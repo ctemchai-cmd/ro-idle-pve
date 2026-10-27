@@ -8,7 +8,7 @@ const name = (id: string) => id.split('_').map(w => w.charAt(0).toUpperCase() + 
 
 /** Daily dungeon (TASK-036): three multi-phase bosses, 3 attempts each per server Bangkok day; HP carries between attempts. */
 export function DailyPage({ context }: { context: GameContext }) {
-  const { state, pack, locked, go, challenge } = context, view = dailyView(state, Date.now()), icon = iconUrl(pack, 'ui_icons', 'boss_active');
+  const { state, pack, locked, go, challenge, submit } = context, view = dailyView(state, Date.now()), icon = iconUrl(pack, 'ui_icons', 'boss_active');
   return <div className="page daily-page">
     <PageHeader title="ดันเจี้ยนรายวัน" sub={`วันที่ ${view.day} (เวลาไทย) · รีเซ็ต 00:00`} onBack={() => go('dungeon')} />
     {!view.unlocked ? <div className="tower-locked"><b><Icon name="lock" /> ยังไม่เปิด</b><p>ผ่านบอสด่าน {view.unlock_after} ใน Story เพื่อเปิดดันเจี้ยนรายวัน</p></div>
@@ -17,8 +17,8 @@ export function DailyPage({ context }: { context: GameContext }) {
         {(boss.phase > 1 || boss.hp < boss.max_hp) && <p className="daily-carry">↻ เลือดต่อจากรอบก่อนของวันนี้ · เริ่มใหม่ 00:00</p>}
         <div className="daily-phase"><span>หลอดที่ {boss.phase}</span><div className="bar hp"><i style={{ width: `${boss.hp / boss.max_hp * 100}%` }} /><span>{compact(boss.hp)} / {compact(boss.max_hp)}</span></div></div>
         <div className="daily-chest"><small>กล่องเมื่อทำลายหลอดนี้</small>{(Object.entries(boss.chest) as [keyof Wallet, number][]).filter(([, n]) => n > 0).map(([k, n]) => <span key={k}><ResIcon pack={pack} k={k} />{full(n)}</span>)}<small className="daily-got">วันนี้ได้แล้ว {boss.chests_today} กล่อง</small></div>
-        <button className="btn primary wide" disabled={locked || boss.attempts_left <= 0} onClick={() => challenge({ kind: 'daily', boss: boss.id })}>{boss.attempts_left > 0 ? 'ท้าบอส' : 'หมดสิทธิ์วันนี้'}</button>
+        {boss.pending_claim_ids.length > 0 ? <button className="btn primary wide" disabled={locked} onClick={() => void submit('reward.claim', {claim_ids:boss.pending_claim_ids})}><Icon name="gift" />รับรางวัล ({boss.pending_claim_ids.length} กล่อง)</button> : <button className="btn primary wide" disabled={locked || boss.attempts_left <= 0} onClick={() => challenge({ kind: 'daily', boss: boss.id })}>{boss.attempts_left > 0 ? 'ท้าบอส' : 'หมดสิทธิ์วันนี้'}</button>}
       </article>)}</div>}
-    <p className="hint">ใช้สิทธิ์ทันทีที่เริ่ม (หนี/หลุด/แพ้ไม่คืน) · ความเสียหายที่ทำไว้สะสมข้ามครั้งในวันเดียวกัน · ทำลายหลอดแล้วหลอดใหม่ที่แข็งขึ้นมาทันที</p>
+    <p className="hint">หักสิทธิ์เมื่อรับรางวัลสำเร็จ 1 ครั้งต่อรอบ · ความเสียหายที่ทำไว้สะสมข้ามครั้งในวันเดียวกัน · ทำลายหลอดแล้วหลอดใหม่ที่แข็งขึ้นมาทันที</p>
   </div>;
 }

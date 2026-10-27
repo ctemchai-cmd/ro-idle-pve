@@ -1,0 +1,49 @@
+{
+  "task_id": "TASK-172",
+  "passed": false,
+  "status": "review",
+  "local_passed": true,
+  "acceptance_results": {
+    "AC-01": "passed",
+    "AC-02": "passed",
+    "AC-03": "not_run_hosted"
+  },
+  "checks": {
+    "full_TS_tests": 793,
+    "failures": 0,
+    "new_focused_tests": 10,
+    "historical_targeted_recheck": 53,
+    "native_groups": 5,
+    "mobile_widths": [
+      320,
+      390
+    ],
+    "root_build": true,
+    "filtered_build": true,
+    "M0": true,
+    "strict_typecheck": true,
+    "quota_on_first_received_reward_only": true,
+    "mixed_partial_bulk_claims_once": true,
+    "legacy_prepaid_no_recharge": true,
+    "old_active_reservation_refund_once": true,
+    "original_UUID_signed_API_replay": true,
+    "targeted_backup_migration_preserves_all_other_progress": true,
+    "owner_access": false,
+    "SQL_env_changes": false,
+    "pack_unchanged": true,
+    "extra_DB_requests": 0
+  },
+  "content_hash": "2a62c0f086ce1d9f423c9d37b1907a7375bf10ed652daca916d3ec36e64ceff8",
+  "pack_hash": "6b3001aef85634b686f8296eb99ce5612b50794c8b59e13c1c54f6995e0daf7c",
+  "evidence": [
+    "task-172/native.json",
+    "task-172/source-after.json",
+    "task-172/before.json.gz",
+    "task-172/README.md"
+  ],
+  "limitations": [
+    "Signed API tests use disposable memory, not hosted owner Auth or Supabase.",
+    "Owner slot1 quota changes only after owner completes the backed-up migration on28Oct; no owner cloud write was performed by the agent.",
+    "Hosted public verification pending."
+  ]
+}

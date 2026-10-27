@@ -120,3 +120,5 @@ D167/TASK139: [ร้าน/แลกเศษ/Panel](56-shop-and-exchange-ui.md
 - [83-break-resources.md](83-break-resources.md) — TASK170.
 
 - [84-character-level-reset.md](84-character-level-reset.md) — TASK171.
+
+- [85 Daily quota on reward](85-daily-quota-on-reward.md) — D196/TASK172.

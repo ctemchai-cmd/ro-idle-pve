@@ -1,41 +1,23 @@
 // TASK-036: daily multi-phase bosses on the shared engine/save protocol (server Bangkok day).
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import type { AccountState, BattleCheckpoint, Command } from '../../src/contracts/index.ts';
-import type { StoredBattle } from '../../src/contracts/save.ts';
-import { AccountCommandRules, type CommandTime } from '../../src/domain/account/commands.ts';
+import type { AccountState, BattleCheckpoint } from '../../src/contracts/index.ts';
+import { AccountCommandRules } from '../../src/domain/account/commands.ts';
 import { advanceUntil, restoreBattle, serializeBattle } from '../../src/domain/combat/index.ts';
 import { storyStages } from '../../src/domain/modes/story.ts';
 import { bangkokDay, dailyBoss, dailyChest, dailyPhaseStats, modePolicy } from '../../src/domain/modes/daily.ts';
 import { captureReplay, runScenario } from '../../src/simulation/index.ts';
 import { content, unwrap } from './combat-fixtures.ts';
-import { buildAccount, treeData } from './class-skills.ts';
+import { fixture, unlocked } from './daily-fixtures.ts';
 import { shouldAdvanceBattleFrame } from '../../src/client/battle-frame.ts';
 
 const rules = new AccountCommandRules();
-function fixture(state: AccountState, startIso = '2026-10-20T05:00:00.000Z') {
-  let save = state, stored: StoredBattle | null = null, revision = 1, serial = 0, now = Date.parse(startIso);
-  const hashes = Object.fromEntries(save.roster.map(actor => [actor.character_id, 'a'.repeat(64)]));
-  function run(type: Command['type'], params: unknown, advanceMs = 1000, seed = 11) {
-    now += advanceMs; const pointer = save.active_battle;
-    const input = { type, params, request_id: `22222222-2222-4222-8222-${String(++serial).padStart(12, '0')}`, expected_revision: revision, schema_version: 1, ...rules.versions } as Command; rules.parse(input);
-    const time: CommandTime = { account_id: '11111111-1111-4111-8111-111111111111', battle_id: `33333333-3333-4333-8333-${String(serial).padStart(12, '0')}`, battle_seed: seed, build_hashes: hashes, server_at: new Date(now).toISOString(), now_ms: now, new_lease_at: new Date(now + 15000).toISOString(),
-      last_ack_ms: pointer ? Date.parse(pointer.last_ack_at) : 0, lease_expires_ms: pointer ? Date.parse(pointer.lease_expires_at) : 0, started_ms: pointer ? Date.parse(pointer.started_at) : 0, farm_from_ms: Date.parse(save.farm.reserved_through),
-      stored_last_ack_ms: stored ? Date.parse(stored.last_ack_at) : 0, stored_lease_ms: stored ? Date.parse(stored.lease_expires_at) : 0 };
-    const result = rules.decide(input, save, stored, time, 'b'.repeat(64));
-    if (result.receipt.outcome === 'committed') { save = result.state; revision++; if (result.battle_write.kind === 'upsert') stored = result.battle_write.battle; if (result.battle_write.kind === 'delete') stored = null; }
-    return result.receipt;
-  }
-  function advance(times = 120) { for (let i = 0; i < times && save.active_battle; i++) { const receipt = run('battle.advance', { battle_id: save.active_battle.battle_id, requested_game_ms: 60000 }); if (receipt.result.code !== 'BATTLE_ADVANCED') return receipt; } return null; }
-  return { run, advance, get state() { return save; }, get stored() { return stored; }, get now() { return now; } };
-}
-const unlocked = (builds: string[] = ['knight_striker', 'crusader_holy_striker']) => { const tree = treeData('swordsman'); const state = buildAccount('swordsman', builds.map(id => tree.builds.find(b => b.id === id)!)); state.story.cleared_stage_ids = storyStages(content).slice(0, 20).map(s => s.id); return state; };
 const record = (state: AccountState, boss: string, day: string) => state.daily_records.find(row => row.boss_id === boss && row.ticket_day === day);
 test('D150 daily command accepts a completed chapter9 snapshot, preserves Bangkok attempt/HP semantics and serializes its battle',()=>{
  const state=unlocked();state.story.cleared_stage_ids=storyStages(content).filter(s=>s.chapter<=9).map(s=>s.id);
  const f=fixture(state,'2026-10-23T05:00:00.000Z');assert.equal(f.run('battle.start_daily',{boss_id:'essence'}).result.code,'DAILY_STARTED');
- const row=record(f.state,'essence','2026-10-23')!;assert.equal(row.chapter_snapshot,9);assert.equal(row.attempts_used,1);assert.equal((f.stored!.payload as BattleCheckpoint).mode.ref,'essence@9');assert.doesNotThrow(()=>rules.validateAccount(f.state));
- const hp=row.current_hp;assert.equal(f.run('battle.retreat',{battle_id:f.state.active_battle!.battle_id},0).result.code,'DAILY_RETREATED');assert.equal(record(f.state,'essence','2026-10-23')!.attempts_used,1);assert.equal(record(f.state,'essence','2026-10-23')!.current_hp,hp);
+ const row=record(f.state,'essence','2026-10-23')!;assert.equal(row.chapter_snapshot,9);assert.equal(row.attempts_used,0);assert.equal((f.stored!.payload as BattleCheckpoint).mode.ref,'essence@9');assert.doesNotThrow(()=>rules.validateAccount(f.state));
+ const hp=row.current_hp;assert.equal(f.run('battle.retreat',{battle_id:f.state.active_battle!.battle_id},0).result.code,'DAILY_RETREATED');assert.equal(record(f.state,'essence','2026-10-23')!.attempts_used,0);assert.equal(record(f.state,'essence','2026-10-23')!.current_hp,hp);
 });
 test('daily spatial combat at1x/2x/4x preserves exact events, phases, RNG and all final metrics', () => {
  const f=fixture(unlocked());assert.equal(f.run('battle.start_daily',{boss_id:'essence'}).outcome,'committed');const initial=structuredClone(f.stored!.payload);
@@ -47,7 +29,7 @@ test('daily spatial combat at1x/2x/4x preserves exact events, phases, RNG and al
  assert.deepEqual(runs[1],runs[0]);assert.deepEqual(runs[2],runs[0]);
 });
 
-test('T036 AC-01: 3 bosses × 3 attempts per Bangkok day; the attempt is spent at start, HP carries over and the party restarts full', () => {
+test('T036 AC-01: 3 bosses × 3 attempts per Bangkok day; the attempt is spent with rewards, HP carries over and the party restarts full', () => {
   const f = fixture(unlocked([])), day = bangkokDay(f.now + 1000);
   for (const boss of ['treasury', 'forge', 'essence']) {
     for (let n = 1; n <= 3; n++) {
@@ -56,9 +38,12 @@ test('T036 AC-01: 3 bosses × 3 attempts per Bangkok day; the attempt is spent a
       assert.equal(start.mode.time_limit_ms, 60000); assert.ok(start.actors.filter(a => a.team === 'player').every(a => a.hp === a.stats.max_hp && a.sp === a.stats.max_sp), 'party full');
       assert.equal(enemy.hp, record(f.state, boss, day)!.current_hp, 'boss enters with the HP left from earlier attempts');
       f.advance(5); assert.equal(f.run('battle.retreat', { battle_id: f.state.active_battle!.battle_id }).result.code, 'DAILY_RETREATED');
-      assert.equal(record(f.state, boss, day)!.attempts_used, n, 'no refund on retreat');
+      const claims=f.state.pending_rewards.filter(c=>c.daily_attempt?.boss_id===boss&&!c.daily_attempt.charged);
+      if(claims.length) f.run('reward.claim',{claim_ids:claims.map(c=>c.claim_id)});
+      assert.ok(record(f.state, boss, day)!.attempts_used <= n,'only rewarded runs paid');
     }
-    assert.equal(f.run('battle.start_daily', { boss_id: boss }).result.code, 'DAILY_NO_ATTEMPTS');
+    assert.equal(f.run('battle.start_daily', { boss_id: boss }).result.code, 'DAILY_STARTED');
+    f.run('battle.retreat',{battle_id:f.state.active_battle!.battle_id},0);
     const left = record(f.state, boss, day)!; assert.ok(left.current_hp < dailyPhaseStats(dailyBoss(boss, content), left.phase, left.chapter_snapshot).hp, 'partial damage kept');
   }
   assert.equal(f.state.daily_records.length, 3);
@@ -84,10 +69,10 @@ test('T036 AC-03: an attempt started 23:59:45 Bangkok and finished after midnigh
   const f = fixture(unlocked(), '2026-10-20T16:59:44.000Z'), oldDay = bangkokDay(f.now + 1000);
   f.run('battle.start_daily', { boss_id: 'forge' }); assert.equal(f.state.active_battle!.ticket_day, oldDay);
   f.advance(); const newDay = bangkokDay(f.now); assert.notEqual(newDay, oldDay);
-  const archived = record(f.state, 'forge', oldDay)!; assert.equal(archived.attempts_used, 1); assert.ok(archived.rewarded_phases.length >= 1);
+  const archived = record(f.state, 'forge', oldDay)!; assert.equal(archived.attempts_used, 0); assert.ok(archived.rewarded_phases.length >= 1);
   assert.equal(record(f.state, 'forge', newDay), undefined, 'new day untouched by the old ticket');
   f.run('battle.start_daily', { boss_id: 'forge' }); const fresh = record(f.state, 'forge', newDay)!;
-  assert.equal(fresh.attempts_used, 1); assert.equal(fresh.phase, 1); assert.deepEqual(fresh.rewarded_phases, []);
+  assert.equal(fresh.attempts_used, 0); assert.equal(fresh.phase, 1); assert.deepEqual(fresh.rewarded_phases, []);
   assert.ok(f.state.pending_rewards.some(c => c.claim_id.startsWith(`daily_forge_${oldDay}_`)), 'old-day chests stay claimable');
 });
 

@@ -989,3 +989,11 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T171-AC-01` | TASK-171 | Scope/quote/schema | unit/native/build/public | passed_implementation |
 | `T171-AC-02` | TASK-171 | Legacy-current/atomic/replay/ownership | unit/native/build/public | passed_implementation |
 | `T171-AC-03` | TASK-171 | Native/full/build/public | unit/native/build/public | passed_implementation |
+
+## TASK-172
+
+| Case | Task | Criterion | Verification | Status |
+| --- | --- | --- | --- | --- |
+| `T172-AC-01` | TASK-172 | Reward-time quota | unit/native/build/public | not_run_implementation |
+| `T172-AC-02` | TASK-172 | Legacy/migration/refund | unit/native/build/public | not_run_implementation |
+| `T172-AC-03` | TASK-172 | Native/full/build/public | unit/native/build/public | not_run_implementation |

@@ -1,4 +1,5 @@
 import {emptyCrafting} from '../progression/equipment-crafting.ts';
+import { migrateDailyQuota, type DailyQuotaMigrationContext } from './daily-quota-migration.ts';
 import type { AccountState } from '../../contracts/index.ts';
 import type { ValidatedContent } from '../../content/model.ts';
 import { cardCapacity } from '../progression/slots.ts';
@@ -32,8 +33,9 @@ function keepFrozenCardCatalog(frozen:FarmSnapshot,current:FarmSnapshot,content:
  * current rules, drops dangling references and ends any battle. The caller must still
  * pass the result through AccountCommandRules.validateAccount before committing it.
  */
-export function migrateAccountState(input: unknown, content: ValidatedContent): SaveMigration {
+export function migrateAccountState(input: unknown, content: ValidatedContent, context?: DailyQuotaMigrationContext): SaveMigration {
   const state = structuredClone(input) as AccountState, changes: string[] = [], data = progressionData(content);
+  migrateDailyQuota(state, changes, context);
   if(!state.equipment_crafting){state.equipment_crafting=emptyCrafting();changes.push('equipment crafting empty stock added');}
   // The new currency starts at zero everywhere, including frozen unpaid snapshots
   // and actual-paid ledgers. Never price old investments or grant shards retroactively.

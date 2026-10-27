@@ -73,7 +73,7 @@ test('Tower and daily finish match shared replay; daily crosses midnight and pre
     if (mode === 'tower') assert.equal(f.state.tower.highest_cleared_floor, expected.terminal_result!.kind === 'victory' ? 1 : 0);
     else {
       const record = f.state.daily_records.find(r => r.boss_id === 'treasury')!;
-      assert.equal(record.ticket_day, '2026-10-20'); assert.equal(record.attempts_used, 1);
+      assert.equal(record.ticket_day, '2026-10-20'); assert.equal(record.attempts_used, 0);
       assert.equal(record.current_hp, Math.max(1, expected.actors.find(a => a.actor_id === 'enemy_front')!.hp));
       assert.deepEqual(record.rewarded_phases.map(String), expected.mode.reserved_phase_keys);
       assert.equal(f.state.daily_records.length, 1);
@@ -89,7 +89,7 @@ test('manual daily retreat replays only bounded played time; reconnect without a
     const result = f.run('battle.retreat', { battle_id: id, ...(manual ? { requested_game_ms: 5000 } : {}) }, 20000);
     assert.equal(result.receipt.result.code, 'DAILY_RETREATED');
     const record = f.state.daily_records.find(r => r.boss_id === 'forge')!;
-    assert.equal(record.attempts_used, 1); assert.equal(record.current_hp, Math.max(1, expected.actors.find(a => a.actor_id === 'enemy_front')!.hp));
+    assert.equal(record.attempts_used, 0); assert.equal(record.current_hp, Math.max(1, expected.actors.find(a => a.actor_id === 'enemy_front')!.hp));
   }
   const f = fixture(); f.run('battle.start_daily', { boss_id: 'forge' }); const initial = unwrap(restoreBattle(f.stored!.payload, content)), expected = unwrap(advanceUntil(initial, 400, content, modePolicy(initial.mode, content))).state;
   f.run('battle.retreat', { battle_id: f.state.active_battle!.battle_id, requested_game_ms: 90000 }, 100);
