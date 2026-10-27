@@ -1,5 +1,17 @@
 # Handoff ระหว่าง agent
 
+## New active steering after169 — Break availability and character level reset
+
+User explicitly confirms resetselectedactor→Lv1/Class1,refundALL level+Break+skill+Awaken/status investments;keep equipment/cards/Refine/Enchant,unequip incompatible/highlevelgear tobag. Supports main+NPC,keepworld/daily/AFK/shop/gacha/otheractors. No implementation170yet;finish169publish/publicfirst. Research: characters.ts alreadyrecords character_level/breakthrough cost payments but ledger.tscompactPaidLedger DROPS both asnonrefundable! Need immutable legacy progression-costs-v1 level/gate archive + idempotent migration reconstructing discarded old prefix once,then retain future actualledger. Refund old base/Awaken skill actualledger, reset status/root/grants;don't invent refundsforretainedslot investments. Must testlegacy +newpayments/reset/relevel/replay/overflow/gear/slots. Existing essence_pack30Crystal→5essence/10day. Suggested upcominggoldoffer5000gold→20essence/20day (400daily), optional modestAFKessence1→2,9→12,17→22. These numeric choices notyetimplemented. Newtask170/171designrequired;no new userquestionpending. Useranswered async call0aeafd9b. Keep169test/hosted expectedcontentd23 until169publicpasses.
+
+
+## 27 ต.ค.2026 — ACTIVE TASK169 / farm crafting stones
+
+User requests easier reroll/Rarity via stage drops. Implemented D193/design82/TASK169inprogress:AFK12hchap1–3=4/1,4–6=6/2,7–9=7/2.5,10–12=8/3;shop/prices/gear-cardRNG unchanged. Optional frozenprofile/farm.crafting_rng/pendingclaim.crafting_materials; independentstream XORseed beforegear loop,split/cap stable. Old unpaid profile preserved,firstclaim settlesold thenactivatesnew;no retrogrant. Atomicgrantstock/sharedclaim;UIrates/pending/received/nativeicons,no newmedia/SQL/env/owner. Profile in modes/farm-crafting-profile.ts,roll in rewards/farm-crafting.ts;do not allowmodes→rewards. Legacy scopes restoreonlyD193 additions, source-afterSHA verifiesoldfiles, D172farm comparisonexcludesonlynewprofile.
+
+AllUNCOMMITTEDHEADf614f963e. Focused6+24passed/native5actual320390passed/6144seededwindowsbudgetdone. Final772/772/native5/focused24/6144windows/root+filtered/M0/assetsPASS.169review. Needpush/VercelSUCCESS/RO_EVIDENCE_TASK=task-169 node scripts/test_compact_boss_hosted.cjs→done155/169/M4109/118. OwnVite7520PID39968andbrowsersCLOSED. Preserveuserassets/modern/migration-v2.txt/unselectedmodern/task108png, no6173restart/agents. No userquestionspending. Sourcepack6b3001/raw33552995/initial1577418unchanged/sourceassetcheckpass.
+
+
 ## 27 ต.ค.2026 — TASK164–168 COMPLETE / workshop and Hi hierarchy LIVE
 
 Source2ca70bf367e8abcf0772837c7d1cbdcd20133b0b live/VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/5iVYrGJk9efugy38ZWGGnFLRnThy. Public4groups/API SIN1/anon401/24bundleSHA/2stoneSHA/login320390/0errors-writesPASS.766fullTS+48finalfocused(nativeChasedescription20ranks)/native11/43Awrefundcases/72Fingerpercast/96Gatecandidatefights/26Hirolecomparisons/independent78goldens/root+filtered/M0/assets/generatorPASS. AllfiveDONE154/168/M4108/117. Contenta4bf5a73d6d875971907c21fa78104590bd419b68333caf73846f722c2b8b200/pack6b3001aef85634b686f8296eb99ce5612b50794c8b59e13c1c54f6995e0daf7c/raw33552995<32MiB/initial1577418/PWA07c6a4fb2f820811. No remaining164–168work. Finaldescription-only followup addsChaseskillbonus fromactualmodifier;no subsequentgameplaychanges.

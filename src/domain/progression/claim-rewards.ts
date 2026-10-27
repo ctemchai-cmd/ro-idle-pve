@@ -1,6 +1,7 @@
 import type { AccountState } from '../../contracts/index.ts';
 import type { ValidatedContent } from '../../content/model.ts';
 import { ProgressionRejection } from './rejection.ts';
+import { grantCraftingMaterials, type CraftingMaterial } from './equipment-crafting.ts';
 
 /** Validate the whole selection before applying a single, fixed reward batch. */
 export function claimRewards(state: AccountState, ids: readonly string[], content: ValidatedContent): void {
@@ -16,6 +17,9 @@ export function claimRewards(state: AccountState, ids: readonly string[], conten
     if (!Number.isSafeInteger(total)) reject('RESOURCE_OVERFLOW');
     wallet[key] = total;
   }
+  const stones:Partial<Record<CraftingMaterial,number>>={};
+  for(const claim of selected)for(const[key,value]of Object.entries(claim.crafting_materials??{})as[CraftingMaterial,number][]){const total=(stones[key]??0)+value;if(!Number.isSafeInteger(total))reject('RESOURCE_OVERFLOW');if(total>0)stones[key]=total;}
+  if(Object.keys(stones).length)grantCraftingMaterials(state,stones,1);
   state.wallet = wallet; state.inventory.push(...items);
   const taken = new Set(ids); state.pending_rewards = state.pending_rewards.filter(c => !taken.has(c.claim_id));
   if (selected.some(c => c.kind === 'farm')) state.daily_objectives.farm_claimed = true;

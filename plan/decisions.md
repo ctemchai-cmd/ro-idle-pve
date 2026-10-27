@@ -407,3 +407,5 @@ D190/TASK166: ทยอยอัป Awaken และตรวจ Finger. [design
 D191/TASK167:ผู้ใช้ยืนยันGate1200–2500%ก่อนHPหลังทราบDPS9.9k→26.3kเฉพาะboundedfixture;ไม่globalnerf. [design80](design/80-gate-power.md)
 
 D192/TASK168:ผู้ใช้ยืนยันHi-classไม้ตายLv1ยังไม่Awakenคุ้มกว่าClass2Aw1;role-specificbenchmark/26skills/ไม่nerfClass2. [design81](design/81-hi-finisher-hierarchy.md)
+
+D193/TASK169 — ผู้ใช้ขอหินre-roll/Rarityจากด่าน. เพิ่มAFKStory4–8/1–3ต่อ12hตามบท,optional frozenprofile/claimและแยกRNG;ร้าน/ราคาคราฟต์/gear-cardratesเดิม. Design82.

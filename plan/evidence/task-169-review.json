@@ -1,0 +1,48 @@
+{
+  "task_id": "TASK-169",
+  "passed": false,
+  "status": "review",
+  "local_passed": true,
+  "acceptance_results": {
+    "AC-01": "passed",
+    "AC-02": "passed",
+    "AC-03": "not_run_hosted"
+  },
+  "checks": {
+    "full_TS_tests": 772,
+    "focused_tests": 24,
+    "new_farm_tests": 6,
+    "native_groups": 5,
+    "mobile_widths": [
+      320,
+      390
+    ],
+    "seeded_12h_windows": 6144,
+    "root_build": true,
+    "M0": true,
+    "source_assets_check": true,
+    "gear_card_rng_unchanged": true,
+    "pack_unchanged": true,
+    "independent_stone_rng": true,
+    "signed_API_UUID_replay": true,
+    "old_unpaid_window_preserved": true,
+    "SQL_env_changes": false,
+    "owner_access": false,
+    "filtered_build": true,
+    "strict_typecheck": true
+  },
+  "content_hash": "d23c38889e6cc964b0eb5538fac0b532d49fff8fe284c84778bc9af17b2c42ce",
+  "pack_hash": "6b3001aef85634b686f8296eb99ce5612b50794c8b59e13c1c54f6995e0daf7c",
+  "evidence": [
+    "task-169/native.json",
+    "task-169/drop-budget.json",
+    "task-169/source-after.json",
+    "task-169/README.md"
+  ],
+  "limitations": [
+    "Drops are independent chances, not guaranteed counts.",
+    "Pre-update unpaid farm window stays under its frozen rules; next window enables stones.",
+    "Native UI/signed API fixtures use disposable memory; no owner Auth or hosted save writes.",
+    "Public deployment check pending."
+  ]
+}

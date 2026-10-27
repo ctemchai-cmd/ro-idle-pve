@@ -965,3 +965,11 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T168-AC-01` | TASK-168 | design81/AC01 | mechanics/native/build/public | passed_implementation |
 | `T168-AC-02` | TASK-168 | design81/AC02 | mechanics/native/build/public | passed_implementation |
 | `T168-AC-03` | TASK-168 | design81/AC03 | mechanics/native/build/public | passed_implementation |
+
+## TASK-169 — Farm stones
+
+| ID | Task | Criterion | Method | Status |
+| --- | --- | --- | --- | --- |
+| `T169-AC-01` | TASK-169 | Rates12chapters/oldgear-cardRNG/schema/scope | unit/native/build/public | not_run_implementation |
+| `T169-AC-02` | TASK-169 | Split/cap/frozen/migration/atomicclaim/UUID | unit/native/build/public | not_run_implementation |
+| `T169-AC-03` | TASK-169 | Native320390/fullTS/root-filtered/M0/public | unit/native/build/public | not_run_implementation |

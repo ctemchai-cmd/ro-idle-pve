@@ -114,3 +114,5 @@ D167/TASK139: [ร้าน/แลกเศษ/Panel](56-shop-and-exchange-ui.md
 - [79 Awaken rank progression](79-awaken-rank-progression.md) — D190/TASK166.
 - [80 Gate power](80-gate-power.md) — D191/TASK167.
 - [81 Hi finisher hierarchy](81-hi-finisher-hierarchy.md) — D192/TASK168.
+
+- [82 Farm crafting stones](82-farm-crafting-stones.md) — D193/TASK169.

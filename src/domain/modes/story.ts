@@ -1,3 +1,4 @@
+import{farmCraftingProfile}from'./farm-crafting-profile.ts';
 import type { AccountState, BattleCheckpoint, CombatStats } from '../../contracts/index.ts';
 import type { ValidatedContent } from '../../content/model.ts';
 import { farmCardProfile } from './farm-card-profile.ts';
@@ -30,5 +31,6 @@ export function storyFarmSnapshot(stage:StoryStage,state:AccountState,content:Va
  for(const[resource,rule]of Object.entries(restrictions)){const prerequisite=rule.replace(/^clear /,'');if(!state.story.cleared_stage_ids.includes(prerequisite))perHour[resource as keyof AccountState['wallet']]=0;}
  const pool=Object.values(content.items).filter(i=>i.kind==='equipment'&&i.tier_level===tier).map(i=>String(i.id)).sort();if(pool.length!==36)throw new Error('INVALID_FARM_POOL'); // D-068 tier catalogue
  const farmRules=content.documents['economy.json']!.farm as unknown as {equipment_chance_per_million:number};
- return{gear_chance_per_million:farmRules.equipment_chance_per_million,chapter:stage.farm_rate_chapter,stage_id:stage.id,content_version:content.manifest.content_version,rules_version:content.manifest.rules_version,per_hour:perHour,gear_tier:tier,rarity_weights:structuredClone(gear.rarity_weights),definition_pool:pool as NonNullable<AccountState['farm']['rate_snapshot']>['definition_pool'],card_drops:farmCardProfile(stage.chapter,cardTierForChapter(stage.chapter,content),storyStages(content).findIndex(row=>row.id===stage.id),storyStages(content).length,content)};
+ const crafting=farmCraftingProfile(stage.farm_rate_chapter,content);
+ return{...(crafting?{crafting_drops:crafting}:{}),gear_chance_per_million:farmRules.equipment_chance_per_million,chapter:stage.farm_rate_chapter,stage_id:stage.id,content_version:content.manifest.content_version,rules_version:content.manifest.rules_version,per_hour:perHour,gear_tier:tier,rarity_weights:structuredClone(gear.rarity_weights),definition_pool:pool as NonNullable<AccountState['farm']['rate_snapshot']>['definition_pool'],card_drops:farmCardProfile(stage.chapter,cardTierForChapter(stage.chapter,content),storyStages(content).findIndex(row=>row.id===stage.id),storyStages(content).length,content)};
 }

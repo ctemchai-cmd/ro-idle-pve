@@ -3,6 +3,7 @@ import type { ValidatedContent } from '../../content/model.ts';
 import { nextRandom } from '../../content/random.ts';
 import { rollItemOptions } from '../build/item-options.ts';
 import { farmCardDrop } from './card-drops.ts';
+import { rollFarmCrafting } from './farm-crafting.ts';
 
 /** Pure integer accrual from a frozen rate/drop snapshot; never simulates kills. */
 export function reserveFarm(input: AccountState, fromMs: number, nowMs: number, nowIso: string, claimId: string, content: ValidatedContent): AccountState {
@@ -25,6 +26,7 @@ export function reserveFarm(input: AccountState, fromMs: number, nowMs: number, 
   if (weightTotal <= 0n || snapshot.definition_pool.some(id => content.items[id]?.kind !== 'equipment' || content.items[id]!.tier_level !== snapshot.gear_tier)) throw new Error('INVALID_FARM_SNAPSHOT');
   const dropElapsed = elapsed + farm.drop_carry_ms, drops = Math.floor(dropElapsed / rules.quantization.drop_interval_ms), items: AccountState['inventory'] = [];
   farm.drop_carry_ms = dropElapsed % rules.quantization.drop_interval_ms;
+  const stones=snapshot.crafting_drops?rollFarmCrafting(farm,snapshot.crafting_drops,drops):undefined;
   for (let index = 0; index < drops; index++) {
     // Legacy snapshots consume no chance draw, preserving their exact unpaid RNG sequence.
     const gearChance=snapshot.gear_chance_per_million;
@@ -42,6 +44,6 @@ export function reserveFarm(input: AccountState, fromMs: number, nowMs: number, 
     }
   }
   farm.reserved_through = nowIso;
-  if (items.length || Object.values(vector).some(n => n > 0)) state.pending_rewards.push({ claim_id: claimId, kind: 'farm', resource_vector: vector, items, content_version: snapshot.content_version, reserved_at: nowIso, source_keys: [`farm:${nowMs - elapsed}:${nowMs}`], status: 'pending' });
+  if (items.length || Object.values(vector).some(n => n > 0) || stones&&Object.values(stones).some(n=>n>0)) state.pending_rewards.push({ claim_id: claimId, kind: 'farm', resource_vector: vector, items, ...(stones?{crafting_materials:stones}:{}),content_version: snapshot.content_version, reserved_at: nowIso, source_keys: [`farm:${nowMs - elapsed}:${nowMs}`], status: 'pending' });
   return state;
 }

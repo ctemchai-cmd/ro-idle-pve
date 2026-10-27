@@ -1351,6 +1351,39 @@
                   "type": "integer",
                   "minimum": 0,
                   "maximum": 1000000
+                },
+                "crafting_drops": {
+                  "type": "object",
+                  "properties": {
+                    "version": {
+                      "const": "crafting_farm_v1"
+                    },
+                    "chance_per_million": {
+                      "type": "object",
+                      "properties": {
+                        "option_stone": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 1000000
+                        },
+                        "rarity_stone": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 1000000
+                        }
+                      },
+                      "required": [
+                        "option_stone",
+                        "rarity_stone"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "version",
+                    "chance_per_million"
+                  ],
+                  "additionalProperties": false
                 }
               },
               "required": [
@@ -1453,6 +1486,26 @@
           "type": "integer",
           "minimum": 0,
           "maximum": 299999
+        },
+        "crafting_rng": {
+          "type": "object",
+          "properties": {
+            "state": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 4294967295
+            },
+            "draw_count": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "state",
+            "draw_count"
+          ],
+          "additionalProperties": false
         }
       },
       "required": [
@@ -1696,6 +1749,26 @@
           },
           "status": {
             "const": "pending"
+          },
+          "crafting_materials": {
+            "type": "object",
+            "properties": {
+              "option_stone": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              },
+              "rarity_stone": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
+              }
+            },
+            "required": [
+              "option_stone",
+              "rarity_stone"
+            ],
+            "additionalProperties": false
           }
         },
         "required": [

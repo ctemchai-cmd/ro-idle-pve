@@ -194,6 +194,7 @@ export function validateContent(raw: unknown): Result<ValidatedContent> {
       }
     }
   });
+  attempt(docAt('loot.json'),()=>{const value=bundle.documents['loot.json']!.crafting;if(value===undefined)return;const rules=object(value),at=docAt('loot.json');demand(rules.version==='crafting_farm_v1'&&rules.roll_interval_ms===300000&&rules.chance_denominator===1000000,'crafting_farm_rules',at);const chances=object(rules.chapter_chances);for(const stage of list(bundle.documents['stages.json']?.stages??[])){const chapter=String(object(stage).farm_rate_chapter);demand(chances[chapter]!==undefined,'crafting_farm_chapter',at);}for(const row of Object.values(chances)){const values=object(row);demand(canonical(Object.keys(values).sort())===canonical(['option_stone','rarity_stone']),'crafting_farm_materials',at);for(const v of Object.values(values))demand(Number.isSafeInteger(v)&&Number(v)>=0&&Number(v)<=1000000,'crafting_farm_chance',at);}});
   attempt(docAt('loot.json'), () => {
     const gear = object(bundle.documents['loot.json']!.gear);
     const equipment = Object.values(items).filter(item => item.kind === 'equipment');

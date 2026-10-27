@@ -207,12 +207,15 @@ function StageSheet({ context, close, challenge }: { context: GameContext; close
   </Sheet>;
 }
 
-function FarmSheet({ context, close }: { context: GameContext; close: () => void }) {
+export function FarmSheet({ context, close }: { context: GameContext; close: () => void }) {
   const { state, pack, submit, locked, toast } = context, now = useNow(1000), snapshot = state.farm.rate_snapshot, [claiming, setClaiming] = useState(false);
   const elapsed = snapshot ? Math.min(FARM_CAP_MS, Math.max(0, now - Date.parse(state.farm.reserved_through))) : 0;
   // Farm windows are also settled into claims by farm-stage changes and boss wins; "collect all" takes every one.
   const waiting = (Object.keys(state.wallet) as (keyof Wallet)[]).map(k => [k, state.pending_rewards.reduce((sum, c) => sum + c.resource_vector[k], 0)] as const).filter(([, n]) => n > 0);
   const items = state.pending_rewards.reduce((sum, c) => sum + c.items.length, 0);
+  const stoneNames={option_stone:'หินรีโรล',rarity_stone:'หิน Rarity'},stoneKeys=['option_stone','rarity_stone']as const;
+  const waitingStones=stoneKeys.map(k=>[k,state.pending_rewards.reduce((n,c)=>n+(c.crafting_materials?.[k]??0),0)]as const).filter(([,n])=>n>0);
+  const [receivedStones,setReceivedStones]=useState({option_stone:0,rarity_stone:0});
   const [collectedCardIds,setCollectedCardIds]=useState<string[]>([]);
   const [openCardId,setOpenCardId]=useState<string|null>(null);
   const foundCards=[...state.pending_rewards.flatMap(c=>c.items).filter((i):i is Extract<typeof i,{kind:'card'}>=>i.kind==='card'),...state.inventory.filter((i):i is Extract<typeof i,{kind:'card'}>=>i.kind==='card'&&collectedCardIds.includes(i.instance_id))].map(item=>cardView(item,state));
@@ -220,11 +223,12 @@ function FarmSheet({ context, close }: { context: GameContext; close: () => void
   async function collectAll() {
     if (claiming) return; setClaiming(true);
     try {
+      const oldStock={...context.latest()?.equipment_crafting?.stock};
       const pending=context.latest()?.pending_rewards??[],cardIds=pending.flatMap(c=>c.items).filter(i=>i.kind==='card').map(i=>i.instance_id);
       const ok=snapshot&&elapsed>=1000
         ?await submit('farm.claim',{collect_rewards:true})
         :pending.length>0&&await submit('reward.claim',{claim_ids:pending.map(c=>c.claim_id)});
-      if(ok){const taken=(context.latest()?.inventory??[]).filter(i=>i.kind==='card'&&(cardIds.includes(i.instance_id)||!state.inventory.some(old=>old.instance_id===i.instance_id))).map(i=>i.instance_id);setCollectedCardIds(ids=>[...new Set([...ids,...taken])]);toast(`รับรางวัลทั้งหมดแล้ว${taken.length?` · การ์ด ${taken.length} ใบ`:''}`);}
+      if(ok){setReceivedStones(old=>Object.fromEntries(stoneKeys.map(k=>[k,old[k]+Math.max(0,(context.latest()?.equipment_crafting?.stock[k]??0)-(oldStock[k]??0))]))as typeof old);const taken=(context.latest()?.inventory??[]).filter(i=>i.kind==='card'&&(cardIds.includes(i.instance_id)||!state.inventory.some(old=>old.instance_id===i.instance_id))).map(i=>i.instance_id);setCollectedCardIds(ids=>[...new Set([...ids,...taken])]);toast(`รับรางวัลทั้งหมดแล้ว${taken.length?` · การ์ด ${taken.length} ใบ`:''}`);}
     } finally { setClaiming(false); }
   }
   const rates = snapshot ? (Object.entries(snapshot.per_hour) as [keyof Wallet, number][]).filter(([, n]) => n > 0) : [];
@@ -238,9 +242,11 @@ function FarmSheet({ context, close }: { context: GameContext; close: () => void
       <span>{['normal','mini','mvp'].filter(grade=>snapshot.card_drops!.definition_pool.some(id=>cardOrigin(id)?.grade===grade&&!cardOrigin(id)?.variant)).map(grade=><CardGrade key={grade} grade={grade} />)}{snapshot.card_drops!.definition_pool.some(id=>cardOrigin(id)?.variant==='puppet')&&<CardGrade grade="mvp" variant="puppet" />}</span>
       <small>ระดับตามมอนสเตอร์: {farmCardRarityOdds(snapshot.card_drops).map(r=>`${rarityLabels[r.rarity]} ${r.percent.toLocaleString('th-TH',{maximumFractionDigits:2})}%`).join(' · ')}</small>
     </div>:snapshot?<p className="hint">ช่วงสะสมเดิมยังไม่มีดรอปการ์ด</p>:null}
-    {(waiting.length > 0 || items > 0) && <div className="waiting-box"><small>รอรับ {state.pending_rewards.length} รายการ{snapshot && elapsed >= 1000 ? ' + ช่วงฟาร์มล่าสุด' : ''}</small>
-      <p className="reward-line">{waiting.map(([k, n]) => <span key={k}><ResIcon pack={pack} k={k} />{compact(n)}</span>)}{items ? <span><Icon name="gift" /> {items} ชิ้น</span> : null}</p></div>}
+    {snapshot?.crafting_drops&&<section className="farm-stone-rates"><small>หินฟาร์ม · เฉลี่ยต่อ 12 ชม.</small><div className="rate-chips">{stoneKeys.map(k=><span key={k} title={stoneNames[k]}><ResIcon pack={pack} k={k}/>{stoneNames[k]} ~{(snapshot.crafting_drops!.chance_per_million[k]*144/1000000).toLocaleString('th-TH',{maximumFractionDigits:1})}</span>)}</div></section>}
+    {(waiting.length > 0 || items > 0 || waitingStones.length>0) && <div className="waiting-box"><small>รอรับ {state.pending_rewards.length} รายการ{snapshot && elapsed >= 1000 ? ' + ช่วงฟาร์มล่าสุด' : ''}</small>
+      <p className="reward-line">{waiting.map(([k, n]) => <span key={k}><ResIcon pack={pack} k={k} />{compact(n)}</span>)}{items ? <span><Icon name="gift" /> {items} ชิ้น</span> : null}{waitingStones.map(([k,n])=><span key={k} title={stoneNames[k]}><ResIcon pack={pack} k={k}/>{full(n)}</span>)}</p></div>}
     <button className="btn primary wide big" disabled={locked || claiming || !ready} onClick={() => void collectAll()}>{claiming ? 'กำลังรับ…' : 'รับทั้งหมด'}</button>
+    {stoneKeys.some(k=>receivedStones[k]>0)&&<section className="farm-stone-finds" aria-label="หินที่ได้รับ"><b>หินที่ได้รับ</b><div className="rate-chips">{stoneKeys.filter(k=>receivedStones[k]>0).map(k=><span key={k}><ResIcon pack={pack} k={k}/>{stoneNames[k]} +{full(receivedStones[k])}</span>)}</div></section>}
     {foundCards.length>0&&<section className="farm-card-finds" aria-label="การ์ดที่ได้รับ"><b>การ์ดที่พบ · {foundCards.length} ใบ</b><div>{foundCards.slice(0,12).map(c=><button key={c.item.instance_id} title={c.name} aria-label={`ดู${c.name}`} onClick={()=>setOpenCardId(c.item.instance_id)} data-card-definition={c.definition.id}><span className={`card-find-art rarity-${c.item.rarity_id}`} data-card-rarity={c.item.rarity_id}><CardIcon card={c} pack={pack} /></span><CardGrade grade={c.origin?.grade} rarity={c.item.rarity_id} variant={c.origin?.variant} /><small>{c.name}</small></button>)}</div>{foundCards.length>12&&<small>และอีก {foundCards.length-12} ใบในกระเป๋า</small>}</section>}
     {openCard&&<CardSheet context={context} card={openCard} close={()=>setOpenCardId(null)}/>}
   </Sheet>;
