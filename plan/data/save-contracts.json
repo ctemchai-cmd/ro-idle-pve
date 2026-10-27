@@ -226,8 +226,8 @@
   "ledger_compaction": {
     "active": "one coalesced entry per character+feature+skill; actual paid vectors sum, cost_versions tracks all versions; cost_version denotes latest contribution",
     "refund": "remove active entry and archive refunded full entry with refund command ID in immutable receipt; repeated new reset finds no refundable entry",
-    "nonrefundable_features": "level/refine/card upgrade receipts retained, no refundable ledger entry required because release never refunds them",
-    "bounded_size": "current skills+enchant lines at most136 active scopes over seven characters; refunded history stays in receipts, not account JSON"
+    "nonrefundable_features": "Refine/card upgrades retain receipts; no refund ledger required. Character level and Break now retain active actual-paid scopes for character.reset_level.",
+    "bounded_size": "Coalesced skills/enchant plus at most two level/Break scopes per actor; refunded full entries (including reconstructed legacy prefixes) remain in immutable receipts, not account JSON."
   },
   "hash_policy": "Runtime bundle hash = SHA256(engine data projection + game schema hash + implementation source hash); presentation-only assets have separate hash. Requests must match exact runtime content_hash; human version strings alone are insufficient."
 }

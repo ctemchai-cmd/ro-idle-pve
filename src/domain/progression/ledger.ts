@@ -2,7 +2,7 @@ import type { AccountState } from '../../contracts/index.ts';
 type Entry=AccountState['paid_ledger'][number];
 /** Keep only active refundable scopes. Historical refunds belong to immutable receipts. */
 export function compactPaidLedger(rows:readonly Entry[]):Entry[]{
- const active:Entry[]=[],nonrefundable=new Set(['character_level','breakthrough','refine','card_upgrade']);
+ const active:Entry[]=[],nonrefundable=new Set(['refine','card_upgrade']);
  for(const row of rows){
   if(row.refund_state!=='active'||nonrefundable.has(row.feature_id))continue;
   const previous=active.find(e=>e.character_id===row.character_id&&e.feature_id===row.feature_id&&e.skill_id===row.skill_id);

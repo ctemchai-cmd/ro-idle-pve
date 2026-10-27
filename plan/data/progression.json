@@ -1114,7 +1114,7 @@
       }
     ],
     "breakthrough_070_exists": false,
-    "character_level_is_refundable": false
+    "character_level_is_refundable": true
   },
   "status_allocation": {
     "base": {
@@ -1764,6 +1764,35 @@
       "restore_total_rule": "earned_status_points_for_level",
       "global_wallet_credit": false,
       "allocated_values_reset_to_base": true
+    },
+    "level_reset": {
+      "command": "character.reset_level",
+      "level": 1,
+      "job": "current Class1 root",
+      "cap": 20,
+      "refund_features": [
+        "character_level",
+        "breakthrough",
+        "status",
+        "skill",
+        "skill_awaken"
+      ],
+      "legacy_missing_prefix": "Immutable progression-costs-v1 prices, reconstructed receipt entries; retained actual vectors always take precedence",
+      "preserve": [
+        "identity",
+        "gender",
+        "slot_progress",
+        "inventory",
+        "other_characters",
+        "world_progress",
+        "daily_rights",
+        "farm_cursor_and_profiles",
+        "shop_counters",
+        "gacha_counters",
+        "crafting_stock_and_pending"
+      ],
+      "equipment": "unequip incompatible/highlevel references only; no new items and no inventory-capacity requirement",
+      "confirmation": "selected actor/current level/refund vector before submit"
     }
   },
   "reference_profiles": {

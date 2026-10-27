@@ -3,9 +3,9 @@ import { OwnerBadge } from './owner-badge.tsx';
 import { CardIcon } from './card-art.tsx';
 import { CardSalvageButton } from './card-salvage.tsx';
 import { Icon } from '../icon.tsx';
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useRef } from 'react';
 import type { CombatStats, Modifier } from '../../contracts/index.ts';
-import { effectiveLevelCap, levelQuote,jobChangePlan, rosterData as data, type Character } from '../../client/roster.ts';
+import { effectiveLevelCap, levelQuote,jobChangePlan,characterResetQuote, rosterData as data, type Character } from '../../client/roster.ts';
 import { equipmentData, equipmentPreview, equipmentUpgradeHints, inventoryView, itemModifiers, itemOptions, rarityLabels, rarityRank, slotLabels, weaponLabels, type EquipmentSlot } from '../../client/equipment.ts';
 import { cardInventory, cardView, cardStatUnits, slotEnchantLines, refineModifiers, nextRefineChance, nextRefinePityBonus, refinePercent, slotsData, refundEnchant, slotChangePreview, slotUpgradeQuote, socketCapacity, socketUnlockRefine, socketUnlockHint } from '../../client/slots.ts';
 import type { GameContext } from './shell.tsx';
@@ -15,7 +15,7 @@ import { orderedCharacters } from './character-nav.tsx';
 import { CardGrade } from './card-grade.tsx';
 import { EquipmentCards } from './equipment-cards.tsx';
 import { EquipmentProgress } from './equipment-progress.tsx';
-import { ActorCanvas, CostChips, Diff, ItemIcon, PageHeader, Sheet, canPay, friendNames, iconUrl, jobNames, lookOf, reasonText, seconds, statLabels, type Wallet } from './kit.tsx';
+import { ActorCanvas, CostChips, ResIcon, compact, resourceNames, Diff, ItemIcon, PageHeader, Sheet, canPay, friendNames, iconUrl, jobNames, lookOf, reasonText, seconds, statLabels, type Wallet } from './kit.tsx';
 
 const leftSlots: EquipmentSlot[] = ['weapon', 'armor', 'accessory'], rightSlots: EquipmentSlot[] = ['head', 'garment', 'shoes'];
 type ItemRow = ReturnType<typeof inventoryView>[number];
@@ -158,9 +158,12 @@ function SlotSheet({ context, actor, slot, close, open }: { context: GameContext
   </Sheet>;
 }
 
-function CharacterUpgradeSheet({ context, actor, close }: { context: GameContext; actor: Character; close: () => void }) {
+export function CharacterUpgradeSheet({ context, actor, close }: { context: GameContext; actor: Character; close: () => void }) {
   const { state, pack, submit, locked } = context, cap = effectiveLevelCap(actor, data), [job, setJob] = useState(actor.job_id), [reset, setReset] = useState(false);
   const [catalog,setCatalog]=useState(false);
+  const [levelReset,setLevelReset]=useState<{quote:ReturnType<typeof characterResetQuote>;level:number}|null>(null),[resetBusy,setResetBusy]=useState(false),resetGate=useRef(false);
+  let resetQuote:ReturnType<typeof characterResetQuote>|null=null;try{resetQuote=characterResetQuote(state,actor.character_id);}catch{/* Invalid histories remain unavailable until reconciled. */}
+  async function resetLevelNow(){if(resetGate.current||locked)return;resetGate.current=true;setResetBusy(true);try{if(await submit('character.reset_level',{character_id:actor.character_id}))close();}finally{resetGate.current=false;setResetBusy(false);}}
   const cost = actor.level < cap ? levelQuote(actor, actor.level + 1, data) : null;
   let best = actor.level; for (let t = actor.level + 1; t <= cap; t++) { if (canPay(state.wallet, levelQuote(actor, t, data))) best = t; else break; }
   const gate = data.progression.breakthrough_gates.find(g => g.at_level === actor.level && actor.local_cap === actor.level && !actor.completed_gate_ids.includes(g.at_level));
@@ -172,6 +175,7 @@ function CharacterUpgradeSheet({ context, actor, close }: { context: GameContext
       <div className="level-jump"><b>Lv.{actor.level}</b><span>→</span><b className="next">{cost ? `Lv.${actor.level + 1}` : actor.level === data.release.level_cap ? 'MAX' : actor.level===70&&(data.job_catalog!.byId[actor.job_id]?.stage??0)<3?'รอ Hi-class':'รอ Breakthrough'}</b><small>เพดาน {cap}</small></div>
       {cost && <><CostChips cost={cost} wallet={state.wallet} pack={pack} /><div className="row two"><button className="btn primary" disabled={locked || !canPay(state.wallet, cost)} onClick={() => void submit('character.level_up', { character_id: actor.character_id, target_level: actor.level + 1 })}>อัป +1</button>
         <button className="btn" disabled={locked || best <= actor.level + 1} onClick={() => void submit('character.level_up', { character_id: actor.character_id, target_level: best })}>อัปถึง Lv.{Math.max(best, actor.level + 1)}</button></div></>}
+      <button className="btn ghost wide" disabled={locked||!!state.active_battle||!resetQuote?.canReset} onClick={()=>resetQuote&&setLevelReset({quote:resetQuote,level:actor.level})}>กลับ Lv.1 / คืนทรัพยากร</button>
     </section>
     {gate && <section className="upgrade-pane highlight"><h3>Breakthrough Lv.{gate.at_level}</h3><p className="hint">ปลดเพดานถึง Lv.{Math.min(data.release.level_cap, gate.unlocks_local_cap)}</p><CostChips cost={gate.cost} wallet={state.wallet} pack={pack} />
       <button className="btn primary wide" disabled={locked || !canPay(state.wallet, gate.cost)} onClick={() => void submit('character.breakthrough', { character_id: actor.character_id, gate_level: gate.at_level })}>Breakthrough</button></section>}
@@ -183,7 +187,13 @@ function CharacterUpgradeSheet({ context, actor, close }: { context: GameContext
     <section className="upgrade-pane"><h3>รีเซ็ตบิลด์</h3><p className="hint">คืนแต้ม Status และทุนสกิลที่จ่ายจริง · เลเวลและการพัฒนาช่องอุปกรณ์ยังอยู่</p>
       {reset ? <div className="row"><button className="btn danger" disabled={locked} onClick={() => void submit('character.reset_build', { character_id: actor.character_id, features: ['stats', 'skills'] }).then(() => setReset(false))}>ยืนยันรีเซ็ต</button><button className="btn ghost" onClick={() => setReset(false)}>ยกเลิก</button></div> : <button className="btn ghost wide" disabled={locked} onClick={() => setReset(true)}>รีเซ็ต Status / สกิล</button>}
     </section>
-  </Sheet>{catalog&&<SkillCatalogSheet pack={pack} initialJob={job} onClose={()=>setCatalog(false)}/>}</>;
+  </Sheet>{catalog&&<SkillCatalogSheet pack={pack} initialJob={job} onClose={()=>setCatalog(false)}/>}{levelReset&&<Sheet title={`รีเซ็ตเลเวล · ${friendNames[actor.character_id]}`} onClose={()=>{if(!resetBusy)setLevelReset(null);}} className="character-reset-sheet">
+    <div className="level-jump"><b>Lv.{levelReset.level}</b><span>→</span><b className="next">Lv.1</b><small><ClassIcon pack={pack} job={actor.root_job_id} size={18}/>{jobNames[actor.root_job_id]}</small></div>
+    <p className="hint">คืนทุนเลเวล, Break, สกิล และ Awaken · Status กลับค่าเริ่มต้น</p>
+    <ul className="character-reset-refund" aria-label="ทรัพยากรที่จะคืน">{(Object.keys(resourceNames)as(keyof Wallet)[]).filter(key=>levelReset.quote.refund[key]>0).map(key=><li key={key}><ResIcon pack={pack} k={key}/><span>{resourceNames[key]}</span><b>+{compact(levelReset.quote.refund[key])}</b></li>)}</ul>
+    <p className="hint">เก็บอุปกรณ์ การ์ด Refine และ Enchant · ถอดของที่ใส่ไม่ได้กลับกระเป๋า</p>
+    <div className="row two"><button className="btn ghost" disabled={resetBusy} onClick={()=>setLevelReset(null)}>ยกเลิก</button><button className="btn danger" disabled={locked||resetBusy} onClick={()=>void resetLevelNow()}>{resetBusy?'กำลังรีเซ็ต…':'ยืนยันกลับ Lv.1'}</button></div>
+  </Sheet>}</>;
 }
 
 export function RosterStrip({ context }: { context: GameContext }) {

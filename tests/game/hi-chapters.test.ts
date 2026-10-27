@@ -1,3 +1,4 @@
+import{withoutCharacterResetDocument}from'./legacy-character-reset-scope.ts';
 import test from 'node:test';
 import { class2Content } from './class2-content-fixture.ts';
 import assert from 'node:assert/strict';
@@ -21,7 +22,7 @@ test('D151330 stages keep all180 released rows and old programs/actors/rates/pow
  assert.equal(sha(canonical(stages.slice(0,180))),baseline.stages_180_sha256);
  const enemies=content.documents['enemies.json']!;
  assert.deepEqual((enemies.actors as unknown as object[]).slice(0,25),baseline.old_actors);assert.deepEqual((enemies.skills as unknown as object[]).slice(0,17),baseline.old_enemy_skills);
- assert.deepEqual((content.documents['economy.json']!.rates as unknown as object[]).slice(0,9),baseline.old_rates);
+ assert.deepEqual((withoutCharacterResetDocument('economy.json',content.documents['economy.json'])!.rates as unknown as object[]).slice(0,9),baseline.old_rates);
  for(const [file,expected]of Object.entries(baseline.unchanged_file_sha256))assert.equal(sha(legacyClass2Source(file+'.json')),expected,file);
  for(let i=180;i<330;i++){assert.equal(stages[i]!.unlock_after,stages[i-1]!.id);assert.ok(stages[i]!.release_gate);assert.ok(storyBoss(stages[i]!).level>=71&&storyBoss(stages[i]!).level<=90);}
  for(const chapter of[10,11,12]){const rows=stages.filter(s=>s.chapter===chapter);assert.equal(rows.length,50);assert.equal(new Set(rows.filter(s=>s.index%10===0).map(s=>storyBoss(s).definition_id)).size,5);}

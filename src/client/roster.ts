@@ -11,6 +11,7 @@ import type { AccountState } from '../contracts/index.ts';
 import { jobBonus } from '../domain/build/character.ts';
 import { randomId } from './secure-context.ts';
 export { allocationQuote, effectiveLevelCap, levelQuote,jobChangePlan } from '../domain/progression/characters.ts';
+export{characterResetQuote}from'../domain/progression/character-reset.ts';
 export type BuildCommand = RosterCommand | SkillCommand | EquipmentCommand | SlotCommand | GearUpgradeCommand;
 export type { Character, RootJob, RosterCommand } from '../domain/progression/characters.ts';
 const loaded = loadValidatedContent(); if (!loaded.ok) throw new Error('CONTENT_UNAVAILABLE');

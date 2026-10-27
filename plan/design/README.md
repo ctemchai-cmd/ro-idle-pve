@@ -116,3 +116,7 @@ D167/TASK139: [ร้าน/แลกเศษ/Panel](56-shop-and-exchange-ui.md
 - [81 Hi finisher hierarchy](81-hi-finisher-hierarchy.md) — D192/TASK168.
 
 - [82 Farm crafting stones](82-farm-crafting-stones.md) — D193/TASK169.
+
+- [83-break-resources.md](83-break-resources.md) — TASK170.
+
+- [84-character-level-reset.md](84-character-level-reset.md) — TASK171.

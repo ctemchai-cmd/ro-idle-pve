@@ -2,11 +2,13 @@ import type { AccountState, Command, PrimaryStats } from '../../contracts/index.
 import type { ValidatedContent } from '../../content/model.ts';
 import { ProgressionRejection } from './rejection.ts';
 import { createJobCatalog, type JobAdvancement, type JobCatalog } from '../../content/jobs.ts';
+import{characterResetQuote,CHARACTER_RESET_FEATURES}from'./character-reset.ts';
+import{equipmentFit,equipmentSlots}from'../build/equipment-definition.ts';
 export { ProgressionRejection } from './rejection.ts';
 
 export type Character = AccountState['roster'][number];
 export type RootJob = Character['root_job_id'];
-export type RosterCommand = Extract<Command, { type: 'party.set' | 'character.level_up' | 'character.breakthrough' | 'character.allocate_status' | 'character.reset_build' | 'character.change_job' }>;
+export type RosterCommand = Extract<Command, { type: 'party.set' | 'character.level_up' | 'character.breakthrough' | 'character.allocate_status' | 'character.reset_build' | 'character.change_job' | 'character.reset_level' }>;
 type Wallet = AccountState['wallet'];
 export interface ProgressionData {
   cost_version: string;
@@ -130,6 +132,17 @@ export function applyRosterCommand(state: AccountState, command: RosterCommand, 
     }
   };
   switch (command.type) {
+    case 'character.reset_level': {
+      const quote=characterResetQuote(state,actor.character_id);if(!quote.canReset)reject('CHARACTER_ALREADY_RESET');
+      const wallet={...state.wallet};for(const key of Object.keys(wallet)as(keyof Wallet)[]){const value=wallet[key]+quote.refund[key];if(!Number.isSafeInteger(value))reject('RESOURCE_OVERFLOW');wallet[key]=value;}
+      // Reconstructed historical prefixes are archived in this reset receipt, not kept in the save.
+      for(const[feature,quantity,paid]of[['character_level',quote.oldLevels,quote.legacyLevels],['breakthrough',quote.oldGates,quote.legacyGates]]as const)if(quantity>0)state.paid_ledger.push({entry_id:`legacy_${feature}_${command.request_id}`,character_id:actor.character_id,feature_id:feature,skill_id:null,quantity,cost_version:quote.legacyCostVersion,cost_versions:[quote.legacyCostVersion],paid_resources:{...paid},refund_state:'active',refund_command_id:null});
+      for(const row of state.paid_ledger)if(row.character_id===actor.character_id&&row.refund_state==='active'&&CHARACTER_RESET_FEATURES.includes(row.feature_id)){row.refund_state='refunded';row.refund_command_id=command.request_id;}
+      // All refundable payments are covered by the quote; reset restores free starter grants.
+      reset(['stats','skills']);actor.level=1;actor.job_id=actor.root_job_id;actor.local_cap=data.progression.base_local_cap as Character['local_cap'];actor.completed_gate_ids=[];actor.unspent_status_points=data.progression.level_rows[0]!.total_status_points;
+      for(const slot of equipmentSlots){const id=actor.equipment[slot],item=state.inventory.find(i=>i.instance_id===id);if(id&&(!item||equipmentFit(actor,slot,item,content)))actor.equipment[slot]=null;}
+      state.wallet=wallet;return'CHARACTER_LEVEL_RESET';
+    }
     case 'character.level_up': {
       const cost = levelQuote(actor, command.params.target_level, data), previous = data.progression.level_rows.find(r => r.level === actor.level)!, next = data.progression.level_rows.find(r => r.level === command.params.target_level)!;
       addInvestment('character_level', command.params.target_level - actor.level, cost);
