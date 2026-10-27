@@ -1,6 +1,16 @@
 # Handoff ระหว่าง agent
 
 
+## TASK172 COMPLETE / daily quota on reward collection LIVE — 28 October2026
+
+Source `9cb1f8ff1819c4d4d8d0e626b46eb14d97dec5c8`, [Vercel SUCCESS](https://vercel.com/chanon2/ro-idle-pve/8hK2iNvVggY2SFy69SLk8mKNWGXA).172done158/172/M4112/121. No remaining172implementation. Final793/793TS/10new/53targeted/native5actualReact320390/root+filtered/M0/strict/public4groups24bundleSHA passed. API SIN1/anonymous401/content exact/pack exact/mobilelogin0errors0writes. Content2a62c0f086ce1d9f423c9d37b1907a7375bf10ed652daca916d3ec36e64ceff8,pack6b3001aef85634b686f8296eb99ce5612b50794c8b59e13c1c54f6995e0daf7c unchanged/raw33552995/initial1577418,PWAa975f483ec0ae9a1,gzip659532. Evidence172native/hosted/deployment/review/sourcebefore-after. OwnVite7522PID85698/browsersCLOSED;6173untouched.
+
+Entry/finish/retreat no spent right until first received box per run. Optionaldaily_attempt groups boss/day/battle/charged; claimpreflight counts unique runs, marksremaining siblingspaid, atomically withwallet/CAS/receipt. Old metadata-free boxes prepaid. Block another unpaid sameboss/day run until prior boxes collected; DailyPage pendingcollect10boxes3/3→2/3onecommand. Keep HP/phase/day/speedmechanics; old active prepaid ticket refunded once during backed-up version migration. Slot1 verified saveUIDc37edad4-ec3c-4541-8cba-194bd21e285c/mainChampion100/28Oct oldpolicy records resetquota0once withquota_policymarker; nophase/HP/reward/wallet/otheractor/savechanges. Server supplies verified saveID/database time to migration preview/commit. Owner must reload/selectslot1/click backup-update to apply; agent did NOT directly access/write owner's save. No SQL/env/assets/globalbalance changes or extra DBrequests. New-day collection charges original ticket only, expired absent records do not recreate old rights.
+
+User modern migration-v2/unselected modern assets/task108png remain unstaged. Closure docs/evidence only; product stays verified source9cb1f8ff1. Older active/checkpoint entries below are historical.
+
+
+
 ## TASK172 LOCAL COMPLETE / publish next
 
 Final793/793 TS +10new/53targeted/native5actualReact320390/root+filtered/M0/strict allPASS. Source pins exact, no more product changes needed. Content2a62c0f086ce1d9f423c9d37b1907a7375bf10ed652daca916d3ec36e64ceff8/pack6b3001unchanged/PWAa975f483ec0ae9a1/gzip659532; filtered build identical (Python PATH explicit pyenv3.12.10, Apple shim fails outside root). OwnVite7522PID85698/browsersCLOSED, personal6173 untouched.172review;157/172done/M4111/121. Need push46allowlistedpaths /private/tmp/ro-172-allowlist.json, VercelSUCCESS/publicRO_EVIDENCE_TASK=task-172 node scripts/test_compact_boss_hosted.cjs→172done158/172/M4112/121closurepush. No owner credentials/SQL/env/DBread/write. User's slot1 Champion100 quota is returned only after they complete backed-up version migration; no direct refund executed by agent. Nativepending320 reviewed, exact3/3beforeclaim2/3after/10boxes1command. All older checkpoint notes below historical.

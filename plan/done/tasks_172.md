@@ -16,4 +16,8 @@ Move daily quota payment from entry to first successful reward collection per ru
 ## เกณฑ์ตรวจรับ
 - [x] AC-01: Quota stays unchanged at start/finish/retreat; increments once on first actual collection. Atomic failure/retry and multi-box/partial collection remain correct.
 - [x] AC-02: Old paid claims never recharged; old active reservation refunded once; authorized slot1 Champion100 28Oct reset once via backup migration only, other worlds/saves untouched.
-- [ ] AC-03: Native320/390 pending collection and states, focused/full TS/M0/build/public pass; no new SQL/env/owner credentials/media/balance changes.
+- [x] AC-03: Native320/390 pending collection and states, focused/full TS/M0/build/public pass; no new SQL/env/owner credentials/media/balance changes.
+
+## ผลตรวจรับ
+
+Source `9cb1f8ff1819c4d4d8d0e626b46eb14d97dec5c8`, [Vercel SUCCESS](https://vercel.com/chanon2/ro-idle-pve/8hK2iNvVggY2SFy69SLk8mKNWGXA). 793 TS/10 new/53 targeted/native5/root-filtered/M0/public4groups24bundleSHA pass. [Review](../evidence/task-172-review.json). Owner must complete normal backup-update on slot1 to apply the authorized28Oct refund; no agent owner cloud access/write.
