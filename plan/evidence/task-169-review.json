@@ -1,12 +1,12 @@
 {
   "task_id": "TASK-169",
-  "passed": false,
-  "status": "review",
+  "passed": true,
+  "status": "done",
   "local_passed": true,
   "acceptance_results": {
     "AC-01": "passed",
     "AC-02": "passed",
-    "AC-03": "not_run_hosted"
+    "AC-03": "passed"
   },
   "checks": {
     "full_TS_tests": 772,
@@ -29,7 +29,10 @@
     "SQL_env_changes": false,
     "owner_access": false,
     "filtered_build": true,
-    "strict_typecheck": true
+    "strict_typecheck": true,
+    "public_groups": 4,
+    "public_bundle_SHA": 24,
+    "API_region": "sin1"
   },
   "content_hash": "d23c38889e6cc964b0eb5538fac0b532d49fff8fe284c84778bc9af17b2c42ce",
   "pack_hash": "6b3001aef85634b686f8296eb99ce5612b50794c8b59e13c1c54f6995e0daf7c",
@@ -37,12 +40,15 @@
     "task-169/native.json",
     "task-169/drop-budget.json",
     "task-169/source-after.json",
-    "task-169/README.md"
+    "task-169/README.md",
+    "task-169/hosted.json",
+    "task-169/deployment.json"
   ],
   "limitations": [
     "Drops are independent chances, not guaranteed counts.",
     "Pre-update unpaid farm window stays under its frozen rules; next window enables stones.",
-    "Native UI/signed API fixtures use disposable memory; no owner Auth or hosted save writes.",
-    "Public deployment check pending."
-  ]
+    "Native UI/signed API fixtures use disposable memory; no owner Auth or hosted save writes."
+  ],
+  "source_commit": "188ab28ef0991d5c091d80fea3f04ec3a5131ea8",
+  "deployment": "https://vercel.com/chanon2/ro-idle-pve/CBFX1wmDpMm24BHow9FmT42AyWxq"
 }

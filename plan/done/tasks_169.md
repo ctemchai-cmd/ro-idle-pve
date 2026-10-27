@@ -19,7 +19,10 @@ TASK-164, TASK-165 (done).
 ## เกณฑ์ตรวจรับ
 - [x] AC-01: อัตรา12บท/เศรษฐกิจเดิม/gear-card RNGไม่เปลี่ยน/optional schema rejectข้อมูลผิด
 - [x] AC-02: แบ่งรับ=รับรวม/12hcap/frozenเก่า/ย้ายด่าน/overflow/atomicclaim/duplicate UUID
-- [ ] AC-03: native320390/ไอคอน-อัตรา-จำนวนจริง/fullTS/root-filtered/M0/hosted
+- [x] AC-03: native320390/ไอคอน-อัตรา-จำนวนจริง/fullTS/root-filtered/M0/hosted
 
 ## Blocker / คำถาม
 ไม่มี ใช้baselineตามdesign82.
+
+## ผลตรวจรับ
+Source188ab28ef/VercelSUCCESS;772TS/native5/root-filtered/M0/public4groupsผ่าน. [ผลตรวจ](../evidence/task-169-review.json).
