@@ -1,3 +1,4 @@
+import { dailyRewardCount, finishFailureMessage } from '../../client/daily-rewards.ts';
 import { actorSize,type MonsterSize } from '../../client/monster-size.ts';
 import { MonsterSizeBadge } from '../monster-size-badge.tsx';
 import { CardIcon } from './card-art.tsx';
@@ -100,12 +101,17 @@ const phaseNames: Record<string, string> = { skill_interval: 'รอคิว', 
 export function BossField({ context, app, running, checkpoint, outcome, retreat, statsRef, timelineRef, autoControl }: { context: GameContext; app: { session: SavedBattleSession; id: string }; running: boolean; checkpoint: unknown; outcome: string | null; retreat: (() => Promise<void>) | null; statsRef: { current: (() => void) | null }; timelineRef: { current: (() => void) | null }; autoControl?: ReactNode }) {
   const { pack } = context, canvas = useRef<HTMLCanvasElement>(null), renderer = useRef<BattleRenderer | null>(null), clock = useRef(0), logical = useRef(app.session.state.game_time_ms), runningRef = useRef(running);
   const [view, setView] = useState<BattleRenderView>(() => app.session.view()), [selected, setSelected] = useState('main'), [panel, setPanel] = useState<'timeline' | 'statistics' | 'history' | null>(null), [error, setError] = useState(''), [retreating, setRetreating] = useState(false);
-  const finishSent = useRef(false);
+  const finishSent = useRef(false), finishBusy = useRef(false);
+  async function confirmFinish() {
+    if(finishBusy.current)return;finishBusy.current=true;setError('');
+    try { const ok=await context.submitWhenReady('battle.finish',{battle_id:app.id,collect_rewards:true});if(!ok)setError(finishFailureMessage(context.lastCode())); }
+    finally { finishBusy.current=false; }
+  }
   useEffect(() => {
     if (!view.terminal || !running || document.hidden || finishSent.current) return;
     finishSent.current = true;
     // Persisted UUID/receipt recovery belongs to SaveController; never submit a second finish intent on a rerender.
-    void context.submitWhenReady('battle.finish', { battle_id: app.id, collect_rewards: true }).then(ok => { if (!ok) setError('ยังยืนยันผลไฟต์ไม่ได้ กรุณาเชื่อมต่อเซฟอีกครั้ง'); });
+    void confirmFinish();
   }, [view.terminal, running, app.id, context.submitWhenReady]);
   // D-067: flash who cancelled a boss cast (stun/freeze/silence/interrupt) — read from the same engine events the renderer gets.
   const [cut, setCut] = useState<{ by: string; at: number } | null>(null);
@@ -149,7 +155,7 @@ export function BossField({ context, app, running, checkpoint, outcome, retreat,
       {cut && <p className="boss-cut" role="status"><Icon name="lightning" /> ขัดสำเร็จ!{cut.by ? ` · ${cut.by}` : ''}</p>}
     </div>
     {view.terminal && !outcome && running && <p className="field-toast">กำลังยืนยันผลไฟต์…</p>}
-    {error && <p className="field-toast danger" role="alert">{error}</p>}
+    {error && !outcome && <div className="field-toast danger" role="alert"><span>{error}</span>{view.terminal&&<button className="btn small" disabled={context.busy} onClick={()=>void confirmFinish()}>ลองยืนยันผลอีกครั้ง</button>}</div>}
     <div className="battle-dock">
     {focused && <div className="focus-status-panel">{focusActor && <div className="focus-elements" aria-label={`ธาตุของ ${focused.name}`}><ElementBadge pack={pack} element={actorElements(focusActor).armor} armor /><span className="weapon-element">อาวุธ · <ElementBadge pack={pack} element={actorElements(focusActor).weapon} /></span></div>}<CombatStatusStrip key={focused.actor_id} actor={focused} actors={view.actors} pack={pack} now={view.game_time_ms} focus /></div>}
     <div className="boss-tools" role="toolbar" aria-label="ควบคุมการต่อสู้">
@@ -264,17 +270,18 @@ function Debrief({ session }: { session: SavedBattleSession }) {
 }
 function DailyResult({ context, outcome, close, challenge, stats, timeline, session }: { context: GameContext; outcome: Outcome; close: () => void; challenge: (target: ChallengeTarget) => void; stats: () => void; timeline: () => void; session?: SavedBattleSession }) {
   const { state, pack, locked, go } = context, claims = state.pending_rewards.filter(c => c.kind === 'daily' && c.source_keys.includes(`battle:${outcome.id}`)), card = dailyView(state, Date.now()).bosses.find(b => b.id === outcome.stage);
+  const chestCount=dailyRewardCount(claims);
   async function claimAll() { if(claims.length) await context.submitWhenReady('reward.claim', { claim_ids: claims.map(c=>c.claim_id) }); }
   const total: Partial<Record<keyof Wallet, number>> = {}; for (const claim of claims) for (const [k, n] of Object.entries(claim.resource_vector) as [keyof Wallet, number][]) total[k] = (total[k] ?? 0) + n;
   return <div className="result-layer" role="dialog" aria-label="ผลดันเจี้ยนรายวัน"><div className={`result-card ${claims.length ? 'win' : 'lose'}`}>
     <div className="result-body"><span className="result-mark" aria-hidden="true"><Icon name={claims.length?'check':'warning'}/></span>
-      <h2>{claims.length ? `ทำลายได้ ${claims.length} หลอด!` : outcome.code === 'DAILY_DEFEATED' ? 'ทีมพ่ายแพ้' : 'หมดเวลา'}</h2>
+      <h2>{claims.length ? `ทำลายได้ ${chestCount} หลอด!` : outcome.code === 'DAILY_DEFEATED' ? 'ทีมพ่ายแพ้' : 'หมดเวลา'}</h2>
       <p>{card ? `ตอนนี้หลอดที่ ${card.phase} เหลือ ${compact(card.hp)} HP · เหลือสิทธิ์วันนี้ ${card.attempts_left}/${card.attempts}` : ''}</p>
       {claims.length > 0 && <div className="result-reward">{(Object.entries(total) as [keyof Wallet, number][]).filter(([, n]) => n > 0).map(([k, n]) => <span key={k}><ResIcon pack={pack} k={k} />{full(n)}</span>)}</div>}
       {session && <Debrief session={session} />}
     </div>
     <div className="result-footer"><div className="result-primary-actions">
-      {claims.length > 0 && <button className="btn primary" disabled={locked} onClick={() => void claimAll()}><Icon name="gift"/>รับกล่อง {claims.length}</button>}
+      {claims.length > 0 && <button className="btn primary" disabled={locked} onClick={() => void claimAll()}><Icon name="gift"/>รับกล่อง {chestCount}</button>}
       {!claims.length && card && card.attempts_left > 0 && <button className="btn primary" disabled={locked} onClick={() => { close(); challenge({ kind: 'daily', boss: outcome.stage }); }}><Icon name="play"/>ท้าอีกครั้ง ({card.attempts_left})</button>}
     </div><div className="result-secondary-actions">
       {session && <button className="btn ghost" onClick={timeline} aria-label="Timeline ย้อนหลัง"><Icon name="timeline" /><span>Timeline</span></button>}

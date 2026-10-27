@@ -1,0 +1,52 @@
+{
+  "task_id": "TASK-173",
+  "passed": false,
+  "status": "review",
+  "local_passed": true,
+  "acceptance_results": {
+    "AC-01": "passed",
+    "AC-02": "passed",
+    "AC-03": "not_run_hosted"
+  },
+  "checks": {
+    "full_TS_tests": 798,
+    "failures": 0,
+    "new_focused_tests": 5,
+    "targeted_daily_API_tests": 38,
+    "final_capacity_overflow_tests": 4,
+    "native_groups": 6,
+    "mobile_widths": [
+      320,
+      390
+    ],
+    "root_build": true,
+    "filtered_build": true,
+    "M0": true,
+    "strict_typecheck": true,
+    "exact_40_100_phase_totals": true,
+    "actual_seeded_replay_over32phases": true,
+    "one_batch_one_quota": true,
+    "legacy_partial_claims_preserved": true,
+    "compatible_saved_daily_backup_replay": true,
+    "core_data_schema_identity_guard": true,
+    "original_UUID_signed_API_replay": true,
+    "owner_access": false,
+    "SQL_env_changes": false,
+    "pack_unchanged": true
+  },
+  "content_hash": "b0369ce430a459729870ed7ebc6cbfa2abf6920ad01555ce31a95a1d35290c24",
+  "pack_hash": "6b3001aef85634b686f8296eb99ce5612b50794c8b59e13c1c54f6995e0daf7c",
+  "evidence": [
+    "task-173/native.json",
+    "task-173/compat.json",
+    "task-173/source-after.json",
+    "task-173/before.json.gz",
+    "task-173/README.md"
+  ],
+  "limitations": [
+    "API/backup replay tests use disposable signed memory; no owner Auth/cloud save reads or writes.",
+    "Recognized 2a62 daily battle recovers only if its server checkpoint is still present; exact source/data/schema/identity proof is required.",
+    "Owner must reload and complete backup-update, then collect the recovered batch on Daily page.",
+    "Hosted public verification pending."
+  ]
+}

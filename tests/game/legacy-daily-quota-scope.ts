@@ -1,3 +1,4 @@
+import { dailyBatchSourceBytes } from './legacy-daily-batch-scope.ts';
 import { readFileSync } from 'node:fs';
 import { gunzipSync } from 'node:zlib';
 import { createHash } from 'node:crypto';
@@ -22,5 +23,5 @@ export function dailyQuotaSourceBytes(file:string):Buffer {
   const restored=file.includes('/schemas/')?withoutDailyQuotaSchema('account-state',actual):withoutDailyQuotaDocument(file.split('/').at(-1)!,actual);
   assert.deepEqual(restored,prior,file+' only D196 declared fields');return Buffer.from(before[file]!);
  }
- const bytes=readFileSync(file);if(after[file]){assert.equal(createHash('sha256').update(bytes).digest('hex'),after[file],file+' exact D196 source');return Buffer.from(before[file]!);}return bytes;
+ const bytes=dailyBatchSourceBytes(file);if(after[file]){assert.equal(createHash('sha256').update(bytes).digest('hex'),after[file],file+' exact D196 source');return Buffer.from(before[file]!);}return bytes;
 }

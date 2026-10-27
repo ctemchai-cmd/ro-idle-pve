@@ -1,3 +1,4 @@
+import { dailyRewardCount } from '../../src/client/daily-rewards.ts';
 import test from 'node:test';
 import { migrateDailyQuota } from '../../src/domain/account/daily-quota-migration.ts';
 import assert from 'node:assert/strict';
@@ -5,7 +6,7 @@ import type { AccountState } from '../../src/contracts/index.ts';
 import { fixture, unlocked } from './daily-fixtures.ts';
 import { content } from './combat-fixtures.ts';
 import { AccountCommandRules } from '../../src/domain/account/commands.ts';
-import { dailyRecord } from '../../src/domain/modes/daily.ts';
+import { dailyRecord, dailyChest, dailyBoss } from '../../src/domain/modes/daily.ts';
 import { characterResetFixture } from './character-reset-fixtures.ts';
 
 const rules = new AccountCommandRules(content), day='2026-10-28';
@@ -14,13 +15,14 @@ function finish(f:ReturnType<typeof ready>,boss='treasury') {
   assert.equal(f.run('battle.start_daily',{boss_id:boss}).result.code,'DAILY_STARTED');
   assert.equal(f.run('battle.finish',{battle_id:f.state.active_battle!.battle_id},60000).result.code,'DAILY_FINISHED');
   const claims=f.state.pending_rewards.filter(c=>c.daily_attempt?.boss_id===boss&&!c.daily_attempt.charged);
-  assert.ok(claims.length>1); return claims;
+  assert.ok(dailyRewardCount(claims)>1); return claims;
 }
 test('D196 no quota before reward, empty retreat/reload and terminal replay do not spend',()=>{
  const f=ready();for(let i=0;i<4;i++){assert.equal(f.run('battle.start_daily',{boss_id:'forge'}).outcome,'committed');assert.equal(f.state.daily_records[0]!.attempts_used,0);assert.equal(f.run('battle.retreat',{battle_id:f.state.active_battle!.battle_id},0).outcome,'committed');assert.equal(f.state.daily_records[0]!.attempts_used,0);}
  const claims=finish(f);const row=f.state.daily_records.find(r=>r.boss_id==='treasury')!;assert.equal(row.attempts_used,0);
  assert.equal(f.run('battle.start_daily',{boss_id:'treasury'}).result.code,'DAILY_REWARDS_PENDING');
  assert.deepEqual(rules.migrateSave(f.state).state.pending_rewards,claims);
+ const batch=f.state.pending_rewards[0]!,one=structuredClone(batch),key=batch.source_keys.find(k=>k.startsWith('daily:'))!;one.claim_id+='-legacy';one.source_keys=[key,...one.source_keys.filter(k=>k.startsWith('battle:'))];batch.source_keys=batch.source_keys.filter(k=>k!==key) as typeof batch.source_keys;const amount=dailyChest(dailyBoss('treasury',content),Number(key.split(':').at(-1)),2).gold!;one.resource_vector={...batch.resource_vector,gold:amount};batch.resource_vector.gold-=amount;f.state.pending_rewards.push(one);
  const first=claims[0]!.claim_id;assert.equal(f.run('reward.claim',{claim_id:first}).outcome,'committed');assert.equal(f.state.daily_records.find(r=>r.boss_id==='treasury')!.attempts_used,1);
  assert.ok(f.state.pending_rewards.every(c=>c.daily_attempt?.charged));
  assert.equal(f.run('reward.claim',{claim_id:first}).result.code,'CLAIM_NOT_FOUND');
@@ -61,5 +63,5 @@ test('D196 collection after Bangkok midnight pays only the original ticket day',
 });
 
 test('D196 validation rejects mismatched reward source and contradictory paid siblings',()=>{
- const f=ready();finish(f);const invalid=structuredClone(f.state);invalid.pending_rewards[0]!.daily_attempt!.boss_id='forge';assert.throws(()=>rules.validateAccount(invalid),/INVALID_DAILY_QUOTA_REFERENCE/);const mixed=structuredClone(f.state);mixed.pending_rewards[0]!.daily_attempt!.charged=true;assert.throws(()=>rules.validateAccount(mixed),/INVALID_DAILY_QUOTA_REFERENCE/);
+ const f=ready();finish(f);const invalid=structuredClone(f.state);invalid.pending_rewards[0]!.daily_attempt!.boss_id='forge';assert.throws(()=>rules.validateAccount(invalid),/INVALID_DAILY_QUOTA_REFERENCE/);const mixed=structuredClone(f.state),sibling=structuredClone(mixed.pending_rewards[0]!);sibling.claim_id+='-old-sibling';sibling.daily_attempt!.charged=true;mixed.pending_rewards.push(sibling);assert.throws(()=>rules.validateAccount(mixed),/INVALID_DAILY_QUOTA_REFERENCE/);
 });

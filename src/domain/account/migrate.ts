@@ -1,5 +1,6 @@
+import { recoverCompatibleDaily, type DailyRecoveryContext } from './daily-battle-recovery.ts';
 import {emptyCrafting} from '../progression/equipment-crafting.ts';
-import { migrateDailyQuota, type DailyQuotaMigrationContext } from './daily-quota-migration.ts';
+import { migrateDailyQuota } from './daily-quota-migration.ts';
 import type { AccountState } from '../../contracts/index.ts';
 import type { ValidatedContent } from '../../content/model.ts';
 import { cardCapacity } from '../progression/slots.ts';
@@ -33,7 +34,7 @@ function keepFrozenCardCatalog(frozen:FarmSnapshot,current:FarmSnapshot,content:
  * current rules, drops dangling references and ends any battle. The caller must still
  * pass the result through AccountCommandRules.validateAccount before committing it.
  */
-export function migrateAccountState(input: unknown, content: ValidatedContent, context?: DailyQuotaMigrationContext): SaveMigration {
+export function migrateAccountState(input: unknown, content: ValidatedContent, context?: DailyRecoveryContext): SaveMigration {
   const state = structuredClone(input) as AccountState, changes: string[] = [], data = progressionData(content);
   migrateDailyQuota(state, changes, context);
   if(!state.equipment_crafting){state.equipment_crafting=emptyCrafting();changes.push('equipment crafting empty stock added');}
@@ -123,5 +124,6 @@ export function migrateAccountState(input: unknown, content: ValidatedContent, c
     }
   }
   migrateSkillCaps(state,content,changes);
+  recoverCompatibleDaily(input as AccountState,state,changes,content,context);
   return { state, changes };
 }

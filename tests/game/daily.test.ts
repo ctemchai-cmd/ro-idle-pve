@@ -1,3 +1,4 @@
+import { dailyRewardCount } from '../../src/client/daily-rewards.ts';
 // TASK-036: daily multi-phase bosses on the shared engine/save protocol (server Bangkok day).
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -60,9 +61,9 @@ test('T036 AC-02: clearing several phases in one timed attempt gives one chest p
   const hp = respawns.map(e => e.amount!); assert.ok(hp.every((v, i) => i === 0 || v > hp[i - 1]!), `each phase stronger ${hp}`);
   const code = f.advance()!.result.code; assert.equal(code, 'DAILY_FINISHED');
   const row = record(f.state, 'treasury', day)!, chests = f.state.pending_rewards.filter(c => c.kind === 'daily' && c.source_keys.includes(`battle:${battleId}`));
-  assert.equal(chests.length, respawns.length); assert.deepEqual(row.rewarded_phases, chests.map((_, i) => i + 1)); assert.equal(row.phase, respawns.length + 1);
-  for (const [i, chest] of chests.entries()) assert.equal(chest.resource_vector.gold, dailyChest(dailyBoss('treasury', content), i + 1).gold);
-  assert.ok(chests.every(c => c.claim_id.startsWith(`daily_treasury_${day}_`)), 'claim keys are boss+day+phase');
+  assert.equal(chests.length, 1); assert.equal(dailyRewardCount(chests),respawns.length); assert.deepEqual(row.rewarded_phases, respawns.map((_, i) => i + 1)); assert.equal(row.phase, respawns.length + 1);
+  assert.equal(chests[0]!.resource_vector.gold,respawns.reduce((sum,_,i)=>sum+dailyChest(dailyBoss('treasury',content),i+1).gold!,0));
+  assert.ok(chests.every(c=>c.source_keys.some(k=>k.startsWith(`daily:treasury:${day}:`))),'batch retains per-phase claim keys');
 });
 
 test('T036 AC-03: an attempt started 23:59:45 Bangkok and finished after midnight writes only its own ticket day; the new day starts fresh', () => {
@@ -73,7 +74,7 @@ test('T036 AC-03: an attempt started 23:59:45 Bangkok and finished after midnigh
   assert.equal(record(f.state, 'forge', newDay), undefined, 'new day untouched by the old ticket');
   f.run('battle.start_daily', { boss_id: 'forge' }); const fresh = record(f.state, 'forge', newDay)!;
   assert.equal(fresh.attempts_used, 0); assert.equal(fresh.phase, 1); assert.deepEqual(fresh.rewarded_phases, []);
-  assert.ok(f.state.pending_rewards.some(c => c.claim_id.startsWith(`daily_forge_${oldDay}_`)), 'old-day chests stay claimable');
+  assert.ok(f.state.pending_rewards.some(c => c.source_keys.some(k=>k.startsWith(`daily:forge:${oldDay}:`))), 'old-day chests stay claimable');
 });
 
 test('T036 AC-04: no double attempts/chests/HP rollback across replays, a second start or stale advances; client prediction matches the server', async () => {

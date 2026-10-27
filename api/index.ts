@@ -168,7 +168,7 @@ export function createRecurringHandlers(store: Pick<ReturnType<typeof createSave
         if (save.schema_version !== 1) return fail('UPDATE_REQUIRED', 409);
         if (current(save)) return fail('SAVE_ALREADY_CURRENT', 409);
         if (command.params.from_revision !== save.revision || command.params.from_content_hash !== save.content_hash) return fail('MIGRATION_SOURCE_MISMATCH', 409);
-        try { next = rules.migrateSave(save.state, {account_id:accountId,now_ms:nowMs}).state; } catch { return fail('MIGRATION_UNSUPPORTED', 409); }
+        try { next = rules.migrateSave(save.state, {account_id:accountId,now_ms:nowMs,battle:context.battle,server_at:context.server_at,started_ms:Date.parse((save.state as AccountState).active_battle?.started_at??'')}).state; } catch { return fail('MIGRATION_UNSUPPORTED', 409); }
         previous = save.state as AccountState; reason = 'migration'; code = 'SAVE_MIGRATED';
       } else if (command.type === 'account.reset') {
         if (!live) return whole ? fail('CONTENT_VERSION_MISMATCH', 409) : fail('SAVE_INTEGRITY_FAILED', 503);
@@ -222,7 +222,7 @@ export function createRecurringHandlers(store: Pick<ReturnType<typeof createSave
         // TASK-040: an older signed save is offered a previewed, backed-up migration; a newer schema is never touched.
         if (code === 'CONTENT_VERSION_MISMATCH' && save) {
           if (save.schema_version !== 1) return fail('UPDATE_REQUIRED', 409);
-          try { const migrated = rules.migrateSave(save.state, {account_id:identity.account_id,now_ms:Date.parse(context!.server_at)}); return { status: 409, body: { code: 'SAVE_MIGRATION_REQUIRED', migration: { from_revision: save.revision, from_content_hash: save.content_hash, server_content_hash: rules.versions.content_hash, changes: migrated.changes.slice(0, 40), before: summary(save.state), after: saveSummary(migrated.state) } } }; }
+          try { const migrated = rules.migrateSave(save.state, {account_id:identity.account_id,now_ms:Date.parse(context!.server_at),battle:context!.battle,server_at:context!.server_at,started_ms:Date.parse((save.state as AccountState).active_battle?.started_at??'')}); return { status: 409, body: { code: 'SAVE_MIGRATION_REQUIRED', migration: { from_revision: save.revision, from_content_hash: save.content_hash, server_content_hash: rules.versions.content_hash, changes: migrated.changes.slice(0, 40), before: summary(save.state), after: saveSummary(migrated.state) } } }; }
           catch { return fail('MIGRATION_UNSUPPORTED', 409); }
         }
         if (code === 'SAVE_INTEGRITY_FAILED' && context) { const source = recoverySource(context, identity.account_id); return { status: 503, body: { code, recovery: source ? { checkpoint_id: source.checkpoint_id, signature: source.signature, revision: source.revision, summary: summary(source.state) } : null } }; }

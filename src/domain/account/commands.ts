@@ -1,3 +1,5 @@
+import { settleDailyRewards } from './daily-settlement.ts';
+import type { DailyRecoveryContext } from './daily-battle-recovery.ts';
 import {applyCraftingCommand,protectPendingOption,validateCrafting,type CraftingCommand} from '../progression/equipment-crafting.ts';
 import { applyShopPurchase } from '../progression/shop.ts';
 import { collectProgressRewards } from '../progression/auto-rewards.ts';
@@ -15,7 +17,7 @@ import { applySkillCommand, validateCharacterSkills, compileCharacterSkills, typ
 import { storyStage, storyBoss, storyFarmSnapshot, canChallenge, storyReleaseLock, storyStages } from '../modes/story.ts';
 import { storyParty, storyInput } from '../build/story.ts';
 import { towerBoss, towerCanChallenge, towerRow, towerStageRef } from '../modes/tower.ts';
-import { bangkokDay, dailyBoss, dailyBossActor, dailyChest, dailyRecord, dailyRef, dailyUnlocked, modePolicy, parseDailyRef, type DailyBossId } from '../modes/daily.ts';
+import { bangkokDay, dailyBoss, dailyBossActor, dailyRecord, dailyRef, dailyUnlocked, modePolicy, type DailyBossId } from '../modes/daily.ts';
 import type { BattleCheckpoint } from '../../contracts/index.ts';
 import { gachaCardDefinition } from '../rewards/cards.ts';
 import { cardRarity } from '../build/card-rarity.ts';
@@ -46,7 +48,7 @@ export class AccountCommandRules extends AccountCreationRules {
   get leaseMs() { return Number((this.content.documents['save-contracts.json']!.battle_protocol as unknown as { lease_ms: number }).lease_ms); }
   supports(type: Command['type']) { return ['character.reset_level','equipment.option_roll','equipment.option_decide','equipment.rarity_up','farm.claim', 'reward.claim', 'battle.advance', 'battle.finish', 'battle.retreat', 'party.set', 'character.level_up', 'character.breakthrough', 'character.allocate_status', 'character.reset_build', 'character.change_job', 'skill.upgrade', 'skill.set_loadout', 'skill.awaken', 'skill.convert_shards', 'battle.start_story', 'farm.set_stage', 'equipment.equip', 'equipment.equip_upgrades', 'equipment.unequip', 'equipment.lock', 'equipment.salvage', 'equipment.purchase_weapon', 'slot.refine', 'slot.enchant', 'slot.change_enchant', 'card.assign', 'card.unassign', 'card.upgrade', 'card.salvage', 'equipment.fuse', 'equipment.tier_up', 'battle.start_tower', 'battle.start_daily', 'gacha.pull', 'consumable.prepare', 'shop.buy', 'daily.objective_claim'].includes(type); }
   /** TASK-040 (D-064): maintenance proposals. The API proves integrity/ownership and supplies time, ids and seed. */
-  migrateSave(stored: unknown, context?: { account_id: string; now_ms: number }): { state: AccountState; changes: string[] } { const migrated = migrateAccountState(stored, this.content, context); return { state: this.validateAccount(migrated.state), changes: migrated.changes }; }
+  migrateSave(stored: unknown, context?: DailyRecoveryContext): { state: AccountState; changes: string[] } { const migrated = migrateAccountState(stored, this.content, context); return { state: this.validateAccount(migrated.state), changes: migrated.changes }; }
   restoreSave(restored: unknown, current: AccountState | null, nowMs: number): AccountState { return this.validateAccount(guardRestore(this.validateAccount(restored), current, bangkokDay(nowMs), bangkokDay(nowMs - 86400000))); }
   resetSave(current: AccountState, params: { root_job_id: AccountState['roster'][number]['root_job_id']; gender: 'male' | 'female' }, serverAt: string, nowMs: number, seed: number): AccountState {
     const fresh = initializeAccount(this.content, params, serverAt, bangkokDay(nowMs), seed);
@@ -85,20 +87,7 @@ export class AccountCommandRules extends AccountCreationRules {
       catch (error) { if (error instanceof Error && /^[A-Z_]+$/.test(error.message)) reject(error.message); throw error; }
     };
     const queueLimit = () => Number((this.content.documents['save-contracts.json']!.farm as unknown as {queue_limit:number}).queue_limit);
-    /** Writes a finished/abandoned daily attempt into its own ticket day: phase, HP left and one chest per newly cleared phase. */
-    const settleDaily = (checkpoint: BattleCheckpoint) => {
-      const { id } = parseDailyRef(checkpoint.mode.ref), day = checkpoint.mode.ticket_day!, record = state.daily_records.find(row => row.boss_id === id && row.ticket_day === day);
-      if (!record) reject('DAILY_RECORD_MISSING');
-      const boss = checkpoint.actors.find(actor => actor.actor_id === 'enemy_front');
-      record!.phase = checkpoint.mode.daily_phase ?? record!.phase; record!.current_hp = Math.max(1, boss?.hp ?? record!.current_hp);
-      for (const key of checkpoint.mode.reserved_phase_keys) {
-        const phase = Number(key); if (!Number.isSafeInteger(phase) || record!.rewarded_phases.includes(phase)) continue;
-        if (state.pending_rewards.length >= queueLimit()) reject('PENDING_REWARDS_FULL');
-        record!.rewarded_phases.push(phase);
-        state.pending_rewards.push({ claim_id: `daily_${id}_${day}_${phase}`, kind: 'daily', daily_attempt: { boss_id:id, ticket_day:day, battle_id:pointer0()!.battle_id, charged:false }, resource_vector: { ...Object.fromEntries(Object.keys(state.wallet).map(k => [k, 0])), ...dailyChest(dailyBoss(id, this.content), phase,record!.chapter_snapshot) } as AccountState['wallet'], items: [], content_version: this.versions.content_version, reserved_at: time.server_at, source_keys: [`daily:${id}:${day}:${phase}`, `battle:${pointer0()?.battle_id ?? 'retreat'}`], status: 'pending' });
-      }
-    };
-    const pointer0 = () => previous.active_battle;
+    const settleDaily = (checkpoint: BattleCheckpoint) => settleDailyRewards(state,checkpoint,previous.active_battle!.battle_id,time.server_at,this.content);
     const selectFarm = (input: AccountState, stageId: string) => {
       const stage = storyStage(stageId, this.content);
       if (!stage || storyReleaseLock(stage,this.content) || !input.story.cleared_stage_ids.includes(stageId)) reject('FARM_STAGE_NOT_CLEARED');

@@ -62,6 +62,7 @@ function stack(state: AccountState, versions: Partial<StoredSave> = {}, account 
   async function send(type: string, params: unknown, revision?: number, requestId?: string) { now += 1000; const reply = await api.command(identity, command(type, params, revision, requestId)); return reply as { status: number; body: { receipt?: Receipt; code?: string } }; }
   return {
     api, identity, send, command, backups, history, clockReceipts, receipts,
+    setBattle(value:StoredBattle|null){battle=structuredClone(value);},
     get save() { return save; }, get state() { return save.state as AccountState; }, get now() { return now; },
     advance(ms: number) { now += ms; },
     corrupt(edit: (s: AccountState) => void) { const s = structuredClone(save.state) as AccountState; edit(s); save = { ...save, state: s }; },
@@ -339,4 +340,12 @@ test('D196 lost reward response replays original signed receipt and charges the 
  f.advance(60000);assert.equal((await f.send('battle.finish',{battle_id:f.state.active_battle!.battle_id})).body.receipt?.result.code,'DAILY_FINISHED');assert.equal(f.state.daily_records[0]!.attempts_used,0);
  const command=f.command('reward.claim',{claim_ids:f.state.pending_rewards.map(c=>c.claim_id)}),result=await f.api.command(f.identity,command);assert.equal((result.body as {receipt:Receipt}).receipt.outcome,'committed');assert.equal(f.state.daily_records[0]!.attempts_used,1);const after=structuredClone(f.state),revision=f.save.revision;
  assert.deepEqual(await f.api.command(f.identity,command),result);assert.deepEqual(f.state,after);assert.equal(f.save.revision,revision);assert.equal(f.state.daily_records[0]!.attempts_used,1);
+});
+
+
+test('D197 recognized old over32phase daily checkpoint migrates into exact recoverable batch with signed backup and original UUID replay',async()=>{
+ const {largeDailyFixture}=await import('./daily-batch-fixtures.ts');const {dailyRewardCount}=await import('../../src/client/daily-rewards.ts');const compat=(await import('../../src/domain/account/daily-recovery-compat.ts')).default;const {state,battle,terminal}=largeDailyFixture();
+ state.active_battle!.content_hash=compat.content_hash;battle.content_hash=compat.content_hash;(battle.payload as {content_hash:string}).content_hash=compat.content_hash;const f=stack(state,{content_hash:compat.content_hash});f.setBattle(battle);f.advance(Date.parse('2026-10-28T05:10:00Z')-f.now);
+ assert.equal((await f.checkpoint()).body.code,'SAVE_MIGRATION_REQUIRED');assert.deepEqual(f.state,state);assert.equal(f.backups.length,0);const command=f.command('save.migrate',{from_revision:f.save.revision,from_content_hash:compat.content_hash}),result=await f.api.command(f.identity,command);assert.equal(result.status,200);assert.equal((result.body as {receipt:Receipt}).receipt.result.code,'SAVE_MIGRATED');assert.equal(f.backups.length,1);assert.deepEqual(f.backups[0]!.state,state);assert.equal(f.state.active_battle,null);assert.equal(f.state.pending_rewards.length,1);assert.equal(dailyRewardCount(f.state.pending_rewards),terminal.mode.reserved_phase_keys.length);assert.equal(f.state.daily_records[0]!.attempts_used,0);
+ const next=structuredClone(f.state);assert.deepEqual(await f.api.command(f.identity,command),result);assert.deepEqual(f.state,next);assert.equal(f.backups.length,1);const claim=await f.send('reward.claim',{claim_ids:f.state.pending_rewards.map(c=>c.claim_id)});assert.equal(claim.body.receipt?.outcome,'committed');assert.equal(f.state.daily_records[0]!.attempts_used,1);
 });
