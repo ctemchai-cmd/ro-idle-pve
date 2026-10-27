@@ -1,12 +1,12 @@
 {
   "task_id": "TASK-171",
-  "passed": false,
-  "status": "review",
+  "passed": true,
+  "status": "done",
   "local_passed": true,
   "acceptance_results": {
     "AC-01": "passed",
     "AC-02": "passed",
-    "AC-03": "not_run_hosted"
+    "AC-03": "passed"
   },
   "checks": {
     "full_TS_tests": 783,
@@ -34,7 +34,11 @@
     "owner_access": false,
     "SQL_env_changes": false,
     "filtered_build": true,
-    "strict_typecheck": true
+    "strict_typecheck": true,
+    "public_groups": 4,
+    "public_bundle_SHA": 24,
+    "API_region": "sin1",
+    "Vercel": "SUCCESS"
   },
   "content_hash": "8e5ed69a0b0b0e00425acba4d3e97da3d78bac984925faa7bc9b8d821e666731",
   "pack_hash": "6b3001aef85634b686f8296eb99ce5612b50794c8b59e13c1c54f6995e0daf7c",
@@ -43,11 +47,14 @@
     "task-171/legacy-price-proof.json",
     "task-171/source-after.json",
     "task-170/budget.json",
-    "task-171/README.md"
+    "task-171/README.md",
+    "task-171/hosted.json",
+    "task-171/deployment.json"
   ],
   "limitations": [
     "Shared signed API fixtures use disposable memory; no owner Auth or cloud save writes.",
-    "Legacy level/Break prefixes use immutable historical prices; new retained payments refund actual vectors.",
-    "Filtered build/public verification pending."
-  ]
+    "Legacy level/Break prefixes use immutable historical prices; new retained payments refund actual vectors."
+  ],
+  "source_commit": "b5b16546ae1d65f1a6ba39522bc87e5954e9381a",
+  "deployment_url": "https://vercel.com/chanon2/ro-idle-pve/AoiS7zcQjmEdGeTd6rU8B2Djq2jY"
 }

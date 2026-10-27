@@ -978,14 +978,14 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 
 | ID | Task | Criterion | Method | Status |
 | --- | --- | --- | --- | --- |
-| `T170-AC-01` | TASK-170 | Scope/quote/schema | unit/native/build/public | not_run_implementation |
-| `T170-AC-02` | TASK-170 | Legacy-current/atomic/replay/ownership | unit/native/build/public | not_run_implementation |
-| `T170-AC-03` | TASK-170 | Native/full/build/public | unit/native/build/public | not_run_implementation |
+| `T170-AC-01` | TASK-170 | Scope/quote/schema | unit/native/build/public | passed_implementation |
+| `T170-AC-02` | TASK-170 | Legacy-current/atomic/replay/ownership | unit/native/build/public | passed_implementation |
+| `T170-AC-03` | TASK-170 | Native/full/build/public | unit/native/build/public | passed_implementation |
 
 ## TASK-171
 
 | ID | Task | Criterion | Method | Status |
 | --- | --- | --- | --- | --- |
-| `T171-AC-01` | TASK-171 | Scope/quote/schema | unit/native/build/public | not_run_implementation |
-| `T171-AC-02` | TASK-171 | Legacy-current/atomic/replay/ownership | unit/native/build/public | not_run_implementation |
-| `T171-AC-03` | TASK-171 | Native/full/build/public | unit/native/build/public | not_run_implementation |
+| `T171-AC-01` | TASK-171 | Scope/quote/schema | unit/native/build/public | passed_implementation |
+| `T171-AC-02` | TASK-171 | Legacy-current/atomic/replay/ownership | unit/native/build/public | passed_implementation |
+| `T171-AC-03` | TASK-171 | Native/full/build/public | unit/native/build/public | passed_implementation |

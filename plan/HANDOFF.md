@@ -1,5 +1,17 @@
 # Handoff ระหว่าง agent
 
+
+## TASK170–171 COMPLETE / Break resources and character reset LIVE — 27 October2026
+
+Source `b5b16546ae1d65f1a6ba39522bc87e5954e9381a`, [Vercel SUCCESS](https://vercel.com/chanon2/ro-idle-pve/AoiS7zcQjmEdGeTd6rU8B2Djq2jY). Both done; board157/171, M4 111/120. No remaining170/171work or pending questions. User confirmed chosen actor resets Lv1/Class1 with full level/Break/status/skill/Awaken refunds, keeping gear/cards/Refine/Enchant. Feature delivered; owner's characters were NOT reset by the agent.
+
+Essence5000gold→20,20purchases/day(400/100kgold); counters kept, AFK2/12/22 after1-5, old frozen accrual settles first. Shared reset quote/confirmation/preview/atomic command `character.reset_level`. Future level/Break payments retained/coalesced. Missing legacy oldest prefix only uses immutable progression-costs-v1 archive, verified original90 + formula100; reconstructed `legacy_<feature>_<UUID>` rows archive in existing refund receipts. Actual retained investments refund actual vectors; zero-paid future level grants must retain quantity. Keep world/daily/farm/shop/gacha/team/otheractors; unequip invalid refs even with500bag. No new account fields/receipt shape/SQL/env/media or extra DB roundtrips.
+
+Final783/783 TS,11 newfocused,72 historicalfocused,native7 actualReact320/390 currentmain+legacyNPC/cancel/Escape/failure-retry/Breakbuymax,13High×main/NPC/refundconservation/fullbag/overflow/reset-relevel/originalUUIDsignedAPI passed. Root+Vercel-filtered builds/M0/sourceassets passed. Public4groups: API SIN1/content exact, anonymous401,24bundleSHA,pack exact,login320/390 nooverflow/errors,0ownerwrites. Evidence `task-170-review.json`, `task-171-review.json`, `task-171/{native,legacy-price-proof,hosted,deployment}.json`.
+
+Content `8e5ed69a0b0b0e00425acba4d3e97da3d78bac984925faa7bc9b8d821e666731`; unchanged pack `6b3001aef85634b686f8296eb99ce5612b50794c8b59e13c1c54f6995e0daf7c`,raw33552995/initial1577418; PWA `378ccc95a533bb6f`. OwnVite7521PID35475 and all own browsers CLOSED; personal6173 untouched. No owner Auth/Supabase/save/SQL/privateenv or classDPSbatch. User modern migration-v2/unselected assets/task108png remain unstaged. Older local-checkpoint notes below are historical. Closure is docs/evidence only, product source stays verified b5b16546a.
+
+
 ## TASK170–171 LOCAL COMPLETE / publish next
 
 AllUNCOMMITTEDHEAD108926c17;bothreview155/171/M4109/120. Final783/783TS/11newfocused/72legacyfocused/native7(actualReact320390currentmain+legacyNPC,cancel/Escape/failureretry/400Breakbuymax)/root+filtered/M0/sourceassetsPASS. All26High×main/NPC,actual/legacy/mixedfuturev2prefix,exactfundingconservationminusretainedEnchant,500bag,repeat/relevel,real signedAPIoriginalUUID validated. Independentold90sourceSHA+all100formula/gatesproof. Root+filtered identicalcontent8e5ed69a0b0b0e00425acba4d3e97da3d78bac984925faa7bc9b8d821e666731/PWA378ccc95a533bb6f;pack6b3001/raw33552995/initial1577418unchanged. OwnVite7521PID35475andbrowsersCLOSED. No ownerSQL/env/Auth/save/6173/agents/newmedia/globalDPS.
