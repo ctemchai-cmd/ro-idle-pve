@@ -1,12 +1,12 @@
 {
   "task_id": "TASK-173",
-  "passed": false,
-  "status": "review",
+  "passed": true,
+  "status": "done",
   "local_passed": true,
   "acceptance_results": {
     "AC-01": "passed",
     "AC-02": "passed",
-    "AC-03": "not_run_hosted"
+    "AC-03": "passed"
   },
   "checks": {
     "full_TS_tests": 798,
@@ -34,7 +34,11 @@
     "SQL_env_changes": false,
     "pack_unchanged": true,
     "UI_refinement_focused_tests": 7,
-    "finish_error_single_label_in_mobile_bounds": true
+    "finish_error_single_label_in_mobile_bounds": true,
+    "public_groups": 4,
+    "public_bundle_SHA": 24,
+    "API_region": "sin1",
+    "Vercel": "SUCCESS"
   },
   "content_hash": "b0369ce430a459729870ed7ebc6cbfa2abf6920ad01555ce31a95a1d35290c24",
   "pack_hash": "6b3001aef85634b686f8296eb99ce5612b50794c8b59e13c1c54f6995e0daf7c",
@@ -43,12 +47,15 @@
     "task-173/compat.json",
     "task-173/source-after.json",
     "task-173/before.json.gz",
-    "task-173/README.md"
+    "task-173/README.md",
+    "task-173/hosted.json",
+    "task-173/deployment.json"
   ],
   "limitations": [
     "API/backup replay tests use disposable signed memory; no owner Auth/cloud save reads or writes.",
     "Recognized 2a62 daily battle recovers only if its server checkpoint is still present; exact source/data/schema/identity proof is required.",
-    "Owner must reload and complete backup-update, then collect the recovered batch on Daily page.",
-    "Hosted public verification pending."
-  ]
+    "Owner must reload and complete backup-update, then collect the recovered batch on Daily page."
+  ],
+  "source_commit": "ed217e0bafb5531dc2cf147eb5a7fd44c2c38b1e",
+  "deployment_url": "https://vercel.com/chanon2/ro-idle-pve/8MCxmWZ27BFX9NrW22yGg1o336zi"
 }

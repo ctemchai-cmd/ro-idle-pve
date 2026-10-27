@@ -16,4 +16,8 @@ User confirms daily fight gives40boxes and twice cannot confirm. Current queue32
 ## เกณฑ์ตรวจรับ
 - [x] AC-01:40/100cleared phases fit one claim with exact per-phase totals and phase keys; no reward/HP/attempt loss or double charge on partial/legacy/batch/replay.
 - [x] AC-02: Narrow compatible saved daily replay in backup migration retains actual old outcome/rewards once, rejects stale/mismatched/unknown evidence; no owner login/writes/SQL/env.
-- [ ] AC-03: Native320390 true40box count/retry, focused/full/build/M0 and hosted public pass; no combat power or new assets.
+- [x] AC-03: Native320390 true40box count/retry, focused/full/build/M0 and hosted public pass; no combat power or new assets.
+
+## ผลตรวจรับ
+
+Source `ed217e0bafb5531dc2cf147eb5a7fd44c2c38b1e`, [Vercel SUCCESS](https://vercel.com/chanon2/ro-idle-pve/8MCxmWZ27BFX9NrW22yGg1o336zi). 798fullTS/38targeted/final7UI-source/native6/root-filtered/M0/public4groups24bundleSHA passed. [Review](../evidence/task-173-review.json). Owner reload+backup-update recovers the recognized still-present old server checkpoint, then receives fixed reward batch on DailyPage; no direct owner access/write or SQL/env change.

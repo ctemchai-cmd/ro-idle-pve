@@ -1002,6 +1002,6 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 
 | Case | Task | Criterion | Verification | Status |
 | --- | --- | --- | --- | --- |
-| `T173-AC-01` | TASK-173 | Daily large batches | unit/native/build/public | not_run_implementation |
-| `T173-AC-02` | TASK-173 | Compatible pending recovery | unit/native/build/public | not_run_implementation |
-| `T173-AC-03` | TASK-173 | Native/full/build/public | unit/native/build/public | not_run_implementation |
+| `T173-AC-01` | TASK-173 | Daily large batches | unit/native/build/public | passed_implementation |
+| `T173-AC-02` | TASK-173 | Compatible pending recovery | unit/native/build/public | passed_implementation |
+| `T173-AC-03` | TASK-173 | Native/full/build/public | unit/native/build/public | passed_implementation |

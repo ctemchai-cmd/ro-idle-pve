@@ -1,6 +1,28 @@
 # Handoff ระหว่าง agent
 
 
+## TASK173 COMPLETE / 40+box daily finish and recovery LIVE — 28 October2026
+
+Final source `ed217e0bafb5531dc2cf147eb5a7fd44c2c38b1e` (core915028ee2), [Vercel SUCCESS](https://vercel.com/chanon2/ro-idle-pve/8MCxmWZ27BFX9NrW22yGg1o336zi).173done159/173/M4113/122. No remaining173implementation.798/798fullTS/38targeted/final7UI-source+settlement/native6actualReact320390/root+filtered/M0/public4groups24bundleSHA passed. API SIN1/newcontent exact/anonymous401/pack exact/40count+finalfield-finish-error markers/login3203900errors0writes. Contentb0369ce430a459729870ed7ebc6cbfa2abf6920ad01555ce31a95a1d35290c24;pack6b3001aef85634b686f8296eb99ce5612b50794c8b59e13c1c54f6995e0daf7c unchanged/raw33552995/initial1577418;local+filteredPWA5f51c048fd4ec32f/gzip660050. Evidence173review/native/hosted/deployment/compat/sourcebefore-after. OwnVite7523PID32316 andbrowsersCLOSED;6173untouched.
+
+User reported40boxfinishgenericreconnecttwice. Rootqueue32withoneclaimperphase. Sharedaccount/daily-settlement.ts nowonefixedwhole-runclaim/allnewphase sourcekeys/exactdailyChest sums/recordphaseHP/once172quota. Trueuniquephasekey count for DailyPage/ResultCard40insteadclaimlength1. Oldindividualboxes/partial/mixedreceipts valid. Explicitfinishretry/singleflight/knownreason; finalCSS wraps/bounds320andhidesduplicateconfirmingtoast. Nativeall6passed, actual40result/error320 visuallyreviewed. No changes tocombatpower/assets/SQL/env/extraDBrequests/globalbalance.
+
+Backed-upmigration narrowly recovers recognized2a62old daily with servercheckpoint stillpresent andexact oldhash/data/schema/fullcore-source map proof. compat.ts includedinimplementationhash (not untrackedJSON). Verifyserverowner/battleID/ticketday; rebind clonedcheckpointtopcontenthash ONLYafterproof; sharedrestore/replaytoterminal/minelapsedgame/4; settleexactpendingbatchandmarkfinished in same signedbackup/CAS/UUIDtransaction. Unknown/changedcore neverreplay. Do not changecore/data casually before ownerupdates; bridge may fail closed. Owner toldwaitnotretreatduringfix,thenAPInewlive→reload/backup-update/DailyPagereceivebatch. Agent did NOT access/write owner save or verify owner clicked; don'tclaim40actuallycredited. If priorretreatdeletedcheckpointcannot recoverthatoldrunfromthisbridge; lateststillpresentticketonly. No newofflinebossmode.
+
+Closure docs/evidenceonly, runtimecontent staysb036. Preserveuserassets/modern/migration-v2.txt/unselectedmodern/task108png. All older173publication/local notes below historical. Source-afterpins7changedoldfiles afterfinalCSS; originalCSSbeforebytes were identical2a62/915. Full798precededfinalrenderer-onlywrap,then7focused/native6/root-filtered repeated; finalCSSmarker verifiedpublic. No pendingquestions.
+
+
+
+## TASK173 publication checkpoint — final sourceed217e0ba
+
+Source915028ee2 firstserverpatch pushed; API live confirmedb036. Follow-upUI sourceed217e0bafb5531dc2cf147eb5a7fd44c2c38b1e pushed, VercelPENDING https://vercel.com/chanon2/ro-idle-pve/8MCxmWZ27BFX9NrW22yGg1o336zi. NeedwaitfinalSUCCESS/publicRO_EVIDENCE_TASK=task-173 node scripts/test_compact_boss_hosted.cjs →173done159/173/M4113/122closurepush. Current173review158/173/M4112/122. All code complete; no more product changes needed. Root+filtered UI build matches samecontentb036/pack6b3001/PWA5f51c048fd4ec32f/gzip660050.798fullTS(serverbatch/recovery),final7focusedsource+settlement, native6repeatactualmobile/allbounds+singleerror/retry passed. Evidence screenshotsfinalanimationwait200ms ensuresfullopacity, result40andfinisherror320 visuallyreviewed. OwnVite7523newPID32316/browsersCLOSED,6173untouched. No ownerwrite/SQL/env.
+
+UI refinement after915: errorpanelwasnowrapoverflow duringvisualreview despiteinitialfunctionalnativepass. Addedscopedfield-finish-error CSS widthcalc(100%-24px)/max340/wrap/column and hideconfirmingtoastwhenerror. Sourcebefore173archive addsCSS original2a bytes from915 (CSS hadnotchanged), sourceafterpins7oldfilesnow;7scopechecks pass. Account/content/coreunchangedafterb036; no new migration required for UI patch. Owner toldcurrentAPIrewardfixalready live: reload+backupupdate thenDailyPage collectrecoveredbatch ifservercheckpointpresent. DoNOTclaimownerhasdoneit/rewardscredited. Lasttip toldnotretreat/newfightbeforeupdatingto preserveold2acheckpoint. Keepknown2acompat bridge; don't changecombatdata/core casually beforeownerupdates.
+
+Onlytrackedremainingafterpublicationcheckpointdocs willbeAGENTS/HANDOFF/plans/evidence +userassetsdraft. Preserveuserassets/modern/migration-v2.txt/unselectedmodern/task108png. Noagents. PublicstatusreadviaNodefetchGitHubREST, ghCLIabsent. Storefinal /private/tmp/ro-173-deployment.json shaed217...; old915statusfileoverwritten. No morequestions.
+
+
+
 ## TASK173 LOCAL COMPLETE / publish next
 
 Alluncommittedat820caaf1d.173review158/173/M4112/122. Final798/798TS +5new/38targeted/final4capacity-overflow/native6actualReact320390/root+filtered/M0/strict PASS. Contentb0369ce430a459729870ed7ebc6cbfa2abf6920ad01555ce31a95a1d35290c24/pack6b3001unchanged/PWA5e2dd494b3e2519b/gzip660000. OwnVite7523PID6677/browsersCLOSED;6173untouched. Sourceafter173pins6editedoldfiles exact; full173source/data no remaining codechanges. Next explicitstageonlyours(notuserassets/modern/migration-v2.txt/unselectedmodern/task108png),pushorigin/VercelSUCCESS/publicRO_EVIDENCE_TASK=task-173 harness→done159/173/M4113/122closurepush. Needpublic173allowedalreadyadded/ThaiUI markers. No ownercredentials/SQL/env/DBread/write.
