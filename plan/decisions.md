@@ -418,3 +418,5 @@ D196/TASK172: ผู้ใช้ขอหักสิทธิ์ดันเม
 D197/TASK173: ผู้ใช้ยืนยันจบดัน40กล่องแล้วเซฟผลไม่ได้สองรอบ. Rootqueue32→รวมต่อรอบหนึ่งclaim, sourcephasekeysครบ, exactsum/quotaonce พร้อม narrow compatible daily recovery ในbacked-upmigration. Design86.
 
 D198/TASK174: ผู้ใช้หมายถึงท่า native มีเฟรมน้อย ไม่ใช่renderFPSต่ำ และอนุญาตต้นแบบสองวิธีร่วมกัน. คำนวณท่าคั่นจากACTroot/neck/overlayเดิม+ผสาน24ms เฉพาะนักดาบชายหญิงก่อน; คงเวลา/contact/core/assets. เปิดหน้าเทียบ readonly ทั้งสองทิศ/หยุด/เลื่อน. เป็นcomputedcompositionsไม่ใช่สไปรต์วาดใหม่; midpointอาจเห็นขอบซ้อนในท่าที่ต่างมาก เป็นข้อจำกัดของวิธีและต้องไม่อ้างทุกอาชีพหรือ60paintedframes.
+
+D199/TASK175: ผู้ใช้ขอท่าคั่น+ผสานเฟรมให้ครบทุกอาชีพ รวมClass1/Class2/Hiในเกม32อาชีพ. ท่าโจมตีจริง68แบบ/60genderpresets, เลือกaffinemodeคงที่ต่อnativepairสำหรับท่าก้มมาก; คงจังหวะ/nativekeys/contactและnonattack/reducedmotion. หน้าเทียบเลือกทุกอาชีพ/เพศที่มี/ท่าต่อยจริง. ไม่มีpower/core/media/saveเปลี่ยน.

@@ -32,7 +32,7 @@ export class BattleRenderer {
   private readonly numbers: DamageNumbers | null;
   private readonly animation: ActorAnimation;
   private readonly actorTween = new NativeActorTween();
-  /** Prototype allowlist: native Swordsman attack rigs only. */
+  /** All native player attack rigs; monsters/other states retain their native path. */
   smoothActors = true;
   private readonly finishers = new FinisherEffects();
   private readonly multiHitNumbers = new MultiHitNumbers();
@@ -204,7 +204,7 @@ export class BattleRenderer {
       if (actor.hp > 0 && actor.healing_aura && !actor.statuses?.some(g=>g.icon_skill_id&&(this.pack.impacts.get(g.icon_skill_id)?.config.native_only || this.pack.groundFields.has(g.icon_skill_id) || Object.hasOwn(this.pack.performanceAura?.config.skills ?? {},g.icon_skill_id)))) { drawHealingAura(context, sphereTime, x, y, 32 * appearance.scale); this.frameStats.healing_auras.push(actor.actor_id); }
       if (actor.hp > 0) drawSpiritSpheres(context, actor.spirit_spheres ?? 0, sphereTime, false, x, y);
       const ax=x+motion.x*(facing==='left'?-1:1),ay=y+motion.y;
-      this.drawnLayers += appearance.job_id==='swordsman'&&this.motion&&this.smoothActors
+      this.drawnLayers += this.motion&&this.smoothActors
         ? this.actorTween.draw(context,parts,state,elapsed,ax,ay,facing,appearance.scale)
         : drawActor(context,parts,state,elapsed,ax,ay,facing,appearance.scale);
       if (actor.hp > 0) drawSpiritSpheres(context, actor.spirit_spheres ?? 0, sphereTime, true, x, y);

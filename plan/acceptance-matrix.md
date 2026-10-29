@@ -1013,3 +1013,11 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T174-AC-01` | TASK-174 | Native keys and rig | focused/native/build/M0/public | passed_implementation |
 | `T174-AC-02` | TASK-174 | Native pixels/mobile/CPU | focused/native/build/M0/public | passed_implementation |
 | `T174-AC-03` | TASK-174 | Core/pack unchanged and release | focused/native/build/M0/public | passed_implementation |
+
+## TASK-175
+
+| Case | Task | Criterion | Verification | Status |
+| --- | --- | --- | --- | --- |
+| `T175-AC-01` | TASK-175 | All native clips/timing | focused/native/build/M0/public | not_run_implementation |
+| `T175-AC-02` | TASK-175 | Native overlays/mobile | focused/native/build/M0/public | not_run_implementation |
+| `T175-AC-03` | TASK-175 | Unchanged core and release | focused/native/build/M0/public | not_run_implementation |

@@ -1,0 +1,59 @@
+{
+  "task_id": "TASK-175",
+  "passed": false,
+  "status": "review",
+  "local_passed": true,
+  "acceptance_results": {
+    "AC-01": "passed",
+    "AC-02": "passed",
+    "AC-03": "awaiting_publication"
+  },
+  "checks": {
+    "focused_TS_tests": 73,
+    "new_tests": 5,
+    "native_groups": 6,
+    "playable_jobs": 32,
+    "gender_presets": 60,
+    "attack_clips": 68,
+    "clip_facing_cases": 136,
+    "worn_cases": 360,
+    "all_original_key_pixels_exact": true,
+    "all_intervals_sampled": 2870,
+    "intermediate_mirrors_exact": true,
+    "source_metadata_unchanged": true,
+    "root_build": true,
+    "filtered_build": true,
+    "M0": true,
+    "strict_typecheck": true,
+    "gameplay_five_fingerprints_unchanged": true,
+    "bounded_scratch_bytes": 2359296,
+    "CPU4x_four_High_actor_draw_p95_ms": 8.299999952316284,
+    "owner_access": false,
+    "SQL_env_asset_changes": false
+  },
+  "fingerprints": {
+    "engine_data_hash": "fac86304ccd7430abcfad1eb856f1eb4fff8b5f4ba7a738e5c0cd161fe72dc70",
+    "schema_hash": "d6d33ae96aadda49257ac5bc7e9d5400c7ff8d9742dc73dd930a2c6f215668c8",
+    "implementation_hash": "a044537668f424ba8db84d17b7b6030a46e6660b146f6af7ba2c6c78851a9ee6",
+    "content_hash": "b0369ce430a459729870ed7ebc6cbfa2abf6920ad01555ce31a95a1d35290c24",
+    "runtime_asset_pack_hash": "6b3001aef85634b686f8296eb99ce5612b50794c8b59e13c1c54f6995e0daf7c"
+  },
+  "evidence": [
+    "task-175/native.json",
+    "task-175/all-male.png",
+    "task-175/all-female.png",
+    "task-175/gameplay-before.json",
+    "task-175/gameplay-after.json",
+    "task-175/source-after.json",
+    "task-175/before.json.gz",
+    "task-175/README.md"
+  ],
+  "limitations": [
+    "Computed original-art compositions, not new hand-drawn animation frames.",
+    "All32currently playable professions/60available presets/68attackclips; no futureClass3 or invented gender sprites.",
+    "Idle/walk/cast/hurt/death remain native; this expands the same attack treatment to all professions.",
+    "At the exact texture-blend midpoint different limb outlines can still overlap.",
+    "Bounded CPU4x draw measurements do not certify physical-phone/full-UI frame rate.",
+    "No owner account/save access, game balance changes or new backend work."
+  ]
+}

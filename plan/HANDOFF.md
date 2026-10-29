@@ -1,5 +1,14 @@
 # Handoff ระหว่าง agent
 
+## TASK175 LOCAL COMPLETE / publish next — 29 October2026
+
+User explicitly requested allprofessions from174prototype. D199/design88/175review160/175/M4114/124. Renderer nowall32playablejobs/60nativegenderpresets/68attackclips inclMonk/Champion86/94/46 andbowreleaseposes. Nativekeys/durations/contact/ASPD/nonattack/reducedmotion staynative. Fixedperpair mildshear or rotation+uniformscale preservesroot/neck with no guard-switch jumps or126rejectedpoints. Wholeintermediate rig rasterizes beforeflip/scaling to avoid separately drawn fractionalCanvas seams; exactmirrorsall60. Reuse4×384²canvases=2,359,296bytesperrenderer; headonce/nativeoverlayclock. Readonly /animation-preview selects32jobs/availablegenders/actualvariants with fixedfullclipfit. Computed art, midpointlimbghostsremain; no paintednewframes/allmotion/phoneFPScertification claims.
+
+73focusedTS/5new/native6groups/136clip-facings/360worncases/realBattleRendererall32/root+filtered/M0/strictpassed. 25mssamplesnative5–9→computed19–35distinct. BoundedCPU4xfourHighdrawp958.3ms;scratchfixed. Newhelperrendereractor-preview.ts; source-after175pins4existingfiles; normalizerbefore174chain. Core5fingerprints exactb036/6b3001/a044/d6d33/fac863; keepdailyrecoverycompat. No media/SQL/env/ownerread-write/balancebatch/6173changes. Root+filteredPWAde963e66ba570bda/gzip665574. Nativecontactsheet male/female visually reviewed. Old failedmirrororacle retained as initial-mirror-failure.json; finalnativepass exact, do not weakenmirrorassertions.
+
+Next explicitallowlistcommit/pushorigin/VercelSUCCESS, public `node scripts/test_all_actor_tween_hosted.cjs` all32jobs60rigs68clips/28bundleSHA then175done161/175/M4115/124closurepush. OwnVite7525PID27440currentlyrunning; closeafterchecks. Preserve usermodernmigration-v2/allunselectedassets/task108png/172nativefailed. Noagents/Pages.
+
+
 ## TASK174 COMPLETE / native Swordsman pose prototype LIVE — 29 October2026
 
 Source `af8d0513f4af563d2c4dc092b473ab8194ff35c7`, VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/FDdrsSvf11xFKJtd8mPx5gaZE1hs.174done160/174/M4114/123. No remaining174implementation.68focusedTS/3new/native7groups/12worncases/root+filtered/M0/strict/public4groups28bundleSHApassed. Mobile320390readonly /animation-preview hasnative male/female art, bothfacings/pause/scrub;anonymousAPIs401/SIN1/login0errors0writes. Noowneraccess.

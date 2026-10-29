@@ -1,3 +1,7 @@
+## All profession native attack in-betweens (29 October2026,D199/TASK175)
+
+Local73focused/native6/32jobs60rigs68clips136facings360worn/root-filtered/M0passed; publication status newestHANDOFF. Supersedes174Swordsmanallowlist: everycurrentplayerattack/MonkChampionvariants, sourcekeypixels/duration/contact/ASPD unchanged. Largebends use fixedperpair similaritytransform; headonce/overlayclock shared. Wholeintermediaterig rasterizes beforemirror/scale for exactflipgeometry;4×384²scratch2,359,296bytesreused. Preview selects32jobs/availablegenders/variants/fixedclipfit. Othermotions/monsters/reducedmotion remainnative. No media/core/data/pack/SQL/env/save changes; fivefingerprints b036/6b3001 remain. Midpointlimbghostspossible; notpaintedframes/phoneFPSproof.
+
 ## Swordsman computed in-betweens (29 October2026,D198/TASK174)
 
 Live sourceaf8d0513f/VercelSUCCESS;68focused/native7/12worn/root-filtered/M0/public4groups28bundleSHApassed. Prototype only Swordsman attack bothsexes/facings via NativeActorTween. OriginalACTclock/key pixels/contact unchanged; native neck/root geometry, singlehead/gear shared clock,24ms blend, last hold→idle by900ms. Otherclasses/states/reducedmotion staynative. Publicreadonly /animation-preview compares original/new; computed compositions, not newpaintedframes. Midpoint may have doubled limb edges, do not claim ghost-free/60paintedframes/allclasses/phoneFPS. Scratch3×384²fixed; no new media/pack/core/data/SQL/env/save changes. Five fingerprints stillb036/6b3001; preserve daily recovery compatibility.
