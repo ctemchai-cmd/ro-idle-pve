@@ -1,14 +1,12 @@
 # Handoff ระหว่าง agent
 
-## TASK174 LOCAL COMPLETE / publication next — 29 October2026
+## TASK174 COMPLETE / native Swordsman pose prototype LIVE — 29 October2026
 
-User means sparse poses, not renderFPS, and authorized combined in-betweens/blending prototype. D198/design87/174review159/174/M4113/123. Renderer allowlist only Swordsman attack male/female; native root/neck geometry+singlehead/whole overlay clock,24ms premultiplied texture blend, last redundant hold recovers to idle by900ms. Original100ms key pixels/duration/contact and otherstates/jobs/reducedmotion unchanged. Readonly `/animation-preview` gender/facing/pause/scrub/public rewrite. Computed native-art compositions, not painted new frames; midpoint can show doubled limb edges—honest comparison, no global rollout claim.
+Source `af8d0513f4af563d2c4dc092b473ab8194ff35c7`, VercelSUCCESS https://vercel.com/chanon2/ro-idle-pve/FDdrsSvf11xFKJtd8mPx5gaZE1hs.174done160/174/M4114/123. No remaining174implementation.68focusedTS/3new/native7groups/12worncases/root+filtered/M0/strict/public4groups28bundleSHApassed. Mobile320390readonly /animation-preview hasnative male/female art, bothfacings/pause/scrub;anonymousAPIs401/SIN1/login0errors0writes. Noowneraccess.
 
-68focusedTS/3new/native7groups/12worncases/root+filtered/M0/strict passed. 25ms samples original6/7→24/28distinct; scratch3×384²=1,769,472bytes fixed; bounded CPU4xfouractor p95 in native.json, not phone/fullUI FPS proof. Five fingerprints exact: contentb036/pack6b3001/core a044/schema d6d33/data fac863; existing2a62daily recovery bridge compatible. No assets/SQL/env/owner/save writes/globalbalance/6173restart. Preview images/poses visually inspected; don't claim ghost-free interpolation or hand-drawn anatomy. LocalVite7524 is ours; close after verification. Preserve usermodernmigration-v2/unselectedassets/task108png. No agents/Pages.
+User means sparse native poses, notlowrenderFPS. Authorized combined prototype: Swordsman attacks only, male/female, using original root/neck geometry+singlehead/shared overlayclock and narrow24ms premultipliedblend. Original9keyposes+clampedendpoint exactpixel comparisons10perrig/facing;900ms total/contact unchanged, last redundant holdrecovers intoidle by900ms. Otherjobs/states/reducedmotion staynative. 25ms samples original6/7→computed24/28distinct; computed native-art compositions, not paintednewframes; midpoint can show doubledlimbedges. Don't claim ghost-free/allclasses/60paintedframes. Nativewornheadgear/garment all6tiers×2sexesdraws. Fixed3×384²scratch1,769,472bytes; boundedCPU4xfouractor p951ms in finalnative.json, not physical-phone/fullUI FPS certification.
 
-Next: explicit allowlist commit/pushorigin main, VercelSUCCESS/public `node scripts/test_actor_tween_hosted.cjs`, then174done160/174/M4114/123closuredocs/push. API/bundle fingerprints must stayb036/6b; user needs onlyreload for this UI patch, no migration.
-
-
+Five fingerprints exactcontentb036/pack6b3001/corea044/schemad6d33/datafac863, preserving2a62daily recovery bridge. No newassets/media/SQL/env/save/balance changes; UIonlyreload, nomigration. Root+filteredPWAeb537e8943b50d8d/gzip664512. Sourceafter174pins onlybattle.ts/main.tsx/vercel.json; legacy174normalizer runs before173chain and permits exactapprovedbytes only. Evidence174native/poses/hosted/deployment/review. OwnVite7524PID6879andbrowsers CLOSED after checks;6173untouched. Preserveuserassets/modern/migration-v2.txt/unselectedmodern/task108png/172nativefailedpng. Noagents/Pages. Closure docs/evidence only.
 
 ## TASK173 COMPLETE / 40+box daily finish and recovery LIVE — 28 October2026
 

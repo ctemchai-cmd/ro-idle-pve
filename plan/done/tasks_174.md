@@ -16,7 +16,9 @@ User explicitly wants more continuous poses (not performance FPS) and authorized
 ## เกณฑ์ตรวจรับ
 - [x] AC-01: Original key times and contact/release unchanged; new intermediate poses from original art, one shared rig clock, untouched source metadata; static reduced motion and other jobs exact.
 - [x] AC-02: Actual native male/female left/right comparisons, >=18 distinguishable samples, fixed root/continuous head, no crop/opacity darkening, bounded scratch/CPU; mobile320390 controls work.
-- [ ] AC-03: Core5fingerprints/pack unchanged, focused/native/build/M0/public pass; no owner/Auth/save/SQL/env/media edits.
+- [x] AC-03: Core5fingerprints/pack unchanged, focused/native/build/M0/public pass; no owner/Auth/save/SQL/env/media edits.
 
 ## ผลตรวจ
-68focusedTS/7nativegroups/12worncases/root+filtered/M0ผ่าน; รอVercel/public. [หลักฐาน](../evidence/task-174-review.json). Exactblendmidpointมีขอบซ้อนได้ เป็นข้อจำกัดของcomposition ไม่อ้างspriteวาดใหม่/ทุกอาชีพ/phoneFPS.
+68focusedTS/7nativegroups/12worncases/root+filtered/M0ผ่าน; VercelSUCCESS/public4groups28bundleSHAผ่าน. [หลักฐาน](../evidence/task-174-review.json). Exactblendmidpointมีขอบซ้อนได้ เป็นข้อจำกัดของcomposition ไม่อ้างspriteวาดใหม่/ทุกอาชีพ/phoneFPS.
+
+ขึ้นเว็บ source `af8d0513f` แล้ว · /animation-preview · ใช้reloadรับUI ไม่ต้องย้ายเซฟ.

@@ -1,6 +1,6 @@
 ## Swordsman computed in-betweens (29 October2026,D198/TASK174)
 
-Local68focused/native7/12worn/root-filtered/M0passed; publication status in newestHANDOFF. Prototype only Swordsman attack bothsexes/facings via NativeActorTween. OriginalACTclock/key pixels/contact unchanged; native neck/root geometry, singlehead/gear shared clock,24ms blend, last hold→idle by900ms. Otherclasses/states/reducedmotion staynative. Publicreadonly /animation-preview compares original/new; computed compositions, not newpaintedframes. Midpoint may have doubled limb edges, do not claim ghost-free/60paintedframes/allclasses/phoneFPS. Scratch3×384²fixed; no new media/pack/core/data/SQL/env/save changes. Five fingerprints stillb036/6b3001; preserve daily recovery compatibility.
+Live sourceaf8d0513f/VercelSUCCESS;68focused/native7/12worn/root-filtered/M0/public4groups28bundleSHApassed. Prototype only Swordsman attack bothsexes/facings via NativeActorTween. OriginalACTclock/key pixels/contact unchanged; native neck/root geometry, singlehead/gear shared clock,24ms blend, last hold→idle by900ms. Otherclasses/states/reducedmotion staynative. Publicreadonly /animation-preview compares original/new; computed compositions, not newpaintedframes. Midpoint may have doubled limb edges, do not claim ghost-free/60paintedframes/allclasses/phoneFPS. Scratch3×384²fixed; no new media/pack/core/data/SQL/env/save changes. Five fingerprints stillb036/6b3001; preserve daily recovery compatibility.
 
 ## Daily whole-run batches and compatible recovery — 28 October2026 (D197/TASK173)
 

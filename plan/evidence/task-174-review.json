@@ -1,12 +1,12 @@
 {
   "task_id": "TASK-174",
-  "passed": false,
-  "status": "review",
+  "passed": true,
+  "status": "done",
   "local_passed": true,
   "acceptance_results": {
     "AC-01": "passed",
     "AC-02": "passed",
-    "AC-03": "awaiting_publication"
+    "AC-03": "passed"
   },
   "checks": {
     "focused_TS_tests": 68,
@@ -19,10 +19,13 @@
     "gameplay_five_fingerprints_unchanged": true,
     "native_male_female": true,
     "native_both_facings": true,
-    "exact_native_keys_per_rig": 10,
     "native_worn_tier_cases": 12,
     "owner_access": false,
-    "SQL_env_asset_changes": false
+    "SQL_env_asset_changes": false,
+    "public_groups": 4,
+    "public_bundle_SHA": 28,
+    "Vercel": "SUCCESS",
+    "exact_native_key_or_clamp_samples_per_rig": 10
   },
   "fingerprints": {
     "engine_data_hash": "fac86304ccd7430abcfad1eb856f1eb4fff8b5f4ba7a738e5c0cd161fe72dc70",
@@ -38,7 +41,9 @@
     "task-174/gameplay-after.json",
     "task-174/source-after.json",
     "task-174/before.json.gz",
-    "task-174/README.md"
+    "task-174/README.md",
+    "task-174/hosted.json",
+    "task-174/deployment.json"
   ],
   "limitations": [
     "Prototype is Swordsman attacks only, not all classes or states.",
@@ -46,5 +51,7 @@
     "Narrow24ms blends may show double edges at an exact midpoint of very different poses.",
     "Bounded CPU4x four-actor Canvas draw, not a physical-phone/full-screen FPS certification.",
     "No owner account/save access; no new gameplay or economy calibration."
-  ]
+  ],
+  "source_commit": "af8d0513f4af563d2c4dc092b473ab8194ff35c7",
+  "deployment_url": "https://vercel.com/chanon2/ro-idle-pve/FDdrsSvf11xFKJtd8mPx5gaZE1hs"
 }
