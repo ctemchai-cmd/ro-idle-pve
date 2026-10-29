@@ -1018,6 +1018,6 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 
 | Case | Task | Criterion | Verification | Status |
 | --- | --- | --- | --- | --- |
-| `T175-AC-01` | TASK-175 | All native clips/timing | focused/native/build/M0/public | not_run_implementation |
-| `T175-AC-02` | TASK-175 | Native overlays/mobile | focused/native/build/M0/public | not_run_implementation |
-| `T175-AC-03` | TASK-175 | Unchanged core and release | focused/native/build/M0/public | not_run_implementation |
+| `T175-AC-01` | TASK-175 | All native clips/timing | focused/native/build/M0/public | passed_implementation |
+| `T175-AC-02` | TASK-175 | Native overlays/mobile | focused/native/build/M0/public | passed_implementation |
+| `T175-AC-03` | TASK-175 | Unchanged core and release | focused/native/build/M0/public | passed_implementation |

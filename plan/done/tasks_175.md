@@ -19,7 +19,9 @@ Old Swordsman shear guard rejected126/2870sampled points in larger bends/recover
 ## เกณฑ์ตรวจรับ
 - [x] AC-01: Every playablejob/preset/variant covered; source key pixels/duration/release and all nonattack/reducedmotion paths unchanged; no unsupported native pairs silently omitted.
 - [x] AC-02: Actual native pixels for60presets/68clips/bothfacings, worn gear across tiers, one attachedhead, fixed root/finite continuous transforms, no scratchcropping, bounded memory/CPU; comparison32jobs/mobile320390/variants work.
-- [ ] AC-03: Five gameplay/schema/core/pack fingerprints exact, focused/native/root-filtered/M0/public passed; user assets and owner saves untouched.
+- [x] AC-03: Five gameplay/schema/core/pack fingerprints exact, focused/native/root-filtered/M0/public passed; user assets and owner saves untouched.
 
 ## ผลตรวจ
-73focusedTS/5new/native6groups/32jobs60presets68clips136facings360worn/root+filtered/M0ผ่าน; รอVercel/public. [ผลตรวจ](../evidence/task-175-review.json).
+73focusedTS/5new/native6groups/32jobs60presets68clips136facings360worn/root+filtered/M0ผ่าน; VercelSUCCESS/public4groups/all68controls/28bundleSHAผ่าน. [ผลตรวจ](../evidence/task-175-review.json).
+
+Source `99d9c414b` liveแล้ว; จบไฟต์แล้วreloadรับUI. เฉพาะท่าโจมตีทุกอาชีพ; nonattackยังnative.

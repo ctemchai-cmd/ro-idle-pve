@@ -1,12 +1,12 @@
 {
   "task_id": "TASK-175",
-  "passed": false,
-  "status": "review",
+  "passed": true,
+  "status": "done",
   "local_passed": true,
   "acceptance_results": {
     "AC-01": "passed",
     "AC-02": "passed",
-    "AC-03": "awaiting_publication"
+    "AC-03": "passed"
   },
   "checks": {
     "focused_TS_tests": 73,
@@ -30,7 +30,11 @@
     "CPU4x_four_High_actor_draw_p95_ms": 8.299999952316284,
     "owner_access": false,
     "SQL_env_asset_changes": false,
-    "all_68_preview_control_cases": true
+    "all_68_preview_control_cases": true,
+    "public_groups": 4,
+    "public_control_cases": 68,
+    "public_bundle_SHA": 28,
+    "Vercel": "SUCCESS"
   },
   "fingerprints": {
     "engine_data_hash": "fac86304ccd7430abcfad1eb856f1eb4fff8b5f4ba7a738e5c0cd161fe72dc70",
@@ -48,7 +52,9 @@
     "task-175/source-after.json",
     "task-175/before.json.gz",
     "task-175/README.md",
-    "task-175/controls.json"
+    "task-175/controls.json",
+    "task-175/hosted.json",
+    "task-175/deployment.json"
   ],
   "limitations": [
     "Computed original-art compositions, not new hand-drawn animation frames.",
@@ -57,5 +63,7 @@
     "At the exact texture-blend midpoint different limb outlines can still overlap.",
     "Bounded CPU4x draw measurements do not certify physical-phone/full-UI frame rate.",
     "No owner account/save access, game balance changes or new backend work."
-  ]
+  ],
+  "source_commit": "99d9c414bc41a410263addb3973063ccc404504e",
+  "deployment_url": "https://vercel.com/chanon2/ro-idle-pve/3YMLJJF3XXzCpVEqj4BdD77WeUSY"
 }
