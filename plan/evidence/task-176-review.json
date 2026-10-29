@@ -1,12 +1,12 @@
 {
   "task_id": "TASK-176",
-  "passed": false,
-  "status": "review",
+  "passed": true,
+  "status": "done",
   "local_passed": true,
   "acceptance_results": {
     "AC-01": "passed",
     "AC-02": "passed",
-    "AC-03": "awaiting_public"
+    "AC-03": "passed"
   },
   "checks": {
     "focused_TS_tests": 87,
@@ -33,7 +33,13 @@
     "five_fingerprints_unchanged": true,
     "SQL_env_asset_changes": false,
     "owner_access": false,
-    "personal_6173_touched": false
+    "personal_6173_touched": false,
+    "public_groups": 4,
+    "public_control_cases": 68,
+    "public_bundle_SHA": 27,
+    "public_five_fingerprints": true,
+    "Vercel": "SUCCESS",
+    "own_test_servers_closed": true
   },
   "performance": {
     "passed": true,
@@ -153,12 +159,17 @@
     "task-176/gameplay-before.json",
     "task-176/gameplay-after.json",
     "task-176/source-after.json",
-    "task-176/README.md"
+    "task-176/README.md",
+    "task-176/hosted.json",
+    "task-176/hosted-fingerprints.json",
+    "task-176/deployment.json"
   ],
   "limitations": [
     "Production-compiled synthetic actual BossField/native effects/digits/live Timeline under Chrome CPU4x; 6.5s warm-up and 8s samples per variant, not physical Android or full60s certification.",
     "Cached computed artwork sampled downward within original ACT intervals at60Hz; exact native keys/release remain unchanged.",
     "12MiB bounds cached canvas RGBA only, excluding browser/GPU bookkeeping and fixed2.25MiB scratch.",
     "Original intermediate limb-edge overlap remains possible; no new hand-drawn frames."
-  ]
+  ],
+  "source_commit": "ac9bf794115ef946994996d13dd91b1a60999850",
+  "deployment_url": "https://vercel.com/chanon2/ro-idle-pve/EtdcxbEsESH7n2r9zHDdDkffdDkx"
 }

@@ -34,4 +34,4 @@ Warm cache held245images/5,837,908RGBAbytes, with1,997hits and no evictions in t
 
 Final compiled profiles/screenshots are `production-before/after.*`. `performance-before/after.json` are development observations, not the release metric. `performance-hmr-invalid.json` records an invalid prototype-probe run with0drawsamples and was discarded; the harness now requires actual draws. `timeline-experiment.json` was diagnostic: direct transforms helped, subsequent backdrop-blur removal had no clear extra median benefit and was not adopted. `performance-production-incomplete-styles.json` is a preliminary fixture run missing entry-point global CSS, superseded by final `performance-production.json`. These files do not certify phone performance.
 
-Public release verification is pending.
+Public release passed on source`ac9bf7941`: VercelSUCCESS, API SIN1/anonymous401, all five fingerprints exact,27deployed bundleSHAs,32jobs/60rigs/68actual attack control cases at320px and variant/facing/scrub at390px, mobile login/no overflow/errors/writes. No owner access. Own7526/7527servers and browsers closed;6173untouched. See hosted/deployment reports.

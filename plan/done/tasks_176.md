@@ -16,4 +16,9 @@ User reports whole battle/number/Timeline frame drops on AndroidChrome/PWA after
 ## เกณฑ์ตรวจรับ
 - [x] AC-01: Native keys and canonical60Hz poses preserve175pixels, all32jobs/68clips/availablegenders/gear supported; no early contact/release or gameplay changes.
 - [x] AC-02: Repeated poses avoid recomposition, cached cropped frames have bounded RGBAstorage/entries with rig invalidation/disposal; full BossField+effects+Timeline measured before/after and improves rendering cost.
-- [ ] AC-03: Five gameplay/core/pack fingerprints exact, targeted/native/root-filtered/M0/public pass; no owner data access, user assets/6173 untouched.
+- [x] AC-03: Five gameplay/core/pack fingerprints exact, targeted/native/root-filtered/M0/public pass; no owner data access, user assets/6173 untouched.
+
+## ผลตรวจ
+87focusedTS/native6888canonical+1148keys/360worn/6Timelinegeometry+details/root-filtered/M0ผ่าน; VercelSUCCESS/public4groups/68controlcases/27bundleSHA/5fingerprints exact. ProductionCPU4x actualbattle+Timeline drawp95 10.8→5.9ms/framep50 50→16.7ms, bounded6.5swarm+8ssamples ไม่ใช่ผลโทรศัพท์จริง. [ผลตรวจ](../evidence/task-176-review.json).
+
+Source`ac9bf7941`live; จบไฟต์แล้วreloadรับUI, ไม่ต้องSQL/อัปเดตกติกาเซฟ.
