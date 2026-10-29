@@ -1,0 +1,50 @@
+{
+  "task_id": "TASK-174",
+  "passed": false,
+  "status": "review",
+  "local_passed": true,
+  "acceptance_results": {
+    "AC-01": "passed",
+    "AC-02": "passed",
+    "AC-03": "awaiting_publication"
+  },
+  "checks": {
+    "focused_TS_tests": 68,
+    "new_tests": 3,
+    "native_groups": 7,
+    "root_build": true,
+    "filtered_build": true,
+    "M0": true,
+    "strict_typecheck": true,
+    "gameplay_five_fingerprints_unchanged": true,
+    "native_male_female": true,
+    "native_both_facings": true,
+    "exact_native_keys_per_rig": 10,
+    "native_worn_tier_cases": 12,
+    "owner_access": false,
+    "SQL_env_asset_changes": false
+  },
+  "fingerprints": {
+    "engine_data_hash": "fac86304ccd7430abcfad1eb856f1eb4fff8b5f4ba7a738e5c0cd161fe72dc70",
+    "schema_hash": "d6d33ae96aadda49257ac5bc7e9d5400c7ff8d9742dc73dd930a2c6f215668c8",
+    "implementation_hash": "a044537668f424ba8db84d17b7b6030a46e6660b146f6af7ba2c6c78851a9ee6",
+    "content_hash": "b0369ce430a459729870ed7ebc6cbfa2abf6920ad01555ce31a95a1d35290c24",
+    "runtime_asset_pack_hash": "6b3001aef85634b686f8296eb99ce5612b50794c8b59e13c1c54f6995e0daf7c"
+  },
+  "evidence": [
+    "task-174/native.json",
+    "task-174/poses.png",
+    "task-174/gameplay-before.json",
+    "task-174/gameplay-after.json",
+    "task-174/source-after.json",
+    "task-174/before.json.gz",
+    "task-174/README.md"
+  ],
+  "limitations": [
+    "Prototype is Swordsman attacks only, not all classes or states.",
+    "Computed native-art compositions, not new hand-drawn animation frames.",
+    "Narrow24ms blends may show double edges at an exact midpoint of very different poses.",
+    "Bounded CPU4x four-actor Canvas draw, not a physical-phone/full-screen FPS certification.",
+    "No owner account/save access; no new gameplay or economy calibration."
+  ]
+}

@@ -3,6 +3,7 @@ import { drawActor, drawEffect, drawProcedural, type NativeAsset } from './nativ
 import { AssetPack } from './pack.ts';
 import { drawNativeImpact, nativeImpactDuration, type LoadedNativeImpact } from './native-impact.ts';
 import { ActorAnimation } from './actor-animation.ts';
+import { NativeActorTween } from './actor-tween.ts';
 import type { ImpactEffect, ProjectileSpec } from '../contracts/assets.ts';
 import { DamageNumbers, NUMBER_FLIGHT_MS, numberFlight, type NumberDrawBounds } from './damage-numbers.ts';
 import { drawProjectile, isFocusedDamage, projectileLifetime, projectilePoint, type ProjectileCue } from './projectiles.ts';
@@ -30,6 +31,9 @@ export class BattleRenderer {
   private impacts: { target_id: string; at: number; config: LoadedNativeImpact['config']; asset: NativeAsset; textures: LoadedNativeImpact['textures']; hue?: number }[] = [];
   private readonly numbers: DamageNumbers | null;
   private readonly animation: ActorAnimation;
+  private readonly actorTween = new NativeActorTween();
+  /** Prototype allowlist: native Swordsman attack rigs only. */
+  smoothActors = true;
   private readonly finishers = new FinisherEffects();
   private readonly multiHitNumbers = new MultiHitNumbers();
   private readonly totalOrigins = new Map<string, readonly [number, number]>();
@@ -199,7 +203,10 @@ export class BattleRenderer {
       const sphereTime = this.motion ? presentationMs : 0;
       if (actor.hp > 0 && actor.healing_aura && !actor.statuses?.some(g=>g.icon_skill_id&&(this.pack.impacts.get(g.icon_skill_id)?.config.native_only || this.pack.groundFields.has(g.icon_skill_id) || Object.hasOwn(this.pack.performanceAura?.config.skills ?? {},g.icon_skill_id)))) { drawHealingAura(context, sphereTime, x, y, 32 * appearance.scale); this.frameStats.healing_auras.push(actor.actor_id); }
       if (actor.hp > 0) drawSpiritSpheres(context, actor.spirit_spheres ?? 0, sphereTime, false, x, y);
-      this.drawnLayers += drawActor(context, parts, state, elapsed, x + motion.x * (facing === 'left' ? -1 : 1), y + motion.y, facing, appearance.scale);
+      const ax=x+motion.x*(facing==='left'?-1:1),ay=y+motion.y;
+      this.drawnLayers += appearance.job_id==='swordsman'&&this.motion&&this.smoothActors
+        ? this.actorTween.draw(context,parts,state,elapsed,ax,ay,facing,appearance.scale)
+        : drawActor(context,parts,state,elapsed,ax,ay,facing,appearance.scale);
       if (actor.hp > 0) drawSpiritSpheres(context, actor.spirit_spheres ?? 0, sphereTime, true, x, y);
     }
     this.projectiles = this.projectiles.filter(cue => presentationMs - cue.at_ms <= projectileLifetime(cue.spec));

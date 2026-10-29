@@ -1,5 +1,14 @@
 # Handoff ระหว่าง agent
 
+## TASK174 LOCAL COMPLETE / publication next — 29 October2026
+
+User means sparse poses, not renderFPS, and authorized combined in-betweens/blending prototype. D198/design87/174review159/174/M4113/123. Renderer allowlist only Swordsman attack male/female; native root/neck geometry+singlehead/whole overlay clock,24ms premultiplied texture blend, last redundant hold recovers to idle by900ms. Original100ms key pixels/duration/contact and otherstates/jobs/reducedmotion unchanged. Readonly `/animation-preview` gender/facing/pause/scrub/public rewrite. Computed native-art compositions, not painted new frames; midpoint can show doubled limb edges—honest comparison, no global rollout claim.
+
+68focusedTS/3new/native7groups/12worncases/root+filtered/M0/strict passed. 25ms samples original6/7→24/28distinct; scratch3×384²=1,769,472bytes fixed; bounded CPU4xfouractor p95 in native.json, not phone/fullUI FPS proof. Five fingerprints exact: contentb036/pack6b3001/core a044/schema d6d33/data fac863; existing2a62daily recovery bridge compatible. No assets/SQL/env/owner/save writes/globalbalance/6173restart. Preview images/poses visually inspected; don't claim ghost-free interpolation or hand-drawn anatomy. LocalVite7524 is ours; close after verification. Preserve usermodernmigration-v2/unselectedassets/task108png. No agents/Pages.
+
+Next: explicit allowlist commit/pushorigin main, VercelSUCCESS/public `node scripts/test_actor_tween_hosted.cjs`, then174done160/174/M4114/123closuredocs/push. API/bundle fingerprints must stayb036/6b; user needs onlyreload for this UI patch, no migration.
+
+
 
 ## TASK173 COMPLETE / 40+box daily finish and recovery LIVE — 28 October2026
 

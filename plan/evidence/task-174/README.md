@@ -1,0 +1,9 @@
+# TASK174 — Native Swordsman pose prototype
+
+`/animation-preview` compares original native male/female Swordsman action86 with computed intermediate geometry and a24ms blend. Both facings, pause and scrub. The game renderer enables this only for Swordsman attacks. Idle/walk/cast/death/otherjobs and reducedmotion retain the native path.
+
+900ms native duration and contact/release clock unchanged. Original body/head/weapon metadata and all native key-time pixels exact. Sampled every25ms: original6/7 distinct images versus computed24/28. These are native-art compositions, not24new painted body sprites. Root stays fixed; head uses the same anchor interpolation and is drawn once. Original texture overlap retains alpha; at a transition midpoint different limb outlines can still appear doubled. Preview allows honest visual comparison of this tradeoff.
+
+68 focusedTS tests (3new), actualnative7browsergroups: both sexes/facings, key pixels, mirror, opacity, scratchreuse1,769,472bytes, battleintegration/reducedmotion,12worngear cases acrosssix tiers, mobile320390 and initialreducedmotionstatic. Bounded4actors CPU4x p95 in native.json; not a phoneFPS certification. Root/filtered builds, M0 and strict passed. Five core/data/schema/pack fingerprints remain exact; existing daily recovery bridge remains compatible. No newmedia/SQL/env/owner reads or writes.
+
+Reproduce: `node --import tsx --test tests/game/actor-tween.test.ts tests/game/animation.test.ts tests/game/impact-timing.test.ts`; isolated Vite plus `RO_PREVIEW_URL=http://127.0.0.1:7524 node scripts/test_actor_tween_native.cjs`. Public proof: `node scripts/test_actor_tween_hosted.cjs` after deployment. Initial harness failures were a missing temporary Playwright driver and an opacity oracle reading the final weapon blend instead of each body blend; resolved before the final native pass.

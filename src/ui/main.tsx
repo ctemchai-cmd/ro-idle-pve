@@ -16,6 +16,7 @@ const AuthPage = lazy(() => import('./auth-page.tsx'));
 const GamePage = lazy(() => import('./game/shell.tsx'));
 const RosterPage = lazy(() => import('./roster-page.tsx'));
 const SkillPreviewPage = lazy(() => import('./skill-preview.tsx'));
+const AnimationPreview = lazy(() => import('./animation-preview.tsx'));
 const container = document.getElementById('root');
 if (!container) throw new Error('Missing application root');
 const route = window.location.pathname.replace(/\/$/, '');
@@ -26,4 +27,4 @@ if (route === '' || route === '/index.html') {
   const callback = new URLSearchParams(window.location.search).has('code') || new URLSearchParams(window.location.hash.slice(1)).has('access_token');
   window.location.replace(`${callback ? '/auth' : '/play'}${window.location.search}${window.location.hash}`);
 } else if (route === '/roster' && configured) window.location.replace('/play?v=buddy');
-else createRoot(container).render(<Suspense fallback={<p role="status" className="route-loading">กำลังเปิดการผจญภัย…</p>}>{route === '/auth' ? <AuthPage /> : route === '/skill-preview' ? <SkillPreviewPage /> : route === '/roster' ? <RosterPage /> : route === '/demo' ? <BattleApp /> : <GamePage />}</Suspense>);
+else createRoot(container).render(<Suspense fallback={<p role="status" className="route-loading">กำลังเปิดการผจญภัย…</p>}>{route === '/animation-preview' ? <AnimationPreview /> : route === '/auth' ? <AuthPage /> : route === '/skill-preview' ? <SkillPreviewPage /> : route === '/roster' ? <RosterPage /> : route === '/demo' ? <BattleApp /> : <GamePage />}</Suspense>);

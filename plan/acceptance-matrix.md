@@ -1005,3 +1005,11 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T173-AC-01` | TASK-173 | Daily large batches | unit/native/build/public | passed_implementation |
 | `T173-AC-02` | TASK-173 | Compatible pending recovery | unit/native/build/public | passed_implementation |
 | `T173-AC-03` | TASK-173 | Native/full/build/public | unit/native/build/public | passed_implementation |
+
+## TASK-174
+
+| Case | Task | Criterion | Verification | Status |
+| --- | --- | --- | --- | --- |
+| `T174-AC-01` | TASK-174 | Native keys and rig | focused/native/build/M0/public | not_run_implementation |
+| `T174-AC-02` | TASK-174 | Native pixels/mobile/CPU | focused/native/build/M0/public | not_run_implementation |
+| `T174-AC-03` | TASK-174 | Core/pack unchanged and release | focused/native/build/M0/public | not_run_implementation |

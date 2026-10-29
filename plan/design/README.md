@@ -124,3 +124,5 @@ D167/TASK139: [ร้าน/แลกเศษ/Panel](56-shop-and-exchange-ui.md
 - [85 Daily quota on reward](85-daily-quota-on-reward.md) — D196/TASK172.
 
 - [86 Daily reward batches](86-daily-reward-batches.md) — D197/TASK173.
+
+- [87 — Native Swordsman in-betweens](87-actor-inbetweens.md) · D198/TASK174, renderer prototype.

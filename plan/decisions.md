@@ -416,3 +416,5 @@ D195/TASK171 — ผู้ใช้ยืนยันรีเซ็ตLv1/Class
 D196/TASK172: ผู้ใช้ขอหักสิทธิ์ดันเมื่อรับรางวัลสำเร็จ; คืนสิทธิ์เซฟแรก Champion100 วันนี้โดยไม่เปลี่ยนความก้าวหน้า/รางวัลเดิม. [design85](design/85-daily-quota-on-reward.md)
 
 D197/TASK173: ผู้ใช้ยืนยันจบดัน40กล่องแล้วเซฟผลไม่ได้สองรอบ. Rootqueue32→รวมต่อรอบหนึ่งclaim, sourcephasekeysครบ, exactsum/quotaonce พร้อม narrow compatible daily recovery ในbacked-upmigration. Design86.
+
+D198/TASK174: ผู้ใช้หมายถึงท่า native มีเฟรมน้อย ไม่ใช่renderFPSต่ำ และอนุญาตต้นแบบสองวิธีร่วมกัน. คำนวณท่าคั่นจากACTroot/neck/overlayเดิม+ผสาน24ms เฉพาะนักดาบชายหญิงก่อน; คงเวลา/contact/core/assets. เปิดหน้าเทียบ readonly ทั้งสองทิศ/หยุด/เลื่อน. เป็นcomputedcompositionsไม่ใช่สไปรต์วาดใหม่; midpointอาจเห็นขอบซ้อนในท่าที่ต่างมาก เป็นข้อจำกัดของวิธีและต้องไม่อ้างทุกอาชีพหรือ60paintedframes.
