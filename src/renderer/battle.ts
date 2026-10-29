@@ -3,7 +3,7 @@ import { drawActor, drawEffect, drawProcedural, type NativeAsset } from './nativ
 import { AssetPack } from './pack.ts';
 import { drawNativeImpact, nativeImpactDuration, type LoadedNativeImpact } from './native-impact.ts';
 import { ActorAnimation } from './actor-animation.ts';
-import { NativeActorTween } from './actor-tween.ts';
+import type { NativeActorTween } from './actor-tween.ts';
 import type { ImpactEffect, ProjectileSpec } from '../contracts/assets.ts';
 import { DamageNumbers, NUMBER_FLIGHT_MS, numberFlight, type NumberDrawBounds } from './damage-numbers.ts';
 import { drawProjectile, isFocusedDamage, projectileLifetime, projectilePoint, type ProjectileCue } from './projectiles.ts';
@@ -31,7 +31,7 @@ export class BattleRenderer {
   private impacts: { target_id: string; at: number; config: LoadedNativeImpact['config']; asset: NativeAsset; textures: LoadedNativeImpact['textures']; hue?: number }[] = [];
   private readonly numbers: DamageNumbers | null;
   private readonly animation: ActorAnimation;
-  private readonly actorTween = new NativeActorTween();
+  private readonly actorTween:NativeActorTween;
   /** All native player attack rigs; monsters/other states retain their native path. */
   smoothActors = true;
   private readonly finishers = new FinisherEffects();
@@ -53,7 +53,7 @@ export class BattleRenderer {
   /** Extra camera zoom around the arena centre; presentation only. */
   zoom = 1;
   drawnLayers = 0;
-  constructor(readonly canvas: HTMLCanvasElement, readonly pack: AssetPack, readonly scene: BattleScene) { this.animation = new ActorAnimation(id => pack.actors.get(id)); this.numbers = pack.numberFont ? new DamageNumbers(pack.numberFont, pack.index.combat_visuals.numbers.digit_frames, pack.criticalFont, pack.index.combat_visuals.numbers.critical_frame) : null; }
+  constructor(readonly canvas: HTMLCanvasElement, readonly pack: AssetPack, readonly scene: BattleScene) { this.actorTween=pack.actorTween; this.animation = new ActorAnimation(id => pack.actors.get(id)); this.numbers = pack.numberFont ? new DamageNumbers(pack.numberFont, pack.index.combat_visuals.numbers.digit_frames, pack.criticalFont, pack.index.combat_visuals.numbers.critical_frame) : null; }
   point(actor: ActorRenderView): [number, number] {
     if (actor.summon_of) {
       // Summons have no body sprite or spatial state: they sit beside their owner, fanned out by order.

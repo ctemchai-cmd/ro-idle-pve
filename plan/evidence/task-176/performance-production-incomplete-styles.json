@@ -1,0 +1,85 @@
+{
+  "passed": true,
+  "cpu_throttle": 4,
+  "warmup_ms": 6500,
+  "measurement_ms": 8000,
+  "production_compiled": true,
+  "scope": "Actual BossField/shared engine/native effects/digits/live Timeline, synthetic equal seeded party, not physical Android",
+  "samples": [
+    {
+      "mode": "before",
+      "draw": {
+        "samples": 184,
+        "p50": 6.699999988079071,
+        "p95": 11.100000023841858,
+        "max": 56
+      },
+      "raf": {
+        "samples": 183,
+        "p50": 49.900000000001455,
+        "p95": 50.10000000000218,
+        "max": 83.29999999999927
+      },
+      "long_tasks": [
+        61,
+        65,
+        83,
+        53,
+        54,
+        52,
+        54,
+        53,
+        50,
+        55,
+        50,
+        52,
+        51,
+        63,
+        57,
+        59
+      ],
+      "cache": {
+        "bytes": 0,
+        "frames": 0,
+        "hits": 0,
+        "misses": 0,
+        "evictions": 0,
+        "budget_bytes": 12582912,
+        "max_frames": 256,
+        "compositions": 0,
+        "scratch_bytes": 0
+      },
+      "game_ms": 15616
+    },
+    {
+      "mode": "after",
+      "draw": {
+        "samples": 459,
+        "p50": 3.5,
+        "p95": 5.599999964237213,
+        "max": 10.600000023841858
+      },
+      "raf": {
+        "samples": 458,
+        "p50": 16.69999999999891,
+        "p95": 33.19999999999891,
+        "max": 33.400000000001455
+      },
+      "long_tasks": [],
+      "cache": {
+        "bytes": 5837908,
+        "frames": 245,
+        "hits": 1993,
+        "misses": 245,
+        "evictions": 0,
+        "budget_bytes": 12582912,
+        "max_frames": 256,
+        "compositions": 245,
+        "scratch_bytes": 2359296
+      },
+      "game_ms": 15136
+    }
+  ],
+  "errors": [],
+  "writes": []
+}

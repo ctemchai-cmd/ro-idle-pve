@@ -1021,3 +1021,11 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T175-AC-01` | TASK-175 | All native clips/timing | focused/native/build/M0/public | passed_implementation |
 | `T175-AC-02` | TASK-175 | Native overlays/mobile | focused/native/build/M0/public | passed_implementation |
 | `T175-AC-03` | TASK-175 | Unchanged core and release | focused/native/build/M0/public | passed_implementation |
+
+## TASK-176
+
+| Case | Task | Criterion | Verification | Status |
+| --- | --- | --- | --- | --- |
+| `T176-AC-01` | TASK-176 | Native pixels and clocks | focused/native/production-perf/build/M0/public | not_run_implementation |
+| `T176-AC-02` | TASK-176 | Bounded cache/full-scene performance | focused/native/production-perf/build/M0/public | not_run_implementation |
+| `T176-AC-03` | TASK-176 | Unchanged core and release | focused/native/production-perf/build/M0/public | not_run_implementation |

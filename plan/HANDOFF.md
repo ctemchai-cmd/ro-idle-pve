@@ -1,3 +1,7 @@
+## TASK176 LOCAL REVIEW — battle frame cost, publish next — 29 October2026
+
+User clarifies whole screen/numbers/Timeline frame drops duringbattle after175. Productcomplete: packshared12MiB/256croppedposeLRU/60Hzdownround/originalkeynative/scratchdispose,Intlreuse+incrementalgroupcounts, directTimeline lane/markertransforms (CSSunchanged). FinalactualcompiledBossField/effects/digits/liveTimeline/allglobalstyles CPU4x warm6.5s+measure8s each: drawp9510.8→5.9ms/framep5050→16.7ms/longtasks35→0. Native6888canonical/1148keys/360worn/all32jobs60rigs68clips/100wrapperhits0recompositions/cachepressure/disposePASS; Timeline6geometry320390windows+nesteddetailsPASS.87focused/root-filteredidentical/M0/strictPASS.5fingerprintsunchangedb036/6b3001/a044/d6d33/fac863; no powersimulation/backend/media/ownerAuth/cloud/SQL/env/6173.176review,161/176done/M4115/125. Needexplicitallowlistpushoriginmain/VercelSUCCESS/publicRO_EVIDENCE_TASK=task-176 node scripts/test_all_actor_tween_hosted.cjs, then176done162/176/M4116/125closure. Own7526Vite/7527static stillrunning; closeafterchecks,never6173. Preserveuserassetsdraft/unselectedmodern/task108png/172nativefailedpng. Noagents. Preliminaryincompletestyle+HMRmetrics retained andmarkedinvalid/superseded; useperformance-production.jsononly.
+
 # Handoff ระหว่าง agent
 
 ## TASK175 COMPLETE / all profession attack in-betweens LIVE — 29 October2026

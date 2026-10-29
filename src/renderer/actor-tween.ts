@@ -1,7 +1,12 @@
 import { actorFrame, attachmentFrame, drawActor, drawParts, type ActorParts, type NativeAsset, type NativeFrame } from './native.mjs';
+import { PoseCache, type PoseImage } from './pose-cache.ts';
 
 type Point = readonly [number,number];
 type Segment = { asset:NativeAsset; frame:NativeFrame; offset:number[] };
+type Matrix = readonly [number,number,number,number];
+type PartBounds = (asset:NativeAsset,frame:NativeFrame,offset:readonly number[],matrix?:Matrix)=>void;
+const rigFields=['body','head','weapon','headgear','garment','shield','attackIndex','attackVariants','releaseFrame'] as const;
+export const POSE_SAMPLE_MS=1000/60;
 export interface ActorTweenSample {
   from:ReturnType<typeof actorFrame>; to:ReturnType<typeof actorFrame>;
   amount:number; blend:number; anchor:Point; rotate:boolean;
@@ -60,46 +65,95 @@ function intermediate(a:Segment,b:Segment,t:number,chooseNext=false):NativeFrame
     row[10]=angle(get(l,10,0),get(r,10,0),t);return row;
   })};
 }
-function paint(ctx:CanvasRenderingContext2D,items:Segment[],source?:Point,target?:Point,rotate=false):number {
-  ctx.save();if(source&&target){const[a,b,c,d]=rootNeckTransform(source,target,rotate);ctx.transform(a,b,c,d,0,0);}
-  let count=0;for(const s of items)count+=drawParts(ctx,s.asset,s.frame,s.offset);ctx.restore();return count;
+function paint(ctx:CanvasRenderingContext2D,items:Segment[],source?:Point,target?:Point,rotate=false,bounds?:PartBounds):number {
+  ctx.save();let matrix:Matrix|undefined;
+  if(source&&target){matrix=rootNeckTransform(source,target,rotate);ctx.transform(...matrix,0,0);}
+  let count=0;for(const s of items){bounds?.(s.asset,s.frame,s.offset,matrix);count+=drawParts(ctx,s.asset,s.frame,s.offset);}ctx.restore();return count;
 }
 
 /** Reusable scratch belongs to the renderer, not to every frame or actor. */
 export class NativeActorTween {
   private surfaces:HTMLCanvasElement[]|null=null;
   private rigSurface:HTMLCanvasElement|null=null;
+  private readonly poses:PoseCache;
+  private identities=new WeakMap<ActorParts,{parts:ActorParts;key:string}>();
+  private assets=new WeakMap<NativeAsset,number>();
+  private nextAsset=1;
+  private compositions=0;
+  private bounds=[Infinity,Infinity,-Infinity,-Infinity];
+  constructor(options:{maxBytes?:number;maxFrames?:number}={}){this.poses=new PoseCache(options.maxBytes,options.maxFrames);}
   get scratchBytes(){return((this.surfaces?3:0)+(this.rigSurface?1:0))*384*384*4;}
+  cacheStats(){return{...this.poses.stats(),compositions:this.compositions,scratch_bytes:this.scratchBytes};}
+  dispose(){
+    this.poses.clear();for(const c of[...(this.surfaces??[]),...(this.rigSurface?[this.rigSurface]:[])]){c.width=0;c.height=0;}
+    this.surfaces=null;this.rigSurface=null;this.identities=new WeakMap();this.assets=new WeakMap();this.nextAsset=1;this.compositions=0;
+  }
+  private identity(parts:ActorParts):string {
+    const known=this.identities.get(parts);
+    if(known&&rigFields.every(k=>known.parts[k]===parts[k]))return known.key;
+    const key=[parts.body,parts.head,parts.weapon,parts.headgear,parts.garment,parts.shield].map(asset=>{
+      if(!asset)return 0;let id=this.assets.get(asset);if(!id){id=this.nextAsset++;this.assets.set(asset,id);}return id;
+    }).join('.')+':'+parts.attackIndex+':'+(parts.attackVariants??[]).join(',')+':'+parts.releaseFrame;
+    this.identities.set(parts,{parts:{...parts},key});return key;
+  }
+  private trackBounds:PartBounds=(asset,frame,offset,matrix=[1,0,0,1])=>{
+    for(const layer of frame.layers){
+      const rect=asset.meta.sprite_sheet?.frames[layer[2]!]!;if(!rect||(layer[7]??255)<=0)continue;
+      const angle=(layer[10]??0)*Math.PI/180,cos=Math.cos(angle),sin=Math.sin(angle),sx=(layer[3]?-1:1)*(layer[8]??1),sy=layer[9]??1;
+      for(const x of[-rect[2]!/2,rect[2]!/2])for(const y of[-rect[3]!/2,rect[3]!/2]){
+        const px=layer[0]!+offset[0]!+cos*x*sx-sin*y*sy,py=layer[1]!+offset[1]!+sin*x*sx+cos*y*sy;
+        const tx=matrix[0]*px+matrix[2]*py,ty=matrix[1]*px+matrix[3]*py;
+        this.bounds[0]=Math.min(this.bounds[0]!,tx);this.bounds[1]=Math.min(this.bounds[1]!,ty);this.bounds[2]=Math.max(this.bounds[2]!,tx);this.bounds[3]=Math.max(this.bounds[3]!,ty);
+      }
+    }
+  };
+  private part(ctx:CanvasRenderingContext2D,asset:NativeAsset,frame:NativeFrame,offset:number[]=[0,0]):number {this.trackBounds(asset,frame,offset);return drawParts(ctx,asset,frame,offset);}
+  private image(ctx:CanvasRenderingContext2D,frame:PoseImage,x:number,y:number,facing:string,scale:number){ctx.save();ctx.translate(x,y);ctx.scale(facing==='left'?-scale:scale,scale);ctx.drawImage(frame.image,frame.x,frame.y);ctx.restore();}
   private blend(ctx:CanvasRenderingContext2D,a:Segment[],b:Segment[],sample:ActorTweenSample,warp:boolean):number {
     const from=warp?anchor(sample.from.frame)!:undefined,to=warp?anchor(sample.to.frame)!:undefined;
-    if(sample.blend===0)return paint(ctx,a,from,warp?sample.anchor:undefined,sample.rotate);
-    if(sample.blend===1)return paint(ctx,b,to,warp?sample.anchor:undefined,sample.rotate);
+    if(sample.blend===0)return paint(ctx,a,from,warp?sample.anchor:undefined,sample.rotate,this.trackBounds);
+    if(sample.blend===1)return paint(ctx,b,to,warp?sample.anchor:undefined,sample.rotate,this.trackBounds);
     this.surfaces??=Array.from({length:3},()=>{const c=document.createElement('canvas');c.width=c.height=384;c.getContext('2d')!.imageSmoothingEnabled=false;return c;});
     let count=0;
-    for(const[canvas,items,source]of [[this.surfaces[0]!,a,from],[this.surfaces[1]!,b,to]] as const){const c=canvas.getContext('2d')!;c.setTransform(1,0,0,1,0,0);c.clearRect(0,0,384,384);c.save();c.translate(192,300);count+=paint(c,items,source,warp?sample.anchor:undefined,sample.rotate);c.restore();}
+    for(const[canvas,items,source]of [[this.surfaces[0]!,a,from],[this.surfaces[1]!,b,to]] as const){const c=canvas.getContext('2d')!;c.setTransform(1,0,0,1,0,0);c.clearRect(0,0,384,384);c.save();c.translate(192,300);count+=paint(c,items,source,warp?sample.anchor:undefined,sample.rotate,this.trackBounds);c.restore();}
     const mix=this.surfaces[2]!,c=mix.getContext('2d')!;c.clearRect(0,0,384,384);c.globalCompositeOperation='source-over';c.globalAlpha=1-sample.blend;c.drawImage(this.surfaces[0]!,0,0);c.globalCompositeOperation='lighter';c.globalAlpha=sample.blend;c.drawImage(this.surfaces[1]!,0,0);c.globalAlpha=1;c.globalCompositeOperation='source-over';
     ctx.drawImage(mix,-192,-300);return count+3;
   }
   draw(ctx:CanvasRenderingContext2D,parts:ActorParts,state:string,elapsed:number,x:number,y:number,facing='right',scale=2.5,enabled=true):number {
-    const sample=enabled?actorTweenSample(parts,state,elapsed):null;
-    if(!sample)return drawActor(ctx,parts,state,elapsed,x,y,facing,scale);
+    const actual=enabled?actorTweenSample(parts,state,elapsed):null;
+    if(!actual)return drawActor(ctx,parts,state,elapsed,x,y,facing,scale);
+    const delay=actual.from.action!.frame_duration_ms,steps=Math.ceil(delay/POSE_SAMPLE_MS),phase=Math.min(steps-1,Math.floor(actual.amount*steps+1e-8));
+    // Never advance a release pose early; exact ACT key times retain their native path.
+    if(!phase)return drawActor(ctx,parts,state,elapsed,x,y,facing,scale);
+    const at=(actual.from.index+phase/steps)*delay,sample=actorTweenSample(parts,state,at)!;
+    const key=this.identity(parts)+':'+state+':'+actual.from.index+':'+phase;
+    const cached=this.poses.get(key);if(cached){this.image(ctx,cached,x,y,facing,scale);return 1;}
+    this.compositions++;this.bounds=[Infinity,Infinity,-Infinity,-Infinity];
     // Rasterize the complete intermediate rig once before flipping/scaling it.
     // This gives head, limbs and overlays the same pixel grid in both facings.
     this.rigSurface??=(()=>{const c=document.createElement('canvas');c.width=c.height=384;c.getContext('2d')!.imageSmoothingEnabled=false;return c;})();
     const rig=this.rigSurface.getContext('2d')!;rig.setTransform(1,0,0,1,0,0);rig.clearRect(0,0,384,384);rig.save();rig.translate(192,300);let count=0;
     for(const group of['lower','head','weapon'] as const){
       const a=segments(parts,sample.from,state,group),b=segments(parts,sample.to,state,group);
-      if(matching(a,b)){for(let i=0;i<a.length;i++)count+=drawParts(rig,a[i]!.asset,intermediate(a[i]!,b[i]!,sample.amount));}
+      if(matching(a,b)){for(let i=0;i<a.length;i++)count+=this.part(rig,a[i]!.asset,intermediate(a[i]!,b[i]!,sample.amount));}
       // A face is never double exposed, even for an unusual headgear frame change.
       else if(group==='head'){
         for(const asset of new Set([...a,...b].map(s=>s.asset))){
           const first=a.find(s=>s.asset===asset),next=b.find(s=>s.asset===asset);
-          if(first&&next)count+=drawParts(rig,asset,intermediate(first,next,sample.amount,sample.amount>=.5));
-          else {const single=first??next!;count+=drawParts(rig,asset,single.frame,single.offset);}
+          if(first&&next)count+=this.part(rig,asset,intermediate(first,next,sample.amount,sample.amount>=.5));
+          else {const single=first??next!;count+=this.part(rig,asset,single.frame,single.offset);}
         }
       }
       else count+=this.blend(rig,a,b,sample,group==='lower');
     }
-    rig.restore();ctx.save();ctx.translate(x,y);ctx.scale(facing==='left'?-scale:scale,scale);ctx.drawImage(this.rigSurface,-192,-300);ctx.restore();return count+1;
+    rig.restore();
+    const left=Math.max(-192,Math.floor(this.bounds[0]!)-2),top=Math.max(-300,Math.floor(this.bounds[1]!)-2),right=Math.min(192,Math.ceil(this.bounds[2]!)+2),bottom=Math.min(84,Math.ceil(this.bounds[3]!)+2),width=right-left,height=bottom-top;
+    if(width<=0||height<=0)return count;
+    const bytes=width*height*4;
+    if(bytes<=this.poses.maxBytes&&this.poses.maxFrames>0){
+      const image=document.createElement('canvas');image.width=width;image.height=height;image.getContext('2d')!.drawImage(this.rigSurface,left+192,top+300,width,height,0,0,width,height);
+      const frame={image,x:left,y:top,bytes};this.poses.put(key,frame);this.image(ctx,frame,x,y,facing,scale);
+    }else{ctx.save();ctx.translate(x,y);ctx.scale(facing==='left'?-scale:scale,scale);ctx.drawImage(this.rigSurface,left+192,top+300,width,height,left,top,width,height);ctx.restore();}
+    return count+2;
   }
 }

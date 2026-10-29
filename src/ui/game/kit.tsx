@@ -31,7 +31,10 @@ Object.assign(statLabels, Object.fromEntries(Object.entries(statNames).filter(([
 export const ratioStats = new Set<string>(Object.entries(cardStatUnits).filter(([, unit]) => unit === 'ratio').map(([id]) => id));
 export const rarityOrder = ['common', 'uncommon', 'rare', 'epic', 'legendary', 'immortal', 'supreme'];
 
-export const full = (n: number) => Math.round(n).toLocaleString('th-TH');
+const wholeNumberFormat = new Intl.NumberFormat('th-TH');
+const shortNumberFormat = new Intl.NumberFormat('th-TH', { maximumFractionDigits: 1 });
+const secondsFormat = new Intl.NumberFormat('th-TH', { maximumFractionDigits: 2 });
+export const full = (n: number) => wholeNumberFormat.format(Math.round(n));
 export function compact(n: number): string {
   const abs = Math.abs(n);
   if (abs >= 1e9) return (n / 1e9).toFixed(abs >= 1e10 ? 0 : 1).replace(/\.0$/, '') + 'B';
@@ -40,10 +43,10 @@ export function compact(n: number): string {
   return full(n);
 }
 export function statValue(key: string, n: number): string {
-  if (ratioStats.has(key)) return (n * 100).toLocaleString('th-TH', { maximumFractionDigits: 1 }) + '%';
-  return n.toLocaleString('th-TH', { maximumFractionDigits: 1 });
+  if (ratioStats.has(key)) return shortNumberFormat.format(n * 100) + '%';
+  return shortNumberFormat.format(n);
 }
-export const seconds = (ms: number) => (ms / 1000).toLocaleString('th-TH', { maximumFractionDigits: 2 }) + 's';
+export const seconds = (ms: number) => secondsFormat.format(ms / 1000) + 's';
 export function duration(ms: number): string {
   const total = Math.max(0, Math.floor(ms / 1000)), h = Math.floor(total / 3600), m = Math.floor(total % 3600 / 60), s = total % 60;
   return h ? `${h}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}` : `${m}:${String(s).padStart(2, '0')}`;

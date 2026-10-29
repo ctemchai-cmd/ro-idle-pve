@@ -16826,6 +16826,54 @@
       "evidence_refs": [
         "plan/evidence/task-175-review.json"
       ]
+    },
+    {
+      "id": "T176-AC-01",
+      "task_id": "TASK-176",
+      "acceptance_id": "AC-01",
+      "criterion": "Preserved native canonical pixels, keys, release and gameplay",
+      "input_setup": "Frozen175 renderer, actual BossField/shared engine/nativeSFX/liveTimeline, disposable seeded fixtures",
+      "input_refs": [
+        "plan/review/tasks_176.md",
+        "plan/design/89-pose-render-cache.md"
+      ],
+      "parameters": {},
+      "expected": "Preserved native canonical pixels, keys, release and gameplay",
+      "verification": "focused/native/production-perf/build/M0/public",
+      "status": "not_run_implementation",
+      "evidence_refs": []
+    },
+    {
+      "id": "T176-AC-02",
+      "task_id": "TASK-176",
+      "acceptance_id": "AC-02",
+      "criterion": "Bounded shared pose cache and measured full-scene improvement",
+      "input_setup": "Frozen175 renderer, actual BossField/shared engine/nativeSFX/liveTimeline, disposable seeded fixtures",
+      "input_refs": [
+        "plan/review/tasks_176.md",
+        "plan/design/89-pose-render-cache.md"
+      ],
+      "parameters": {},
+      "expected": "Bounded shared pose cache and measured full-scene improvement",
+      "verification": "focused/native/production-perf/build/M0/public",
+      "status": "not_run_implementation",
+      "evidence_refs": []
+    },
+    {
+      "id": "T176-AC-03",
+      "task_id": "TASK-176",
+      "acceptance_id": "AC-03",
+      "criterion": "Same five fingerprints and verified release",
+      "input_setup": "Frozen175 renderer, actual BossField/shared engine/nativeSFX/liveTimeline, disposable seeded fixtures",
+      "input_refs": [
+        "plan/review/tasks_176.md",
+        "plan/design/89-pose-render-cache.md"
+      ],
+      "parameters": {},
+      "expected": "Same five fingerprints and verified release",
+      "verification": "focused/native/production-perf/build/M0/public",
+      "status": "not_run_implementation",
+      "evidence_refs": []
     }
   ]
 }

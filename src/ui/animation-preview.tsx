@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { AssetPack } from '../renderer/pack.ts';
-import { NativeActorTween } from '../renderer/actor-tween.ts';
 import { actorDuration, actorFrame, drawActor, type ActorParts } from '../renderer/native.mjs';
 import { presetSwing } from '../renderer/actor-animation.ts';
 import { actorPreviewLayout } from '../renderer/actor-preview.ts';
@@ -20,7 +19,7 @@ export default function AnimationPreview() {
     void Promise.all([pack.asset(preset.body.meta),preset.head?pack.asset(preset.head.meta):undefined,preset.weapon?pack.asset(preset.weapon.meta):undefined]).then(([body,head,weapon])=>{if(!stopped){clock.current=0;setParts({body,head,weapon,...presetSwing(preset),previewJob:jobId,previewGender:preset.gender});}}).catch(()=>{if(!stopped)setError('เตรียมตัวละครไม่สำเร็จ');});return()=>{stopped=true;};
   },[pack,preset]);
   useEffect(()=>{running.current=!paused;},[paused]);
-  useEffect(()=>{const node=canvas.current;if(!node||!parts)return;const drawnCanvas=node,ctx=node.getContext('2d')!,tween=new NativeActorTween(),duration=actorDuration(parts,swing),cycle=duration+450,layout=actorPreviewLayout(parts,swing,left);let raf=0,last=performance.now();ctx.imageSmoothingEnabled=false;
+  useEffect(()=>{const node=canvas.current;if(!node||!parts||!pack)return;const drawnCanvas=node,ctx=node.getContext('2d')!,tween=pack.actorTween,duration=actorDuration(parts,swing),cycle=duration+450,layout=actorPreviewLayout(parts,swing,left);let raf=0,last=performance.now();ctx.imageSmoothingEnabled=false;
     function draw(now:number){const delta=document.hidden?0:Math.min(100,Math.max(0,now-last));last=now;if(running.current)clock.current=(clock.current+delta)%cycle;
       const at=clock.current,state=at<duration?swing:'idle',elapsed=state==='idle'?0:at;
       ctx.clearRect(0,0,720,560);ctx.fillStyle='#f3f7fd';ctx.fillRect(0,0,720,560);
@@ -30,7 +29,7 @@ export default function AnimationPreview() {
       if(scrub.current){scrub.current.max=String(cycle);scrub.current.value=String(Math.round(at));}
       drawnCanvas.dataset.time=String(at);drawnCanvas.dataset.state=state;drawnCanvas.dataset.job=parts!.previewJob;drawnCanvas.dataset.gender=parts!.previewGender;drawnCanvas.dataset.swing=swing;drawnCanvas.dataset.sourceFrame=String(actorFrame(parts!,state,elapsed).index);raf=requestAnimationFrame(draw);
     }raf=requestAnimationFrame(draw);return()=>cancelAnimationFrame(raf);
-  },[parts,left,swing]);
+  },[parts,left,swing,pack]);
   return <main className="animation-preview"><div className="animation-rotate" role="status">กรุณาหมุนหน้าจอเป็นแนวตั้ง</div>
     <header><a href="/play">กลับเกม</a><h1>ท่าโจมตีทุกอาชีพ</h1><p>ภาพเดิม + ท่าคั่นที่คำนวณจากจุดยึดเดิม</p></header>
     <div className="animation-selectors"><label>อาชีพ<select aria-label="อาชีพ" value={jobId} disabled={!pack} onChange={e=>{const id=e.target.value,next=jobs.find(j=>j.job_id===id)!;setJobId(id);setSwing('attack');setGender(g=>next.presets.some(p=>p.gender===g)?g:next.presets[0]!.gender==='female'?'female':'male');}}>{jobs.length?jobs.map(j=><option key={j.job_id} value={j.job_id}>{label(j.job_id)}</option>):<option value="swordsman">Swordsman</option>}</select></label>{swingStates.length>1&&<label>ท่าโจมตี<select aria-label="ท่าโจมตี" value={swing} onChange={e=>{clock.current=0;if(scrub.current)scrub.current.value='0';setSwing(e.target.value);}}>{swingStates.map((s,i)=><option key={s} value={s}>ท่าที่ {i+1}</option>)}</select></label>}</div>

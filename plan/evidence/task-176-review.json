@@ -1,0 +1,164 @@
+{
+  "task_id": "TASK-176",
+  "passed": false,
+  "status": "review",
+  "local_passed": true,
+  "acceptance_results": {
+    "AC-01": "passed",
+    "AC-02": "passed",
+    "AC-03": "awaiting_public"
+  },
+  "checks": {
+    "focused_TS_tests": 87,
+    "new_cache_unit_tests": 4,
+    "strict_typecheck": true,
+    "native_jobs": 32,
+    "native_rigs": 60,
+    "attack_clips": 68,
+    "canonical_pixel_comparisons": 6888,
+    "original_key_pixel_samples": 1148,
+    "worn_cases": 360,
+    "hot_rig_wrappers": 100,
+    "hot_recompositions": 0,
+    "cache_RGBA_budget_bytes": 12582912,
+    "cache_max_entries": 256,
+    "scratch_bytes": 2359296,
+    "dispose_releases_all_canvases": true,
+    "timeline_geometry_cases": 6,
+    "timeline_nested_details": true,
+    "root_build": true,
+    "filtered_build": true,
+    "root_filtered_version_identical": true,
+    "M0": true,
+    "five_fingerprints_unchanged": true,
+    "SQL_env_asset_changes": false,
+    "owner_access": false,
+    "personal_6173_touched": false
+  },
+  "performance": {
+    "passed": true,
+    "cpu_throttle": 4,
+    "warmup_ms": 6500,
+    "measurement_ms": 8000,
+    "production_compiled": true,
+    "scope": "Actual BossField/shared engine/native effects/digits/live Timeline, synthetic equal seeded party, not physical Android",
+    "samples": [
+      {
+        "mode": "before",
+        "draw": {
+          "samples": 173,
+          "p50": 6.699999988079071,
+          "p95": 10.800000011920929,
+          "max": 20.80000001192093
+        },
+        "raf": {
+          "samples": 172,
+          "p50": 50,
+          "p95": 66.69999999999709,
+          "max": 83.39999999999964
+        },
+        "long_tasks": [
+          50,
+          59,
+          66,
+          56,
+          57,
+          51,
+          59,
+          52,
+          63,
+          51,
+          59,
+          53,
+          51,
+          64,
+          56,
+          51,
+          51,
+          51,
+          52,
+          50,
+          62,
+          52,
+          50,
+          51,
+          51,
+          51,
+          59,
+          50,
+          50,
+          51,
+          51,
+          51,
+          59,
+          56,
+          54
+        ],
+        "cache": {
+          "bytes": 0,
+          "frames": 0,
+          "hits": 0,
+          "misses": 0,
+          "evictions": 0,
+          "budget_bytes": 12582912,
+          "max_frames": 256,
+          "compositions": 0,
+          "scratch_bytes": 0
+        },
+        "game_ms": 15632
+      },
+      {
+        "mode": "after",
+        "draw": {
+          "samples": 458,
+          "p50": 3.699999988079071,
+          "p95": 5.900000035762787,
+          "max": 10.300000011920929
+        },
+        "raf": {
+          "samples": 457,
+          "p50": 16.69999999999891,
+          "p95": 33.29999999999927,
+          "max": 33.400000000001455
+        },
+        "long_tasks": [],
+        "cache": {
+          "bytes": 5837908,
+          "frames": 245,
+          "hits": 1997,
+          "misses": 245,
+          "evictions": 0,
+          "budget_bytes": 12582912,
+          "max_frames": 256,
+          "compositions": 245,
+          "scratch_bytes": 2359296
+        },
+        "game_ms": 15182
+      }
+    ],
+    "errors": [],
+    "writes": []
+  },
+  "fingerprints": {
+    "engine_data_hash": "fac86304ccd7430abcfad1eb856f1eb4fff8b5f4ba7a738e5c0cd161fe72dc70",
+    "schema_hash": "d6d33ae96aadda49257ac5bc7e9d5400c7ff8d9742dc73dd930a2c6f215668c8",
+    "implementation_hash": "a044537668f424ba8db84d17b7b6030a46e6660b146f6af7ba2c6c78851a9ee6",
+    "content_hash": "b0369ce430a459729870ed7ebc6cbfa2abf6920ad01555ce31a95a1d35290c24",
+    "runtime_asset_pack_hash": "6b3001aef85634b686f8296eb99ce5612b50794c8b59e13c1c54f6995e0daf7c"
+  },
+  "evidence": [
+    "task-176/native.json",
+    "task-176/timeline.json",
+    "task-176/performance-production.json",
+    "task-176/gameplay-before.json",
+    "task-176/gameplay-after.json",
+    "task-176/source-after.json",
+    "task-176/README.md"
+  ],
+  "limitations": [
+    "Production-compiled synthetic actual BossField/native effects/digits/live Timeline under Chrome CPU4x; 6.5s warm-up and 8s samples per variant, not physical Android or full60s certification.",
+    "Cached computed artwork sampled downward within original ACT intervals at60Hz; exact native keys/release remain unchanged.",
+    "12MiB bounds cached canvas RGBA only, excluding browser/GPU bookkeeping and fixed2.25MiB scratch.",
+    "Original intermediate limb-edge overlap remains possible; no new hand-drawn frames."
+  ]
+}

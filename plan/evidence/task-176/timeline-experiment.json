@@ -1,0 +1,131 @@
+{
+  "passed": true,
+  "cpu_throttle": 4,
+  "warmup_ms": 6500,
+  "measurement_ms": 8000,
+  "production_compiled": true,
+  "scope": "Actual BossField/shared engine/native effects/digits/live Timeline, synthetic equal seeded party, not physical Android",
+  "samples": [
+    {
+      "mode": "before",
+      "draw": {
+        "samples": 170,
+        "p50": 6.5,
+        "p95": 11.200000047683716,
+        "max": 15.399999976158142
+      },
+      "raf": {
+        "samples": 169,
+        "p50": 49.899999999999636,
+        "p95": 50.10000000000218,
+        "max": 700
+      },
+      "long_tasks": [
+        54,
+        50,
+        50,
+        50,
+        56,
+        51,
+        87,
+        105,
+        57,
+        56,
+        51,
+        54,
+        50,
+        51,
+        52,
+        53,
+        50,
+        52,
+        51,
+        55
+      ],
+      "cache": {
+        "bytes": 0,
+        "frames": 0,
+        "hits": 0,
+        "misses": 0,
+        "evictions": 0,
+        "budget_bytes": 12582912,
+        "max_frames": 256,
+        "compositions": 0,
+        "scratch_bytes": 0
+      },
+      "game_ms": 14747
+    },
+    {
+      "mode": "after",
+      "draw": {
+        "samples": 212,
+        "p50": 3.899999976158142,
+        "p95": 6.800000011920929,
+        "max": 17.399999976158142
+      },
+      "raf": {
+        "samples": 211,
+        "p50": 33.39999999999782,
+        "p95": 50.100000000000364,
+        "max": 100
+      },
+      "long_tasks": [
+        56,
+        75,
+        110,
+        52,
+        52
+      ],
+      "cache": {
+        "bytes": 5824372,
+        "frames": 244,
+        "hits": 1203,
+        "misses": 244,
+        "evictions": 0,
+        "budget_bytes": 12582912,
+        "max_frames": 256,
+        "compositions": 244,
+        "scratch_bytes": 2359296
+      },
+      "game_ms": 15106
+    },
+    {
+      "mode": "after",
+      "variant": "direct_timeline_transforms",
+      "draw": {
+        "samples": 256,
+        "p50": 4.200000047683716,
+        "p95": 6.300000011920929,
+        "max": 227.10000002384186
+      },
+      "raf": {
+        "samples": 255,
+        "p50": 16.700000000000728,
+        "p95": 33.39999999999782,
+        "max": 233.3000000000029
+      },
+      "long_tasks": [
+        243
+      ]
+    },
+    {
+      "mode": "after",
+      "variant": "direct_timeline_no_backdrop_blur",
+      "draw": {
+        "samples": 251,
+        "p50": 4.100000023841858,
+        "p95": 6.799999952316284,
+        "max": 11.5
+      },
+      "raf": {
+        "samples": 250,
+        "p50": 16.700000000000728,
+        "p95": 33.39999999999782,
+        "max": 33.400000000001455
+      },
+      "long_tasks": []
+    }
+  ],
+  "errors": [],
+  "writes": []
+}

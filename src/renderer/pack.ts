@@ -6,6 +6,7 @@ import { BattleAudio, type AudioLevels } from './audio.ts';
 import { wardrobeRefs, type WardrobeTiers } from './shell.ts';
 import { validateCombatVisuals } from './projectiles.ts';
 import { presetSwing } from './actor-animation.ts';
+import { NativeActorTween } from './actor-tween.ts';
 import { nativeImpactProfile, type LoadedNativeImpact } from './native-impact.ts';
 import { performanceAuraConfig, type LoadedPerformanceAura } from './performance-aura.ts';
 import { groundFieldProfiles, type LoadedGroundField } from './ground-fields.ts';
@@ -13,6 +14,8 @@ import { blackKeyTexture } from './native-textures.ts';
 
 async function json<T>(url: string, init?: RequestInit): Promise<T> { const response = await fetch(url, init); if (!response.ok) throw new Error(`ASSET_HTTP_${response.status}:${url}`); return response.json() as Promise<T>; }
 export class AssetPack {
+  /** Reuse bounded artwork across waves/battles; no account or simulation state. */
+  readonly actorTween = new NativeActorTween();
   readonly errors: string[] = [];
   readonly actors = new Map<string, ActorParts>();
   readonly visuals = new Map<string, { recipe: RuntimeRecipe; native: NativeAsset | null; sound_paths: readonly string[] }>();
@@ -141,7 +144,7 @@ export class AssetPack {
   enableAudio(enabled: boolean, scene: BattleScene): Promise<void> { return this.audioMixer.enable(enabled, scene.music_meta); }
   sound(ref: string, channel?: string): Promise<void> { return this.audioMixer.sound(ref, channel); }
   stopSound(channel: string): void { this.audioMixer.stopSound(channel); }
-  dispose(): void { this.audioMixer.dispose(); }
+  dispose(): void { this.actorTween.dispose(); this.audioMixer.dispose(); }
   async validateMedia(): Promise<{ images: number; audio: number; font: boolean }> {
     const seen = new Set<string>(); let images = 0, audio = 0;
     const decoder = new AudioContext();

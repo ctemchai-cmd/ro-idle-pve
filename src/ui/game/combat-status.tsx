@@ -5,7 +5,8 @@ import { locateSkillVisual } from '../../renderer/asset-locator.ts';
 import { Icon } from '../icon.tsx';
 import { Sheet } from './kit.tsx';
 
-const percentNumber = (ratio: number) => (ratio * 100).toLocaleString('th-TH', { maximumFractionDigits: 2 });
+const percentFormat = new Intl.NumberFormat('th-TH', { maximumFractionDigits: 2 });
+const percentNumber = (ratio: number) => percentFormat.format(ratio * 100);
 const timeLeft = (expires: number, now: number) => `${Math.max(0, (expires - now) / 1000).toFixed(1)}s`;
 function SkillIcon({ skillId, polarity = 'buff', pack }: { skillId: string | null; polarity?: 'buff' | 'debuff'; pack: AssetPack | null }) {
   const [url, setUrl] = useState<string | null>(null);

@@ -55,6 +55,8 @@ export function SkillTimeline({ session, pack, view, clock }: { session: Timelin
   useEffect(() => {
     const node = root.current; if (!node) return;
     const region = node.querySelector<HTMLElement>('.timeline-now-region')!;
+    const lanes = [...node.querySelectorAll<HTMLElement>('.timeline-content')];
+    const nowMarker = node.querySelector<HTMLElement>('.timeline-now')!;
     let width = region.clientWidth, raf = 0, lastTime = -1, lastBucket = -1;
     const observer = new ResizeObserver(entries => { width = entries[0]!.contentRect.width; lastTime = -1; }); observer.observe(region);
     const markers = [...node.querySelectorAll<HTMLElement>('.timeline-entry')].map(element => ({ element, button: element.querySelector('button')!, start: Number(element.dataset.startMs), end: Number(element.dataset.endMs) }));
@@ -62,10 +64,11 @@ export function SkillTimeline({ session, pack, view, clock }: { session: Timelin
       const now = clock.current;
       if (now !== lastTime) {
         const start = Math.max(0, now - windowMs / 4);
-        // Static geometry is translated by the compositor each animation frame.
-        // React/HUD updates never rebuild or move individual timeline markers.
-        node!.style.setProperty('--timeline-shift', `${-start / windowMs * 100}%`);
-        node!.style.setProperty('--timeline-now-x', `${(now - start) / windowMs * width}px`);
+        // Write only to compositor layers. Updating inherited variables on the
+        // root invalidates the style of every skill/label in the entire chart.
+        const shift = `translate3d(${-start / windowMs * 100}%,0,0)`;
+        for(const lane of lanes)lane.style.transform = shift;
+        nowMarker.style.transform = `translate3d(${(now - start) / windowMs * width}px,0,0)`;
         const bucket = Math.floor(now / 100);
         if (bucket !== lastBucket) {
           if (clockLabel.current) clockLabel.current.textContent = seconds(now);
