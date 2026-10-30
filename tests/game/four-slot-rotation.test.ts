@@ -55,13 +55,13 @@ test('D147 Stun waits at the action gate; an interrupted cast remains spent with
   assert.ok(result.events.some(e=>e.type==='cast_interrupt'&&e.actor_id==='b'&&e.at_ms===4000));
   assert.equal(result.state.metrics.actors.b!.sp_spent,20);
 });
-test('D147 checkpoint continuation, timeline and 1/2/4x chunking share exact cast/CC/RNG outcomes',async()=>{
+test('D147 checkpoint continuation, timeline and 1/2/3x and legacy4x chunking share exact cast/CC/RNG outcomes',async()=>{
   const stop=skill('cut',0,500,0);stop.effects=[{id:'cut',type:'interrupt',target:'foe'}];
   const a=actor('a','player',[stop],true),b=actor('b','enemy',[skill('long',2500,500,0)],true);
   b.stat_blueprint.derived_offsets.attack_speed=100;
   const start=initial([a,b]),whole=unwrap(advanceUntil(start,30000,content));
   assert.ok(whole.events.some(e=>e.type==='cast_interrupt'));
-  for(const speed of [1,2,4]){
+  for(const speed of [1,2,3,4]){
     let state=start;const events:typeof whole.events=[];
     while(state.game_time_ms<30000){const next=unwrap(advanceUntil(state,Math.min(30000,state.game_time_ms+500*speed),content));state=next.state;events.push(...next.events);}
     assert.deepEqual(state,whole.state);assert.deepEqual(events,whole.events);

@@ -422,3 +422,6 @@ D198/TASK174: ผู้ใช้หมายถึงท่า native มีเ�
 D199/TASK175: ผู้ใช้ขอท่าคั่น+ผสานเฟรมให้ครบทุกอาชีพ รวมClass1/Class2/Hiในเกม32อาชีพ. ท่าโจมตีจริง68แบบ/60genderpresets, เลือกaffinemodeคงที่ต่อnativepairสำหรับท่าก้มมาก; คงจังหวะ/nativekeys/contactและnonattack/reducedmotion. หน้าเทียบเลือกทุกอาชีพ/เพศที่มี/ท่าต่อยจริง. ไม่มีpower/core/media/saveเปลี่ยน.
 
 D200/TASK176: ผู้ใช้ยืนยันทั้งฉาก/ตัวเลข/Timelineกระตุกระหว่างต่อสู้บนAndroidChrome/PWA. ลดงานประกอบภาพซ้ำด้วย native60Hzfloor sample/sharedpackLRU12MiBRGBA256frames/cropตามnativegeometry, reuseIntlformattersและgroupcounts, ขยับเฉพาะTimeline lanes+nowmarkerแทนinheritedrootvariables. คงnativekeys/เวลาต่อสู้/สกิล/core/pack/เซฟ;วัดactualProductionBossFieldพร้อมTimelineและassetsจริง ไม่ใช้ownerAuthหรือปรับบาลานซ์.
+
+D201/TASK177: Hunterเซฟที่3เล่นในคอมได้แต่PWAโทรศัพท์ขึ้นgenericerror. เพิ่มรหัสข้อผิดพลาดแบบboundedเพื่อวินิจฉัยจากมือถือ; ยังไม่ยืนยันว่าสาเหตุคืออะไร/ไม่รีเซ็ตหรือทิ้งpending.
+D202/TASK178: ผู้ใช้ให้ลดความเร็วสูงสุดเป็น3×; UI savedbattle/demo/previewวน1/2/3, preference4→3; engine/legacyprotocol/receipts unchanged.

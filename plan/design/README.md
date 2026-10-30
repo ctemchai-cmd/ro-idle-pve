@@ -130,3 +130,5 @@ D167/TASK139: [ร้าน/แลกเศษ/Panel](56-shop-and-exchange-ui.md
 - [88 — Every profession native attack in-betweens](88-all-profession-inbetweens.md) · D199/TASK175.
 
 - [89 — Battle pose cache and Timeline frame work](89-pose-render-cache.md) · D200/TASK176.
+
+- [D201–202: phone save diagnosis and3× speed](90-device-save-and-speeds.md) · TASK177–178.

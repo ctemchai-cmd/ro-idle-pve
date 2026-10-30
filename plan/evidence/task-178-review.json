@@ -1,0 +1,45 @@
+{
+  "task_id": "TASK-178",
+  "passed": false,
+  "status": "review",
+  "local_passed": true,
+  "acceptance_results": {
+    "AC-01": "passed",
+    "AC-02": "passed",
+    "AC-03": "awaiting_public"
+  },
+  "checks": {
+    "focused_TS": 92,
+    "new_speed_preference_tests": 4,
+    "same_event_state_at1_2_3_and_legacy4": true,
+    "native_groups": 5,
+    "native_Hunter_fixture_only": true,
+    "root_build": true,
+    "filtered_build": true,
+    "root_filtered_artifact_identical": true,
+    "strict_typecheck": true,
+    "M0": true,
+    "five_fingerprints_unchanged": true,
+    "owner_access": false,
+    "SQL_env_schema_changes": false
+  },
+  "fingerprints": {
+    "engine_data_hash": "fac86304ccd7430abcfad1eb856f1eb4fff8b5f4ba7a738e5c0cd161fe72dc70",
+    "schema_hash": "d6d33ae96aadda49257ac5bc7e9d5400c7ff8d9742dc73dd930a2c6f215668c8",
+    "implementation_hash": "a044537668f424ba8db84d17b7b6030a46e6660b146f6af7ba2c6c78851a9ee6",
+    "content_hash": "b0369ce430a459729870ed7ebc6cbfa2abf6920ad01555ce31a95a1d35290c24",
+    "runtime_asset_pack_hash": "6b3001aef85634b686f8296eb99ce5612b50794c8b59e13c1c54f6995e0daf7c"
+  },
+  "evidence": [
+    "task-178/native.json",
+    "task-178/gameplay-before.json",
+    "task-178/gameplay-after.json",
+    "task-178/source-after.json",
+    "task-178/README.md"
+  ],
+  "limitations": [
+    "Synthetic mobile Chrome, not physical owner phone.",
+    "TASK177 Hunter phone failure not yet identified or recovered; diagnostic UI is preparation only.",
+    "Historical server4x protocol remains compatible; current product controls expose1/2/3 and use terminal-only replay."
+  ]
+}

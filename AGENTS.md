@@ -1,3 +1,9 @@
+## Phone save diagnosis and3× speed (30 October2026,D201–202/TASK177–178)
+
+TASK177 Hunterthirdsave worksdesktop butphonePWA genericerror. Actualphonecode/rootcause/recovery UNKNOWN; donotclaimfixed/reset/discardpending. Addboundedpublicerroridentifier toexistingHUD/settings/splash, uppercase80max/UNKNOWNfallback, noresponsebodies/IDs/secrets. Native320390syntheticHunter/retry/settings passed. No directSupabasecredential/ownerAuth/cloudread-write. AfterUIrelease askphonecode;177remainsinprogress.
+
+TASK178localreview: allsavedbattle/demo/skillpreview1/2/3cycle, olddevice4→3 evenwritedenied; sharedtype/options/next.92focusedTS/fiveNativegroups/root-filteredidentical/M0/strictpass. Originalcast/CC/emptyslot/RNGevents equal1/2/3pluslegacy4. Keepserveroldbattle.advance1/2/4 andterminalmax4 compatibility: currentspeedlocalonly/terminalfinishnoparam. Fivehashesunchangedb036/6b3001/a044/d6d33/fac863. No power/schema/data/assets/SQL/env/save changes. AwaitpublishVercel/public; noagents; preserveuserassets. SeeHANDOFF/design90.
+
 ## Battle frame performance (29 October2026,D200/TASK176)
 
 Live sourceac9bf7941/VercelSUCCESS;87focused/native6888canonical+1148keys/32jobs60rigs68clips360worn/6Timeline/root-filtered/M0/public4groups68controls27bundleSHAs/5fingerprints passed. PacksharedcropPoseCache12MiBRGBA/256entries+4scratch,60Hzrounddown/originalkeysnative/100wrapperhits0compositions/disposezero. ReuseIntl/groupcounts; directTimeline lane/nowtransforms instead ofinheritedrootvars. FinalcompiledactualBossField/effects/digits/liveTimeline/allentrystyles CPU4x6.5swarm8ssamples drawp9510.8→5.9ms/framep5050→16.7ms/longtasks35→0; notphysicalAndroid/full60scertification. Fivecorefingerprintsunchanged b036/6b3001/a044/d6d33/fac863, preservesdailycompatibility. No CSS/power/media/SQL/env/owneraccess/6173change. Test7526/7527servers/browsersclosed;176done162/176/M4116/125. SeeHANDOFF/design89. No remaining176work.

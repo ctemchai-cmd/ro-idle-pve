@@ -1029,3 +1029,12 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T176-AC-01` | TASK-176 | Native pixels and clocks | focused/native/production-perf/build/M0/public | passed_implementation |
 | `T176-AC-02` | TASK-176 | Bounded cache/full-scene performance | focused/native/production-perf/build/M0/public | passed_implementation |
 | `T176-AC-03` | TASK-176 | Unchanged core and release | focused/native/production-perf/build/M0/public | passed_implementation |
+
+| Case | Task | Criterion | Verification | Status |
+| --- | --- | --- | --- | --- |
+| `T177-AC-01` | TASK-177 | Phone failure concretely identified and bounded diagnostic | focused/native/build/M0/public; phone code and regression for177 | not_run_implementation |
+| `T177-AC-02` | TASK-177 | Confirmed safe recovery without reset or blind pending discard | focused/native/build/M0/public; phone code and regression for177 | not_run_implementation |
+| `T177-AC-03` | TASK-177 | Verified implementation and owner recovery status | focused/native/build/M0/public; phone code and regression for177 | not_run_implementation |
+| `T178-AC-01` | TASK-178 | Only1/2/3 controls and old4 preference migration | focused/native/build/M0/public; phone code and regression for177 | not_run_implementation |
+| `T178-AC-02` | TASK-178 | Exact cast/CC/empty-slot/RNG/Timeline outcomes | focused/native/build/M0/public; phone code and regression for177 | not_run_implementation |
+| `T178-AC-03` | TASK-178 | Unchanged fingerprints and verified release | focused/native/build/M0/public; phone code and regression for177 | not_run_implementation |

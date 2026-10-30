@@ -7,6 +7,7 @@ import { Icon } from '../icon.tsx';
 import { readAudioLevels, saveAudioLevels } from '../../renderer/audio-preferences.ts';
 import { ClassIcon } from './class-icon.tsx';
 import { SkillCatalogSheet } from './skill-catalog.tsx';
+import { SaveErrorCode } from './save-error.tsx';
 import { ActorCanvas, ResIcon, Sheet, compact, friendNames, full, jobNames, lookOf, resourceNames, type Wallet } from './kit.tsx';
 
 const statusText: Record<string, string> = { ready: 'บันทึกแล้ว', saving: 'กำลังบันทึก…', offline: 'ขาดการเชื่อมต่อ · พักความคืบหน้า', read_only: 'เปิดดู · อีกแท็บกำลังเล่น', incompatible: 'มีเกมรุ่นใหม่ · โหลดหน้าใหม่', loading: 'กำลังตรวจเซฟ…', error: 'เซฟมีปัญหา · เชื่อมต่อใหม่', signed_out: 'ออกจากระบบแล้ว', idle: 'กำลังเตรียม…' };
@@ -39,7 +40,7 @@ export function TopHud({ context, save, controller, sound, toggleSound, reconnec
         <button className="icon-btn hud-icon" aria-label="ตั้งค่า" onClick={() => setSheet('settings')}><Icon name="settings" /></button>
       </div>
     </header>
-    {(save.status === 'offline' || save.status === 'error' || save.status === 'read_only' || save.status === 'incompatible') && !maintenance && <div className="hud-alert" role="alert"><span>{statusText[save.status]}</span>{save.status === 'incompatible' ? <button onClick={() => window.location.reload()}>โหลดใหม่</button> : <button disabled={!navigator.onLine} onClick={reconnect}>เชื่อมต่อใหม่</button>}</div>}
+    {(save.status === 'offline' || save.status === 'error' || save.status === 'read_only' || save.status === 'incompatible') && !maintenance && <div className="hud-alert" role="alert"><span>{statusText[save.status]}<SaveErrorCode reason={save.reason}/></span>{save.status === 'incompatible' ? <button onClick={() => window.location.reload()}>โหลดใหม่</button> : <button disabled={!navigator.onLine} onClick={reconnect}>เชื่อมต่อใหม่</button>}</div>}
     {sheet === 'wallet' && <Sheet title="ทรัพยากร" onClose={() => setSheet(null)}>
       <ul className="wallet-list">{walletOrder.map(k => <li key={k}><ResIcon pack={pack} k={k} /><span>{resourceNames[k]}</span><b>{full(state.wallet[k])}</b></li>)}</ul>
     </Sheet>}
@@ -49,6 +50,7 @@ export function TopHud({ context, save, controller, sound, toggleSound, reconnec
         <button className="btn" onClick={()=>setSheet('catalog')}><Icon name="book"/>สมุดสกิล</button>
         {switchSave&&<><div className="settings-row"><span>ช่องเซฟ</span><b>{slotNumber} / 10</b></div><button className="btn" disabled={save.status==='saving'||save.status==='loading'||!!state.active_battle} onClick={switchSave}><Icon name="save"/>เปลี่ยนเซฟ</button>{state.active_battle&&<p className="hint">จบไฟต์ก่อนเปลี่ยนเซฟ</p>}</>}
         <div className="settings-row"><span>สถานะเซฟ</span><b className={`save-text ${tone}`}>{statusText[save.status] ?? save.status}{save.checkpoint ? ` · #${save.checkpoint.save.revision}` : ''}</b></div>
+        {(save.status==='error'||save.status==='offline'||save.status==='incompatible')&&<SaveErrorCode reason={save.reason}/>}
         <button className="btn" disabled={save.status === 'loading' || save.status === 'saving' || !navigator.onLine} onClick={reconnect}>เชื่อมต่อเซฟใหม่</button>
         <div className="settings-row"><span>เสียงและเพลง</span><button className="btn small" onClick={toggleSound}>{sound ? 'ปิดเสียง' : 'เปิดเสียง'}</button></div>
         {(['music', 'effects'] as const).map(kind => <label key={kind} className="volume-row"><span><Icon name={kind === 'music' ? 'music' : 'sound'} /> {kind === 'music' ? 'เพลง' : 'เอฟเฟกต์'}</span><input type="range" min={0} max={100} step={5} value={Math.round(levels[kind] * 100)} aria-label={kind === 'music' ? 'ระดับเสียงเพลง' : 'ระดับเสียงเอฟเฟกต์'} onChange={e => changeLevel(kind, Number(e.target.value))} /><output>{Math.round(levels[kind] * 100)}%</output></label>)}

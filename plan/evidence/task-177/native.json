@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "case": "bounded_save_code_retry_settings_320",
+      "passed": true
+    },
+    {
+      "case": "bounded_save_code_retry_settings_390",
+      "passed": true
+    },
+    {
+      "case": "actual_saved_BossField_old4_to3_then1_2_3_virtual_clock",
+      "speeds": [
+        {
+          "expected": 1,
+          "wall": 251.30000001192093,
+          "game": 250
+        },
+        {
+          "expected": 2,
+          "wall": 251.10000002384186,
+          "game": 466
+        },
+        {
+          "expected": 3,
+          "wall": 251.5,
+          "game": 583
+        }
+      ],
+      "passed": true
+    },
+    {
+      "case": "preview",
+      "passed": true
+    },
+    {
+      "case": "demo_only1_2_3",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "writes": [],
+  "scope": "Actual UI/real shared engine, synthetic Hunter only; not owner save recovery or physical-phone reproduction.",
+  "actual_owner_cause": "unknown",
+  "owner_recovered": false
+}

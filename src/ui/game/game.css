@@ -1062,3 +1062,8 @@ dialog.gacha-reveal-sheet{height:92dvh}.gacha-reveal-sheet .sheet-body{height:10
 /* A refused finish stays readable and actionable within a portrait viewport. */
 .field-toast.field-finish-error { width:calc(100% - 24px); max-width:340px; white-space:normal; display:flex; flex-direction:column; align-items:center; gap:8px; text-align:center; }
 .field-finish-error .btn { flex-shrink:0; max-width:100%; white-space:normal; }
+
+/* Device-specific save failures remain readable in portrait without exposing save payloads. */
+.save-error-code { display:block; max-width:100%; margin-top:4px; font:10px/1.5 ui-monospace,monospace; overflow-wrap:anywhere; white-space:normal; }
+.hud-alert>span { min-width:0; flex:1; }
+.hud-alert>button { flex-shrink:0; }

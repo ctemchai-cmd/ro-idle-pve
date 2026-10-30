@@ -26,6 +26,7 @@ import { DailyPage } from './daily.tsx';
 import { StorePage } from './store.tsx';
 import './game.css';
 import { SaveRecoveryProvider } from './save-notice.tsx';
+import { SaveErrorCode } from './save-error.tsx';
 import { randomId } from '../../client/secure-context.ts';
 import { characterSkillIconIds } from '../../client/skills.ts';
 import { inventoryView } from '../../client/equipment.ts';
@@ -121,7 +122,7 @@ function ConnectedGame({ auth, scope, selection, chooseSave }: { auth: AuthContr
   if (!state) {
     if (maintenance) return <div className="game-root">{slotReturn}<div className="game-splash"><div className="splash-logo">RO <span>Idle</span></div><MaintenancePanel save={save} controller={controller} /></div></div>;
     if (save.reason === 'ACCOUNT_NOT_INITIALIZED') return <div className="game-root slot-onboarding">{slotReturn}<Onboarding pack={pack} busy={!!save.pending || save.status !== 'error'} create={(root, gender) => void controller.submit({ type: 'account.create', params: { root_job_id: root, gender }, request_id: randomId(), expected_revision: 0, ...storyVersions } as Command).catch(e => toast(reasonText[e instanceof Error ? e.message : ''] ?? 'สร้างตัวละครไม่สำเร็จ'))} /></div>;
-    return <div className="game-root">{slotReturn}<div className="game-splash" role="status"><div className="splash-logo">RO <span>Idle</span></div><p>{save.status === 'incompatible' ? 'มีเกมรุ่นใหม่ กรุณาโหลดหน้าใหม่' : save.status === 'offline' ? 'ขาดการเชื่อมต่อ · รอเชื่อมต่อเพื่อโหลดเซฟ' : 'กำลังโหลดเซฟ…'}</p>{(save.status === 'offline' || save.status === 'error') && <button className="btn primary" onClick={() => void controller.reconnect()}>เชื่อมต่อใหม่</button>}</div></div>;
+    return <div className="game-root">{slotReturn}<div className="game-splash" role="status"><div className="splash-logo">RO <span>Idle</span></div><p>{save.status === 'incompatible' ? 'มีเกมรุ่นใหม่ กรุณาโหลดหน้าใหม่' : save.status === 'offline' ? 'ขาดการเชื่อมต่อ · รอเชื่อมต่อเพื่อโหลดเซฟ' : save.status === 'error' ? 'ยังโหลดเซฟไม่ได้' : 'กำลังโหลดเซฟ…'}</p>{(save.status==='error'||save.status==='offline'||save.status==='incompatible')&&<SaveErrorCode reason={save.reason}/>}{(save.status === 'offline' || save.status === 'error') && <button className="btn primary" onClick={() => void controller.reconnect()}>เชื่อมต่อใหม่</button>}</div></div>;
   }
   const characterId = state.roster.some(a => a.character_id === route.character) ? route.character : 'main';
   const context: GameContext = { state, pack, locked: !ready || busy || !!active, busy: !ready || busy, submit, submitWhenReady, lastCode: () => controller.snapshot.lastReceipt?.result.code ?? null, lastCreated: () => [...(controller.snapshot.lastReceipt?.result.created_instance_ids ?? [])], latest: () => controller.snapshot.checkpoint?.save.state as AccountState | undefined, toast, go, characterId, selectCharacter: id => go(route.view, id) , challenge: (target, automatic) => { setRequest({ ...target, automatic, at: Date.now() }); go('home'); } };

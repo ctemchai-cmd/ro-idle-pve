@@ -1,11 +1,21 @@
-/** Player battle fast-forward (D-071): 1×/2×/4×, remembered per browser. The server credits wall time × speed. */
-export type BattleSpeed = 1 | 2 | 4;
+/** Display speed only; terminal server replay and historical tickets retain their protocol. */
+export type BattleSpeed = 1 | 2 | 3;
+export const BATTLE_SPEEDS = [1, 2, 3] as const;
 const KEY = 'ro.battleSpeed', listeners = new Set<() => void>();
-function stored(): BattleSpeed { try { const value = Number(localStorage.getItem(KEY)); return value === 2 || value === 4 ? value : 1; } catch { return 1; } }
+/** Preserve the old preference at the closest available speed. */
+export function normalizeBattleSpeed(value: number): BattleSpeed { return value === 2 ? 2 : value === 3 || value === 4 ? 3 : 1; }
+export function nextBattleSpeed(value: BattleSpeed): BattleSpeed { return value === 1 ? 2 : value === 2 ? 3 : 1; }
+function stored(): BattleSpeed {
+  try {
+    const value = Number(localStorage.getItem(KEY)), speed = normalizeBattleSpeed(value);
+    if (value === 4) try { localStorage.setItem(KEY, '3'); } catch { /* Keep 3× for this tab if storage is read-only. */ }
+    return speed;
+  } catch { return 1; }
+}
 let current: BattleSpeed = stored();
 export function battleSpeed(): BattleSpeed { return current; }
 export function cycleBattleSpeed(): BattleSpeed {
-  current = current === 1 ? 2 : current === 2 ? 4 : 1;
+  current = nextBattleSpeed(current);
   try { localStorage.setItem(KEY, String(current)); } catch { /* private mode: keep it for this tab only */ }
   for (const listener of listeners) listener();
   return current;
