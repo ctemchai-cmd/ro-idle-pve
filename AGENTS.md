@@ -1,3 +1,9 @@
+## Bulk-sale pending recovery (30 October2026,D201/TASK177)
+
+OwnerconfirmedCOMMAND_TOO_LARGE afterlarge equipment sale onphonePWA; desktopworks. RootAPI text.length>16,384 beforehandler/receipt vs500IDs×120schema; unchangedSaveController correctlykeptoriginalpending butcouldonlyretry413. API+localgatewaynowshare256KiB UTF8budgetinsrc/server/persistence/command-body.ts; finite413/healthcommand_body_limit_bytes, allvalidation/receipts/CAS/atomicreducersunchanged. No chunks/reset/discard/newUUID/clientprotocol/core/schema/price/media/SQL/env/ownerAuth/cloudchanges. Existingphonepending resumesoriginalUUIDafterAPIupgrade; stale revisionreloadscloud.
+
+Localreview177:101uniquefocused(100initialpass/1moduleownerfinding→21affectedAPIbulkboundarycorrectedpass),6newbulkcases,actualChrome390cache/ports/controller+signedFetchAPI3groups old413→500sale once→reopen0duplicate, diagnostic5groups320390, root-filteredidentical/strict/M0pass. Fivehashesb036/6b3001/a044/d6d33/fac863unchanged. ActualownerphoneNOTyetconfirmed. TASK1781/2/3alreadylivec7ada6b4b/public4groups; combinedbulkfixawaitsourcepublish/Vercel/publichealth262144.177/178review162/178/M4116/127; noagents, preserveuserassets/6173. Earlierunknowncause notes belowhistorical.
+
 ## Phone save diagnosis and3× speed (30 October2026,D201–202/TASK177–178)
 
 TASK177 Hunterthirdsave worksdesktop butphonePWA genericerror. Actualphonecode/rootcause/recovery UNKNOWN; donotclaimfixed/reset/discardpending. Addboundedpublicerroridentifier toexistingHUD/settings/splash, uppercase80max/UNKNOWNfallback, noresponsebodies/IDs/secrets. Native320390syntheticHunter/retry/settings passed. No directSupabasecredential/ownerAuth/cloudread-write. AfterUIrelease askphonecode;177remainsinprogress.

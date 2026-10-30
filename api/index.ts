@@ -15,6 +15,7 @@ import type { BackupReason, StoredBackup } from '../src/contracts/save.ts';
 import { backupFile, saveSummary } from '../src/domain/account/maintenance.ts';
 import { parseSaveSlot, scopeSave, type SaveIdentity } from '../src/server/persistence/save-slots.ts';
 import { captureTiming, timedSync } from '../src/server/persistence/timing.ts';
+import { COMMAND_BODY_LIMIT_BYTES } from '../src/server/persistence/command-body.ts';
 
 interface CreationReply { body: unknown; status: number }
 
@@ -52,7 +53,7 @@ export function createApi(env: Record<string, string | undefined>, injected?: Ap
     }
     async function handle(): Promise<Response> {
     const path = new URL(request.url).pathname;
-    if (path === '/api/health' && request.method === 'GET') return response({ ...status, persistence: configuration.kind === 'configured' || injected ? 'configured' : 'not_configured' }, status.ok ? 200 : 503);
+    if (path === '/api/health' && request.method === 'GET') return response({ ...status, command_body_limit_bytes: COMMAND_BODY_LIMIT_BYTES, persistence: configuration.kind === 'configured' || injected ? 'configured' : 'not_configured' }, status.ok ? 200 : 503);
     if (!['/api/save-slots', '/api/account', '/api/commands', '/api/checkpoint', '/api/backups'].includes(path) && !path.startsWith('/api/receipts/') && !path.startsWith('/api/backups/')) return response({ code: 'NOT_FOUND' }, 404);
     try {
       const active = configuredServices();
@@ -85,7 +86,7 @@ export function createApi(env: Record<string, string | undefined>, injected?: Ap
       if (path === '/api/commands' && request.method === 'POST') {
         const handle = active.command ?? active.createAccount;
         if (!handle) return response({ code: 'COMMANDS_NOT_IMPLEMENTED' }, 501);
-        const text = await request.text(); if (text.length > 16384) return response({ code: 'COMMAND_TOO_LARGE' }, 413);
+        const text = await request.text(); if (Buffer.byteLength(text, 'utf8') > COMMAND_BODY_LIMIT_BYTES) return response({ code: 'COMMAND_TOO_LARGE' }, 413);
         let input: unknown; try { input = JSON.parse(text); } catch { return response({ code: 'INVALID_JSON' }, 400); }
         const reply = await measure('command', () => handle(selected, input));
         if (reply.status === 200 && request.headers.get('x-ro-checkpoint') === 'include' && active.checkpoint && !(reply.body as { checkpoint?: unknown })?.checkpoint) {

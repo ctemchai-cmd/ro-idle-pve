@@ -3,9 +3,9 @@ const fs=require('node:fs'),assert=require('node:assert/strict'),{createHash}=re
 const {chromium}=require('/private/tmp/ro-idle-browser-check/node_modules/playwright-core');
 const base='https://ro-idle-pve.vercel.app',out='plan/evidence/task-178';
 (async()=>{let browser;const checks=[],errors=[],writes=[];try{
- const expected=JSON.parse(fs.readFileSync(out+'/gameplay-before.json')),health=await fetch(base+'/api/health',{cache:'no-store'});assert.equal(health.status,200);assert.equal(health.headers.get('x-ro-api-region'),'sin1');assert.equal((await health.json()).content_hash,expected.content_hash);
+ const expected=JSON.parse(fs.readFileSync(out+'/gameplay-before.json')),health=await fetch(base+'/api/health',{cache:'no-store'});assert.equal(health.status,200);assert.equal(health.headers.get('x-ro-api-region'),'sin1');const healthBody=await health.json();assert.equal(healthBody.content_hash,expected.content_hash);assert.equal(healthBody.command_body_limit_bytes,256*1024);
  for(const path of['/api/checkpoint','/api/save-slots'])assert.equal((await fetch(base+path)).status,401);
- const version=await(await fetch(base+'/content-version.json',{cache:'no-store'})).json(),fingerprints=Object.fromEntries(Object.keys(expected).map(k=>[k,version[k]]));assert.deepEqual(fingerprints,expected);checks.push({case:'SIN1_anonymous401_all_five_fingerprints',fingerprints});
+ const version=await(await fetch(base+'/content-version.json',{cache:'no-store'})).json(),fingerprints=Object.fromEntries(Object.keys(expected).map(k=>[k,version[k]]));assert.deepEqual(fingerprints,expected);checks.push({case:'SIN1_anonymous401_all_five_fingerprints_bulk_body_limit',fingerprints,command_body_limit_bytes:healthBody.command_body_limit_bytes});
  const files=version.build_files.filter(f=>/^dist\/assets\/.*\.(js|css)$/.test(f.path)),source=[];
  for(const file of files){const r=await fetch(base+'/'+file.path.replace(/^dist\//,''));assert(r.ok);const bytes=Buffer.from(await r.arrayBuffer());assert.equal(createHash('sha256').update(bytes).digest('hex'),file.sha256);source.push(bytes.toString());}
  for(const marker of['save-error-code','UNKNOWN_SAVE_ERROR','ro.battleSpeed'])assert(source.join('\n').includes(marker),marker);checks.push({case:'all_deployed_bundle_SHA_and_diagnostic_markers',bundles:files.length});

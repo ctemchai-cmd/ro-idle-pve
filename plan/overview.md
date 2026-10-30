@@ -149,8 +149,8 @@ Q-001–Q-022 ตอบแล้ว: บัฟบวกกันไม่มี�
 | สถานะ | จำนวนไฟล์ tasks_*.md | งานปัจจุบัน |
 | --- | ---: | --- |
 | todo | 5 | ออกแบบ/พัฒนา/ตรวจรับตามรายการด้านล่าง |
-| inprogress | 5 | TASK-041 บาลานซ์; TASK-058 ย้ายเซฟ; TASK-064 cloud timing; TASK-067 รอผู้ใช้คืนสิทธิ์แก่นพลัง |
-| review | 6 |    [TASK-048](review/tasks_048.md) game shell /play รอผู้ใช้ตรวจหน้าตา (AC-08), [TASK-054](review/tasks_054.md) ภาพการต่อสู้ตรง RO รอผู้ใช้ตรวจ (AC-06), [TASK-055](review/tasks_055.md) คำขอระหว่างลองเล่น รอผู้ใช้ (AC-06), [TASK-056](review/tasks_056.md) UI D-076–078/080 อัปเดตแล้วรอผู้ใช้ตรวจภาพ (AC-06), [TASK-057](review/tasks_057.md) ทรงผม D-079 อัปเดตแล้วรอผู้ใช้ตรวจ (AC-05) |
+| inprogress | 4 | TASK-041 บาลานซ์; TASK-058 ย้ายเซฟ; TASK-064 cloud timing; TASK-067 รอผู้ใช้คืนสิทธิ์แก่นพลัง |
+| review | 7 |    [TASK-048](review/tasks_048.md) game shell /play รอผู้ใช้ตรวจหน้าตา (AC-08), [TASK-054](review/tasks_054.md) ภาพการต่อสู้ตรง RO รอผู้ใช้ตรวจ (AC-06), [TASK-055](review/tasks_055.md) คำขอระหว่างลองเล่น รอผู้ใช้ (AC-06), [TASK-056](review/tasks_056.md) UI D-076–078/080 อัปเดตแล้วรอผู้ใช้ตรวจภาพ (AC-06), [TASK-057](review/tasks_057.md) ทรงผม D-079 อัปเดตแล้วรอผู้ใช้ตรวจ (AC-05) |
 | done | 162 | ผ่าน review ตามหลักฐานในแต่ละงาน |
 
 Progress ของกระดาน: **162/178 งานผ่าน done** ไม่รวมงานเตรียม assets ที่ทำก่อนเริ่มใช้กระดาน ตำแหน่งไฟล์เป็นสถานะจริง ID คงเดิม เมื่อย้ายไฟล์ให้อัปเดตจำนวนและลิงก์ในเอกสารนี้
@@ -547,6 +547,6 @@ TASK175 ขึ้นVercel source`99d9c414b`แล้ว: ท่าโจมต�
 
 TASK176 ขึ้นVercel source`ac9bf7941`แล้ว:87focused/native6888poses+1148keys+360worn/6Timeline/root-filtered/M0/public4groups68controls27bundleSHAผ่าน; ProductionCPU4x actualbattle drawp95 10.8→5.9ms/framep50 50→16.7ms. Fivefingerprintsเดิม จบไฟต์reloadรับUI. [ผลตรวจ](evidence/task-176-review.json).
 
-[TASK177](inprogress/tasks_177.md): Hunterช่อง3คอมเข้าได้/PWAerror; เพิ่มcodeช่วยวินิจฉัยบนมือถือ ยังไม่ยืนยันการกู้คืน.
+[TASK177](review/tasks_177.md): Hunterช่อง3PWA413จากbulkย่อยเกินAPI16K; ยืนยันrootแล้ว/กำลังตรวจ256KiBและoriginalUUID recovery.
 
 [TASK178](review/tasks_178.md): ความเร็วต่อสู้1/2/3, ค่า4เดิม→3, sharedengine/legacyprotocolเดิม.

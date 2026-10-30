@@ -3,6 +3,7 @@ import { createServer, request as proxyRequest } from 'node:http';
 import { readFile, realpath, stat } from 'node:fs/promises';
 import path from 'node:path';
 import api from '../../api/index.ts';
+import { COMMAND_BODY_LIMIT_BYTES } from '../../src/server/persistence/command-body.ts';
 const port = Number(process.env.RO_GATEWAY_PORT), auth = Number(process.env.RO_AUTH_PORT), rest = Number(process.env.RO_REST_PORT);
 const origin = process.env.RO_LIVE_URL!;
 // Loopback by default; the personal preview's --lan mode (D-075) sets 0.0.0.0 so a phone on the home Wi-Fi can open it.
@@ -18,7 +19,7 @@ createServer(async (incoming, outgoing) => {
     try {
       const headers = new Headers(); for (const [name, value] of Object.entries(incoming.headers)) if (value) headers.set(name, Array.isArray(value) ? value.join(',') : value);
       const chunks: Buffer[] = []; let size = 0;
-      for await (const chunk of incoming) { const bytes = Buffer.from(chunk); size += bytes.length; if (size > 16384) { outgoing.writeHead(413); outgoing.end(); return; } chunks.push(bytes); }
+      for await (const chunk of incoming) { const bytes = Buffer.from(chunk); size += bytes.length; if (size > COMMAND_BODY_LIMIT_BYTES) { outgoing.writeHead(413, { 'content-type': 'application/json', 'cache-control': 'no-store' }); outgoing.end('{"code":"COMMAND_TOO_LARGE"}'); return; } chunks.push(bytes); }
       const body = ['GET', 'HEAD'].includes(incoming.method ?? 'GET') ? undefined : Buffer.concat(chunks);
       const response = await api.fetch(new Request(`http://127.0.0.1:${port}${incoming.url}`, { method: incoming.method, headers, body }));
       outgoing.writeHead(response.status, Object.fromEntries(response.headers)); outgoing.end(Buffer.from(await response.arrayBuffer()));

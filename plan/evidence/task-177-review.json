@@ -1,27 +1,51 @@
 {
   "task_id": "TASK-177",
   "passed": false,
-  "status": "inprogress",
+  "status": "review",
   "diagnostic_UI_local_passed": true,
   "acceptance_results": {
-    "AC-01": "awaiting_actual_phone_code",
-    "AC-02": "not_implemented_unknown_cause",
-    "AC-03": "awaiting_owner_recovery"
+    "AC-01": "passed",
+    "AC-02": "passed",
+    "AC-03": "awaiting_public"
   },
   "checks": {
-    "public_API_healthy": true,
-    "owner_reports_desktop_same_save_works": true,
-    "diagnostic_mobile320390": true,
-    "native_synthetic_Hunter_only": true,
-    "bounded_public_error_code_only": true,
-    "root_filtered_builds": true,
-    "owner_read_write": false,
-    "save_reset_or_pending_discard": false
+    "focused_TS_unique": 101,
+    "initial_TS": {
+      "passed": 100,
+      "failed": 1,
+      "finding": "New HTTP constant initially outside registered module owner"
+    },
+    "corrected_affected_API_bulk_boundary_TS": 21,
+    "new_bulk_regressions": 6,
+    "native_diagnostic_groups": 5,
+    "actual_browser_pending_recovery_groups": 3,
+    "synthetic_sale_commits": 1,
+    "one_original_UUID": true,
+    "max_items": 500,
+    "body_bytes": 262144,
+    "root_build": true,
+    "filtered_build": true,
+    "root_filtered_identical": true,
+    "strict_typecheck": true,
+    "M0": true,
+    "five_fingerprints_unchanged": true,
+    "owner_Auth_cloud_SQL": false,
+    "pending_discard_or_reset": false,
+    "SaveController_changes": false,
+    "personal6173_touched": false
   },
-  "owner_recovered": false,
+  "owner_recovered": "not_yet_confirmed",
   "evidence": [
     "task-177/README.md",
     "task-177/native.json",
-    "task-177/source-after.json"
-  ]
+    "task-177/source-after.json",
+    "task-177/pwa-recovery.json",
+    "task-177/pwa-before-413.png",
+    "task-177/pwa-after-recovery.png",
+    "task-177/gameplay.json"
+  ],
+  "local_passed": true,
+  "root_cause": "16,384-code-unit API body cap refused legal bulk salvage before receipt processing; PWA retained original pending command",
+  "owner_reported_code": "COMMAND_TOO_LARGE",
+  "owner_reported_trigger": "large equipment salvage"
 }

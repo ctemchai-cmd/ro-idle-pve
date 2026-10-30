@@ -425,3 +425,5 @@ D200/TASK176: ผู้ใช้ยืนยันทั้งฉาก/ตั�
 
 D201/TASK177: Hunterเซฟที่3เล่นในคอมได้แต่PWAโทรศัพท์ขึ้นgenericerror. เพิ่มรหัสข้อผิดพลาดแบบboundedเพื่อวินิจฉัยจากมือถือ; ยังไม่ยืนยันว่าสาเหตุคืออะไร/ไม่รีเซ็ตหรือทิ้งpending.
 D202/TASK178: ผู้ใช้ให้ลดความเร็วสูงสุดเป็น3×; UI savedbattle/demo/previewวน1/2/3, preference4→3; engine/legacyprotocol/receipts unchanged.
+
+D201เพิ่มเติม: ผู้ใช้ยืนยันCOMMAND_TOO_LARGEหลังย่อยอุปกรณ์จำนวนมาก. RootAPI16,384codeunitsต่ำกว่าสัญญา500IDs×120characters. ปรับHTTPbudgetเป็น256KiBUTF8ทั้งAPI/gateway,คงoriginalpendingUUID/receipt/CAS/หนึ่งatomicbatch; ไม่เปลี่ยนSaveController/เซฟ/core.
