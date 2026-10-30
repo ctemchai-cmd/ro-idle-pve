@@ -17,7 +17,9 @@ weekly bosses/reward once/Crystal80h/Enchant20/late difficulty/late daily+Tower 
 - [x] AC-02: ปฏิเสธข้อมูลผิดโดยไม่เสียทรัพยากร และ retryไม่จ่ายซ้ำ
 - [x] AC-03: เซฟเก่ารักษาทรัพยากร/ทุน/สิทธิ์ผ่าน backup migration
 - [x] AC-04: targeted tests และ strict/root/filtered build ผ่าน
-- [ ] AC-05: UI320/390 ใช้ได้และ hosted release ตรง source
+- [x] AC-05: UI320/390 ใช้ได้และ hosted release ตรง source
 
 ## ผลตรวจในเครื่อง
-832 TS / 12 focused / native320390 5groups / M0 / strict root+filtered identical1733files ผ่าน. รอ commit/push และ hosted proof. ไม่มี SQL/envใหม่/owner access/6173restart.
+832 TS / 12 focused / native320390 5groups / M0 / strict root+filtered identical1733files ผ่าน. ขึ้นVercel SUCCESS source`e840afa25` และ public hosted4groups/27bundleSHA ผ่านแล้ว. ไม่มี SQL/envใหม่/owner access/6173restart.
+
+[ผลตรวจ](../evidence/task-180-review.json) · [เว็บ](https://ro-idle-pve.vercel.app/play)

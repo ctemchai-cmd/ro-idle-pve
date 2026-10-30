@@ -15,7 +15,9 @@ TASK-014 (done); ส่งพร้อม179–181
 - [x] AC-01: 100/90/80/60→80 และไม่นับแค่ทีม
 - [x] AC-02: เกิน cap ไม่เสีย EXP/ทอง
 - [x] AC-03: เลเวลเดิมเกิน cap ยังโหลดได้
-- [ ] AC-04: UI/strict/build/hostedผ่าน
+- [x] AC-04: UI/strict/build/hostedผ่าน
 
 ## ผลตรวจในเครื่อง
-832 TS / 12 focused / native320390 5groups / M0 / strict root+filtered identical1733files ผ่าน. รอ commit/push และ hosted proof. ไม่มี SQL/envใหม่/owner access/6173restart.
+832 TS / 12 focused / native320390 5groups / M0 / strict root+filtered identical1733files ผ่าน. ขึ้นVercel SUCCESS source`e840afa25` และ public hosted4groups/27bundleSHA ผ่านแล้ว. ไม่มี SQL/envใหม่/owner access/6173restart.
+
+[ผลตรวจ](../evidence/task-182-review.json) · [เว็บ](https://ro-idle-pve.vercel.app/play)
