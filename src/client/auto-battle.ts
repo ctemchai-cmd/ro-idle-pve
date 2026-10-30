@@ -3,7 +3,7 @@ import { storyOptions, towerView } from './story.ts';
 import { progressRewards } from '../domain/progression/auto-rewards.ts';
 import { loadValidatedContent } from './content.ts';
 
-export type ChallengeTarget = { kind: 'story'; id: string } | { kind: 'tower'; floor: number } | { kind: 'daily'; boss: string } | {kind:'mvp';boss:string;tier:number};
+export type ChallengeTarget = { kind: 'story'; id: string } | { kind: 'tower'; floor: number } | { kind: 'daily'; boss: string } | {kind:'mvp';boss:string;tier:number}|{kind:'event';period:string;tier:number};
 export type AutoMode = 'story' | 'tower';
 export interface AutoRun { mode: AutoMode; failures: number; lastBattleId: string | null }
 export const AUTO_LOSS_LIMIT = 3;

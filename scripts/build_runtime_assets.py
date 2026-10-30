@@ -38,6 +38,18 @@ def runtime_presentations(presentations):
                   if field not in ('provenance', 'icon_asset_id')}
             for key, row in presentations.items()}
 
+def runtime_recipes(recipes, enemy_recipe_ids):
+    """Keep enemy fallback icons; player icons are resolved by their presentation.
+    Source recipe documents and all VFX/audio fields remain untouched.
+    """
+    return [{key: value for key, value in row.items()
+             if key not in ('runtime', 'visual_basis', 'sound_basis')
+             and (key != 'icon' or row['skill_id'] in enemy_recipe_ids)} for row in recipes]
+
+def enemy_recipe_ids(doc):
+    borrowed = {row['id'] for row in doc['skills'] if 'borrowed_program' in row.get('tags', [])}
+    return {row['visual']['recipe_skill_id'] for row in doc['presentations'] if row['skill_id'] not in borrowed}
+
 def compact_metadata(value):
     """Same JSON.parse values; integral JSON numbers have no float/int distinction.
 
@@ -121,7 +133,7 @@ def selection(data_root=DATA):
         recipe_ids.add(actor['presentation']['skill_id'])
     # Only asset-bearing data participates: changing a skill price leaves this hash unchanged.
     signature = {
-        'sidecar_encoding': SIDECAR_ENCODING,
+        'sidecar_encoding': SIDECAR_ENCODING, 'recipe_projection': 'runtime-fields-v2',
         'meta_refs': sorted(refs), 'recipe_ids': sorted(recipe_ids), 'combat_visuals': read(COMBAT_VISUALS), 'shell_visuals': read(SHELL_VISUALS),
         'actors': documents['actor-presentations.json']['jobs'],
         'stage_scenery': [{'id': s['id'], 'background': s['background'], 'music': s['music']} for s in documents['stages.json']['stages']],
@@ -186,7 +198,7 @@ def build(output=OUT, data_root=DATA, ro_root=RO):
     prepared = read(ro_root / 'prepared/game-pack.json')
     refs |= collect_refs(prepared['font']) | collect_refs(prepared['audio_events'])
     recipes = read(ro_root / 'prepared/skill-recipes.json')['recipes']
-    selected_recipes = [r for r in recipes if r['skill_id'] in recipe_ids]
+    selected_recipes = runtime_recipes([r for r in recipes if r['skill_id'] in recipe_ids], enemy_recipe_ids(docs['enemies.json']))
     if {r['skill_id'] for r in selected_recipes} != recipe_ids:
         raise ValueError('A referenced skill recipe is missing')
     if any(not r['ready'] for r in selected_recipes):
@@ -230,7 +242,7 @@ def build(output=OUT, data_root=DATA, ro_root=RO):
                     recipe_id = visual['visual'].get('reference_skill_id')
                     for recipe in selected_recipes:
                         if recipe['skill_id'] == recipe_id:
-                            initial_refs |= collect_refs([recipe['icon'], recipe.get('native_effect')])
+                            initial_refs |= collect_refs([recipe.get('icon'), recipe.get('native_effect')])
     aura = combat_visuals.get('performance_auras', {})
     if set(initial_skills).intersection(aura.get('skills', {})):
         initial_refs |= collect_refs(aura)
@@ -316,7 +328,7 @@ def verify(output=OUT, data_root=DATA, *, artifact_only=False, ro_root=RO):
     if not artifact_only:
         prepared = read(ro_root / 'prepared/game-pack.json')
         recipe_ids = {row['skill_id'] for row in index['recipes']}
-        current_recipes = [row for row in read(ro_root / 'prepared/skill-recipes.json')['recipes'] if row['skill_id'] in recipe_ids]
+        current_recipes = runtime_recipes([row for row in read(ro_root / 'prepared/skill-recipes.json')['recipes'] if row['skill_id'] in recipe_ids], enemy_recipe_ids(read(data_root / 'enemies.json')))
         if encoded([prepared['font'], prepared['audio_events'], current_recipes]) != encoded([index['font'], index['audio_events'], index['recipes']]):
             raise ValueError('Prepared font/audio/recipes changed; rebuild pack')
     identity = {k: v for k, v in index.items() if k not in ['pack_hash', 'base_url', 'sizes', 'source_inputs_at_build']}

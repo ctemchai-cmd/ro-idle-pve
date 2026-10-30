@@ -76,12 +76,15 @@ export function validateContent(raw: unknown): Result<ValidatedContent> {
     const params=object(object(buy!.properties).params),quantity=object(object(params.properties).quantity);
     demand(Number.isSafeInteger(shop.max_quantity_per_command)&&Number(shop.max_quantity_per_command)>=1&&Number(shop.max_quantity_per_command)<=Number(quantity.maximum),'shop_batch_limit',at);
     const seen=new Set<string>();
-    for(const value of offers){const offer=object(value),id=String(offer.id),price=object(offer.price),grant=object(offer.grant),consumables=object(offer.consumable_grant??{}),crafting=object(offer.crafting_grant??{});
+    for(const value of offers){const offer=object(value),id=String(offer.id),price=object(offer.price),grant=object(offer.grant),consumables=object(offer.consumable_grant??{}),crafting=object(offer.crafting_grant??{}),artifact=object(offer.artifact_grant??{});
       demand(/^[a-z][a-z0-9_]*$/.test(id)&&!seen.has(id),'shop_offer_id',at);seen.add(id);
       demand(Number.isSafeInteger(offer.daily_limit)&&Number(offer.daily_limit)>=1,'shop_daily_limit',at);
       for(const vector of[price,grant])for(const[key,amount]of Object.entries(vector))demand(resources.has(key)&&Number.isSafeInteger(amount)&&Number(amount)>=0,'shop_resource_amount',at);
-      demand(Object.values(price).some(n=>Number(n)>0)&&([...Object.values(grant),...Object.values(consumables),...Object.values(crafting)].some(n=>Number(n)>0)),'shop_empty_offer',at);
+      demand(Object.values(price).some(n=>Number(n)>0)&&([...Object.values(grant),...Object.values(consumables),...Object.values(crafting),...Object.values(artifact)].some(n=>Number(n)>0)),'shop_empty_offer',at);
       for(const amount of Object.values(consumables))demand(Number.isSafeInteger(amount)&&Number(amount)>0,'shop_consumable_amount',at);
+      if(offer.farm_hours!==undefined)demand(Number.isFinite(offer.farm_hours)&&Number(offer.farm_hours)>0&&Number(offer.farm_hours)<=12,'shop_hours',at);
+      if(offer.minimum_job_stage!==undefined)demand([1,2,3].includes(Number(offer.minimum_job_stage)),'shop_job_stage',at);
+      for(const[key,n]of Object.entries(artifact))demand(['essence','tickets'].includes(key)&&Number.isSafeInteger(n)&&Number(n)>=0,'shop_artifact_amount',at);
       for(const[key,n]of Object.entries(crafting))demand(['option_stone','rarity_stone'].includes(key)&&Number.isSafeInteger(n)&&Number(n)>0,'shop_crafting_amount',at);
     }
   });
@@ -226,5 +229,15 @@ export function validateContent(raw: unknown): Result<ValidatedContent> {
     for(const v of Object.values(rarities)){const rarity=object(v);demand(Number.isSafeInteger(rarity.weight)&&Number(rarity.weight)>0&&Number.isSafeInteger(rarity.salvage)&&Number(rarity.salvage)>0&&Number(rarity.start)>0&&Number(rarity.max)>=Number(rarity.start)&&Number(rarity.max)<=1,'artifact_power',docAt('equipment.json'));}
   });
   attempt(docAt('tower.json'),()=>{const value=bundle.documents['tower.json']!.mvp_hunt;if(value===undefined)return;const r=object(value);demand(r.tiers===10&&Number(r.hp_growth)>1&&Number(r.attack_growth)>1,'mvp_growth',docAt('tower.json'));for(const value of list(r.bosses)){const b=object(value),queue=list(b.skills);demand(String(b.id) in actors&&queue.length===4&&new Set(queue).size===4,'mvp_identity_rotation',docAt('tower.json'));for(const id of queue)demand(skills[String(id)]?.kind==='active','mvp_skill',docAt('tower.json'));}});
+  attempt(docAt('economy.json'),()=>{
+    const value=bundle.documents['economy.json']!.events;if(value===undefined)return;const r=object(value),at={source:'economy.json',path:'/events'},rotation=list(r.rotation).map(object),missions=list(r.missions).map(object),shop=list(r.shop).map(object);
+    demand(Number.isSafeInteger(r.anchor_ms)&&r.period_ms===604800000&&r.grace_ms===900000,'event_calendar',at);
+    demand(rotation.length===4&&rotation.every((p,i)=>p.kind===(i%2?'boss':'mission')&&String(p.boss) in actors),'event_rotation',at);
+    demand(list(r.boss_anchors).length===5&&list(r.boss_tokens).length===5,'event_boss_tiers',at);
+    for(const anchor of list(r.boss_anchors))demand(list(bundle.documents['stages.json']!.stages).some(s=>object(s).id===anchor),'event_stage_anchor',at);
+    for(const[key,rows]of [['missions',missions],['shop',shop]]as const)demand(new Set(rows.map(p=>p.id)).size===rows.length,'event_unique_'+key,at);
+    for(const m of missions)demand(['farm_seconds','battles','upgrades','daily_chests'].includes(String(m.metric))&&['target','tokens'].every(k=>Number.isSafeInteger(m[k])&&Number(m[k])>0),'event_mission',at);
+    for(const o of shop)demand(['mvp_card','weapon','artifact','rarity_stone','option_stone','hero_exp','gold'].includes(String(o.kind))&&['price','limit','quantity'].every(k=>Number.isSafeInteger(o[k])&&Number(o[k])>0),'event_offer',at);
+  });
   return errors.length ? { ok: false, errors } : { ok: true, value: freeze({ manifest: bundle.manifest, documents: bundle.documents, jobs: jobs!, skills, items, statuses: validator.statuses, actors, schemas: bundle.schemas }) };
 }

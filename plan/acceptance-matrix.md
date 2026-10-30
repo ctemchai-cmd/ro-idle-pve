@@ -1057,3 +1057,23 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T182-AC-02` | TASK-182 | เกิน cap ไม่เสีย EXP/ทอง | shared/native/build/hosted | passed_implementation |
 | `T182-AC-03` | TASK-182 | เลเวลเดิมเกิน cap ยังโหลดได้ | shared/native/build/hosted | passed_implementation |
 | `T182-AC-04` | TASK-182 | UI/strict/build/hostedผ่าน | shared/native/build/hosted | passed_implementation |
+| `T183-AC-01` | TASK-183 | พฤติกรรมตามขอบเขตใช้shared rulesและข้อมูลจริง | Shared rules / atomic retries / native mobile / strict+M0+root-filtered / public hosted | not_run_implementation |
+| `T183-AC-02` | TASK-183 | ของ/สิทธิ์/แต้มจ่ายครั้งเดียวและข้อมูลผิดไม่เสียของ | Shared rules / atomic retries / native mobile / strict+M0+root-filtered / public hosted | not_run_implementation |
+| `T183-AC-03` | TASK-183 | targeted+strict/M0/root-filteredผ่าน | Shared rules / atomic retries / native mobile / strict+M0+root-filtered / public hosted | not_run_implementation |
+| `T183-AC-04` | TASK-183 | native320390และhostedreleaseผ่านก่อนdone | Shared rules / atomic retries / native mobile / strict+M0+root-filtered / public hosted | not_run_implementation |
+| `T184-AC-01` | TASK-184 | พฤติกรรมตามขอบเขตใช้shared rulesและข้อมูลจริง | Shared rules / atomic retries / native mobile / strict+M0+root-filtered / public hosted | not_run_implementation |
+| `T184-AC-02` | TASK-184 | ของ/สิทธิ์/แต้มจ่ายครั้งเดียวและข้อมูลผิดไม่เสียของ | Shared rules / atomic retries / native mobile / strict+M0+root-filtered / public hosted | not_run_implementation |
+| `T184-AC-03` | TASK-184 | targeted+strict/M0/root-filteredผ่าน | Shared rules / atomic retries / native mobile / strict+M0+root-filtered / public hosted | not_run_implementation |
+| `T184-AC-04` | TASK-184 | native320390และhostedreleaseผ่านก่อนdone | Shared rules / atomic retries / native mobile / strict+M0+root-filtered / public hosted | not_run_implementation |
+| `T185-AC-01` | TASK-185 | พฤติกรรมตามขอบเขตใช้shared rulesและข้อมูลจริง | Shared rules / atomic retries / native mobile / strict+M0+root-filtered / public hosted | not_run_implementation |
+| `T185-AC-02` | TASK-185 | ของ/สิทธิ์/แต้มจ่ายครั้งเดียวและข้อมูลผิดไม่เสียของ | Shared rules / atomic retries / native mobile / strict+M0+root-filtered / public hosted | not_run_implementation |
+| `T185-AC-03` | TASK-185 | targeted+strict/M0/root-filteredผ่าน | Shared rules / atomic retries / native mobile / strict+M0+root-filtered / public hosted | not_run_implementation |
+| `T185-AC-04` | TASK-185 | native320390และhostedreleaseผ่านก่อนdone | Shared rules / atomic retries / native mobile / strict+M0+root-filtered / public hosted | not_run_implementation |
+| `T186-AC-01` | TASK-186 | พฤติกรรมตามขอบเขตใช้shared rulesและข้อมูลจริง | Shared rules / atomic retries / native mobile / strict+M0+root-filtered / public hosted | not_run_implementation |
+| `T186-AC-02` | TASK-186 | ของ/สิทธิ์/แต้มจ่ายครั้งเดียวและข้อมูลผิดไม่เสียของ | Shared rules / atomic retries / native mobile / strict+M0+root-filtered / public hosted | not_run_implementation |
+| `T186-AC-03` | TASK-186 | targeted+strict/M0/root-filteredผ่าน | Shared rules / atomic retries / native mobile / strict+M0+root-filtered / public hosted | not_run_implementation |
+| `T186-AC-04` | TASK-186 | native320390และhostedreleaseผ่านก่อนdone | Shared rules / atomic retries / native mobile / strict+M0+root-filtered / public hosted | not_run_implementation |
+| `T187-AC-01` | TASK-187 | 26Highท่าเป็นmodernครบ ไม่มีเปลี่ยน20เดิม | Shared rules / atomic retries / native mobile / strict+M0+root-filtered / public hosted | not_run_implementation |
+| `T187-AC-02` | TASK-187 | pixel/sourceSHAถูกต้องและVFX/audio/เกมเพลย์เดิม | Shared rules / atomic retries / native mobile / strict+M0+root-filtered / public hosted | not_run_implementation |
+| `T187-AC-03` | TASK-187 | runtime32MiBและinitialbudgetผ่าน | Shared rules / atomic retries / native mobile / strict+M0+root-filtered / public hosted | not_run_implementation |
+| `T187-AC-04` | TASK-187 | native/build/hostedผ่าน | Shared rules / atomic retries / native mobile / strict+M0+root-filtered / public hosted | not_run_implementation |

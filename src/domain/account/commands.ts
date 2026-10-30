@@ -1,3 +1,6 @@
+import {applyEventCommand,settleEventBoss,trackEventProgress,type EventCommand} from './events.ts';
+import {validateEvents,eventRecord} from '../progression/events.ts';
+import {eventPeriod,eventRules,eventUnlocked,eventBoss,eventBattleRef} from '../modes/events.ts';
 import {settleMvp} from './mvp-settlement.ts';
 import {mvpBoss,mvpBosses,mvpRules,mvpUnlocked,mvpWeek,mvpRef} from '../modes/mvp.ts';
 import {boundArtifacts,reconcileArtifactSlots} from '../build/artifacts.ts';
@@ -50,7 +53,7 @@ export interface CommandProposal { state: AccountState; receipt: Receipt; battle
 export class AccountCommandRules extends AccountCreationRules {
   buildInputs(state:AccountState){return Object.fromEntries(state.roster.map(actor=>{const prepared=preparedScroll(state,actor.character_id,this.content);return[actor.character_id,{actor,items:boundItemInstances(actor,state),artifacts:boundArtifacts(actor.character_id,state),...(prepared?{prepared_scroll:prepared.id}:{})}];}));}
   get leaseMs() { return Number((this.content.documents['save-contracts.json']!.battle_protocol as unknown as { lease_ms: number }).lease_ms); }
-  supports(type: Command['type']) { return ['artifact.draw','artifact.equip','artifact.upgrade','artifact.star','artifact.lock','artifact.salvage','battle.start_mvp','character.reset_level','equipment.option_roll','equipment.option_decide','equipment.rarity_up','farm.claim', 'reward.claim', 'battle.advance', 'battle.finish', 'battle.retreat', 'party.set', 'character.level_up', 'character.breakthrough', 'character.allocate_status', 'character.reset_build', 'character.change_job', 'skill.upgrade', 'skill.set_loadout', 'skill.awaken', 'skill.convert_shards', 'battle.start_story', 'farm.set_stage', 'equipment.equip', 'equipment.equip_upgrades', 'equipment.unequip', 'equipment.lock', 'equipment.salvage', 'equipment.purchase_weapon', 'slot.refine', 'slot.enchant', 'slot.change_enchant', 'card.assign', 'card.unassign', 'card.upgrade', 'card.salvage', 'equipment.fuse', 'equipment.tier_up', 'battle.start_tower', 'battle.start_daily', 'gacha.pull', 'consumable.prepare', 'shop.buy', 'daily.objective_claim'].includes(type); }
+  supports(type: Command['type']) { return ['event.checkin','event.claim','event.redeem','battle.start_event','artifact.draw','artifact.equip','artifact.upgrade','artifact.star','artifact.lock','artifact.salvage','battle.start_mvp','character.reset_level','equipment.option_roll','equipment.option_decide','equipment.rarity_up','farm.claim', 'reward.claim', 'battle.advance', 'battle.finish', 'battle.retreat', 'party.set', 'character.level_up', 'character.breakthrough', 'character.allocate_status', 'character.reset_build', 'character.change_job', 'skill.upgrade', 'skill.set_loadout', 'skill.awaken', 'skill.convert_shards', 'battle.start_story', 'farm.set_stage', 'equipment.equip', 'equipment.equip_upgrades', 'equipment.unequip', 'equipment.lock', 'equipment.salvage', 'equipment.purchase_weapon', 'slot.refine', 'slot.enchant', 'slot.change_enchant', 'card.assign', 'card.unassign', 'card.upgrade', 'card.salvage', 'equipment.fuse', 'equipment.tier_up', 'battle.start_tower', 'battle.start_daily', 'gacha.pull', 'consumable.prepare', 'shop.buy', 'daily.objective_claim'].includes(type); }
   /** TASK-040 (D-064): maintenance proposals. The API proves integrity/ownership and supplies time, ids and seed. */
   migrateSave(stored: unknown, context?: DailyRecoveryContext): { state: AccountState; changes: string[] } { const migrated = migrateAccountState(stored, this.content, context); return { state: this.validateAccount(migrated.state), changes: migrated.changes }; }
   restoreSave(restored: unknown, current: AccountState | null, nowMs: number): AccountState { return this.validateAccount(guardRestore(this.validateAccount(restored), current, bangkokDay(nowMs), bangkokDay(nowMs - 86400000))); }
@@ -76,12 +79,13 @@ export class AccountCommandRules extends AccountCreationRules {
     validateProgression(s, this.content);
     validateInventory(s, this.content);validateCrafting(s,this.content);
     validateSupplies(s, this.content);validateArtifacts(s,this.content);
-    validateDailyQuota(s);
+    validateDailyQuota(s);validateEvents(s,this.content);
     for (const actor of s.roster) validateCharacterSkills(actor, this.content);
     return s;
   }
   decide(command: Command, previous: AccountState, battle: StoredBattle | null, time: CommandTime, requestHash: string): CommandProposal {
     let state = structuredClone(previous), code = 'COMMAND_COMMITTED', battleWrite: BattleWrite = { kind: 'keep' }, rejected = false;
+    const eventCollected:AccountState['pending_rewards']=[];
     const reject = (reason: string) => { throw new BusinessRejection(reason); };
     const reserveCurrent = (input: AccountState, claimId: string) => {
       if (!input.farm.rate_snapshot) return input;
@@ -130,6 +134,17 @@ export class AccountCommandRules extends AccountCreationRules {
         consumePreparedForTeam(state);
         state.active_battle = { battle_id: time.battle_id, mode:'tower', mode_ref:String(floor), ticket_day:null, started_at:time.server_at, last_ack_at:time.server_at, lease_expires_at:time.new_lease_at, ...this.versions };
         battleWrite = { kind:'upsert', battle:{ account_id:time.account_id, battle_id:time.battle_id, payload:initial.ok?serializeBattle(initial.value):null, content_hash:this.versions.content_hash, last_ack_at:time.server_at, lease_expires_at:time.new_lease_at } }; code='TOWER_STARTED';
+      } else if(command.type==='battle.start_event'){
+        if(state.active_battle)reject('BATTLE_ALREADY_ACTIVE');if(!eventUnlocked(state,this.content))reject('EVENT_LOCKED');
+        const period=eventPeriod(time.now_ms,this.content),tier=command.params.tier;
+        if(command.params.period_id!==period.period_id||period.kind!=='boss')reject('EVENT_ENDED');
+        if(!state.story.cleared_stage_ids.includes(eventRules(this.content).boss_anchors[tier-1]!)||tier>eventRecord(state,period.period_id).boss_best+1)reject('EVENT_TIER_LOCKED');
+        if(!time.account_id||!time.battle_id||time.battle_seed===undefined||!time.build_hashes)throw new Error('SERVER_BATTLE_CONTEXT_REQUIRED');
+        const ref=eventBattleRef(period,tier),compiled=Object.fromEntries(state.team.map(p=>[p.character_id,compileCharacterSkills(state.roster.find(a=>a.character_id===p.character_id)!,this.content)]));
+        const initial=createBattle(storyInput({id:ref,time_limit_ms:90000},eventBoss(period,tier,this.content),storyParty(state,this.content,compiled,time.build_hashes),this.content,{kind:'event'}),this.content,time.battle_seed);
+        if(!initial.ok)reject('BATTLE_BUILD_UNAVAILABLE');consumePreparedForTeam(state);
+        state.active_battle={battle_id:time.battle_id,mode:'event',mode_ref:ref,ticket_day:null,started_at:time.server_at,last_ack_at:time.server_at,lease_expires_at:time.new_lease_at,...this.versions};
+        battleWrite={kind:'upsert',battle:{account_id:time.account_id,battle_id:time.battle_id,payload:initial.ok?serializeBattle(initial.value):null,content_hash:this.versions.content_hash,last_ack_at:time.server_at,lease_expires_at:time.new_lease_at}};code='EVENT_STARTED';
       } else if(command.type==='battle.start_mvp'){
         if(state.active_battle)reject('BATTLE_ALREADY_ACTIVE');if(!mvpUnlocked(state,this.content))reject('MVP_LOCKED');
         const {boss_id,tier}=command.params,week=mvpWeek(time.now_ms),best=state.mvp_hunt?.week===week?(state.mvp_hunt.best[boss_id]??0):0;
@@ -173,6 +188,7 @@ export class AccountCommandRules extends AccountCreationRules {
         code = 'GACHA_PULLED';
       } else if (command.type === 'consumable.prepare') {
         prepareConsumable(state, command.params.character_id, command.params.definition_id, this.content); code='CONSUMABLE_PREPARED';
+      } else if(command.type.startsWith('event.')){if(time.battle_seed===undefined)throw new Error('SERVER_SEED_REQUIRED');const rng={state:time.battle_seed>>>0,draw_count:0};code=applyEventCommand(state,command as EventCommand,time.now_ms,this.content,()=>nextRandom(rng));
       } else if (command.type === 'shop.buy') {
         applyShopPurchase(state,command.params.offer_id,command.params.quantity,bangkokDay(time.now_ms),this.content);code='SHOP_PURCHASED';
       } else if (command.type === 'farm.set_stage') {
@@ -180,11 +196,11 @@ export class AccountCommandRules extends AccountCreationRules {
       } else if (command.type === 'farm.claim') {
         try {
           // Settle the frozen old profile first; new card rules apply only to subsequent unpaid time.
-          if (command.params.collect_rewards && state.pending_rewards.length) claimRewards(state, state.pending_rewards.map(c => c.claim_id), this.content);
+          if (command.params.collect_rewards && state.pending_rewards.length) {eventCollected.push(...state.pending_rewards);claimRewards(state, state.pending_rewards.map(c => c.claim_id), this.content);}
           state = reserveFarm(state, time.farm_from_ms, time.now_ms, time.server_at, `farm_${command.request_id}`, this.content);
           const stage = storyStage(state.farm.rate_snapshot!.stage_id, this.content);
           if (stage) state.farm.rate_snapshot = storyFarmSnapshot(stage, state, this.content);
-          if (command.params.collect_rewards && state.pending_rewards.length) claimRewards(state, state.pending_rewards.map(c => c.claim_id), this.content);
+          if (command.params.collect_rewards && state.pending_rewards.length) {eventCollected.push(...state.pending_rewards);claimRewards(state, state.pending_rewards.map(c => c.claim_id), this.content);}
           state.daily_objectives.farm_claimed = true; code = command.params.collect_rewards ? 'FARM_COLLECTED' : 'FARM_RESERVED';
         }
         catch (error) { if (error instanceof Error && /^[A-Z_]+$/.test(error.message)) reject(error.message); else throw error; }
@@ -286,6 +302,11 @@ export class AccountCommandRules extends AccountCreationRules {
             const result=next.value.state.terminal_result;if(result.kind==='victory')settleMvp(state,pointer!.mode_ref,time.now_ms,this.content);
             state.active_battle=null;state.daily_objectives.battle_finished=true;battleWrite={kind:'delete',battle_id:pointer!.battle_id};code=result.kind==='victory'?'MVP_WON':result.kind==='time_limit'?'MVP_TIME_LIMIT':'MVP_DEFEATED';
           }
+          if(next.ok&&next.value.state.terminal_result&&pointer!.mode==='event'){
+            if(next.value.state.mode.kind!=='event'||next.value.state.mode.ref!==pointer!.mode_ref)reject('BATTLE_CONTEXT_MISMATCH');
+            const result=next.value.state.terminal_result;if(result.kind==='victory')settleEventBoss(state,pointer!.mode_ref,time.started_ms,time.now_ms,this.content);
+            state.active_battle=null;state.daily_objectives.battle_finished=true;battleWrite={kind:'delete',battle_id:pointer!.battle_id};code=result.kind==='victory'?'EVENT_WON':result.kind==='time_limit'?'EVENT_TIME_LIMIT':'EVENT_DEFEATED';
+          }
           if (command.type === 'battle.finish' && state.active_battle) reject('BATTLE_CONTEXT_MISMATCH');
           if (command.type === 'battle.finish' && command.params.collect_rewards && ['STORY_WON', 'TOWER_WON'].includes(code)) collectProgressRewards(state, this.content);
         }
@@ -300,7 +321,7 @@ export class AccountCommandRules extends AccountCreationRules {
     } catch (error) { if (!(error instanceof BusinessRejection) && !(error instanceof ProgressionRejection)) throw error; code = error.message; rejected = true; }
     const committed = rejected ? structuredClone(previous) : state;
     const refunded = committed.paid_ledger.filter(e => e.refund_command_id === command.request_id && (previous.paid_ledger.some(p => p.entry_id === e.entry_id && p.refund_state === 'active') || command.type==='character.reset_level'&&['character_level','breakthrough'].includes(e.feature_id)&&e.entry_id===`legacy_${e.feature_id}_${command.request_id}`));
-    if(!rejected)reconcileArtifactSlots(committed,this.content);
+    if(!rejected){trackEventProgress(previous,committed,command,code,time.now_ms,this.content,eventCollected);reconcileArtifactSlots(committed,this.content);}
     if (!rejected) committed.paid_ledger = compactPaidLedger(committed.paid_ledger);
     const delta = Object.fromEntries(Object.keys(previous.wallet).map(k => [k, committed.wallet[k as keyof AccountState['wallet']] - previous.wallet[k as keyof AccountState['wallet']]])) as AccountState['wallet'];
     const receipt: Receipt = { request_id: command.request_id, request_hash: requestHash, outcome: rejected ? 'rejected' : 'committed', committed_revision: command.expected_revision + (rejected ? 0 : 1), server_at: time.server_at, ...this.versions, schema_version: 1, command_type: command.type, result: { code, resource_delta: delta, created_instance_ids: [...committed.inventory,...committed.artifacts?.items??[]].filter(i => ![...previous.inventory,...previous.artifacts?.items??[]].some(p => p.instance_id === i.instance_id)).map(i => i.instance_id), removed_instance_ids: [...previous.inventory,...previous.artifacts?.items??[]].filter(i => ![...committed.inventory,...committed.artifacts?.items??[]].some(current => current.instance_id === i.instance_id)).map(i => i.instance_id), pending_claim_ids: committed.pending_rewards.map(c => c.claim_id), battle_id: committed.active_battle?.battle_id ?? previous.active_battle?.battle_id ?? null, reason_key: rejected ? code.toLowerCase() : null, ledger_entry_ids: committed.paid_ledger.filter(e => !previous.paid_ledger.some(p => p.entry_id === e.entry_id && this.canonical(p) === this.canonical(e))).map(e => e.entry_id), refunded_ledger_entries: refunded } };

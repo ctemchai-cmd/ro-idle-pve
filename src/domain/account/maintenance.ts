@@ -1,3 +1,4 @@
+import {mergeEventRights} from '../progression/events.ts';
 import type { AccountState } from '../../contracts/index.ts';
 
 /**
@@ -15,6 +16,7 @@ function mergeDaily(a: Daily, b: Daily): Daily {
 }
 /** Per-day records of `kept` plus anything `other` already spent the same day; rows older than yesterday are dropped. */
 function mergeDayCounters(kept: AccountState, other: AccountState, today: string, yesterday: string): void {
+  mergeEventRights(kept,other);
   if(other.mvp_hunt){if(!kept.mvp_hunt||kept.mvp_hunt.week<other.mvp_hunt.week)kept.mvp_hunt=structuredClone(other.mvp_hunt);else if(kept.mvp_hunt.week===other.mvp_hunt.week)for(const[id,tier]of Object.entries(other.mvp_hunt.best))kept.mvp_hunt.best[id]=Math.max(kept.mvp_hunt.best[id]??0,tier);}
   const key = (row: Daily) => `${row.boss_id}@${row.ticket_day}`, rows = new Map<string, Daily>();
   for (const row of [...kept.daily_records, ...other.daily_records]) { if (row.ticket_day < yesterday) continue; const prior = rows.get(key(row)); rows.set(key(row), prior ? mergeDaily(prior, row) : structuredClone(row)); }

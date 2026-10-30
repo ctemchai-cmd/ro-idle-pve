@@ -1,5 +1,6 @@
+import{shopChapter}from'../domain/build/shop-progression.ts';
 import {craftingRules,craftingStock,type CraftingMaterial} from '../domain/progression/equipment-crafting.ts';
-import { shopCatalog,shopMaxQuantity,shopQuote,shopRemaining } from '../domain/progression/shop.ts';
+import { resolvedShopOffer,shopOfferUnlocked,shopCatalog,shopMaxQuantity,shopQuote,shopRemaining } from '../domain/progression/shop.ts';
 import { elementScrolls, preparedScroll, supplyStock } from '../domain/build/consumables.ts';
 import { loadValidatedContent } from './content.ts';
 import type { AccountState } from '../contracts/index.ts';
@@ -28,7 +29,7 @@ export function storeView(state: AccountState, nowMs: number) {
     scrolls: elementScrolls(content).map(row=>({...row, stock:supplyStock(state,row.id)})),
     prepared: Object.fromEntries(state.roster.map(actor=>[actor.character_id,preparedScroll(state,actor.character_id,content)])),
     day,
-    offers: shop.offers.map(offer => {const maxQuantity=shopMaxQuantity(state,offer.id,day,content);return{...offer,scroll:elementScrolls(content).find(row=>row.id===offer.id),crafting:Object.entries(offer.crafting_grant??{}).map(([id,n])=>({id:id as CraftingMaterial,name:craftingRules(content).materials[id as CraftingMaterial].name,count:n!,stock:craftingStock(state,id as CraftingMaterial)})),name:craftingRules(content).materials[offer.id as CraftingMaterial]?.name??elementScrolls(content).find(row=>row.id===offer.id)?.name??offerNames[offer.id]??offer.id,left:shopRemaining(state,offer,day),maxQuantity,maxPrice:maxQuantity?shopQuote(state,offer.id,maxQuantity,day,content).cost:null};}),
+    offers: shop.offers.map(rawOffer => {const offer=resolvedShopOffer(state,rawOffer.id,content),maxQuantity=shopMaxQuantity(state,offer.id,day,content);return{...offer,chapter:shopChapter(state,content),unlocked:shopOfferUnlocked(state,offer,content),artifact:offer.artifact_grant??null,scroll:elementScrolls(content).find(row=>row.id===offer.id),crafting:Object.entries(offer.crafting_grant??{}).map(([id,n])=>({id:id as CraftingMaterial,name:craftingRules(content).materials[id as CraftingMaterial].name,count:n!,stock:craftingStock(state,id as CraftingMaterial)})),name:craftingRules(content).materials[offer.id as CraftingMaterial]?.name??elementScrolls(content).find(row=>row.id===offer.id)?.name??(offer.id==='artifact_essence'?'Essence Artifact':offerNames[offer.id])??offer.id,left:shopRemaining(state,offer,day),maxQuantity,maxPrice:maxQuantity?shopQuote(state,offer.id,maxQuantity,day,content).cost:null};}),
     cards: { cost1: pullCost('card_v1', 1, content), cost10: pullCost('card_v1', 10, content), odds: odds(gacha.quality_weights, gacha.weight_total), gold_in: gacha.pity.gold_after_misses + 1 - state.gacha.card_v1.gold_misses, silver_in: gacha.pity.silver_or_better_after_bronzes + 1 - state.gacha.card_v1.bronze_streak },
     gear: { cost1: pullCost('equipment_v1', 1, content), cost10: pullCost('equipment_v1', 10, content), odds: odds(gacha.equipment_pool.rarity_weights, gacha.equipment_pool.weight_total), tier: gachaGearTier(state, content),
       legendary_in: gacha.equipment_pool.pity.legendary_or_better_after_misses + 1 - state.gacha.equipment_v1.legendary_misses, epic_in: gacha.equipment_pool.pity.epic_or_better_after_rares + 1 - state.gacha.equipment_v1.rare_streak },

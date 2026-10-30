@@ -435,3 +435,8 @@ D203/TASK179/181: Artifact อาชีพ2ช่อง/คน,คนละส�
 D204/TASK180: ผู้ใช้ยืนยันเพิ่มCrystalและความท้าทายทั้งEnchant/บอส/หอคอย. AFK80/h(960/12h)เริ่มหลังsettle frozenเก่า. Enchant20,11–15Lv80/16–20Lv100และราคาสูงขึ้น. Storyบท10–12ค่อยเพิ่มATK/HPจน20/12%,Tower41–100จน25/15%. MVP Hunt3บอสรายสัปดาห์/10ระดับ,ไม่จำกัดลอง,จ่ายเฉพาะdelta best tierของสัปดาห์,week BangkokMonday. ไม่global class calibration.
 
 D205/TASK182: maxอัปเลเวล=sortDescending(ทุกตัวในเซฟ)[3]+20;รวมmainและNPCนอกทีม. UIอัป1/อัปสุดและcommandใช้นโยบายเดียว. ไม่ลดเลเวลที่เคยเกิน. ผู้ใช้เริ่มเซฟใหม่;ไม่ต้องล้างหรือเข้าถึงเซฟเก่า.
+
+D206/TASK183: EXPฟาร์ม+50%หลังจ่ายfrozenwindowเดิม. ร้านresourceคิด2hของบทที่เคยผ่านสูงสุดและไม่ต่ำกว่าgrantเดิม;Crystal50/dust120/หิน2ต่อpack;EssenceArtifact50/20kgold2dayHi. ไม่เพิ่มราคา/สิทธิ์ซื้อรอบนี้.
+D207/TASK185: ผู้ใช้ยืนยันบท13–15/Lv100และต้องเก่งอีกระดับ.90ด่าน/Tier100/18เขต native,เก็บ330เดิม.13เริ่มHP20%/ATK10%เหนือactual12ท้าย,14–15entry15/8%,growth5/2%ต่อ5ด่าน. คง40sStory ไม่ขยาย90sจนDPScheckง่ายลง.
+D208/TASK184/186: ผู้ใช้เลือกEventสลับภารกิจกับบอส.4templatesBangkokMonday,committed/collectedcounters/checkin/derivedtokens,5boss tiers90s/sharedengine/bestdelta,ร้านMVPจริง/Legendaryweaponตรงอาชีพ/Artifact/หิน/EXP. เก็บ2periodsและgraceร้าน1week;สิทธิ์restoreเดินหน้า,ไม่mergewallet. ไม่มีSQL/env/newrequests.
+D209/TASK187: ผู้ใช้ให้เลือกHi-classskilliconsจากชุดmodern.เติม6Sniper/Clown/Gypsy รักษา20เดิมและVFX/audio/Awaken. Exactsourcebytes;runtimepruneonlyunusedrecipeicons/provenance,enemyfallbackเก็บจริง;889assets/1663files/total33515455<32MiB/initial1566701.

@@ -1,3 +1,4 @@
+import {eventPlace,eventChallengePlace} from '../../client/events.ts';
 import {parseMvpRef} from '../../client/artifacts.ts';
 import { dailyRewardCount, finishFailureMessage } from '../../client/daily-rewards.ts';
 import { actorSize,type MonsterSize } from '../../client/monster-size.ts';
@@ -36,8 +37,8 @@ function stageBossSkin(pack: AssetPack | null, stageId: string) {
   const info = storyStageInfo(stageId);
   return pack && info && !info.last && info.enemy_identity!=='definition' ? bossSkin(pack.index, info.chapter, info.index) : null;
 }
-type Outcome = { id: string; code: string; stage: string; kind: 'story' | 'tower' | 'daily' | 'mvp'; resources?: Partial<Wallet>; itemCount?: number };
-const OUTCOMES = ['MVP_WON','MVP_DEFEATED','MVP_TIME_LIMIT','STORY_WON', 'STORY_DEFEATED', 'STORY_TIME_LIMIT', 'TOWER_WON', 'TOWER_DEFEATED', 'TOWER_TIME_LIMIT', 'DAILY_FINISHED', 'DAILY_DEFEATED'];
+type Outcome = { id: string; code: string; stage: string; kind: 'story' | 'tower' | 'daily' | 'mvp' | 'event'; resources?: Partial<Wallet>; itemCount?: number };
+const OUTCOMES = ['EVENT_WON','EVENT_DEFEATED','EVENT_TIME_LIMIT','MVP_WON','MVP_DEFEATED','MVP_TIME_LIMIT','STORY_WON', 'STORY_DEFEATED', 'STORY_TIME_LIMIT', 'TOWER_WON', 'TOWER_DEFEATED', 'TOWER_TIME_LIMIT', 'DAILY_FINISHED', 'DAILY_DEFEATED'];
 /** Boss-bar tag per mode: story stage, tower floor, or the daily phase being fought (it changes mid-fight). */
 const modeTag = (session: SavedBattleSession) => { const mode = session.state.mode; return mode.kind === 'tower' ? `ชั้น ${mode.ref}` : mode.kind === 'daily' ? `หลอดที่ ${mode.daily_phase}` : mode.ref; };
 const bossName = (id: string) => id.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
@@ -179,6 +180,7 @@ export function BossField({ context, app, running, checkpoint, outcome, retreat,
 
 /** Pre-fight warning shown before the start command; it never delays a running server battle clock. */
 function introLabel(target: ChallengeTarget, pack: AssetPack | null, context: GameContext) {
+  if(target.kind==='event'){const p=eventChallengePlace(target.period,target.tier);return{name:bossName(p.boss.definition_id),place:p.period.name,size:null,level:p.boss.level};}
   if(target.kind==='mvp'){return{name:bossName(target.boss),place:`MVP Hunt · ระดับ ${target.tier}`,size:null,level:100};}
   if (target.kind === 'tower') { const floor = towerView(context.state, target.floor, 1).floors[0]!; return { name: bossName(floor.boss), place: `หอคอย ชั้น ${target.floor}`, size:floor.size, level: target.floor }; }
   if (target.kind === 'daily') { const card = dailyView(context.state, Date.now()).bosses.find(b => b.id === target.boss); return { name: card ? bossName(card.enemy) : dailyNames[target.boss] ?? target.boss, place: `ดันเจี้ยนรายวัน · ${dailyNames[target.boss] ?? ''} หลอดที่ ${card?.phase ?? 1}`, size: card?.size??null, level: null }; }
@@ -294,6 +296,7 @@ function DailyResult({ context, outcome, close, challenge, stats, timeline, sess
   </div></div>;
 }
 export function ResultCard({ context, outcome, close, challenge, stats, timeline, session, autoControl, autoRunning, autoMessage }: { context: GameContext; outcome: Outcome; close: () => void; challenge: (target: ChallengeTarget) => void; stats: () => void; timeline: () => void; session?: SavedBattleSession; autoControl?: ReactNode; autoRunning: boolean; autoMessage: string }) {
+  if(outcome.kind==='event'){const p=eventPlace(outcome.stage);return <div className="result-layer" role="dialog" aria-label="ผลกิจกรรม"><div className="result-card"><div className="result-body"><h2>{outcome.code==='EVENT_WON'?'ชนะแล้ว!':'ลองจัดทีมอีกครั้ง'}</h2><p>{p.period.name} · ระดับ {p.tier}</p><small>ดูแต้มและรางวัลประจำรอบในหน้ากิจกรรม</small>{session&&<Debrief session={session}/>}</div><footer className="result-footer"><div className="row two"><button className="btn primary" onClick={()=>{close();context.go('events');}}>กิจกรรม / แลกรางวัล</button><button className="btn" onClick={()=>{close();context.go('skills');}}>จัดสกิล</button></div><div className="row"><button className="btn small" onClick={stats}>สถิติ</button><button className="btn small" onClick={timeline}>Timeline</button></div></footer></div></div>;}
   if(outcome.kind==='mvp'){const{id,tier}=parseMvpRef(outcome.stage);return <div className="result-layer" role="dialog" aria-label="ผล MVP Hunt"><div className="result-card"><div className="result-body"><h2>{outcome.code==='MVP_WON'?'ชนะแล้ว!':'ลองจัดทีมอีกครั้ง'}</h2><p>{id} · ระดับ {tier}</p><p><ResIcon pack={context.pack} k="crystal"/>{outcome.resources?.crystal??0}</p><small>คลัง: Essence {full(context.state.artifacts?.essence??0)} · ตั๋ว Artifact {full(context.state.artifacts?.tickets??0)}</small>{session&&<Debrief session={session}/>}</div><footer className="result-footer"><div className="row two"><button className="btn primary" disabled={context.locked} onClick={()=>challenge({kind:'mvp',boss:id,tier:outcome.code==='MVP_WON'?Math.min(10,tier+1):tier})}>{outcome.code==='MVP_WON'&&tier<10?'ระดับถัดไป':'ลองใหม่'}</button><button className="btn" onClick={()=>{close();context.go('skills');}}>จัดสกิล</button></div><div className="row"><button className="btn small" onClick={stats}>สถิติ</button><button className="btn small" onClick={timeline}>Timeline</button><button className="btn small" onClick={()=>{close();context.go('mvp');}}>กลับ</button></div></footer></div></div>;}
   if (outcome.kind === 'daily') return <DailyResult context={context} outcome={outcome} close={close} challenge={challenge} stats={stats} timeline={timeline} session={session} />;
   const { state, pack, locked, go } = context, tower = outcome.kind === 'tower', won = outcome.code.endsWith('_WON');
@@ -345,7 +348,7 @@ export function Field({ context, covered, save, request, consumeRequest }: { con
       await new Promise(resolve => setTimeout(resolve, 1500));
       if (!mounted.current) return;
       if (automatic && (token !== epoch.current || !autoRef.current || coveredRef.current || document.hidden)) { setIntro(null); return; }
-      const ok = target.kind==='mvp'?await submit('battle.start_mvp',{boss_id:target.boss,tier:target.tier}): target.kind === 'tower' ? await submit('battle.start_tower', { floor: target.floor }) : target.kind === 'daily' ? await submit('battle.start_daily', { boss_id: target.boss }) : await submit('battle.start_story', { stage_id: target.id });
+      const ok = target.kind==='event'?await submit('battle.start_event',{period_id:target.period,tier:target.tier}):target.kind==='mvp'?await submit('battle.start_mvp',{boss_id:target.boss,tier:target.tier}): target.kind === 'tower' ? await submit('battle.start_tower', { floor: target.floor }) : target.kind === 'daily' ? await submit('battle.start_daily', { boss_id: target.boss }) : await submit('battle.start_story', { stage_id: target.id });
       if (!ok) { setIntro(null); if (automatic) stopAuto('หยุด Auto · ยังเริ่มไฟต์ไม่ได้'); }
     } finally { startingRef.current = false; if (mounted.current) setStarting(false); }
   }

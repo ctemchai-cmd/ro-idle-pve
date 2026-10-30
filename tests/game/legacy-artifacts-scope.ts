@@ -1,6 +1,7 @@
+import {eventsSourceBytes,withoutEventsFile} from './legacy-events-scope.ts';
 import{readFileSync}from'node:fs';import{gunzipSync}from'node:zlib';import{createHash}from'node:crypto';import assert from'node:assert/strict';
 const before=JSON.parse(gunzipSync(readFileSync('plan/evidence/task-179/scope-before.json.gz')).toString())as Record<string,string>,after=JSON.parse(readFileSync('plan/evidence/task-179/scope-after.json','utf8'))as Record<string,string>,data=JSON.parse(readFileSync('plan/evidence/task-179/scope-after-data.json','utf8'))as Record<string,unknown>;
-export function artifactSourceBytes(file:string){const bytes=readFileSync(file);if(after[file]){assert.equal(createHash('sha256').update(bytes).digest('hex'),after[file],file+' reviewed Artifact/MVP/roster extension');return Buffer.from(before[file]!);}return bytes;}
+export function artifactSourceBytes(file:string){const bytes=eventsSourceBytes(file);if(after[file]){assert.equal(createHash('sha256').update(bytes).digest('hex'),after[file],file+' reviewed Artifact/MVP/roster extension');return Buffer.from(before[file]!);}return bytes;}
 /** Reverse only reviewed changes for earlier release oracles; unrelated live fields remain asserted by those oracles. */
 function reverse(b:any,a:any,value:any,path:string):any{
  if(JSON.stringify(b)===JSON.stringify(a)||JSON.stringify(value)===JSON.stringify(b))return value;
@@ -16,5 +17,5 @@ function reverse(b:any,a:any,value:any,path:string):any{
  }
  assert.deepEqual(value,a,path+' exact reviewed new value');return structuredClone(b);
 }
-export function withoutArtifactsDocument<T>(key:string,value:T):T{const file='plan/data/'+key;if(!before[file])return structuredClone(value);return reverse(JSON.parse(before[file]!),data[file],value,file);}
-export function withoutArtifactsSchema<T>(key:string,value:T):T{const file='plan/data/schemas/'+key+'.json';if(!before[file])return structuredClone(value);return reverse(JSON.parse(before[file]!),data[file],value,file);}
+export function withoutArtifactsDocument<T>(key:string,value:T):T{const file='plan/data/'+key;const current=withoutEventsFile(file,value);if(!before[file])return current;return reverse(JSON.parse(before[file]!),data[file],current,file);}
+export function withoutArtifactsSchema<T>(key:string,value:T):T{const file='plan/data/schemas/'+key+'.json';const current=withoutEventsFile(file,value);if(!before[file])return current;return reverse(JSON.parse(before[file]!),data[file],current,file);}

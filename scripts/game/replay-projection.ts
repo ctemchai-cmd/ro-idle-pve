@@ -6,6 +6,6 @@ export function combatReplayProjection(documents:Record<string,unknown>,schemas:
  const progression=docs['progression.json'] as Record<string,any>|undefined;if(progression){const clone=structuredClone(progression);clone.release.excluded_features=clone.release.excluded_features.filter((x:string)=>x!=='artifact');docs['progression.json']=clone;}
  const types=structuredClone(Object.fromEntries(Object.entries(schemas).filter(([k])=>!['account-state','command','receipt','item','simulation-scenario'].includes(k)))) as Record<string,any>;
  // Only the new mode label is additive; old checkpoints never select it.
- const kind=types['battle-checkpoint']?.properties?.mode?.properties?.kind;if(kind?.enum)kind.enum=kind.enum.filter((x:string)=>x!=='mvp');
+ const kind=types['battle-checkpoint']?.properties?.mode?.properties?.kind;if(kind?.enum)kind.enum=kind.enum.filter((x:string)=>!['mvp','event'].includes(x));
  return canonical({documents:docs,schemas:types});
 }

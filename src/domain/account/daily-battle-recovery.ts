@@ -1,3 +1,4 @@
+import eventCompat from './events-replay-compat.ts';
 import replayCompat from './daily-replay-compat.ts';
 import compat from './daily-recovery-compat.ts';
 import type { AccountState, BattleCheckpoint } from '../../contracts/index.ts';
@@ -12,10 +13,10 @@ const core=(p:string)=>['src/content/','src/contracts/','src/domain/combat/','sr
 /** A narrowly proven compatible version can recover its stored daily run during backup migration. */
 export function recoverCompatibleDaily(previous:AccountState,next:AccountState,changes:string[],content:ValidatedContent,context?:DailyRecoveryContext):void {
   const pointer=previous.active_battle,battle=context?.battle;
-  if(!pointer||pointer.mode!=='daily'||!([...replayCompat.content_hashes,compat.content_hash] as readonly string[]).includes(pointer.content_hash)||!context||!('battle' in context))return;
+  if(!pointer||pointer.mode!=='daily'||!([...eventCompat.content_hashes,...replayCompat.content_hashes,compat.content_hash] as readonly string[]).includes(pointer.content_hash)||!context||!('battle' in context))return;
   if(!battle||!context.server_at||!Number.isSafeInteger(context.started_ms))throw new Error('DAILY_RECOVERY_CONTEXT_MISSING');
   const current=content.manifest,keys=Object.keys(current.input_sha256).filter(core),old=compat.core_sources as Record<string,string>;
-  const sealed=current.combat_replay_hash===replayCompat.combat_replay_hash&&Object.entries(replayCompat.sources).every(([p,hash])=>current.input_sha256[p]===hash);
+  const sealed=[replayCompat,eventCompat].some(proof=>current.combat_replay_hash===proof.combat_replay_hash&&Object.entries(proof.sources).every(([p,hash])=>current.input_sha256[p]===hash));
   if(!sealed&&(current.engine_data_hash!==compat.engine_data_hash||current.schema_hash!==compat.schema_hash||keys.length!==Object.keys(old).length||keys.some(p=>current.input_sha256[p]!==old[p])))throw new Error('DAILY_RECOVERY_INCOMPATIBLE');
   if(battle.account_id!==context.account_id||battle.battle_id!==pointer.battle_id||battle.content_hash!==pointer.content_hash)throw new Error('DAILY_RECOVERY_CONTEXT_MISMATCH');
   const payload=structuredClone(battle.payload) as BattleCheckpoint;

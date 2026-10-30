@@ -100,7 +100,8 @@ export function migrateAccountState(input: unknown, content: ValidatedContent, c
       // D172: a higher tier starts after the next frozen window is settled by
       // farm.claim/set_stage. Preserve its cursor, draws and old earned gear.
       const keepFrozenUpgrade = frozen.gear_tier < current.gear_tier && frozen.definition_pool.length > 0 && frozen.definition_pool.every(id => content.items[id]?.kind === 'equipment' && content.items[id]!.tier_level === frozen.gear_tier);
-      if (!(frozen.per_hour.crystal*2===current.per_hour.crystal) && !keepFrozenUpgrade && !keepFrozenCardCatalog(frozen,current,content) && (frozen.content_version !== content.manifest.content_version || frozen.rules_version !== content.manifest.rules_version || canonicalPool(frozen.definition_pool) !== canonicalPool(current.definition_pool))) {
+      const keepFrozenExp = frozen.per_hour.hero_exp < current.per_hour.hero_exp && Object.entries(frozen.per_hour).every(([key,n])=>key==='hero_exp'||n===current.per_hour[key as keyof typeof current.per_hour]);
+      if (!keepFrozenExp && !(frozen.per_hour.crystal*2===current.per_hour.crystal) && !keepFrozenUpgrade && !keepFrozenCardCatalog(frozen,current,content) && (frozen.content_version !== content.manifest.content_version || frozen.rules_version !== content.manifest.rules_version || canonicalPool(frozen.definition_pool) !== canonicalPool(current.definition_pool))) {
         const hadCards = !!frozen.card_drops; state.farm.rate_snapshot = current;
         if (!hadCards) delete state.farm.rate_snapshot.card_drops;
         changes.push(`farm rate refreshed for ${stage.id}`);

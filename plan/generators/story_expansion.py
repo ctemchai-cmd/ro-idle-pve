@@ -9,7 +9,7 @@ def append_chapters(rows, profiles, heavy_casts, time_limit_ms):
     identities={row['id']:row for row in SPEC['enemies']}
     for chapter in SPEC['chapters']:
         c,count=chapter['chapter'],chapter['count']
-        assert count==50 and count%len(chapter['zones'])==0
+        assert count in (30,50) and count%len(chapter['zones'])==0
         per_zone=count//len(chapter['zones'])
         for i in range(1,count+1):
             previous=rows[-1]; previous_base=previous['encounter'][0]['resolved_base']
@@ -18,8 +18,8 @@ def append_chapters(rows, profiles, heavy_casts, time_limit_ms):
             identity=zone['boss'] if final else zone['monsters'][(i-1)%len(zone['monsters'])]
             level=chapter['level_range'][0]+math.floor((chapter['level_range'][1]-chapter['level_range'][0])*(i-1)/(count-1))
             stats=deepcopy(previous_base)
-            stats['max_hp']=math.ceil(previous_base['max_hp']*chapter['growth_per_5']['hp']**.2)
-            stats['physical_attack']=math.ceil(previous_base['physical_attack']*chapter['growth_per_5']['attack']**.2)
+            stats['max_hp']=math.ceil(previous_base['max_hp']*(chapter.get('entry_multiplier',{}).get('hp',1) if i==1 and 'entry_multiplier' in chapter else chapter['growth_per_5']['hp']**.2))
+            stats['physical_attack']=math.ceil(previous_base['physical_attack']*(chapter.get('entry_multiplier',{}).get('attack',1) if i==1 and 'entry_multiplier' in chapter else chapter['growth_per_5']['attack']**.2))
             stats['magical_attack']=stats['physical_attack']
             stats['physical_defense']=stats['magical_defense']=6*level+8
             # Existing fixed primary/speed budgets; no automatic AGI/DEX growth.
@@ -42,10 +42,10 @@ def append_chapters(rows, profiles, heavy_casts, time_limit_ms):
             solutions=[{'strategy':'interrupt heavy casts with stun, freeze, silence or interrupt','example_skill_ids':['swordsman_bash','sage_spell_breaker'],'examples_are_mandatory':False},
                        {'strategy':'counter elemental armor with weapon endow or fixed-element skills; support through ordinary attacks','example_skill_ids':['wizard_meteor','priest_kyrie'],'examples_are_mandatory':False}]
             rows.append({'id':f'{c}-{i}','chapter':c,'index':i,'unlock_after':previous['id'],
-                         'recommended_party_level':level,'time_limit_ms':time_limit_ms,'enemy_identity':'definition',
+                         'recommended_party_level':level,'time_limit_ms':chapter.get('time_limit_ms',time_limit_ms),'enemy_identity':'definition',
                          **({'release_gate':deepcopy(chapter['release_gate'])} if 'release_gate' in chapter else {}),
                          'encounter':encounter,'background':deepcopy(chapter['background']),'music':deepcopy(chapter['music']),
-                         'first_clear_reward':{'gold':2500*c*c//count,'hero_exp':4000*c*c//count,'skill_manual':100*c//count,'crystal':200//count},
+                         'first_clear_reward':{key: total//count+(1 if i<=total%count else 0) for key,total in {'gold':2500*c*c,'hero_exp':4000*c*c,'skill_manual':100*c,'crystal':200}.items()},
                          'repeat_clear_reward':{},'farm_rate_chapter':c,'mechanic':[zone['name'],*slots[:1]] if heavy else [zone['name'],*profiles[identity]],
                          'solutions':solutions if final or heavy else [],
                          'balance_target':{**deepcopy(previous['balance_target']),'first_clear_seconds':[12,35],'not_measured_yet':True}})

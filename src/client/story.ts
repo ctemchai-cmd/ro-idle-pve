@@ -1,3 +1,4 @@
+import {eventPlace} from './events.ts';
 import {mvpBoss,parseMvpRef} from '../domain/modes/mvp.ts';
 import { dailyRewardCount } from './daily-rewards.ts';
 import { definitionSize } from './monster-size.ts';
@@ -61,6 +62,7 @@ export function dailyView(state:AccountState,nowMs:number){const day=bangkokDay(
 const towerChapter:Record<string,number>={poring:1,wolf:2,golem:4,drake:6,baphomet:8};
 /** Scene source for any boss mode: the Story stage itself, or a Story scene chosen for a Tower floor. */
 export function battlePlace(mode:Pick<BattleCheckpoint['mode'],'kind'|'ref'>){
+ if(mode.kind==='event'){const p=eventPlace(mode.ref),stage=storyStages(content).find(s=>s.encounter.some(a=>a.definition_id===p.boss.definition_id))!;return{kind:'event' as const,stage,boss:p.boss,title:p.period.name,subtitle:`ระดับ ${p.tier}`};}
  if(mode.kind==='mvp'){const{id,tier}=parseMvpRef(mode.ref),boss=mvpBoss(id,tier,content),stage=storyStages(content).filter(s=>s.chapter===12).at(-1)!;return{kind:'mvp' as const,stage,boss,title:`MVP Hunt · ระดับ ${tier}`,subtitle:id};}
  if(mode.kind==='daily'){const{id,chapter}=parseDailyRef(mode.ref),boss=dailyBossActor(id,1,chapter,content),stage=storyStages(content).filter(s=>s.chapter===dailyChapter[id]).at(-1)!;return{kind:'daily' as const,stage,boss,title:'ดันเจี้ยนรายวัน',subtitle:dailyNames[id]??id};}
  if(mode.kind==='tower'){const floor=Number(mode.ref),boss=towerBoss(floor,content),chapter=towerChapter[boss.definition_id]??1,stage=storyStages(content).filter(s=>s.chapter===chapter).at(-1)!;return{kind:'tower' as const,stage,boss,title:`หอคอย ชั้น ${floor}`,subtitle:'Infinity Tower'};}

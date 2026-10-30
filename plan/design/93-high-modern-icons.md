@@ -1,0 +1,3 @@
+# Hi-class modern icon completion — D209/TASK187
+
+User delegated semantic choice from the existing modern library. Preserve the20 previously chosen modern High icons and replace only6 remaining PC icons: SniperFalcon hunter39/Sharpshooting crossbowman16;ClownVulcan bard47/Marionette bard43;GypsyTarot bard21/Moonlit bard35. Contactsheets inspected; selected art reflects wing/target/projectiles/puppets/cards/moon-water. No skill mechanics,job emblems or timing changes. Same logical presentation shared by Skills/Timeline/Artifact/Awaken; purple Awaken glow remains. Source bytes copied exactly. Runtime removes recipe-only icon/provenance fields unused by the renderer, preserving all rendered VFX/audio/media and source sidecars; keep32MiB and firstprofile<=old.

@@ -2004,7 +2004,8 @@
                 "story",
                 "tower",
                 "daily",
-                "mvp"
+                "mvp",
+                "event"
               ]
             },
             "mode_ref": {
@@ -2384,6 +2385,105 @@
       "required": [
         "week",
         "best"
+      ],
+      "additionalProperties": false
+    },
+    "events": {
+      "type": "object",
+      "properties": {
+        "periods": {
+          "type": "array",
+          "maxItems": 2,
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^e[0-9]{1,8}$"
+              },
+              "joined": {
+                "type": "boolean"
+              },
+              "counters": {
+                "type": "object",
+                "properties": {
+                  "farm_seconds": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "battles": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "upgrades": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  },
+                  "daily_chests": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "required": [
+                  "farm_seconds",
+                  "battles",
+                  "upgrades",
+                  "daily_chests"
+                ],
+                "additionalProperties": false
+              },
+              "checkins": {
+                "type": "array",
+                "maxItems": 7,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+                }
+              },
+              "claimed": {
+                "type": "array",
+                "maxItems": 20,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120
+                }
+              },
+              "purchases": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 99
+                }
+              },
+              "boss_best": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 5
+              }
+            },
+            "required": [
+              "id",
+              "joined",
+              "counters",
+              "checkins",
+              "claimed",
+              "purchases",
+              "boss_best"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "periods"
       ],
       "additionalProperties": false
     }
