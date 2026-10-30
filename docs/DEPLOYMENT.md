@@ -163,3 +163,5 @@ TASK-069 ต่อจากชุดบอล/สถานะ: ปรับ coef
 
 
 TASK-070 เพิ่มผลไฟต์ → **Timeline ย้อนหลัง** และ Log สกิลที่เลื่อน/ซูม/กรองได้ เก็บเฉพาะ skill events ในหน่วยความจำจนออกจากไฟต์หรือ reload ไม่มีการเขียนเซฟเพิ่ม และไม่เปลี่ยน content/pack: จบไฟต์ก่อน reload เพื่อรับ UI ไม่ต้อง SQL/env/migration สำหรับงานนี้ ส่วนการแก้ P.ATK/HoT ตาม TASK-071 เป็น content change แยก
+
+ก่อน push ให้ตรวจ build จาก Git checkout/`git archive HEAD` ที่สะอาดและตัดไฟล์ตาม `.vercelignore` ด้วย โดยเฉพาะหลังเปลี่ยน runtime pack ต้อง commit ทั้งไฟล์เพิ่มและไฟล์ลบ: `runtime/ro/payload` ต้องตรงกับ manifest พอดี การ build จาก working tree อย่างเดียวอาจผ่านทั้งที่ commit ยังมีไฟล์เก่าค้างอยู่ (TASK186: ลบตกหล่น44ไฟล์ ตรวจพบและแก้ก่อน releaseสำเร็จ). ห้ามคัดลอก env/private artifacts ไปชุดทดสอบ.

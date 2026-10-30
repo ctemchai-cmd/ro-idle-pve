@@ -17,7 +17,10 @@ TASK-014 (done)
 - [x] AC-01:26Highท่าเป็นmodernครบ ไม่มีเปลี่ยน20เดิม
 - [x] AC-02:pixel/sourceSHAถูกต้องและVFX/audio/เกมเพลย์เดิม
 - [x] AC-03:runtime32MiBและinitialbudgetผ่าน
-- [ ] AC-04:native/build/hostedผ่าน
+- [x] AC-04:native/build/hostedผ่าน
 
 ## ผลตรวจในเครื่อง
-850 TS,18 new cases,actual React/native320390 7groups,M0/strict/root+filtered1700files identicalผ่าน;รอVercel/publicก่อนdone. ไม่SQL/env/owneraccess.
+850 TS,18 new cases,actual React/native320390 7groups,M0/strict/root+filtered1701files identicalผ่าน;Vercel/publicผ่านแล้ว. ไม่SQL/env/owneraccess.
+
+## เผยแพร่แล้ว
+Source `185739035061b240db2bc14fe095e11f4314649d` / [Vercel SUCCESS](https://vercel.com/chanon2/ro-idle-pve/FZxDpRhcF5VW5wQEQNvX7JKNeHGp); public5groups/27bundleSHA/6modernSHA/mobilelogin+demo320390ผ่าน. Exact clean Git checkout build1701filesตรงกัน.

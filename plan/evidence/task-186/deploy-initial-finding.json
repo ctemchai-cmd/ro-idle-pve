@@ -1,0 +1,13 @@
+{
+  "initial_source": "003fcaa5eca5eff934e30f74731e72f090964b14",
+  "initial_deploy": "https://vercel.com/chanon2/ro-idle-pve/6PYcmai6y1j31DXyozitk82DKnJ2",
+  "status": "failure",
+  "reproduced_from_clean_Git_archive": true,
+  "error": "Pack has missing or unexpected payload files",
+  "cause": "44 generated-file deletions were missing from the initial commit, although working-tree/filtered builds had no obsolete files",
+  "fixed_by": "185739035",
+  "fix": "Commit exact removed files from old-manifest minus new-manifest; source library preserved",
+  "fixed_clean_commit_build_passed": true,
+  "fixed_build_matches_root_files": 1701,
+  "owner_credentials_used": false
+}

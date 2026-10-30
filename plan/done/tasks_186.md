@@ -18,7 +18,10 @@ mobile320390/เซฟและรีทราย/strict/M0/root-filtered/public
 - [x] AC-01: พฤติกรรมตามขอบเขตใช้shared rulesและข้อมูลจริง
 - [x] AC-02: ของ/สิทธิ์/แต้มจ่ายครั้งเดียวและข้อมูลผิดไม่เสียของ
 - [x] AC-03: targeted+strict/M0/root-filteredผ่าน
-- [ ] AC-04: native320390และhostedreleaseผ่านก่อนdone
+- [x] AC-04: native320390และhostedreleaseผ่านก่อนdone
 
 ## ผลตรวจในเครื่อง
-850 TS,18 new cases,actual React/native320390 7groups,M0/strict/root+filtered1700files identicalผ่าน;รอVercel/publicก่อนdone. ไม่SQL/env/owneraccess.
+850 TS,18 new cases,actual React/native320390 7groups,M0/strict/root+filtered1701files identicalผ่าน;Vercel/publicผ่านแล้ว. ไม่SQL/env/owneraccess.
+
+## เผยแพร่แล้ว
+Source `185739035061b240db2bc14fe095e11f4314649d` / [Vercel SUCCESS](https://vercel.com/chanon2/ro-idle-pve/FZxDpRhcF5VW5wQEQNvX7JKNeHGp); public5groups/27bundleSHA/6modernSHA/mobilelogin+demo320390ผ่าน. Exact clean Git checkout build1701filesตรงกัน.
