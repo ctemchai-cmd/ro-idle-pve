@@ -1,0 +1,78 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "case": "SIN1_anonymous401_all_five_fingerprints_bulk_body_limit",
+      "fingerprints": {
+        "engine_data_hash": "fac86304ccd7430abcfad1eb856f1eb4fff8b5f4ba7a738e5c0cd161fe72dc70",
+        "schema_hash": "d6d33ae96aadda49257ac5bc7e9d5400c7ff8d9742dc73dd930a2c6f215668c8",
+        "implementation_hash": "a044537668f424ba8db84d17b7b6030a46e6660b146f6af7ba2c6c78851a9ee6",
+        "content_hash": "b0369ce430a459729870ed7ebc6cbfa2abf6920ad01555ce31a95a1d35290c24",
+        "runtime_asset_pack_hash": "6b3001aef85634b686f8296eb99ce5612b50794c8b59e13c1c54f6995e0daf7c"
+      },
+      "command_body_limit_bytes": 262144
+    },
+    {
+      "case": "all_deployed_bundle_SHA_and_diagnostic_markers",
+      "bundles": 27
+    },
+    {
+      "case": "public_mobile_controls_only1_2_3",
+      "cases": [
+        {
+          "width": 320,
+          "route": "/demo",
+          "speeds": [
+            1,
+            2,
+            3,
+            1
+          ],
+          "old4_to3": true,
+          "overflow": false
+        },
+        {
+          "width": 320,
+          "route": "/skill-preview?job=hunter",
+          "speeds": [
+            1,
+            2,
+            3,
+            1
+          ],
+          "old4_to3": true,
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "route": "/demo",
+          "speeds": [
+            1,
+            2,
+            3,
+            1
+          ],
+          "old4_to3": true,
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "route": "/skill-preview?job=hunter",
+          "speeds": [
+            1,
+            2,
+            3,
+            1
+          ],
+          "old4_to3": true,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "case": "public_login_no_owner_access",
+      "errors": [],
+      "writes": []
+    }
+  ]
+}

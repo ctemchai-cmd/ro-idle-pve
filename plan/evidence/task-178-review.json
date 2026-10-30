@@ -1,12 +1,12 @@
 {
   "task_id": "TASK-178",
-  "passed": false,
-  "status": "review",
+  "passed": true,
+  "status": "done",
   "local_passed": true,
   "acceptance_results": {
     "AC-01": "passed",
     "AC-02": "passed",
-    "AC-03": "awaiting_public"
+    "AC-03": "passed"
   },
   "checks": {
     "focused_TS": 92,
@@ -21,7 +21,13 @@
     "M0": true,
     "five_fingerprints_unchanged": true,
     "owner_access": false,
-    "SQL_env_schema_changes": false
+    "SQL_env_schema_changes": false,
+    "public_groups": 4,
+    "public_bundle_SHA": 27,
+    "public_mobile_cases": 4,
+    "Vercel": "SUCCESS",
+    "public_body_limit_bytes": 262144,
+    "own_test_servers_closed": true
   },
   "fingerprints": {
     "engine_data_hash": "fac86304ccd7430abcfad1eb856f1eb4fff8b5f4ba7a738e5c0cd161fe72dc70",
@@ -35,11 +41,15 @@
     "task-178/gameplay-before.json",
     "task-178/gameplay-after.json",
     "task-178/source-after.json",
-    "task-178/README.md"
+    "task-178/README.md",
+    "task-178/hosted.json",
+    "task-178/deployment.json"
   ],
   "limitations": [
     "Synthetic mobile Chrome, not physical owner phone.",
     "TASK177 cause confirmed COMMAND_TOO_LARGE; bulk transport fix and synthetic PWA recovery verified. Actual owner reconnect confirmation pending.",
     "Historical server4x protocol remains compatible; current product controls expose1/2/3 and use terminal-only replay."
-  ]
+  ],
+  "source_commit": "547373cbcffb031d9561fb588ae4ff4899a0d705",
+  "deployment_url": "https://vercel.com/chanon2/ro-idle-pve/CyXeMztTzS3M3qL2RUcpsAbt3TiC"
 }

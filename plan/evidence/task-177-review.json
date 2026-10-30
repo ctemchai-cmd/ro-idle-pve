@@ -1,12 +1,12 @@
 {
   "task_id": "TASK-177",
-  "passed": false,
-  "status": "review",
+  "passed": true,
+  "status": "done",
   "diagnostic_UI_local_passed": true,
   "acceptance_results": {
     "AC-01": "passed",
     "AC-02": "passed",
-    "AC-03": "awaiting_public"
+    "AC-03": "passed"
   },
   "checks": {
     "focused_TS_unique": 101,
@@ -32,7 +32,13 @@
     "owner_Auth_cloud_SQL": false,
     "pending_discard_or_reset": false,
     "SaveController_changes": false,
-    "personal6173_touched": false
+    "personal6173_touched": false,
+    "public_groups": 4,
+    "public_bundle_SHA": 27,
+    "public_mobile_cases": 4,
+    "Vercel": "SUCCESS",
+    "public_body_limit_bytes": 262144,
+    "own_test_servers_closed": true
   },
   "owner_recovered": "not_yet_confirmed",
   "evidence": [
@@ -42,10 +48,14 @@
     "task-177/pwa-recovery.json",
     "task-177/pwa-before-413.png",
     "task-177/pwa-after-recovery.png",
-    "task-177/gameplay.json"
+    "task-177/gameplay.json",
+    "task-177/hosted.json",
+    "task-177/deployment.json"
   ],
   "local_passed": true,
   "root_cause": "16,384-code-unit API body cap refused legal bulk salvage before receipt processing; PWA retained original pending command",
   "owner_reported_code": "COMMAND_TOO_LARGE",
-  "owner_reported_trigger": "large equipment salvage"
+  "owner_reported_trigger": "large equipment salvage",
+  "source_commit": "547373cbcffb031d9561fb588ae4ff4899a0d705",
+  "deployment_url": "https://vercel.com/chanon2/ro-idle-pve/CyXeMztTzS3M3qL2RUcpsAbt3TiC"
 }

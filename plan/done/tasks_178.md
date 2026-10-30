@@ -16,4 +16,9 @@ Replace visible4× with3× in actual savedbattle, demo and skill-preview. Device
 ## เกณฑ์ตรวจรับ
 - [x] AC-01: Savedbattle/demo/skill-preview offer only1×/2×/3×; old4 preference maps to3, device preference only.
 - [x] AC-02: Identical shared-engine state/events including interrupted casts, empty slots/RNG/Timeline at1/2/3; old4 fixtures remain valid.
-- [ ] AC-03: Native mobile/root-filtered/M0/public pass; five gameplay fingerprints unchanged and no owner save access.
+- [x] AC-03: Native mobile/root-filtered/M0/public pass; five gameplay fingerprints unchanged and no owner save access.
+
+## ผลตรวจ
+Source`547373cbc`ขึ้นVercelSUCCESS/public4groups/27bundleSHA/mobile320390/fivefingerprints exact/healthbodybudget262144ผ่าน. ไม่SQL/env/migrateเซฟ/ownerAuthหรือcloudwrite. [ผลตรวจ](../evidence/task-178-review.json).
+
+92focused/native5groups รวมexact1/2/3CC/queue/RNG/Timelineและpreference4→3; legacyserver4ยังเก็บcompatibilityโดยไม่เปิดในUI.

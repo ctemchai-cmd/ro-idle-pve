@@ -17,4 +17,9 @@ User confirmed COMMAND_TOO_LARGE on phone PWA after selecting many equipment ite
 ## เกณฑ์ตรวจรับ
 - [x] AC-01: Confirmed413 bulk-sale cause reproduced; diagnostic exposes bounded public identifier only.
 - [x] AC-02: Legal500item/card requests fit finite byte limit; exact oldpending recovery/receipts/CAS and no partial/duplicate sale verified without reset or discard.
-- [ ] AC-03: Focused/native/build/public pass with five fingerprints unchanged; actual owner reconnect confirmation explicitly recorded separately.
+- [x] AC-03: Focused/native/build/public pass with five fingerprints unchanged; actual owner reconnect confirmation explicitly recorded separately.
+
+## ผลตรวจ
+Source`547373cbc`ขึ้นVercelSUCCESS/public4groups/27bundleSHA/mobile320390/fivefingerprints exact/healthbodybudget262144ผ่าน. ไม่SQL/env/migrateเซฟ/ownerAuthหรือcloudwrite. [ผลตรวจ](../evidence/task-177-review.json).
+
+101uniqueTS (initialmoduleownerfinding corrected;21affectedrechecksผ่าน),6bulkregressions/nativePWA3groups:413→originalUUID500sale once→reopenno duplicate. Actualเจ้าของPWAยืนยันเข้าได้ยังรอคำตอบ; implementationและfixture recoveryผ่าน ไม่ได้อ้างว่าagentแก้ข้อมูลคลาวด์ให้โดยตรง.
