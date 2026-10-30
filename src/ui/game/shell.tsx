@@ -1,3 +1,5 @@
+import {ArtifactPage} from './artifacts.tsx';
+import {MvpPage} from './mvp.tsx';
 import type { SaveSelection } from '../../client/save-slots.ts';
 import { SaveSlotChooser } from './save-slots.tsx';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -31,7 +33,7 @@ import { randomId } from '../../client/secure-context.ts';
 import { characterSkillIconIds } from '../../client/skills.ts';
 import { inventoryView } from '../../client/equipment.ts';
 
-export type View = 'home' | 'backpack' | 'team' | 'buddy' | 'skills' | 'stats' | 'dungeon' | 'tower' | 'daily' | 'store';
+export type View = 'home' | 'backpack' | 'team' | 'buddy' | 'skills' | 'stats' | 'dungeon' | 'tower' | 'daily' | 'store' | 'artifacts' | 'mvp';
 export type { ChallengeTarget } from '../../client/auto-battle.ts';
 import type { ChallengeTarget } from '../../client/auto-battle.ts';
 export interface GameContext {
@@ -46,7 +48,7 @@ export interface GameContext {
   /** Starts a boss challenge from any page: returns home, plays the intro and opens the fight. */
   challenge: (target: ChallengeTarget, automatic?: boolean) => void;
 }
-const views: readonly View[] = ['home', 'backpack', 'team', 'buddy', 'skills', 'stats', 'dungeon', 'tower', 'daily', 'store'];
+const views: readonly View[] = ['home', 'backpack', 'team', 'buddy', 'skills', 'stats', 'dungeon', 'tower', 'daily', 'store','artifacts','mvp'];
 /** Portrait-only product (D-052): a phone held sideways sees a rotate prompt, never a landscape layout. */
 export const ROTATE_QUERY = '(orientation: landscape) and (max-height: 520px) and (pointer: coarse)';
 function useRotated() {
@@ -126,7 +128,7 @@ function ConnectedGame({ auth, scope, selection, chooseSave }: { auth: AuthContr
   }
   const characterId = state.roster.some(a => a.character_id === route.character) ? route.character : 'main';
   const context: GameContext = { state, pack, locked: !ready || busy || !!active, busy: !ready || busy, submit, submitWhenReady, lastCode: () => controller.snapshot.lastReceipt?.result.code ?? null, lastCreated: () => [...(controller.snapshot.lastReceipt?.result.created_instance_ids ?? [])], latest: () => controller.snapshot.checkpoint?.save.state as AccountState | undefined, toast, go, characterId, selectCharacter: id => go(route.view, id) , challenge: (target, automatic) => { setRequest({ ...target, automatic, at: Date.now() }); go('home'); } };
-  const tab: Tab | null = route.view === 'home' ? null : route.view === 'skills' || route.view === 'stats' ? 'buddy' : route.view === 'tower' || route.view === 'daily' ? 'dungeon' : route.view;
+  const tab: Tab | null = route.view === 'home' ? null : route.view==='artifacts' || route.view === 'skills' || route.view === 'stats' ? 'buddy' : route.view === 'tower' || route.view === 'daily' || route.view==='mvp' ? 'dungeon' : route.view;
   return <SaveRecoveryProvider value={{status:save.status,pending:!!save.pending,retry:()=>void controller.reconnect()}}><div className="game-root">
     <div className="game-frame">
       <Field context={context} covered={route.view !== 'home' || rotated} save={save} request={request} consumeRequest={() => setRequest(null)} />
@@ -141,6 +143,8 @@ function ConnectedGame({ auth, scope, selection, chooseSave }: { auth: AuthContr
         {route.view === 'dungeon' && <DungeonPage context={context} />}
         {route.view === 'tower' && <TowerPage context={context} />}
         {route.view === 'daily' && <DailyPage context={context} />}
+        {route.view === 'artifacts' && <ArtifactPage context={context} />}
+        {route.view === 'mvp' && <MvpPage context={context} />}
         {route.view === 'store' && <StorePage context={context} />}
       </main>}
       <BottomBar pack={pack} active={tab} open={t => go(tab === t ? 'home' : t, characterId)} locked={() => toast('ยังไม่เปิดในรุ่นนี้ · กำลังพัฒนา')} />

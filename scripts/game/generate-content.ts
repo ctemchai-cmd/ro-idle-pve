@@ -6,6 +6,7 @@ import { compile } from 'json-schema-to-typescript';
 import type { JSONSchema4 } from 'json-schema';
 import { canonical, isObject } from '../../src/content/value.ts';
 import { localSchemaReference } from '../../src/content/schema-ref.ts';
+import { combatReplayProjection } from './replay-projection.ts';
 import { engineProjection } from './content-projection.ts';
 
 export const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
@@ -53,7 +54,7 @@ async function collect(dir: string) {
   }
 }
 for (const dir of ['src/content', 'src/contracts', 'src/domain', 'src/simulation']) await collect(dir);
-sourceFiles.push('scripts/game/content-projection.ts', 'scripts/game/generate-content.ts', 'package-lock.json');
+sourceFiles.push('scripts/game/replay-projection.ts', 'scripts/game/content-projection.ts', 'scripts/game/generate-content.ts', 'package-lock.json');
 const implementation = await Promise.all(sourceFiles.sort().map(async file => [file, hash(await readFile(path.join(root, file)))]));
 const implementation_hash = hash(canonical(implementation));
 const engineEntries = files.filter(file => !file.includes('/schemas/') && !file.includes('/presentations/') && !['actor-presentations.json', 'strings.th.json'].includes(path.basename(file))).map(file => [file, engineProjection(documents[file.replace('plan/data/', '')])]);
@@ -63,6 +64,7 @@ const content_hash = hash(canonical({ engine_data_hash, schema_hash: m0.schema_h
 const manifest = {
   schema_version: 1, content_version: m0.content_version, rules_version: m0.rules_version,
   engine_data_hash, schema_hash: m0.schema_hash, implementation_hash, content_hash,
+  combat_replay_hash: hash(combatReplayProjection(documents,schemas)),
   presentation_selection_hash: m0.presentation_selection_hash, runtime_asset_pack_hash: await readFile(path.join(root, 'runtime/ro/manifest.json'), 'utf8').then(text => JSON.parse(text).pack_hash as string).catch(() => null),
   input_sha256: { ...m0.input_sha256, ...Object.fromEntries(implementation) },
   document_versions: Object.fromEntries(Object.entries(documents).map(([file, doc]) => {

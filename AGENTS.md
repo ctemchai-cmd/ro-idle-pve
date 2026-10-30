@@ -48,6 +48,13 @@ User also explicitly confirmed Hi normalLv1 should beat Class2Aw1 byrole. Config
 
 # Project context
 
+## Artifact/MVP/level spread — 31 October2026, D203–205/TASK179–182
+
+Current localreview implementation: Artifact2slots/person (different targeted skills, Hi-class/ancestry),120active definitions, fixedCommon→Legendary,levels1–10/stars0–5, directed100Crystal draw/tickets/50goldpity;separateNPCstock+slots,actualpaidlevelrefundonduplicate/salvage. Same resolvedprogram transform forbase/Awaken/runtime/headless/descriptions;CallSpiritper-ball curve, no globalstatbonus/engine/mathchange. User explicitly confirmed BOTH MVP andCrystal/lateDaily/Tower acquisition pluslevel+stars. MVP3weeklynativebosses/6rotation/10tiers/90s/oneboss,unlimitedtries,best-tierdelta rewards once;BangkokMonday. Enchant20 with11–15atLv80/16–20atLv100;newprices600t²gold/6tdust,old0–10unchanged. AFK80Crystal/h afteroldfrozenwindow;lateStory10–12 andTower41–100 gradualchallenge. Read design91/HANDOFFforrelease status;do not claimhostedbeforeverified.
+
+Latestuser rule: max new level=min(existingclass/Break/releasecap, descending ALLroster levels[3]+20), includingmain+offteamNPC. Upgrade-only,neverlowerexistingovercap. User startsnewsave;do notreset/accessoldownerstate. Atomicclaimpreflight includesArtifact+craftingstocks beforecatchableoverflow. Legacydailyrecovery keepssealedcombat replay proof;preservecriticalsource/data checks. Root+filtered/native832checks localpass; source packunchanged. No SQL/env/newmedia/globalclasscalibration/6173restart.
+
+
 ## Tower rewards (D187/TASK163)
 
 Sourcee2b88a17c live/VercelSUCCESS;752TS/11native/M0/root-filteredbuild/public4groups24bundleSHApassed;163done. Typed additive reward_schedule in tower.json; every floor gold/EXP + rotating manual/ore/dust;5/10/20 bonuses yield50/100/200Crystal and0/1/2fixed-instance cards. First100=1940000gold/1525000EXP/1504manual/1963ore/1051dust/2000Crystal/15cards. Shared generator/command/UI; firstclear only, no reset/retrogrant, old pending rewards and frontier preserved. Enemy curves/card pool/tier/pity/AFK/SQL/env/pack unchanged. See design76/latestHANDOFF/review163 for release status.

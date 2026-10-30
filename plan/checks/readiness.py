@@ -45,7 +45,7 @@ def decisions():
  p=load(D/'progression.json');r=load(D/'combat-rules.json');statuses=list(c.STATUSES.values());hi=p['promotion']['hi_class_enabled'];assert p['release']['level_cap']==(100 if hi else 70);assert p['promotion']['class2_min_level']==20
  if hi:
   assert p['hi_class']['minimum_level']==70 and p['release']['enabled_job_stages']==[1,2,3]
-  assert 'awakening'not in p['release']['excluded_features'] and all(x in p['release']['excluded_features']for x in ['artifact','pet','rune']) and not p['promotion']['class3_enabled']
+  assert 'awakening'not in p['release']['excluded_features'] and all(x in p['release']['excluded_features']for x in ['pet','rune']) and 'artifact' not in p['release']['excluded_features'] and not p['promotion']['class3_enabled']
  assert r['modifiers']['level_auto_primary_growth'] is False
  for status in statuses:
   if status['polarity']=='buff':assert status['stacking']=={'admission':'independent','max_instances':None,'magnitude_cap':None,'expiry':'per_instance'},status['id']

@@ -1,3 +1,5 @@
+import{historicalTowerContent}from'./historical-tower-fixture.ts';
+import{withoutArtifactsDocument}from'./legacy-artifacts-scope.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -29,12 +31,12 @@ test('D187 exact milestones/rotation, cumulative first100 budget, safe continuat
 });
 
 test('D187 only reward schedule/version/derived reward rows change; all enemies, curves and rules retain exact old values', () => {
-  const now = structuredClone(content.documents['tower.json']) as any, old = structuredClone(before);
+  const now = withoutArtifactsDocument('tower.json',content.documents['tower.json']) as any, old = structuredClone(before);
   delete now.reward_schedule; now.content_version = old.content_version;
   for (const row of now.floor_rows) { const previous = old.floor_rows.find(r => r.floor === row.floor)!; delete row.reward_resources; for (const k of ['gold','crystal','bronze_card_count'] as const) row[k] = previous[k]; }
   assert.deepEqual(now, old);
   const legacy = { ...content, documents: { ...content.documents, 'tower.json': before } } as unknown as typeof content;
-  for (const floor of [1,5,20,21,100,101,1000]) assert.deepEqual(towerBoss(floor,content),towerBoss(floor,legacy));
+  for (const floor of [1,5,20,21,100,101,1000]) assert.deepEqual(towerBoss(floor,historicalTowerContent(content)),towerBoss(floor,legacy));
   assert.deepEqual(towerRow(10,legacy),before.floor_rows[9]);
 });
 

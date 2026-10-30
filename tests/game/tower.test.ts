@@ -1,3 +1,4 @@
+import {towerBoss,towerRow} from './historical-tower-fixture.ts';
 // TASK-035: Infinity Tower on the shared engine/save protocol.
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -8,7 +9,7 @@ import { createBattle } from '../../src/domain/combat/index.ts';
 import { storyParty, storyInput } from '../../src/domain/build/story.ts';
 import { compileCharacterSkills } from '../../src/domain/progression/skills.ts';
 import { storyStages } from '../../src/domain/modes/story.ts';
-import { towerBoss, towerData, towerRow, towerStageRef } from '../../src/domain/modes/tower.ts';
+import {towerData,towerStageRef} from '../../src/domain/modes/tower.ts';
 import { content, unwrap } from './combat-fixtures.ts';
 import { buildAccount, treeData } from './class-skills.ts';
 

@@ -1,7 +1,7 @@
 import { enchantLinesFor, slotModifiers } from '../domain/build/slot-definition.ts';
 import type { AccountState, Effect } from '../contracts/index.ts';
 import { loadValidatedContent } from './content.ts';
-import { applySlotCommand, slotData, cardData, cardCapacity, upgradeQuote, enchantRefund, cardSalvageQuote, refineChance, refinePityBonus, type SlotCommand } from '../domain/progression/slots.ts';
+import { enchantLevelCap, applySlotCommand, slotData, cardData, cardCapacity, upgradeQuote, enchantRefund, cardSalvageQuote, refineChance, refinePityBonus, type SlotCommand } from '../domain/progression/slots.ts';
 import { assignedOwner, itemDefinition, type EquipmentSlot, type InventoryItem } from '../domain/progression/equipment.ts';
 import { resolvedCardModifiers, resolvedCardTriggers, resolvedItemCombatBonuses } from '../domain/build/equipment.ts';
 import { cardOrigins } from '../content/card-catalog.ts';
@@ -68,3 +68,5 @@ export function farmCardRarityOdds(profile:NonNullable<NonNullable<AccountState[
  const total=Object.values(weights).reduce((a,b)=>a+b,0);return Object.entries(weights).sort(([a],[b])=>rarityOrder(a)-rarityOrder(b)).map(([rarity,weight])=>({rarity,percent:weight/total*100}));
 }
 export const salvageCardsQuote=(items:readonly InventoryItem[])=>cardSalvageQuote(items,content);
+
+export const characterEnchantCap=(level:number)=>enchantLevelCap(level,content);

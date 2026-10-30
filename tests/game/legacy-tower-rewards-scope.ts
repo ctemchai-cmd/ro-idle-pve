@@ -1,3 +1,4 @@
+import{withoutArtifactsDocument}from'./legacy-artifacts-scope.ts';
 import {workshopSourceBytes} from './legacy-workshop-scope.ts';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -7,7 +8,7 @@ const edits = JSON.parse(readFileSync('plan/evidence/task-163/source-edits.json'
 /** Restore only the declared reward fields for earlier exact-scope oracles.
  * Actual reward programs, transaction semantics and migration have D187 tests. */
 export function withoutD187Document<T>(key: string, value: T): T {
-  const c = structuredClone(value) as any;
+  const c = withoutArtifactsDocument(key,value) as any;
   if (key === 'tower.json') {
     delete c.reward_schedule; c.content_version = before.content_version;
     for (const row of c.floor_rows) {

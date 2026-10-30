@@ -10,8 +10,8 @@ test('actual release opens13 High jobs,26 skills,152 Awaken variants, cap100 and
   assert.equal(p.promotion.hi_class_enabled, true); assert.equal(p.release.level_cap, 100);
   assert.deepEqual(p.release.enabled_job_stages, [1,2,3]);
   const release = content.documents['progression.json']!.release as unknown as { excluded_features: string[] };
-  for (const id of ['artifact', 'pet', 'rune']) assert.ok(release.excluded_features.includes(id));
-  assert.ok(!release.excluded_features.includes('awakening')); assert.equal(p.promotion.class3_enabled, false);
+  for (const id of ['pet', 'rune']) assert.ok(release.excluded_features.includes(id));
+  assert.ok(!release.excluded_features.includes('artifact'));assert.ok(!release.excluded_features.includes('awakening')); assert.equal(p.promotion.class3_enabled, false);
   assert.equal(content.jobs.order.length, 32);
   assert.equal(Object.values(content.skills).filter(s => (s.tags as string[]).includes('hi_class')).length, 26);
   assert.equal(p.progression.level_rows.at(-1)!.level, 100); assert.deepEqual(p.progression.breakthrough_gates.map(g => g.at_level), [20,40,60,80]);

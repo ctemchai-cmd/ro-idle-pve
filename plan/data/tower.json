@@ -1772,5 +1772,83 @@
         "card_count": 1
       }
     ]
+  },
+  "late_difficulty": {
+    "start_floor": 40,
+    "full_floor": 100,
+    "attack_bonus": 0.25,
+    "hp_bonus": 0.15
+  },
+  "mvp_hunt": {
+    "unlock_after": "8-20",
+    "time_limit_ms": 90000,
+    "tiers": 10,
+    "hp_base": 8000000,
+    "attack_base": 20000,
+    "defense_base": 450,
+    "hp_growth": 1.22,
+    "attack_growth": 1.09,
+    "bosses": [
+      {
+        "id": "baphomet",
+        "element": "dark",
+        "skills": [
+          "enemy_cataclysm",
+          "enemy_doom",
+          "enemy_enrage",
+          "enemy_sonic_blow"
+        ]
+      },
+      {
+        "id": "drake",
+        "element": "undead",
+        "skills": [
+          "enemy_cold_bolt",
+          "enemy_armor_break",
+          "enemy_guard",
+          "enemy_twin_hex"
+        ]
+      },
+      {
+        "id": "randgris",
+        "element": "holy",
+        "skills": [
+          "enemy_holy_cross",
+          "enemy_lightning_bolt",
+          "enemy_guard",
+          "enemy_twin_hex"
+        ]
+      },
+      {
+        "id": "kraken",
+        "element": "water",
+        "skills": [
+          "enemy_storm_gust",
+          "enemy_cold_bolt",
+          "enemy_quake",
+          "enemy_mend"
+        ]
+      },
+      {
+        "id": "dark_lord",
+        "element": "dark",
+        "skills": [
+          "enemy_firestorm",
+          "enemy_silence",
+          "enemy_twin_hex",
+          "enemy_enrage"
+        ]
+      },
+      {
+        "id": "turtle_general",
+        "element": "earth",
+        "skills": [
+          "enemy_armor_break",
+          "enemy_hammer_fall",
+          "enemy_guard",
+          "enemy_doom"
+        ]
+      }
+    ]
   }
 }

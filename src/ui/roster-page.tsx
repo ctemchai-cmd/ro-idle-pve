@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { allocationQuote, effectiveLevelCap, levelQuote, initialRosterSandbox, applySandboxRoster, rosterData as data, rosterVersions as versions, rosterPackHash, type Character, type RootJob, type BuildCommand } from '../client/roster.ts';
+import { allocationQuote, rosterLevelCap, effectiveLevelCap, levelQuote, initialRosterSandbox, applySandboxRoster, rosterData as data, rosterVersions as versions, rosterPackHash, type Character, type RootJob, type BuildCommand } from '../client/roster.ts';
 import type { AccountState, Command, PrimaryStats } from '../contracts/index.ts';
 import { readPublicAuthConfig } from '../client/auth-config.ts';
 import { createBrowserAuth } from '../client/supabase-auth.ts';
@@ -40,7 +40,7 @@ export function RosterView({state,disabled,submit,notice,pack}:RosterViewProps){
  const actor=state.roster.find(a=>a.character_id===selected)??state.roster[0];
  useEffect(()=>setTeam(structuredClone(state.team)),[state.team]);
  useEffect(()=>{setDraft({...actor.primary_stats});setJob(actor.job_id);setResetConfirm(false);},[actor]);
- const changed=JSON.stringify(team)!==JSON.stringify(state.team),cap=effectiveLevelCap(actor,data),gate=data.progression.breakthrough_gates.find(g=>g.at_level===actor.level&&actor.local_cap===actor.level&&!actor.completed_gate_ids.includes(g.at_level));
+ const changed=JSON.stringify(team)!==JSON.stringify(state.team),cap=Math.min(effectiveLevelCap(actor,data),rosterLevelCap(state.roster)),gate=data.progression.breakthrough_gates.find(g=>g.at_level===actor.level&&actor.local_cap===actor.level&&!actor.completed_gate_ids.includes(g.at_level));
  const cost=actor.level<cap?levelQuote(actor,actor.level+1,data):null,canPay=(c:Partial<AccountState['wallet']>)=>Object.entries(c).every(([k,v])=>state.wallet[k as keyof AccountState['wallet']]>=v!);
  let points=0;try{points=allocationQuote(actor.primary_stats,draft,data);}catch{/* Unchanged preview. */}
  function choose(id:string){if(!editing)return;const old=team.find(p=>p.position===editing)!,existing=team.find(p=>p.character_id===id);if(old.character_id==='main'&&!existing)return;setTeam(team.map(p=>p.position===editing?{...p,character_id:id}:existing&&p.position===existing.position?{...p,character_id:old.character_id}:p) as AccountState['team']);setEditing(null);}

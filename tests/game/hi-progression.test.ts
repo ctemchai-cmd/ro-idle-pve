@@ -1,3 +1,4 @@
+import{seedSupportingRoster}from'./roster-level-fixture.ts';
 import test from 'node:test';
 import { class2Content } from './class2-content-fixture.ts';
 import assert from 'node:assert/strict';
@@ -64,7 +65,7 @@ test('all13 same-branch Hi promotions retain paid stats/skills/slots/equipment/c
 });
 
 test('Hi fixture advances70→80→gate80→90 with exact manual budget, no gate70 and no stat auto-growth', () => {
-  const f = fixture(), original = structuredClone(f.actor.primary_stats), before = structuredClone(f.state.wallet);
+  const f = fixture();seedSupportingRoster(f.state,future);const original = structuredClone(f.actor.primary_stats), before = structuredClone(f.state.wallet);
   applyRosterCommand(f.state, f.command('character.change_job', { character_id: 'main', job_id: 'lord_knight' }) as never, future);
   const quote = levelQuote(f.actor, 80, data);
   applyRosterCommand(f.state, f.command('character.level_up', { character_id: 'main', target_level: 80 }) as never, future);

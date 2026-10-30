@@ -11,6 +11,7 @@ interface TowerData {
   common_base: Pick<CombatStats, 'str' | 'agi' | 'vit' | 'int' | 'dex' | 'luk' | 'attack_speed' | 'cast_speed' | 'max_sp'>;
   generator: { hp: Polynomial; attack: Polynomial; defense: Polynomial; template_cycle: string[]; skill_cycle: string[][]; adaptive_cc_every: number; reward_gold: Polynomial; crystal_every: number; crystal_amount: number; bronze_card_every: number };
   floor_rows: TowerRow[];
+  late_difficulty?:{start_floor:number;full_floor:number;attack_bonus:number;hp_bonus:number};
   reward_schedule?: TowerRewardSchedule;
 }
 export const towerData = (content: ValidatedContent) => content.documents['tower.json'] as unknown as TowerData;
@@ -27,6 +28,7 @@ export function towerRow(floor: number, content: ValidatedContent): TowerRow {
   };
   const row = { floor, hp: curve(g.hp), attack: curve(g.attack), defense: curve(g.defense), definition_id: g.template_cycle[(floor - 1) % g.template_cycle.length]!,
     gold: curve(g.reward_gold), crystal: floor % g.crystal_every === 0 ? g.crystal_amount : 0, bronze_card_count: floor % g.bronze_card_every === 0 ? 1 : 0 };
+  const late=towerData(content).late_difficulty;if(late){const t=Math.max(0,Math.min(1,(floor-late.start_floor)/(late.full_floor-late.start_floor)));row.hp=Math.ceil(row.hp*(1+late.hp_bonus*t));row.attack=Math.ceil(row.attack*(1+late.attack_bonus*t));}
   const schedule = towerData(content).reward_schedule;
   if (!schedule) return row; // Frozen legacy content/receipts retain the original schedule.
   const reward = scheduledTowerRewards(floor, schedule);

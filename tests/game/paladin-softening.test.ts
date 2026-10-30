@@ -1,12 +1,13 @@
+import{withoutArtifactsDocument}from'./legacy-artifacts-scope.ts';
+import {towerRow} from './historical-tower-fixture.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {content} from './combat-fixtures.ts';
 import {storyStages} from '../../src/domain/modes/story.ts';
-import {towerRow} from '../../src/domain/modes/tower.ts';
 import {legacyClass2Source} from './legacy-class2-source.ts';
-const read=(p:string)=>JSON.parse(readFileSync(p,'utf8'));
+const read=(p:string)=>{const v=JSON.parse(readFileSync(p,'utf8'));return p.startsWith('plan/data/')?withoutArtifactsDocument(p.slice(10),v):v;};
 const hash=(b:Buffer)=>createHash('sha256').update(b).digest('hex');
 const stable=(v:unknown):unknown=>Array.isArray(v)?v.map(stable):v&&typeof v==='object'?Object.fromEntries(Object.keys(v).sort().map(k=>[k,stable((v as Record<string,unknown>)[k])])):v;
 const sha=(v:unknown)=>hash(Buffer.from(JSON.stringify(stable(v))));

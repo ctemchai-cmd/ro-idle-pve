@@ -1,8 +1,8 @@
+import {towerBoss,towerRow} from './historical-tower-fixture.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {content,actor,battle,checkpoint,step,type Active} from './combat-fixtures.ts';
 import {storyStages} from '../../src/domain/modes/story.ts';
-import {towerBoss,towerRow} from '../../src/domain/modes/tower.ts';
 import {applySlotCommand,refineChance,refinePityBonus,upgradeQuote,slotData,cardCapacity,type SlotCommand} from '../../src/domain/progression/slots.ts';
 import {initializeAccount} from '../../src/domain/progression/initialize.ts';
 import {AccountCommandRules} from '../../src/domain/account/commands.ts';

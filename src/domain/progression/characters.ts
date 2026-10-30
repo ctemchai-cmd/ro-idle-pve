@@ -46,6 +46,10 @@ export function progressionData(content: ValidatedContent): ProgressionData {
 export function rootForJob(job: Character['job_id'], data: ProgressionData): RootJob | null {
   return (data.job_catalog ?? createJobCatalog(data)).byId[job]?.root as RootJob ?? null;
 }
+/** Fourth highest across the full roster, including main and off-team companions. */
+export function rosterLevelCap(roster:readonly Pick<Character,'level'>[]):number {
+ const levels=roster.map(a=>a.level).sort((a,b)=>b-a);return(levels[3]??levels.at(-1)??1)+20;
+}
 export function effectiveLevelCap(actor: Character, data: ProgressionData) {
   const job = (data.job_catalog ?? createJobCatalog(data)).byId[actor.job_id];
   const classCap = data.promotion.hi_class_enabled && job && job.stage < 3 ? data.hi_class!.minimum_level : data.release.level_cap;
@@ -144,6 +148,7 @@ export function applyRosterCommand(state: AccountState, command: RosterCommand, 
       state.wallet=wallet;return'CHARACTER_LEVEL_RESET';
     }
     case 'character.level_up': {
+      if(command.params.target_level>rosterLevelCap(state.roster))reject('ROSTER_LEVEL_CAP_REACHED');
       const cost = levelQuote(actor, command.params.target_level, data), previous = data.progression.level_rows.find(r => r.level === actor.level)!, next = data.progression.level_rows.find(r => r.level === command.params.target_level)!;
       addInvestment('character_level', command.params.target_level - actor.level, cost);
       actor.unspent_status_points += next.total_status_points - previous.total_status_points; actor.level = command.params.target_level; return 'CHARACTER_LEVELLED';

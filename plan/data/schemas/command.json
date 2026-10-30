@@ -3219,6 +3219,479 @@
         "content_hash"
       ],
       "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "artifact.draw"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "job_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "count": {
+              "enum": [
+                1,
+                10
+              ]
+            }
+          },
+          "required": [
+            "job_id",
+            "count"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "artifact.equip"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "character_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "slot": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "instance_id": {
+              "oneOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120
+                }
+              ]
+            }
+          },
+          "required": [
+            "character_id",
+            "slot",
+            "instance_id"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "artifact.upgrade"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "instance_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "target_level": {
+              "type": "integer",
+              "minimum": 2,
+              "maximum": 10
+            }
+          },
+          "required": [
+            "instance_id",
+            "target_level"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "artifact.star"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "instance_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "donor_ids": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 3,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              }
+            }
+          },
+          "required": [
+            "instance_id",
+            "donor_ids"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "artifact.lock"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "instance_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "locked": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "instance_id",
+            "locked"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "artifact.salvage"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "instance_ids": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 100,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              }
+            }
+          },
+          "required": [
+            "instance_ids"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "expected_revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "content_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "rules_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "type": {
+          "const": "battle.start_mvp"
+        },
+        "params": {
+          "type": "object",
+          "properties": {
+            "boss_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "tier": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10
+            }
+          },
+          "required": [
+            "boss_id",
+            "tier"
+          ],
+          "additionalProperties": false
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "expected_revision",
+        "schema_version",
+        "content_version",
+        "rules_version",
+        "type",
+        "params",
+        "content_hash"
+      ],
+      "additionalProperties": false
     }
   ]
 }

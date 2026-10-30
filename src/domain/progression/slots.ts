@@ -57,6 +57,7 @@ export function applySlotCommand(state:AccountState,command:SlotCommand,content:
   progress.refine=command.params.target_level;progress.refine_failures=0;return'SLOT_REFINED';
  }
  if(command.type==='slot.enchant'){
+  if(command.params.target_level>enchantLevelCap(actor.level,content))reject('ENCHANT_CHARACTER_LEVEL_REQUIRED');
   if(progress.enchant.line_id&&progress.enchant.line_id!==command.params.line_id)reject('ENCHANT_LINE_CONFLICT');if(!enchantLinesFor(slot,content)[command.params.line_id])reject('INVALID_ENCHANT_LINE');
   const current=progress.enchant.level,cost=upgradeQuote(current,command.params.target_level,slots.enchant.max,slots.enchant.upgrade_rows);pay(cost);
   const version=content.manifest.content_version;state.paid_ledger.push({entry_id:`investment_${command.request_id}`,character_id:actor.character_id,feature_id:`enchant_${slot}`,skill_id:command.params.line_id,quantity:command.params.target_level-current,cost_version:version,cost_versions:[version],paid_resources:{...Object.fromEntries(Object.keys(state.wallet).map(k=>[k,0])),...cost}as Wallet,refund_state:'active',refund_command_id:null});
@@ -75,3 +76,5 @@ export function applySlotCommand(state:AccountState,command:SlotCommand,content:
  for(const owner of state.roster)for(const values of Object.values(owner.slot_progress))values.cards=values.cards.map(id=>id===card.instance_id?null:id)as typeof values.cards;
  progress.cards[index]=card.instance_id;return'CARD_ASSIGNED';
 }
+
+export function enchantLevelCap(level:number,content:ValidatedContent){const rules=slotData(content).enchant as SlotData['enchant']&{level_gates?:{from:number;character_level:number}[]};return Math.min(rules.max,...(rules.level_gates??[]).filter(g=>level<g.character_level).map(g=>g.from-1));}

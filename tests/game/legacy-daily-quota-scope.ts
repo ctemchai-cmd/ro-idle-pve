@@ -1,3 +1,4 @@
+import{withoutArtifactsDocument,withoutArtifactsSchema}from'./legacy-artifacts-scope.ts';
 import { dailyBatchSourceBytes } from './legacy-daily-batch-scope.ts';
 import { readFileSync } from 'node:fs';
 import { gunzipSync } from 'node:zlib';
@@ -6,7 +7,7 @@ import assert from 'node:assert/strict';
 const before=JSON.parse(gunzipSync(readFileSync('plan/evidence/task-172/before.json.gz')).toString()) as Record<string,string>;
 const after=JSON.parse(readFileSync('plan/evidence/task-172/source-after.json','utf8')) as Record<string,string>;
 export function withoutDailyQuotaDocument<T>(key:string,value:T):T {
- const c=structuredClone(value) as any;
+ const c=withoutArtifactsDocument(key,value) as any;
  if(key==='daily-bosses.json')c.attempt_reservation=JSON.parse(before['plan/data/daily-bosses.json']!).attempt_reservation;
  if(key==='save-contracts.json') {
   const old=JSON.parse(before['plan/data/save-contracts.json']!);c.battle_protocol.daily_abort=old.battle_protocol.daily_abort;
@@ -15,7 +16,7 @@ export function withoutDailyQuotaDocument<T>(key:string,value:T):T {
  return c;
 }
 export function withoutDailyQuotaSchema<T>(key:string,value:T):T {
- const c=structuredClone(value) as any;if(key==='account-state'){delete c.properties.daily_records.items.properties.quota_policy;delete c.properties.pending_rewards.items.properties.daily_attempt;}return c;
+ const c=withoutArtifactsSchema(key,value) as any;if(key==='account-state'){delete c.properties.daily_records.items.properties.quota_policy;delete c.properties.pending_rewards.items.properties.daily_attempt;}return c;
 }
 export function dailyQuotaSourceBytes(file:string):Buffer {
  if(file.startsWith('plan/data/')&&before[file]){

@@ -6,6 +6,7 @@ export interface ContentManifest {
   content_version: string;
   rules_version: string;
   engine_data_hash: string;
+  combat_replay_hash?: string;
   schema_hash: string;
   implementation_hash: string;
   content_hash: string;

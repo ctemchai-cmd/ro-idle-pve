@@ -41,6 +41,7 @@ export function StorePage({ context }: { context: GameContext }) {
   </div>)}</div>;
   return <div className="page store-page">
     <PageHeader title="ร้านค้า" sub={`รีเซ็ตสิทธิ์ซื้อทุกวัน 00:00 (เวลาไทย) · วันนี้ ${view.day}`} onBack={() => go('home')} />
+    <button className="btn small" onClick={()=>go('artifacts')}>สุ่ม Artifact</button>
     <div className="seg store-seg" role="tablist">{([['shop', 'ร้านค้า'], ['scrolls', 'ใบธาตุ'], ['cards', 'สุ่มการ์ด'], ['gear', 'สุ่มอุปกรณ์']] as [Section, string][]).map(([id, label]) => <button key={id} role="tab" aria-selected={section === id} className={section === id ? 'on' : ''} onClick={() => { setSection(id); setRevealed([]); }}>{label}</button>)}</div>
     {(section === 'shop'||section === 'scrolls') && <div className="shop-grid">{view.offers.filter(offer=>(section==='scrolls')===!!offer.scroll).map(offer => <article key={offer.id} data-offer={offer.id} className={`shop-offer ${offer.left ? '' : 'sold-out'}`}>
       <div className="shop-grant">{offer.crafting.map(c=><span key={c.id}><CraftingIcon pack={pack} kind={c.id}/><b>{c.count}</b></span>)}{offer.scroll&&<ScrollIcon pack={pack} element={offer.scroll.element} />}{(Object.entries(offer.grant) as [keyof Wallet, number][]).map(([k, n]) => <span key={k}><ResIcon pack={pack} k={k} /><b>{full(n)}</b></span>)}</div>

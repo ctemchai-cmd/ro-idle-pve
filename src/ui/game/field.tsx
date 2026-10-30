@@ -1,3 +1,4 @@
+import {parseMvpRef} from '../../client/artifacts.ts';
 import { dailyRewardCount, finishFailureMessage } from '../../client/daily-rewards.ts';
 import { actorSize,type MonsterSize } from '../../client/monster-size.ts';
 import { MonsterSizeBadge } from '../monster-size-badge.tsx';
@@ -35,8 +36,8 @@ function stageBossSkin(pack: AssetPack | null, stageId: string) {
   const info = storyStageInfo(stageId);
   return pack && info && !info.last && info.enemy_identity!=='definition' ? bossSkin(pack.index, info.chapter, info.index) : null;
 }
-type Outcome = { id: string; code: string; stage: string; kind: 'story' | 'tower' | 'daily'; resources?: Partial<Wallet>; itemCount?: number };
-const OUTCOMES = ['STORY_WON', 'STORY_DEFEATED', 'STORY_TIME_LIMIT', 'TOWER_WON', 'TOWER_DEFEATED', 'TOWER_TIME_LIMIT', 'DAILY_FINISHED', 'DAILY_DEFEATED'];
+type Outcome = { id: string; code: string; stage: string; kind: 'story' | 'tower' | 'daily' | 'mvp'; resources?: Partial<Wallet>; itemCount?: number };
+const OUTCOMES = ['MVP_WON','MVP_DEFEATED','MVP_TIME_LIMIT','STORY_WON', 'STORY_DEFEATED', 'STORY_TIME_LIMIT', 'TOWER_WON', 'TOWER_DEFEATED', 'TOWER_TIME_LIMIT', 'DAILY_FINISHED', 'DAILY_DEFEATED'];
 /** Boss-bar tag per mode: story stage, tower floor, or the daily phase being fought (it changes mid-fight). */
 const modeTag = (session: SavedBattleSession) => { const mode = session.state.mode; return mode.kind === 'tower' ? `ชั้น ${mode.ref}` : mode.kind === 'daily' ? `หลอดที่ ${mode.daily_phase}` : mode.ref; };
 const bossName = (id: string) => id.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
@@ -178,6 +179,7 @@ export function BossField({ context, app, running, checkpoint, outcome, retreat,
 
 /** Pre-fight warning shown before the start command; it never delays a running server battle clock. */
 function introLabel(target: ChallengeTarget, pack: AssetPack | null, context: GameContext) {
+  if(target.kind==='mvp'){return{name:bossName(target.boss),place:`MVP Hunt · ระดับ ${target.tier}`,size:null,level:100};}
   if (target.kind === 'tower') { const floor = towerView(context.state, target.floor, 1).floors[0]!; return { name: bossName(floor.boss), place: `หอคอย ชั้น ${target.floor}`, size:floor.size, level: target.floor }; }
   if (target.kind === 'daily') { const card = dailyView(context.state, Date.now()).bosses.find(b => b.id === target.boss); return { name: card ? bossName(card.enemy) : dailyNames[target.boss] ?? target.boss, place: `ดันเจี้ยนรายวัน · ${dailyNames[target.boss] ?? ''} หลอดที่ ${card?.phase ?? 1}`, size: card?.size??null, level: null }; }
   const authored = storyBossLabel(target.id), skin = stageBossSkin(pack, target.id), info = storyStageInfo(target.id), heavy = info?.heavy_skill ? bossCastInfo(info.heavy_skill) : null;
@@ -221,6 +223,7 @@ export function FarmSheet({ context, close }: { context: GameContext; close: () 
   const items = state.pending_rewards.reduce((sum, c) => sum + c.items.length, 0);
   const stoneNames={option_stone:'หินรีโรล',rarity_stone:'หิน Rarity'},stoneKeys=['option_stone','rarity_stone']as const;
   const waitingStones=stoneKeys.map(k=>[k,state.pending_rewards.reduce((n,c)=>n+(c.crafting_materials?.[k]??0),0)]as const).filter(([,n])=>n>0);
+  const waitingArtifacts=state.pending_rewards.reduce((a,c)=>({essence:a.essence+(c.artifact_rewards?.essence??0),tickets:a.tickets+(c.artifact_rewards?.tickets??0)}),{essence:0,tickets:0});
   const [receivedStones,setReceivedStones]=useState({option_stone:0,rarity_stone:0});
   const [collectedCardIds,setCollectedCardIds]=useState<string[]>([]);
   const [openCardId,setOpenCardId]=useState<string|null>(null);
@@ -249,8 +252,8 @@ export function FarmSheet({ context, close }: { context: GameContext; close: () 
       <small>ระดับตามมอนสเตอร์: {farmCardRarityOdds(snapshot.card_drops).map(r=>`${rarityLabels[r.rarity]} ${r.percent.toLocaleString('th-TH',{maximumFractionDigits:2})}%`).join(' · ')}</small>
     </div>:snapshot?<p className="hint">ช่วงสะสมเดิมยังไม่มีดรอปการ์ด</p>:null}
     {snapshot?.crafting_drops&&<section className="farm-stone-rates"><small>หินฟาร์ม · เฉลี่ยต่อ 12 ชม.</small><div className="rate-chips">{stoneKeys.map(k=><span key={k} title={stoneNames[k]}><ResIcon pack={pack} k={k}/>{stoneNames[k]} ~{(snapshot.crafting_drops!.chance_per_million[k]*144/1000000).toLocaleString('th-TH',{maximumFractionDigits:1})}</span>)}</div></section>}
-    {(waiting.length > 0 || items > 0 || waitingStones.length>0) && <div className="waiting-box"><small>รอรับ {state.pending_rewards.length} รายการ{snapshot && elapsed >= 1000 ? ' + ช่วงฟาร์มล่าสุด' : ''}</small>
-      <p className="reward-line">{waiting.map(([k, n]) => <span key={k}><ResIcon pack={pack} k={k} />{compact(n)}</span>)}{items ? <span><Icon name="gift" /> {items} ชิ้น</span> : null}{waitingStones.map(([k,n])=><span key={k} title={stoneNames[k]}><ResIcon pack={pack} k={k}/>{full(n)}</span>)}</p></div>}
+    {(waiting.length > 0 || items > 0 || waitingStones.length>0||waitingArtifacts.essence>0||waitingArtifacts.tickets>0) && <div className="waiting-box"><small>รอรับ {state.pending_rewards.length} รายการ{snapshot && elapsed >= 1000 ? ' + ช่วงฟาร์มล่าสุด' : ''}</small>
+      <p className="reward-line">{waiting.map(([k, n]) => <span key={k}><ResIcon pack={pack} k={k} />{compact(n)}</span>)}{items ? <span><Icon name="gift" /> {items} ชิ้น</span> : null}{waitingStones.map(([k,n])=><span key={k} title={stoneNames[k]}><ResIcon pack={pack} k={k}/>{full(n)}</span>)}{waitingArtifacts.essence>0&&<span>Essence {full(waitingArtifacts.essence)}</span>}{waitingArtifacts.tickets>0&&<span>ตั๋ว Artifact {waitingArtifacts.tickets}</span>}</p></div>}
     <button className="btn primary wide big" disabled={locked || claiming || !ready} onClick={() => void collectAll()}>{claiming ? 'กำลังรับ…' : 'รับทั้งหมด'}</button>
     {stoneKeys.some(k=>receivedStones[k]>0)&&<section className="farm-stone-finds" aria-label="หินที่ได้รับ"><b>หินที่ได้รับ</b><div className="rate-chips">{stoneKeys.filter(k=>receivedStones[k]>0).map(k=><span key={k}><ResIcon pack={pack} k={k}/>{stoneNames[k]} +{full(receivedStones[k])}</span>)}</div></section>}
     {foundCards.length>0&&<section className="farm-card-finds" aria-label="การ์ดที่ได้รับ"><b>การ์ดที่พบ · {foundCards.length} ใบ</b><div>{foundCards.slice(0,12).map(c=><button key={c.item.instance_id} title={c.name} aria-label={`ดู${c.name}`} onClick={()=>setOpenCardId(c.item.instance_id)} data-card-definition={c.definition.id}><span className={`card-find-art rarity-${c.item.rarity_id}`} data-card-rarity={c.item.rarity_id}><CardIcon card={c} pack={pack} /></span><CardGrade grade={c.origin?.grade} rarity={c.item.rarity_id} variant={c.origin?.variant} /><small>{c.name}</small></button>)}</div>{foundCards.length>12&&<small>และอีก {foundCards.length-12} ใบในกระเป๋า</small>}</section>}
@@ -291,6 +294,7 @@ function DailyResult({ context, outcome, close, challenge, stats, timeline, sess
   </div></div>;
 }
 export function ResultCard({ context, outcome, close, challenge, stats, timeline, session, autoControl, autoRunning, autoMessage }: { context: GameContext; outcome: Outcome; close: () => void; challenge: (target: ChallengeTarget) => void; stats: () => void; timeline: () => void; session?: SavedBattleSession; autoControl?: ReactNode; autoRunning: boolean; autoMessage: string }) {
+  if(outcome.kind==='mvp'){const{id,tier}=parseMvpRef(outcome.stage);return <div className="result-layer" role="dialog" aria-label="ผล MVP Hunt"><div className="result-card"><div className="result-body"><h2>{outcome.code==='MVP_WON'?'ชนะแล้ว!':'ลองจัดทีมอีกครั้ง'}</h2><p>{id} · ระดับ {tier}</p><p><ResIcon pack={context.pack} k="crystal"/>{outcome.resources?.crystal??0}</p><small>คลัง: Essence {full(context.state.artifacts?.essence??0)} · ตั๋ว Artifact {full(context.state.artifacts?.tickets??0)}</small>{session&&<Debrief session={session}/>}</div><footer className="result-footer"><div className="row two"><button className="btn primary" disabled={context.locked} onClick={()=>challenge({kind:'mvp',boss:id,tier:outcome.code==='MVP_WON'?Math.min(10,tier+1):tier})}>{outcome.code==='MVP_WON'&&tier<10?'ระดับถัดไป':'ลองใหม่'}</button><button className="btn" onClick={()=>{close();context.go('skills');}}>จัดสกิล</button></div><div className="row"><button className="btn small" onClick={stats}>สถิติ</button><button className="btn small" onClick={timeline}>Timeline</button><button className="btn small" onClick={()=>{close();context.go('mvp');}}>กลับ</button></div></footer></div></div>;}
   if (outcome.kind === 'daily') return <DailyResult context={context} outcome={outcome} close={close} challenge={challenge} stats={stats} timeline={timeline} session={session} />;
   const { state, pack, locked, go } = context, tower = outcome.kind === 'tower', won = outcome.code.endsWith('_WON');
   const pending = hasPendingProgressRewards(state), resources = outcome.resources ?? {}, itemCount = outcome.itemCount ?? 0;
@@ -341,7 +345,7 @@ export function Field({ context, covered, save, request, consumeRequest }: { con
       await new Promise(resolve => setTimeout(resolve, 1500));
       if (!mounted.current) return;
       if (automatic && (token !== epoch.current || !autoRef.current || coveredRef.current || document.hidden)) { setIntro(null); return; }
-      const ok = target.kind === 'tower' ? await submit('battle.start_tower', { floor: target.floor }) : target.kind === 'daily' ? await submit('battle.start_daily', { boss_id: target.boss }) : await submit('battle.start_story', { stage_id: target.id });
+      const ok = target.kind==='mvp'?await submit('battle.start_mvp',{boss_id:target.boss,tier:target.tier}): target.kind === 'tower' ? await submit('battle.start_tower', { floor: target.floor }) : target.kind === 'daily' ? await submit('battle.start_daily', { boss_id: target.boss }) : await submit('battle.start_story', { stage_id: target.id });
       if (!ok) { setIntro(null); if (automatic) stopAuto('หยุด Auto · ยังเริ่มไฟต์ไม่ได้'); }
     } finally { startingRef.current = false; if (mounted.current) setStarting(false); }
   }
@@ -388,7 +392,7 @@ export function Field({ context, covered, save, request, consumeRequest }: { con
     collectionAttempt.current = key; collectionInFlight.current = true;
     void context.submitWhenReady('reward.claim', { claim_ids: ids }).then(ok => { if (!ok) stopAuto('หยุด Auto · ตรวจรางวัลค้าง'); }).finally(() => { collectionInFlight.current = false; });
   }, [state.pending_rewards, state.inventory.length, save.status, covered, online, active?.battle_id]);
-  useEffect(() => { if (!request) return; consumeRequest(); const { at: _at, automatic, ...target } = request; if (automatic && target.kind !== 'daily') startAuto(target.kind, target); else void challenge(target as ChallengeTarget); }, [request?.at]);
+  useEffect(() => { if (!request) return; consumeRequest(); const { at: _at, automatic, ...target } = request; if (automatic && (target.kind === 'story'||target.kind==='tower')) startAuto(target.kind, target); else void challenge(target as ChallengeTarget); }, [request?.at]);
   useEffect(() => {
     if (!intro) return; const ready = !!boss && (active?.battle_id === boss.id || outcome?.id === boss.id);
     const timer = setTimeout(() => setIntro(null), ready ? Math.max(0, 2100 - (Date.now() - intro.at)) : 9000);

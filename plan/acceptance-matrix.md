@@ -1038,3 +1038,22 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T178-AC-01` | TASK-178 | Only1/2/3 controls and old4 preference migration | focused/native/build/M0/public; phone code and regression for177 | passed_implementation |
 | `T178-AC-02` | TASK-178 | Exact cast/CC/empty-slot/RNG/Timeline outcomes | focused/native/build/M0/public; phone code and regression for177 | passed_implementation |
 | `T178-AC-03` | TASK-178 | Unchanged fingerprints and verified release | focused/native/build/M0/public; phone code and regression for177 | passed_implementation |
+| `T179-AC-01` | TASK-179 | ทุกพฤติกรรมในขอบเขตใช้กติกาเดียวกับ runtime/headless/UI | shared/native/build/hosted | not_run_implementation |
+| `T179-AC-02` | TASK-179 | ปฏิเสธข้อมูลผิดโดยไม่เสียทรัพยากร และ retryไม่จ่ายซ้ำ | shared/native/build/hosted | not_run_implementation |
+| `T179-AC-03` | TASK-179 | เซฟเก่ารักษาทรัพยากร/ทุน/สิทธิ์ผ่าน backup migration | shared/native/build/hosted | not_run_implementation |
+| `T179-AC-04` | TASK-179 | targeted tests และ strict/root/filtered build ผ่าน | shared/native/build/hosted | not_run_implementation |
+| `T179-AC-05` | TASK-179 | UI320/390 ใช้ได้และ hosted release ตรง source | shared/native/build/hosted | not_run_implementation |
+| `T180-AC-01` | TASK-180 | ทุกพฤติกรรมในขอบเขตใช้กติกาเดียวกับ runtime/headless/UI | shared/native/build/hosted | not_run_implementation |
+| `T180-AC-02` | TASK-180 | ปฏิเสธข้อมูลผิดโดยไม่เสียทรัพยากร และ retryไม่จ่ายซ้ำ | shared/native/build/hosted | not_run_implementation |
+| `T180-AC-03` | TASK-180 | เซฟเก่ารักษาทรัพยากร/ทุน/สิทธิ์ผ่าน backup migration | shared/native/build/hosted | not_run_implementation |
+| `T180-AC-04` | TASK-180 | targeted tests และ strict/root/filtered build ผ่าน | shared/native/build/hosted | not_run_implementation |
+| `T180-AC-05` | TASK-180 | UI320/390 ใช้ได้และ hosted release ตรง source | shared/native/build/hosted | not_run_implementation |
+| `T181-AC-01` | TASK-181 | ทุกพฤติกรรมในขอบเขตใช้กติกาเดียวกับ runtime/headless/UI | shared/native/build/hosted | not_run_implementation |
+| `T181-AC-02` | TASK-181 | ปฏิเสธข้อมูลผิดโดยไม่เสียทรัพยากร และ retryไม่จ่ายซ้ำ | shared/native/build/hosted | not_run_implementation |
+| `T181-AC-03` | TASK-181 | เซฟเก่ารักษาทรัพยากร/ทุน/สิทธิ์ผ่าน backup migration | shared/native/build/hosted | not_run_implementation |
+| `T181-AC-04` | TASK-181 | targeted tests และ strict/root/filtered build ผ่าน | shared/native/build/hosted | not_run_implementation |
+| `T181-AC-05` | TASK-181 | UI320/390 ใช้ได้และ hosted release ตรง source | shared/native/build/hosted | not_run_implementation |
+| `T182-AC-01` | TASK-182 | 100/90/80/60→80 และไม่นับแค่ทีม | shared/native/build/hosted | not_run_implementation |
+| `T182-AC-02` | TASK-182 | เกิน cap ไม่เสีย EXP/ทอง | shared/native/build/hosted | not_run_implementation |
+| `T182-AC-03` | TASK-182 | เลเวลเดิมเกิน cap ยังโหลดได้ | shared/native/build/hosted | not_run_implementation |
+| `T182-AC-04` | TASK-182 | UI/strict/build/hostedผ่าน | shared/native/build/hosted | not_run_implementation |

@@ -1,5 +1,7 @@
 # ภาพรวมแผนและความคืบหน้า
 
+กำลังทำ TASK179–182: Artifact 2ช่อง/เลเวล/ดาว, MVPรายสัปดาห์,Crystal80/h,Enchant20/late challenge และเพดานอัปเลเวลอันดับ4+20. Local native320/390/shared rules ผ่านบางส่วน; 832 TS / root+filtered identical / native mobile ผ่านแล้ว; อยู่ review รอเผยแพร่. ยึด design91.
+
 [TASK154](done/tasks_154.md) ขึ้นVercel45f39a9a1แล้ว: เลือกย่อยการ์ดทีละใบ/หลายใบ/filter/ยืนยันรวม และดูข้อมูลใบล่าสุดไม่หลุดselection;bulk4+single4/11TS/rootbuild/public3groupsผ่าน.
 
 [TASK153](done/tasks_153.md) ขึ้นVercel4af88856eแล้ว: ยืนยันก่อนย่อย/สุ่มต่อ1หรือ10ใบ;เลขสูงขึ้น/เพลงครอบทีม/Sanctuaryพื้นขาวnative. 24focusedTS/nativeUI4+ground7+number4/hosted8groups/rootbuild/M0ผ่าน;gameplayเดิม.
@@ -36,7 +38,7 @@
 
 [TASK-129](done/tasks_129.md) วัดแล้ว14,168ไฟต์ / 32อาชีพ / 11เงื่อนไข / 1224บิลด์: [รายงาน](evidence/task-129/README.md) · [ตารางกรองได้](evidence/task-129/report.html). เก็บbaseline79ab9437ก่อนคำขอปรับAwaken TASK130; ไม่มีการปรับเกมจากอันดับอัตโนมัติ
 
-อัปเดต: 29 ตุลาคม 2026 · ระยะปัจจุบัน: **164/178 งานผ่าน done; TASK-041 บาลานซ์, TASK-058 ย้ายเซฟ และ TASK-064 อัปเกรดทันทีขึ้นVercelแล้ว/SQL007ติดตั้งแล้ว/รอcloudtimingอยู่ inprogress; TASK-062 PWAขึ้นVercelและผ่านhostedแล้ว; TASK-063 ทุกmutationลด3→1requestsขึ้นVercelผ่านแล้ว; TASK-060 เซฟเริ่ม/จบและ TASK-061 resetดันขึ้นVercelแล้ว; TASK-048/054/055/056/057 อยู่ review รอผู้ใช้ตรวจภาพ**
+อัปเดต: 29 ตุลาคม 2026 · ระยะปัจจุบัน: **164/182 งานผ่าน done; TASK-041 บาลานซ์, TASK-058 ย้ายเซฟ และ TASK-064 อัปเกรดทันทีขึ้นVercelแล้ว/SQL007ติดตั้งแล้ว/รอcloudtimingอยู่ inprogress; TASK-062 PWAขึ้นVercelและผ่านhostedแล้ว; TASK-063 ทุกmutationลด3→1requestsขึ้นVercelผ่านแล้ว; TASK-060 เซฟเริ่ม/จบและ TASK-061 resetดันขึ้นVercelแล้ว; TASK-048/054/055/056/057 อยู่ review รอผู้ใช้ตรวจภาพ**
 
 [TASK-125](done/tasks_125.md)/[TASK-128](done/tasks_128.md) ขึ้นVercel source`fe14ac635`แล้ว: **Hi-class13อาชีพ/26สกิล, Awaken152variants, Lv.70→90, บท10–12** และบัพHunterสามท่า. Spiral3hitรวม750%weapon/Rapid1050%/Claymore750%เมื่อเต็ม. 624TS/root+filteredbuild/M0/actualAuthSQL-mobile6groups/hosted4groupsผ่าน;ไม่SQL/envใหม่/ไม่เข้าบัญชีowner/ไม่รันbalancebatch. [Hi review](evidence/task-125-review.json) · [Hunter review](evidence/task-128-review.json). จบไฟต์reloadแล้วสำรองอัปเดตเซฟตามflowเดิม.
 
@@ -153,7 +155,7 @@ Q-001–Q-022 ตอบแล้ว: บัฟบวกกันไม่มี�
 | review | 5 |    [TASK-048](review/tasks_048.md) game shell /play รอผู้ใช้ตรวจหน้าตา (AC-08), [TASK-054](review/tasks_054.md) ภาพการต่อสู้ตรง RO รอผู้ใช้ตรวจ (AC-06), [TASK-055](review/tasks_055.md) คำขอระหว่างลองเล่น รอผู้ใช้ (AC-06), [TASK-056](review/tasks_056.md) UI D-076–078/080 อัปเดตแล้วรอผู้ใช้ตรวจภาพ (AC-06), [TASK-057](review/tasks_057.md) ทรงผม D-079 อัปเดตแล้วรอผู้ใช้ตรวจ (AC-05) |
 | done | 164 | ผ่าน review ตามหลักฐานในแต่ละงาน |
 
-Progress ของกระดาน: **164/178 งานผ่าน done** ไม่รวมงานเตรียม assets ที่ทำก่อนเริ่มใช้กระดาน ตำแหน่งไฟล์เป็นสถานะจริง ID คงเดิม เมื่อย้ายไฟล์ให้อัปเดตจำนวนและลิงก์ในเอกสารนี้
+Progress ของกระดาน: **164/182 งานผ่าน done** ไม่รวมงานเตรียม assets ที่ทำก่อนเริ่มใช้กระดาน ตำแหน่งไฟล์เป็นสถานะจริง ID คงเดิม เมื่อย้ายไฟล์ให้อัปเดตจำนวนและลิงก์ในเอกสารนี้
 
 TASK-001–014 และ TASK-047 อยู่doneครบM0 TASK-015–028ผ่านแล้ว รอบภาพล่าสุด [TASK-020รอบ11](evidence/task-020-focus-impact-review.json) ผ่าน184TStests+4native/build/Chrome: focusนุ่มไร้กรอบและdamage numbersตรงnative ACTcontact/ลูกธนู-ลูกเวทย์กระทบ ภาพไม่เปลี่ยนผลcombat Runtimepack252IDs/505files/35audioรวม22.5MB
 

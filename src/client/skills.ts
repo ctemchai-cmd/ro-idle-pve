@@ -1,3 +1,4 @@
+import {boundArtifacts,artifactBonus,artifactDefinition,enhanceArtifactSkill,artifactSkills} from '../domain/build/artifacts.ts';
 import { heldResourceModifiers } from '../domain/combat/resources.ts';
 import {bindStatusParams} from '../domain/combat/program.ts';
 import { statNames, statusNames } from './status-labels.ts';
@@ -137,15 +138,16 @@ export function characterSkillIconIds(actor:Character):string[]{
  return Object.values(content.skills).filter(row=>allowedSkill(actor,row as unknown as SkillDefinition,content)).map(row=>String(row.id));
 }
 export function characterSkillOptions(actor:Character,state?:AccountState):{skills:SkillOption[];intervalMs:number}{
- const compiled=compileCharacterSkills(actor,content),stats=previewCharacterStats(actor,compiled.resolved_skills,content,state?equippedSources(actor,state,content):[]);
+ const enhance=(definition:SkillDefinition)=>{if(!state)return definition;for(const item of boundArtifacts(actor.character_id,state))if(artifactDefinition(item.definition_id,content).skill_id===definition.id)definition=enhanceArtifactSkill(definition,artifactBonus(item,content));return definition;};
+ const compiled=compileCharacterSkills(actor,content);if(state)compiled.resolved_skills=artifactSkills(actor.character_id,state,compiled.resolved_skills,content);const stats=previewCharacterStats(actor,compiled.resolved_skills,content,state?equippedSources(actor,state,content):[]);
  const skills=Object.values(content.skills).filter(row=>allowedSkill(actor,row as unknown as SkillDefinition,content)).map(row=>{
   const source=row as unknown as SkillDefinition,level=actor.skill_levels[source.id]??0,cap=characterSkillCap(actor,source),locked=actor.level<source.unlock_level,target=level+1;
   const awakened=skillIsAwakened(actor,source.id);
-  const definition=structuredClone(resolveSkill(source.id,Math.max(1,level),content,awakened).definition)as SkillDefinition;
+  const definition=enhance(structuredClone(resolveSkill(source.id,Math.max(1,level),content,awakened).definition)as SkillDefinition);
   let price:SkillOption['price']=null;if(!locked&&target<=cap)price=skillQuote(actor,source.id,target,content);
-  const next=price?structuredClone(resolveSkill(source.id,target,content,awakened).definition)as SkillDefinition:null;
+  const next=price?enhance(structuredClone(resolveSkill(source.id,target,content,awakened).definition)as SkillDefinition):null;
   const awakenPrice=skillAwakeningEnabled&&!awakened&&level===source.max_level&&(content.jobs.byId[actor.job_id]?.stage??0)>=3?skillAwakenQuote(actor,source.id,content):null;
-  const awakenEffects=awakenPrice?summaries(resolveSkill(source.id,1,content,true).definition as SkillDefinition,1,compiled.resolved_skills):[];
+  const awakenEffects=awakenPrice?summaries(enhance(resolveSkill(source.id,1,content,true).definition as SkillDefinition),1,compiled.resolved_skills):[];
   const targetNote=skillTargetNote(definition);
   return{fullAt:skillRankUnlockLevels(source,awakened).at(-1)!,nextRankAt:skillRankUnlockLevels(source,awakened)[Math.max(level,cap)]??null,awakened,awakenPrice,awakenEffects,previewSkills:compiled.resolved_skills,previewSpeed:stats.cast_speed,previewSpPercent:stats.sp_cost_percent,targetNote,id:source.id,name:labels[source.name_key]??source.id,kind:source.kind,unlock:source.unlock_level,level,cap,max:source.max_level,locked,definition,next,price,notes:skillNotes(definition),effects:summaries(definition,Math.max(1,level),compiled.resolved_skills),nextEffects:next?summaries(next,target,compiled.resolved_skills):[],castMs:definition.kind==='active'?castDurationMs(Number(definition.timing.cast_ms),stats.cast_speed):0,afterCastMs:definition.kind==='active'?castDurationMs(Number(definition.timing.after_cast_ms),stats.cast_speed):0,sp:definition.kind==='active'?typeof definition.cost.sp==='number'?fixedSpCost(definition.cost.sp,stats):NaN:0,nextCastMs:next?.kind==='active'?castDurationMs(Number(next.timing.cast_ms),stats.cast_speed):null,nextAfterCastMs:next?.kind==='active'?castDurationMs(Number(next.timing.after_cast_ms),stats.cast_speed):null,nextSp:next?.kind==='active'?typeof next.cost.sp==='number'?fixedSpCost(next.cost.sp,stats):NaN:null};
  });

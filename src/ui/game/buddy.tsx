@@ -5,9 +5,9 @@ import { CardSalvageButton } from './card-salvage.tsx';
 import { Icon } from '../icon.tsx';
 import { useMemo, useState, useRef } from 'react';
 import type { CombatStats, Modifier } from '../../contracts/index.ts';
-import { effectiveLevelCap, levelQuote,jobChangePlan,characterResetQuote, rosterData as data, type Character } from '../../client/roster.ts';
+import { rosterLevelCap, effectiveLevelCap, levelQuote,jobChangePlan,characterResetQuote, rosterData as data, type Character } from '../../client/roster.ts';
 import { equipmentData, equipmentPreview, equipmentUpgradeHints, inventoryView, itemModifiers, itemOptions, rarityLabels, rarityRank, slotLabels, weaponLabels, type EquipmentSlot } from '../../client/equipment.ts';
-import { cardInventory, cardView, cardStatUnits, slotEnchantLines, refineModifiers, nextRefineChance, nextRefinePityBonus, refinePercent, slotsData, refundEnchant, slotChangePreview, slotUpgradeQuote, socketCapacity, socketUnlockRefine, socketUnlockHint } from '../../client/slots.ts';
+import { characterEnchantCap,cardInventory, cardView, cardStatUnits, slotEnchantLines, refineModifiers, nextRefineChance, nextRefinePityBonus, refinePercent, slotsData, refundEnchant, slotChangePreview, slotUpgradeQuote, socketCapacity, socketUnlockRefine, socketUnlockHint } from '../../client/slots.ts';
 import type { GameContext } from './shell.tsx';
 import { ClassIcon } from './class-icon.tsx';
 import { SkillCatalogSheet } from './skill-catalog.tsx';
@@ -53,7 +53,7 @@ function UpgradeSheet({ context, actor, slot, close }: { context: GameContext; a
     setFx({ ok: !failed, text: failed ? 'ล้มเหลว…' : `+${target} สำเร็จ!`, key: Date.now() }); setTimeout(() => setFx(null), 1600);
   }
   const [tab, setTab] = useState<'refine' | 'enchant' | 'card'>('refine'), [line, setLine] = useState<keyof typeof enchantLines>((progress.enchant.line_id as keyof typeof enchantLines | null) ?? 'offense'), [confirmLine, setConfirmLine] = useState(false), [socket, setSocket] = useState(0), [cardId, setCardId] = useState<string | null>(progress.cards[0] ?? null);
-  const refine = progress.refine < slotsData.refine.max ? slotUpgradeQuote(progress.refine, progress.refine + 1, 'refine') : null, enchant = progress.enchant.level < 10 ? slotUpgradeQuote(progress.enchant.level, progress.enchant.level + 1, 'enchant') : null;
+  const refine = progress.refine < slotsData.refine.max ? slotUpgradeQuote(progress.refine, progress.refine + 1, 'refine') : null, enchant = progress.enchant.level < characterEnchantCap(actor.level) ? slotUpgradeQuote(progress.enchant.level, progress.enchant.level + 1, 'enchant') : null;
   const changeLine = progress.enchant.line_id !== null && progress.enchant.line_id !== line;
   const refinePreview = useMemo(() => tab === 'refine' && refine && !state.active_battle ? slotChangePreview(state, actor.character_id, 'slot.refine', { ...params, target_level: progress.refine + 1 }) : null, [state, actor.character_id, slot, tab]);
   const enchantPreview = useMemo(() => tab === 'enchant' && enchant && !changeLine && !state.active_battle ? slotChangePreview(state, actor.character_id, 'slot.enchant', { ...params, line_id: line, target_level: progress.enchant.level + 1 }) : null, [state, actor.character_id, slot, tab, line]);
@@ -79,7 +79,7 @@ function UpgradeSheet({ context, actor, slot, close }: { context: GameContext; a
         {confirmLine ? <div className="row"><button className="btn primary" disabled={locked} onClick={() => void submit('slot.change_enchant', { ...params, line_id: line })}>ยืนยันเปลี่ยนสาย</button><button className="btn ghost" onClick={() => setConfirmLine(false)}>ยกเลิก</button></div> : <button className="btn wide" disabled={locked} onClick={() => setConfirmLine(true)}>เปลี่ยนเป็นสาย {enchantLines[line]!.label}</button>}</>
         : <><div className="level-jump"><b>Lv.{progress.enchant.level}</b><span>→</span><b className="next">{enchant ? `Lv.${progress.enchant.level + 1}` : 'MAX'}</b></div>
           {enchant ? <><CostChips cost={enchant} wallet={state.wallet} pack={pack} />{enchantPreview && <StatChanges before={enchantPreview.before} after={enchantPreview.after} />}
-            <button className="btn primary wide" disabled={locked || !canPay(state.wallet, enchant)} onClick={() => void submit('slot.enchant', { ...params, line_id: line, target_level: progress.enchant.level + 1 })}>Enchant Lv.{progress.enchant.level + 1}</button></> : <p className="hint">Enchant สูงสุดแล้ว</p>}</>}
+            <button className="btn primary wide" disabled={locked || !canPay(state.wallet, enchant)} onClick={() => void submit('slot.enchant', { ...params, line_id: line, target_level: progress.enchant.level + 1 })}>Enchant Lv.{progress.enchant.level + 1}</button></> : <p className="hint">{progress.enchant.level>=slotsData.enchant.max?'Enchant สูงสุดแล้ว':actor.level<80?'Lv.80 ปลด Enchant 11–15':'Lv.100 ปลด Enchant 16–20'}</p>}</>}
     </section>}
     {tab === 'card' && <section className="upgrade-pane card-upgrade-pane">
       <div className="socket-row" role="group" aria-label="ช่องการ์ด">{progress.cards.map((id, index) => { const source = cards.find(c => c.item.instance_id === id); return <button key={index} className={`socket ${socket === index ? 'on' : ''}`} disabled={index >= capacity} aria-pressed={socket === index} onClick={() => { setSocket(index); setCardId(id); }}>
@@ -159,7 +159,7 @@ function SlotSheet({ context, actor, slot, close, open }: { context: GameContext
 }
 
 export function CharacterUpgradeSheet({ context, actor, close }: { context: GameContext; actor: Character; close: () => void }) {
-  const { state, pack, submit, locked } = context, cap = effectiveLevelCap(actor, data), [job, setJob] = useState(actor.job_id), [reset, setReset] = useState(false);
+  const { state, pack, submit, locked } = context, cap = Math.min(effectiveLevelCap(actor, data),rosterLevelCap(state.roster)), [job, setJob] = useState(actor.job_id), [reset, setReset] = useState(false);
   const [catalog,setCatalog]=useState(false);
   const [levelReset,setLevelReset]=useState<{quote:ReturnType<typeof characterResetQuote>;level:number}|null>(null),[resetBusy,setResetBusy]=useState(false),resetGate=useRef(false);
   let resetQuote:ReturnType<typeof characterResetQuote>|null=null;try{resetQuote=characterResetQuote(state,actor.character_id);}catch{/* Invalid histories remain unavailable until reconciled. */}
@@ -172,7 +172,7 @@ export function CharacterUpgradeSheet({ context, actor, close }: { context: Game
   const refund = state.paid_ledger.filter(e => e.character_id === actor.character_id && ['skill','skill_awaken'].includes(e.feature_id) && e.refund_state === 'active').reduce((sum, e) => { for (const k of Object.keys(sum) as (keyof Wallet)[]) sum[k] += e.paid_resources[k]; return sum; }, Object.fromEntries(Object.keys(state.wallet).map(k => [k, 0])) as Wallet);
   return <><Sheet title={`อัปเกรด ${friendNames[actor.character_id]}`} onClose={close} className="tall">
     <section className="upgrade-pane"><h3>เลเวล</h3>
-      <div className="level-jump"><b>Lv.{actor.level}</b><span>→</span><b className="next">{cost ? `Lv.${actor.level + 1}` : actor.level === data.release.level_cap ? 'MAX' : actor.level===70&&(data.job_catalog!.byId[actor.job_id]?.stage??0)<3?'รอ Hi-class':'รอ Breakthrough'}</b><small>เพดาน {cap}</small></div>
+      <div className="level-jump"><b>Lv.{actor.level}</b><span>→</span><b className="next">{cost ? `Lv.${actor.level + 1}` : actor.level === data.release.level_cap ? 'MAX' : actor.level===70&&(data.job_catalog!.byId[actor.job_id]?.stage??0)<3?'รอ Hi-class':rosterLevelCap(state.roster)<=actor.level?'อัปเพื่อนอันดับ 4':'รอ Breakthrough'}</b><small>เพดาน {cap}</small></div>
       {cost && <><CostChips cost={cost} wallet={state.wallet} pack={pack} /><div className="row two"><button className="btn primary" disabled={locked || !canPay(state.wallet, cost)} onClick={() => void submit('character.level_up', { character_id: actor.character_id, target_level: actor.level + 1 })}>อัป +1</button>
         <button className="btn" disabled={locked || best <= actor.level + 1} onClick={() => void submit('character.level_up', { character_id: actor.character_id, target_level: best })}>อัปถึง Lv.{Math.max(best, actor.level + 1)}</button></div></>}
       <button className="btn ghost wide" disabled={locked||!!state.active_battle||!resetQuote?.canReset} onClick={()=>resetQuote&&setLevelReset({quote:resetQuote,level:actor.level})}>กลับ Lv.1 / คืนทรัพยากร</button>
@@ -213,7 +213,8 @@ export function BuddyPage({ context }: { context: GameContext }) {
   const tile = (s: EquipmentSlot) => <GearTile key={s} row={row(s)} slot={s} pack={pack} state={state} characterId={actor.character_id} upgradeId={upgrades[s]} onClick={() => { setSlot(s); setSheet('slot'); }} />;
   const statsIcon = iconUrl(pack, 'ui_icons', 'stats'), skillIcon = iconUrl(pack, 'ui_icons', 'skill'), upgradeIcon = iconUrl(pack, 'ui_icons', 'upgrade');
   return <div className="page buddy-page">
-    <PageHeader title={<>{friendNames[actor.character_id]} <span className="title-class"><ClassIcon pack={pack} job={actor.job_id} size={20} /><em>{jobNames[actor.job_id]}</em></span></>} sub={`Lv.${actor.level} / ${effectiveLevelCap(actor, data)} · ${inTeam ? 'อยู่ในทีม' : 'พักอยู่ในค่าย'}${actor.unspent_status_points ? ` · แต้มเหลือ ${actor.unspent_status_points}` : ''}`} onBack={() => go('home')} />
+    <PageHeader title={<>{friendNames[actor.character_id]} <span className="title-class"><ClassIcon pack={pack} job={actor.job_id} size={20} />
+    <button className="btn small" onClick={()=>context.go('artifacts')}>Artifact · 2 ช่อง</button><em>{jobNames[actor.job_id]}</em></span></>} sub={`Lv.${actor.level} / ${effectiveLevelCap(actor, data)} · ${inTeam ? 'อยู่ในทีม' : 'พักอยู่ในค่าย'}${actor.unspent_status_points ? ` · แต้มเหลือ ${actor.unspent_status_points}` : ''}`} onBack={() => go('home')} />
     <section className="showcase">
       <div className="gear-col">{leftSlots.map(tile)}</div>
       <div className="hero-stage"><ActorCanvas pack={pack} look={lookOf(actor, state)} width={220} height={250} scale={2.7} footY={226} animate className="hero-canvas" /><span className="hero-plinth" /></div>

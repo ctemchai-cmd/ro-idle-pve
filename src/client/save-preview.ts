@@ -1,3 +1,5 @@
+import {applyArtifactCommand,type ArtifactCommand} from '../domain/progression/artifacts.ts';
+import {reconcileArtifactSlots} from '../domain/build/artifacts.ts';
 import type { AccountState, Command } from '../contracts/index.ts';
 import type { ValidatedContent } from '../content/model.ts';
 import { applyRosterCommand, type RosterCommand } from '../domain/progression/characters.ts';
@@ -17,7 +19,9 @@ export function previewSave(state: AccountState, command: Command, content: Vali
     else if (command.type === 'equipment.tier_up') applyGearUpgrade(next, command, content);
     else if (['equipment.equip', 'equipment.equip_upgrades', 'equipment.unequip', 'equipment.lock', 'equipment.salvage', 'equipment.purchase_weapon'].includes(command.type)) applyEquipmentCommand(next, command as EquipmentCommand, content);
     else if (['slot.enchant', 'slot.change_enchant', 'card.assign', 'card.unassign', 'card.upgrade', 'card.salvage'].includes(command.type)) applySlotCommand(next, command as SlotCommand, content);
+    else if(command.type.startsWith('artifact.')&&command.type!=='artifact.draw')applyArtifactCommand(next,command as ArtifactCommand,content);
     else return null;
+    reconcileArtifactSlots(next,content);
     next.paid_ledger = compactPaidLedger(next.paid_ledger);
     return next;
   } catch { return null; } // An unavailable upgrade stays unchanged until the normal command result explains it.

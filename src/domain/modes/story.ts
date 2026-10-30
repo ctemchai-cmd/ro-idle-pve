@@ -20,7 +20,7 @@ export function storyReleaseLock(stage:StoryStage,content:ValidatedContent):NonN
 }
 export function canChallenge(stage:StoryStage,state:AccountState,content:ValidatedContent){return !storyReleaseLock(stage,content)&&(stage.unlock_after===null||state.story.cleared_stage_ids.includes(stage.unlock_after));}
 /** A boss challenge has one enemy, per the user's revised gameplay baseline. */
-export function storyBoss(stage:StoryStage){const boss=stage.encounter.find(a=>a.actor_id==='enemy_front');if(!boss)throw new Error('STORY_BOSS_MISSING');return boss;}
+export function storyBoss(stage:StoryStage){const boss=stage.encounter.find(a=>a.actor_id==='enemy_front');if(!boss)throw new Error('STORY_BOSS_MISSING');const t=Math.max(0,Math.min(1,(stage.chapter-9)/3));if(!t)return boss;return{...boss,resolved_base:{...boss.resolved_base,max_hp:Math.round(boss.resolved_base.max_hp*(1+.12*t)),physical_attack:Math.round(boss.resolved_base.physical_attack*(1+.2*t)),magical_attack:Math.round(boss.resolved_base.magical_attack*(1+.2*t))}};}
 export function storyFarmSnapshot(stage:StoryStage,state:AccountState,content:ValidatedContent):NonNullable<AccountState['farm']['rate_snapshot']>{
  const rates=content.documents['economy.json']!.rates as unknown as {chapter:number;per_hour:Partial<AccountState['wallet']>}[];
  const rate=rates.find(r=>r.chapter===stage.farm_rate_chapter);if(!rate)throw new Error('FARM_RATE_MISSING');

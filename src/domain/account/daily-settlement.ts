@@ -4,7 +4,7 @@ import { dailyBoss, dailyChest, parseDailyRef } from '../modes/daily.ts';
 import { ProgressionRejection } from '../progression/rejection.ts';
 
 /** One fixed claim per run; phase keys still guard each individual chest. */
-export function settleDailyRewards(state: AccountState, checkpoint: BattleCheckpoint, battleId: string, serverAt: string, content: ValidatedContent): number {
+export function settleDailyRewards(state: AccountState, checkpoint: BattleCheckpoint, battleId: string, serverAt: string, content: ValidatedContent,artifactRewards=true): number {
   const { id } = parseDailyRef(checkpoint.mode.ref), day = checkpoint.mode.ticket_day;
   const record = state.daily_records.find(r => r.boss_id === id && r.ticket_day === day);
   if (checkpoint.mode.kind !== 'daily' || !record || !day) throw new ProgressionRejection('DAILY_RECORD_MISSING');
@@ -20,8 +20,9 @@ export function settleDailyRewards(state: AccountState, checkpoint: BattleCheckp
   record.phase=checkpoint.mode.daily_phase??record.phase;
   record.current_hp=Math.max(1,checkpoint.actors.find(a=>a.actor_id==='enemy_front')?.hp??record.current_hp);
   if(!fresh.length)return 0;
+  const artifact=artifactRewards&&record.chapter_snapshot>=8?{essence:fresh.length*5,tickets:fresh.filter(p=>p%10===0).length}:undefined;
   const keys=fresh.map(p=>`daily:${id}:${day}:${p}`);record.rewarded_phases.push(...fresh);
-  if(existing){for(const key of Object.keys(vector) as (keyof typeof vector)[])existing.resource_vector[key]+=vector[key];existing.source_keys.push(...keys);}
-  else state.pending_rewards.push({claim_id:claimId,kind:'daily',daily_attempt:{boss_id:id,ticket_day:day,battle_id:battleId,charged:false},resource_vector:vector,items:[],content_version:content.manifest.content_version,reserved_at:serverAt,source_keys:[`battle:${battleId}`,...keys],status:'pending'});
+  if(existing){if(artifact)existing.artifact_rewards={essence:(existing.artifact_rewards?.essence??0)+artifact.essence,tickets:(existing.artifact_rewards?.tickets??0)+artifact.tickets};for(const key of Object.keys(vector) as (keyof typeof vector)[])existing.resource_vector[key]+=vector[key];existing.source_keys.push(...keys);}
+  else state.pending_rewards.push({claim_id:claimId,kind:'daily',...(artifact?{artifact_rewards:artifact}:{}),daily_attempt:{boss_id:id,ticket_day:day,battle_id:battleId,charged:false},resource_vector:vector,items:[],content_version:content.manifest.content_version,reserved_at:serverAt,source_keys:[`battle:${battleId}`,...keys],status:'pending'});
   return fresh.length;
 }

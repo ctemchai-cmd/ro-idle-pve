@@ -1,3 +1,4 @@
+import{seedSupportingRoster}from'./roster-level-fixture.ts';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { AccountCommandRules, type CommandTime } from '../../src/domain/account/commands.ts';
@@ -29,6 +30,7 @@ test('manual resource leveling supports off-team actors, exact costs, caps20/40/
  const old=structuredClone(f.state);assert.equal(f.run('character.level_up',{character_id:'npc_mage',target_level:21}).result.code,'LEVEL_CAP_REACHED');assert.deepEqual(f.state,old);
  // Job20 is independent from breakthrough20.
  assert.equal(f.run('character.change_job',{character_id:'npc_mage',job_id:'wizard'}).outcome,'committed');assert.equal(f.actor('npc_mage').local_cap,20);
+ seedSupportingRoster(f.state,content,'npc_mage',70);
  for(const [gate,target] of [[20,40],[40,60],[60,70]] as const){assert.equal(f.run('character.breakthrough',{character_id:'npc_mage',gate_level:gate}).outcome,'committed');assert.equal(f.run('character.level_up',{character_id:'npc_mage',target_level:target}).outcome,'committed');}
  assert.equal(f.actor('npc_mage').level,70);assert.equal(f.actor('npc_mage').local_cap,80);assert.deepEqual(f.actor('npc_mage').completed_gate_ids,[20,40,60]);assert.deepEqual(f.actor('npc_mage').primary_stats,primary);assert.equal(f.actor('npc_mage').unspent_status_points,676);
  assert.equal(f.state.wallet.gold,initial.gold-402090);assert.equal(f.state.wallet.hero_exp,initial.hero_exp-680225);assert.equal(f.state.wallet.breakthrough_essence,initial.breakthrough_essence-520);

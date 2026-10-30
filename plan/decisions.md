@@ -427,3 +427,11 @@ D201/TASK177: Hunterเซฟที่3เล่นในคอมได้แ�
 D202/TASK178: ผู้ใช้ให้ลดความเร็วสูงสุดเป็น3×; UI savedbattle/demo/previewวน1/2/3, preference4→3; engine/legacyprotocol/receipts unchanged.
 
 D201เพิ่มเติม: ผู้ใช้ยืนยันCOMMAND_TOO_LARGEหลังย่อยอุปกรณ์จำนวนมาก. RootAPI16,384codeunitsต่ำกว่าสัญญา500IDs×120characters. ปรับHTTPbudgetเป็น256KiBUTF8ทั้งAPI/gateway,คงoriginalpendingUUID/receipt/CAS/หนึ่งatomicbatch; ไม่เปลี่ยนSaveController/เซฟ/core.
+
+D202/TASK178: ความเร็วที่เห็นในเกมเป็น1/2/3, device4→3, core/protocolเก่ายังคง replay ได้ตามหลักฐาน task178.
+
+D203/TASK179/181: Artifact อาชีพ2ช่อง/คน,คนละสกิล,RarityประจำชนิดขาวClass1→เขียวClass2ต้น→ฟ้าClass2หลัก→ม่วงHiแรก→ทองHiหลัก. ครบ120activeและใช้กับAwakenสกิลเดียวกัน. เลเวล1–10และดาว0–5,สุ่มเลือกสายด้วยCrystal/ตั๋ว,lateDaily/Tower/MVPให้วัตถุดิบ. คลัง/slots/เงินจริงต่อNPCและต่อเซฟ ไม่แย่งคลังอุปกรณ์.
+
+D204/TASK180: ผู้ใช้ยืนยันเพิ่มCrystalและความท้าทายทั้งEnchant/บอส/หอคอย. AFK80/h(960/12h)เริ่มหลังsettle frozenเก่า. Enchant20,11–15Lv80/16–20Lv100และราคาสูงขึ้น. Storyบท10–12ค่อยเพิ่มATK/HPจน20/12%,Tower41–100จน25/15%. MVP Hunt3บอสรายสัปดาห์/10ระดับ,ไม่จำกัดลอง,จ่ายเฉพาะdelta best tierของสัปดาห์,week BangkokMonday. ไม่global class calibration.
+
+D205/TASK182: maxอัปเลเวล=sortDescending(ทุกตัวในเซฟ)[3]+20;รวมmainและNPCนอกทีม. UIอัป1/อัปสุดและcommandใช้นโยบายเดียว. ไม่ลดเลเวลที่เคยเกิน. ผู้ใช้เริ่มเซฟใหม่;ไม่ต้องล้างหรือเข้าถึงเซฟเก่า.

@@ -3,7 +3,7 @@ import{storyStages,storyFarmSnapshot,storyStage}from'../../src/domain/modes/stor
 import type{AccountState,Command}from'../../src/contracts/index.ts';
 import{content}from'./combat-fixtures.ts';
 import{initializeAccount}from'../../src/domain/progression/initialize.ts';
-import{applyRosterCommand,type RosterCommand}from'../../src/domain/progression/characters.ts';
+import{applyRosterCommand,progressionData,type RosterCommand}from'../../src/domain/progression/characters.ts';
 import{applySkillCommand,type SkillCommand}from'../../src/domain/progression/skills.ts';
 import{applySlotCommand,type SlotCommand}from'../../src/domain/progression/slots.ts';
 import{compactPaidLedger}from'../../src/domain/progression/ledger.ts';
@@ -16,6 +16,8 @@ export function characterResetFixture(job='lord_knight',npc=false){
  for(const key of Object.keys(state.wallet)as(keyof typeof state.wallet)[])state.wallet[key]=1000000000;
  state.story.cleared_stage_ids=storyStages(content).slice(0,10).map(s=>s.id);state.story.selected_farm_stage='1-10';state.farm.rate_snapshot=storyFarmSnapshot(storyStage('1-10',content)!,state,content);
  const boss=dailyData(content).bosses[0]!,daily=dailyRecord(state,boss.id,'2026-10-27',content);daily.attempts_used=1;daily.phase=2;daily.current_hp=Math.floor(dailyPhaseStats(boss,2,daily.chapter_snapshot).hp/2);daily.rewarded_phases=[1];state.daily_records=[daily];state.daily_objectives.farm_claimed=true;state.shop.purchases.essence_pack=3;state.tower.highest_cleared_floor=21;
+ // Supporting roster is a server-owned fixture; focal actor below still pays every upgrade.
+ for(const support of state.roster.filter(a=>a.character_id!==(npc?'npc_'+j.root:'main')).slice(0,3)){support.job_id=content.jobs.order.find(id=>content.jobs.byId[id]!.root===support.root_job_id&&content.jobs.byId[id]!.stage===3)! as typeof support.job_id;support.level=100;support.local_cap=100;support.completed_gate_ids=[20,40,60,80];support.unspent_status_points=progressionData(content).progression.level_rows.find(r=>r.level===100)!.total_status_points;}
  const startingWallet={...state.wallet},actor=state.roster.find(a=>a.character_id===(npc?'npc_'+j.root:'main'))!;let serial=0;
  const command=(type:Command['type'],params:unknown)=>({type,params,request_id:`17100000-0000-4000-8000-${String(++serial).padStart(12,'0')}`,expected_revision:1,schema_version:1,...rules.versions})as Command;
  function perform(type:Command['type'],params:unknown){const c=command(type,params);rules.parse(c);if(type.startsWith('character.'))applyRosterCommand(state,c as RosterCommand,content);else if(type.startsWith('skill.'))applySkillCommand(state,c as SkillCommand,content);else applySlotCommand(state,c as SlotCommand,content,0);state.paid_ledger=compactPaidLedger(state.paid_ledger);}

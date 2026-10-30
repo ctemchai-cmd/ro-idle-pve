@@ -260,7 +260,7 @@
     "material_cost_basis": "D134/D141:8ore pertarget through15;existing1-10prices retained, actualpastinvestments unchanged"
   },
   "enchant": {
-    "max": 10,
+    "max": 20,
     "selected_line_count": 1,
     "upgrade_rows": [
       {
@@ -322,6 +322,66 @@
         "to": 10,
         "gold": 30000,
         "enchant_dust": 30
+      },
+      {
+        "from": 10,
+        "to": 11,
+        "gold": 72600,
+        "enchant_dust": 66
+      },
+      {
+        "from": 11,
+        "to": 12,
+        "gold": 86400,
+        "enchant_dust": 72
+      },
+      {
+        "from": 12,
+        "to": 13,
+        "gold": 101400,
+        "enchant_dust": 78
+      },
+      {
+        "from": 13,
+        "to": 14,
+        "gold": 117600,
+        "enchant_dust": 84
+      },
+      {
+        "from": 14,
+        "to": 15,
+        "gold": 135000,
+        "enchant_dust": 90
+      },
+      {
+        "from": 15,
+        "to": 16,
+        "gold": 153600,
+        "enchant_dust": 96
+      },
+      {
+        "from": 16,
+        "to": 17,
+        "gold": 173400,
+        "enchant_dust": 102
+      },
+      {
+        "from": 17,
+        "to": 18,
+        "gold": 194400,
+        "enchant_dust": 108
+      },
+      {
+        "from": 18,
+        "to": 19,
+        "gold": 216600,
+        "enchant_dust": 114
+      },
+      {
+        "from": 19,
+        "to": 20,
+        "gold": 240000,
+        "enchant_dust": 120
       }
     ],
     "switch_line": "out of battle; refund actual paid line ledger, reset to zero and purchase desired line at current prices",
@@ -640,7 +700,17 @@
         }
       }
     },
-    "power_basis": "D-128: slot-specific presets; stable offense/vitality/precision IDs retain levels and actual-paid ledger; labels/modifiers from one shared table"
+    "power_basis": "D-128: slot-specific presets; stable offense/vitality/precision IDs retain levels and actual-paid ledger; labels/modifiers from one shared table",
+    "level_gates": [
+      {
+        "from": 11,
+        "character_level": 80
+      },
+      {
+        "from": 16,
+        "character_level": 100
+      }
+    ]
   },
   "cards": {
     "capacity_by_refine": [

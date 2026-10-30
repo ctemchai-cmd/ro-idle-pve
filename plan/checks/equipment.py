@@ -57,7 +57,8 @@ def values():
  assert sum(r['refine_ore'] for r in slots['refine']['upgrade_rows'] if r['to']<=10)==440
  assert sum(r['gold'] for r in slots['refine']['upgrade_rows'])==248000
  assert sum(r['refine_ore'] for r in slots['refine']['upgrade_rows'])==960
- assert sum(r['gold'] for r in slots['enchant']['upgrade_rows'])==115500
+ assert sum(r['gold'] for r in slots['enchant']['upgrade_rows'] if r['to']<=10)==115500
+ assert slots['enchant']['max']==20 and all(r['gold']==600*r['to']**2 and r['enchant_dust']==6*r['to'] for r in slots['enchant']['upgrade_rows'] if r['to']>10)
  return {'common_sword60_plus_refine10_gold_card5':382.2,'epic_sword60_base':285,'refine10_gold':77000,'refine10_ore':440,'enchant10_gold':115500,'formula':'add source modifiers once through central buckets'}
 check('numeric_progression_examples',['AC-01','AC-04'],values)
 def cardrules():

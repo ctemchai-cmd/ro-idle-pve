@@ -213,5 +213,18 @@ export function validateContent(raw: unknown): Result<ValidatedContent> {
       for (const id of list(boss.active_slots).filter(Boolean)) demand(skills[String(id)]?.kind === 'active', 'unknown_skill', at);
     }
   });
+  attempt(docAt('equipment.json'),()=>{
+    const value=bundle.documents['equipment.json']!.artifacts;if(value===undefined||!object(bundle.documents['progression.json']!.promotion).hi_class_enabled)return;
+    const r=object(value),rows=list(r.definitions).map(object),ids=new Set<string>();
+    for(const d of rows){demand(typeof d.id==='string'&&!ids.has(d.id),'artifact_unique',docAt('equipment.json'));ids.add(String(d.id));demand(!!jobs?.byId[String(d.class_id)],'artifact_job',docAt('equipment.json'));demand(['common','uncommon','rare','epic','legendary'].includes(String(d.rarity_id)),'artifact_rarity',docAt('equipment.json'));}
+    for(const key of ['capacity','draw_crystal','legendary_pity'])demand(Number.isSafeInteger(r[key])&&Number(r[key])>0,'artifact_limits',docAt('equipment.json'));
+    const costs=list(r.level_costs).map(object);demand(costs.length===9&&costs.every((row,i)=>row.to===i+2&&['gold','essence'].every(key=>Number.isSafeInteger(row[key])&&Number(row[key])>0)),'artifact_costs',docAt('equipment.json'));
+    demand(list(r.star_copies).length===5&&list(r.star_copies).every(n=>Number.isSafeInteger(n)&&Number(n)>=1&&Number(n)<=3),'artifact_stars',docAt('equipment.json'));
+    const active=Object.values(skills).filter(s=>s.kind==='active'&&s.class_id!=='enemy');
+    if(active.length===120){demand(rows.length===active.length,'artifact_coverage',docAt('equipment.json'));for(const skill of active)demand(rows.filter(d=>d.skill_id===skill.id&&d.class_id===skill.class_id).length===1,'artifact_skill',docAt('equipment.json'));}
+    const rarities=object(r.rarities);demand(Object.values(rarities).reduce<number>((n,v)=>n+Number(object(v).weight),0)===100,'artifact_weights',docAt('equipment.json'));
+    for(const v of Object.values(rarities)){const rarity=object(v);demand(Number.isSafeInteger(rarity.weight)&&Number(rarity.weight)>0&&Number.isSafeInteger(rarity.salvage)&&Number(rarity.salvage)>0&&Number(rarity.start)>0&&Number(rarity.max)>=Number(rarity.start)&&Number(rarity.max)<=1,'artifact_power',docAt('equipment.json'));}
+  });
+  attempt(docAt('tower.json'),()=>{const value=bundle.documents['tower.json']!.mvp_hunt;if(value===undefined)return;const r=object(value);demand(r.tiers===10&&Number(r.hp_growth)>1&&Number(r.attack_growth)>1,'mvp_growth',docAt('tower.json'));for(const value of list(r.bosses)){const b=object(value),queue=list(b.skills);demand(String(b.id) in actors&&queue.length===4&&new Set(queue).size===4,'mvp_identity_rotation',docAt('tower.json'));for(const id of queue)demand(skills[String(id)]?.kind==='active','mvp_skill',docAt('tower.json'));}});
   return errors.length ? { ok: false, errors } : { ok: true, value: freeze({ manifest: bundle.manifest, documents: bundle.documents, jobs: jobs!, skills, items, statuses: validator.statuses, actors, schemas: bundle.schemas }) };
 }

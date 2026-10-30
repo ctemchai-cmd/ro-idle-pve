@@ -1,3 +1,7 @@
+import {settleMvp} from './mvp-settlement.ts';
+import {mvpBoss,mvpBosses,mvpRules,mvpUnlocked,mvpWeek,mvpRef} from '../modes/mvp.ts';
+import {boundArtifacts,reconcileArtifactSlots} from '../build/artifacts.ts';
+import {applyArtifactCommand,validateArtifacts,type ArtifactCommand} from '../progression/artifacts.ts';
 import { settleDailyRewards } from './daily-settlement.ts';
 import type { DailyRecoveryContext } from './daily-battle-recovery.ts';
 import {applyCraftingCommand,protectPendingOption,validateCrafting,type CraftingCommand} from '../progression/equipment-crafting.ts';
@@ -44,9 +48,9 @@ export interface CommandTime {
 export interface CommandProposal { state: AccountState; receipt: Receipt; battle_write: BattleWrite }
 /** Server-owned account command reducers. Mode/upgrade handlers extend this boundary. */
 export class AccountCommandRules extends AccountCreationRules {
-  buildInputs(state:AccountState){return Object.fromEntries(state.roster.map(actor=>{const prepared=preparedScroll(state,actor.character_id,this.content);return[actor.character_id,{actor,items:boundItemInstances(actor,state),...(prepared?{prepared_scroll:prepared.id}:{})}];}));}
+  buildInputs(state:AccountState){return Object.fromEntries(state.roster.map(actor=>{const prepared=preparedScroll(state,actor.character_id,this.content);return[actor.character_id,{actor,items:boundItemInstances(actor,state),artifacts:boundArtifacts(actor.character_id,state),...(prepared?{prepared_scroll:prepared.id}:{})}];}));}
   get leaseMs() { return Number((this.content.documents['save-contracts.json']!.battle_protocol as unknown as { lease_ms: number }).lease_ms); }
-  supports(type: Command['type']) { return ['character.reset_level','equipment.option_roll','equipment.option_decide','equipment.rarity_up','farm.claim', 'reward.claim', 'battle.advance', 'battle.finish', 'battle.retreat', 'party.set', 'character.level_up', 'character.breakthrough', 'character.allocate_status', 'character.reset_build', 'character.change_job', 'skill.upgrade', 'skill.set_loadout', 'skill.awaken', 'skill.convert_shards', 'battle.start_story', 'farm.set_stage', 'equipment.equip', 'equipment.equip_upgrades', 'equipment.unequip', 'equipment.lock', 'equipment.salvage', 'equipment.purchase_weapon', 'slot.refine', 'slot.enchant', 'slot.change_enchant', 'card.assign', 'card.unassign', 'card.upgrade', 'card.salvage', 'equipment.fuse', 'equipment.tier_up', 'battle.start_tower', 'battle.start_daily', 'gacha.pull', 'consumable.prepare', 'shop.buy', 'daily.objective_claim'].includes(type); }
+  supports(type: Command['type']) { return ['artifact.draw','artifact.equip','artifact.upgrade','artifact.star','artifact.lock','artifact.salvage','battle.start_mvp','character.reset_level','equipment.option_roll','equipment.option_decide','equipment.rarity_up','farm.claim', 'reward.claim', 'battle.advance', 'battle.finish', 'battle.retreat', 'party.set', 'character.level_up', 'character.breakthrough', 'character.allocate_status', 'character.reset_build', 'character.change_job', 'skill.upgrade', 'skill.set_loadout', 'skill.awaken', 'skill.convert_shards', 'battle.start_story', 'farm.set_stage', 'equipment.equip', 'equipment.equip_upgrades', 'equipment.unequip', 'equipment.lock', 'equipment.salvage', 'equipment.purchase_weapon', 'slot.refine', 'slot.enchant', 'slot.change_enchant', 'card.assign', 'card.unassign', 'card.upgrade', 'card.salvage', 'equipment.fuse', 'equipment.tier_up', 'battle.start_tower', 'battle.start_daily', 'gacha.pull', 'consumable.prepare', 'shop.buy', 'daily.objective_claim'].includes(type); }
   /** TASK-040 (D-064): maintenance proposals. The API proves integrity/ownership and supplies time, ids and seed. */
   migrateSave(stored: unknown, context?: DailyRecoveryContext): { state: AccountState; changes: string[] } { const migrated = migrateAccountState(stored, this.content, context); return { state: this.validateAccount(migrated.state), changes: migrated.changes }; }
   restoreSave(restored: unknown, current: AccountState | null, nowMs: number): AccountState { return this.validateAccount(guardRestore(this.validateAccount(restored), current, bangkokDay(nowMs), bangkokDay(nowMs - 86400000))); }
@@ -71,7 +75,7 @@ export class AccountCommandRules extends AccountCreationRules {
     if (s.roster.some(a => Object.values(a.equipment).some(id => id !== null && !itemIds.includes(id)))) throw new Error('INVALID_EQUIPMENT_REFERENCE');
     validateProgression(s, this.content);
     validateInventory(s, this.content);validateCrafting(s,this.content);
-    validateSupplies(s, this.content);
+    validateSupplies(s, this.content);validateArtifacts(s,this.content);
     validateDailyQuota(s);
     for (const actor of s.roster) validateCharacterSkills(actor, this.content);
     return s;
@@ -126,6 +130,16 @@ export class AccountCommandRules extends AccountCreationRules {
         consumePreparedForTeam(state);
         state.active_battle = { battle_id: time.battle_id, mode:'tower', mode_ref:String(floor), ticket_day:null, started_at:time.server_at, last_ack_at:time.server_at, lease_expires_at:time.new_lease_at, ...this.versions };
         battleWrite = { kind:'upsert', battle:{ account_id:time.account_id, battle_id:time.battle_id, payload:initial.ok?serializeBattle(initial.value):null, content_hash:this.versions.content_hash, last_ack_at:time.server_at, lease_expires_at:time.new_lease_at } }; code='TOWER_STARTED';
+      } else if(command.type==='battle.start_mvp'){
+        if(state.active_battle)reject('BATTLE_ALREADY_ACTIVE');if(!mvpUnlocked(state,this.content))reject('MVP_LOCKED');
+        const {boss_id,tier}=command.params,week=mvpWeek(time.now_ms),best=state.mvp_hunt?.week===week?(state.mvp_hunt.best[boss_id]??0):0;
+        if(!mvpBosses(time.now_ms,this.content).some(b=>b.id===boss_id)||tier>best+1)reject('MVP_TIER_LOCKED');
+        if(!time.account_id||!time.battle_id||time.battle_seed===undefined||!time.build_hashes)throw new Error('SERVER_BATTLE_CONTEXT_REQUIRED');
+        const ref=mvpRef(week,boss_id,tier),compiled=Object.fromEntries(state.team.map(p=>[p.character_id,compileCharacterSkills(state.roster.find(a=>a.character_id===p.character_id)!,this.content)]));
+        const initial=createBattle(storyInput({id:ref,time_limit_ms:mvpRules(this.content).time_limit_ms},mvpBoss(boss_id,tier,this.content),storyParty(state,this.content,compiled,time.build_hashes),this.content,{kind:'mvp'}),this.content,time.battle_seed);
+        if(!initial.ok)reject('BATTLE_BUILD_UNAVAILABLE');consumePreparedForTeam(state);
+        state.active_battle={battle_id:time.battle_id,mode:'mvp',mode_ref:ref,ticket_day:null,started_at:time.server_at,last_ack_at:time.server_at,lease_expires_at:time.new_lease_at,...this.versions};
+        battleWrite={kind:'upsert',battle:{account_id:time.account_id,battle_id:time.battle_id,payload:initial.ok?serializeBattle(initial.value):null,content_hash:this.versions.content_hash,last_ack_at:time.server_at,lease_expires_at:time.new_lease_at}};code='MVP_STARTED';
       } else if (command.type === 'battle.start_daily') {
         if (state.active_battle) reject('BATTLE_ALREADY_ACTIVE');
         if (!dailyUnlocked(state, this.content)) reject('DAILY_LOCKED');
@@ -262,15 +276,21 @@ export class AccountCommandRules extends AccountCreationRules {
               const items:AccountState['inventory']=[],rng={state:(time.battle_seed??floor)>>>0,draw_count:0};
               for(let n=0;n<row.bronze_card_count;n++){const definition_id=gachaCardDefinition(nextRandom(rng),this.content,gachaCardTier(state,this.content));items.push({instance_id:`tower_${floor}_card_${n}`,definition_id,kind:'card',rarity_id:cardRarity(definition_id,this.content),locked:false,level:1});}
               state.tower.highest_cleared_floor=floor;
-              state.pending_rewards.push({claim_id:`tower_${floor}`,kind:'tower',resource_vector:{...Object.fromEntries(Object.keys(state.wallet).map(k=>[k,0])),...(row.reward_resources??{gold:row.gold,crystal:row.crystal})}as AccountState['wallet'],items,content_version:this.versions.content_version,reserved_at:time.server_at,source_keys:[`tower:${floor}`,`battle:${pointer!.battle_id}`],status:'pending'});
+              state.pending_rewards.push({claim_id:`tower_${floor}`,kind:'tower',...(floor>=40?{artifact_rewards:{essence:20,tickets:floor%10===0?1:0}}:{}),resource_vector:{...Object.fromEntries(Object.keys(state.wallet).map(k=>[k,0])),...(row.reward_resources??{gold:row.gold,crystal:row.crystal})}as AccountState['wallet'],items,content_version:this.versions.content_version,reserved_at:time.server_at,source_keys:[`tower:${floor}`,`battle:${pointer!.battle_id}`],status:'pending'});
             }
             state.active_battle=null;state.daily_objectives.battle_finished=true;
             battleWrite={kind:'delete',battle_id:pointer!.battle_id};code=result.kind==='victory'?'TOWER_WON':result.kind==='time_limit'?'TOWER_TIME_LIMIT':'TOWER_DEFEATED';
           }
+          if(next.ok&&next.value.state.terminal_result&&pointer!.mode==='mvp'){
+            if(next.value.state.mode.kind!=='mvp'||next.value.state.mode.ref!==pointer!.mode_ref)reject('BATTLE_CONTEXT_MISMATCH');
+            const result=next.value.state.terminal_result;if(result.kind==='victory')settleMvp(state,pointer!.mode_ref,time.now_ms,this.content);
+            state.active_battle=null;state.daily_objectives.battle_finished=true;battleWrite={kind:'delete',battle_id:pointer!.battle_id};code=result.kind==='victory'?'MVP_WON':result.kind==='time_limit'?'MVP_TIME_LIMIT':'MVP_DEFEATED';
+          }
           if (command.type === 'battle.finish' && state.active_battle) reject('BATTLE_CONTEXT_MISMATCH');
           if (command.type === 'battle.finish' && command.params.collect_rewards && ['STORY_WON', 'TOWER_WON'].includes(code)) collectProgressRewards(state, this.content);
         }
-      } else if (command.type.startsWith('slot.') || command.type.startsWith('card.')) code = applySlotCommand(state, command as SlotCommand, this.content, time.battle_seed === undefined ? null : nextRandom({ state: time.battle_seed >>> 0, draw_count: 0 }));
+      } else if(command.type.startsWith('artifact.')){const rng={state:(time.battle_seed??0)>>>0,draw_count:0};code=applyArtifactCommand(state,command as ArtifactCommand,this.content,time.battle_seed===undefined?undefined:()=>nextRandom(rng));}
+      else if (command.type.startsWith('slot.') || command.type.startsWith('card.')) code = applySlotCommand(state, command as SlotCommand, this.content, time.battle_seed === undefined ? null : nextRandom({ state: time.battle_seed >>> 0, draw_count: 0 }));
       else if (command.type === 'equipment.fuse' || command.type === 'equipment.tier_up') { const rng = { state: (time.battle_seed ?? 0) >>> 0, draw_count: 0 }; code = applyGearUpgrade(state, command as GearUpgradeCommand, this.content, time.battle_seed === undefined ? null : () => nextRandom(rng)); }
       else if (['equipment.option_roll','equipment.option_decide','equipment.rarity_up'].includes(command.type)) { const rng={state:(time.battle_seed??0)>>>0,draw_count:0};code=applyCraftingCommand(state,command as CraftingCommand,this.content,time.battle_seed===undefined?null:()=>nextRandom(rng)); }
       else if (command.type.startsWith('equipment.')) code = applyEquipmentCommand(state, command as EquipmentCommand, this.content);
@@ -280,9 +300,10 @@ export class AccountCommandRules extends AccountCreationRules {
     } catch (error) { if (!(error instanceof BusinessRejection) && !(error instanceof ProgressionRejection)) throw error; code = error.message; rejected = true; }
     const committed = rejected ? structuredClone(previous) : state;
     const refunded = committed.paid_ledger.filter(e => e.refund_command_id === command.request_id && (previous.paid_ledger.some(p => p.entry_id === e.entry_id && p.refund_state === 'active') || command.type==='character.reset_level'&&['character_level','breakthrough'].includes(e.feature_id)&&e.entry_id===`legacy_${e.feature_id}_${command.request_id}`));
+    if(!rejected)reconcileArtifactSlots(committed,this.content);
     if (!rejected) committed.paid_ledger = compactPaidLedger(committed.paid_ledger);
     const delta = Object.fromEntries(Object.keys(previous.wallet).map(k => [k, committed.wallet[k as keyof AccountState['wallet']] - previous.wallet[k as keyof AccountState['wallet']]])) as AccountState['wallet'];
-    const receipt: Receipt = { request_id: command.request_id, request_hash: requestHash, outcome: rejected ? 'rejected' : 'committed', committed_revision: command.expected_revision + (rejected ? 0 : 1), server_at: time.server_at, ...this.versions, schema_version: 1, command_type: command.type, result: { code, resource_delta: delta, created_instance_ids: committed.inventory.filter(i => !previous.inventory.some(p => p.instance_id === i.instance_id)).map(i => i.instance_id), removed_instance_ids: previous.inventory.filter(i => !committed.inventory.some(current => current.instance_id === i.instance_id)).map(i => i.instance_id), pending_claim_ids: committed.pending_rewards.map(c => c.claim_id), battle_id: committed.active_battle?.battle_id ?? previous.active_battle?.battle_id ?? null, reason_key: rejected ? code.toLowerCase() : null, ledger_entry_ids: committed.paid_ledger.filter(e => !previous.paid_ledger.some(p => p.entry_id === e.entry_id && this.canonical(p) === this.canonical(e))).map(e => e.entry_id), refunded_ledger_entries: refunded } };
+    const receipt: Receipt = { request_id: command.request_id, request_hash: requestHash, outcome: rejected ? 'rejected' : 'committed', committed_revision: command.expected_revision + (rejected ? 0 : 1), server_at: time.server_at, ...this.versions, schema_version: 1, command_type: command.type, result: { code, resource_delta: delta, created_instance_ids: [...committed.inventory,...committed.artifacts?.items??[]].filter(i => ![...previous.inventory,...previous.artifacts?.items??[]].some(p => p.instance_id === i.instance_id)).map(i => i.instance_id), removed_instance_ids: [...previous.inventory,...previous.artifacts?.items??[]].filter(i => ![...committed.inventory,...committed.artifacts?.items??[]].some(current => current.instance_id === i.instance_id)).map(i => i.instance_id), pending_claim_ids: committed.pending_rewards.map(c => c.claim_id), battle_id: committed.active_battle?.battle_id ?? previous.active_battle?.battle_id ?? null, reason_key: rejected ? code.toLowerCase() : null, ledger_entry_ids: committed.paid_ledger.filter(e => !previous.paid_ledger.some(p => p.entry_id === e.entry_id && this.canonical(p) === this.canonical(e))).map(e => e.entry_id), refunded_ledger_entries: refunded } };
     this.validateAccount(committed); this.validator.shape('receipt', receipt as unknown as Json, { source: 'command receipt', path: '' });
     return { state: committed, receipt, battle_write: rejected ? { kind: 'keep' } : battleWrite };
   }

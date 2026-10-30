@@ -1,3 +1,4 @@
+import {emptyArtifacts,reconcileArtifactSlots} from '../build/artifacts.ts';
 import { recoverCompatibleDaily, type DailyRecoveryContext } from './daily-battle-recovery.ts';
 import {emptyCrafting} from '../progression/equipment-crafting.ts';
 import { migrateDailyQuota } from './daily-quota-migration.ts';
@@ -37,6 +38,7 @@ function keepFrozenCardCatalog(frozen:FarmSnapshot,current:FarmSnapshot,content:
 export function migrateAccountState(input: unknown, content: ValidatedContent, context?: DailyRecoveryContext): SaveMigration {
   const state = structuredClone(input) as AccountState, changes: string[] = [], data = progressionData(content);
   migrateDailyQuota(state, changes, context);
+  if(!state.artifacts){state.artifacts=emptyArtifacts();changes.push('Artifact empty collection added');}reconcileArtifactSlots(state,content);
   if(!state.equipment_crafting){state.equipment_crafting=emptyCrafting();changes.push('equipment crafting empty stock added');}
   // The new currency starts at zero everywhere, including frozen unpaid snapshots
   // and actual-paid ledgers. Never price old investments or grant shards retroactively.
@@ -98,7 +100,7 @@ export function migrateAccountState(input: unknown, content: ValidatedContent, c
       // D172: a higher tier starts after the next frozen window is settled by
       // farm.claim/set_stage. Preserve its cursor, draws and old earned gear.
       const keepFrozenUpgrade = frozen.gear_tier < current.gear_tier && frozen.definition_pool.length > 0 && frozen.definition_pool.every(id => content.items[id]?.kind === 'equipment' && content.items[id]!.tier_level === frozen.gear_tier);
-      if (!keepFrozenUpgrade && !keepFrozenCardCatalog(frozen,current,content) && (frozen.content_version !== content.manifest.content_version || frozen.rules_version !== content.manifest.rules_version || canonicalPool(frozen.definition_pool) !== canonicalPool(current.definition_pool))) {
+      if (!(frozen.per_hour.crystal*2===current.per_hour.crystal) && !keepFrozenUpgrade && !keepFrozenCardCatalog(frozen,current,content) && (frozen.content_version !== content.manifest.content_version || frozen.rules_version !== content.manifest.rules_version || canonicalPool(frozen.definition_pool) !== canonicalPool(current.definition_pool))) {
         const hadCards = !!frozen.card_drops; state.farm.rate_snapshot = current;
         if (!hadCards) delete state.farm.rate_snapshot.card_drops;
         changes.push(`farm rate refreshed for ${stage.id}`);
