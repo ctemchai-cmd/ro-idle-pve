@@ -551,4 +551,4 @@ TASK176 ขึ้นVercel source`ac9bf7941`แล้ว:87focused/native6888pos
 
 [TASK178](done/tasks_178.md): ความเร็วต่อสู้1/2/3, ค่า4เดิม→3, sharedengine/legacyprotocolเดิม.
 
-TASK177–178 ขึ้นVercel source`547373cbc`แล้ว: บั๊กCOMMAND_TOO_LARGEจากbulkย่อย500ชิ้นแก้HTTPbudget16K→256KiB/originalpendingUUID/oneatomicreceipt, พร้อม1/2/3speed.101focused(unique)/21correctedaffected/nativePWA3+UI5/root-filtered/M0/public4groups27bundleSHAผ่าน;5hashesเดิม. เจ้าของกดเชื่อมต่อใหม่บนPWAเพื่อตรวจผลจริง ยังไม่อ้างว่าagentเข้าหรือแก้cloudsave. [ผลตรวจ](evidence/task-177-review.json).
+TASK177–178 ขึ้นVercel source`547373cbc`แล้ว: บั๊กCOMMAND_TOO_LARGEจากbulkย่อย500ชิ้นแก้HTTPbudget16K→256KiB/originalpendingUUID/oneatomicreceipt, พร้อม1/2/3speed.101focused(unique)/21correctedaffected/nativePWA3+UI5/root-filtered/M0/public4groups27bundleSHAผ่าน;5hashesเดิม. ผู้ใช้ยืนยัน30ตุลาคม2026ว่าHunterช่อง3บนPWAเข้าได้แล้ว;ไม่มีagentเข้าหรือแก้cloudsaveโดยตรง. [ผลตรวจ](evidence/task-177-review.json).

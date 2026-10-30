@@ -22,4 +22,4 @@ User confirmed COMMAND_TOO_LARGE on phone PWA after selecting many equipment ite
 ## ผลตรวจ
 Source`547373cbc`ขึ้นVercelSUCCESS/public4groups/27bundleSHA/mobile320390/fivefingerprints exact/healthbodybudget262144ผ่าน. ไม่SQL/env/migrateเซฟ/ownerAuthหรือcloudwrite. [ผลตรวจ](../evidence/task-177-review.json).
 
-101uniqueTS (initialmoduleownerfinding corrected;21affectedrechecksผ่าน),6bulkregressions/nativePWA3groups:413→originalUUID500sale once→reopenno duplicate. Actualเจ้าของPWAยืนยันเข้าได้ยังรอคำตอบ; implementationและfixture recoveryผ่าน ไม่ได้อ้างว่าagentแก้ข้อมูลคลาวด์ให้โดยตรง.
+101uniqueTS (initialmoduleownerfinding corrected;21affectedrechecksผ่าน),6bulkregressions/nativePWA3groups:413→originalUUID500sale once→reopenno duplicate. ผู้ใช้ยืนยัน30ตุลาคม2026ว่า Hunterช่อง3บนPWA “เข้าได้แล้ว”; implementation/fixture recoveryและownerfollow-upครบแล้ว ไม่ได้อ้างว่าagentแก้ข้อมูลคลาวด์ให้โดยตรง.

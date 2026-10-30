@@ -40,7 +40,7 @@
     "public_body_limit_bytes": 262144,
     "own_test_servers_closed": true
   },
-  "owner_recovered": "not_yet_confirmed",
+  "owner_recovered": true,
   "evidence": [
     "task-177/README.md",
     "task-177/native.json",
@@ -50,12 +50,25 @@
     "task-177/pwa-after-recovery.png",
     "task-177/gameplay.json",
     "task-177/hosted.json",
-    "task-177/deployment.json"
+    "task-177/deployment.json",
+    "task-177/owner-confirmation.json"
   ],
   "local_passed": true,
   "root_cause": "16,384-code-unit API body cap refused legal bulk salvage before receipt processing; PWA retained original pending command",
   "owner_reported_code": "COMMAND_TOO_LARGE",
   "owner_reported_trigger": "large equipment salvage",
   "source_commit": "547373cbcffb031d9561fb588ae4ff4899a0d705",
-  "deployment_url": "https://vercel.com/chanon2/ro-idle-pve/CyXeMztTzS3M3qL2RUcpsAbt3TiC"
+  "deployment_url": "https://vercel.com/chanon2/ro-idle-pve/CyXeMztTzS3M3qL2RUcpsAbt3TiC",
+  "owner_confirmation": {
+    "date": "2026-10-30",
+    "timezone": "Asia/Bangkok",
+    "reported_by": "user",
+    "save_slot": 3,
+    "character_job": "Hunter",
+    "client": "phone PWA",
+    "message": "เข้าได้แล้ว",
+    "result": "User confirmed the affected save opens after the bulk-command API fix.",
+    "release_source": "547373cbcffb031d9561fb588ae4ff4899a0d705",
+    "agent_owner_Auth_or_cloud_access": false
+  }
 }

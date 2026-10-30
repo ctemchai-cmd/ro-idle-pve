@@ -6,6 +6,6 @@ Current savedbattle, demo and skill-preview cycle1→2→3→1. Shared typed opt
 
 Strict/M0/root and filteredVercel builds pass; root/filtered artifacts identical and all five core/schema/data/content/pack fingerprints unchanged. Legacy server1/2/4 battle.advance and4 maximum terminal timing remain for signed ticket/receipt/daily-recovery compatibility; current UI never sends a speed parameter, so3 needs no server protocol change.
 
-TASK177 is separate: user confirms desktop can open the same Hunter save but phone PWA reports a generic reconnect failure. Diagnostic code confirmed COMMAND_TOO_LARGE after a large sale; TASK177 transport fix is now verified locally with real browser pending recovery. Actual owner reconnect confirmation is pending. No owner login/DB/read/write, reset or pending discard. See177review.
+TASK177 is separate: user confirms desktop can open the same Hunter save but phone PWA reports a generic reconnect failure. Diagnostic code confirmed COMMAND_TOO_LARGE after a large sale; TASK177 transport fix is now verified locally with real browser pending recovery. The owner confirmed Hunter slot3 opens on phone PWA on30October2026. No owner login/DB/read/write, reset or pending discard. See177review.
 
 Public release passed on source547373cbc/VercelSUCCESS: API SIN1/anonymous401/bodybudget262144/allfivefingerprints exact,27bundleSHA, demo+preview1/2/3 at320390 and login,0browser errors/writes.
