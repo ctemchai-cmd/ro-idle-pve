@@ -1077,11 +1077,11 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T187-AC-02` | TASK-187 | pixel/sourceSHAถูกต้องและVFX/audio/เกมเพลย์เดิม | Shared rules / atomic retries / native mobile / strict+M0+root-filtered / public hosted | passed_implementation |
 | `T187-AC-03` | TASK-187 | runtime32MiBและinitialbudgetผ่าน | Shared rules / atomic retries / native mobile / strict+M0+root-filtered / public hosted | passed_implementation |
 | `T187-AC-04` | TASK-187 | native/build/hostedผ่าน | Shared rules / atomic retries / native mobile / strict+M0+root-filtered / public hosted | passed_implementation |
-| `T188-AC-01` | TASK-188 | UIตามขอบเขตและsourceassetถูกต้อง | Native UI/asset source SHA/shared quote/targeted tests/strict/root+cleanGit/public | not_run_implementation |
-| `T188-AC-02` | TASK-188 | core/data/schema/contenthashเดิม;ไม่มีราคา/สิทธิ์/เซฟใหม่ | Native UI/asset source SHA/shared quote/targeted tests/strict/root+cleanGit/public | not_run_implementation |
-| `T188-AC-03` | TASK-188 | targeted/native320390/strict/build/pack32MiBผ่าน | Native UI/asset source SHA/shared quote/targeted tests/strict/root+cleanGit/public | not_run_implementation |
-| `T188-AC-04` | TASK-188 | cleancommittedcheckoutและVercel/publicผ่าน | Native UI/asset source SHA/shared quote/targeted tests/strict/root+cleanGit/public | not_run_implementation |
-| `T189-AC-01` | TASK-189 | UIตามขอบเขตและsourceassetถูกต้อง | Native UI/asset source SHA/shared quote/targeted tests/strict/root+cleanGit/public | not_run_implementation |
-| `T189-AC-02` | TASK-189 | core/data/schema/contenthashเดิม;ไม่มีราคา/สิทธิ์/เซฟใหม่ | Native UI/asset source SHA/shared quote/targeted tests/strict/root+cleanGit/public | not_run_implementation |
-| `T189-AC-03` | TASK-189 | targeted/native320390/strict/build/pack32MiBผ่าน | Native UI/asset source SHA/shared quote/targeted tests/strict/root+cleanGit/public | not_run_implementation |
-| `T189-AC-04` | TASK-189 | cleancommittedcheckoutและVercel/publicผ่าน | Native UI/asset source SHA/shared quote/targeted tests/strict/root+cleanGit/public | not_run_implementation |
+| `T188-AC-01` | TASK-188 | UIตามขอบเขตและsourceassetถูกต้อง | Native UI/asset source SHA/shared quote/targeted tests/strict/root+cleanGit/public | passed_implementation |
+| `T188-AC-02` | TASK-188 | core/data/schema/contenthashเดิม;ไม่มีราคา/สิทธิ์/เซฟใหม่ | Native UI/asset source SHA/shared quote/targeted tests/strict/root+cleanGit/public | passed_implementation |
+| `T188-AC-03` | TASK-188 | targeted/native320390/strict/build/pack32MiBผ่าน | Native UI/asset source SHA/shared quote/targeted tests/strict/root+cleanGit/public | passed_implementation |
+| `T188-AC-04` | TASK-188 | cleancommittedcheckoutและVercel/publicผ่าน | Native UI/asset source SHA/shared quote/targeted tests/strict/root+cleanGit/public | passed_implementation |
+| `T189-AC-01` | TASK-189 | UIตามขอบเขตและsourceassetถูกต้อง | Native UI/asset source SHA/shared quote/targeted tests/strict/root+cleanGit/public | passed_implementation |
+| `T189-AC-02` | TASK-189 | core/data/schema/contenthashเดิม;ไม่มีราคา/สิทธิ์/เซฟใหม่ | Native UI/asset source SHA/shared quote/targeted tests/strict/root+cleanGit/public | passed_implementation |
+| `T189-AC-03` | TASK-189 | targeted/native320390/strict/build/pack32MiBผ่าน | Native UI/asset source SHA/shared quote/targeted tests/strict/root+cleanGit/public | passed_implementation |
+| `T189-AC-04` | TASK-189 | cleancommittedcheckoutและVercel/publicผ่าน | Native UI/asset source SHA/shared quote/targeted tests/strict/root+cleanGit/public | passed_implementation |

@@ -18,7 +18,9 @@ TASK-014 (done)
 - [x] AC-01: UIตามขอบเขตและsourceassetถูกต้อง
 - [x] AC-02: core/data/schema/contenthashเดิม;ไม่มีราคา/สิทธิ์/เซฟใหม่
 - [x] AC-03: targeted/native320390/strict/build/pack32MiBผ่าน
-- [ ] AC-04: cleancommittedcheckoutและVercel/publicผ่าน
+- [x] AC-04: cleancommittedcheckoutและVercel/publicผ่าน
 
 ## ผลตรวจ
-47 targeted TS/4 new cases, native320390 8groups, strict/rootbuild/M0ผ่าน. รอcleancommittedGitและVercel/publicก่อนdone. [หลักฐาน](../evidence/task-188/local-verification.json).
+47 targeted TS/4 new cases, native320390 8groups, strict/rootbuild/M0ผ่าน. cleancommittedGit/root1713filesตรงกันและVercel/public5groupsผ่านแล้ว. [หลักฐาน](../evidence/task-188/local-verification.json).
+
+Source `1c385f366ccf6b3f61258e1d785d6ac0bf29ad42` · [Vercel SUCCESS](https://vercel.com/chanon2/ro-idle-pve/DuLP8bd3rUBBdSXJ5tGG3U1eejSp) · [hosted](../evidence/task-189/hosted.json) · [builds](../evidence/task-189/builds.json).

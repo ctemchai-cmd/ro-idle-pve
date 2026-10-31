@@ -443,3 +443,5 @@ D209/TASK187: ผู้ใช้ให้เลือกHi-classskilliconsจา
 
 D210/TASK188: บอสใช้moderniconsตามroleผ่านsharedrendererresolver11legacy/passiveและ8borrowedเดิม;ไม่แก้nativeVFX/audio/programs. แต้มEventใช้nativebadge,4โหมดใช้quest/MVPcrown/map/chestแยกกัน.
 D211/TASK189: Artifact2ช่องต่อจากแหวน/รองเท้าในหน้าตัวละคร;กดชิ้นที่ใส่เปิดsharedDetails,ช่องว่างไปinventory. ร้าน5แท็บ/ArtifactSummonมีHighjobselector/ticketfirstactualcost/pity/nativepreview/ผลสุ่มและสุ่มต่อ. รักษากติกา/ราคา/receiptเดิม,ไม่เปลี่ยนcore/data/schema/contenthash.
+
+D210–211 released `1c385f366ccf6b3f61258e1d785d6ac0bf29ad42` VercelSUCCESS;47targeted/native8/public5/exactGit1713filesผ่าน. Fourdurablehashesเดิม,ไม่มีSQL/env/ownerwrite.
