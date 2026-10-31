@@ -1,8 +1,9 @@
+import{modernUiSourceBytes,withoutModernUiPack}from'./legacy-modern-ui-scope.ts';
 import{readFileSync}from'node:fs';import{gunzipSync}from'node:zlib';import{createHash}from'node:crypto';import assert from'node:assert/strict';
 const packBefore=JSON.parse(gunzipSync(readFileSync('plan/evidence/task-187/before-pack.json.gz')).toString()),packAfter=JSON.parse(gunzipSync(readFileSync('plan/evidence/task-187/after-pack.json.gz')).toString());
 const before=JSON.parse(gunzipSync(readFileSync('plan/evidence/task-183/before.json.gz')).toString())as Record<string,string>,after=JSON.parse(readFileSync('plan/evidence/task-183/source-after.json','utf8'))as Record<string,string>,data=JSON.parse(readFileSync('plan/evidence/task-183/data-after.json','utf8'))as Record<string,unknown>;
 /** Earlier release scopes stay frozen. New Event/Story/economy/icon behavior has independent tests. */
-export function eventsSourceBytes(file:string){const bytes=readFileSync(file);if(after[file]&&before[file]){assert.equal(createHash('sha256').update(bytes).digest('hex'),after[file],file+' exact reviewed D206–209 source');return Buffer.from(before[file]!);}return bytes;}
+export function eventsSourceBytes(file:string){const bytes=modernUiSourceBytes(file);if(after[file]&&before[file]){assert.equal(createHash('sha256').update(bytes).digest('hex'),after[file],file+' exact reviewed D206–209 source');return Buffer.from(before[file]!);}return bytes;}
 function reverse(b:any,a:any,v:any,path:string):any{
  if(JSON.stringify(b)===JSON.stringify(a)||JSON.stringify(v)===JSON.stringify(b))return v;
  if(Array.isArray(b)&&Array.isArray(a)&&Array.isArray(v)&&a.length>b.length&&JSON.stringify(a.slice(0,b.length))===JSON.stringify(b)){const added=a.slice(b.length);return v.filter(x=>!added.some(n=>JSON.stringify(n)===JSON.stringify(x)));}
@@ -15,4 +16,4 @@ function reverse(b:any,a:any,v:any,path:string):any{
 }
 export function withoutEventsFile<T>(file:string,v:T):T{if(!(file in data))return structuredClone(v);return reverse(JSON.parse(before[file]!),data[file],v,file);}
 
-export function withoutEventsPack<T>(v:T):T{assert.deepEqual(v,packAfter,'exact reviewed modern-icon/runtime projection pack');return structuredClone(packBefore);}
+export function withoutEventsPack<T>(v:T):T{assert.deepEqual(withoutModernUiPack(v),packAfter,'exact reviewed modern-icon/runtime projection pack');return structuredClone(packBefore);}

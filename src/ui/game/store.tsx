@@ -1,4 +1,5 @@
 import {CraftingIcon} from './crafting.tsx';
+import {ArtifactSummon} from './artifact-summon.tsx';
 import { ScrollIcon } from './scroll-icon.tsx';
 import { CardIcon } from './card-art.tsx';
 import { CardGrade } from './card-grade.tsx';
@@ -9,12 +10,12 @@ import { Icon } from '../icon.tsx';
 import { optionLineSummary, revealItems, storeView } from '../../client/store.ts';
 import { rarityLabels, slotLabels, type EquipmentSlot } from '../../client/equipment.ts';
 import type { GameContext } from './shell.tsx';
-import { CostChips, ItemIcon, PageHeader, ResIcon, Sheet, canPay, friendNames, jobNames, full, compact, type Wallet } from './kit.tsx';
+import { CostChips, ItemIcon, PageHeader, ResIcon, Sheet, canPay, friendNames, jobNames, full, compact, iconUrl, type Wallet } from './kit.tsx';
 
-type Section = 'shop' | 'scrolls' | 'cards' | 'gear';
+type Section = 'shop' | 'scrolls' | 'cards' | 'gear' | 'artifact';
 /** Store (TASK-051/037, D-063): daily shop, card gacha and equipment gacha. No real money; every purchase is a server command. */
-export function StorePage({ context }: { context: GameContext }) {
-  const { state, pack, submit, locked, go } = context, [section, setSection] = useState<Section>('shop'), [revealed, setRevealed] = useState<string[]>([]), [openCardId,setOpenCardId]=useState<string|null>(null);
+export function StorePage({ context, initialSection='shop' }: { context: GameContext; initialSection?:Section }) {
+  const { state, pack, submit, locked, go } = context, [section, setSection] = useState<Section>(initialSection), [revealed, setRevealed] = useState<string[]>([]), [openCardId,setOpenCardId]=useState<string|null>(null);
   const [scrollCharacterId,setScrollCharacterId]=useState(context.characterId);
   const [revealOpen,setRevealOpen]=useState(false),[skip,setSkip]=useState(false),[pulling,setPulling]=useState(false),pullGate=useRef(false);
   const [lastCardCount,setLastCardCount]=useState<1|10>(1);
@@ -40,9 +41,9 @@ export function StorePage({ context }: { context: GameContext }) {
     <small>{rarityLabels[row.item.rarity_id]}</small>{row.item.kind==='card'&&<CardGrade grade={row.origin?.grade} rarity={row.item.rarity_id} variant={row.origin?.variant}/>}<em>{slotLabels[row.slot as EquipmentSlot]}{row.lines?` · ${row.lines} Option`:''}</em>
   </div>)}</div>;
   return <div className="page store-page">
-    <PageHeader title="ร้านค้า" sub={`รีเซ็ตสิทธิ์ซื้อทุกวัน 00:00 (เวลาไทย) · วันนี้ ${view.day}`} onBack={() => go('home')} />
-    <div className="row"><button className="btn small" onClick={()=>go('artifacts')}>สุ่ม Artifact</button><button className="btn small" onClick={()=>go('events')}>กิจกรรม</button></div>
-    <div className="seg store-seg" role="tablist">{([['shop', 'ร้านค้า'], ['scrolls', 'ใบธาตุ'], ['cards', 'สุ่มการ์ด'], ['gear', 'สุ่มอุปกรณ์']] as [Section, string][]).map(([id, label]) => <button key={id} role="tab" aria-selected={section === id} className={section === id ? 'on' : ''} onClick={() => { setSection(id); setRevealed([]); }}>{label}</button>)}</div>
+    <PageHeader title="ร้านค้า" sub={section==='artifact'?'Artifact ประจำอาชีพ':section==='cards'?'อัญเชิญการ์ดแห่งมิดการ์ด':section==='gear'?'อุปกรณ์ตามความคืบหน้า':`รีเซ็ตสิทธิ์ซื้อทุกวัน 00:00 (เวลาไทย) · วันนี้ ${view.day}`} onBack={() => go('home')} />
+    <div className="seg store-seg" role="tablist" aria-label="หมวดร้านค้า">{([['shop','ร้านค้า','ui_icons','nav_store'],['scrolls','ใบธาตุ','feature_icons','scroll_fire'],['cards','การ์ด','feature_icons','shop_cards'],['gear','อุปกรณ์','feature_icons','shop_equipment'],['artifact','Artifact','feature_icons','artifact']]as const).map(([id,label,group,key])=><button key={id} role="tab" aria-label={id==='cards'?'สุ่มการ์ด':id==='gear'?'สุ่มอุปกรณ์':id==='artifact'?'สุ่ม Artifact':label} aria-selected={section===id} className={section===id?'on':''} onClick={()=>{setSection(id);setRevealed([]);}}><img src={iconUrl(pack,group,key)??undefined} alt=""/><span>{label}</span></button>)}</div>
+    {section==='artifact'&&<ArtifactSummon context={context}/>}
     {(section === 'shop'||section === 'scrolls') && <div className="shop-grid">{view.offers.filter(offer=>(section==='scrolls')===!!offer.scroll).map(offer => <article key={offer.id} data-offer={offer.id} className={`shop-offer ${offer.left ? '' : 'sold-out'}`}>
       <div className="shop-grant">{offer.artifact&&<span><b>{offer.artifact.essence}</b> Essence</span>}{offer.crafting.map(c=><span key={c.id}><CraftingIcon pack={pack} kind={c.id}/><b>{c.count}</b></span>)}{offer.scroll&&<ScrollIcon pack={pack} element={offer.scroll.element} />}{(Object.entries(offer.grant) as [keyof Wallet, number][]).map(([k, n]) => <span key={k}><ResIcon pack={pack} k={k} /><b>{full(n)}</b></span>)}</div>
       <b className="shop-name">{offer.name}</b>{offer.farm_hours&&<small>เทียบฟาร์ม {offer.farm_hours} ชม. · บท {offer.chapter}</small>}{!offer.unlocked&&<small>เปิดเมื่อเลื่อน Hi-class</small>}{offer.crafting.map(c=><small key={c.id}>ในคลัง {full(c.stock)}</small>)}{offer.scroll&&<small>หนึ่งไฟต์ · ในคลัง {view.scrolls.find(row=>row.id===offer.id)?.stock??0}</small>}<small>เหลือวันนี้ {offer.left}/{offer.daily_limit}</small>
@@ -56,7 +57,7 @@ export function StorePage({ context }: { context: GameContext }) {
       {view.prepared[scrollCharacterId]&&<div className="scroll-prepared"><ScrollIcon pack={pack} element={view.prepared[scrollCharacterId]!.element}/><span>เตรียม{view.prepared[scrollCharacterId]!.name}ไว้แล้ว</span><button className="btn ghost small" disabled={locked} onClick={()=>void submit('consumable.prepare',{character_id:scrollCharacterId,definition_id:null})}>ยกเลิก / คืนใบ</button></div>}
       <div className="scroll-choices">{view.scrolls.map(row=><button key={row.id} className={`scroll-choice element-${row.element}`} disabled={locked||row.stock<1||view.prepared[scrollCharacterId]?.id===row.id} aria-pressed={view.prepared[scrollCharacterId]?.id===row.id} onClick={()=>void submit('consumable.prepare',{character_id:scrollCharacterId,definition_id:row.id})}><ScrollIcon pack={pack} element={row.element}/><span><b>{row.name}</b><small>{view.prepared[scrollCharacterId]?.id===row.id?'เตรียมแล้ว':`ในคลัง ${row.stock}`}</small></span></button>)}</div>
     </section>}
-    {section !== 'shop' && section !== 'scrolls' && (() => { const card = section === 'cards', data = card ? view.cards : view.gear, pool = card ? 'card_v1' : 'equipment_v1';
+    {(section === 'cards' || section === 'gear') && (() => { const card = section === 'cards', data = card ? view.cards : view.gear, pool = card ? 'card_v1' : 'equipment_v1';
       return <section className="gacha-box">
         {card&&<div className={`card-summon-stage ${pulling?'summoning':''}`} aria-label={pulling?'กำลังอัญเชิญการ์ด':'อัญเชิญการ์ด'}>
           <span className="summon-orbit" aria-hidden="true"/><div className="summon-deck" aria-hidden="true">{[-1,0,1].map(n=><span className={`summon-back back-${n+1}`} key={n}><Icon name="card"/></span>)}</div>

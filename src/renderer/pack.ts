@@ -1,6 +1,7 @@
 import type { RuntimeAssetIndex, RuntimeRecipe } from '../contracts/assets.ts';
 import type { ActorAppearance, BattleScene } from '../contracts/presentation.ts';
 import { locateAsset, locateSkillVisual, prepareAssetLookup } from './asset-locator.ts';
+import {locateSkillIcon} from './skill-icons.ts';
 import type { ActorParts, NativeAsset, NativeMeta } from './native.mjs';
 import { BattleAudio, type AudioLevels } from './audio.ts';
 import { wardrobeRefs, type WardrobeTiers } from './shell.ts';
@@ -97,7 +98,7 @@ export class AssetPack {
         const recipe = this.index.recipes.find(row => row.skill_id === scene.enemy_recipes[id]);
         if (!recipe?.ready) throw new Error(`MISSING_ENEMY_RECIPE:${id}`);
         this.visuals.set(id, { recipe, native: recipe.native_effect ? await this.asset(recipe.native_effect.meta) : null, sound_paths: recipe.sounds ?? [] });
-        if (recipe.icon) this.icons.set(id, await this.iconUrl(recipe.icon.meta));
+        this.icons.set(id, await this.iconUrl(locateSkillIcon(this.index,id).id));
       } else {
         const visual = locateSkillVisual(this.index, id);
         this.icons.set(id, await this.iconUrl(visual.icon.id));

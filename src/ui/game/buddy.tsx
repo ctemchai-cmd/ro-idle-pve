@@ -1,4 +1,5 @@
 import {EquipmentCrafting} from './crafting.tsx';
+import {ArtifactEquipmentSlot,ArtifactDetailSheet} from './artifact-shared.tsx';
 import { OwnerBadge } from './owner-badge.tsx';
 import { CardIcon } from './card-art.tsx';
 import { CardSalvageButton } from './card-salvage.tsx';
@@ -209,16 +210,17 @@ export function BuddyPage({ context }: { context: GameContext }) {
   const upgrades = useMemo(() => equipmentUpgradeHints(state, actor.character_id), [state, actor.character_id]);
   const upgradeCount = Object.keys(upgrades).length;
   const [slot, setSlot] = useState<EquipmentSlot | null>(null), [sheet, setSheet] = useState<'slot' | 'upgrade' | 'change' | 'character' | null>(null);
+  const [artifact,setArtifact]=useState<{id:string;slot:0|1}|null>(null);
   const inTeam = state.team.some(p => p.character_id === actor.character_id), row = (s: EquipmentSlot) => items.find(i => i.item.instance_id === actor.equipment[s]);
   const tile = (s: EquipmentSlot) => <GearTile key={s} row={row(s)} slot={s} pack={pack} state={state} characterId={actor.character_id} upgradeId={upgrades[s]} onClick={() => { setSlot(s); setSheet('slot'); }} />;
   const statsIcon = iconUrl(pack, 'ui_icons', 'stats'), skillIcon = iconUrl(pack, 'ui_icons', 'skill'), upgradeIcon = iconUrl(pack, 'ui_icons', 'upgrade');
   return <div className="page buddy-page">
     <PageHeader title={<>{friendNames[actor.character_id]} <span className="title-class"><ClassIcon pack={pack} job={actor.job_id} size={20} />
-    <button className="btn small" onClick={()=>context.go('artifacts')}>Artifact · 2 ช่อง</button><em>{jobNames[actor.job_id]}</em></span></>} sub={`Lv.${actor.level} / ${effectiveLevelCap(actor, data)} · ${inTeam ? 'อยู่ในทีม' : 'พักอยู่ในค่าย'}${actor.unspent_status_points ? ` · แต้มเหลือ ${actor.unspent_status_points}` : ''}`} onBack={() => go('home')} />
+    <em>{jobNames[actor.job_id]}</em></span></>} sub={`Lv.${actor.level} / ${effectiveLevelCap(actor, data)} · ${inTeam ? 'อยู่ในทีม' : 'พักอยู่ในค่าย'}${actor.unspent_status_points ? ` · แต้มเหลือ ${actor.unspent_status_points}` : ''}`} onBack={() => go('home')} />
     <section className="showcase">
-      <div className="gear-col">{leftSlots.map(tile)}</div>
+      <div className="gear-col">{leftSlots.map(tile)}<ArtifactEquipmentSlot context={context} slot={0} onInspect={(id,slot)=>setArtifact({id,slot})}/></div>
       <div className="hero-stage"><ActorCanvas pack={pack} look={lookOf(actor, state)} width={220} height={250} scale={2.7} footY={226} animate className="hero-canvas" /><span className="hero-plinth" /></div>
-      <div className="gear-col">{rightSlots.map(tile)}</div>
+      <div className="gear-col">{rightSlots.map(tile)}<ArtifactEquipmentSlot context={context} slot={1} onInspect={(id,slot)=>setArtifact({id,slot})}/></div>
     </section>
     <button className="btn equip-upgrades-btn" disabled={context.locked || !upgradeCount} onClick={()=>void context.submit('equipment.equip_upgrades',{character_id:actor.character_id})}><Icon name="chevrons-up"/><span>ใส่ของที่ดีกว่า</span>{upgradeCount>0&&<small>{upgradeCount} ช่อง</small>}</button>
     <div className="action-row">
@@ -227,6 +229,7 @@ export function BuddyPage({ context }: { context: GameContext }) {
       <button className="action-btn" onClick={() => setSheet('character')}><img className="upgrade-icon" src={upgradeIcon ?? undefined} alt="" /><span>Upgrade</span></button>
     </div>
     <RosterStrip context={context} />
+    {artifact&&<ArtifactDetailSheet key={artifact.id} context={context} instanceId={artifact.id} slot={artifact.slot} onClose={()=>setArtifact(null)}/>}
     {sheet === 'slot' && slot && <SlotSheet context={context} actor={actor} slot={slot} close={() => setSheet(null)} open={s => setSheet(s)} />}
     {sheet === 'upgrade' && slot && <UpgradeSheet context={context} actor={actor} slot={slot} close={() => setSheet(null)} />}
     {sheet === 'change' && slot && <ChangeSheet context={context} actor={actor} slot={slot} upgradeId={upgrades[slot]} close={() => setSheet(null)} />}

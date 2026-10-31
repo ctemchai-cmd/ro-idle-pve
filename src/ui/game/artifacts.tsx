@@ -1,39 +1,23 @@
-import {useRef,useState} from 'react';
-import {artifactView,artifactCatalog,artifactDetails,type ArtifactItem} from '../../client/artifacts.ts';
-import {SkillIcon} from '../skill-icon.tsx';
-import {ClassIcon} from './class-icon.tsx';
+import {useState} from 'react';
+import {artifactView,artifactCatalog} from '../../client/artifacts.ts';
 import {VirtualGrid} from './virtual-grid.tsx';
+import {ArtifactGlyph,ArtifactDetailSheet} from './artifact-shared.tsx';
 import type {GameContext} from './shell.tsx';
-import {PageHeader,Sheet,full,jobNames,friendNames,ResIcon} from './kit.tsx';
+import {PageHeader,ResIcon,friendNames,jobNames,iconUrl,full} from './kit.tsx';
 import './artifacts.css';
-const names:Record<string,string>={common:'Common',uncommon:'Uncommon',rare:'Rare',epic:'Epic',legendary:'Legendary'};
+
 export function ArtifactPage({context}:{context:GameContext}){
- const{state,pack,locked,submit,go}=context,actor=state.roster.find(a=>a.character_id===context.characterId)??state.roster[0]!,stock=state.artifacts,rules=artifactCatalog();
- const [selected,setSelected]=useState<string|null>(null),[slot,setSlot]=useState<0|1>(0),[confirm,setConfirm]=useState<'salvage'|'star'|null>(null),[drawing,setDrawing]=useState(false),[revealed,setRevealed]=useState<string[]>([]),gate=useRef(false);
- const [filter,setFilter]=useState('fit'),[drawJob,setDrawJob]=useState<string>(actor.job_id),highJobs=[...new Set(state.roster.map(a=>a.job_id))].filter(id=>rules.definitions.some(d=>d.class_id===id&&d.rarity_id==='legendary'));
- const job=highJobs.some(id=>id===drawJob)?drawJob:highJobs[0]??'',item=stock?.items.find(i=>i.instance_id===selected),view=item?artifactView(item,state):null;
- const order=new Map(rules.definitions.map((d,i)=>[d.id,i]));
- const owned=stock?.items??[],list=owned.filter(i=>filter==='all'||artifactView(i,state).fits(actor.character_id)).sort((a,b)=>(order.get(a.definition_id)??0)-(order.get(b.definition_id)??0));
- const donors=item?owned.filter(i=>i.instance_id!==item.instance_id&&i.definition_id===item.definition_id&&!i.locked&&i.stars===0&&!artifactView(i,state).owner).slice(0,view?.copies??0):[];
- async function act(type:Parameters<typeof submit>[0],params:unknown){if(gate.current||locked)return false;gate.current=true;try{return await submit(type,params);}finally{gate.current=false;}}
- async function draw(count:1|10){if(gate.current||locked||!job)return;const before=new Set(context.latest()?.artifacts?.items.map(i=>i.instance_id));setDrawing(true);try{if(await act('artifact.draw',{job_id:job,count}))setRevealed(context.latest()?.artifacts?.items.filter(i=>!before.has(i.instance_id)).map(i=>i.instance_id)??[]);}finally{setDrawing(false);}}
- function art(i:ArtifactItem){const v=artifactView(i,state);return <span className={`artifact-art rarity-${v.definition.rarity_id}`}><SkillIcon id={v.definition.skill_id} pack={pack}/><small>Lv.{i.level}</small>{i.stars>0&&<b aria-label={`${i.stars} ดาว`}>★{i.stars}</b>}</span>;}
- return <div className="page artifact-page"><PageHeader title="Artifact" sub={`${full(stock?.essence??0)} Essence · ${full(stock?.tickets??0)} ตั๋ว`} onBack={()=>go('buddy')}/>
-  <select aria-label="ตัวละคร Artifact" value={actor.character_id} onChange={e=>context.selectCharacter(e.target.value)}>{state.roster.map(a=><option key={a.character_id} value={a.character_id}>{friendNames[a.character_id]} · {jobNames[a.job_id]}</option>)}</select>
-  <div className="artifact-slots">{[0,1].map(n=>{const i=owned.find(i=>i.instance_id===stock?.slots[actor.character_id]?.[n]);return <button key={n} className={`artifact-slot ${slot===n?'on':''}`} onClick={()=>{setSlot(n as 0|1);if(i){setSelected(i.instance_id);setConfirm(null);}}}>{i?art(i):<span className="artifact-empty">＋</span>}<small>ช่อง {n+1}</small></button>;})}</div>
-  {!highJobs.length&&<p className="hint">Artifact เปิดเมื่อเลื่อน Hi-class</p>}
-  <section className="artifact-draw"><h3>สุ่มตามสายอาชีพ</h3><select aria-label="สาย Artifact" value={job} onChange={e=>setDrawJob(e.target.value)} disabled={!job}>{highJobs.map(id=><option key={id} value={id}>{jobNames[id]}</option>)}</select><small>ทองการันตีภายใน {rules.legendary_pity-(stock?.legendary_misses??0)} ครั้ง</small><div className="row two">{([1,10]as const).map(n=><button className="btn primary" key={n} disabled={locked||drawing||!job||owned.length+n>rules.capacity||state.wallet.crystal<Math.max(0,n-(stock?.tickets??0))*rules.draw_crystal} onClick={()=>void draw(n)}>สุ่ม {n} · <ResIcon pack={pack} k="crystal"/>{full(Math.max(0,n-(stock?.tickets??0))*rules.draw_crystal)}</button>)}</div></section>
-  {revealed.length>0&&<section className="artifact-reveal" aria-label="ผลสุ่ม Artifact">{revealed.map(id=>{const i=owned.find(i=>i.instance_id===id);return i?<button key={id} onClick={()=>{setSelected(id);setConfirm(null);}}>{art(i)}</button>:null;})}</section>}
+ const{state,pack,go}=context,actor=state.roster.find(a=>a.character_id===context.characterId)??state.roster[0]!,stock=state.artifacts,rules=artifactCatalog();
+ const[selected,setSelected]=useState<string|null>(null),[slot,setSlot]=useState<0|1>(0),[filter,setFilter]=useState('fit');
+ const owned=stock?.items??[],order=new Map(rules.definitions.map((d,i)=>[d.id,i])),list=owned.filter(i=>filter==='all'||artifactView(i,state).fits(actor.character_id)).sort((a,b)=>(order.get(a.definition_id)??0)-(order.get(b.definition_id)??0));
+ const unlocked=rules.definitions.some(d=>d.class_id===actor.job_id&&d.rarity_id==='legendary');
+ return <div className="page artifact-page"><PageHeader title="Artifact" sub={`${friendNames[actor.character_id]} · ${jobNames[actor.job_id]}`} onBack={()=>go('buddy',actor.character_id)}/>
+  <div className="artifact-overview"><select aria-label="ตัวละคร Artifact" value={actor.character_id} onChange={e=>context.selectCharacter(e.target.value)}>{state.roster.map(a=><option key={a.character_id} value={a.character_id}>{friendNames[a.character_id]} · {jobNames[a.job_id]}</option>)}</select><span><ResIcon pack={pack} k="artifact_essence"/>{full(stock?.essence??0)}</span></div>
+  <div className="artifact-slots">{([0,1]as const).map(n=>{const item=owned.find(i=>i.instance_id===stock?.slots[actor.character_id]?.[n]);return <button key={n} className={`artifact-slot ${slot===n?'on':''}`} aria-pressed={slot===n} onClick={()=>{setSlot(n);if(item)setSelected(item.instance_id);}}>{item?<ArtifactGlyph item={item} context={context}/>:<span className="artifact-empty"><img src={iconUrl(pack,'feature_icons','artifact')??undefined} alt=""/></span>}<small>ช่อง {n+1}</small></button>;})}</div>
+  {!unlocked&&<p className="hint">เปิดเมื่อเลื่อน Hi-class</p>}
   <div className="artifact-filter"><h3>คลัง {owned.length}/{rules.capacity}</h3><select aria-label="กรอง Artifact" value={filter} onChange={e=>setFilter(e.target.value)}><option value="fit">อาชีพนี้ใส่ได้</option><option value="all">ทั้งหมด</option></select></div>
-  <VirtualGrid items={list} renderItem={i=><button className="bag-cell artifact-cell" key={i.instance_id} aria-label={`${i.definition_id} Lv.${i.level}`} onClick={()=>{setSelected(i.instance_id);setConfirm(null);}}>{art(i)}{artifactView(i,state).owner&&<em>ใส่อยู่</em>}</button>}/>
-  {item&&view&&<Sheet title="Artifact" onClose={()=>{setSelected(null);setConfirm(null);}} className="artifact-sheet"><div className="artifact-identity">{art(item)}<span><b>{view.name}</b><small className={`rarity-${view.definition.rarity_id}`}>{names[view.definition.rarity_id]} · Lv.{item.level} · {item.stars} ดาว</small><strong>พลังสกิล +{(view.bonus*100).toLocaleString('th-TH',{maximumFractionDigits:1})}%</strong>{view.owner&&<small><ClassIcon job={state.roster.find(a=>a.character_id===view.owner)!.job_id} pack={pack} size={20}/> {friendNames[view.owner]} · สวมอยู่</small>}</span></div>
-   <p className="hint">ดาเมจ/ฮีล/โล่เพิ่มความแรง · บัฟและควบคุมเพิ่มเวลา</p><details><summary>รายละเอียดสกิลเมื่อเสริม</summary><ul className="artifact-description">{artifactDetails(item,state).effects.map((text,i)=><li key={i}>{text}</li>)}</ul></details>
-   <div className="artifact-actions"><button className="btn primary" disabled={locked||!view.fits(actor.character_id)} onClick={()=>void act('artifact.equip',{character_id:actor.character_id,slot,instance_id:item.instance_id})}>สวมช่อง {slot+1}</button>{view.owner&&<button className="btn" disabled={locked} onClick={()=>{const index=stock!.slots[view.owner!]!.indexOf(item.instance_id);void act('artifact.equip',{character_id:view.owner,slot:index,instance_id:null});}}>ถอด</button>}
-   <button className="btn" disabled={locked} onClick={()=>void act('artifact.lock',{instance_id:item.instance_id,locked:!item.locked})}>{item.locked?'ปลดล็อก':'ล็อก'}</button>
-   {view.next&&<button className="btn" disabled={locked||state.wallet.gold<view.next.gold||(stock?.essence??0)<view.next.essence} onClick={()=>void act('artifact.upgrade',{instance_id:item.instance_id,target_level:item.level+1})}>Lv.{item.level+1} · {full(view.next.gold)} ทอง + {view.next.essence} Essence</button>}
-   {item.stars<5&&<button className="btn" disabled={locked||donors.length<view.copies} onClick={()=>setConfirm('star')}>เพิ่มดาว · ชิ้นซ้ำ {donors.length}/{view.copies}</button>}
-   <button className="btn danger" disabled={locked||item.locked||!!view.owner} onClick={()=>setConfirm('salvage')}>ย่อย</button></div>
-   {confirm&&<section className="artifact-confirm" role="alertdialog" aria-label="ยืนยัน Artifact"><b>{confirm==='star'?`ใช้ชิ้นซ้ำ ${view.copies} ชิ้น เพิ่มเป็น ${item.stars+1} ดาว`:`ย่อย ${view.name} Lv.${item.level}?`}</b><small>คืนทุนเลเวลของชิ้นที่ใช้ตามจำนวนที่จ่ายจริง</small><div className="row two"><button className="btn" onClick={()=>setConfirm(null)}>ยกเลิก</button><button className="btn primary" disabled={locked} onClick={()=>void(async()=>{const ok=confirm==='star'?await act('artifact.star',{instance_id:item.instance_id,donor_ids:donors.map(d=>d.instance_id)}):await act('artifact.salvage',{instance_ids:[item.instance_id]});if(ok){if(confirm==='salvage')setSelected(null);setConfirm(null);}})()}>ยืนยัน</button></div></section>}
-  </Sheet>}
+  {list.length?<VirtualGrid items={list} renderItem={item=><button className="bag-cell artifact-cell" key={item.instance_id} aria-label={`${artifactView(item,state).name} Lv.${item.level}`} onClick={()=>setSelected(item.instance_id)}><ArtifactGlyph item={item} context={context}/>{artifactView(item,state).owner&&<em>ใส่อยู่</em>}</button>}/>:<div className="artifact-empty-inventory"><img src={iconUrl(pack,'feature_icons','artifact')??undefined} alt=""/><p>{filter==='fit'?'ยังไม่มี Artifact สำหรับอาชีพนี้':'ยังไม่มี Artifact'}</p></div>}
+  <button className="btn artifact-store-link" onClick={()=>go('artifact_draw',actor.character_id)}><ResIcon pack={pack} k="artifact_ticket"/>สุ่ม Artifact ในร้านค้า</button>
+  {selected&&<ArtifactDetailSheet key={selected} context={context} instanceId={selected} slot={slot} onClose={()=>setSelected(null)}/>}
  </div>;
 }

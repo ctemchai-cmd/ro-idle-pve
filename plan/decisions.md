@@ -440,3 +440,6 @@ D206/TASK183: EXPฟาร์ม+50%หลังจ่ายfrozenwindowเด�
 D207/TASK185: ผู้ใช้ยืนยันบท13–15/Lv100และต้องเก่งอีกระดับ.90ด่าน/Tier100/18เขต native,เก็บ330เดิม.13เริ่มHP20%/ATK10%เหนือactual12ท้าย,14–15entry15/8%,growth5/2%ต่อ5ด่าน. คง40sStory ไม่ขยาย90sจนDPScheckง่ายลง.
 D208/TASK184/186: ผู้ใช้เลือกEventสลับภารกิจกับบอส.4templatesBangkokMonday,committed/collectedcounters/checkin/derivedtokens,5boss tiers90s/sharedengine/bestdelta,ร้านMVPจริง/Legendaryweaponตรงอาชีพ/Artifact/หิน/EXP. เก็บ2periodsและgraceร้าน1week;สิทธิ์restoreเดินหน้า,ไม่mergewallet. ไม่มีSQL/env/newrequests.
 D209/TASK187: ผู้ใช้ให้เลือกHi-classskilliconsจากชุดmodern.เติม6Sniper/Clown/Gypsy รักษา20เดิมและVFX/audio/Awaken. Exactsourcebytes;runtimepruneonlyunusedrecipeicons/provenance,enemyfallbackเก็บจริง;889assets/1663files/total33515455<32MiB/initial1566701.
+
+D210/TASK188: บอสใช้moderniconsตามroleผ่านsharedrendererresolver11legacy/passiveและ8borrowedเดิม;ไม่แก้nativeVFX/audio/programs. แต้มEventใช้nativebadge,4โหมดใช้quest/MVPcrown/map/chestแยกกัน.
+D211/TASK189: Artifact2ช่องต่อจากแหวน/รองเท้าในหน้าตัวละคร;กดชิ้นที่ใส่เปิดsharedDetails,ช่องว่างไปinventory. ร้าน5แท็บ/ArtifactSummonมีHighjobselector/ticketfirstactualcost/pity/nativepreview/ผลสุ่มและสุ่มต่อ. รักษากติกา/ราคา/receiptเดิม,ไม่เปลี่ยนcore/data/schema/contenthash.

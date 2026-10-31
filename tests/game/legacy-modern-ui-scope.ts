@@ -1,0 +1,5 @@
+import{readFileSync}from'node:fs';import{gunzipSync}from'node:zlib';import{createHash}from'node:crypto';import assert from'node:assert/strict';
+const before=JSON.parse(gunzipSync(readFileSync('plan/evidence/task-188/before.json.gz')).toString())as Record<string,string>,after=JSON.parse(readFileSync('plan/evidence/task-188/source-after.json','utf8'))as Record<string,string>;
+const oldPack=JSON.parse(gunzipSync(readFileSync('plan/evidence/task-188/before-pack.json.gz')).toString()),newPack=JSON.parse(gunzipSync(readFileSync('plan/evidence/task-188/after-pack.json.gz')).toString());
+export function modernUiSourceBytes(file:string){const bytes=readFileSync(file);if(after[file]&&before[file]){assert.equal(createHash('sha256').update(bytes).digest('hex'),after[file],file+' exact D210–211 presentation');return Buffer.from(before[file]!);}return bytes;}
+export function withoutModernUiPack<T>(value:T):T{assert.deepEqual(value,newPack,'exact reviewed D210–211 icon closure');return structuredClone(oldPack);}

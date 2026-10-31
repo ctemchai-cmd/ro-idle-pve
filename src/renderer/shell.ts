@@ -11,6 +11,7 @@ export interface ShellVisuals {
   class_icons?: Readonly<Record<string, ShellIconRef & { game_job_id: number; source_icon_name: string }>>;
   resource_icons: Readonly<Record<string, ShellIconRef>>;
   feature_icons: Readonly<Record<string, ShellIconRef>>;
+  enemy_skill_icons?: Readonly<Record<string, Pick<ShellIconRef, 'asset_id' | 'meta_path'> & { source_skill_id: string }>>;
   farm: {
     presentation_only: true; mobs_per_wave: readonly [number, number]; walk_ms: number; rest_ms: number; wave_time_limit_ms: number;
     derived_from_boss_when_no_adds: Readonly<Record<'max_hp' | 'physical_attack' | 'magical_attack', number>>;
