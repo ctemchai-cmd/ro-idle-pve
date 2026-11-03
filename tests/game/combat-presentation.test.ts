@@ -14,12 +14,16 @@ test('demo bosses are solo, field retains monsters;3s skill and1.5s normal bases
   for (const scene of DEMO_ENCOUNTERS) {
     const session = new DemoSession(scene.id);
     assert.equal(session.initial.actors.filter(row => row.team === 'enemy').length, scene.id === 'field' ? 3 : 1);
-    assert.deepEqual(session.initial.timing, { skill_interval_base_ms: 3000, normal_attack_base_ms: 1500 });
+    assert.deepEqual(session.initial.timing, { skill_interval_base_ms: 3000, normal_attack_base_ms: 1500, skill_interval_bonus_weight: .25 });
     const firstDue = Math.min(...session.initial.actors.map(actor => actor.phase_ready_at!));
     session.advanceTo(firstDue - 1); assert.equal(session.history.filter(event => event.type === 'cast_start').length, 0);
     assert.ok(session.history.some(event => event.type === 'normal_attack' && event.at_ms < firstDue));
     session.advanceTo(3000);
-    for (const actor of session.initial.actors) assert.equal(session.history.find(event => event.type === 'cast_start' && event.actor_id === actor.actor_id)!.at_ms, actor.phase_ready_at);
+    for (const actor of session.initial.actors) {
+      const cast=session.history.find(event => event.type === 'cast_start' && event.actor_id === actor.actor_id);
+      if (!cast) assert.equal(session.state.actors.find(a=>a.actor_id===actor.actor_id)!.hp,0,'an enemy killed before its first turn cannot cast');
+      else assert.equal(cast.at_ms, actor.phase_ready_at);
+    }
   }
   assert.equal(skillIntervalMs(125, 3000), 2400); assert.equal(skillIntervalMs(125, 1500), 1200);
 });

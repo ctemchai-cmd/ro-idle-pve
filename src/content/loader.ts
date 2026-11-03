@@ -30,6 +30,11 @@ export function validateContent(raw: unknown): Result<ValidatedContent> {
     for (const file of [...FIXED.map(name => `${name}.json`), ...CLASS_ROOTS.map(name => `skills/${name}.json`), 'strings.th.json', 'actor-presentations.json']) demand(isObject(bundle.documents[file]), 'missing_document', { source: file, path: '' });
   } catch (error) { return { ok: false, errors: [error instanceof InvalidContent ? error.issue : { ...root, code: 'bundle_shape', message: String(error) }] }; }
   let validator: ContentValidator;
+  attempt({source:'combat-rules.json',path:'/rotation/live_timing'},()=>{
+    const profile=object(bundle.documents['combat-rules.json']!.rotation).live_timing;
+    if(profile===undefined)return;const t=object(profile);
+    demand(Object.keys(t).length===3&&['skill_interval_base_ms','normal_attack_base_ms'].every(k=>Number.isSafeInteger(t[k])&&Number(t[k])>=1&&Number(t[k])<=60000)&&typeof t.skill_interval_bonus_weight==='number'&&Number.isFinite(t.skill_interval_bonus_weight)&&t.skill_interval_bonus_weight>=0&&t.skill_interval_bonus_weight<=1,'live_timing', {source:'combat-rules.json',path:'/rotation/live_timing'});
+  });
   try { validator = new ContentValidator(bundle.schemas); } catch (error) { return { ok: false, errors: [{ ...root, code: 'schema_catalog', message: String(error) }] }; }
   const skills: Record<string, ObjectValue> = Object.create(null), items: Record<string, ObjectValue> = Object.create(null), actors: Record<string, ObjectValue> = Object.create(null);
   const rows: { kind: 'skill' | 'item' | 'status'; value: ObjectValue; location: DefinitionLocation }[] = [];

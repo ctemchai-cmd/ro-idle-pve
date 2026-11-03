@@ -38,6 +38,7 @@ export function StatsPage({ context }: { context: GameContext }) {
     <PageHeader title={`Stats · ${friendNames[actor.character_id]}`} sub={`${jobNames[actor.job_id]} · Lv.${actor.level}`} onBack={() => go('buddy', actor.character_id)} right={<CharacterNav context={context} />} />
     <section className="stat-panel"><h2>Base Stats</h2><div className="stat-cells">
       {base.map(k => <p key={k}><span>{statLabels[k]}</span><Diff before={(current.stats[k] ?? 0)} after={(preview.stats[k] ?? 0)} keyName={k} /></p>)}
+      <p><span>ตีปกติทุก</span><span className="diff-same">{seconds(preview.normalIntervalMs)}</span></p>
       <p><span>รอคิวสกิล</span>{current.intervalMs === preview.intervalMs ? <span className="diff-same">{seconds(current.intervalMs)}</span> : <span className="diff"><b className={preview.intervalMs < current.intervalMs ? 'up' : 'down'}>{seconds(preview.intervalMs)}</b></span>}</p>
     </div></section>
     <details className="stat-panel extra-stats"><summary><span>Additional Stats</span><small>{extra.filter(k => (current.stats[k] ?? 0) || (preview.stats[k] ?? 0)).length} ค่าที่มีผล</small></summary><div className="stat-grid small">

@@ -1,3 +1,4 @@
+import {liveBattleTiming} from '../domain/build/timing.ts';
 import { battleStatusViews } from './combat-status.ts';
 import { loadValidatedContent } from './content.ts';
 import type { ValidatedContent } from '../content/model.ts';
@@ -78,7 +79,7 @@ export class DemoSession {
       this.actorNames[source.actor_id] = source.actor_id === 'enemy_front' ? (encounter === 'field' ? source.definition_id : 'บอส · ' + source.definition_id) : source.definition_id;
       appearances.push({ actor_id: source.actor_id, body_meta: definition.presentation.meta_path, facing: 'left', scale: source.actor_id === 'enemy_front' && encounter !== 'field' ? 1.9 : 1.35 });
     }
-    const result = createBattle({ actors, arena: { width: 720, height: 820, step_ms: 50 }, timing: { skill_interval_base_ms: 3000, normal_attack_base_ms: 1500 }, mode: { kind: 'story', ref: `demo:${encounter}`, time_limit_ms: stage.time_limit_ms, ticket_day: null, daily_phase: null, daily_current_hp: null, reserved_phase_keys: [] } }, this.content, seed);
+    const result = createBattle({ actors, arena: { width: 720, height: 820, step_ms: 50 }, timing: liveBattleTiming(this.content), mode: { kind: 'story', ref: `demo:${encounter}`, time_limit_ms: stage.time_limit_ms, ticket_day: null, daily_phase: null, daily_current_hp: null, reserved_phase_keys: [] } }, this.content, seed);
     if (!result.ok) throw new Error(JSON.stringify(result.errors));
     this.initial = result.value; this.state = this.initial;
     const strings = this.content.documents['strings.th.json']!.strings as unknown as Record<string, string>;

@@ -15,7 +15,7 @@ test('four demo scenes use actual class/enemy data and expose four distinct Acti
 });
 test('manual45point demo builds have ASPD-specific first casts and preserve allocation across levels', async () => {
   const s = new DemoSession(), later = new DemoSession('storm'), timeline = await s.timeline();
-  const expected = { main: 2728, npc_archer: 2449, npc_acolyte: 2963, npc_mage: 2858 };
+  const expected = { main: 2927, npc_archer: 2841, npc_acolyte: 2991, npc_mage: 2963 };
   s.advanceTo(3000);
   for (const [id, at] of Object.entries(expected)) {
     const a = s.initial.actors.find(a => a.actor_id === id)!, b = later.initial.actors.find(a => a.actor_id === id)!;

@@ -1,3 +1,4 @@
+import {liveBattleTiming} from './timing.ts';
 import {artifactSkills} from './artifacts.ts';
 import type { AccountState, BattleActor, CombatStats, StatBlueprint } from '../../contracts/index.ts';
 import type { ValidatedContent } from '../../content/model.ts';
@@ -25,5 +26,5 @@ export function storyInput(stage:{id:string;time_limit_ms:number},boss:{actor_id
  const ids=[...boss.active_slots.filter((id):id is string=>id!==null),...boss.passives];
  const traits=(content.documents['cards.json']!.monster_traits as unknown as Record<string,{race:string;size:string}>)[boss.definition_id];
  const enemy:ActorInput={actor_id:boss.actor_id,kind:'enemy',team:'enemy',position:boss.position,stat_blueprint:fixedEnemyBlueprint(boss.level,boss.resolved_base,boss.element,content),active_slots:structuredClone(boss.active_slots),resolved_skills:Object.fromEntries(ids.map(id=>[id,structuredClone(resolveSkill(id,1,content))]))as BattleActor['resolved_skills'],normal_attack_enabled:definition.normal_attack,tags:[`element:${boss.element}`,`element_${boss.element}`,'boss',...(traits?[`race_${traits.race}`,`size_${traits.size}`]:[])],spatial:{x:520,y:400,move_speed:85,radius:30,normal_range:80},build_hash:`story_${stage.id}_${content.manifest.content_hash.slice(0,32)}`};
- return{actors:[...party,enemy],arena:{width:720,height:820,step_ms:50},timing:{skill_interval_base_ms:3000,normal_attack_base_ms:1500},mode:{kind:'story',ref:stage.id,time_limit_ms:stage.time_limit_ms,ticket_day:null,daily_phase:null,daily_current_hp:null,reserved_phase_keys:[],...mode}};
+ return{actors:[...party,enemy],arena:{width:720,height:820,step_ms:50},timing:liveBattleTiming(content),mode:{kind:'story',ref:stage.id,time_limit_ms:stage.time_limit_ms,ticket_day:null,daily_phase:null,daily_current_hp:null,reserved_phase_keys:[],...mode}};
 }

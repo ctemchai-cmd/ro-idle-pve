@@ -3,7 +3,7 @@ import type { BattleActor, BattleCheckpoint, CastState, CombatStats, Effect, Met
 import { fixedEnemyBlueprint } from '../build/story.ts';
 import type { Result, ValidatedContent } from '../../content/model.ts';
 import { freeze } from '../../content/value.ts';
-import { castDurationMs, checked, hpRegen, resolveStats, skillIntervalMs, spRegen } from '../math/index.ts';
+import { castDurationMs, checked, hpRegen, resolveStats, normalAttackIntervalMs, skillIntervalMs, spRegen } from '../math/index.ts';
 import { fixedSpCost } from '../math/combat-modifiers.ts';
 import { emptyMetrics } from './model.ts';
 import type { BattleEvent, BattleInput, BattleState, BattleStep, ModeRespawn, PureModePolicy, RunLimits } from './model.ts';
@@ -37,7 +37,7 @@ function activeDefinition(actor: BattleActor): ActiveSkill {
 function enterPhase(state: BattleCheckpoint, actor: BattleActor, phase: 'skill_interval' | 'after_cast', base = 0) {
   if (!occupied(actor)) { actor.action_phase = 'normal_only'; actor.phase_ready_at = null; return; }
   const speed = phase === 'skill_interval' ? actor.stats.attack_speed : actor.stats.cast_speed;
-  const duration = phase === 'skill_interval' ? skillIntervalMs(speed, state.timing?.skill_interval_base_ms) : castDurationMs(base, speed);
+  const duration = phase === 'skill_interval' ? skillIntervalMs(speed, state.timing?.skill_interval_base_ms, state.timing?.skill_interval_bonus_weight) : castDurationMs(base, speed);
   if (phase === 'after_cast' && duration === 0) { enterPhase(state, actor, 'skill_interval'); return; }
   actor.action_phase = phase; actor.phase_started_at = state.game_time_ms; actor.phase_duration_ms = duration; actor.phase_speed_snapshot = speed;
   actor.phase_ready_at = state.game_time_ms + duration;
@@ -50,8 +50,8 @@ export function createBattle(input: BattleInput, content: ValidatedContent, seed
   try {
     validateSpatialInput(input);
     if (input.timing) {
-      if (Object.keys(input.timing).length !== 2 || typeof input.timing.skill_interval_base_ms !== 'number' || typeof input.timing.normal_attack_base_ms !== 'number') throw new TypeError('INVALID_TIMING_PROFILE');
-      skillIntervalMs(100, input.timing.skill_interval_base_ms); skillIntervalMs(100, input.timing.normal_attack_base_ms);
+      if (Object.keys(input.timing).some(key=>!['skill_interval_base_ms','normal_attack_base_ms','skill_interval_bonus_weight'].includes(key)) || typeof input.timing.skill_interval_base_ms !== 'number' || typeof input.timing.normal_attack_base_ms !== 'number') throw new TypeError('INVALID_TIMING_PROFILE');
+      skillIntervalMs(100, input.timing.skill_interval_base_ms, input.timing.skill_interval_bonus_weight); normalAttackIntervalMs(100, input.timing.normal_attack_base_ms);
     }
     if (!Number.isInteger(seed) || seed < 0 || seed > 4294967295) throw new TypeError('INVALID_SEED');
     if (new Set(input.actors.map(actor => actor.actor_id)).size !== input.actors.length) throw new TypeError('DUPLICATE_ACTOR_ID');
@@ -85,14 +85,14 @@ export function createBattle(input: BattleInput, content: ValidatedContent, seed
         stat_blueprint: blueprint, stats, hp: stats.max_hp, sp: stats.max_sp, spirit_spheres: 0,
         tags: source.tags.slice(), active_slots: structuredClone(source.active_slots), resolved_skills: structuredClone(source.resolved_skills), rotation_cursor: 0,
         action_phase: 'normal_only', phase_ready_at: null, phase_started_at: 0, phase_duration_ms: 0, phase_speed_snapshot: stats.attack_speed,
-        normal_clock: { due_at: null, remaining_ms: skillIntervalMs(stats.attack_speed, state.timing?.normal_attack_base_ms), paused_for_cast: false },
+        normal_clock: { due_at: null, remaining_ms: normalAttackIntervalMs(stats.attack_speed, state.timing?.normal_attack_base_ms), paused_for_cast: false },
         cast: null, statuses: [], shields: [], summon_expires_at: null, action_policy: { kind: 'rotation', normal_attack_enabled: source.normal_attack_enabled },
       };
       recomputeStats(actor, content); actor.hp = actor.stats.max_hp; actor.sp = actor.stats.max_sp;
       state.actors.push(actor); state.metrics.actors[actor.actor_id] = emptyMetrics();
       if (blueprint.permanent_sources.some(row => row.triggers.some(trigger => trigger.event === 'battle_start'))) schedule(state, actor, 'battle_start', 0);
       if (occupied(actor)) enterPhase(state, actor, 'skill_interval');
-      if (source.normal_attack_enabled) { actor.normal_clock.due_at = skillIntervalMs(stats.attack_speed, state.timing?.normal_attack_base_ms); schedule(state, actor, 'normal_attack', actor.normal_clock.due_at); }
+      if (source.normal_attack_enabled) { actor.normal_clock.due_at = normalAttackIntervalMs(stats.attack_speed, state.timing?.normal_attack_base_ms); schedule(state, actor, 'normal_attack', actor.normal_clock.due_at); }
       schedule(state, actor, 'resource_regen', 1000);
       if (actor.spatial) schedule(state, actor, 'motion_tick', MOTION_STEP_MS);
     }
@@ -240,7 +240,7 @@ export function advanceUntil(input: BattleState, toGameMs: number, content: Vali
     actor.life_epoch++; actor.cast = null; actor.statuses = []; actor.shields = []; actor.rotation_cursor = 0;
     actor.stat_blueprint = fixedEnemyBlueprint(answer.level, answer.resolved_base, answer.element, content); actor.stats = resolveStats(actor.stat_blueprint, content); recomputeStats(actor, content);
     actor.hp = actor.stats.max_hp; actor.sp = actor.stats.max_sp; actor.action_phase = 'normal_only';
-    actor.normal_clock = { due_at: null, remaining_ms: skillIntervalMs(actor.stats.attack_speed, state.timing?.normal_attack_base_ms), paused_for_cast: false };
+    actor.normal_clock = { due_at: null, remaining_ms: normalAttackIntervalMs(actor.stats.attack_speed, state.timing?.normal_attack_base_ms), paused_for_cast: false };
     state.mode = { ...state.mode, ...structuredClone(answer.mode) };
     enterPhase(state, actor, 'skill_interval');
     if (actor.action_policy.kind === 'rotation' && actor.action_policy.normal_attack_enabled) { actor.normal_clock.due_at = state.game_time_ms + actor.normal_clock.remaining_ms; schedule(state, actor, 'normal_attack', actor.normal_clock.due_at); }
@@ -252,7 +252,7 @@ export function advanceUntil(input: BattleState, toGameMs: number, content: Vali
     if (actor.hp > 0 || !actor.revivable) return;
     actor.life_epoch++; actor.cast = null; actor.statuses = []; actor.shields = []; actor.spirit_spheres = 0; recomputeStats(actor, content);
     actor.hp = Math.max(1, Math.min(actor.stats.max_hp, Math.floor(actor.stats.max_hp * Math.max(0, hpRatio + actor.stats.revive_hp_bonus)))); actor.sp = Math.min(actor.stats.max_sp, Math.floor(actor.stats.max_sp * Math.max(0, spRatio + actor.stats.revive_sp_bonus)));
-    actor.normal_clock = { due_at: null, remaining_ms: skillIntervalMs(actor.stats.attack_speed, state.timing?.normal_attack_base_ms), paused_for_cast: false };
+    actor.normal_clock = { due_at: null, remaining_ms: normalAttackIntervalMs(actor.stats.attack_speed, state.timing?.normal_attack_base_ms), paused_for_cast: false };
     actor.action_phase = 'normal_only'; enterPhase(state, actor, 'skill_interval');
     if (actor.action_policy.kind === 'rotation' && actor.action_policy.normal_attack_enabled) { actor.normal_clock.due_at = state.game_time_ms + actor.normal_clock.remaining_ms; schedule(state, actor, 'normal_attack', actor.normal_clock.due_at); }
     schedule(state, actor, 'resource_regen', state.game_time_ms + 1000);
@@ -298,7 +298,7 @@ export function advanceUntil(input: BattleState, toGameMs: number, content: Vali
     if (spheres) recomputeStats(actor, content);
     metric(actor, skill.id, 'sp_spent', spent); metric(actor, skill.id, 'casts_started', 1);
     const duration = castDurationMs(numeric(skill.timing.cast_ms), actor.stats.cast_speed);
-    actor.normal_clock.remaining_ms = actor.normal_clock.due_at === null ? skillIntervalMs(actor.stats.attack_speed, state.timing?.normal_attack_base_ms) : Math.max(0, actor.normal_clock.due_at - state.game_time_ms);
+    actor.normal_clock.remaining_ms = actor.normal_clock.due_at === null ? normalAttackIntervalMs(actor.stats.attack_speed, state.timing?.normal_attack_base_ms) : Math.max(0, actor.normal_clock.due_at - state.game_time_ms);
     actor.normal_clock.due_at = null; actor.normal_clock.paused_for_cast = true;
     const cast: CastState = { token: `cast_${actor.actor_id}_${actor.life_epoch}_${state.event_sequence}`, skill_id: skill.id, skill_level: actor.resolved_skills[skill.id]!.level, used_slot_index: index,
       started_at: state.game_time_ms, ends_at: state.game_time_ms + duration, interruptible: skill.timing.interruptible, pre_cost: pre, offense_snapshot: structuredClone(actor.stats), resolved_skill: skill,
@@ -335,6 +335,9 @@ export function advanceUntil(input: BattleState, toGameMs: number, content: Vali
       accrue(nextTime);
       if (nextTime >= state.mode.time_limit_ms) { finish('time_limit', 'battle_time_limit'); break; }
       const due = state.pending_events.filter(event => event.due_ms === nextTime);
+      // A render/checkpoint boundary advances time only, never creates an action opportunity.
+      // Otherwise an actor unblocked late in the previous phase attacks earlier at higher FPS.
+      if (!due.length) break;
       processed += due.length + 1;
       if (processed > limits.max_events) throw new Error('EVENT_BUDGET_EXCEEDED');
       processed += due.length;
@@ -385,7 +388,7 @@ export function advanceUntil(input: BattleState, toGameMs: number, content: Vali
         // Readiness is retained while approaching. Arrival allows one hit, never a catch-up burst.
         if (target && !inNormalRange(actor, target)) continue;
         if (target) { emit({ type: 'normal_attack', actor_id: actor.actor_id, target_id: target.actor_id }); metric(actor, 'normal_attack', 'normal_attacks', 1); const context = pipeline.context(actor, 'normal_attack', 'normal', `normal_${actor.actor_id}_${state.event_sequence}`); context.selected = { foe: [target] }; pipeline.program([normalHit], context); }
-        actor.normal_clock.remaining_ms = skillIntervalMs(actor.stats.attack_speed, state.timing?.normal_attack_base_ms); actor.normal_clock.due_at = nextTime + actor.normal_clock.remaining_ms; schedule(state, actor, 'normal_attack', actor.normal_clock.due_at);
+        actor.normal_clock.remaining_ms = normalAttackIntervalMs(actor.stats.attack_speed, state.timing?.normal_attack_base_ms); actor.normal_clock.due_at = nextTime + actor.normal_clock.remaining_ms; schedule(state, actor, 'normal_attack', actor.normal_clock.due_at);
       }
       phase = 7; pipeline.drain(); settleDeaths(); terminal(); sweepSummons();
       if (nextTime === toGameMs) break;

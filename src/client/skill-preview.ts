@@ -1,3 +1,4 @@
+import {liveBattleTiming} from '../domain/build/timing.ts';
 import { loadValidatedContent } from './content.ts';
 import type { ValidatedContent } from '../content/model.ts';
 import type { BattleActor, SkillDefinition, StatBlueprint } from '../contracts/index.ts';
@@ -71,7 +72,7 @@ export class SkillPreviewSession {
       actors.push({ actor_id: id, team: 'enemy', kind: 'enemy', position: ['front_1', 'back_1', 'back_2'][i]!, stat_blueprint: bp, active_slots: [enemySkill, null, null, null], resolved_skills: enemySkill ? { [enemySkill]: structuredClone(resolveSkill(enemySkill, 1, rules)) as BattleActor['resolved_skills'][string] } : {}, normal_attack_enabled: !active && i === 0, build_hash: 'readonly_preview_target', tags: ['race_plant', 'size_medium', 'element_neutral'], spatial: { x: [475, 570, 545][i]!, y: [430, 590, 715][i]!, move_speed: 0, radius: 18, normal_range: 700 } });
       looks.push({ actor_id: id, body_meta: poring.presentation.meta_path, facing: 'left', scale: 1.2 }); this.names[id] = 'Poring';
     }
-    const result = createBattle({ actors, arena: { width: 720, height: 820, step_ms: 50 }, timing: { skill_interval_base_ms: 3000, normal_attack_base_ms: 1500 }, mode: { kind: 'story', ref: 'readonly:skill-preview', time_limit_ms: 20000, ticket_day: null, daily_phase: null, daily_current_hp: null, reserved_phase_keys: [] } }, rules, 17);
+    const result = createBattle({ actors, arena: { width: 720, height: 820, step_ms: 50 }, timing: liveBattleTiming(rules), mode: { kind: 'story', ref: 'readonly:skill-preview', time_limit_ms: 20000, ticket_day: null, daily_phase: null, daily_current_hp: null, reserved_phase_keys: [] } }, rules, 17);
     if (!result.ok) throw new Error(JSON.stringify(result.errors));
     const prepared = serializeBattle(result.value);
     for (const actor of prepared.actors) if (actor.team === 'player') actor.hp = Math.floor(actor.stats.max_hp * .35);

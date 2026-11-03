@@ -7,9 +7,15 @@ export function checked(value: number): number {
   if (!Number.isFinite(value) || Math.abs(value) > Number.MAX_SAFE_INTEGER) throw new RangeError('UNSAFE_COMBAT_NUMBER');
   return value;
 }
-export function skillIntervalMs(speed: number, baseMs = 1500): number {
+export function normalAttackIntervalMs(speed: number, baseMs = 1500): number {
   if (!Number.isSafeInteger(baseMs) || baseMs < 1 || baseMs > 60000) throw new RangeError('INVALID_INTERVAL_BASE');
   return Math.max(1, Math.ceil(checked(baseMs * 100) / Math.max(1, checked(speed))));
+}
+/** The explicit encounter profile controls haste sensitivity; old inputs retain weight1. */
+export function skillIntervalMs(speed: number, baseMs = 1500, bonusWeight = 1): number {
+  if (!Number.isFinite(bonusWeight) || bonusWeight < 0 || bonusWeight > 1) throw new RangeError('INVALID_SKILL_INTERVAL_WEIGHT');
+  const value = checked(speed), effective = value > 100 ? checked(100 + (value - 100) * bonusWeight) : value;
+  return normalAttackIntervalMs(effective, baseMs);
 }
 export function castDurationMs(baseMs: number, speed: number): number {
   if (!Number.isSafeInteger(baseMs) || baseMs < 0) throw new RangeError('INVALID_DURATION');

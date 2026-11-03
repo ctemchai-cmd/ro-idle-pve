@@ -451,3 +451,7 @@ D213/TASK191: Artifact main artwork is thirteen exact local modern/item/jewelry 
 D214/TASK192: User explicitly authorizes a new all-skill/all-job review and rebalance. 152 programs reviewed; eleven targeted changes after5,756before/5,756after matched fights +support/control/AoE/Artifact probes. Blessing speed/duration feedback corrected, Weapon Perfection penetration distinct from raw Max Overthrust, Palm built-in critical reduced, Creator finisher/shield coherent M.ATK, Professor/Cart/Triple impact raised, Mystical Amplification reduced. Gate1200–2500% beforeHP retained. Artifact utility duration uses quarter nominal bonus; power uses full. Independent uncapped buff stacks and timing/payment preserved. No claim of universal all-build balance. New combat invalidates older daily replay proof: ownership still required, incompatible unfinished daily is canceled in backed-up migration without reward or attempt charge; never replay unproven old combat with new power.
 
 D212–214 released `54027489226e913842bb2b1612a6e6211706edce` VercelSUCCESS;872TS/38Python/native6/public5 and clean committed1730-file build verified. See design95 and evidence190–192.
+
+## D215 — 3 November2026: queue haste / Artifact clarity
+
+ผู้ใช้ยืนยันลดผลเฉพาะคิวสกิล: ASPD200=2.4s, normalเดิม. ArtifactสกิลเดียวกันคงscaleตามRarity/Lv/ดาว; เปลี่ยนคำพลังเป็นผลจริงและแสดงทรัพยากรพร้อมnativeicons. [design96](design/96-queue-haste-and-artifact-clarity.md).

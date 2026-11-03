@@ -1,3 +1,4 @@
+import {liveBattleTiming} from '../domain/build/timing.ts';
 import {boundArtifacts,artifactBonus,artifactItemDefinition,enhanceArtifactSkill,artifactSkills} from '../domain/build/artifacts.ts';
 import { heldResourceModifiers } from '../domain/combat/resources.ts';
 import {bindStatusParams} from '../domain/combat/program.ts';
@@ -151,8 +152,9 @@ export function characterSkillOptions(actor:Character,state?:AccountState):{skil
   const targetNote=skillTargetNote(definition);
   return{fullAt:skillRankUnlockLevels(source,awakened).at(-1)!,nextRankAt:skillRankUnlockLevels(source,awakened)[Math.max(level,cap)]??null,awakened,awakenPrice,awakenEffects,previewSkills:compiled.resolved_skills,previewSpeed:stats.cast_speed,previewSpPercent:stats.sp_cost_percent,targetNote,id:source.id,name:labels[source.name_key]??source.id,kind:source.kind,unlock:source.unlock_level,level,cap,max:source.max_level,locked,definition,next,price,notes:skillNotes(definition),effects:summaries(definition,Math.max(1,level),compiled.resolved_skills),nextEffects:next?summaries(next,target,compiled.resolved_skills):[],castMs:definition.kind==='active'?castDurationMs(Number(definition.timing.cast_ms),stats.cast_speed):0,afterCastMs:definition.kind==='active'?castDurationMs(Number(definition.timing.after_cast_ms),stats.cast_speed):0,sp:definition.kind==='active'?typeof definition.cost.sp==='number'?fixedSpCost(definition.cost.sp,stats):NaN:0,nextCastMs:next?.kind==='active'?castDurationMs(Number(next.timing.cast_ms),stats.cast_speed):null,nextAfterCastMs:next?.kind==='active'?castDurationMs(Number(next.timing.after_cast_ms),stats.cast_speed):null,nextSp:next?.kind==='active'?typeof next.cost.sp==='number'?fixedSpCost(next.cost.sp,stats):NaN:null};
  });
- // User-approved demo pacing remains explicit, separate from legacy abstract benchmarks.
- return{skills,intervalMs:skillIntervalMs(stats.attack_speed,3000)};
+ // Share the live profile; old abstract benchmarks retain their explicit legacy timing.
+ const timing=liveBattleTiming(content);
+ return{skills,intervalMs:skillIntervalMs(stats.attack_speed,timing.skill_interval_base_ms,timing.skill_interval_bonus_weight)};
 }
 type Slots=Character['active_slots'];
 /** Skill-first equip (21 Oct 2026): put `id` in `slot`; if it was already equipped it swaps with the occupant, otherwise it replaces it. */

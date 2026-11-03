@@ -1,3 +1,4 @@
+import {liveBattleTiming} from '../../src/domain/build/timing.ts';
 /** TASK-129: synthetic, validated builds; imports the actual game rules, never a second combat model. */
 import type { AccountState, BattleActor, CombatStats, PrimaryStats, SkillDefinition } from '../../src/contracts/index.ts';
 import type { BattleInput } from '../../src/contracts/battle-input.ts';
@@ -193,7 +194,7 @@ export function auditInput(fixture:AuditFixture,encounter:Encounter,content:Vali
   for(const key of Object.keys(stats)as(keyof CombatStats)[])if(!(key in {str:1,agi:1,vit:1,int:1,dex:1,luk:1,max_hp:1,max_sp:1,physical_attack:1,magical_attack:1,physical_defense:1,magical_defense:1,attack_speed:1,cast_speed:1}))stats[key]=0;
   const ids=encounter==='pressure'?['enemy_bite','enemy_cataclysm','enemy_doom','enemy_firestorm']:[];
   const enemy:BattleInput['actors'][number]={actor_id:'audit_boss',team:'enemy',kind:'enemy',position:'front_1',stat_blueprint:fixedEnemyBlueprint(level,stats,'neutral',content),active_slots:[ids[0]??null,ids[1]??null,ids[2]??null,ids[3]??null],resolved_skills:Object.fromEntries(ids.map(id=>[id,structuredClone(resolveSkill(id,1,content))]))as BattleActor['resolved_skills'],tags:['boss','element:neutral','element_neutral','race_demi_human','size_large'],build_hash:'audit_boss_fixed',normal_attack_enabled:encounter==='pressure',spatial:{x:520,y:400,move_speed:encounter==='pressure'?85:0,radius:30,normal_range:80}};
-  return{actors:[...(encounter==='dummy'?party.filter(a=>a.actor_id==='main'):party),enemy],arena:{width:720,height:820,step_ms:50},timing:{skill_interval_base_ms:3000,normal_attack_base_ms:1500},mode:{kind:'story',ref:`audit_${encounter}_${fixture.condition.id}`,time_limit_ms:90000,ticket_day:null,daily_phase:null,daily_current_hp:null,reserved_phase_keys:[]}};
+  return{actors:[...(encounter==='dummy'?party.filter(a=>a.actor_id==='main'):party),enemy],arena:{width:720,height:820,step_ms:50},timing:liveBattleTiming(content),mode:{kind:'story',ref:`audit_${encounter}_${fixture.condition.id}`,time_limit_ms:90000,ticket_day:null,daily_phase:null,daily_current_hp:null,reserved_phase_keys:[]}};
 }
 export interface AuditSample {
   seed:number; dps:number; normal_dps:number; skill_dps:number; team_dps:number; hps:number; shields:number; sp_skips:number; sphere_skips:number; sp_spent:number; casts:number; interrupted:number; boss_interrupted:number; alive_ms:number; survivors:number; duration_ms:number;

@@ -1,3 +1,4 @@
+import {liveBattleTiming} from '../domain/build/timing.ts';
 import {artifactSkills} from '../domain/build/artifacts.ts';
 import { loadValidatedContent } from './content.ts';
 import type { AccountState, CombatStats } from '../contracts/index.ts';
@@ -6,7 +7,7 @@ import { equippedSources, resolvedEquipmentModifiers } from '../domain/build/equ
 import { optionModifiers } from '../domain/build/item-options.ts';
 import { previewCharacterStats } from '../domain/build/character.ts';
 import { compileCharacterSkills } from '../domain/progression/skills.ts';
-import { castDurationMs, skillIntervalMs } from '../domain/math/index.ts';
+import { castDurationMs, normalAttackIntervalMs, skillIntervalMs } from '../domain/math/index.ts';
 import { equipmentUpgrades } from '../domain/build/equipment-upgrades.ts';
 export { equipmentSlots, assignedOwner, salvageQuote };
 export type { EquipmentSlot, InventoryItem };
@@ -24,10 +25,10 @@ export function inventoryView(state:AccountState,characterId:string){
   return{item,definition,slot,name:labels[definition.name_key]??`${definition.weapon_type?weaponLabels[definition.weapon_type]:slotLabels[slot]} Lv.${definition.tier_level}`,owner:assignedOwner(state,item.instance_id),reason:equipmentFit(actor,slot,item,content),iconId:presentations.find(p=>p.id===definition.presentation_id)?.icon_asset_id??null};
  });
 }
-export function equipmentStats(state:AccountState,characterId:string):{stats:CombatStats;intervalMs:number;casts:{id:string;ct:number;acd:number}[]}{
+export function equipmentStats(state:AccountState,characterId:string):{stats:CombatStats;intervalMs:number;normalIntervalMs:number;casts:{id:string;ct:number;acd:number}[]}{
  const actor=state.roster.find(a=>a.character_id===characterId)!;
- const skills=compileCharacterSkills(actor,content),stats=previewCharacterStats(actor,artifactSkills(actor.character_id,state,skills.resolved_skills,content),content,equippedSources(actor,state,content));
- return{stats,intervalMs:skillIntervalMs(stats.attack_speed,3000),casts:actor.active_slots.filter((id):id is string=>!!id).map(id=>{const skill=skills.resolved_skills[id]!.definition;if(skill.kind!=='active')throw new Error('ACTIVE_SKILL_REQUIRED');return{id,ct:castDurationMs(Number(skill.timing.cast_ms),stats.cast_speed),acd:castDurationMs(Number(skill.timing.after_cast_ms),stats.cast_speed)};})};
+ const timing=liveBattleTiming(content),skills=compileCharacterSkills(actor,content),stats=previewCharacterStats(actor,artifactSkills(actor.character_id,state,skills.resolved_skills,content),content,equippedSources(actor,state,content));
+ return{stats,normalIntervalMs:normalAttackIntervalMs(stats.attack_speed,timing.normal_attack_base_ms),intervalMs:skillIntervalMs(stats.attack_speed,timing.skill_interval_base_ms,timing.skill_interval_bonus_weight),casts:actor.active_slots.filter((id):id is string=>!!id).map(id=>{const skill=skills.resolved_skills[id]!.definition;if(skill.kind!=='active')throw new Error('ACTIVE_SKILL_REQUIRED');return{id,ct:castDurationMs(Number(skill.timing.cast_ms),stats.cast_speed),acd:castDurationMs(Number(skill.timing.after_cast_ms),stats.cast_speed)};})};
 }
 export function equipmentPreview(state:AccountState,characterId:string,slot:EquipmentSlot,id:string|null){
  const next=structuredClone(state);

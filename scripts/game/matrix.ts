@@ -1,3 +1,4 @@
+import {liveBattleTiming} from '../../src/domain/build/timing.ts';
 // TASK-041 AC-02/AC-03 comparison matrix: every Class 2 build at equal budgets (Lv.20/40/66 reference accounts) against
 // controlled boss variants, plus one-vs-two support A/B, all on matched seeds through the shared engine. Report only;
 // it never edits game data.  node --import tsx scripts/game/matrix.ts [--seeds 20] [--out plan/evidence/balance/matrix.json]
@@ -56,7 +57,7 @@ const VARIANTS: Variant[] = [
 const scale = new Map<string, number>(); // `${level}:${variant}` -> HP multiplier
 function fight(state: AccountState, variant: Variant, level: number, seed: number, k = scale.get(`${level}:${variant.id}`) ?? 1) {
   const compiled = Object.fromEntries(state.team.map(p => [p.character_id, compileCharacterSkills(state.roster.find(a => a.character_id === p.character_id)!, content)]));
-  const input: BattleInput = { actors: [...storyParty(state, content, compiled, Object.fromEntries(state.roster.map(a => [a.character_id, 'x']))), ...variant.enemies(level, k)], arena: { width: 720, height: 820, step_ms: 50 }, timing: { skill_interval_base_ms: 3000, normal_attack_base_ms: 1500 }, mode: { kind: 'story', ref: `matrix_${variant.id}`, time_limit_ms: variant.limit_ms, ticket_day: null, daily_phase: null, daily_current_hp: null, reserved_phase_keys: [] } } as never;
+  const input: BattleInput = { actors: [...storyParty(state, content, compiled, Object.fromEntries(state.roster.map(a => [a.character_id, 'x']))), ...variant.enemies(level, k)], arena: { width: 720, height: 820, step_ms: 50 }, timing: liveBattleTiming(content), mode: { kind: 'story', ref: `matrix_${variant.id}`, time_limit_ms: variant.limit_ms, ticket_day: null, daily_phase: null, daily_current_hp: null, reserved_phase_keys: [] } } as never;
   const created = createBattle(input, content, seed); if (!created.ok) throw new Error(`MATRIX_BUILD:${JSON.stringify(created.errors).slice(0, 200)}`);
   const run = advanceUntil(created.value, variant.limit_ms, content); if (!run.ok) throw new Error('MATRIX_RUN');
   const final = run.value.state, party = final.actors.filter(a => a.team === 'player' && a.kind === 'party'), m = final.metrics;

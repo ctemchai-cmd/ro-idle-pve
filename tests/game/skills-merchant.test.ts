@@ -6,7 +6,7 @@ import type { RuntimeAssetIndex } from '../../src/contracts/assets.ts';
 import type { BattleEvent } from '../../src/domain/combat/index.ts';
 import { advanceUntil, restoreBattle, serializeBattle } from '../../src/domain/combat/index.ts';
 import { locateSkillVisual } from '../../src/renderer/asset-locator.ts';
-import { content, unwrap } from './combat-fixtures.ts';
+import { actor, skill, content, unwrap } from './combat-fixtures.ts';
 import { buildAccount, buildActor as sharedBuildActor, checkDryTraces, checkGolden, goldens, probe, probeActive, probePassive, resolved, run, storyParity, treeData, type Build } from './class-skills.ts';
 
 const tree = treeData('merchant'), ids = tree.skills.map(skill => skill.id), build = (id: string) => tree.builds.find(row => row.id === id)!;
@@ -83,14 +83,18 @@ test('T034 AC-02: Healing Plant keeps 1 alive and heals the lowest-HP ally; owne
   const { events } = plantFight('alchemist_bio_cannibalize', 20000), plants = lifetimes(events);
   for (const plant of plants) assert.ok(plants.filter(other => other.at <= plant.at && (other.end === null || other.end > plant.at)).length <= 1, 'one healing plant');
   assert.ok(events.some(event => event.type === 'heal' && event.skill_id === 'alchemist_bio_cannibalize' && event.target_id === 'p_ally' && (event.amount ?? 0) > 0), 'plant heals the wounded ally');
-  // Owner death: take the live checkpoint with plants out, drop the owner to 0 HP and advance one step.
-  const fight = plantFight('alchemist_hell_plant', 9000), alive = fight.state.actors.filter(actor => actor.kind === 'summon');
+  // A real scheduled lethal hit at9050ms must remove owned plants in that same timestamp.
+  // Do not manufacture a dead-but-unsettled actor between checkpoint barriers.
+  const killer=actor('e_front','enemy',[skill('lethal',7550,0,0,100000000)]);
+  const fight=run([probe('p_alch','player','front_1',[resolved('alchemist_hell_plant',10)],false,'alchemist'),probe('p_ally','player','back_1'),killer,probe('e_back','enemy','back_1')],9000),alive=fight.state.actors.filter(actor=>actor.kind==='summon');
   assert.ok(alive.length >= 1, 'plants alive before the owner dies');
-  const checkpoint = serializeBattle(fight.state); checkpoint.actors.find(actor => actor.actor_id === 'p_alch')!.hp = 0;
+  const checkpoint = serializeBattle(fight.state);
   const after = unwrap(advanceUntil(unwrap(restoreBattle(checkpoint, content)), 9100, content));
   assert.deepEqual(after.events.filter(event => event.type === 'despawn').map(event => [event.actor_id, event.detail]).sort(), alive.map(actor => [actor.actor_id, 'owner_dead']).sort());
+  assert.equal(after.events.find(e=>e.type==='death'&&e.actor_id==='p_alch')?.at_ms,9050);
+  assert.ok(after.events.filter(e=>e.type==='despawn').every(e=>e.at_ms===9050),'despawn at actual lethal impact');
   assert.ok(!after.state.actors.some(actor => actor.kind === 'summon'), 'no orphaned plants');
-  assert.ok(!after.events.some(event => event.type === 'damage' && event.skill_id === 'alchemist_hell_plant' && event.at_ms > 9000), 'no plant action after owner death');
+  assert.ok(!after.events.some(event => event.type === 'damage' && event.skill_id === 'alchemist_hell_plant' && event.at_ms > 9050), 'no plant action after owner death');
   evidence.healing_plant = { plants: plants.length, owner_death_despawned: alive.length };
 });
 

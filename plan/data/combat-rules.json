@@ -343,7 +343,12 @@
     "unusable_skill_reference": "build_validation_error, not silent_empty",
     "normal_during_CC": "clock_advances_to_single_ready_attack; wait_for_actions_allowed; no_catch_up",
     "interruptible": "skill_definition_flag default true; direct_interrupt_and_CC_cancel_only_if_true; normal_damage_does_not_interrupt_by_itself",
-    "uninterruptible_cast_under_CC": "continues_CT_and_can_resolve_if_alive; new_actions_still_blocked_by_CC"
+    "uninterruptible_cast_under_CC": "continues_CT_and_can_resolve_if_alive; new_actions_still_blocked_by_CC",
+    "live_timing": {
+      "skill_interval_base_ms": 3000,
+      "normal_attack_base_ms": 1500,
+      "skill_interval_bonus_weight": 0.25
+    }
   },
   "snapshots": {
     "caster_offense": "cast_start; includes resolved_skill and pre_spend_SP for named formulas",

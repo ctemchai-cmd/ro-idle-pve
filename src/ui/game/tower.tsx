@@ -1,3 +1,4 @@
+import { artifactResourceNames } from '../../client/resource-labels.ts';
 import { MonsterSizeBadge } from '../monster-size-badge.tsx';
 import { Icon } from '../icon.tsx';
 import { sceneLabels, towerView } from '../../client/story.ts';
@@ -13,7 +14,7 @@ function TowerRewards({ row, pack }: { row: TowerRow; pack: AssetPack | null }) 
   const resources = row.reward_resources ?? { gold: row.gold, crystal: row.crystal };
   return <div className="tower-reward-items">{(Object.entries(resources) as [keyof Wallet, number][]).filter(([, n]) => n > 0).map(([key, n]) =>
     <span key={key} title={resourceNames[key]} aria-label={`${resourceNames[key]} ${full(n)}`}><ResIcon pack={pack} k={key} />{full(n)}</span>)}
-    {row.floor>=40&&<span>Essence 20{row.floor%10===0?' · ตั๋ว Artifact 1':''}</span>}
+    {row.floor>=40&&<span><ResIcon pack={pack} k="artifact_essence"/>{artifactResourceNames.artifact_essence} 20{row.floor%10===0?' · ตั๋ว Artifact 1':''}</span>}
     {row.bronze_card_count > 0 && <span title="การ์ดสุ่ม" aria-label={`การ์ดสุ่ม ${row.bronze_card_count} ใบ`}><Icon name="card" />×{row.bronze_card_count}</span>}
   </div>;
 }

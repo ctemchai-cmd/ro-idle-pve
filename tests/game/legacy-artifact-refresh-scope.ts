@@ -1,10 +1,11 @@
+import {queueClaritySourceBytes,withoutQueueClarityFile} from './legacy-queue-clarity-scope.ts';
 import {readFileSync} from 'node:fs';import {gunzipSync} from 'node:zlib';import {createHash} from 'node:crypto';import assert from 'node:assert/strict';
 const before=JSON.parse(gunzipSync(readFileSync('plan/evidence/task-190/before.json.gz')).toString())as Record<string,string>;
 const after=JSON.parse(readFileSync('plan/evidence/task-190/source-after.json','utf8'))as Record<string,string>,data=JSON.parse(readFileSync('plan/evidence/task-190/data-after.json','utf8'))as Record<string,unknown>;
 // Every live input is pinned first; older projections may already have restored an earlier value.
-for(const file of Object.keys(data))assert.equal(createHash('sha256').update(readFileSync(file)).digest('hex'),after[file],file+' exact reviewed refresh source');
+for(const file of Object.keys(data))assert.equal(createHash('sha256').update(queueClaritySourceBytes(file)).digest('hex'),after[file],file+' exact reviewed refresh source');
 export const beforeArtifactRefresh=JSON.parse(gunzipSync(readFileSync('plan/evidence/task-190/content-before.json.gz')).toString());
-export function artifactRefreshSourceBytes(file:string){const bytes=readFileSync(file);if(after[file]&&before[file]){assert.equal(createHash('sha256').update(bytes).digest('hex'),after[file],file+' exact reviewed random Artifact/skill refresh');return Buffer.from(before[file]!);}return bytes;}
+export function artifactRefreshSourceBytes(file:string){const bytes=queueClaritySourceBytes(file);if(after[file]&&before[file]){assert.equal(createHash('sha256').update(bytes).digest('hex'),after[file],file+' exact reviewed random Artifact/skill refresh');return Buffer.from(before[file]!);}return bytes;}
 function reverse(b:any,a:any,v:any,path:string):any{
  if(JSON.stringify(b)===JSON.stringify(a)||JSON.stringify(v)===JSON.stringify(b))return structuredClone(v);
  if(Array.isArray(b)&&Array.isArray(a)&&Array.isArray(v)){
@@ -18,7 +19,7 @@ function reverse(b:any,a:any,v:any,path:string):any{
  }
  if(JSON.stringify(v)!==JSON.stringify(a))return structuredClone(v);return structuredClone(b);
 }
-export function withoutArtifactRefreshFile<T>(file:string,value:T):T{return file in data?reverse(JSON.parse(before[file]!),data[file],value,file):structuredClone(value);}
+export function withoutArtifactRefreshFile<T>(file:string,value:T):T{const current=withoutQueueClarityFile(file,value);return file in data?reverse(JSON.parse(before[file]!),data[file],current,file):structuredClone(current);}
 export function withoutArtifactRefreshPack<T>(value:T):T{const afterPack=JSON.parse(gunzipSync(readFileSync('plan/evidence/task-190/pack-after.json.gz')).toString());assert.deepEqual(value,afterPack,'exact reviewed jewelry/runtime metadata pack');return JSON.parse(gunzipSync(readFileSync('plan/evidence/task-190/pack-before.json.gz')).toString());}
 /** Only the nine reviewed programs are projected back for older numeric oracles. */
 export function withoutArtifactRefreshSkills<T>(value:T):T{

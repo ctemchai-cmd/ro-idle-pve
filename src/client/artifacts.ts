@@ -1,6 +1,7 @@
+import type {DeepReadonly} from '../content/value.ts';
 import{definitionSize}from'./monster-size.ts';
 import {loadValidatedContent} from './content.ts';
-import type {AccountState} from '../contracts/index.ts';
+import type {AccountState,SkillDefinition,StatusDefinition} from '../contracts/index.ts';
 import {ARTIFACT_UTILITY_DURATION_SCALE,artifactRules,artifactItemDefinition,artifactProfile,artifactStatModifiers,artifactDonorMatches,artifactBonus,artifactFits,enhanceArtifactSkill,type ArtifactItem} from '../domain/build/artifacts.ts';
 import {artifactOwner,artifactUpgradeQuote,artifactSalvageQuote} from '../domain/progression/artifacts.ts';
 import {mvpRules,mvpBosses,mvpBoss,mvpWeek,mvpReward,mvpUnlocked,parseMvpRef} from '../domain/modes/mvp.ts';
@@ -14,7 +15,7 @@ const loaded=loadValidatedContent();if(!loaded.ok)throw new Error('CONTENT_UNAVA
 export function artifactView(item:ArtifactItem,state:AccountState){
  const d=artifactItemDefinition(item,content),bonus=artifactBonus(item,content),owner=artifactOwner(state,item.instance_id),profile=artifactProfile(d.class_id,content),actor=owner?state.roster.find(a=>a.character_id===owner):state.roster.find(a=>artifactFits(a,d,content));
  const statJob=actor?.job_id??profile?.id??d.class_id;
- return{item,definition:d,name:profile?.name??'Artifact',skillName:artifactSkillName(d.skill_id),kind:String(content.skills[d.skill_id]?.kind),profile:artifactProfile(statJob,content),stats:artifactStatModifiers(item,statJob,content),bonus,enhancementLabel:artifactEnhancementLabel(d.skill_id,bonus),owner,skillLevel:actor?.skill_levels[d.skill_id]??0,pending:state.artifacts?.pending_skill_roll?.instance_id===item.instance_id,salvage:artifactSalvageQuote([item],content),donor:(other:ArtifactItem)=>artifactDonorMatches(item,other,content),fits:(id:string)=>{const a=state.roster.find(a=>a.character_id===id);return!!a&&artifactFits(a,d,content);},next:item.level<10?artifactUpgradeQuote(item,item.level+1,content):null,copies:artifactRules(content).star_copies[item.stars]??0};
+ return{item,definition:d,name:profile?.name??'Artifact',skillName:artifactSkillName(d.skill_id),kind:String(content.skills[d.skill_id]?.kind),profile:artifactProfile(statJob,content),stats:artifactStatModifiers(item,statJob,content),bonus,enhancementLabel:artifactEnhancementLabel(resolveSkill(d.skill_id,actor?.skill_levels[d.skill_id]??1,content,actor?.awakened_skills.includes(d.skill_id)??false).definition,bonus),owner,skillLevel:actor?.skill_levels[d.skill_id]??0,pending:state.artifacts?.pending_skill_roll?.instance_id===item.instance_id,salvage:artifactSalvageQuote([item],content),donor:(other:ArtifactItem)=>artifactDonorMatches(item,other,content),fits:(id:string)=>{const a=state.roster.find(a=>a.character_id===id);return!!a&&artifactFits(a,d,content);},next:item.level<10?artifactUpgradeQuote(item,item.level+1,content):null,copies:artifactRules(content).star_copies[item.stars]??0};
 }
 export const artifactSkillName=(id:string)=>String((content.documents['strings.th.json']!.strings as Record<string,string>)[id]??id);
 export const artifactJobProfile=(job:string)=>artifactProfile(job,content);
@@ -31,4 +32,22 @@ export function artifactDrawOptions(state:AccountState,selectedJob:string){
 export function artifactDetails(item:ArtifactItem,state:AccountState){const d=artifactItemDefinition(item,content),actor=state.roster.find(a=>a.character_id===artifactOwner(state,item.instance_id))??state.roster.find(a=>artifactFits(a,d,content)),level=actor?.skill_levels[d.skill_id]??1,awakened=actor?.awakened_skills.includes(d.skill_id)??false,base=resolveSkill(d.skill_id,level,content,awakened);return describeResolvedSkill(enhanceArtifactSkill(base.definition,artifactBonus(item,content)),level,actor?{...compileCharacterSkills(actor,content).resolved_skills,[d.skill_id]:{level,definition:enhanceArtifactSkill(base.definition,artifactBonus(item,content))}}:undefined);}
 export function mvpView(state:AccountState,now:number){const week=mvpWeek(now);return{week,unlocked:mvpUnlocked(state,content),unlock_after:mvpRules(content).unlock_after,bosses:mvpBosses(now,content).map(b=>{const best=state.mvp_hunt?.week===week?(state.mvp_hunt.best[b.id]??0):0,tier=Math.min(10,best+1);return{...b,size:definitionSize(b.id),best,tier,stats:mvpBoss(b.id,tier,content).resolved_base,reward:mvpReward(tier),previous:mvpReward(best)};})};}
 
-function artifactEnhancementLabel(id:string,bonus:number){const s=resolveSkill(id,1,content).definition,pct=(v:number)=>(v*100).toLocaleString('th-TH',{maximumFractionDigits:2})+'%';if(s.kind==='passive')return'เสริม Passive +'+pct(bonus);if(id==='monk_call_spirits')return'พลังต่อลูก +'+pct(bonus);const duration=s.effects.some(e=>e.type==='apply_status'&&!('power_ratio'in e.params)&&!e.parameter_formulas?.power_ratio),power=s.effects.some(e=>['damage','sacrifice_damage','heal','shield','summon'].includes(e.type)||e.type==='apply_status'&&('power_ratio'in e.params||!!e.parameter_formulas?.power_ratio));return[power?'พลัง +'+pct(bonus):'',duration?'ระยะเวลา +'+pct(bonus*ARTIFACT_UTILITY_DURATION_SCALE):''].filter(Boolean).join(' · ')||'เสริมผลสกิล';}
+/** Describe exactly which coefficients the shared Artifact compiler enhances. */
+function artifactEnhancementLabel(s:DeepReadonly<SkillDefinition>,bonus:number){
+ const pct=(v:number)=>(v*100).toLocaleString('th-TH',{maximumFractionDigits:2})+'%',labels=new Set<string>();
+ if(s.kind==='passive')return 'ค่าสถานะ/เอฟเฟกต์ Passive +'+pct(bonus);
+ if(s.id==='monk_call_spirits')return 'โบนัส P.ATK ต่อลูก +'+pct(bonus);
+ for(const e of s.effects){
+  if(e.type==='damage'||e.type==='sacrifice_damage')labels.add('ดาเมจสกิล +'+pct(bonus));
+  else if(e.type==='heal')labels.add('ฮีล +'+pct(bonus));
+  else if(e.type==='shield')labels.add('โล่ดูดซับ +'+pct(bonus));
+  else if(e.type==='summon')labels.add('พลังอัญเชิญ +'+pct(bonus));
+  else if(e.type==='apply_status'){
+   if('power_ratio'in e.params||e.parameter_formulas?.power_ratio){
+    const status=content.statuses[e.status_id] as unknown as StatusDefinition,types=status?.periodic?.effects.map(effect=>effect.type)??[];
+    labels.add((types.includes('heal')?'ฮีลต่อเนื่อง':types.includes('damage')?'ดาเมจต่อเนื่อง':'ค่าเสริมบัฟ')+' +'+pct(bonus));
+   }else if(typeof e.duration_ms==='number'&&e.duration_ms>0)labels.add('ระยะเวลา +'+pct(bonus*ARTIFACT_UTILITY_DURATION_SCALE));
+  }else if(e.type==='remove_status'&&typeof e.max_instances==='number')labels.add(`ล้างสถานะ ${e.max_instances} → ${Math.ceil(e.max_instances*(1+bonus))} ชั้น`);
+ }
+ return [...labels].join(' · ');
+}

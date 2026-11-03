@@ -116,9 +116,9 @@ test('T033 AC-03: real fights - Quick Step grants evasion without changing timin
 
 // --- AC-04 ------------------------------------------------------------------------------------------
 test('T033 AC-04: same seed/build gives identical results in server, client session and runner with own-source venom metrics', async () => {
-  // D138 parity fixture:3-10 supplies enough HP/time for both new finishers and the copied Heal to cast
+  // D215 slower-queue parity fixture:4-1 supplies enough HP/time for both new finishers and the copied Heal to cast
   // (6-20 became too hard for it after the 21 Oct 2026 calibration, so its late skills never cast).
-  const { runner, clientEvents, code, confirmations, team, stage } = await storyParity('thief', [build('assassin_venom'), build('rogue_support_copy')], '3-10', 33);
+  const { runner, clientEvents, code, confirmations, team, stage } = await storyParity('thief', [build('assassin_venom'), build('rogue_support_copy')], '4-1', 33);
   const skills = runner.report.skills;
   for (const key of ['main:assassin_venom_dust', 'main:assassin_detonate', 'npc_thief:rogue_strip_armor', 'npc_thief:rogue_copy_acolyte_heal']) assert.ok((skills[key]?.metrics.casts_resolved ?? 0) > 0, key);
   const venomTicks = clientEvents.filter(event => event.type === 'damage' && ['thief_envenom', 'assassin_venom_dust'].includes(event.skill_id!) && event.effect_id !== 'hit');
