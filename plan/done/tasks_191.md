@@ -15,7 +15,9 @@ TASK-014 (done), TASK-189 (done)
 4. Root + clean committed checkout build แล้วเผยแพร่และตรวจเว็บจริง
 
 ## เกณฑ์ตรวจรับ
-- [ ] AC-01: 13 jewelry จริงครบอาชีพ; native media เดิมและ pack ไม่เกิน32MiB
-- [ ] AC-02: รายละเอียดแยก stats/skill/rarity; ผลรีสกิลกลับมาเลือกต่อได้
-- [ ] AC-03: bulk เลือกเอง/กรอง/ยืนยันรายการและยอดคืน; ปุ่มไม่หลุดหน้าจอ
-- [ ] AC-04: mobile320390/root/clean committed checkout/Vercel ผ่าน
+- [x] AC-01: 13 jewelry จริงครบอาชีพ; native media เดิมและ pack ไม่เกิน32MiB
+- [x] AC-02: รายละเอียดแยก stats/skill/rarity; ผลรีสกิลกลับมาเลือกต่อได้
+- [x] AC-03: bulk เลือกเอง/กรอง/ยืนยันรายการและยอดคืน; ปุ่มไม่หลุดหน้าจอ
+- [x] AC-04: mobile320390/root/clean committed checkout/Vercel ผ่าน
+
+ตรวจผ่านและเผยแพร่ source `54027489226e913842bb2b1612a6e6211706edce` · [Vercel](https://vercel.com/chanon2/ro-idle-pve/13w175EUcwDuDh8HA4jPzRJiUxDV) · [review](../evidence/task-191-review.json)

@@ -1,3 +1,13 @@
+## TASK190–192 COMPLETE / Random Artifact and skill audit LIVE — 3 November2026
+
+Source`54027489226e913842bb2b1612a6e6211706edce` [VercelSUCCESS](https://vercel.com/chanon2/ro-idle-pve/13w175EUcwDuDh8HA4jPzRJiUxDV);872TS/60finalfocused/38Python/native6groups320390/M0/source330+60460/root+cleanCOMMITTEDarchive1730identical/public5passed.3done178/192/M4132/141. No remaining190–192implementation. NoownerAuth/cloudsavewrites/SQL/env/newDBroundtrip/6173restart/subagents. OwnVite7543closedafterverification;userdraft/unselectedmodern/oldPNGpreserved.
+
+Artifact152Active+Passive/alllineages/qualityindependent;13exactlocaljewelry/classstats;persistpaidrollold-newchoice;atomicbulk+confirmation;salvage1/2/3/5/8stones,copies+actualinvestmentconserved;Story3+every5stage1/8+2/13+3;Event3for60tokens5period. LegacyinstanceID/skill/quality/level/stars retained. UI/combatcompiler identicalincludingpassives. Twoequippedlogicalskillsdistinct. Fixedfooter/filters/storejewelry/resultsrepeat. Pack93d503/904assets1693files/total33141447<32MiB/initial1546658;allretainednativepixels/keyframesexact,authoringsource/annotationsonlyomitted.
+
+152skills32jobsreviewed/11adjusted;5756before+5756aftermatchedfights,288causalrole,78three-target,6maxArtifactstress. Blessingspeedfeedback/WPprecisionvsMaxraw/CreatorMAtk/Palmcritreduced/CartTriplePsychicimpact/Mysticalreduced;Gate1200–2500%preHPkept. Artifactutilitydurationquarter(+75%power→18.75%duration),uncappedindependentstacks retained. Boundedneutralcandidates,notuniversalbalance;see design95/evidence192README. Oldunprovabledailyreplaycanceledonlyduringbacked-upmigration,noquota/reward;ownershipproofstillrequired. Oldproofsneverweakened.
+
+Fingerprints content7a161cf4/engine78f7e299/schema28570bb7/core757cc6cd/pack93d5038d. Closureonlydocs/evidence;updateafterpinsforreviewmetadataonly,frozenbefore190unchanged. AlwayscleancommittedGitarchivebeforepushincludingpayloaddeletions.
+
 ## TASK190–192 LOCAL REVIEW — 3 November2026; publish next
 
 RandomArtifactv2:152Active+Passive/alllineages/qualityindependent;13exactjewelry/classstats;persistpaidrollold-newchoice;atomicbulk+confirm;salvage1/2/3/5/8stones;Story3+every5stage1/8+2/13+3;Event3for60tokens5period. Legacyitems unchanged; optionalJSONBfields/new2commands/existingreceipts/noSQL/env/newDBcall. Classappropriate stats and enhancedpassive use identical UI/combat compiler. Pendingcanreopen,locks/equipped protected,donoractualinvestmentrefund andcopiesconserved.

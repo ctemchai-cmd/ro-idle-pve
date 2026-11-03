@@ -15,7 +15,9 @@ TASK-014 (done), TASK-189 (done)
 4. Root + clean committed checkout build แล้วเผยแพร่และตรวจเว็บจริง
 
 ## เกณฑ์ตรวจรับ
-- [ ] AC-01: ทุกสีสุ่มครบ Active/Passive ในสายและคง legacy instance
-- [ ] AC-02: ผลรีสกิลคงที่/เลือกเดิมใหม่/receipt replay/ย่อย atomic
-- [ ] AC-03: ค่าสถานะกับ Passive ตรงระหว่าง UI และ shared engine; หินจากด่านและ Event
-- [ ] AC-04: native/strict/build/clean committed checkout/Vercel ผ่าน
+- [x] AC-01: ทุกสีสุ่มครบ Active/Passive ในสายและคง legacy instance
+- [x] AC-02: ผลรีสกิลคงที่/เลือกเดิมใหม่/receipt replay/ย่อย atomic
+- [x] AC-03: ค่าสถานะกับ Passive ตรงระหว่าง UI และ shared engine; หินจากด่านและ Event
+- [x] AC-04: native/strict/build/clean committed checkout/Vercel ผ่าน
+
+ตรวจผ่านและเผยแพร่ source `54027489226e913842bb2b1612a6e6211706edce` · [Vercel](https://vercel.com/chanon2/ro-idle-pve/13w175EUcwDuDh8HA4jPzRJiUxDV) · [review](../evidence/task-190-review.json)

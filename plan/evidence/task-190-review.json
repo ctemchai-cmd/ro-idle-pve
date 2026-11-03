@@ -1,15 +1,18 @@
 {
   "task_id": "TASK-190",
-  "passed": false,
+  "passed": true,
   "implementation_review_passed": true,
-  "publish_pending": true,
+  "publish_pending": false,
   "reviewer": "Codex self-review",
   "review_date": "2026-11-03",
   "scope": "design95 and latest user confirmations",
   "evidence": [
     "plan/evidence/task-190/local-verification.json",
     "plan/evidence/task-191/native.json",
-    "plan/evidence/task-192/README.md"
+    "plan/evidence/task-192/README.md",
+    "plan/evidence/task-191/builds.json",
+    "plan/evidence/task-191/hosted.json",
+    "plan/evidence/task-191/deployment.json"
   ],
   "limitations": [
     "Synthetic shared API/React mobile only, no new Auth/RLS proof or owner save access.",
@@ -17,5 +20,16 @@
   ],
   "ts_full_passed": 872,
   "python_passed": 38,
-  "native_groups": 6
+  "native_groups": 6,
+  "source_commit": "54027489226e913842bb2b1612a6e6211706edce",
+  "deployment_url": "https://vercel.com/chanon2/ro-idle-pve/13w175EUcwDuDh8HA4jPzRJiUxDV",
+  "hosted_groups": 5,
+  "exact_clean_commit_build": true,
+  "root_filtered_identical_files": 1730,
+  "acceptance_passed": [
+    "AC-01",
+    "AC-02",
+    "AC-03",
+    "AC-04"
+  ]
 }

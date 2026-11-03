@@ -1085,15 +1085,15 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T189-AC-02` | TASK-189 | core/data/schema/contenthashเดิม;ไม่มีราคา/สิทธิ์/เซฟใหม่ | Native UI/asset source SHA/shared quote/targeted tests/strict/root+cleanGit/public | passed_implementation |
 | `T189-AC-03` | TASK-189 | targeted/native320390/strict/build/pack32MiBผ่าน | Native UI/asset source SHA/shared quote/targeted tests/strict/root+cleanGit/public | passed_implementation |
 | `T189-AC-04` | TASK-189 | cleancommittedcheckoutและVercel/publicผ่าน | Native UI/asset source SHA/shared quote/targeted tests/strict/root+cleanGit/public | passed_implementation |
-| `T190-AC-01` | TASK-190 | ทุกสีสุ่มครบ Active/Passive ในสายและคง legacy instance | Actual domain/API/native UI and before-after evidence | not_run_implementation |
-| `T190-AC-02` | TASK-190 | ผลรีสกิลคงที่/เลือกเดิมใหม่/receipt replay/ย่อย atomic | Actual domain/API/native UI and before-after evidence | not_run_implementation |
-| `T190-AC-03` | TASK-190 | ค่าสถานะกับ Passive ตรงระหว่าง UI และ shared engine; หินจากด่านและ Event | Actual domain/API/native UI and before-after evidence | not_run_implementation |
-| `T190-AC-04` | TASK-190 | native/strict/build/clean committed checkout/Vercel ผ่าน | Actual domain/API/native UI and before-after evidence | not_run_implementation |
-| `T191-AC-01` | TASK-191 | 13 jewelry จริงครบอาชีพ; native media เดิมและ pack ไม่เกิน32MiB | Actual domain/API/native UI and before-after evidence | not_run_implementation |
-| `T191-AC-02` | TASK-191 | รายละเอียดแยก stats/skill/rarity; ผลรีสกิลกลับมาเลือกต่อได้ | Actual domain/API/native UI and before-after evidence | not_run_implementation |
-| `T191-AC-03` | TASK-191 | bulk เลือกเอง/กรอง/ยืนยันรายการและยอดคืน; ปุ่มไม่หลุดหน้าจอ | Actual domain/API/native UI and before-after evidence | not_run_implementation |
-| `T191-AC-04` | TASK-191 | mobile320390/root/clean committed checkout/Vercel ผ่าน | Actual domain/API/native UI and before-after evidence | not_run_implementation |
-| `T192-AC-01` | TASK-192 | baseline frozen/152 programs/32 jobs/equal gear/disjoint seeds | Actual domain/API/native UI and before-after evidence | not_run_implementation |
-| `T192-AC-02` | TASK-192 | วิเคราะห์ต้นเหตุ OP/อ่อน/บทบาทซ้ำ พร้อมปรับที่โปรแกรมสกิล | Actual domain/API/native UI and before-after evidence | not_run_implementation |
-| `T192-AC-03` | TASK-192 | วัดซ้ำดาเมจ/ทีม/ฮีล/CC และยืนยัน deterministic replay | Actual domain/API/native UI and before-after evidence | not_run_implementation |
-| `T192-AC-04` | TASK-192 | คำอธิบายตรงกติกา/หลักฐานข้อจำกัด/build/Vercel ผ่าน | Actual domain/API/native UI and before-after evidence | not_run_implementation |
+| `T190-AC-01` | TASK-190 | ทุกสีสุ่มครบ Active/Passive ในสายและคง legacy instance | Actual domain/API/native UI and before-after evidence | passed_implementation |
+| `T190-AC-02` | TASK-190 | ผลรีสกิลคงที่/เลือกเดิมใหม่/receipt replay/ย่อย atomic | Actual domain/API/native UI and before-after evidence | passed_implementation |
+| `T190-AC-03` | TASK-190 | ค่าสถานะกับ Passive ตรงระหว่าง UI และ shared engine; หินจากด่านและ Event | Actual domain/API/native UI and before-after evidence | passed_implementation |
+| `T190-AC-04` | TASK-190 | native/strict/build/clean committed checkout/Vercel ผ่าน | Actual domain/API/native UI and before-after evidence | passed_implementation |
+| `T191-AC-01` | TASK-191 | 13 jewelry จริงครบอาชีพ; native media เดิมและ pack ไม่เกิน32MiB | Actual domain/API/native UI and before-after evidence | passed_implementation |
+| `T191-AC-02` | TASK-191 | รายละเอียดแยก stats/skill/rarity; ผลรีสกิลกลับมาเลือกต่อได้ | Actual domain/API/native UI and before-after evidence | passed_implementation |
+| `T191-AC-03` | TASK-191 | bulk เลือกเอง/กรอง/ยืนยันรายการและยอดคืน; ปุ่มไม่หลุดหน้าจอ | Actual domain/API/native UI and before-after evidence | passed_implementation |
+| `T191-AC-04` | TASK-191 | mobile320390/root/clean committed checkout/Vercel ผ่าน | Actual domain/API/native UI and before-after evidence | passed_implementation |
+| `T192-AC-01` | TASK-192 | baseline frozen/152 programs/32 jobs/equal gear/disjoint seeds | Actual domain/API/native UI and before-after evidence | passed_implementation |
+| `T192-AC-02` | TASK-192 | วิเคราะห์ต้นเหตุ OP/อ่อน/บทบาทซ้ำ พร้อมปรับที่โปรแกรมสกิล | Actual domain/API/native UI and before-after evidence | passed_implementation |
+| `T192-AC-03` | TASK-192 | วัดซ้ำดาเมจ/ทีม/ฮีล/CC และยืนยัน deterministic replay | Actual domain/API/native UI and before-after evidence | passed_implementation |
+| `T192-AC-04` | TASK-192 | คำอธิบายตรงกติกา/หลักฐานข้อจำกัด/build/Vercel ผ่าน | Actual domain/API/native UI and before-after evidence | passed_implementation |
