@@ -1097,8 +1097,8 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T192-AC-02` | TASK-192 | วิเคราะห์ต้นเหตุ OP/อ่อน/บทบาทซ้ำ พร้อมปรับที่โปรแกรมสกิล | Actual domain/API/native UI and before-after evidence | passed_implementation |
 | `T192-AC-03` | TASK-192 | วัดซ้ำดาเมจ/ทีม/ฮีล/CC และยืนยัน deterministic replay | Actual domain/API/native UI and before-after evidence | passed_implementation |
 | `T192-AC-04` | TASK-192 | คำอธิบายตรงกติกา/หลักฐานข้อจำกัด/build/Vercel ผ่าน | Actual domain/API/native UI and before-after evidence | passed_implementation |
-| `T193-AC-01` | TASK-193 | ลดผล ASPD เฉพาะ SI เป็น25% ของส่วนเกิน100; ตีปกติ/CT/ACD/4ช่องคงเดิม | Shared rules/native320390/build/public | not_run_implementation |
-| `T193-AC-02` | TASK-193 | live builder/UI/Timeline/headless/checkpoint/interrupt/1x2x3xตรงกัน; legacy profileคงผลเดิม | Shared rules/native320390/build/public | not_run_implementation |
-| `T193-AC-03` | TASK-193 | Artifactสกิลเดียวกันยังต่างตามRarity/Lv/ดาว; คำอธิบายระบุผลจริง | Shared rules/native320390/build/public | not_run_implementation |
-| `T193-AC-04` | TASK-193 | ผลึก Artifact แยกจากแก่น Breakthrough; ทรัพยากร3ชนิดมี native icon/ยอดจริง/มือถือ320390 | Shared rules/native320390/build/public | not_run_implementation |
-| `T193-AC-05` | TASK-193 | strict/tests/root+clean committed archive/Vercel/publicผ่าน | Shared rules/native320390/build/public | not_run_implementation |
+| `T193-AC-01` | TASK-193 | ลดผล ASPD เฉพาะ SI เป็น25% ของส่วนเกิน100; ตีปกติ/CT/ACD/4ช่องคงเดิม | Shared rules/native320390/build/public | passed_implementation |
+| `T193-AC-02` | TASK-193 | live builder/UI/Timeline/headless/checkpoint/interrupt/1x2x3xตรงกัน; legacy profileคงผลเดิม | Shared rules/native320390/build/public | passed_implementation |
+| `T193-AC-03` | TASK-193 | Artifactสกิลเดียวกันยังต่างตามRarity/Lv/ดาว; คำอธิบายระบุผลจริง | Shared rules/native320390/build/public | passed_implementation |
+| `T193-AC-04` | TASK-193 | ผลึก Artifact แยกจากแก่น Breakthrough; ทรัพยากร3ชนิดมี native icon/ยอดจริง/มือถือ320390 | Shared rules/native320390/build/public | passed_implementation |
+| `T193-AC-05` | TASK-193 | strict/tests/root+clean committed archive/Vercel/publicผ่าน | Shared rules/native320390/build/public | passed_implementation |

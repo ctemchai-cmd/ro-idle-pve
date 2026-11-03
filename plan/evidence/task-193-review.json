@@ -1,8 +1,8 @@
 {
   "task_id": "TASK-193",
-  "passed": false,
+  "passed": true,
   "implementation_review_passed": true,
-  "publish_pending": true,
+  "publish_pending": false,
   "reviewer": "Codex self-review",
   "review_date": "2026-11-03",
   "scope": "design96 and user followups",
@@ -10,7 +10,9 @@
     "plan/evidence/task-193/README.md",
     "plan/evidence/task-193/native.json",
     "plan/evidence/task-193/builds.json",
-    "plan/evidence/task-193/local-verification.json"
+    "plan/evidence/task-193/local-verification.json",
+    "plan/evidence/task-193/hosted.json",
+    "plan/evidence/task-193/deployment.json"
   ],
   "limitations": [
     "Synthetic read-only mobile fixtures; no owner login/cloud save access.",
@@ -18,5 +20,17 @@
   ],
   "native_groups": 4,
   "ts_full_passed": 879,
-  "root_build_passed": true
+  "root_build_passed": true,
+  "source_commit": "16bd9aae609732bcae62aebc6efb3f99e6adc396",
+  "deployment_url": "https://vercel.com/chanon2/ro-idle-pve/3vKsfrgPP9Eih5ggwLA4tfAp92pZ",
+  "acceptance_passed": [
+    "AC-01",
+    "AC-02",
+    "AC-03",
+    "AC-04",
+    "AC-05"
+  ],
+  "hosted_groups": 5,
+  "exact_clean_commit_build": true,
+  "root_filtered_identical_files": 1730
 }

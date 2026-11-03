@@ -1,3 +1,11 @@
+## TASK193 COMPLETE / Queue haste + Artifact clarity LIVE — 3 November2026
+
+Source`16bd9aae609732bcae62aebc6efb3f99e6adc396` [VercelSUCCESS](https://vercel.com/chanon2/ro-idle-pve/3vKsfrgPP9Eih5ggwLA4tfAp92pZ);879TS/7new/native4groups320390/M0/strict/root+cleanCOMMITTEDarchive1730identical/public5passed.179/193done/M4133/142. No remaining193work. OwnVite7544session23803 CLOSED. NoownerAuth/cloudsave/SQL/env/media/newDBcalls/6173restart/subagents; userdraft/unselectedmodern/oldPNG preserved.
+
+D215/design96: liveSI3000ms/bonusASPDweight.25 above100, ASPD200→2400ms; normals1500/ASPDunchanged, CT/ACD unchanged, all4slots. Profile optional incheckpoint; missingweight=legacy1 andfrozenoldcontent staysoldprofile. Shared live builders/UI/headless/Timeline. Render-only boundaries never create actiongates: accrueonlyifnoduetimer; fixes late-phase Freeze removal changing normalhit time byFPS. Mage server/client/runner and1/2/3 exact, actuallethal9050ms summoncleanup tested. No globalrebalance.
+
+Artifact formulas untouched; same skill variesrarity/Lv/stars. Actual base/Aw effectlabels; +50%meansskillcoefficient×1.5 (200→300%), utilitydurationquarter. ResourceUI includesnative3icons/realessence-ticket-rerollbalances/legacyzero. “ผลึก Artifact” vs “แก่น Breakthrough” consistentstock/shop/rewards/salvage. Pack93d503unchanged33141447B/initial1546658;contentcb16df32/engine64b487b6/schemae5562bae/coredb9e6810. Old save upgrade usesexistingbackupflow, nooldreplayproofbroadened. Before193eb7immutable;afterpinsupdatedonlyforclosuremetadata. AlwayscleancommittedGitarchivebeforepush.
+
 ## TASK193 LOCAL REVIEW — 3 November2026; publish next
 
 879TS/7new/native4groups320390/strict/M0/rootbuild/secrets passed. D215/design96: live SI haste weight.25 aboveASPD100 (200→2.4s); normal/CT/ACD unchanged; explicit optional checkpoint timing weight, missing=legacy1. Shared live builders/UI/headless/Timeline. New regression fixes frame-boundary action gates after late-phase Freeze removal: endpoints with no scheduled timers accrue time only. Actual Mage server/client/runner now exact; real9050ms lethal hit proves immediate plant cleanup. No new global balance calibration.
