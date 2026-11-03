@@ -25,9 +25,9 @@ export function claimRewards(state: AccountState, ids: readonly string[], conten
   // Stage both optional stocks before touching the account: auto-collection may catch a resource overflow.
   const staged={...state,...(state.equipment_crafting?{equipment_crafting:structuredClone(state.equipment_crafting)}:{}),...(state.artifacts?{artifacts:{...state.artifacts}}:{})};
   if(Object.keys(stones).length)grantCraftingMaterials(staged,stones,1);
-  const artifact=selected.reduce((a,c)=>({essence:a.essence+(c.artifact_rewards?.essence??0),tickets:a.tickets+(c.artifact_rewards?.tickets??0)}),{essence:0,tickets:0});if(artifact.essence||artifact.tickets)grantArtifactRewards(staged,artifact);
+  const artifact=selected.reduce((a,c)=>({essence:a.essence+(c.artifact_rewards?.essence??0),tickets:a.tickets+(c.artifact_rewards?.tickets??0),reroll_stones:a.reroll_stones+(c.artifact_rewards?.reroll_stones??0)}),{essence:0,tickets:0,reroll_stones:0});if(artifact.essence||artifact.tickets||artifact.reroll_stones)grantArtifactRewards(staged,artifact);
   if(Object.keys(stones).length)state.equipment_crafting=staged.equipment_crafting;
-  if(artifact.essence||artifact.tickets)state.artifacts=staged.artifacts;
+  if(artifact.essence||artifact.tickets||artifact.reroll_stones)state.artifacts=staged.artifacts;
   state.wallet = wallet; state.inventory.push(...items);
   state.daily_records = quota.records;
   const taken = new Set(ids); state.pending_rewards = state.pending_rewards.filter(c => !taken.has(c.claim_id)).map(c => c.daily_attempt && quota.charged.has(dailyAttemptKey(c.daily_attempt)) ? { ...c, daily_attempt: { ...c.daily_attempt, charged: true } } : c);

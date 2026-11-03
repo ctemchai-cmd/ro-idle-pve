@@ -17,5 +17,7 @@ def apply():
  if (R/'plan/generators/hi-finisher-hierarchy.json').exists():
   from hi_finisher_hierarchy import apply as apply_hierarchy
   apply_hierarchy()
+ from skill_balance_refresh import apply as apply_refresh
+ apply_refresh()
  return seen
 if __name__=='__main__':print('D169 explicit Hi v2 applied',len(apply()))

@@ -201,7 +201,7 @@
               "duration_ms": 5500,
               "chance": 1,
               "params": {
-                "ratio": 0.06
+                "ratio": 0.03
               },
               "expected_modifiers": [
                 {
@@ -209,7 +209,7 @@
                   "stat": "attack_speed",
                   "bucket": "derived",
                   "op": "add_percent",
-                  "value": 0.06
+                  "value": 0.03
                 }
               ]
             }
@@ -291,7 +291,7 @@
               "duration_ms": 7000,
               "chance": 1,
               "params": {
-                "ratio": 0.086667
+                "ratio": 0.046667
               },
               "expected_modifiers": [
                 {
@@ -299,7 +299,7 @@
                   "stat": "attack_speed",
                   "bucket": "derived",
                   "op": "add_percent",
-                  "value": 0.086667
+                  "value": 0.046667
                 }
               ]
             }
@@ -381,7 +381,7 @@
               "duration_ms": 10000,
               "chance": 1,
               "params": {
-                "ratio": 0.14
+                "ratio": 0.08
               },
               "expected_modifiers": [
                 {
@@ -389,7 +389,7 @@
                   "stat": "attack_speed",
                   "bucket": "derived",
                   "op": "add_percent",
-                  "value": 0.14
+                  "value": 0.08
                 }
               ]
             }
@@ -2086,7 +2086,7 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 109.375
+              "expected_raw_power": 131.25
             }
           ]
         }
@@ -2128,7 +2128,7 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 134.8959
+              "expected_raw_power": 161.8751
             }
           ]
         }
@@ -2170,7 +2170,7 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foe",
-              "expected_raw_power": 185.9375
+              "expected_raw_power": 223.12500000000003
             }
           ]
         }
@@ -11173,42 +11173,22 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "attack_up",
+              "effect_id": "precision",
               "type": "apply_status",
               "target": "friends",
-              "status_id": "attack_up",
+              "status_id": "awaken_penetration",
               "duration_ms": 5000,
               "chance": 1,
               "params": {
-                "ratio": 0.21
+                "ratio": 0.12
               },
               "expected_modifiers": [
                 {
                   "id": "magnitude",
-                  "stat": "physical_attack",
-                  "bucket": "derived",
-                  "op": "add_percent",
-                  "value": 0.21
-                }
-              ]
-            },
-            {
-              "effect_id": "support_magic_up",
-              "type": "apply_status",
-              "target": "friends",
-              "status_id": "magic_up",
-              "duration_ms": 5000,
-              "chance": 1,
-              "params": {
-                "ratio": 0.21
-              },
-              "expected_modifiers": [
-                {
-                  "id": "magnitude",
-                  "stat": "magical_attack",
-                  "bucket": "derived",
-                  "op": "add_percent",
-                  "value": 0.21
+                  "stat": "penetration_percent",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.12
                 }
               ]
             },
@@ -11289,42 +11269,22 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "attack_up",
+              "effect_id": "precision",
               "type": "apply_status",
               "target": "friends",
-              "status_id": "attack_up",
+              "status_id": "awaken_penetration",
               "duration_ms": 5000,
               "chance": 1,
               "params": {
-                "ratio": 0.28
+                "ratio": 0.16
               },
               "expected_modifiers": [
                 {
                   "id": "magnitude",
-                  "stat": "physical_attack",
-                  "bucket": "derived",
-                  "op": "add_percent",
-                  "value": 0.28
-                }
-              ]
-            },
-            {
-              "effect_id": "support_magic_up",
-              "type": "apply_status",
-              "target": "friends",
-              "status_id": "magic_up",
-              "duration_ms": 5000,
-              "chance": 1,
-              "params": {
-                "ratio": 0.28
-              },
-              "expected_modifiers": [
-                {
-                  "id": "magnitude",
-                  "stat": "magical_attack",
-                  "bucket": "derived",
-                  "op": "add_percent",
-                  "value": 0.28
+                  "stat": "penetration_percent",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.16
                 }
               ]
             },
@@ -11405,42 +11365,22 @@
           "phase": "cast_resolve",
           "expected_intents": [
             {
-              "effect_id": "attack_up",
+              "effect_id": "precision",
               "type": "apply_status",
               "target": "friends",
-              "status_id": "attack_up",
+              "status_id": "awaken_penetration",
               "duration_ms": 5000,
               "chance": 1,
               "params": {
-                "ratio": 0.42
+                "ratio": 0.24
               },
               "expected_modifiers": [
                 {
                   "id": "magnitude",
-                  "stat": "physical_attack",
-                  "bucket": "derived",
-                  "op": "add_percent",
-                  "value": 0.42
-                }
-              ]
-            },
-            {
-              "effect_id": "support_magic_up",
-              "type": "apply_status",
-              "target": "friends",
-              "status_id": "magic_up",
-              "duration_ms": 5000,
-              "chance": 1,
-              "params": {
-                "ratio": 0.42
-              },
-              "expected_modifiers": [
-                {
-                  "id": "magnitude",
-                  "stat": "magical_attack",
-                  "bucket": "derived",
-                  "op": "add_percent",
-                  "value": 0.42
+                  "stat": "penetration_percent",
+                  "op": "add_flat",
+                  "bucket": "bonus",
+                  "value": 0.24
                 }
               ]
             },
@@ -11746,13 +11686,7 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 93.51559999999999,
-              "damage_type": "physical",
-              "element": "weapon",
-              "hit_rule": "physical_roll",
-              "can_crit": true,
-              "hits": 4,
-              "armor_rule": "normal"
+              "expected_raw_power": 112.2187
             }
           ]
         }
@@ -11794,13 +11728,7 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 115.6641,
-              "damage_type": "physical",
-              "element": "weapon",
-              "hit_rule": "physical_roll",
-              "can_crit": true,
-              "hits": 4,
-              "armor_rule": "normal"
+              "expected_raw_power": 138.7969
             }
           ]
         }
@@ -11842,13 +11770,7 @@
               "effect_id": "hit",
               "type": "damage",
               "target": "foes",
-              "expected_raw_power": 159.9609,
-              "damage_type": "physical",
-              "element": "weapon",
-              "hit_rule": "physical_roll",
-              "can_crit": true,
-              "hits": 4,
-              "armor_rule": "normal"
+              "expected_raw_power": 191.9531
             }
           ]
         }

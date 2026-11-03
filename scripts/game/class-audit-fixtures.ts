@@ -17,7 +17,7 @@ type Character = AccountState['roster'][number];
 type Job = Character['job_id'];
 export type Encounter = 'dummy' | 'pressure';
 export interface AuditBuild { id: string; job: Job; role: string; profile: string; slots: string[] }
-export interface AuditCase { id: string; level: number; tier: 1 | 20 | 40 | 60; stage: 1 | 2 | 3; awaken: 0 | 1 | 10 }
+export interface AuditCase { id: string; level: number; tier: 1 | 20 | 40 | 60 | 80 | 100; stage: 1 | 2 | 3; awaken: 0 | 1 | 10 }
 const roots:Record<string,{profile:string;slots:string[]}>= {
   swordsman:{profile:'power',slots:['swordsman_bash','swordsman_provoke','swordsman_magnum_break','swordsman_endure']},
   acolyte:{profile:'magic',slots:['acolyte_blessing','acolyte_heal','acolyte_holy_light','acolyte_increase_agi']},

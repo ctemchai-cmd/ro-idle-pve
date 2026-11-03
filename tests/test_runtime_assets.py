@@ -92,12 +92,12 @@ class RuntimeAssetsTests(unittest.TestCase):
         first = pack.verify()
         rebuilt = pack.build()
         self.assertEqual(first['pack_hash'], rebuilt['pack_hash'])
-        self.assertEqual(len(first['skills']), 132)  #126players+6explicit enemy presentation aliases
+        self.assertEqual(len(first['skills']), 160)  #152 player programs +8 enemy presentation aliases
         for enemy, player in [('enemy_cold_bolt','mage_cold_bolt'),('enemy_lightning_bolt','mage_lightning_bolt'),('enemy_sonic_blow','assassin_sonic_blow'),('enemy_armor_break','merchant_first_aid'),('enemy_hammer_fall','blacksmith_hammer_fall'),('enemy_mend','acolyte_heal')]:
             self.assertEqual(first['skills'][enemy], first['skills'][player])
         self.assertFalse(set(first['combat_visuals']['skills']) - set(first['skills']))
-        self.assertEqual(len(first['actor_jobs']), 19)
-        self.assertEqual(sum(len(job['presets']) for job in first['actor_jobs']), 36)
+        self.assertEqual(len(first['actor_jobs']), 32)
+        self.assertEqual(sum(len(job['presets']) for job in first['actor_jobs']), 60)
         self.assertLess(first['sizes']['media_and_sidecar_bytes'] + first['sizes']['manifest_bytes'], 32 * 1024 * 1024)
         self.assertLess(first['sizes']['initial_profile_raw_bytes'] + first['sizes']['manifest_bytes'], 8 * 1024 * 1024)
         self.assertFalse(any(row['path'].endswith(('.zip', '.grf')) for row in first['files']))

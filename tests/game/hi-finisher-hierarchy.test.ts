@@ -1,3 +1,4 @@
+import {withoutArtifactRefreshSkills} from './legacy-artifact-refresh-scope.ts';
 import{describeResolvedSkill}from'../../src/client/skills.ts';
 import test from'node:test';import assert from'node:assert/strict';import{readFileSync}from'node:fs';import{gunzipSync}from'node:zlib';
 import spec from'../../plan/generators/hi-finisher-hierarchy.json';import {application}from'../../scripts/game/audit-hi-hierarchy.ts';
@@ -12,7 +13,7 @@ test('D192 actual one-application damage/heal/buff/guard probes clear every name
 });
 test('D192 only declared High parameter fields and Chase modifier change; all126Class2 programs, all costs/times/IDs/options and every other status stay exact',()=>{
  for(const[file,text]of Object.entries(before)){const key=file.replace('plan/data/',''),actual=JSON.parse(readFileSync(file,'utf8'));assert.deepEqual(withoutHierarchyDocument(key,actual),JSON.parse(text),file);}
- for(const[id,patch]of Object.entries(spec.entries)){const doc=content.documents['skills/'+patch.root+'.json']as any,normal=doc.hi_class_skills.find((s:any)=>s.id===id),aw=doc.awakened_variants[id];for(const[key,curve]of Object.entries(patch.base_parameters))assert.deepEqual(normal.level_parameters[key],curve,id);for(const[key,curve]of Object.entries(patch.awakened_parameters))assert.deepEqual(aw.level_parameters[key],curve,id);}
+ for(const[id,patch]of Object.entries(spec.entries)){const doc=withoutArtifactRefreshSkills(content.documents['skills/'+patch.root+'.json'])as any,normal=doc.hi_class_skills.find((s:any)=>s.id===id),aw=doc.awakened_variants[id];for(const[key,curve]of Object.entries(patch.base_parameters))assert.deepEqual(normal.level_parameters[key],curve,id);for(const[key,curve]of Object.entries(patch.awakened_parameters))assert.deepEqual(aw.level_parameters[key],curve,id);}
 });
 test('D192 Chase skill power affects every hit of the next whole damaging action; normals do not gain it or consume charge',()=>{
  for(const aw of[false,true])for(let rank=1;rank<=10;rank++){const text=describeResolvedSkill(resolveSkill('stalker_chase_walk',rank,content,aw).definition as Active,rank).effects.join(' ');assert.match(text,/ดาเมจสกิล \+/);assert.match(text,/Ignore DEF\/MDEF/);}

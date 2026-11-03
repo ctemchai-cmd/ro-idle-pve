@@ -1,4 +1,4 @@
-import {boundArtifacts,artifactBonus,artifactDefinition,enhanceArtifactSkill,artifactSkills} from '../domain/build/artifacts.ts';
+import {boundArtifacts,artifactBonus,artifactItemDefinition,enhanceArtifactSkill,artifactSkills} from '../domain/build/artifacts.ts';
 import { heldResourceModifiers } from '../domain/combat/resources.ts';
 import {bindStatusParams} from '../domain/combat/program.ts';
 import { statNames, statusNames } from './status-labels.ts';
@@ -138,7 +138,7 @@ export function characterSkillIconIds(actor:Character):string[]{
  return Object.values(content.skills).filter(row=>allowedSkill(actor,row as unknown as SkillDefinition,content)).map(row=>String(row.id));
 }
 export function characterSkillOptions(actor:Character,state?:AccountState):{skills:SkillOption[];intervalMs:number}{
- const enhance=(definition:SkillDefinition)=>{if(!state)return definition;for(const item of boundArtifacts(actor.character_id,state))if(artifactDefinition(item.definition_id,content).skill_id===definition.id)definition=enhanceArtifactSkill(definition,artifactBonus(item,content));return definition;};
+ const enhance=(definition:SkillDefinition)=>{if(!state)return definition;for(const item of boundArtifacts(actor.character_id,state))if(artifactItemDefinition(item,content).skill_id===definition.id)definition=enhanceArtifactSkill(definition,artifactBonus(item,content));return definition;};
  const compiled=compileCharacterSkills(actor,content);if(state)compiled.resolved_skills=artifactSkills(actor.character_id,state,compiled.resolved_skills,content);const stats=previewCharacterStats(actor,compiled.resolved_skills,content,state?equippedSources(actor,state,content):[]);
  const skills=Object.values(content.skills).filter(row=>allowedSkill(actor,row as unknown as SkillDefinition,content)).map(row=>{
   const source=row as unknown as SkillDefinition,level=actor.skill_levels[source.id]??0,cap=characterSkillCap(actor,source),locked=actor.level<source.unlock_level,target=level+1;

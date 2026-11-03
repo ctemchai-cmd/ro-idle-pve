@@ -25,7 +25,7 @@ test('D-093 highest-level spenders compensate preparation through their own powe
   ] as const) {
     const s = resolve(id), hit = s.effects[0]!; assert.equal(hit.type, 'damage'); if (hit.type !== 'damage') throw new Error('DAMAGE_REQUIRED');
     if (hit.formula.id !== 'physical_power' && hit.formula.id !== 'sp_burst_power') throw new Error('PHYSICAL_FORMULA_REQUIRED');
-    close(Number(hit.formula.params.attack_ratio), ratio * 1.75); assert.equal(hit.hits, hits); assert.equal(s.cost.spirit_spheres, spheres);
+    close(Number(hit.formula.params.attack_ratio), ratio * 1.75 * (id==='monk_triple_attack'?1.2:1)); assert.equal(hit.hits, hits); assert.equal(s.cost.spirit_spheres, spheres);
     assert.deepEqual(s.timing, { cast_ms: ct, after_cast_ms: acd, interruptible: true });
     assert.equal(hit.hit_rule, 'physical_roll'); assert.equal(hit.can_crit, true); assert.equal(hit.armor_rule, 'normal'); assert.equal(s.effects.length, 1);
   }

@@ -8994,31 +8994,41 @@
         "weight": 40,
         "start": 0.08,
         "max": 0.2,
-        "salvage": 10
+        "salvage": 10,
+        "stat_start": 0.01,
+        "stat_max": 0.03
       },
       "uncommon": {
         "weight": 30,
         "start": 0.1,
         "max": 0.25,
-        "salvage": 20
+        "salvage": 20,
+        "stat_start": 0.0125,
+        "stat_max": 0.035
       },
       "rare": {
         "weight": 20,
         "start": 0.12,
         "max": 0.3,
-        "salvage": 40
+        "salvage": 40,
+        "stat_start": 0.015,
+        "stat_max": 0.04
       },
       "epic": {
         "weight": 8,
         "start": 0.15,
         "max": 0.4,
-        "salvage": 80
+        "salvage": 80,
+        "stat_start": 0.02,
+        "stat_max": 0.05
       },
       "legendary": {
         "weight": 2,
         "start": 0.2,
         "max": 0.5,
-        "salvage": 160
+        "salvage": 160,
+        "stat_start": 0.025,
+        "stat_max": 0.06
       }
     },
     "star_copies": [
@@ -9795,7 +9805,461 @@
         "skill_id": "stalker_full_strip",
         "class_id": "stalker",
         "rarity_id": "legendary"
+      },
+      {
+        "id": "artifact_acolyte_meditation",
+        "skill_id": "acolyte_meditation",
+        "class_id": "acolyte",
+        "rarity_id": "common"
+      },
+      {
+        "id": "artifact_priest_healing_art",
+        "skill_id": "priest_healing_art",
+        "class_id": "priest",
+        "rarity_id": "common"
+      },
+      {
+        "id": "artifact_priest_spirit_recovery",
+        "skill_id": "priest_spirit_recovery",
+        "class_id": "priest",
+        "rarity_id": "common"
+      },
+      {
+        "id": "artifact_monk_iron_fist",
+        "skill_id": "monk_iron_fist",
+        "class_id": "monk",
+        "rarity_id": "common"
+      },
+      {
+        "id": "artifact_monk_spirit_combo",
+        "skill_id": "monk_spirit_combo",
+        "class_id": "monk",
+        "rarity_id": "common"
+      },
+      {
+        "id": "artifact_archer_vulture_eye",
+        "skill_id": "archer_vulture_eye",
+        "class_id": "archer",
+        "rarity_id": "common"
+      },
+      {
+        "id": "artifact_hunter_falcon",
+        "skill_id": "hunter_falcon",
+        "class_id": "hunter",
+        "rarity_id": "common"
+      },
+      {
+        "id": "artifact_hunter_steel_crow",
+        "skill_id": "hunter_steel_crow",
+        "class_id": "hunter",
+        "rarity_id": "common"
+      },
+      {
+        "id": "artifact_bard_music_lesson",
+        "skill_id": "bard_music_lesson",
+        "class_id": "bard",
+        "rarity_id": "common"
+      },
+      {
+        "id": "artifact_bard_breathing",
+        "skill_id": "bard_breathing",
+        "class_id": "bard",
+        "rarity_id": "common"
+      },
+      {
+        "id": "artifact_dancer_music_lesson",
+        "skill_id": "dancer_music_lesson",
+        "class_id": "dancer",
+        "rarity_id": "common"
+      },
+      {
+        "id": "artifact_dancer_breathing",
+        "skill_id": "dancer_breathing",
+        "class_id": "dancer",
+        "rarity_id": "common"
+      },
+      {
+        "id": "artifact_mage_sp_recovery",
+        "skill_id": "mage_sp_recovery",
+        "class_id": "mage",
+        "rarity_id": "common"
+      },
+      {
+        "id": "artifact_wizard_amplified_magic",
+        "skill_id": "wizard_amplified_magic",
+        "class_id": "wizard",
+        "rarity_id": "common"
+      },
+      {
+        "id": "artifact_wizard_frost_control",
+        "skill_id": "wizard_frost_control",
+        "class_id": "wizard",
+        "rarity_id": "common"
+      },
+      {
+        "id": "artifact_sage_auto_bolt",
+        "skill_id": "sage_auto_bolt",
+        "class_id": "sage",
+        "rarity_id": "common"
+      },
+      {
+        "id": "artifact_sage_wisdom",
+        "skill_id": "sage_wisdom",
+        "class_id": "sage",
+        "rarity_id": "common"
+      },
+      {
+        "id": "artifact_merchant_trading_stamina",
+        "skill_id": "merchant_trading_stamina",
+        "class_id": "merchant",
+        "rarity_id": "common"
+      },
+      {
+        "id": "artifact_blacksmith_weapon_research",
+        "skill_id": "blacksmith_weapon_research",
+        "class_id": "blacksmith",
+        "rarity_id": "common"
+      },
+      {
+        "id": "artifact_blacksmith_tempering",
+        "skill_id": "blacksmith_tempering",
+        "class_id": "blacksmith",
+        "rarity_id": "common"
+      },
+      {
+        "id": "artifact_alchemist_learning_potion",
+        "skill_id": "alchemist_learning_potion",
+        "class_id": "alchemist",
+        "rarity_id": "common"
+      },
+      {
+        "id": "artifact_alchemist_chemical_expertise",
+        "skill_id": "alchemist_chemical_expertise",
+        "class_id": "alchemist",
+        "rarity_id": "common"
+      },
+      {
+        "id": "artifact_swordsman_sword_mastery",
+        "skill_id": "swordsman_sword_mastery",
+        "class_id": "swordsman",
+        "rarity_id": "common"
+      },
+      {
+        "id": "artifact_knight_veteran",
+        "skill_id": "knight_veteran",
+        "class_id": "knight",
+        "rarity_id": "common"
+      },
+      {
+        "id": "artifact_knight_weapon_drill",
+        "skill_id": "knight_weapon_drill",
+        "class_id": "knight",
+        "rarity_id": "common"
+      },
+      {
+        "id": "artifact_crusader_faith",
+        "skill_id": "crusader_faith",
+        "class_id": "crusader",
+        "rarity_id": "common"
+      },
+      {
+        "id": "artifact_crusader_reflect",
+        "skill_id": "crusader_reflect",
+        "class_id": "crusader",
+        "rarity_id": "common"
+      },
+      {
+        "id": "artifact_thief_double_attack",
+        "skill_id": "thief_double_attack",
+        "class_id": "thief",
+        "rarity_id": "common"
+      },
+      {
+        "id": "artifact_assassin_katar_mastery",
+        "skill_id": "assassin_katar_mastery",
+        "class_id": "assassin",
+        "rarity_id": "common"
+      },
+      {
+        "id": "artifact_assassin_poison_edge",
+        "skill_id": "assassin_poison_edge",
+        "class_id": "assassin",
+        "rarity_id": "common"
+      },
+      {
+        "id": "artifact_rogue_dodge",
+        "skill_id": "rogue_dodge",
+        "class_id": "rogue",
+        "rarity_id": "common"
+      },
+      {
+        "id": "artifact_rogue_dirty_tricks",
+        "skill_id": "rogue_dirty_tricks",
+        "class_id": "rogue",
+        "rarity_id": "common"
       }
-    ]
+    ],
+    "version": 2,
+    "profiles": {
+      "lord_knight": {
+        "name": "แหวนราชสีห์",
+        "modifiers": [
+          {
+            "stat": "physical_attack",
+            "op": "add_percent",
+            "bucket": "derived",
+            "weight": 1
+          },
+          {
+            "stat": "max_hp",
+            "op": "add_percent",
+            "bucket": "derived",
+            "weight": 2
+          }
+        ]
+      },
+      "paladin": {
+        "name": "แหวนผู้พิทักษ์",
+        "modifiers": [
+          {
+            "stat": "max_hp",
+            "op": "add_percent",
+            "bucket": "derived",
+            "weight": 2
+          },
+          {
+            "stat": "physical_defense",
+            "op": "add_percent",
+            "bucket": "derived",
+            "weight": 1
+          },
+          {
+            "stat": "magical_defense",
+            "op": "add_percent",
+            "bucket": "derived",
+            "weight": 1
+          }
+        ]
+      },
+      "high_priest": {
+        "name": "สร้อยพรศักดิ์สิทธิ์",
+        "modifiers": [
+          {
+            "stat": "magical_attack",
+            "op": "add_percent",
+            "bucket": "derived",
+            "weight": 1
+          },
+          {
+            "stat": "outgoing_healing_bonus",
+            "op": "add_flat",
+            "bucket": "bonus",
+            "weight": 0.5
+          }
+        ]
+      },
+      "champion": {
+        "name": "ตราจิตวิญญาณ",
+        "modifiers": [
+          {
+            "stat": "physical_attack",
+            "op": "add_percent",
+            "bucket": "derived",
+            "weight": 1
+          },
+          {
+            "stat": "max_sp",
+            "op": "add_percent",
+            "bucket": "derived",
+            "weight": 2
+          }
+        ]
+      },
+      "sniper": {
+        "name": "แหวนสายลม",
+        "modifiers": [
+          {
+            "stat": "physical_attack",
+            "op": "add_percent",
+            "bucket": "derived",
+            "weight": 1
+          },
+          {
+            "stat": "crit_chance_bonus",
+            "op": "add_flat",
+            "bucket": "bonus",
+            "weight": 0.25
+          }
+        ]
+      },
+      "clown": {
+        "name": "สร้อยบทเพลง",
+        "modifiers": [
+          {
+            "stat": "physical_attack",
+            "op": "add_percent",
+            "bucket": "derived",
+            "weight": 1
+          },
+          {
+            "stat": "sp_regen_percent",
+            "op": "add_flat",
+            "bucket": "bonus",
+            "weight": 1
+          }
+        ]
+      },
+      "gypsy": {
+        "name": "ต่างหูจันทรา",
+        "modifiers": [
+          {
+            "stat": "physical_attack",
+            "op": "add_percent",
+            "bucket": "derived",
+            "weight": 1
+          },
+          {
+            "stat": "outgoing_healing_bonus",
+            "op": "add_flat",
+            "bucket": "bonus",
+            "weight": 0.5
+          }
+        ]
+      },
+      "high_wizard": {
+        "name": "สร้อยมหาเวท",
+        "modifiers": [
+          {
+            "stat": "magical_attack",
+            "op": "add_percent",
+            "bucket": "derived",
+            "weight": 1
+          },
+          {
+            "stat": "max_sp",
+            "op": "add_percent",
+            "bucket": "derived",
+            "weight": 2
+          }
+        ]
+      },
+      "professor": {
+        "name": "ดวงตาแห่งปัญญา",
+        "modifiers": [
+          {
+            "stat": "magical_attack",
+            "op": "add_percent",
+            "bucket": "derived",
+            "weight": 1
+          },
+          {
+            "stat": "cast_speed",
+            "op": "add_percent",
+            "bucket": "derived",
+            "weight": 0.5
+          }
+        ]
+      },
+      "assassin_cross": {
+        "name": "สร้อยเงามรณะ",
+        "modifiers": [
+          {
+            "stat": "physical_attack",
+            "op": "add_percent",
+            "bucket": "derived",
+            "weight": 1
+          },
+          {
+            "stat": "crit_damage_bonus",
+            "op": "add_flat",
+            "bucket": "bonus",
+            "weight": 0.5
+          }
+        ]
+      },
+      "stalker": {
+        "name": "เขี้ยวนักล่า",
+        "modifiers": [
+          {
+            "stat": "physical_attack",
+            "op": "add_percent",
+            "bucket": "derived",
+            "weight": 1
+          },
+          {
+            "stat": "penetration_percent",
+            "op": "add_flat",
+            "bucket": "bonus",
+            "weight": 0.25
+          }
+        ]
+      },
+      "whitesmith": {
+        "name": "ตราช่างหลอม",
+        "modifiers": [
+          {
+            "stat": "physical_attack",
+            "op": "add_percent",
+            "bucket": "derived",
+            "weight": 1
+          },
+          {
+            "stat": "max_hp",
+            "op": "add_percent",
+            "bucket": "derived",
+            "weight": 2
+          }
+        ]
+      },
+      "creator": {
+        "name": "สร้อยชีวิต",
+        "modifiers": [
+          {
+            "stat": "physical_attack",
+            "op": "add_percent",
+            "bucket": "derived",
+            "weight": 0.5
+          },
+          {
+            "stat": "magical_attack",
+            "op": "add_percent",
+            "bucket": "derived",
+            "weight": 0.5
+          },
+          {
+            "stat": "max_hp",
+            "op": "add_percent",
+            "bucket": "derived",
+            "weight": 2
+          }
+        ]
+      }
+    },
+    "reroll": {
+      "cost": 1,
+      "salvage": {
+        "common": 1,
+        "uncommon": 2,
+        "rare": 3,
+        "epic": 5,
+        "legendary": 8
+      },
+      "story_min_chapter": 3,
+      "story_every": 5,
+      "story_counts": [
+        {
+          "from_chapter": 3,
+          "count": 1
+        },
+        {
+          "from_chapter": 8,
+          "count": 2
+        },
+        {
+          "from_chapter": 13,
+          "count": 3
+        }
+      ]
+    }
   }
 }

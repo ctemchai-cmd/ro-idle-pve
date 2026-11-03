@@ -1,0 +1,2764 @@
+{
+  "skills": 152,
+  "jobs": 32,
+  "changes": 11,
+  "rows": [
+    {
+      "id": "acolyte_heal",
+      "job": "acolyte",
+      "kind": "active",
+      "roles": [
+        "instant_heal"
+      ],
+      "targets": [
+        "friend"
+      ],
+      "statuses": [],
+      "formulas": [
+        "healing_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: instant_heal; healing_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "acolyte_blessing",
+      "job": "acolyte",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "friends"
+      ],
+      "statuses": [
+        "blessing_attributes",
+        "aspd_up"
+      ],
+      "formulas": [],
+      "decision": "adjust",
+      "reason": "Reduce speed feedback from repeated party buffs; retain independent additive stacks, STR/INT/DEX and meaningful10s base duration.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "acolyte_holy_light",
+      "job": "acolyte",
+      "kind": "active",
+      "roles": [
+        "damage",
+        "status_program"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [
+        "silence"
+      ],
+      "formulas": [
+        "magical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage, status_program; silence. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "acolyte_increase_agi",
+      "job": "acolyte",
+      "kind": "active",
+      "roles": [
+        "damage",
+        "status_program"
+      ],
+      "targets": [
+        "foes"
+      ],
+      "statuses": [
+        "armor_break"
+      ],
+      "formulas": [
+        "magical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage, status_program; armor_break. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "acolyte_meditation",
+      "job": "acolyte",
+      "kind": "passive",
+      "roles": [
+        "passive"
+      ],
+      "targets": [],
+      "statuses": [],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: passive; . Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "priest_sanctuary",
+      "job": "priest",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "friends"
+      ],
+      "statuses": [
+        "sanctuary_regeneration"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; sanctuary_regeneration. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "priest_impositio",
+      "job": "priest",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "friends"
+      ],
+      "statuses": [
+        "attack_up",
+        "magic_up"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; attack_up, magic_up. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "priest_magnificat",
+      "job": "priest",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "friends"
+      ],
+      "statuses": [
+        "mana_regen_up"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; mana_regen_up. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "priest_resurrection",
+      "job": "priest",
+      "kind": "active",
+      "roles": [
+        "instant_heal"
+      ],
+      "targets": [
+        "friends"
+      ],
+      "statuses": [],
+      "formulas": [
+        "healing_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: instant_heal; healing_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "priest_kyrie",
+      "job": "priest",
+      "kind": "active",
+      "roles": [
+        "shield"
+      ],
+      "targets": [
+        "friends"
+      ],
+      "statuses": [],
+      "formulas": [
+        "healing_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: shield; healing_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "priest_healing_art",
+      "job": "priest",
+      "kind": "passive",
+      "roles": [
+        "passive"
+      ],
+      "targets": [],
+      "statuses": [],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: passive; . Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "priest_spirit_recovery",
+      "job": "priest",
+      "kind": "passive",
+      "roles": [
+        "passive"
+      ],
+      "targets": [],
+      "statuses": [],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: passive; . Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "monk_call_spirits",
+      "job": "monk",
+      "kind": "active",
+      "roles": [
+        "resource_change"
+      ],
+      "targets": [
+        "self"
+      ],
+      "statuses": [],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: resource_change; . Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "monk_triple_attack",
+      "job": "monk",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "adjust",
+      "reason": "Ball-free combo filler underperforms the alternatives; improve filler, preserve paid-ball finishers.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "monk_finger_offensive",
+      "job": "monk",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage; physical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "monk_asura",
+      "job": "monk",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [],
+      "formulas": [
+        "sp_burst_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage; sp_burst_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "monk_steel_body",
+      "job": "monk",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "foes",
+        "self"
+      ],
+      "statuses": [
+        "guard_up",
+        "provoke",
+        "slow"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; guard_up, provoke, slow. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "monk_iron_fist",
+      "job": "monk",
+      "kind": "passive",
+      "roles": [
+        "passive"
+      ],
+      "targets": [],
+      "statuses": [],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: passive; . Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "monk_spirit_combo",
+      "job": "monk",
+      "kind": "passive",
+      "roles": [
+        "passive",
+        "resource_change"
+      ],
+      "targets": [
+        "self"
+      ],
+      "statuses": [],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: passive, resource_change; . Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "high_priest_assumptio",
+      "job": "high_priest",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "friends"
+      ],
+      "statuses": [
+        "defense_up",
+        "magic_defense_up"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; defense_up, magic_defense_up. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "high_priest_basilica",
+      "job": "high_priest",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "fate"
+      ],
+      "statuses": [
+        "fate_physical",
+        "fate_magical"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; fate_magical, fate_physical. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "champion_palm_strike",
+      "job": "champion",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "adjust",
+      "reason": "Six high-power hits also received free50percentage-point crit, duplicating Gate burst at little preparation; retain hit power, lower built-in crit to20points.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "champion_chain_crush_combo",
+      "job": "champion",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage; physical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "archer_double_strafe",
+      "job": "archer",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage; physical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "archer_concentration",
+      "job": "archer",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "self"
+      ],
+      "statuses": [
+        "crit_up"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; crit_up. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "archer_arrow_shower",
+      "job": "archer",
+      "kind": "active",
+      "roles": [
+        "damage",
+        "status_program"
+      ],
+      "targets": [
+        "foes"
+      ],
+      "statuses": [
+        "stun"
+      ],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage, status_program; stun. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "archer_crippling_shot",
+      "job": "archer",
+      "kind": "active",
+      "roles": [
+        "damage",
+        "status_program"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [
+        "slow"
+      ],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage, status_program; slow. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "archer_vulture_eye",
+      "job": "archer",
+      "kind": "passive",
+      "roles": [
+        "passive"
+      ],
+      "targets": [],
+      "statuses": [],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: passive; . Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "hunter_blitz_beat",
+      "job": "hunter",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foes"
+      ],
+      "statuses": [],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage; physical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "hunter_hunters_mark",
+      "job": "hunter",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [
+        "exposed"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; exposed. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "hunter_ankle_snare",
+      "job": "hunter",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [
+        "stun"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; stun. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "hunter_claymore",
+      "job": "hunter",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foes"
+      ],
+      "statuses": [],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage; physical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "hunter_rapid_fire",
+      "job": "hunter",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage; physical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "hunter_falcon",
+      "job": "hunter",
+      "kind": "passive",
+      "roles": [
+        "damage",
+        "passive"
+      ],
+      "targets": [
+        "event_target"
+      ],
+      "statuses": [],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage, passive; physical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "hunter_steel_crow",
+      "job": "hunter",
+      "kind": "passive",
+      "roles": [
+        "passive"
+      ],
+      "targets": [],
+      "statuses": [],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: passive; . Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "bard_performance_strike",
+      "job": "bard",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage; physical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "bard_healing_song",
+      "job": "bard",
+      "kind": "active",
+      "roles": [
+        "instant_heal",
+        "status_program"
+      ],
+      "targets": [
+        "friends"
+      ],
+      "statuses": [
+        "physical_regeneration"
+      ],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: instant_heal, status_program; physical_regeneration. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "bard_battle_song",
+      "job": "bard",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "friends"
+      ],
+      "statuses": [
+        "aspd_up",
+        "attack_up",
+        "magic_up"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; aspd_up, attack_up, magic_up. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "bard_dissonance",
+      "job": "bard",
+      "kind": "active",
+      "roles": [
+        "resource_change",
+        "status_program"
+      ],
+      "targets": [
+        "foes"
+      ],
+      "statuses": [
+        "armor_break"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: resource_change, status_program; armor_break. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "bard_encore",
+      "job": "bard",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "friends"
+      ],
+      "statuses": [
+        "cast_speed_up",
+        "mana_regen_up"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; cast_speed_up, mana_regen_up. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "bard_music_lesson",
+      "job": "bard",
+      "kind": "passive",
+      "roles": [
+        "passive"
+      ],
+      "targets": [],
+      "statuses": [],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: passive; . Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "bard_breathing",
+      "job": "bard",
+      "kind": "passive",
+      "roles": [
+        "passive"
+      ],
+      "targets": [],
+      "statuses": [],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: passive; . Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "dancer_performance_strike",
+      "job": "dancer",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage; physical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "dancer_healing_song",
+      "job": "dancer",
+      "kind": "active",
+      "roles": [
+        "instant_heal",
+        "status_program"
+      ],
+      "targets": [
+        "friends"
+      ],
+      "statuses": [
+        "physical_regeneration"
+      ],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: instant_heal, status_program; physical_regeneration. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "dancer_battle_song",
+      "job": "dancer",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "friends"
+      ],
+      "statuses": [
+        "crit_up",
+        "crit_damage_up"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; crit_damage_up, crit_up. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "dancer_dissonance",
+      "job": "dancer",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "friends"
+      ],
+      "statuses": [
+        "dance_ward"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; dance_ward. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "dancer_encore",
+      "job": "dancer",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "foes"
+      ],
+      "statuses": [
+        "stun"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; stun. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "dancer_music_lesson",
+      "job": "dancer",
+      "kind": "passive",
+      "roles": [
+        "passive"
+      ],
+      "targets": [],
+      "statuses": [],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: passive; . Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "dancer_breathing",
+      "job": "dancer",
+      "kind": "passive",
+      "roles": [
+        "passive"
+      ],
+      "targets": [],
+      "statuses": [],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: passive; . Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "sniper_falcon_assault",
+      "job": "sniper",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage; physical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "sniper_sharpshooting",
+      "job": "sniper",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foes"
+      ],
+      "statuses": [],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage; physical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "clown_arrow_vulcan",
+      "job": "clown",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage; physical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "clown_marionette_control",
+      "job": "clown",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "friends"
+      ],
+      "statuses": [
+        "attack_up",
+        "magic_up"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; attack_up, magic_up. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "gypsy_tarot_card_of_fate",
+      "job": "gypsy",
+      "kind": "active",
+      "roles": [
+        "damage",
+        "status_program"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [
+        "attack_down",
+        "silence",
+        "stun"
+      ],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage, status_program; attack_down, silence, stun. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "gypsy_moonlit_water_mill",
+      "job": "gypsy",
+      "kind": "active",
+      "roles": [
+        "instant_heal",
+        "status_program"
+      ],
+      "targets": [
+        "friends"
+      ],
+      "statuses": [
+        "guard_up"
+      ],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: instant_heal, status_program; guard_up. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "mage_fire_bolt",
+      "job": "mage",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [],
+      "formulas": [
+        "magical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage; magical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "mage_cold_bolt",
+      "job": "mage",
+      "kind": "active",
+      "roles": [
+        "damage",
+        "status_program"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [
+        "freeze"
+      ],
+      "formulas": [
+        "magical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage, status_program; freeze. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "mage_lightning_bolt",
+      "job": "mage",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [],
+      "formulas": [
+        "magical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage; magical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "mage_soul_strike",
+      "job": "mage",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [],
+      "formulas": [
+        "magical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage; magical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "mage_sp_recovery",
+      "job": "mage",
+      "kind": "passive",
+      "roles": [
+        "passive"
+      ],
+      "targets": [],
+      "statuses": [],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: passive; . Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "wizard_storm_gust",
+      "job": "wizard",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "foes"
+      ],
+      "statuses": [
+        "frost_field"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; frost_field. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "wizard_jupitel",
+      "job": "wizard",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [],
+      "formulas": [
+        "magical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage; magical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "wizard_meteor",
+      "job": "wizard",
+      "kind": "active",
+      "roles": [
+        "damage",
+        "status_program"
+      ],
+      "targets": [
+        "foes"
+      ],
+      "statuses": [
+        "stun"
+      ],
+      "formulas": [
+        "magical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage, status_program; stun. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "wizard_quagmire",
+      "job": "wizard",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "foes"
+      ],
+      "statuses": [
+        "slow",
+        "armor_break"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; armor_break, slow. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "wizard_heavens_drive",
+      "job": "wizard",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foes"
+      ],
+      "statuses": [],
+      "formulas": [
+        "magical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage; magical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "wizard_amplified_magic",
+      "job": "wizard",
+      "kind": "passive",
+      "roles": [
+        "passive"
+      ],
+      "targets": [],
+      "statuses": [],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: passive; . Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "wizard_frost_control",
+      "job": "wizard",
+      "kind": "passive",
+      "roles": [
+        "passive"
+      ],
+      "targets": [],
+      "statuses": [],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: passive; . Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "sage_fire_endow",
+      "job": "sage",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "friends"
+      ],
+      "statuses": [
+        "fire_endow",
+        "magic_up"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; fire_endow, magic_up. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "sage_spell_breaker",
+      "job": "sage",
+      "kind": "active",
+      "roles": [
+        "damage",
+        "interrupt"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [],
+      "formulas": [
+        "magical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage, interrupt; magical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "sage_dispel",
+      "job": "sage",
+      "kind": "active",
+      "roles": [
+        "remove_status"
+      ],
+      "targets": [
+        "foes"
+      ],
+      "statuses": [],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: remove_status; . Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "sage_psychic_bolt",
+      "job": "sage",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [],
+      "formulas": [
+        "magical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage; magical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "sage_magic_barrier",
+      "job": "sage",
+      "kind": "active",
+      "roles": [
+        "damage",
+        "status_program"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [
+        "silence"
+      ],
+      "formulas": [
+        "magical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage, status_program; silence. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "sage_auto_bolt",
+      "job": "sage",
+      "kind": "passive",
+      "roles": [
+        "damage",
+        "passive"
+      ],
+      "targets": [
+        "event_target"
+      ],
+      "statuses": [],
+      "formulas": [
+        "magical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage, passive; magical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "sage_wisdom",
+      "job": "sage",
+      "kind": "passive",
+      "roles": [
+        "passive"
+      ],
+      "targets": [],
+      "statuses": [],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: passive; . Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "high_wizard_mystical_amplification",
+      "job": "high_wizard",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "self"
+      ],
+      "statuses": [
+        "mystical_focus"
+      ],
+      "formulas": [],
+      "decision": "adjust",
+      "reason": "Whole rotation was amplified by116%MATK plus magic crit/penetration; lower raw boost while keeping spell crit permission and identity.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "high_wizard_napalm_vulcan",
+      "job": "high_wizard",
+      "kind": "active",
+      "roles": [
+        "damage",
+        "status_program"
+      ],
+      "targets": [
+        "foes"
+      ],
+      "statuses": [
+        "curse"
+      ],
+      "formulas": [
+        "magical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage, status_program; curse. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "professor_double_casting",
+      "job": "professor",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "self"
+      ],
+      "statuses": [
+        "bolt_echo"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; bolt_echo. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "professor_soul_change",
+      "job": "professor",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "foes"
+      ],
+      "statuses": [
+        "psychic_field",
+        "slow"
+      ],
+      "formulas": [],
+      "decision": "adjust",
+      "reason": "Psychic Wave periodic damage lags comparable High ultimates; strengthen field rather than raising shared bolts or silence uptime.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "merchant_mammonite",
+      "job": "merchant",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage; physical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "merchant_cart_revolution",
+      "job": "merchant",
+      "kind": "active",
+      "roles": [
+        "damage",
+        "status_program"
+      ],
+      "targets": [
+        "foes"
+      ],
+      "statuses": [
+        "stun"
+      ],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage, status_program; stun. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "merchant_loud_voice",
+      "job": "merchant",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "friends"
+      ],
+      "statuses": [
+        "skill_power_up"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; skill_power_up. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "merchant_first_aid",
+      "job": "merchant",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [
+        "armor_break"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; armor_break. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "merchant_trading_stamina",
+      "job": "merchant",
+      "kind": "passive",
+      "roles": [
+        "passive"
+      ],
+      "targets": [],
+      "statuses": [],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: passive; . Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "blacksmith_hammer_fall",
+      "job": "blacksmith",
+      "kind": "active",
+      "roles": [
+        "damage",
+        "status_program"
+      ],
+      "targets": [
+        "foes"
+      ],
+      "statuses": [
+        "stun"
+      ],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage, status_program; stun. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "blacksmith_adrenaline",
+      "job": "blacksmith",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "friends"
+      ],
+      "statuses": [
+        "aspd_up"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; aspd_up. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "blacksmith_weapon_perfection",
+      "job": "blacksmith",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "friends"
+      ],
+      "statuses": [
+        "awaken_penetration",
+        "crit_up",
+        "crit_damage_up"
+      ],
+      "formulas": [],
+      "decision": "adjust",
+      "reason": "Distinct armor penetration + critical precision instead of another raw P/MATK stack; separates its role from Maximum Overthrust and Impo.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "blacksmith_meltdown",
+      "job": "blacksmith",
+      "kind": "active",
+      "roles": [
+        "damage",
+        "status_program"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [
+        "attack_down"
+      ],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage, status_program; attack_down. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "blacksmith_cart_crash",
+      "job": "blacksmith",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foes"
+      ],
+      "statuses": [],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "adjust",
+      "reason": "Class2 damage rotation below peers; improve own direct skill, not stack another team multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "blacksmith_weapon_research",
+      "job": "blacksmith",
+      "kind": "passive",
+      "roles": [
+        "passive"
+      ],
+      "targets": [],
+      "statuses": [],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: passive; . Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "blacksmith_tempering",
+      "job": "blacksmith",
+      "kind": "passive",
+      "roles": [
+        "passive"
+      ],
+      "targets": [],
+      "statuses": [],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: passive; . Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "alchemist_acid_terror",
+      "job": "alchemist",
+      "kind": "active",
+      "roles": [
+        "damage",
+        "status_program"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [
+        "armor_break"
+      ],
+      "formulas": [
+        "magical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage, status_program; armor_break. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "alchemist_potion_pitcher",
+      "job": "alchemist",
+      "kind": "active",
+      "roles": [
+        "instant_heal",
+        "status_program"
+      ],
+      "targets": [
+        "friend"
+      ],
+      "statuses": [
+        "regeneration"
+      ],
+      "formulas": [
+        "healing_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: instant_heal, status_program; regeneration. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "alchemist_hell_plant",
+      "job": "alchemist",
+      "kind": "active",
+      "roles": [
+        "summon"
+      ],
+      "targets": [
+        "self"
+      ],
+      "statuses": [],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: summon; . Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "alchemist_bio_cannibalize",
+      "job": "alchemist",
+      "kind": "active",
+      "roles": [
+        "summon"
+      ],
+      "targets": [
+        "self"
+      ],
+      "statuses": [],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: summon; . Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "alchemist_demonstration",
+      "job": "alchemist",
+      "kind": "active",
+      "roles": [
+        "damage",
+        "status_program"
+      ],
+      "targets": [
+        "foes"
+      ],
+      "statuses": [
+        "chemical_burn"
+      ],
+      "formulas": [
+        "magical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage, status_program; chemical_burn. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "alchemist_learning_potion",
+      "job": "alchemist",
+      "kind": "passive",
+      "roles": [
+        "passive"
+      ],
+      "targets": [],
+      "statuses": [],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: passive; . Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "alchemist_chemical_expertise",
+      "job": "alchemist",
+      "kind": "passive",
+      "roles": [
+        "passive"
+      ],
+      "targets": [],
+      "statuses": [],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: passive; . Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "whitesmith_cart_termination",
+      "job": "whitesmith",
+      "kind": "active",
+      "roles": [
+        "damage",
+        "status_program"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [
+        "stun"
+      ],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "adjust",
+      "reason": "Preserve HighLv1 finisher superiority after Cart Crash20% buff, while lowering multiplicative buff feedback separately.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "whitesmith_maximum_overthrust",
+      "job": "whitesmith",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "friends"
+      ],
+      "statuses": [
+        "attack_up",
+        "magic_up"
+      ],
+      "formulas": [],
+      "decision": "adjust",
+      "reason": "Raw ATK130.5% plus65.25% penetration and Weapon Perfection doubled offensive lanes; retain team P/MATK+Aw skill boost, move penetration identity to Weapon Perfection.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "creator_acid_demonstration",
+      "job": "creator",
+      "kind": "active",
+      "roles": [
+        "damage",
+        "status_program"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [
+        "armor_break"
+      ],
+      "formulas": [
+        "magical_power"
+      ],
+      "decision": "adjust",
+      "reason": "Align ultimate with Alchemist MATK spells and Chemical Expertise; five neutral magic hits, no physical hit/crit dependency.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "creator_full_chemical_protection",
+      "job": "creator",
+      "kind": "active",
+      "roles": [
+        "remove_status",
+        "shield",
+        "status_program"
+      ],
+      "targets": [
+        "friends"
+      ],
+      "statuses": [
+        "cc_resistance_up",
+        "guard_up"
+      ],
+      "formulas": [
+        "healing_power"
+      ],
+      "decision": "adjust",
+      "reason": "Shield scales from the same MATK build as potion/plant skills.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "swordsman_bash",
+      "job": "swordsman",
+      "kind": "active",
+      "roles": [
+        "damage",
+        "status_program"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [
+        "stun"
+      ],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage, status_program; stun. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "swordsman_provoke",
+      "job": "swordsman",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "foes"
+      ],
+      "statuses": [
+        "provoke"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; provoke. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "swordsman_magnum_break",
+      "job": "swordsman",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foes"
+      ],
+      "statuses": [],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage; physical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "swordsman_endure",
+      "job": "swordsman",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "self"
+      ],
+      "statuses": [
+        "endure_focus"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; endure_focus. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "swordsman_sword_mastery",
+      "job": "swordsman",
+      "kind": "passive",
+      "roles": [
+        "passive"
+      ],
+      "targets": [],
+      "statuses": [],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: passive; . Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "knight_pierce",
+      "job": "knight",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage; physical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "knight_twohand_quicken",
+      "job": "knight",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "self"
+      ],
+      "statuses": [
+        "aspd_up"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; aspd_up. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "knight_brandish",
+      "job": "knight",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foes"
+      ],
+      "statuses": [],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage; physical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "knight_battle_cry",
+      "job": "knight",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "friends"
+      ],
+      "statuses": [
+        "normal_power_up",
+        "crit_up"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; crit_up, normal_power_up. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "knight_counter_stance",
+      "job": "knight",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "self"
+      ],
+      "statuses": [
+        "counter_stance"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; counter_stance. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "knight_veteran",
+      "job": "knight",
+      "kind": "passive",
+      "roles": [
+        "passive"
+      ],
+      "targets": [],
+      "statuses": [],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: passive; . Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "knight_weapon_drill",
+      "job": "knight",
+      "kind": "passive",
+      "roles": [
+        "passive"
+      ],
+      "targets": [],
+      "statuses": [],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: passive; . Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "crusader_holy_cross",
+      "job": "crusader",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage; physical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "crusader_auto_guard",
+      "job": "crusader",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "self"
+      ],
+      "statuses": [
+        "guard_up"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; guard_up. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "crusader_devotion",
+      "job": "crusader",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "friends"
+      ],
+      "statuses": [
+        "devotion"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; devotion. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "crusader_grand_cross",
+      "job": "crusader",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foes"
+      ],
+      "statuses": [],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage; physical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "crusader_defender",
+      "job": "crusader",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "friends"
+      ],
+      "statuses": [
+        "defense_up",
+        "magic_defense_up"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; defense_up, magic_defense_up. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "crusader_faith",
+      "job": "crusader",
+      "kind": "passive",
+      "roles": [
+        "passive"
+      ],
+      "targets": [],
+      "statuses": [],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: passive; . Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "crusader_reflect",
+      "job": "crusader",
+      "kind": "passive",
+      "roles": [
+        "damage",
+        "passive"
+      ],
+      "targets": [
+        "event_source"
+      ],
+      "statuses": [],
+      "formulas": [
+        "event_damage_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage, passive; event_damage_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "lord_knight_aura_blade",
+      "job": "lord_knight",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "self"
+      ],
+      "statuses": [
+        "attack_up",
+        "crit_up",
+        "crit_damage_up",
+        "awaken_skill_power"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; attack_up, awaken_skill_power, crit_damage_up, crit_up. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "lord_knight_spiral_pierce",
+      "job": "lord_knight",
+      "kind": "active",
+      "roles": [
+        "damage",
+        "interrupt"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage, interrupt; physical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "paladin_shield_chain",
+      "job": "paladin",
+      "kind": "active",
+      "roles": [
+        "damage",
+        "status_program"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [
+        "stun"
+      ],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage, status_program; stun. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "paladin_gospel",
+      "job": "paladin",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "friends"
+      ],
+      "statuses": [
+        "guard_up",
+        "physical_regeneration"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; guard_up, physical_regeneration. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "thief_envenom",
+      "job": "thief",
+      "kind": "active",
+      "roles": [
+        "damage",
+        "status_program"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [
+        "venom"
+      ],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage, status_program; venom. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "thief_quick_step",
+      "job": "thief",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "self"
+      ],
+      "statuses": [
+        "evasion_up"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; evasion_up. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "thief_sand_attack",
+      "job": "thief",
+      "kind": "active",
+      "roles": [
+        "damage",
+        "status_program"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [
+        "accuracy_down",
+        "stun"
+      ],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage, status_program; accuracy_down, stun. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "thief_backstab",
+      "job": "thief",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage; physical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "thief_double_attack",
+      "job": "thief",
+      "kind": "passive",
+      "roles": [
+        "damage",
+        "passive"
+      ],
+      "targets": [
+        "event_target"
+      ],
+      "statuses": [],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage, passive; physical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "assassin_sonic_blow",
+      "job": "assassin",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage; physical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "assassin_enchant_poison",
+      "job": "assassin",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "self"
+      ],
+      "statuses": [
+        "attack_up"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; attack_up. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "assassin_venom_dust",
+      "job": "assassin",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "foes"
+      ],
+      "statuses": [
+        "venom"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; venom. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "assassin_detonate",
+      "job": "assassin",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage; physical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "assassin_grimtooth",
+      "job": "assassin",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foes"
+      ],
+      "statuses": [],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage; physical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "assassin_katar_mastery",
+      "job": "assassin",
+      "kind": "passive",
+      "roles": [
+        "passive"
+      ],
+      "targets": [],
+      "statuses": [],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: passive; . Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "assassin_poison_edge",
+      "job": "assassin",
+      "kind": "passive",
+      "roles": [
+        "passive"
+      ],
+      "targets": [],
+      "statuses": [],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: passive; . Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "rogue_strip_armor",
+      "job": "rogue",
+      "kind": "active",
+      "roles": [
+        "damage",
+        "status_program"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [
+        "armor_break"
+      ],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage, status_program; armor_break. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "rogue_strip_weapon",
+      "job": "rogue",
+      "kind": "active",
+      "roles": [
+        "damage",
+        "status_program"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [
+        "attack_down"
+      ],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage, status_program; attack_down. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "rogue_expose",
+      "job": "rogue",
+      "kind": "active",
+      "roles": [
+        "damage",
+        "status_program"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [
+        "exposed"
+      ],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage, status_program; exposed. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "rogue_intimidate",
+      "job": "rogue",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [
+        "silence",
+        "intimidated"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; intimidated, silence. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "rogue_raid",
+      "job": "rogue",
+      "kind": "active",
+      "roles": [
+        "damage",
+        "status_program"
+      ],
+      "targets": [
+        "foes"
+      ],
+      "statuses": [
+        "accuracy_down"
+      ],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage, status_program; accuracy_down. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "rogue_dodge",
+      "job": "rogue",
+      "kind": "passive",
+      "roles": [
+        "passive"
+      ],
+      "targets": [],
+      "statuses": [],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: passive; . Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "rogue_dirty_tricks",
+      "job": "rogue",
+      "kind": "passive",
+      "roles": [
+        "passive"
+      ],
+      "targets": [],
+      "statuses": [],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: passive; . Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "rogue_copy_swordsman_bash",
+      "job": "rogue",
+      "kind": "active",
+      "roles": [
+        "damage",
+        "status_program"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [
+        "stun"
+      ],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage, status_program; stun. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "rogue_copy_acolyte_heal",
+      "job": "rogue",
+      "kind": "active",
+      "roles": [
+        "instant_heal"
+      ],
+      "targets": [
+        "friend"
+      ],
+      "statuses": [],
+      "formulas": [
+        "healing_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: instant_heal; healing_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "rogue_copy_archer_double_strafe",
+      "job": "rogue",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage; physical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "rogue_copy_mage_fire_bolt",
+      "job": "rogue",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [],
+      "formulas": [
+        "magical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage; magical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "rogue_copy_merchant_cart_revolution",
+      "job": "rogue",
+      "kind": "active",
+      "roles": [
+        "damage",
+        "status_program"
+      ],
+      "targets": [
+        "foes"
+      ],
+      "statuses": [
+        "stun"
+      ],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage, status_program; stun. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "assassin_cross_soul_destroyer",
+      "job": "assassin_cross",
+      "kind": "active",
+      "roles": [
+        "damage"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [],
+      "formulas": [
+        "physical_power",
+        "magical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage; magical_power, physical_power. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "assassin_cross_meteor_assault",
+      "job": "assassin_cross",
+      "kind": "active",
+      "roles": [
+        "damage",
+        "status_program"
+      ],
+      "targets": [
+        "foes"
+      ],
+      "statuses": [
+        "stun"
+      ],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage, status_program; stun. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "stalker_chase_walk",
+      "job": "stalker",
+      "kind": "active",
+      "roles": [
+        "status_program"
+      ],
+      "targets": [
+        "self"
+      ],
+      "statuses": [
+        "chase_charge"
+      ],
+      "formulas": [],
+      "decision": "retain",
+      "reason": "Retain role: status_program; chase_charge. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    },
+    {
+      "id": "stalker_full_strip",
+      "job": "stalker",
+      "kind": "active",
+      "roles": [
+        "damage",
+        "status_program"
+      ],
+      "targets": [
+        "foe"
+      ],
+      "statuses": [
+        "armor_break",
+        "intimidated"
+      ],
+      "formulas": [
+        "physical_power"
+      ],
+      "decision": "retain",
+      "reason": "Retain role: damage, status_program; armor_break, intimidated. Elements, targeting, resource costs and branch progression distinguish deliberate overlaps; no evidence justifies a blanket multiplier.",
+      "base_and_awaken_reviewed": true
+    }
+  ]
+}

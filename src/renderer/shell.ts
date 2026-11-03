@@ -11,6 +11,7 @@ export interface ShellVisuals {
   class_icons?: Readonly<Record<string, ShellIconRef & { game_job_id: number; source_icon_name: string }>>;
   resource_icons: Readonly<Record<string, ShellIconRef>>;
   feature_icons: Readonly<Record<string, ShellIconRef>>;
+  artifact_icons?: Readonly<Record<string, ShellIconRef>>;
   enemy_skill_icons?: Readonly<Record<string, Pick<ShellIconRef, 'asset_id' | 'meta_path'> & { source_skill_id: string }>>;
   farm: {
     presentation_only: true; mobs_per_wave: readonly [number, number]; walk_ms: number; rest_ms: number; wave_time_limit_ms: number;
@@ -49,8 +50,8 @@ export function shellVisuals(index: RuntimeAssetIndex): ShellVisuals {
   return shell;
 }
 /** Direct media URL for small flat icons; never used for packed actor atlases. */
-export function shellIconUrl(index: RuntimeAssetIndex, group: 'ui_icons' | 'resource_icons' | 'feature_icons', key: string): string | null {
-  const ref = shellVisuals(index)[group][key];
+export function shellIconUrl(index: RuntimeAssetIndex, group: 'ui_icons' | 'resource_icons' | 'feature_icons' | 'artifact_icons', key: string): string | null {
+  const ref = shellVisuals(index)[group]?.[key];
   return ref ? locateAsset(index, ref.asset_id).mediaUrl : null;
 }
 export function farmSkins(index: RuntimeAssetIndex, chapter: number): readonly FarmSkin[] {

@@ -1,3 +1,4 @@
+import {withoutArtifactRefreshFile} from './legacy-artifact-refresh-scope.ts';
 import{modernUiSourceBytes,withoutModernUiPack}from'./legacy-modern-ui-scope.ts';
 import{readFileSync}from'node:fs';import{gunzipSync}from'node:zlib';import{createHash}from'node:crypto';import assert from'node:assert/strict';
 const packBefore=JSON.parse(gunzipSync(readFileSync('plan/evidence/task-187/before-pack.json.gz')).toString()),packAfter=JSON.parse(gunzipSync(readFileSync('plan/evidence/task-187/after-pack.json.gz')).toString());
@@ -14,6 +15,6 @@ function reverse(b:any,a:any,v:any,path:string):any{
  }
  assert.deepEqual(v,a,path+' exact reviewed D206–209 data');return structuredClone(b);
 }
-export function withoutEventsFile<T>(file:string,v:T):T{if(!(file in data))return structuredClone(v);return reverse(JSON.parse(before[file]!),data[file],v,file);}
+export function withoutEventsFile<T>(file:string,v:T):T{const current=withoutArtifactRefreshFile(file,v);if(!(file in data))return current;return reverse(JSON.parse(before[file]!),data[file],current,file);}
 
 export function withoutEventsPack<T>(v:T):T{assert.deepEqual(withoutModernUiPack(v),packAfter,'exact reviewed modern-icon/runtime projection pack');return structuredClone(packBefore);}

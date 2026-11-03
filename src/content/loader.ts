@@ -223,8 +223,17 @@ export function validateContent(raw: unknown): Result<ValidatedContent> {
     for(const key of ['capacity','draw_crystal','legendary_pity'])demand(Number.isSafeInteger(r[key])&&Number(r[key])>0,'artifact_limits',docAt('equipment.json'));
     const costs=list(r.level_costs).map(object);demand(costs.length===9&&costs.every((row,i)=>row.to===i+2&&['gold','essence'].every(key=>Number.isSafeInteger(row[key])&&Number(row[key])>0)),'artifact_costs',docAt('equipment.json'));
     demand(list(r.star_copies).length===5&&list(r.star_copies).every(n=>Number.isSafeInteger(n)&&Number(n)>=1&&Number(n)<=3),'artifact_stars',docAt('equipment.json'));
-    const active=Object.values(skills).filter(s=>s.kind==='active'&&s.class_id!=='enemy');
-    if(active.length===120){demand(rows.length===active.length,'artifact_coverage',docAt('equipment.json'));for(const skill of active)demand(rows.filter(d=>d.skill_id===skill.id&&d.class_id===skill.class_id).length===1,'artifact_skill',docAt('equipment.json'));}
+    const active=Object.values(skills).filter(s=>(r.version===2||s.kind==='active')&&s.class_id!=='enemy');
+    if(r.version===2||active.length===120){demand(rows.length===active.length,'artifact_coverage',docAt('equipment.json'));for(const skill of active)demand(rows.filter(d=>d.skill_id===skill.id&&d.class_id===skill.class_id).length===1,'artifact_skill',docAt('equipment.json'));}
+    if(r.version===2){
+      const profiles=object(r.profiles),reroll=object(r.reroll),statIds=list(bundle.documents['stat-definitions.json']!.stats).map(s=>object(s).id);
+      for(const job of Object.values(jobs!.byId).filter(j=>j.stage===3)){const p=object(profiles[job.id]);demand(typeof p.name==='string'&&list(p.modifiers).length>0,'artifact_profile',docAt('equipment.json'));for(const raw of list(p.modifiers)){const m=object(raw);demand(statIds.includes(m.stat)&&['add_flat','add_percent'].includes(String(m.op))&&Number.isFinite(m.weight)&&Number(m.weight)>0,'artifact_stat',docAt('equipment.json'));}}
+      demand(Number.isSafeInteger(reroll.cost)&&Number(reroll.cost)>0,'artifact_reroll_cost',docAt('equipment.json'));
+      for(const id of Object.keys(object(r.rarities)))demand(Number.isSafeInteger(object(reroll.salvage)[id])&&Number(object(reroll.salvage)[id])>0,'artifact_reroll_salvage',docAt('equipment.json'));
+      for(const k of ['story_min_chapter','story_every'])demand(Number.isSafeInteger(reroll[k])&&Number(reroll[k])>0,'artifact_story_reward',docAt('equipment.json'));
+      const counts=list(reroll.story_counts).map(object);demand(counts.length>0&&counts.every((r,i)=>Number.isSafeInteger(r.from_chapter)&&Number.isSafeInteger(r.count)&&Number(r.count)>0&&(!i||Number(r.from_chapter)>Number(counts[i-1]!.from_chapter))),'artifact_story_counts',docAt('equipment.json'));
+      for(const v of Object.values(object(r.rarities))){const q=object(v);demand(Number(q.stat_start)>0&&Number(q.stat_max)>=Number(q.stat_start)&&Number(q.stat_max)<=.1,'artifact_stats_power',docAt('equipment.json'));}
+    }
     const rarities=object(r.rarities);demand(Object.values(rarities).reduce<number>((n,v)=>n+Number(object(v).weight),0)===100,'artifact_weights',docAt('equipment.json'));
     for(const v of Object.values(rarities)){const rarity=object(v);demand(Number.isSafeInteger(rarity.weight)&&Number(rarity.weight)>0&&Number.isSafeInteger(rarity.salvage)&&Number(rarity.salvage)>0&&Number(rarity.start)>0&&Number(rarity.max)>=Number(rarity.start)&&Number(rarity.max)<=1,'artifact_power',docAt('equipment.json'));}
   });
@@ -237,7 +246,7 @@ export function validateContent(raw: unknown): Result<ValidatedContent> {
     for(const anchor of list(r.boss_anchors))demand(list(bundle.documents['stages.json']!.stages).some(s=>object(s).id===anchor),'event_stage_anchor',at);
     for(const[key,rows]of [['missions',missions],['shop',shop]]as const)demand(new Set(rows.map(p=>p.id)).size===rows.length,'event_unique_'+key,at);
     for(const m of missions)demand(['farm_seconds','battles','upgrades','daily_chests'].includes(String(m.metric))&&['target','tokens'].every(k=>Number.isSafeInteger(m[k])&&Number(m[k])>0),'event_mission',at);
-    for(const o of shop)demand(['mvp_card','weapon','artifact','rarity_stone','option_stone','hero_exp','gold'].includes(String(o.kind))&&['price','limit','quantity'].every(k=>Number.isSafeInteger(o[k])&&Number(o[k])>0),'event_offer',at);
+    for(const o of shop)demand(['mvp_card','weapon','artifact','artifact_reroll','rarity_stone','option_stone','hero_exp','gold'].includes(String(o.kind))&&['price','limit','quantity'].every(k=>Number.isSafeInteger(o[k])&&Number(o[k])>0),'event_offer',at);
   });
   return errors.length ? { ok: false, errors } : { ok: true, value: freeze({ manifest: bundle.manifest, documents: bundle.documents, jobs: jobs!, skills, items, statuses: validator.statuses, actors, schemas: bundle.schemas }) };
 }

@@ -1,3 +1,4 @@
+import {artifactSkills} from '../domain/build/artifacts.ts';
 import { loadValidatedContent } from './content.ts';
 import type { AccountState, CombatStats } from '../contracts/index.ts';
 import { applyEquipmentCommand, assignedOwner, equipmentFit, equipmentRules, equipmentSlots, itemDefinition, salvageQuote, type EquipmentCommand, type EquipmentSlot, type InventoryItem } from '../domain/progression/equipment.ts';
@@ -25,7 +26,7 @@ export function inventoryView(state:AccountState,characterId:string){
 }
 export function equipmentStats(state:AccountState,characterId:string):{stats:CombatStats;intervalMs:number;casts:{id:string;ct:number;acd:number}[]}{
  const actor=state.roster.find(a=>a.character_id===characterId)!;
- const skills=compileCharacterSkills(actor,content),stats=previewCharacterStats(actor,skills.resolved_skills,content,equippedSources(actor,state,content));
+ const skills=compileCharacterSkills(actor,content),stats=previewCharacterStats(actor,artifactSkills(actor.character_id,state,skills.resolved_skills,content),content,equippedSources(actor,state,content));
  return{stats,intervalMs:skillIntervalMs(stats.attack_speed,3000),casts:actor.active_slots.filter((id):id is string=>!!id).map(id=>{const skill=skills.resolved_skills[id]!.definition;if(skill.kind!=='active')throw new Error('ACTIVE_SKILL_REQUIRED');return{id,ct:castDurationMs(Number(skill.timing.cast_ms),stats.cast_speed),acd:castDurationMs(Number(skill.timing.after_cast_ms),stats.cast_speed)};})};
 }
 export function equipmentPreview(state:AccountState,characterId:string,slot:EquipmentSlot,id:string|null){

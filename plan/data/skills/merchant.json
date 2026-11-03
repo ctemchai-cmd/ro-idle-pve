@@ -665,6 +665,18 @@
           0.255556,
           0.277778,
           0.3
+        ],
+        "penetration": [
+          0.12,
+          0.133333,
+          0.146667,
+          0.16,
+          0.173333,
+          0.186667,
+          0.2,
+          0.213333,
+          0.226667,
+          0.24
         ]
       },
       "presentation_id": "visual_blacksmith_weapon_perfection",
@@ -715,27 +727,14 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "attack_up",
+          "id": "precision",
           "type": "apply_status",
           "target": "friends",
-          "status_id": "attack_up",
+          "status_id": "awaken_penetration",
           "duration_ms": 5000,
           "params": {
             "ratio": {
-              "level_param": "ratio"
-            }
-          },
-          "chance": 1
-        },
-        {
-          "id": "support_magic_up",
-          "type": "apply_status",
-          "target": "friends",
-          "status_id": "magic_up",
-          "duration_ms": 5000,
-          "params": {
-            "ratio": {
-              "level_param": "ratio"
+              "level_param": "penetration"
             }
           },
           "chance": 1
@@ -904,16 +903,16 @@
       ],
       "level_parameters": {
         "power": [
-          0.935156,
-          1.008984,
-          1.082812,
-          1.156641,
-          1.230469,
-          1.304297,
-          1.378125,
-          1.451953,
-          1.525781,
-          1.599609
+          1.122187,
+          1.210781,
+          1.299374,
+          1.387969,
+          1.476563,
+          1.565156,
+          1.65375,
+          1.742344,
+          1.830937,
+          1.919531
         ]
       },
       "presentation_id": "visual_blacksmith_cart_crash",
@@ -3185,16 +3184,16 @@
       ],
       "level_parameters": {
         "power": [
-          10.450006,
-          11.250771,
-          12.05154,
-          12.852305,
-          13.653074,
-          14.453839,
-          15.254608,
-          16.055373,
-          16.856142,
-          17.656907
+          12.540007,
+          13.500925,
+          14.461848,
+          15.422766,
+          16.383689,
+          17.344607,
+          18.30553,
+          19.266448,
+          20.22737,
+          21.188288
         ]
       },
       "presentation_id": "visual_whitesmith_cart_termination",
@@ -3291,16 +3290,16 @@
       ],
       "level_parameters": {
         "ratio": [
-          0.6,
-          0.633333,
-          0.666667,
-          0.7,
-          0.733333,
-          0.766667,
-          0.8,
-          0.833333,
-          0.866667,
-          0.9
+          0.4,
+          0.422222,
+          0.444444,
+          0.466667,
+          0.488889,
+          0.511111,
+          0.533333,
+          0.555556,
+          0.577778,
+          0.6
         ],
         "pen": [
           0.25,
@@ -3379,19 +3378,6 @@
             }
           },
           "chance": 1
-        },
-        {
-          "id": "penetration",
-          "type": "apply_status",
-          "target": "friends",
-          "status_id": "awaken_penetration",
-          "duration_ms": 10000,
-          "params": {
-            "ratio": {
-              "level_param": "pen"
-            }
-          },
-          "chance": 1
         }
       ]
     },
@@ -3419,16 +3405,16 @@
       ],
       "level_parameters": {
         "power": [
-          4.6508,
-          4.987813,
-          5.324831,
-          5.661844,
-          5.998857,
-          6.335874,
-          6.672887,
-          7.0099,
-          7.346918,
-          7.683931
+          5.8135,
+          6.234766,
+          6.656039,
+          7.077305,
+          7.498571,
+          7.919842,
+          8.341109,
+          8.762375,
+          9.183647,
+          9.604914
         ],
         "ratio": [
           0.1,
@@ -3487,7 +3473,7 @@
           "type": "damage",
           "target": "foe",
           "formula": {
-            "id": "physical_power",
+            "id": "magical_power",
             "params": {
               "attack_ratio": {
                 "level_param": "power"
@@ -3495,10 +3481,10 @@
               "flat_power": 0
             }
           },
-          "damage_type": "physical",
+          "damage_type": "magical",
           "element": "neutral",
-          "hit_rule": "physical_roll",
-          "can_crit": true,
+          "hit_rule": "always",
+          "can_crit": false,
           "hits": 5,
           "armor_rule": "normal"
         },
@@ -3656,7 +3642,7 @@
           "type": "shield",
           "target": "friends",
           "formula": {
-            "id": "physical_power",
+            "id": "healing_power",
             "params": {
               "attack_ratio": {
                 "level_param": "shield"
@@ -4785,6 +4771,18 @@
           0.177778,
           0.188889,
           0.2
+        ],
+        "penetration": [
+          0.264,
+          0.273333,
+          0.282667,
+          0.292,
+          0.301333,
+          0.310667,
+          0.32,
+          0.329333,
+          0.338667,
+          0.348
         ]
       },
       "presentation_id": "visual_blacksmith_weapon_perfection",
@@ -4835,27 +4833,14 @@
       "start_effects": [],
       "effects": [
         {
-          "id": "attack_up",
+          "id": "precision",
           "type": "apply_status",
           "target": "friends",
-          "status_id": "attack_up",
+          "status_id": "awaken_penetration",
           "duration_ms": 5500,
           "params": {
             "ratio": {
-              "level_param": "ratio"
-            }
-          },
-          "chance": 1
-        },
-        {
-          "id": "support_magic_up",
-          "type": "apply_status",
-          "target": "friends",
-          "status_id": "magic_up",
-          "duration_ms": 5500,
-          "params": {
-            "ratio": {
-              "level_param": "ratio"
+              "level_param": "penetration"
             }
           },
           "chance": 1
@@ -5067,16 +5052,16 @@
       ],
       "level_parameters": {
         "power": [
-          1.75957,
-          1.821777,
-          1.883984,
-          1.946191,
-          2.008398,
-          2.070605,
-          2.132812,
-          2.195019,
-          2.257226,
-          2.319433
+          2.111484,
+          2.186132,
+          2.260781,
+          2.335429,
+          2.410078,
+          2.484726,
+          2.559374,
+          2.634023,
+          2.708671,
+          2.78332
         ],
         "awaken_1": [
           0.1,
@@ -6120,16 +6105,16 @@
       ],
       "level_parameters": {
         "power": [
-          19.422598,
-          20.109255,
-          20.795912,
-          21.482571,
-          22.169228,
-          22.855885,
-          23.542542,
-          24.229201,
-          24.915858,
-          25.602515
+          23.307118,
+          24.131106,
+          24.955094,
+          25.779085,
+          26.603074,
+          27.427062,
+          28.25105,
+          29.075041,
+          29.89903,
+          30.723018
         ],
         "awaken_1": [
           0.1,
@@ -6258,16 +6243,16 @@
       ],
       "level_parameters": {
         "ratio": [
-          0.99,
-          1.025,
-          1.06,
-          1.095,
-          1.13,
-          1.165,
-          1.2,
-          1.235,
-          1.27,
-          1.305
+          0.66,
+          0.683333,
+          0.706667,
+          0.73,
+          0.753333,
+          0.776667,
+          0.8,
+          0.823333,
+          0.846667,
+          0.87
         ],
         "pen": [
           0.495,
@@ -6360,19 +6345,6 @@
           "chance": 1
         },
         {
-          "id": "penetration",
-          "type": "apply_status",
-          "target": "friends",
-          "status_id": "awaken_penetration",
-          "duration_ms": 11000,
-          "params": {
-            "ratio": {
-              "level_param": "pen"
-            }
-          },
-          "chance": 1
-        },
-        {
           "id": "awaken_1",
           "type": "apply_status",
           "target": "friends",
@@ -6412,16 +6384,16 @@
       ],
       "level_parameters": {
         "power": [
-          8.452324,
-          8.751143,
-          9.049963,
-          9.348782,
-          9.647601,
-          9.946423,
-          10.245242,
-          10.544061,
-          10.842881,
-          11.1417
+          10.565405,
+          10.938929,
+          11.312454,
+          11.685977,
+          12.059501,
+          12.433029,
+          12.806552,
+          13.180076,
+          13.553601,
+          13.927125
         ],
         "ratio": [
           0.22,
@@ -6492,7 +6464,7 @@
           "type": "damage",
           "target": "foe",
           "formula": {
-            "id": "physical_power",
+            "id": "magical_power",
             "params": {
               "attack_ratio": {
                 "level_param": "power"
@@ -6500,10 +6472,10 @@
               "flat_power": 0
             }
           },
-          "damage_type": "physical",
+          "damage_type": "magical",
           "element": "neutral",
-          "hit_rule": "physical_roll",
-          "can_crit": true,
+          "hit_rule": "always",
+          "can_crit": false,
           "hits": 5,
           "armor_rule": "normal"
         },
@@ -6693,7 +6665,7 @@
           "type": "shield",
           "target": "friends",
           "formula": {
-            "id": "physical_power",
+            "id": "healing_power",
             "params": {
               "attack_ratio": {
                 "level_param": "shield"

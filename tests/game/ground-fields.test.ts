@@ -80,15 +80,15 @@ test('invalid ground references, unknown presentations, status filters and shape
   assert.throws(() => groundFieldProfiles(visuals, []), /INVALID_GROUND/); assert.deepEqual(groundFieldProfiles({}), {});
   for (const p of Object.values(profiles)) for (const id of p.status_ids) assert(Object.hasOwn(content.statuses, id), id);
 });
-test('catalog covers every authored skill; all deployed sidecars parse exactly like source, unchanged media hashes and gameplay, within original size budgets', () => {
+test('catalog covers every authored skill; deployed renderer metadata matches source except author-only provenance, unchanged media hashes and gameplay, within original size budgets', () => {
   const catalog = JSON.parse(readFileSync('plan/evidence/task-151/ground-catalog.json', 'utf8'));
   assert.deepEqual(catalog.skills.map((s: any) => s.skill_id).sort(), Object.keys(content.skills).sort());
   const before = JSON.parse(readFileSync('plan/evidence/task-151/gameplay-before.json', 'utf8'));
   for (const [file, sha] of Object.entries(before)) assertD179File(file,sha);
-  const pack = JSON.parse(readFileSync('runtime/ro/manifest.json', 'utf8')); assert.equal(pack.sidecar_encoding, 'compact-json-safe-integers-v1');
+  const pack = JSON.parse(readFileSync('runtime/ro/manifest.json', 'utf8')); assert.equal(pack.sidecar_encoding, 'runtime-metadata-v2');
   for (const row of pack.files) {
     const bytes = readFileSync('runtime/ro/payload/' + row.path), source = readFileSync('assets/ro/' + row.path);
-    if (row.path.endsWith('.meta.json')) assert.deepEqual(JSON.parse(bytes.toString()), JSON.parse(source.toString()), row.path);
+    if (row.path.endsWith('.meta.json')) assert.deepEqual(JSON.parse(bytes.toString()), Object.fromEntries(Object.entries(JSON.parse(source.toString())).filter(([key])=>!['source','annotations'].includes(key))), row.path);
     else assert.equal(createHash('sha256').update(bytes).digest('hex'), createHash('sha256').update(source).digest('hex'), row.path);
   }
   assert(pack.sizes.initial_profile_raw_bytes < 1621492); assert(pack.sizes.media_and_sidecar_bytes + pack.sizes.manifest_bytes < 33554432);

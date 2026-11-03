@@ -1816,6 +1816,11 @@
                 "type": "integer",
                 "minimum": 0,
                 "maximum": 9007199254740991
+              },
+              "reroll_stones": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 9007199254740991
               }
             },
             "required": [
@@ -2300,6 +2305,25 @@
                 "type": "integer",
                 "minimum": 0,
                 "maximum": 9007199254740991
+              },
+              "skill_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "class_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120
+              },
+              "rarity_id": {
+                "enum": [
+                  "common",
+                  "uncommon",
+                  "rare",
+                  "epic",
+                  "legendary"
+                ]
               }
             },
             "required": [
@@ -2353,6 +2377,55 @@
           "type": "integer",
           "minimum": 0,
           "maximum": 49
+        },
+        "reroll_stones": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "pending_skill_roll": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "roll_id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "instance_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120
+                },
+                "original_skill_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120
+                },
+                "replacement_skill_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120
+                },
+                "class_id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120
+                }
+              },
+              "required": [
+                "roll_id",
+                "instance_id",
+                "original_skill_id",
+                "replacement_skill_id",
+                "class_id"
+              ],
+              "additionalProperties": false
+            }
+          ]
         }
       },
       "required": [

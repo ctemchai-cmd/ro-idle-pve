@@ -15,10 +15,10 @@ export function recoverCompatibleDaily(previous:AccountState,next:AccountState,c
   const pointer=previous.active_battle,battle=context?.battle;
   if(!pointer||pointer.mode!=='daily'||!([...eventCompat.content_hashes,...replayCompat.content_hashes,compat.content_hash] as readonly string[]).includes(pointer.content_hash)||!context||!('battle' in context))return;
   if(!battle||!context.server_at||!Number.isSafeInteger(context.started_ms))throw new Error('DAILY_RECOVERY_CONTEXT_MISSING');
+  if(battle.account_id!==context.account_id||battle.battle_id!==pointer.battle_id||battle.content_hash!==pointer.content_hash)throw new Error('DAILY_RECOVERY_CONTEXT_MISMATCH');
   const current=content.manifest,keys=Object.keys(current.input_sha256).filter(core),old=compat.core_sources as Record<string,string>;
   const sealed=[replayCompat,eventCompat].some(proof=>current.combat_replay_hash===proof.combat_replay_hash&&Object.entries(proof.sources).every(([p,hash])=>current.input_sha256[p]===hash));
-  if(!sealed&&(current.engine_data_hash!==compat.engine_data_hash||current.schema_hash!==compat.schema_hash||keys.length!==Object.keys(old).length||keys.some(p=>current.input_sha256[p]!==old[p])))throw new Error('DAILY_RECOVERY_INCOMPATIBLE');
-  if(battle.account_id!==context.account_id||battle.battle_id!==pointer.battle_id||battle.content_hash!==pointer.content_hash)throw new Error('DAILY_RECOVERY_CONTEXT_MISMATCH');
+  if(!sealed&&(current.engine_data_hash!==compat.engine_data_hash||current.schema_hash!==compat.schema_hash||keys.length!==Object.keys(old).length||keys.some(p=>current.input_sha256[p]!==old[p]))){changes.push(`daily ${pointer.mode_ref}: cancelled incompatible old replay; no reward or attempt charge`);return;}
   const payload=structuredClone(battle.payload) as BattleCheckpoint;
   if(payload.content_hash!==pointer.content_hash||payload.mode.kind!=='daily'||payload.mode.ticket_day!==pointer.ticket_day||parseDailyRef(payload.mode.ref).id!==pointer.mode_ref)throw new Error('DAILY_RECOVERY_CONTEXT_MISMATCH');
   payload.content_hash=current.content_hash;

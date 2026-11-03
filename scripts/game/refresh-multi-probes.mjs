@@ -1,0 +1,7 @@
+import fs from'node:fs';import{gunzipSync}from'node:zlib';import{validateContent}from'../../src/content/loader.ts';import{loadValidatedContent}from'../../src/content/index.ts';import{auditFixture,auditInput,auditFight}from'./class-audit-fixtures.ts';
+const before=validateContent(JSON.parse(gunzipSync(fs.readFileSync('plan/evidence/task-190/content-before.json.gz')).toString())),after=loadValidatedContent();if(!before.ok||!after.ok)throw Error('CONTENT');
+const selected=JSON.parse(gunzipSync(fs.readFileSync('plan/evidence/task-192/before.json.gz')).toString()).confirmed.filter(r=>r.condition==='high-100-tier100-aw10'&&r.encounter==='dummy'),rows=[];
+for(const r of selected)for(const [phase,c]of[['before',before.value],['after',after.value]])for(const seed of[619201,619202,619203]){
+ const f=auditFixture(r.build,{id:'multi-high',level:100,tier:100,stage:3,awaken:10},c),input=auditInput(f,'dummy',c),boss=input.actors.find(a=>a.actor_id==='audit_boss');for(let n=1;n<=2;n++){const copy=structuredClone(boss);copy.actor_id='extra'+n;copy.spatial.y+=n*80;input.actors.push(copy);}rows.push({job:r.job,phase,seed,build:r.build,sample:auditFight(input,seed,c).sample});
+}
+fs.writeFileSync('plan/evidence/task-192/multiple-targets.json',JSON.stringify({scope:'3 neutral targets, same pre-change selected builds, equal Common100 gear,3 independent seeds90s. AoE probe only, not optimal3-target builds.',fights:rows.length,rows}));console.log(rows.length);

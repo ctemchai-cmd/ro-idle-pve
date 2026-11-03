@@ -56,7 +56,7 @@ export function canPay(wallet: Wallet, cost: Partial<Wallet> | null | undefined)
   return !!cost && Object.entries(cost).every(([k, n]) => wallet[k as keyof Wallet] >= (n ?? 0));
 }
 
-export function iconUrl(pack: AssetPack | null, group: 'ui_icons' | 'resource_icons' | 'feature_icons', key: string): string | null {
+export function iconUrl(pack: AssetPack | null, group: 'ui_icons' | 'resource_icons' | 'feature_icons' | 'artifact_icons', key: string): string | null {
   if (!pack) return null;
   try { return shellIconUrl(pack.index, group, key); } catch { return null; }
 }

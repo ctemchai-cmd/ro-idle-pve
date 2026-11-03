@@ -17,7 +17,7 @@ DATA = ROOT / 'plan/data'
 COMBAT_VISUALS = ROOT / 'src/renderer/combat-visuals.json'
 # Presentation-only shell icons and ambient farm skins; never gameplay data.
 SHELL_VISUALS = ROOT / 'src/renderer/shell-visuals.json'
-SIDECAR_ENCODING = 'compact-json-safe-integers-v1'
+SIDECAR_ENCODING = 'runtime-metadata-v2'
 
 def read(path):
     return json.loads(Path(path).read_text())
@@ -48,7 +48,8 @@ def runtime_recipes(recipes, enemy_recipe_ids):
 
 def enemy_recipe_ids(doc):
     borrowed = {row['id'] for row in doc['skills'] if 'borrowed_program' in row.get('tags', [])}
-    return {row['visual']['recipe_skill_id'] for row in doc['presentations'] if row['skill_id'] not in borrowed}
+    modern = set(read(SHELL_VISUALS).get('enemy_skill_icons', {}))
+    return {row['visual']['recipe_skill_id'] for row in doc['presentations'] if row['skill_id'] not in borrowed and row['skill_id'] not in modern}
 
 def compact_metadata(value):
     """Same JSON.parse values; integral JSON numbers have no float/int distinction.
@@ -66,7 +67,12 @@ def compact_metadata(value):
 
 def runtime_payload(path, ro_root=RO):
     source = ro_root / path
-    return encoded(compact_metadata(read(source))) if path.endswith('.meta.json') else source.read_bytes()
+    if not path.endswith('.meta.json'):
+        return source.read_bytes()
+    # Authoring provenance remains in assets/ro, never read by ACT/STR/image loaders.
+    # Retain every media, frame, anchor, keyframe, dependency and reviewed renderer field.
+    meta = read(source)
+    return encoded(compact_metadata({k: v for k, v in meta.items() if k not in ('source', 'annotations')}))
 
 def walk(value):
     yield value
@@ -133,7 +139,7 @@ def selection(data_root=DATA):
         recipe_ids.add(actor['presentation']['skill_id'])
     # Only asset-bearing data participates: changing a skill price leaves this hash unchanged.
     signature = {
-        'sidecar_encoding': SIDECAR_ENCODING, 'recipe_projection': 'runtime-fields-v2',
+        'sidecar_encoding': SIDECAR_ENCODING, 'recipe_projection': 'runtime-fields-v3',
         'meta_refs': sorted(refs), 'recipe_ids': sorted(recipe_ids), 'combat_visuals': read(COMBAT_VISUALS), 'shell_visuals': read(SHELL_VISUALS),
         'actors': documents['actor-presentations.json']['jobs'],
         'stage_scenery': [{'id': s['id'], 'background': s['background'], 'music': s['music']} for s in documents['stages.json']['stages']],

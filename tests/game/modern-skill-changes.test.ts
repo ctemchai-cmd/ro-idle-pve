@@ -19,7 +19,7 @@ test('D138 major budgets plus explicit D161 tuning at all ten ranks; Finger and 
   const finger=active('monk_finger_offensive',lv),power=ratio(finger);
   for(const id of [...single,...aoe]){
    const scale=Number((tuning131.skills.find(s=>s.id===id)?.power_scales as Partial<Record<string,number>>|undefined)?.power??1);
-   const actual=ratio(active(id,lv))*(id==='sage_psychic_bolt'?1.5:1),wanted=power*(single.includes(id)?.7:.5)*scale;
+   const actual=ratio(active(id,lv))*(id==='sage_psychic_bolt'?1.5:1),wanted=power*(single.includes(id)?.7:.5)*scale*(id==='blacksmith_cart_crash'?1.2:1);
    assert.ok(Math.abs(actual-wanted)<.00002,`${id} rank${lv}: ${actual}/${wanted}`);
   }
   assert.equal(finger.cost.spirit_spheres,5);assert.deepEqual(active('monk_asura',lv).cost,{sp:{mode:'all_current',minimum_sp:30},spirit_spheres:5});

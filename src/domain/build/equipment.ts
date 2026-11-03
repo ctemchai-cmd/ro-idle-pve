@@ -1,3 +1,4 @@
+import {artifactSources} from './artifacts.ts';
 import type { AccountState, CombatBonus, Modifier, StatBlueprint, Trigger } from '../../contracts/index.ts';
 import type { ValidatedContent } from '../../content/model.ts';
 import { equipmentFit, equipmentRules, equipmentSlots, itemDefinition } from './equipment-definition.ts';
@@ -47,7 +48,7 @@ export function equippedSources(actor:AccountState['roster'][number],state:Accou
   source:{instance_id:id,owner_actor_id:actor.character_id,definition_id:definition,origin_actor_id:actor.character_id,origin_life_epoch:0},
   modifiers:structuredClone(modifiers).map(m=>{if(typeof m.value!=='number')throw new Error('UNRESOLVED_ITEM_MODIFIER');return{...m,value:m.value*scale};}),triggers:structuredClone(triggers)as Trigger[],...(defenseElement?{defense_element:defenseElement}:{}),...(combatBonuses.length?{combat_bonuses:structuredClone(combatBonuses) as CombatBonus[]}: {})
  });
- return equipmentSlots.flatMap(slot=>{
+ return [...equipmentSlots.flatMap(slot=>{
   const id=actor.equipment[slot];if(!id)return[]; // Investments remain dormant in an empty slot.
   const item=state.inventory.find(i=>i.instance_id===id);if(!item||equipmentFit(actor,slot,item,content))throw new Error('INVALID_EQUIPPED_ITEM');
   if(item.kind!=='equipment')throw new Error('INVALID_EQUIPPED_ITEM');
@@ -57,5 +58,5 @@ export function equippedSources(actor:AccountState['roster'][number],state:Accou
   if(progress.enchant.line_id&&progress.enchant.level)result.push(source(`slot_${actor.character_id}_${slot}_enchant`,`enchant_${progress.enchant.line_id}`,slots.enchant.slot_lines[slot][progress.enchant.line_id]!.modifiers,[],progress.enchant.level));
   for(const cardId of progress.cards){if(!cardId)continue;const card=state.inventory.find(i=>i.instance_id===cardId);if(!card||card.kind!=='card')throw new Error('INVALID_CARD_ASSIGNMENT');const def=itemDefinition(card,content);result.push(source(cardId,card.definition_id,resolvedCardModifiers(card,content),resolvedCardTriggers(card,content),1,def.defense_element,resolvedItemCombatBonuses(card,content)));}
   return result;
- });
+ }),...artifactSources(actor,state,content)];
 }

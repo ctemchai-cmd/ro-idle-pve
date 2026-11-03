@@ -3,7 +3,7 @@ import type {ValidatedContent} from '../../content/model.ts';
 import {storyStage,storyBoss} from './story.ts';
 export type EventMetric='farm_seconds'|'battles'|'upgrades'|'daily_chests';
 export interface EventMission {id:string;name:string;metric:EventMetric;target:number;tokens:number}
-export interface EventOffer {id:string;name:string;price:number;limit:number;kind:'mvp_card'|'weapon'|'artifact'|'rarity_stone'|'option_stone'|'hero_exp'|'gold';quantity:number}
+export interface EventOffer {id:string;name:string;price:number;limit:number;kind:'mvp_card'|'weapon'|'artifact'|'artifact_reroll'|'rarity_stone'|'option_stone'|'hero_exp'|'gold';quantity:number}
 export interface EventTemplate {id:string;name:string;kind:'mission'|'boss';boss:string}
 export interface EventRules {anchor_ms:number;period_ms:number;grace_ms:number;unlock_after:string;participation_tokens:number;checkin_tokens:number;rotation:EventTemplate[];missions:EventMission[];boss_anchors:string[];boss_tokens:number[];shop:EventOffer[]}
 export interface EventPeriod extends EventTemplate {period_id:string;start_ms:number;end_ms:number}
