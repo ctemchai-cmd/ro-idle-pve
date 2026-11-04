@@ -1,0 +1,38 @@
+{
+  "task_id": "TASK-194",
+  "passed": true,
+  "implementation_review_passed": true,
+  "publish_pending": false,
+  "reviewer": "Codex self-review",
+  "review_date": "2026-11-04",
+  "scope": "D216/design97; user emphasized boss damage",
+  "source_commit": "228ba2f3dccf0738e6dfa2d00677ac8c78465fa0",
+  "deployment_url": "https://vercel.com/chanon2/ro-idle-pve/CrxfbmAU5NYFZnut4VsQkgb2Rqvs",
+  "acceptance_passed": [
+    "AC-01",
+    "AC-02",
+    "AC-03",
+    "AC-04",
+    "AC-05"
+  ],
+  "distinct_ts_cases_passed": 887,
+  "test_method": "Full run with focused rechecks; no remaining failures",
+  "native_cases": 12,
+  "hosted_groups": 5,
+  "root_build_passed": true,
+  "exact_clean_commit_build": true,
+  "root_filtered_identical_files": 1734,
+  "evidence": [
+    "plan/evidence/task-194/README.md",
+    "plan/evidence/task-194/checks.json",
+    "plan/evidence/task-194/native.json",
+    "plan/evidence/task-194/builds.json",
+    "plan/evidence/task-194/hosted.json",
+    "plan/evidence/task-194/deployment.json"
+  ],
+  "limitations": [
+    "Five boss identities retain existing elements because Origin equivalence is unverified.",
+    "Read-only synthetic mobile fixtures; no owner save/Auth access.",
+    "15% attack-stat increase, not a guarantee of precisely15% final damage or globally calibrated difficulty."
+  ]
+}

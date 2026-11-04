@@ -19,4 +19,6 @@ TASK-193 (done)
 - [x] AC-02: ทุกโหมดเพิ่มพลังโจมตี15%ครั้งเดียว HP/รางวัล/คิวเดิม
 - [x] AC-03: ธาตุเกราะจริงตรงUIและการ์ด; phase/reload/speedตรงกัน
 - [x] AC-04: frozen content/backup/สิทธิ์และรางวัลเดิมปลอดภัย
-- [ ] AC-05: strict/tests/native/root/cleanGit/publicผ่าน
+- [x] AC-05: strict/tests/native/root/cleanGit/publicผ่าน
+
+ผลตรวจ: [review](../evidence/task-194-review.json) · Vercel source`228ba2f3d` verified.

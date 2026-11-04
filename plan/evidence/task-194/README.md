@@ -11,3 +11,5 @@ User clarified that boss damage is too low. All live encounter builders now appl
 - Clean committed archive and public deployment results recorded separately in builds.json/hosted.json after publication.
 
 Existing backed-up migration is retained. Old unproven combat is never replayed under new balance; no owner mutation, new SQL/env, quota reset, paid reward duplication or extra DB requests. Ambient farm remains unchanged. No global class calibration or physical-phone performance claim.
+
+Published source `228ba2f3dccf0738e6dfa2d00677ac8c78465fa0`; [Vercel SUCCESS](https://vercel.com/chanon2/ro-idle-pve/CrxfbmAU5NYFZnut4VsQkgb2Rqvs). Root/clean committed build1734files byte-identical; public healthSIN1/anonymous401/fivefingerprints/allbundleSHA/mobile320390 pass. No remaining task work.
