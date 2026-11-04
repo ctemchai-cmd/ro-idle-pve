@@ -1,0 +1,41 @@
+{
+  "passed": false,
+  "checks": [
+    {
+      "width": 320,
+      "skill": "alchemist_hell_plant",
+      "kind": "hell_plant",
+      "meta": "library/monsters/monster_atlas/flora--4568ed20b46b.meta.json",
+      "nativeLayers": [
+        {
+          "actor": "summon_caster_613",
+          "meta": "library/monsters/monster_atlas/flora--4568ed20b46b.meta.json",
+          "state": "attack",
+          "layers": 1
+        }
+      ],
+      "number": {
+        "source": "summon_caster_613",
+        "target": "target_0",
+        "amount": 210,
+        "critical": false,
+        "sequence": 765,
+        "at_ms": 5100
+      },
+      "actual": 210,
+      "wrongFocus": 0,
+      "afterDespawn": true,
+      "noPlant": true,
+      "staticSame": true,
+      "spatialMatches": true,
+      "onlyOneKindLoaded": true,
+      "matte": {
+        "colored": 0,
+        "changed": 0
+      }
+    }
+  ],
+  "errors": [],
+  "writes": [],
+  "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert(result.matte.colored>0&&result.matte.changed===result.matte.colored)\n\n    at /Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/test_native_plants.cjs:23:311"
+}

@@ -1,5 +1,5 @@
 import type { ActorRenderView, BattlePresentationEvent, BattleRenderView, BattleScene } from '../contracts/presentation.ts';
-import { drawActor, drawEffect, drawProcedural, type NativeAsset } from './native.mjs';
+import { actionFor, drawActor, drawEffect, drawProcedural, type NativeAsset } from './native.mjs';
 import { AssetPack } from './pack.ts';
 import { drawNativeImpact, nativeImpactDuration, type LoadedNativeImpact } from './native-impact.ts';
 import { ActorAnimation } from './actor-animation.ts';
@@ -17,9 +17,10 @@ import { locateSkillVisual } from './asset-locator.ts';
 import { FinisherEffects, type FinisherFrame } from './finishers.ts';
 import { MultiHitNumbers, multiHitOrdinals, MULTI_HIT_FALLBACK_MS, type MultiHitFrame } from './multi-hit-numbers.ts';
 
-interface Cue { event: BattlePresentationEvent; duration: number; delay: number; targets: readonly string[]; numberOrigin?: readonly [number, number]; numberPlaced?: boolean }
+interface Cue { event: BattlePresentationEvent; duration: number; delay: number; targets: readonly string[]; numberOrigin?: readonly [number, number]; numberPlaced?: boolean; summonOwner?: string }
 export class BattleRenderer {
   private cues: Cue[] = [];
+  private readonly summonSources = new Map<string, { owner: string; hitAt: number }>();
   private projectiles: (ProjectileCue & {nativeOnly?:boolean})[] = [];
   private reactions: { event: BattlePresentationEvent; at: number }[] = [];
   private sounds: { ref: string; at: number; base: number }[] = [];
@@ -38,7 +39,7 @@ export class BattleRenderer {
   private readonly multiHitNumbers = new MultiHitNumbers();
   private readonly totalOrigins = new Map<string, readonly [number, number]>();
   private readonly ground = new GroundFieldRenderer();
-  frameStats = { ground_fields:[] as GroundFieldFrame[],performance_auras:[] as PerformanceAura[],numberBounds:[] as NumberDrawBounds[],fields:[] as string[],links:[] as StatusLink[],totals: [] as MultiHitFrame[], finishers: [] as FinisherFrame[], camera: [0,0] as readonly [number,number], healing_auras: [] as string[], damage: [] as { source: string; target: string; amount: number; critical: boolean; sequence: number; at_ms: number }[], incoming: [] as { source: string; target: string; amount: number; sequence: number }[], projectiles: [] as { source: string; target: string; shape: string }[], shouts: [] as { actor: string; skill: string }[], impacts: [] as { target: string; meta: string }[] };
+  frameStats = { summons:[] as {actor:string;meta:string;state:string;layers:number}[],ground_fields:[] as GroundFieldFrame[],performance_auras:[] as PerformanceAura[],numberBounds:[] as NumberDrawBounds[],fields:[] as string[],links:[] as StatusLink[],totals: [] as MultiHitFrame[], finishers: [] as FinisherFrame[], camera: [0,0] as readonly [number,number], healing_auras: [] as string[], damage: [] as { source: string; target: string; amount: number; critical: boolean; sequence: number; at_ms: number }[], incoming: [] as { source: string; target: string; amount: number; sequence: number }[], projectiles: [] as { source: string; target: string; shape: string }[], shouts: [] as { actor: string; skill: string }[], impacts: [] as { target: string; meta: string }[] };
   private frameTime = 0;
   private statusImages = new Map<string, HTMLImageElement | null>();
   /** Hide ambient-farm status icons without changing the shared combat state. */
@@ -55,8 +56,8 @@ export class BattleRenderer {
   drawnLayers = 0;
   constructor(readonly canvas: HTMLCanvasElement, readonly pack: AssetPack, readonly scene: BattleScene) { this.actorTween=pack.actorTween; this.animation = new ActorAnimation(id => pack.actors.get(id)); this.numbers = pack.numberFont ? new DamageNumbers(pack.numberFont, pack.index.combat_visuals.numbers.digit_frames, pack.criticalFont, pack.index.combat_visuals.numbers.critical_frame) : null; }
   point(actor: ActorRenderView): [number, number] {
-    if (actor.summon_of) {
-      // Summons have no body sprite or spatial state: they sit beside their owner, fanned out by order.
+    if (actor.summon_of && !actor.spatial) {
+      // Abstract/legacy scenes have no spatial state; fan out beside the owner.
       const siblings = this.lastView?.actors.filter(row => row.summon_of === actor.summon_of) ?? [], owner = this.lastView?.actors.find(row => row.actor_id === actor.summon_of);
       const index = Math.max(0, siblings.findIndex(row => row.actor_id === actor.actor_id));
       if (owner) { const [x, y] = this.point(owner); return [x + 52 + index * 34, y + 6 - index * 10]; }
@@ -102,6 +103,10 @@ export class BattleRenderer {
       for (const target of targets) for (const spec of specs) this.projectiles.push({ at_ms: event.at_ms, source_id: event.actor_id, target_id: target, spec,nativeOnly:impact?.config.native_only===true, ...(event.world_source ? { from: event.world_source } : {}) });
     }
     for (const event of events) {
+      if (event.type === 'summon' && event.target_id) this.summonSources.set(event.actor_id, { owner: event.target_id, hitAt: -Infinity });
+      const summon = this.summonSources.get(event.actor_id);
+      if (summon && (event.type === 'damage' || event.type === 'heal')) summon.hitAt = event.at_ms;
+      if (event.type === 'despawn') this.summonSources.delete(event.actor_id);
       if (event.type === 'revive') {
         this.deathAt.delete(event.actor_id); this.incomingImpact.delete(event.actor_id);
         this.reactions = this.reactions.filter(cue => cue.event.actor_id !== event.actor_id || cue.event.type !== 'death').filter(cue => cue.event.target_id !== event.actor_id || cue.event.type !== 'damage');
@@ -124,7 +129,7 @@ export class BattleRenderer {
       if (['cast_resolve', 'cast_interrupt', 'death'].includes(event.type)) this.pack.stopSound(castChannel);
       if (event.type === 'terminal') for (const actor of this.scene.actors) this.pack.stopSound(`cast:${actor.actor_id}`);
       if (['damage', 'heal', 'miss', 'status_applied', 'cast_interrupt', 'cast_resolve'].includes(event.type)) {
-        this.cues.push({ event, delay, duration: delay + (event.type === 'cast_resolve' ? this.pack.visuals.get(event.skill_id ?? '')?.recipe.duration_ms ?? 600 : event.type === 'damage' || event.type === 'heal' ? NUMBER_FLIGHT_MS : 1100), targets: event.type === 'cast_resolve' ? [...new Set(events.filter(value => value.at_ms === event.at_ms && value.actor_id === event.actor_id && value.skill_id === event.skill_id && value.target_id).map(value => value.target_id!))] : [] });
+        this.cues.push({ event, delay, ...(summon ? { summonOwner: summon.owner } : {}), duration: delay + (event.type === 'cast_resolve' ? this.pack.visuals.get(event.skill_id ?? '')?.recipe.duration_ms ?? 600 : event.type === 'damage' || event.type === 'heal' ? NUMBER_FLIGHT_MS : 1100), targets: event.type === 'cast_resolve' ? [...new Set(events.filter(value => value.at_ms === event.at_ms && value.actor_id === event.actor_id && value.skill_id === event.skill_id && value.target_id).map(value => value.target_id!))] : [] });
       }
       if (event.type === 'cast_resolve' && event.skill_id) {
         const visual = this.pack.visuals.get(event.skill_id), sound = visual?.sound_paths[0]; if (sound) this.sounds.push({ ref: sound, at: event.at_ms + delay, base: event.at_ms });
@@ -170,9 +175,11 @@ export class BattleRenderer {
     const camera=this.showFinishers&&this.showFinisherTitles?this.finishers.shake(wallMs,this.motion):[0,0] as const;
     context.save(); context.translate((width - worldWidth * zoom) / 2+camera[0], (height - worldHeight * zoom) / 2+camera[1]); context.scale(zoom, zoom);
     this.drawnLayers = 0;
-    this.frameStats = { ground_fields:[],performance_auras:[],numberBounds:[] as NumberDrawBounds[],fields:[] as string[],links:[] as StatusLink[],totals: [], finishers: [], camera, damage: [], incoming: [], projectiles: [], shouts: [], impacts: [], healing_auras: [] };
+    this.frameStats = { summons:[],ground_fields:[],performance_auras:[],numberBounds:[] as NumberDrawBounds[],fields:[] as string[],links:[] as StatusLink[],totals: [], finishers: [], camera, damage: [], incoming: [], projectiles: [], shouts: [], impacts: [], healing_auras: [] };
     const appearances = this.scene.actors;
     this.lastView = view;
+    for (const actor of view.actors) if (actor.summon_of && !this.summonSources.has(actor.actor_id)) this.summonSources.set(actor.actor_id, { owner: actor.summon_of, hitAt: -Infinity });
+    for (const id of this.summonSources.keys()) if (!view.actors.some(actor => actor.actor_id === id)) this.summonSources.delete(id);
     this.frameStats.ground_fields = this.ground.draw(context, view.actors, view.game_time_ms, presentationMs, this.motion, this.pack.groundFields, actor => this.point(actor));
     this.frameStats.fields = [...new Set(this.frameStats.ground_fields.flatMap(f => f.targets))];
     if (this.pack.performanceAura) {
@@ -187,8 +194,8 @@ export class BattleRenderer {
     this.frameStats.links=statusLinks(view.actors,a=>this.point(a),view.game_time_ms);
     const linkProfile=this.pack.impacts.get('high_priest_basilica');
     drawStatusLinks(context,this.frameStats.links,presentationMs,this.motion,linkProfile?.config.link_texture_meta?linkProfile.textures.get(linkProfile.config.link_texture_meta):undefined);
-    for (const actor of view.actors.filter(row => row.summon_of)) this.drawSummon(context, actor, presentationMs);
     for (const actor of view.actors.slice().sort((a, b) => this.point(a)[1] - this.point(b)[1])) {
+      if (actor.summon_of) { this.drawSummon(context, actor, presentationMs); continue; }
       const appearance = appearances.find(row => row.actor_id === actor.actor_id), parts = this.pack.actors.get(actor.actor_id); if (!appearance || !parts) continue;
       const target = view.actors.find(row => row.actor_id === actor.spatial?.target_id);
       const facing = target?.spatial && actor.spatial ? target.spatial.x < actor.spatial.x ? 'left' : 'right' : appearance.facing;
@@ -253,7 +260,7 @@ export class BattleRenderer {
       }
       if (event.type === 'damage') {
         // Outgoing numbers follow the focused actor; any hit a party member takes shows in red on that member.
-        const focused = isFocusedDamage(event, this.selected), incoming = !focused && actor.team === 'player' && (event.amount ?? 0) > 0;
+        const focused = isFocusedDamage(event, this.selected, cue.summonOwner ?? this.summonSources.get(event.actor_id)?.owner), incoming = !focused && actor.team === 'player' && (event.amount ?? 0) > 0;
         if (!focused && !incoming) continue;
         const critical = event.detail === 'critical', flight = this.motion ? numberFlight(elapsed) : { dx: 0, dy: 0, size: 1, alpha: 1 };
         context.save(); context.globalAlpha = flight.alpha;
@@ -311,18 +318,17 @@ export class BattleRenderer {
     if(this.showFinishers){if(this.showFinisherTitles)this.finishers.drawTitle(context,width,height,this.scene.skill_labels,view.actors,wallMs,this.motion,this.frameStats.numberBounds.map(b=>({top:b.top/(this.canvas.clientHeight||height),bottom:(b.top+b.height)/(this.canvas.clientHeight||height)})));this.frameStats.finishers=this.finishers.frames(wallMs,this.motion,this.showFinisherTitles);}
   }
   private lastView: BattleRenderView | null = null;
-  /** Presentation-only sprout for summoned plants; colour by catalog kind, gentle pulse, no gameplay data. */
+  /** Original RO sprite/ACT playback, driven by the actual summon/tick lifetime. */
   private drawSummon(context: CanvasRenderingContext2D, actor: ActorRenderView, now: number): void {
-    const [x, y] = this.point(actor), colour = actor.summon_kind === 'healing_plant' ? '#5fcf86' : '#a674e0', pulse = 1 + .08 * Math.sin(now / 180 + x);
-    context.save(); context.translate(x, y); context.scale(pulse, pulse);
-    const glow = context.createRadialGradient(0, -14, 2, 0, -14, 26); glow.addColorStop(0, `${colour}aa`); glow.addColorStop(1, `${colour}00`);
-    context.fillStyle = glow; context.beginPath(); context.arc(0, -14, 26, 0, Math.PI * 2); context.fill();
-    context.fillStyle = 'rgba(40,30,20,.35)'; context.beginPath(); context.ellipse(0, 0, 14, 4, 0, 0, Math.PI * 2); context.fill();
-    context.strokeStyle = '#3f6b35'; context.lineWidth = 3; context.lineCap = 'round'; context.beginPath(); context.moveTo(0, 0); context.quadraticCurveTo(-3, -12, 0, -24); context.stroke();
-    context.fillStyle = colour; context.strokeStyle = '#2f4a2a'; context.lineWidth = 1.5;
-    for (const side of [-1, 1]) { context.beginPath(); context.ellipse(side * 8, -16, 8, 4, side * -.6, 0, Math.PI * 2); context.fill(); context.stroke(); }
-    context.beginPath(); context.arc(0, -27, 5, 0, Math.PI * 2); context.fill(); context.stroke();
-    context.restore();
+    const native = this.pack.summons.get(actor.summon_kind ?? ''); if (!native) return;
+    const [x, y] = this.point(actor), attack = actionFor(native.asset.meta, 'attack');
+    const contact = attack ? Math.max(0, attack.frames.findIndex(f => f.event === 1)) * attack.frame_duration_ms : 0;
+    const age = now - (this.summonSources.get(actor.actor_id)?.hitAt ?? -Infinity);
+    const attacking = this.motion && attack && age >= 0 && age < Math.min(1000, attack.frames.length * attack.frame_duration_ms - contact);
+    const state = attacking ? 'attack' : 'idle', elapsed = this.motion ? attacking ? contact + age : Math.max(0, now - actor.phase_started_at) : 0;
+    const layers = drawActor(context, { body: native.asset }, state, elapsed, x, y, actor.team === 'player' ? 'right' : 'left', native.config.scale);
+    this.drawnLayers += layers;
+    this.frameStats.summons.push({ actor: actor.actor_id, meta: native.config.meta, state, layers });
   }
   private label(context: CanvasRenderingContext2D, actor: ActorRenderView, x: number, y: number, now: number): void {
     context.save(); context.textAlign = 'center'; context.font = '16px ROThai, sans-serif';

@@ -3,12 +3,14 @@ import type { BattlePresentationEvent } from '../contracts/presentation.ts';
 import { nativeImpactProfile } from './native-impact.ts';
 import { performanceAuraConfig } from './performance-aura.ts';
 import { groundFieldProfiles } from './ground-fields.ts';
+import { validateSummonVisuals } from './summons.ts';
 
 export interface ProjectileCue { at_ms: number; source_id: string; target_id: string; spec: ProjectileSpec; from?: readonly [number, number] }
 export function validateCombatVisuals(value: CombatVisuals, skillIds: readonly string[], presentationIds?: readonly string[]): void {
   const fail = () => { throw new Error('INVALID_COMBAT_VISUALS'); };
   if (!value || value.schema_version !== 1 || !value.numbers || !value.normal_attacks || !value.skills) fail();
   performanceAuraConfig(value, skillIds);
+  validateSummonVisuals(value, skillIds);
   groundFieldProfiles(value, presentationIds);
   if (!value.numbers.meta?.endsWith('.meta.json') || !value.numbers.critical_meta?.endsWith('.meta.json') || !Number.isInteger(value.numbers.critical_frame) || value.numbers.critical_frame < 0 || value.numbers.digit_frames?.length !== 10 || value.numbers.digit_frames.some(frame => !Number.isInteger(frame) || frame < 0)) fail();
   for (const id of Object.keys(value.skills)) if (!skillIds.includes(id)) fail();
@@ -34,7 +36,7 @@ export function impactAt(specs: readonly ProjectileSpec[], contactMs: number, hi
 }
 export function projectileLifetime(spec: ProjectileSpec): number { return spec.release_ms + spec.travel_ms + (spec.count - 1) * spec.stagger_ms + 140; }
 export function impactDelay(specs: readonly ProjectileSpec[], hit = 0): number { return specs.length ? Math.max(...specs.map(spec => spec.release_ms + spec.travel_ms + Math.min(hit, spec.count - 1) * spec.stagger_ms)) : 0; }
-export function isFocusedDamage(event: BattlePresentationEvent, focus: string): boolean { return event.type === 'damage' && event.actor_id === focus && (event.amount ?? 0) > 0; }
+export function isFocusedDamage(event: BattlePresentationEvent, focus: string, summonOwner?: string): boolean { return event.type === 'damage' && (event.actor_id === focus || summonOwner === focus) && (event.amount ?? 0) > 0; }
 /** Presentation trajectory. It never emits a hit or consumes gameplay RNG. */
 export function projectilePoint(spec: ProjectileSpec, from: readonly number[], to: readonly number[], elapsed: number, index: number): { x: number; y: number; angle: number; progress: number } | null {
   const t = (elapsed - spec.release_ms - index * spec.stagger_ms) / spec.travel_ms;

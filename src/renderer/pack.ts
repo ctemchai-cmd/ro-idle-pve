@@ -12,6 +12,7 @@ import { nativeImpactProfile, type LoadedNativeImpact } from './native-impact.ts
 import { performanceAuraConfig, type LoadedPerformanceAura } from './performance-aura.ts';
 import { groundFieldProfiles, type LoadedGroundField } from './ground-fields.ts';
 import { blackKeyTexture } from './native-textures.ts';
+import { summonVisuals, type SummonVisual } from './summons.ts';
 
 async function json<T>(url: string, init?: RequestInit): Promise<T> { const response = await fetch(url, init); if (!response.ok) throw new Error(`ASSET_HTTP_${response.status}:${url}`); return response.json() as Promise<T>; }
 export class AssetPack {
@@ -24,6 +25,8 @@ export class AssetPack {
   /** Native per-hit STR effect by skill id (resolved through the skill's presentation id). */
   readonly impacts = new Map<string, LoadedNativeImpact>();
   readonly groundFields = new Map<string, LoadedGroundField>();
+  readonly summons = new Map<string, { asset: NativeAsset; config: SummonVisual }>();
+  private readonly summonReady = new Map<string, Promise<void>>();
   performanceAura: LoadedPerformanceAura | null = null;
   private performanceAuraReady: Promise<void> | null = null;
   background: NativeAsset | null = null;
@@ -78,6 +81,10 @@ export class AssetPack {
     return { body, ...(head ? { head } : {}), ...(weapon ? { weapon } : {}), ...(headgear ? { headgear } : {}), ...(garment ? { garment } : {}), ...presetSwing(preset) };
   }
   async prepare(scene: BattleScene, skillIds: readonly string[]): Promise<void> {
+    const summons = Object.entries(summonVisuals(this.index.combat_visuals)).filter(([, row]) => row.skill_ids.some(id => skillIds.includes(id))).map(([kind, config]) => {
+      if (!this.summonReady.has(kind)) this.summonReady.set(kind, this.asset(config.meta).then(asset => { this.summons.set(kind, { asset, config }); }));
+      return this.summonReady.get(kind)!;
+    });
     const ground = groundFieldProfiles(this.index.combat_visuals);
     const aura = performanceAuraConfig(this.index.combat_visuals);
     if (aura && skillIds.some(id => Object.hasOwn(aura.skills, id))) this.performanceAuraReady ??= (async () => {
@@ -121,6 +128,7 @@ export class AssetPack {
       this.asset(scene.background_meta).then(asset => { this.background = asset; }),
       ...scene.actors.map(async appearance => this.actors.set(appearance.actor_id, await this.actor(appearance))),
       ...visuals,
+      ...summons,
     ]);
     this.currentScene = scene;
   }

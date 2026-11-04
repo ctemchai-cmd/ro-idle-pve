@@ -1,0 +1,37 @@
+{
+  "passed": false,
+  "checks": [
+    {
+      "width": 320,
+      "skill": "alchemist_hell_plant",
+      "kind": "hell_plant",
+      "meta": "library/monsters/monster_atlas/flora--4568ed20b46b.meta.json",
+      "nativeLayers": [
+        {
+          "actor": "summon_caster_613",
+          "meta": "library/monsters/monster_atlas/flora--4568ed20b46b.meta.json",
+          "state": "attack",
+          "layers": 1
+        }
+      ],
+      "number": {
+        "source": "summon_caster_613",
+        "target": "target_0",
+        "amount": 210,
+        "critical": false,
+        "sequence": 765,
+        "at_ms": 5100
+      },
+      "actual": 210,
+      "wrongFocus": 0,
+      "afterDespawn": true,
+      "noPlant": true,
+      "staticSame": true,
+      "spatialMatches": true,
+      "onlyOneKindLoaded": true
+    }
+  ],
+  "errors": [],
+  "writes": [],
+  "failure": "locator.screenshot: Element is not attached to the DOM\nCall log:\n\u001b[2m  - taking element screenshot\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n\u001b[2m  - fonts loaded\u001b[22m\n\u001b[2m  - attempting scroll into view action\u001b[22m\n\u001b[2m    - waiting for element to be stable\u001b[22m\n\n    at /Users/chanon/Documents/Projects/Personal/RO Idle Classic/scripts/test_native_plants.cjs:24:40"
+}

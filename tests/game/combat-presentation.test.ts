@@ -60,3 +60,12 @@ test('special_sfx validates shapes, bounds, logical skill IDs and native glyph/f
   const critical = JSON.parse(readFileSync('assets/ro/' + index.combat_visuals.numbers.critical_meta, 'utf8'));
   assert.equal(critical.sprite_sheet.source_frame_indices[index.combat_visuals.numbers.critical_frame], 3);
 });
+
+test('focused owner sees summon damage; other owners, zero damage and healing do not become outgoing damage', () => {
+  const event: BattlePresentationEvent = { type: 'damage', actor_id: 'plant', target_id: 'boss', amount: 123, at_ms: 1000, phase: 1, sequence: 1 };
+  assert.equal(isFocusedDamage(event, 'alchemist', 'alchemist'), true);
+  assert.equal(isFocusedDamage(event, 'other', 'alchemist'), false);
+  assert.equal(isFocusedDamage(event, 'alchemist'), false);
+  assert.equal(isFocusedDamage({ ...event, amount: 0 }, 'alchemist', 'alchemist'), false);
+  assert.equal(isFocusedDamage({ ...event, type: 'heal' }, 'alchemist', 'alchemist'), false);
+});
