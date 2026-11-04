@@ -1,0 +1,25 @@
+// Actual shared skill/Artifact UI; disposable state, no owner login or writes.
+const fs=require('node:fs'),assert=require('node:assert/strict'),{chromium}=require('/private/tmp/ro-idle-browser-check/node_modules/playwright-core');
+const base=process.env.RO_PREVIEW_URL,out='plan/evidence/plant-descriptions-20261104';assert(base&&new URL(base).hostname==='127.0.0.1');
+(async()=>{let browser,page,failure;const checks=[],errors=[],writes=[];try{
+ browser=await chromium.launch({headless:true,executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});page=await browser.newPage({viewport:{width:390,height:844},isMobile:true,hasTouch:true});page.setDefaultTimeout(20000);page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>{if(!['GET','HEAD','OPTIONS'].includes(r.method()))writes.push(r.url());});await page.goto(base+'/animation-preview');await page.getByRole('button',{name:'หยุดภาพ',exact:true}).click();
+ await page.evaluate(async()=>{
+  const[R,D,{SkillInformationDialog},{catalogSkillInformation},{ArtifactPage},{AssetPack},{content},{initializeAccount}]=await Promise.all([import('/node_modules/.vite/deps/react.js'),import('/node_modules/.vite/deps/react-dom_client.js'),import('/src/ui/skill-information.tsx'),import('/src/client/skill-catalog.ts'),import('/src/ui/game/artifacts.tsx'),import('/src/renderer/pack.ts'),import('/tests/game/combat-fixtures.ts'),import('/src/domain/progression/initialize.ts')]);await import('/src/ui/game/game.css');
+  const h=R.default.createElement,host=document.createElement('main');host.className='game-root';host.style.cssText='position:fixed;inset:0;z-index:9999';document.body.append(host);const root=D.default.createRoot(host),pack=await AssetPack.open(),state=initializeAccount(content,{root_job_id:'merchant',gender:'male'},'2026-11-04T00:00:00Z','2026-11-04',1),a=state.roster[0];
+  a.job_id='creator';a.level=100;a.local_cap=100;a.skill_levels.alchemist_bio_cannibalize=10;a.awakened_skills=['alchemist_bio_cannibalize'];
+  state.artifacts.items=[{instance_id:'plant',definition_id:'artifact_alchemist_bio_cannibalize',rarity_id:'legendary',level:10,stars:0,locked:false,invested_gold:0,invested_essence:0}];
+  const context={state,pack,locked:false,busy:false,characterId:'main',latest:()=>state,selectCharacter:()=>{},submit:async()=>{throw Error('unexpected write')},go:()=>{},toast:()=>{}};let generation=0;
+  window.plantUi={pack,show(id,level,awakened){const info=catalogSkillInformation(id,level,awakened);root.render(h(SkillInformationDialog,{key:++generation,info,pack,name:info.name,onClose:()=>root.render(null)}));},artifact(){root.render(h('div',{className:'game-frame',key:++generation},h('div',{className:'page-layer'},h(ArtifactPage,{context}))));}};
+ });
+ for(const width of[320,390]){
+  await page.setViewportSize({width,height:844});
+  for(const id of['alchemist_hell_plant','alchemist_bio_cannibalize'])for(const aw of[false,true]){
+   await page.evaluate(({id,aw})=>window.plantUi.show(id,10,aw),{id,aw});const dialog=page.locator('.skill-information-dialog');await dialog.waitFor();const text=await dialog.innerText();assert.match(text,/M\.ATK ผู้ร่าย/);assert.match(text,/ทุก 1s\/ตัว/);assert(!text.includes('พลัง '));assert.equal(text.includes('ฟื้น HP'),id==='alchemist_bio_cannibalize');assert(await dialog.evaluate(n=>n.scrollWidth<=n.clientWidth+1));
+   await page.waitForFunction(()=>[...document.querySelectorAll('.skill-information-dialog img')].every(i=>i.complete&&i.naturalWidth));if(id==='alchemist_bio_cannibalize'&&aw)await page.screenshot({path:out+`/skill-awaken-${width}.png`});
+  }
+  checks.push({case:`base_Awaken_both_plants_native_shared_skill_details_${width}`,passed:true});await page.getByRole('button',{name:'ปิดรายละเอียดสกิล',exact:true}).click();
+  await page.evaluate(()=>window.plantUi.artifact());await page.locator('.artifact-cell').first().click();const dialog=page.locator('.artifact-sheet');await dialog.waitFor();await page.locator('.artifact-skill-details summary').click();const text=await dialog.innerText();assert.match(text,/ดาเมจผู้ช่วย \+50%/);assert.match(text,/ฮีลผู้ช่วย \+50%/);assert.match(text,/597.49% M\.ATK ผู้ร่าย/);assert.match(text,/67.22% M\.ATK ผู้ร่าย/);assert(await dialog.evaluate(n=>n.scrollWidth<=n.clientWidth+1));await page.screenshot({path:out+`/artifact-awaken-${width}.png`});checks.push({case:`actual_Artifact_Awaken_details_and_explicit_enhancement_${width}`,passed:true});await page.getByRole('button',{name:'ปิด',exact:true}).last().click();
+ }
+ assert.deepEqual(errors,[]);assert.deepEqual(writes,[]);
+ }catch(e){failure=String(e.stack||e);await page?.screenshot({path:out+'/native-failed.png'}).catch(()=>{});}finally{await page?.evaluate(()=>window.plantUi?.pack.dispose()).catch(()=>{});await browser?.close();const report={passed:!failure,checks,errors,writes,failure,scope:'Actual shared SkillInformationDialog and ArtifactPage at320/390; synthetic read-only state, no owner Auth/cloud writes.'};fs.writeFileSync(out+'/native.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));if(failure)process.exitCode=1;}
+})();

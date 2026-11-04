@@ -1,3 +1,7 @@
+## Plant skill description follow-up — 4 November2026; local review, publishing
+
+Shared skill/catalog/Timeline/Artifact descriptions expose caster M.ATK damage/heal per tick from the actual summon catalog (derived_scale × power_scale × action coefficient), with element/interval/lifetime/limit. Hell and Bio use M.ATK. Artifact labels distinguish helper damage/healing. Engine snapshots/rounds inherited offense; displayed ratios are nominal before mitigation/bonuses. No gameplay/media/save/SQL/env changes; all5durable fingerprints exactly TASK193.54focused/2new/16enginecomparisons/native4groups320390/rootbuild passed. See plan/evidence/plant-descriptions-20261104. Before42474b4a frozen, two-file source projection only. Publish requires clean committed archive first, then Vercel/public verification. No owner access/6173 restart; user draft/unselected assets preserved.
+
 ## TASK193 COMPLETE / Queue haste + Artifact clarity LIVE — 3 November2026
 
 Source`16bd9aae609732bcae62aebc6efb3f99e6adc396` [VercelSUCCESS](https://vercel.com/chanon2/ro-idle-pve/3vKsfrgPP9Eih5ggwLA4tfAp92pZ);879TS/7new/native4groups320390/M0/strict/root+cleanCOMMITTEDarchive1730identical/public5passed.179/193done/M4133/142. No remaining193work. OwnVite7544session23803 CLOSED. NoownerAuth/cloudsave/SQL/env/media/newDBcalls/6173restart/subagents; userdraft/unselectedmodern/oldPNG preserved.

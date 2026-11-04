@@ -1,8 +1,9 @@
+import {plantDescriptionSourceBytes} from './legacy-plant-descriptions-scope.ts';
 import {readFileSync} from 'node:fs';import {gunzipSync} from 'node:zlib';import {createHash} from 'node:crypto';import assert from 'node:assert/strict';
 const before=JSON.parse(gunzipSync(readFileSync('plan/evidence/task-193/before.json.gz')).toString())as Record<string,string>;
 const after=JSON.parse(readFileSync('plan/evidence/task-193/source-after.json','utf8'))as Record<string,string>,data=JSON.parse(readFileSync('plan/evidence/task-193/data-after.json','utf8'))as Record<string,unknown>;
 for(const file of Object.keys(data))assert.equal(createHash('sha256').update(readFileSync(file)).digest('hex'),after[file],file+' exact reviewed queue/Artifact clarity source');
-export function queueClaritySourceBytes(file:string){const bytes=readFileSync(file);if(after[file]&&before[file]){assert.equal(createHash('sha256').update(bytes).digest('hex'),after[file],file+' exact reviewed queue/Artifact clarity');return Buffer.from(before[file]!);}return bytes;}
+export function queueClaritySourceBytes(file:string){const bytes=plantDescriptionSourceBytes(file);if(after[file]&&before[file]){assert.equal(createHash('sha256').update(bytes).digest('hex'),after[file],file+' exact reviewed queue/Artifact clarity');return Buffer.from(before[file]!);}return bytes;}
 function reverse(b:any,a:any,v:any,path:string):any{
  if(JSON.stringify(b)===JSON.stringify(a)||JSON.stringify(v)===JSON.stringify(b))return structuredClone(v);
  if(Array.isArray(b)&&Array.isArray(a)&&Array.isArray(v)){

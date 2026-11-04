@@ -1,3 +1,4 @@
+import {summonPresentation} from './summons.ts';
 import type {DeepReadonly} from '../content/value.ts';
 import{definitionSize}from'./monster-size.ts';
 import {loadValidatedContent} from './content.ts';
@@ -41,7 +42,11 @@ function artifactEnhancementLabel(s:DeepReadonly<SkillDefinition>,bonus:number){
   if(e.type==='damage'||e.type==='sacrifice_damage')labels.add('ดาเมจสกิล +'+pct(bonus));
   else if(e.type==='heal')labels.add('ฮีล +'+pct(bonus));
   else if(e.type==='shield')labels.add('โล่ดูดซับ +'+pct(bonus));
-  else if(e.type==='summon')labels.add('พลังอัญเชิญ +'+pct(bonus));
+  else if(e.type==='summon'){
+   const summon=summonPresentation(e,content);
+   if(summon?.effects.some(effect=>effect.type==='damage'))labels.add('ดาเมจผู้ช่วย +'+pct(bonus));
+   if(summon?.effects.some(effect=>effect.type==='heal'))labels.add('ฮีลผู้ช่วย +'+pct(bonus));
+  }
   else if(e.type==='apply_status'){
    if('power_ratio'in e.params||e.parameter_formulas?.power_ratio){
     const status=content.statuses[e.status_id] as unknown as StatusDefinition,types=status?.periodic?.effects.map(effect=>effect.type)??[];
