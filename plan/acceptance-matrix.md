@@ -1108,3 +1108,12 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T194-AC-03` | TASK-194 | ธาตุเกราะจริงตรงUIและการ์ด; phase/reload/speedตรงกัน | Frozen content / shared engine / native mobile | Focused/full TS, native320390, M0, strict/root/clean committed build and anonymous hosted checks | passed_implementation |
 | `T194-AC-04` | TASK-194 | frozen content/backup/สิทธิ์และรางวัลเดิมปลอดภัย | Frozen content / shared engine / native mobile | Focused/full TS, native320390, M0, strict/root/clean committed build and anonymous hosted checks | passed_implementation |
 | `T194-AC-05` | TASK-194 | strict/tests/native/root/cleanGit/publicผ่าน | Frozen content / shared engine / native mobile | Focused/full TS, native320390, M0, strict/root/clean committed build and anonymous hosted checks | passed_implementation |
+
+## TASK-195 — Boss identity and elemental icons
+
+| Task | AC | Criterion | Evidence |
+| --- | --- | --- | --- |
+| `T195-AC-01` | TASK-195 | 75 identities researched;122 early stage sprites/armor/race/size agree | Pending |
+| `T195-AC-02` | TASK-195 | Stats/queues/rewards/original attack element and frozen saves retained | Pending |
+| `T195-AC-03` | TASK-195 | Ten coherent native Origin icons verified on320/390 | Pending |
+| `T195-AC-04` | TASK-195 | Tests/M0/strict/sourcepack/root/clean committed/public checks pass | Pending |

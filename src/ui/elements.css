@@ -13,7 +13,9 @@
 .skill-elements > small { font-size: 10px; color: #687b92; }
 .enemy-element { margin-bottom: 4px; }
 
-.element-symbol { display: inline-grid; place-items: center; flex: 0 0 22px; width: 22px; height: 22px; border-radius: 7px; color: var(--element-ink); background: var(--element-bg); }
+.element-symbol { position: relative; display: inline-grid; place-items: center; flex: 0 0 24px; width: 24px; height: 24px; border-radius: 50%; color: var(--element-ink); background: #dce7f5; }
 .element-symbol svg { width: 16px; height: 16px; }
 
-.element-symbol img{width:100%;height:100%;object-fit:contain;image-rendering:auto}.element-symbol:has(img){border:0;background:transparent;border-radius:4px;overflow:hidden}
+.element-symbol img { width: 100%; height: 100%; object-fit: contain; image-rendering: auto; }
+.element-symbol:has(img) { border: 0; border-radius: 50%; overflow: hidden; }
+.element-symbol.element-weapon > svg { position: absolute; width: 55%; height: 55%; color: #365a9c; }

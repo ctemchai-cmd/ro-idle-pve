@@ -19,9 +19,9 @@ test('D-057 stages: chapters 1-3 have 10, 4-8 have 20; chapter bosses sit on the
   for (const c of [1, 2, 3]) assert.equal(byChapter(c).length, 10);
   for (const c of [4, 5, 6, 7, 8]) assert.equal(byChapter(c).length, 20);
   assert.equal(storyBoss(storyStage('4-20', content)!,content).definition_id, 'golem');
-  assert.equal(storyBoss(storyStage('4-10', content)!,content).definition_id, 'ork_warrior');
+  assert.equal(storyBoss(storyStage('4-10', content)!,content).definition_id, 'whisper'); // D217 actual visible identity
   assert.deepEqual(storyStageInfo('4-20'), { chapter: 4, index: 20, last: true, heavy_cast: false, heavy_skill: null });
-  assert.deepEqual(storyStageInfo('4-10'), { chapter: 4, index: 10, last: false, heavy_cast: true, heavy_skill: 'enemy_doom' }, 'D-074 rotation names the heavy cast');
+  assert.deepEqual(storyStageInfo('4-10'), { chapter: 4, index: 10, last: false, enemy_identity:'definition', heavy_cast: true, heavy_skill: 'enemy_doom' }, 'D-074 rotation names the heavy cast');
   assert.equal(storyStageInfo('4-10')!.last, false);
   assert.equal(storyStage('5-1', content)!.unlock_after, '4-20');
 });

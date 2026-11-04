@@ -64,6 +64,19 @@ export function validateContent(raw: unknown): Result<ValidatedContent> {
     demand(canonical(Object.keys(elements).sort())===canonical(ids.sort()),'boss_profile_coverage',at);
     const chart=object(bundle.documents['combat-rules.json']!.element_chart);
     for(const element of Object.values(elements))demand(typeof element==='string'&&element in chart,'boss_profile_element',at);
+    if(p.story_identities!==undefined){
+      const identities=object(p.story_identities),stages=list(bundle.documents['stages.json']!.stages).map(object);
+      const traits=object(bundle.documents['cards.json']!.monster_traits);
+      for(const [id,definition]of Object.entries(identities)){
+        demand(stages.some(s=>s.id===id),'boss_identity_stage',at);
+        demand(typeof definition==='string'&&ids.includes(definition)&&definition in traits,'boss_identity_definition',at);
+      }
+      // The legacy chapter1–8 skin pools covered every non-final encounter.
+      for(const stage of stages)if(Number(stage.chapter)<=8){
+        const last=Math.max(...stages.filter(s=>s.chapter===stage.chapter).map(s=>Number(s.index)));
+        if(Number(stage.index)<last)demand(String(stage.id) in identities,'boss_identity_coverage',at);
+      }
+    }
   });
   for (const id of Object.keys(actors)) validator.actorIds.add(id);
   for (const name of CLASS_ROOTS) register(`skills/${name}.json`, 'skills', skills, 'skill');

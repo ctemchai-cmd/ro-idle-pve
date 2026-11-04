@@ -1,8 +1,10 @@
 import type { CombatStats } from '../../contracts/index.ts';
 import type { ValidatedContent } from '../../content/model.ts';
 
-interface BossProfile { attack_multiplier: number; defense_elements: Record<string, string> }
+interface BossProfile { attack_multiplier: number; defense_elements: Record<string, string>; story_identities?: Record<string, string> }
 export const bossProfile = (content: ValidatedContent) => content.documents['enemies.json']!.boss_combat as unknown as BossProfile | undefined;
+/** Gameplay identity, never a cosmetic replacement of an unrelated encounter. */
+export const storyBossIdentity = (stageId: string, content: ValidatedContent) => bossProfile(content)?.story_identities?.[stageId];
 export function bossArmorElement(id: string, fallback: string, content: ValidatedContent): string {
   return bossProfile(content)?.defense_elements[id] ?? fallback;
 }

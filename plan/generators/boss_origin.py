@@ -12,9 +12,14 @@ def main():
     spec = json.loads(Path(__file__).with_name('boss-origin-profiles.json').read_text())
     path = ROOT / 'plan/data/enemies.json'
     enemies = json.loads(path.read_text())
-    assert set(spec['profiles']) == {a['id'] for a in enemies['actors']}
+    identities_path = Path(__file__).with_name('boss-identities.json')
+    identities = json.loads(identities_path.read_text()) if identities_path.exists() else None
+    profiles = identities['profiles'] if identities else spec['profiles']
+    assert set(profiles) == {a['id'] for a in enemies['actors']}
     profile = {'version': 'origin-defense-v1', 'attack_multiplier': spec['attack_multiplier'],
-               'defense_elements': {key: row['element'] for key, row in spec['profiles'].items()}}
+               'defense_elements': {key: row['element'] for key, row in profiles.items()}}
+    if identities:
+        profile['story_identities'] = identities['story_identities']
     if args.check:
         assert enemies.get('boss_combat') == profile, 'STALE_BOSS_PROFILE'
     else:

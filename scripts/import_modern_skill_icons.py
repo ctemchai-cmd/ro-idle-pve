@@ -26,7 +26,7 @@ def main():
  for r in all_entries:
   target=r['target'];category='skills'if r['kind']=='skill'else'ui'
   if r['kind']=='skill'and target not in rows:raise ValueError('Unknown logical skill: '+target)
-  selected.append({'slug':'modern-'+target,'name':r['name']+' modern icon','game_id':target,'game_name':'User-provided RO Idle presentation','game_tag':'user_provided_modern','category':category,'kind':'skill_icon'if r['kind']=='skill'else'resource_icon','extension':'webp','provider':'local_modern','tags':['modern','user_selected',target],'source_path':r['path'],'image_path':r['path'],'page_url':r.get('page_url','assets/modern/suggestion-migrate.txt')})
+  selected.append({'slug':'modern-'+target,'name':r['name']+' modern icon','game_id':target,'game_name':r.get('game_name','User-provided RO Idle presentation'),'game_tag':'user_provided_modern','category':category,'kind':'skill_icon'if r['kind']=='skill'else'resource_icon','extension':r.get('extension','webp'),'provider':'local_modern','tags':['modern','user_selected',target],'source_path':r['path'],'image_path':r['path'],'page_url':r.get('page_url','assets/modern/suggestion-migrate.txt')})
   refs[target]={'asset_id':category+'.modern-'+target,'meta_path':category+'/modern-'+target+'.meta.json'}
  manifest['icons']=[v for v in manifest['icons']if v.get('provider')!='local_modern']+selected
  if args.check:
@@ -42,6 +42,10 @@ def main():
    if entry['game_id'] in {r['target']for r in mapping.get('v2_entries',[])} or 'selection'not in meta['annotations']:
     meta['annotations']['selection']='Selected local modern art; exact choices from '+entry['source']['page_url']+'; additional elemental illustrations per design37. Not independently verified native RO'
    if entry['category']=='skills':meta['annotations']['logical_skill_id']=entry['game_id']
+   chosen=next(r for r in all_entries if r['target']==entry['game_id'])
+   if chosen.get('source_url'):
+    meta['annotations']['source_url']=chosen['source_url']
+    meta['annotations']['selection']=chosen['note']
    importer.write_json(importer.sidecar_path(importer.ASSET_ROOT/entry['path']),meta)
  def bind(skill,source):
   ref=refs[source];expected={'icon_asset_id':ref['asset_id'],'icon_meta_path':'assets/ro/'+ref['meta_path']}

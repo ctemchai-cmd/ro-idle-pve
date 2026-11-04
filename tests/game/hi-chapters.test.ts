@@ -1,3 +1,4 @@
+import {withoutBossIdentityFile} from './legacy-boss-identity-scope.ts';
 import{withoutCharacterResetDocument}from'./legacy-character-reset-scope.ts';
 import test from 'node:test';
 import { class2Content } from './class2-content-fixture.ts';
@@ -47,7 +48,7 @@ test('D151 enemy90 checkpoint/native profiles are valid; party schema supports10
   assert.equal(state.actors.filter(a=>a.team==='enemy').length,1);assert.ok(restoreBattle(serializeBattle(state),content).ok,id);
   const bad=serializeBattle(state);bad.actors.find(a=>a.kind==='party')!.stat_blueprint.level=101;assert.equal(restoreBattle(bad,content).ok,false);
  }
- const enemies=content.documents['enemies.json']!.actors as unknown as {id:string;active_slots:(string|null)[];presentation:{meta_path:string}}[];
+ const enemies=withoutBossIdentityFile('plan/data/enemies.json',content.documents['enemies.json']!).actors as unknown as {id:string;active_slots:(string|null)[];presentation:{meta_path:string}}[];
  assert.equal(enemies.length,61);
  for(const enemy of enemies.slice(25)){
   assert.ok(enemy.active_slots.filter(Boolean).length>=3);

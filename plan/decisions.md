@@ -459,3 +459,7 @@ D212–214 released `54027489226e913842bb2b1612a6e6211706edce` VercelSUCCESS;872
 ## D216 — 4 November2026: boss armor / attack
 
 ผู้ใช้ให้ธาตุบอสอิงOriginและเน้นดาเมจที่เบา: P.ATK/M.ATK+15%หลังcurveแต่ละโหมด, HPเดิม.56identityมีreference/5คงค่าเดิมที่ผู้ใช้อนุญาต;ไม่มีการเดาค่าให้ตัวที่ยืนยันไม่ได้. แยกเกราะจากธาตุโจมตีเดิม;ใช้ทุกStory/Tower/Daily/MVP/Eventและdailyrespawn. [design97](design/97-boss-origin-elements.md).
+
+## D217 — Canonical boss identities and Origin elemental icons (5 November2026)
+
+Fix122 presentation-only early stages through shared identity mapping;75 researched monsters,14 added definitions using existing native sprites. Keep encounter numbers/queues/rewards and D216attack15%. Use one10-element Origin asset set. See [design98](design/98-boss-identities-and-element-icons.md).

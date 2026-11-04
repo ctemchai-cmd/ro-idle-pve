@@ -1,3 +1,4 @@
+import {storyBossIdentity} from '../domain/modes/boss-profile.ts';
 import {eventPlace} from './events.ts';
 import {mvpBoss,parseMvpRef} from '../domain/modes/mvp.ts';
 import { dailyRewardCount } from './daily-rewards.ts';
@@ -25,7 +26,7 @@ export function storyPresentationKey(state:AccountState){return canonical({team:
 /** Chapter position of a stage; the chapter-final stage keeps its authored boss look. */
 /** D-067/D-074 heavy casts are any enemy skill tagged `heavy_cast` (Cataclysm, Doom, Twin Hex). */
 export function isHeavyCast(skillId:string){return !!(content.skills[skillId] as unknown as {tags?:string[]}|undefined)?.tags?.includes('heavy_cast');}
-export function storyStageInfo(id:string){const stage=storyStage(id,content);if(!stage)return null;const last=Math.max(...storyStages(content).filter(s=>s.chapter===stage.chapter).map(s=>s.index));return{chapter:stage.chapter,index:stage.index,last:stage.index===last,...(stage.enemy_identity?{enemy_identity:stage.enemy_identity}:{}),heavy_cast:storyBoss(stage,content).active_slots.some(id=>!!id&&isHeavyCast(id)),heavy_skill:storyBoss(stage,content).active_slots.find((id):id is string=>!!id&&isHeavyCast(id))??null};}
+export function storyStageInfo(id:string){const stage=storyStage(id,content);if(!stage)return null;const last=Math.max(...storyStages(content).filter(s=>s.chapter===stage.chapter).map(s=>s.index));return{chapter:stage.chapter,index:stage.index,last:stage.index===last,...((stage.enemy_identity||storyBossIdentity(stage.id,content))?{enemy_identity:'definition' as const}:{}),heavy_cast:storyBoss(stage,content).active_slots.some(id=>!!id&&isHeavyCast(id)),heavy_skill:storyBoss(stage,content).active_slots.find((id):id is string=>!!id&&isHeavyCast(id))??null};}
 /** Presentation label of a stage boss for intros; definition IDs stay the gameplay reference. */
 export function storyBossLabel(id:string){const stage=storyStage(id,content);if(!stage)return null;const boss=storyBoss(stage,content);return{size:definitionSize(boss.definition_id),name:boss.definition_id.split('_').map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(' '),level:boss.level};}
 export function storyOptions(state:AccountState){return storyStages(content).map(stage=>({id:stage.id,chapter:stage.chapter,cleared:state.story.cleared_stage_ids.includes(stage.id),available:canChallenge(stage,state,content),release_locked:storyReleaseLock(stage,content)}));}
@@ -94,7 +95,7 @@ export class SavedBattleSession {
  private confirmed:BattleState;private projected?:Promise<BattleTimeline>;private names:Record<string,string>;
  private skillHistory:SkillHistoryEvent[]=[];
  constructor(payload:unknown,state:AccountState,skinFor:(stageId:string)=>{label:string;meta_path:string}|null=()=>null){const result=restoreBattle(payload,content);if(!result.ok)throw new Error('INCOMPATIBLE_CHECKPOINT');this.initial=result.value;this.state=result.value;this.confirmed=result.value;
-  const place=battlePlace(result.value.mode),skin=place.kind==='story'?skinFor(place.stage.id):null,enemy=(content.documents['enemies.json']!.actors as unknown as {id:string;presentation:{meta_path:string}}[]).find(a=>a.id===place.boss.definition_id)!;
+  const place=battlePlace(result.value.mode),skin=place.kind==='story'&&!place.stage.enemy_identity&&!storyBossIdentity(place.stage.id,content)?skinFor(place.stage.id):null,enemy=(content.documents['enemies.json']!.actors as unknown as {id:string;presentation:{meta_path:string}}[]).find(a=>a.id===place.boss.definition_id)!;
   this.names=partyNames(state);this.names[place.boss.actor_id]='บอส · '+(skin?.label??place.boss.definition_id.split('_').map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(' '));
   this.scene={title:place.title,subtitle:place.subtitle,background_meta:place.stage.background.meta,music_meta:place.stage.music.meta,...sceneLabels(),actors:[...partyAppearances(state),{actor_id:place.boss.actor_id,body_meta:skin?.meta_path??enemy.presentation.meta_path,facing:'left',scale:2.1}]};
  }

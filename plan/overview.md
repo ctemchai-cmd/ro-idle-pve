@@ -1,5 +1,7 @@
 # ภาพรวมแผนและความคืบหน้า
 
+[TASK195](inprogress/tasks_195.md) ตรวจในเครื่องผ่าน: แก้122ด่านให้ตัวบอส/ธาตุ/เผ่า/ขนาดตรงภาพ และใช้ไอคอนธาตุOrigin10แบบชุดเดียวกัน; รอตรวจclean committed buildและเผยแพร่ · [design98](design/98-boss-identities-and-element-icons.md).
+
 [TASK194](done/tasks_194.md) ขึ้นVercelแล้ว `228ba2f3d`: ธาตุเกราะบอส56ยืนยัน/5คงเดิม และ P.ATK/M.ATK+15%ทุกโหมดโดยคงHP.887TS/native12/root+cleanGit1734/public5ผ่าน · [design97](design/97-boss-origin-elements.md).
 
 TASK190–192 ขึ้น Vercel แล้ว source`540274892`: Artifact jewelry/สุ่มทุก Active+Passive/รีสกิลเลือกผล/ย่อยหลายชิ้น + ทบทวน152สกิล32อาชีพและปรับ11สกิล. 872TS/38Python/native6/public5/exactGit1730ไฟล์ผ่าน · [design95](design/95-random-artifacts-and-skill-audit.md) · [ผลบาลานซ์](evidence/task-192/README.md).

@@ -28,7 +28,7 @@ test('all420 Story bosses, generated Tower floors, daily phases, MVP tiers and E
  for(const id of['essence','forge','treasury'] as const)for(const phase of[1,2,40,100])compare(dailyBossActor(id,phase,15,old),dailyBossActor(id,phase,15,content));
  for(const b of mvpRules(content).bosses)for(let tier=1;tier<=10;tier++)compare(mvpBoss(b.id,tier,old),mvpBoss(b.id,tier,content));
  const r=eventRules(content);for(let n=0;n<r.rotation.length;n++){const p=eventPeriod(r.anchor_ms+n*r.period_ms,content);if(p.kind==='boss')for(let tier=1;tier<=5;tier++)compare(eventBoss(p,tier,old),eventBoss(p,tier,content));}
- assert.equal(ids.size,59);assert.equal(Object.keys(profile.defense_elements).length,61);
+ assert.equal(ids.size,72);assert.equal(Object.keys(profile.defense_elements).length,75);
 });
 test('known Origin corrections and documented unknowns; every profile has provenance or explicit retained status',()=>{
  assert.deepEqual(['poring','wolf','ork_warrior','golem','drake','phreeoni','dark_lord'].map(id=>profile.defense_elements[id]),['water','earth','earth','neutral','undead','neutral','undead']);
