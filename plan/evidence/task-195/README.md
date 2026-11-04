@@ -14,3 +14,5 @@ Ten original PNGs from ROOC Companion's Origin element guide replace unrelated b
 - M0, strict TypeScript, content/sourcepack/boundary/root build passed. Clean committed archive and hosted publication results recorded separately in builds.json/hosted.json.
 
 No SQL/env, owner-save mutation, quota reset, extra DB request,6173restart, skill retuning or global balance simulation. Old incompatible battles retain the established backed-up migration policy. Optional identity mapping leaves frozen profiles on their original template IDs.
+
+Published source `cfb1ba2b03b12ffaf4288732d7c62564450f5783`; [Vercel SUCCESS](https://vercel.com/chanon2/ro-idle-pve/2FukEb5ryQ9L1xZTTjzYWPk2U8mJ). Root/clean committed1734files byte-identical; public five fingerprints/SIN1/anonymous401/allbundleSHA/11elementpayloadSHA/mobile320390 pass. Early Earth template inflation drops139→33stages through real identity correction. No remaining task work.

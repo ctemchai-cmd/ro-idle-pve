@@ -15,9 +15,9 @@ TASK-194 (done)
 4. ทดสอบshared engine/native mobile/build/clean committed archive แล้วตรวจเว็บจริง
 
 ## เกณฑ์ตรวจรับ
-- [ ] AC-01: ฐานข้อมูล75ชนิดมีหลักฐาน และ122ด่านตรงภาพ/ธาตุ/เผ่า/ขนาด
-- [ ] AC-02: คงค่าสู้/คิว/รางวัล/โจมตี15%เดิม และfrozen/backupปลอดภัย
-- [ ] AC-03: ไอคอนธาตุ10แบบชุดเดียวกัน native mobile320/390ไม่ล้น
-- [ ] AC-04: tests/strict/M0/sourcepack/root/cleanGit/publicผ่าน
+- [x] AC-01: ฐานข้อมูล75ชนิดมีหลักฐาน และ122ด่านตรงภาพ/ธาตุ/เผ่า/ขนาด
+- [x] AC-02: คงค่าสู้/คิว/รางวัล/โจมตี15%เดิม และfrozen/backupปลอดภัย
+- [x] AC-03: ไอคอนธาตุ10แบบชุดเดียวกัน native mobile320/390ไม่ล้น
+- [x] AC-04: tests/strict/M0/sourcepack/root/cleanGit/publicผ่าน
 
-ผลตรวจ: ยังไม่ครบ
+ผลตรวจ: [review](../evidence/task-195-review.json) · Vercel source`cfb1ba2b0` verified.
