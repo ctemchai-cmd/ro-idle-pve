@@ -2,7 +2,7 @@ import { loadValidatedContent } from './content.ts';
 import type { AccountState, BattleActor, CombatStats } from '../contracts/index.ts';
 import type { ActorInput } from '../contracts/battle-input.ts';
 import type { BattleRenderView, BattleScene } from '../contracts/presentation.ts';
-import { storyStages, storyStage, storyBoss, type StoryStage } from '../domain/modes/story.ts';
+import { storyStages, storyStage, storyBossBase as storyBoss, type StoryStage } from '../domain/modes/story.ts';
 import { createBattle, advanceUntil, type BattleState } from '../domain/combat/index.ts';
 import { compileCharacterSkills } from '../domain/progression/skills.ts';
 import { storyParty, storyInput, fixedEnemyBlueprint } from '../domain/build/story.ts';

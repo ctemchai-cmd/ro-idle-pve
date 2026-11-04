@@ -1,3 +1,7 @@
+## TASK194 LOCAL REVIEW — 4 November2026; publishing
+
+D216/design97: all Story/Tower/Daily/MVP/Event bosses P/MATK+15% once after mode curves; HP/defense/speed/skills/timing/rewards/quotas unchanged. Origin armor map61identities/56referenced/5explicit retained; ordinaryDrakeUndead, do not infer monsters fromcardarmor. Preserve authored outgoing attack element separately, including Daily respawn. Frozen profile absence stays old behavior; ambient farm unchanged. No SQL/env/owner writes/new DB calls/6173restart/class calibration. Five rule tests/native12cases320390/M0/strict/root pass; historical source/data/pack projections retain frozen oracles. Clean committed build then Vercel/public verification still required. OwnVite7546 CLOSED; preserve user draft/unselectedassets/oldPNGs.
+
 ## Native plants and descriptions LIVE — 4 November2026
 
 Product1fc32c80cc6c416a37bb7b8c2c86c51257fd2d9d [VercelSUCCESS](https://vercel.com/chanon2/ro-idle-pve/CAiDNL7tK2LCZx4mDTZ3urEo95ce).21focusedTS/native4groups320390/sourcepack/root+cleanCOMMITTEDarchive1734identical/public5groups27bundleSHA+4plantpayloadSHA/realpublicbothplantpreviews passed. Description2a73dd960 also verified public5groups/54focused/16coefficient-engine cases. No remaining plant follow-up. OwnVite7545/PID85305 CLOSED;6173untouched. NoownerAuth/cloudsave/SQL/env/newrequests/balance changes;userdraft/unselectedassets/oldPNGs preserved.

@@ -8,7 +8,7 @@ export type BattleEvent = BattlePresentationEvent;
 export interface BattleStep { state: BattleState; events: BattleEvent[] }
 export interface RunLimits { max_events: number }
 /** A mode's continuation: bring a defeated enemy back with new resolved stats and patch the mode fields (e.g. the next daily phase). */
-export interface ModeRespawn { actor_id: string; level: number; resolved_base: CombatStats; element: string; mode: Partial<Pick<BattleCheckpoint['mode'], 'daily_phase' | 'daily_current_hp' | 'reserved_phase_keys'>> }
+export interface ModeRespawn { actor_id: string; level: number; resolved_base: CombatStats; element: string; attack_element?: string; mode: Partial<Pick<BattleCheckpoint['mode'], 'daily_phase' | 'daily_current_hp' | 'reserved_phase_keys'>> }
 export interface PureModePolicy {
   /** Mode continuation is injected; core never imports a mode controller. */
   onEnemyWipe?(state: BattleCheckpoint): 'continue' | 'victory' | ModeRespawn;

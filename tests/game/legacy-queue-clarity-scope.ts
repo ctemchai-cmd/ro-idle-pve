@@ -1,8 +1,9 @@
 import {plantDescriptionSourceBytes} from './legacy-plant-descriptions-scope.ts';
+import {withoutBossProfileFile} from './legacy-boss-profile-scope.ts';
 import {readFileSync} from 'node:fs';import {gunzipSync} from 'node:zlib';import {createHash} from 'node:crypto';import assert from 'node:assert/strict';
 const before=JSON.parse(gunzipSync(readFileSync('plan/evidence/task-193/before.json.gz')).toString())as Record<string,string>;
 const after=JSON.parse(readFileSync('plan/evidence/task-193/source-after.json','utf8'))as Record<string,string>,data=JSON.parse(readFileSync('plan/evidence/task-193/data-after.json','utf8'))as Record<string,unknown>;
-for(const file of Object.keys(data))assert.equal(createHash('sha256').update(readFileSync(file)).digest('hex'),after[file],file+' exact reviewed queue/Artifact clarity source');
+for(const file of Object.keys(data))assert.equal(createHash('sha256').update(plantDescriptionSourceBytes(file)).digest('hex'),after[file],file+' exact reviewed queue/Artifact clarity source');
 export function queueClaritySourceBytes(file:string){const bytes=plantDescriptionSourceBytes(file);if(after[file]&&before[file]){assert.equal(createHash('sha256').update(bytes).digest('hex'),after[file],file+' exact reviewed queue/Artifact clarity');return Buffer.from(before[file]!);}return bytes;}
 function reverse(b:any,a:any,v:any,path:string):any{
  if(JSON.stringify(b)===JSON.stringify(a)||JSON.stringify(v)===JSON.stringify(b))return structuredClone(v);
@@ -17,4 +18,4 @@ function reverse(b:any,a:any,v:any,path:string):any{
  }
  if(JSON.stringify(v)!==JSON.stringify(a))return structuredClone(v);return structuredClone(b);
 }
-export function withoutQueueClarityFile<T>(file:string,value:T):T{return file in data?reverse(JSON.parse(before[file]!),data[file],value,file):structuredClone(value);}
+export function withoutQueueClarityFile<T>(file:string,value:T):T{const current=withoutBossProfileFile(file,value);return file in data?reverse(JSON.parse(before[file]!),data[file],current,file):current;}

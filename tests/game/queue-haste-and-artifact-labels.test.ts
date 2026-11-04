@@ -48,7 +48,7 @@ test('cast and after-cast durations unchanged; new profile survives restore/Time
 });
 function account(){return initializeAccount(content,{root_job_id:'acolyte',gender:'male'},'2026-11-03T00:00:00.000Z','2026-11-03',193);}
 test('live encounter builder and UI stats show the same queue and normal timing',()=>{
- const state=account(),view=equipmentStats(state,'main'),stage=storyStage('1-1',content)!,compiled=Object.fromEntries(state.roster.map(a=>[a.character_id,compileCharacterSkills(a,content)])),input=storyInput(stage,storyBoss(stage),storyParty(state,content,compiled,Object.fromEntries(state.roster.map(a=>[a.character_id,'queue-test']))),content);
+ const state=account(),view=equipmentStats(state,'main'),stage=storyStage('1-1',content)!,compiled=Object.fromEntries(state.roster.map(a=>[a.character_id,compileCharacterSkills(a,content)])),input=storyInput(stage,storyBoss(stage,content),storyParty(state,content,compiled,Object.fromEntries(state.roster.map(a=>[a.character_id,'queue-test']))),content);
  assert.deepEqual(input.timing,timing);const battle=unwrap(createBattle(input,content,193)),a=battle.actors.find(a=>a.actor_id==='main')!;
  assert.equal(a.phase_duration_ms,view.intervalMs);assert.equal(a.normal_clock.remaining_ms,view.normalIntervalMs);
 });

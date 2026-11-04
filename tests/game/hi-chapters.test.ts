@@ -24,8 +24,8 @@ test('D151330 stages keep all180 released rows and old programs/actors/rates/pow
  assert.deepEqual((enemies.actors as unknown as object[]).slice(0,25),baseline.old_actors);assert.deepEqual((enemies.skills as unknown as object[]).slice(0,17),baseline.old_enemy_skills);
  assert.deepEqual((withoutCharacterResetDocument('economy.json',content.documents['economy.json'])!.rates as unknown as object[]).slice(0,9),baseline.old_rates);
  for(const [file,expected]of Object.entries(baseline.unchanged_file_sha256))assert.equal(sha(legacyClass2Source(file+'.json')),expected,file);
- for(let i=180;i<330;i++){assert.equal(stages[i]!.unlock_after,stages[i-1]!.id);assert.ok(stages[i]!.release_gate);assert.ok(storyBoss(stages[i]!).level>=71&&storyBoss(stages[i]!).level<=90);}
- for(const chapter of[10,11,12]){const rows=stages.filter(s=>s.chapter===chapter);assert.equal(rows.length,50);assert.equal(new Set(rows.filter(s=>s.index%10===0).map(s=>storyBoss(s).definition_id)).size,5);}
+ for(let i=180;i<330;i++){assert.equal(stages[i]!.unlock_after,stages[i-1]!.id);assert.ok(stages[i]!.release_gate);assert.ok(storyBoss(stages[i]!,content).level>=71&&storyBoss(stages[i]!,content).level<=90);}
+ for(const chapter of[10,11,12]){const rows=stages.filter(s=>s.chapter===chapter);assert.equal(rows.length,50);assert.equal(new Set(rows.filter(s=>s.index%10===0).map(s=>storyBoss(s,content).definition_id)).size,5);}
 });
 test('D151 former release gates remain explicit; current release opens10–12 with High/Awaken',()=>{
  const content=class2Content();
@@ -43,7 +43,7 @@ test('D151 former release gates remain explicit; current release opens10–12 wi
 });
 test('D151 enemy90 checkpoint/native profiles are valid; party schema supports100 and rejects101 (Class2 stays70)',()=>{
  for(const id of['10-10','10-20','10-30','10-40','10-50','11-10','11-20','11-30','11-40','11-50','12-10','12-20','12-30','12-40','12-50']){
-  const stage=storyStage(id,content)!,input=storyInput(stage,storyBoss(stage),[{...actor('p','player'),spatial:{x:220,y:400,move_speed:120,radius:18,normal_range:80}}],content),state=unwrap(createBattle(input,content,17));
+  const stage=storyStage(id,content)!,input=storyInput(stage,storyBoss(stage,content),[{...actor('p','player'),spatial:{x:220,y:400,move_speed:120,radius:18,normal_range:80}}],content),state=unwrap(createBattle(input,content,17));
   assert.equal(state.actors.filter(a=>a.team==='enemy').length,1);assert.ok(restoreBattle(serializeBattle(state),content).ok,id);
   const bad=serializeBattle(state);bad.actors.find(a=>a.kind==='party')!.stat_blueprint.level=101;assert.equal(restoreBattle(bad,content).ok,false);
  }

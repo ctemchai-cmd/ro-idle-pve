@@ -1,6 +1,7 @@
+import {applyBossProfile} from './boss-profile.ts';
 import type {AccountState} from '../../contracts/index.ts';
 import type {ValidatedContent} from '../../content/model.ts';
-import {storyStage,storyBoss} from './story.ts';
+import {storyStage,storyBossBase} from './story.ts';
 export type EventMetric='farm_seconds'|'battles'|'upgrades'|'daily_chests';
 export interface EventMission {id:string;name:string;metric:EventMetric;target:number;tokens:number}
 export interface EventOffer {id:string;name:string;price:number;limit:number;kind:'mvp_card'|'weapon'|'artifact'|'artifact_reroll'|'rarity_stone'|'option_stone'|'hero_exp'|'gold';quantity:number}
@@ -26,5 +27,5 @@ export function eventBoss(p:EventPeriod,tier:number,c:ValidatedContent){
  // Native identity and its authored rotation; no player-stat scaling or speed changes.
  const source=(c.documents['stages.json']!.stages as unknown as {encounter:{definition_id:string;active_slots:(string|null)[];element:string}[]}[]).flatMap(s=>s.encounter).find(a=>a.definition_id===p.boss);
  if(!template||!source)throw new Error('EVENT_BOSS_TEMPLATE_MISSING');
- const actor=structuredClone(storyBoss(anchor));actor.definition_id=p.boss;actor.element=source.element;actor.active_slots=structuredClone(source.active_slots) as typeof actor.active_slots;actor.passives=['enemy_adaptive_cc'];actor.resolved_base.max_hp=Math.round(actor.resolved_base.max_hp*1.15);actor.resolved_base.physical_attack=Math.round(actor.resolved_base.physical_attack*1.05);actor.resolved_base.magical_attack=Math.round(actor.resolved_base.magical_attack*1.05);return actor;
+ const actor=structuredClone(storyBossBase(anchor));actor.definition_id=p.boss;actor.element=source.element;actor.active_slots=structuredClone(source.active_slots) as typeof actor.active_slots;actor.passives=['enemy_adaptive_cc'];actor.resolved_base.max_hp=Math.round(actor.resolved_base.max_hp*1.15);actor.resolved_base.physical_attack=Math.round(actor.resolved_base.physical_attack*1.05);actor.resolved_base.magical_attack=Math.round(actor.resolved_base.magical_attack*1.05);return applyBossProfile(actor,c);
 }

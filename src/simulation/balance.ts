@@ -83,7 +83,7 @@ export function storyFight(state: AccountState, stageId: string, seed: number, c
   const stage = storyStages(content).find(s => s.id === stageId); if (!stage) throw new Error(`UNKNOWN_STAGE:${stageId}`);
   const compiled = Object.fromEntries(state.team.map(p => [p.character_id, compileCharacterSkills(state.roster.find(a => a.character_id === p.character_id)!, content)]));
   const hashes = Object.fromEntries(state.roster.map(a => [a.character_id, `ref_${a.character_id}`]));
-  const input = storyInput(stage, storyBoss(stage), storyParty(state, content, compiled, hashes), content), created = createBattle(input, content, seed);
+  const input = storyInput(stage, storyBoss(stage,content), storyParty(state, content, compiled, hashes), content), created = createBattle(input, content, seed);
   if (!created.ok) throw new Error(`BATTLE_BUILD_FAILED:${stageId}:${JSON.stringify(created.errors).slice(0, 200)}`);
   const run = advanceUntil(created.value, stage.time_limit_ms, content, modePolicy(created.value.mode, content));
   if (!run.ok) throw new Error(`BATTLE_RUN_FAILED:${stageId}`);

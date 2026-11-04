@@ -1,4 +1,5 @@
 import {queueClaritySourceBytes,withoutQueueClarityFile} from './legacy-queue-clarity-scope.ts';
+import {withoutPlantRenderPack} from './legacy-plant-render-scope.ts';
 import {readFileSync} from 'node:fs';import {gunzipSync} from 'node:zlib';import {createHash} from 'node:crypto';import assert from 'node:assert/strict';
 const before=JSON.parse(gunzipSync(readFileSync('plan/evidence/task-190/before.json.gz')).toString())as Record<string,string>;
 const after=JSON.parse(readFileSync('plan/evidence/task-190/source-after.json','utf8'))as Record<string,string>,data=JSON.parse(readFileSync('plan/evidence/task-190/data-after.json','utf8'))as Record<string,unknown>;
@@ -20,7 +21,7 @@ function reverse(b:any,a:any,v:any,path:string):any{
  if(JSON.stringify(v)!==JSON.stringify(a))return structuredClone(v);return structuredClone(b);
 }
 export function withoutArtifactRefreshFile<T>(file:string,value:T):T{const current=withoutQueueClarityFile(file,value);return file in data?reverse(JSON.parse(before[file]!),data[file],current,file):structuredClone(current);}
-export function withoutArtifactRefreshPack<T>(value:T):T{const afterPack=JSON.parse(gunzipSync(readFileSync('plan/evidence/task-190/pack-after.json.gz')).toString());assert.deepEqual(value,afterPack,'exact reviewed jewelry/runtime metadata pack');return JSON.parse(gunzipSync(readFileSync('plan/evidence/task-190/pack-before.json.gz')).toString());}
+export function withoutArtifactRefreshPack<T>(value:T):T{const afterPack=JSON.parse(gunzipSync(readFileSync('plan/evidence/task-190/pack-after.json.gz')).toString());assert.deepEqual(withoutPlantRenderPack(value),afterPack,'exact reviewed jewelry/runtime metadata pack');return JSON.parse(gunzipSync(readFileSync('plan/evidence/task-190/pack-before.json.gz')).toString());}
 /** Only the nine reviewed programs are projected back for older numeric oracles. */
 export function withoutArtifactRefreshSkills<T>(value:T):T{
  const copy=structuredClone(value);function visit(row:any){if(!row||typeof row!=='object')return;if(Array.isArray(row)){row.forEach(visit);return;}

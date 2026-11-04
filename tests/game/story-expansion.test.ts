@@ -32,9 +32,9 @@ test('D150 appends50 connected stages with five distinct named bosses, preserves
  for(const [file,expected]of Object.entries(baseline.unchanged_data))assert.equal(sha(legacyClass2Source(file)),expected,file);
  const rows=expansion();assert.equal(rows.length,50);assert.equal(rows[0]!.unlock_after,'8-20');
  const state=initial();assert.equal(canChallenge(rows[0]!,state,content),false);state.story.cleared_stage_ids.push('8-20');assert.equal(canChallenge(rows[0]!,state,content),true);
- for(let i=0;i<rows.length;i++){const s=rows[i]!;assert.equal(s.id,'9-'+(i+1));assert.equal(s.unlock_after,i?rows[i-1]!.id:'8-20');assert.equal(s.enemy_identity,'definition');assert.ok(storyBoss(s).level>=67&&storyBoss(s).level<=70);}
- assert.deepEqual([10,20,30,40,50].map(i=>storyBoss(storyStage('9-'+i,content)!).definition_id),['orc_lord','dracula','osiris','doppelganger','dark_lord']);
- assert.ok(new Set(rows.map(s=>storyBoss(s).definition_id)).size>=14);
+ for(let i=0;i<rows.length;i++){const s=rows[i]!;assert.equal(s.id,'9-'+(i+1));assert.equal(s.unlock_after,i?rows[i-1]!.id:'8-20');assert.equal(s.enemy_identity,'definition');assert.ok(storyBoss(s,content).level>=67&&storyBoss(s,content).level<=70);}
+ assert.deepEqual([10,20,30,40,50].map(i=>storyBoss(storyStage('9-'+i,content)!,content).definition_id),['orc_lord','dracula','osiris','doppelganger','dark_lord']);
+ assert.ok(new Set(rows.map(s=>storyBoss(s,content).definition_id)).size>=14);
 });
 
 test('D150 expansion keeps old actual card profiles, gear/currency rates, migration state and dailychapter9 serializable',()=>{
@@ -83,16 +83,16 @@ test('D150 farm species use their own skills, element/race/size and native art, 
 
 test('D150 actual expanded boss is a single enemy, all ten heavy casts stay interruptible and1x2x4 have identical events/checkpoints',()=>{
  for(const stage of expansion())if(stage.index%5===0){
-  const s=resolveSkill(storyBoss(stage).active_slots[0]!,1,content).definition as Active;
+  const s=resolveSkill(storyBoss(stage,content).active_slots[0]!,1,content).definition as Active;
   assert.ok(s.tags.includes('heavy_cast'));assert.equal(s.timing.cast_ms,4000);assert.equal(s.timing.interruptible,true);
  }
  const spatialParty=(skills:Active[]=[])=>({...actor('p','player',skills),spatial:{x:220,y:400,move_speed:120,radius:18,normal_range:80}});
- const stage=storyStage('9-50',content)!,party=spatialParty(),input=storyInput(stage,storyBoss(stage),[party],content),original=unwrap(createBattle(input,content,17));
+ const stage=storyStage('9-50',content)!,party=spatialParty(),input=storyInput(stage,storyBoss(stage,content),[party],content),original=unwrap(createBattle(input,content,17));
  assert.equal(original.actors.filter(a=>a.team==='enemy').length,1);
  const runs=[1,2,4].map(speed=>{let state=checkpoint(original);const events=[];while(state.game_time_ms<40000&&!state.terminal_result){const next=step(state,Math.min(40000,state.game_time_ms+50*speed));events.push(...next.events);state=checkpoint(next.state);}return{events,state:serializeBattle(state as never)};});
  assert.deepEqual(runs[1],runs[0]);assert.deepEqual(runs[2],runs[0]);assert.ok(runs[0]!.events.some(e=>e.skill_id==='enemy_lightning_bolt'&&e.type==='damage'));
  const snare=structuredClone(resolveSkill('hunter_ankle_snare',10,content).definition)as Active;snare.cost.sp=0;snare.timing.cast_ms=500;(snare.effects[0]as{chance:number}).chance=1;
- const interrupted=step(unwrap(createBattle(storyInput(stage,storyBoss(stage),[spatialParty([snare])],content),content,17)),8000);
+ const interrupted=step(unwrap(createBattle(storyInput(stage,storyBoss(stage,content),[spatialParty([snare])],content),content,17)),8000);
  assert.ok(interrupted.events.some(e=>e.type==='cast_interrupt'&&e.actor_id==='enemy_front'));
- assert.ok(!interrupted.events.some(e=>e.type==='damage'&&e.skill_id===storyBoss(stage).active_slots[0]));
+ assert.ok(!interrupted.events.some(e=>e.type==='damage'&&e.skill_id===storyBoss(stage,content).active_slots[0]));
 });

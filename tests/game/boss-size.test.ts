@@ -4,7 +4,7 @@ import{content,actor,skill,unwrap}from'./combat-fixtures.ts';import{storyStages,
 import{resolvedCardTriggers}from'../../src/domain/build/equipment.ts';import{cardRarity}from'../../src/domain/build/card-rarity.ts';import{createBattle,advanceUntil}from'../../src/domain/combat/index.ts';
 import type{AccountState}from'../../src/contracts/index.ts';
 test('D166 size labels match all authored Story bosses and actual mode-factory size tags, never sprite scale',()=>{
- const observed=new Set();for(const stage of storyStages(content)){const boss=storyBoss(stage),input=storyInput(stage,boss,[],content),enemy=input.actors[0]!,size=definitionSize(boss.definition_id);assert.ok(size,boss.definition_id);assert.equal(actorSize(enemy),size);assert.equal(storyBossLabel(stage.id)!.size,size);observed.add(size);}
+ const observed=new Set();for(const stage of storyStages(content)){const boss=storyBoss(stage,content),input=storyInput(stage,boss,[],content),enemy=input.actors[0]!,size=definitionSize(boss.definition_id);assert.ok(size,boss.definition_id);assert.equal(actorSize(enemy),size);assert.equal(storyBossLabel(stage.id)!.size,size);observed.add(size);}
  assert.deepEqual([...observed].sort(),['large','medium','small']);assert.equal(definitionSize('poring'),'medium');assert.equal(definitionSize('whisper'),'small');assert.equal(definitionSize('baphomet'),'large');
 });
 test('D166 Tower and all three daily bosses before-fight data matches actual enemy tags across floors and phases',()=>{

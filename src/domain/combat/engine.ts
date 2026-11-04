@@ -238,7 +238,7 @@ export function advanceUntil(input: BattleState, toGameMs: number, content: Vali
   function respawn(answer: ModeRespawn) {
     const actor = state.actors.find(row => row.actor_id === answer.actor_id && row.kind !== 'summon'); if (!actor || actor.hp > 0) throw new Error('INVALID_MODE_RESPAWN');
     actor.life_epoch++; actor.cast = null; actor.statuses = []; actor.shields = []; actor.rotation_cursor = 0;
-    actor.stat_blueprint = fixedEnemyBlueprint(answer.level, answer.resolved_base, answer.element, content); actor.stats = resolveStats(actor.stat_blueprint, content); recomputeStats(actor, content);
+    actor.stat_blueprint = fixedEnemyBlueprint(answer.level, answer.resolved_base, answer.attack_element ?? answer.element, content); actor.stats = resolveStats(actor.stat_blueprint, content); recomputeStats(actor, content);
     actor.hp = actor.stats.max_hp; actor.sp = actor.stats.max_sp; actor.action_phase = 'normal_only';
     actor.normal_clock = { due_at: null, remaining_ms: normalAttackIntervalMs(actor.stats.attack_speed, state.timing?.normal_attack_base_ms), paused_for_cast: false };
     state.mode = { ...state.mode, ...structuredClone(answer.mode) };

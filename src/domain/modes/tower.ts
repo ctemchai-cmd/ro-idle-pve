@@ -1,3 +1,4 @@
+import {applyBossProfile} from './boss-profile.ts';
 import type { AccountState, CombatStats } from '../../contracts/index.ts';
 import type { ValidatedContent } from '../../content/model.ts';
 import type { StoryStage } from './story.ts';
@@ -40,7 +41,7 @@ export function towerCanChallenge(floor: number, state: AccountState, content: V
 export function towerBoss(floor: number, content: ValidatedContent): Boss {
   const data = towerData(content), row = towerRow(floor, content), skills = data.generator.skill_cycle[(floor - 1) % data.generator.skill_cycle.length]!;
   const resolved_base = { ...data.common_base, physical_attack: row.attack, magical_attack: row.attack, max_hp: row.hp, physical_defense: row.defense, magical_defense: row.defense } as Boss['resolved_base'];
-  return { actor_id: 'enemy_front', definition_id: row.definition_id, level: Math.min(70, floor) /* checkpoint level cap; stats come from the generator */, position: data.position, element: data.element, resolved_base,
-    active_slots: [skills[0] ?? null, skills[1] ?? null, skills[2] ?? null, skills[3] ?? null], passives: floor % data.generator.adaptive_cc_every === 0 ? ['enemy_adaptive_cc'] : [] } as Boss;
+  return applyBossProfile({ actor_id: 'enemy_front', definition_id: row.definition_id, level: Math.min(70, floor) /* checkpoint level cap; stats come from the generator */, position: data.position, element: data.element, resolved_base,
+    active_slots: [skills[0] ?? null, skills[1] ?? null, skills[2] ?? null, skills[3] ?? null], passives: floor % data.generator.adaptive_cc_every === 0 ? ['enemy_adaptive_cc'] : [] } as Boss,content);
 }
 export function towerStageRef(floor: number, content: ValidatedContent) { return { id: String(floor), time_limit_ms: towerData(content).time_limit_ms }; }

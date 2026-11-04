@@ -455,3 +455,7 @@ D212–214 released `54027489226e913842bb2b1612a6e6211706edce` VercelSUCCESS;872
 ## D215 — 3 November2026: queue haste / Artifact clarity
 
 ผู้ใช้ยืนยันลดผลเฉพาะคิวสกิล: ASPD200=2.4s, normalเดิม. ArtifactสกิลเดียวกันคงscaleตามRarity/Lv/ดาว; เปลี่ยนคำพลังเป็นผลจริงและแสดงทรัพยากรพร้อมnativeicons. [design96](design/96-queue-haste-and-artifact-clarity.md).
+
+## D216 — 4 November2026: boss armor / attack
+
+ผู้ใช้ให้ธาตุบอสอิงOriginและเน้นดาเมจที่เบา: P.ATK/M.ATK+15%หลังcurveแต่ละโหมด, HPเดิม.56identityมีreference/5คงค่าเดิมที่ผู้ใช้อนุญาต;ไม่มีการเดาค่าให้ตัวที่ยืนยันไม่ได้. แยกเกราะจากธาตุโจมตีเดิม;ใช้ทุกStory/Tower/Daily/MVP/Eventและdailyrespawn. [design97](design/97-boss-origin-elements.md).

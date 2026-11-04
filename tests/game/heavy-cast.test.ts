@@ -81,7 +81,7 @@ test('D-074: Doom hits only the weakest member ×2.5 (provoke can redirect it), 
 test('D-067/D-074: Story bosses of stages 5, 10 and 15 open with a heavy cast (chapter 1 Cataclysm, then a rotation of all three); the others never cast one', () => {
   const used = new Set<string>();
   for (const stage of storyStages(content).filter(s=>s.chapter<=8)) {
-    const slots = storyBoss(stage).active_slots, heavy = [5, 10, 15].includes(stage.index), casts = slots.filter(id => HEAVY.includes(id as never));
+    const slots = storyBoss(stage,content).active_slots, heavy = [5, 10, 15].includes(stage.index), casts = slots.filter(id => HEAVY.includes(id as never));
     assert.equal(HEAVY.includes(slots[0] as never), heavy, `${stage.id} first slot ${slots[0]}`);
     assert.equal(casts.length, heavy ? 1 : 0, `${stage.id}`);
     if (stage.chapter === 1 && heavy) assert.equal(slots[0], 'enemy_cataclysm', 'chapter 1 teaches with Cataclysm');

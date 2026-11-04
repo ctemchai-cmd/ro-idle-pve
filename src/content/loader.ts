@@ -56,6 +56,15 @@ export function validateContent(raw: unknown): Result<ValidatedContent> {
   register('stat-definitions.json', 'stats', validator.stats);
   register('summon-actors.json', 'actors', actors);
   register('enemies.json', 'actors', actors);
+  attempt({source:'enemies.json',path:'/boss_combat'},()=>{
+    const raw=bundle.documents['enemies.json']!.boss_combat;if(raw===undefined)return;
+    const p=object(raw),elements=object(p.defense_elements),at={source:'enemies.json',path:'/boss_combat'};
+    demand(p.version==='origin-defense-v1'&&typeof p.attack_multiplier==='number'&&Number.isFinite(p.attack_multiplier)&&p.attack_multiplier>=1&&p.attack_multiplier<=2,'boss_profile',at);
+    const ids=list(bundle.documents['enemies.json']!.actors).map(a=>String(object(a).id));
+    demand(canonical(Object.keys(elements).sort())===canonical(ids.sort()),'boss_profile_coverage',at);
+    const chart=object(bundle.documents['combat-rules.json']!.element_chart);
+    for(const element of Object.values(elements))demand(typeof element==='string'&&element in chart,'boss_profile_element',at);
+  });
   for (const id of Object.keys(actors)) validator.actorIds.add(id);
   for (const name of CLASS_ROOTS) register(`skills/${name}.json`, 'skills', skills, 'skill');
   register('enemies.json', 'skills', skills, 'skill');

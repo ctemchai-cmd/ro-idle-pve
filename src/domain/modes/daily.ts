@@ -1,3 +1,4 @@
+import {applyBossProfile} from './boss-profile.ts';
 import type { AccountState, BattleCheckpoint, CombatStats } from '../../contracts/index.ts';
 import type { ValidatedContent } from '../../content/model.ts';
 import type { ModeRespawn, PureModePolicy } from '../combat/index.ts';
@@ -37,7 +38,7 @@ export function dailyPhaseStats(boss: DailyBoss, phase: number, chapter: number)
 export function dailyBossActor(id: DailyBossId, phase: number, chapter: number, content: ValidatedContent): Boss {
   const data = dailyData(content), boss = dailyBoss(id, content), stats = dailyPhaseStats(boss, phase, chapter);
   const resolved_base = { ...data.common_base, physical_attack: stats.attack, magical_attack: stats.attack, max_hp: stats.hp, physical_defense: stats.defense, magical_defense: stats.defense } as CombatStats;
-  return { actor_id: 'enemy_front', definition_id: boss.enemy_definition_id, level: stats.level, position: data.position, element: data.element, resolved_base, active_slots: structuredClone(boss.active_slots), passives: [] };
+  return applyBossProfile({ actor_id: 'enemy_front', definition_id: boss.enemy_definition_id, level: stats.level, position: data.position, element: data.element, resolved_base, active_slots: structuredClone(boss.active_slots), passives: [] },content);
 }
 /** One chest per (boss, ticket day, phase): base × (1 + 0.2 (phase − 1)), floored per currency. */
 export function dailyChest(boss: DailyBoss, phase: number, chapter = 0): Partial<Wallet> {
@@ -60,7 +61,7 @@ export function dailyPolicy(content: ValidatedContent): PureModePolicy {
   return { onEnemyWipe(state: BattleCheckpoint): ModeRespawn | 'victory' {
     if (state.mode.kind !== 'daily' || state.mode.daily_phase === null) return 'victory';
     const { id, chapter } = parseDailyRef(state.mode.ref), cleared = state.mode.daily_phase, next = cleared + 1, actor = dailyBossActor(id, next, chapter, content);
-    return { actor_id: actor.actor_id, level: actor.level, resolved_base: actor.resolved_base, element: actor.element, mode: { daily_phase: next, daily_current_hp: actor.resolved_base.max_hp, reserved_phase_keys: [...state.mode.reserved_phase_keys, String(cleared)] } };
+    return { actor_id: actor.actor_id, level: actor.level, resolved_base: actor.resolved_base, element: actor.element, ...(actor.attack_element?{attack_element:actor.attack_element}:{}), mode: { daily_phase: next, daily_current_hp: actor.resolved_base.max_hp, reserved_phase_keys: [...state.mode.reserved_phase_keys, String(cleared)] } };
   } };
 }
 /** Every advance of a checkpoint (server, client prediction, runner, timeline) uses the policy of its mode. */

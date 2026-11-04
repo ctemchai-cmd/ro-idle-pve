@@ -1102,3 +1102,9 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T193-AC-03` | TASK-193 | Artifactสกิลเดียวกันยังต่างตามRarity/Lv/ดาว; คำอธิบายระบุผลจริง | Shared rules/native320390/build/public | passed_implementation |
 | `T193-AC-04` | TASK-193 | ผลึก Artifact แยกจากแก่น Breakthrough; ทรัพยากร3ชนิดมี native icon/ยอดจริง/มือถือ320390 | Shared rules/native320390/build/public | passed_implementation |
 | `T193-AC-05` | TASK-193 | strict/tests/root+clean committed archive/Vercel/publicผ่าน | Shared rules/native320390/build/public | passed_implementation |
+
+| `T194-AC-01` | TASK-194 | ครบ61identity มีแหล่งอ้างอิงหรือระบุ retained ชัดเจน | Frozen content / shared engine / native mobile | Focused/full TS, native320390, M0, strict/root/clean committed build and anonymous hosted checks | not_run_implementation |
+| `T194-AC-02` | TASK-194 | ทุกโหมดเพิ่มพลังโจมตี15%ครั้งเดียว HP/รางวัล/คิวเดิม | Frozen content / shared engine / native mobile | Focused/full TS, native320390, M0, strict/root/clean committed build and anonymous hosted checks | not_run_implementation |
+| `T194-AC-03` | TASK-194 | ธาตุเกราะจริงตรงUIและการ์ด; phase/reload/speedตรงกัน | Frozen content / shared engine / native mobile | Focused/full TS, native320390, M0, strict/root/clean committed build and anonymous hosted checks | not_run_implementation |
+| `T194-AC-04` | TASK-194 | frozen content/backup/สิทธิ์และรางวัลเดิมปลอดภัย | Frozen content / shared engine / native mobile | Focused/full TS, native320390, M0, strict/root/clean committed build and anonymous hosted checks | not_run_implementation |
+| `T194-AC-05` | TASK-194 | strict/tests/native/root/cleanGit/publicผ่าน | Frozen content / shared engine / native mobile | Focused/full TS, native320390, M0, strict/root/clean committed build and anonymous hosted checks | not_run_implementation |

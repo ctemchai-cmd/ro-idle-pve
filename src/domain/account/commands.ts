@@ -119,7 +119,7 @@ export class AccountCommandRules extends AccountCreationRules {
         if (state.pending_rewards.length >= Number((this.content.documents['save-contracts.json']!.farm as unknown as {queue_limit:number}).queue_limit)-1) reject('PENDING_REWARDS_FULL');
         if (!time.account_id || !time.battle_id || time.battle_seed===undefined || !time.build_hashes) throw new Error('SERVER_BATTLE_CONTEXT_REQUIRED');
         const compiled = Object.fromEntries(state.team.map(p => [p.character_id, compileCharacterSkills(state.roster.find(a => a.character_id === p.character_id)!, this.content)]));
-        const initial = createBattle(storyInput(stage!, storyBoss(stage!), storyParty(state,this.content,compiled,time.build_hashes), this.content), this.content, time.battle_seed);
+        const initial = createBattle(storyInput(stage!, storyBoss(stage!,this.content), storyParty(state,this.content,compiled,time.build_hashes), this.content), this.content, time.battle_seed);
         if (!initial.ok) reject('BATTLE_BUILD_UNAVAILABLE');
         consumePreparedForTeam(state);
         state.active_battle = { battle_id: time.battle_id, mode:'story', mode_ref:stage!.id, ticket_day:null, started_at:time.server_at, last_ack_at:time.server_at, lease_expires_at:time.new_lease_at, ...this.versions };
