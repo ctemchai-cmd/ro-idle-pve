@@ -17,6 +17,6 @@ TASK-196 (done)
 - [x] AC-01: AFKเฉลี่ย8/12/16/20/24ต่อ12hครบ15บท คงRNGและผลดรอปอื่น
 - [x] AC-02: ร้าน40ต่อวัน/Event100ต่อรอบ โดยคงสิทธิ์เดิมและไม่รับซ้ำ
 - [x] AC-03: frozenAFK/pending/stock/ราคาตีRarityเดิมไม่เปลี่ยนย้อนหลัง
-- [ ] AC-04: focused/native/M0/strict/build/cleanGit/publicผ่าน
+- [x] AC-04: focused/native/M0/strict/build/cleanGit/publicผ่าน
 
-Local focused41/native6groups320390/M0/strict/root passed. Clean committed build + hosted verification pending.
+ผลตรวจ: [review](../evidence/task-197-review.json) · Vercel `1e489c6c0` SUCCESS / public5groups.

@@ -1,3 +1,7 @@
+## TASK197 COMPLETE / Rarity supply LIVE — 5 November2026
+
+Product1e489c6c027fe5e7ea1a085beacdb5004d79f6fd VercelSUCCESS/public5groups/27bundleSHA/15resourceSHA.41focusedTS+10finalscope/native6groups320390/M0/strict/root+cleanCOMMITTED1736identical passed.183/197done/M4137/146. D219/design100: AFKexpected8/12/16/20/24 per12h (chapters1–3/4–6/7–9/10–12/13–15), shop10for20kgold×4/day, Event25for60tokens×4/period. Oldcounters/stock/pending/frozenAFK/upgradecosts/otherloot/RNGdraws preserved;firstclaimsettlesoldwindowthennewrate. Content073575/engine5a2cf/schema4619/coree382/pack00d778unchangedmedia. NoSQL/env/owneraccess/6173restart/combatbatch. Own7549CLOSED. Preserveuserdraft/unselectedassets. No remaining197work;cleancommittedarchivebeforeeachpush.
+
 ## TASK197 LOCAL REVIEW — 5 November2026; publishing
 
 D219/design100: Rarity AFKexpected8/12/16/20/24 per12h in five3-chapter bands, shop10for20kgold×4/day, Event25for60tokens×4/period.24Epic→Legendary96stones versus48–64/day with12hAFK+fullshop. Costs/otherloot/RNGdraws/stock/pending/oldpaidcounters unchanged; firstclaimsettlesoldfrozenwindow thennewrate.41focusedTS/native6groups320390/M0/strict/rootpassed. Cleancommittedbuild/publicpending. NoSQL/env/newassets/owneraccess/combatbatch/6173restart. Own7549 closed afterlocalchecks. Preserveuserdraft/unselectedassets.

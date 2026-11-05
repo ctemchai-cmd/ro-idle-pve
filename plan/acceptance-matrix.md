@@ -1131,7 +1131,7 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 
 | Case | Task | Expected | Status |
 |---|---|---|---|
-| `T197-AC-01` | TASK-197 | AFK rarity8/12/16/20/24 per12h; other RNG/rewards unchanged | not_run_implementation |
-| `T197-AC-02` | TASK-197 | Shop40/day and Event100/period preserve paid counters and replay | not_run_implementation |
-| `T197-AC-03` | TASK-197 | Frozen old windows/pending/stock and all upgrade costs retained | not_run_implementation |
-| `T197-AC-04` | TASK-197 | Focused/native/M0/strict/root/cleanGit/public pass | not_run_implementation |
+| `T197-AC-01` | TASK-197 | AFK rarity8/12/16/20/24 per12h; other RNG/rewards unchanged | passed_implementation |
+| `T197-AC-02` | TASK-197 | Shop40/day and Event100/period preserve paid counters and replay | passed_implementation |
+| `T197-AC-03` | TASK-197 | Frozen old windows/pending/stock and all upgrade costs retained | passed_implementation |
+| `T197-AC-04` | TASK-197 | Focused/native/M0/strict/root/cleanGit/public pass | passed_implementation |
