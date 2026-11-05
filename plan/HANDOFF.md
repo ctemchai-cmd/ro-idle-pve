@@ -1,3 +1,7 @@
+## TASK197 LOCAL REVIEW — 5 November2026; publishing
+
+D219/design100: Rarity AFKexpected8/12/16/20/24 per12h in five3-chapter bands, shop10for20kgold×4/day, Event25for60tokens×4/period.24Epic→Legendary96stones versus48–64/day with12hAFK+fullshop. Costs/otherloot/RNGdraws/stock/pending/oldpaidcounters unchanged; firstclaimsettlesoldfrozenwindow thennewrate.41focusedTS/native6groups320390/M0/strict/rootpassed. Cleancommittedbuild/publicpending. NoSQL/env/newassets/owneraccess/combatbatch/6173restart. Own7549 closed afterlocalchecks. Preserveuserdraft/unselectedassets.
+
 ## TASK196 COMPLETE / Batch upgrades and Events LIVE — 5 November2026
 
 Productf8e9f2fec634ba9bbddd0983df59736da2861882 VercelSUCCESS/public5groups/27bundleSHA/15resourceSHA.899fullTS+30finalfocused/native11groups320390/M0/strict/sourcepack/root+cleanCOMMITTED1736identical passed.182/196done. D218/design99: targetRefine+5/+10/+15 untiltargetorfunds,oldodds/cost/pity/sockets,oneatomicseededreceipt/replayablesummary;SkillMaxactualrank/funds/currentphase/paidledger,noautoAwaken.15distinctresources/addedcrafting+Eventbalances/mining43reroll. Eventtierselector/readyfirstmissions/native rewardgrid/oldrights. Engine-data b6d5 unchanged;content118618/schema4619/coree382/pack00d778,total33195434/initial1546658. No SQL/env/owneraccess/6173restart/balancechanges. Own7548CLOSED. No remaining196work;preserveuserdraft/unselectedassets. Continuecleancommittedarchivebeforeeachpush.

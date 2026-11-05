@@ -466,3 +466,6 @@ Fix122 presentation-only early stages through shared identity mapping;75 researc
 
 ## D-218 — 5 November2026
 User confirms Refine targets retry until success or unaffordable, aggregate summary; Skill Upgrade Max, complete/distinct resource icons and refreshed Event UI. See design99. No balance changes.
+
+## D-219 — 5 November2026
+Increase Rarity stone acquisition for full-party gearing. AFK8–24/12h, shop10×4/day at20k,Event25×4 at60tokens. Preserve all paid rights/frozen windows/upgrade costs. See design100.

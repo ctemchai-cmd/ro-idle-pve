@@ -1,0 +1,7 @@
+# Rarity stone supply — D219/TASK197
+
+Product changes are only15 rarity probabilities and2 economy offers. [Design100](../../design/100-rarity-stone-supply.md) records the24/42piece budgets. AFK8–24/12h; shop40/day for80k; Event100/period for240tokens. Upgrade costs and all other income remain exact.
+
+41 focused TS cases passed, including5 new supply/API cases,15×64 matched crafting streams and frozen old-window settlement. Real API handlers use signed in-memory persistence: UUID replay grants once; no Supabase or owner data. Native actualReact320/390 gives6 groups: displayed quantity/price/remaining rights, buy-max40 once, existing2 purchasesleave2, Eventprior3leaves1grant25. Early browser fixture failures were missing storedshopday/seed context, corrected without product-code changes. Root build/M0/strict passed; clean committed and public verification pending.
+
+Frozen before.json.gz contains8 files frome1b167040; supplemental before-metadata.json captures7 additional metadata files from that same Git commit. Narrow source/data projection restores only reviewed197changes for historical test oracles. Old frozen evidence was not overwritten. No combat simulation, assets/SQL/env/owner access or6173restart.

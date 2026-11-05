@@ -45,9 +45,9 @@ test('D188 all six rarity steps consume stated costs, stop at Supreme, and regul
  assert.equal(draws,10);const before=structuredClone(s);assert.throws(()=>applyCraftingCommand(s,command('equipment.rarity_up',{item_instance_id:'craft_test',expected_rarity:'supreme'})as never,content,()=>0),/RARITY_MAX_REACHED/);assert.deepEqual(s,before);
  let n=0;rollItemOptions('supreme',()=>{n++;return .1;},content);assert.equal(n,10);
 });
-test('D189 shops enforce independent per-save Bangkok daily limits, affordable max, and stock overflow without partial spending',()=>{
- const a=initial(),b=initial();assert.equal(shopOffer('rarity_stone',content).daily_limit,2);assert.equal(shopOffer('option_stone',content).daily_limit,3);
- applyShopPurchase(a,'rarity_stone',2,'2026-10-27',content);assert.equal(a.equipment_crafting!.stock.rarity_stone,104);assert.equal(a.wallet.gold,1960000);assert.equal(shopMaxQuantity(a,'rarity_stone','2026-10-27',content),0);assert.equal(shopMaxQuantity(a,'rarity_stone','2026-10-28',content),2);assert.equal(shopMaxQuantity(b,'rarity_stone','2026-10-27',content),2);
+test('D219 increased shops enforce independent per-save Bangkok daily limits, affordable max, and stock overflow without partial spending',()=>{
+ const a=initial(),b=initial();assert.equal(shopOffer('rarity_stone',content).daily_limit,4);assert.equal(shopOffer('option_stone',content).daily_limit,3);
+ applyShopPurchase(a,'rarity_stone',4,'2026-10-27',content);assert.equal(a.equipment_crafting!.stock.rarity_stone,140);assert.equal(a.wallet.gold,1920000);assert.equal(shopMaxQuantity(a,'rarity_stone','2026-10-27',content),0);assert.equal(shopMaxQuantity(a,'rarity_stone','2026-10-28',content),4);assert.equal(shopMaxQuantity(b,'rarity_stone','2026-10-27',content),4);
  const frozen=structuredClone(a);assert.throws(()=>applyShopPurchase(a,'rarity_stone',1,'2026-10-27',content),/SHOP_LIMIT_REACHED/);assert.deepEqual(a,frozen);
  b.equipment_crafting!.stock.option_stone=Number.MAX_SAFE_INTEGER;const old=structuredClone(b);assert.throws(()=>applyShopPurchase(b,'option_stone',1,'2026-10-27',content),/RESOURCE_OVERFLOW/);assert.deepEqual(b,old);
 });

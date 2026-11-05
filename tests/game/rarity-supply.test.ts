@@ -1,0 +1,38 @@
+import test from'node:test';import assert from'node:assert/strict';import{readFileSync}from'node:fs';import{gunzipSync}from'node:zlib';import{randomUUID}from'node:crypto';
+import{content}from'./combat-fixtures.ts';import{shopBatchFixture}from'./shop-batch-fixture.ts';
+import{farmCraftingProfile}from'../../src/domain/modes/farm-crafting-profile.ts';import{rollFarmCrafting}from'../../src/domain/rewards/farm-crafting.ts';import{initializeAccount}from'../../src/domain/progression/initialize.ts';import{storyStage,storyFarmSnapshot}from'../../src/domain/modes/story.ts';import{migrateAccountState}from'../../src/domain/account/migrate.ts';import{AccountCommandRules}from'../../src/domain/account/commands.ts';import{reserveFarm}from'../../src/domain/rewards/farm.ts';import{eventRules,eventPeriod}from'../../src/domain/modes/events.ts';import{eventTokens,eventRecord,writableEvent}from'../../src/domain/progression/events.ts';import{shopMaxQuantity}from'../../src/domain/progression/shop.ts';
+const frozen=JSON.parse(gunzipSync(readFileSync('plan/evidence/task-197/before.json.gz')).toString()),oldLoot=JSON.parse(frozen['plan/data/loot.json']),oldEconomy=JSON.parse(frozen['plan/data/economy.json']);
+const at='2026-11-05T00:00:00Z',now=Date.parse(at),start=now-43200000;
+const initial=()=>initializeAccount(content,{root_job_id:'mage',gender:'female'},new Date(start).toISOString(),'2026-11-04',197);
+test('D219 only rarity supply changes; every other economy/loot field and every old price remains exact',()=>{
+ const loot=JSON.parse(readFileSync('plan/data/loot.json','utf8')),economy=JSON.parse(readFileSync('plan/data/economy.json','utf8'));
+ for(let c=1;c<=15;c++){const expected=c<=3?8:c<=6?12:c<=9?16:c<=12?20:24;assert(Math.abs(loot.crafting.chapter_chances[c].rarity_stone*144/1e6-expected)<.0001);loot.crafting.chapter_chances[c].rarity_stone=oldLoot.crafting.chapter_chances[c].rarity_stone;}
+ assert.deepEqual(loot,oldLoot);
+ const shop=economy.shop.offers.find((o:any)=>o.id==='rarity_stone'),event=economy.events.shop.find((o:any)=>o.id==='rarity_stones');assert.deepEqual(shop,{...oldEconomy.shop.offers.find((o:any)=>o.id==='rarity_stone'),crafting_grant:{rarity_stone:10},daily_limit:4});assert.deepEqual(event,{...oldEconomy.events.shop.find((o:any)=>o.id==='rarity_stones'),name:'หินเลื่อน Rarity ×25',quantity:25,limit:4});
+ economy.shop.offers=economy.shop.offers.map((o:any)=>o.id==='rarity_stone'?oldEconomy.shop.offers.find((x:any)=>x.id===o.id):o);economy.events.shop=economy.events.shop.map((o:any)=>o.id==='rarity_stones'?oldEconomy.events.shop.find((x:any)=>x.id===o.id):o);assert.deepEqual(economy,oldEconomy);
+});
+test('D219 matched craft streams preserve every reroll stone and RNG draw; rarity rolls increase without perturbing gear/card RNG',()=>{
+ for(let chapter=1;chapter<=15;chapter++)for(let seed=0;seed<64;seed++){
+  const a=initial().farm;a.loot_rng.state=seed;const b=structuredClone(a),p=farmCraftingProfile(chapter,content)!;
+  const next=rollFarmCrafting(a,p,144),old=rollFarmCrafting(b,{version:p.version,chance_per_million:oldLoot.crafting.chapter_chances[chapter]},144);
+  assert.equal(next.option_stone,old.option_stone);assert(next.rarity_stone>=old.rarity_stone);assert.deepEqual(a.loot_rng,b.loot_rng);assert.deepEqual(a.crafting_rng,b.crafting_rng);assert.equal(a.crafting_rng!.draw_count,288);
+ }
+});
+test('D219 migration/first collect pays exact frozen old window then adopts new chances without rewriting pending stock',()=>{
+ const s=initial();s.story.cleared_stage_ids=['1-1'];s.story.selected_farm_stage='1-1';s.farm.rate_snapshot=storyFarmSnapshot(storyStage('1-1',content)!,s,content);s.farm.rate_snapshot.crafting_drops!.chance_per_million=structuredClone(oldLoot.crafting.chapter_chances['1']);s.equipment_crafting!.stock={option_stone:7,rarity_stone:13};const original=structuredClone(s),m=migrateAccountState(s,content).state;assert.deepEqual(m.farm,original.farm);assert.deepEqual(m.equipment_crafting,original.equipment_crafting);
+ const reserved=reserveFarm(original,start,now,at,'expected',content),expected=reserved.pending_rewards.reduce((n,c)=>n+(c.crafting_materials?.rarity_stone??0),0),rules=new AccountCommandRules(content);
+ const q=rules.decide({type:'farm.claim',params:{collect_rewards:true},request_id:randomUUID(),expected_revision:1,schema_version:1,...rules.versions},m,null,{server_at:at,now_ms:now,farm_from_ms:start}as never,'a'.repeat(64));assert.equal(q.receipt.outcome,'committed');assert.equal(q.state.equipment_crafting!.stock.rarity_stone,13+expected);assert.deepEqual(q.state.farm.rate_snapshot!.crafting_drops,farmCraftingProfile(1,content));assert.deepEqual(q.state.farm.crafting_rng,reserved.farm.crafting_rng);
+});
+test('D219 old daily purchases remain used: two bought leaves two; signed API grants20 for40000 once and replay is identical',async()=>{
+ const f=shopBatchFixture('funded',at,s=>{s.shop.purchases.rarity_stone=2;s.equipment_crafting!.stock.rarity_stone=4;});assert.equal(shopMaxQuantity(f.state,'rarity_stone',f.day,content),2);
+ const cmd={type:'shop.buy',params:{offer_id:'rarity_stone',quantity:2},request_id:randomUUID(),expected_revision:1,schema_version:1,...f.rules.versions},call=(c:unknown)=>f.api.fetch(new Request('http://local/api/commands',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(c)}));
+ const r=await call(cmd),b=await r.json();assert.equal(r.status,200);assert.equal(b.receipt.outcome,'committed');assert.equal(f.state.equipment_crafting!.stock.rarity_stone,24);assert.equal(b.receipt.result.resource_delta.gold,-40000);assert.equal(f.state.shop.purchases.rarity_stone,4);assert.equal(f.writes,1);assert.deepEqual((await(await call(cmd)).json()).receipt,b.receipt);assert.equal(f.writes,1);
+ const denied=await call({...cmd,request_id:randomUUID(),expected_revision:2,params:{offer_id:'rarity_stone',quantity:1}});assert.equal((await denied.json()).receipt.result.code,'SHOP_LIMIT_REACHED');assert.equal(f.writes,1);
+});
+test('D219 old Event3 purchases retain spent tokens and allow only one new25 grant; receipt replay never repeats it',async()=>{
+ const p=eventPeriod(now,content),r=eventRules(content),f=shopBatchFixture('funded',at,s=>{s.story.cleared_stage_ids=['1-5'];const e=writableEvent(s,p.period_id);e.joined=true;e.counters={farm_seconds:172800,battles:15,upgrades:15,daily_chests:10};e.claimed=r.missions.map(m=>m.id);e.purchases.rarity_stones=3;s.equipment_crafting!.stock.rarity_stone=15;});
+ const oldTokens=eventTokens(eventRecord(f.state,p.period_id),oldEconomy.events);assert.equal(eventTokens(eventRecord(f.state,p.period_id),r),oldTokens);
+ const cmd={type:'event.redeem',params:{period_id:p.period_id,offer_id:'rarity_stones',character_id:'main'},request_id:randomUUID(),expected_revision:1,schema_version:1,...f.rules.versions},call=(c:unknown)=>f.api.fetch(new Request('http://local/api/commands',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(c)}));
+ const response=await call(cmd),b=await response.json();assert.equal(response.status,200);assert.equal(b.receipt.outcome,'committed');assert.equal(f.state.equipment_crafting!.stock.rarity_stone,40);assert.equal(eventTokens(eventRecord(f.state,p.period_id),r),oldTokens-60);assert.equal(f.writes,1);assert.deepEqual((await(await call(cmd)).json()).receipt,b.receipt);assert.equal(f.writes,1);
+ const denied=await call({...cmd,request_id:randomUUID(),expected_revision:2});assert.equal((await denied.json()).receipt.result.code,'EVENT_LIMIT_REACHED');assert.equal(f.writes,1);
+});
