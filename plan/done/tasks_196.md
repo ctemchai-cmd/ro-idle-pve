@@ -18,4 +18,6 @@ TASK-195 (done)
 - [x] AC-01: Refine Target ราคา/โอกาส/pity เดิม หยุดเมื่อถึงเป้าหมายหรือเงินไม่พอ หนึ่ง receipt/revision ไม่จ่ายซ้ำ
 - [x] AC-02: Skill Max ไม่เกิน cap/เงิน/Awaken phase และคืนทุนจาก ledger จริง
 - [x] AC-03: ทรัพยากร15ชนิดมีภาพไม่ซ้ำ และ Event mobile320/390ไม่ล้น/รักษาสิทธิ์เดิม
-- [ ] AC-04: focused/native/strict/M0/build/clean committed archive/public ผ่าน
+- [x] AC-04: focused/native/strict/M0/build/clean committed archive/public ผ่าน
+
+ผลตรวจ: [review](../evidence/task-196-review.json) · Vercel `f8e9f2fec` SUCCESS / public5groups.

@@ -9,4 +9,4 @@ Baseline45c5499a8. User confirmed retry-until-target-or-funds.
 
 899 full TS +12 focused final passed. Native mobile320/390: target/pity summary, one command on double click, partial funds, failed request unlock, skill max, 15 images, Event shop/boss locks; see native.json. Initial native fixture had an invalid test-only breakthrough field; corrected to actual completed_gate_ids/status budget and rerun. No production save was involved.
 
-Root build/source pack/strict/M0 passed. Clean committed archive and public deployment pending. No owner login/SQL/env/6173 restart or combat balance batch. Browser fixtures are synthetic, not physical-phone measurement.
+Root build/source pack/strict/M0 passed. Clean committed archive1736 identical files passed. Productf8e9f2fec is VercelSUCCESS: public5groups/27bundleSHA/15resourceSHA/APIregionSIN1/anonymous401/demo320390/login, no errors or writes. No owner login/SQL/env/6173 restart or combat balance batch. Browser fixtures are synthetic, not physical-phone measurement.

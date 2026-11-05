@@ -1122,7 +1122,7 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 
 | Case | Task | Expected | Status |
 |---|---|---|---|
-| `T196-AC-01` | TASK-196 | Refine target uses original odds/prices/pity and atomic replayable summary | not_run_implementation |
-| `T196-AC-02` | TASK-196 | Skill Max respects funds/rank gates/current phase and actual paid ledger | not_run_implementation |
-| `T196-AC-03` | TASK-196 | Fifteen distinct resource icons and responsive Event UI with existing rights | not_run_implementation |
-| `T196-AC-04` | TASK-196 | Focused/native/strict/M0/root/clean committed archive/public checks pass | not_run_implementation |
+| `T196-AC-01` | TASK-196 | Refine target uses original odds/prices/pity and atomic replayable summary | passed_implementation |
+| `T196-AC-02` | TASK-196 | Skill Max respects funds/rank gates/current phase and actual paid ledger | passed_implementation |
+| `T196-AC-03` | TASK-196 | Fifteen distinct resource icons and responsive Event UI with existing rights | passed_implementation |
+| `T196-AC-04` | TASK-196 | Focused/native/strict/M0/root/clean committed archive/public checks pass | passed_implementation |
