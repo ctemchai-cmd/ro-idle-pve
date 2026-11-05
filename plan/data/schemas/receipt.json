@@ -305,6 +305,74 @@
             ],
             "additionalProperties": false
           }
+        },
+        "refine_batch": {
+          "type": "object",
+          "properties": {
+            "character_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "slot": {
+              "enum": [
+                "weapon",
+                "head",
+                "armor",
+                "garment",
+                "shoes",
+                "accessory"
+              ]
+            },
+            "from_level": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "to_level": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "target_level": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "attempts": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "successes": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "failures": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "stop_reason": {
+              "enum": [
+                "target_reached",
+                "insufficient_resources"
+              ]
+            }
+          },
+          "required": [
+            "character_id",
+            "slot",
+            "from_level",
+            "to_level",
+            "target_level",
+            "attempts",
+            "successes",
+            "failures",
+            "stop_reason"
+          ],
+          "additionalProperties": false
         }
       },
       "required": [

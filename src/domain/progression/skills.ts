@@ -74,6 +74,18 @@ export function exclusiveLoadoutConflict(actor: Character, slots: readonly (stri
  for(const id of slots){const group=rules.find(r=>r.skill_id===id)?.exclusive_group;if(group){const count=(counts.get(group)??0)+1;if(count>1)return true;counts.set(group,count);}}
  return false;
 }
+/** Highest affordable rank in the current phase; never awakens or crosses the character-level gate. */
+export function maxSkillUpgrade(actor:Character,id:string,wallet:Wallet,content:ValidatedContent):{target:number;cost:Partial<Wallet>}|null{
+ const definition=content.skills[id] as unknown as SkillDefinition|undefined;
+ if(!definition||!allowedSkill(actor,definition,content)||actor.level<definition.unlock_level)return null;
+ let best:{target:number;cost:Partial<Wallet>}|null=null;
+ for(let target=(actor.skill_levels[id]??0)+1;target<=characterSkillCap(actor,definition);target++){
+  const cost=skillQuote(actor,id,target,content);
+  if(Object.entries(cost).some(([key,value])=>wallet[key as keyof Wallet]<value!))break;
+  best={target,cost};
+ }
+ return best;
+}
 export function validateCharacterSkills(actor: Character, content: ValidatedContent): void {
  if(actor.awakened_skills.some(id=>!actor.skill_levels[id])||actor.awakened_skills.length&&(!awakeningEnabled(content)||(content.jobs.byId[actor.job_id]?.stage??0)<3))throw new Error('INVALID_AWAKENED_SKILL');
  for(const id of actor.awakened_skills)resolveSkill(id,actor.skill_levels[id]!,content,true);

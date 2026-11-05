@@ -43,6 +43,7 @@ export interface GameContext {
   submitWhenReady: Submit;
   /** Result code of the most recent receipt (e.g. a Refine outcome). */
   lastCode: () => string | null;
+  lastResult?: () => import('../../contracts/index.ts').Receipt['result'] | null;
   /** Instance ids created by the most recent receipt (gacha reveals). */
   lastCreated: () => string[];
   toast: (text: string) => void; go: (view: View, characterId?: string) => void; characterId: string; selectCharacter: (id: string) => void;
@@ -128,7 +129,7 @@ function ConnectedGame({ auth, scope, selection, chooseSave }: { auth: AuthContr
     return <div className="game-root">{slotReturn}<div className="game-splash" role="status"><div className="splash-logo">RO <span>Idle</span></div><p>{save.status === 'incompatible' ? 'มีเกมรุ่นใหม่ กรุณาโหลดหน้าใหม่' : save.status === 'offline' ? 'ขาดการเชื่อมต่อ · รอเชื่อมต่อเพื่อโหลดเซฟ' : save.status === 'error' ? 'ยังโหลดเซฟไม่ได้' : 'กำลังโหลดเซฟ…'}</p>{(save.status==='error'||save.status==='offline'||save.status==='incompatible')&&<SaveErrorCode reason={save.reason}/>}{(save.status === 'offline' || save.status === 'error') && <button className="btn primary" onClick={() => void controller.reconnect()}>เชื่อมต่อใหม่</button>}</div></div>;
   }
   const characterId = state.roster.some(a => a.character_id === route.character) ? route.character : 'main';
-  const context: GameContext = { state, pack, locked: !ready || busy || !!active, busy: !ready || busy, submit, submitWhenReady, lastCode: () => controller.snapshot.lastReceipt?.result.code ?? null, lastCreated: () => [...(controller.snapshot.lastReceipt?.result.created_instance_ids ?? [])], latest: () => controller.snapshot.checkpoint?.save.state as AccountState | undefined, toast, go, characterId, selectCharacter: id => go(route.view, id) , challenge: (target, automatic) => { setRequest({ ...target, automatic, at: Date.now() }); go('home'); } };
+  const context: GameContext = { state, pack, locked: !ready || busy || !!active, busy: !ready || busy, submit, submitWhenReady, lastCode: () => controller.snapshot.lastReceipt?.result.code ?? null, lastResult: () => controller.snapshot.lastReceipt?.result ?? null, lastCreated: () => [...(controller.snapshot.lastReceipt?.result.created_instance_ids ?? [])], latest: () => controller.snapshot.checkpoint?.save.state as AccountState | undefined, toast, go, characterId, selectCharacter: id => go(route.view, id) , challenge: (target, automatic) => { setRequest({ ...target, automatic, at: Date.now() }); go('home'); } };
   const tab: Tab | null = route.view === 'home' ? null : route.view==='artifact_draw'?'store': route.view==='artifacts' || route.view === 'skills' || route.view === 'stats' ? 'buddy' : route.view === 'tower' || route.view === 'daily' || route.view==='mvp' || route.view==='events' ? 'dungeon' : route.view;
   return <SaveRecoveryProvider value={{status:save.status,pending:!!save.pending,retry:()=>void controller.reconnect()}}><div className="game-root">
     <div className="game-frame">

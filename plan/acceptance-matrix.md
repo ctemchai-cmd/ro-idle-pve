@@ -1117,3 +1117,12 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T195-AC-02` | TASK-195 | Stats/queues/rewards/original attack element and frozen saves retained | passed_implementation |
 | `T195-AC-03` | TASK-195 | Ten coherent native Origin icons verified on320/390 | passed_implementation |
 | `T195-AC-04` | TASK-195 | Tests/M0/strict/sourcepack/root/clean committed/public checks pass | passed_implementation |
+
+## TASK-196
+
+| Case | Task | Expected | Status |
+|---|---|---|---|
+| `T196-AC-01` | TASK-196 | Refine target uses original odds/prices/pity and atomic replayable summary | not_run_implementation |
+| `T196-AC-02` | TASK-196 | Skill Max respects funds/rank gates/current phase and actual paid ledger | not_run_implementation |
+| `T196-AC-03` | TASK-196 | Fifteen distinct resource icons and responsive Event UI with existing rights | not_run_implementation |
+| `T196-AC-04` | TASK-196 | Focused/native/strict/M0/root/clean committed archive/public checks pass | not_run_implementation |

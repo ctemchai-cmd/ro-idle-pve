@@ -1,7 +1,7 @@
 import { preparedWeaponElement } from '../../client/store.ts';
 import { Icon } from '../icon.tsx';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { characterSkillOptions, placeSkill, removeSkill, type SkillOption,skillAwakeningEnabled } from '../../client/skills.ts';
+import { maximumSkillUpgrade, characterSkillOptions, placeSkill, removeSkill, type SkillOption,skillAwakeningEnabled } from '../../client/skills.ts';
 import { previewStorySession, storyOptions } from '../../client/story.ts';
 import { SkillTimeline } from '../skill-timeline.tsx';
 import { SkillIcon } from '../skill-icon.tsx';
@@ -32,6 +32,10 @@ export function SkillsPage({ context }: { context: GameContext }) {
   useEffect(() => { setDraft(structuredClone(actor.active_slots)); setPicking(null); setSelected(s => options.skills.some(o => o.id === s) ? s : actor.active_slots.find(Boolean) ?? options.skills[0]?.id ?? null); }, [actor.character_id, actor.job_id, JSON.stringify(actor.active_slots)]);
   const skill = options.skills.find(s => s.id === selected) ?? options.skills[0]!, equippedAt = draft.indexOf(skill.id);
   const save = (next: typeof draft) => { setPicking(null); if (JSON.stringify(next) === JSON.stringify(actor.active_slots)) return; setDraft(next); void submit('skill.set_loadout', { character_id: actor.character_id, skill_ids: next }).then(ok => { if (!ok) setDraft(structuredClone(actor.active_slots)); }); };
+  const upgradeGate=useRef(false),[upgrading,setUpgrading]=useState(false),[upgradeMode,setUpgradeMode]=useState<'one'|'max'>('one');
+  const maximum=useMemo(()=>maximumSkillUpgrade(actor,skill.id,state.wallet),[actor,skill.id,state.wallet]);
+  const upgradeTarget=upgradeMode==='max'?maximum?.target:skill.level+1,upgradePrice=upgradeMode==='max'?maximum?.cost:skill.price;
+  async function upgrade(){if(upgradeGate.current||locked||!upgradeTarget||!upgradePrice)return;upgradeGate.current=true;setUpgrading(true);try{await submit('skill.upgrade',{character_id:actor.character_id,skill_id:skill.id,target_level:upgradeTarget});}catch{context.toast('ทำรายการไม่สำเร็จ ลองเชื่อมต่อเซฟอีกครั้ง');}finally{upgradeGate.current=false;setUpgrading(false);}}
   const strip = useRef<HTMLElement>(null);
   useEffect(() => { if (picking) strip.current?.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); }, [picking]);
   const placeAt = (id: string, slot: number) => save(placeSkill(draft, id, slot));
@@ -61,7 +65,7 @@ export function SkillsPage({ context }: { context: GameContext }) {
         <div className="effect-block"><h3>{skill.level ? `ตอนนี้ Lv.${skill.level}` : 'เมื่อเรียน Lv.1'}</h3>{(skill.level ? skill.effects : skill.nextEffects.length ? skill.nextEffects : skill.effects).map((t, i) => <p key={i}>{t}</p>)}</div>
         <SkillGrowth skill={skill} />
         {skill.awakenPrice&&<div className="awaken-box"><details><summary>Awaken · Lv.1</summary>{skill.awakenEffects?.map((text,i)=><p key={i}>{text}</p>)}</details><CostChips cost={skill.awakenPrice} wallet={state.wallet} pack={pack}/><button className="btn primary wide" disabled={locked||!canPay(state.wallet,skill.awakenPrice)} onClick={()=>void submit('skill.awaken',{character_id:actor.character_id,skill_id:skill.id})}><SkillIcon id={skill.id} pack={pack} awakened/>Awaken · Lv.1</button></div>}
-        {skill.locked ? <p className="hint warn">ต้องเป็น Lv.{skill.unlock} เพื่อเรียน</p> : skill.price ? <div className="upgrade-box"><CostChips cost={skill.price} wallet={state.wallet} pack={pack} /><button className="btn primary wide" disabled={locked || !canPay(state.wallet, skill.price)} onClick={() => void submit('skill.upgrade', { character_id: actor.character_id, skill_id: skill.id, target_level: skill.level + 1 })}>{skill.level ? 'อัปเกรด' : 'เรียนสกิล'}</button></div> : <p className="hint">{skill.level >= skill.max ? 'ระดับสูงสุดแล้ว' : `ระดับถัดไปที่ Lv.${skill.nextRankAt}`}</p>}
+        {skill.locked ? <p className="hint warn">ต้องเป็น Lv.{skill.unlock} เพื่อเรียน</p> : skill.price ? <div className="upgrade-box"><div className="seg skill-upgrade-mode" role="group" aria-label="จำนวนระดับสกิล"><button aria-pressed={upgradeMode==='one'} disabled={upgrading} onClick={()=>setUpgradeMode('one')}>1 ระดับ</button><button aria-pressed={upgradeMode==='max'} disabled={upgrading} onClick={()=>setUpgradeMode('max')}>Upgrade Max</button></div>{upgradePrice&&<CostChips cost={upgradePrice} wallet={state.wallet} pack={pack}/>}<button className="btn primary wide" disabled={locked||upgrading||!upgradePrice||!canPay(state.wallet,upgradePrice)} onClick={()=>void upgrade()}>{upgrading?'กำลังอัปเกรด…':upgradeTarget?`${upgradeMode==='max'?'อัปสูงสุด':skill.level?'อัปเกรด':'เรียนสกิล'} · Lv.${upgradeTarget}`:'ทรัพยากรไม่พอ'}</button></div> : <p className="hint">{skill.level >= skill.max ? 'ระดับสูงสุดแล้ว' : `ระดับถัดไปที่ Lv.${skill.nextRankAt}`}</p>}
         {skill.kind === 'active' && skill.level > 0 && (picking === skill.id
           ? <button className="btn wide" onClick={() => setPicking(null)}>ยกเลิก · ยังไม่เลือกช่อง</button>
           : <div className="row equip-actions"><button className="btn primary" disabled={locked} onClick={() => setPicking(skill.id)}>{equippedAt >= 0 ? 'ย้ายช่อง' : 'สวมใส่'}</button>{equippedAt >= 0 && <button className="btn ghost" disabled={locked} onClick={() => save(removeSkill(draft, skill.id))}>ถอดออก</button>}</div>)}

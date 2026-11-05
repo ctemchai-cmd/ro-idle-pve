@@ -1,3 +1,5 @@
+import {craftingInventory,craftingMaterialName} from '../../client/equipment-crafting.ts';
+import {eventsView} from '../../client/events.ts';
 import { artifactResourceBalances, artifactResourceNames } from '../../client/resource-labels.ts';
 import { useState } from 'react';
 import type { SaveController, SaveSnapshot } from '../../client/save-controller.ts';
@@ -44,6 +46,8 @@ export function TopHud({ context, save, controller, sound, toggleSound, reconnec
     {(save.status === 'offline' || save.status === 'error' || save.status === 'read_only' || save.status === 'incompatible') && !maintenance && <div className="hud-alert" role="alert"><span>{statusText[save.status]}<SaveErrorCode reason={save.reason}/></span>{save.status === 'incompatible' ? <button onClick={() => window.location.reload()}>โหลดใหม่</button> : <button disabled={!navigator.onLine} onClick={reconnect}>เชื่อมต่อใหม่</button>}</div>}
     {sheet === 'wallet' && <Sheet title="ทรัพยากร" onClose={() => setSheet(null)}>
       <ul className="wallet-list">{walletOrder.map(k => <li key={k}><ResIcon pack={pack} k={k} /><span>{resourceNames[k]}</span><b>{full(state.wallet[k])}</b></li>)}</ul>
+      <h3>ขัดเกลาอุปกรณ์</h3><ul className="wallet-list" aria-label="วัตถุดิบอุปกรณ์">{(['option_stone','rarity_stone'] as const).map(k=><li key={k}><ResIcon pack={pack} k={k}/><span>{craftingMaterialName(k)}</span><b>{full(craftingInventory(state)[k])}</b></li>)}</ul>
+      <h3>กิจกรรม</h3><ul className="wallet-list" aria-label="แต้มกิจกรรม"><li><ResIcon pack={pack} k="event_token"/><span>แต้มรอบปัจจุบัน</span><b>{full(eventsView(state,Date.now()).tokens)}</b></li></ul>
       <h3>Artifact</h3><ul className="wallet-list" aria-label="ทรัพยากร Artifact">{artifactResourceBalances(state).map(({id,amount}) => <li key={id}><ResIcon pack={pack} k={id}/><span>{artifactResourceNames[id]}</span><b>{full(amount)}</b></li>)}</ul>
     </Sheet>}
     {sheet === 'settings' && <Sheet title="ตั้งค่าและเซฟ" onClose={() => setSheet(null)}>

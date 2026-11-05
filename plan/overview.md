@@ -1,5 +1,7 @@
 # ภาพรวมแผนและความคืบหน้า
 
+[TASK196](review/tasks_196.md) ตรวจผ่านในเครื่อง/กำลังนำขึ้นเว็บ: ตีบวกถึงเป้าหมาย/Skill Max/ทรัพยากรครบและหน้ากิจกรรมใหม่.
+
 [TASK195](done/tasks_195.md) ขึ้นVercelแล้ว `cfb1ba2b0`: แก้122ด่านให้ตัวบอส/ธาตุ/เผ่า/ขนาดตรงภาพ และไอคอนธาตุOrigin10แบบชุดเดียวกัน;892TS/native12/root+cleanGit1734/public5ผ่าน · [design98](design/98-boss-identities-and-element-icons.md).
 
 [TASK194](done/tasks_194.md) ขึ้นVercelแล้ว `228ba2f3d`: ธาตุเกราะบอส56ยืนยัน/5คงเดิม และ P.ATK/M.ATK+15%ทุกโหมดโดยคงHP.887TS/native12/root+cleanGit1734/public5ผ่าน · [design97](design/97-boss-origin-elements.md).

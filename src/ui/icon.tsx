@@ -1,5 +1,6 @@
-export type IconName = 'adventure' | 'team' | 'account' | 'timeline' | 'settings' | 'sound' | 'mute' | 'play' | 'pause' | 'chart' | 'close' | 'fast-forward' | 'retreat' | 'warning' | 'lightning' | 'lock' | 'gift' | 'help' | 'music' | 'save' | 'reset' | 'book' | 'sparkles' | 'check' | 'card' | 'upgrade' | 'chevrons-up' | 'chevron-down' | 'shield' | 'heart' | 'download' | 'share';
+export type IconName = 'clock' | 'adventure' | 'team' | 'account' | 'timeline' | 'settings' | 'sound' | 'mute' | 'play' | 'pause' | 'chart' | 'close' | 'fast-forward' | 'retreat' | 'warning' | 'lightning' | 'lock' | 'gift' | 'help' | 'music' | 'save' | 'reset' | 'book' | 'sparkles' | 'check' | 'card' | 'upgrade' | 'chevrons-up' | 'chevron-down' | 'shield' | 'heart' | 'download' | 'share';
 const paths: Record<IconName, readonly string[]> = {
+  clock:['M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z','M12 6v6l4 2'],
   download: ['M12 3v12m-5-5 5 5 5-5', 'M4 16v5h16v-5'],
   share: ['M12 15V2m-4 4 4-4 4 4', 'M7 9H4v13h16V9h-3'],
   account: ['M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z', 'M12 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z', 'M5 19a7 7 0 0 1 14 0'],

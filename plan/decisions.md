@@ -463,3 +463,6 @@ D212–214 released `54027489226e913842bb2b1612a6e6211706edce` VercelSUCCESS;872
 ## D217 — Canonical boss identities and Origin elemental icons (5 November2026)
 
 Fix122 presentation-only early stages through shared identity mapping;75 researched monsters,14 added definitions using existing native sprites. Keep encounter numbers/queues/rewards and D216attack15%. Use one10-element Origin asset set. See [design98](design/98-boss-identities-and-element-icons.md).
+
+## D-218 — 5 November2026
+User confirms Refine targets retry until success or unaffordable, aggregate summary; Skill Upgrade Max, complete/distinct resource icons and refreshed Event UI. See design99. No balance changes.

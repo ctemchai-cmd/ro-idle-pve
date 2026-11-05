@@ -1,3 +1,4 @@
+import {batchUpgradeSourceBytes,withoutBatchUpgradeFile} from './legacy-batch-upgrade-scope.ts';
 import { readFileSync } from 'node:fs';
 import { gunzipSync } from 'node:zlib';
 import { createHash } from 'node:crypto';
@@ -7,7 +8,7 @@ const before=JSON.parse(gunzipSync(readFileSync(directory+'before.json.gz')).toS
 const after=JSON.parse(readFileSync(directory+'source-after.json','utf8')) as Record<string,string>;
 const spec=JSON.parse(readFileSync('plan/generators/boss-identities.json','utf8'));
 export function bossIdentitySourceBytes(file:string){
- const bytes=readFileSync(file);
+ const bytes=batchUpgradeSourceBytes(file);
  if(after[file]){
   assert.equal(createHash('sha256').update(bytes).digest('hex'),after[file],file+' reviewed boss identity/icon scope');
   if(file==='runtime/ro/manifest.json')return gunzipSync(readFileSync(directory+'before-pack.json.gz'));
@@ -17,7 +18,7 @@ export function bossIdentitySourceBytes(file:string){
 }
 /** Only new identities/traits are projected out; existing balance/skills are still checked. */
 export function withoutBossIdentityFile<T>(file:string,value:T):T{
- const copy=structuredClone(value) as any;
+ const copy=withoutBatchUpgradeFile(file,value) as any;
  const added=spec.additional_actors.map((a:any)=>a.id);
  if(file==='plan/data/enemies.json'){
   const current=JSON.parse(readFileSync(file,'utf8'));

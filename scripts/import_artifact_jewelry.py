@@ -20,7 +20,7 @@ def main():
   importer.write_json(importer.sidecar_path(importer.ASSET_ROOT/entry['path']),meta)
  importer.write_catalog(entries)
  path=ROOT/'src/renderer/shell-visuals.json';shell=json.loads(path.read_text());shell['artifact_icons']=refs
- shell['resource_icons']['artifact_reroll']=dict(shell['resource_icons']['option_stone'])
+ shell['resource_icons'].setdefault('artifact_reroll',dict(shell['resource_icons']['option_stone'])) # Modern resource importer owns the distinct reroll crystal.
  path.write_text(json.dumps(shell,ensure_ascii=False,indent=2)+'\n')
  print(json.dumps({'jewelry_icons':len(refs)}))
 if __name__=='__main__':main()

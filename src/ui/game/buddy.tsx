@@ -44,20 +44,27 @@ function GearTile({ row, slot, pack, state, characterId, upgradeId, onClick }: {
   </button>;
 }
 
-function UpgradeSheet({ context, actor, slot, close }: { context: GameContext; actor: Character; slot: EquipmentSlot; close: () => void }) {
+export function UpgradeSheet({ context, actor, slot, close }: { context: GameContext; actor: Character; slot: EquipmentSlot; close: () => void }) {
   const { state, pack, submit, locked } = context, progress = actor.slot_progress[slot], enchantLines = slotEnchantLines(slot), params = { character_id: actor.character_id, slot };
   const [fx, setFx] = useState<{ ok: boolean; text: string; key: number } | null>(null);
+  const [refineTarget,setRefineTarget]=useState<number|null>(null),[refining,setRefining]=useState(false),refineGate=useRef(false);
+  const [batchResult,setBatchResult]=useState<import('../../contracts/index.ts').Receipt['result']|null>(null);
+  const target=refineTarget!==null&&refineTarget>progress.refine?refineTarget:progress.refine+1;
+  const batch=refineTarget!==null&&refineTarget>progress.refine;
   async function refineNow() {
-    const target = progress.refine + 1;
-    if (!await submit('slot.refine', { ...params, target_level: target })) return;
-    const failed = context.lastCode() === 'REFINE_FAILED';
-    setFx({ ok: !failed, text: failed ? 'ล้มเหลว…' : `+${target} สำเร็จ!`, key: Date.now() }); setTimeout(() => setFx(null), 1600);
+    if(refineGate.current||locked)return;refineGate.current=true;setRefining(true);setBatchResult(null);setFx(null);
+    try{
+      if(!await submit(batch?'slot.refine_target':'slot.refine',{...params,target_level:target}))return;
+      if(batch){setBatchResult(context.lastResult?.()??null);setRefineTarget(null);}
+      else {const failed=context.lastCode()==='REFINE_FAILED';setFx({ok:!failed,text:failed?'ไม่สำเร็จ · เก็บโอกาสสะสมแล้ว':`+${target} สำเร็จ`,key:Date.now()});}
+    } catch {context.toast('ทำรายการไม่สำเร็จ ลองเชื่อมต่อเซฟอีกครั้ง');} finally {refineGate.current=false;setRefining(false);}
   }
   const [tab, setTab] = useState<'refine' | 'enchant' | 'card'>('refine'), [line, setLine] = useState<keyof typeof enchantLines>((progress.enchant.line_id as keyof typeof enchantLines | null) ?? 'offense'), [confirmLine, setConfirmLine] = useState(false), [socket, setSocket] = useState(0), [cardId, setCardId] = useState<string | null>(progress.cards[0] ?? null);
   const refine = progress.refine < slotsData.refine.max ? slotUpgradeQuote(progress.refine, progress.refine + 1, 'refine') : null, enchant = progress.enchant.level < characterEnchantCap(actor.level) ? slotUpgradeQuote(progress.enchant.level, progress.enchant.level + 1, 'enchant') : null;
   const changeLine = progress.enchant.line_id !== null && progress.enchant.line_id !== line;
   const refinePreview = useMemo(() => tab === 'refine' && refine && !state.active_battle ? slotChangePreview(state, actor.character_id, 'slot.refine', { ...params, target_level: progress.refine + 1 }) : null, [state, actor.character_id, slot, tab]);
   const enchantPreview = useMemo(() => tab === 'enchant' && enchant && !changeLine && !state.active_battle ? slotChangePreview(state, actor.character_id, 'slot.enchant', { ...params, line_id: line, target_level: progress.enchant.level + 1 }) : null, [state, actor.character_id, slot, tab, line]);
+  const recent=context.lastResult?.(),batchReport=batchResult??(recent?.refine_batch?.character_id===actor.character_id&&recent.refine_batch.slot===slot?recent:null);
   const capacity = socketCapacity(progress.refine), cards = useMemo(()=>tab === 'card' ? cardInventory(state, slot) : [],[state,slot,tab]), card = cards.find(c => c.item.instance_id === cardId);
   let cardPreview: ReturnType<typeof slotChangePreview> | null = null;
   if (card && socket < capacity && progress.cards[socket] !== card.item.instance_id && !state.active_battle) cardPreview = slotChangePreview(state, actor.character_id, 'card.assign', { ...params, card_slot: socket, card_instance_id: card.item.instance_id });
@@ -66,12 +73,15 @@ function UpgradeSheet({ context, actor, slot, close }: { context: GameContext; a
     {!actor.equipment[slot] && <p className="hint warn">ช่องนี้ยังไม่มีของสวม ค่าพัฒนาจะเก็บไว้กับช่องจนกว่าจะสวม</p>}
     {tab === 'refine' && <section className="upgrade-pane refine-pane">
       {fx && <div key={fx.key} className={`refine-fx ${fx.ok ? 'ok' : 'fail'}`} role="status"><span className="burst" /><b>{fx.text}</b></div>}
-      <div className="level-jump"><b>+{progress.refine}</b><span>→</span><b className="next">{refine ? `+${progress.refine + 1}` : 'MAX'}</b></div>
-      {refine && <div className="refine-chance"><b>{refinePercent(nextRefineChance(progress))}</b><span>โอกาสสำเร็จ{progress.refine_failures ? ` · รวมโอกาสสะสมจากพลาด ${progress.refine_failures} ครั้ง` : ''}</span></div>}
+      <div className="level-jump"><b>+{progress.refine}</b><span>→</span><b className="next">{refine ? `+${target}` : 'MAX'}</b></div>
+      {refine && <div className="refine-chance"><b>{refinePercent(nextRefineChance(progress))}</b><span>โอกาสสำเร็จครั้งถัดไป{progress.refine_failures ? ` · รวมโอกาสสะสมจากพลาด ${progress.refine_failures} ครั้ง` : ''}</span></div>}
       <p className="hint">+1 ถึง +4 สำเร็จแน่นอน · พลาดเสียแค่วัตถุดิบ ระดับไม่ลด {refine && <> · โอกาสสะสมเพิ่ม {refinePercent(nextRefinePityBonus(progress))} ต่อครั้ง</>} · {socketUnlockHint()}</p>
       <p className="hint slot-bonus" aria-label="ผล Refine ต่อขั้น">ต่อ +1 · {refineModifiers(slot).map(modifierText).join(' · ')}</p>
-      {refine ? <><CostChips cost={refine} wallet={state.wallet} pack={pack} />{refinePreview && <StatChanges before={refinePreview.before} after={refinePreview.after} />}
-        <button className="btn primary wide" disabled={locked || !canPay(state.wallet, refine)} onClick={() => void refineNow()}>Refine +{progress.refine + 1}</button></> : <p className="hint">Refine สูงสุดแล้ว</p>}
+      {refine ? <><div className="seg refine-targets" role="group" aria-label="เป้าหมายตีบวก"><button aria-pressed={!batch} disabled={refining} onClick={()=>setRefineTarget(null)}>ครั้งเดียว</button>{[5,10,15].filter(n=>n>progress.refine&&n<=slotsData.refine.max).map(n=><button key={n} aria-pressed={batch&&target===n} disabled={refining} onClick={()=>setRefineTarget(n)}>ถึง +{n}</button>)}</div>
+        {batch&&<p className="refine-target-note">ลองซ้ำจนถึง +{target} หรือทอง/หินไม่พอ · อาจใช้ทรัพยากรที่มีทั้งหมด</p>}
+        <small className="refine-cost-label">ค่าใช้จ่าย{batch?'ต่อการลองครั้งถัดไป':''}</small><CostChips cost={refine} wallet={state.wallet} pack={pack}/>{!batch&&refinePreview&&<StatChanges before={refinePreview.before} after={refinePreview.after}/>}
+        <button className="btn primary wide" disabled={locked||refining||!canPay(state.wallet,refine)} onClick={()=>void refineNow()}>{refining?'กำลังตีบวก…':batch?`เริ่มตีบวกถึง +${target}`:`Refine +${progress.refine+1}`}</button></>:<p className="hint">Refine สูงสุดแล้ว</p>}
+      {batchReport?.refine_batch&&<section className="refine-summary" role="status" aria-label="สรุปตีบวก"><header><b>+{batchReport.refine_batch.from_level} → +{batchReport.refine_batch.to_level}</b><span>{batchReport.refine_batch.stop_reason==='target_reached'?'ถึงเป้าหมายแล้ว':'หยุด · ทองหรือหินไม่พอ'}</span></header><p>ลอง {batchReport.refine_batch.attempts} ครั้ง · ติด {batchReport.refine_batch.successes} · พลาด {batchReport.refine_batch.failures}</p><div><span>ใช้ไป</span>{(['gold','refine_ore'] as const).map(k=><span key={k}><ResIcon k={k} pack={pack}/>{(-batchReport.resource_delta[k]).toLocaleString('th-TH')}</span>)}</div><small>คงเหลือ · ทอง {state.wallet.gold.toLocaleString('th-TH')} · หิน {state.wallet.refine_ore.toLocaleString('th-TH')}</small></section>}
     </section>}
     {tab === 'enchant' && <section className="upgrade-pane">
       <div className="chip-row" role="radiogroup" aria-label="สาย Enchant">{(Object.keys(enchantLines) as (keyof typeof enchantLines)[]).map(id => <button key={id} role="radio" aria-checked={line === id} className={`chip ${line === id ? 'on' : ''}`} onClick={() => { setLine(id); setConfirmLine(false); }}>{enchantLines[id]!.label}</button>)}</div>
