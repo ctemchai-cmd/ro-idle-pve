@@ -22,4 +22,6 @@ TASK-197 (done)
 - [x] AC-03: Selected-line eligible odds and Tier-scaled Min–Max match actual pool
 - [x] AC-04: Option stone new supply and Immortal mobile frames; old counters/pending/rates retained
 - [x] AC-05: Only authorized save6Creator7Nov quotas reset once; restore/other progress protected
-- [ ] AC-06: Local checks/build/cleancommitted/public verified
+- [x] AC-06: Local checks/build/cleancommitted/public verified
+
+ผลตรวจ: [review](../evidence/task-198-review.json) · Vercel `e28872cff` SUCCESS / public5groups. Quota repair applies through save6 backed-up update; owner application not observed.
