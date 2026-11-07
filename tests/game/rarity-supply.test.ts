@@ -1,3 +1,4 @@
+import{withoutDailyCraftingFile}from'./legacy-daily-crafting-scope.ts';
 import test from'node:test';import assert from'node:assert/strict';import{readFileSync}from'node:fs';import{gunzipSync}from'node:zlib';import{randomUUID}from'node:crypto';
 import{content}from'./combat-fixtures.ts';import{shopBatchFixture}from'./shop-batch-fixture.ts';
 import{farmCraftingProfile}from'../../src/domain/modes/farm-crafting-profile.ts';import{rollFarmCrafting}from'../../src/domain/rewards/farm-crafting.ts';import{initializeAccount}from'../../src/domain/progression/initialize.ts';import{storyStage,storyFarmSnapshot}from'../../src/domain/modes/story.ts';import{migrateAccountState}from'../../src/domain/account/migrate.ts';import{AccountCommandRules}from'../../src/domain/account/commands.ts';import{reserveFarm}from'../../src/domain/rewards/farm.ts';import{eventRules,eventPeriod}from'../../src/domain/modes/events.ts';import{eventTokens,eventRecord,writableEvent}from'../../src/domain/progression/events.ts';import{shopMaxQuantity}from'../../src/domain/progression/shop.ts';
@@ -5,7 +6,7 @@ const frozen=JSON.parse(gunzipSync(readFileSync('plan/evidence/task-197/before.j
 const at='2026-11-05T00:00:00Z',now=Date.parse(at),start=now-43200000;
 const initial=()=>initializeAccount(content,{root_job_id:'mage',gender:'female'},new Date(start).toISOString(),'2026-11-04',197);
 test('D219 only rarity supply changes; every other economy/loot field and every old price remains exact',()=>{
- const loot=JSON.parse(readFileSync('plan/data/loot.json','utf8')),economy=JSON.parse(readFileSync('plan/data/economy.json','utf8'));
+ const loot=withoutDailyCraftingFile('plan/data/loot.json',JSON.parse(readFileSync('plan/data/loot.json','utf8'))),economy=withoutDailyCraftingFile('plan/data/economy.json',JSON.parse(readFileSync('plan/data/economy.json','utf8')));
  for(let c=1;c<=15;c++){const expected=c<=3?8:c<=6?12:c<=9?16:c<=12?20:24;assert(Math.abs(loot.crafting.chapter_chances[c].rarity_stone*144/1e6-expected)<.0001);loot.crafting.chapter_chances[c].rarity_stone=oldLoot.crafting.chapter_chances[c].rarity_stone;}
  assert.deepEqual(loot,oldLoot);
  const shop=economy.shop.offers.find((o:any)=>o.id==='rarity_stone'),event=economy.events.shop.find((o:any)=>o.id==='rarity_stones');assert.deepEqual(shop,{...oldEconomy.shop.offers.find((o:any)=>o.id==='rarity_stone'),crafting_grant:{rarity_stone:10},daily_limit:4});assert.deepEqual(event,{...oldEconomy.events.shop.find((o:any)=>o.id==='rarity_stones'),name:'หินเลื่อน Rarity ×25',quantity:25,limit:4});
@@ -14,7 +15,7 @@ test('D219 only rarity supply changes; every other economy/loot field and every 
 test('D219 matched craft streams preserve every reroll stone and RNG draw; rarity rolls increase without perturbing gear/card RNG',()=>{
  for(let chapter=1;chapter<=15;chapter++)for(let seed=0;seed<64;seed++){
   const a=initial().farm;a.loot_rng.state=seed;const b=structuredClone(a),p=farmCraftingProfile(chapter,content)!;
-  const next=rollFarmCrafting(a,p,144),old=rollFarmCrafting(b,{version:p.version,chance_per_million:oldLoot.crafting.chapter_chances[chapter]},144);
+  p.chance_per_million.option_stone=oldLoot.crafting.chapter_chances[chapter].option_stone;const next=rollFarmCrafting(a,p,144),old=rollFarmCrafting(b,{version:p.version,chance_per_million:oldLoot.crafting.chapter_chances[chapter]},144);
   assert.equal(next.option_stone,old.option_stone);assert(next.rarity_stone>=old.rarity_stone);assert.deepEqual(a.loot_rng,b.loot_rng);assert.deepEqual(a.crafting_rng,b.crafting_rng);assert.equal(a.crafting_rng!.draw_count,288);
  }
 });

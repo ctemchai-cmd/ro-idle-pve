@@ -1,5 +1,6 @@
 import type { AccountState } from '../../contracts/index.ts';
-import { bangkokDay } from '../modes/daily.ts';
+import type { ValidatedContent } from '../../content/model.ts';
+import { bangkokDay, dailyRecord } from '../modes/daily.ts';
 
 export interface DailyQuotaMigrationContext { account_id: string; now_ms: number }
 /** Optional server-only context narrows the explicitly requested incident refund. */
@@ -18,5 +19,18 @@ export function migrateDailyQuota(state: AccountState, changes: string[], contex
       changes.push(`daily ${row.boss_id}: unused legacy entry reservation returned`);
     }
     row.quota_policy = 'reward_claim_v1';
+  }
+}
+
+/** User-authorized one-time reset. No inventory/rewards/phase changes or other save slots. */
+export function resetRequestedCreatorQuota(state:AccountState,changes:string[],content:ValidatedContent,context?:DailyQuotaMigrationContext){
+  const day='2026-11-07',marker='creator_slot6_20261107' as const;
+  if(context?.account_id!=='ac4dc393-b624-abaf-1362-056b8e1ce3d0'||bangkokDay(context.now_ms)!==day||state.roster.find(a=>a.kind==='main')?.job_id!=='creator')return;
+  for(const id of ['treasury','forge','essence']as const){
+    let row=state.daily_records.find(r=>r.boss_id===id&&r.ticket_day===day);
+    if(row?.quota_reset_id===marker)continue;
+    if(!row){row=dailyRecord(state,id,day,content);state.daily_records=[...state.daily_records.filter(r=>r.boss_id!==id),row] as AccountState['daily_records'];}
+    changes.push(`daily ${id}: authorized slot6 Creator quota returned (${row.attempts_used})`);
+    row.attempts_used=0;row.quota_reset_id=marker;
   }
 }

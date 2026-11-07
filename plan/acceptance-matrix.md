@@ -1135,3 +1135,14 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T197-AC-02` | TASK-197 | Shop40/day and Event100/period preserve paid counters and replay | passed_implementation |
 | `T197-AC-03` | TASK-197 | Frozen old windows/pending/stock and all upgrade costs retained | passed_implementation |
 | `T197-AC-04` | TASK-197 | Focused/native/M0/strict/root/cleanGit/public pass | passed_implementation |
+
+## TASK-198
+
+| Case | Task | Expected | Status |
+|---|---|---|---|
+| `T198-AC-01` | TASK-198 | Daily full hits/overflow/status/timer/element/1–3 parity; Story unchanged | not_run_implementation |
+| `T198-AC-02` | TASK-198 | Rarity destination aggregate prices/RNG/atomic replay/legacy compatibility | not_run_implementation |
+| `T198-AC-03` | TASK-198 | Actual selected-line option odds and Tier Min–Max | not_run_implementation |
+| `T198-AC-04` | TASK-198 | New option supply/frozen counters and Immortal native mobile frames | not_run_implementation |
+| `T198-AC-05` | TASK-198 | Authorized save6 Creator quota reset exactly once with restore isolation | not_run_implementation |
+| `T198-AC-06` | TASK-198 | Focused/full/native/strict/M0/root/cleancommitted/public pass | not_run_implementation |

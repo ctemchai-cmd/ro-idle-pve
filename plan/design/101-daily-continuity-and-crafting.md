@@ -1,0 +1,16 @@
+# D220–221 — Daily HP continuity and equipment crafting
+
+7 November2026. User reports multi-hit/Gate damage loss in daily modes, confirms one continuous boss with overflow/remaining hits and statuses retained. Also authorizes all3 daily quotas reset for save6 Creator; selects destination Rarity, more option stones, actual option odds/ranges, and white iridescent Immortal frames.
+
+## Combat
+Old loop stopped on target.hp0, discarded overkill, and only respawned at timestamp barrier. Continuous policy now consumes an already-mitigated hit across any number of bars, then later hits calculate against the next phase's defenses. One damage event per original hit, hp_damage full actual paid total, overkill0 on continuing bars. Shields/redirect/crit/element apply once to a hit. Phase evolution emits phase_advance (not death/revive), keeps life epoch, source-linked statuses/DoT, enemy cast/rotation/timers, SP, shield remainder, summons and position. New base stats follow existing phase curve, existing status modifiers recompute. Phase rewards still reserve once and settle only with actual reward claim; no quota entry charge. Other modes and frozen daily profiles without continuous_health_bars keep death behavior. No coefficient or reward curve tuning. All three daily armor elements remain actual DB identities; test elemental multipliers and1/2/3/checkpoint equivalence.
+
+## Equipment
+Optional target_rarity on existing equipment.rarity_up; absence retains one-step command. Only strictly higher targets. Shared quote totals each intervening cost, all-or-nothing affordability, one command/CAS/receipt, preserve instance/Tier/old options/owner/cards/refine/enchant. New option lines use the same unique-stat pool and same number/order of RNG draws as sequential upgrades. No cheaper bypass or item conversion.
+
+Selected option line shows actual eligible stat pool, normalized weight probabilities and Tier-scaled min/max from optionValue. Other lines' stats excluded only when unique_stat_per_item; selected current stat can roll again. No Rarity-based range invented. Amounts rounded for display, actual rolls unchanged.
+
+Option stone supply: AFK expected12/18/24/30/36 per12h in3-chapter bands (was4/6/7/8); one per successful5min roll, same2craft draws and separate loot RNG. Shop10for8000gold×5/day (50/day), Event30for50tokens×4/period (120/period). Same offer IDs/prices and old paid counters; frozen unpaid farm windows retain old profile until next claim. Rarity stone rates/costs unchanged fromD219. Immortal equipment frames use static pale white/rainbow border, original media unchanged; no GPU animation or rarity/power change.
+
+## Authorized quota reset
+Only deterministic owner save_slot6 IDac4dc393-b624-abaf-1362-056b8e1ce3d0, mainCreator and serverBangkok7Nov2026. Backed-up version migration resets attempts_used0 for treasury/forge/essence, preserves HP/phase/rewarded keys/pending/wallet/team. Marker creator_slot6_20261107 on each daily row prevents repeated reset. Missing today's rows created at normal phase1; restore merges post-reset counters with post-reset counters, preserving marker and all rewarded phases. No owner login, secret use or direct DB write; must not claim live owner reset before migration confirmation.

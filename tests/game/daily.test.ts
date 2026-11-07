@@ -56,7 +56,7 @@ test('T036 AC-02: clearing several phases in one timed attempt gives one chest p
   // Same fight through the runner with the shared mode policy: phases advance without a victory or a clock reset.
   const scenario = { id: 'daily', schema_version: 1 as const, content_hash: content.manifest.content_hash, rules_version: content.manifest.rules_version, seed: initial.initial_seed, mode: { kind: 'daily' as const, ref: initial.mode.ref }, budget_policy: 'explicit_single_scenario' as const, log_level: 'trace' as const, team: f.state.team.map(m => ({ actor_id: m.character_id, build_id: 'x', position: m.position, equipment_profile: 'saved' })) as never };
   const report = unwrap(runScenario(captureReplay(scenario, unwrap(restoreBattle(initial, content)), 'daily', {}), content)).report;
-  const respawns = report.events!.filter(e => e.type === 'revive' && e.actor_id === 'enemy_front');
+  const respawns = report.events!.filter(e => e.type === 'phase_advance' && e.actor_id === 'enemy_front');
   assert.ok(respawns.length >= 2, `phases cleared ${respawns.length}`); assert.equal(report.end_ms, 60000); assert.notEqual(report.result!.kind, 'victory');
   const hp = respawns.map(e => e.amount!); assert.ok(hp.every((v, i) => i === 0 || v > hp[i - 1]!), `each phase stronger ${hp}`);
   const code = f.advance()!.result.code; assert.equal(code, 'DAILY_FINISHED');

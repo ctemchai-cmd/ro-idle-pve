@@ -10,6 +10,8 @@ export interface RunLimits { max_events: number }
 /** A mode's continuation: bring a defeated enemy back with new resolved stats and patch the mode fields (e.g. the next daily phase). */
 export interface ModeRespawn { actor_id: string; level: number; resolved_base: CombatStats; element: string; attack_element?: string; mode: Partial<Pick<BattleCheckpoint['mode'], 'daily_phase' | 'daily_current_hp' | 'reserved_phase_keys'>> }
 export interface PureModePolicy {
+  /** A continuing HP bar is the same living actor, not a death/revive. */
+  onEnemyHpDepleted?(state: BattleCheckpoint, actorId: string): ModeRespawn | null;
   /** Mode continuation is injected; core never imports a mode controller. */
   onEnemyWipe?(state: BattleCheckpoint): 'continue' | 'victory' | ModeRespawn;
 }

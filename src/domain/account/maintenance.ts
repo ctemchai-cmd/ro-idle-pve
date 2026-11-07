@@ -12,7 +12,9 @@ type Daily = AccountState['daily_records'][number];
 function mergeDaily(a: Daily, b: Daily): Daily {
   const phases = [...new Set([...a.rewarded_phases, ...b.rewarded_phases])].sort((x, y) => x - y);
   const lead = a.phase !== b.phase ? (a.phase > b.phase ? a : b) : a.current_hp <= b.current_hp ? a : b;
-  return { ...lead, attempts_used: Math.max(a.attempts_used, b.attempts_used), rewarded_phases: phases };
+  const reset=a.quota_reset_id??b.quota_reset_id;
+  const attempts=a.quota_reset_id===b.quota_reset_id?Math.max(a.attempts_used,b.attempts_used):a.quota_reset_id?a.attempts_used:b.attempts_used;
+  return { ...lead, attempts_used: attempts, rewarded_phases: phases,...(reset?{quota_reset_id:reset}:{}) };
 }
 /** Per-day records of `kept` plus anything `other` already spent the same day; rows older than yesterday are dropped. */
 function mergeDayCounters(kept: AccountState, other: AccountState, today: string, yesterday: string): void {

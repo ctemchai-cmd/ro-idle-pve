@@ -55,7 +55,7 @@ test('daily respawns keep corrected armor and original attack element; virtual1/
  const boss=dailyBossActor('treasury',1,2,content),hit=skill('hit',0,0,0,6000),player={...actor('a','player',[hit],true),spatial:{x:220,y:400,move_speed:120,radius:18,normal_range:80}};player.stat_blueprint.derived_offsets.physical_attack=10000;
  const initial=unwrap(createBattle(storyInput({id:'treasury',time_limit_ms:12000},boss,[player],content,{kind:'daily',ref:'treasury@2',daily_phase:1,daily_current_hp:boss.resolved_base.max_hp,ticket_day:'2026-11-04'}),content,194));
  const run=(speed:number)=>{let state=structuredClone(initial);const events=[];for(let ms=0;ms<12000;){ms=Math.min(12000,ms+50*speed);const step=unwrap(advanceUntil(state,ms,content,dailyPolicy(content)));state=step.state;events.push(...step.events);if(ms===6000)state=unwrap(restoreBattle(serializeBattle(state),content));}return{state,events};};
- const result=run(1);assert(result.events.some(e=>e.type==='revive'));assert.deepEqual(run(2),result);assert.deepEqual(run(3),result);
+ const result=run(1);assert(result.events.some(e=>e.type==='phase_advance'));assert.deepEqual(run(2),result);assert.deepEqual(run(3),result);
  const enemy=result.state.actors.find(a=>a.actor_id==='enemy_front')!;assert(enemy.tags.includes('element:fire'));assert.equal(enemy.stat_blueprint.weapon_element,'neutral');
  const phase=dailyBossActor('treasury',result.state.mode.daily_phase!,2,content);assert.equal(enemy.stats.physical_attack,phase.resolved_base.physical_attack);assert.equal(enemy.stats.max_hp,phase.resolved_base.max_hp);
 });

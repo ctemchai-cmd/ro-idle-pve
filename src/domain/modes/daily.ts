@@ -58,6 +58,13 @@ export function parseDailyRef(ref: string) { const [id, chapter] = ref.split('@'
 
 /** Phase continuation: when a phase's HP bar empties the same boss returns with the next phase's full HP; the cleared phase is reserved for a chest. */
 export function dailyPolicy(content: ValidatedContent): PureModePolicy {
+  if(content.documents['daily-bosses.json']!.continuous_health_bars===true)return{
+    onEnemyHpDepleted(state,actorId){
+      if(state.mode.kind!=='daily'||state.mode.daily_phase===null||actorId!=='enemy_front')return null;
+      const{id,chapter}=parseDailyRef(state.mode.ref),cleared=state.mode.daily_phase,actor=dailyBossActor(id,cleared+1,chapter,content);
+      return{actor_id:actorId,level:actor.level,resolved_base:actor.resolved_base,element:actor.element,...(actor.attack_element?{attack_element:actor.attack_element}:{}),mode:{daily_phase:cleared+1,daily_current_hp:actor.resolved_base.max_hp,reserved_phase_keys:[...state.mode.reserved_phase_keys,String(cleared)]}};
+    }
+  };
   return { onEnemyWipe(state: BattleCheckpoint): ModeRespawn | 'victory' {
     if (state.mode.kind !== 'daily' || state.mode.daily_phase === null) return 'victory';
     const { id, chapter } = parseDailyRef(state.mode.ref), cleared = state.mode.daily_phase, next = cleared + 1, actor = dailyBossActor(id, next, chapter, content);

@@ -210,7 +210,28 @@ export function advanceUntil(input: BattleState, toGameMs: number, content: Vali
     return count;
   }
   function settleDeaths() { while (commitDeaths()) pipeline.drain(); pipeline.cleanupSources(); }
-  const pipeline = new EffectPipeline(state, content, { emit, metric, interrupt, revive, summon });
+  const pipeline = new EffectPipeline(state, content, { emit, metric, interrupt, revive, summon, consumeHpDamage });
+  /** Carry an already-mitigated hit through continuous HP bars exactly once. Next hits use the new defense. */
+  function consumeHpDamage(actor: BattleActor, amount: number): number {
+    let remaining=amount, loss=0;
+    do {
+      const paid=Math.min(actor.hp,remaining);actor.hp-=paid;remaining-=paid;loss=checked(loss+paid);
+      if(actor.hp>0||actor.team!=='enemy'||!policy.onEnemyHpDepleted)break;
+      const next=policy.onEnemyHpDepleted(state,actor.actor_id);if(!next)break;
+      if(next.actor_id!==actor.actor_id)throw new Error('INVALID_MODE_HP_BAR');
+      const sources=actor.stat_blueprint.permanent_sources;
+      actor.stat_blueprint=fixedEnemyBlueprint(next.level,next.resolved_base,next.attack_element??next.element,content);
+      actor.stat_blueprint.permanent_sources=sources;
+      actor.tags=actor.tags.filter(t=>!t.startsWith('element:')&&!t.startsWith('element_'));
+      actor.tags.push(`element:${next.element}`,`element_${next.element}`);
+      recomputeStats(actor,content);
+      if(!Number.isSafeInteger(actor.stats.max_hp)||actor.stats.max_hp<=0)throw new Error('INVALID_MODE_HP_BAR');
+      actor.hp=actor.stats.max_hp;state.mode={...state.mode,...structuredClone(next.mode)};
+      // Keep life epoch, cast, statuses, shields, timers and summons intact.
+      emit({type:'phase_advance',actor_id:actor.actor_id,amount:actor.hp,detail:`phase:${state.mode.daily_phase??''}`});
+    } while(remaining>0);
+    return loss;
+  }
   function blocked(actor: BattleActor, action: 'skill' | 'normal') {
     return statusRestriction(actor, action === 'skill' ? 'no_new_skill' : 'no_normal_attack', content, state.game_time_ms);
   }

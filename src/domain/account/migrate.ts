@@ -1,7 +1,7 @@
 import {emptyArtifacts,reconcileArtifactSlots} from '../build/artifacts.ts';
 import { recoverCompatibleDaily, type DailyRecoveryContext } from './daily-battle-recovery.ts';
 import {emptyCrafting} from '../progression/equipment-crafting.ts';
-import { migrateDailyQuota } from './daily-quota-migration.ts';
+import { migrateDailyQuota, resetRequestedCreatorQuota } from './daily-quota-migration.ts';
 import type { AccountState } from '../../contracts/index.ts';
 import type { ValidatedContent } from '../../content/model.ts';
 import { cardCapacity } from '../progression/slots.ts';
@@ -38,6 +38,7 @@ function keepFrozenCardCatalog(frozen:FarmSnapshot,current:FarmSnapshot,content:
 export function migrateAccountState(input: unknown, content: ValidatedContent, context?: DailyRecoveryContext): SaveMigration {
   const state = structuredClone(input) as AccountState, changes: string[] = [], data = progressionData(content);
   migrateDailyQuota(state, changes, context);
+  resetRequestedCreatorQuota(state, changes, content, context);
   if(!state.artifacts){state.artifacts=emptyArtifacts();changes.push('Artifact empty collection added');}reconcileArtifactSlots(state,content);
   if(!state.equipment_crafting){state.equipment_crafting=emptyCrafting();changes.push('equipment crafting empty stock added');}
   // The new currency starts at zero everywhere, including frozen unpaid snapshots

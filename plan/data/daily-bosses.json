@@ -34,7 +34,7 @@
         "gold": 3000
       },
       "reward_phase_multiplier": "1+0.2*(phase-1), floor each currency",
-      "next_phase": "spawn immediately with increased full HP; keep battle clock/party state",
+      "next_phase": "Continuous HP bar: carry already-mitigated overflow once, remaining hits use next defense; retain actor statuses/cast/timers/life epoch.",
       "counts_as_ordinary_terminal_enemy": false,
       "checkpoint_fields": [
         "phase",
@@ -74,7 +74,7 @@
         "enchant_dust": 2
       },
       "reward_phase_multiplier": "1+0.2*(phase-1), floor each currency",
-      "next_phase": "spawn immediately with increased full HP; keep battle clock/party state",
+      "next_phase": "Continuous HP bar: carry already-mitigated overflow once, remaining hits use next defense; retain actor statuses/cast/timers/life epoch.",
       "counts_as_ordinary_terminal_enemy": false,
       "checkpoint_fields": [
         "phase",
@@ -114,7 +114,7 @@
         "hero_exp": 600
       },
       "reward_phase_multiplier": "1+0.2*(phase-1), floor each currency",
-      "next_phase": "spawn immediately with increased full HP; keep battle clock/party state",
+      "next_phase": "Continuous HP bar: carry already-mitigated overflow once, remaining hits use next defense; retain actor statuses/cast/timers/life epoch.",
       "counts_as_ordinary_terminal_enemy": false,
       "checkpoint_fields": [
         "phase",
@@ -148,5 +148,6 @@
   },
   "element": "neutral",
   "position": "front_1",
-  "reward_pace_note": "D-069: chest bases sized to ~10–15 % of daily farm income of the matching resource at the D-069 rates"
+  "reward_pace_note": "D-069: chest bases sized to ~10–15 % of daily farm income of the matching resource at the D-069 rates",
+  "continuous_health_bars": true
 }

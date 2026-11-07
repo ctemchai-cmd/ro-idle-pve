@@ -1,6 +1,6 @@
 import type { AccountState, Command } from '../../contracts/index.ts';
 import type { ValidatedContent } from '../../content/model.ts';
-import { optionRules, rollItemOptions, type ItemOption, type ItemOptions } from '../build/item-options.ts';
+import { availableItemOptions, optionRules, optionValue, rollItemOptions, type ItemOption, type ItemOptions } from '../build/item-options.ts';
 import { equipmentRules } from '../build/equipment-definition.ts';
 import { ProgressionRejection } from './rejection.ts';
 
@@ -19,17 +19,30 @@ function gear(state:AccountState,id:string):Gear {
   const result=item as Gear;if(result.training)reject('TRAINING_WEAPON_RESTRICTED');return result;
 }
 function writable(state:AccountState,item:Gear){if(state.active_battle)reject('BUILD_LOCKED_DURING_BATTLE');if(item.locked)reject('ITEM_LOCKED');}
-export function rarityStoneQuote(state:AccountState,id:string,content:ValidatedContent){
+export function rarityStoneQuote(state:AccountState,id:string,content:ValidatedContent,target?:Gear['rarity_id']){
   const item=gear(state,id);writable(state,item);
   if(state.equipment_crafting?.pending_roll)reject('OPTION_ROLL_PENDING');
   const step=craftingRules(content).rarity_steps.find(row=>row.from===item.rarity_id);if(!step)reject('RARITY_MAX_REACHED');
-  return{item,step:step!,stone_cost:step!.stones,gold_cost:step!.gold};
+  const steps=[step!], destination=target??step!.to;
+  while(steps.at(-1)!.to!==destination){
+    const next=craftingRules(content).rarity_steps.find(row=>row.from===steps.at(-1)!.to);
+    if(!next||steps.length>=6)reject('INVALID_RARITY_TARGET');
+    steps.push(next!);
+  }
+  return{item,step:steps.at(-1)!,steps,stone_cost:steps.reduce((n,s)=>n+s.stones,0),gold_cost:steps.reduce((n,s)=>n+s.gold,0)};
 }
 export function optionStoneQuote(state:AccountState,id:string,index:number,content:ValidatedContent){
   const item=gear(state,id);writable(state,item);
   if(state.equipment_crafting?.pending_roll)reject('OPTION_ROLL_PENDING');
   if(!Number.isSafeInteger(index)||index<0||!item.options[index])reject('OPTION_LINE_MISSING');
   return{item,index,stone_cost:craftingRules(content).option_roll_cost.option_stone};
+}
+export function optionStoneOutcomes(item:Gear,index:number,tier:number,content:ValidatedContent){
+  if(!item.options[index])return[];
+  const rules=optionRules(content),excluded=item.options.filter((_,i)=>i!==index).map(o=>rules.pool.find(r=>r.id===o.id)!.stat);
+  const pool=availableItemOptions(content,excluded),weight=pool.reduce((n,r)=>n+r.weight,0);
+  return pool.map(row=>({id:row.id,stat:row.stat,percent:row.op==='add_percent',probability:row.weight/weight,
+    min:optionValue({id:row.id,roll:0},tier,content).value,max:optionValue({id:row.id,roll:rules.roll_scale},tier,content).value}));
 }
 export function grantCraftingMaterials(state:AccountState,grants:Partial<Record<CraftingMaterial,number>>,quantity:number){
   for(const[key,n]of Object.entries(grants)){
@@ -62,7 +75,7 @@ export function applyCraftingCommand(state:AccountState,command:CraftingCommand,
     crafting.pending_roll={roll_id:command.request_id,item_instance_id:id,option_index:q.index,original:{...q.item.options[q.index]!},replacement:{...replacement!}};
     return'OPTION_ROLLED';
   }
-  const q=rarityStoneQuote(state,id,content);
+  const q=rarityStoneQuote(state,id,content,command.params.target_rarity);
   if(q.item.rarity_id!==command.params.expected_rarity)reject('RARITY_CHANGED');
   if(crafting.stock.rarity_stone<q.stone_cost)reject('INSUFFICIENT_CRAFTING_STONES');
   if(state.wallet.gold<q.gold_cost)reject('INSUFFICIENT_RESOURCES');

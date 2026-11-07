@@ -469,3 +469,6 @@ User confirms Refine targets retry until success or unaffordable, aggregate summ
 
 ## D-219 — 5 November2026
 Increase Rarity stone acquisition for full-party gearing. AFK8–24/12h, shop10×4/day at20k,Event25×4 at60tokens. Preserve all paid rights/frozen windows/upgrade costs. See design100.
+
+## D220–221 — 7 November2026
+D220: Daily is one continuous boss acrossHPbars; carryoverflow/multihit/statuses. Authorized3dailyquota resetonlysave6Creator. D221: targetRarityatomic, actualoptionodds/minmax, optionstoneAFK12–36/shop50/Event120 andstaticwhiteiridescentImmortal. See design101/TASK198.

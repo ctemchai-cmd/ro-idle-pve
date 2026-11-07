@@ -14,6 +14,7 @@ import { allowsMagicalCritical, echoMultiplier, nextDamageCharge } from './actio
 import { conditionalCombatBonuses } from './conditional-bonuses.ts';
 
 export interface EffectPorts {
+  consumeHpDamage?(target: BattleActor, amount: number): number;
   emit(event: Omit<BattleEvent, 'at_ms' | 'phase' | 'sequence'>): void;
   metric(actor: BattleActor, skill: string, key: keyof MetricRow, amount: number): void;
   interrupt(actor: BattleActor, cause?: ProgramContext): void;
@@ -204,7 +205,8 @@ export class EffectPipeline {
       const owner = this.actor(shield.source.owner_actor_id); if (owner) this.ports.metric(owner, shield.source.definition_id, 'shield_absorbed', spent);
     }
     target.shields = target.shields.filter(shield => shield.remaining > 0);
-    const loss = Math.min(target.hp, remaining); target.hp -= loss;
+    const loss = this.ports.consumeHpDamage ? this.ports.consumeHpDamage(target, remaining) : Math.min(target.hp, remaining);
+    if (!this.ports.consumeHpDamage) target.hp -= loss;
     // Incoming damage belongs to the recipient, independently of the shield's provider.
     for (const row of [this.state.metrics.actors[target.actor_id]!, this.state.metrics.team[target.team]]) {
       row.damage_received = checked((row.damage_received ?? 0) + loss);

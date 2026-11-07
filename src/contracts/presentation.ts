@@ -1,7 +1,7 @@
 /** Events cross the presentation boundary as data; animation never calls combat rules. */
 export interface BattlePresentationEvent {
   at_ms: number; phase: number; sequence: number;
-  type: 'cast_start' | 'cast_resolve' | 'cast_interrupt' | 'sp_skip' | 'sphere_skip' | 'normal_attack' | 'damage' | 'miss' | 'death' | 'terminal' | 'regen' | 'heal' | 'shield' | 'resource_change' | 'status_applied' | 'status_resisted' | 'status_removed' | 'status_expired' | 'proc' | 'proc_rejected' | 'revive' | 'summon' | 'despawn';
+  type: 'cast_start' | 'cast_resolve' | 'cast_interrupt' | 'sp_skip' | 'sphere_skip' | 'normal_attack' | 'damage' | 'miss' | 'death' | 'terminal' | 'regen' | 'heal' | 'shield' | 'resource_change' | 'status_applied' | 'status_resisted' | 'status_removed' | 'status_expired' | 'proc' | 'proc_rejected' | 'revive' | 'summon' | 'despawn' | 'phase_advance';
   actor_id: string; skill_id?: string; target_id?: string; amount?: number; detail?: string;
   /** Resolved cast duration at cast_start; presentation never recomputes cast speed. */
   cast_duration_ms?: number;
