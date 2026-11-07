@@ -57,7 +57,7 @@ export function BackpackPage({ context }: { context: GameContext }) {
   // Rarity/Level filters (user request, 20 Oct 2026): none picked = all; they narrow the grid and "select all" for salvage.
   const [rarities, setRarities] = useState<string[]>([]), [levels, setLevels] = useState<number[]>([]);
   const gear = useMemo(() => inventoryView(state, 'main').sort((a, b) => b.definition.required_level - a.definition.required_level || (rarityRank[b.item.rarity_id] ?? 0) - (rarityRank[a.item.rarity_id] ?? 0)), [state]);
-  const cards = useMemo(() => equipmentSlots.flatMap(s => cardInventory(state, s)).sort((a, b) => (rarityRank[b.item.rarity_id] ?? 0) - (rarityRank[a.item.rarity_id] ?? 0) || b.item.level - a.item.level), [state]);
+  const cards = useMemo(() => equipmentSlots.flatMap(s => cardInventory(state, s)).sort((a, b) => Number(!!b.owner) - Number(!!a.owner) || (rarityRank[b.item.rarity_id] ?? 0) - (rarityRank[a.item.rarity_id] ?? 0) || b.item.level - a.item.level), [state]);
   const narrowed = rarities.length > 0 || levels.length > 0 || (cardMode && cardSlot !== null), matches = (g: {item:{rarity_id:string};definition:{tier_level:number}}) => (!rarities.length || rarities.includes(g.item.rarity_id)) && (!levels.length || levels.includes(g.definition.tier_level));
   const slotGear = filter === 'card' ? [] : gear.filter(g => filter === 'all' || g.slot === filter), shownGear = slotGear.filter(matches), shownCards = filter === 'card' || (filter === 'all'&&!levels.length) ? cards.filter(c=>(!cardMode||!cardSlot||c.definition.slot===cardSlot)&&(!rarities.length||rarities.includes(c.item.rarity_id))) : [];
   const filterItems=[...slotGear,...(filter==='card'||filter==='all'?cards:[])];

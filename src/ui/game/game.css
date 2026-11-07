@@ -6,7 +6,8 @@
   --panel: rgba(255, 255, 255, .9); --panel-2: #f3f7ff; --glass: rgba(255, 255, 255, .72);
   --sky-1: #eaf4ff; --sky-2: #d4e7ff; --sky-3: #b9d6fb;
   --blue: #4775ad; --blue-2: #365d91; --gold: #f5b53d; --gold-2: #e08e12; --green: #22a565; --red: #e5484d; --purple: #8b5cf6;
-  --r-common: #98a3b3; --r-uncommon: #3fae5a; --r-rare: #3b82f6; --r-epic: #9b5cf6; --r-legendary: #f39c12; --r-immortal: #b6c7de; --r-supreme: #ec4899;
+  --r-common: #98a3b3; --r-uncommon: #3fae5a; --r-rare: #3b82f6; --r-epic: #9b5cf6; --r-legendary: #f39c12; --r-immortal: #ef4444; --r-supreme: #a7b9df;
+  --supreme-rainbow: conic-gradient(from 20deg,#42c9ff,#7860ff,#ee55c7,#ff8757,#f5ce4e,#45d99a,#42c9ff);
   --shadow: 0 6px 18px rgba(30, 60, 120, .16); --shadow-strong: 0 10px 30px rgba(20, 40, 90, .28);
   --font: ROThai, 'Noto Sans Thai', 'Sukhumvit Set', system-ui, -apple-system, sans-serif;
 }
@@ -1072,10 +1073,6 @@ dialog.gacha-reveal-sheet{height:92dvh}.gacha-reveal-sheet .sheet-body{height:10
 /* One request for a target; prices stay explicit before the action. */
 .refine-targets{margin:14px 0 10px}.refine-targets button{min-height:42px;font-size:12px}.refine-targets button[aria-pressed=true],.skill-upgrade-mode button[aria-pressed=true]{background:#dceaff;color:#315e9b;box-shadow:inset 0 -2px #638cc5}.refine-target-note{font-size:12px;line-height:1.5;color:#63768e;margin:8px 0 12px}.refine-cost-label{font-size:11px;color:#71829b}.refine-summary{margin-top:14px;padding:13px;border-radius:12px;background:#edf5ff;color:#385677}.refine-summary header{display:flex;align-items:center;justify-content:space-between;gap:8px}.refine-summary header>b{font-size:21px}.refine-summary header>span{font-size:11px}.refine-summary p{font-size:12px;margin:10px 0}.refine-summary>div,.refine-summary>div>span{display:flex;align-items:center;gap:6px;font-size:12px}.refine-summary>div{gap:13px}.refine-summary img{width:21px;height:21px;object-fit:contain}.refine-summary>small{display:block;font-size:11px;color:#71829b;margin-top:9px}.skill-upgrade-mode{margin-bottom:9px}.skill-upgrade-mode button{font-size:11px;min-height:36px;padding:6px}
 
-/* Immortal: pale iridescent frame; native item artwork stays unchanged. */
-.icon-frame.rarity-immortal,.gear-tile.rarity-immortal,.bag-cell.rarity-immortal {border-color:transparent;background:linear-gradient(145deg,#fff,#f4f7ff) padding-box,linear-gradient(135deg,#c0e9ff,#fff 22%,#dccfff 43%,#fff 60%,#b9f0e3 80%,#f8e9c5) border-box;box-shadow:0 0 0 1px #b3bfd2,0 0 8px #e1e9ff99;}
-.rarity-label.rarity-immortal {color:#576d91;text-shadow:0 0 5px #d8e2ff;}
-.chip.rarity-chip.on.rarity-immortal {color:#415673;background:linear-gradient(120deg,#d8efff,#fff,#e3d9ff,#d9f5ed);border-color:#b8c6dc;}
 .crafting-targets {display:flex;flex-wrap:wrap;gap:7px;margin-top:12px;}
 .crafting-targets button {min-height:40px;padding:7px 11px;border:1px solid var(--rc);border-radius:10px;background:var(--glass);color:var(--ink);font-size:12px;}
 .crafting-targets button.on {box-shadow:inset 0 0 0 1px var(--rc);background:color-mix(in srgb,var(--rc) 18%,white);font-weight:700;}
@@ -1086,3 +1083,19 @@ dialog.gacha-reveal-sheet{height:92dvh}.gacha-reveal-sheet .sheet-body{height:10
 .crafting-odds th,.crafting-odds td {padding:7px 3px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap;}
 .crafting-odds th:first-child {text-align:left;white-space:normal;}.crafting-odds tbody th {font-weight:500;}
 .crafting-odds>small {display:block;margin-top:7px;color:var(--muted);line-height:1.5;}
+
+/* Supreme: white core with a distinct rainbow rim. Immortal retains the red palette. */
+.icon-frame.rarity-supreme,.gear-tile.rarity-supreme,.bag-cell.rarity-supreme,
+.artifact-art.rarity-supreme,.artifact-preview.rarity-supreme,.gacha-card.rarity-supreme {
+  border:3px solid transparent;
+  background:linear-gradient(145deg,#fff,#f4f7ff) padding-box,var(--supreme-rainbow) border-box;
+  box-shadow:inset 0 0 0 1px #fff,0 0 0 1px #fff,0 0 9px #a293ff66;
+}
+.rarity-label.rarity-supreme {color:#4c5680;text-shadow:0 0 5px #fff;}
+.chip.rarity-chip.on.rarity-supreme,.crafting-targets button.rarity-supreme {
+  color:#34476e;border:2px solid transparent;
+  background:linear-gradient(#fff,#f0f5ff) padding-box,var(--supreme-rainbow) border-box;
+}
+.crafting-targets button.rarity-supreme.on {box-shadow:inset 0 0 0 1px #677bad,0 0 8px #a293ff66;font-weight:700;}
+
+.gacha-card.rarity-immortal {box-shadow:0 0 0 2px var(--r-immortal),0 0 10px #ef44444d;}
