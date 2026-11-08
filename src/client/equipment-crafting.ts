@@ -1,7 +1,7 @@
 import type { AccountState } from '../contracts/index.ts';
 import { loadValidatedContent } from './content.ts';
 import { craftingRules, craftingStock, optionStoneQuote, optionStoneOutcomes, rarityStoneQuote } from '../domain/progression/equipment-crafting.ts';
-import { optionValue, type ItemOption } from '../domain/build/item-options.ts';
+import { optionRules, optionValue, type ItemOption } from '../domain/build/item-options.ts';
 import { itemDefinition } from '../domain/build/equipment-definition.ts';
 export { optionTargetAttemptLimit } from '../domain/progression/option-target.ts';
 const loaded=loadValidatedContent();if(!loaded.ok)throw Error('CONTENT_UNAVAILABLE');const content=loaded.value;
@@ -18,6 +18,14 @@ export function craftingView(state:AccountState,id:string,index:number,target?:E
  const destination=target&&targets.includes(target)?target:targets[0];
  try{rarity=rarityStoneQuote(state,id,content,destination);}catch(e){rarityReason=(e as Error).message;}
  try{roll=optionStoneQuote(state,id,index,content);}catch(e){rollReason=(e as Error).message;}
+ const options=optionRules(content),outcomes=optionStoneOutcomes(item,index,definition.tier_level!,content);
+ // Keep unavailable types visible: hiding them made the target list look incomplete.
+ const optionTargets=options.pool.map(row=>{
+  const outcome=outcomes.find(o=>o.id===row.id),occupiedRows=item.options.flatMap((o,i)=>options.pool.find(r=>r.id===o.id)?.stat===row.stat?[i+1]:[]);
+  return{id:row.id,stat:row.stat,percent:row.op==='add_percent',probability:outcome?.probability??0,
+   min:optionValue({id:row.id,roll:0},definition.tier_level!,content).value,max:optionValue({id:row.id,roll:options.roll_scale},definition.tier_level!,content).value,
+   occupiedRows,selectable:!!outcome&&outcome.probability>0&&row.id!==item.options[index]?.id};
+ });
  const strings=content.documents['strings.th.json']!.strings as unknown as Record<string,string>;
- return{name:strings[definition.name_key]??definition.id,item,definition,rules,targets,destination,outcomes:optionStoneOutcomes(item,index,definition.tier_level!,content),stock:craftingInventory(state),pending:pending?.item_instance_id===id?pending:null,otherPending:pending&&pending.item_instance_id!==id?pending:null,rarity,rarityReason,roll,rollReason};
+ return{name:strings[definition.name_key]??definition.id,item,definition,rules,targets,destination,outcomes,optionTargets,stock:craftingInventory(state),pending:pending?.item_instance_id===id?pending:null,otherPending:pending&&pending.item_instance_id!==id?pending:null,rarity,rarityReason,roll,rollReason};
 }
