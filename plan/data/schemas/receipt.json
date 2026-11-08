@@ -373,6 +373,94 @@
             "stop_reason"
           ],
           "additionalProperties": false
+        },
+        "option_batch": {
+          "type": "object",
+          "properties": {
+            "item_instance_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "option_index": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 4
+            },
+            "target_option_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            },
+            "attempts": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10000
+            },
+            "stones_spent": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            },
+            "original": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120
+                },
+                "roll": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000
+                }
+              },
+              "required": [
+                "id",
+                "roll"
+              ],
+              "additionalProperties": false
+            },
+            "replacement": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120
+                },
+                "roll": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000
+                }
+              },
+              "required": [
+                "id",
+                "roll"
+              ],
+              "additionalProperties": false
+            },
+            "stop_reason": {
+              "enum": [
+                "target_reached",
+                "insufficient_stones",
+                "attempt_limit"
+              ]
+            }
+          },
+          "required": [
+            "item_instance_id",
+            "option_index",
+            "target_option_id",
+            "attempts",
+            "stones_spent",
+            "original",
+            "replacement",
+            "stop_reason"
+          ],
+          "additionalProperties": false
         }
       },
       "required": [

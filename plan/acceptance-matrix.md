@@ -1146,3 +1146,14 @@ TASK-020เปิดแก้ regression หัวแยกตามผู้ใ
 | `T198-AC-04` | TASK-198 | New option supply/frozen counters and Immortal native mobile frames | passed_implementation |
 | `T198-AC-05` | TASK-198 | Authorized save6 Creator quota reset exactly once with restore isolation | passed_implementation |
 | `T198-AC-06` | TASK-198 | Focused/full/native/strict/M0/root/cleancommitted/public pass | passed_implementation |
+
+## TASK-199 — Enchant and option targets
+
+| Case | Task | Criterion | Verification | Status |
+| --- | --- | --- | --- | --- |
+| `T199-AC-01` | TASK-199 | API ยอมรับ Enchant 11–20; cap ตาม level และค่าใช้จ่าย/คืนทุนถูกต้อง | shared/API/native/build/public | not_run_implementation |
+| `T199-AC-02` | TASK-199 | เป้าหมาย Enchant ส่งครั้งเดียวและแสดงราคาทั้งหมด; ทุนไม่พอไม่หักบางส่วน | shared/API/native/build/public | not_run_implementation |
+| `T199-AC-03` | TASK-199 | รีออฟตรงการสุ่มเดิมจนพบเป้าหมาย/หินหมด/ครบเพดาน; แถวอื่นและชิ้นเดิมคงอยู่ | shared/API/native/build/public | not_run_implementation |
+| `T199-AC-04` | TASK-199 | invalid/stale/pending/locked/inbattle ไม่เสียหิน; retry/response-loss ไม่หักซ้ำ | shared/API/native/build/public | not_run_implementation |
+| `T199-AC-05` | TASK-199 | ยืนยันใช้ผลสุดท้าย พร้อมจำนวนหินสูงสุดและสรุปจริง; mobile ไม่ล้น | shared/API/native/build/public | not_run_implementation |
+| `T199-AC-06` | TASK-199 | focused/full/build/clean committed/public checks ผ่าน; ไม่แตะเซฟเจ้าของ | shared/API/native/build/public | not_run_implementation |

@@ -1099,3 +1099,8 @@ dialog.gacha-reveal-sheet{height:92dvh}.gacha-reveal-sheet .sheet-body{height:10
 .crafting-targets button.rarity-supreme.on {box-shadow:inset 0 0 0 1px #677bad,0 0 8px #a293ff66;font-weight:700;}
 
 .gacha-card.rarity-immortal {box-shadow:0 0 0 2px var(--r-immortal),0 0 10px #ef44444d;}
+
+/* D222: compact Enchant targets and explicit auto-reroll commitment. */
+.enchant-targets{gap:4px;margin:8px 0}.enchant-targets button{min-width:0;padding:8px 4px;font-size:12px}
+.option-target-controls{display:grid;gap:9px;margin:12px 0}.option-target-controls .seg{margin:0}.option-target-controls label{display:grid;gap:6px;font-size:12px;font-weight:600}.option-target-controls select{width:100%;min-width:0;min-height:42px;padding:8px;border:1px solid #b8cce7;border-radius:10px;background:#fff;color:#284268;font:inherit}.option-target-controls p,.option-target-controls small{margin:0;font-size:11px;color:#647994;line-height:1.5}.option-target-confirm,.option-target-summary{display:grid;gap:6px;padding:11px;border-radius:12px;background:#edf4ff;font-size:12px}.option-target-confirm span,.option-target-summary span{font-size:11px;line-height:1.5}.option-target-confirm .btn{justify-self:end}.option-target-summary{margin:10px 0;background:#eef7f4}.option-target-summary small{color:#72858b;font-size:11px}.option-target-summary strong{color:#2b7964}
+:root .game-root .enchant-targets button[aria-pressed=true],:root .game-root .option-target-controls .seg button[aria-pressed=true]{--ro-control-bg:#4a72a4;--ro-control-edge:#4a72a4;--ro-control-ink:#fff;--ro-control-pressed:#3d6090;background:var(--ro-control-bg);border-color:var(--ro-control-edge);color:var(--ro-control-ink);box-shadow:none}

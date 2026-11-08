@@ -1,3 +1,7 @@
+## TASK199 local review — 8 November2026; publishing
+
+D222/design102: fix Enchant command maximum10→20; unchanged content cap/level gates80→15/100→20 and prices/refund ledger. Mobile targets5/10/15/20 use one existing slot.enchant with total quote. equipment.option_target searches one eligible type with original pool/RNG/cost, preserves other lines, rejects stale/pending/locked/battle; keeps final outcome on target/insufficient stones/10000-attempt bound, explicit maximum-spend confirmation and receipt summary. User confirmed type-only/final-result behavior.925distinctTS (903full +22rechecked scope), native11groups320390, strict/M0/root build pass. Cleancommitted/public pending. No ownerAuth/SQL/env/6173restart; preserve user draft. See plan/evidence/task-199.
+
 ## Rarity/card UI follow-up LIVE — 7 November2026
 
 User corrected D221: Immortal restores red #ef4444; Supreme is white with saturated3px static rainbow frame, matching selectors and labels. All equipped cards (including NPCs) sort first in Backpack and AddCard, then existing rarity/level; replaces older free-first preference. Pure UI/client ordering, no saved inventory/assignment/filter/salvage change.16focused/scope/native7groups320390/rootbuild passed; all5durable fingerprints remain TASK198. See plan/evidence/rarity-and-card-order-20261107. Product21145efa985b693726da2ce89dd2c7de8a9d3f1a VercelSUCCESS/public5groups/27bundleSHA/15resourceSHA; root+cleanCOMMITTED1736identical passed. NoownerAuth/6173restart. Own7551CLOSED. No remaining follow-up work; cleancommittedarchivebeforeeverypush.

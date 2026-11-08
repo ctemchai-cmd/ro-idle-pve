@@ -3,6 +3,7 @@ import { loadValidatedContent } from './content.ts';
 import { craftingRules, craftingStock, optionStoneQuote, optionStoneOutcomes, rarityStoneQuote } from '../domain/progression/equipment-crafting.ts';
 import { optionValue, type ItemOption } from '../domain/build/item-options.ts';
 import { itemDefinition } from '../domain/build/equipment-definition.ts';
+export { optionTargetAttemptLimit } from '../domain/progression/option-target.ts';
 const loaded=loadValidatedContent();if(!loaded.ok)throw Error('CONTENT_UNAVAILABLE');const content=loaded.value;
 export type CraftingMaterial='option_stone'|'rarity_stone';
 export function craftingMaterialName(key:CraftingMaterial){return craftingRules(content).materials[key].name;}

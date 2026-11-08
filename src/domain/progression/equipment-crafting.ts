@@ -88,7 +88,7 @@ export function applyCraftingCommand(state:AccountState,command:CraftingCommand,
 export function protectPendingOption(state:AccountState,command:Command){
   const pending=state.equipment_crafting?.pending_roll;if(!pending||command.type==='equipment.option_decide')return;
   const params=command.params as Record<string,unknown>;
-  if(['equipment.fuse','equipment.salvage','equipment.rarity_up','equipment.option_roll'].includes(command.type)&&
+  if(['equipment.fuse','equipment.salvage','equipment.rarity_up','equipment.option_roll','equipment.option_target'].includes(command.type)&&
     (params.item_instance_id===pending.item_instance_id||(Array.isArray(params.instance_ids)&&params.instance_ids.includes(pending.item_instance_id))))reject('OPTION_ROLL_PENDING');
 }
 export function validateCrafting(state:AccountState,content:ValidatedContent){

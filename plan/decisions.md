@@ -472,3 +472,6 @@ Increase Rarity stone acquisition for full-party gearing. AFK8–24/12h, shop10�
 
 ## D220–221 — 7 November2026
 D220: Daily is one continuous boss acrossHPbars; carryoverflow/multihit/statuses. Authorized3dailyquota resetonlysave6Creator. D221: targetRarityatomic, actualoptionodds/minmax, optionstoneAFK12–36/shop50/Event120 andstaticwhiteiridescentImmortal. See design101/TASK198.
+
+## D222 — 8 November2026
+Fix Enchant command cap10→20 (existing game cap), targets5/10/15/20 with exact total. Add single-row option target rerolls using original odds/cost, final result on stop and explicit max-spend confirmation; type-only target, bound10000 per command. See design102/TASK199.
