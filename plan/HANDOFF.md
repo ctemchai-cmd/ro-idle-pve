@@ -1,6 +1,6 @@
-## TASK200 local review — 8 November2026; publishing
+## TASK200 COMPLETE / Repeatable slot options LIVE — 8 November2026
 
-D223/design103: duplicate options allowed,6slot-specific pools from existing13IDs/weights/ranges/Tier/costs. One helper for allcreation+reroll+UI; definition required for newpool, frozenabsencelegacyglobal+unique. Same-type target pays at least one roll; all5M.ATK sum once with distinct modifierIDs. Oldoff-pool items/rewards/paidpending retained, no re-roll/refund.932distinctTS(910full+22recheckedmanifestscope)/native9groups320390/M0/strict/rootpassed; cleanCOMMITTED/public pending. Evidence task200; noowneraccess/SQL/env/media/balancebatch/6173restart. Own7554CLOSED. Userdraftpreserved.185/200done; cleancommittedarchivebeforeeverypush.
+Producta22de1be1f6b5414cd0e067abc9957605b970e26 VercelSUCCESS/public5groups/27bundleSHA/15resourceSHA;932distinctTS/native9groups320390/M0/strict/root+cleanCOMMITTED1736identical passed.186/200done/M4140/149. D223/design103: allrows may repeat,6slot-specific pools use existing13IDs/weights/ranges/Tier/costs; shared allcreation/reroll/UI, frozenabsencekeepslegacy. Current-type target makes>=1paidroll;5M.ATK sumonce with per-rowIDs. Oldoff-pool items/rewards/paidpending remain unchanged; no re-roll/refund. Engine-data de31d9/core377b9b/contente89b6d; schema950c/pack00d778 unchanged. Existing backed-up content update, no SQL/env/newmedia/owneraccess/balancebatch/6173restart. Own7554CLOSED. Preserveuserdraft;cleancommittedarchivebeforeeverypush. No remaining200work; evidence task200.
 
 ## Option target visibility follow-up LIVE — 8 November2026
 
