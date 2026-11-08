@@ -13,14 +13,14 @@ export function applyOptionTarget(state:AccountState,command:Extract<Command,{ty
  if(original.id!==expected_option.id||original.roll!==expected_option.roll)reject('OPTION_ROLL_STALE');
  if(!Number.isSafeInteger(max_attempts)||max_attempts<1||max_attempts>optionTargetAttemptLimit)reject('INVALID_OPTION_ATTEMPTS');
  const rules=optionRules(content),excluded=q.item.options.filter((_,i)=>i!==q.index).map(o=>rules.pool.find(r=>r.id===o.id)!.stat);
- if(!availableItemOptions(content,excluded).some(r=>r.id===target_option_id&&r.weight>0))reject('INVALID_OPTION_TARGET');
- if(original.id===target_option_id)reject('OPTION_TARGET_ALREADY_PRESENT');
+ if(!availableItemOptions(content,excluded,q.item.definition_id).some(r=>r.id===target_option_id&&r.weight>0))reject('INVALID_OPTION_TARGET');
+ if(rules.unique_stat_per_item&&original.id===target_option_id)reject('OPTION_TARGET_ALREADY_PRESENT');
  const stock=craftingStock(state,'option_stone'),affordable=Math.floor(stock/q.stone_cost),limit=Math.min(affordable,max_attempts);
  if(!limit)reject('INSUFFICIENT_CRAFTING_STONES');
  let replacement=original,attempts=0;
  const checkedDraw=()=>{const n=draw();if(!Number.isFinite(n)||n<0||n>=1)throw new Error('SERVER_ROLL_REQUIRED');return n;};
  while(attempts<limit){
-  replacement=rollItemOptions(q.item.rarity_id,checkedDraw,content,{count:1,excluded_stats:excluded})[0]??reject('OPTION_POOL_EMPTY');
+  replacement=rollItemOptions(q.item.rarity_id,checkedDraw,content,{count:1,excluded_stats:excluded,definition_id:q.item.definition_id})[0]??reject('OPTION_POOL_EMPTY');
   attempts++;
   if(replacement.id===target_option_id)break;
  }

@@ -180,7 +180,7 @@ test('D-068: the gear gacha banner states the rolled option lines from content (
 test('D-068 regression (found by the 25-day journey, 21 Oct 2026): a Supreme item with 5 option lines is a valid save in the inventory and in a pending reward', () => {
   const lines = optionRules(content).lines_by_rarity, schema = JSON.parse(readFileSync('plan/data/schemas/account-state.json', 'utf8'));
   for (const branch of [schema.properties.inventory.items.oneOf[0], schema.properties.pending_rewards.items.properties.items.items.oneOf[0]]) assert.ok(branch.properties.options.maxItems >= Math.max(...Object.values(lines)), `schema allows ${branch.properties.options.maxItems} lines, Supreme rolls ${lines.supreme}`);
-  let n = 0; const options = rollItemOptions('supreme', () => (n++ * 0.173) % 1, content); assert.equal(options.length, 5);
+  let n = 0; const options = rollItemOptions('supreme', () => (n++ * 0.173) % 1, content, {definition_id:'equipment_sword_60'}); assert.equal(options.length, 5);
   const state = fixture().state, base = state.inventory.find(i => i.kind === 'equipment') ?? null;
   const definition = Object.values(content.items).find(d => (d as unknown as { kind: string; tier_level: number }).kind === 'equipment' && (d as unknown as { tier_level: number }).tier_level === 60) as unknown as { id: string };
   const item = { ...(base ?? {}), kind: 'equipment', instance_id: 'supreme_probe', definition_id: definition.id, rarity_id: 'supreme', locked: false, training: false, options } as never;

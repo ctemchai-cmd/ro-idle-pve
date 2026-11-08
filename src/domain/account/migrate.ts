@@ -75,10 +75,10 @@ export function migrateAccountState(input: unknown, content: ValidatedContent, c
   // D-062: equipment created before random options gets its lines now, from a stable per-instance seed (never re-rolled later).
   for (const item of state.inventory) if (item.kind === 'equipment' && (item as { options?: unknown }).options === undefined) {
     const rng = { state: legacyOptionSeed(item.instance_id), draw_count: 0 };
-    item.options = item.training ? [] : rollItemOptions(item.rarity_id, () => nextRandom(rng), content);
+    item.options = item.training ? [] : rollItemOptions(item.rarity_id, () => nextRandom(rng), content, {definition_id:item.definition_id});
     if (item.options.length) changes.push(`${item.instance_id}: ${item.options.length} option line(s)`);
   }
-  for (const claim of state.pending_rewards) for (const item of claim.items) if (item.kind === 'equipment' && (item as { options?: unknown }).options === undefined) { const rng = { state: legacyOptionSeed(item.instance_id), draw_count: 0 }; item.options = rollItemOptions(item.rarity_id, () => nextRandom(rng), content); }
+  for (const claim of state.pending_rewards) for (const item of claim.items) if (item.kind === 'equipment' && (item as { options?: unknown }).options === undefined) { const rng = { state: legacyOptionSeed(item.instance_id), draw_count: 0 }; item.options = rollItemOptions(item.rarity_id, () => nextRandom(rng), content, {definition_id:item.definition_id}); }
   const gacha = state.gacha as Partial<AccountState['gacha']>; if (!gacha.equipment_v1) { gacha.equipment_v1 = { legendary_misses: 0, rare_streak: 0 }; changes.push('equipment gacha counters added'); }
   if (!(state as Partial<AccountState>).shop) { state.shop = { day: null, purchases: {} }; changes.push('shop purchase record added'); }
   if (state.active_battle) { state.active_battle = null; changes.push('active battle ended (battles never cross content versions)'); }

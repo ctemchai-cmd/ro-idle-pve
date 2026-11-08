@@ -40,7 +40,7 @@ export function optionStoneQuote(state:AccountState,id:string,index:number,conte
 export function optionStoneOutcomes(item:Gear,index:number,tier:number,content:ValidatedContent){
   if(!item.options[index])return[];
   const rules=optionRules(content),excluded=item.options.filter((_,i)=>i!==index).map(o=>rules.pool.find(r=>r.id===o.id)!.stat);
-  const pool=availableItemOptions(content,excluded),weight=pool.reduce((n,r)=>n+r.weight,0);
+  const pool=availableItemOptions(content,excluded,item.definition_id),weight=pool.reduce((n,r)=>n+r.weight,0);
   return pool.map(row=>({id:row.id,stat:row.stat,percent:row.op==='add_percent',probability:row.weight/weight,
     min:optionValue({id:row.id,roll:0},tier,content).value,max:optionValue({id:row.id,roll:rules.roll_scale},tier,content).value}));
 }
@@ -69,7 +69,7 @@ export function applyCraftingCommand(state:AccountState,command:CraftingCommand,
     const q=optionStoneQuote(state,id,command.params.option_index,content);
     if(q.item.options[q.index]!.id!==command.params.expected_option.id||q.item.options[q.index]!.roll!==command.params.expected_option.roll)reject('OPTION_ROLL_STALE');
     if(crafting.stock.option_stone<q.stone_cost)reject('INSUFFICIENT_CRAFTING_STONES');
-    const replacement=rollItemOptions(q.item.rarity_id,draw!,content,{count:1,excluded_stats:stats(q.item.options.filter((_,i)=>i!==q.index))})[0];
+    const replacement=rollItemOptions(q.item.rarity_id,draw!,content,{count:1,excluded_stats:stats(q.item.options.filter((_,i)=>i!==q.index)),definition_id:q.item.definition_id})[0];
     if(!replacement)reject('OPTION_POOL_EMPTY');
     crafting.stock.option_stone-=q.stone_cost;
     crafting.pending_roll={roll_id:command.request_id,item_instance_id:id,option_index:q.index,original:{...q.item.options[q.index]!},replacement:{...replacement!}};
@@ -79,7 +79,7 @@ export function applyCraftingCommand(state:AccountState,command:CraftingCommand,
   if(q.item.rarity_id!==command.params.expected_rarity)reject('RARITY_CHANGED');
   if(crafting.stock.rarity_stone<q.stone_cost)reject('INSUFFICIENT_CRAFTING_STONES');
   if(state.wallet.gold<q.gold_cost)reject('INSUFFICIENT_RESOURCES');
-  const count=Math.max(0,rules.lines_by_rarity[q.step.to]-q.item.options.length),additional=rollItemOptions(q.step.to,draw!,content,{count,excluded_stats:stats(q.item.options)});
+  const count=Math.max(0,rules.lines_by_rarity[q.step.to]-q.item.options.length),additional=rollItemOptions(q.step.to,draw!,content,{count,excluded_stats:stats(q.item.options),definition_id:q.item.definition_id});
   if(additional.length!==count)reject('OPTION_POOL_EMPTY');
   crafting.stock.rarity_stone-=q.stone_cost;state.wallet.gold-=q.gold_cost;q.item.rarity_id=q.step.to;q.item.options=[...q.item.options,...additional] as ItemOptions;
   return'EQUIPMENT_RARITY_UPGRADED';
@@ -99,6 +99,7 @@ export function validateCrafting(state:AccountState,content:ValidatedContent){
   if(!item||item.kind!=='equipment'||!Number.isSafeInteger(p.option_index)||p.option_index<0)throw new Error('INVALID_PENDING_OPTION');
   const current=item.options[p.option_index];if(!current||current.id!==p.original.id||current.roll!==p.original.roll)throw new Error('INVALID_PENDING_OPTION');
   const rules=optionRules(content),replacement=rules.pool.find(r=>r.id===p.replacement.id);
-  if(!replacement||!Number.isSafeInteger(p.replacement.roll)||p.replacement.roll<0||p.replacement.roll>rules.roll_scale||item.options.some((o,i)=>i!==p.option_index&&rules.pool.find(r=>r.id===o.id)?.stat===replacement.stat))throw new Error('INVALID_PENDING_OPTION');
+  // A paid result from before a pool change remains claimable even if its type is now outside the slot pool.
+  if(!replacement||!Number.isSafeInteger(p.replacement.roll)||p.replacement.roll<0||p.replacement.roll>rules.roll_scale||(rules.unique_stat_per_item&&item.options.some((o,i)=>i!==p.option_index&&rules.pool.find(r=>r.id===o.id)?.stat===replacement.stat)))throw new Error('INVALID_PENDING_OPTION');
   if(!equipmentRules(content).rarities.some(r=>r.id===item.rarity_id))throw new Error('INVALID_ITEM_RARITY');
 }

@@ -64,7 +64,7 @@ export function pullGear(state: AccountState, count: 1 | 10, draw: () => number,
     else if (rarity === 'epic') { counters.legendary_misses++; counters.rare_streak = 0; }
     else { counters.legendary_misses++; counters.rare_streak++; }
     const definition = definitions[Math.min(definitions.length - 1, Math.floor(draw() * definitions.length))]!;
-    items.push({ instance_id: `${idPrefix}_${n}`, definition_id: definition, kind: 'equipment', rarity_id: rarity, locked: false, training: false, options: rollItemOptions(rarity, draw, content) });
+    items.push({ instance_id: `${idPrefix}_${n}`, definition_id: definition, kind: 'equipment', rarity_id: rarity, locked: false, training: false, options: rollItemOptions(rarity, draw, content, {definition_id:definition}) });
   }
   return items;
 }

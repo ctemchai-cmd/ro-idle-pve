@@ -475,3 +475,6 @@ D220: Daily is one continuous boss acrossHPbars; carryoverflow/multihit/statuses
 
 ## D222 — 8 November2026
 Fix Enchant command cap10→20 (existing game cap), targets5/10/15/20 with exact total. Add single-row option target rerolls using original odds/cost, final result on stop and explicit max-spend confirmation; type-only target, bound10000 per command. See design102/TASK199.
+
+## D223 — Repeatable slot-specific item options (8November2026)
+User allows repeated types on allrows and asks different equipment-slot pools. See design103/TASK200; existing rolls stay, new rolls use slot pools, current-type target rolls at least once.

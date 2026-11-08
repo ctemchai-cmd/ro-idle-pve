@@ -116,6 +116,17 @@ export function validateContent(raw: unknown): Result<ValidatedContent> {
     }
   });
   attempt(docAt('equipment.json'),()=>{
+    const value=bundle.documents['equipment.json']!.random_options;if(value===undefined)return;
+    const rules=object(value);if(rules.slot_pools===undefined)return;
+    const at={source:'equipment.json',path:'/random_options/slot_pools'},pools=object(rules.slot_pools),rows=list(rules.pool).map(object),ids=rows.map(r=>r.id);
+    demand(typeof rules.unique_stat_per_item==='boolean'&&new Set(ids).size===ids.length,'option_pool_rules',at);
+    demand(canonical(Object.keys(pools).sort())===canonical(['weapon','head','armor','garment','shoes','accessory'].sort()),'option_pool_slots',at);
+    for(const row of rows)demand(typeof row.weight==='number'&&Number.isFinite(row.weight)&&row.weight>0&&typeof row.min==='number'&&typeof row.max==='number'&&Number.isFinite(row.min)&&Number.isFinite(row.max)&&row.min<=row.max,'option_pool_range',at);
+    for(const [slot,value]of Object.entries(pools)){
+      const pool=list(value);demand(pool.length>0&&new Set(pool).size===pool.length&&pool.every(id=>typeof id==='string'&&ids.includes(id)),'option_pool_members',{...at,path:at.path+'/'+slot});
+    }
+  });
+  attempt(docAt('equipment.json'),()=>{
     const value=bundle.documents['equipment.json']!.crafting;if(value===undefined)return;
     const rules=object(value),at={source:'equipment.json',path:'/crafting'},materials=object(rules.materials),cost=object(rules.option_roll_cost);
     demand(canonical(Object.keys(materials).sort())===canonical(['option_stone','rarity_stone']),'crafting_materials',at);

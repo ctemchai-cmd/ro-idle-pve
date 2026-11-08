@@ -13,12 +13,12 @@ function initial(){const s=initializeAccount(content,{root_job_id:'swordsman',ge
 const command=(type:Command['type'],params:unknown)=>({type,params,request_id:randomUUID(),expected_revision:1,schema_version:1,...rules.versions})as Command;
 function run(s:AccountState,type:Command['type'],params:unknown){const c=command(type,params);rules.parse(c);return rules.decide(c,s,null,{server_at:at,now_ms:Date.parse(at),battle_seed:71}as CommandTime,'a'.repeat(64));}
 
-test('D188 rarity preserves exact instance/Tier/old options/owner/slot investments and appends only new unique stats',()=>{
+test('D188 rarity preserves exact instance/Tier/old options/owner/slot investments and appends slot-eligible stats (duplicates allowed by D223)',()=>{
  const s=initial(),old=structuredClone(s),result=run(s,'equipment.rarity_up',{item_instance_id:'craft_test',expected_rarity:'epic'});
  assert.equal(result.receipt.result.code,'EQUIPMENT_RARITY_UPGRADED');assert.equal(result.receipt.result.resource_delta.gold,-16000);
  const g=result.state.inventory.at(-1)!;assert.equal(g.kind,'equipment');if(g.kind!=='equipment')throw Error('gear');
  assert.equal(g.instance_id,'craft_test');assert.equal(g.definition_id,'equipment_sword_1');assert.equal(g.rarity_id,'legendary');assert.equal(g.options.length,3);assert.deepEqual(g.options.slice(0,2),(old.inventory.at(-1)!as typeof g).options);
- assert.equal(new Set(g.options.map(o=>optionRules(content).pool.find(p=>p.id===o.id)!.stat)).size,3);assert.deepEqual(result.state.roster,old.roster);assert.equal(craftingStock(result.state,'rarity_stone'),96);assert.deepEqual(s,old);
+ assert(optionRules(content).slot_pools!.weapon.includes(g.options[2]!.id));assert.deepEqual(result.state.roster,old.roster);assert.equal(craftingStock(result.state,'rarity_stone'),96);assert.deepEqual(s,old);
  assert.deepEqual(result.receipt.result.created_instance_ids,[]);assert.deepEqual(result.receipt.result.removed_instance_ids,[]);
 });
 test('D188 paid reroll keeps original active until decide, survives JSON/reload, and cannot be rolled/destructed twice',()=>{
@@ -37,13 +37,13 @@ test('D188 stale rarity/option, locked/training/insufficient/absent line reject 
  ['OPTION_LINE_MISSING',()=>{},'equipment.option_roll',{item_instance_id:'craft_test',option_index:4,expected_option:{id:'opt_atk',roll:1}}]
  ];for(const[code,mutate,type,params]of cases){const s=initial();mutate(s);const before=structuredClone(s),r=run(s,type,params);assert.equal(r.receipt.result.code,code);assert.equal(r.receipt.outcome,'rejected');assert.deepEqual(r.state,before);}
  const s=initial();const rolled=run(s,'equipment.option_roll',{item_instance_id:'craft_test',option_index:0,expected_option:{id:'opt_atk',roll:500}}).state;
- rolled.equipment_crafting!.pending_roll!.replacement={id:'opt_hp',roll:2};assert.throws(()=>validateCrafting(rolled,content),/INVALID_PENDING_OPTION/);
+ rolled.equipment_crafting!.pending_roll!.replacement={id:'unknown_option',roll:2};assert.throws(()=>validateCrafting(rolled,content),/INVALID_PENDING_OPTION/);
 });
 test('D188 all six rarity steps consume stated costs, stop at Supreme, and regular default option RNG remains two draws per line',()=>{
  const s=initial(),g=s.inventory.at(-1)!;if(g.kind!=='equipment')throw Error('gear');g.rarity_id='common';g.options=[];let draws=0;
  for(const[from,to,cost]of [['common','uncommon',1],['uncommon','rare',1],['rare','epic',2],['epic','legendary',4],['legendary','immortal',12],['immortal','supreme',30]]as const){const prior=s.equipment_crafting!.stock.rarity_stone;applyCraftingCommand(s,command('equipment.rarity_up',{item_instance_id:'craft_test',expected_rarity:from})as never,content,()=>{draws++;return .17;});assert.equal(g.rarity_id,to);assert.equal(s.equipment_crafting!.stock.rarity_stone,prior-cost);assert.equal(g.options.length,optionRules(content).lines_by_rarity[to]);}
  assert.equal(draws,10);const before=structuredClone(s);assert.throws(()=>applyCraftingCommand(s,command('equipment.rarity_up',{item_instance_id:'craft_test',expected_rarity:'supreme'})as never,content,()=>0),/RARITY_MAX_REACHED/);assert.deepEqual(s,before);
- let n=0;rollItemOptions('supreme',()=>{n++;return .1;},content);assert.equal(n,10);
+ let n=0;rollItemOptions('supreme',()=>{n++;return .1;},content,{definition_id:'equipment_sword_1'});assert.equal(n,10);
 });
 test('D219 increased shops enforce independent per-save Bangkok daily limits, affordable max, and stock overflow without partial spending',()=>{
  const a=initial(),b=initial();assert.equal(shopOffer('rarity_stone',content).daily_limit,4);assert.equal(shopOffer('option_stone',content).daily_limit,5);

@@ -8799,7 +8799,7 @@
       "supreme": 5
     },
     "roll_scale": 1000,
-    "unique_stat_per_item": true,
+    "unique_stat_per_item": false,
     "timing_neutral": true,
     "tier_scale": {
       "1": 1,
@@ -8928,7 +8928,56 @@
         "max": 0.04,
         "weight": 7
       }
-    ]
+    ],
+    "slot_pools": {
+      "weapon": [
+        "opt_atk",
+        "opt_matk",
+        "opt_crit",
+        "opt_crit_dmg",
+        "opt_hit",
+        "opt_skill_damage",
+        "opt_normal_damage"
+      ],
+      "head": [
+        "opt_matk",
+        "opt_hp",
+        "opt_mdef",
+        "opt_heal",
+        "opt_sp_regen",
+        "opt_skill_damage"
+      ],
+      "armor": [
+        "opt_hp",
+        "opt_def",
+        "opt_mdef",
+        "opt_flee",
+        "opt_heal"
+      ],
+      "garment": [
+        "opt_hp",
+        "opt_def",
+        "opt_mdef",
+        "opt_flee",
+        "opt_sp_regen"
+      ],
+      "shoes": [
+        "opt_hp",
+        "opt_def",
+        "opt_flee",
+        "opt_hit",
+        "opt_sp_regen"
+      ],
+      "accessory": [
+        "opt_atk",
+        "opt_matk",
+        "opt_crit",
+        "opt_crit_dmg",
+        "opt_hit",
+        "opt_heal",
+        "opt_sp_regen"
+      ]
+    }
   },
   "future_definitions": [],
   "build_impact_note": "D-103: authored role modifiers and two damage options; old rolls, base stats, rarity, costs and ownership unchanged. Trial balance, not PCRO values.",

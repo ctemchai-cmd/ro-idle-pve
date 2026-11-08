@@ -36,7 +36,7 @@ export function reserveFarm(input: AccountState, fromMs: number, nowMs: number, 
     for (const kind of kinds) { cumulative += BigInt(snapshot.rarity_weights[kind]); if (pick < cumulative) { rarity = kind; break; } }
     const definitionId = snapshot.definition_pool[Math.floor(nextRandom(farm.loot_rng) * snapshot.definition_pool.length)]!;
     // D-062: option lines are rolled from the same server loot RNG, right after the item's own draws.
-    items.push({ instance_id: `${claimId}_gear_${index}`, definition_id: definitionId, kind: 'equipment', rarity_id: rarity, locked: false, training: false, options: rollItemOptions(rarity, () => nextRandom(farm.loot_rng), content) });
+    items.push({ instance_id: `${claimId}_gear_${index}`, definition_id: definitionId, kind: 'equipment', rarity_id: rarity, locked: false, training: false, options: rollItemOptions(rarity, () => nextRandom(farm.loot_rng), content, {definition_id:definitionId}) });
     }
     if (snapshot.card_drops) {
       const card = farmCardDrop(snapshot.card_drops, () => nextRandom(farm.loot_rng),content);

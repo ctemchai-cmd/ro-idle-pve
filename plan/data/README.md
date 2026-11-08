@@ -32,3 +32,5 @@ D167/TASK139: [ร้าน/แลกเศษ/Panel](../design/56-shop-and-exch
 D188–192/TASK164–168: equipment.crafting and economy.shop.crafting_grant use optionalaccount.equipment_crafting (separate wallet); three schema commands forroll/decide/rarity. Awakenrankcaps live in sharedskills.ts, excessactualpaidrefund follows existingbackup migration. GatecurvesD191 and explicit23Hi parameter overridesD192 regenerate throughhi_class_v2.py→hi_finisher_hierarchy.py; nativeIDs/costs/Class2programs remain. See designs77–81.
 
 D194–195/TASK170–171: essencegoldshop20×20/AFKBreak2-12-22;progression.character_level_is_refundable=true and scopedlevel_resetpolicy.46commands inclcharacter.reset_level. Newlevel/Breakactivepaymentscoalesced;legacydiscardedprefixpricesarchived inlegacy-character-prices.ts and reconstructed inreset receipt. No new save fields orSQL. See designs83–84.
+
+D223/TASK200: equipment.random_options.slot_pools แยก6ส่วน; unique_stat_per_item=false ทำออฟซ้ำทุกแถวได้. เดิม13stat/weights/ranges/Tier/ราคา; sourceoptionsเดิมและผลที่จ่ายแล้วคงไว้. See design103.

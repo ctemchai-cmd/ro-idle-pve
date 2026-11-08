@@ -28,7 +28,8 @@ export function applyEventCommand(s:AccountState,cmd:EventCommand,now:number,c:V
   }else{
    const actor=s.roster.find(a=>a.character_id===cmd.params.character_id);if(!actor)reject('CHARACTER_NOT_FOUND');
    const type=equipmentRules(c).weapon_compatibility[actor!.job_id],tier=gachaGearTier(s,c),pool=Object.values(c.items).filter(i=>i.kind==='equipment'&&i.slot==='weapon'&&i.weapon_type===type&&i.tier_level===tier).map(i=>String(i.id)).sort();if(!pool.length)throw new Error('EVENT_WEAPON_POOL_EMPTY');
-   staged.inventory.push({instance_id:id,definition_id:pool[Math.min(pool.length-1,Math.floor(draw()*pool.length))]!,kind:'equipment',rarity_id:'legendary',locked:false,training:false,options:rollItemOptions('legendary',draw,c)});
+   const definition=pool[Math.min(pool.length-1,Math.floor(draw()*pool.length))]!;
+   staged.inventory.push({instance_id:id,definition_id:definition,kind:'equipment',rarity_id:'legendary',locked:false,training:false,options:rollItemOptions('legendary',draw,c,{definition_id:definition})});
   }
  }else if(offer.kind==='artifact_reroll')grantArtifactRewards(staged,{essence:0,tickets:0,reroll_stones:offer.quantity});
  else if(offer.kind==='artifact')grantArtifactRewards(staged,{essence:0,tickets:offer.quantity});

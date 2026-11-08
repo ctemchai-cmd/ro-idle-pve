@@ -34,7 +34,7 @@ export function applyGearUpgrade(state:AccountState,command:GearUpgradeCommand,c
  const pay=(cost:Partial<AccountState['wallet']>)=>{for(const key of Object.keys(cost)as(keyof AccountState['wallet'])[])if(state.wallet[key]<cost[key]!)reject('INSUFFICIENT_RESOURCES');for(const key of Object.keys(cost)as(keyof AccountState['wallet'])[])state.wallet[key]-=cost[key]!;};
  if(command.type==='equipment.fuse'){
   const quote=fusionQuote(state,command.params.instance_ids,content),id=`fusion_${command.request_id}`;if(state.inventory.some(i=>i.instance_id===id))reject('DUPLICATE_ITEM_INSTANCE');
-  pay(quote.cost);state.inventory=state.inventory.filter(i=>!command.params.instance_ids.includes(i.instance_id));state.inventory.push({...quote.items[0]!,instance_id:id,rarity_id:quote.next_rarity,locked:false,training:false,options:draw?rollItemOptions(quote.next_rarity,draw,content):[]});return'EQUIPMENT_FUSED'; // D-062: fusion rolls fresh lines
+  pay(quote.cost);state.inventory=state.inventory.filter(i=>!command.params.instance_ids.includes(i.instance_id));state.inventory.push({...quote.items[0]!,instance_id:id,rarity_id:quote.next_rarity,locked:false,training:false,options:draw?rollItemOptions(quote.next_rarity,draw,content,{definition_id:quote.items[0]!.definition_id}):[]});return'EQUIPMENT_FUSED'; // D-062: fusion rolls fresh lines
  }
  const quote=tierQuote(state,command.params.item_instance_id,command.params.target_tier,content);pay(quote.cost);quote.item.definition_id=quote.next_definition_id;return'EQUIPMENT_TIER_UPGRADED';
 }

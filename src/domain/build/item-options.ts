@@ -1,26 +1,35 @@
 import type { AccountState, Modifier } from '../../contracts/index.ts';
 import type { ValidatedContent } from '../../content/model.ts';
+import { equipmentSlots, type EquipmentSlot } from './equipment-definition.ts';
 
 type EquipmentItem = Extract<AccountState['inventory'][number], { kind: 'equipment' }>;
 export type ItemOptions = EquipmentItem['options'];
 export type ItemOption = ItemOptions[number];
 interface OptionRow { id: string; stat: Modifier['stat']; op: Modifier['op']; bucket: Modifier['bucket']; min: number; max: number; weight: number }
-interface OptionRules { lines_by_rarity: Record<EquipmentItem['rarity_id'], number>; roll_scale: number; unique_stat_per_item: boolean; tier_scale: Record<string, number>; pool: OptionRow[] }
+interface OptionRules { lines_by_rarity: Record<EquipmentItem['rarity_id'], number>; roll_scale: number; unique_stat_per_item: boolean; tier_scale: Record<string, number>; pool: OptionRow[]; slot_pools?: Record<EquipmentSlot, string[]> }
 export const optionRules = (content: ValidatedContent) => content.documents['equipment.json']!.random_options as unknown as OptionRules;
-/** Shared pool for actual rolls and the inspection odds; exclusions are by stat, not line index. */
-export function availableItemOptions(content: ValidatedContent, excludedStats: readonly string[] = []) {
+/** One pool for creation, rerolls and inspection. Legacy catalogs keep their global pool. */
+export function availableItemOptions(content: ValidatedContent, excludedStats: readonly string[] = [], definitionId?: string) {
   const rules = optionRules(content);
-  return rules.pool.filter(row => !rules.unique_stat_per_item || !excludedStats.includes(row.stat));
+  let allowed: readonly string[] | undefined;
+  if (rules.slot_pools) {
+    const definition = definitionId ? content.items[definitionId] : undefined;
+    if (definition?.kind !== 'equipment' || !equipmentSlots.includes(definition.slot as EquipmentSlot)) throw new Error('ITEM_OPTION_DEFINITION_REQUIRED');
+    allowed = rules.slot_pools[definition.slot as EquipmentSlot];
+    if (!allowed?.length) throw new Error('ITEM_OPTION_POOL_EMPTY');
+  }
+  return rules.pool.filter(row => (!allowed || allowed.includes(row.id)) && (!rules.unique_stat_per_item || !excludedStats.includes(row.stat)));
 }
 
 /**
  * D-062 random option lines rolled when an item is created (drop, fusion, gacha). `draw` must be a
- * server-owned deterministic RNG; each line costs two draws (pool pick, value roll). Stats never repeat on one item.
+ * server-owned deterministic RNG; each line costs two draws (pool pick, value roll).
+ * D223 permits duplicate stats; frozen catalogs retain their original uniqueness policy.
  */
-export function rollItemOptions(rarity: EquipmentItem['rarity_id'], draw: () => number, content: ValidatedContent, selection?: { count: number; excluded_stats: readonly string[] }): ItemOptions {
+export function rollItemOptions(rarity: EquipmentItem['rarity_id'], draw: () => number, content: ValidatedContent, selection?: { count?: number; excluded_stats?: readonly string[]; definition_id?: string }): ItemOptions {
   const rules = optionRules(content), lines = selection?.count ?? rules.lines_by_rarity[rarity] ?? 0, picked: ItemOption[] = [], used = new Set<string>(selection?.excluded_stats);
   for (let line = 0; line < lines; line++) {
-    const pool = availableItemOptions(content, [...used]), total = pool.reduce((sum, row) => sum + row.weight, 0);
+    const pool = availableItemOptions(content, [...used], selection?.definition_id), total = pool.reduce((sum, row) => sum + row.weight, 0);
     if (!pool.length || total <= 0) break;
     let target = draw() * total, row = pool[pool.length - 1]!;
     for (const candidate of pool) { target -= candidate.weight; if (target < 0) { row = candidate; break; } }
