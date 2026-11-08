@@ -21,6 +21,6 @@ TASK-198 (done)
 - [x] AC-03: รีออฟตรงการสุ่มเดิมจนพบเป้าหมาย/หินหมด/ครบเพดาน; แถวอื่นและชิ้นเดิมคงอยู่
 - [x] AC-04: invalid/stale/pending/locked/inbattle ไม่เสียหิน; retry/response-loss ไม่หักซ้ำ
 - [x] AC-05: ยืนยันใช้ผลสุดท้าย พร้อมจำนวนหินสูงสุดและสรุปจริง; mobile ไม่ล้น
-- [ ] AC-06: focused/full/build/clean committed/public checks ผ่าน; ไม่แตะเซฟเจ้าของ
+- [x] AC-06: focused/full/build/clean committed/public checks ผ่าน; ไม่แตะเซฟเจ้าของ
 
-Local review: Codex8November2026 · 925distinctTS/native11/root/M0/strict passed. Clean committed/public checks pending. Evidence: [TASK199](../evidence/task-199/README.md).
+Local review: Codex8November2026 · 925distinctTS/native11/root/M0/strict passed. Clean committed1736identical/public5groups passed. Vercel SUCCESS `3e74296cb`. Evidence: [TASK199](../evidence/task-199/README.md).
